@@ -1,0 +1,229 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 8 of 9. One new chip, lowered into its pocket. A macro lens at tray height: an unmarked
+     accelerator package hangs from a vacuum nozzle just above its empty pocket, crisp under a warm key, while the trays of its
+     siblings at the deck's pitch run behind it out of focus into violet haze. The type sits in the right column over the haze.
+     Drawn to illustrate, no product is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:500px; top:300px; width:500px; text-align:right">The newest Nvidia chips, the dean says</h1>
+<p class="dek" data-follow="26" style="left:500px; width:500px; font-size:27px; text-align:right">The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster. The university describes a cluster as servers working as one system. Drawn to illustrate.</p>
+
+<script>window.FIG = {"pitch_mm": 16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "08 / 09", src: "c8 c9 c5", fit: { min: 64, max: 86, maxLines: 4 } });
+
+  /* THE TYPE FIRST: a right hand column, its block centred a little above the middle, beside the hero package */
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  const MID = 560, GAP = 26;
+  const hH = hook.getBoundingClientRect().height, dH = dek.getBoundingClientRect().height;
+  hook.style.top = Math.round(MID - (hH + GAP + dH) / 2) + 'px'; CH.follow();
+  const TYPE_L = Math.min(hook.getBoundingClientRect().left, dek.getBoundingClientRect().left);
+  { const r = hook.getBoundingClientRect(); if ((r.left + r.right) / 2 <= 720) throw new Error('the headline column must sit right of centre'); }
+  if (hook.getBoundingClientRect().top < 140 || dek.getBoundingClientRect().bottom > 1210) throw new Error('the type block leaves the safe field');
+
+  /* UNITS: centimetres, so the smallest parts keep real rounded edges. */
+  const P = FIG.pitch_mm / 10;                      // the tray pitch, from the figure
+  const PKG = 1.36, SUB_T = 0.12, DIE = 0.72, DIE_T = 0.05, HBM_W = 0.24, HBM_D = 0.32, HBM_T = 0.07;
+  const TRAY_L = 32.26, TRAY_W = 13.59, TRAY_H = 0.44, EDGE = 0.7, BASE_T = 0.2, RIB_H = 0.09, GAPT = 0.4;
+  const COLS = Math.floor((TRAY_L - 2 * EDGE) / P), ROWS = Math.floor((TRAY_W - 2 * EDGE) / P);
+  const TX = 5, TZ = 19;                             // trays across and deep
+  const EXPECT = TX * TZ * COLS * ROWS;
+  if (PKG >= P) throw new Error('a package wider than the pitch cannot sit in its pocket');
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.5, far: 3000, fog: 0.006 });
+  /* the frame's own studio: the explainer sweep with a deep indigo floor; the far trays fall into violet haze */
+  TXT.studio(R, { tone: 'explainer', w: 420, d: 640, h: 260, radius: 70, floor: 0x3b2c9e, wall: 0x3a2ba8, env: 0.75, hemi: 0.3, softbox: 6.5 });
+  R.scene.fog.color = new THREE.Color(0x3a2a9a);
+
+  /* MATERIALS, each with tooth */
+  const tex = (w, h, paint) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t; };
+  const rnd = CH.rng(20261114);
+  /* the package top: an amber laminate under a solder mask sheen, a ring of gold pads and a row of capacitors on two sides */
+  const subTop = tex(512, 512, (g, w, h) => {
+    g.fillStyle = '#b8641c'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2600; i++) { g.fillStyle = 'rgba(' + (rnd() < 0.5 ? '255,190,120' : '90,36,8') + ',' + (0.05 + rnd() * 0.07).toFixed(3) + ')'; g.fillRect(rnd() * w, rnd() * h, 2 + rnd() * 3, 2 + rnd() * 3); }
+    g.strokeStyle = 'rgba(255,200,120,0.22)'; g.lineWidth = 2;
+    for (let i = 0; i < 40; i++) { const y = 30 + i * 11.3; g.beginPath(); g.moveTo(14, y); g.lineTo(60, y); g.stroke(); g.beginPath(); g.moveTo(w - 60, y); g.lineTo(w - 14, y); g.stroke(); }
+    for (let i = 0; i < 18; i++) { const x = 70 + i * 21.5; g.fillStyle = '#e9c46a'; g.fillRect(x, 16, 12, 22); g.fillRect(x, h - 38, 12, 22); g.fillStyle = '#6b3b22'; g.fillRect(x + 3, 21, 6, 12); g.fillRect(x + 3, h - 33, 6, 12); }
+    g.strokeStyle = 'rgba(255,214,140,0.5)'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12);
+  });
+  const dieTex = tex(512, 512, (g, w, h) => {
+    g.fillStyle = '#c9d2e6'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) { const l = 76 + 8 * Math.sin(i * 1.3 + j * 0.7); g.fillStyle = 'hsl(222,22%,' + l.toFixed(0) + '%)'; g.fillRect(8 + i * 62, 8 + j * 62, 58, 58); }
+    g.fillStyle = 'rgba(40,46,70,0.35)'; for (let i = 0; i <= 8; i++) { g.fillRect(4 + i * 62, 0, 4, h); g.fillRect(0, 4 + i * 62, w, 4); }
+  });
+  const plasticRough = tex(256, 256, (g, w, h) => { g.fillStyle = '#9a9a9a'; g.fillRect(0, 0, w, h); for (let i = 0; i < 5000; i++) { const v = 120 + (rnd() * 90) | 0; g.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; g.fillRect(rnd() * w, rnd() * h, 1.5, 1.5); } });
+  plasticRough.colorSpace = THREE.NoColorSpace; plasticRough.wrapS = plasticRough.wrapT = THREE.RepeatWrapping; plasticRough.repeat.set(6, 6);
+
+  const mSub = new THREE.MeshPhysicalMaterial({ color: 0xc87028, roughness: 0.5, metalness: 0.05, clearcoat: 0.6, clearcoatRoughness: 0.25 });
+  const mSubTop = new THREE.MeshPhysicalMaterial({ map: subTop, roughness: 0.42, metalness: 0.1, clearcoat: 0.8, clearcoatRoughness: 0.18 });
+  const mDie = new THREE.MeshPhysicalMaterial({ color: 0xd0d8ec, map: dieTex, metalness: 0.96, roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.03, iridescence: 0.35, iridescenceIOR: 1.7, iridescenceThicknessRange: [260, 520] });
+  const mHbm = new THREE.MeshPhysicalMaterial({ color: 0x8c93b4, metalness: 0.8, roughness: 0.2, clearcoat: 0.6 });
+  const mTray = new THREE.MeshPhysicalMaterial({ color: 0x3f22b0, roughness: 0.62, roughnessMap: plasticRough, metalness: 0.0, clearcoat: 0.25, clearcoatRoughness: 0.5, sheen: 0.4, sheenColor: new THREE.Color(0x9a8cff) });
+
+  /* THE GEOMETRY, one of each part, instanced across the field */
+  const gSub = TXT.roundedBox(PKG, SUB_T, PKG, 0.03, mSub).geometry;
+  const gTop = new THREE.PlaneGeometry(PKG - 0.05, PKG - 0.05); gTop.rotateX(-Math.PI / 2);
+  const gDie = TXT.roundedBox(DIE, DIE_T, DIE, 0.012, mDie).geometry;
+  const gHbm = TXT.roundedBox(HBM_W, HBM_T, HBM_D, 0.01, mHbm).geometry;
+  const gRibX = TXT.roundedBox(TRAY_L - 2 * EDGE + 0.2, RIB_H, P - PKG - 0.04, 0.05, mTray).geometry;
+  const gRibZ = TXT.roundedBox(P - PKG - 0.04, RIB_H, TRAY_W - 2 * EDGE + 0.2, 0.05, mTray).geometry;
+  const gBase = TXT.roundedBox(TRAY_L, BASE_T, TRAY_W, 0.08, mTray).geometry;
+  const gRimL = TXT.roundedBox(TRAY_L, TRAY_H - BASE_T, EDGE, 0.18, mTray).geometry;
+  const gRimS = TXT.roundedBox(EDGE, TRAY_H - BASE_T, TRAY_W - 2 * EDGE + 0.1, 0.18, mTray).geometry;
+
+  const gCap = TXT.roundedBox(0.1, 0.05, 0.05, 0.012, mHbm).geometry;
+  const mCap = new THREE.MeshPhysicalMaterial({ color: 0xd9dde8, metalness: 0.85, roughness: 0.22 });
+  const mCapEnd = new THREE.MeshStandardMaterial({ color: 0xe8c066, metalness: 1, roughness: 0.25 });
+  const mFill = new THREE.MeshStandardMaterial({ color: 0x3a1c10, roughness: 0.6 });
+  const mChrome = new THREE.MeshPhysicalMaterial({ color: 0x8e96b8, metalness: 1, roughness: 0.2, clearcoat: 0.4 });
+  const mRubber = new THREE.MeshStandardMaterial({ color: 0x2c2448, roughness: 0.75 });
+
+  /* THE FIELD: every pocket of every tray at the figure's pitch */
+  const field = { sub: [], top: [], die: [], hbm: [], ribX: [], ribZ: [], base: [], rimL: [], rimS: [] };
+  const chips = [];
+  const X0 = -(TX * TRAY_L + (TX - 1) * GAPT) / 2;
+  const SEAT = BASE_T;                                // a package sits on the pocket floor
+  for (let a = 0; a < TX; a++) for (let b = 0; b < TZ; b++) {
+    const cxT = X0 + a * (TRAY_L + GAPT) + TRAY_L / 2, czT = -(b * (TRAY_W + GAPT) + TRAY_W / 2);
+    field.base.push([cxT, BASE_T / 2, czT]);
+    field.rimL.push([cxT, BASE_T + (TRAY_H - BASE_T) / 2, czT + TRAY_W / 2 - EDGE / 2], [cxT, BASE_T + (TRAY_H - BASE_T) / 2, czT - TRAY_W / 2 + EDGE / 2]);
+    field.rimS.push([cxT + TRAY_L / 2 - EDGE / 2, BASE_T + (TRAY_H - BASE_T) / 2, czT], [cxT - TRAY_L / 2 + EDGE / 2, BASE_T + (TRAY_H - BASE_T) / 2, czT]);
+    const gx0 = cxT - COLS * P / 2, gz0 = czT - ROWS * P / 2;
+    for (let i = 0; i <= COLS; i++) field.ribZ.push([gx0 + i * P, BASE_T + RIB_H / 2, czT]);
+    for (let j = 0; j <= ROWS; j++) field.ribX.push([cxT, BASE_T + RIB_H / 2, gz0 + j * P]);
+    for (let i = 0; i < COLS; i++) for (let j = 0; j < ROWS; j++) {
+      const x = gx0 + (i + 0.5) * P, z = gz0 + (j + 0.5) * P;
+      chips.push([x + (rnd() - 0.5) * 0.03, z + (rnd() - 0.5) * 0.03, x, z]);
+    }
+  }
+  /* THE HERO: the pocket nearest the frame's aim point is the one being filled; its package hangs above it */
+  let hk = 0, best = 1e9;
+  chips.forEach((c, k) => { const d = Math.hypot(c[2] - 0.0, c[3] + 18); if (d < best) { best = d; hk = k; } });
+  const HX = chips[hk][2], HZ = chips[hk][3];
+  chips.forEach((c, k) => {
+    if (k === hk) return;
+    const [x, z] = c;
+    field.sub.push([x, SEAT + SUB_T / 2, z]);
+    field.top.push([x, SEAT + SUB_T + 0.002, z]);
+    field.die.push([x, SEAT + SUB_T + DIE_T / 2, z]);
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([sx, sz]) => field.hbm.push([x + sx * (DIE / 2 + 0.03 + HBM_W / 2), SEAT + SUB_T + HBM_T / 2, z + sz * (HBM_D / 2 + 0.02)]));
+  });
+  /* HONEST: the field and the hero together hold exactly the count the figure's pitch gives, one pitch apart */
+  if (chips.length !== EXPECT || field.die.length + 1 !== EXPECT || field.hbm.length !== 4 * (EXPECT - 1)) throw new Error('the frame drew ' + (field.die.length + 1) + ' chips, the pitch gives ' + EXPECT);
+  const ribStep = field.ribZ[1][0] - field.ribZ[0][0];
+  if (Math.abs(ribStep - FIG.pitch_mm / 10) > 1e-9) throw new Error('the pocket pitch drawn is ' + ribStep * 10 + ' mm, the figure says ' + FIG.pitch_mm);
+
+  const inst = (geo, mat, list, shadow, parent) => {
+    const m = new THREE.InstancedMesh(geo, mat, list.length), o = new THREE.Object3D();
+    list.forEach((p, k) => { o.position.set(p[0], p[1], p[2]); o.updateMatrix(); m.setMatrixAt(k, o.matrix); });
+    m.instanceMatrix.needsUpdate = true; m.castShadow = shadow; m.receiveShadow = true; m.computeBoundingBox && m.computeBoundingBox(); m.computeBoundingSphere();
+    (parent || R.scene).add(m); return m;
+  };
+  inst(gBase, mTray, field.base, true); inst(gRimL, mTray, field.rimL, true); inst(gRimS, mTray, field.rimS, true);
+  inst(gRibX, mTray, field.ribX, true); inst(gRibZ, mTray, field.ribZ, true);
+  inst(gSub, mSub, field.sub, true); inst(gTop, mSubTop, field.top, false); inst(gDie, mDie, field.die, true); inst(gHbm, mHbm, field.hbm, true);
+
+  /* the hero package, built at full detail: substrate, die with its underfill fillet, four stacks, and two rows of capacitors */
+  const hero = new THREE.Group();
+  const add = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; hero.add(m); return m; };
+  add(gSub, mSub, 0, SUB_T / 2, 0); add(gTop, mSubTop, 0, SUB_T + 0.002, 0);
+  add(TXT.roundedBox(DIE + 0.05, 0.02, DIE + 0.05, 0.008, mFill).geometry, mFill, 0, SUB_T + 0.01, 0);
+  add(gDie, mDie, 0, SUB_T + DIE_T / 2, 0);
+  [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([sx, sz]) => add(gHbm, mHbm, sx * (DIE / 2 + 0.03 + HBM_W / 2), SUB_T + HBM_T / 2, sz * (HBM_D / 2 + 0.02)));
+  const caps = [], ends = [];
+  for (let i = 0; i < 10; i++) for (const sz of [-1, 1]) { const x = -0.5 + i * 0.111, z = sz * 0.6; caps.push([x, SUB_T + 0.025, z]); ends.push([x - 0.045, SUB_T + 0.025, z], [x + 0.045, SUB_T + 0.025, z]); }
+  inst(gCap, mCap, caps, true, hero); inst(TXT.roundedBox(0.018, 0.052, 0.052, 0.008, mCapEnd).geometry, mCapEnd, ends, false, hero);
+  const LIFT = 0.55;
+  hero.position.set(HX, SEAT + LIFT, HZ); hero.rotation.set(-0.05, 0.12, 0.07);
+  R.scene.add(hero);
+  /* the vacuum nozzle that lowers it: a soft cup on the die and a polished stem rising out of frame */
+  hero.updateMatrixWorld(true);
+  const cupAt = new THREE.Vector3(0, SUB_T + DIE_T, 0).applyMatrix4(hero.matrixWorld);
+  const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.24, 0.12, 40), mRubber); cup.position.set(cupAt.x, cupAt.y + 0.06, cupAt.z); cup.castShadow = true; R.scene.add(cup);
+  const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.3, 40), mChrome); collar.position.set(cupAt.x, cupAt.y + 0.27, cupAt.z); collar.castShadow = true; R.scene.add(collar);
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 30, 32), mChrome); stem.position.set(cupAt.x, cupAt.y + 0.42 + 15, cupAt.z); stem.castShadow = true; R.scene.add(stem);
+
+  /* THE CAMERA: a macro lens at tray height, the hero low left in frame and the type's column clear on the right */
+  const HC = [HX, SEAT + LIFT + 0.08, HZ];
+  const FROM = [HX + 3.0, 3.8, HZ + 10.0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, HC, 470, 1010, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  { const q = CH.rectOf(THREE, R, hero, 0), d = dek.getBoundingClientRect(); if (q[1] < d.bottom + 20 && q[0] + q[2] > TYPE_L - 24) throw new Error('the hero package runs under the type: ' + q.map(Math.round)); }
+  { const top = CH.project(THREE, R, [cupAt.x, cupAt.y + 12, cupAt.z]), k = document.querySelector('.kick').getBoundingClientRect(); if (top[0] < k.right + 30) throw new Error('the nozzle stem would strike the kicker at x ' + Math.round(top[0])); }
+
+  /* THE LIGHT: a warm key from the left on the hero, so the field away from it falls toward violet */
+  CH.KEY_SCALE = 0.75;
+  const spec = CH.rigSpec(W, 60, 4096); spec.key = Object.assign({}, spec.key, { color: 0xffd6a0 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([HX, 0, HZ - 10], { distance: 400, shadowFar: 1200, normalBias: 0.01 }), { light: { az: -62, el: 34 } }));
+  CH.unacne(R, 0.01);
+  CH.pool(THREE, TXT, R, [HX, SEAT, HZ], { radius: 4.5, i: 9, color: 0xffd9a8, penumbra: 0.95, normalBias: 0.004 });
+
+  const shot = await TXT.snapshot(R);
+  if (!shot || !shot.ok) throw new Error('the GPU frame came back black');
+  const GW = gl.width, GH = gl.height;
+  const beauty = document.createElement('canvas'); beauty.width = GW; beauty.height = GH; beauty.getContext('2d').drawImage(gl, 0, 0);
+
+  /* THE LENS: a depth pass gives each pixel its blur, focused on the hero, and the beauty pass is blended through four blurs */
+  const F = R.camera.position.distanceTo(new THREE.Vector3(HC[0], HC[1], HC[2]));
+  const dof = new THREE.ShaderMaterial({ side: THREE.DoubleSide, toneMapped: false, fog: false,
+    uniforms: { uF: { value: F }, uKb: { value: 0.75 }, uKf: { value: 1.3 } },
+    vertexShader: 'varying float vD; void main(){ vec4 p = vec4(position,1.0);\n#ifdef USE_INSTANCING\np = instanceMatrix * p;\n#endif\nvec4 mv = modelViewMatrix * p; vD = -mv.z; gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'uniform float uF,uKb,uKf; varying float vD; void main(){ float c = vD > uF ? (vD-uF)/uF*uKb : (uF-vD)/uF*uKf; c = clamp(c, 0.0, 1.0); gl_FragColor = vec4(vec3(c), 1.0); }' });
+  const keep = { bg: R.scene.background, fog: R.scene.fog, tm: R.renderer.toneMapping };
+  R.scene.background = new THREE.Color(0xffffff); R.scene.fog = null; R.scene.overrideMaterial = dof; R.renderer.toneMapping = THREE.NoToneMapping;
+  R.renderer.render(R.scene, R.camera);
+  const depth = document.createElement('canvas'); depth.width = GW; depth.height = GH; depth.getContext('2d').drawImage(gl, 0, 0);
+  R.scene.background = keep.bg; R.scene.fog = keep.fog; R.scene.overrideMaterial = null; R.renderer.toneMapping = keep.tm;
+  const RADII = [0, 7, 18, 34, 56];
+  const levels = RADII.map((r) => {
+    if (!r) return beauty.getContext('2d').getImageData(0, 0, GW, GH).data;
+    /* the edges are extended before the blur, so no transparent margin bleeds in */
+    const pd = 3 * r, src = document.createElement('canvas'); src.width = GW + 2 * pd; src.height = GH + 2 * pd; const sg = src.getContext('2d');
+    sg.drawImage(beauty, pd, pd);
+    sg.drawImage(beauty, 0, 0, 1, GH, 0, pd, pd, GH); sg.drawImage(beauty, GW - 1, 0, 1, GH, GW + pd, pd, pd, GH);
+    sg.drawImage(src, 0, pd, GW + 2 * pd, 1, 0, 0, GW + 2 * pd, pd); sg.drawImage(src, 0, GH + pd - 1, GW + 2 * pd, 1, 0, GH + pd, GW + 2 * pd, pd);
+    const c = document.createElement('canvas'); c.width = src.width; c.height = src.height; const g = c.getContext('2d');
+    g.filter = 'blur(' + r + 'px)'; g.drawImage(src, 0, 0); g.filter = 'none';
+    return g.getImageData(pd, pd, GW, GH).data;
+  });
+  const dd = depth.getContext('2d').getImageData(0, 0, GW, GH).data;
+  const outC = document.createElement('canvas'); outC.width = GW; outC.height = GH; const og = outC.getContext('2d'); const out = og.createImageData(GW, GH), od = out.data;
+  const NL = RADII.length - 1;
+  for (let k = 0; k < od.length; k += 4) {
+    const c = dd[k] / 255 * NL, i = Math.min(NL - 1, Math.floor(c)), t = c - i, A = levels[i], B = levels[i + 1];
+    od[k] = A[k] + (B[k] - A[k]) * t; od[k + 1] = A[k + 1] + (B[k + 1] - A[k + 1]) * t; od[k + 2] = A[k + 2] + (B[k + 2] - A[k + 2]) * t; od[k + 3] = 255;
+  }
+  og.putImageData(out, 0, 0);
+
+  const cx = CH.develop(shot, outC);
+  TXLOOK.footWash(cx, { tone: 'explainer', a: 0.5, height: 210 });
+  CH.seat(cx, { a: 0.5, fade: 170 });
+  /* the footer lines get their own soft knock out, so no package edge runs through them */
+  CH.seat(cx, { sel: '.tx-site', a: 0.7, fade: 46 }); CH.seat(cx, { sel: '.src', a: 0.7, fade: 46 }); CH.seat(cx, { sel: '.kick, .count', a: 0.35, fade: 40 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

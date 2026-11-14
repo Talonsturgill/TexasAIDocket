@@ -1,0 +1,260 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 6 of 9, the turn. Three vertical furnace towers standing straight on a deep cobalt
+resin floor, seen from a low three-quarter camera on the right, level and shifted so the uprights stay upright. January:
+twelve wafers under a heavy lid clamped down on every rod. May: four wafers, then half a wafer with a bright fracture
+edge facing the camera, under its lid. November: nineteen wafers in a cyan tower whose empty slotted rods climb on, fading
+into the light past the top of the frame, with no lid. Type in the lower left quiet over the floor. Every count is read
+from window.FIG and checked. No total is drawn. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:760px; width:560px; text-align:left">Three awards, three kinds of number</h1>
+<p class="dek" data-follow="24" style="left:82px; width:600px">January was a stated $12 million. May was roughly $4.5 million. November is over $19 million, which is a floor. No total is drawn.</p>
+<div class="lab plain" id="l-jan" style="font-size:26px">January, stated</div>
+<div class="lab plain" id="l-may" style="font-size:26px">May, roughly</div>
+<div class="lab" id="l-nov" style="font-size:26px">November, over</div>
+<script>window.FIG = {"jan_wafers": 12, "may_whole": 4, "may_part": 0.5, "nov_wafers": 19};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Semiconductor Innovation Fund", counter: "06 / 09", src: "c15 c17 c1", fit: { min: 68, max: 80, maxLines: 3 } });
+  /* the type stands on the floor's quiet: its foot sits just above the claim ids, whatever size the fit chose */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek');
+    const tot = d.getBoundingClientRect().bottom - h.getBoundingClientRect().top; h.style.top = Math.round(1218 - tot) + 'px'; CH.follow(); }
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 60, fog: 0 });
+  TXT.studio(R, { tone: CH.TONE, w: 9, d: 7, h: 5, radius: 1.4, env: 1.0, hemi: 0.55, softbox: 6 });
+  const P = CH.P, rnd = CH.rng(CH.SEED + 6);
+  const CAM = [1.3, 0.5, 2.6], YAW = Math.atan2(CAM[0] + 0.1, CAM[2]);
+  /* THE WALL: the sweep repainted deep so a far camera's light lands it cerulean low and navy high */
+  { const sw = R.studio.sweep, pos = sw.geometry.attributes.position, col = sw.geometry.attributes.color, c = new THREE.Color();
+    const lo = new THREE.Color(P.skyMid), hi = new THREE.Color(P.skyTop), glow = new THREE.Color('#ff9a66'), cob = new THREE.Color(0x3a3fc4).lerp(new THREE.Color(P.skyLow), 0.45);
+    for (let i = 0; i < pos.count; i++) { const y = pos.getY(i);
+      if (y < 0.002) c.copy(cob); else c.copy(cob).lerp(glow, Math.min(1, y / 0.3)).lerp(lo, Math.min(1, Math.max(0, (y - 0.3) / 1.0)) ** 0.8).lerp(hi, Math.min(1, Math.max(0, (y - 0.9) / 2.0)) ** 1.3);
+      c.multiplyScalar(0.42); col.setXYZ(i, c.r, c.g, c.b); }
+    col.needsUpdate = true;
+    /* the sweep turned square to the camera, so its foot reads as a level horizon */
+    sw.rotation.y = YAW; }
+  /* THE FLOOR: a poured cobalt resin with fine handling scratches in its roughness, so the key shadows and the contacts land
+   * on a material, not a plinth */
+  const scr = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => { g.fillStyle = '#7a7a7a'; g.fillRect(0, 0, w, h); const r = CH.rng(61);
+    for (let i = 0; i < 3800; i++) { const x = r() * w, y = r() * h, a = r() * Math.PI, l = 3 + r() * 60; g.strokeStyle = 'rgba(' + (r() < 0.5 ? '30,30,30' : '220,220,220') + ',' + (0.05 + r() * 0.14) + ')';
+      g.lineWidth = 0.4 + r() * 0.9; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); g.stroke(); } }, [6, 6]);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(9, 7), new THREE.MeshPhysicalMaterial({ color: 0x7480ff, map: scr, roughness: 0.42, roughnessMap: scr, metalness: 0, clearcoat: 0.3, clearcoatRoughness: 0.25, envMapIntensity: 0.55, bumpMap: scr, bumpScale: 0.0015 }));
+  floor.rotation.set(-Math.PI / 2, 0, YAW, 'YXZ'); floor.rotation.order = 'YXZ'; floor.rotation.y = YAW; floor.rotation.x = -Math.PI / 2; floor.rotation.z = 0; floor.position.y = 0.002; floor.receiveShadow = true; R.scene.add(floor);
+
+  /* ---- THE FIGURE ---------------------------------------------------------------------------------------------
+   * January: FIG.jan_wafers whole wafers under a clamped lid. May: FIG.may_whole whole wafers, then one piece broken to
+   * FIG.may_part of a wafer's area, under a lid. November: FIG.nov_wafers whole wafers, its rods running on with empty
+   * slots past the top of the frame and fading into the light, no lid. */
+  for (const k of ['jan_wafers', 'may_whole', 'nov_wafers']) if (!Number.isInteger(FIG[k]) || FIG[k] < 1) throw new Error(k + ' is not a whole count');
+  if (FIG.may_part <= 0 || FIG.may_part >= 1) throw new Error('may_part is not a part of one wafer');
+  const RW = 0.1, TW = 0.0026, PITCH = 0.026, BASE = 0.03, FIRST = BASE + 0.022, XS = [-0.36, 0, 0.36];
+  const slotY = (i) => FIRST + i * PITCH;
+
+  /* the polished face: mirror silicon with its die grid, the edge exclusion ring and a soft film sweep, in metres */
+  const dieTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, '#b9b2e6'); gr.addColorStop(0.45, '#a9c6ee'); gr.addColorStop(0.75, '#c7b6e8'); gr.addColorStop(1, '#9fd2e8');
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    const cx0 = w / 2, R0 = w * 0.47, die = w / 15, r = CH.rng(7);
+    for (let i = -8; i <= 8; i++) for (let j = -8; j <= 8; j++) { const x = cx0 + i * die, y = cx0 + j * die;
+      if (Math.hypot(x + die / 2 - cx0, y + die / 2 - cx0) > R0 - die * 0.6) continue;
+      g.fillStyle = 'rgba(' + [255, 200 + r() * 55, 255].map(Math.round).join(',') + ',' + (0.05 + r() * 0.1) + ')'; g.fillRect(x + 2, y + 2, die - 4, die - 4); }
+    g.strokeStyle = 'rgba(52,48,98,0.55)'; g.lineWidth = 3;
+    for (let i = -8; i <= 8; i++) { g.beginPath(); g.moveTo(cx0 + i * die, 0); g.lineTo(cx0 + i * die, h); g.stroke(); g.beginPath(); g.moveTo(0, cx0 + i * die); g.lineTo(w, cx0 + i * die); g.stroke(); }
+    g.strokeStyle = 'rgba(70,72,110,0.6)'; g.lineWidth = w * 0.012; g.beginPath(); g.arc(cx0, cx0, R0, 0, Math.PI * 2); g.stroke(); });
+  dieTex.repeat.set(5, 5); dieTex.offset.set(0.5, 0.5); dieTex.wrapS = dieTex.wrapT = THREE.ClampToEdgeWrapping;
+  const M = {
+    si: new THREE.MeshPhysicalMaterial({ color: 0xe6e8ff, map: dieTex, metalness: 1, roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.02, iridescence: 0.8, iridescenceIOR: 2.0, iridescenceThicknessRange: [220, 640] }),
+    rim: new THREE.MeshStandardMaterial({ color: 0xf2f6ff, emissive: 0xcfe6ff, emissiveIntensity: 0.6, metalness: 0.6, roughness: 0.2 }),
+    brk: new THREE.MeshStandardMaterial({ color: 0xffd9b0, emissive: 0xffa45a, emissiveIntensity: 1.7, metalness: 0.2, roughness: 0.55 }),
+    sic: new THREE.MeshPhysicalMaterial({ color: 0x4f55d8, metalness: 0.2, roughness: 0.34, clearcoat: 0.6, clearcoatRoughness: 0.2 }),
+    sicDk: new THREE.MeshPhysicalMaterial({ color: 0x3a3fc0, metalness: 0.25, roughness: 0.32, clearcoat: 0.7, clearcoatRoughness: 0.15 }),
+    steel: new THREE.MeshStandardMaterial({ color: 0xdfe6f5, metalness: 1, roughness: 0.22 }),
+    cyanDk: new THREE.MeshPhysicalMaterial({ color: 0x18b6d4, emissive: 0x077f96, emissiveIntensity: 0.35, metalness: 0, roughness: 0.18, clearcoat: 1 })
+  };
+  const cyan = (op) => new THREE.MeshPhysicalMaterial({ color: 0x22d3ee, emissive: 0x0aa8c4, emissiveIntensity: 0.35 + 0.5 * (1 - op), metalness: 0, roughness: 0.12, clearcoat: 1, clearcoatRoughness: 0.04,
+    transparent: op < 1, opacity: op, depthWrite: op >= 0.999 });
+  function roundDisc(r, h, e, mat, seg) {
+    e = Math.min(e, h / 2 - 1e-5); const pts = [new THREE.Vector2(0, -h / 2)];
+    for (let i = 0; i <= 8; i++) { const a = -Math.PI / 2 + Math.PI * i / 8; pts.push(new THREE.Vector2(r - e + Math.cos(a) * e, (a < 0 ? -h / 2 + e : h / 2 - e) + Math.sin(a) * e)); }
+    pts.push(new THREE.Vector2(0, h / 2));
+    const m = new THREE.Mesh(new THREE.LatheGeometry(pts, seg || 128), mat); m.castShadow = true; m.receiveShadow = true; return m;
+  }
+  function wafer() {
+    const s = new THREE.Shape(), n = 180, na = 0.03;
+    for (let i = 0; i <= n; i++) { const a = Math.PI / 2 + na + (2 * Math.PI - 2 * na) * i / n; const x = Math.cos(a) * RW, y = Math.sin(a) * RW; i ? s.lineTo(x, y) : s.moveTo(x, y); }
+    s.lineTo(0, RW - 0.004); s.closePath();
+    const g = new THREE.ExtrudeGeometry(s, { depth: TW, bevelEnabled: true, bevelThickness: 0.0003, bevelSize: 0.0006, bevelSegments: 2, curveSegments: 180 });
+    g.rotateX(-Math.PI / 2); g.translate(0, -TW / 2, 0);
+    const m = new THREE.Mesh(g, [M.si, M.rim]); m.castShadow = true; m.receiveShadow = true; m.userData.area = 1; return m;
+  }
+  /* the broken piece: the -x part of a wafer behind a ragged front to back break, its area solved to FIG.may_part and
+   * checked within 0.03 of a wafer */
+  function brokenWafer(part) {
+    const n = 140, steps = 16; let off = 0; const brk = [];
+    for (let k = 0; k <= steps; k++) { const z = RW * (1 - 2 * k / steps); off = k === 0 || k === steps ? 0 : off * 0.45 + (rnd() - 0.5) * 0.03; brk.push([off, z]); }
+    const areaOf = (shift) => { const poly = [];
+      for (const [x, z] of brk) { const lim = Math.sqrt(Math.max(0, RW * RW - z * z)); poly.push([Math.max(-lim, Math.min(lim, x + shift)), z]); }
+      for (let i = 1; i < n; i++) { const a = -Math.PI / 2 - Math.PI * i / n; poly.push([Math.cos(a) * RW, Math.sin(a) * RW]); }
+      let A = 0; for (let i = 0; i < poly.length; i++) { const p = poly[i], q = poly[(i + 1) % poly.length]; A += p[0] * q[1] - q[0] * p[1]; }
+      return { poly, frac: Math.abs(A / 2) / (Math.PI * RW * RW) }; };
+    let lo = -RW * 0.8, hi = RW * 0.8, best = null;
+    for (let it = 0; it < 50; it++) { const mid = (lo + hi) / 2, r = areaOf(mid); best = r; if (r.frac < part) lo = mid; else hi = mid; }
+    if (Math.abs(best.frac - part) > 0.03) throw new Error('the broken piece is ' + best.frac.toFixed(3) + ' of a wafer, not roughly ' + part);
+    const s = new THREE.Shape(); best.poly.forEach((p, i) => i ? s.lineTo(p[0], -p[1]) : s.moveTo(p[0], -p[1])); s.closePath();
+    const t = TW * 3, g = new THREE.ExtrudeGeometry(s, { depth: t, bevelEnabled: true, bevelThickness: 0.0002, bevelSize: 0.0003, bevelSegments: 1, curveSegments: 64 });
+    g.rotateX(-Math.PI / 2); g.translate(0, -t / 2, 0);
+    const m = new THREE.Mesh(g, [M.si, M.brk]); m.castShadow = true; m.receiveShadow = true; m.userData.area = best.frac; return m;
+  }
+  const ROD_A = [Math.PI, Math.PI * 0.56, -Math.PI * 0.56];
+  function rodAt(g, a, y0, y1, mat, r) { const rx = Math.sin(a) * (RW + 0.0045), rz = Math.cos(a) * (RW + 0.0045);
+    const rod = new THREE.Mesh(new THREE.CylinderGeometry(r || 0.0062, r || 0.0062, y1 - y0, 24), mat); rod.position.set(rx, (y0 + y1) / 2, rz); rod.castShadow = true; rod.receiveShadow = true; g.add(rod); return [rx, rz]; }
+  function collar(g, x, z, y, mat) { const c = roundDisc(0.0085, 0.0034, 0.0012, mat, 24); c.position.set(x, y - TW / 2 - 0.0019, z); g.add(c); }
+  function tower(x, o) {
+    const g = new THREE.Group(); g.position.x = x;
+    /* the yaw that turns each tower's open front a little toward the camera */
+    g.rotation.y = Math.atan2(CAM[0] - x, CAM[2]) * 0.5;
+    const bp = roundDisc(0.124, BASE, 0.008, o.open ? M.cyanDk : M.sicDk); bp.position.y = BASE / 2; g.add(bp);
+    const ws = [], top = o.open ? null : slotY(o.slots - 1) + 0.024 + (o.headroom || 0) * PITCH;
+    if (!o.open) {
+      for (const a of ROD_A) { const [rx, rz] = rodAt(g, a, BASE, top, M.sic); for (let i = 0; i < o.slots; i++) collar(g, rx, rz, slotY(i), M.sic); }
+      const lid = roundDisc(0.126, o.heavy ? 0.034 : 0.014, o.heavy ? 0.009 : 0.005, M.sicDk); lid.position.y = top + (o.heavy ? 0.017 : 0.007); g.add(lid);
+      if (o.heavy) {
+        /* THE LOCK: a clamp over every rod head, bolted through the lid, and a knurled locking boss in the middle */
+        const lt = top + 0.034;
+        for (const a of ROD_A) { const rx = Math.sin(a) * (RW + 0.0045), rz = Math.cos(a) * (RW + 0.0045);
+          const cl = TXT.roundedBox(0.036, 0.05, 0.03, 0.006, M.steel); cl.position.set(rx * 1.04, lt - 0.016, rz * 1.04); cl.rotation.y = a; g.add(cl);
+          const bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.008, 6), M.steel); bolt.position.set(rx * 1.0, lt + 0.013, rz * 1.0); g.add(bolt); }
+        const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.034, 0.03, 40), M.steel); boss.position.y = lt + 0.015; boss.castShadow = true; g.add(boss);
+        for (let k = 0; k < 24; k++) { const a = k / 24 * Math.PI * 2, rib = new THREE.Mesh(new THREE.BoxGeometry(0.003, 0.024, 0.004), M.steel); rib.position.set(Math.cos(a) * 0.032, lt + 0.015, Math.sin(a) * 0.032); rib.rotation.y = -a; g.add(rib); }
+        const cap = roundDisc(0.022, 0.01, 0.004, M.sicDk, 48); cap.position.y = lt + 0.034; g.add(cap);
+      }
+    } else {
+      /* OPEN: solid to one slot past the last wafer, then the rods and their empty slots fade up into the light */
+      const solidTop = slotY(o.whole) + 0.01, SEG = 0.026, NSEG = Math.ceil((o.rodTop - solidTop) / SEG);
+      for (const a of ROD_A) { const [rx, rz] = rodAt(g, a, BASE, solidTop, cyan(1));
+        for (let i = 0; slotY(i) < solidTop; i++) collar(g, rx, rz, slotY(i), cyan(1));
+        for (let s = 0; s < NSEG; s++) { const y0 = solidTop + s * SEG, y1 = y0 + SEG, op = Math.max(0.05, 1 - ((s + 1) * SEG / 0.34) ** 0.9), m = cyan(op);
+          rodAt(g, a, y0, y1 + 0.0005, m); for (let i = 0; i < 200; i++) { const sy = slotY(i); if (sy >= y0 && sy < y1) collar(g, rx, rz, sy, m); } } }
+    }
+    for (let i = 0; i < o.whole; i++) { const w = wafer(); w.position.y = slotY(i); w.rotation.y = (rnd() - 0.5) * 0.08; g.add(w); ws.push(w); }
+    if (o.part) {
+      const b = brokenWafer(o.part); b.position.y = slotY(o.whole);
+      /* the kept half turned away from the camera, so the fracture faces it and the missing half is the near side */
+      const dx = CAM[0] - x, dz = CAM[2], dn = Math.hypot(dx, dz); b.rotation.y = Math.atan2(-dz / dn, dx / dn) - g.rotation.y; g.add(b); ws.push(b);
+      /* the chips the break left on the base plate */
+      for (let k = 0; k < 7; k++) { const sz = 0.004 + rnd() * 0.007, ch = new THREE.Mesh(new THREE.CylinderGeometry(sz, sz * 0.8, 0.0012, 3), M.si);
+        ch.position.set((rnd() - 0.2) * 0.12, BASE + 0.0008, 0.02 + rnd() * 0.08); ch.rotation.y = rnd() * 6.28; g.add(ch); }
+    }
+    TXT.add(R, g); g.traverse(m => { if (m.isMesh && m.material && m.material.transparent) m.castShadow = false; });   /* the fading rods cast no long stripe */
+    g.userData.wafers = ws; g.userData.top = top; return g;
+  }
+  const jan = tower(XS[0], { whole: FIG.jan_wafers, slots: FIG.jan_wafers, heavy: true });
+  const may = tower(XS[1], { whole: FIG.may_whole, part: FIG.may_part, slots: FIG.may_whole + 1, headroom: 0.9 });
+  const nov = tower(XS[2], { whole: FIG.nov_wafers, open: true, rodTop: 1.9 });
+  /* THE CHECK: what is drawn is what the figures say */
+  const whole = (t) => t.userData.wafers.filter(w => w.userData.area === 1).length;
+  const parts = (t) => t.userData.wafers.filter(w => w.userData.area !== 1).map(w => w.userData.area);
+  if (whole(jan) !== FIG.jan_wafers || parts(jan).length) throw new Error('January draws ' + whole(jan) + ' wafers, the figure is ' + FIG.jan_wafers);
+  if (whole(may) !== FIG.may_whole || parts(may).length !== 1 || Math.abs(parts(may)[0] - FIG.may_part) > 0.03) throw new Error('May does not draw ' + FIG.may_whole + ' and roughly ' + FIG.may_part);
+  if (whole(nov) !== FIG.nov_wafers || parts(nov).length) throw new Error('November draws ' + whole(nov) + ' wafers, the figure is ' + FIG.nov_wafers);
+  [jan, may, nov].forEach(t => TXT.contact(R, t, { layers: [{ spread: 0.08, opacity: 0.45 }, { spread: 0.5, opacity: 0.18 }] }));
+
+  /* ---- THE CAMERA: low three-quarter from the right, level, shifted so May's foot lands where the type leaves room -- */
+  const cam = R.camera, LOOKAT = [-0.1, CAM[1], 0], FOC = 2600, WF = 3200, HF = 4000;
+  cam.position.set(CAM[0], CAM[1], CAM[2]); cam.lookAt(LOOKAT[0], LOOKAT[1], LOOKAT[2]); R._txLook = LOOKAT.slice();
+  cam.aspect = WF / HF; cam.fov = 2 * Math.atan(HF / 2 / FOC) * 180 / Math.PI; cam.clearViewOffset(); cam.updateProjectionMatrix();
+  const raw = CH.project(THREE, R, [0, 0, 0]), rawPx = [(raw[0] / 1080) * WF, (raw[1] / 1350) * HF];   /* May's foot in the full frame */
+  cam.setViewOffset(WF, HF, Math.round(rawPx[0] - 456), Math.round(rawPx[1] - 760), 1080, 1350); cam.updateProjectionMatrix();
+  const pj = (p) => CH.project(THREE, R, p);
+  const at = pj([0, 0, 0]); if (Math.hypot(at[0] - 456, at[1] - 760) > 3) throw new Error('camera shift is off: May foot at ' + at);
+  const novR = Math.max(pj([XS[2] + 0.11, 1.2, 0])[0], pj([XS[2] + 0.11, 0.3, 0])[0]);
+  if (novR > 875) throw new Error('November\'s rods reach the counter: ' + novR);
+  const hookTop = document.getElementById('hook').getBoundingClientRect().top, mayFoot = pj([0, 0, 0.13])[1];
+  if (hookTop < mayFoot + 8) throw new Error('the headline ' + hookTop + ' runs into May\'s foot ' + mayFoot);
+
+  /* ---- THE LIGHT ---------------------------------------------------------------------------------------------- */
+  CH.KEY_SCALE = 1.0;
+  TXT.deckRig(R, CH.rigSpec(W, 3.0, 4096), Object.assign(CH.rigOpts([0, 0.4, 0], { distance: 7, shadowFar: 16, normalBias: 0.003 }), { light: { az: -62, el: 38 } }));
+  const rim = new THREE.DirectionalLight(new THREE.Color(P.rim), 1.0); rim.position.set(3, 2.5, -3); R.scene.add(rim);
+  /* a violet fill from the camera's side, no shadow, so the key's casts lean violet and never go black */
+  const fill = new THREE.DirectionalLight(new THREE.Color(P.fill), 1.1); fill.position.set(3, 1.2, 4); R.scene.add(fill);
+
+  /* WHAT THE SILICON SEES: a polished face mirrors the wall behind it, so the wafers get an environment of that wall,
+   * navy high, the peach band low, a cobalt floor, and two thin ceiling strips where the camera's ray off a face lands */
+  { const env = new THREE.Scene(), d = new THREE.Mesh(new THREE.SphereGeometry(20, 64, 32), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { t: { value: new THREE.Color(P.skyTop) }, m: { value: new THREE.Color(P.skyMid) }, w: { value: new THREE.Color('#ff9a66') }, f: { value: new THREE.Color(0x2f35a8) }, v: { value: new THREE.Color('#9a7cf0') } },
+      vertexShader: 'varying vec3 p; void main(){ p = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 t,m,w,f,v; varying vec3 p; void main(){ float y = p.y; vec3 c = y < 0.0 ? f : mix(mix(w*1.15, v, smoothstep(0.03,0.16,y)), mix(m, t, smoothstep(0.3,0.9,y)), smoothstep(0.14,0.32,y)); gl_FragColor = vec4(c, 1.0); }' }));
+    env.add(d);
+    const fwd = [-Math.sin(YAW), -Math.cos(YAW)];
+    [[0.11, 0.12], [0.2, 0.08]].forEach(([el, h]) => { const pl = new THREE.Mesh(new THREE.PlaneGeometry(12, h), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }));
+      pl.material.color.multiplyScalar(0.9); pl.position.set(fwd[0] * 9, Math.sin(el) * 9, fwd[1] * 9); pl.lookAt(0, 0, 0); env.add(pl); });
+    const pm = new THREE.PMREMGenerator(R.renderer), tex = pm.fromScene(env, 0.01).texture; pm.dispose();
+    M.si.envMap = tex; M.si.envMapIntensity = 1.2; M.si.needsUpdate = true; }
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* ---- THE RESIN'S REFLECTIONS: each tower mirrored about its own foot, as a level camera sees it in a clear coat (a
+   * point h above the floor at the foot's depth lands at the screen y of the point h below it), faded and softened, so
+   * the floor under every tower carries its reflection down into the bottom of the frame -------------------------- */
+  { const D = 2, src = document.createElement('canvas'); src.width = 2160; src.height = 2700; src.getContext('2d').drawImage(cx.canvas, 0, 0);
+    [[jan, XS[0], 0.3], [may, XS[1], 0.3], [nov, XS[2], 0.36]].forEach(([t, x, alpha]) => {
+      const ym = pj([x, 0, 0])[1], yr = pj([x, -0.05, 0])[1] - ym;   /* screen px per 5 cm, to check the mirror */
+      if (Math.abs((pj([x, 0.05, 0])[1] - ym) + yr) > 1.5) throw new Error('the mirror is not linear at this depth');
+      const xl = Math.min(pj([x - 0.16, 0, 0])[0], pj([x - 0.16, 0.8, 0])[0]), xr = Math.max(pj([x + 0.16, 0, 0])[0], pj([x + 0.16, 0.8, 0])[0]);
+      const L = Math.min(1350 - ym, 520), tmp = document.createElement('canvas'); tmp.width = 2160; tmp.height = 2700; const k = tmp.getContext('2d');
+      k.save(); k.beginPath(); k.rect(xl * D, ym * D, (xr - xl) * D, L * D); k.clip(); k.translate(0, 2 * ym * D); k.scale(1, -1); k.drawImage(src, 0, 0); k.restore();
+      k.globalCompositeOperation = 'destination-in';
+      const gv = k.createLinearGradient(0, ym * D, 0, (ym + L) * D); gv.addColorStop(0, 'rgba(0,0,0,1)'); gv.addColorStop(0.35, 'rgba(0,0,0,0.45)'); gv.addColorStop(1, 'rgba(0,0,0,0)');
+      k.fillStyle = gv; k.fillRect(0, 0, 2160, 2700);
+      const gh = k.createLinearGradient(xl * D, 0, xr * D, 0); gh.addColorStop(0, 'rgba(0,0,0,0)'); gh.addColorStop(0.2, 'rgba(0,0,0,1)'); gh.addColorStop(0.8, 'rgba(0,0,0,1)'); gh.addColorStop(1, 'rgba(0,0,0,0)');
+      k.fillStyle = gh; k.fillRect(0, 0, 2160, 2700);
+      cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.globalAlpha = alpha; cx.filter = 'blur(3px)'; cx.drawImage(tmp, 0, 4 * D); cx.restore(); });
+    /* the horizon softened: a thin haze where the resin's far edge meets the sweep */
+    const hz = pj([-3.5 * Math.sin(YAW), 0, -3.5 * Math.cos(YAW)])[1], hg = cx.createLinearGradient(0, hz - 46, 0, hz + 46);
+    hg.addColorStop(0, 'rgba(176,170,255,0)'); hg.addColorStop(0.5, 'rgba(176,170,255,0.42)'); hg.addColorStop(1, 'rgba(176,170,255,0)'); cx.fillStyle = hg; cx.fillRect(0, hz - 46, 1080, 92); }
+
+  /* ---- THE LIGHT NOVEMBER CLIMBS INTO: a soft bloom high on its column, screened over the render --------------- */
+  { const nx = pj([XS[2], 1.0, 0])[0]; cx.save(); cx.globalCompositeOperation = 'screen';
+    const g = cx.createRadialGradient(nx + 120, -150, 10, nx + 120, -150, 470); g.addColorStop(0, 'rgba(210,248,255,0.62)'); g.addColorStop(0.45, 'rgba(120,220,245,0.22)'); g.addColorStop(1, 'rgba(60,120,220,0)');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 700);
+    /* and its cyan answered in the clear coat of the resin below its foot */
+    const fy = pj([XS[2], 0, 0.12])[1]; cx.translate(nx, fy + 40); cx.scale(1, 1.6);
+    const rf = cx.createRadialGradient(0, 0, 4, 0, 0, 150); rf.addColorStop(0, 'rgba(90,225,245,0.26)'); rf.addColorStop(1, 'rgba(90,225,245,0)');
+    cx.fillStyle = rf; cx.fillRect(-160, -160, 320, 320); cx.restore(); }
+
+  /* ---- THE TYPE AND THE FURNITURE ------------------------------------------------------------------------------ */
+  CH.seat(cx, { a: 0.4, fade: 120 });
+  { const r = document.querySelector('.kick').getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.32, fade: 30 }); }
+  TXLOOK.footWash(cx, { a: 0.3, height: 170 });
+  { const r = document.querySelector('.count').getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.5, fade: 34 }); }
+  const place = (id, x, y, align) => { const el = document.getElementById(id), r = el.getBoundingClientRect();
+    el.style.left = Math.round(align === 'right' ? x - r.width : align === 'left' ? x : x - r.width / 2) + 'px'; el.style.top = Math.round(y - r.height / 2) + 'px'; };
+  place('l-jan', Math.max(80, pj([XS[0], 0, 0])[0] - 143), pj([XS[0], jan.userData.top + 0.06, 0])[1] - 44, 'left');
+  place('l-may', pj([XS[1], 0, 0])[0], pj([XS[1], may.userData.top, 0])[1] - 52);
+  place('l-nov', pj([XS[2] - 0.13, slotY(FIG.nov_wafers - 1), 0])[0] - 10, pj([XS[2], slotY(FIG.nov_wafers - 1), 0])[1] - 22, 'right');
+  /* a leader from November's pill to its last filled wafer, the point past which the award is only "over" */
+  { const el = document.getElementById('l-nov').getBoundingClientRect(); CH.leader(THREE, R, [el.right + 4, el.top + el.height / 2], [XS[2] - 0.09, slotY(FIG.nov_wafers - 1), 0.03], 'November, last filled wafer'); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 5 of 9. THE WIDENING GAP. Four whole wide bandgap wafers and one cleaved half lie flat in
+     a row on a deep blue studio floor, each lit from inside the way such a crystal glows under ultraviolet light. Their glow
+     runs from amber at the near end to deep violet at the far end, the order a widening gap moves the light toward shorter
+     colours. The cleaved half, its fracture ragged and catching the key, is the nearest and largest thing in the frame.
+     Type in the right column, right aligned. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:560px; top:176px; width:440px; text-align:right">May added roughly $4.5 million</h1>
+<p class="dek" data-follow="28" style="left:580px; width:420px; font-size:28px; text-align:right">In May a Texas Tech engineering team received roughly $4.5 million from the fund for wide and ultrawide bandgap semiconductor research. Four wafers and a cleaved half, drawn to illustrate.</p>
+
+<script>window.FIG = {"may_whole": 4, "may_part": 0.5, "pitch_mm": 16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Semiconductor Innovation Fund", counter: "05 / 09", src: "c17 c14", fit: { min: 76, max: 96, maxLines: 3 } });
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 40, fog: 0, exposure: 0.95 });
+  const P = CH.P;
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 5, d: 2.6 }), { env: 0.7, hemi: 0.35 }));
+
+  /* THE FIGURE. FIG.may_whole whole wafers and one cleaved by FIG.may_part, lying one diameter plus FIG.pitch_mm apart */
+  if (!Number.isInteger(FIG.may_whole) || FIG.may_whole < 1) throw new Error('may_whole is not a whole count');
+  if (FIG.may_part <= 0 || FIG.may_part >= 1) throw new Error('may_part is not a part of one wafer');
+  const RAD = 0.075, T = 0.0026, GAP = FIG.pitch_mm / 1000, STEP = 2 * RAD + GAP;
+  const count = FIG.may_whole + 1;
+  const dir = new THREE.Vector2(-0.74, -0.67).normalize();       /* the row runs away from the camera */
+  const start = new THREE.Vector2(0.0, 0.30);                    /* the cleaved half, nearest */
+  const at = (i) => start.clone().add(dir.clone().multiplyScalar(i * STEP + (i ? RAD * 0.25 : 0)));
+  const RG = CH.rng(CH.SEED + 905);
+
+  /* THE GLOW, near to far: amber, coral, rose, violet, deep violet. The wider the gap, the shorter the colour it gives off. */
+  const GLOW = ['#ffae3c', '#ff6f4e', '#ff3f93', '#c24dff', '#9b6bff'];
+  const BODY = ['#ffcf7a', '#ffad94', '#ff9cc8', '#e2b4ff', '#e4d8ff'];
+
+  /* THE FLOOR: deep blue, lifted where the row lies, with each crystal's own light spilled round it; the wall above in the tone */
+  const X0 = -4.0, XS = 8.0, Z0 = -1.9, ZF = 1.9, WALL = 0.2, S = 4096;
+  const mapC = document.createElement('canvas'); mapC.width = mapC.height = S; const mg = mapC.getContext('2d');
+  const glowC = document.createElement('canvas'); glowC.width = glowC.height = S; const gg = glowC.getContext('2d');
+  const fx = (x) => (x - X0) / XS * S, fz = (z) => WALL * S + (z - Z0) / (ZF - Z0) * (1 - WALL) * S;
+  {
+    const wg = mg.createLinearGradient(0, 0, 0, WALL * S); wg.addColorStop(0, P.skyTop); wg.addColorStop(1, '#2149b8');
+    mg.fillStyle = wg; mg.fillRect(0, 0, S, WALL * S);
+    const fg = mg.createLinearGradient(0, WALL * S, 0, S); fg.addColorStop(0, '#2149b8'); fg.addColorStop(0.5, '#2a4fc4'); fg.addColorStop(1, '#22238c');
+    mg.fillStyle = fg; mg.fillRect(0, WALL * S, S, S);
+    const mid = at(2), pr = mg.createRadialGradient(fx(mid.x), fz(mid.y), 0, fx(mid.x), fz(mid.y), S * 0.2);
+    pr.addColorStop(0, 'rgba(98,134,255,0.75)'); pr.addColorStop(1, 'rgba(98,134,255,0)'); mg.fillStyle = pr; mg.fillRect(0, WALL * S, S, S);
+    const NR = CH.rng(CH.SEED + 59); for (let k = 0; k < 60000; k++) { mg.fillStyle = 'rgba(' + (NR() < 0.5 ? '230,236,255' : '10,10,50') + ',' + (0.03 + NR() * 0.04) + ')'; mg.fillRect(NR() * S, WALL * S + NR() * (1 - WALL) * S, 1 + NR() * 2, 1 + NR() * 2); }
+    gg.fillStyle = '#000'; gg.fillRect(0, 0, S, S);
+    for (let i = 0; i < count; i++) { const c = at(i), r = (RAD * 2.1) / XS * S, g = gg.createRadialGradient(fx(c.x), fz(c.y), r * 0.3, fx(c.x), fz(c.y), r);
+      const col = new THREE.Color(GLOW[i]); const rgb = [col.r, col.g, col.b].map(v => Math.round(v * 255)).join(',');
+      g.addColorStop(0, 'rgba(' + rgb + ',' + (0.5 + 0.1 * i) + ')'); g.addColorStop(0.5, 'rgba(' + rgb + ',' + (0.18 + 0.06 * i) + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)'); gg.globalCompositeOperation = 'lighter'; gg.fillStyle = g; gg.fillRect(0, 0, S, S); }
+    const sw = R.studio.sweep, pos = sw.geometry.attributes.position, uv = [], top = 3.2;
+    for (let i = 0; i < pos.count; i++) { const y = pos.getY(i), z = pos.getZ(i);
+      if (y < 0.002) uv.push((pos.getX(i) - X0) / XS, 1 - (WALL + (Math.min(ZF, Math.max(Z0, z)) - Z0) / (ZF - Z0) * (1 - WALL)));
+      else uv.push((pos.getX(i) - X0) / XS, 1 - WALL * (1 - Math.min(1, y / top))); }
+    sw.geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    const t1 = new THREE.CanvasTexture(mapC), t2 = new THREE.CanvasTexture(glowC); [t1, t2].forEach(t => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; });
+    sw.material = new THREE.MeshStandardMaterial({ map: t1, emissiveMap: t2, emissive: 0xffffff, emissiveIntensity: 0.9, roughness: 0.7, metalness: 0, side: THREE.DoubleSide });
+  }
+
+  /* the outlines, in the wafer's own plane */
+  function wholeOutline() {   /* a circle with the primary flat */
+    const pts = [], fa = Math.acos(0.955), n = 220;
+    for (let i = 0; i <= n; i++) { const a = -Math.PI / 2 + fa + (2 * Math.PI - 2 * fa) * i / n; pts.push([Math.cos(a) * RAD, Math.sin(a) * RAD]); }
+    return pts;
+  }
+  const cleave = [];
+  function halfOutline() {   /* the lower half; the break ragged, stepping and wandering along it */
+    const pts = [], n = 160;
+    for (let i = 0; i <= n; i++) { const a = Math.PI + Math.PI * i / n; pts.push([Math.cos(a) * RAD, Math.sin(a) * RAD]); }
+    /* the break walks across in uneven runs: long shallow slopes, short terraces, small hackle jumps, never a ruler line */
+    let x = RAD, y = 0; cleave.push([x, y]);
+    while (x > -RAD + 0.01) {
+      const run = 0.004 + RG() * 0.011; x = Math.max(-RAD + 0.006, x - run);
+      y = Math.max(-0.006, Math.min(0.006, y + (RG() - 0.5) * 0.004)); pts.push([x, y]); cleave.push([x, y]);
+      if (RG() < 0.45) { const jump = (RG() - 0.5) * 0.0045; x -= 0.0006; y = Math.max(-0.006, Math.min(0.006, y + jump)); pts.push([x, y]); cleave.push([x, y]); }
+    }
+    cleave.push([-RAD, 0]);
+    return pts;
+  }
+  const area = (pts) => { let s = 0; for (let i = 0; i < pts.length; i++) { const p = pts[i], q = pts[(i + 1) % pts.length]; s += p[0] * q[1] - q[0] * p[1]; } return Math.abs(s) / 2; };
+  const halfPts = halfOutline();
+  const share = area(halfPts) / (Math.PI * RAD * RAD);
+  if (Math.abs(share - FIG.may_part) > 0.03) throw new Error('the cleaved piece draws ' + share.toFixed(3) + ' of a wafer, not ' + FIG.may_part);
+  const mkShape = (pts) => { const s = new THREE.Shape(); s.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) s.lineTo(pts[i][0], pts[i][1]); s.closePath(); return s; };
+
+  /* the light inside: brightest at the rim, where the crystal's own light is trapped and leaks out */
+  function innerTex(glow, body) {
+    const N = 512, c = document.createElement('canvas'); c.width = c.height = N; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(N / 2, N / 2, 0, N / 2, N / 2, N / 2);
+    const gc = new THREE.Color(glow), deep = '#' + gc.clone().multiplyScalar(0.5).getHexString(), lift = '#' + gc.clone().lerp(new THREE.Color(body), 0.6).getHexString();
+    gr.addColorStop(0, deep); gr.addColorStop(0.55, '#' + gc.clone().multiplyScalar(0.62).getHexString()); gr.addColorStop(0.86, glow); gr.addColorStop(0.97, lift); gr.addColorStop(1, glow);
+    g.fillStyle = gr; g.fillRect(0, 0, N, N);
+    /* the polish: one soft sheen across the face, the key's softbox seen in a mirror finish */
+    g.save(); g.translate(N / 2, N / 2); g.rotate(-0.6); const sh = g.createLinearGradient(0, -N * 0.2, 0, N * 0.2);
+    sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(0.42, 'rgba(255,255,255,0.22)'); sh.addColorStop(0.5, 'rgba(255,255,255,0.34)'); sh.addColorStop(0.6, 'rgba(255,255,255,0.12)'); sh.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = sh; g.fillRect(-N, -N * 0.2 - N * 0.14, 2 * N, N * 0.4); g.restore();
+    /* polishing: faint concentric lap marks and the laser ID by the flat */
+    for (let k = 0; k < 40; k++) { g.strokeStyle = 'rgba(255,255,255,' + (0.02 + RG() * 0.04) + ')'; g.lineWidth = 1; g.beginPath(); g.arc(N / 2, N / 2, N * (0.1 + RG() * 0.38), 0, 6.283); g.stroke(); }
+    g.fillStyle = 'rgba(30,10,40,0.55)'; for (let r = 0; r < 2; r++) for (let q = 0; q < 26; q++) if ((q * 7 + r * 3) % 5) { g.beginPath(); g.arc(N * 0.36 + q * N * 0.011, N * (0.88 + r * 0.024), N * 0.0038, 0, 6.283); g.fill(); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    t.repeat.set(1 / (2 * RAD), 1 / (2 * RAD)); t.offset.set(0.5, 0.5); t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; return t;
+  }
+
+  const groups = [];
+  for (let i = 0; i < count; i++) {
+    const half = i === 0, pts = half ? halfPts : wholeOutline(), c2 = at(i);
+    const g = new THREE.Group(); g.position.set(c2.x, T / 2 + 0.0004, c2.y);
+    g.rotation.y = half ? Math.PI + 0.18 : (RG() - 0.5) * 1.2 + i * 0.9;     /* the half turns its break to the camera */
+    const geo = new THREE.ExtrudeGeometry(mkShape(pts), { depth: T, bevelEnabled: true, bevelThickness: 0.0005, bevelSize: 0.0011, bevelSegments: 4, curveSegments: 96 });
+    geo.translate(0, 0, -T / 2); geo.rotateX(-Math.PI / 2);
+    const tex = innerTex(GLOW[i], BODY[i]);
+    const face = new THREE.MeshPhysicalMaterial({ color: BODY[i], map: tex, emissive: GLOW[i], emissiveMap: tex, emissiveIntensity: 0.7 + 0.14 * i, transmission: 0.7, thickness: 0.002,
+      ior: 2.5, roughness: 0.04, metalness: 0, specularIntensity: 0.8, envMapIntensity: 1.1, clearcoat: 0.8, clearcoatRoughness: 0.03 });
+    const side = new THREE.MeshPhysicalMaterial({ color: BODY[i], emissive: GLOW[i], emissiveIntensity: 1.2 + 0.3 * i, roughness: 0.1, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.4 });
+    const m = new THREE.Mesh(geo, [face, side]); m.castShadow = false; m.receiveShadow = false; g.add(m);
+    if (half) {
+      /* THE FRACTURE FACE: a dull, lighter, rough band along the break, each step its own facet, catching the key */
+      const frac = new THREE.MeshStandardMaterial({ color: '#ffe2b0', roughness: 0.55, metalness: 0, emissive: GLOW[0], emissiveIntensity: 0.35, flatShading: true });
+      const vs = [], hy = T / 2 + 0.0003;
+      for (let k = 0; k < cleave.length - 1; k++) {
+        const a = cleave[k], b = cleave[k + 1], tx = b[0] - a[0], ty = b[1] - a[1], L = Math.hypot(tx, ty) || 1, nx = -ty / L * 0.0004, ny = tx / L * 0.0004;
+        const A = [a[0] + nx, a[1] + ny], B = [b[0] + nx, b[1] + ny], j = (RG() - 0.5) * 0.0004;
+        /* shape (x, y) lies at world (x, -y) after the turn onto the floor */
+        vs.push(A[0], -hy, -A[1], B[0], -hy, -B[1], B[0], hy + j, -B[1], A[0], -hy, -A[1], B[0], hy + j, -B[1], A[0], hy, -A[1]);
+      }
+      const fg = new THREE.BufferGeometry(); fg.setAttribute('position', new THREE.Float32BufferAttribute(vs, 3)); fg.computeVertexNormals();
+      const fm = new THREE.Mesh(fg, frac); fm.material.side = THREE.DoubleSide; g.add(fm);
+      /* the chips the break left on the floor beside it */
+      const chip = new THREE.MeshPhysicalMaterial({ color: BODY[0], emissive: GLOW[0], emissiveIntensity: 0.5, roughness: 0.15, transmission: 0.7, thickness: 0.002 });
+      for (let k = 0; k < 7; k++) { const sz = 0.0014 + RG() * 0.0026, cg = new THREE.CylinderGeometry(sz, sz * 0.8, T, 3 + Math.floor(RG() * 2));
+        const cm = new THREE.Mesh(cg, chip); cm.position.set((RG() - 0.5) * 0.11, 0, -0.012 - RG() * 0.04); cm.rotation.y = RG() * 6.28; cm.castShadow = true; g.add(cm); }
+    }
+    /* THE BEVEL'S HIGHLIGHT: a fine bright line along the top edge where the rim faces the key, as polished crystal catches it */
+    {
+      const keyH = new THREE.Vector3(Math.sin(-30 * Math.PI / 180), 0, Math.cos(-30 * Math.PI / 180)), th = g.rotation.y, runs = [[]];
+      const n = pts.length;
+      for (let k = 0; k < n; k++) {
+        const a = pts[(k - 1 + n) % n], b = pts[(k + 1) % n], tx = b[0] - a[0], ty = b[1] - a[1], L = Math.hypot(tx, ty) || 1;
+        const nl = new THREE.Vector3(ty / L, 0, tx / L).applyAxisAngle(new THREE.Vector3(0, 1, 0), th);   /* outward normal: shape (ty, -tx) -> local (ty, 0, tx) */
+        const lit = nl.dot(keyH) > 0.3 && !(half && Math.abs(pts[k][1]) < 0.0065 && Math.abs(pts[k][0]) < RAD - 0.004);
+        if (lit) runs[runs.length - 1].push(new THREE.Vector3(pts[k][0], T / 2 + 0.0004, -pts[k][1]).multiplyScalar(1));
+        else if (runs[runs.length - 1].length) runs.push([]);
+      }
+      const hl = new THREE.MeshBasicMaterial({ color: new THREE.Color(BODY[i]).lerp(new THREE.Color(0xffffff), 0.75).multiplyScalar(1.6) });
+      runs.filter(r => r.length > 4).forEach(r => { const tg = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(r), r.length * 2, 0.0008, 6, false); g.add(new THREE.Mesh(tg, hl)); });
+    }
+    R.scene.add(g); groups.push({ g, half, pts });
+  }
+  const drawnWhole = groups.filter(w => !w.half).length, drawnHalf = groups.filter(w => w.half).length;
+  if (drawnWhole !== FIG.may_whole || drawnHalf !== 1) throw new Error('drew ' + drawnWhole + ' whole and ' + drawnHalf + ' cleaved, not ' + FIG.may_whole + ' and one');
+
+  /* THE CONTACT, painted into the floor itself: each crystal's soft dark footprint, nudged away from the key, so every
+   * wafer sits on the sweep rather than above it */
+  {
+    const mg2 = mapC.getContext('2d'), sh = new THREE.Vector2(0.006, -0.004);
+    groups.forEach(({ g, pts }) => {
+      const th = g.rotation.y, cs = Math.cos(th), sn = Math.sin(th);
+      [[14, 0.5, 1.0], [5, 0.55, 1.0]].forEach(([blur, a, grow]) => {
+        mg2.save(); mg2.filter = 'blur(' + blur + 'px)'; mg2.fillStyle = 'rgba(12,10,60,' + a + ')'; mg2.beginPath();
+        pts.forEach((p, k) => { const x = p[0] * grow, z = -p[1] * grow; const wx = g.position.x + x * cs + z * sn + sh.x, wz = g.position.z - x * sn + z * cs + sh.y;
+          k ? mg2.lineTo(fx(wx), fz(wz)) : mg2.moveTo(fx(wx), fz(wz)); });
+        mg2.closePath(); mg2.fill(); mg2.restore(); });
+    });
+    R.studio.sweep.material.map.needsUpdate = true;
+  }
+
+  /* THE CAMERA: low and close over the near end, looking up the row */
+  const FROM = [0.5, 0.5, 1.06];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [start.x, 0, start.y], 600, 1050, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+
+  /* THE KEY, front left and fairly low, so it rakes the fracture face */
+  const LIGHT = { az: -30, el: 30 };
+  CH.KEY_SCALE = 0.8;
+  const mid = at(2);
+  TXT.deckRig(R, CH.rigSpec(W, 2.2, 4096), Object.assign(CH.rigOpts([mid.x, 0, mid.y], { distance: 5, shadowFar: 12, normalBias: 0.002 }), { light: LIGHT }));
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.4, height: 200 });
+  /* THE KICKER'S ROW: a smooth darken-only tint over the top of the frame, so the sweep's bright curve sinks behind the kicker */
+  { const tg = cx.createLinearGradient(0, 0, 0, 230); for (let k = 0; k <= 10; k++) { const t = k / 10, e = 1 - t * t * (3 - 2 * t); tg.addColorStop(t, TXLOOK.rgba(P.low, (0.42 * e).toFixed(4))); }
+    cx.fillStyle = tg; cx.fillRect(0, 0, 1080, 230); }
+  /* THE TYPE'S GROUND: one smooth elliptical tint in the tone's deep hue behind the right column, darken only, no edge in it */
+  {
+    const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+    const x0 = Math.min(hb.left, db.left), x1 = Math.max(hb.right, db.right), y0 = hb.top, y1 = db.bottom;
+    const ccx = (x0 + x1) / 2 + 40, ccy = (y0 + y1) / 2, ry = (y1 - y0) / 2 + 200, rx = (x1 - x0) / 2 + 220;
+    cx.save(); cx.translate(ccx, ccy); cx.scale(rx / ry, 1);
+    const tg = cx.createRadialGradient(0, 0, 0, 0, 0, ry);
+    for (let k = 0; k <= 12; k++) { const t = k / 12, e = 1 - t * t * (3 - 2 * t); tg.addColorStop(t, TXLOOK.rgba(P.low, (0.32 * e).toFixed(4))); }
+    cx.fillStyle = tg; cx.fillRect(-ry * 3, -ry * 2, ry * 6, ry * 4); cx.restore();
+  }
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

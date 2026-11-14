@@ -1,0 +1,326 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 3 of 9. THE SECTION CUT: a clean room sliced open like an architect's section model,
+     seen straight on in a long lens. Twelve fan filter units in one row across the ceiling (window.FIG.jan_wafers, one per
+     million, drawn to illustrate) pour columns of filtered air down through the bay, through the perforated raised floor and
+     into the sub-fab, where the type sits. Studio sweep behind, explainer tone, key high on the left. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:872px; width:900px; text-align:left">January brought $12 million for a clean room</h1>
+<p class="dek" data-follow="24" style="left:82px; width:880px">The fund gave Texas Tech $12 million in January toward a clean room for semiconductor work. Twelve ceiling filters, one for each million, drawn to illustrate.</p>
+
+<script>window.FIG = {"jan_wafers": 12, "pitch_mm": 16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Semiconductor Innovation Fund", counter: "03 / 09", src: "c15 c14", fit: { min: 66, max: 80, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.1, far: 120, fog: 0 });
+  const P = CH.P, rng = CH.rng(303);
+
+  /* ---------------- THE FIGURE ----------------
+   * One fan filter unit per $1 million (drawn to illustrate). The bay is exactly as wide as the row of units, so the
+   * count sets the building's width and nothing else does. */
+  const NF = FIG.jan_wafers, PITCH = 0.6;                 // a 2 ft by 4 ft unit, 0.6 m wide across the cut
+  const ROOM_W = NF * PITCH, X0 = -ROOM_W / 2;
+  const ZF = 0.8, ZB = -0.8, DEPTH = ZF - ZB;              // the slice: cut plane at the front, back wall behind
+  const Y = { sub: 0, slab0: 3.0, slab1: 3.35, tile0: 3.75, floor: 3.8, ceil: 6.6, roof0: 7.6, roof1: 7.9 };
+  const WALL = 0.2, CHASE = 0.5;
+
+  /* ---------------- MATERIALS ---------------- */
+  const tex = (w, h, paint, rep) => CH.canvasTex(THREE, w, h, paint, rep);
+  const concreteMap = tex(512, 512, (g, w, h) => { g.fillStyle = "#b9bfd8"; g.fillRect(0, 0, w, h); const r = CH.rng(7);
+    for (let i = 0; i < 5000; i++) { g.fillStyle = "rgba(" + (r() < 0.5 ? "70,72,120" : "235,238,255") + "," + (0.04 + r() * 0.08) + ")"; g.fillRect(r() * w, r() * h, 1 + r() * 2.5, 1 + r() * 2.5); } }, [3, 3]);
+  const poche = new THREE.MeshStandardMaterial({ color: 0x4a3fd6, roughness: 0.62, metalness: 0, emissive: 0x2a1e9a, emissiveIntensity: 0.35 });
+  const concrete = new THREE.MeshStandardMaterial({ color: 0xaab4f4, map: concreteMap, roughness: 0.86 });
+  const wallPanel = new THREE.MeshStandardMaterial({ color: 0xc9d4ff, roughness: 0.5, metalness: 0.02 });
+  const backPanel = new THREE.MeshStandardMaterial({ color: 0x7f97ee, roughness: 0.55, metalness: 0.02 });
+  const subWall = new THREE.MeshStandardMaterial({ color: 0x24338f, roughness: 0.9 });
+  const subFloor = new THREE.MeshStandardMaterial({ color: 0x2a3a9c, roughness: 0.85 });
+  const steel = new THREE.MeshStandardMaterial({ color: 0xc8d4ee, metalness: 0.85, roughness: 0.28 });
+  const alu = new THREE.MeshStandardMaterial({ color: 0xaeb8dc, metalness: 0.7, roughness: 0.35 });
+  const housingM = new THREE.MeshStandardMaterial({ color: 0x8e9ee0, metalness: 0.55, roughness: 0.34 });
+  const enamel = new THREE.MeshPhysicalMaterial({ color: 0xd6ddfa, roughness: 0.32, clearcoat: 0.6, clearcoatRoughness: 0.2 });
+  const panelGrey = new THREE.MeshStandardMaterial({ color: 0x8796d8, roughness: 0.45, metalness: 0.1 });
+  const polyp = new THREE.MeshStandardMaterial({ color: 0xbfc8f0, roughness: 0.55 });
+  const glowFace = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xeaf4ff).multiplyScalar(2.4) });
+  const amber = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff8f1f).multiplyScalar(1.0) });
+  const pleatM = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9, emissive: 0xdfeaff, emissiveIntensity: 0.55 });
+  const tileMap = tex(512, 512, (g, w, h) => { g.fillStyle = "#d4dbf6"; g.fillRect(0, 0, w, h); g.fillStyle = "rgba(40,48,110,0.75)";
+    for (let i = 0; i < 24; i++) for (let j = 0; j < 24; j++) { g.beginPath(); g.arc((i + 0.5) * w / 24, (j + 0.5) * h / 24, w / 24 * 0.28, 0, Math.PI * 2); g.fill(); }
+    g.strokeStyle = "rgba(60,70,140,0.6)"; g.lineWidth = 4; g.strokeRect(0, 0, w, h); }, [ROOM_W / 0.6, DEPTH / 0.6]);
+  const tileM = new THREE.MeshStandardMaterial({ color: 0xffffff, map: tileMap, roughness: 0.42, metalness: 0.3 });
+
+  /* a cut box: the face on the cut plane (+z) is poche, the rest is the given material */
+  const cut = (w, h, d, mat, x, y0, z) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), [mat, mat, mat, mat, poche, mat]);
+    m.position.set(x, y0 + h / 2, z); m.castShadow = true; m.receiveShadow = true; return m;
+  };
+  const B = new THREE.Group();
+
+  /* ---------------- THE STUDIO ---------------- */
+  TXT.studio(R, { tone: CH.TONE, w: 40, d: 18, h: 16, radius: 3, y: -3.3, env: 0.55, hemi: 0.35 });
+
+  /* ---------------- THE SECTION ---------------- */
+  const XO = ROOM_W / 2 + WALL + CHASE + WALL;            // outer face of the building
+  const zc = (ZF + ZB) / 2, dW = DEPTH + 0.0;
+  // the slabs: sub-fab waffle slab, roof
+  /* the floor slab under the raised floor: solid, its cut face in the plenum's own navy, so the plenum below reads as
+   * one soft deep space that holds the type and no hard band crosses the frame */
+  const pocheNavy = new THREE.MeshBasicMaterial({ color: 0x22309a });   // unlit, so the key never lifts it into a band
+  const slab = new THREE.Mesh(new THREE.BoxGeometry(2 * XO, Y.slab1 - Y.slab0, dW), [concrete, concrete, concrete, concrete, pocheNavy, concrete]);
+  slab.position.set(0, (Y.slab0 + Y.slab1) / 2, zc); B.add(slab);
+  B.add(cut(2 * XO, Y.roof1 - Y.roof0, dW, concrete, 0, Y.roof0, zc));
+  // the walls: the bay's two walls and the chases' outer walls, full height from the sub-fab floor to the roof
+  [-1, 1].forEach((s) => {
+    B.add(cut(WALL, Y.roof0 - Y.slab1, dW, concrete, s * (ROOM_W / 2 + WALL / 2), Y.slab1, zc));
+    B.add(cut(WALL, Y.roof1, dW, concrete, s * (XO - WALL / 2), 0, zc));
+    // the bay wall stops short of the plenum top and of the sub-fab, so the air has its way round: shown as gaps
+  });
+  // the sub-fab: back wall and floor, deep navy
+  const subTex = tex(64, 512, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#22309a"); gr.addColorStop(0.5, "#1c2888"); gr.addColorStop(1, "#151e6c"); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  subWall.map = subTex; subWall.color.set(0xffffff);
+  const subWallFlat = new THREE.MeshBasicMaterial({ map: subTex });   // unlit, so it runs on from the slab's cut face with no seam
+  const sw = new THREE.Mesh(new THREE.BoxGeometry(2 * XO, Y.slab0, 0.1), subWallFlat); sw.position.set(0, Y.slab0 / 2, ZB - 0.05); sw.receiveShadow = true; B.add(sw);
+  B.add(cut(2 * XO, 0.12, dW, subFloor, 0, -0.12, zc));
+  B.add(cut(2 * XO + 6, 3.0, dW, concrete, 0, -3.12, zc));   // the ground the building stands in, cut with it
+  // sub-fab columns under the bay walls
+  // the bay's back wall: white panels with a seam every 1.2 m and a return grille low down
+  const bw = new THREE.Mesh(new THREE.BoxGeometry(ROOM_W, Y.ceil - Y.floor, 0.08), backPanel); bw.position.set(0, (Y.ceil + Y.floor) / 2, ZB - 0.04); bw.receiveShadow = true; B.add(bw);
+  for (let x = X0 + 1.2; x < -X0 - 0.01; x += 1.2) { const seam = new THREE.Mesh(new THREE.BoxGeometry(0.012, Y.ceil - Y.floor, 0.01), alu); seam.position.set(x, (Y.ceil + Y.floor) / 2, ZB + 0.005); B.add(seam); }
+  // the plenum's back wall, cooler and darker
+  const pw = new THREE.Mesh(new THREE.BoxGeometry(2 * XO, Y.roof0 - Y.ceil, 0.08), new THREE.MeshStandardMaterial({ color: 0x5f73d8, roughness: 0.8 }));
+  pw.position.set(0, (Y.roof0 + Y.ceil) / 2, ZB - 0.04); pw.receiveShadow = true; B.add(pw);
+  // the chases' back walls
+  [-1, 1].forEach((s) => { const c = new THREE.Mesh(new THREE.BoxGeometry(CHASE, Y.roof0 - Y.slab1, 0.08), new THREE.MeshStandardMaterial({ color: 0x4f63cf, roughness: 0.85 }));
+    c.position.set(s * (ROOM_W / 2 + WALL + CHASE / 2), (Y.roof0 + Y.slab1) / 2, ZB - 0.04); B.add(c); });
+
+  /* the plenum's own structure: dim steel struts carrying the raised floor's load down into the navy, at two depths and
+   * at pitches unrelated to the units (0.37 m and 0.53 m), so they read as structure and never as a second count */
+  const strutM = new THREE.MeshStandardMaterial({ color: 0x2c3ca8, metalness: 0.35, roughness: 0.55, emissive: 0x1a268e, emissiveIntensity: 0.55 });
+  let struts = 0;
+  [[ZB + 0.18, 0.37, 0.0, 0.035], [zc + 0.25, 0.53, 0.19, 0.05]].forEach((row) => {
+    for (let x = -XO + 0.1 + row[2]; x < XO - 0.1; x += row[1]) { const st = new THREE.Mesh(new THREE.CylinderGeometry(row[3], row[3], Y.slab0, 12), strutM);
+      st.position.set(x, Y.slab0 / 2, row[0]); B.add(st); struts++; }
+  });
+  if (struts === FIG.jan_wafers) throw new Error("the plenum struts number " + struts + ", the figure's own count: move their pitch");
+  /* the raised floor: perforated tiles on dim pedestals, which sink into the plenum's navy rather than stand as a row */
+  const pedM = new THREE.MeshStandardMaterial({ color: 0x5262c4, metalness: 0.5, roughness: 0.45 });
+  const tile = cut(ROOM_W + 2 * (WALL + CHASE), Y.floor - Y.tile0, dW, tileM, 0, Y.tile0, zc);
+  tile.material = [alu, alu, tileM, alu, poche, alu]; B.add(tile);
+  for (let x = X0 - CHASE; x <= -X0 + CHASE + 0.001; x += 0.6) for (const z of [ZF - 0.12, zc, ZB + 0.12]) {
+    const ped = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, Y.tile0 - Y.slab1, 10), pedM); ped.position.set(x, (Y.tile0 + Y.slab1) / 2, z); ped.castShadow = true; B.add(ped);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.012, 16), steel); cap.position.set(x, Y.tile0 - 0.006, z);
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.01, 16), steel); base.position.set(x, Y.slab1 + 0.005, z);
+  }
+
+  /* ---------------- THE TWELVE FAN FILTER UNITS ---------------- */
+  const ffus = [];
+  const pleatShape = (() => { const s = new THREE.Shape(), w = PITCH - 0.06, n = 22, hgt = 0.09; s.moveTo(-w / 2, 0);
+    for (let i = 0; i <= n; i++) s.lineTo(-w / 2 + w * i / n, (i % 2) ? hgt : 0); s.lineTo(w / 2, 0); s.closePath(); return s; })();
+  for (let i = 0; i < NF; i++) {
+    const cx0 = X0 + (i + 0.5) * PITCH, g = new THREE.Group(); g.userData.ffu = true;
+    const fd = 1.2, fz = ZF - fd / 2;
+    // the glowing diffuser face under the filter
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(PITCH - 0.05, fd - 0.04), glowFace); face.rotation.x = Math.PI / 2; face.position.set(cx0, Y.ceil + 0.004, fz); g.add(face);
+    // the pleated filter, its pleats running along the depth and cut at the front
+    const pl = new THREE.Mesh(new THREE.ExtrudeGeometry(pleatShape, { depth: fd - 0.04, bevelEnabled: false }), pleatM);
+    pl.position.set(cx0, Y.ceil + 0.01, fz - (fd - 0.04) / 2); g.add(pl);
+    // the housing: a rounded steel box with the fan shroud and motor on top
+    const hs = TXT.roundedBox(PITCH - 0.05, 0.26, fd - 0.02, 0.025, housingM); hs.position.set(cx0, Y.ceil + 0.11 + 0.13, fz); hs.castShadow = true; g.add(hs);
+    const shroud = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.21, 0.12, 40), steel); shroud.position.set(cx0, Y.ceil + 0.43, fz - 0.05); shroud.castShadow = true; g.add(shroud);
+    const motor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.1, 24), panelGrey); motor.position.set(cx0, Y.ceil + 0.54, fz - 0.05); g.add(motor);
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.016, 12, 8), new THREE.MeshBasicMaterial({ color: new THREE.Color(0x7dff9a).multiplyScalar(1.4) })); lamp.position.set(cx0 + 0.2, Y.ceil + 0.3, ZF - 0.005); g.add(lamp);
+    B.add(g); ffus.push(g);
+  }
+  // the ceiling grid: T-bars between and around the units
+  for (let i = 0; i <= NF; i++) { const tb = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, DEPTH), alu); tb.position.set(X0 + i * PITCH, Y.ceil + 0.025, zc); tb.castShadow = true; B.add(tb); }
+  const tbz = new THREE.Mesh(new THREE.BoxGeometry(ROOM_W, 0.05, 0.05), alu); tbz.position.set(0, Y.ceil + 0.025, ZF - 1.2); B.add(tbz);
+  const blank = new THREE.Mesh(new THREE.BoxGeometry(ROOM_W, 0.03, DEPTH - 1.2), wallPanel); blank.position.set(0, Y.ceil + 0.015, ZB + (DEPTH - 1.2) / 2); B.add(blank);
+
+  /* ---------------- THE TOOLS IN THE BAY ---------------- */
+  const F = Y.floor;
+  const brushed = tex(512, 128, (g, w, h) => { g.fillStyle = "#9aa6cc"; g.fillRect(0, 0, w, h); const r = CH.rng(5);
+    for (let i = 0; i < 900; i++) { g.fillStyle = "rgba(" + (r() < 0.5 ? "60,66,110" : "235,240,255") + "," + (0.05 + r() * 0.12) + ")"; g.fillRect(r() * w, r() * h, 20 + r() * 160, 1); } }, [2, 1]);
+  const stain = new THREE.MeshStandardMaterial({ color: 0xdfe6ff, map: brushed, roughnessMap: brushed, metalness: 0.9, roughness: 0.32 });
+  const perf = tex(512, 256, (g, w, h) => { g.fillStyle = "#c3cbe8"; g.fillRect(0, 0, w, h); g.fillStyle = "rgba(30,36,90,0.85)";
+    for (let i = 0; i < 64; i++) for (let j = 0; j < 24; j++) { g.beginPath(); g.arc((i + 0.5 + (j % 2) * 0.5) * w / 64, (j + 0.5) * h / 24, 2.3, 0, Math.PI * 2); g.fill(); } });
+  const perfDeck = new THREE.MeshStandardMaterial({ color: 0xffffff, map: perf, metalness: 0.85, roughness: 0.3 });
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xcfe0ff, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.22, clearcoat: 1, clearcoatRoughness: 0.02, depthWrite: false, side: THREE.DoubleSide });
+  const viewGlass = new THREE.MeshPhysicalMaterial({ color: 0x1a2a78, metalness: 0.2, roughness: 0.05, clearcoat: 1, clearcoatRoughness: 0.02, transparent: true, opacity: 0.72 });
+
+  // THE WET BENCH, left: polypropylene body, a perforated stainless deck, a glass sash leaning back over it
+  const WX = -2.35;
+  const wb = TXT.roundedBox(2.0, 0.9, 0.78, 0.03, polyp); wb.position.set(WX, F + 0.45, -0.32); B.add(wb);
+  const kick = TXT.roundedBox(2.0, 0.1, 0.7, 0.01, stain); kick.position.set(WX, F + 0.05, -0.28); B.add(kick);
+  const deck = new THREE.Mesh(new THREE.BoxGeometry(2.04, 0.03, 0.8), [stain, stain, perfDeck, stain, stain, stain]); deck.position.set(WX, F + 0.915, -0.32); B.add(deck);
+  const lip = TXT.roundedBox(2.06, 0.06, 0.04, 0.012, stain); lip.position.set(WX, F + 0.93, 0.09); B.add(lip);
+  const back = TXT.roundedBox(2.0, 1.0, 0.12, 0.02, polyp); back.position.set(WX, F + 1.43, -0.66); B.add(back);
+  const hood = TXT.roundedBox(2.04, 0.12, 0.62, 0.02, polyp); hood.position.set(WX, F + 1.98, -0.38); B.add(hood);
+  const hstrip = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.05), new THREE.MeshBasicMaterial({ color: new THREE.Color(0x9fd0ff).multiplyScalar(1.1) })); hstrip.position.set(WX, F + 1.98, -0.069); B.add(hstrip);
+  { // the sash: a glass pane from the deck's front lip up to the hood, framed in stainless
+    const y0 = F + 1.05, y1 = F + 1.92, z0 = 0.06, z1 = -0.08, len = Math.hypot(y1 - y0, z0 - z1), ang = Math.atan2(z0 - z1, y1 - y0);
+    const pane = new THREE.Mesh(new THREE.PlaneGeometry(1.94, len), glass); pane.position.set(WX, (y0 + y1) / 2, (z0 + z1) / 2); pane.rotation.x = -ang; pane.renderOrder = 4; B.add(pane);
+    [-0.98, 0.98].forEach((dx) => { const rail = TXT.roundedBox(0.035, len, 0.035, 0.01, stain); rail.position.set(WX + dx, (y0 + y1) / 2, (z0 + z1) / 2); rail.rotation.x = -ang; B.add(rail); });
+    [y0, y1].forEach((y, k) => { const bar = TXT.roundedBox(1.98, 0.035, 0.035, 0.01, stain); bar.position.set(WX, y, k ? z1 : z0); B.add(bar); });
+    const handle = TXT.roundedBox(1.2, 0.03, 0.05, 0.012, stain); handle.position.set(WX, y0 + 0.07, z0 + 0.04); B.add(handle);
+  }
+  [-2.85, -1.85].forEach((x) => { const sink = TXT.roundedBox(0.5, 0.05, 0.38, 0.02, new THREE.MeshStandardMaterial({ color: 0x3d4cb0, metalness: 0.7, roughness: 0.18 })); sink.position.set(x, F + 0.92, -0.36); B.add(sink); });
+  for (let k = 0; k < 4; k++) { const d = TXT.roundedBox(0.44, 0.62, 0.02, 0.012, polyp); d.position.set(WX - 0.735 + k * 0.49, F + 0.47, 0.075); B.add(d);
+    const pull = TXT.roundedBox(0.16, 0.02, 0.025, 0.008, stain); pull.position.set(WX - 0.735 + k * 0.49, F + 0.72, 0.09); B.add(pull); }
+
+  // THE PROCESS TOOL, centre right: enamel cabinet on a brushed stainless plinth, corner trims, a glass viewport onto
+  // its amber lit chamber, a front loading stage with a front opening wafer pod on its load port, a screen and a stack light
+  const LX = 1.05, TZ = -0.25, TW = 2.1, TH = 2.05, TD = 1.0, front = TZ + TD / 2;
+  const lt = TXT.roundedBox(TW, TH - 0.16, TD, 0.05, enamel); lt.position.set(LX, F + 0.16 + (TH - 0.16) / 2, TZ); B.add(lt);
+  const plinth = TXT.roundedBox(TW + 0.04, 0.16, TD + 0.04, 0.02, stain); plinth.position.set(LX, F + 0.08, TZ); B.add(plinth);
+  [-1, 1].forEach((sx) => { const trim = TXT.roundedBox(0.06, TH - 0.16, 0.06, 0.02, stain); trim.position.set(LX + sx * (TW / 2 - 0.01), F + 0.16 + (TH - 0.16) / 2, front - 0.01); B.add(trim); });
+  const crown = TXT.roundedBox(TW + 0.04, 0.07, TD + 0.04, 0.02, stain); crown.position.set(LX, F + TH - 0.02, TZ); B.add(crown);
+  const top2 = TXT.roundedBox(1.1, 0.32, 0.8, 0.05, enamel); top2.position.set(LX + 0.35, F + TH + 0.17, TZ - 0.05); B.add(top2);
+  for (let k = 0; k < 3; k++) { const seam = new THREE.Mesh(new THREE.BoxGeometry(0.008, TH - 0.4, 0.008), panelGrey); seam.position.set(LX - 0.52 + k * 0.52, F + 0.2 + (TH - 0.4) / 2, front + 0.002); B.add(seam); }
+  { // the viewport: a framed, tinted glass window with the chamber's amber light behind it and a chuck inside
+    const vx = LX - 0.5, vy = F + 1.38, vw = 0.78, vh = 0.46;
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(vw - 0.04, vh - 0.04), new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff9a2e).multiplyScalar(0.95) })); glow.position.set(vx, vy, front - 0.06); B.add(glow);
+    const chuck = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.03, 40), new THREE.MeshStandardMaterial({ color: 0xc9d2f0, metalness: 0.95, roughness: 0.12 })); chuck.position.set(vx, vy - 0.15, front - 0.05); B.add(chuck);
+    const pane = new THREE.Mesh(new THREE.PlaneGeometry(vw, vh), viewGlass); pane.position.set(vx, vy, front + 0.004); B.add(pane);
+    [[0, vh / 2 + 0.02, vw + 0.08, 0.04], [0, -vh / 2 - 0.02, vw + 0.08, 0.04], [vw / 2 + 0.02, 0, 0.04, vh], [-vw / 2 - 0.02, 0, 0.04, vh]].forEach((q) => {
+      const f = TXT.roundedBox(q[2], q[3], 0.035, 0.012, stain); f.position.set(vx + q[0], vy + q[1], front + 0.012); B.add(f); });
+  }
+  { // the screen on its arm, left side of the cabinet face
+    const sc = TXT.roundedBox(0.36, 0.25, 0.03, 0.012, new THREE.MeshStandardMaterial({ color: 0x1b2266, roughness: 0.3 })); sc.position.set(LX - 0.62, F + 1.86, front + 0.16); sc.rotation.y = 0.35; B.add(sc);
+    const ui = new THREE.Mesh(new THREE.PlaneGeometry(0.31, 0.2), new THREE.MeshBasicMaterial({ color: new THREE.Color(0x6f8dff).multiplyScalar(1.1) })); ui.position.set(LX - 0.615, F + 1.86, front + 0.177); ui.rotation.y = 0.35; B.add(ui);
+    const arm = TXT.roundedBox(0.04, 0.04, 0.16, 0.01, stain); arm.position.set(LX - 0.66, F + 1.86, front + 0.07); B.add(arm);
+  }
+  // the loading stage and its load port, with a front opening unified pod (FOUP) docked on it
+  const stage = TXT.roundedBox(0.66, 0.92, 0.42, 0.03, enamel); stage.position.set(LX + 0.55, F + 0.46, front + 0.21); B.add(stage);
+  const stageTrim = TXT.roundedBox(0.68, 0.05, 0.44, 0.012, stain); stageTrim.position.set(LX + 0.55, F + 0.94, front + 0.21); B.add(stageTrim);
+  const portPlate = TXT.roundedBox(0.5, 0.5, 0.03, 0.02, stain); portPlate.position.set(LX + 0.55, F + 1.2, front + 0.015); B.add(portPlate);
+  const foupM = new THREE.MeshPhysicalMaterial({ color: 0x7a64f2, roughness: 0.22, clearcoat: 0.9, clearcoatRoughness: 0.1, transparent: true, opacity: 0.9 });
+  const foup = TXT.roundedBox(0.42, 0.34, 0.38, 0.07, foupM); foup.position.set(LX + 0.55, F + 1.14, front + 0.23); B.add(foup);
+  const door = TXT.roundedBox(0.4, 0.31, 0.03, 0.03, new THREE.MeshStandardMaterial({ color: 0x3e3496, roughness: 0.4 })); door.position.set(LX + 0.55, F + 1.14, front + 0.04); B.add(door);
+  const flange = TXT.roundedBox(0.24, 0.035, 0.2, 0.012, new THREE.MeshStandardMaterial({ color: 0x4b3fb8, roughness: 0.35 })); flange.position.set(LX + 0.55, F + 1.345, front + 0.23); B.add(flange);
+  const neck = TXT.roundedBox(0.08, 0.04, 0.08, 0.01, new THREE.MeshStandardMaterial({ color: 0x4b3fb8, roughness: 0.35 })); neck.position.set(LX + 0.55, F + 1.32, front + 0.23); B.add(neck);
+  [-0.22, 0.22].forEach((dx) => { const hd = TXT.roundedBox(0.03, 0.14, 0.16, 0.01, new THREE.MeshStandardMaterial({ color: 0x4b3fb8, roughness: 0.35 })); hd.position.set(LX + 0.55 + dx, F + 1.16, front + 0.24); B.add(hd); });
+  [[0x22c55e, 0], [0xffb444, 1], [0xff5d5d, 2]].forEach((q) => { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.07, 16), new THREE.MeshBasicMaterial({ color: new THREE.Color(q[0]).multiplyScalar(q[1] === 0 ? 1.4 : 0.45) })); c.position.set(LX + TW / 2 - 0.15, F + TH + 0.06 + q[1] * 0.075, TZ + 0.3); B.add(c); });
+
+  // THE OPERATOR beside the tool, in a full bunny suit: hood, goggles, mask, violet nitrile gloves, boots
+  {
+    const suit = new THREE.MeshStandardMaterial({ color: 0xdde4fb, roughness: 0.78 });
+    const suitShade = new THREE.MeshStandardMaterial({ color: 0xd2daf8, roughness: 0.8 });
+    const glove = new THREE.MeshStandardMaterial({ color: 0x7c5cff, roughness: 0.45 });
+    const visor = new THREE.MeshPhysicalMaterial({ color: 0x16205e, metalness: 0.3, roughness: 0.06, clearcoat: 1 });
+    const man = new THREE.Group();
+    const cap = (r, l, m) => new THREE.Mesh(new THREE.CapsuleGeometry(r, l, 8, 20), m);
+    [-0.11, 0.11].forEach((dx) => { const leg = cap(0.08, 0.62, suit); leg.position.set(dx, 0.48, 0); man.add(leg);
+      const boot = TXT.roundedBox(0.17, 0.36, 0.3, 0.07, suitShade); boot.position.set(dx, 0.18, 0.03); man.add(boot);
+      const sole = TXT.roundedBox(0.18, 0.04, 0.32, 0.015, new THREE.MeshStandardMaterial({ color: 0x8a96d6, roughness: 0.7 })); sole.position.set(dx, 0.02, 0.03); man.add(sole); });
+    const torso = cap(0.19, 0.42, suit); torso.scale.set(1, 1, 0.72); torso.position.set(0, 1.18, 0); man.add(torso);
+    const zip = TXT.roundedBox(0.012, 0.5, 0.01, 0.004, suitShade); zip.position.set(0, 1.2, 0.14); man.add(zip);
+    // the arms reach forward to the tool beside him
+    const arms = new THREE.Group(); arms.rotation.y = 0.55; man.add(arms);
+    [-1, 1].forEach((sx) => { const up = cap(0.06, 0.28, suit); up.position.set(sx * 0.24, 1.3, 0.06); up.rotation.x = -0.55; up.rotation.z = sx * 0.12; arms.add(up);
+      const fore = cap(0.052, 0.26, suit); fore.position.set(sx * 0.26, 1.13, 0.27); fore.rotation.x = -1.25; arms.add(fore);
+      const hand = new THREE.Mesh(new THREE.SphereGeometry(0.055, 16, 12), glove); hand.scale.set(1, 0.85, 1.3); hand.position.set(sx * 0.26, 1.07, 0.43); arms.add(hand);
+      const cuff = cap(0.056, 0.03, glove); cuff.position.set(sx * 0.26, 1.08, 0.38); cuff.rotation.x = -1.25; arms.add(cuff); });
+    const hoodM = new THREE.Mesh(new THREE.SphereGeometry(0.135, 32, 24), suit); hoodM.scale.set(1, 1.18, 1.05); hoodM.position.set(0, 1.62, 0); man.add(hoodM);
+    const peak = new THREE.Mesh(new THREE.SphereGeometry(0.09, 20, 14), suit); peak.scale.set(0.85, 0.75, 1.15); peak.position.set(0, 1.77, -0.02); man.add(peak);
+    const collar = cap(0.1, 0.12, suit); collar.position.set(0, 1.5, -0.01); collar.scale.set(1.25, 1, 1); man.add(collar);
+    const shoulder = cap(0.145, 0.24, suit); shoulder.rotation.z = Math.PI / 2; shoulder.scale.set(1, 1, 0.7); shoulder.position.set(0, 1.44, 0); man.add(shoulder);
+    const gog = new THREE.Mesh(new THREE.SphereGeometry(0.139, 32, 12, -1.25, 2.5, 1.02, 0.5), visor); gog.scale.set(1, 1.18, 1.07); gog.position.set(0, 1.62, 0); gog.rotation.y = Math.PI / 2; man.add(gog);
+    const mask = new THREE.Mesh(new THREE.SphereGeometry(0.1395, 32, 12, -0.95, 1.9, 1.56, 0.5), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9 })); mask.scale.set(1, 1.18, 1.07); mask.position.set(0, 1.62, 0); mask.rotation.y = Math.PI / 2; man.add(mask);
+    man.position.set(-0.55, F, 0.42); man.rotation.y = 0.62;   // beside the tool, turned to it, three quarters to the camera
+    B.add(man);
+  }
+  // a stocker cart on the right with its shelves
+  const cart = TXT.roundedBox(0.9, 0.04, 0.6, 0.01, stain); cart.position.set(2.95, F + 0.85, 0.05); B.add(cart);
+  const cart2 = TXT.roundedBox(0.9, 0.04, 0.6, 0.01, stain); cart2.position.set(2.95, F + 0.25, 0.05); B.add(cart2);
+  [[2.53, -0.22], [3.37, -0.22], [2.53, 0.32], [3.37, 0.32]].forEach((q) => { const l = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.9, 10), stain); l.position.set(q[0], F + 0.45, q[1] - 0.02); B.add(l); });
+
+  TXT.add(R, B);
+
+  /* ---------------- THE AIR ----------------
+   * Twelve columns of filtered air, one under each unit, falling from the filter face to the floor: additive streaks,
+   * never cast or shadowed. They continue faintly through the floor into the sub-fab. */
+  const airTex = tex(256, 512, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "rgba(255,255,255,0.95)"); gr.addColorStop(0.55, "rgba(255,255,255,0.45)"); gr.addColorStop(1, "rgba(255,255,255,0.08)");
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    /* the streak mask is drawn on its own canvas and applied once: destination-in on a fillRect clears everything
+     * outside that rect, so painting the stripes straight onto the gradient would keep only the last one */
+    const mk = document.createElement("canvas"); mk.width = w; mk.height = h; const m = mk.getContext("2d"), r = CH.rng(11);
+    for (let x = 0; x < w; x += 3) { const a = 0.2 + r() * 0.8, e = Math.min(1, Math.min(x, w - x) / (w * 0.12)); m.fillStyle = "rgba(0,0,0," + (a * e).toFixed(3) + ")"; m.fillRect(x, 0, 2, h); }
+    g.globalCompositeOperation = "destination-in"; g.drawImage(mk, 0, 0); g.globalCompositeOperation = "source-over";
+  });
+  const airM = new THREE.MeshBasicMaterial({ map: airTex, color: 0xe2efff, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, toneMapped: false });
+  const subAirM = airM.clone(); subAirM.opacity = 0.3;
+  const frontAirM = airM.clone(); frontAirM.opacity = 0.16;   // the near curtain stays thin so the tools read through it
+  const curtains = [];
+  for (let i = 0; i < NF; i++) {
+    const cx0 = X0 + (i + 0.5) * PITCH;
+    for (const z of [ZF - 0.05, ZF - 0.62]) {
+      const c = new THREE.Mesh(new THREE.PlaneGeometry(PITCH - 0.1, Y.ceil - Y.floor), z === ZF - 0.05 ? frontAirM : airM); c.position.set(cx0, (Y.ceil + Y.floor) / 2, z); c.renderOrder = 5; R.scene.add(c);
+      if (z === ZF - 0.05) curtains.push(c);
+    }
+    const s = new THREE.Mesh(new THREE.PlaneGeometry(PITCH - 0.14, Y.tile0 - Y.slab1), subAirM); s.position.set(cx0, (Y.tile0 + Y.slab1) / 2, ZF - 0.05); R.scene.add(s);
+  }
+
+  const leak = new THREE.PointLight(0xbcd4ff, 1.2, 5, 1.4); leak.position.set(0, Y.slab0 - 0.4, 0.2); R.scene.add(leak);
+
+  /* THE CHECK: the drawing and the figure agree, or the frame refuses to render */
+  const drawn = ffus.filter((g) => g.userData.ffu).length;
+  if (drawn !== FIG.jan_wafers || curtains.length !== FIG.jan_wafers || Math.abs(ROOM_W / PITCH - FIG.jan_wafers) > 1e-9)
+    throw new Error("frame 3 draws " + drawn + " filter units and " + curtains.length + " air columns, FIG.jan_wafers is " + FIG.jan_wafers);
+
+  /* ---------------- THE LIGHT ----------------
+   * The key high on the left and a little in front, so the cut faces take it and every tool throws its shadow down
+   * and to the right onto the back wall. A soft cool wash straight down stands for the filter ceiling. */
+  const target = [0, 4.2, 0];
+  CH.KEY_SCALE = 0.7;   // half a stop under the deck's key, so the white faces keep their seams and shadow detail
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), Object.assign(CH.rigOpts(target, { distance: 30, shadowFar: 70, normalBias: 0.01 }), { light: { az: -32, el: 46 } }));
+  const down = new THREE.DirectionalLight(0xdfeaff, 0.22); down.position.set(0, 20, 2); down.target.position.set(0, 0, 0); R.scene.add(down, down.target);
+  const roomFill = new THREE.PointLight(0xe4eeff, 0.9, 9, 1.6); roomFill.position.set(0, Y.ceil - 0.4, 0.4); R.scene.add(roomFill);
+
+  /* ---------------- THE CAMERA ----------------
+   * A long lens straight on, a little left of centre and at the bay's lower third, so the filter faces glow on their
+   * underside and the perforated floor shows its top. The row of twelve sits just under the kicker, the filter faces at y 300, and fills the width. */
+  const FROM = [0, 4.6, ZF + 15.9];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, Y.ceil, ZF], 540, 314, 32);
+  TXT.frame(R, { fov: 32, from: FROM, look: LOOK });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* the plenum's own soft falloff: from just under the raised floor the frame deepens into the plenum's navy over
+   * 150 px, so the slab and the plenum read as one soft space and no edge runs across the frame */
+  { const y0 = 790, y1 = 960, g = cx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, TXLOOK.rgba(CH.P.low, 0)); g.addColorStop(1, TXLOOK.rgba(CH.P.low, 0.38));
+    cx.fillStyle = g; cx.fillRect(0, y0, CH.W, y1 - y0); cx.fillStyle = TXLOOK.rgba(CH.P.low, 0.38); cx.fillRect(0, y1, CH.W, CH.H - y1); }
+  /* the return air: a few soft ribbons leaving the underside of the raised floor and curling down and back into the
+   * sub-fab, drawn a few L* off the plenum, mostly vertical so none runs along a line of type */
+  { const rr = CH.rng(77); cx.save(); cx.filter = "blur(5px)"; cx.lineCap = "round";
+    const xs = [150, 330, 470, 640, 790, 930, 1010];
+    xs.forEach((x0, k) => { const dx = (k % 2 ? 1 : -1) * (60 + rr() * 80), g = cx.createLinearGradient(0, 790, 0, 1330);
+      g.addColorStop(0, "rgba(150,176,255,0.16)"); g.addColorStop(0.5, "rgba(130,156,255,0.09)"); g.addColorStop(1, "rgba(120,146,255,0)");
+      cx.strokeStyle = g; cx.lineWidth = 16 + rr() * 10; cx.beginPath(); cx.moveTo(x0, 790);
+      cx.bezierCurveTo(x0 + dx * 0.15, 960, x0 + dx * 0.7, 1080, x0 + dx, 1330); cx.stroke(); });
+    cx.restore(); }
+  CH.seat(cx, { a: 0.32, fade: 190 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.45, height: 200 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

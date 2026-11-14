@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 1 of 9, the cover. A spatial scene through txthree.js, outdoors on bare South Plains
+dirt in an empty staked lot under the explainer morning sky. The November wafer rack stands on its end at the corner of an empty plot of mason line: its graphite wafers stack
+like floor slabs and its clear quartz rods run on past the last wafer and out of the top of the frame, with no far end wall.
+A camera fourteen centimetres off the dirt. Drawn to illustrate; one wafer stands for $1 million. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:160px; width:540px; text-align:left">Over $19 million for a cluster not built yet</h1>
+<p class="dek" data-follow="30" style="left:74px; width:532px">The state's chip fund will help Texas Tech set up a computing cluster in Lubbock, the university said on November 13th. One wafer stands for $1 million. The stacked wafer rack is drawn to illustrate, its rods left open at the top.</p>
+<script>window.FIG = {"nov_wafers": 19, "pitch_mm": 16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "01 / 09", src: "c1 c2 c3 c4", fit: { min: 72, max: 96, maxLines: 4 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.004, far: 9000, fog: 0.00045 });
+
+  /* THE FRAME'S OWN BEARINGS. f looks 120 degrees left of the sun, the deck's sky glow stays behind the camera, and the
+   * frame's own low key comes in from the right so the stakes and the rack throw long sharp shadows left across the plot.
+   * side is screen right; at(u, v) is u metres ahead and v metres right of the camera's foot. */
+  const f = CH.bearing(TXT, -120), side = [-f[1], f[0]];
+  const at = (u, v, y) => [f[0] * u + side[0] * v, y || 0, f[1] * u + side[1] * v];
+  const yawF = Math.atan2(f[0], f[1]);
+
+  /* THE FIGURE: the November rack holds FIG.nov_wafers wafers at FIG.pitch_mm. It stands on its capped end, so the slots
+   * run up from the dirt and the open end, with no end wall because the award is over that floor, runs out of the frame. */
+  const TAIL = 0.62;
+  const boat = K.make('wafer_boat', { count: FIG.nov_wafers, pitch: FIG.pitch_mm / 1000, ends: 'near', tail: TAIL });
+  let n = 0; boat.traverse(o => { if (o.isMesh && o.geometry && o.geometry.type === 'ExtrudeGeometry' && Array.isArray(o.material)) n++; });
+  if (n !== FIG.nov_wafers) throw new Error('wafer count ' + n + ' differs from FIG.nov_wafers ' + FIG.nov_wafers);
+  const pitchDrawn = Math.abs(boat.userData.slotZ(1) - boat.userData.slotZ(0)) * 1000;
+  if (Math.abs(pitchDrawn - FIG.pitch_mm) > 1e-6) throw new Error('wafer pitch ' + pitchDrawn + ' mm differs from FIG.pitch_mm ' + FIG.pitch_mm);
+
+  /* THE SILICON: a patterned wafer, graphite mirror polish with a die grid and a thin film sheen. Mapped in the wafer's own
+   * metres as the chassis maps it (repeat 5, offset 0.5 spans the 200 mm face). */
+  const dieTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    g.fillStyle = '#5e6678'; g.fillRect(0, 0, w, h);
+    const rr = CH.rng(77), die = w / 20, R0 = w * 0.47;
+    for (let i = 0; i < 20; i++) for (let j = 0; j < 20; j++) {
+      const x = i * die, y = j * die, cxx = x + die / 2 - w / 2, cyy = y + die / 2 - h / 2;
+      if (Math.hypot(cxx, cyy) > R0 - die * 0.7) continue;
+      const k = 0.78 + rr() * 0.22; g.fillStyle = 'rgb(' + Math.round(84 * k) + ',' + Math.round(94 * k) + ',' + Math.round(116 * k) + ')';
+      g.fillRect(x + 2, y + 2, die - 4, die - 4);
+      g.fillStyle = 'rgba(150,170,205,0.35)'; g.fillRect(x + die * 0.2, y + die * 0.22, die * 0.6, die * 0.14);   /* the pad row on each die */
+    }
+    g.strokeStyle = 'rgba(205,218,240,0.75)'; g.lineWidth = 2.2;
+    for (let i = 0; i <= 20; i++) { g.beginPath(); g.moveTo(i * die, 0); g.lineTo(i * die, h); g.stroke(); g.beginPath(); g.moveTo(0, i * die); g.lineTo(w, i * die); g.stroke(); }
+    g.save(); g.globalCompositeOperation = 'destination-over'; g.restore();
+    g.strokeStyle = '#4a5162'; g.lineWidth = w * 0.03; g.beginPath(); g.arc(w / 2, h / 2, w * 0.485, 0, Math.PI * 2); g.stroke();   /* the bare edge ring */
+  });
+  dieTex.repeat.set(5, 5); dieTex.offset.set(0.5, 0.5); dieTex.wrapS = dieTex.wrapT = THREE.ClampToEdgeWrapping;
+  const silicon = new THREE.MeshPhysicalMaterial({ color: 0xb8c0d0, map: dieTex, metalness: 0.92, roughness: 0.07, clearcoat: 1, clearcoatRoughness: 0.03,
+    iridescence: 0.55, iridescenceIOR: 1.9, iridescenceThicknessRange: [260, 620] });
+  /* THE ACCENT on the November award's wafer edges only */
+  const rim = new THREE.MeshStandardMaterial({ color: CH.GOLD, emissive: CH.GOLD, emissiveIntensity: 0.75, metalness: 0.4, roughness: 0.25 });
+  /* THE RODS: solid clear fused quartz that refracts the sky behind it, with a crisp edge, never a glow */
+  const quartz = new THREE.MeshPhysicalMaterial({ color: 0xf2fbff, metalness: 0, roughness: 0.03, transmission: 1, thickness: 0.013, ior: 1.46,
+    attenuationColor: new THREE.Color(0xa9dcf2), attenuationDistance: 0.25, specularIntensity: 1, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.3 });
+  const frost = new THREE.MeshPhysicalMaterial({ color: 0xd8eef8, metalness: 0, roughness: 0.32, transmission: 0.7, thickness: 0.006, ior: 1.46 });
+  boat.traverse(o => { if (!o.isMesh || !o.geometry) return; const t = o.geometry.type;
+    if (t === 'ExtrudeGeometry' && Array.isArray(o.material)) o.material = [silicon, rim];
+    else if (t === 'ExtrudeGeometry') o.material = frost;
+    else if (t === 'CylinderGeometry') o.material = quartz;
+    else if (o.parent && o.parent.parent === boat) o.visible = false; });   /* the side feet of a rack stood on end are left off */
+  const tower = new THREE.Group(); boat.rotation.x = Math.PI / 2; tower.add(boat);   /* local +z (the capped end) goes down */
+  tower.updateMatrixWorld(true);
+  let bb = new THREE.Box3().setFromObject(boat); boat.position.y -= bb.min.y; boat.position.x -= (bb.min.x + bb.max.x) / 2; boat.position.z -= (bb.min.z + bb.max.z) / 2;
+
+  /* THE PLOT: an empty rectangle of pink mason line on the dirt, its near right corner at the rack, its far edge 11 m out */
+  const UN = 1.25, VR = 0.16, UF = 11, VL = -1.75, PN = 2.2, PR = VR - 0.22;   /* the rack at (UN, VR), the plot's near right corner just behind and left of it */
+  const BASE = at(UN, VR);
+  tower.position.set(BASE[0], 0, BASE[2]); tower.rotation.y = yawF + 0.5;
+  TXT.add(R, tower); TXT.contact(R, tower, { opacity: 0.85 });
+  const PINK = 0xff3f8e;
+  const line = new THREE.MeshStandardMaterial({ color: PINK, roughness: 0.5, emissive: PINK, emissiveIntensity: 0.45 });
+  const C = { nr: at(PN, PR), nl: at(PN, VL), fl: at(UF, VL), fr: at(UF, PR) };
+  [['fl', 0.52, 41], ['fr', 0.52, 42], ['nl', 1.0, 43], ['nr', 0.24, 44]].forEach(([k, sc, seed]) => {
+    const s = K.make('lath_stake', { seed, flag: PINK, tails: 2, scale: sc, lean: seed % 2 ? 0.04 : -0.03 });
+    s.position.set(C[k][0], 0, C[k][2]); s.rotation.y = yawF + seed; TXT.add(R, s); TXT.contact(R, s);
+  });
+  const LINE_Y = 0.055;
+  [['nr', 'nl'], ['nl', 'fl'], ['fl', 'fr'], ['fr', 'nr']].forEach(([p, q]) => {
+    const A = C[p], B = C[q], SEG = 16;
+    for (let k = 0; k < SEG; k++) {   /* in short lengths, each a touch thicker the farther it lies, so the far line still reads */
+      const t0 = k / SEG, t1 = (k + 1) / SEG, pts = [];
+      for (let i = 0; i <= 4; i++) { const t = t0 + (t1 - t0) * i / 4; pts.push([A[0] + (B[0] - A[0]) * t, LINE_Y, A[2] + (B[2] - A[2]) * t]); }
+      const mid = pts[2], d = Math.hypot(mid[0], mid[2]);
+      const m = TXT.tube(pts, Math.min(0.009, 0.0021 + d * 0.0006), line); if (m) { m.castShadow = true; R.scene.add(m); }
+    }
+  });
+
+  /* THE HORIZON: Panhandle flat, one country elevator off to the left */
+  const elev = K.make('grain_elevator', { seed: 7, height: 44 }); const EP = at(1500, -143);
+  elev.position.set(EP[0], 0, EP[2]); elev.rotation.y = yawF + Math.PI + 0.6; TXT.add(R, elev);
+
+  const FROM = [0, 0.14, 0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [BASE[0], 0.14, BASE[2]], 830, 960, 34);
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOK });
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { clouds: 0.22, zenith: 0x1450b0, horizon: 0x6aaef0 }));
+  TXT.ground(R, { surface: 'dirt', color: 0xd48a58, size: 6000, tile: 1.4, seed: 1114 });
+  const box = (u0, v0, u1, v1) => { const q = [at(u0, v0), at(u1, v0), at(u0, v1), at(u1, v1)]; return [Math.min(...q.map(p => p[0])), Math.min(...q.map(p => p[2])), Math.max(...q.map(p => p[0])), Math.max(...q.map(p => p[2]))]; };
+  TXT.scatter(R, { kind: 'rock', count: 3600, area: box(0.3, -2.2, 6, 1.6), avoid: [box(UN - 0.16, VR - 0.16, UN + 0.16, VR + 0.16)], seed: 31, scale: [0.0008, 0.0055], colors: [0xb87a52, 0xd9a272, 0x9a6448] });
+  TXT.scatter(R, { kind: 'grass', count: 90, area: box(30, -60, 200, 80), seed: 23, scale: [0.4, 0.8] });
+
+  /* THE KEY: low from the right and a little behind the camera, small so its shadows are sharp */
+  const kh = [-f[0] * 0.3 + side[0] * 0.95, -f[1] * 0.3 + side[1] * 0.95], KAZ = Math.atan2(kh[0], kh[1]) * 180 / Math.PI;
+  const spec = CH.rigSpec(W, 26, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.5 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts(at(5, -0.6), { distance: 30, shadowFar: 70, normalBias: 0.006 }), { light: { az: KAZ, el: 15 } }));
+  CH.unacne(R, 0.006);
+  TXT.weather(R, { grime: 0.15, height: 0.05, mottle: 0.15, skip: [tower] });
+
+  /* THE MIRROR'S WORLD for the silicon only: the sky over a cerulean horizon band (never white), the dirt as a polished
+   * face sees it from below going to deep graphite indigo, and one hot glint low on the far side */
+  {
+    const env = new THREE.Scene(), P = CH.P;
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 64, 32), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { top: { value: new THREE.Color(0x1c3570) }, mid: { value: new THREE.Color(0x4f78b8) }, hz: { value: new THREE.Color(0x8aa6cc) },
+                  low: { value: new THREE.Color(0x3a4566) }, deep: { value: new THREE.Color(0x181c2e) } },
+      vertexShader: "varying vec3 v; void main(){ v = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
+      fragmentShader: "uniform vec3 top,mid,hz,low,deep; varying vec3 v; void main(){ float y = v.y; vec3 c; if (y > 0.0) c = mix(mix(hz, mid, smoothstep(0.0, 0.12, y)), top, smoothstep(0.12, 0.8, y)); else c = mix(mix(hz, low, smoothstep(0.0, 0.08, -y)), deep, smoothstep(0.1, 0.6, -y)); gl_FragColor = vec4(c, 1.0); }" })));
+    /* THE HIGHLIGHT: a tall narrow softbox a little right of the view, crossing the horizon, so every face up or down carries
+     * it and a polished streak runs down the whole stack, with a hot core and a soft spill */
+    const ga = Math.atan2(f[0] + side[0] * 0.2, f[1] + side[1] * 0.2), ga2 = Math.atan2(f[0] + side[0] * 0.08, f[1] + side[1] * 0.08);
+    [[ga, 0.32, 10, 5.5], [ga, 1.3, 10, 1.1], [ga2, 0.8, 6, 0.9]].forEach(([az, w, hgt, k]) => {
+      const pnl = new THREE.Mesh(new THREE.PlaneGeometry(w, hgt), new THREE.MeshBasicMaterial({ color: 0xfff6ec, side: THREE.DoubleSide }));
+      pnl.material.color.multiplyScalar(k); pnl.position.set(Math.sin(az) * 12, 0, Math.cos(az) * 12); pnl.lookAt(0, 0, 0); env.add(pnl);
+    });
+    const pm = new THREE.PMREMGenerator(R.renderer), tex = pm.fromScene(env, 0.0).texture; pm.dispose();
+    silicon.envMap = tex; silicon.envMapIntensity = 1.15; silicon.needsUpdate = true;
+  }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.62, fade: 300 });
+  ['.count', '.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.26, fade: 160 }));
+  TXLOOK.footWash(cx, { a: 0.6, height: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

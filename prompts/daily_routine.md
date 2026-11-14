@@ -380,7 +380,10 @@ and ERCOT keeps no archive. A day not collected is gone.** You may fix presentat
 **11. BOUNDED FAN-OUT, showrunner only.** Only you spawn agents, and only the fixed set each
 phase names: up to 6 scouts, 1 fact-checker, 3 treatment-directors, 2 caption-directors, 1
 caption-critic, 1 copywriter, pixel-critics one per one or two slides, 1 art-director for the audition, 1 flow-critic, 3 scorers a
-scoring round, 1 upgrade-engineer on a weekly pass day (Phase 17). The scouts and the pixel critics run on the smaller model tier
+scoring round, 1 upgrade-engineer on a weekly pass day (Phase 17). **On a BESPOKE run (dated on or
+after `config/carousel/bespoke.json` `bespoke_from`) add one `carousel-slide-artist` per frame,
+spawned together, and one `carousel-slide-critic` per frame, and drop the audition's art-director and
+the pixel critics, which the slide critics replace (BESPOKE MODE, before Phase 10.5).** The scouts and the pixel critics run on the smaller model tier
 (owner, 2026-10-02), and every other agent on the session's model. CLAUDE.md, "Which model a
 subagent runs", has the measurement and the owner's decision. **A subagent is a leaf worker and never spawns its own.** This is a hard cap
 whether or not anything has failed. There is no phase where spawning more agents is the answer to
@@ -1381,6 +1384,51 @@ Spawn 2 `carousel-caption-director` agents with different assigned opening moves
 ```bash
 python3 scripts/carousel/caption_check.py --file out/<date>/caption.txt
 ```
+
+## BESPOKE MODE (owner, 2026-11-14), for a run dated on or after `config/carousel/bespoke.json` `bespoke_from`
+
+*"I want like bespoke artwork on every single slide, because that's where we can separate ourselves
+from everyone else. Everyone else is just going to use some stupid template. We can have an agent,
+you know, create masterful artwork on every single slide separately."*
+
+Read `python3 -c "import json;print(json.load(open('config/carousel/bespoke.json'))['bespoke_from'])"`.
+When it is null or later than the run's date, skip this section. Otherwise
+`knowledge/carousel/BESPOKE.md` is the art doctrine for this run and **wins over every rule in Phases
+9 to 12, in `ILLUSTRATION_SYSTEM.md` and in the agent files that asks for one world, one light, one
+rig, one layout rotation, a fixed headline position or a frame built by the showrunner.** LOOK V2
+still sets the colour. Every integrity gate still stands. The phases then run like this:
+
+1. **Phase 9, the directors** pitch the deck's visual argument, tone and nine BEATS (what each frame
+   must make a reader feel and know), not nine layouts from an archetype menu. The showrunner keeps
+   the storyboard's beats and figures and drops the archetype, rect and depth-block fields.
+2. **Phase 10, the copy chamber** runs as now. A dek sentence that only describes the picture is
+   marked as the artist's to rewrite (BESPOKE.md).
+3. **Phase 10.5, the SPINE.** The chassis declares `look: "v2"`, the tone, `bespoke: true`, the grade
+   and the accent, mounts the type faces and the furniture, exposes `CH.seat` (`TXLOOK.typeSeat`) and
+   builds any models the story needs. It sets no headline position and no world for every frame.
+   There is no three-frame audition.
+4. **Phase 11, the slide artists.** Write one brief per frame to `out/<date>/briefs/slide-NN.md` with
+   the beat, the exact copy, the figures, the claim ids, the spine, both neighbours' beats and what
+   the last four decks drew (`examples/bespoke-proof/2026-11-14/briefs/` is the worked shape). Spawn
+   nine `carousel-slide-artist` agents IN ONE MESSAGE, one per frame, each with its own render dir
+   `out/<date>/work/render-NN`. Each conceives three pictures, builds one, renders, looks and reworks
+   until it scores 8.5 or spends six renders. The showrunner draws nothing.
+5. **Phase 12, the slide critics.** Render the whole deck once into `out/<date>/render`, then spawn
+   nine `carousel-slide-critic` agents in one message. A frame under 8.0 goes back to its artist
+   (SendMessage) with the critic's fixes, once. A frame still under 8.0 is rebuilt from the artist's
+   second concept, once. Every critic after the first is given the earlier critique of its frame
+   (score, points, fixes) and judges first whether those fixes landed, so the bar does not move
+   between rounds. After the rebuild round a frame ships at its score and the panel decides; there
+   is no third round. Then the flow critic reads the deck for the story's order and the spine,
+   never for sameness.
+6. **Phase 12b, the gates.** Add `python3 scripts/carousel/distinct_check.py --render-dir
+   out/<date>/render`, which must exit 0. `deck_coherence.py`'s value strobe cap and
+   `layout_check.py`'s archetype rotation report and never block on a bespoke run, because the turn
+   between two worlds is the point. Every other gate runs as now.
+7. **Phase 15, the panel**, scores with the rubric's bespoke readings (`scoring_rubric.yaml`,
+   `artwork_craft` and `deck_coherence`).
+
+The fan-out for this mode is in NON-NEG 11.
 
 ## PHASE 10.5 — THE DECK CHASSIS (new 2026-09-16, and nothing is drawn before it)
 

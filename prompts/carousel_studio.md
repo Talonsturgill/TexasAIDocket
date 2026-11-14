@@ -4,6 +4,15 @@ Effective for runs dated October 17th, 2026 onward. This is part of the daily ma
 Keep Texas research, sources, history, voice and factual gates. The sibling supplies the renderer
 and workflow reference; its stories and variety ledgers are never inputs to Texas selection.
 
+## BESPOKE (owner, 2026-11-14): on a run dated on or after `config/carousel/bespoke.json` `bespoke_from`
+
+One artist per slide. `knowledge/carousel/BESPOKE.md` is the art doctrine for that run and wins over the
+route rules, the audition and every one-world, one-light or fixed-layout instruction below. The deck
+shares its spine (LOOK V2 tone, palette, grade, type faces, counter, site line). Nine
+`carousel-slide-artist` agents each conceive, build, render and rework one frame, nine
+`carousel-slide-critic` agents score them, and `distinct_check.py` proves they differ. The daily
+routine's BESPOKE MODE section has the phases.
+
 ## LOOK V2 (owner, 2026-11-14): read this first
 
 **The owner, verbatim:** *"make it 10x better, the artwork on the carousels is nowhere near the

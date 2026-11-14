@@ -1,0 +1,189 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 7 of 9. A low 3D macro through txthree.js, the camera a few atoms above a crystal terrace and
+     focused on one step edge with a shallow depth of field: a new layer advances from the step across the lower terrace, and one
+     amber beam from an emitter tip at the upper right sets a single arriving atom down on that advancing edge. The terrace falls
+     off soft in front and behind. The headline sits high in the open space above the crystal; the dek sits low on the soft
+     foreground. Drawn to illustrate; no material is named. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:150px; width:650px">AI to steer how the crystals grow</h1>
+<p class="dek" style="left:82px; top:auto; bottom:142px; width:900px">The project will integrate AI with high-fidelity simulation data and experimental results, which the university says should shorten development cycles. Planned work includes AI-enabled epitaxial growth of ultrawide-bandgap semiconductors. Atoms, layers and beam drawn to illustrate.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "07 / 09", src: "c6 c7 c11", fit: { min: 84, max: 112, maxLines: 3 } });
+  /* HONEST: this frame carries no figure. The brief's FIG is empty, so the art draws no count the copy states. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 7 draws no figure, but FIG carries ' + JSON.stringify(window.FIG));
+
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.02, far: 40, fog: 0.0001 });
+  const rnd = CH.rng(CH.SEED + 7);
+
+  /* ---- THE LATTICE: close packed in plane; a lower terrace in front, a one atom step, the upper terrace behind ---- */
+  const A = 0.075, DZ = A * 0.8660, DY = A * 0.8165, RAD = A * 0.5;
+  const XL = -1.6, XR = 1.6, ZF = 1.05, ZB = -2.6;
+  const edgeZ = (x) => -0.4 - 0.1 * x + 0.03 * Math.sin(x * 7 + 0.6) + 0.012 * Math.sin(x * 17);
+  const rowX = (i, j, k) => XL + (i + 0.5 * (j & 1) + 0.5 * (k & 1)) * A;
+  const rowZ = (j, k) => ZF - j * DZ - (k & 1) * A * 0.2887;
+  const NX = Math.round((XR - XL) / A), NZ = Math.round((ZF - ZB) / DZ);
+  const H = [], NEW = [];
+  for (let j = 0; j < NZ; j++) { H.push([]); NEW.push([]); for (let i = 0; i < NX; i++) { const x = rowX(i, j, 0), z = rowZ(j, 0); H[j].push(z < edgeZ(x) ? 1 : 0); NEW[j].push(false); } }
+
+  /* THE ADVANCING EDGE: the new layer grows out from the step across the lower terrace, one sheet with a ragged front, so the
+   * step edge moves toward the camera. A few islands sit farther out on both terraces. Shapes are illustrative, no count. */
+  const front = (x) => 0.3 + 0.06 * Math.sin(x * 5.1 + 1.2) + 0.035 * Math.sin(x * 13 + 0.3) + 0.02 * Math.sin(x * 29);
+  const islands = [[0.35, -1.1, 0.12], [-0.4, -1.6, 0.14], [0.95, -1.7, 0.12]];
+  for (let j = 0; j < NZ; j++) for (let i = 0; i < NX; i++) {
+    const x = rowX(i, j, 0), z = rowZ(j, 0), d = z - edgeZ(x);
+    let on = H[j][i] === 0 && d > 0 && d < front(x);
+    for (const [ix, iz, r] of islands) { const dx = x - ix, dz = z - iz, th = Math.atan2(dz, dx);
+      if (Math.hypot(dx, dz) < r * (1 + 0.2 * Math.sin(3 * th + ix * 9) + 0.08 * Math.sin(5 * th + iz * 7))) on = true; }
+    NEW[j][i] = on;
+  }
+
+  /* THE LANDING SITE: an empty lower terrace site touching the advancing front, near the middle of the frame */
+  const nbrs = (j, i) => (j & 1) ? [[j, i - 1], [j, i + 1], [j - 1, i], [j - 1, i + 1], [j + 1, i], [j + 1, i + 1]] : [[j, i - 1], [j, i + 1], [j - 1, i - 1], [j - 1, i], [j + 1, i - 1], [j + 1, i]];
+  let site = null, bd = 1e9;
+  for (let j = 1; j < NZ - 1; j++) for (let i = 1; i < NX - 1; i++) {
+    if (H[j][i] !== 0 || NEW[j][i]) continue;
+    const x = rowX(i, j, 0), z = rowZ(j, 0), dd = Math.hypot(x - 0.02, z - (edgeZ(0.02) + front(0.02)));
+    if (dd >= bd || dd > 0.2) continue;
+    if (nbrs(j, i).filter(([a, b]) => NEW[a][b] && H[a][b] === 0).length < 2) continue;
+    site = [j, i]; bd = dd;
+  }
+  if (!site) throw new Error('no empty site on the advancing edge near the middle');
+  const SJ = site[0], SI = site[1], SITE = [rowX(SI, SJ, 1), DY, rowZ(SJ, 1)];
+
+  /* ---- THE ATOMS, instanced: the top two layers of every column and the new layer ---- */
+  const crystal = [], grown = [];
+  const cUp = new THREE.Color('#a9b2ff'), cLow = new THREE.Color('#8e97fb'), cUnder = new THREE.Color('#5a5cd6'), cNew = new THREE.Color('#ff9466');
+  for (let j = 0; j < NZ; j++) for (let i = 0; i < NX; i++) {
+    const h = H[j][i];
+    for (let k = h - 1; k <= h; k++) crystal.push([rowX(i, j, k), k * DY, rowZ(j, k), (k < h ? cUnder : (h ? cUp : cLow)).clone().offsetHSL(0, 0, 0.05 * (rnd() - 0.5))]);
+    if (NEW[j][i]) grown.push([rowX(i, j, h + 1), (h + 1) * DY, rowZ(j, h + 1), cNew.clone().offsetHSL(0.012 * (rnd() - 0.5), 0, 0.05 * (rnd() - 0.5))]);
+  }
+  function atoms(list, mat) {
+    const m = new THREE.InstancedMesh(new THREE.SphereGeometry(RAD * 0.985, 28, 18), mat, list.length), o = new THREE.Object3D();
+    list.forEach((p, n) => { o.position.set(p[0], p[1], p[2]); o.updateMatrix(); m.setMatrixAt(n, o.matrix); m.setColorAt(n, p[3]); });
+    m.instanceMatrix.needsUpdate = true; m.instanceColor.needsUpdate = true; return m;
+  }
+  TXT.add(R, atoms(crystal, new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.2 })));
+  TXT.add(R, atoms(grown, new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.32, clearcoat: 0.7, clearcoatRoughness: 0.25, emissive: 0x3a1206, emissiveIntensity: 0.6 })));
+  /* the upper terrace runs on past the last atoms into the far blur */
+  const far = new THREE.Mesh(new THREE.BoxGeometry(8, 0.2, 3.4), new THREE.MeshPhysicalMaterial({ color: 0x9aa3ff, roughness: 0.35, clearcoat: 0.6 }));
+  far.position.set(0, DY + RAD * 0.7 - 0.1, ZB - 1.65); TXT.add(R, far);
+  TXT.add(R, new THREE.Mesh(new THREE.BoxGeometry(8, 0.4, ZF - ZB + 0.2), new THREE.MeshStandardMaterial({ color: 0x2c2280, roughness: 0.9 }))).position.set(0, -DY - 0.2, (ZF + ZB) / 2);
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 8, d: 7 }), { y: -0.45, h: 7, floor: '#3a62d8', wall: '#2560d0', top: '#163a9a', hemi: 0.45, env: 0.75 }));
+
+  /* ---- CAMERA: a few atoms above the lower terrace, a short distance in front of the landing site ---- */
+  const HOVER = [SITE[0], SITE[1] + A * 1.08, SITE[2]];   /* half an atom of air between it and its site */
+  const FROM = [SITE[0] - 0.18, 0.31, SITE[2] + 1.0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, HOVER, 590, 805, 40);
+  TXT.frame(R, { fov: 40, from: FROM, look: LOOK });
+  const FOCUS = new THREE.Vector3(...HOVER).distanceTo(R.camera.position);
+
+  /* ---- THE STEERING: one emitter tip at the upper right, one guided beam, one atom set down on the advancing edge ---- */
+  const BEAM = new THREE.Color('#ff9a2e');
+  R.camera.updateMatrixWorld(true);
+  const right = new THREE.Vector3().setFromMatrixColumn(R.camera.matrixWorld, 0), up = new THREE.Vector3().setFromMatrixColumn(R.camera.matrixWorld, 1);
+  const k2w = 2 * FOCUS * Math.tan(20 * Math.PI / 180) / CH.H;          /* metres per CSS pixel at the focus distance */
+  const TIP = new THREE.Vector3(...HOVER).addScaledVector(right, 330 * k2w).addScaledVector(up, 380 * k2w);
+  const axis = TIP.clone().sub(new THREE.Vector3(...HOVER)).normalize();
+  /* the emitter: a turned metal body tapering to a small aperture ringed in the beam's colour */
+  const prof = [[0.0, 0.0], [0.012, 0.0], [0.016, 0.01], [0.03, 0.05], [0.055, 0.12], [0.066, 0.2], [0.07, 0.26], [0.07, 0.9], [0.0, 0.9]];
+  const body = TXT.lathe(prof, new THREE.MeshPhysicalMaterial({ color: 0xd9e2f2, metalness: 1, roughness: 0.22, clearcoat: 0.4 }), { segments: 72 });
+  body.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), axis); body.position.copy(TIP); TXT.add(R, body);
+  const collar = new THREE.Mesh(new THREE.TorusGeometry(0.068, 0.006, 12, 64), new THREE.MeshPhysicalMaterial({ color: 0x2a2f6e, metalness: 0.6, roughness: 0.35 }));
+  collar.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), axis); collar.position.copy(TIP).addScaledVector(axis, 0.3); TXT.add(R, collar);
+  const aperture = new THREE.Mesh(new THREE.CircleGeometry(0.012, 32), new THREE.MeshBasicMaterial({ color: BEAM.clone().multiplyScalar(1.6) }));
+  aperture.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), axis.clone().negate()); aperture.position.copy(TIP).addScaledVector(axis, -0.001); R.scene.add(aperture);
+  /* the beam bends on its way down, so it reads as guided, and ends on the arriving atom */
+  const h3 = new THREE.Vector3(...HOVER), mid = TIP.clone().lerp(h3, 0.5).addScaledVector(right, -0.03).addScaledVector(up, -0.01);
+  const pts = [TIP.toArray(), mid.toArray(), h3.clone().addScaledVector(up, A * 0.6).toArray(), [HOVER[0], HOVER[1] + RAD * 0.6, HOVER[2]]];
+  const fade = CH.canvasTex(THREE, 256, 4, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, 0); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.7, 'rgba(255,255,255,0.9)'); gr.addColorStop(1, 'rgba(255,255,255,0.35)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  for (const [r, op, glow] of [[0.0042, 1.0, false], [0.011, 0.16, true], [0.024, 0.05, true]]) {
+    const tube = TXT.tube(pts, r, new THREE.MeshBasicMaterial({ color: glow ? BEAM : new THREE.Color('#ffd08a'), transparent: true, opacity: op, alphaMap: fade, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), { segments: 160, radial: 12 });
+    tube.castShadow = false; tube.userData.noDepth = glow; R.scene.add(tube);
+  }
+  const atom = new THREE.Mesh(new THREE.SphereGeometry(RAD * 0.985, 40, 28), new THREE.MeshPhysicalMaterial({ color: 0xffa877, roughness: 0.28, clearcoat: 0.8, emissive: 0x9a3a12, emissiveIntensity: 0.55 }));
+  atom.position.set(...HOVER); TXT.add(R, atom);
+  CH.lampGlow(THREE, R, HOVER, '#ffb861', A * 1.7, 0.35).material.opacity = 0.22;
+  CH.lampGlow(THREE, R, TIP.toArray(), '#ffd59a', 0.05, 0.15);
+
+  /* ---- KEY: behind and right, low, so every atom carries a bright rim and the near terrace falls into violet shade ---- */
+  CH.KEY_SCALE = 1.6;
+  TXT.deckRig(R, CH.rigSpec(W, 4, 4096), Object.assign(CH.rigOpts([SITE[0], 0, SITE[2] - 0.4], { distance: 10, shadowFar: 25, normalBias: 0.002 }), { light: { az: 158, el: 24 } }));
+  CH.unacne(R, 0.002);
+
+  const shot = await TXT.snapshot(R);
+  if (!shot || !shot.ok) throw new Error('the GPU frame came back black: ' + JSON.stringify(shot));
+
+  /* ---- DEPTH OF FIELD: a depth pass (sqrt encoded camera distance), then a thin lens blur from five pre blurred copies ---- */
+  const GW = gl.width, GH = gl.height;
+  const beauty = document.createElement('canvas'); beauty.width = GW; beauty.height = GH; beauty.getContext('2d').drawImage(gl, 0, 0);
+  const DMAX = 12, depthMat = new THREE.ShaderMaterial({
+    vertexShader: 'varying float vD; void main(){ vec4 p = vec4(position, 1.0);\n#ifdef USE_INSTANCING\n p = instanceMatrix * p;\n#endif\n vec4 mv = modelViewMatrix * p; vD = -mv.z; gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'varying float vD; void main(){ float v = sqrt(clamp(vD / ' + DMAX.toFixed(1) + ', 0.0, 1.0)); gl_FragColor = vec4(v, v, v, 1.0); }' });
+  const hid = []; R.scene.traverse((o) => { if ((o.isSprite || o.userData.noDepth) && o.visible) { o.visible = false; hid.push(o); } });
+  const bg = R.scene.background; R.scene.background = new THREE.Color(1, 1, 1); R.scene.overrideMaterial = depthMat;
+  R.renderer.render(R.scene, R.camera);
+  const dcv = document.createElement('canvas'); dcv.width = GW; dcv.height = GH; const dctx = dcv.getContext('2d'); dctx.drawImage(gl, 0, 0);
+  R.scene.overrideMaterial = null; R.scene.background = bg; hid.forEach((o) => { o.visible = true; });
+  const depth = dctx.getImageData(0, 0, GW, GH).data;
+  /* CALIBRATED: the focus, the nearest and the farthest distance are read back from the depth pass itself, so the blur is set by
+   * the thin lens shape between them, whatever the pass's encoding did to the absolute values */
+  const dec = (px, py) => { let sum = 0, n = 0; for (let yy = -3; yy <= 3; yy++) for (let xx = -3; xx <= 3; xx++) { const q = ((Math.round(py) + yy) * GW + Math.round(px) + xx) * 4; const v = depth[q] / 255; sum += Math.max(0.02, DMAX * v * v); n++; } return sum / n; };
+  /* focus a step behind the atom, on the front of the advancing layer it is joining */
+  const hp = CH.project(THREE, R, HOVER), dF = dec(hp[0] * 2, hp[1] * 2) * new THREE.Vector3(SITE[0], SITE[1], SITE[2] - 0.04).distanceTo(R.camera.position) / FOCUS;
+  let dN = 1e9, dX = 0; for (let p = 0, n = GW * GH * 4; p < n; p += 4 * 97) { const v = depth[p] / 255, d = Math.max(0.02, DMAX * v * v); if (d < dN) dN = d; if (d > dX) dX = d; }
+  if (!(dN < dF && dF < dX)) throw new Error('depth pass is not ordered around the focus: ' + [dN, dF, dX].join(' '));
+  const RADII = [0, 5, 12, 24, 40], KN = 40, KF = 34, iF = 1 / dF, sN = KN / (1 / dN - iF), sF = KF / (iF - 1 / dX);
+  const levels = RADII.map((r) => { const c = document.createElement('canvas'); c.width = GW; c.height = GH; const g = c.getContext('2d');
+    if (r) g.filter = 'blur(' + r + 'px)'; g.drawImage(beauty, 0, 0); return g.getImageData(0, 0, GW, GH).data; });
+  const out = new ImageData(GW, GH), od = out.data;
+  for (let p = 0, n = GW * GH * 4; p < n; p += 4) {
+    const v = depth[p] / 255, d = Math.max(0.02, DMAX * v * v);
+    const id = 1 / d; let c = Math.min(RADII[4], id > iF ? (id - iF) * sN : (iF - id) * sF), L = 0;
+    while (L < 3 && c > RADII[L + 1]) L++;
+    const t = Math.min(1, (c - RADII[L]) / (RADII[L + 1] - RADII[L])), a = levels[L], b = levels[L + 1];
+    od[p] = a[p] + (b[p] - a[p]) * t; od[p + 1] = a[p + 1] + (b[p + 1] - a[p + 1]) * t; od[p + 2] = a[p + 2] + (b[p + 2] - a[p + 2]) * t; od[p + 3] = 255;
+  }
+  /* THE DEK'S GROUND: under the dek the near terrace goes fully out of focus and a step darker, so no row of atoms reads as a rule */
+  const dekR = document.querySelector('.dek').getBoundingClientRect(), y0 = (dekR.top - 70) * 2, y1 = (dekR.top - 10) * 2;
+  const soft = document.createElement('canvas'); soft.width = GW; soft.height = GH; const sg = soft.getContext('2d'); sg.filter = 'blur(72px)'; sg.drawImage(beauty, 0, 0);
+  const sd = sg.getImageData(0, 0, GW, GH).data, low = CH.P.low.match(/\w\w/g).map((h) => parseInt(h, 16));
+  for (let y = Math.max(0, Math.floor(y0)); y < GH; y++) {
+    const r = Math.min(1, (y - y0) / (y1 - y0)), e = r * r * (3 - 2 * r), dk = 0.34 * e;
+    for (let x = 0, p = y * GW * 4; x < GW; x++, p += 4) for (let c = 0; c < 3; c++) { const v = od[p + c] + (sd[p + c] - od[p + c]) * e; od[p + c] = v + (low[c] - v) * dk; }
+  }
+  const oc = document.createElement('canvas'); oc.width = GW; oc.height = GH; oc.getContext('2d').putImageData(out, 0, 0);
+  const cx = document.getElementById('art').getContext('2d'); cx.scale(2, 2); cx.drawImage(oc, 0, 0, CH.W, CH.H);
+
+  CH.seat(cx, { sel: '.hook', a: 0.36, fade: 140 });
+  const dk = document.querySelector('.dek').getBoundingClientRect();
+  CH.seat(cx, { box: { x: dk.left, y: dk.top, w: dk.width, h: dk.height }, a: 0.6, fade: 120 });
+  TXLOOK.footWash(cx, { a: 0.4, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

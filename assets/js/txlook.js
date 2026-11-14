@@ -131,6 +131,32 @@
     cx.fillStyle = g; cx.fillRect(0, 0, W, y1 + f);
     return cx;
   };
+  /* THE BESPOKE TYPE SEAT (owner, 2026-11-14, knowledge/carousel/BESPOKE.md). On a bespoke deck the type sits wherever
+   * the slide's own composition left quiet, so the seat follows the type rather than the top of the frame: a soft
+   * rounded tint in the tone's deep hue around the measured hook and dek (or o.box {x,y,w,h}), feathered by `fade`.
+   * Never a plate. `a` is the strength at the centre of the block. */
+  TXLOOK.typeSeat = function (cx, o) {
+    o = o || {}; var T = TXLOOK.palette(o.tone), box = o.box;
+    if (!box) {
+      var els = Array.prototype.slice.call(document.querySelectorAll(o.sel || ".hook, .dek"));
+      var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+      els.forEach(function (e) { var r = e.getBoundingClientRect(); if (!r.width) return; x0 = Math.min(x0, r.left); y0 = Math.min(y0, r.top); x1 = Math.max(x1, r.right); y1 = Math.max(y1, r.bottom); });
+      if (x0 > x1) return cx;
+      box = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+    }
+    /* one rounded block, blurred by `fade`, so the seat has no stepped edge a contrast check reads as a rule */
+    var f = o.fade == null ? 160 : o.fade, a = o.a == null ? 0.5 : o.a, c = T.low, pad = f * 0.35;
+    var x = box.x - pad, y = box.y - pad, w = box.w + 2 * pad, h = box.h + 2 * pad, r = Math.min(120, h / 2, w / 2);
+    cx.save();
+    cx.filter = "blur(" + Math.round(f * 0.5) + "px)";
+    cx.fillStyle = TXLOOK.rgba(c, a);
+    cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r);
+    cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); cx.fill();
+    cx.filter = "none";
+    cx.restore();
+    return cx;
+  };
+
   /* the footer seat: a low tint of the same hue under the site line and claim ids */
   TXLOOK.footWash = function (cx, o) {
     o = o || {}; var T = TXLOOK.palette(o.tone), W = o.w || 1080, H = o.h || 1350, h = o.height || 200, a = o.a == null ? 0.5 : o.a;

@@ -1406,6 +1406,18 @@ def main() -> int:
         print(f"layout_check: not a directory: {rd}", file=sys.stderr)
         return 2
     code, problems, rows = check(rd, require=a.require)
+    # BESPOKE (owner, 2026-11-14): the archetype rotation is a menu, and a bespoke slide composes its
+    # own picture and type. On a bespoke run the measurements are printed and never block.
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from bespoke_mode import is_bespoke
+        if code == 1 and is_bespoke(a.date, rd):
+            print("layout_check: BESPOKE run (knowledge/carousel/BESPOKE.md), the rotation is reported and not blocking")
+            for p in problems:
+                print(f"  ~ {p}")
+            return 0
+    except Exception:
+        pass
     for r in rows:
         if "frame" not in r:
             continue
