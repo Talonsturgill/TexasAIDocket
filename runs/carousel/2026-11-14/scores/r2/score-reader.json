@@ -1,0 +1,23 @@
+{
+  "lens": "reader", "round": 2,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Six of nine frames carry a real physical subject. The wafer boats on 1, 3, 4 and 5 are modelled, cast and graded, and slide 6's relief counts check out: 12, 4 and a cleaved half, and 19 with no end stop. Slide 7's copper relief reads as two mountain silhouettes with crumbs at feed size. Slide 2 is a flat terracotta tile labelled 'Lubbock County' on a textured grid, and machine_qa flags busy art under that label. Slide 9's plate has cast_fraction 0.136 and reads as a flat UI mock. Slide 1's cover is a murky brown mid-tone with translucent wafers that blur at 432 px. On 2, 6, 7 and 9 the art sits in a bottom band under a type block."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "The wafer-per-$1M motif runs through 1, 3, 4, 5, 6 and 8, and the contact sheet reads as one dark, warm-copper deck. Frames 2, 7 and 9 switch to a flat top-down relief, so the filmstrip splits into two registers. Slide 8 brings the boat back as 'servers', which muddies the motif."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces, the drawing units are declared in figures.json, and all three sources are primary Texas Tech Now pages. 'Over' and 'roughly' are kept honestly, and slide 6 refuses a total. Two leans: the cover's 'a cluster not built yet' is an inference from 'will help establish' (c4), and c18 and c19 rest on a university page because gov.texas.gov was off limits."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "A Texan learns what happened, who decided it, where, and that no install date exists. Nothing tells the reader what they can do, and the close is a rhetorical question. The stake stays general."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "The cover hook earns a swipe. Frame 2 is an administrative note with the weakest art. Slides 3 to 5 are a chronological award history, and slide 6 restates the same three numbers. The real turn comes only at 9, and slides 7 and 8 sit between history and close without building to it."},
+    {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and on house rules. It reads as an auditor more than a Texan. 'Drawn to illustrate' six times over. No Lubbock or South Plains specificity beyond the place name. 'The cluster is servers working as one system' is stilted."},
+    {"name": "variety", "weight": 0.10, "score": 6.0, "why": "No topic repeat. The subject sits close to no. 73, a university research-computing cluster. The structure is the same 'one drawn object per unit' move as nos. 73, 75 and 76, and the dark-field copper palette matches 73 and 76."}
+  ],
+  "weighted_score": 6.79,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Cut slide 6, the restated award tally, and rebuild slide 2 so frame 2 pays off the cover with the November boat beside an empty IN SERVICE slot.",
+  "artwork_weakest_frames": [
+    {"slide": 7, "problem": "The copper relief reads as two mountain silhouettes with scattered crumbs, not epitaxial growth, and is disconnected from the wafer motif.", "fix": "Replace it with a single wafer under a raking side light, with a raised faceted epitaxial layer growing across half its face in copper."},
+    {"slide": 2, "problem": "A flat terracotta tile on a textured grid; the label sits on busy texture.", "fix": "Model a lit relief of the Texas outline in dark stone with Lubbock County raised in copper, and seat the label in the quiet field beside it."},
+    {"slide": 1, "problem": "The cover sits in a murky brown mid-tone; translucent wafers smear at 432 px.", "fix": "Light the boat with one hard rim key from frame left onto opaque polished silicon against a black field, so each of the 19 edges catches a bright line."},
+    {"slide": 9, "problem": "cast_fraction 0.136; reads as a flat UI form and the empty IN SERVICE slot is not lit as focal.", "fix": "Drop the key to a low raking angle so the slots cast deep shadows, and put a single warm pool on the empty IN SERVICE recess."},
+    {"slide": 8, "problem": "The 'servers' are drawn as another wafer boat with a screen.", "fix": "Model a short rack of black server sleds on the same bench, one pulled out showing a bare socket."}
+  ]
+}

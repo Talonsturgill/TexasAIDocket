@@ -1,0 +1,220 @@
+{
+ "weighted_score": 6.98,
+ "judges": [
+  7.2,
+  7.0,
+  6.79
+ ],
+ "spread": 0.41,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.4,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    7.8,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.2 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.0 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.79 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.2,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.2 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.0,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.0 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.79,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.79 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat copper islands with no scale and no readable link to epitaxial growth.",
+     "fix": "Model a single wafer on a susceptor with a raised epitaxial layer stepping up across its face, lit low from one side."
+    },
+    {
+     "judge": 2,
+     "problem": "Two flat copper torn-paper shapes and crumbs on grooved black slats; reads as a sticker.",
+     "fix": "Replace it with a single wafer on the bench whose surface steps up in three or four raised epitaxial terraces, raked from the left."
+    },
+    {
+     "judge": 3,
+     "problem": "The copper relief reads as two mountain silhouettes with scattered crumbs, not epitaxial growth, and is disconnected from the wafer motif.",
+     "fix": "Replace it with a single wafer under a raking side light, with a raised faceted epitaxial layer growing across half its face in copper."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A generic laptop backdrop, wafers fading and clipping along the bottom rail, a desk instead of a cluster.",
+     "fix": "Remove the laptop and stand the boat in front of one lit rack of server sleds, and fix the wafers' transparency or depth sort so every disc sits solid."
+    },
+    {
+     "judge": 2,
+     "problem": "A stock laptop on a warm wood desk behind an unencoded run of wafers; a third material world.",
+     "fix": "Delete the laptop and the desk. Model one wafer lying flat on the black bench, cut into a lit die grid, with a hard side key so each die casts."
+    },
+    {
+     "judge": 3,
+     "problem": "The 'servers' are drawn as another wafer boat with a screen.",
+     "fix": "Model a short rack of black server sleds on the same bench, one pulled out showing a bare socket."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A copper square on a textured grid under a flat black text band; the mono label sits directly on the art.",
+     "fix": "Run the relief full bleed under the type and raise the Lubbock County block with a cast shadow raking across the grid."
+    },
+    {
+     "judge": 2,
+     "problem": "Stucco tile grid in the grey middle with busy texture under a black-on-copper label.",
+     "fix": "Drop the stucco displacement to a fine matte grain, sink the surrounding county tiles to near black, and light only the raised Lubbock tile from a low side."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat terracotta tile on a textured grid; the label sits on busy texture.",
+     "fix": "Model a lit relief of the Texas outline in dark stone with Lubbock County raised in copper, and seat the label in the quiet field beside it."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A form plate; cast fraction 0.136.",
+     "fix": "Light the plate from a low side source so the bolts and the empty IN SERVICE recess throw long shadows."
+    },
+    {
+     "judge": 2,
+     "problem": "Reads like a form UI; the left rail extends below the plate frame.",
+     "fix": "Lower the key to a raking angle so the recess walls and rivets cast long shadows, and trim the left rail to end at the plate's lower border."
+    },
+    {
+     "judge": 3,
+     "problem": "cast_fraction 0.136; reads as a flat UI form and the empty IN SERVICE slot is not lit as focal.",
+     "fix": "Drop the key to a low raking angle so the slots cast deep shadows, and put a single warm pool on the empty IN SERVICE recess."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The cover sits in a murky brown mid-tone; translucent wafers smear at 432 px.",
+     "fix": "Light the boat with one hard rim key from frame left onto opaque polished silicon against a black field, so each of the 19 edges catches a bright line."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Two boats of near-black wafers on a dark-grey floor with no bright edge.",
+     "fix": "Move the key light behind and to the left of the boats so every wafer top catches a lit arc, and darken the floor to true black."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 6.98 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 7, 8, 2, 9, 1, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

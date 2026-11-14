@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-11-14, frame 4 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the floodlit world, through a parallel camera: the state's twelve wafers in a clear quartz boat and Texas Tech's twelve in a matte silicon carbide boat, nose to tail. Drawn to illustrate; one wafer stands for $1 million. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Texas Tech will match it, for a $24 million project</h1>
+<p class="dek" data-follow="30" style="width:860px">The university will match the state's funding, bringing the clean room project to $24 million. The state's twelve wafers sit in a quartz boat and Texas Tech's twelve in a dark carbide boat. Drawn to illustrate.</p>
+<div class="lab" id="l-a">state</div>
+<div class="lab" id="l-b">Texas Tech</div>
+<script>window.FIG = {"nov_floor_m": 19, "jan_award_m": 12, "room_total_m": 24, "tech_match_m": 12, "may_award_m": 4.5, "chips_act_year": 2023, "awards_2026": 3, "usd_m_per_wafer": 1, "jan_wafers": 12, "match_wafers": 12, "may_whole": 4, "may_part": 0.5, "nov_wafers": 19, "pitch_mm": 16, "wafer_mm": 200};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Semiconductor Innovation Fund", counter: "04 / 09", src: "c15 c16", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 40 });
+  TXT.interior(R, CH.roomOpts({ w: 3.6, d: 4.4 }));
+  const bench = K.make('lab_bench', { w: 2.4, d: 1.0 }); bench.position.set(0, 0, -0.9); TXT.add(R, bench);
+  const TOP = bench.userData.top, P = FIG.pitch_mm / 1000;
+  /* THE FIGURE: the state's boat holds FIG.jan_wafers in quartz, Texas Tech's FIG.match_wafers in silicon carbide, nose to tail */
+  if (FIG.match_wafers !== FIG.jan_wafers) throw new Error('the match is not equal');
+  const a = K.make('wafer_boat', { count: FIG.jan_wafers, pitch: P, ends: 'both' });
+  const b = K.make('wafer_boat', { count: FIG.match_wafers, pitch: P, ends: 'both', material: 'sic' });
+  const L = a.userData.len, X0 = -L;
+  a.rotation.y = -Math.PI / 2; a.position.set(X0 + L / 2, TOP, -0.86); b.rotation.y = -Math.PI / 2; b.position.set(X0 + L * 1.5 + 0.004, TOP, -0.86);
+  [a, b].forEach(m => { TXT.add(R, m); TXT.contact(R, m); });
+  CH.strip(THREE, R, -1.7, 1.7, TOP + 0.3, -2.18, 0.07);
+  CH.ortho(THREE, R, 0.66);
+  TXT.frame(R, { from: [-0.3, TOP + 0.95, 0.15], look: [0.0, TOP + 0.27, -0.86] });
+  R.camera.updateProjectionMatrix();
+  CH.KEY_SCALE = 1.4;
+  TXT.deckRig(R, CH.rigSpec(W, 2.6, 4096), CH.rigOpts([0, TOP, -0.86], { distance: 6, shadowFar: 14, normalBias: 0.004 }));
+  CH.pool(THREE, TXT, R, [0, TOP, -0.86], { radius: 0.7, i: 16, normalBias: 0.004 });
+  CH.darkRoom(R, { env: 0.2 });
+  CH.labEnv(THREE, R);
+  TXT.weather(R, { grime: 0.08, height: 0.2, mottle: 0.04 });
+  TXT.stage(R, [a, b]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.7 });
+  const pa = CH.project(THREE, R, [a.position.x, TOP + 0.23, -0.86]), pb = CH.project(THREE, R, [b.position.x, TOP + 0.23, -0.86]);
+  CH.pinLabel('l-a', [pa[0] - 50, pa[1] - 90]); CH.pinLabel('l-b', [pb[0] - 90, pb[1] - 90]);
+  CH.leader(THREE, R, [pa[0], pa[1] - 44], [a.position.x, TOP + 0.23, -0.86], "the state's quartz boat");
+  CH.leader(THREE, R, [pb[0], pb[1] - 44], [b.position.x, TOP + 0.23, -0.86], "Texas Tech's carbide boat");
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

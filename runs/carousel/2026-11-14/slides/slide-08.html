@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-11-14, frame 8 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the floodlit world, in the dark lab: one wafer cut into a grid of dies on the black bench. Drawn to illustrate, no product is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The newest Nvidia chips, the dean says</h1>
+<p class="dek" data-follow="30" style="width:860px">The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster. The university describes a cluster as servers working as one system. Drawn to illustrate.</p>
+
+<script>window.FIG = {"nov_floor_m": 19, "jan_award_m": 12, "room_total_m": 24, "tech_match_m": 12, "may_award_m": 4.5, "chips_act_year": 2023, "awards_2026": 3, "usd_m_per_wafer": 1, "jan_wafers": 12, "match_wafers": 12, "may_whole": 4, "may_part": 0.5, "nov_wafers": 19, "pitch_mm": 16, "wafer_mm": 200};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "08 / 09", src: "c8 c9 c5", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 40 });
+  TXT.interior(R, CH.roomOpts({ w: 4.0, d: 3.6 }));
+  const bench = K.make('lab_bench', { w: 2.4 }); bench.position.set(0, 0, -0.9); TXT.add(R, bench);
+  const TOP = bench.userData.top, P = FIG.pitch_mm / 1000;
+  /* THE CHIPS: one wafer lying flat in the near half, cut into a grid of dies. Every die takes its own thin film tone, the way a
+   * patterned wafer breaks the light, and the streets between them stay dark. Drawn to illustrate, no product is depicted. */
+  const DIE = 22, dieTex = (function () {
+    const c = document.createElement('canvas'); c.width = c.height = 1024; const g = c.getContext('2d');
+    g.fillStyle = '#2a2c36'; g.fillRect(0, 0, 1024, 1024);
+    const step = 1024 / DIE, st = step * 0.09;
+    for (let i = 0; i < DIE; i++) for (let j = 0; j < DIE; j++) {
+      const h = 228 + 46 * Math.sin(i * 0.61 + j * 0.37) + 18 * Math.sin(i * 1.7 - j * 1.1), l = 52 + 10 * Math.sin(i * 0.9 + j * 1.3);
+      g.fillStyle = 'hsl(' + h.toFixed(0) + ',26%,' + l.toFixed(0) + '%)'; g.fillRect(i * step + st, j * step + st, step - 2 * st, step - 2 * st);
+      g.fillStyle = 'rgba(20,20,28,0.55)'; g.fillRect(i * step + step * 0.3, j * step + step * 0.42, step * 0.4, step * 0.16);
+    }
+    g.strokeStyle = 'rgba(70,72,86,0.6)'; g.lineWidth = 6; g.beginPath(); g.arc(512, 512, 489, 0, Math.PI * 2); g.stroke();
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.repeat.set(5, 5); t.offset.set(0.5, 0.5); t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; return t;
+  })();
+  const dieMat = new THREE.MeshPhysicalMaterial({ color: 0xc8cbe0, map: dieTex, metalness: 0.75, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.03, iridescence: 0.35, iridescenceIOR: 1.8, iridescenceThicknessRange: [280, 560] });
+  const chip = K.make('wafer', {}); chip.rotation.x = -Math.PI / 2; chip.position.set(0.02, TOP + 0.0004, -0.52); TXT.add(R, chip); TXT.contact(R, chip);
+  chip.traverse(o => { if (o.isMesh && Array.isArray(o.material)) o.material = [dieMat, o.material[1]]; });
+  CH.strip(THREE, R, -1.4, 1.5, TOP + 0.3, -1.38, 0.07);
+  const FROM = [0.2, TOP + 0.36, -0.2];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0.02, TOP + 0.0, -0.62], 540, 900, 34);
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOK });
+  CH.KEY_SCALE = 1.4;
+  TXT.deckRig(R, CH.rigSpec(W, 2.6, 4096), CH.rigOpts([0.1, TOP, -1.0], { distance: 6, shadowFar: 14, normalBias: 0.004 }));
+  CH.pool(THREE, TXT, R, [0.02, TOP, -0.7], { radius: 0.8, i: 16, normalBias: 0.004 });
+  CH.darkRoom(R, { env: 0.2 });
+  CH.labEnv(THREE, R);
+  TXT.weather(R, { grime: 0.08, height: 0.2, mottle: 0.04 });
+  CH.flood(THREE, R, [-0.9, 1.5, -0.2], [0.02, TOP, -0.62], { i: 6, reach: 3, angle: 0.35, color: 0xf0f3ff });
+  TXT.stage(R, [chip]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.7 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

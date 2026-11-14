@@ -1,0 +1,220 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+    "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
+    "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+    "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
+    "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+    "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+    "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 5.3,
+      "mid": 0.059,
+      "dark": 0.781
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 7.3,
+      "mid": 0.058,
+      "dark": 0.772
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 8.3,
+      "mid": 0.032,
+      "dark": 0.628
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+      "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
+      "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+      "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+      "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "Nineteen dark mirror polished wafers standing in a translucent quartz boat on a dark epoxy bench under a warm flood. The near end plate is a U cradle and the rods run out past the right frame edge with no far end wall.",
+        "visual_consequence": "A full carrier whose rods continue empty past the last wafer reads at 432 px as open ended, with room for more.",
+        "weakness": "Byte identical to the last accept. Non blocking: the lowest 30 percent of the frame is near black bench with a faint gradient.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+          "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
+          "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "A plan view relief of a near black anodised wafer tray with three recessed channels: January twelve discs capped by a far stop, May four discs and a D shaped half, November nineteen gold rimmed discs with no stop running off the right edge.",
+        "visual_consequence": "Three lengths and three different ends read without the labels at 432 px.",
+        "weakness": "Byte identical to the last accept. Minor: November's empty run past disc nineteen is short, and the dusk_gold rims read slightly copper.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+          "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A blackened brushed steel nameplate in relief with four domed corner rivets, a gold frame round AWARD (over $19 million), a CHIPS, PER THE DEAN recess and an IN SERVICE recess whose floor carries a row of nineteen empty circular wafer pockets.",
+        "visual_consequence": "Two filled recesses above one recess holding nineteen empty sockets read at feed size as not yet. The empty count matches November's nineteen discs on frame 6.",
+        "weakness": "Finished. Minor: the first two pockets sit over the recess's shadowed left wall zone, the uniform black pockets can read as vent holes at 432 px until frame 6 is seen, and the right hand rivet shadows end in a hard cut.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+          "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+          "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
+        }
+      }
+    ],
+    "note": "Frame 9 read fresh: full render and all six native crops. Frames 1 and 6 byte identical to the last accept. Rebuilt from the art director's hand back (agent af4c617d4b8602605), bound to the digests it quoted."
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "At one wafer per $1 million, the fund's three awards to Texas Tech this year are three quartz boats of different lengths on one bench: January capped at twelve, May ending in a cleaved half because it is roughly $4.5 million, and November's nineteen with no far end plate because the award is over $19 million. A reader sees the sizes and the uncertainty before reading a word.",
+    "build_risk": "Nineteen mirror wafers edge on at a narrow pitch merge into a grey comb at 432 px, and clear quartz on a dark field shows nothing unless something lit sits behind it. The answer is a parallel raking camera so each wafer top is a separate lit arc, a 16 mm pitch, each wafer casting on its neighbour, and a warm strip on the back wall reflected in the mirror faces. Build cost is three chassis kit models (wafer, wafer_boat, lab_bench), simple turned and boxed geometry.",
+    "distinct_from_recent": "No. 76 was a lastLight cooling yard exterior with copper bus packs and one grated trench relief. No. 75 was a lastLight parked lot of crossovers and one stainless rule relief. No. 74 was lastLight tidal flats with survey lath and a dark hearing room. This deck is floodlit, entirely interior and relief, small objects on one black lab bench at true scale, with no exterior and no horizon, and no server rack or node tray anywhere (no. 73's subject); frame 6's wafer tray is a lab carrier, not compute hardware."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+      "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
+      "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+      "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+    },
+    "9": {
+      "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+      "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
+    }
+  },
+  "needs_review": [
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+    "slide-01.webp": "e74504f81807f1c22400eaf282b49ab2f69fd26e42305a681f28005ea66634d5",
+    "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+    "slide-06.webp": "cb62de945c0268639a4f2b957a460166c9b13646c9467d2e56de701240385789",
+    "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+    "slide-09.webp": "077e5353685d025c3ddd3898cd15affc73915b2bea01afc05c59f86e88946d56"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "e74504f81807f1c22400eaf282b49ab2f69fd26e42305a681f28005ea66634d5",
+      "from_sha256": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
+      "psnr_db": 42.66
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "cb62de945c0268639a4f2b957a460166c9b13646c9467d2e56de701240385789",
+      "from_sha256": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
+      "psnr_db": 41.108
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "077e5353685d025c3ddd3898cd15affc73915b2bea01afc05c59f86e88946d56",
+      "from_sha256": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718",
+      "psnr_db": 41.839
+    }
+  ]
+}

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the before and after",
   "the number that is wrong",
   "the plain question",
   "the object",
   "the quiet decision",
-  "the two things"
+  "the two things",
+  "the who"
  ],
  "entries": [
   {
@@ -1396,15 +1396,34 @@
    ],
    "critic_note": "Candidate A won with edits. The critic cut a link from the body, tightened the count sentence to name its source, and kept the cooling finding in the respondents' own framing rather than as a verdict.",
    "move_note": "Opens on who answered, every Large Load, then turns on the one question the summary leaves open, what went unanswered."
+  },
+  {
+   "date": "2026-11-14",
+   "carousel_no": 77,
+   "opening_move": "the place",
+   "structure": "Clock",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Lubbock has a computing cluster on paper.",
+   "words": 149,
+   "commas": 1,
+   "commas_per_100w": 0.67,
+   "chars": 897,
+   "hashtags": [
+    "#LubbockCounty",
+    "#TexasTech",
+    "#TexasCHIPSAct"
+   ],
+   "critic_note": "Candidate A won with edits. Its opening became 'Lubbock has a computing cluster on paper.', the match was later corrected to 'will match' to follow the source quote, and the May award was restated as wide and ultrawide bandgap research because the May page does not say harsh environments.",
+   "move_note": "Opens on Lubbock, runs the three awards in date order, and closes on the date nobody has put on the cluster."
   }
  ],
  "structures_recent": [
-  "Pivot",
   "Ladder",
-  "Ledger"
+  "Ledger",
+  "Question and answer"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

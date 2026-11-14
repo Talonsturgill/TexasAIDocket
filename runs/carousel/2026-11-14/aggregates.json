@@ -1,0 +1,68 @@
+{
+ "date": "2026-11-14",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "Twelve wafers",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "computed_by": "compute.py jan_wafers, the c15 award in millions divided by figures.json usd_m_per_wafer",
+   "value": 12
+  },
+  {
+   "phrase": "twelve wafers",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "computed_by": "compute.py jan_wafers, the c15 award in millions divided by figures.json usd_m_per_wafer",
+   "value": 12
+  },
+  {
+   "phrase": "Four wafers",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "computed_by": "compute.py may_whole, the whole part of the c17 award in millions over figures.json usd_m_per_wafer",
+   "value": 4
+  },
+  {
+   "phrase": "Three awards",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "from_claims": [
+    "c15",
+    "c17",
+    "c1"
+   ],
+   "value": 3
+  },
+  {
+   "phrase": "three kinds",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "from_claims": [
+    "c15",
+    "c17",
+    "c1"
+   ],
+   "value": 3
+  },
+  {
+   "phrase": "4.5 million for wide and ultrawide",
+   "slide": "caption.txt",
+   "kind": "count",
+   "quoted_from": "c17",
+   "quote": "roughly $4.5 million",
+   "value": 4.5
+  },
+  {
+   "phrase": "three official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "from_claims": [
+    "c1",
+    "c15",
+    "c17"
+   ],
+   "value": 3
+  }
+ ]
+}

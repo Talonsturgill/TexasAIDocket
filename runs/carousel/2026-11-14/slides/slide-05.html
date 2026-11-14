@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-11-14, frame 5 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the floodlit world: the May boat seen from its far end, four whole wafers and one cleaved in half along a straight edge, an empty slot, then the end wall. Drawn to illustrate; one wafer stands for $1 million. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">May added roughly $4.5 million</h1>
+<p class="dek" data-follow="30" style="width:860px">In May a Texas Tech engineering team received roughly $4.5 million from the fund for wide and ultrawide bandgap semiconductor research. Four wafers and a cleaved half, drawn to illustrate.</p>
+
+<script>window.FIG = {"nov_floor_m": 19, "jan_award_m": 12, "room_total_m": 24, "tech_match_m": 12, "may_award_m": 4.5, "chips_act_year": 2023, "awards_2026": 3, "usd_m_per_wafer": 1, "jan_wafers": 12, "match_wafers": 12, "may_whole": 4, "may_part": 0.5, "nov_wafers": 19, "pitch_mm": 16, "wafer_mm": 200};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Semiconductor Innovation Fund", counter: "05 / 09", src: "c17 c14", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 40 });
+  TXT.interior(R, CH.roomOpts({ w: 3.6, d: 2.8 }));
+  const bench = K.make('lab_bench', { w: 2.4, d: 0.9 }); bench.position.set(0, 0, -0.86); TXT.add(R, bench);
+  const TOP = bench.userData.top, P = FIG.pitch_mm / 1000;
+  /* THE FIGURE: FIG.may_whole whole wafers and one cleaved by FIG.may_part, with an empty slot before the far end wall */
+  if (FIG.may_part <= 0 || FIG.may_part >= 1) throw new Error('may_part is not a part of one wafer');
+  const boat = K.make('wafer_boat', { count: FIG.may_whole + 1, pitch: P, ends: 'both', half: true, empty: 1 });
+  boat.rotation.y = -Math.PI / 2; boat.position.set(0, TOP, -0.86); TXT.add(R, boat); TXT.contact(R, boat);
+  CH.strip(THREE, R, -1.7, 1.7, TOP + 0.3, -2.18, 0.07);
+  const half = boat.userData.slotZ(FIG.may_whole);
+  /* THE CLEAVE'S CHIPS: a handful of silicon shards on the bench below the half wafer, the debris a cleave leaves */
+  const SH = TX.rng(CH.SEED + 5), shardMat = CH.mats(THREE).silicon;
+  for (let k = 0; k < 16; k++) { const sz = 0.004 + SH() * 0.012, g = new THREE.CylinderGeometry(sz, sz, 0.0007, 3);
+    const m = new THREE.Mesh(g, shardMat); m.position.set(-half + (SH() - 0.5) * 0.16, TOP + 0.0004, -0.86 + 0.13 + SH() * 0.09); m.rotation.y = SH() * 6.28; m.castShadow = true; TXT.add(R, m); }
+  const FROM = [-half + 0.28, TOP + 0.29, -0.86 + 0.6];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [-half - 0.03, TOP + 0.09, -0.86], 540, 1100, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  CH.KEY_SCALE = 1.4;
+  TXT.deckRig(R, CH.rigSpec(W, 2.6, 4096), CH.rigOpts([0, TOP, -0.86], { distance: 6, shadowFar: 14, normalBias: 0.004 }));
+  CH.pool(THREE, TXT, R, [0.02, TOP, -0.86], { radius: 0.5, i: 16, normalBias: 0.004 });
+  CH.darkRoom(R, { env: 0.2 });
+  CH.labEnv(THREE, R, { auto: 2.6 });
+  TXT.weather(R, { grime: 0.08, height: 0.2, mottle: 0.04 });
+  TXT.stage(R, [boat]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.7 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
