@@ -3,9 +3,9 @@
 
 WHAT THIS EMAIL IS FOR
 
-It is the only human touchpoint in an otherwise autonomous product, and it gates the POST, not
-the merge. When a run SHIPS, the deck has already merged by the time this arrives and the image
-URLs point at main. When a run HOLDS it has not merged, `--ref` carries the run branch, and the
+It is the delivery copy and incident report for an autonomous product, not a social posting
+request or approval gate. Social delivery is recorded separately from the site merge. When a run
+SHIPS, the deck has already merged by the time this arrives and the image URLs point at main. When a run HOLDS it has not merged, `--ref` carries the run branch, and the
 email says so in two places rather than linking a reader to eight 404s. Either way this is not an
 approval request. It is an honest account of what happened, written for somebody who was not
 watching and has about ninety seconds.
@@ -140,7 +140,7 @@ def subject(n: int, run: str, title: str) -> str:
 def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
          score: float | None, threshold: float, slides: int, gates: dict,
          degraded: list, upgrades: list, notes: str = "") -> str:
-    """The email, written so the first screen answers the only two questions that matter."""
+    """Build the delivery copy without inferring social publication from a site merge."""
     # DELIVERY STATE COMES FROM THE REF, NOT THE SCORE. The routine merges before building a
     # shipped email, so `main` is the durable fact that the deck landed. A branch ref is the
     # durable fact that it held. Using `score >= threshold` made a below-target deck that shipped
@@ -223,7 +223,7 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
 <p style="margin:0 0 18px;color:#5A5064">Carousel No. {n}, {e(ordinal_date(run))}</p>
 
 <p style="font-size:17px;margin:0 0 18px"><strong>{e(verdict)}</strong>{
-    "" if shipped else ". Read before posting."}</p>
+    "" if shipped else ". Publication held."}</p>
 {"" if _REF == DEFAULT_REF else
  f'<p style="border-left:3px solid #B98D46;padding-left:12px;color:#5A5064">'
  f'This run did not merge, so the images below come from the run branch '
@@ -236,10 +236,10 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
 
 {degraded_block}
 
-<h3>Post this</h3>
-<p style="margin:0 0 10px">Upload the PDF to LinkedIn as a <strong>document</strong>, title it
-<strong>{e(title)}</strong>, paste the post copy under it, then paste the first comment within
-a minute of posting.</p>
+<h3>Publication assets</h3>
+<p style="margin:0 0 10px">These are the deck and copy retained for the automatic publishing
+workflow. Social delivery status comes from the destination receipts, not from the deck's
+merge or score. Do not manually repost a destination that already has a successful receipt.</p>
 <p><a href="{pdf}">carousel.pdf</a> &nbsp; <a href="{sheet}">contact sheet</a> &nbsp;
    <a href="{SITE}/">the site</a></p>
 <p>{thumb_html}</p>
@@ -256,9 +256,9 @@ a minute of posting.</p>
 {f'<h3>Notes</h3><p>{e(notes)}</p>' if notes else ''}
 
 <p style="color:#5A5064;font-size:13px;margin-top:24px">
-This is a draft. Nothing was sent. {
-    "The deck is already merged to main, so these links are live. Posting is the only step left, "
-    "and it is yours." if _REF == DEFAULT_REF else
+This email is a draft. Nothing was sent by email. {
+    "The deck is already merged to main, so these links are live. Social publishing is handled "
+    "by the automation; destination receipts report what actually published." if _REF == DEFAULT_REF else
     "The deck did NOT merge, so nothing here is on main and there is nothing to post. The links "
     "resolve against the run branch for as long as it exists."}</p>
 </div>"""
@@ -310,7 +310,7 @@ def self_test() -> int:
     low = payload(**{**base, "score": 6.9})
     ok("a below-target deck on main says it shipped under target",
        "Shipped under target at 6.9 against 7.0" in low["body"]
-       and "Read before posting" not in low["body"])
+       and "Publication held" not in low["body"])
     # A HELD RUN'S IMAGES ARE NOT ON MAIN, because a held run does not merge. This shipped
     # pointing at main regardless, so every image in the email would have been a broken box.
     try:
@@ -320,7 +320,7 @@ def self_test() -> int:
            "/claude/daily-2026-08-19/runs/" in held["body"]
            and "/main/runs/" not in held["body"])
         ok("...and a passing score cannot relabel a held branch as shipped",
-           "Held at 7.4 against 7.0" in held["body"] and "Read before posting" in held["body"]
+           "Held at 7.4 against 7.0" in held["body"] and "Publication held" in held["body"]
            and "Shipped at 7.4" not in held["body"])
         ok("...and the email says so rather than leaving the reader to find out",
            "did not merge" in held["body"] and "claude/daily-2026-08-19" in held["body"])
@@ -380,19 +380,25 @@ def self_test() -> int:
     ok("the payload's home is the run directory, not scratch",
        run_dir(REAL).resolve().parent == (REPO_ROOT / "runs" / "carousel").resolve())
 
-    # THE POST IS ACTIONABLE FROM THE EMAIL ALONE. This is the whole complaint that opened
-    # this file's second draft: an email that describes the run and does not carry the post is
-    # a status report, and the reader still has to go and find the repository.
+    # Retain the full delivery copy, but never instruct the owner to duplicate automatic posts.
     ok("the email carries the post copy verbatim",
        e(base["caption"]) in p["body"])
     ok("...and the first comment verbatim", e(base["first_comment"]) in p["body"])
-    ok("...and says what to do with them", "as a <strong>document</strong>" in p["body"]
-       and "first comment within" in p["body"].replace("\n", " "))
+    ok("the copy identifies the automatic workflow without claiming social success",
+       "automatic publishing" in p["body"] and "destination receipts" in p["body"])
+    for label, draft in (("shipped", p), ("under target", low), ("held", held)):
+        ok(f"{label} copy does not ask for duplicate manual posting",
+           not any(text in draft["body"] for text in
+                   ("Post this", "Upload the PDF to LinkedIn", "first comment within",
+                    "Posting is the only step left", "and it is yours")))
+        ok(f"{label} copy warns against duplicating successful destinations",
+           "Do not manually repost" in draft["body"])
     ok("the caption is escaped, so markup in copy cannot break the email",
        "&lt;b&gt;" in payload(**{**base, "caption": "<b>x</b>"})["body"])
 
-    ok("the email says plainly that nothing was sent",
-       "This is a draft. Nothing was sent." in p["body"])
+    ok("the no-send statement refers only to email, not to social publication",
+       "This email is a draft. Nothing was sent by email." in p["body"]
+       and "This is a draft. Nothing was sent." not in p["body"])
     ok("...and that the merge already happened",
        "already merged to main" in p["body"])
     # A HELD RUN MUST NOT CLAIM THE MERGE. The footer said the deck was on main whatever the score.
