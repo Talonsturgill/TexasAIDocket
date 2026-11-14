@@ -80,8 +80,8 @@ empty list.
 | 05 | MACRO, eye 0.08 m, 0.12 m from the cleave, fov 34 | the chassis wafer with cleave half in the near slot of a capped five slot boat, its raw cleave modelled as a straight edge with fine steps, four whole wafers behind |
 | 06 | WIDE, orthographic relief | a black anodised wafer tray through TXBENCH.relief, three recessed channels from one common quartz stop, polished silicon discs with a sweep of film tone, raised quartz end stops casting into the channels, a D shaped half wafer with its cleave face lit |
 | 07 | MACRO, orthographic relief | a vicinal growth surface through TXBENCH.relief, straight terraces with lit risers, one ragged half grown layer on the top terrace |
-| 08 | MEDIUM, eye 1.25 m over the researcher's right shoulder, fov 38 | the kit desk with the chassis wafer_boat of nineteen at true size in the near third, the kit laptop open, the kit person seated in the office_chair, three quarters away |
-| 09 | CLOSE, orthographic relief | a blackened brushed steel nameplate through TXBENCH.relief, a raised chamfered border, four domed rivets that cast, three deep recessed fields with cavity darkening and lit and shadowed walls, a dusk_gold inlay round the AWARD field |
+| 08 | CLOSE, eye 0.36 m over the bench edge looking down, fov 34 | the chassis wafer cut into a grid of dies, mirror silicon with a film tone per die and dark streets, lying flat in the near half of the black epoxy chassis lab_bench under the flood with TXT.contact beneath it |
+| 09 | CLOSE, orthographic relief | a blackened brushed steel nameplate through TXBENCH.relief, a raised chamfered border, four domed rivets that cast, three deep recessed fields with cavity darkening and lit and shadowed walls, a dusk_gold inlay round the AWARD field, nineteen empty wafer pockets cut into the IN SERVICE floor |
 
 Showstopper frame: 01, nineteen mirror wafers in a clear boat on black epoxy, each holding a warm band, the row running out of the frame with no end. Its depth is foreground against background: the row recedes from the lens with each wafer in occlusion of the next, contact and cast shadow from every wafer onto its neighbour and the bench, and the dark lab falling away behind the warm strip.
 Tonal arc: the warm strip in the mirror faces on 01, the lit county edge on 02, closed and paired boats in the pool on 03 and
@@ -233,7 +233,7 @@ acceptance: [the half wafer and its boat own at least half the frame height, the
 risks: [the half wafer reading as a whole one seen edge on]
 type:
   hook: "May added roughly $4.5 million"
-  dek: "In May a Texas Tech engineering team received roughly $4.5 million from the fund for wide and ultrawide bandgap semiconductors meant for harsh environments. Four wafers and a cleaved half, drawn to illustrate."
+  dek: "In May a Texas Tech engineering team received roughly $4.5 million from the fund for wide and ultrawide bandgap semiconductor research. Four wafers and a cleaved half, drawn to illustrate."
   labels: []
 ```
 
@@ -299,12 +299,11 @@ type:
 slide: 8
 layout: FIGURE_SCALE
 primary_image:
-  subject: the November boat of nineteen mirror wafers at true size on a desk filling the near half, an open laptop small behind it as the scale reference
+  subject: one wafer lying flat on the black lab bench, cut into a lit grid of dies, filling the lower half
   rect: [0, 820, 1080, 450]
   bleeds: [left, right]
 accent: '#E0956A'
-data_in_art: {figure: nov_wafers, drives: the nineteen wafer boat at true size beside a laptop}
-job: Put the money's measure on a working desk beside a laptop and name the promise, the newest Nvidia chips, without inventing a machine.
+job: Show what chips are cut from, one wafer divided into dies, and name the promise, the newest Nvidia chips, without inventing a machine.
 claims: [c5, c8, c9]
 numerals: []
 depth:
@@ -312,14 +311,14 @@ depth:
   horizon: 560
   cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, OCCLUSION, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
-composition: {structure: 'Low over the desk edge, the boat filling the near half, the laptop small beyond it.', bands: 'Top third, the type on the dark wall. Middle third, the laptop screen beyond the boat. Bottom third, the foreground: the nineteen wafer boat on the veneer desk, its wafer rims lit and its shadow falling right across the desk grain.', focal: the boat beside the laptop}
-art: {technique: physically based render of the kit desk and laptop with the chassis boat in the TXT.interior lab, why_this_technique: 'a laptop is a size every reader knows, and a desk is where simulation work is done', palette: 'veneer, mirror silicon, quartz, a cool screen, the warm strip', value_structure: Lightest is the screen and wafer rims. Darkest is the wall. Frame median L* planned at 11.}
+composition: {structure: 'High over the bench edge looking down, the die wafer filling the lower half, the bench falling to dark beyond it.', bands: 'Top third, the type on the dark wall. Middle third, the far bench in the flood falling to dark. Bottom third, the foreground: the die wafer on black epoxy, each die taking its own film tone and the streets between them dark.', focal: the die grid}
+art: {technique: physically based render of the chassis wafer with a die grid map on the chassis lab bench in the TXT.interior lab, why_this_technique: 'a chip is a die cut from a wafer, so the deck''s own wafer shows what the promise is made of', palette: 'black epoxy, patterned silicon in violet and blue film tones, the warm strip', value_structure: Lightest is the die faces. Darkest is the wall. Frame median L* planned at 11.}
 verbatim: []
-acceptance: [the desk boat spans at least 380 px of the frame width, the frame's code builds FIG.nov_wafers wafers in the desk boat, the laptop sits beyond the boat and is smaller than it in frame, the boat sits on the desk with a contact and casts, the render report says ROOM IN FRAME, no numeral on this slide is absent from claims.json or figures.json]
-risks: [nineteen wafers merging into a black comb at 432 px]
+acceptance: [the chassis wafer cut into a grid of dies spans at least 380 px of the frame width, the wafer shows a grid of separate dies at 432 px, the wafer lies on the bench with a contact, the render report says ROOM IN FRAME, no numeral on this slide is absent from claims.json or figures.json]
+risks: [the die grid reading as a flat sticker]
 type:
   hook: "The newest Nvidia chips, the dean says"
-  dek: "The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster. The cluster is servers working as one system. Drawn to illustrate."
+  dek: "The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster. The university describes a cluster as servers working as one system. Drawn to illustrate."
   labels: []
 ```
 
@@ -327,10 +326,11 @@ type:
 slide: 9
 layout: DOCUMENT
 primary_image:
-  subject: a blackened brushed steel machine nameplate below the type, cropped by three edges, a raised border, four domed rivets and three recessed fields, AWARD and CHIPS filled from the announcement and IN SERVICE empty
+  subject: a blackened brushed steel machine nameplate below the type, cropped by three edges, a raised border, four domed rivets and three recessed fields, AWARD and CHIPS filled from the announcement and IN SERVICE empty, nineteen empty wafer pockets cut into its floor
   rect: [0, 640, 1080, 710]
   bleeds: [left, right, bottom]
 accent: '#E0956A'
+data_in_art: {figure: nov_wafers, drives: 'the number of empty wafer pockets cut into the IN SERVICE recess, nineteen, one per wafer of the November boat'}
 job: Close on the honest limit, a nameplate whose IN SERVICE field is empty, because the announcement gives no install or completion date.
 claims: [c4, c1, c2, c8]
 numerals:
@@ -344,7 +344,7 @@ depth:
 composition: {structure: 'Plan view of the plate filling the lower three fifths of the frame, three recessed fields in a column, the AWARD field at the top with a gold inlay.', bands: 'Top third, the type on the dark steel. Middle third, the AWARD and CHIPS fields with their values in the recess. Bottom third, the empty IN SERVICE recess in relief with its walls lit on the key side and in shadow on the other, two domed rivets casting shadows onto the brushed grain of the steel.', focal: the empty IN SERVICE recess under two filled ones}
 art: {technique: TXBENCH.relief of a brushed steel plate with cavity darkened recesses and casting rivets, why_this_technique: 'a nameplate is the thing a machine carries once it exists, and blank recesses say what the record does not hold', palette: 'blackened steel, bright steel edges, dusk gold on the award inlay', value_structure: Lightest is the raised border and rivet tops. Darkest is the recesses. Frame median L* planned at 12.}
 verbatim: []
-acceptance: [the brushed steel nameplate relief fills the frame edge to edge and at least 800 px of its height, 'exactly three recessed fields, AWARD and CHIPS carrying a value and IN SERVICE carrying nothing', every recess is darker than the plate face at 432 px, the rivets cast onto the plate, the relief report shows at least two materials and a cast fraction at or above the floor, no numeral on this slide is absent from claims.json]
+acceptance: [the brushed steel nameplate relief fills the frame edge to edge and at least 700 px of its height, the frame's code cuts FIG.nov_wafers empty pockets into the IN SERVICE recess, 'exactly three recessed fields, AWARD and CHIPS carrying a value and IN SERVICE carrying nothing', every recess is darker than the plate face at 432 px, the rivets cast onto the plate, the relief report shows at least two materials and a cast fraction at or above the floor, no numeral on this slide is absent from claims.json]
 risks: [reading as a UI card]
 type:
   hook: "No install date announced"
