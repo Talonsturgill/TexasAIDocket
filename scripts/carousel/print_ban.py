@@ -322,8 +322,9 @@ def in_world(src: str) -> bool:
 
 
 def in_room(src: str) -> bool:
-    """Rendered AND standing in a room the bench built: TXT.interior, before the kept render."""
-    return _placed(src, "interior") or is_relief(src)
+    """Rendered AND standing in a room the bench built: TXT.interior, or for a look v2 deck the
+    studio sweep TXT.studio (2026-11-14), before the kept render."""
+    return _placed(src, "interior") or _placed(src, "studio") or is_relief(src)
 
 
 def check_assets(assets: Path = ASSETS) -> list[str]:

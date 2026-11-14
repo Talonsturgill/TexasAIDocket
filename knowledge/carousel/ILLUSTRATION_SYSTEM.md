@@ -1,6 +1,12 @@
 # The illustration system — how a frame gets an IMAGE
 
 
+> **LOOK V2 (owner, 2026-11-14) supersedes THE STAGE for runs dated on or after
+> `config/carousel/look.json` `v2_from`.** Vivid tone palettes, the studio sweep (`TXT.studio`), colour
+> in every shadow, no black rooms or black type bands. CLAUDE.md, LOOK V2, is the rule; `assets/js/txlook.js`
+> holds the tones; `examples/look-v2-proof/2026-11-14/` is the worked example. THE STAGE below is
+> history for the decks drawn before it.
+
 ## Physical render routes, effective October 17th, 2026
 
 Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in

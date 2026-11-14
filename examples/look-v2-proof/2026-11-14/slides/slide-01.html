@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- LOOK V2 PROOF. 2026-11-14, frame 1 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the floodlit world, inside a dark lab: the November boat, nineteen mirror wafers in a clear quartz boat on a black epoxy bench, no far end wall. Drawn to illustrate; one wafer stands for $1 million. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Over $19 million for a cluster not built yet</h1>
+<p class="dek" data-follow="30" style="width:860px">The state's chip fund will help Texas Tech set up a computing cluster in Lubbock, the university said on November 13th. One wafer stands for $1 million. The boat is drawn to illustrate and has no far end.</p>
+<script>window.FIG = {"nov_wafers": 19, "pitch_mm": 16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-v2.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "01 / 09", src: "c1 c2 c3 c4", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 40 });
+  TXT.studio(R, CH.studioOpts({ w: 3.4, d: 2.6 }));
+  const bench = K.make('lab_bench', { w: 2.4 }); bench.position.set(0, 0, -0.82); TXT.add(R, bench);
+  const TOP = bench.userData.top;
+  /* THE FIGURE: the November boat holds FIG.nov_wafers wafers at FIG.pitch_mm, one per FIG.usd_m_per_wafer million, and has
+   * no far end wall because the award is over that floor */
+  const boat = K.make('wafer_boat', { count: FIG.nov_wafers, pitch: FIG.pitch_mm / 1000, ends: 'near', tail: 0.16 });
+  boat.rotation.y = -Math.PI / 2; boat.position.set(0.12, TOP, -0.78); TXT.add(R, boat); TXT.contact(R, boat);
+  let n = 0; boat.traverse(o => { if (o.isMesh && o.parent && o.parent.children.length && o.geometry && o.geometry.type === 'ExtrudeGeometry' && o.material && o.material.length) n++; });
+  if (n !== FIG.nov_wafers) throw new Error('wafer count ' + n + ' differs from FIG.nov_wafers');
+  CH.strip(THREE, R, -1.4, 1.5, TOP + 0.3, -1.28, 0.07);
+  CH.sideStrip(THREE, R, -1.68, -1.2, 0.2, TOP + 0.16, 0.06);
+  const FROM = [-0.55, TOP + 0.42, 0.42];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0.08, TOP + 0.07, -0.78], 560, 900, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  CH.KEY_SCALE = 1.4;
+  TXT.deckRig(R, CH.rigSpec(W, 2.4, 4096), CH.rigOpts([0.12, TOP, -0.78], { distance: 6, shadowFar: 14, normalBias: 0.004 }));
+  CH.pool(THREE, TXT, R, [0.05, TOP, -0.78], { radius: 0.85, i: 16, normalBias: 0.004 });
+  CH.darkRoom(R, { env: 0.2 });
+  CH.labEnv(THREE, R);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.7 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

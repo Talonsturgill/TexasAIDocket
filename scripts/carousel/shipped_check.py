@@ -976,7 +976,8 @@ def g_value_register(d: Path):
     except Exception:                                                # noqa: BLE001
         return None
     rows = [m.frame_stats(x) for x in paths]
-    probs = [x for x in m.judge(rows, False, d.name) if "mid tones" in x]
+    # LOOK V2 (2026-11-14): a deck dated on or after look.json v2_from is held to the colour rules too
+    probs = [x for x in m.judge(rows, False, d.name) if "mid tones" in x or x.startswith("LOOK V2")]
     if probs and d.name <= m.VALUE_SINCE:
         return (f"drawn before the value register was active (through {m.VALUE_SINCE}). Run into it anyway: "
                 f"{probs[0][:180]}")

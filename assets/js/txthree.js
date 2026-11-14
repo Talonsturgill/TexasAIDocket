@@ -2014,7 +2014,46 @@ export function init(THREE) {
       ink: 'light',
       rig: { key: { color: 0xffd29a, i: 3.6, radius: 7 }, rim: { color: 0xa8b8c8, i: 0.5, pos: [-8, 5, -8] },
              fill: { color: 0x5a6878, i: 0.3, pos: [-4, 3, 9] }, ambient: { color: 0x3a4450, i: 0.14 } } },
+    /* LOOK V2, THE TONE WORLDS (owner, 2026-11-14: "make it 10x better, the artwork on the carousels is nowhere near
+     * the quality it needs to be"). The staged worlds above answered "faded" with black: the November 14th deck measured
+     * a median L* of 5.5 and TikTok viewers left after about 3 seconds against 17.6 for the sibling's deck that day.
+     * These five are LIT and COLOURED, the films' look v2 (TexasAIDispatch knowledge/craft/LOOK_V2.md): a saturated sky
+     * with its colour carried down to a warm horizon, a soft warm key (radius 10 to 14, so shadows have penumbra), a
+     * fill and ambient in the tone's violet or teal so every shade keeps its chroma, and a strong cool rim that separates
+     * a form from what is behind it. No `stage`: nothing goes to the dark behind the subject. The names match
+     * TXLOOK.TONES and the films' GRADES through TXT.V2_WORLD. */
+    v2wonder: {    // golden hour that pops: a deep cobalt zenith, a peach horizon, a honey key
+      el: [10, 24], zenith: 0x1f3fa8, horizon: 0x7fa6ff, haze: 0xffb98a, ground: 0xe29a58,
+      sun: 0xffc98a, sunDisc: 20, glow: 1.3, horizonGlow: 1.0, span: 0.55,
+      clouds: 0.18, stars: 0, fogDensity: 0.0026, exposure: 1.05, envIntensity: 0.95, tone: 'aces', ink: 'light',
+      rig: { key: { color: 0xffd9a0, i: 4.4, radius: 12 }, rim: { color: 0x9cc4ff, i: 2.2, pos: [-8, 4, -8] },
+             fill: { color: 0x5866e0, i: 0.9, pos: [-4, 3, 9] }, ambient: { color: 0x6f7fe8, i: 0.55 } } },
+    v2explainer: { // a clear bright morning: cerulean over ice blue, a clean near white key, an indigo fill
+      el: [24, 40], zenith: 0x1d5fc4, horizon: 0x9fd6ff, haze: 0xcbe9ff, ground: 0xf0b884,
+      sun: 0xf2f8ff, sunDisc: 18, glow: 0.8, horizonGlow: 0.5, span: 0.6,
+      clouds: 0.14, stars: 0, fogDensity: 0.0022, exposure: 1.02, envIntensity: 1.05, tone: 'aces', ink: 'light',
+      rig: { key: { color: 0xf4faff, i: 4.2, radius: 12 }, rim: { color: 0x7fe3ff, i: 2.0, pos: [-8, 4, -8] },
+             fill: { color: 0x6a6ff0, i: 0.95, pos: [-4, 3, 9] }, ambient: { color: 0x7d8cf0, i: 0.55 } } },
+    v2win: {       // a sunny day it worked: a clean sky, a butter key, a teal fill
+      el: [30, 52], zenith: 0x1478c8, horizon: 0xb8eaff, haze: 0xd8f4ff, ground: 0xf2c25e,
+      sun: 0xfff3c8, sunDisc: 22, glow: 0.9, horizonGlow: 0.45, span: 0.6,
+      clouds: 0.22, stars: 0, fogDensity: 0.0022, exposure: 1.02, envIntensity: 1.0, tone: 'aces', ink: 'light',
+      rig: { key: { color: 0xfff3b8, i: 4.4, radius: 11 }, rim: { color: 0xb8ffe6, i: 1.8, pos: [-8, 4, -8] },
+             fill: { color: 0x2fb090, i: 0.8, pos: [-4, 3, 9] }, ambient: { color: 0x58b8c8, i: 0.5 } } },
+    v2watch: {     // dusk worth watching: violet over rose, a coral key, never black
+      el: [6, 18], skyEl: 4, zenith: 0x2a1f78, horizon: 0x9a72d8, haze: 0xf0a6c0, ground: 0xd8785a,
+      sun: 0xffa888, sunDisc: 0, glow: 1.2, horizonGlow: 1.1, span: 0.5,
+      clouds: 0.1, stars: 0.1, fogDensity: 0.003, exposure: 1.08, envIntensity: 0.95, tone: 'aces', ink: 'light',
+      rig: { key: { color: 0xffc2a8, i: 4.2, radius: 12 }, rim: { color: 0xffb0d0, i: 2.2, pos: [-8, 4, -8] },
+             fill: { color: 0x7a4fd0, i: 0.95, pos: [-4, 3, 9] }, ambient: { color: 0x8a64d8, i: 0.55 } } },
+    v2people: {    // late afternoon with people in it: a warm apricot key, a plum fill, a periwinkle sky
+      el: [14, 30], zenith: 0x2b4fb8, horizon: 0x9ab8ff, haze: 0xffc7a8, ground: 0xe8925a,
+      sun: 0xffd2a0, sunDisc: 20, glow: 1.1, horizonGlow: 0.85, span: 0.55,
+      clouds: 0.16, stars: 0, fogDensity: 0.0026, exposure: 1.04, envIntensity: 0.95, tone: 'aces', ink: 'light',
+      rig: { key: { color: 0xffdcb0, i: 4.4, radius: 12 }, rim: { color: 0xffc7a8, i: 2.0, pos: [-8, 4, -8] },
+             fill: { color: 0x7a52c8, i: 0.9, pos: [-4, 3, 9] }, ambient: { color: 0x8a6ad8, i: 0.55 } } },
   };
+  TXT.V2_WORLD = { wonder: 'v2wonder', explainer: 'v2explainer', win: 'v2win', watch: 'v2watch', people: 'v2people' };
 
   /* ---- weathering: nothing in Texas is clean at the bottom ------------------------------
    * TXT.weather(R, { grime, height, mottle, skip }) patches every standard material in the
@@ -3128,6 +3167,93 @@ export function init(THREE) {
     if (!R.scene.background) R.scene.background = new THREE.Color(o.wall != null ? o.wall : 0xb9b3a7).multiplyScalar(0.25);
     R.room = room;
     return room;
+  };
+
+  /* ---- LOOK V2: THE STUDIO (2026-11-14) ---------------------------------------------------
+   * TXT.studio(R, { tone, w, d, h, radius, y, floor, wall, top, env, hemi, softbox, accentStrip })
+   * A seamless sweep, the way a product is shot: a floor that curves up into a back wall with no
+   * seam, in the deck's tone colours (TXLOOK.TONES), under a big soft key with a cool rim strip
+   * behind and a coloured environment, so mirror and metal reflect colour rather than a black lab.
+   * It replaces TXT.interior's dark room for any object frame in a look v2 deck. The deck's own key
+   * (TXT.deckRig, declared once) still casts every shadow, so nine frames keep one light.
+   * Returns the sweep; R.studio holds { y, wallZ, palette }. The floor stands at y (default 0)
+   * from z = d/2 to z = -d/2, then turns up through a quarter circle of `radius` into the wall. */
+  TXT.studio = function (R, o) {
+    o = o || {};
+    const TL = (typeof window !== 'undefined') ? window.TXLOOK : null;
+    const P = o.palette || (TL ? TL.palette(o.tone) : null);
+    if (!P) throw new Error('TXT.studio needs txlook.js loaded and a look v2 tone, or o.palette');
+    const w = o.w || 9, d = o.d || 6, h = o.h || 5, r = o.radius || Math.min(1.8, d * 0.3), y0 = o.y || 0;
+    const zF = d / 2, zB = -d / 2;
+    // the profile in (z, y), with its arc length, floor first
+    const prof = [];
+    const nF = 24, nA = 28, nW = 16;
+    for (let i = 0; i <= nF; i++) prof.push([zF + (zB - zF) * i / nF, y0]);
+    for (let i = 1; i <= nA; i++) { const a = (i / nA) * Math.PI / 2; prof.push([zB - Math.sin(a) * r, y0 + r - Math.cos(a) * r]); }
+    for (let i = 1; i <= nW; i++) prof.push([zB - r, y0 + r + (h - r) * i / nW]);
+    const len = [0]; for (let i = 1; i < prof.length; i++) len.push(len[i - 1] + Math.hypot(prof[i][0] - prof[i - 1][0], prof[i][1] - prof[i - 1][1]));
+    const L = len[len.length - 1], sFloor = len[nF] / L, sWall = len[nF + nA] / L;
+    const cFloor = new THREE.Color(o.floor != null ? o.floor : P.floor);
+    const cWall = new THREE.Color(o.wall != null ? o.wall : P.wall);
+    const cTop = new THREE.Color(o.top != null ? o.top : P.skyTop);
+    const cFront = cFloor.clone().lerp(new THREE.Color(P.shade), 0.18);
+    const cFoot = cFloor.clone().lerp(cWall, 0.35);
+    const cols = 24, pos = [], col = [], idx = [], c = new THREE.Color();
+    const smooth = (t) => t * t * (3 - 2 * t);
+    for (let i = 0; i < prof.length; i++) {
+      const s = len[i] / L;
+      if (s <= sFloor) c.copy(cFront).lerp(cFloor, smooth(Math.min(1, s / (sFloor * 0.55))));
+      else if (s <= sWall) c.copy(cFloor).lerp(cFoot, smooth((s - sFloor) / (sWall - sFloor)));
+      else c.copy(cFoot).lerp(cWall, smooth(Math.min(1, (s - sWall) / ((1 - sWall) * 0.35))))
+        .lerp(cTop, smooth(Math.max(0, (s - sWall) / (1 - sWall) - 0.3) / 0.7));
+      for (let j = 0; j <= cols; j++) {
+        pos.push(-w / 2 + w * j / cols, prof[i][1], prof[i][0]);
+        // a soft falloff toward the sides, so the sweep reads as lit from the middle
+        const edge = Math.abs(j / cols - 0.5) * 2, k = 1 - 0.16 * edge * edge;
+        col.push(c.r * k, c.g * k, c.b * k);
+      }
+    }
+    for (let i = 0; i < prof.length - 1; i++) for (let j = 0; j < cols; j++) {
+      const a = i * (cols + 1) + j, b = a + cols + 1;
+      idx.push(a, b, a + 1, a + 1, b, b + 1);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+    g.setIndex(idx); g.computeVertexNormals();
+    const sweep = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92, metalness: 0, side: THREE.DoubleSide }));
+    sweep.receiveShadow = true; sweep.castShadow = false;
+    sweep.userData.txGround = true; sweep.userData.txStudio = true;
+    R.scene.add(sweep);
+    // THE STUDIO'S LIGHT: a gradient dome in the tone, a big warm softbox on the key's side, a cool rim strip
+    // behind, the accent as a thin strip low on the other side, so every polished face carries colour
+    const env = new THREE.Scene();
+    const dome = new THREE.Mesh(new THREE.SphereGeometry(30, 48, 24), new THREE.ShaderMaterial({
+      side: THREE.BackSide, depthWrite: false,
+      uniforms: { uTop: { value: new THREE.Color(P.skyTop) }, uMid: { value: new THREE.Color(P.skyMid) },
+                  uLow: { value: new THREE.Color(P.skyLow) }, uFloor: { value: new THREE.Color(P.floor) } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 uTop,uMid,uLow,uFloor; varying vec3 vP; void main(){ float y = vP.y; vec3 c = y > 0.0 ? mix(mix(uLow, uMid, smoothstep(0.0,0.35,y)), uTop, smoothstep(0.35,1.0,y)) : mix(uLow, uFloor*0.8, smoothstep(0.0,-0.4,y)); gl_FragColor = vec4(c, 1.0); }'
+    }));
+    env.add(dome);
+    const sd = TXT.sunDir();
+    const panel = (pw, ph, color, i, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+      m.material.color.multiplyScalar(i); m.position.set(p[0], p[1], p[2]); m.lookAt(0, 0, 0); env.add(m); return m; };
+    panel(9, 6, new THREE.Color(P.key), o.softbox != null ? o.softbox : 5.5, [sd.x * 12, Math.max(4, sd.y * 12), sd.z * 12]);
+    panel(18, 0.9, new THREE.Color(P.rim), 3.2, [-sd.x * 6, 5, -12]);
+    panel(0.7, 9, new THREE.Color(P.rim), 2.2, [-sd.x * 12, 2, -sd.z * 4]);
+    panel(10, 0.5, new THREE.Color(P.accent), o.accentStrip != null ? o.accentStrip : 1.6, [-sd.x * 9, 0.6, 9]);
+    panel(12, 5, new THREE.Color(P.fill), 1.3, [-sd.x * 11, 3, sd.z * 6 + 4]);
+    const pm = new THREE.PMREMGenerator(R.renderer);
+    R.scene.environment = pm.fromScene(env, 0.02).texture; pm.dispose();
+    if ('environmentIntensity' in R.scene) R.scene.environmentIntensity = o.env != null ? o.env : 0.9;
+    const hemi = new THREE.HemisphereLight(new THREE.Color(P.skyMid).lerp(new THREE.Color(0xffffff), 0.25), cFloor, o.hemi != null ? o.hemi : 0.65);
+    hemi.userData.txStudio = true; R.scene.add(hemi);
+    R.scene.background = new THREE.Color(P.skyTop);
+    if (R.scene.fog) R.scene.fog.color = cWall.clone().lerp(cTop, 0.3);
+    R.studio = { y: y0, wallZ: zB - r, palette: P, sweep };
+    R.room = sweep;   // the sweep is the frame's room, so TXT.snapshot's room verdict and print_ban read it
+    return sweep;
   };
 
   /* ---- rounded box: edges that catch a highlight -----------------------------------------

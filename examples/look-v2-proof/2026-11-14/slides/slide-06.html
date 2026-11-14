@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- LOOK V2 PROOF. 2026-11-14, frame 6 of 9. Archetype DIAGRAM. A material relief through txbench.js: a black anodised wafer tray in plan with three channels from one common stop. January holds twelve polished wafers and a quartz end stop. May holds four and a cleaved half, then a stop. November holds nineteen and has no stop, its channel running off the frame. Drawn to illustrate; one wafer stands for $1 million. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Three awards, three kinds of number</h1>
+<p class="dek" data-follow="30" style="width:860px">January was a stated $12 million. May was roughly $4.5 million. November is over $19 million, which is a floor. No total is drawn.</p>
+<div class="lab" id="l-jan" style="text-align:left">January, stated</div>
+<div class="lab" id="l-may" style="text-align:left">May, roughly</div>
+<div class="lab" id="l-nov" style="text-align:left">November, over</div>
+<script>window.FIG = {"jan_wafers": 12, "may_whole": 4, "may_part": 0.5, "nov_wafers": 19};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-v2.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Texas Semiconductor Innovation Fund", counter: "06 / 09", src: "c15 c17 c1", fit: { min: 76, max: 100, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED);
+  /* THE FIGURE: three channels at one pitch from one common stop at X0. January FIG.jan_wafers discs then a quartz stop. May
+   * FIG.may_whole discs and one cleaved by FIG.may_part (a D, its straight cleave toward the stop), then a stop. November
+   * FIG.nov_wafers discs and no stop, the channel running off the right edge. One disc stands for FIG.usd_m_per_wafer million. */
+  if (FIG.may_part <= 0 || FIG.may_part >= 1) throw new Error('may_part is not a part of one wafer');
+  const Y0 = 640, X0 = 103, P = 49, D = 44, CW = 62;
+  const rows = [
+    { id: 'jan', y: 760, n: FIG.jan_wafers, half: false, stop: true },
+    { id: 'may', y: 960, n: FIG.may_whole, half: true, stop: true },
+    { id: 'nov', y: 1160, n: FIG.nov_wafers, half: false, stop: false }];
+  rows.forEach(r => { r.end = X0 + (r.n + (r.half ? 1 : 0)) * P + 8; });
+  /* the tray's own wear and fixtures: hashed handling scuffs in the anodise, and countersunk screws between channels */
+  const hsh = (a, b, k) => { const v = Math.sin(a * 127.1 + b * 311.7 + k * 74.7) * 43758.5453; return v - Math.floor(v); };
+  function scuff(X, Y) {
+    const G = 26, ci = Math.floor(X / G), cj = Math.floor(Y / G);
+    for (let a = ci - 1; a <= ci + 1; a++) for (let b = cj - 1; b <= cj + 1; b++) {
+      if (hsh(a, b, 1) > 0.42) continue;
+      const px = (a + hsh(a, b, 2)) * G, py = (b + hsh(a, b, 3)) * G, th = hsh(a, b, 4) * Math.PI, L = 4 + 12 * hsh(a, b, 5);
+      const dx = X - px, dy = Y - py, t = dx * Math.cos(th) + dy * Math.sin(th), n = -dx * Math.sin(th) + dy * Math.cos(th);
+      if (Math.abs(t) < L && Math.abs(n) < 0.6) return 0.5 + 0.5 * hsh(a, b, 6);
+    }
+    return 0;
+  }
+  const SCREWS = [[620, 860], [620, 1060], [880, 860], [880, 1060], [1010, 760], [1010, 960]];
+  function screw(X, Y) { for (const [sx, sy] of SCREWS) { const d = Math.hypot(X - sx, Y - sy); if (d < 13) {
+    const hex = Math.max(Math.abs(X - sx) * 0.866 + Math.abs(Y - sy) * 0.5, Math.abs(Y - sy)) < 5;
+    return hex ? -3 : d < 10.5 ? 1.2 - 0.6 * (d / 10.5) : -1.6 * (1 - (d - 10.5) / 2.5); } } return null; }
+  function geo(X, Y) {
+    for (const r of rows) {
+      const dy = Y - r.y; if (Math.abs(dy) > CW / 2) continue;
+      if (X >= X0 - 22 && X < X0 - 8) return [16, 3];                                   /* the common stop, quartz */
+      if (r.stop && X >= r.end && X < r.end + 14) return [16, 3];                        /* an end stop */
+      const open = r.stop ? X < r.end : true;
+      if (X < X0 - 8 || !open) continue;
+      for (let i = 0; i < r.n + (r.half ? 1 : 0); i++) {
+        const cxw = X0 + i * P + P / 2, d = Math.hypot(X - cxw, dy);
+        if (d < D / 2) {
+          const u = d / (D / 2), dome = 5 - (u > 0.93 ? 2.5 * ((u - 0.93) / 0.07) ** 2 : 0);   /* flat polished face, rolled rim: no self cast across the face */
+          if (r.half && i === r.n) { if (X > cxw) return [-10, 1]; return X > cxw - 2.5 ? [3, 4] : [dome, 2]; }
+          return [dome, r.id === 'nov' && u > 0.86 ? 6 : 2];
+        }
+      }
+      return [-10, 1];                                                                   /* the channel floor */
+    }
+    const sc = screw(X, Y); if (sc !== null) return [sc, 5];
+    return [0.4 * TX.fbm2(X / 46, Y / 1.6, 2) + 0.3 * TX.fbm2(X / 140, Y / 140, 2) - 0.5 * scuff(X, Y), 0];   /* the satin anodised tray face, brushed along x */
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const albedo = (X, Y, m) => {
+    const L = TXLOOK.lin, n = TX.fbm2(X / 10, Y / 10, 2);   /* P here is the slot pitch; the palette is CH.P */
+    if (m === 2) {   /* polished face: one soft off-centre radial highlight toward the key, fading to the rim, in the sky's silver blue */
+      let best = 1e9, hx = 0, hy = 0;
+      for (const r of rows) { if (Math.abs(Y - r.y) > CW / 2) continue; const i = Math.max(0, Math.min(r.n + (r.half ? 1 : 0) - 1, Math.floor((X - X0) / P)));
+        const cxw = X0 + i * P + P / 2, dd = Math.hypot(X - cxw, Y - r.y); if (dd < best) { best = dd; hx = cxw - 0.22 * D / 2; hy = r.y - 0.22 * D / 2; } }
+      const t = Math.exp(-((Math.hypot(X - hx, Y - hy) / (1.0 * D / 2)) ** 2)), b = L(CH.P.skyLow, 0.62);
+      return [b[0] + 0.35 * t, b[1] + 0.32 * t, b[2] + 0.25 * t]; }
+    if (m === 3) return L('#d6f3ff', 0.85);
+    if (m === 4) return L('#e8e4ff', 0.8);
+    if (m === 1) return L(CH.P.shade, 0.9 + 0.1 * n);
+    const br = TX.fbm2(X / 60, Y / 1.8, 2), cl = TX.fbm2(X / 220, Y / 220, 2);
+    if (m === 5) return L('#c9d6ec', 0.7);
+    if (m === 6) return L(CH.P.accent, 1.3);   /* the accent rims on November's discs, the deck's one accent meaning November */
+    const k = 0.92 + 0.06 * br + 0.08 * cl; return L('#ff7650', k);   /* LOOK V2: a warm anodised tray under the blue sky, not black */
+  };
+  TXLOOK.sky2d(cx, { y0: 0, y1: Y0 + 40 });
+  TXBENCH.relief(cx, { ...TXLOOK.reliefLight(), x: 0, y: Y0, w: 1080, h: 1350 - Y0, scale: 2, height, material, albedo,
+    spec: { 0: [0.4, 30], 1: [0.1, 8], 2: [0.9, 70], 3: [0.8, 60], 4: [0.4, 20], 5: [0.7, 40], 6: [0.8, 50] },
+    ambient: Math.max(0.34, 0.14), diffuse: 1.25, ao: 0.95, shadow: 0.9, softness: 4, castLength: 120, dither: true });
+  TXLOOK.footWash(cx, { a: 0.42, height: 230 }); TXLOOK.typeWash(cx, { a: 0.42, fade: 160 });
+  CH.pinLabel('l-jan', [X0 - 22, 760 - 76]); CH.pinLabel('l-may', [X0 - 22, 960 - 76]); CH.pinLabel('l-nov', [X0 - 22, 1160 - 76]);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
