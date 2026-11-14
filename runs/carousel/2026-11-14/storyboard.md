@@ -300,7 +300,7 @@ slide: 8
 layout: FIGURE_SCALE
 primary_image:
   subject: a researcher seated at a desk turned three quarters away, an open laptop, and the November boat of nineteen wafers at true size on the desk in the near third
-  rect: [0, 760, 1080, 590]
+  rect: [0, 870, 1080, 480]
   bleeds: [left, bottom, right]
 accent: '#E0956A'
 data_in_art: {figure: nov_wafers, drives: the nineteen wafer boat at true size beside a seated adult}
