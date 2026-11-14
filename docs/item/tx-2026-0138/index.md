@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Lubbock's moratorium procedure is unconfirmed again today. The city's agenda file turns away every reader and the station refuses this project.
 - 2026-11-07 · Lubbock's procedure toward a moratorium has no newer confirmation. The city's agenda file stays closed and the station refuses this project.
 - 2026-11-08 · Lubbock's procedure toward a temporary data center moratorium still reads as the city set it out, with no final vote posted.
+- 2026-11-14 · Lubbock's procedure toward a temporary data center moratorium stays as last read. The city's pages still refuse every reader.
 
 ## Evidence
 

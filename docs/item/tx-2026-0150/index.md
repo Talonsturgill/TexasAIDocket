@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · The radiologists' published imaging result is unconfirmed today. PubMed served a cookie check in place of the abstract, so the quoted text could not be read.
 - 2026-11-07 · The pediatric imaging AI result is unconfirmed on November 7th, because the article's index page offered a cookie check rather than its abstract.
 - 2026-11-08 · The expert panel's review still opens on the same finding, that imaging AI has largely been built and tested on adults while children's scans stay underrepresented.
+- 2026-11-14 · The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.
 
 ## Evidence
 

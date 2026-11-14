@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · The three campus trial of a phone microphone for fetal movement is unconfirmed today. The federal trials registry still refuses this project.
 - 2026-11-07 · The three campus trial of a phone microphone for fetal movement has no newer reading. The federal trials registry keeps refusing this project.
 - 2026-11-08 · The three campus trial of a phone microphone for fetal movement has no fresh reading, because the federal trials registry still refuses this project.
+- 2026-11-14 · The three campus trial of a phone microphone for fetal movement has no newer reading. The federal trials registry still refuses this project.
 
 ## Evidence
 

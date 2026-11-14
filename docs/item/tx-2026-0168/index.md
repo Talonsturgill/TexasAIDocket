@@ -56,6 +56,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · The Hays County sheriff's promise to keep AI report writing switched off stands on the earlier reading. The agenda archive still refuses this project.
 - 2026-11-07 · The Hays County sheriff's word that AI report writing stays switched off holds on the earlier reading. The county's agenda archive still refuses this project.
 - 2026-11-08 · The Hays County sheriff's commitment to bring AI report writing back to the court before switching it on still stands on the county's record.
+- 2026-11-14 · The Hays County sheriff's commitment on AI report writing stays on the earlier reading. The agenda archive and the vendor's page both refuse this project.
 
 ## Evidence
 

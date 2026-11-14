@@ -58,6 +58,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · The August committee hearings on data centers and AI in health care still rest on the earlier reading. The Legislature's library stays off limits.
 - 2026-11-07 · The August committee hearings on data centers and AI in health care hold on the earlier reading. The Legislature's library remains off limits.
 - 2026-11-08 · The August House committee hearings on data centers and AI in health care hold as first read. The Legislature's library and bill pages stay off limits.
+- 2026-11-14 · The House committee hearings on data centers and AI in health care hold as first read. The Legislature's pages remain off limits to this project.
 
 ## Evidence
 

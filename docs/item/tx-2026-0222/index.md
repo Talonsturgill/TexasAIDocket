@@ -11,7 +11,7 @@ Houston Methodist researchers published a study in the Journal of Imaging on Jun
 - Public access: Write to the decider
 - Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-14
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · The Journal of Imaging paper still reports the camera system's rise in monthly cases at Walter Tower as associated with the deployment rather than caused by it. Its disclosure of Houston Methodist's equity stake in Apella still stands.
 - 2026-11-07 · Houston Methodist's operating room camera AI still reads as the system reported it.
 - 2026-11-10 · Houston Methodist's paper and its own account of the operating room cameras both read as cited, and the claim of association rather than cause is unchanged.
+- 2026-11-14 · Houston Methodist's paper on its operating room cameras still carries every passage the record quotes.
 
 ## Evidence
 

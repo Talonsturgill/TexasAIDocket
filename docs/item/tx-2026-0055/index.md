@@ -59,6 +59,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Conroe's council vote that kept Flock off the ballot is unconfirmed today. Both station reports stay closed to this project.
 - 2026-11-07 · Conroe's council vote that kept Flock off the ballot rests on what was read earlier. Neither station report opens to this project.
 - 2026-11-08 · Conroe's council vote that kept Flock off the ballot stands as read before. Both station reports still refuse this project.
+- 2026-11-14 · Conroe's vote that kept Flock off the ballot remains on the earlier reading. Neither station report opens to this project.
 
 ## Evidence
 

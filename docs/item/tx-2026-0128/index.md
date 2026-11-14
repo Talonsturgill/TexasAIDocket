@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · Brownsville's moratorium is still unconfirmed as to where it stands. The city's notice turns away every reader.
 - 2026-11-08 · Brownsville's temporary data center moratorium remains unconfirmed as to its standing. The city's notice still turns away every reader.
 - 2026-11-11 · The Texas Tribune reported on November 10th that Brownsville approved the moratorium and that it took effect the week before. It pauses data center applications in the city and its extraterritorial jurisdiction. The city's own posting of the vote is not confirmed.
+- 2026-11-14 · Brownsville's moratorium stays as the record last held it. The city's own pages still turn every reader away.
 
 ## Evidence
 
