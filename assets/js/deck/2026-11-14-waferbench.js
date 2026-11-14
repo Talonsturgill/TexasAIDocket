@@ -66,35 +66,39 @@
     if (N._m) return N._m;
     var scr = N.canvasTex(THREE, 1024, 512, function (g, w, h) {
       g.fillStyle = "#808080"; g.fillRect(0, 0, w, h); var r = N.rng(21);
-      for (var i = 0; i < 1400; i++) { var x = r() * w, y = r() * h, a = r() * Math.PI, l = 4 + r() * 60;
+      for (var i = 0; i < 2600; i++) { var x = r() * w, y = r() * h, a = r() * Math.PI, l = 4 + r() * 70;
         g.strokeStyle = "rgba(" + (r() < 0.5 ? "40,40,40" : "200,200,200") + "," + (0.05 + r() * 0.12) + ")"; g.lineWidth = 0.4 + r() * 0.8;
         g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l * 0.2); g.stroke(); }
     }, [2, 1]);
+    /* THE FILM ON THE FACE: one soft colour sweep across the polish where the grown film's thickness drifts, and a faint haze.
+     * Albedo only, mapped to the wafer's own metres. */
     var sil = N.canvasTex(THREE, 512, 512, function (g, w, h) {
-      var gr = g.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 2); gr.addColorStop(0, "#a7a2b2"); gr.addColorStop(1, "#8f8a9c");
-      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      var gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, "#c3bfd2"); gr.addColorStop(0.55, "#b5b8c6"); gr.addColorStop(1, "#aab3be"); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      var r = N.rng(31); for (var q = 0; q < 900; q++) { g.fillStyle = "rgba(" + (r() < 0.5 ? "120,115,140" : "215,220,230") + ",0.2)"; g.beginPath(); g.arc(r() * w, r() * h, 3 + r() * 18, 0, Math.PI * 2); g.fill(); }
     });
+    sil.repeat.set(5, 5); sil.offset.set(0.5, 0.5); sil.wrapS = sil.wrapT = THREE.ClampToEdgeWrapping;
     N._m = {
-      silicon: new THREE.MeshPhysicalMaterial({ color: 0xb4b2c0, metalness: 0.92, roughness: 0.09, clearcoat: 1, clearcoatRoughness: 0.03,
-        iridescence: 0.12, iridescenceIOR: 1.8, iridescenceThicknessRange: [300, 500] }),
+      silicon: new THREE.MeshPhysicalMaterial({ color: 0x9aa1b4, map: sil, roughnessMap: sil, metalness: 0.9, roughness: 0.16, clearcoat: 1, clearcoatRoughness: 0.02,
+        iridescence: 0.18, iridescenceIOR: 1.8, iridescenceThicknessRange: [300, 520] }),
+      bevel: new THREE.MeshStandardMaterial({ color: 0xe8ecf4, metalness: 0.9, roughness: 0.18 }),
       cleave: new THREE.MeshStandardMaterial({ color: 0x5d5a66, metalness: 0.5, roughness: 0.32 }),
-      quartz: new THREE.MeshPhysicalMaterial({ color: 0x9fb0b8, metalness: 0, roughness: 0.1, transmission: 0.55, thickness: 0.006, ior: 1.46, attenuationColor: 0xb7d0d8, attenuationDistance: 0.05,
-        clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.4 }),
+      quartz: new THREE.MeshPhysicalMaterial({ color: 0xd8eef5, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.32, depthWrite: false,
+        clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 2.2, specularIntensity: 1, ior: 1.46 }),
       sic: new THREE.MeshStandardMaterial({ color: 0x2c2c31, metalness: 0.15, roughness: 0.52 }),
-      epoxy: new THREE.MeshPhysicalMaterial({ color: 0x141317, roughness: 0.3, roughnessMap: scr, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.25 }),
+      epoxy: new THREE.MeshPhysicalMaterial({ color: 0x2a282e, map: scr, roughness: 0.3, roughnessMap: scr, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.25 }),
       steel: new THREE.MeshStandardMaterial({ color: 0x3a3c40, metalness: 0.6, roughness: 0.45 }),
       gold: new THREE.MeshBasicMaterial({ color: N.GOLD, toneMapped: false, fog: false })
     };
     return N._m;
   };
   /* a wafer's outline in its own plane: a circle of radius r with a 3 mm orientation notch at the bottom, or the half above a
-   * straight cleave through the centre when `half` */
+   * straight cleave through the centre when `half`, keeping the lower half */
   N.waferShape = function (THREE, r, half) {
     var s = new THREE.Shape(), n = 160, i, a;
     if (half) {
-      s.moveTo(r, 0);
-      for (i = 1; i <= n; i++) { a = Math.PI * i / n; s.lineTo(Math.cos(a) * r, Math.sin(a) * r); }
-      s.lineTo(r, 0); return s;
+      s.moveTo(-r, 0);
+      for (i = 1; i <= n; i++) { a = Math.PI + Math.PI * i / n; s.lineTo(Math.cos(a) * r, Math.sin(a) * r); }
+      s.lineTo(-r, 0); return s;   /* the LOWER half, so it rests on the rods with its straight cleave on top */
     }
     var na = 0.016;   /* the notch, about 3 mm across at the rim */
     s.moveTo(Math.cos(-Math.PI / 2 + na) * r, Math.sin(-Math.PI / 2 + na) * r);
@@ -104,25 +108,27 @@
   N.installKit = function (K, THREE, TXT) {
     if (K.registry && K.registry.wafer_boat) return;
     var M = N.mats(THREE);
-    K.define("wafer", { size: [0.2, 0.2, 0.001], options: { d: 0.2, half: false }, note: "A 200 mm polished silicon wafer standing on edge, its face toward +z, origin at the bottom of the rim; half cleaves it straight through the centre and keeps the upper half.",
+    K.define("wafer", { size: [0.2, 0.2, 0.001], options: { d: 0.2, half: false }, note: "A 200 mm polished silicon wafer standing on edge, its face toward +z, origin at the bottom of the rim; half cleaves it straight through the centre and keeps the lower half, its raw cleave on top.",
       make: function (o) {
         var r = (o.d || N.WAFER.d) / 2, t = N.WAFER.t, g = new THREE.Group();
         var geo = new THREE.ExtrudeGeometry(N.waferShape(THREE, r, o.half), { depth: t, bevelEnabled: true, bevelThickness: 0.00012, bevelSize: 0.00025, bevelSegments: 2, curveSegments: 160 });
         geo.translate(0, 0, -t / 2);
         var m = new THREE.Mesh(geo, [M.silicon, o.half ? M.cleave : M.silicon]); m.castShadow = true; m.receiveShadow = true;
-        m.position.y = o.half ? 0 : r; g.add(m);
+        m.position.y = r; g.add(m);
+        if (o.half) { var arc = new THREE.Mesh(new THREE.TorusGeometry(r - 0.0002, 0.00042, 6, 80, Math.PI), M.bevel); arc.rotation.z = Math.PI; arc.position.y = r; g.add(arc);
+          var lip = new THREE.Mesh(new THREE.BoxGeometry(2 * r, 0.0009, N.WAFER.t * 1.3), M.bevel); lip.position.y = r; g.add(lip); }
         if (o.half) {
           /* the raw cleave face: a strip of fine steps along the straight edge, darker and rougher than the polish */
           for (var k = 0; k < 7; k++) { var s = new THREE.Mesh(new THREE.BoxGeometry(2 * r * (0.92 - k * 0.11), 0.0006, t * 1.15), M.cleave);
-            s.position.set((k % 2 ? 1 : -1) * r * 0.02 * k, 0.0003 + k * 0.00005, 0); s.castShadow = true; g.add(s); }
+            s.position.set((k % 2 ? 1 : -1) * r * 0.02 * k, r - 0.0003 - k * 0.00005, 0); s.castShadow = true; g.add(s); }
         }
         return g;
       } });
-    K.define("wafer_boat", { size: [0.24, 0.13, 0.4], options: { count: 19, pitch: 0.016, material: "quartz", ends: "both", wafers: true, half: false, tail: 0.04 },
-      note: "A wafer boat along z: four slotted rods and end walls with a wafer cut-out, in clear fused quartz or matte silicon carbide. count wafers at pitch metres, the first slot at the near end (+z). ends 'both' caps both ends, 'near' leaves the far end open with the rods running on by tail metres. half makes the last wafer a cleaved half. userData.slotZ(i) gives a slot's z.",
+    K.define("wafer_boat", { size: [0.24, 0.13, 0.4], options: { count: 19, pitch: 0.016, material: "quartz", ends: "both", wafers: true, half: false, tail: 0.04, empty: 0 },
+      note: "A wafer boat along z: four slotted rods and end walls with a wafer cut-out, in clear fused quartz or matte silicon carbide. count wafers at pitch metres, the first slot at the near end (+z). ends 'both' caps both ends, 'near' leaves the far end open with the rods running on by tail metres. half makes the last wafer a cleaved half. empty adds that many unfilled slots after the last wafer. userData.slotZ(i) gives a slot's z.",
       make: function (o) {
         var n = o.count, p = o.pitch || 0.016, mat = o.material === "sic" ? M.sic : M.quartz, g = new THREE.Group();
-        var margin = 0.022, wall = 0.006, len = (n - 1) * p + 2 * margin + (o.ends === "near" ? (o.tail || 0.04) : 0);
+        var margin = 0.022, wall = 0.006, len = (n - 1 + (o.empty || 0)) * p + 2 * margin + (o.ends === "near" ? (o.tail || 0.04) : 0);
         var z0 = len / 2 - margin;             /* slot 0, nearest the camera end (+z) */
         var rods = [[-0.06, 0.03, 0.0065], [0.06, 0.03, 0.0065], [-0.094, 0.088, 0.006], [0.094, 0.088, 0.006]];
         rods.forEach(function (q) {
@@ -143,7 +149,7 @@
         g.userData.slotZ = function (i) { return z0 - i * p; };
         if (o.wafers !== false) for (var i = 0; i < n; i++) {
           var last = o.half && i === n - 1, w = K.make("wafer", { half: last, seed: i });
-          w.position.set(0, last ? 0.112 + 0.0 : wy, z0 - i * p); g.add(w);
+          w.position.set(0, wy, z0 - i * p); g.add(w);
         }
         g.position.y = 0.008;
         var outer = new THREE.Group(); outer.add(g); outer.userData.slotZ = g.userData.slotZ; outer.userData.len = len; outer.userData.z0 = z0;
@@ -175,18 +181,28 @@
    * the declared key: the softbox sits on azimuth -58 and elevation 28. */
   N.labEnv = function (THREE, R, o) {
     o = o || {};
-    if (N._env && N._envR === R) return N._env;
+    if (N._env && N._envR === R && !o.low && !o.auto) return N._env;
     var env = new THREE.Scene();
     env.add(new THREE.Mesh(new THREE.BoxGeometry(20, 12, 20), new THREE.MeshBasicMaterial({ color: 0x050608, side: THREE.BackSide })));
     function panel(w, h, c, i, pos) { var p = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide }));
       p.material.color.multiplyScalar(i); p.position.set(pos[0], pos[1], pos[2]); p.lookAt(0, 0, 0); env.add(p); return p; }
     var az = -58 * Math.PI / 180, el = 28 * Math.PI / 180, d = 7;
     panel(4.5, 3, 0xeef2ff, o.soft || 5, [Math.sin(az) * Math.cos(el) * d, Math.sin(el) * d, Math.cos(az) * Math.cos(el) * d]);
-    panel(16, 0.5, N.GOLD, o.warm || 3.2, [0, 0.4, -8]);
-    panel(0.5, 10, N.GOLD, (o.warm || 3.2) * 0.8, [-8, 0.5, -2]);
+    panel(16, 0.2, N.GOLD, (o.warm || 3.2) * 0.6, [0, 0.4, -8]);
+    panel(0.3, 10, 0xdfe5f2, 1.4, [-8, 0.5, -2]);
     panel(5, 2, 0x6f86b8, o.cool || 0.6, [7, 2, 2]);
-    panel(12, 3.2, 0xdfe5f2, o.bounce || 1.0, [-3, -3.2, -7]);   /* the flood's bounce off the bench and floor, low behind */
-    panel(12, 0.35, N.GOLD, (o.warm || 3.2) * 0.9, [-3, -1.2, -7.2]);   /* a thin warm band through it */
+    panel(14, 0.5, 0xdfe5f2, o.bounce || 2.6, [-3, -2.6, -7]);   /* a narrow cool band low behind: the flood off the bench edge */
+    panel(14, 0.1, N.GOLD, (o.warm || 3.2) * 0.5, [-3, -1.3, -7.2]);
+    if (o.low) { panel(8, 2.2, 0xdfe5f2, o.low, [-1.4, -3.4, -6]); panel(8, 0.12, N.GOLD, 2.0, [-1.4, -2.2, -6.1]); }
+    if (o.auto) {
+      /* THE PANEL THE FACES SEE: the camera's ray off a wafer face (normal along x, toward the camera's side) mirrored into
+       * the environment, with a soft cool panel there and a thin warm band above it, so each frame's faces carry a band */
+      var c = R.camera.position, t = R._txLook || [0, 0, 0], dx = t[0] - c.x, dy = t[1] - c.y, dz = t[2] - c.z, L = Math.hypot(dx, dy, dz);
+      dx /= L; dy /= L; dz /= L; var rx = -dx, ry = dy, rz = dz;   /* reflect off a face whose normal is along x */
+      for (var b = -2; b <= 2; b++) panel(6, 0.32, 0xdfe5f2, o.auto * (1 - Math.abs(b) * 0.18), [rx * 7, ry * 7 + b * 0.62, rz * 7]);   /* light strips, as a lab ceiling reflects in a polished wafer */
+      panel(6, 0.14, N.GOLD, 1.6, [rx * 7, ry * 7 + 1.5, rz * 7]);
+    }   /* the warm strip, a sharp band */
+    panel(14, 0.12, 0xdfe5f2, 2.0, [-3, -0.4, -7.2]);
     var pm = new THREE.PMREMGenerator(R.renderer), tex = pm.fromScene(env, 0.02).texture; pm.dispose();
     var M = N.mats(THREE);
     [M.silicon, M.quartz, M.cleave].forEach(function (m) { m.envMap = tex; m.envMapIntensity = o.intensity || 0.85; m.needsUpdate = true; });
