@@ -101,7 +101,7 @@ primary_image:
 accent: '#E0956A'
 data_in_art: {figure: nov_wafers, drives: 'the number of wafers built into the November boat, nineteen, with no far end plate because the award is over that floor'}
 job: Say the whole story in one object, the money counted in the material it pays to study and the November award left open at its far end, before a figure is read.
-claims: [c1, c2, c3]
+claims: [c1, c2, c3, c4]
 numerals:
 - {value_from: c1}
 - {value_from: c2}
@@ -117,7 +117,7 @@ acceptance: [the frame's code builds exactly FIG.nov_wafers wafers in the boat a
 risks: [nineteen wafers merging into a comb, clear quartz reading as nothing on the dark field]
 type:
   hook: "Over $19 million for a cluster not built yet"
-  dek: "The state's chip fund is helping Texas Tech set up a computing cluster in Lubbock, the university said on November 13th. One wafer stands for $1 million. The boat is drawn to illustrate and has no far end."
+  dek: "The state's chip fund will help Texas Tech set up a computing cluster in Lubbock, the university said on November 13th. One wafer stands for $1 million. The boat is drawn to illustrate and has no far end."
   labels: []
 ```
 
