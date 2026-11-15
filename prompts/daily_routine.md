@@ -698,6 +698,10 @@ for.
   it says now, correct the claim, and write what changed.
 - `unreachable` means the source did not answer. Name what is therefore unconfirmed, never what
   the fetcher did.
+  A PubMed record refuses automated fetches now and has a second route: Europe PMC carries the
+  same abstract (knowledge/shared/TEXAS_ENDPOINTS.md, PubMed records). Use it before letting a
+  PubMed-cited item age, because a refusal nobody records fails the staleness gate after 6 days
+  and skips the Pages deploy.
 
 For any item still on the worklist after that, fetch **one primary source** and update it.
 
