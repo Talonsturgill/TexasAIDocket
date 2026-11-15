@@ -10,7 +10,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Status: decided
 - Public access: Public meeting
 - Comment closes: 2026-11-17
-- Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2229&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
+- Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2232&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
 - Last checked: 2026-11-15
 
@@ -60,6 +60,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · Voters said no to the fixed plate reader cameras, by the city's unofficial count. The council canvasses the result on November 17th, and the mayor has asked for the cameras to be covered until then.
 - 2026-11-14 · The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.
 - 2026-11-15 · League City's unofficial result still rejects the fixed plate reader cameras. The city still ties removal to the November 17th canvass and says the mayor requested covers beforehand.
+- 2026-11-15 · The Proposition A canvass is on the council's November 17th special meeting agenda.
 
 ## Evidence
 
@@ -148,4 +149,10 @@ Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/
 > The City of League City will be following the guidelines of a resolution approved by City Council at their October 27 th meeting
 
 Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6467
+
+### The council's November 17th special meeting agenda includes the Proposition A canvass.
+
+> Consider and take action on a resolution canvassing the returns and declaring the results of the November 3, 2026 City of League City Special Election for Proposition A, and instructing the Mayor to certify the results of the election to the appropriate state and federal officials (City Secretary)
+
+Source (primary_official): https://webapi.legistar.com/v1/leaguecity/events/2232/eventitems
 

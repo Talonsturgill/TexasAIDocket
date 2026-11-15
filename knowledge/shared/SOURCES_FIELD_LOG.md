@@ -2630,3 +2630,11 @@ Freshly retrieved Europe PMC payloads, before the independent final quotation ch
 
 - https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json
   SHA256 84a40d9d748689bf63cc24435b58fe156c77a5a215afe66476674a2e3fb59407
+
+
+## 2026-11-15 canvass agenda correction
+
+The dated calendar contains a regular meeting, a special meeting and a work session. The Proposition A canvass is explicitly on special meeting event 2232, in agenda item 83090. The participation link now opens that special meeting. The earlier regular-meeting observation above remains as recorded; its link was selected before the agenda was inspected. A new claim quotes the actual canvass item. Existing movement entries are retained.
+
+- https://webapi.legistar.com/v1/leaguecity/events/2232/eventitems
+  SHA256 8f8304ddf1f3ec8df639ff3dcf3c2a38e00436797097c44f02dc682a6f8c7873
