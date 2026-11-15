@@ -2698,7 +2698,7 @@
      "fetched": "2026-09-11"
     }
    ],
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "confidence": "high",
    "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
    "history": [
@@ -2843,6 +2843,11 @@
     {
      "date": "2026-11-12",
      "note": "The comment window closed on September 8th. The notice in the Federal Register still describes the proposal to add questions on artificial intelligence to the survey.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The Federal Register notice on adding AI questions to the time use survey still reads as cited, with its comment window long closed.",
      "checked": true
     }
    ]
@@ -3008,7 +3013,7 @@
      "fetched": "2026-10-29"
     }
    ],
-   "last_verified": "2026-11-14",
+   "last_verified": "2026-11-15",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -3240,6 +3245,11 @@
     {
      "date": "2026-11-14",
      "note": "The commission's live calendar still lists open meetings well into the summer of next year. Past dates have dropped off the feed as they passed, which is how the feed works.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Checked and unchanged. Still open, with no dated movement.",
      "checked": true
     }
    ]
@@ -3677,7 +3687,7 @@
   },
   {
    "title": "Taylor City Council unanimously approved the amended Compal tax abatement agreement",
-   "summary": "Taylor City Council approved the Amended and Restated Tax Abatement Agreement with PDC TP 01 LOT A LLC and Compal Technology, Inc. at its August 13th, 2026 meeting. The minutes record a unanimous vote after the item was pulled from the consent agenda for separate consideration. The staff packet says the amendment preserves the original incentives and performance obligations and authorizes no additional incentives. The attached agreement places the property in Tax Abatement Reinvestment Zone No. 11. Approval is recorded, while execution by the parties is not established by the minutes.",
+   "summary": "Taylor City Council approved the Amended and Restated Tax Abatement Agreement with PDC TP 01 LOT A LLC and Compal Technology, Inc. at its August 13th, 2026 meeting. The minutes record a unanimous vote after the item was pulled from the consent agenda for separate consideration. The staff packet says the amendment preserves the original incentives and performance obligations and authorizes no additional incentives. The attached agreement places the property in Tax Abatement Reinvestment Zone No. 10. Approval is recorded, while execution by the parties is not established by the minutes.",
    "topic": "data-centers",
    "decider": {
     "name": "Taylor City Council",
@@ -3749,12 +3759,12 @@
     },
     {
      "id": "tx-2026-0027-c10",
-     "text": "The attached agreement identifies Tax Abatement Reinvestment Zone No. 11.",
-     "verbatim_quote": "WHEREAS, the City Council of the City of Taylor, Texas (the “City Council”), passed an Ordinance (the “Ordinance”) establishing Tax Abatement Reinvestment Zone No. 11 (the “Zone”),",
+     "text": "The attached agreement identifies Tax Abatement Reinvestment Zone No. 10.",
+     "verbatim_quote": "WHEREAS, the City Council of the City of Taylor, Texas (the “City Council”), passed an Ordinance (the “Ordinance”) establishing Tax Abatement Reinvestment Zone No. 10 (the “Zone”),",
      "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)",
      "source_title": "Taylor City Council agenda packet, August 13th, 2026, page 93",
      "source_type": "primary_official",
-     "fetched": "2026-10-09"
+     "fetched": "2026-11-15"
     },
     {
      "id": "tx-2026-0027-c11",
@@ -3776,7 +3786,7 @@
     }
    ],
    "id": "tx-2026-0027",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-18",
@@ -3925,6 +3935,11 @@
     {
      "date": "2026-11-12",
      "note": "Checked against the council's own agenda record. The amended Compal abatement still reads as approved, with nothing reversing it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The council packet still records the amended Compal agreement. Read again, its recital names Reinvestment Zone No. 10, and the record now says so.",
      "checked": true
     }
    ]
@@ -6191,7 +6206,7 @@
     }
    ],
    "id": "tx-2026-0037",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-18",
@@ -6335,6 +6350,11 @@
     {
      "date": "2026-11-12",
      "note": "Laredo's agenda record still shows the council declining the moratorium and directing staff toward permanent rules.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Laredo's agenda record still shows the council turning down a moratorium and sending staff to write permanent data center rules.",
      "checked": true
     }
    ]
@@ -6629,7 +6649,7 @@
     }
    ],
    "id": "tx-2026-0039",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -6764,6 +6784,11 @@
     {
      "date": "2026-11-12",
      "note": "The foundation's award page still names UT El Paso in the first round of the scholarship awards.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The foundation's award listing and the senator's statement still name UT El Paso among the first CyberAICorps scholarship awards.",
      "checked": true
     }
    ]
@@ -7843,7 +7868,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -8001,6 +8026,11 @@
     {
      "date": "2026-11-12",
      "note": "The county's posted resolution still asks the Legislature for authority over data centers.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The county's own copy of its resolution asking the Legislature for authority over data centers still reads as adopted.",
      "checked": true
     }
    ],
@@ -8963,7 +8993,7 @@
     }
    ],
    "id": "tx-2026-0048",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -9129,6 +9159,11 @@
      "date": "2026-11-14",
      "note": "The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The council's agenda records behind the plate reader election still read as cited. The city's own results page did not answer, so the canvass remains unconfirmed here.",
+     "checked": true
     }
    ],
    "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -9217,7 +9252,7 @@
     }
    ],
    "id": "tx-2026-0049",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -9364,6 +9399,11 @@
     {
      "date": "2026-11-12",
      "note": "Harris County's agenda record still shows the Flock renewal as approved. Nothing has rescinded it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Harris County's agenda record still shows the Flock renewal approved, with nothing rescinding it.",
      "checked": true
     }
    ]
@@ -9863,7 +9903,7 @@
     }
    ],
    "id": "tx-2026-0052",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -10003,6 +10043,11 @@
     {
      "date": "2026-11-12",
      "note": "Brazoria County's agenda record still carries the resolution on the conditions it wants on data center development, unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Brazoria County's agenda record still carries its resolution on the conditions it wants for data centers.",
      "checked": true
     }
    ]
@@ -11822,7 +11867,7 @@
     }
    ],
    "id": "tx-2026-0061",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -11970,12 +12015,17 @@
      "date": "2026-11-12",
      "note": "San Marcos's own record still shows the vote defining data centers in the land development code. The rule stands as adopted.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "San Marcos's own record still carries the vote defining data centers in its land development code.",
+     "checked": true
     }
    ]
   },
   {
    "title": "Fort Worth City Council unanimously began a 90 day data center moratorium and adopted grid filing requirements over one dissent",
-   "summary": "The Fort Worth City Council took three data center votes on August 11th, 2026. Members unanimously approved the first steps toward a 90 day moratorium on accepting, processing and approving new data center applications inside the city. Two further items passed over a single dissent. One creates a Data Center and Infrastructure Commission. The other amends the city code so applicants must document their filings for connection to the Texas grid. The pause is not in force yet. Under the city timeline it takes effect on February 16th after public hearings and further votes, and zoning applications filed before then stay outside it. The city scheduled the first public hearing for its November 10th meeting and says the soonest the council can enact the pause is February 2027, by a supermajority. The commission made 19 recommendations, five of them on water.",
+   "summary": "The Fort Worth City Council took three data center votes on August 11th, 2026. Members unanimously approved the first steps toward a 90 day moratorium on accepting, processing and approving new data center applications inside the city. Two further items passed over a single dissent. One creates a Data Center and Infrastructure Commission. The other amends the city code so applicants must document their filings for connection to the Texas grid. The pause is not in force yet. Under the city timeline it takes effect on February 16th after public hearings and further votes, and zoning applications filed before then stay outside it. The city held the first public hearing at its November 10th meeting. It has set the second hearing and the first reading for January 12th, 2027, and says the soonest the council can enact the pause is February 2027, by a supermajority. The commission made 19 recommendations, five of them on water.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "Fort Worth City Council",
@@ -12000,6 +12050,11 @@
      "date": "2026-11-10",
      "kind": "hearing",
      "note": "first public hearing in the moratorium process, at the council's 6 p.m. meeting"
+    },
+    {
+     "date": "2027-01-12",
+     "kind": "hearing",
+     "note": "second public hearing and first reading of the moratorium ordinance, tentative"
     },
     {
      "date": "2027-02-16",
@@ -12076,10 +12131,28 @@
      "source_type": "primary_official",
      "id": "tx-2026-0062-c7",
      "fetched": "2026-11-12"
+    },
+    {
+     "text": "The city lists the first public hearing in the legal process for the moratorium as held on November 10th, 2026.",
+     "verbatim_quote": "First public hearing of the legal process to enact a moratorium on data center development held",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c8",
+     "fetched": "2026-11-15"
+    },
+    {
+     "text": "The city's tentative next step is a second public hearing and first reading of the ordinance at the January 12th, 2027 council meeting.",
+     "verbatim_quote": "January 12, 2027 City Council Meeting: Second public hearing and first reading of the proposed ordinance in the legal process to enact a moratorium on data center development.",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c9",
+     "fetched": "2026-11-15"
     }
    ],
    "id": "tx-2026-0062",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -12255,6 +12328,11 @@
     {
      "date": "2026-11-12",
      "note": "The city scheduled its first public hearing on the moratorium for the November 10th council meeting. Adoption needs a supermajority and can come no sooner than February 2027."
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The city now lists the first public hearing as held on November 10th. Its tentative next step is a second hearing and first reading on January 12th, 2027.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -14247,7 +14325,7 @@
      "fetched": "2026-10-02"
     }
    ],
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent. gov.texas.gov serves no robots.txt.",
    "history": [
@@ -14396,6 +14474,11 @@
     {
      "date": "2026-11-12",
      "note": "The comptroller's page still lists the Terafab agreements in Grimes County. The grant and the school district agreements stand as announced.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The governor's announcement of the Terafab plant in Grimes County still stands. The comptroller's agreement pages could not be read this time.",
      "checked": true
     }
    ]
@@ -15974,7 +16057,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "confidence": "high",
    "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
    "history": [
@@ -16119,6 +16202,11 @@
      "date": "2026-11-12",
      "note": "The committee's posted notice for the August 25th hearing on driverless vehicles still stands as the record of it.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The Senate committee's own posting for its August 25th hearing on driverless vehicles still stands. The Legislature's other pages were not read this time.",
+     "checked": true
     }
    ]
   },
@@ -16206,7 +16294,7 @@
     }
    ],
    "id": "tx-2026-0078",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-21",
@@ -16343,6 +16431,11 @@
      "date": "2026-11-12",
      "note": "The posted notice of the interim hearing on data centers and the 765 kV line still stands as published.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The interim hearing notice on data centers and the 765 kV line still stands as posted.",
+     "checked": true
     }
    ]
   },
@@ -16405,7 +16498,7 @@
     }
    ],
    "id": "tx-2026-0079",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-21",
@@ -16543,6 +16636,11 @@
     {
      "date": "2026-11-12",
      "note": "The posted notice of the interim hearing on artificial intelligence in health care still stands as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The interim hearing notice on artificial intelligence in health care still stands as posted.",
      "checked": true
     }
    ]
@@ -19884,7 +19982,7 @@
     }
    ],
    "id": "tx-2026-0103",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-26",
@@ -20024,6 +20122,11 @@
      "date": "2026-11-12",
      "note": "The university's account of the four campuses' roles in the Energy Department program is still posted, unchanged.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     }
    ]
   },
@@ -20096,7 +20199,7 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "confidence": "high",
    "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure.",
    "history": [
@@ -20242,6 +20345,11 @@
     {
      "date": "2026-11-12",
      "note": "Amazon's own announcement of the Austin robotics factory is still posted as first published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Amazon's announcement of its Austin robotics factory is still posted as first published.",
      "checked": true
     }
    ]
@@ -21463,7 +21571,7 @@
     }
    ],
    "id": "tx-2026-0102",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-27",
@@ -21602,6 +21710,11 @@
     {
      "date": "2026-11-12",
      "note": "UT Southwestern's own page still says AI does most of the grading on its medical students' clinical exam notes.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
     }
    ],
@@ -23658,7 +23771,7 @@
     }
    ],
    "id": "tx-2026-0112",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-30",
@@ -23791,6 +23904,11 @@
     {
      "date": "2026-11-12",
      "note": "The commission's filing still records the approval of the 765 kV line from Somervell County to Howard County.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The utility's own page on the approved 765 kV line still reads as cited. The commission's filing could not be read this time.",
      "checked": true
     }
    ]
@@ -27308,7 +27426,7 @@
     }
    ],
    "id": "tx-2026-0129",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-08",
@@ -27412,6 +27530,11 @@
     {
      "date": "2026-11-12",
      "note": "The city's posted record still bars the city manager from buying a park camera or drone that depends on artificial intelligence.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Austin's resolution still bars the city manager from buying a park camera or drone that depends on artificial intelligence, with a progress update due by December 9th, 2026.",
      "checked": true
     }
    ],
@@ -28343,7 +28466,7 @@
     }
    ],
    "id": "tx-2026-0137",
-   "last_verified": "2026-11-10",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-09",
@@ -28455,6 +28578,11 @@
     {
      "date": "2026-11-14",
      "note": "Whether the discharge paper's open access copy still reads as cited is unconfirmed this time, because the archive answered with a browser challenge instead of the paper.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
     }
    ]
@@ -29010,7 +29138,7 @@
     }
    ],
    "id": "tx-2026-0126",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-07",
@@ -29118,6 +29246,11 @@
     {
      "date": "2026-11-12",
      "note": "The committee's posted notice of the hearing on data center cooling water still stands as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The Senate committee's notice of its hearing on data center cooling water still stands as posted.",
      "checked": true
     }
    ]
@@ -31307,7 +31440,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0150",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-13",
@@ -31412,6 +31545,11 @@
      "date": "2026-11-14",
      "note": "The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The panel's review still says pediatric imaging is underrepresented in radiology AI, and its recommendations on data sharing and payment read as before.",
+     "checked": true
     }
    ]
   },
@@ -31513,7 +31651,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0151",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-13",
@@ -31617,6 +31755,11 @@
     {
      "date": "2026-11-14",
      "note": "The MRI study's abstract is unconfirmed this time, because the index answered with a browser challenge rather than the record.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The study's abstract still reports the radiomics score's modest standalone accuracy and still advises cautious, exploratory use.",
      "checked": true
     }
    ]
@@ -31916,7 +32059,7 @@
     }
    ],
    "id": "tx-2026-0156",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-14",
@@ -32018,6 +32161,11 @@
     {
      "date": "2026-11-14",
      "note": "The questionnaire to conditionally classified large loads is unconfirmed this time. The grid operator's documents did not answer.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The grid operator's update on the questionnaire to conditionally classified large loads reads as before, notarized attestation included.",
      "checked": true
     }
    ]
@@ -33018,7 +33166,7 @@
     }
    ],
    "id": "tx-2026-0162",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-17",
@@ -33112,6 +33260,11 @@
     {
      "date": "2026-11-12",
      "note": "Memorial Hermann's own announcement of the AI drafted explanations of test results is still posted as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Memorial Hermann's announcement of AI drafted explanations of test results is still posted as first published.",
      "checked": true
     }
    ]
@@ -36404,7 +36557,7 @@
     }
    ],
    "id": "tx-2026-0179",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-21",
@@ -36492,6 +36645,11 @@
     {
      "date": "2026-11-12",
      "note": "The city's own record of the first citations from the brush truck cameras still stands as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Dallas's own record of the first citations from its brush truck cameras still stands.",
      "checked": true
     }
    ]
@@ -37988,10 +38146,15 @@
     {
      "date": "2026-11-12",
      "note": "The department now publishes who holds an authorization. Its report with data as of October 29th lists 17 companies and 3,164 automated vehicles, led by Waymo and Tesla Robotaxi."
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The department's report and its rule responses still read as cited, including its answer that the statute does not let it require crash history.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0188",
-   "last_verified": "2026-11-12"
+   "last_verified": "2026-11-15"
   },
   {
    "title": "Justice Department takes comment on a judgment barring a Frisco apartment manager from rent software fed by rivals' data",
@@ -38295,10 +38458,15 @@
      "date": "2026-11-14",
      "note": "The Justice Department is still taking comment on the Frisco judgment. Its window closes November 17th.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The comment window is still open, closing November 17th.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0189",
-   "last_verified": "2026-11-14"
+   "last_verified": "2026-11-15"
   },
   {
    "title": "College Station City Council votes 4 to 2 to keep its Flock plate reader cameras on state and city roads",
@@ -41802,7 +41970,7 @@
      "id": "tx-2026-0203-c19"
     }
    ],
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-10-06",
@@ -41873,6 +42041,11 @@
     {
      "date": "2026-11-12",
      "note": "Taylor's own page still sets out the annexation agreement and its written water and setback terms.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Taylor's posted annexation agreement and its water and setback terms still read as cited.",
      "checked": true
     }
    ],
@@ -46206,7 +46379,7 @@
     }
    ],
    "id": "tx-2026-0228",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-10-23",
@@ -46245,6 +46418,11 @@
     {
      "date": "2026-11-12",
      "note": "The preprint still reports that the triage models moved some patients down the line who later got worse.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
     }
    ]
