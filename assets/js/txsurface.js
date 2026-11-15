@@ -129,7 +129,8 @@ float txsW(float freq, float pw) { return 1.0 - smoothstep(0.3, 0.75, pw * freq)
 bool txsDone = false; float txsHt = 0.0; float txsAl = 0.0; float txsRo = 0.0; float txsSheen = 0.0;
 void txsEval() {
   if (txsDone) return; txsDone = true;
-  int cls = int(uTxsA.x + 0.5);
+  // the class is a compile-time constant, so a software rasteriser runs one branch, not all ten
+  const int cls = TXS_CLS;
   vec3 p = vTxsP + uTxsB.y; vec3 an = abs(vTxsN);
   float pw = max(length(fwidth(vTxsP)), 1e-6);
   float f = uTxsB.x, slope = uTxsA.y * uTxsB.z;
@@ -215,7 +216,7 @@ roughnessFactor = clamp(roughnessFactor + txsRo, 0.03, 1.0);`;
 txsEval();
 { float txsHh = txsHt;
 #ifdef USE_MAP
-  if (int(uTxsA.x + 0.5) == 10) { vec3 tm = texture2D(map, vMapUv).rgb; txsHh += dot(tm, vec3(0.299, 0.587, 0.114)) * 0.004 * uTxsB.z; }
+  if (TXS_CLS == 10) { vec3 tm = texture2D(map, vMapUv).rgb; txsHh += dot(tm, vec3(0.299, 0.587, 0.114)) * 0.004 * uTxsB.z; }
 #endif
   if (abs(uTxsA.y) > 0.0) normal = txsPerturb(-vViewPosition, normal, vec2(dFdx(txsHh), dFdy(txsHh)), faceDirection);
   // cloth returns more light at a grazing angle than a plastic does: the sheen of a fibre
@@ -232,7 +233,7 @@ txsEval();
       .replace('#include <common>', '#include <common>' + PARS_V)
       .replace('#include <begin_vertex>', '#include <begin_vertex>' + MAIN_V);
     sh.fragmentShader = sh.fragmentShader
-      .replace('#include <common>', '#include <common>' + PARS_F)
+      .replace('#include <common>', '#include <common>\n#define TXS_CLS ' + ID[cls] + '\n' + PARS_F)
       .replace('#include <color_fragment>', '#include <color_fragment>' + COLOR_F)
       .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>' + ROUGH_F)
       .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>' + NORMAL_F);

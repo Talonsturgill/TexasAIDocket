@@ -1356,10 +1356,57 @@ export function install(K, THREE, TXT) {
   });
 
   /* ======================================================================= battery storage */
+  /* LIFTED 2026-11-15 FOR A PHOTOGRAPHED READ. Enclosure walls carry one canvas that runs the full
+   * height (corrugation, a soil splash up the base, faint run-off), the cabinet doors on both long
+   * sides are proud leaves in their own reveals with hinges, a pocket handle and a louvred intake
+   * whose slats have depth, the end wall HVAC units have a coil face, a guarded condenser fan in a
+   * shroud and a rain hood, the roof carries deflagration vent panels, and the yard gains a ladder
+   * cable tray on stands behind every row with conduit drops, bollards at the skids and a gate. */
+  let BESS_WALL = null;
+  function bessWallMat() {
+    if (BESS_WALL) return BESS_WALL;
+    const N = 256, Hh = 1024, c = document.createElement('canvas'); c.width = N; c.height = Hh;
+    const x = c.getContext('2d'), r = K.rng(5521), ribs = 4, w = N / ribs;
+    for (let i = 0; i < ribs; i++) {                       // trapezoidal corrugation: flat crest, sloped flanks, flat valley
+      const g = x.createLinearGradient(i * w, 0, i * w + w, 0);
+      g.addColorStop(0, '#bdbfba'); g.addColorStop(0.12, '#e9ebe6'); g.addColorStop(0.4, '#f0f1ed'); g.addColorStop(0.52, '#d2d4cf');
+      g.addColorStop(0.62, '#b1b3ae'); g.addColorStop(0.9, '#b8bab5'); g.addColorStop(1, '#bdbfba');
+      x.fillStyle = g; x.fillRect(i * w, 0, w, Hh);
+    }
+    for (let i = 0; i < 9000; i++) { x.fillStyle = 'rgba(' + (r() < 0.5 ? '255,255,255' : '90,86,80') + ',' + r() * 0.05 + ')'; x.fillRect(r() * N, r() * Hh, 1 + r() * 2, 1 + r() * 2); }
+    // v runs 0 (ground) to 1 (3.3 m): soil splash up the base, run-off from the roof edge
+    const ypx = (m) => Hh * (1 - m / 3.3);
+    let g = x.createLinearGradient(0, ypx(0.35), 0, ypx(1.2));
+    g.addColorStop(0, 'rgba(132,112,86,0.42)'); g.addColorStop(0.35, 'rgba(140,122,98,0.16)'); g.addColorStop(1, 'rgba(140,122,98,0)');
+    x.fillStyle = g; x.fillRect(0, ypx(1.2), N, ypx(0) - ypx(1.2));
+    for (let i = 0; i < 1400; i++) { const yy = 0.35 + 0.6 * r() * r(); x.fillStyle = 'rgba(110,92,70,' + (0.08 + r() * 0.22) + ')'; x.fillRect(r() * N, ypx(yy), 1 + r() * 2.5, 1 + r() * 2); }
+    for (let i = 0; i < 26; i++) {
+      const sx = r() * N, len = 0.15 + r() * r() * 1.2, lg = x.createLinearGradient(0, ypx(3.2), 0, ypx(3.2 - len));
+      lg.addColorStop(0, 'rgba(96,88,78,' + (0.05 + r() * 0.1) + ')'); lg.addColorStop(1, 'rgba(96,88,78,0)');
+      x.fillStyle = lg; x.fillRect(sx, ypx(3.2), 1.5 + r() * 3, ypx(3.2 - len) - ypx(3.2));
+    }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    t.userData.metres = 1; t.repeat.set(1, 1 / 3.3);
+    BESS_WALL = nmat('bess-enclosure-panel-paint', { color: 0xffffff, roughness: 0.52, metalness: 0.18, map: t });
+    return BESS_WALL;
+  }
+  const BQ = { x90: new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2), z90: new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2) };
+  /* a louvred intake on a face at z = zf facing s (+1 or -1): a dark recess, a frame, angled slats with depth */
+  function bessLouvre(b, cx, cy, zf, s, w, h, n, mats) {
+    b.box(mats.hole, w, h, 0.01, cx, cy, zf + s * 0.002);
+    b.box(mats.frame, w + 0.05, 0.03, 0.04, cx, cy + h / 2 + 0.015, zf + s * 0.02); b.box(mats.frame, w + 0.05, 0.03, 0.04, cx, cy - h / 2 - 0.015, zf + s * 0.02);
+    b.box(mats.frame, 0.025, h, 0.04, cx - w / 2 - 0.012, cy, zf + s * 0.02); b.box(mats.frame, 0.025, h, 0.04, cx + w / 2 + 0.012, cy, zf + s * 0.02);
+    const q = new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), -s * 0.75);
+    for (let k = 0; k < n; k++) b.geo(mats.frame, tpl('box', () => new THREE.BoxGeometry(1, 1, 1)), V3(cx, cy - h / 2 + (k + 0.5) * h / n, zf + s * 0.022), q, V3(w - 0.01, 0.008, 0.05));
+  }
   function container(b, x, z, o) {
-    const L = 12.19, Hc = 2.9, W = 2.44, y0 = 0.35, ribs = o.ribs, trim = M.paint(0x8e918f, 0.5), dk = M.paint(0x2f3234, 0.6);
+    const L = 12.19, Hc = 2.9, W = 2.44, y0 = 0.35, trim = M.paint(0x8e918f, 0.5), dk = M.paint(0x2f3234, 0.6);
+    const door = nmat('bess-door-paint', { color: 0xe4e5e0, roughness: 0.46, metalness: 0.2 });
+    const seam = nmat('bess-door-reveal-paint', { color: 0x4f5254, roughness: 0.8, metalness: 0.1 });
+    const lv = { hole: nmat('bess-vent-recess', { color: 0x1c1e20, roughness: 0.9 }), frame: nmat('bess-louvre-paint', { color: 0xc9cbc6, roughness: 0.5, metalness: 0.25 }) };
+    const hw = nmat('bess-hardware-stainless', { color: 0xb7bbbd, metalness: 0.85, roughness: 0.35 });
     [-0.45, -0.15, 0.15, 0.45].forEach((f) => b.box(M.concrete(), 0.6, y0, W + 0.4, x + f * L, 0, z));
-    b.box(ribs, L - 0.2, Hc - 0.25, W - 0.1, x, y0 + Hc / 2, z);
+    b.box(bessWallMat(), L - 0.2, Hc - 0.25, W - 0.1, x, y0 + Hc / 2, z);
     // corner posts, top and bottom rails, castings
     [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, c]) => {
       b.box(trim, 0.16, Hc, 0.16, x + a * (L / 2 - 0.08), y0 + Hc / 2, z + c * (W / 2 - 0.08));
@@ -1367,66 +1414,129 @@ export function install(K, THREE, TXT) {
     });
     [y0 + 0.08, y0 + Hc - 0.07].forEach((yy) => [-1, 1].forEach((c) => b.box(trim, L - 0.3, 0.15, 0.1, x, yy, z + c * (W / 2 - 0.05))));
     b.box(trim, L - 0.1, 0.06, W - 0.05, x, y0 + Hc - 0.02, z);
-    // side cabinet doors on +z: outlines, handles, and the placards
-    const nd = 5;
-    for (let i = 0; i < nd; i++) {
-      const cx = x - L / 2 + 1.0 + (i + 0.5) * (L - 2.0) / nd, dw = (L - 2.0) / nd - 0.12;
-      b.box(dk, dw, 0.02, 0.01, cx, y0 + 0.3, z + W / 2 + 0.005); b.box(dk, dw, 0.02, 0.01, cx, y0 + Hc - 0.35, z + W / 2 + 0.005);
-      b.box(dk, 0.02, Hc - 0.65, 0.01, cx - dw / 2, y0 + Hc / 2 - 0.02, z + W / 2 + 0.005); b.box(dk, 0.02, Hc - 0.65, 0.01, cx, y0 + Hc / 2 - 0.02, z + W / 2 + 0.005);
-      b.box(M.alu(), 0.03, 0.25, 0.04, cx - 0.12, y0 + 1.3, z + W / 2 + 0.02); b.box(M.alu(), 0.03, 0.25, 0.04, cx + 0.12, y0 + 1.3, z + W / 2 + 0.02);
-    }
+    // roof: deflagration vent panels and the suppression vent
+    [-0.28, 0.0, 0.28].forEach((f) => { b.box(trim, 1.4, 0.03, 1.5, x + f * L, y0 + Hc + 0.025, z); b.box(seam, 1.46, 0.012, 1.56, x + f * L, y0 + Hc + 0.014, z); });
+    b.geo(M.paint(0xa8aaa6, 0.5), new THREE.CylinderGeometry(0.12, 0.12, 0.35, 14), V3(x + L * 0.42, y0 + Hc + 0.15, z));
+    b.geo(dk, tpl('bessvcap', () => new THREE.CylinderGeometry(0.18, 0.18, 0.03, 14)), V3(x + L * 0.42, y0 + Hc + 0.36, z));
+    // cabinet doors on both long sides: proud leaves in reveals, hinges, pocket handle, a louvred intake
+    const nd = 5, dh = Hc - 0.62, dyc = y0 + Hc / 2 - 0.02;
+    [1, -1].forEach((s) => {
+      const zf = z + s * (W / 2 - 0.05);
+      for (let i = 0; i < nd; i++) {
+        const cx = x - L / 2 + 1.0 + (i + 0.5) * (L - 2.0) / nd, dw = (L - 2.0) / nd - 0.1;
+        b.box(seam, dw + 0.04, dh + 0.04, 0.012, cx, dyc, zf + s * 0.056);
+        b.box(door, dw, dh, 0.03, cx, dyc, zf + s * 0.075);
+        const df = zf + s * 0.09;
+        b.box(door, dw - 0.16, dh - 0.9, 0.008, cx, dyc + 0.3, df + s * 0.004);                    // pressed stiffener
+        [dyc - dh / 2 + 0.25, dyc, dyc + dh / 2 - 0.25].forEach((yy) => b.box(hw, 0.04, 0.12, 0.03, cx - s * (dw / 2 - 0.02), yy, df + s * 0.01));
+        b.box(seam, 0.07, 0.24, 0.006, cx + s * (dw / 2 - 0.12), dyc + 0.05, df + s * 0.003);
+        b.box(hw, 0.03, 0.2, 0.025, cx + s * (dw / 2 - 0.12), dyc + 0.05, df + s * 0.013);
+        bessLouvre(b, cx, dyc - dh / 2 + 0.36, df, s, dw - 0.36, 0.42, 7, lv);
+      }
+    });
+    // placards at the -x end of the +z side
     b.box(M.white(), 0.25, 0.25, 0.01, x - L / 2 + 0.55, y0 + 1.7, z + W / 2 + 0.01, 0);
     b.box(M.paint(0xc8261e, 0.5), 0.18, 0.18, 0.012, x - L / 2 + 0.55, y0 + 1.7, z + W / 2 + 0.012);
     b.box(M.paint(0xe6b422, 0.5), 0.3, 0.2, 0.01, x - L / 2 + 0.55, y0 + 1.3, z + W / 2 + 0.01);
-    // HVAC units on the -x end wall, fire suppression vent on the roof
+    // HVAC units on the +x end wall: housing, coil face, guarded condenser fan in a shroud, rain hood, brackets
+    const hv = nmat('bess-hvac-housing-paint', { color: 0xd6d6d0, roughness: 0.45, metalness: 0.25 });
     [-0.55, 0.55].forEach((dz) => {
-      b.geo(M.paint(0xd4d4cf, 0.45), rbox(0.4, 1.9, 0.95, 0.03), V3(x - L / 2 - 0.2, y0 + 1.35, z + dz));
-      for (let k = 0; k < 10; k++) b.box(dk, 0.01, 0.02, 0.8, x - L / 2 - 0.405, y0 + 0.6 + k * 0.1, z + dz);
-      b.geo(dk, tpl('hvfan', () => new THREE.CylinderGeometry(0.3, 0.3, 0.02, 20)), V3(x - L / 2 - 0.405, y0 + 1.85, z + dz), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+      const ex = x + L / 2, fx = ex + 0.44, zc = z + dz;
+      b.geo(hv, rbox(0.44, 1.9, 0.95, 0.03), V3(ex + 0.22, y0 + 1.35, zc));
+      b.geo(hv, rbox(0.54, 0.05, 1.05, 0.015), V3(ex + 0.25, y0 + 2.33, zc));                          // rain hood
+      b.box(lv.hole, 0.01, 0.82, 0.8, fx + 0.001, y0 + 0.88, zc);                                       // coil face
+      for (let k = 0; k < 16; k++) b.box(lv.frame, 0.03, 0.012, 0.78, fx + 0.012, y0 + 0.49 + k * 0.052, zc);
+      const fy = y0 + 1.86;
+      b.geo(lv.hole, tpl('besshole', () => new THREE.CylinderGeometry(0.3, 0.3, 0.01, 24)), V3(fx + 0.002, fy, zc), BQ.z90);
+      b.geo(hv, tpl('bessshroud', () => new THREE.CylinderGeometry(0.32, 0.32, 0.08, 28, 1, true)), V3(fx + 0.03, fy, zc), BQ.z90);
+      b.geo(dk, tpl('besshub', () => new THREE.CylinderGeometry(0.06, 0.06, 0.05, 12)), V3(fx + 0.03, fy, zc), BQ.z90);
+      for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2 + 0.4; b.beam(dk, [fx + 0.02, fy, zc], [fx + 0.02, fy + 0.27 * Math.sin(a), zc + 0.27 * Math.cos(a)], 0.09, 0.01, [1, 0, 0]); }
+      const ry = new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2);
+      [0.1, 0.19, 0.28].forEach((rr) => b.geo(dk, tpl('bessguard' + rr, () => new THREE.TorusGeometry(rr, 0.005, 4, 28)), V3(fx + 0.07, fy, zc), ry));
+      b.bar(dk, [fx + 0.07, fy - 0.3, zc], [fx + 0.07, fy + 0.3, zc], 0.005, 4); b.bar(dk, [fx + 0.07, fy, zc - 0.3], [fx + 0.07, fy, zc + 0.3], 0.005, 4);
+      [-0.38, 0.38].forEach((bz) => b.beam(trim, [ex, y0 + 0.4, zc + bz], [ex + 0.42, y0 + 0.4, zc + bz], 0.05, 0.05));
     });
-    b.geo(M.paint(0xa8aaa6, 0.5), new THREE.CylinderGeometry(0.12, 0.12, 0.35, 14), V3(x + L * 0.3, y0 + Hc + 0.15, z));
-    // conduit stubs down to the trench
+    // conduit stubs down to the trench, and up from the tray behind
     b.bar(M.paint(0x6b6b6b, 0.6), [x + L / 2 - 0.4, y0 + 0.4, z + W / 2 + 0.05], [x + L / 2 - 0.4, 0.05, z + W / 2 + 0.05], 0.04, 8);
   }
   function pcs(b, x, z) {
     const grey = M.paint(0xb9bcb8, 0.45), dk = M.paint(0x2f3234, 0.6);
+    const lv = { hole: nmat('bess-vent-recess', { color: 0x1c1e20, roughness: 0.9 }), frame: nmat('bess-pcs-louvre-paint', { color: 0xa9aca8, roughness: 0.5, metalness: 0.25 }) };
+    const seam = nmat('bess-door-reveal-paint', { color: 0x4f5254, roughness: 0.8, metalness: 0.1 });
     b.box(M.galvDark(), 6.4, 0.25, 2.6, x, 0.25, z);
     b.box(M.concrete(), 6.8, 0.25, 3.0, x, 0, z);
     b.geo(grey, rbox(3.6, 2.35, 2.3, 0.04), V3(x - 1.2, 0.5 + 1.175, z));
-    for (let i = 0; i < 4; i++) for (let k = 0; k < 8; k++) b.box(dk, 0.7, 0.025, 0.01, x - 2.6 + i * 0.9 + 0.1, 0.8 + k * 0.1, z + 1.155);
+    for (let i = 0; i < 4; i++) {
+      const cx = x - 2.55 + i * 0.9;
+      b.box(seam, 0.012, 2.0, 0.006, cx - 0.45 + (i ? 0 : 0), 0.5 + 1.15, z + 1.152);                // cabinet door seams
+      bessLouvre(b, cx, 1.15, z + 1.15, 1, 0.62, 0.7, 9, lv);
+      b.box(M.alu(), 0.03, 0.16, 0.03, cx + 0.32, 1.9, z + 1.17);
+    }
     b.geo(M.paint(0x62705e, 0.5), rbox(2.1, 2.0, 2.2, 0.04), V3(x + 1.95, 0.5 + 1.0, z));             // MV transformer
     for (let k = 0; k < 12; k++) b.box(M.paint(0x56634f, 0.5), 0.012, 1.5, 0.3, x + 1.0 + k * 0.16, 1.4, z - 1.25);  // cooling fins
-    b.box(M.paint(0xe6b422, 0.5), 0.3, 0.2, 0.01, x + 1.95, 1.8, z + 1.105);
+    b.box(M.paint(0xe6b422, 0.5), 0.3, 0.2, 0.01, x + 1.95, 2.28, z + 1.105);
+    const fin = nmat('bess-mv-radiator-paint', { color: 0x5a6856, roughness: 0.55, metalness: 0.3 });
+    for (let k = 0; k < 9; k++) b.box(fin, 0.022, 1.3, 0.24, x + 1.25 + k * 0.17, 1.45, z + 1.22);          // radiator panels on the front face
+    [0.88, 2.02].forEach((yy) => b.bar(fin, [x + 1.15, yy, z + 1.14], [x + 2.71, yy, z + 1.14], 0.03, 10));
+    // bollards at the skid's corners
+    const yel = nmat('bess-bollard-paint', { color: 0xd9a82a, roughness: 0.5, metalness: 0.3 });
+    [[-1, 1], [1, 1], [-1, -1], [1, -1]].forEach(([a, c]) => {
+      b.geo(yel, tpl('bessbollard', () => new THREE.CylinderGeometry(0.084, 0.084, 1.1, 14)), V3(x + a * 3.7, 0.55, z + c * 1.68));
+      b.geo(yel, tpl('bessbcap', () => new THREE.SphereGeometry(0.084, 14, 6, 0, Math.PI * 2, 0, Math.PI / 2)), V3(x + a * 3.7, 1.1, z + c * 1.68));
+    });
+  }
+  /* a ladder cable tray on H stands along x at z, top of rails at y */
+  function cableTray(b, x0, x1, z, y) {
+    const st = nmat('bess-tray-galv-steel', { color: 0xa3a8aa, metalness: 0.72, roughness: 0.45 }), hw = 0.3;
+    [-1, 1].forEach((s) => { b.box(st, x1 - x0, 0.1, 0.012, (x0 + x1) / 2, y - 0.05, z + s * hw); b.box(st, x1 - x0, 0.01, 0.04, (x0 + x1) / 2, y - 0.1, z + s * (hw - 0.02)); });
+    for (let xx = x0 + 0.15; xx < x1; xx += 0.3) b.box(st, 0.03, 0.02, 2 * hw, xx, y - 0.09, z);
+    for (let xx = x0 + 0.4; xx < x1; xx += 2.4) {
+      [-1, 1].forEach((s) => b.box(st, 0.042, y - 0.1, 0.042, xx, (y - 0.1) / 2, z + s * (hw + 0.03)));
+      b.box(st, 0.042, 0.042, 2 * hw + 0.12, xx, y - 0.12, z);
+      b.box(M.concrete(), 0.25, 0.08, 2 * hw + 0.3, xx, 0.04, z);
+    }
   }
   K.define('battery_storage', {
     size: [88, 14.8, 44.1],
     options: { rows: 3, cols: 4, gsu: true },
-    note: 'OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with side cabinet doors, HVAC units and hazard placards, inverter and MV transformer skids between pairs, a main step up transformer.',
+    note: 'OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with corrugated walls weathered up the base, proud cabinet doors on both long sides with hinges, pocket handles and louvred intakes, roof deflagration vents, end wall HVAC units with coil faces and guarded condenser fans, hazard placards, inverter and MV transformer skids between pairs behind yellow bollards, a ladder cable tray on stands behind every row with conduit drops, a gated fence, a main step up transformer.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), rows = o.rows || 3, cols = o.cols || 4;
-      const ribs = kmat('pw_cont', { color: 0xffffff, roughness: 0.5, metalness: 0.15, map: K.tex('corrugated', { color: '#e8e9e4' }) });
-      ribs.userData.metres = 3.3;
       const pairs = Math.ceil(cols / 2), pairW = 2 * 12.19 + 1.2 + 7.4, rowP = 2.44 + 7.5;
       const W = pairs * pairW, zs = Array.from({ length: rows }, (_, j) => (j - (rows - 1) / 2) * rowP);
+      const flex = nmat('bess-conduit-rubber-jacket', { color: 0x2b2d2f, roughness: 0.7 });
       zs.forEach((z) => {
+        const zt = z + 2.44 / 2 + 0.95, cxs = [];
         for (let p = 0; p < pairs; p++) {
           const x0 = -W / 2 + p * pairW + 12.19 / 2 + 0.3;
-          container(b, x0, z, { ribs });
-          if (2 * p + 1 < cols) container(b, x0 + 12.19 + 1.2, z, { ribs });
+          container(b, x0, z, {}); cxs.push(x0);
+          if (2 * p + 1 < cols) { container(b, x0 + 12.19 + 1.2, z, {}); cxs.push(x0 + 12.19 + 1.2); }
           pcs(b, x0 + 12.19 * 1.5 + 1.2 + 3.9, z);
         }
+        cableTray(b, -W / 2 + 0.3, W / 2 - 0.4, zt, 0.42);
+        cxs.forEach((cx) => [-5.6, 5.6].forEach((dx) => b.cable(flex, [cx + dx, 0.36, zt - 0.22], [cx + dx, 0.42, z + 2.44 / 2 + 0.02], 0.1, 0.035, 8, 8)));
       });
       const gx = W / 2 + 8, X0 = -W / 2 - 4, X1 = W / 2 + (o.gsu !== false ? 16 : 4), Z0 = zs[0] - 8, Z1 = zs[rows - 1] + 8;
       pad(b, X0 - 1, Z0 - 1, X1 + 1, Z1 + 1);
       fence(b, [X0, Z0], [X1, Z0], 2.13); fence(b, [X1, Z0], [X1, Z1], 2.13); fence(b, [X1, Z1], [X0 + 8, Z1], 2.13); fence(b, [X0, Z1], [X0, Z0], 2.13);
+      // the double swing gate in the fence's open bay
+      const gv = M.galv(0);
+      [[X0, X0 + 3.98], [X0 + 4.02, X0 + 8]].forEach(([a, c]) => {
+        b.bar(gv, [a, 0.12, Z1], [a, 2.0, Z1], 0.024, 8); b.bar(gv, [c, 0.12, Z1], [c, 2.0, Z1], 0.024, 8);
+        b.bar(gv, [a, 2.0, Z1], [c, 2.0, Z1], 0.024, 8); b.bar(gv, [a, 0.12, Z1], [c, 0.12, Z1], 0.024, 8); b.bar(gv, [a, 1.06, Z1], [c, 1.06, Z1], 0.018, 8);
+        const pg = new THREE.PlaneGeometry(c - a, 1.86), uv = pg.attributes.uv;
+        for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (c - a) / 0.07, uv.getY(i) * 1.86 / 0.07);
+        b.geo(linkMat(), pg, V3((a + c) / 2, 1.06, Z1));
+      });
+      [X0, X0 + 8].forEach((px) => b.bar(gv, [px, 0, Z1 + 0.06], [px, 2.25, Z1 + 0.06], 0.06, 12));
       if (o.gsu !== false) {
         const tr = powerTransformer(b, gx, 0, 0.62, {});
         const gp = gantry(b, gx, -9, 2.6, 138, 11, 1);
         for (let i = 0; i < 3; i++) { const e = gp.find(q => q.dir > 0 && q.phase === i); b.cable(M.alu(), e.p, tr.hv[i], 0.6, 0.02, 12, 6);
           const f = gp.find(q => q.dir < 0 && q.phase === i); b.cable(M.conductor(), f.p, [f.p[0], f.p[1] + 1.5, f.p[2] - 14], -0.3, 0.012, 12, 6); }
       }
-      // cable trench along each row
-      zs.forEach((z) => b.box(M.concrete(), W, 0.12, 0.8, 0, 0.06, z + 2.44 / 2 + 1.2));
+      // cable trench along the back of each row
+      zs.forEach((z) => b.box(M.concrete(), W, 0.12, 0.8, 0, 0.06, z - 2.44 / 2 - 1.2));
       b.build(g);
       return g;
     },
@@ -2390,29 +2500,339 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* ================================================================== padmount transformer */
+  /* REBUILT 2026-11-15 FOR A PHOTOGRAPHED READ. The critic on the old build: "the radiator fins are
+   * dark slabs, the label is blank, the bushings are plain brown cylinders, the pad reads wrong".
+   * Now: welded pressed-steel radiator panels (power_transformer's fluted section) on header pipes
+   * down both sides and across the back, porcelain bushings turned as a lathe of alternating
+   * skirted sheds in a glazed clearcoat, a bolted lid flange with lifting lugs, a two leaf front
+   * cabinet with reveals, hinge knuckles, a pentahead latch and a padlocked hasp, an ANSI style
+   * WARNING decal, a unit number and an etched nameplate (lettering is stroked geometry of the art,
+   * never fillText), on a chamfered pad with a broom finish, a drip stain round the tank and soil
+   * splashed up its sides. Every painted part shares the weathering atlas, radiators included. */
+  const PW_GLYPH = {
+    A: [[[0, 6], [0, 1.6], [1.4, 0], [2.6, 0], [4, 1.6], [4, 6]], [[0, 3.6], [4, 3.6]]],
+    B: [[[0, 3], [3, 3], [4, 4], [4, 5], [3, 6], [0, 6], [0, 0], [2.8, 0], [3.8, 0.9], [3.8, 2.1], [3, 3]]],
+    C: [[[4, 1.2], [3, 0], [1, 0], [0, 1], [0, 5], [1, 6], [3, 6], [4, 4.8]]],
+    D: [[[0, 0], [0, 6], [2.6, 6], [4, 4.6], [4, 1.4], [2.6, 0], [0, 0]]],
+    E: [[[4, 0], [0, 0], [0, 6], [4, 6]], [[0, 3], [3.2, 3]]],
+    F: [[[4, 0], [0, 0], [0, 6]], [[0, 3], [3.2, 3]]],
+    G: [[[4, 1.2], [3, 0], [1, 0], [0, 1], [0, 5], [1, 6], [3, 6], [4, 5], [4, 3.3], [2.2, 3.3]]],
+    H: [[[0, 0], [0, 6]], [[4, 0], [4, 6]], [[0, 3], [4, 3]]],
+    I: [[[2, 0], [2, 6]], [[0.9, 0], [3.1, 0]], [[0.9, 6], [3.1, 6]]],
+    J: [[[4, 0], [4, 5], [3, 6], [1, 6], [0, 5]]],
+    K: [[[0, 0], [0, 6]], [[4, 0], [0, 3.6]], [[1.4, 2.4], [4, 6]]],
+    L: [[[0, 0], [0, 6], [4, 6]]],
+    M: [[[0, 6], [0, 0], [2, 3.2], [4, 0], [4, 6]]],
+    N: [[[0, 6], [0, 0], [4, 6], [4, 0]]],
+    O: [[[1, 0], [3, 0], [4, 1], [4, 5], [3, 6], [1, 6], [0, 5], [0, 1], [1, 0]]],
+    P: [[[0, 6], [0, 0], [3, 0], [4, 1], [4, 2.2], [3, 3.2], [0, 3.2]]],
+    R: [[[0, 6], [0, 0], [3, 0], [4, 1], [4, 2.2], [3, 3.2], [0, 3.2]], [[2, 3.2], [4, 6]]],
+    S: [[[4, 1], [3, 0], [1, 0], [0, 1], [0, 2], [1, 3], [3, 3], [4, 4], [4, 5], [3, 6], [1, 6], [0, 5]]],
+    T: [[[0, 0], [4, 0]], [[2, 0], [2, 6]]],
+    U: [[[0, 0], [0, 5], [1, 6], [3, 6], [4, 5], [4, 0]]],
+    V: [[[0, 0], [2, 6], [4, 0]]],
+    W: [[[0, 0], [0.9, 6], [2, 2.4], [3.1, 6], [4, 0]]],
+    X: [[[0, 0], [4, 6]], [[4, 0], [0, 6]]],
+    Y: [[[0, 0], [2, 3], [4, 0]], [[2, 3], [2, 6]]],
+    Z: [[[0, 0], [4, 0], [0, 6], [4, 6]]],
+    0: [[[1, 0], [3, 0], [4, 1], [4, 5], [3, 6], [1, 6], [0, 5], [0, 1], [1, 0]]],
+    1: [[[1, 1], [2, 0], [2, 6]], [[0.8, 6], [3.2, 6]]],
+    2: [[[0, 1], [1, 0], [3, 0], [4, 1], [4, 2.2], [0, 6], [4, 6]]],
+    3: [[[0, 0.6], [1, 0], [3, 0], [4, 1], [4, 2], [3, 3], [1.6, 3]], [[3, 3], [4, 4], [4, 5], [3, 6], [1, 6], [0, 5.4]]],
+    4: [[[3, 6], [3, 0], [0, 4.2], [4, 4.2]]],
+    5: [[[4, 0], [0, 0], [0, 2.8], [3, 2.8], [4, 3.8], [4, 5], [3, 6], [1, 6], [0, 5.2]]],
+    6: [[[3.6, 0.4], [2.6, 0], [1, 0], [0, 1], [0, 5], [1, 6], [3, 6], [4, 5], [4, 4], [3, 3], [1, 3], [0, 4]]],
+    7: [[[0, 0], [4, 0], [1.4, 6]]],
+    8: [[[1, 3], [0, 2], [0, 1], [1, 0], [3, 0], [4, 1], [4, 2], [3, 3], [1, 3], [0, 4], [0, 5], [1, 6], [3, 6], [4, 5], [4, 4], [3, 3]]],
+    9: [[[4, 2], [3, 3], [1, 3], [0, 2], [0, 1], [1, 0], [3, 0], [4, 1], [4, 5], [3, 6], [1, 6], [0.4, 5.6]]],
+    '-': [[[0.8, 3], [3.2, 3]]], '.': [[[1.8, 5.8], [2.2, 5.8]]], '!': [[[2, 0], [2, 4]], [[2, 5.5], [2, 6]]],
+    ',': [[[2.2, 5.4], [1.6, 6.6]]], '/': [[[0.5, 6], [3.5, 0]]],
+  };
+  /* stroke `txt` with cap height ch px, anchored left / centre / right at (ax, cy) */
+  function pwText(x, txt, ax, cy, ch, color, weight, align, maxW) {
+    let wdt = 0; for (const c of txt) wdt += c === ' ' ? 3.2 : 5.6; wdt = (wdt - 1.6) * ch / 6;
+    if (maxW && wdt > maxW) { ch *= maxW / wdt; wdt = maxW; }                  // shrink a long line to its box
+    const u = ch / 6, adv = 5.6 * u, sp = 3.2 * u;
+    let px = align === 'left' ? ax : align === 'right' ? ax - wdt : ax - wdt / 2;
+    x.strokeStyle = color; x.lineWidth = u * (weight || 1.25); x.lineCap = 'square'; x.lineJoin = 'miter';
+    for (const c of txt.toUpperCase()) {
+      const gl = PW_GLYPH[c];
+      if (gl) for (const line of gl) { x.beginPath(); line.forEach((p, i) => (i ? x.lineTo : x.moveTo).call(x, px + p[0] * u, cy - ch / 2 + p[1] * u)); x.stroke(); }
+      px += c === ' ' ? sp : adv;
+    }
+    return wdt;
+  }
+  const nmat = (key, p, phys) => { const m = kmat(key, p, phys); if (!m.name) m.name = key; return m; };
+  const PMT_TEX = new Map();
+  function pmtTex(kind, w, h, paint) {
+    if (PMT_TEX.has(kind)) return PMT_TEX.get(kind);
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    paint(c.getContext('2d'), w, h, K.rng(4401 + kind.length * 31));
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    PMT_TEX.set(kind, t); return t;
+  }
+  function rrect(x, x0, y0, w, h, r) { x.beginPath(); x.roundRect ? x.roundRect(x0, y0, w, h, r) : x.rect(x0, y0, w, h); }
+  function grime(x, w, h, r, n, a) {          // a decal weathers: fine dust specks and a dirtier lower edge
+    for (let i = 0; i < n; i++) { x.fillStyle = 'rgba(120,104,84,' + (r() * a) + ')'; x.fillRect(r() * w, r() * h, 1 + r() * 2.5, 1 + r() * 2.5); }
+    const g = x.createLinearGradient(0, h * 0.7, 0, h); g.addColorStop(0, 'rgba(130,112,88,0)'); g.addColorStop(1, 'rgba(130,112,88,' + a * 0.9 + ')');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+  }
+  /* ANSI Z535 style WARNING decal: orange signal panel with the alert symbol, a shock pictogram, the message */
+  function pmtWarning(x, w, h, r) {
+    x.fillStyle = '#f2efe6'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#ef7d1a'; x.fillRect(10, 10, w - 20, h * 0.27);
+    const by = 10 + h * 0.135, th = h * 0.2;
+    x.fillStyle = '#111'; x.beginPath(); x.moveTo(70, by - th / 2); x.lineTo(70 + th * 0.58, by + th / 2); x.lineTo(70 - th * 0.58, by + th / 2); x.closePath(); x.fill();
+    pwText(x, '!', 70, by + th * 0.1, th * 0.55, '#ef7d1a', 1.6);
+    pwText(x, 'WARNING', w / 2 + 28, by, h * 0.15, '#111', 1.45);
+    // pictogram: a yellow triangle with a bolt, in a square frame
+    const px = 22, py = h * 0.34, ps = h * 0.6;
+    x.strokeStyle = '#111'; x.lineWidth = 4; x.strokeRect(px, py, ps, ps);
+    x.fillStyle = '#f6c51c'; x.beginPath(); x.moveTo(px + ps / 2, py + ps * 0.1); x.lineTo(px + ps * 0.93, py + ps * 0.88); x.lineTo(px + ps * 0.07, py + ps * 0.88); x.closePath(); x.fill();
+    x.lineWidth = 7; x.stroke();
+    x.fillStyle = '#111'; x.beginPath();
+    const bx = px + ps / 2, bY = py + ps * 0.3;
+    x.moveTo(bx + ps * 0.06, bY); x.lineTo(bx - ps * 0.1, bY + ps * 0.27); x.lineTo(bx + ps * 0.0, bY + ps * 0.27); x.lineTo(bx - ps * 0.07, bY + ps * 0.52);
+    x.lineTo(bx + ps * 0.12, bY + ps * 0.2); x.lineTo(bx + ps * 0.02, bY + ps * 0.2); x.lineTo(bx + ps * 0.1, bY); x.closePath(); x.fill();
+    const tx = px + ps + 22, lh = h * 0.115, mw = w - tx - 24;
+    pwText(x, 'HAZARDOUS', tx, py + lh * 0.7, lh * 0.72, '#111', 1.5, 'left', mw);
+    pwText(x, 'VOLTAGE INSIDE.', tx, py + lh * 1.75, lh * 0.72, '#111', 1.5, 'left', mw);
+    pwText(x, 'CAN SHOCK, BURN OR', tx, py + lh * 3.0, lh * 0.55, '#111', 1.3, 'left', mw);
+    pwText(x, 'CAUSE DEATH.', tx, py + lh * 3.8, lh * 0.55, '#111', 1.3, 'left', mw);
+    pwText(x, 'KEEP OUT.', tx, py + lh * 4.95, lh * 0.72, '#111', 1.6, 'left', mw);
+    x.strokeStyle = '#111'; x.lineWidth = 5; rrect(x, 4, 4, w - 8, h - 8, 10); x.stroke();
+    grime(x, w, h, r, 900, 0.18);
+  }
+  function pmtNameplate(x, w, h, r) {
+    const g = x.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#c9ccc9'); g.addColorStop(0.5, '#e2e3df'); g.addColorStop(1, '#b9bcb9');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) { x.fillStyle = 'rgba(255,255,255,' + r() * 0.12 + ')'; x.fillRect(0, r() * h, w, 1); }   // brushed grain
+    x.strokeStyle = '#222'; x.lineWidth = 4; x.strokeRect(14, 14, w - 28, h - 28);
+    pwText(x, 'THREE PHASE', w / 2, 44, 22, '#1a1a1a', 1.4);
+    pwText(x, 'PAD MOUNTED TRANSFORMER', w / 2, 76, 18, '#1a1a1a', 1.35, 'centre', w - 60);
+    x.fillStyle = '#222'; x.fillRect(24, 96, w - 48, 3);
+    const rows = ['KVA', 'HV', 'LV', 'IMP', 'SERIAL', 'OIL', 'WT KG', 'MFD'];
+    rows.forEach((lab, i) => {
+      const col = i % 2, row = Math.floor(i / 2), x0 = 30 + col * (w - 60) / 2, y = 128 + row * 40;
+      pwText(x, lab, x0, y, 14, '#1a1a1a', 1.3, 'left');
+      x.fillStyle = 'rgba(30,30,30,0.85)';
+      for (let k = 0; k < 4 + (r() * 4 | 0); k++) x.fillRect(x0 + 80 + k * 15, y - 6, 10, 12);   // stamped value, unreadable at any frame
+      x.fillStyle = '#555'; x.fillRect(x0, y + 13, (w - 80) / 2, 1.5);
+    });
+    // the wiring diagram strip along the foot
+    x.strokeStyle = '#222'; x.lineWidth = 2;
+    for (let k = 0; k < 3; k++) { const cx = 70 + k * 60, cy = h - 50; x.beginPath(); for (let j = 0; j < 5; j++) x.arc(cx, cy - 18 + j * 9, 4.5, -Math.PI / 2, Math.PI / 2); x.stroke(); }
+    for (let k = 0; k < 4; k++) { const cx = w - 210 + k * 50, cy = h - 50; x.beginPath(); x.moveTo(cx, cy - 22); x.lineTo(cx, cy + 22); x.moveTo(cx - 12, cy); x.lineTo(cx + 12, cy); x.stroke(); }
+    [[22, 22], [w - 22, 22], [22, h - 22], [w - 22, h - 22]].forEach(([a, b]) => { x.fillStyle = '#8a8d8a'; x.beginPath(); x.arc(a, b, 7, 0, 7); x.fill(); });
+    grime(x, w, h, r, 500, 0.12);
+  }
+  function pmtUnitNo(x, w, h, r) {
+    x.fillStyle = '#f4f2ea'; x.fillRect(0, 0, w, h);
+    x.strokeStyle = '#111'; x.lineWidth = 6; x.strokeRect(6, 6, w - 12, h - 12);
+    pwText(x, 'T-4417', w / 2, h / 2, h * 0.5, '#111', 1.7);
+    grime(x, w, h, r, 300, 0.2);
+  }
+  /* the pad: one canvas, the top in v 0.3..1 and the four sides unrolled in v 0..0.3 */
+  function pmtPadPaint(x, w, h, r) {
+    const ty = h * 0.7;
+    x.fillStyle = '#97968f'; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 60000; i++) { const k = 95 + r() * 120 | 0; x.fillStyle = 'rgba(' + k + ',' + (k - 3) + ',' + (k - 9) + ',' + (0.18 + r() * 0.35) + ')'; x.fillRect(r() * w, r() * h, 1 + r() * 2.2, 1 + r() * 2.2); }
+    for (let i = 0; i < 70; i++) {            // mottle from the pour and curing
+      const cx = r() * w, cy = r() * ty, rad = 20 + r() * 120, a = 0.03 + r() * 0.06, dark = r() < 0.6;
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      g.addColorStop(0, dark ? 'rgba(90,84,74,' + a + ')' : 'rgba(235,232,224,' + a + ')'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      x.fillStyle = g; x.fillRect(cx - rad, cy - rad, rad * 2, rad * 2);
+    }
+    x.strokeStyle = 'rgba(110,104,95,0.10)'; x.lineWidth = 1;   // broom finish, across the short way
+    for (let i = 0; i < 520; i++) { const yy = r() * ty, xx = r() * w; x.beginPath(); x.moveTo(xx, yy); x.lineTo(xx + 40 + r() * 120, yy + (r() - 0.5) * 3); x.stroke(); }
+    // the tank's footprint: oil weep and rust drip in a ring round it (pad 2.8 x 2.5, tank and radiators 2.38 x 2.36)
+    const PX = (xm) => (xm + 1.4) / 2.8 * w, PY = (zm) => (1 - (zm + 1.25) / 2.5) * ty;
+    const x0 = PX(-1.22), x1 = PX(1.22), y0 = PY(1.2), y1 = PY(-1.22);
+    for (let i = 0; i < 4; i++) {
+      const sp = 8 + i * 16, a = 0.13 - i * 0.03;
+      x.strokeStyle = 'rgba(78,62,46,' + a + ')'; x.lineWidth = 14 + i * 10; x.strokeRect(x0 - sp * 0.3, y0 - sp * 0.3, x1 - x0 + sp * 0.6, y1 - y0 + sp * 0.6);
+    }
+    for (let i = 0; i < 40; i++) {          // drips off the radiator panels
+      const side = r() < 0.5 ? -1 : 1, zz = -1.1 + r() * 1.5, cx = PX(side * (1.0 + r() * 0.22)), cy = PY(zz), rad = 4 + r() * 14;
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, rad); g.addColorStop(0, 'rgba(96,66,40,0.22)'); g.addColorStop(1, 'rgba(96,66,40,0)');
+      x.fillStyle = g; x.fillRect(cx - rad, cy - rad, rad * 2, rad * 2);
+    }
+    x.strokeStyle = 'rgba(70,64,58,0.5)'; x.lineWidth = 1.3;   // a hairline shrinkage crack from one corner
+    x.beginPath(); let cx = PX(1.4), cy = PY(-1.0); x.moveTo(cx, cy);
+    for (let i = 0; i < 14; i++) { cx -= 6 + r() * 7; cy += (r() - 0.35) * 8; x.lineTo(cx, cy); } x.stroke();
+    x.fillStyle = 'rgba(255,255,255,0.10)';                     // the tooled margin
+    x.fillRect(0, 0, w, 10); x.fillRect(0, ty - 10, w, 10); x.fillRect(0, 0, 10, ty); x.fillRect(w - 10, 0, 10, ty);
+    // the sides: form lines, a soil splash up from the ground
+    const g = x.createLinearGradient(0, ty, 0, h);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.45, 'rgba(112,96,76,0.18)'); g.addColorStop(1, 'rgba(92,78,60,0.62)');
+    x.fillStyle = g; x.fillRect(0, ty, w, h - ty);
+    for (let i = 0; i < 1800; i++) { const yy = ty + (h - ty) * (1 - r() * r()), a = 0.1 + r() * 0.3; x.fillStyle = 'rgba(86,72,56,' + a + ')'; x.fillRect(r() * w, yy, 1 + r() * 3, 1 + r() * 2); }
+    x.fillStyle = 'rgba(80,74,66,0.16)'; x.fillRect(0, ty + (h - ty) * 0.42, w, 2);
+    for (let i = 0; i < 900; i++) {          // bug holes in the formed faces, the odd one on the top
+      const yy = r() < 0.85 ? ty + r() * (h - ty) : r() * ty, rad = 0.8 + r() * r() * 3.2;
+      x.fillStyle = 'rgba(52,48,44,' + (0.45 + r() * 0.4) + ')'; x.beginPath(); x.arc(r() * w, yy, rad, 0, 7); x.fill();
+    }
+  }
+  function chamferSlab(W, H, D, c) {
+    const S = new THREE.Shape();
+    S.moveTo(-W / 2 + c, -D / 2 + c); S.lineTo(W / 2 - c, -D / 2 + c); S.lineTo(W / 2 - c, D / 2 - c); S.lineTo(-W / 2 + c, D / 2 - c); S.closePath();
+    let g = new THREE.ExtrudeGeometry(S, { depth: H - 2 * c, bevelEnabled: true, bevelThickness: c, bevelSize: c, bevelSegments: 1, curveSegments: 1 });
+    g.rotateX(-Math.PI / 2); g.translate(0, c, 0);
+    g = g.toNonIndexed(); g.computeVertexNormals();
+    // UVs: top in v 0.3..1 by plan position, sides unrolled by perimeter in v 0..0.3 by height
+    const P = g.attributes.position, N = g.attributes.normal, uv = new Float32Array(P.count * 2);
+    for (let i = 0; i < P.count; i++) {
+      const x = P.getX(i), y = P.getY(i), z = P.getZ(i), ny = N.getY(i);
+      let u, v;
+      if (ny > 0.5) { u = (x + W / 2) / W; v = 0.3 + 0.7 * (z + D / 2) / D; }
+      else {
+        const ax = Math.abs(N.getX(i)), s = ax > Math.abs(N.getZ(i)) ? (N.getX(i) > 0 ? W + (D / 2 - z) : 2 * W + D + (z + D / 2)) : (N.getZ(i) > 0 ? x + W / 2 : W + D + (W / 2 - x));
+        u = s * 0.3 / H; v = 0.3 * Math.min(1, y / (H - c));     // same texel density both ways, wrapped
+      }
+      uv[i * 2] = u; uv[i * 2 + 1] = v;
+    }
+    g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    return g;
+  }
+  /* a small porcelain bushing, origin at its base: clamp seat, alternating skirted sheds, cap */
+  function pmtBushingGeo(h, r0, rL, rS, n) {
+    return tpl('pmtb' + [h, r0, rL, rS, n].join(','), () => {
+      const P = [[0, 0], [r0 + 0.016, 0], [r0 + 0.016, 0.012], [r0 + 0.006, 0.02], [r0, 0.028]];
+      const top = h - 0.03, pitch = (top - 0.04) / n;
+      for (let i = 0; i < n; i++) {
+        const y = 0.045 + i * pitch + pitch * 0.55, rs = i % 2 ? rS : rL;
+        P.push([r0, y - pitch * 0.42], [r0 + (rs - r0) * 0.5, y - pitch * 0.3], [rs - 0.003, y - pitch * 0.2], [rs, y - pitch * 0.17], [rs + 0.0015, y - pitch * 0.08],
+               [rs - 0.002, y - pitch * 0.02], [r0 + (rs - r0) * 0.45, y + pitch * 0.12], [r0 + 0.002, y + pitch * 0.22]);
+      }
+      P.push([r0, top], [r0 + 0.008, top + 0.004], [r0 + 0.008, top + 0.016], [r0 * 0.7, h - 0.004], [r0 * 0.3, h], [0, h]);
+      return new THREE.LatheGeometry(P.map(p => new THREE.Vector2(p[0], p[1])), 36);
+    });
+  }
   K.define('padmount_transformer', {
     size: [2.8, 2.11, 2.5],
     options: { xcolor: null, fins: true },
-    note: 'Pad mounted step-up transformer the units of one block share: a green steel tank on a concrete pad with radiator fins on both sides, a low voltage cabinet on +z and a high voltage cabinet on -z, a nameplate, bushings. WEATHERED on the same atlas as modular_gas_genset: dust up the base, run-off under the lid, rust at the seams, a dusty lid. DRAWN, no rating printed. userData.hvOut.',
+    note: 'Three phase pad mounted transformer the units of one block share, built for a close crop: a green steel tank with welded pressed-steel radiator panels on header pipes down both sides and across the back (fins false drops them), a bolted lid flange with lifting lugs, three HV porcelain bushings of alternating skirted glazed sheds and four LV bushings on the cover, a pressure relief valve, a two leaf front cabinet on +z with reveals, hinge knuckles, pentahead latch and padlocked hasp, an ANSI style WARNING decal, unit number and an etched nameplate on its +x side, a copper ground lead, on a chamfered broom finished concrete pad with a drip stain and soil splash. WEATHERED on the same atlas as modular_gas_genset. DRAWN, no rating printed (nameplate values are stamped blanks). userData.hvOut.',
     make(o, r) {
-      const variant = (((o.seed | 0) % 3) + 3) % 3, col = o.xcolor != null ? o.xcolor : 0x5c6b58, g = new THREE.Group();
-      const fw = 1.7, fh = 1.56, fd = 2.29;
-      const skin = wxSkin('pmt|' + col.toString(16) + '|' + variant, {
-        seed: 8101 + variant * 89, color: col, dust: 0xa99f8d, metal: 0.25, fw, fh, fd,
-        side: { dustH: 0.3, k: 0.45, sources: [{ x: fw / 2, y: fh - 0.06, w: fw - 0.4 }], seams: [fw / 2] },
-        end: { dustH: 0.3, k: 0.45, sources: [], seams: [0.35, fd - 0.35] }, roof: {} });
-      const fin = kmat('pmt-fin|' + col.toString(16), { color: new THREE.Color(col).multiplyScalar(0.84).getHex(), roughness: 0.66, metalness: 0.35 });
-      K.box(2.8, 0.2, 2.5, M.concrete(), 0, 0, 0, 0.02, g);
-      const tank = TXT.roundedBox(1.6, 1.5, 1.4, 0.04, skin); tank.position.set(0, 0.2 + 0.75, 0); g.add(tank);
-      const lid = TXT.roundedBox(1.7, 0.06, 1.5, 0.02, skin); lid.position.set(0, 0.2 + 1.53, 0); g.add(lid);
-      [1, -1].forEach((s) => { const cab = TXT.roundedBox(1.5, 1.4, 0.45, 0.03, skin); cab.position.set(0, 0.2 + 0.7, s * 0.92); g.add(cab); });
+      const variant = (((o.seed | 0) % 3) + 3) % 3, col = o.xcolor != null ? o.xcolor : 0x5c6b58;
+      const tmp = new THREE.Group(), b = new Bld(), tk = new Bld();
+      // the painted envelope, radiators included, so every painted part samples the atlas at its own place
+      const F = { x0: -1.19, x1: 1.19, y0: 0.2, y1: 1.8, z0: -1.19, z1: 1.17 };
+      const fw = F.x1 - F.x0, fh = F.y1 - F.y0, fd = F.z1 - F.z0;
+      const skin = wxSkin('pmt2|' + col.toString(16) + '|' + variant, {
+        seed: 8101 + variant * 89, color: col, dust: 0x9f978a, metal: 0.25, fw, fh, fd,
+        side: { dustH: 0.26, k: 0.3, sources: [{ x: fw / 2 + 0.01, y: fh - 0.16, w: 1.66 }], seams: [fw / 2 + 0.01] },
+        end: { dustH: 0.32, k: 0.3, sources: [], seams: [fd - 0.62] }, roof: {} });
+      const reveal = nmat('pmt-door-reveal-paint|' + col.toString(16), { color: new THREE.Color(col).multiplyScalar(0.3).getHex(), roughness: 0.85, metalness: 0.1 });
+      const galv = nmat('pmt-galv-steel', { color: 0x9ca1a3, metalness: 0.75, roughness: 0.42 });
+      const brass = nmat('pmt-brass-terminal', { color: 0xb8945c, metalness: 0.9, roughness: 0.32 });
+      const lockb = nmat('pmt-padlock-brass', { color: 0xa98a52, metalness: 0.85, roughness: 0.38 });
+      const shackle = nmat('pmt-shackle-chrome', { color: 0xc9ccce, metalness: 0.95, roughness: 0.22 });
+      const cu = nmat('pmt-ground-copper', { color: 0x9a5a36, metalness: 0.8, roughness: 0.42 });
+      const porc = nmat('pmt-porcelain-glaze', { color: 0x5a3622, roughness: 0.14, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.2 }, true);
+      const label = (kind, w, h, paint, rough) => { const m = nmat('pmt-decal-' + kind, { color: 0xffffff, roughness: rough, metalness: kind === 'nameplate' ? 0.55 : 0, map: pmtTex(kind, w, h, paint) }); m.userData.txSurface = kind === 'nameplate' ? 'brushed' : 'paint'; return m; };
+      const warnM = label('warning', 640, 448, pmtWarning, 0.42), plateM = label('nameplate', 640, 448, pmtNameplate, 0.3), unitM = label('unitno', 384, 128, pmtUnitNo, 0.45);
+      const padTex = pmtTex('pad', 1024, 1024, pmtPadPaint); padTex.wrapS = THREE.RepeatWrapping;
+      const padM = nmat('pmt-conc-pad', { color: 0xffffff, roughness: 0.94, map: padTex });
+
+      // ---- the pad
+      padM.userData.txRelief = 1.7;
+      const pad = new THREE.Mesh(chamferSlab(2.8, 0.2, 2.5, 0.02), padM); tmp.add(pad);
+
+      // ---- tank, lid flange, cover, lugs, bolts
+      const T0 = 0.2, TT = 1.68, tz = -0.15, TW = 1.6, TD = 1.4;
+      tk.geo(skin, rbox(TW, TT - T0, TD, 0.03), V3(0, (T0 + TT) / 2, tz));
+      tk.geo(skin, rbox(TW + 0.12, 0.05, TD + 0.12, 0.012), V3(0, TT + 0.025, tz));                      // lid flange
+      tk.geo(skin, rbox(TW + 0.02, 0.05, TD + 0.02, 0.022), V3(0, TT + 0.075, tz));                      // cover
+      tk.box(skin, TW + 0.06, 0.03, TD + 0.06, 0, T0 + 0.015, tz);                                       // base sill
+      const bolt = tpl('pmtbolt', () => new THREE.CylinderGeometry(0.0125, 0.0125, 0.022, 6));
+      const fx = TW / 2 + 0.035, fz0 = tz - TD / 2 - 0.035, fz1 = tz + TD / 2 + 0.035;
+      for (let x = -fx; x <= fx + 1e-6; x += 2 * fx / 11) [fz0, fz1].forEach((zz) => b.geo(galv, bolt, V3(x, TT + 0.061, zz)));
+      for (let z = fz0 + 2 * (fz1 - fz0) / 20; z < fz1 - 1e-3; z += (fz1 - fz0) / 10) [-fx, fx].forEach((xx) => b.geo(galv, bolt, V3(xx, TT + 0.061, z)));
+      [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => {                                       // lifting lugs at the corners
+        const lx = sx * (TW / 2 - 0.09), lz = tz + sz * (TD / 2 + 0.04);
+        tk.box(skin, 0.11, 0.09, 0.016, lx, TT - 0.05, lz);
+        b.geo(reveal, tpl('pmtlughole', () => new THREE.CylinderGeometry(0.016, 0.016, 0.02, 12)), V3(lx, TT - 0.04, lz), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      });
+
+      // ---- bushings on the cover: three HV at z -0.4, four short LV behind the cabinet
+      const CY = TT + 0.1, hvz = -0.4;
+      [-0.45, 0, 0.45].forEach((xx) => {
+        b.geo(galv, tpl('pmtseat', () => new THREE.CylinderGeometry(0.058, 0.064, 0.02, 24)), V3(xx, CY + 0.01, hvz));
+        for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3 + 0.3; b.geo(galv, tpl('pmtsbolt', () => new THREE.CylinderGeometry(0.008, 0.008, 0.018, 6)), V3(xx + 0.05 * Math.cos(a), CY + 0.026, hvz + 0.05 * Math.sin(a))); }
+        b.geo(porc, pmtBushingGeo(0.235, 0.03, 0.068, 0.054, 5), V3(xx, CY + 0.02, hvz));
+        b.geo(brass, tpl('pmtstud', () => new THREE.CylinderGeometry(0.012, 0.012, 0.045, 10)), V3(xx, 2.035 + 0.02, hvz));
+        b.geo(brass, tpl('pmtspade', () => new THREE.BoxGeometry(0.036, 0.034, 0.008)), V3(xx, 2.093, hvz));
+        b.geo(reveal, tpl('pmtspadeh', () => new THREE.CylinderGeometry(0.007, 0.007, 0.01, 10)), V3(xx, 2.095, hvz), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      });
+      [-0.54, -0.18, 0.18, 0.54].forEach((xx) => {
+        b.geo(galv, tpl('pmtseatlv', () => new THREE.CylinderGeometry(0.045, 0.05, 0.018, 20)), V3(xx, CY + 0.009, 0.2));
+        b.geo(porc, pmtBushingGeo(0.13, 0.026, 0.05, 0.042, 3), V3(xx, CY + 0.018, 0.2));
+        b.geo(brass, tpl('pmtstudlv', () => new THREE.CylinderGeometry(0.014, 0.014, 0.05, 10)), V3(xx, CY + 0.17, 0.2));
+      });
+      // pressure relief valve with its pull ring, fill plug
+      b.geo(brass, tpl('pmtprv', () => new THREE.CylinderGeometry(0.022, 0.026, 0.05, 16)), V3(0.62, CY + 0.025, -0.68));
+      b.geo(galv, tpl('pmtprvring', () => new THREE.TorusGeometry(0.02, 0.0035, 6, 16)), V3(0.62, CY + 0.07, -0.68));
+      b.geo(galv, tpl('pmtplug', () => new THREE.CylinderGeometry(0.03, 0.03, 0.022, 6)), V3(-0.62, CY + 0.011, -0.68));
+
+      // ---- the front cabinet on +z: two leaves, reveals, hinges, latch, padlocked hasp, hood
+      const cz0 = tz + TD / 2, cz1 = 1.12, cw = 1.72, cy0 = T0, cy1 = 1.6, czc = (cz0 + cz1) / 2;
+      tk.geo(skin, rbox(cw, cy1 - cy0, cz1 - cz0, 0.025), V3(0, (cy0 + cy1) / 2, czc));
+      tk.geo(skin, rbox(cw + 0.06, 0.04, cz1 - cz0 + 0.1, 0.012), V3(0, cy1 + 0.02, czc + 0.03));        // hood
+      tk.box(skin, cw + 0.06, 0.05, 0.016, 0, cy1 - 0.005, cz1 + 0.072);                                  // drip lip
+      const dz = cz1 + 0.012, dy0 = cy0 + 0.05, dy1 = cy1 - 0.05, dh = dy1 - dy0, dyc = (dy0 + dy1) / 2, dw = (cw - 0.05) / 2 - 0.006;
+      [-1, 1].forEach((s) => {
+        tk.geo(skin, rbox(dw, dh, 0.024, 0.008), V3(s * (dw / 2 + 0.006), dyc, dz));
+        tk.geo(skin, rbox(dw - 0.12, dh - 0.14, 0.006, 0.003), V3(s * (dw / 2 + 0.006), dyc, dz + 0.014));     // pressed stiffening panel
+        [dy0 + 0.18, dyc, dy1 - 0.18].forEach((yy) => b.geo(galv, tpl('pmthinge', () => new THREE.CylinderGeometry(0.011, 0.011, 0.075, 10)), V3(s * (cw / 2 - 0.005), yy, dz + 0.006)));
+      });
+      b.box(reveal, 0.012, dh + 0.01, 0.004, 0, dyc, cz1 + 0.001);                                        // centre seam
+      b.box(reveal, cw - 0.03, 0.01, 0.004, 0, dy0 - 0.006, cz1 + 0.001); b.box(reveal, cw - 0.03, 0.01, 0.004, 0, dy1 + 0.006, cz1 + 0.001);
+      b.box(reveal, 0.012, dh, 0.004, -cw / 2 + 0.018, dyc, cz1 + 0.001); b.box(reveal, 0.012, dh, 0.004, cw / 2 - 0.018, dyc, cz1 + 0.001);
+      const lx = 0.1, fz = dz + 0.018;
+      b.box(reveal, 0.075, 0.17, 0.004, lx, 1.0, fz + 0.001);                                            // handle pocket
+      b.box(galv, 0.026, 0.14, 0.022, lx, 1.0, fz + 0.012);                                               // lever
+      b.geo(galv, tpl('pmtshroud', () => new THREE.CylinderGeometry(0.03, 0.032, 0.026, 18, 1, true)), V3(lx, 0.8, fz + 0.012), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      b.geo(reveal, tpl('pmtsock', () => new THREE.CylinderGeometry(0.029, 0.029, 0.004, 18)), V3(lx, 0.8, fz + 0.002), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      b.geo(galv, tpl('pmtpenta', () => new THREE.CylinderGeometry(0.014, 0.014, 0.02, 5)), V3(lx, 0.8, fz + 0.01), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      b.box(galv, 0.012, 0.03, 0.05, lx + 0.048, 1.06, fz + 0.025);                                       // hasp tab
+      b.geo(lockb, rbox(0.048, 0.042, 0.02, 0.006), V3(lx + 0.048, 0.99, fz + 0.034));                    // padlock
+      b.geo(shackle, tpl('pmtshackle', () => new THREE.TorusGeometry(0.015, 0.0038, 8, 16, Math.PI)), V3(lx + 0.048, 1.011, fz + 0.034), new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2));
+      b.geo(reveal, tpl('pmtkeyway', () => new THREE.BoxGeometry(0.004, 0.012, 0.003)), V3(lx + 0.048, 0.982, fz + 0.045));
+      // decals: WARNING on each leaf, the unit number high on the right, the nameplate on the +x cheek
+      const pl = (mat, w, h, pos, ry) => b.geo(mat, new THREE.PlaneGeometry(w, h), pos, new THREE.Quaternion().setFromAxisAngle(Y, ry || 0));
+      pl(warnM, 0.3, 0.21, V3(-0.43, 1.2, fz + 0.0015)); pl(warnM, 0.3, 0.21, V3(0.43, 1.2, fz + 0.0015));
+      pl(unitM, 0.24, 0.08, V3(0.43, 1.44, fz + 0.0015));
+      tk.box(skin, 0.004, 0.17, 0.25, cw / 2 + 0.002, 1.24, czc);                                          // nameplate boss
+      pl(plateM, 0.24, 0.165, V3(cw / 2 + 0.0045, 1.24, czc), Math.PI / 2);
+      [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, c]) => b.geo(galv, tpl('pmtrivet', () => new THREE.SphereGeometry(0.006, 8, 4)), V3(cw / 2 + 0.005, 1.24 + c * 0.072, czc + a * 0.108)));
+      // copper ground lead from the cabinet sill into the pad
+      b.box(brass, 0.02, 0.06, 0.05, cw / 2 + 0.01, cy0 + 0.1, cz1 - 0.12);
+      b.cable(cu, [cw / 2 + 0.02, cy0 + 0.09, cz1 - 0.12], [cw / 2 + 0.16, cy0 + 0.004, cz1 - 0.02], 0.03, 0.0055, 10, 6);
+
+      // ---- radiators: welded pressed-steel panels on header pipes, both sides and the back
       if (o.fins !== false) {
-        [-1, 1].forEach((s) => { for (let i = 0; i < 9; i++) { const f = TXT.roundedBox(0.36, 1.2, 0.03, 0.006, fin); f.position.set(s * 0.98, 0.2 + 0.7, -0.52 + i * 0.13); g.add(f); } });
+        const pz0 = tz - TD / 2 + 0.08, pz1 = tz + TD / 2 - 0.1, pitch = 0.062, nS = Math.round((pz1 - pz0) / pitch) + 1;
+        const ry0 = 0.46, rh = 0.98, sideP = pressedPanelGeo(0.33, rh, 0.0145), backP = pressedPanelGeo(0.27, rh - 0.06, 0.0145);
+        const hdr = (a, c) => tk.bar(skin, a, c, 0.03, 14);
+        [-1, 1].forEach((sx) => {
+          const px = sx * (TW / 2 + 0.06 + 0.165);
+          for (let i = 0; i < nS; i++) tk.geo(skin, sideP, V3(px, ry0, pz0 + i * pitch));
+          [ry0 + 0.03, ry0 + rh - 0.03].forEach((yy) => hdr([sx * (TW / 2 + 0.035), yy, pz0 - 0.04], [sx * (TW / 2 + 0.035), yy, pz0 + (nS - 1) * pitch + 0.04]));
+          [ry0 + 0.1, ry0 + rh - 0.1].forEach((yy) => tk.box(skin, 0.012, 0.035, (nS - 1) * pitch + 0.03, sx * (TW / 2 + 0.06 + 0.336), yy, pz0 + (nS - 1) * pitch / 2));   // tie straps
+          b.geo(brass, tpl('pmtdrain', () => new THREE.CylinderGeometry(0.018, 0.018, 0.05, 10)), V3(sx * (TW / 2 + 0.03), ry0 - 0.05, pz0 - 0.02), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+        });
+        const bz = tz - TD / 2 - 0.06 - 0.135, nB = 19, bx0 = -(nB - 1) * pitch / 2, q90 = new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2);
+        for (let i = 0; i < nB; i++) tk.geo(skin, backP, V3(bx0 + i * pitch, ry0 + 0.03, bz), q90);
+        [ry0 + 0.06, ry0 + rh - 0.06].forEach((yy) => hdr([bx0 - 0.04, yy, tz - TD / 2 - 0.035], [-bx0 + 0.04, yy, tz - TD / 2 - 0.035]));
+        [ry0 + 0.13, ry0 + rh - 0.13].forEach((yy) => tk.box(skin, (nB - 1) * pitch + 0.03, 0.035, 0.012, 0, yy, tz - TD / 2 - 0.06 - 0.276));
       }
-      const np = TXT.roundedBox(0.3, 0.2, 0.01, 0.004, kmat('pmt-plate', { color: 0xdcdad2, roughness: 0.45 })); np.position.set(0.3, 0.2 + 1.1, 1.15 + 0.005); g.add(np);
-      [-0.3, 0, 0.3].forEach((x) => K.cyl(0.05, 0.05, 0.35, K.finish.porcelain(), x, 0.2 + 1.56, -0.4, 12, g));
-      g.userData.hvOut = { x: 0, y: 1.9, z: -0.4 };
-      return bakeSkin(g, skin, { x0: -fw / 2, x1: fw / 2, y0: 0.2, y1: 0.2 + fh, z0: -fd / 2, z1: fd / 2 });
+
+      b.build(tmp); tk.build(tmp);
+      tmp.userData.hvOut = { x: 0, y: 2.09, z: hvz };
+      const out = bakeSkin(tmp, skin, F);
+      out.traverse((c) => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
+      return out;
     },
   });
 
