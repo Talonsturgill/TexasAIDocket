@@ -408,6 +408,16 @@ export function install(K, THREE, TXT) {
     Y: [[[0, 0], [2, 3], [4, 0]], [[2, 3], [2, 6]]],
     Z: [[[0, 0], [4, 0], [0, 6], [4, 6]]],
     '-': [[[0.8, 3], [3.2, 3]]], '.': [[[1.8, 5.8], [2.2, 5.8]]],
+    '0': [[[1, 0], [3, 0], [4, 1], [4, 5], [3, 6], [1, 6], [0, 5], [0, 1], [1, 0]], [[3.6, 0.8], [0.4, 5.2]]],
+    '1': [[[0.8, 1.2], [2, 0], [2, 6]], [[0.8, 6], [3.2, 6]]],
+    '2': [[[0, 1], [1, 0], [3, 0], [4, 1], [4, 2.2], [0, 6], [4, 6]]],
+    '3': [[[0, 1], [1, 0], [3, 0], [4, 1], [4, 2], [3, 3], [1.6, 3]], [[3, 3], [4, 4], [4, 5], [3, 6], [1, 6], [0, 5]]],
+    '4': [[[3, 6], [3, 0], [0, 4], [4, 4]]],
+    '5': [[[4, 0], [0, 0], [0, 2.8], [3, 2.8], [4, 3.8], [4, 5], [3, 6], [0.6, 6], [0, 5.4]]],
+    '6': [[[3.6, 0.4], [3, 0], [1, 0], [0, 1], [0, 5], [1, 6], [3, 6], [4, 5], [4, 3.8], [3, 2.8], [0, 2.8]]],
+    '7': [[[0, 0], [4, 0], [1.4, 6]]],
+    '8': [[[1, 3], [0, 2], [0, 1], [1, 0], [3, 0], [4, 1], [4, 2], [3, 3], [1, 3], [0, 4], [0, 5], [1, 6], [3, 6], [4, 5], [4, 4], [3, 3]]],
+    '9': [[[0.4, 5.6], [1, 6], [3, 6], [4, 5], [4, 1], [3, 0], [1, 0], [0, 1], [0, 2.2], [1, 3.2], [4, 3.2]]],
   };
   // draw `txt` centred at (cx, cy) with cap height `ch` px
   function strokeText(x, txt, cx, cy, ch, color, weight) {
@@ -499,110 +509,345 @@ export function install(K, THREE, TXT) {
    * SHIPPING CONTAINER. 40 ft ISO dry box, 12.192 x 2.591 x 2.438 m (high cube 2.896).
    * Length runs along z with the cargo doors on +z, the end a reader recognises.
    * ==================================================================================== */
-  const CONTAINER_COLOURS = [0x1f5f8b, 0x8a3324, 0x2e5a3c, 0x7a7d80, 0xc2571d, 0x9e2b25, 0x2a3f6b, 0xd9d4c7, 0x6a3b2a, 0x3f6e7a];
-  // corrugated wall: a trapezoid profile along `len`, height h, in the xy plane facing +z
-  function corrugated(len, h, pitch, depth, mat, flat) {
-    const n = Math.max(1, Math.round(len / pitch)), p = len / n, prof = [];
-    const f = flat || 0.26;
+  const CONTAINER_COLOURS = [0x2a6e9c, 0xa63d29, 0x3a6b48, 0x8c8f91, 0xd2652a, 0xb23a2e, 0x34508a, 0xd9d4c7, 0x82492f, 0x4a8090];
+  /* PROFILED SHEET. A pressed steel profile, given as [u, depth] points, swept straight along y.
+   * Every facet gets its own vertex columns, so each bend is a crisp crease that catches a line of
+   * light, while along the sweep the vertices are shared, so a dent (dent(u, y) metres, + = out)
+   * shades as a smooth hollow, not as facets. Faces +z, u along x, y from 0 to h. UV 0..1 over
+   * the sheet, so one canvas paints the whole wall. */
+  function trapProfile(len, pitch, depth, outer, slope, chamf) {
+    const n = Math.max(1, Math.round(len / pitch)), p = len / n, raw = [];
+    const o = outer * p, s = slope * p, inner = p - o - 2 * s;
     for (let i = 0; i < n; i++) {
       const x0 = -len / 2 + i * p;
-      prof.push([x0, 0], [x0 + p * f, 0], [x0 + p * 0.5 - p * 0.02, depth], [x0 + p * (0.5 + f) - p * 0.02, depth], [x0 + p - p * 0.04, 0]);
+      raw.push([x0, 0], [x0 + o, 0], [x0 + o + s, -depth], [x0 + o + s + inner, -depth]);
     }
-    prof.push([len / 2, 0]);
-    const P = [], U = [];
-    for (let i = 0; i < prof.length - 1; i++) {
-      const a = prof[i], b = prof[i + 1];
-      P.push(a[0], 0, a[1], b[0], 0, b[1], b[0], h, b[1], a[0], 0, a[1], b[0], h, b[1], a[0], h, a[1]);
-      U.push(a[0], 0, b[0], 0, b[0], h, a[0], 0, b[0], h, a[0], h);
+    raw.push([len / 2, 0]);
+    if (!chamf) return raw;
+    const out = [raw[0]];                               // each bend becomes a short chamfer facet
+    for (let i = 1; i < raw.length - 1; i++) {
+      const a = raw[i - 1], b = raw[i], c = raw[i + 1];
+      const la = Math.hypot(b[0] - a[0], b[1] - a[1]), lc = Math.hypot(c[0] - b[0], c[1] - b[1]);
+      const k1 = Math.min(chamf, la / 3) / la, k2 = Math.min(chamf, lc / 3) / lc;
+      out.push([b[0] + (a[0] - b[0]) * k1, b[1] + (a[1] - b[1]) * k1], [b[0] + (c[0] - b[0]) * k2, b[1] + (c[1] - b[1]) * k2]);
+    }
+    out.push(raw[raw.length - 1]);
+    return out;
+  }
+  function profileSheet(prof, h, rows, dent) {
+    const P = [], U = [], I = [], len = prof[prof.length - 1][0] - prof[0][0], u0 = prof[0][0];
+    for (let s = 0; s < prof.length - 1; s++) {
+      const a = prof[s], b = prof[s + 1], base = P.length / 3;
+      for (let j = 0; j <= rows; j++) {
+        const y = h * j / rows;
+        for (const q of [a, b]) { P.push(q[0], y, q[1] + (dent ? dent(q[0], y) : 0)); U.push((q[0] - u0) / len, y / h); }
+      }
+      for (let j = 0; j < rows; j++) { const i0 = base + j * 2; I.push(i0, i0 + 1, i0 + 3, i0, i0 + 3, i0 + 2); }
     }
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3));
     g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2));
-    g.computeVertexNormals();
-    return new THREE.Mesh(g, mat);
+    g.setIndex(I); g.computeVertexNormals();
+    return g;
   }
+  // seeded dents: a few soft hollows, more of them low where forklifts and chains hit, and a faint
+  // oil-canning wave over the whole sheet
+  function dentField(r, len, h, k, n) {
+    const D = [];
+    for (let i = 0; i < n; i++) {
+      const low = r() < 0.65;
+      D.push([rr(r, -len / 2 + 0.3, len / 2 - 0.3), low ? rr(r, 0.1, 0.8) : rr(r, 0.4, h - 0.3), rr(r, 0.12, 0.55), rr(r, 0.1, 0.35), rr(r, 0.004, 0.018) * k]);
+    }
+    const ph = r() * 6;
+    return (u, y) => {
+      let z = 0.0022 * k * Math.sin(u * 2.1 + ph) * Math.sin(y * 2.6 + ph * 0.7);
+      for (const d of D) { const a = (u - d[0]) / d[2], b = (y - d[1]) / d[3]; z -= d[4] * Math.exp(-(a * a + b * b)); }
+      return z;
+    };
+  }
+  // A plate with an oval or rounded hole, t thick, in the xy plane, extruded toward +z.
+  function holedPlate(w, h, t, hw, hh) {
+    const sh = new THREE.Shape();
+    sh.moveTo(-w / 2, -h / 2); sh.lineTo(w / 2, -h / 2); sh.lineTo(w / 2, h / 2); sh.lineTo(-w / 2, h / 2); sh.lineTo(-w / 2, -h / 2);
+    if (hw) { const hp = new THREE.Path(); hp.absellipse(0, 0, hw / 2, hh / 2, 0, TAU, true); sh.holes.push(hp); }
+    return new THREE.ExtrudeGeometry(sh, { depth: t, bevelEnabled: true, bevelThickness: 0.003, bevelSize: 0.003, bevelSegments: 1, curveSegments: 18 });
+  }
+  /* ISO 1161 CORNER CASTING, 178 x 162 x 118 mm: a hollow steel box, an oval aperture in its
+   * side, end and top (or bottom) faces, so the dark inside shows through with a real wall. */
+  function cornerCasting(parent, mat, x, y0, z, sx, sz, top) {
+    const g = grp(parent); g.position.set(x, y0 + 0.059, z);
+    const X = 0.162, Y = 0.118, Z = 0.178, t = 0.017;
+    const face = (geo, rx, ry, px, py, pz) => { const m = new THREE.Mesh(geo, mat); m.rotation.set(rx, ry, 0); m.position.set(px, py, pz); g.add(m); };
+    // side (normal sx) and end (normal sz) faces: plates extruded inward from the outer surface
+    face(holedPlate(Z, Y, t, 0.078, 0.052), 0, sx > 0 ? -Math.PI / 2 : Math.PI / 2, sx * X / 2, 0, 0);
+    face(holedPlate(Z, Y, t), 0, sx > 0 ? Math.PI / 2 : -Math.PI / 2, -sx * X / 2, 0, 0);
+    face(holedPlate(X, Y, t, 0.068, 0.05), 0, sz > 0 ? Math.PI : 0, 0, 0, sz * Z / 2);
+    face(holedPlate(X, Y, t), 0, sz > 0 ? 0 : Math.PI, 0, 0, -sz * Z / 2);
+    face(holedPlate(X, Z, t, 0.0635, 0.124), top ? Math.PI / 2 : -Math.PI / 2, 0, 0, top ? Y / 2 : -Y / 2, 0);
+    face(holedPlate(X, Z, t), top ? -Math.PI / 2 : Math.PI / 2, 0, 0, top ? -Y / 2 : Y / 2, 0);
+    cbox(X - 2 * t, Y - 2 * t, Z - 2 * t, std('castCavity', { color: 0x0b0a09, roughness: 1 }), 0, 0, 0, g);
+    return g;
+  }
+  const RUSTC = ['#3e1f10', '#5a2c15', '#74391b', '#8c4620', '#a65a2b', '#6b3a22'];
+  function rustBlot(x, r, cx, cy, rad, k) {        // a rust bloom: dark pits under an orange crust
+    const n = Math.ceil(14 * (k || 1));
+    for (let i = 0; i < n; i++) {
+      const a = r() * TAU, d = rad * Math.sqrt(r()), s = rad * (0.12 + r() * 0.4);
+      x.globalAlpha = 0.45 + r() * 0.5; x.fillStyle = pick(r, RUSTC);
+      x.beginPath(); x.ellipse(cx + Math.cos(a) * d, cy + Math.sin(a) * d * 0.75, s, s * (0.45 + r() * 0.55), r() * 3, 0, TAU); x.fill();
+    }
+    x.globalAlpha = 1;
+  }
+  function rustStreak(x, r, cx, y0, len, wd, a) {   // run-off: a thin tapering tear of rust down the paint
+    let px = cx;
+    for (let t = 0; t < 1; t += 0.05) {
+      px += (r() - 0.5) * wd * 0.35;
+      x.globalAlpha = a * (1 - t) * (0.7 + r() * 0.3); x.fillStyle = t < 0.15 ? '#5a2c15' : '#7a3f1e';
+      x.fillRect(px - wd * (1 - t * 0.7) / 2, y0 + len * t, wd * (1 - t * 0.7), len * 0.06);
+    }
+    x.globalAlpha = 1;
+  }
+  function chip(x, r, cx, cy, s, c) {               // a paint chip to bare steel: primer rim, rust core
+    x.fillStyle = rgb(c, 1.25); x.globalAlpha = 0.7;
+    x.beginPath(); for (let i = 0; i < 7; i++) { const a = i * TAU / 7, q = s * (0.7 + r() * 0.6); x.lineTo(cx + Math.cos(a) * q * 1.15, cy + Math.sin(a) * q * 1.15); } x.fill();
+    x.globalAlpha = 1; x.fillStyle = pick(r, RUSTC);
+    x.beginPath(); for (let i = 0; i < 7; i++) { const a = i * TAU / 7, q = s * (0.6 + r() * 0.6); x.lineTo(cx + Math.cos(a) * q, cy + Math.sin(a) * q); } x.fill();
+  }
+  // the common ground of every painted container surface: bleach, mottle, touch-up patches
+  function paintBase(x, w, h, r, c, ppm, patches) {
+    x.fillStyle = rgb(c, 1); x.fillRect(0, 0, w, h);
+    const g = x.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, 'rgba(255,240,225,0.12)'); g.addColorStop(0.5, 'rgba(255,240,225,0.02)'); g.addColorStop(1, 'rgba(30,20,10,0.12)');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 40; i++) {
+      const cx = r() * w, cy = r() * h, rad = (0.3 + r() * 1.2) * ppm, rg = x.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      const lt = r() < 0.5; rg.addColorStop(0, lt ? 'rgba(255,250,240,0.07)' : 'rgba(20,10,5,0.08)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
+      x.fillStyle = rg; x.fillRect(cx - rad, cy - rad, rad * 2, rad * 2);
+    }
+    for (let i = 0; i < patches; i++) {          // touch-up paint: a near match, rolled on in a block
+      const pw = rr(r, 0.25, 1.4) * ppm, ph = rr(r, 0.2, 0.9) * ppm, px = r() * (w - pw), py = r() * (h - ph);
+      x.fillStyle = rgb(c, rr(r, 0.82, 1.12)); x.globalAlpha = 0.9;
+      x.beginPath(); x.moveTo(px, py);
+      for (let t = 0; t <= 1; t += 0.1) x.lineTo(px + pw * t, py + (r() - 0.5) * 3);
+      for (let t = 0; t <= 1; t += 0.1) x.lineTo(px + pw + (r() - 0.5) * 3, py + ph * t);
+      for (let t = 1; t >= 0; t -= 0.1) x.lineTo(px + pw * t, py + ph + (r() - 0.5) * 3);
+      x.closePath(); x.fill(); x.globalAlpha = 1;
+    }
+  }
+  function weatherIt(x, w, h, r, c, ppm, rust, opt) {
+    const k = rust;
+    // run-off streaks from the top rail and from every seam above
+    for (let i = 0; i < 70 * k; i++) rustStreak(x, r, r() * w, rr(r, -0.02, 0.15) * ppm, rr(r, 0.2, 1.3) * ppm, rr(r, 0.01, 0.035) * ppm, rr(r, 0.25, 0.7));
+    // the bottom 25 cm, where water sits: a broken band of rust bloom
+    for (let i = 0; i < 26 * k; i++) {                    // clusters of small blooms, densest at the very bottom
+      const cx = r() * w, spread = rr(r, 0.1, 0.6) * ppm;
+      for (let j = 0; j < 14; j++) { const t = r(); rustBlot(x, r, cx + (r() - 0.5) * spread, h - t * t * 0.24 * ppm, rr(r, 0.006, 0.03) * ppm, 0.45); }
+    }
+    // chips, scuffs and scrapes to bare steel
+    for (let i = 0; i < 120 * k; i++) chip(x, r, r() * w, r() * h, rr(r, 0.004, 0.018) * ppm, c);
+    for (let i = 0; i < 10 * k; i++) {
+      const sx = r() * w, sy = (r() < 0.6 ? rr(r, 0.55, 0.95) : r()) * h, sl = rr(r, 0.2, 1.2) * ppm;
+      x.strokeStyle = r() < 0.5 ? rgb(c, 1.35) : '#7a4426'; x.lineWidth = rr(r, 1, 2.5); x.globalAlpha = 0.6;
+      x.beginPath(); x.moveTo(sx, sy); x.lineTo(sx + sl, sy + (r() - 0.5) * 0.1 * ppm); x.stroke(); x.globalAlpha = 1;
+    }
+    if (opt && opt.edges) for (const ex of opt.edges) for (let i = 0; i < 26 * k; i++) rustBlot(x, r, ex + (r() - 0.5) * 0.08 * ppm, r() * h, rr(r, 0.01, 0.05) * ppm, 0.5);
+    // grime: road dust darkening toward the bottom
+    const g = x.createLinearGradient(0, h * 0.55, 0, h); g.addColorStop(0, 'rgba(60,45,30,0)'); g.addColorStop(1, 'rgba(60,45,30,0.22)');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+  }
+  const OPERATORS = [['BRAZOS', 'BRZU'], ['PECOS LINE', 'PCLU'], ['LLANO', 'LLNU'], ['NUECES', 'NCSU'], ['SABINE', 'SBNU']];
   K.define('shipping_container', {
     size: [2.44, 2.59, 12.3],
     options: { color: null, highCube: false, doorsOpen: false, rust: 0.5 },
-    note: '40 ft ISO dry container, corrugated walls, corner castings, cargo doors with four locking bars on +z. Seeded paint.',
+    note: '40 ft ISO dry container: pressed trapezoid corrugation on sides, roof, front and doors, hollow ISO corner castings, four locking bars with cams, keepers and handles, hinges, CSC plate, seeded paint, touch-ups, dents, rust and markings.',
     make(o, r) {
       const root = new THREE.Group();
       const c = o.color != null ? o.color : pick(r, CONTAINER_COLOURS);
-      const L = 12.192, W = 2.438, H = o.highCube ? 2.896 : 2.591;
-      const body = paint(c, 0.62, 0.25), frame = paint(c, 0.55, 0.3);
-      const rustM = std('ctrust', { color: 0x5c3a22, roughness: 0.9 });
-      // side walls: vertical trapezoid corrugation, pitch 0.278 m, 36 mm deep
-      const side = corrugated(L - 0.3, H - 0.3, 0.278, 0.036, body);
-      for (const s of [-1, 1]) {
-        const m = side.clone(); m.rotation.y = s * Math.PI / 2; m.position.set(s * (W / 2 - 0.05), 0.16, 0);
-        if (s < 0) m.rotation.y = -Math.PI / 2;
-        root.add(m);
-      }
-      // front (blind) end, corrugated, at -z facing -z
-      const fe = corrugated(W - 0.3, H - 0.3, 0.3, 0.05, body); fe.rotation.y = Math.PI; fe.position.set(0, 0.16, -L / 2 + 0.08); root.add(fe);
-      // roof: shallow transverse dimples, a slab and a lip
-      tbox(W - 0.12, 0.03, L - 0.2, body, 0, H - 0.08, 0, root);
-      for (let z = -L / 2 + 0.4; z < L / 2 - 0.3; z += 0.46) cbox(W - 0.3, 0.012, 0.18, body, 0, H - 0.045, z, root);
-      // floor and cross members
-      tbox(W - 0.1, 0.16, L - 0.1, darkSteel(), 0, 0.0, 0, root);
-      // the frame: corner posts, top and bottom side rails, end rails
-      for (const sx of [-1, 1]) for (const sz of [-1, 1]) tbox(0.15, H - 0.2, 0.15, frame, sx * (W / 2 - 0.075), 0.1, sz * (L / 2 - 0.075), root, 0, 0.01);
+      const L = 12.192, W = 2.438, H = o.highCube ? 2.896 : 2.591, rust = Math.max(0, Math.min(1, o.rust));
+      const seed = (o.seed | 0) + 1, op = pick(r, OPERATORS), serial = String(100000 + Math.floor(r() * 899999)), check = String(Math.floor(r() * 10));
+      const ppmS = 2048 / (L - 0.32);
+      const sideTex = (doorLeft) => ctex('ctSide' + hex(c) + '|' + seed + '|' + rust + '|' + H + doorLeft, 2048, 512, (x, w, h) => {
+        const rs = K.rng(seed * 31 + (doorLeft ? 7 : 3)), ppm = ppmS;
+        paintBase(x, w, h, rs, c, ppm, Math.round(2 + rs() * 4));
+        x.fillStyle = 'rgba(232,218,204,0.08)'; x.fillRect(0, 0, w, h);             // chalked by the sun
+        const ink = (c === 0xd9d4c7) ? '#24272b' : 'rgba(242,240,232,0.92)';
+        strokeText(x, op[0], w * 0.5, h * 0.42, 0.42 * ppm, ink, 1.5);
+        const nx = doorLeft ? 0.95 * ppm : w - 0.95 * ppm;
+        strokeText(x, op[1] + ' ' + serial + ' ' + check, nx, 0.22 * ppm, 0.095 * ppm, ink, 1.3);
+        strokeText(x, o.highCube ? '45G1' : '42G1', nx + (doorLeft ? -0.33 : 0.33) * ppm, 0.4 * ppm, 0.085 * ppm, ink, 1.3);
+        weatherIt(x, w, h, rs, c, ppm, rust, { edges: [2, w - 2] });
+        speckle(x, w, h, seed + 11, 0.035);
+      });
+      const roofTex = ctex('ctRoof' + hex(c) + '|' + seed + '|' + rust, 1024, 256, (x, w, h) => {
+        const rs = K.rng(seed * 17 + 5), ppm = w / L;
+        paintBase(x, w, h, rs, c, ppm, 2);
+        x.fillStyle = 'rgba(255,245,230,0.10)'; x.fillRect(0, 0, w, h);          // a roof bakes paler
+        for (let i = 0; i < 12 * rust + 2; i++) {          // standing water rust: a soft stain, pitted
+          const cx = rs() * w, cy = rs() * h, rad = rr(rs, 0.12, 0.45) * ppm, g = x.createRadialGradient(cx, cy, 0, cx, cy, rad);
+          g.addColorStop(0, 'rgba(92,46,22,0.75)'); g.addColorStop(0.6, 'rgba(110,56,28,0.35)'); g.addColorStop(1, 'rgba(110,56,28,0)');
+          x.fillStyle = g; x.beginPath(); x.ellipse(cx, cy, rad, rad * rr(rs, 0.5, 0.9), rs() * 3, 0, TAU); x.fill();
+          for (let j = 0; j < 30; j++) { const a = rs() * TAU, d = rad * 0.8 * Math.sqrt(rs()); rustBlot(x, rs, cx + Math.cos(a) * d, cy + Math.sin(a) * d, rr(rs, 0.004, 0.02) * ppm, 0.3); }
+        }
+        for (let i = 0; i < 30; i++) { x.fillStyle = 'rgba(70,55,40,0.10)'; x.beginPath(); x.ellipse(rs() * w, rs() * h, rr(rs, 0.2, 0.8) * ppm, rr(rs, 0.1, 0.4) * ppm, 0, 0, TAU); x.fill(); }
+        for (let i = 0; i < 60 * rust; i++) chip(x, rs, rs() * w, rs() * h, rr(rs, 0.005, 0.02) * ppm, c);
+        speckle(x, w, h, seed + 3, 0.04);
+      });
+      const frameTex = ctex('ctFrame' + hex(c) + '|' + rust, 512, 512, (x, w, h) => {
+        const rs = K.rng(hex(c).length * 13 + 1), ppm = w;
+        paintBase(x, w, h, rs, c, ppm, 0);
+        x.fillStyle = 'rgba(0,0,0,0.06)'; x.fillRect(0, 0, w, h);
+        for (let i = 0; i < 40 * rust + 4; i++) chip(x, rs, rs() * w, rs() * h, rr(rs, 0.004, 0.016) * ppm, c);
+        for (let i = 0; i < 5 * rust; i++) rustBlot(x, rs, rs() * w, rs() * h, rr(rs, 0.02, 0.06) * ppm, 1);
+        speckle(x, w, h, 21, 0.04);
+      });
+      const doorTex = (s) => ctex('ctDoor' + hex(c) + '|' + seed + '|' + rust + '|' + H + s, 512, 1024, (x, w, h) => {
+        const rs = K.rng(seed * 43 + s + 2), ppm = w / 1.07;
+        paintBase(x, w, h, rs, c, ppm, Math.round(rs() * 2));
+        const ink = (c === 0xd9d4c7) ? '#24272b' : 'rgba(242,240,232,0.92)';
+        if (s > 0) {                                  // right leaf: the owner code and number, size type
+          strokeText(x, op[1], w * 0.5, 0.2 * ppm, 0.1 * ppm, ink, 1.35);
+          strokeText(x, serial + ' ' + check, w * 0.5, 0.36 * ppm, 0.1 * ppm, ink, 1.35);
+          strokeText(x, o.highCube ? '45G1' : '42G1', w * 0.5, 0.52 * ppm, 0.085 * ppm, ink, 1.35);
+        } else {                                      // left leaf: the weight table
+          const rows = [['MAX GROSS', '30480 KG'], ['TARE', o.highCube ? '3900 KG' : '3750 KG'], ['NET', o.highCube ? '26580 KG' : '26730 KG'], ['CU CAP', o.highCube ? '76.3 CU.M' : '67.7 CU.M']];
+          rows.forEach((rw, i) => { strokeText(x, rw[0], w * 0.3, (0.32 + i * 0.075) * ppm, 0.034 * ppm, ink, 1.2); strokeText(x, rw[1], w * 0.68, (0.32 + i * 0.075) * ppm, 0.034 * ppm, ink, 1.2); });
+          strokeText(x, op[0], w * 0.5, 0.15 * ppm, 0.07 * ppm, ink, 1.35);
+        }
+        weatherIt(x, w, h, rs, c, ppm, rust * 0.9, { edges: [4, w - 4] });
+        speckle(x, w, h, seed + s + 19, 0.035);
+      });
+      const skinS = (dl) => K.mat('cont-corten-paint', { color: 0xffffff, map: sideTex(dl), roughness: 0.42, metalness: 0.0 });
+      const roofM = K.mat('cont-corten-paint', { color: 0xffffff, map: roofTex, roughness: 0.6, metalness: 0.04 });
+      const frame = K.mat('cont-frame-paint', { color: 0xffffff, map: frameTex, roughness: 0.52, metalness: 0.05 });
+      const castM = K.mat('cont-casting-cast-steel-paint', { color: 0xffffff, map: frameTex, roughness: 0.62, metalness: 0.05 });
+      const galvM = K.mat('galv-steel', { color: 0xa7aaab, metalness: 0.8, roughness: 0.48 });
+      const gasket = K.mat('rubber-gasket', { color: 0x161617, roughness: 0.85 });
+      const under = K.mat('cont-underframe-steel', { color: 0x1d1c1b, roughness: 0.8, metalness: 0.2 });
+      const fbox = (w, h, d, x, y0, z, parent, m) => tbox(w, h, d, m || frame, x, y0, z, parent || root, 1.0);
+
+      // ---- base frame: castings, bottom side rails (C channel), cross members, front and rear sills
+      const cast = (sx, sz, top) => cornerCasting(root, castM, sx * (W / 2 - 0.081), top ? H - 0.118 : 0, sz * (L / 2 - 0.089), sx, sz, top);
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) { cast(sx, sz, false); cast(sx, sz, true); }
+      const zi = L / 2 - 0.178;
       for (const sx of [-1, 1]) {
-        tbox(0.1, 0.16, L - 0.3, frame, sx * (W / 2 - 0.05), H - 0.16, 0, root, 0, 0.01);
-        tbox(0.12, 0.18, L - 0.3, frame, sx * (W / 2 - 0.06), 0.02, 0, root, 0, 0.01);
+        fbox(0.012, 0.16, 2 * zi, sx * (W / 2 - 0.006), 0.012, 0);                  // C channel web
+        for (const y of [0.012, 0.158]) fbox(0.05, 0.014, 2 * zi, sx * (W / 2 - 0.03), y, 0);
+        // top side rail, a 60 x 100 tube
+        fbox(0.06, 0.1, 2 * zi, sx * (W / 2 - 0.032), H - 0.112, 0);
       }
-      for (const sz of [-1, 1]) { tbox(W - 0.2, 0.18, 0.14, frame, 0, H - 0.18, sz * (L / 2 - 0.07), root, 0, 0.01);
-        tbox(W - 0.2, 0.2, 0.14, frame, 0, 0.02, sz * (L / 2 - 0.07), root, 0, 0.01); }
-      // forklift-free: gooseneck tunnel hint and corner castings with their oval holes
-      const cast = std('casting', { color: 0x2d2e30, metalness: 0.5, roughness: 0.6 });
-      for (const sx of [-1, 1]) for (const sz of [-1, 1]) for (const y of [0, H - 0.118]) {
-        tbox(0.178, 0.118, 0.162, cast, sx * (W / 2 - 0.089), y, sz * (L / 2 - 0.081), root, 0, 0.008);
-        const hol = new THREE.Mesh(new THREE.CircleGeometry(0.03, 12), hole()); hol.scale.set(1.9, 1, 1);
-        hol.position.set(sx * (W / 2 + 0.001), y + 0.06, sz * (L / 2 - 0.081)); hol.rotation.y = sx * Math.PI / 2; root.add(hol);
-        const h2 = hol.clone(); h2.rotation.y = 0; h2.position.set(sx * (W / 2 - 0.089), y + 0.06, sz * (L / 2 + 0.001));
-        if (sz < 0) h2.rotation.y = Math.PI; root.add(h2);
+      tbox(W - 0.1, 0.12, L - 0.4, under, 0, 0.03, 0, root);
+      for (let z = -L / 2 + 0.5; z < L / 2 - 0.4; z += 0.6) cbox(W - 0.06, 0.12, 0.05, under, 0, 0.09, z, root);
+      // front end: posts, rails, corrugated wall
+      for (const sx of [-1, 1]) fbox(0.15, H - 0.236, 0.11, sx * (W / 2 - 0.08), 0.118, -L / 2 + 0.06);
+      fbox(W - 0.32, 0.16, 0.1, 0, 0.012, -L / 2 + 0.06); fbox(W - 0.32, 0.12, 0.1, 0, H - 0.13, -L / 2 + 0.06);
+      {
+        const fh = H - 0.31, g = profileSheet(trapProfile(W - 0.3, 0.33, 0.045, 0.33, 0.1, 0.006), fh, 10, dentField(r, W - 0.3, fh, 0.5, 2));
+        const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (W - 0.3), uv.getY(i) * fh);
+        const m = new THREE.Mesh(g, frame); m.rotation.y = Math.PI; m.position.set(0, 0.172, -L / 2 + 0.04); root.add(m);
       }
-      // cargo doors at +z: two leaves, horizontal door corrugation, 4 locking bars with cams and handles
-      const dz = L / 2 - 0.01, doorH = H - 0.4, leafW = (W - 0.3) / 2;
+      // ---- side walls: 278 mm pitch, 36 mm deep, chamfered bends, dented
+      const sh = H - 0.172 - 0.112, sl = 2 * zi + 0.06;
       for (const s of [-1, 1]) {
-        const leaf = grp(root);
-        const hingeX = s * (W / 2 - 0.15);
-        leaf.position.set(hingeX, 0.2, dz);
-        const open = o.doorsOpen ? s * 1.75 : 0;
-        leaf.rotation.y = open;
-        const cx = -s * leafW / 2;
-        tbox(leafW, doorH, 0.04, frame, cx, 0, 0, leaf, 0, 0.012);
-        for (let k = 0; k < 5; k++) {
-          const y = 0.25 + k * (doorH - 0.5) / 4;
-          cbox(leafW - 0.16, 0.2, 0.03, body, cx, y, 0.03, leaf, [0.0, 0, 0]);
-        }
-        for (const bx of [0.3, 0.8]) {                                   // two locking bars per leaf
-          const px = cx + (-s) * (bx - leafW / 2) * -1;
-          const lx = -s * bx;
-          bar([lx, -0.02, 0.08], [lx, doorH + 0.02, 0.08], 0.017, galv(), leaf, 8);
-          for (const y of [0.35, doorH - 0.35]) cbox(0.08, 0.1, 0.05, galv(), lx, y, 0.06, leaf);
-          cbox(0.06, 0.06, 0.08, galv(), lx, -0.05, 0.06, leaf); cbox(0.06, 0.06, 0.08, galv(), lx, doorH + 0.05, 0.06, leaf);
-          // handle, lying flat against the door at 1.1 m, swung toward the leaf's centre
-          bar([lx, 1.05, 0.09], [lx + s * 0.34 * -1, 1.05, 0.11], 0.012, galv(), leaf, 6);
-          cbox(0.05, 0.1, 0.04, galv(), lx + s * -0.34, 1.05, 0.1, leaf);
-        }
-        for (const y of [0.2, doorH * 0.5, doorH - 0.2]) hcyl(0.03, 0.14, galv(), -s * 0.02, y, 0.03, 'y', 8, leaf);
-        // gasket shadow line
-        cbox(0.02, doorH, 0.02, rubber(), -s * (leafW - 0.01), doorH / 2, 0.01, leaf);
+        const g = profileSheet(trapProfile(sl, 0.278, 0.036, 0.26, 0.24, 0.007), sh, 26, dentField(r, sl, sh, 1, 3 + Math.floor(r() * 4)));
+        const m = new THREE.Mesh(g, skinS(s > 0)); m.rotation.y = s * Math.PI / 2; m.position.set(s * (W / 2 - 0.012), 0.172, 0); root.add(m);
       }
-      // door header: the CSC plate and a little rust at the sill
-      cbox(0.24, 0.13, 0.01, std('cscplate', { color: 0xb8b6ad, metalness: 0.6, roughness: 0.4 }), -0.55, 1.6, dz + 0.06, root);
-      if (o.rust > 0) {
-        const nR = Math.floor(4 + o.rust * 10);
-        for (let i = 0; i < nR; i++) {
-          const zz = rr(r, -L / 2 + 0.3, L / 2 - 0.3), s = r() < 0.5 ? -1 : 1, w = rr(r, 0.08, 0.5) * o.rust;
-          const m = new THREE.Mesh(new THREE.PlaneGeometry(w, rr(r, 0.03, 0.12)), rustM);
-          m.position.set(s * (W / 2 + 0.002), rr(r, 0.2, 0.28), zz); m.rotation.y = s * Math.PI / 2; root.add(m);
-          if (r() < 0.5) { const st = new THREE.Mesh(new THREE.PlaneGeometry(0.02, rr(r, 0.2, 0.9)), rustM);
-            st.position.set(s * (W / 2 + 0.003), H - 0.4 - rr(r, 0, 0.3), zz); st.rotation.y = s * Math.PI / 2; root.add(st); }
+      // ---- roof: shallow transverse pressings between the top rails, a little sag and a few dents
+      {
+        const rw = W - 0.12, g = profileSheet(trapProfile(L - 0.36, 0.23, 0.018, 0.3, 0.22, 0.006), rw, 8, dentField(r, L - 0.36, rw, 0.8, 4));
+        g.applyMatrix4(new THREE.Matrix4().set(0, 1, 0, -rw / 2, 0, 0, 1, H - 0.014, 1, 0, 0, 0, 0, 0, 0, 1));
+        g.computeVertexNormals();
+        root.add(new THREE.Mesh(g, roofM));
+        fbox(W - 0.2, 0.012, L - 0.36, 0, H - 0.06, 0, root, under);                  // roof bows show as a shadow
+      }
+      // ---- rear end: corner posts (open section), header with its plate, sill
+      const zr = L / 2, postW = 0.15;
+      for (const sx of [-1, 1]) {
+        fbox(postW, H - 0.236, 0.035, sx * (W / 2 - postW / 2), 0.118, zr - 0.0175);
+        fbox(0.02, H - 0.236, 0.14, sx * (W / 2 - 0.01), 0.118, zr - 0.09);
+        fbox(0.02, H - 0.236, 0.1, sx * (W / 2 - postW + 0.01), 0.118, zr - 0.07);
+      }
+      fbox(W - 0.32, 0.17, 0.06, 0, H - 0.2, zr - 0.03);                              // header
+      fbox(W - 0.32, 0.03, 0.12, 0, H - 0.2, zr - 0.06);
+      fbox(W - 0.32, 0.12, 0.05, 0, 0.012, zr - 0.025);                               // sill
+      fbox(W - 0.32, 0.02, 0.15, 0, 0.11, zr - 0.075);
+
+      // ---- cargo doors
+      const zd = zr - 0.085, y0 = 0.135, doorH = H - 0.2 - y0 - 0.008, open = W - 2 * postW, leafW = open / 2 - 0.004;
+      const nRib = 5, ribP = (doorH - 0.16) / nRib;
+      for (const s of [-1, 1]) {
+        const hingeX = s * (W / 2 - postW + 0.004);
+        const hinge = grp(root); hinge.position.set(hingeX, y0, zd);
+        hinge.rotation.y = o.doorsOpen ? s * 1.8 : 0;
+        const leaf = grp(hinge); leaf.position.x = -s * leafW / 2;          // leaf centred, face at z = 0
+        const dm = K.mat('cont-corten-paint', { color: 0xffffff, map: doorTex(s), roughness: 0.55, metalness: 0.04 });
+        // pressed panel with horizontal ribs: profile along y
+        const pg = profileSheet(trapProfile(doorH - 0.12, ribP, 0.03, 0.42, 0.12, 0.006), leafW - 0.1, 4, dentField(r, doorH, leafW, 0.5, 1));
+        pg.applyMatrix4(new THREE.Matrix4().set(0, -1, 0, (leafW - 0.1) / 2, 1, 0, 0, doorH / 2, 0, 0, 1, 0, 0, 0, 0, 1));
+        const puv = pg.attributes.uv, pp = pg.attributes.position;
+        for (let i = 0; i < puv.count; i++) puv.setXY(i, (pp.getX(i) + leafW / 2) / leafW, pp.getY(i) / doorH);
+        leaf.add(new THREE.Mesh(pg, dm));
+        // leaf frame: a rectangular tube all round, closing stile a little deeper
+        const lf = (w, h, d, x, yb, z) => tbox(w, h, d, dm, x, yb, z, leaf, 1.07);
+        lf(leafW, 0.07, 0.06, 0, 0, -0.01); lf(leafW, 0.07, 0.06, 0, doorH - 0.07, -0.01);
+        lf(0.06, doorH - 0.14, 0.06, s * (leafW / 2 - 0.03), 0.07, -0.01);
+        lf(0.05, doorH - 0.14, 0.07, -s * (leafW / 2 - 0.025), 0.07, -0.005);
+        for (const m of leaf.children) if (m.geometry && m.geometry.attributes.uv && m !== leaf.children[0]) {
+          const uv = m.geometry.attributes.uv, p = m.geometry.attributes.position;
+          for (let i = 0; i < uv.count; i++) uv.setXY(i, (p.getX(i) + m.position.x + leafW / 2) / leafW, (p.getY(i) + m.position.y) / doorH);
+        }
+        // the J seal: a black line round the leaf and at the centre meeting
+        cbox(0.016, doorH, 0.03, gasket, -s * (leafW / 2 + 0.002), doorH / 2, -0.02, leaf);
+        cbox(leafW, 0.014, 0.03, gasket, 0, doorH + 0.004, -0.02, leaf);
+        cbox(0.014, doorH, 0.03, gasket, s * (leafW / 2 + 0.004), doorH / 2, -0.02, leaf);
+        // hinges: welded blades on the leaf, knuckles and pins on the post
+        for (const hy of [0.22, 0.8, doorH - 0.8, doorH - 0.22]) {
+          cbox(0.17, 0.055, 0.022, castM, s * (leafW / 2 - 0.055), hy, 0.045, leaf);
+          const kn = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.075, 12), galvM); kn.position.set(s * (leafW / 2 + 0.01), hy, 0.045); leaf.add(kn);
+          const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.01, 0.105, 8), galvM); pin.position.copy(kn.position); leaf.add(pin);
+          cbox(0.06, 0.07, 0.04, frame, s * (leafW / 2 + 0.035), hy, 0.03, leaf);
+        }
+        // four locking bars per door pair: two per leaf, on guides, cams top and bottom, a handle each
+        const barZ = 0.058;
+        for (const bu of [0.26, leafW - 0.2]) {
+          const bx = s * (leafW / 2 - bu);
+          bar([bx, -0.075, barZ], [bx, doorH + 0.075, barZ], 0.0135, galvM, leaf, 12);
+          for (const gy of [0.36, doorH * 0.52, doorH - 0.36]) {                 // guide brackets
+            cbox(0.075, 0.045, 0.008, galvM, bx, gy, barZ + 0.02, leaf);
+            for (const e of [-1, 1]) cbox(0.008, 0.045, 0.05, galvM, bx + e * 0.034, gy, barZ - 0.005, leaf);
+            cbox(0.035, 0.012, 0.012, galvM, bx, gy + 0.03, barZ, leaf);          // collar stop
+          }
+          for (const e of [-1, 1]) {                                                // cams and keepers
+            const cy = e < 0 ? -0.06 : doorH + 0.06;
+            const cam = cbox(0.06, 0.032, 0.026, galvM, bx + 0.018, cy, barZ, leaf); cam.rotation.y = 0.25;
+            cbox(0.09, 0.05, 0.008, castM, bx, cy, barZ - 0.032, leaf);
+            for (const k of [-1, 1]) cbox(0.012, 0.05, 0.07, castM, bx + k * 0.045, cy, barZ, leaf);
+            cbox(0.09, 0.012, 0.07, castM, bx, cy + e * 0.025, barZ, leaf);
+          }
+          // handle hub at 1.1 m, a pressed handle swung flat toward the hinge, held in its retainer
+          const inner = bu > 0.5, hy = (inner ? 1.22 : 1.02) - y0;
+          const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.026, 0.09, 12), galvM); hub.position.set(bx, hy, barZ); leaf.add(hub);
+          const hd = inner ? s : -s, hl = 0.3;                                      // inner swings to the hinge, outer to the seam
+          cbox(hl, 0.032, 0.012, galvM, bx + hd * hl / 2, hy, barZ + 0.032, leaf);
+          cbox(0.06, 0.028, 0.03, galvM, bx + hd * hl, hy, barZ + 0.022, leaf);     // grip end
+          cbox(0.05, 0.075, 0.012, castM, bx + hd * (hl + 0.02), hy, barZ - 0.02, leaf);  // retainer plate
+          cbox(0.02, 0.04, 0.05, galvM, bx + hd * (hl + 0.045), hy + 0.035, barZ + 0.005, leaf); // catch
+          const seal = new THREE.Mesh(new THREE.TorusGeometry(0.012, 0.003, 4, 10), galvM); seal.position.set(bx + hd * (hl - 0.03), hy - 0.03, barZ + 0.035); leaf.add(seal);
+        }
+        if (s < 0) {                                                                // CSC and customs plates
+          const plate = K.mat('csc-plate-stainless', { color: 0xc9c9c2, metalness: 0.75, roughness: 0.38 });
+          const plateInk = K.mat('csc-plate-stamped-steel', { color: 0x4a4a46, metalness: 0.6, roughness: 0.5 });
+          const px = 0.12, py = 1.45 - y0;
+          cbox(0.26, 0.15, 0.004, plate, px, py, 0.003, leaf);
+          for (let i = 0; i < 6; i++) cbox(0.2 - (i % 3) * 0.04, 0.007, 0.002, plateInk, px - 0.01, py + 0.05 - i * 0.018, 0.0055, leaf);
+          for (const e of [[-1, -1], [-1, 1], [1, -1], [1, 1]]) {
+            const rv = new THREE.Mesh(new THREE.SphereGeometry(0.006, 8, 4, 0, TAU, 0, Math.PI / 2), plate);
+            rv.rotation.x = Math.PI / 2; rv.position.set(px + e[0] * 0.115, py + e[1] * 0.06, 0.005); leaf.add(rv);
+          }
+          cbox(0.16, 0.08, 0.004, plate, px + 0.02, py - 0.14, 0.003, leaf);
+          for (let i = 0; i < 3; i++) cbox(0.12, 0.006, 0.002, plateInk, px + 0.02, py - 0.12 - i * 0.017, 0.0055, leaf);
         }
       }
-      if (o.doorsOpen) tbox(W - 0.3, H - 0.4, 0.02, hole(), 0, 0.2, dz - 0.3, root);
+      if (o.doorsOpen) tbox(W - 0.32, H - 0.4, 0.02, hole(), 0, 0.2, zr - 0.4, root);
       return bake(root);
     },
   });
@@ -739,59 +984,258 @@ export function install(K, THREE, TXT) {
   function buildChiller(o, r, low) {
     const root = new THREE.Group();
     const col = o.color != null ? o.color : pick(r, [0xc9c4b5, 0xbfc3c4, 0xd6d3c8, 0xa9b0b3]);
-    const skin = paint(col, 0.45, 0.25), frame = darkSteel();
-    const n = o.fans || 6, L = n * 1.9 + 0.7, W = 2.26, H = 2.5, cy = 1.25;
-    tbox(L, 0.2, W, frame, 0, 0, 0, root);                                            // channel base
-    for (const s of [-1, 1]) cbox(L, 0.14, 0.02, frame, 0, 0.1, s * (W / 2 + 0.01), root);
-    // lower section: louvred panels over compressors, a couple removed to show the machinery
+    const n = o.fans || 6, L = n * 1.9 + 0.7, W = 2.26, H = 2.5, cy = 1.25, bayW = (L - 0.7) / n, x0 = -L / 2 + 0.35;
+    const skin = K.mat('chiller-cabinet-paint', { color: col, roughness: 0.46, metalness: 0.05 });
+    const deckM = K.mat('chiller-deck-panel-paint', { color: col, roughness: 0.5, metalness: 0.05 });
+    const frame = K.mat('chiller-base-frame-steel-paint', { color: 0x2a2c2e, roughness: 0.62, metalness: 0.2 });
+    const galvM = K.mat('galv-steel', { color: 0xa9adb0, metalness: 0.82, roughness: 0.44 });
+    const copper = K.mat('coil-return-bend-copper', { color: 0xb06a42, metalness: 0.9, roughness: 0.38 });
+    // rough and non metallic on purpose: seen edge on, a fin pack shows fin after fin, never a mirror of the sky,
+    // and a smooth metal fin at grazing incidence returns only the environment (a navy slab, first render)
+    const finM = K.mat('coil-fin-alu', { color: 0xe6dccb, metalness: 0.0, roughness: 0.85, side: THREE.DoubleSide });
+    const foam = K.mat('pipe-insulation-rubber-foam', { color: 0x151617, roughness: 0.92 });
+    const dark = hole();
+    // dust and streaks that a louvre bank collects; tile 0.5 m
+    const dustTex = ctex('chDust' + hex(col), 256, 256, (x, w, h) => {
+      const rs = K.rng(91);
+      x.fillStyle = rgb(col, 1); x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 60; i++) { x.globalAlpha = rr(rs, 0.04, 0.14); x.fillStyle = rs() < 0.7 ? '#5d554a' : '#2e2b28';
+        const sx = rs() * w, sl = rr(rs, 0.2, 1) * h; x.fillRect(sx, rs() * h * 0.3, rr(rs, 1, 4), sl); }
+      for (let i = 0; i < 25; i++) { x.globalAlpha = rr(rs, 0.04, 0.1); x.fillStyle = '#6a604f'; x.beginPath(); x.ellipse(rs() * w, rs() * h, rr(rs, 8, 40), rr(rs, 4, 18), 0, 0, TAU); x.fill(); }
+      x.globalAlpha = 1; speckle(x, w, h, 17, 0.06);
+    });
+    const louvM = K.mat('chiller-louvre-blade-paint', { color: 0xffffff, map: dustTex, roughness: 0.55, metalness: 0.05 });
+    const louvF = K.mat('chiller-louvre-frame-paint', { color: 0xffffff, map: dustTex, roughness: 0.5, metalness: 0.05 });
+    // the coil core seen between fins: rows of copper tubes through dark fin pack, tile 0.1016 m (4 rows)
+    const coreTex = ctex('chCore', 128, 128, (x, w, h) => {
+      x.fillStyle = '#3c4143'; x.fillRect(0, 0, w, h);
+      for (let j = 0; j < 4; j++) {
+        const y = (j + 0.5) * h / 4, g = x.createLinearGradient(0, y - 7, 0, y + 7);
+        g.addColorStop(0, 'rgba(60,40,28,0)'); g.addColorStop(0.4, 'rgba(110,70,46,0.6)'); g.addColorStop(0.5, 'rgba(150,104,74,0.7)'); g.addColorStop(0.62, 'rgba(70,44,30,0.5)'); g.addColorStop(1, 'rgba(40,25,18,0)');
+        x.fillStyle = g; x.fillRect(0, y - 5, w, 10);
+      }
+      for (let i = 0; i < w; i += 3) { x.fillStyle = 'rgba(150,158,160,0.25)'; x.fillRect(i, 0, 1, h); }
+    });
+    const coreM = K.mat('coil-core-copper-fin', { color: 0xffffff, map: coreTex, roughness: 0.7, metalness: 0.15 });
+    const bolts = [];                                            // [object, local position, local normal]
+    const bolt = (obj, x, y, z, nx, ny, nz) => bolts.push([obj, new V3(x, y, z), new V3(nx, ny, nz)]);
+
+    // ---- channel base: C-section rails, cross members, lifting holes
     for (const s of [-1, 1]) {
-      const nb = n;
-      for (let i = 0; i < nb; i++) {
-        const x = -L / 2 + 0.35 + (i + 0.5) * (L - 0.7) / nb, open = false;
-        if (open) continue;
-        louvrePanel(root, x, 0.25, s * (W / 2), (L - 0.7) / nb - 0.06, cy - 0.3, s, col, true);
+      const z = s * (W / 2 - 0.006);
+      tbox(L, 0.2, 0.012, frame, 0, 0, z, root);
+      for (const y of [0, 0.188]) tbox(L, 0.012, 0.075, frame, 0, y, s * (W / 2 - 0.0375), root);
+      for (let k = 0; k < 4; k++) {
+        const lx = -L / 2 + 0.6 + k * (L - 1.2) / 3, lh = new THREE.Mesh(new THREE.CircleGeometry(0.035, 16), dark);
+        lh.scale.set(1.8, 1, 1); lh.position.set(lx, 0.1, s * (W / 2 + 0.001)); lh.rotation.y = s < 0 ? Math.PI : 0; root.add(lh);
       }
+      for (let x = -L / 2 + 0.2; x < L / 2; x += 0.5) bolt(root, x, 0.194, s * (W / 2 - 0.04), 0, 1, 0);
     }
-    tbox(L - 0.1, cy - 0.25, W - 0.3, hole(), 0, 0.2, 0, root);
-    if (!low) {                                                                        // what shows through
-      for (const x of [-L / 2 + 2.6, -L / 2 + 4.2]) {
-        hcyl(0.26, 0.9, std('compr', { color: 0x4b5a63, metalness: 0.4, roughness: 0.5 }), x, 0.65, W / 2 - 0.45, 'x', 18, root);
-        cyl(0.08, 0.08, 0.5, std('copper', { color: 0xa0613a, metalness: 0.9, roughness: 0.35 }), x + 0.3, 0.8, W / 2 - 0.4, 10, root);
-      }
-      hcyl(0.3, L * 0.55, blackPaint(), -L * 0.05, 0.62, W / 2 - 0.95, 'x', 20, root);   // insulated evaporator
+    for (let x = -L / 2 + 0.3; x < L / 2; x += 1.2) tbox(0.08, 0.16, W - 0.1, frame, x, 0.02, 0, root);
+    tbox(L - 0.1, 0.02, W - 0.1, frame, 0, 0.18, 0, root);
+
+    // ---- lower section: compressors behind a bank of real louvre blades, one panel per bay
+    tbox(L - 0.1, cy - 0.25, W - 0.3, dark, 0, 0.2, 0, root);
+    for (const x of [-L / 2 + 2.6, -L / 2 + 4.2, L / 2 - 3.6]) {
+      hcyl(0.26, 0.9, K.mat('screw-compressor-cast-iron-paint', { color: 0x44545e, metalness: 0.3, roughness: 0.55 }), x, 0.68, W / 2 - 0.45, 'x', 18, root);
+      cyl(0.04, 0.04, 0.5, copper, x + 0.3, 0.8, W / 2 - 0.4, 10, root);
     }
-    // V coils: two inclined coil faces per side meeting at the fan deck
-    const coilH = H - cy - 0.05;
+    hcyl(0.3, L * 0.55, foam, -L * 0.05, 0.62, W / 2 - 0.95, 'x', 20, root);       // insulated evaporator
     for (const s of [-1, 1]) {
-      const c = new THREE.Mesh(new THREE.PlaneGeometry(L - 0.5, coilH / Math.cos(0.3)), coilMat());
-      const uv = c.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (L - 0.5) / 0.25, uv.getY(i) * coilH / 0.25);
-      c.position.set(0, cy + coilH / 2, s * (W / 2 - 0.2)); c.rotation.set(s * 0.18, s < 0 ? Math.PI : 0, 0); root.add(c);
-    }
-    tbox(L - 0.4, coilH, W - 0.9, hole(), 0, cy, 0, root);
-    // corner posts, vertical dividers between fan bays
-    for (const sx of [-1, 1]) for (const sz of [-1, 1]) tbox(0.08, H - 0.2, 0.08, skin, sx * (L / 2 - 0.04), 0.2, sz * (W / 2 - 0.04), root);
-    for (let i = 0; i <= n; i++) for (const sz of [-1, 1]) tbox(0.06, coilH, 0.05, skin, -L / 2 + 0.35 + i * (L - 0.7) / n, cy, sz * (W / 2 - 0.1), root);
-    for (const sz of [-1, 1]) tbox(L, 0.08, 0.1, skin, 0, cy - 0.04, sz * (W / 2 - 0.05), root);
-    // fan deck and two rows of fans
-    tbox(L, 0.08, W, skin, 0, H - 0.08, 0, root);
-    const fr = 0.43;
-    for (let i = 0; i < n; i++) for (const sz of [-0.53, 0.53]) {
-      const x = -L / 2 + 0.35 + (i + 0.5) * (L - 0.7) / n;
-      fanUnit(root, x, H - 0.06, sz, fr, 0.28, skin);
-    }
-    // end panels, control box with two doors, lifting holes
-    for (const s of [-1, 1]) tbox(0.04, H - 0.28, W - 0.1, skin, s * (L / 2 - 0.02), 0.2, 0, root);
-    const cb = tbox(0.45, 1.8, W - 0.3, skin, -L / 2 - 0.22, 0.25, 0, root, 0, 0.02);
-    if (!low) {
-      for (const z of [-0.45, 0.45]) {
-        cbox(0.02, 1.6, 0.86, skin, -L / 2 - 0.45, 1.15, z, root);
-        cbox(0.04, 0.14, 0.03, chrome(), -L / 2 - 0.47, 1.2, z + 0.34 * Math.sign(z), root);
+      for (let i = 0; i < n; i++) {
+        const bx = x0 + (i + 0.5) * bayW, pw = bayW - 0.07, ph = cy - 0.32, py = 0.24, z = s * (W / 2 - 0.02);
+        const g = grp(root); g.position.set(bx, py, z); if (s < 0) g.rotation.y = Math.PI;
+        tbox(pw + 0.06, 0.04, 0.04, louvF, 0, ph, 0, g, 0.5); tbox(pw + 0.06, 0.04, 0.04, louvF, 0, -0.04, 0, g, 0.5);
+        tbox(0.04, ph, 0.04, louvF, -pw / 2 - 0.01, 0, 0, g, 0.5); tbox(0.04, ph, 0.04, louvF, pw / 2 + 0.01, 0, 0, g, 0.5);
+        const nb = Math.floor(ph / 0.072);
+        for (let k = 0; k < nb; k++) {
+          const m = tbox(pw, 0.085, 0.005, louvM, 0, (k + 0.5) * ph / nb - 0.0425, -0.005, g, 0.5);
+          m.rotation.x = 0.78;
+        }
+        tbox(0.03, ph, 0.03, louvF, 0, 0, -0.015, g, 0.5);                       // the mid stiffener
+        for (const e of [-1, 1]) for (const yy of [0.06, ph / 2, ph - 0.06]) bolt(g, e * (pw / 2 + 0.01), yy, 0.02, 0, 0, 1);
       }
-      cbox(0.02, 0.12, 0.2, std('screen', { color: 0x0e1a22, emissive: 0x2a8f6a, emissiveIntensity: 0.4 }), -L / 2 - 0.47, 1.6, -0.45, root);
-      pipe([[L / 2 - 0.3, 0.7, W / 2 + 0.05], [L / 2 + 0.3, 0.7, W / 2 + 0.05], [L / 2 + 0.3, 0.0, W / 2 + 0.05]], 0.1, std('chwpipe', { color: 0x2e3f58, metalness: 0.3, roughness: 0.5 }), root);
-      pipe([[L / 2 - 0.3, 0.7, W / 2 - 0.45], [L / 2 + 0.6, 0.7, W / 2 - 0.45], [L / 2 + 0.6, 0.0, W / 2 - 0.45]], 0.1, std('chwpipe', { color: 0x2e3f58, metalness: 0.3, roughness: 0.5 }), root);
-      for (const z of [W / 2 + 0.05, W / 2 - 0.45]) flange(0.15, L / 2 - 0.05, 0.7, z, 'x', galv(), root);
-      cbox(0.24, 0.16, 0.005, std('placard', { color: 0xf1efe8, roughness: 0.6 }), -L / 2 + 1.0, 1.5, W / 2 + 0.01, root);
+    }
+    // posts at every bay line, the lower belt rail
+    for (let i = 0; i <= n; i++) for (const s of [-1, 1]) {
+      const x = x0 + i * bayW;
+      tbox(0.07, H - 0.28, 0.07, skin, x, 0.2, s * (W / 2 - 0.035), root);
+      for (let y = 0.35; y < cy; y += 0.3) bolt(root, x, y, s * W / 2, 0, 0, s);
+    }
+    for (const sx of [-1, 1]) for (const s of [-1, 1]) tbox(0.09, H - 0.28, 0.09, skin, sx * (L / 2 - 0.045), 0.2, s * (W / 2 - 0.045), root);
+    for (const s of [-1, 1]) {
+      tbox(L, 0.1, 0.09, skin, 0, cy - 0.06, s * (W / 2 - 0.045), root);
+      for (let x = -L / 2 + 0.15; x < L / 2; x += 0.3) bolt(root, x, cy - 0.01, s * W / 2, 0, 0, s);
+    }
+
+    // ---- V coils: a recessed fin pack between the bay posts, tilted out at the top
+    const tilt = 0.18, coilH = H - cy - 0.1, cl = coilH / Math.cos(tilt), pitch = 0.016, fd = 0.055, rec = 0.025;
+    const bends = [], P = [], Nn = [], U = [];
+    const quad = (a, b, c, d, nx) => {
+      P.push(...a, ...b, ...c, ...a, ...c, ...d);
+      for (let i = 0; i < 6; i++) Nn.push(nx, 0, 0);
+      U.push(0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1);
+    };
+    for (const s of [-1, 1]) {
+      const gs = grp(root); gs.position.set(0, cy + 0.02, s * (W / 2 - 0.125)); if (s < 0) gs.rotation.y = Math.PI;
+      const gt = grp(gs); gt.rotation.x = tilt;
+      const finStart = P.length;
+      for (let i = 0; i < n; i++) {
+        const bx = x0 + (i + 0.5) * bayW, fw = bayW - 0.08;
+        for (let xf = bx - fw / 2 + pitch / 2; xf < bx + fw / 2; xf += pitch) {
+          const xj = xf + (r() - 0.5) * 0.003;
+          quad([xj, 0.03, -rec], [xj, 0.03, -rec - fd], [xj, cl - 0.03, -rec - fd], [xj, cl - 0.03, -rec], 1);
+        }
+        const core = new THREE.Mesh(new THREE.PlaneGeometry(fw, cl - 0.06), coreM);
+        const uv = core.geometry.attributes.uv; for (let k = 0; k < uv.count; k++) uv.setXY(k, uv.getX(k) * fw / 0.1016, uv.getY(k) * (cl - 0.06) / 0.1016);
+        core.position.set(bx, cl / 2, -rec - fd - 0.002); gt.add(core);
+        // the coil's galvanised casing: top and bottom channels, side plates at the bay lines
+        tbox(fw + 0.02, 0.035, fd + rec, galvM, bx, 0, -(fd + rec) / 2, gt);
+        tbox(fw + 0.02, 0.035, fd + rec, galvM, bx, cl - 0.035, -(fd + rec) / 2, gt);
+        // a dent or two of flattened fins, and a dark streak of dirt drawn in at the bottom
+      }
+      // bay posts in front of the coil, bolted
+      for (let i = 0; i <= n; i++) {
+        const x = x0 + i * bayW;
+        tbox(0.075, cl, 0.05, skin, x, 0, 0.0, gt);
+        for (let y = 0.15; y < cl - 0.05; y += 0.25) bolt(gt, x, y, 0.025, 0, 0, 1);
+      }
+      // tube sheets and return bends at both ends, headers at the +x end
+      for (const e of [-1, 1]) {
+        const xe = e * (L / 2 - 0.35);
+        tbox(0.006, cl, fd + rec + 0.02, galvM, xe + e * 0.003, 0, -(fd + rec) / 2, gt);
+        for (let c = 0; c < 3; c++) {
+          const z = -rec - 0.01 - c * 0.019, off = (c % 2) * 0.0127 + (e > 0 ? 0.0254 : 0);
+          for (let y = 0.05 + off; y < cl - 0.07; y += 0.0508) bends.push([gt, xe + e * 0.006, y + 0.0127, z, e]);
+        }
+        if (e > 0) {
+          for (const hz of [-0.02, -0.07]) {
+            const hp = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, cl - 0.1, 14), copper); hp.position.set(xe + 0.14, cl / 2, hz); gt.add(hp);
+            for (let y = 0.1; y < cl - 0.1; y += 0.11) bar([xe + 0.006, y, hz], [xe + 0.14, y + 0.02, hz], 0.0065, copper, gt, 6);
+          }
+          pipe([[xe + 0.14, 0.05, -0.045], [xe + 0.14, -0.25, -0.045], [xe + 0.25, -0.35, -0.3]], 0.04, foam, gt);
+        }
+      }
+      // hand the fin pack to world coordinates through this side's transform
+      gs.updateMatrixWorld(true);
+      const M = gt.matrixWorld, nm = new THREE.Matrix3().getNormalMatrix(M), v = new V3();
+      for (let i = finStart; i < P.length; i += 3) { v.set(P[i], P[i + 1], P[i + 2]).applyMatrix4(M); P[i] = v.x; P[i + 1] = v.y; P[i + 2] = v.z;
+        v.set(Nn[i], Nn[i + 1], Nn[i + 2]).applyMatrix3(nm).normalize(); Nn[i] = v.x; Nn[i + 1] = v.y; Nn[i + 2] = v.z; }
+    }
+    {
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3));
+      g.setAttribute('normal', new THREE.Float32BufferAttribute(Nn, 3));
+      g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2));
+      root.add(new THREE.Mesh(g, finM));
+    }
+    tbox(L - 0.4, coilH, W - 0.9, dark, 0, cy, 0, root);
+    // return bends: half rings of copper standing off each tube sheet
+    {
+      const tg = new THREE.TorusGeometry(0.0127, 0.0046, 5, 8, Math.PI);
+      const im = new THREE.InstancedMesh(tg, copper, bends.length), M = new THREE.Matrix4(), R = new THREE.Matrix4();
+      root.updateMatrixWorld(true);
+      bends.forEach((b, i) => { R.makeRotationZ(b[4] > 0 ? -Math.PI / 2 : Math.PI / 2); M.makeTranslation(b[1], b[2], b[3]).multiply(R); M.premultiply(b[0].matrixWorld); im.setMatrixAt(i, M); });
+      im.instanceMatrix.needsUpdate = true; im.computeBoundingSphere(); im.computeBoundingBox(); im.userData.txBevel = false;
+      root.add(im);
+    }
+    // the +x end is open above the base: a lower end panel and a top rail only
+    tbox(0.04, cy - 0.28, W - 0.1, skin, L / 2 - 0.02, 0.2, 0, root);
+    tbox(0.04, 0.12, W - 0.1, skin, L / 2 - 0.02, H - 0.2, 0, root);
+    tbox(0.04, H - 0.28, W - 0.1, skin, -L / 2 + 0.02, 0.2, 0, root);
+
+    // ---- fan deck: a panel per bay, raised seams, a trim angle, bolts along every joint
+    tbox(L, 0.06, W, deckM, 0, H - 0.08, 0, root);
+    for (let i = 0; i <= n; i++) {
+      const x = x0 + i * bayW;
+      tbox(0.045, 0.014, W - 0.02, deckM, x, H - 0.02, 0, root);
+      for (let z = -W / 2 + 0.12; z < W / 2 - 0.05; z += 0.22) bolt(root, x, H - 0.006, z, 0, 1, 0);
+    }
+    tbox(L, 0.014, 0.045, deckM, 0, H - 0.02, 0, root);
+    for (let x = -L / 2 + 0.12; x < L / 2; x += 0.24) bolt(root, x, H - 0.006, 0, 0, 1, 0);
+    for (const s of [-1, 1]) { tbox(L + 0.02, 0.06, 0.035, deckM, 0, H - 0.07, s * (W / 2 + 0.0175), root); tbox(L + 0.02, 0.012, 0.05, deckM, 0, H - 0.022, s * (W / 2 + 0.01), root); }
+
+    // ---- fans: venturi shroud, sickle blades on a motor spider, wire ring guard; one template, instanced
+    const fr = 0.43, fh = 0.265, tpl = new THREE.Group();
+    {
+      const shroud = K.mat('chiller-fan-shroud-paint', { color: col, roughness: 0.48, metalness: 0.05, side: THREE.DoubleSide });
+      const prof = [[fr + 0.012, 0], [fr + 0.012, fh - 0.07], [fr + 0.022, fh - 0.03], [fr + 0.045, fh - 0.006], [fr + 0.075, fh], [fr + 0.082, fh - 0.02]];
+      const lg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1])), 48);
+      tpl.add(new THREE.Mesh(lg, shroud));
+      const fl = new THREE.Mesh(new THREE.RingGeometry(fr + 0.012, fr + 0.08, 48), shroud); fl.rotation.x = -Math.PI / 2; fl.position.y = 0.004; tpl.add(fl);
+      const th = new THREE.Mesh(new THREE.CircleGeometry(fr + 0.012, 40), dark); th.rotation.x = -Math.PI / 2; th.position.y = 0.002; tpl.add(th);
+      const motorM = K.mat('fan-motor-cast-alu-housing', { color: 0x3b3f42, metalness: 0.5, roughness: 0.5 });
+      const my = fh * 0.32;
+      cyl(0.085, 0.095, 0.17, motorM, 0, my - 0.17, 0, 20, tpl);
+      for (let k = 0; k < 4; k++) { const a = k * TAU / 4 + 0.4; sbar([Math.cos(a) * 0.09, my - 0.05, Math.sin(a) * 0.09], [Math.cos(a) * (fr + 0.01), my - 0.02, Math.sin(a) * (fr + 0.01)], 0.035, 0.006, galvM, tpl); }
+      const hub = cyl(0.075, 0.075, 0.06, motorM, 0, my, 0, 20, tpl);
+      cyl(0.06, 0.04, 0.025, motorM, 0, my + 0.06, 0, 16, tpl);
+      // five sickle blades, twisted root to tip
+      const bladeM = K.mat('fan-blade-polymer-moulded', { color: 0x2a2c2e, roughness: 0.45, metalness: 0.1, side: THREE.DoubleSide });
+      const NS = 9, NC = 3, bp = [], bi = [];
+      for (let i = 0; i <= NS; i++) {
+        const t = i / NS, rad = 0.08 + (fr - 0.1) * t, chord = 0.13 + 0.09 * Math.sin(t * Math.PI * 0.8), sweep = 0.45 * t * t, beta = 0.62 - 0.36 * t;
+        for (let j = 0; j <= NC; j++) {
+          const c = (j / NC - 0.5) * chord, th2 = sweep + c * Math.cos(beta) / rad;
+          bp.push(Math.cos(th2) * rad, my + 0.03 - c * Math.sin(beta) + 0.008 * Math.sin((j / NC) * Math.PI), Math.sin(th2) * rad);
+        }
+      }
+      for (let i = 0; i < NS; i++) for (let j = 0; j < NC; j++) { const a = i * (NC + 1) + j, b = a + NC + 1; bi.push(a, b, a + 1, a + 1, b, b + 1); }
+      const bg = new THREE.BufferGeometry(); bg.setAttribute('position', new THREE.Float32BufferAttribute(bp, 3)); bg.setIndex(bi); bg.computeVertexNormals();
+      for (let k = 0; k < 5; k++) { const m = new THREE.Mesh(bg, bladeM); m.rotation.y = k * TAU / 5; tpl.add(m); }
+      // the guard: concentric wire rings on eight flat spokes and a heavier rim
+      const wire = K.mat('fan-guard-wire-steel-paint', { color: 0x1c1d1e, metalness: 0.35, roughness: 0.5 });
+      const gy = fh + 0.014;
+      for (let rad = 0.07; rad < fr + 0.05; rad += 0.034) {
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(rad, 0.0026, 4, Math.max(24, Math.round(rad * 150))), wire); ring.rotation.x = Math.PI / 2; ring.position.y = gy; tpl.add(ring);
+      }
+      const rim = new THREE.Mesh(new THREE.TorusGeometry(fr + 0.068, 0.005, 5, 64), wire); rim.rotation.x = Math.PI / 2; rim.position.y = gy - 0.004; tpl.add(rim);
+      for (let k = 0; k < 8; k++) { const a = k * TAU / 8; sbar([Math.cos(a) * 0.05, gy - 0.006, Math.sin(a) * 0.05], [Math.cos(a) * (fr + 0.068), gy - 0.006, Math.sin(a) * (fr + 0.068)], 0.004, 0.014, wire, tpl, Math.PI / 2); }
+      const cp = cyl(0.055, 0.055, 0.006, wire, 0, gy - 0.004, 0, 20, tpl);
+      for (let k = 0; k < 8; k++) { const a = k * TAU / 8 + 0.2; const b = cyl(0.008, 0.008, 0.007, galvM, Math.cos(a) * (fr + 0.05), 0.004, Math.sin(a) * (fr + 0.05), 6, tpl); }
+      void hub; void cp;
+    }
+    const places = [];
+    for (let i = 0; i < n; i++) for (const sz of [-0.53, 0.53]) places.push([x0 + (i + 0.5) * bayW, H - 0.02, sz, r() * TAU]);
+    instanced(tpl, places, root);
+
+    // ---- control panel on -x: an enclosure with two doors, hinges, handles, a display, a data plate
+    const cbM = K.mat('chiller-control-panel-paint', { color: col, roughness: 0.42, metalness: 0.05 });
+    tbox(0.45, 1.8, W - 0.3, cbM, -L / 2 - 0.22, 0.25, 0, root, 0, 0.015);
+    for (const z of [-0.45, 0.45]) {
+      tbox(0.02, 1.6, 0.86, cbM, -L / 2 - 0.455, 0.35, z, root, 0, 0.006);
+      cbox(0.025, 0.003, 0.86, dark, -L / 2 - 0.452, 1.952, z, root);
+      for (const hy of [0.5, 1.75]) cyl(0.012, 0.012, 0.09, galvM, -L / 2 - 0.47, hy, z - Math.sign(z) * -0.44, 10, root);
+      cbox(0.03, 0.15, 0.035, K.mat('cabinet-latch-black-plastic', { color: 0x161718, roughness: 0.5 }), -L / 2 - 0.475, 1.15, z + Math.sign(z) * -0.36, root);
+    }
+    cbox(0.012, 0.11, 0.18, K.mat('hmi-screen-glass', { color: 0x0e1a22, emissive: 0x2a8f6a, emissiveIntensity: 0.5, roughness: 0.1 }), -L / 2 - 0.47, 1.62, -0.45, root);
+    cbox(0.006, 0.07, 0.11, K.mat('rating-plate-stainless', { color: 0xc8c8c2, metalness: 0.7, roughness: 0.35 }), -L / 2 - 0.468, 1.3, 0.45, root);
+    cbox(0.005, 0.1, 0.16, K.mat('warning-label-sticker-paint', { color: 0xe0b52a, roughness: 0.55 }), -L / 2 - 0.468, 1.45, 0.45, root);
+    for (const z of [-0.7, -0.55, 0.6]) pipe([[-L / 2 - 0.3, 0.25, z], [-L / 2 - 0.3, -0.0, z]], 0.022, galvM, root);
+    // chilled water nozzles on +x, flanged and bolted
+    const chw = K.mat('chw-pipe-steel-paint', { color: 0x2e3f58, metalness: 0.2, roughness: 0.5 });
+    for (const z of [W / 2 - 0.35, -W / 2 + 0.35]) {
+      const px = L / 2 + (z > 0 ? 0.3 : 0.6);
+      pipe([[L / 2 - 0.3, 0.7, z], [px, 0.7, z], [px, 0.02, z]], 0.1, chw, root);
+      const f = flange(0.16, L / 2 + 0.05, 0.7, z, 'x', chw, root);
+      for (let k = 0; k < 8; k++) { const a = k * TAU / 8; bolt(root, L / 2 + 0.072, 0.7 + Math.cos(a) * 0.13, z + Math.sin(a) * 0.13, 1, 0, 0); }
+      void f;
+    }
+    cbox(0.005, 0.16, 0.24, K.mat('rating-plate-stainless', { color: 0xc8c8c2, metalness: 0.7, roughness: 0.35 }), -L / 2 + 1.0, 0.95, W / 2 + 0.003, root).rotation.y = Math.PI / 2;
+
+    // ---- every bolt head, instanced, hex (kept hex: the surface pass would round it)
+    {
+      const hg = new THREE.CylinderGeometry(0.0085, 0.0085, 0.006, 6); hg.translate(0, 0.003, 0);
+      const im = new THREE.InstancedMesh(hg, K.mat('galv-steel-bolt', { color: 0xb3b6b8, metalness: 0.8, roughness: 0.4 }), bolts.length);
+      root.updateMatrixWorld(true);
+      const M = new THREE.Matrix4(), q = new THREE.Quaternion(), p = new V3(), nrm = new V3(), one = new V3(1, 1, 1), up = new V3(0, 1, 0);
+      bolts.forEach((b, i) => {
+        p.copy(b[1]).applyMatrix4(b[0].matrixWorld);
+        nrm.copy(b[2]).transformDirection(b[0].matrixWorld);
+        q.setFromUnitVectors(up, nrm); M.compose(p, q, one); im.setMatrixAt(i, M);
+      });
+      im.instanceMatrix.needsUpdate = true; im.computeBoundingSphere(); im.computeBoundingBox(); im.userData.txBevel = false;
+      root.add(im);
     }
     return root;
   }
@@ -845,99 +1289,316 @@ export function install(K, THREE, TXT) {
       for (let c = 0; c < 24; c++) { const px = 110 + c * 33; x.fillStyle = '#e8e8e2'; x.fillRect(px, 590, 26, 30); x.fillStyle = '#0a0a0a'; x.fillRect(px + 4, 596, 18, 16); }
     });
   }
+  // honeycomb vent: hex holes in moulded plastic, tile 0.02 m
+  function ventTex(base) {
+    return ctex('vent' + base, 64, 64, (x, w) => {
+      x.fillStyle = base; x.fillRect(0, 0, w, w); x.fillStyle = '#050506';
+      for (let j = -1; j < 6; j++) for (let i = -1; i < 6; i++) {
+        const cx = i * 12.8 + (j % 2 ? 6.4 : 0) + 3, cy = j * 11.1 + 4;
+        x.beginPath(); for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3 + Math.PI / 6; x.lineTo(cx + Math.cos(a) * 5, cy + Math.sin(a) * 5); } x.fill();
+      }
+    });
+  }
+  // EIA-310 rail flange: square holes three per U and the U number beside them, 42U
+  function railTex() {
+    return ctex('rackRail42', 64, 2048, (x, w, h) => {
+      x.fillStyle = '#26282a'; x.fillRect(0, 0, w, h);
+      const ppy = h / (42 * RU), ppx = w / 0.04;
+      for (let u = 0; u < 42; u++) {
+        const yb = h - u * RU * ppy;                    // bottom of unit u, canvas y grows down
+        x.fillStyle = 'rgba(220,220,214,0.75)'; x.fillRect(0.022 * ppx, yb - 1, w, 1.5);
+        for (const hy of [0.00635, 0.022225, 0.0381]) { x.fillStyle = '#030303'; x.fillRect(0.0058 * ppx, yb - (hy + 0.00475) * ppy, 0.0095 * ppx, 0.0095 * ppy); }
+        strokeText(x, String(u + 1), 0.031 * ppx, yb - RU * ppy / 2, 0.0075 * ppy, '#dcdcd6', 1.2);
+      }
+    });
+  }
+  // the rear of a server: PSUs with fan grilles on the right, NIC and IO ports on the left; rows 64/128/256 px
+  function rearAtlas() {
+    return ctex('rackRear', 1024, 512, (x, w) => {
+      x.fillStyle = '#141516'; x.fillRect(0, 0, w, 512);
+      const row = (y0, hh) => {
+        x.fillStyle = '#1b1c1e'; x.fillRect(40, y0 + 2, w - 80, hh - 4);
+        for (let p = 0; p < 2; p++) {                    // two PSUs
+          const px = w - 300 + p * 130, ph = Math.min(hh - 10, 56);
+          x.fillStyle = '#2a2c2f'; x.fillRect(px, y0 + 5, 120, ph);
+          x.fillStyle = '#090909'; for (let k = 0; k < 8; k++) { x.beginPath(); x.arc(px + 30, y0 + 5 + ph / 2, 4 + k * 2.6, 0, TAU); x.lineWidth = 1.2; x.strokeStyle = '#0a0a0a'; x.stroke(); }
+          x.fillStyle = '#0c0c0c'; x.fillRect(px + 70, y0 + 5 + ph / 2 - 8, 26, 16);
+          x.fillStyle = '#b8b2a0'; x.fillRect(px + 102, y0 + 8, 8, ph - 6);
+        }
+        for (let p = 0; p < 4; p++) { x.fillStyle = '#5c6166'; x.fillRect(120 + p * 34, y0 + 12, 28, 22); x.fillStyle = '#050505'; x.fillRect(123 + p * 34, y0 + 16, 22, 15); }
+        for (let p = 0; p < 2; p++) { x.fillStyle = '#7d8388'; x.fillRect(290 + p * 44, y0 + 12, 38, 18); x.fillStyle = '#060606'; x.fillRect(294 + p * 44, y0 + 15, 30, 12); }
+        x.fillStyle = '#22409a'; x.fillRect(400, y0 + 14, 30, 14); x.fillStyle = '#0a0a0a'; x.fillRect(450, y0 + 14, 18, 12); x.fillRect(480, y0 + 14, 18, 12);
+        if (hh > 64) for (let s = 0; s < 6; s++) { x.fillStyle = '#25272a'; x.fillRect(110 + s * 80, y0 + 52, 70, hh - 60); x.fillStyle = '#101112'; for (let k = 0; k < 7; k++) x.fillRect(115 + s * 80, y0 + 56 + k * 8, 60, 4); }
+      };
+      row(0, 64); row(64, 128); row(192, 256);
+      speckle(x, w, 512, 41, 0.04);
+    });
+  }
   K.define('server_rack', {
     size: [0.6, 2.03, 1.07],
     options: { door: false, leds: true, fill: 0.85, blink: true },
-    note: '42U rack, black steel, seeded servers, storage, switch, patch panel and blanks; perforated door optional; LEDs are an unlit instanced layer and userData.tick(t) blinks them.',
+    note: '42U rack, black steel: door:true adds a hex perforated front door with real depth, EIA rails with U numbers, seeded 1U and 2U servers with individual drive carriers, a 4U JBOD, a UPS, a top of rack switch and patch panel with cords, blanks; PSUs, PDUs and a strapped cable bundle at the rear. LEDs are an unlit instanced layer and userData.tick(t) blinks them.',
     make(o, r) {
       const root = new THREE.Group();
-      const W = 0.6, H = 2.0, D = 1.07, blk = std('rackBlack', { color: 0x151618, metalness: 0.45, roughness: 0.5 });
-      // frame: plinth, side panels, top with cable brush ports, four vertical rails
-      tbox(W, 0.1, D, blk, 0, 0, 0, root);
-      for (const s of [-1, 1]) tbox(0.02, H - 0.1, D, blk, s * (W / 2 - 0.01), 0.1, 0, root, 0, 0.004);
-      tbox(W, 0.04, D, blk, 0, H - 0.04, 0, root, 0, 0.006);
-      for (const z of [-0.25, 0.2]) cbox(0.25, 0.005, 0.08, rubber(), 0, H + 0.0025, z, root);
-      for (const sx of [-1, 1]) for (const sz of [-1, 1]) tbox(0.03, H - 0.14, 0.03, blk, sx * 0.235, 0.1, sz * (D / 2 - 0.08), root);
-      for (const sx of [-1, 1]) for (const sz of [-1, 1]) cyl(0.02, 0.025, 0.05, galv(), sx * 0.24, -0.0, sz * 0.46, 10, root);
-      tbox(W - 0.06, H - 0.14, 0.01, hole(), 0, 0.1, -D / 2 + 0.06, root);              // deep interior
-      // equipment, stacked from the bottom up
-      const atlas = faceAtlas();
-      const faceM = lmat('rackFace', () => new THREE.MeshStandardMaterial({ color: 0xffffff, map: atlas, roughness: 0.55, metalness: 0.4 }));
-      const types = [['s1', 1, 0, 64], ['s2', 2, 64, 128], ['st', 4, 192, 256], ['sw', 1, 448, 64], ['bl', 1, 512, 64], ['pp', 1, 576, 64]];
-      const T = Object.fromEntries(types.map((t) => [t[0], t]));
-      const leds = [];
-      const face = (t, y) => {
-        const hh = t[1] * RU - 0.001;
-        const p = new THREE.Mesh(new THREE.PlaneGeometry(0.482, hh), faceM);
-        const uv = p.geometry.attributes.uv, v0 = 1 - (t[2] + t[3]) / 1024, v1 = 1 - t[2] / 1024;
-        for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i), uv.getY(i) > 0.5 ? v1 : v0);
-        p.position.set(0, y + hh / 2, D / 2 - 0.06); root.add(p);
-        tbox(0.44, hh - 0.002, 0.7, blk, 0, y + 0.001, D / 2 - 0.42, root);
-      };
-      let u = 0; const top = 42;
-      const plan = [];
-      plan.push(['pp', 41], ['sw', 40], ['bl', 39]);
+      const W = 0.6, H = 2.03, D = 1.07, U0 = 0.096, zf = D / 2 - 0.11, zr = zf - 0.74;
+      const blk = K.mat('rack-frame-steel-paint', { color: 0x18191b, roughness: 0.62, metalness: 0.15 });
+      const chassis = K.mat('server-chassis-steel', { color: 0x3a3c3f, metalness: 0.6, roughness: 0.45 });
+      const bezel = K.mat('server-bezel-plastic', { color: 0x1a1b1d, roughness: 0.5 });
+      const earM = K.mat('server-rack-flange-steel-paint', { color: 0x232427, roughness: 0.45, metalness: 0.2 });
+      const carrierM = K.mat('drive-carrier-plastic', { color: 0x2c2f32, roughness: 0.48 });
+      const latchM = K.mat('drive-latch-plastic', { color: 0x585d62, roughness: 0.42 });
+      const ventM = K.mat('drive-vent-plastic', { color: 0xffffff, map: ventTex('#3a3d41'), roughness: 0.55 });
+      const tagM = K.mat('service-tag-plastic', { color: 0xd8d6cf, roughness: 0.5 });
+      const screwM = K.mat('rack-screw-steel', { color: 0x9a9da0, metalness: 0.85, roughness: 0.35 });
+      const rubberM = K.mat('rubber-brush-strip', { color: 0x0f0f10, roughness: 0.9 });
+      const dark = hole();
+      const leds = [], screws = [];
+
+      // ---- frame: plinth with levellers and casters, corner posts, top cover with a brush entry, side panels
+      tbox(W - 0.02, 0.07, D - 0.02, blk, 0, 0.015, 0, root);
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+        cyl(0.022, 0.022, 0.025, blk, sx * 0.24, 0.0, sz * 0.45, 12, root);
+        cyl(0.03, 0.03, 0.008, K.mat('leveller-foot-rubber', { color: 0x161616, roughness: 0.85 }), sx * 0.24, 0.0, sz * 0.45, 16, root);
+      }
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) tbox(0.04, H - 0.12, 0.04, blk, sx * (W / 2 - 0.035), 0.085, sz * (D / 2 - 0.035), root, 0, 0.004);
+      tbox(W, 0.035, D, blk, 0, H - 0.035, 0, root, 0, 0.005);
+      tbox(0.26, 0.004, 0.09, rubberM, 0, H + 0.0, -0.3, root);
+      tbox(0.26, 0.004, 0.09, rubberM, 0, H + 0.0, 0.22, root);
+      for (const s of [-1, 1]) {
+        tbox(0.01, H - 0.12, D - 0.07, blk, s * (W / 2 - 0.007), 0.085, 0, root);
+        tbox(0.004, H - 0.3, D - 0.25, blk, s * (W / 2 - 0.002), 0.175, 0, root, 0, 0.0015);      // the pressed field
+        tbox(0.002, 0.09, 0.025, dark, s * (W / 2 - 0.0005), 1.25, D / 2 - 0.12, root);            // lever recess
+        cyl(0.009, 0.009, 0.004, K.mat('lock-cylinder-chrome', { color: 0xd9dcdf, metalness: 1, roughness: 0.2 }), s * (W / 2 - 0.001), 1.38, D / 2 - 0.11, 14, root).rotation.z = Math.PI / 2;
+      }
+      // ---- rails: front and rear pairs, square holes, U numbers
+      const railM = K.mat('rack-rail-steel', { color: 0xffffff, map: railTex(), metalness: 0.4, roughness: 0.5 });
+      const rH = 42 * RU;
+      for (const z of [zf, zr]) for (const s of [-1, 1]) {
+        const fl = new THREE.Mesh(new THREE.BoxGeometry(0.04, rH, 0.002), railM);
+        const uv = fl.geometry.attributes.uv, p = fl.geometry.attributes.position;
+        for (let i = 0; i < uv.count; i++) { const u = (p.getX(i) + 0.02) / 0.04; uv.setXY(i, s > 0 ? u : 1 - u, (p.getY(i) + rH / 2) / rH); }
+        fl.position.set(s * 0.242, U0 + rH / 2, z - 0.001); root.add(fl);
+        tbox(0.002, rH, 0.05, blk, s * 0.262, U0, z - 0.026, root);
+      }
+
+      // ---- the plan, bottom up: a 2U UPS, then seeded servers and storage, then the network at the top
+      const plan = [['ups', 0, 2]];
+      let u = 2;
       while (u < 38) {
         const k = r();
-        if (r() > o.fill) { plan.push(['bl', u]); u += 1; continue; }
-        if (k < 0.45) { plan.push(['s1', u]); u += 1; }
-        else if (k < 0.85 && u + 2 <= 38) { plan.push(['s2', u]); u += 2; }
-        else if (u + 4 <= 38) { plan.push(['st', u]); u += 4; }
-        else { plan.push(['s1', u]); u += 1; }
+        if (r() > o.fill) { plan.push(['bl', u, 1]); u += 1; continue; }
+        if (k < 0.42) { plan.push(['s1', u, 1]); u += 1; }
+        else if (k < 0.82 && u + 2 <= 38) { plan.push(['s2', u, 2, Math.floor(r() * 3)]); u += 2; }
+        else if (u + 4 <= 38) { plan.push(['st', u, 4]); u += 4; }
+        else { plan.push(['s1', u, 1]); u += 1; }
       }
-      plan.forEach(([k, uu]) => {
-        const t = T[k], y = 0.12 + uu * RU;
-        face(t, y);
-        if (k === 's1' || k === 's2' || k === 'st') {
-          const rows = t[1] === 1 ? 1 : 2;
-          for (let rw = 0; rw < rows; rw++) leds.push([-0.215, y + (rw + 0.5) * t[1] * RU / rows, 'g']);
-          leds.push([0.205, y + t[1] * RU * 0.5, r() < 0.12 ? 'a' : 'b']);
-          const nb = k === 's1' ? 10 : k === 's2' ? 12 : 6;
-          for (let b = 0; b < nb; b++) if (r() < 0.8) leds.push([-0.198 + (b + 0.85) * (0.482 - 0.176) / nb, y + t[1] * RU * (k === 'st' ? 0.12 : 0.28), 'g']);
+      plan.push(['cm', 38, 1], ['bl', 39, 1], ['sw', 40, 1], ['pp', 41, 1]);
+
+      // drive carriers by kind, instanced: [x, y, z] of each carrier's centre
+      const CAR = { n1: [], n2: [], h: [] };
+      const carrierTpl = (w, h, horiz) => {
+        const g = new THREE.Group();
+        cbox(w - 0.0014, h - 0.0014, 0.005, carrierM, 0, 0, 0, g);
+        const vw = horiz ? w * 0.62 : w * 0.7, vh = horiz ? h * 0.62 : h * 0.5;
+        const v = new THREE.Mesh(new THREE.PlaneGeometry(vw, vh), ventM);
+        const uv = v.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * vw / 0.02, uv.getY(i) * vh / 0.02);
+        v.position.set(horiz ? -w * 0.12 : 0, horiz ? 0 : h * 0.14, 0.0026); g.add(v);
+        if (horiz) cbox(0.008, h * 0.7, 0.006, latchM, w / 2 - 0.012, 0, 0.002, g);
+        else cbox(w * 0.72, 0.006, 0.006, latchM, 0, -h / 2 + 0.006, 0.002, g);
+        return g;
+      };
+      const zc = zf + 0.0125;                                 // carrier centre plane
+      const server = (k, uu, units, variant) => {
+        const y = U0 + uu * RU, hU = units * RU - 0.0012, cyy = y + hU / 2 + 0.0006;
+        tbox(0.43, hU, 0.72, chassis, 0, y + 0.0006, zf - 0.36, root);
+        cbox(0.43, hU, 0.008, bezel, 0, cyy, zf + 0.004, root);
+        for (const s of [-1, 1]) {
+          cbox(0.026, hU, 0.004, earM, s * 0.2283, cyy, zf + 0.002, root);
+          for (let q = 0; q < units; q++) screws.push([s * 0.2325, y + q * RU + 0.0222, zf + 0.0045]);
+          if (units >= 2) { bar([s * 0.226, cyy - hU * 0.32, zf + 0.006], [s * 0.226, cyy + hU * 0.32, zf + 0.006], 0.0035, screwM, root, 6);
+            for (const e of [-1, 1]) cbox(0.006, 0.006, 0.02, screwM, s * 0.226, cyy + e * hU * 0.32, zf + 0.0, root); }
         }
-        if (k === 'sw') for (let p = 0; p < 24; p++) if (r() < 0.75) leds.push([-0.137 + p * 0.0145 + Math.floor(p / 6) * 0.004, y + 0.036, 'g']);
+        // left control panel: power button and health LEDs; right: pull-out tag and a USB port
+        const pb = cyl(0.0042, 0.0042, 0.004, K.mat('power-button-plastic', { color: 0x2f3236, roughness: 0.4 }), -0.196, 0, zf + 0.01, 14, root);
+        pb.rotation.x = Math.PI / 2; pb.position.y = cyy + hU / 2 - 0.012;
+        leds.push([-0.196, cyy + hU / 2 - 0.012, zf + 0.0125, 'b', 1], [-0.204, cyy - hU / 2 + 0.01, zf + 0.0095, r() < 0.1 ? 'a' : 'b', 1]);
+        cbox(0.026, 0.0055, 0.003, tagM, 0.196, cyy - hU / 2 + 0.008, zf + 0.0095, root);
+        cbox(0.012, 0.005, 0.003, dark, 0.196, cyy + hU / 2 - 0.012, zf + 0.0095, root);
+        // the drive bays
+        if (k === 's1') {
+          const n = 10, bw = 0.033;
+          for (let i = 0; i < n; i++) { const cx = -0.165 + (i + 0.5) * bw; CAR.n1.push([cx, cyy, zc]); if (r() < 0.9) leds.push([cx - 0.005, cyy + hU / 2 - 0.006, zc + 0.003, 'g', 1], [cx + 0.005, cyy + hU / 2 - 0.006, zc + 0.003, 'b', 1]); }
+        } else if (k === 's2' && variant === 0) {
+          const n = 24, bw = 0.0142;
+          for (let i = 0; i < n; i++) { const cx = -0.17 + (i + 0.5) * bw; CAR.n2.push([cx, cyy, zc]); if (r() < 0.9) leds.push([cx, cyy + hU / 2 - 0.006, zc + 0.003, 'g', 1]); }
+        } else if (k === 's2' && variant === 1) {
+          for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) { const cx = -0.165 + (i + 0.5) * 0.0825, cyj = y + 0.006 + (j + 0.5) * (hU - 0.012) / 3; CAR.h.push([cx, cyj, zc]); if (r() < 0.9) leds.push([cx + 0.029, cyj + 0.0075, zc + 0.006, 'g', 1]); }
+        } else if (k === 's2') {                              // a server behind a perforated bezel with a name strip
+          const bz = new THREE.Mesh(new THREE.BoxGeometry(0.4, hU - 0.008, 0.012), K.mat('server-front-bezel-plastic', { color: 0xffffff, map: ventTex('#2e3134'), roughness: 0.5 }));
+          K.uvBox(bz.geometry, 0.02); bz.position.set(0, cyy, zf + 0.016); root.add(bz);
+          cbox(0.09, 0.012, 0.003, K.mat('bezel-badge-brushed-alu', { color: 0xb7bbbe, metalness: 0.85, roughness: 0.3 }), 0, cyy, zf + 0.023, root);
+          leds.push([0.15, cyy, zf + 0.0225, 'b', 1]);
+        } else if (k === 'st') {
+          for (let i = 0; i < 4; i++) for (let j = 0; j < 6; j++) { const cx = -0.165 + (i + 0.5) * 0.0825, cyj = y + 0.008 + (j + 0.5) * (hU - 0.016) / 6; CAR.h.push([cx, cyj, zc]); if (r() < 0.92) leds.push([cx + 0.029, cyj + 0.0075, zc + 0.006, 'g', 1]); }
+        }
+        // the rear: PSUs, ports, a texture row
+        const rv = k === 's1' ? [0, 64] : k === 'st' ? [192, 256] : [64, 128];
+        const rp = new THREE.Mesh(new THREE.PlaneGeometry(0.43, hU), K.mat('server-rear-panel-steel', { color: 0xffffff, map: rearAtlas(), metalness: 0.4, roughness: 0.5 }));
+        const ruv = rp.geometry.attributes.uv, v0 = 1 - (rv[0] + rv[1]) / 512, v1 = 1 - rv[0] / 512;
+        for (let i = 0; i < ruv.count; i++) ruv.setXY(i, ruv.getX(i), ruv.getY(i) > 0.5 ? v1 : v0);
+        rp.rotation.y = Math.PI; rp.position.set(0, cyy, zf - 0.7205); root.add(rp);
+        for (let p = 0; p < 2; p++) leds.push([-0.133 - p * 0.057, cyy + 0.008, zf - 0.7215, 'g', -1]);
+        return { cyy, hU };
+      };
+      const rearPorts = [];
+      plan.forEach(([k, uu, units, variant]) => {
+        const y = U0 + uu * RU, hU = units * RU - 0.0012, cyy = y + hU / 2 + 0.0006;
+        if (k === 's1' || k === 's2' || k === 'st') { server(k, uu, units, variant); rearPorts.push([0.1 + r() * 0.03, cyy, k]); return; }
+        if (k === 'bl') {                                     // ribbed snap-in blank
+          const bm = K.mat('blanking-panel-plastic', { color: 0x141516, roughness: 0.6 });
+          cbox(0.482, hU, 0.003, bm, 0, cyy, zf + 0.0015, root);
+          for (const e of [-0.3, 0, 0.3]) cbox(0.44, 0.0025, 0.003, bm, 0, cyy + e * hU, zf + 0.004, root);
+          return;
+        }
+        if (k === 'cm') {                                     // horizontal finger duct
+          const cmM = K.mat('cable-manager-plastic', { color: 0x161718, roughness: 0.55 });
+          cbox(0.482, hU, 0.003, cmM, 0, cyy, zf + 0.0015, root);
+          for (let i = 0; i < 13; i++) cbox(0.014, hU - 0.004, 0.05, cmM, -0.21 + i * 0.035, cyy, zf + 0.028, root);
+          return;
+        }
+        if (k === 'ups') {
+          const um = K.mat('ups-front-bezel-plastic', { color: 0x1e1f21, roughness: 0.45 });
+          tbox(0.43, hU, 0.6, chassis, 0, y, zf - 0.3, root);
+          tbox(0.44, hU, 0.03, um, 0, y, zf + 0.012, root, 0, 0.004);
+          for (const s of [-1, 1]) cbox(0.026, hU, 0.004, earM, s * 0.2283, cyy, zf + 0.002, root);
+          cbox(0.06, 0.03, 0.003, K.mat('ups-lcd-screen', { color: 0x0b1820, emissive: 0x3d8fd0, emissiveIntensity: 0.45, roughness: 0.2 }), 0.12, cyy + 0.01, zf + 0.0285, root);
+          for (let i = 0; i < 4; i++) cbox(0.008, 0.008, 0.003, K.mat('ups-button-rubber', { color: 0x3a3c3f, roughness: 0.7 }), 0.08 + i * 0.016, cyy - 0.02, zf + 0.0285, root);
+          for (let i = 0; i < 5; i++) leds.push([-0.12 + i * 0.014, cyy + 0.015, zf + 0.0285, i < 4 ? 'g' : 'a', 1]);
+          return;
+        }
+        // switch and patch panel: a face from the atlas, ears, then plugs and cords below
+        const atlas = faceAtlas();
+        const faceM = K.mat('network-front-panel-steel', { color: 0xffffff, map: atlas, roughness: 0.55, metalness: 0.4 });
+        const t = k === 'sw' ? [448, 64] : [576, 64];
+        const p = new THREE.Mesh(new THREE.PlaneGeometry(0.482, hU), faceM);
+        const uv = p.geometry.attributes.uv, v0 = 1 - (t[0] + t[1]) / 1024, v1 = 1 - t[0] / 1024;
+        for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i), uv.getY(i) > 0.5 ? v1 : v0);
+        p.position.set(0, cyy, zf + 0.004); root.add(p);
+        tbox(0.44, hU, k === 'sw' ? 0.42 : 0.12, chassis, 0, y + 0.0006, zf - (k === 'sw' ? 0.21 : 0.06), root);
+        if (k === 'sw') for (let q = 0; q < 24; q++) if (r() < 0.8) leds.push([-0.137 + q * 0.0145 + Math.floor(q / 6) * 0.004, cyy + hU / 2 - 0.004, zf + 0.0045, 'g', 1]);
+        screws.push([-0.2325, cyy, zf + 0.0045], [0.2325, cyy, zf + 0.0045]);
       });
-      // patch cords from the switch looping into the side managers
-      const cordCols = [0x2f6fd1, 0xe0b52a, 0x3b9e4f, 0xd9dcdc, 0xc0392b];
-      const ySw = 0.12 + 40 * RU + 0.015, yPp = 0.12 + 41 * RU + 0.02;
-      for (let p = 0; p < 16; p++) {
-        const x0 = -0.137 + p * 0.0145 * 1.5, side = p < 8 ? -1 : 1, c = cordCols[p % cordCols.length];
-        const m = std('cord' + hex(c), { color: c, roughness: 0.55 });
-        root.add(TXT.tube([[x0, ySw, D / 2 - 0.05], [x0 * 0.8, ySw - 0.02, D / 2 - 0.0], [side * 0.26, ySw - 0.05 - p * 0.004, D / 2 - 0.02], [side * 0.27, ySw - 0.35 - p * 0.02, D / 2 - 0.04]], 0.0028, m, { segments: 16, radial: 4 }));
-        root.add(TXT.tube([[x0, yPp, D / 2 - 0.05], [x0 * 0.9, yPp + 0.03, D / 2 + 0.0], [side * 0.26, yPp + 0.02, D / 2 - 0.02], [side * 0.27, yPp - 0.3 - p * 0.02, D / 2 - 0.04]], 0.0028, m, { segments: 16, radial: 4 }));
+      // drive carriers
+      instanced(carrierTpl(0.033, RU - 0.006, false), CAR.n1, root);
+      instanced(carrierTpl(0.0142, 2 * RU - 0.012, false), CAR.n2, root);
+      instanced(carrierTpl(0.0825, 0.0245, true), CAR.h, root);
+
+      // ---- patch cords: booted plugs in the switch and patch panel, looping into the side lanes
+      const cordCols = [0x2f6fd1, 0xe0b52a, 0x3b9e4f, 0xd9dcdc, 0xc0392b, 0x2f6fd1];
+      const ySw = U0 + 40 * RU + RU / 2, yPp = U0 + 41 * RU + RU / 2;
+      const bootM = (c) => K.mat('patch-cord-boot-plastic-' + hex(c), { color: c, roughness: 0.45 });
+      for (let q = 0; q < 18; q++) {
+        const side = q < 9 ? -1 : 1, c = cordCols[q % cordCols.length], m = K.mat('patch-cord-jacket-' + hex(c), { color: c, roughness: 0.55 });
+        const xs = -0.137 + q * 0.0145 * 1.33, xp = -0.18 + q * 0.0205;
+        for (const [xx, yy, dn] of [[xs, ySw + (q % 2 ? 0.006 : -0.006), -1], [xp, yPp, 1]]) {
+          cbox(0.011, 0.009, 0.022, bootM(c), xx, yy, zf + 0.016, root);
+          root.add(TXT.tube([[xx, yy, zf + 0.026], [xx, yy + dn * 0.004, zf + 0.06], [xx * 0.6 + side * 0.12, yy - 0.06 - q * 0.003, zf + 0.075], [side * 0.255, yy - 0.12 - q * 0.004, zf + 0.04], [side * 0.255, yy - 0.5 - q * 0.03, zf + 0.03]], 0.0028, m, { segments: 18, radial: 5 }));
+        }
       }
-      for (const s of [-1, 1]) tbox(0.05, H - 0.3, 0.1, blk, s * 0.27, 0.15, D / 2 - 0.08, root);  // vertical cable managers
-      // LEDs, unlit, instanced, per instance colour; tick(t) blinks the activity ones
+      // ---- rear: two 0U PDUs with cords to every PSU, a strapped bundle of network cable up the left lane
+      const pduM = K.mat('pdu-housing-alu-black', { color: 0x1d1e20, metalness: 0.5, roughness: 0.45 });
+      const cordM = K.mat('power-cord-rubber-jacket', { color: 0x121314, roughness: 0.7 });
+      for (const s of [-1, 1]) {
+        const px = s * 0.262, pz = zr - 0.06;
+        tbox(0.052, 1.7, 0.05, pduM, px, 0.18, pz, root, 0, 0.003);
+        for (let k2 = 0; k2 < 24; k2++) cbox(0.03, 0.022, 0.004, K.mat('pdu-outlet-c13-plastic', { color: 0x0b0b0c, roughness: 0.6 }), px - s * 0.0, 0.26 + k2 * 0.066, pz - 0.026, root);
+        cbox(0.03, 0.02, 0.003, K.mat('pdu-display-screen', { color: 0x200606, emissive: 0xff3a1a, emissiveIntensity: 0.6, roughness: 0.2 }), px, 1.84, pz - 0.0265, root);
+        tbox(0.03, 0.06, 0.03, pduM, px, 1.88, pz, root);
+        root.add(TXT.tube([[px, 1.94, pz], [px, 1.975, pz + 0.03], [px * 0.7, 1.99, pz + 0.08]], 0.009, cordM, { segments: 10, radial: 6 }));
+      }
+      const nicM = K.mat('network-cable-jacket-blue', { color: 0x2f6fd1, roughness: 0.55 });
+      const nicY = K.mat('network-cable-jacket-yellow', { color: 0xd8b02a, roughness: 0.55 });
+      const strap = K.mat('velcro-strap-fabric', { color: 0x1a1a1c, roughness: 0.9 });
+      const bx = 0.19, bz = zr - 0.11;
+      rearPorts.forEach(([px, py], i) => {
+        // power: each PSU to the nearer PDU, a short drooping loop
+        for (let pi = 0; pi < 2; pi++) {
+          const sx = pi ? -1 : 1, x0 = -0.124 - pi * 0.054, zz = zf - 0.725;
+          root.add(TXT.tube([[x0, py, zz], [x0, py - 0.01, zz - 0.06], [sx * 0.2, py - 0.05, zz - 0.07], [sx * 0.262, py - 0.02, zr - 0.035]], 0.0035, cordM, { segments: 12, radial: 5 }));
+        }
+        // network: off the NIC, back into the bundle, up to the roof exit
+        const a = (i * 2.399) % TAU, ox = Math.cos(a) * 0.012 * Math.sqrt((i % 7) / 7 + 0.15), oz = Math.sin(a) * 0.012 * Math.sqrt((i % 7) / 7 + 0.15);
+        const m = i % 5 === 0 ? nicY : nicM;
+        root.add(TXT.tube([[px, py, zf - 0.725], [px, py, zf - 0.79], [bx + ox + 0.02, py + 0.02, bz + oz + 0.03], [bx + ox, py + 0.12, bz + oz], [bx + ox, 1.88, bz + oz], [bx + ox * 1.3, 1.985, bz + oz - 0.06]], 0.003, m, { segments: 30, radial: 5 }));
+      });
+      const nb = rearPorts.length, ymin = rearPorts.length ? Math.min(...rearPorts.map((p) => p[1])) : 1;
+      for (let y = ymin + 0.2; y < 1.9; y += 0.28) {
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.018 + nb * 0.0002, 0.004, 4, 16), strap); ring.rotation.x = Math.PI / 2; ring.position.set(bx, y, bz); root.add(ring);
+      }
+      // rack screws (cage nut screws), hex kept hex
+      if (screws.length) {
+        const sg = new THREE.CylinderGeometry(0.0052, 0.0052, 0.003, 12); sg.rotateX(Math.PI / 2);
+        const im = new THREE.InstancedMesh(sg, screwM, screws.length), M = new THREE.Matrix4();
+        screws.forEach((s, i) => { M.makeTranslation(s[0], s[1], s[2]); im.setMatrixAt(i, M); });
+        im.instanceMatrix.needsUpdate = true; im.computeBoundingSphere(); im.computeBoundingBox(); im.userData.txBevel = false;
+        root.add(im);
+      }
+
+      // ---- LEDs, unlit, instanced, per instance colour; tick(t) blinks the activity ones
       if (o.leds && leds.length) {
-        const geo = new THREE.PlaneGeometry(0.0032, 0.0032);
+        const geo = new THREE.PlaneGeometry(0.0026, 0.0026);
         const im = new THREE.InstancedMesh(geo, lmat('ledBasic', () => new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false })), leds.length);
-        const M = new THREE.Matrix4(), col = new THREE.Color();
+        const M = new THREE.Matrix4(), Ry = new THREE.Matrix4().makeRotationY(Math.PI), col = new THREE.Color();
         const C = { g: 0x39ff7a, b: 0x3aa8ff, a: 0xffa020 };
-        leds.forEach((l, i) => { M.makeTranslation(l[0], l[1], D / 2 - 0.058); im.setMatrixAt(i, M); im.setColorAt(i, col.setHex(C[l[2]]).multiplyScalar(r() < 0.8 ? 1.6 : 0.05)); });
+        leds.forEach((l, i) => { M.makeTranslation(l[0], l[1], l[2]); if (l[4] < 0) M.multiply(Ry); im.setMatrixAt(i, M); im.setColorAt(i, col.setHex(C[l[3]]).multiplyScalar(r() < 0.85 ? 1.8 : 0.05)); });
         im.instanceMatrix.needsUpdate = true; im.instanceColor.needsUpdate = true;
-        im.userData.keep = true; im.castShadow = false;
+        im.userData.keep = true; im.castShadow = false; im.userData.txSurface = false;
         root.add(im);
         const seed = o.seed;
         root.userData.tick = function (t) {
           if (!o.blink) return;
-          leds.forEach((l, i) => { const on = l[2] === 'g' ? ((Math.sin(t * 17 + i * 12.9898 + seed) * 43758.5453) % 1 + 1) % 1 > 0.35 : true;
-            im.setColorAt(i, col.setHex(C[l[2]]).multiplyScalar(on ? 1.6 : 0.05)); });
+          leds.forEach((l, i) => { const on = l[3] === 'g' ? ((Math.sin(t * 17 + i * 12.9898 + seed) * 43758.5453) % 1 + 1) % 1 > 0.35 : true;
+            im.setColorAt(i, col.setHex(C[l[3]]).multiplyScalar(on ? 1.8 : 0.05)); });
           im.instanceColor.needsUpdate = true;
         };
       }
-      // the door: perforated steel, hinged left, with a swing handle
+
+      // ---- the front door: a pressed steel frame with returns, a hex perforated field, hinges and a swing handle
       if (o.door) {
-        const perf = lmat('perf', () => new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.5, roughness: 0.5, side: THREE.DoubleSide,
-          alphaTest: 0.5, map: ctex('perfC', 128, 128, (x, w) => { x.fillStyle = '#1a1b1d'; x.fillRect(0, 0, w, w);
-            x.globalCompositeOperation = 'destination-out';
-            for (let j = 0; j < 8; j++) for (let i = 0; i < 8; i++) { x.beginPath(); x.arc(i * 16 + (j % 2) * 8 + 4, j * 16 + 8, 5.2, 0, TAU); x.fill(); }
-            x.globalCompositeOperation = 'source-over'; }) }));
-        const dp = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.1, H - 0.3), perf);
-        const uv = dp.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (W - 0.1) / 0.05, uv.getY(i) * (H - 0.3) / 0.05);
-        dp.position.set(0, H / 2 + 0.05, D / 2 + 0.01); root.add(dp);
-        for (const s of [-1, 1]) cbox(0.05, H - 0.2, 0.02, blk, s * (W / 2 - 0.025), H / 2 + 0.05, D / 2 + 0.01, root);
-        for (const y of [0.15, H - 0.05]) cbox(W, 0.05, 0.02, blk, 0, y, D / 2 + 0.01, root);
-        cbox(0.03, 0.16, 0.03, chrome(), W / 2 - 0.05, 1.1, D / 2 + 0.03, root);
+        const perf = lmat('rackPerfHex', () => {
+          const t = ctex('perfHex', 256, 222, (x, w, h) => {
+            x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h); x.globalCompositeOperation = 'destination-out';
+            const px = w / 8, py = h / 8;
+            for (let j = -1; j < 10; j++) for (let i = -1; i < 9; i++) {
+              const cx = i * px + (j % 2 ? px / 2 : 0), cy = j * py;
+              x.beginPath(); for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3 + Math.PI / 6; x.lineTo(cx + Math.cos(a) * px * 0.47, cy + Math.sin(a) * px * 0.47); } x.fill();
+            }
+            x.globalCompositeOperation = 'source-over';
+          });
+          const m = new THREE.MeshStandardMaterial({ color: 0x1c1d1f, map: t, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.55, metalness: 0.25 });
+          m.name = 'rack-door-perforated-steel-paint';
+          return m;
+        });
+        const dz = D / 2 - 0.022, dh = H - 0.12, dy = 0.09, dw = W - 0.004;
+        const pm = new THREE.Mesh(new THREE.PlaneGeometry(dw - 0.07, dh - 0.12), perf);
+        // tile 0.04 m across, and the hex rows stay hexagons: tile height = width * 0.866 * (256 / py rows)
+        const uv = pm.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (dw - 0.07) / 0.04, uv.getY(i) * (dh - 0.12) / (0.04 * 222 / 256));
+        pm.position.set(0, dy + dh / 2, dz - 0.004); root.add(pm);
+        for (const s of [-1, 1]) {
+          tbox(0.035, dh, 0.004, blk, s * (dw / 2 - 0.0175), dy, dz, root);
+          tbox(0.004, dh, 0.028, blk, s * (dw / 2 - 0.002), dy, dz - 0.014, root);            // the return
+          tbox(0.004, dh - 0.12, 0.012, blk, s * (dw / 2 - 0.035), dy + 0.06, dz - 0.006, root); // inner lip
+        }
+        for (const [yy, hh] of [[dy, 0.06], [dy + dh - 0.06, 0.06]]) {
+          tbox(dw, hh, 0.004, blk, 0, yy, dz, root);
+          tbox(dw - 0.07, 0.004, 0.012, blk, 0, yy === dy ? dy + 0.06 : dy + dh - 0.064, dz - 0.006, root);
+        }
+        for (const y2 of [dy, dy + dh - 0.004]) tbox(dw, 0.004, 0.028, blk, 0, y2, dz - 0.014, root);
+        for (const hy of [dy + 0.15, dy + dh / 2, dy + dh - 0.15]) cyl(0.008, 0.008, 0.06, K.mat('door-hinge-steel-paint', { color: 0x1d1e20, metalness: 0.4, roughness: 0.5 }), -W / 2 + 0.006, hy - 0.03, dz - 0.01, 12, root);
+        const hm = K.mat('swing-lever-plastic', { color: 0x141516, roughness: 0.4 });
+        tbox(0.034, 0.17, 0.012, hm, W / 2 - 0.04, 1.02, dz + 0.006, root, 0, 0.004);
+        tbox(0.018, 0.12, 0.01, hm, W / 2 - 0.04, 1.045, dz + 0.016, root, 0, 0.004);
+        cyl(0.007, 0.007, 0.006, K.mat('lock-cylinder-chrome', { color: 0xd9dcdf, metalness: 1, roughness: 0.2 }), W / 2 - 0.04, 1.03, dz + 0.012, 14, root).rotation.x = Math.PI / 2;
       }
       return bake(root);
     },

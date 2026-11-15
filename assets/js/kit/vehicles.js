@@ -355,77 +355,493 @@ export function install(K, THREE, TXT) {
 
   /* =========================================================================================
    * PICKUP: Texas full-size crew cab, 5.5 ft bed. 5.89 x 2.03 x 1.96 m, wheelbase 3.68 m.
+   *
+   * Built as a body shop would describe it, at photograph distance. The cab and front clip are ONE
+   * lofted skin (rocker tucked under, a sharp character line, a crowned hood, a rolled shoulder,
+   * flares raised around both arches); the bed sides are two more lofts cut from the same section,
+   * so the line runs unbroken across the cab to bed gap. Real panel gaps are dark grooves on the
+   * surface, the cab floor drops inside the glass so seats and a wheel show through tinted glass,
+   * the grille is a recessed bar stack behind a proud surround, the lamps are housings with
+   * reflectors behind a clear lens, and the wheels carry block tread, twin spoke alloys, lugs and
+   * a brake disc and caliper. Paint is metallic base under a clearcoat, left clean (no smudge pass).
+   * Drawn to no maker's design.
    * ========================================================================================= */
+  const PK = {};
+  PK.sm = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
+  // a loft: rings of [x, y, z] (each ring closed), quads keyed to materials by keyOf(i, j)
+  PK.loft = function (rings, keyOf, mats, probe) {
+    const n = rings[0].length, pos = [];
+    rings.forEach((rg) => rg.forEach((p) => pos.push(p[0], p[1], p[2])));
+    const P = (i, j) => rings[i][j];
+    // orientation from a probe quad: the triangle (a, c, b) must face `probe.dir`
+    const [pi, pj, pd] = probe, a = P(pi, pj), b = P(pi, (pj + 1) % n), c = P(pi + 1, pj);
+    const e1 = [c[0] - a[0], c[1] - a[1], c[2] - a[2]], e2 = [b[0] - a[0], b[1] - a[1], b[2] - a[2]];
+    const nx = e1[1] * e2[2] - e1[2] * e2[1], ny = e1[2] * e2[0] - e1[0] * e2[2], nz = e1[0] * e2[1] - e1[1] * e2[0];
+    const flip = nx * pd[0] + ny * pd[1] + nz * pd[2] < 0;
+    const lists = {};
+    for (let i = 0; i < rings.length - 1; i++) for (let j = 0; j < n; j++) {
+      const k = keyOf(i, j); if (!k) continue;
+      const A = i * n + j, B = i * n + (j + 1) % n, C = A + n, D = B + n;
+      (lists[k] = lists[k] || []).push(...(flip ? [A, B, C, B, D, C] : [A, C, B, B, C, D]));
+    }
+    const attr = new THREE.Float32BufferAttribute(pos, 3), out = [];
+    for (const k in lists) {
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', attr); g.setIndex(lists[k]); g.computeVertexNormals();
+      out.push(new THREE.Mesh(g, mats[k]));
+    }
+    return out;
+  };
+  // a flat cap over a convex ring, facing dir
+  PK.cap = function (ring, dir, mat) {
+    let cx = 0, cy = 0, cz = 0; ring.forEach((p) => { cx += p[0]; cy += p[1]; cz += p[2]; });
+    cx /= ring.length; cy /= ring.length; cz /= ring.length;
+    const pos = [];
+    for (let j = 0; j < ring.length; j++) {
+      const a = ring[j], b = ring[(j + 1) % ring.length];
+      const e1 = [a[0] - cx, a[1] - cy, a[2] - cz], e2 = [b[0] - cx, b[1] - cy, b[2] - cz];
+      const nz = (e1[1] * e2[2] - e1[2] * e2[1]) * dir[0] + (e1[2] * e2[0] - e1[0] * e2[2]) * dir[1] + (e1[0] * e2[1] - e1[1] * e2[0]) * dir[2];
+      if (nz >= 0) pos.push(cx, cy, cz, a[0], a[1], a[2], b[0], b[1], b[2]); else pos.push(cx, cy, cz, b[0], b[1], b[2], a[0], a[1], a[2]);
+    }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
+    return new THREE.Mesh(g, mat);
+  };
+  // concatenate geometries (non indexed, position and normal only)
+  PK.merge = function (geos) {
+    const parts = geos.map((g) => { const q = g.index ? g.toNonIndexed() : g; if (!q.attributes.normal) q.computeVertexNormals(); return q; });
+    let n = 0; parts.forEach((g) => { n += g.attributes.position.count; });
+    const pos = new Float32Array(n * 3), nor = new Float32Array(n * 3); let o = 0;
+    parts.forEach((g) => { pos.set(g.attributes.position.array, o * 3); nor.set(g.attributes.normal.array, o * 3); o += g.attributes.position.count; });
+    const out = new THREE.BufferGeometry(); out.setAttribute('position', new THREE.BufferAttribute(pos, 3)); out.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+    return out;
+  };
+  PK.rrect = function (w, h, r) {
+    const s = new THREE.Shape(), x0 = -w / 2, y0 = -h / 2;
+    s.moveTo(x0 + r, y0); s.lineTo(x0 + w - r, y0); s.quadraticCurveTo(x0 + w, y0, x0 + w, y0 + r);
+    s.lineTo(x0 + w, y0 + h - r); s.quadraticCurveTo(x0 + w, y0 + h, x0 + w - r, y0 + h);
+    s.lineTo(x0 + r, y0 + h); s.quadraticCurveTo(x0, y0 + h, x0, y0 + h - r); s.lineTo(x0, y0 + r); s.quadraticCurveTo(x0, y0, x0 + r, y0);
+    return s;
+  };
+  PK.mats = () => PK._m || (PK._m = {
+    tint: (() => { const m = K.mat('pk-glass-tint', { color: 0x0a1014, metalness: 0, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02,
+      transparent: true, opacity: 0.6, depthWrite: false, envMapIntensity: 1.8 }, true); m.userData.txSurface = false; return m; })(),
+    lens: (() => { const m = K.mat('pk-lamp-cover', { color: 0xffffff, metalness: 0, roughness: 0.02, clearcoat: 1, clearcoatRoughness: 0.02,
+      transparent: true, opacity: 0.16, depthWrite: false, envMapIntensity: 2 }, true); m.userData.txSurface = false; return m; })(),
+    reflector: K.mat('pk-reflector', { color: 0xf4f6f8, metalness: 0.85, roughness: 0.18, side: THREE.DoubleSide }),
+    housing: K.mat('pk-lamp-housing', { color: 0x2b2e32, metalness: 0.7, roughness: 0.28 }),
+    red: K.mat('pk-tail-lens', { color: 0x7a0a0e, roughness: 0.08, metalness: 0.1, clearcoat: 1, clearcoatRoughness: 0.03,
+      emissive: 0x3a0000, emissiveIntensity: 0.4 }, true),
+    redLit: K.mat('pk-tail-led', { color: 0xff2a2a, emissive: 0xff1a12, emissiveIntensity: 1.2, roughness: 0.3 }),
+    cabin: K.mat('pk-cabin-trim', { color: 0x1c1d20, roughness: 0.72 }),
+    seat: K.mat('pk-seat', { color: 0x2b2c30, roughness: 0.9 }),
+    liner: K.mat('pk-bedliner', { color: 0x3a3b3e, roughness: 0.88 }),
+    mirror: K.mat('pk-mirror-glass', { color: 0xa9b1b6, metalness: 1, roughness: 0.03 }),
+    barrel: K.mat('pk-rim-barrel', { color: 0x5d6166, metalness: 0.85, roughness: 0.4, side: THREE.DoubleSide }),
+    caliper: K.mat('pk-caliper', { color: 0x2a2c30, metalness: 0.3, roughness: 0.45 }),
+    rotor: K.mat('pk-rotor', { color: 0x6c6f73, metalness: 0.85, roughness: 0.42 }),
+    gap: K.mat('pk-gap', { color: 0x040405, roughness: 1 }),
+  });
+  PK.paint = (c, metallic) => {
+    const m = K.mat('pickup-body-paint', { color: c, metalness: metallic ? 0.6 : 0.04, roughness: metallic ? 0.32 : 0.26,
+      clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.7 }, true);
+    // a clean clearcoat: the surface pass's smudge and dust mottle read as dirt on a hero vehicle
+    m.userData.txSurface = false;
+    return m;
+  };
+  /* A truck wheel: all terrain tyre with block tread over a bulged sidewall, a twin six spoke alloy
+   * dished toward a recessed hub, six lugs and a cap, a vented rotor and caliper behind the spokes.
+   * Axis on x, outer face toward +x. Geometry cached. */
+  PK.wheelGeo = function (R, w, rr) {
+    const key = 'pkw|' + [R, w, rr].join('|');
+    if (WHEELS.has(key)) return WHEELS.get(key);
+    const hw = w / 2, seg = 64, V2 = (p) => new THREE.Vector2(p[0], p[1]);
+    const tb = R - 0.016;                                   // tread base under the blocks
+    const pr = [[rr - 0.006, -hw + 0.03], [rr + 0.012, -hw + 0.008], [rr + 0.03, -hw - 0.004], [rr + 0.045, -hw - 0.006],
+      [R - 0.075, -hw - 0.012], [R - 0.045, -hw - 0.008], [R - 0.026, -hw + 0.004], [tb, -hw + 0.022], [tb, hw - 0.022],
+      [R - 0.026, hw - 0.004], [R - 0.045, hw + 0.008], [R - 0.075, hw + 0.012], [rr + 0.045, hw + 0.006], [rr + 0.03, hw + 0.004],
+      [rr + 0.012, hw - 0.008], [rr - 0.006, hw - 0.03]];
+    const base = new THREE.LatheGeometry(pr.map(V2), seg); base.rotateZ(-Math.PI / 2);
+    // tread blocks: two shoulder rows and two staggered, angled centre rows
+    const blocks = [base], N = 44, pitch = Math.PI * 2 / N, arc = R * pitch;
+    const rows = [[hw - 0.012, hw - 0.068, 0, 0, 0.012], [-(hw - 0.012), -(hw - 0.068), 0.5, 0, 0.012],
+      [0.06, 0.012, 0.25, 0.28, 0], [-0.06, -0.012, 0.75, -0.28, 0]];
+    for (const [x0, x1, ph, ang, drop] of rows) for (let i = 0; i < N; i++) {
+      const bw = Math.abs(x1 - x0), b = new THREE.BoxGeometry(bw, 0.018 - drop * 0.5, arc * 0.6);
+      b.rotateY(ang); b.translate((x0 + x1) / 2, R - 0.008 - drop * 0.25, 0); b.rotateX((i + ph) * pitch);
+      blocks.push(b);
+    }
+    // sidewall rib, raised lettering band
+    for (const s of [1, -1]) {
+      const rib = new THREE.TorusGeometry(R - 0.06, 0.004, 4, seg); rib.rotateY(Math.PI / 2); rib.translate(s * (hw + 0.011), 0, 0); blocks.push(rib);
+    }
+    const tyre = PK.merge(blocks);
+    // rim: polished lip, a dark barrel seen through the spokes
+    const lip = new THREE.LatheGeometry([[rr - 0.02, hw - 0.04], [rr - 0.008, hw - 0.022], [rr + 0.01, hw - 0.01], [rr + 0.008, hw + 0.002],
+      [rr - 0.006, hw - 0.002], [rr - 0.022, hw - 0.014]].map(V2), seg); lip.rotateZ(-Math.PI / 2);
+    const barrel = new THREE.CylinderGeometry(rr - 0.016, rr - 0.016, w - 0.07, seg, 1, true); barrel.rotateZ(Math.PI / 2); barrel.translate(-0.01, 0, 0);
+    const dish = new THREE.CircleGeometry(rr - 0.016, seg); dish.rotateY(Math.PI / 2); dish.translate(hw - 0.15, 0, 0);
+    // spokes: six pairs, tapered, dished 4 cm toward the hub, bevelled so their edges catch light
+    const r0 = 0.07, r1 = rr - 0.014, spokes = [];
+    const perm = new THREE.Matrix4().set(0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1);
+    for (let k = 0; k < 6; k++) for (const off of [-0.13, 0.13]) {
+      const s = new THREE.Shape(); s.moveTo(r0, -0.03); s.lineTo(r1, -0.019); s.lineTo(r1, 0.019); s.lineTo(r0, 0.03); s.closePath();
+      const g = new THREE.ExtrudeGeometry(s, { depth: 0.016, bevelEnabled: true, bevelThickness: 0.005, bevelSize: 0.004, bevelSegments: 2, curveSegments: 1 });
+      g.applyMatrix4(perm);
+      const p = g.attributes.position;
+      for (let j = 0; j < p.count; j++) {
+        const r = Math.hypot(p.getY(j), p.getZ(j)), t = clamp01((r - r0) / (r1 - r0));
+        p.setX(j, p.getX(j) + hw - 0.035 - 0.042 * Math.pow(1 - t, 1.4));
+      }
+      g.computeVertexNormals(); g.rotateX(k * Math.PI / 3 + off); spokes.push(g);
+    }
+    const hub = new THREE.CylinderGeometry(0.088, 0.092, 0.03, 40); hub.rotateZ(-Math.PI / 2); hub.translate(hw - 0.072, 0, 0); spokes.push(hub);
+    const face = PK.merge(spokes);
+    const cap = new THREE.SphereGeometry(0.042, 24, 8, 0, Math.PI * 2, 0, Math.PI / 2.6); cap.scale(1, 1, 1); cap.rotateZ(-Math.PI / 2); cap.translate(hw - 0.07, 0, 0);
+    const lugs = [];
+    for (let k = 0; k < 6; k++) {
+      const a = k * Math.PI / 3 + Math.PI / 6, ly = Math.cos(a) * 0.066, lz = Math.sin(a) * 0.066;
+      const n1 = new THREE.CylinderGeometry(0.0115, 0.0115, 0.022, 6); n1.rotateZ(Math.PI / 2); n1.translate(hw - 0.05, ly, lz); lugs.push(n1);
+      const n2 = new THREE.ConeGeometry(0.009, 0.012, 6); n2.rotateZ(-Math.PI / 2); n2.translate(hw - 0.033, ly, lz); lugs.push(n2);
+    }
+    lugs.push(cap);
+    const lug = PK.merge(lugs);
+    const rotor = new THREE.CylinderGeometry(0.175, 0.175, 0.028, 48); rotor.rotateZ(Math.PI / 2); rotor.translate(hw - 0.12, 0, 0);
+    const hat = new THREE.CylinderGeometry(0.095, 0.095, 0.05, 32); hat.rotateZ(Math.PI / 2); hat.translate(hw - 0.1, 0, 0);
+    const rot = PK.merge([rotor, hat]);
+    const calPlaced = new THREE.BoxGeometry(0.05, 0.13, 0.085); calPlaced.translate(hw - 0.095, 0.155, 0); calPlaced.rotateX(2.2);
+    const W = { tyre, lip, barrel, dish, face, lug, rot, cal: calPlaced };
+    WHEELS.set(key, W);
+    return W;
+  };
+  PK.wheel = function (R, w, rr, rimMat, capMat) {
+    const P = PK.wheelGeo(R, w, rr), m = PK.mats(), g = new THREE.Group();
+    g.add(new THREE.Mesh(P.tyre, M.rubber()));
+    g.add(new THREE.Mesh(P.lip, rimMat)); g.add(new THREE.Mesh(P.face, rimMat));
+    g.add(new THREE.Mesh(P.barrel, m.barrel)); g.add(new THREE.Mesh(P.dish, M.well()));
+    g.add(new THREE.Mesh(P.lug, capMat)); g.add(new THREE.Mesh(P.rot, m.rotor)); g.add(new THREE.Mesh(P.cal, m.caliper));
+    return g;
+  };
+
   K.define('pickup', {
     size: [2.4, 1.96, 5.89],
     options: { seed: 1, color: null, metallic: null, trim: 'auto' },
-    note: 'Full-size crew-cab pickup (F-150 / Silverado class), 5.5 ft bed. trim chrome|work|dark; color hex for paint.',
+    note: 'Full-size crew-cab pickup (F-150 / Silverado class), 5.5 ft bed. Lofted body with character line, arch flares, crowned hood and real panel gaps; clearcoat metallic paint (material pickup-body-paint); recessed grille, reflector headlamps, tinted glass over a visible interior, block-tread tyres on twin-spoke alloys. trim chrome|work|dark; color hex for paint.',
     make(o, r) {
-      const G = new THREE.Group(), P = seededPaint(r, o);
+      const G = new THREE.Group(), m = PK.mats(), sm = PK.sm;
+      // paint first, then trim: the seeded order the earlier model used, so a seed keeps its truck
+      let pc, pmet;
+      if (o.color != null) { pc = o.color; pmet = o.metallic != null ? o.metallic : 1; } else { const p = pick(r, PAINTS); pc = p[0]; pmet = p[1]; }
+      const P = PK.paint(pc, pmet);
       const L = 5.89, W = 2.03, hw = W / 2, zf = L / 2, zr = -L / 2;
       const trim = o.trim && o.trim !== 'auto' ? o.trim : pick(r, ['chrome', 'chrome', 'work', 'dark']);
       const bright = trim === 'chrome' ? M.chrome() : trim === 'work' ? M.trim() : M.satin();
-      const R = 0.405, fz = zf - 0.95, rz = fz - 3.68, ay = R;
-      // cab and front end
-      const cab = G.add(sideExtrude([['m', -0.34, 0.54], ['arch', fz, R + 0.05, ay], ['l', 2.66, 0.54], ['l', 2.8, 0.6], ['l', 2.9, 0.68],
-        ['q', 2.95, 0.74, 2.95, 0.9], ['l', 2.94, 1.16], ['q', 2.93, 1.29, 2.78, 1.3], ['l', 1.25, 1.365], ['l', 1.08, 1.375], ['l', -0.34, 1.385]],
-      W, 0.06, P, { deform: planRound(2.9, -9, 0.04, 0.5) })).children.slice(-1)[0];
-      const nose = snapper([cab], 1, zf);
-      // bed sides with the rear arch, a floor, a front wall and the tailgate
-      for (const s of [1, -1]) G.add(sideExtrude([['m', zr + 0.02, 0.56], ['arch', rz, R + 0.05, ay], ['l', -0.4, 0.56], ['l', -0.4, 1.33], ['l', zr + 0.02, 1.33]], 0.09, 0.03, P, { x: s * (hw - 0.045) }));
-      box(W - 0.16, 0.04, 2.5, K.mat('v-liner', { color: 0x1f2022, roughness: 0.9 }), 0, 0.62, (zr - 0.4) / 2 + 0.02, 0, G);
-      box(W - 0.1, 0.72, 0.06, P, 0, 0.6, -0.42, 0.02, G);
-      for (const s of [1, -1]) box(0.11, 0.035, 2.52, M.trim(), s * (hw - 0.05), 1.33, (zr - 0.4) / 2 + 0.01, 0.012, G);   // bed rail caps
-      const tg = RB(W - 0.02, 0.72, 0.07, 0.03, P); tg.position.set(0, 0.6 + 0.36, zr + 0.035); G.add(tg);
-      box(0.3, 0.05, 0.02, bright, 0, 1.2, zr - 0.002, 0.01, G);                   // tailgate handle
-      box(W - 0.3, 0.04, 0.02, M.trim(), 0, 1.3, zr - 0.002, 0.01, G);
-      plate(G, 0.52, zr - 0.08, -1);
-      for (const s of [1, -1]) { const tl = RB(0.09, 0.36, 0.06, 0.02, M.tail()); tl.position.set(s * (hw - 0.05), 1.12, zr + 0.01); G.add(tl); }
-      // rear bumper with step pads
-      const rb = RB(W, 0.22, 0.22, 0.05, bright); rb.position.set(0, 0.5, zr - 0.02); G.add(rb);
-      box(0.5, 0.02, 0.12, M.trim(), 0, 0.61, zr - 0.06, 0.005, G);
-      // greenhouse, roof and pillars
-      const belt = 1.38, roof = 1.94;
-      const gh = greenhouse([['m', 1.1, belt - 0.02], ['l', 0.22, roof - 0.04], ['l', -0.26, roof - 0.03], ['l', -0.31, belt - 0.02]], hw - 0.13, belt, roof, 0.1, M.glass());
-      G.add(gh.mesh);
-      const rf = sideExtrude([['m', 0.3, roof - 0.07], ['q', 0.1, roof + 0.01, -0.1, roof + 0.015], ['l', -0.34, roof], ['l', -0.34, roof - 0.07]], (gh.hw(roof) + 0.02) * 2, 0.04, P);
-      G.add(rf);
-      for (const s of [1, -1]) {
-        bar([s * (gh.hw(belt) + 0.012), belt, 1.12], [s * (gh.hw(roof) + 0.012), roof - 0.06, 0.26], 0.042, P, G);    // A
-        const bp = RB(0.012, roof - belt, 0.11, 0.004, M.trim());                                          // B, black
-        bp.position.set(s * (gh.hw((belt + roof) / 2) + 0.004), (belt + roof) / 2, 0.06); bp.rotation.z = -s * 0.1 * (hw - 0.13) / (roof - belt); G.add(bp);
-        bar([s * (gh.hw(belt) + 0.012), belt, -0.3], [s * (gh.hw(roof) + 0.012), roof - 0.03, -0.29], 0.045, P, G);   // C
-        bar([s * (gh.hw(roof) + 0.012), roof - 0.03, 0.2], [s * (gh.hw(roof) + 0.012), roof - 0.03, -0.29], 0.03, P, G);
-        // window trim along the belt
-        box(0.02, 0.025, 1.42, bright === M.chrome() ? bright : M.trim(), s * (gh.hw(belt) + 0.012), belt - 0.02, 0.4, 0.008, G);
+      const R = 0.405, fz = zf - 0.95, rz = fz - 3.68, Ra = R + 0.075;
+      const zN = zf - 0.1, zWs = 1.2, zHood = 1.29, zB = -1.19, zBed = -1.205, belt = 1.37, roof = 1.93;
+      const xi = hw - 0.13;                                     // bed inner wall
+
+      /* ---- the section: half width at height y, station z ---- */
+      const flareAt = (y, z) => {
+        let f = 0;
+        for (const cz of [fz, rz]) { const d = Math.hypot(z - cz, y - R) - Ra; f = Math.max(f, d < 0.05 ? 1 : sm(1 - (d - 0.05) / 0.16)); }
+        return f * sm((1.12 - y) / 0.1);
+      };
+      const xs = (y, z, y1) => {
+        let x = 0.99;
+        x -= y > 1.08 ? 0.085 * (y - 1.08) : 0.022 * (1.08 - y);          // the character line at 1.08 m
+        if (y < 0.74) x -= 0.11 * (0.74 - y);                              // the rocker tucks under
+        x += 0.025 * flareAt(y, z);
+        const rr = 0.045, t = clamp01((y - (y1 - rr)) / rr); x -= rr * (1 - Math.sqrt(1 - t * t));   // rolled shoulder
+        return x;
+      };
+      const ybArch = (z, base) => {
+        let y = base;
+        for (const cz of [fz, rz]) { const d = z - cz; if (Math.abs(d) < Ra) y = Math.max(y, R + Math.sqrt(Ra * Ra - d * d)); }
+        return y;
+      };
+      const rn = 0.26, rt = 0.035;
+      const sec = (z) => {
+        let y0 = ybArch(z, 0.5), y1 = z > zWs ? 1.355 - 0.1 * Math.pow((z - zWs) / (zN - zWs), 1.6) : 1.355 + 0.02 * (zWs - z) / (zWs - zB);
+        const s = clamp01((z - (zN - rn)) / rn), s2 = clamp01(((zB + rt) - z) / rt);
+        const wk = Math.pow(1 - Math.pow(s, 3.2), 1 / 3.2) * Math.pow(1 - Math.pow(s2, 4), 1 / 4);
+        y1 -= 0.05 * s * s; y0 += 0.1 * s * s;
+        const drop = 0.4 * sm((z - (zB + 0.1)) / 0.05) * sm(((zWs - 0.52) - z) / 0.05);
+        const crown = 0.032 * sm((z - zHood) / 0.12), dome = 0.016 * sm((z - zHood) / 0.25) * sm((zN - 0.2 - z) / 0.35);
+        return { y0, y1, wk, drop, crown, dome, s };
+      };
+      const sideX = (y, z) => { const S = sec(z); return S.wk * xs(y, z, S.y1); };
+      const topY = (x, z) => { const S = sec(z), xt = S.wk * xs(S.y1, z, S.y1) || 1e-6; return S.y1 + S.crown * (1 - Math.pow(Math.min(1, Math.abs(x) / xt), 2)) + S.dome * Math.exp(-Math.pow(x / 0.36, 4)); };
+      const NL = 10, NU = 40, NT = 16, NB = 8;
+      const sideYs = (y0, y1) => {
+        const ys = [], ym = Math.max(0.93, y0 + 0.02);
+        for (let k = 0; k <= NL; k++) ys.push(lerpN(y0, Math.min(ym, y1 - 0.05), k / NL));
+        for (let k = 1; k <= NU; k++) ys.push(lerpN(Math.min(ym, y1 - 0.05), y1, 1 - Math.pow(1 - k / NU, 1.7)));
+        return ys;
+      };
+
+      /* ---- CAB AND FRONT CLIP: one closed loft ---- */
+      const NZ = 150, rings = [], zs = [];
+      let J = {};
+      for (let i = 0; i <= NZ; i++) {
+        const t = i / NZ, z = zB + (zN - zB) * (0.5 - 0.5 * Math.cos(Math.PI * t)) * 0.5 + (zN - zB) * t * 0.5;
+        zs.push(z);
+        const S = sec(z), ys = sideYs(S.y0, S.y1), right = ys.map((y) => [S.wk * xs(y, z, S.y1), y, z]);
+        const xt = right[right.length - 1][0], xin = Math.max(0, xt - 0.07 * S.wk);
+        const cy = (x) => S.y1 + S.crown * (1 - Math.pow(Math.min(1, Math.abs(x) / (xt || 1e-6)), 2)) + S.dome * Math.exp(-Math.pow(x / 0.36, 4));
+        const ring = [];
+        ring.push([right[0][0] - 0.035 * S.wk, S.y0, z]);                       // arch / rocker lip
+        J.side0 = 1; right.forEach((p) => ring.push(p)); J.side1 = ring.length - 1;
+        ring.push([xin, cy(xin), z]); J.top0 = ring.length - 2;
+        ring.push([xin, cy(xin) - S.drop, z]);
+        for (let k = 1; k < NT; k++) { const x = xin * (1 - 2 * k / NT); ring.push([x, cy(x) - S.drop, z]); }
+        ring.push([-xin, cy(xin) - S.drop, z]); ring.push([-xin, cy(xin), z]);
+        J.top1 = ring.length; right.slice().reverse().forEach((p) => ring.push([-p[0], p[1], z]));
+        J.side2 = ring.length - 1;
+        ring.push([-(right[0][0] - 0.035 * S.wk), S.y0, z]);
+        for (let k = 1; k < NB; k++) { const x = -(right[0][0] - 0.035 * S.wk) * (1 - 2 * k / NB); ring.push([x, S.y0, z]); }
+        rings.push(ring);
       }
-      // doors: seams, handles
-      seam(G, hw, 1.2, 0.58, 1.1, belt); seam(G, hw, 0.08, 0.56, 0.08, belt); seam(G, hw, -0.3, 0.56, -0.3, belt);
-      seam(G, hw, 1.2, 0.58, 0.08, 0.58);
-      handle(G, hw, 1.16, 0.22, bright); handle(G, hw, 1.16, -0.2, bright);
-      mirror(G, hw, 1.4, 1.02, trim === 'chrome' ? M.chrome() : trim === 'work' ? M.trim() : P, true);
-      // front: bumper, grille, headlights, fog lamps, tow hooks
-      const fb = RB(W - 0.02, 0.3, 0.26, 0.06, bright); fb.position.set(0, 0.55, zf - 0.06); G.add(fb);
-      box(W - 0.5, 0.1, 0.08, M.trim(), 0, 0.46, zf + 0.04, 0.02, G);
-      const gw = 1.34, gh2 = 0.5;
-      const nz = nose(0, 0.98);
-      const gs = RB(gw + 0.1, gh2 + 0.1, 0.06, 0.04, bright); gs.position.set(0, 0.75 + gh2 / 2, nz + 0.01); G.add(gs);
-      box(gw, gh2, 0.05, M.well(), 0, 0.75, nz + 0.03, 0.01, G);
-      for (let i = 0; i < 4; i++) box(gw - 0.02, 0.035, 0.035, bright, 0, 0.8 + i * 0.12, nz + 0.06, 0.012, G);
-      const vb = RB(0.035, gh2 - 0.02, 0.035, 0.012, bright); vb.position.set(0, 0.75 + gh2 / 2, nz + 0.06); G.add(vb);
-      const badge = RB(0.2, 0.08, 0.02, 0.02, M.chrome()); badge.position.set(0, 1.0, nz + 0.085); G.add(badge);
-      lamp(G, 0.27, 0.22, hw - 0.19, 1.04, nose, 'head');
-      lamp(G, 0.12, 0.06, hw - 0.25, 0.55, zf + 0.07, 'amber');
-      for (const s of [1, -1]) box(0.05, 0.04, 0.08, K.mat('v-hook', { color: 0x9a1b1b, roughness: 0.5 }), s * 0.5, 0.42, zf + 0.03, 0.01, G);
-      plate(G, 0.56, zf + 0.08, 1);
-      // running boards
-      for (const s of [1, -1]) box(0.16, 0.05, 1.78, M.trim(), s * (hw - 0.02), 0.4, 0.44, 0.02, G);
-      // underbody so the ground never shows through: frame rails, fuel tank, spare, diff housings
-      box(W - 0.35, 0.22, L - 1.2, M.frame(), 0, 0.32, -0.1, 0.02, G);
-      bar([0, R, rz - 0.2], [0, R, rz + 0.2], 0.12, M.frame(), G);
-      axle(G, fz, R, 0.275, W - 0.3, trim === 'work' ? 'steel' : 'six', trim === 'work' ? M.steelWheel() : trim === 'dark' ? M.darkAlloy() : M.alloy(), { rimR: 0.24 });
-      axle(G, rz, R, 0.275, W - 0.3, trim === 'work' ? 'steel' : 'six', trim === 'work' ? M.steelWheel() : trim === 'dark' ? M.darkAlloy() : M.alloy(), { rimR: 0.24 });
-      return G;
+      const n = rings[0].length;
+      const mats = { paint: P, under: M.well(), cabin: m.cabin, cowl: M.trim() };
+      const bodyMeshes = PK.loft(rings, (i, j) => {
+        const zc = (zs[i] + zs[i + 1]) / 2;
+        if (j >= J.side0 && j < J.side1) return 'paint';
+        if (j >= J.top1 && j < J.side2) return 'paint';
+        if (j >= J.side1 && j < J.top1) return zc > zHood ? 'paint' : zc > zWs - 0.04 ? 'cowl' : zc > zB + 0.07 ? 'cabin' : 'paint';
+        return 'under';
+      }, mats, [Math.floor(NZ / 2), J.side0 + 20, [1, 0, 0]]);
+      bodyMeshes.forEach((b) => G.add(b));
+      const body = bodyMeshes.find((b) => b.material === P);
+      const nose = snapper([body], 1, zN);
+
+      /* ---- BED: two side lofts from the same section, a floor, a front wall, a tailgate ---- */
+      const bedRing = (z, sgn) => {
+        const y0 = ybArch(z, 0.55), y1 = belt - 0.01, ys = sideYs(y0, y1), ring = [];
+        const right = ys.map((y) => [xs(y, z, y1), y, z]), xt = right[right.length - 1][0];
+        ring.push([right[0][0] - 0.035, y0, z]);
+        right.forEach((p) => ring.push(p));
+        for (let k = 1; k <= 3; k++) ring.push([lerpN(xt, xi, k / 3), y1, z]);
+        for (let k = 1; k <= 5; k++) ring.push([xi, lerpN(y1, 0.64, k / 5), z]);
+        for (let k = 1; k < 4; k++) ring.push([lerpN(xi, right[0][0] - 0.035, k / 4), lerpN(0.64, y0, k / 4), z]);
+        return sgn > 0 ? ring : ring.map((p) => [-p[0], p[1], p[2]]).reverse();
+      };
+      const NZB = 70, nb = NL + NU + 1;
+      for (const s of [1, -1]) {
+        const br = [], bz = [];
+        for (let i = 0; i <= NZB; i++) { const z = lerpN(zBed, zr, i / NZB); bz.push(z); br.push(bedRing(z, s)); }
+        const nn = br[0].length;
+        const meshes = PK.loft(br, (i, j) => {
+          const jj = s > 0 ? j : nn - 2 - j;
+          if (jj >= 1 && jj < nb + 3) return 'paint';
+          if (jj >= nb + 3 && jj < nb + 8) return 'paint';
+          return 'under';
+        }, { paint: P, liner: m.liner, under: M.well() }, [NZB / 2, s > 0 ? 20 : nn - 22, [s, 0, 0]]);
+        meshes.forEach((b) => G.add(b));
+        G.add(PK.cap(br[NZB], [0, 0, -1], P)); G.add(PK.cap(br[0], [0, 0, 1], M.well()));
+        // a black rail cap along the top
+        box(hw - xi - 0.035, 0.024, zBed - zr - 0.03, M.trim(), s * ((xi + xs(belt - 0.01, -2, belt - 0.01)) / 2 - 0.004), belt - 0.012, (zBed + zr) / 2 - 0.005, 0.01, G);
+      }
+      const bedLen = zBed - zr, bedC = (zBed + zr) / 2;
+      box(xi * 2, 0.03, bedLen, m.liner, 0, 0.615, bedC, 0.008, G);
+      for (let k = 0; k < 9; k++) box(0.035, 0.014, bedLen - 0.12, m.liner, (k - 4) * xi * 0.22, 0.643, bedC, 0.005, G);
+      box(xi * 2 + 0.01, belt - 0.64, 0.03, P, 0, 0.64, zBed - 0.05, 0.008, G);
+      box(xi * 2 + 0.12, belt - 0.66, 0.022, P, 0, 0.64, zBed - 0.016, 0.006, G);
+      box(xi * 2 + 0.24, 0.024, 0.07, M.trim(), 0, belt - 0.012, zBed - 0.04, 0.01, G);
+      // wheel tubs inside the bed and arch liners
+      for (const s of [1, -1]) {
+        const wl = new THREE.Mesh(new THREE.CylinderGeometry(Ra - 0.012, Ra - 0.012, 0.36, 40, 1, false, -0.3, Math.PI + 0.6), M.well());
+        wl.rotation.z = Math.PI / 2; wl.position.set(s * 0.8, R, rz); G.add(wl);
+        const tub = new THREE.Mesh(new THREE.CylinderGeometry(Ra - 0.006, Ra - 0.006, 0.18, 40, 1, false, -0.3, Math.PI + 0.6), m.liner);
+        tub.rotation.z = Math.PI / 2; tub.position.set(s * 0.79, R, rz); G.add(tub);
+      }
+      const fl = new THREE.Mesh(new THREE.CylinderGeometry(Ra - 0.01, Ra - 0.01, W - 0.42, 40, 1, false, -0.3, Math.PI + 0.6), M.well()); fl.rotation.z = Math.PI / 2; fl.position.set(0, R, fz); G.add(fl);
+      // tailgate: a shaped panel between the bed walls, with a recessed handle and an emblem
+      const tgW = xi * 2 - 0.012;
+      G.add(sideExtrude([['m', zr + 0.07, 0.655], ['l', zr + 0.012, 0.655], ['q', zr - 0.006, 1.0, zr + 0.008, belt - 0.02], ['l', zr + 0.07, belt - 0.02]], tgW, 0.012, P, { bevelSeg: 3 }));
+      box(tgW - 0.02, 0.022, 0.07, M.trim(), 0, belt - 0.022, zr + 0.04, 0.008, G);
+      const tgz = zr + 0.004;
+      box(0.3, 0.075, 0.02, m.gap, 0, 1.17, tgz, 0.012, G);
+      box(0.26, 0.034, 0.02, bright, 0, 1.19, tgz - 0.008, 0.01, G);
+      box(0.34, 0.075, 0.012, M.chrome(), 0, 0.92, tgz - 0.006, 0.03, G);
+      box(0.3, 0.05, 0.012, M.satin(), 0, 0.932, tgz - 0.011, 0.02, G);
+      // tail lamps on the rear faces of the bed sides: housing, red lens, a clear reverse lamp, LED bar
+      for (const s of [1, -1]) {
+        const xo = xs(1.1, zr, belt - 0.01), xc = s * (xi + xo) / 2, lw = xo - xi - 0.01;
+        box(lw, 0.46, 0.035, m.housing, xc, 0.86, zr - 0.012, 0.01, G);
+        box(lw - 0.012, 0.3, 0.02, m.red, xc, 1.0, zr - 0.03, 0.012, G);
+        box(lw - 0.012, 0.11, 0.02, m.reflector, xc, 0.875, zr - 0.03, 0.01, G);
+        box(lw - 0.012, 0.11, 0.022, m.lens, xc, 0.875, zr - 0.034, 0.01, G);
+        box(0.012, 0.26, 0.012, m.redLit, xc - s * (lw / 2 - 0.016), 1.02, zr - 0.042, 0.004, G);
+        box(lw - 0.03, 0.012, 0.012, m.redLit, xc, 1.25, zr - 0.042, 0.004, G);
+      }
+      // rear step bumper, wrapping forward at its ends, with plate, step pads and a hitch
+      G.add(sideExtrude([['m', zr + 0.12, 0.36], ['l', zr - 0.03, 0.37], ['q', zr - 0.075, 0.38, zr - 0.075, 0.48], ['l', zr - 0.068, 0.6], ['q', zr - 0.064, 0.63, zr - 0.035, 0.63], ['l', zr + 0.12, 0.63]],
+        W - 0.03, 0.025, bright, { deform: (x, y, z) => [x, y, z + 0.12 * Math.pow(Math.abs(x) / hw, 4)] }));
+      for (const s of [1, -1]) box(0.36, 0.012, 0.11, M.trim(), s * 0.6, 0.628, zr - 0.035, 0.004, G);
+      box(0.4, 0.012, 0.11, M.trim(), 0, 0.628, zr - 0.035, 0.004, G);
+      plate(G, 0.49, zr - 0.081, -1);
+      box(0.07, 0.07, 0.14, M.frame(), 0, 0.3, zr + 0.0, 0.006, G);
+
+      /* ---- GREENHOUSE: tinted glass, roof, pillars, interior ---- */
+      const gh = greenhouse([['m', zWs, belt - 0.02], ['l', 0.4, roof - 0.045], ['l', -1.06, roof - 0.04], ['l', -1.13, belt - 0.02]], hw - 0.125, belt, roof, 0.12, m.tint, 0.025);
+      {   // drop the glass solid's bottom face so the cabin is seen through one pane, not two
+        const g0 = gh.mesh.geometry, g = g0.index ? g0.toNonIndexed() : g0, p = g.attributes.position, nr = g.attributes.normal, keep = [];
+        for (let f = 0; f < p.count; f += 3) { if ((nr.getY(f) + nr.getY(f + 1) + nr.getY(f + 2)) / 3 > -0.8) keep.push(f); }
+        const pos = new Float32Array(keep.length * 9), nor = new Float32Array(keep.length * 9);
+        keep.forEach((f, k) => { for (let q = 0; q < 9; q++) { pos[k * 9 + q] = p.array[f * 3 + q]; nor[k * 9 + q] = nr.array[f * 3 + q]; } });
+        const ng = new THREE.BufferGeometry(); ng.setAttribute('position', new THREE.BufferAttribute(pos, 3)); ng.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+        gh.mesh.geometry = ng;
+      }
+      G.add(gh.mesh);
+      const hr = gh.hw(roof) + 0.022;
+      G.add(sideExtrude([['m', 0.43, roof - 0.065], ['q', 0.32, roof + 0.0, 0.15, roof + 0.008], ['l', -0.95, roof + 0.008], ['q', -1.13, roof + 0.004, -1.165, roof - 0.035], ['l', -1.165, roof - 0.065]],
+        hr * 2, 0.03, P, { deform: (x, y, z) => [x, y + (y > roof - 0.02 ? 0.014 * (1 - Math.pow(x / hr, 2)) : 0), z] }));
+      for (const s of [1, -1]) {
+        const x = (y) => s * (gh.hw(y) + 0.01);
+        // A pillar: a body colour band along the windscreen's edge, rounded over the corner by a slim tube
+        { const ws = (t) => [lerpN(zWs + 0.01, 0.4, t), lerpN(belt - 0.01, roof - 0.045, t)], band = [];
+          for (let k = 0; k <= 6; k++) band.push(ws(k / 6));
+          for (let k = 6; k >= 0; k--) { const [z, y] = ws(k / 6); band.push([z - 0.075, y]); }
+          G.add(sidePane(band, 0, 0.016, P, 0.005, (y) => s * (gh.hw(y) + 0.006)));
+          TXT_tube(G, [0, 0.5, 1].map((t) => { const [z, y] = ws(t); return [s * (gh.hw(y) - 0.004), y, z + 0.004]; }), 0.022, P); }
+        // B pillar, black, leaning in with the glass
+        const bp = RB(0.012, roof - belt - 0.03, 0.1, 0.004, M.satin());
+        bp.position.set(s * (gh.hw(1.65) + 0.004), 1.65, -0.04); bp.rotation.z = s * Math.atan(0.12 * (hw - 0.125) / (roof - belt)); G.add(bp);
+        // C pillar: a body colour sail behind the rear door glass
+        G.add(sidePane([[-0.94, belt - 0.01], [-0.99, roof - 0.045], [-1.07, roof - 0.04], [-1.135, belt - 0.01]], 0, 0.02, P, 0.006, (y) => s * (gh.hw(y) + 0.008)));
+        // black window surround under the roof rail, and a belt moulding
+        box(0.014, 0.03, 1.38, M.satin(), s * (gh.hw(roof - 0.06) + 0.008), roof - 0.075, -0.3, 0.006, G);
+        box(0.024, 0.026, 2.1, trim === 'chrome' ? M.chrome() : M.satin(), s * (gh.hw(belt) + 0.008), belt - 0.016, 0.1, 0.008, G);
+        box(0.016, 0.01, 1.22, M.trim(), s * (hr - 0.014), roof - 0.004, -0.33, 0.004, G);           // roof drip
+      }
+      // interior: seats with headrests, a console, the dash and a steering wheel
+      const cab = new THREE.Group();
+      const seat = (x, z, wd, back) => {
+        box(wd, 0.12, 0.5, m.seat, x, 0.96, z + 0.22, 0.05, cab);
+        const b = RB(wd, 0.62, 0.13, 0.05, m.seat); b.position.set(x, 1.36, z - 0.02); b.rotation.x = -0.2; cab.add(b);
+        if (back) { const hrm = RB(Math.min(0.26, wd * 0.5), 0.18, 0.11, 0.05, m.seat); hrm.position.set(x, 1.74, z - 0.1); hrm.rotation.x = -0.15; cab.add(hrm); }
+      };
+      for (const s of [1, -1]) seat(s * 0.42, -0.08, 0.52, true);
+      seat(0, -0.98, 1.5, false);
+      for (const s of [1, -1, 0]) { const hrm = RB(0.24, 0.16, 0.1, 0.05, m.seat); hrm.position.set(s * 0.5, 1.68, -1.05); cab.add(hrm); }
+      box(0.3, 0.36, 0.6, m.cabin, 0, 0.94, 0.25, 0.04, cab);
+      box(0.42, 0.08, 0.22, m.cabin, 0.42, 1.36, zWs - 0.44, 0.03, cab);
+      const sw = new THREE.Mesh(new THREE.TorusGeometry(0.19, 0.017, 10, 40), m.cabin); sw.position.set(0.42, 1.26, zWs - 0.66); sw.rotation.x = 0.5; cab.add(sw);
+      bar([0.42, 1.26, zWs - 0.66], [0.42, 1.32, zWs - 0.5], 0.03, m.cabin, cab);
+      const hubm = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.05, 20), m.cabin); hubm.position.set(0.42, 1.26, zWs - 0.66); hubm.rotation.x = 0.5 + Math.PI / 2; cab.add(hubm);
+      box(0.32, 0.02, 0.03, m.cabin, 0.42, 1.25, zWs - 0.665, 0.006, cab);
+      box(0.22, 0.06, 0.012, m.cabin, 0, 1.76, 0.5, 0.01, cab);                                 // rear view mirror
+      G.add(cab);
+
+      /* ---- PANEL GAPS, handles, mirrors ---- */
+      const gap = (pts, side) => { for (const s of side || [1, -1]) TXT_tube(G, pts.map(([z, y]) => [s * (sideX(y, z) + 0.0008), y, z]), 0.0034, m.gap); };
+      const vline = (z0, z1, y0, y1) => Array.from({ length: 10 }, (_, k) => [lerpN(z0, z1, k / 9), lerpN(y0, y1, k / 9)]);
+      const hline = (z0, z1, y) => Array.from({ length: 24 }, (_, k) => [lerpN(z0, z1, k / 23), y]);
+      gap(vline(1.15, 1.2, 0.56, belt - 0.03));             // fender to front door
+      gap(vline(-0.02, -0.02, 0.54, belt - 0.03));          // front door to rear door
+      gap(vline(-0.99, -0.95, 0.54, belt - 0.03));          // rear door to cab
+      gap(hline(1.15, -0.99, 0.545));                       // door bottoms
+      // hood: along both fender tops, across the cowl, and across the nose under the hood's lip
+      for (const s of [1, -1]) {
+        const pts = []; for (let k = 0; k <= 30; k++) { const z = lerpN(zHood, zN - 0.12, k / 30), S = sec(z), xt = S.wk * xs(S.y1, z, S.y1) - 0.022; pts.push([s * xt, topY(xt, z) + 0.0015, z]); }
+        TXT_tube(G, pts, 0.0034, m.gap);
+      }
+      { const pts = []; for (let k = 0; k <= 24; k++) { const x = lerpN(-1, 1, k / 24) * (sideX(1.3, zHood) - 0.02); pts.push([x, topY(x, zHood) + 0.0015, zHood]); } TXT_tube(G, pts, 0.0034, m.gap); }
+      { const pts = []; for (let k = 0; k <= 24; k++) { const x = lerpN(-1, 1, k / 24) * 0.9; pts.push([x, 1.175, nose(x, 1.175) + 0.0015]); } TXT_tube(G, pts, 0.0034, m.gap); }
+      // fuel door on the driver's side of the bed
+      { const pts = []; for (let k = 0; k <= 32; k++) { const a = k / 32 * Math.PI * 2, z = -1.36 + 0.085 * Math.sign(Math.cos(a)) * Math.pow(Math.abs(Math.cos(a)), 0.3), y = 1.12 + 0.075 * Math.sign(Math.sin(a)) * Math.pow(Math.abs(Math.sin(a)), 0.3); pts.push([z, y]); }
+        TXT_tube(G, pts.map(([z, y]) => [xs(y, z, belt - 0.01) + 0.0008, y, z]), 0.003, m.gap); }
+      // flush pull handles in dark pockets
+      for (const hz of [0.32, -0.7]) for (const s of [1, -1]) {
+        const hy = 1.16, x = sideX(hy, hz);
+        const pk = RB(0.01, 0.055, 0.2, 0.012, m.gap); pk.position.set(s * (x - 0.002), hy, hz); G.add(pk);
+        const h = RB(0.024, 0.032, 0.18, 0.012, trim === 'chrome' ? M.chrome() : trim === 'work' ? M.trim() : P); h.position.set(s * (x + 0.008), hy + 0.004, hz); G.add(h);
+      }
+      // towing style mirrors on twin arms
+      for (const s of [1, -1]) {
+        const mx = s * (hw + 0.2), my = belt + 0.15, mz = 0.98;
+        bar([s * (sideX(belt - 0.02, 1.05) - 0.01), belt + 0.04, 1.08], [s * (hw + 0.12), my + 0.06, mz], 0.016, M.trim(), G);
+        bar([s * (sideX(belt - 0.04, 1.05) - 0.01), belt - 0.03, 1.06], [s * (hw + 0.12), my - 0.08, mz], 0.014, M.trim(), G);
+        const sail = RB(0.05, 0.1, 0.14, 0.02, M.trim()); sail.position.set(s * (sideX(belt, 1.1) - 0.01), belt + 0.02, 1.08); G.add(sail);
+        const hd = RB(0.22, 0.29, 0.1, 0.045, trim === 'chrome' ? M.chrome() : trim === 'work' ? M.trim() : P); hd.position.set(mx, my, mz); G.add(hd);
+        const gl = RB(0.195, 0.26, 0.012, 0.03, m.mirror); gl.position.set(mx, my, mz - 0.05); G.add(gl);
+        box(0.1, 0.012, 0.02, M.amber(), mx + s * 0.04, my - 0.13, mz + 0.04, 0.004, G);
+      }
+
+      /* ---- FRONT: grille in depth, headlamps, bumper, fog lamps ---- */
+      const gW = 1.18, gH = 0.44, gY = 0.94, gz = zN + 0.004;
+      {   // the surround: a proud rounded frame
+        const outer = PK.rrect(gW + 0.12, gH + 0.1, 0.07), hole = PK.rrect(gW, gH, 0.04);
+        outer.holes.push(new THREE.Path(hole.getPoints(8).reverse()));
+        const g = new THREE.ExtrudeGeometry(outer, { depth: 0.045, bevelEnabled: true, bevelThickness: 0.014, bevelSize: 0.012, bevelSegments: 3, curveSegments: 8 });
+        const sm2 = new THREE.Mesh(g, bright); sm2.position.set(0, gY, gz + 0.02); G.add(sm2);
+        box(gW + 0.02, gH + 0.02, 0.03, m.gap, 0, gY - gH / 2 - 0.01, gz + 0.005, 0, G);            // the dark cavity
+        const barM = trim === 'chrome' ? M.chrome() : M.satin();
+        for (let k = 0; k < 6; k++) box(gW - 0.01, 0.03, 0.03, barM, 0, gY - gH / 2 + 0.035 + k * 0.072, gz + 0.04, 0.012, G);
+        for (let k = -9; k <= 9; k++) box(0.008, gH - 0.02, 0.02, M.satin(), k * gW / 19, gY - gH / 2 + 0.01, gz + 0.025, 0.003, G);
+        const bdg = RB(0.24, 0.1, 0.03, 0.045, M.chrome()); bdg.position.set(0, gY + 0.004, gz + 0.07); G.add(bdg);
+        const bdi = RB(0.2, 0.068, 0.012, 0.032, K.mat('pk-badge', { color: 0x1e2a44, roughness: 0.2, metalness: 0.4 })); bdi.position.set(0, gY + 0.004, gz + 0.084); G.add(bdi);
+      }
+      // headlamps: housing, two reflector bowls with a projector, an L of light pipe, a clear cover
+      const bowl = (() => { const pts = []; for (let k = 0; k <= 8; k++) { const t = k / 8; pts.push(new THREE.Vector2(0.002 + 0.05 * t, -0.03 + 0.03 * t * t)); } const g = new THREE.LatheGeometry(pts, 24); g.rotateX(Math.PI / 2); return g; })();
+      for (const s of [1, -1]) {
+        const lx0 = 0.64, lx1 = 0.94, lw = lx1 - lx0, lh = 0.17, ly = gY + gH / 2 - lh / 2 - 0.0;
+        const za = nose(s * lx0, ly), zb = nose(s * lx1, ly), yaw = Math.atan2(za - zb, lw);
+        let lift = 0;
+        for (let k = 0; k <= 8; k++) for (const dy of [-lh / 2, 0, lh / 2]) {
+          const t = k / 8, x = lerpN(lx0, lx1, t); lift = Math.max(lift, nose(s * x, ly + dy) - lerpN(za, zb, t));
+        }
+        const lg = new THREE.Group(); lg.position.set(s * (lx0 + lx1) / 2, ly, (za + zb) / 2 + lift + 0.024); lg.rotation.y = s * yaw; G.add(lg);
+        const hb = RB(lw, lh, 0.1, 0.035, m.housing); hb.position.set(0, 0, -0.072); lg.add(hb);
+        { const o2 = PK.rrect(lw, lh, 0.035), h2 = PK.rrect(lw - 0.022, lh - 0.022, 0.026); o2.holes.push(new THREE.Path(h2.getPoints(6).reverse()));
+          const bz = new THREE.Mesh(new THREE.ExtrudeGeometry(o2, { depth: 0.05, bevelEnabled: false, curveSegments: 6 }), m.housing); bz.position.set(0, 0, -0.04); lg.add(bz); }
+        for (const [bx, pr] of [[-0.075, true], [0.065, false]]) {
+          const b = new THREE.Mesh(bowl, m.reflector); b.position.set(s * bx, 0.005, -0.004); lg.add(b);
+          if (pr) { const pj = new THREE.Mesh(new THREE.SphereGeometry(0.026, 20, 12), M.glass()); pj.position.set(s * bx, 0.01, -0.006); lg.add(pj); }
+          else { const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.01, 12, 8), m.reflector); bulb.position.set(s * bx, 0.01, -0.01); lg.add(bulb); }
+        }
+        const d1 = RB(lw - 0.03, 0.014, 0.014, 0.006, M.drl()); d1.position.set(0, -lh / 2 + 0.022, 0.012); lg.add(d1);
+        const d2 = RB(0.014, lh - 0.04, 0.014, 0.006, M.drl()); d2.position.set(s * (lw / 2 - 0.02), 0.0, 0.012); lg.add(d2);
+        const am = RB(0.07, 0.03, 0.01, 0.006, M.amber()); am.position.set(-s * (lw / 2 - 0.05), lh / 2 - 0.03, 0.006); lg.add(am);
+        const cv = RB(lw - 0.006, lh - 0.006, 0.03, 0.03, m.lens); cv.position.set(0, 0, 0.022); lg.add(cv);
+      }
+      // front bumper, wrapping back at its ends, a black lower valance, fog lamps, tow hooks, plate
+      G.add(sideExtrude([['m', zf - 0.22, 0.4], ['l', zf - 0.04, 0.4], ['q', zf, 0.42, zf - 0.004, 0.55], ['l', zf - 0.012, 0.68], ['q', zf - 0.02, 0.705, zf - 0.06, 0.705], ['l', zf - 0.22, 0.705]],
+        W - 0.075, 0.03, bright, { deform: (x, y, z) => [x, y, z - 0.19 * Math.pow(Math.abs(x) / hw, 4)] }));
+      G.add(sideExtrude([['m', zf - 0.3, 0.3], ['l', zf - 0.08, 0.31], ['q', zf - 0.03, 0.33, zf - 0.035, 0.41], ['l', zf - 0.2, 0.41]],
+        W - 0.3, 0.02, M.trim(), { deform: (x, y, z) => [x, y, z - 0.1 * Math.pow(Math.abs(x) / hw, 4)] }));
+      for (const s of [1, -1]) {
+        const fx = s * 0.72, fy = 0.52, fzz = zf - 0.004 - 0.19 * Math.pow(0.72 / hw, 4);
+        const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.066, 0.03, 28), M.trim()); ring.rotation.x = Math.PI / 2; ring.position.set(fx, fy, fzz); G.add(ring);
+        const rf = new THREE.Mesh(bowl, m.reflector); rf.scale.set(0.95, 0.95, 0.8); rf.position.set(fx, fy, fzz + 0.012); G.add(rf);
+        const fb = new THREE.Mesh(new THREE.SphereGeometry(0.014, 12, 8), M.drl()); fb.position.set(fx, fy, fzz + 0.004); G.add(fb);
+        const fc = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.01, 24), m.lens); fc.rotation.x = Math.PI / 2; fc.position.set(fx, fy, fzz + 0.018); G.add(fc);
+        box(0.045, 0.045, 0.09, K.mat('v-hook', { color: 0x9a1b1b, roughness: 0.5 }), s * 0.42, 0.33, zf - 0.07, 0.01, G);
+      }
+      plate(G, 0.55, zf - 0.008, 1);
+      // side markers at the front corners
+      for (const s of [1, -1]) { const mk = RB(0.008, 0.035, 0.09, 0.004, M.amber()); mk.position.set(s * (sideX(0.82, 2.62) + 0.002), 0.82, 2.62); G.add(mk); }
+
+      /* ---- running boards, underbody, wheels ---- */
+      for (const s of [1, -1]) {
+        box(0.15, 0.045, 2.4, M.trim(), s * (hw - 0.08), 0.4, 0.15, 0.02, G);
+        for (const bz of [1.0, 0.15, -0.7]) box(0.08, 0.1, 0.05, M.frame(), s * (hw - 0.17), 0.42, bz, 0.01, G);
+      }
+      box(W - 0.4, 0.2, L - 1.3, M.frame(), 0, 0.33, -0.1, 0.02, G);
+      bar([0, R, rz - 0.22], [0, R, rz + 0.2], 0.13, M.frame(), G);
+      bar([0, R, rz], [0.7, R, rz], 0.045, M.frame(), G); bar([0, R, rz], [-0.7, R, rz], 0.045, M.frame(), G);
+      bar([0.55, 0.32, -1.6], [0.55, 0.3, zr + 0.05], 0.035, M.darkAlloy(), G);                      // exhaust
+      const rimMat = trim === 'work' ? K.mat('pk-rim-silver', { color: 0xc9ccd0, metalness: 0.45, roughness: 0.32 })
+        : trim === 'dark' ? K.mat('pk-rim-gunmetal', { color: 0x5a5f65, metalness: 0.7, roughness: 0.26 })
+        : K.mat('pk-rim-polished', { color: 0xe2e5e8, metalness: 0.9, roughness: 0.2 });
+      for (const az of [fz, rz]) for (const s of [1, -1]) {
+        const wg = PK.wheel(R, 0.275, 0.254, rimMat, M.chrome());
+        wg.position.set(s * ((W - 0.3) / 2), R, az);
+        if (s < 0) wg.rotation.y = Math.PI;
+        G.add(wg);
+      }
+      const out = mergeByMaterial(G);
+      out.traverse((q) => { if (q.isMesh && q.material.transparent) q.renderOrder = 2; });
+      out.userData.roofY = roof + 0.02;
+      return out;
     },
   });
 

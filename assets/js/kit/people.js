@@ -403,15 +403,283 @@ export function install(K, THREE, TXT) {
     NT.set(kind, t);
     return t;
   }
+  /* THE WEAVE, AT THE SIZE OF A THREAD (2026-11-15, "painted-on cloth that has no weave"). The
+   * normal map was a crumple tile half a metre across, so cloth carried soft lumps and no thread at
+   * all, and the lumps read as dough. Folds are geometry now (see the garment fields), so the map is
+   * the cloth's own structure: a tileable height field of round threads crossing over and under,
+   * plain for shirting, 2/1 twill for denim, khaki and suiting, a knit's columns of loops for a tee,
+   * with a slub in every thread so no two repeats look alike. The tile is a centimetre or two, so the
+   * thread pitch is real (0.5 to 1.6 mm) and mipmapping fades it with distance as a real cloth's does. */
+  function weaveTex(kind) {
+    const key = 'weave-' + kind;
+    if (NT.has(key)) return NT.get(key);
+    const N = 256, P = kind === 'twill' || kind === 'denim' ? 12 : 16, r = K.rng(kind.length * 131 + 7), Hf = new Float32Array(N * N);
+    const slubW = new Float32Array(N / P * 2 + 2), slubF = new Float32Array(N / P * 2 + 2);
+    for (let i = 0; i < slubW.length; i++) { slubW[i] = 0.75 + r() * 0.5; slubF[i] = 0.75 + r() * 0.5; }
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+      const ci = Math.floor(i / P), cj = Math.floor(j / P), fx = (i % P + 0.5) / P, fy = (j % P + 0.5) / P;
+      let h;
+      if (kind === 'knit') {               // columns of interlocking loops: a V per stitch
+        const vx = Math.abs(fx - 0.5) * 2, v = Math.abs(((fy + vx * 0.5) % 1) - 0.5) * 2;
+        h = Math.pow(Math.sin(Math.PI * fx), 0.6) * (0.55 + 0.45 * (1 - v)) * slubW[ci % slubW.length];
+      } else {
+        const over = kind === 'twill' || kind === 'denim' ? ((ci + cj) % 3) !== 0 : ((ci + cj) & 1) === 0;     // is the warp on top here
+        const warp = Math.pow(Math.sin(Math.PI * fx), 0.7) * (0.55 + 0.45 * Math.sin(Math.PI * fy)) * slubW[ci % slubW.length];
+        const weft = Math.pow(Math.sin(Math.PI * fy), 0.7) * (0.55 + 0.45 * Math.sin(Math.PI * fx)) * slubF[cj % slubF.length];
+        h = over ? Math.max(warp, weft * 0.45) : Math.max(weft, warp * 0.45);
+      }
+      Hf[j * N + i] = h + (r() - 0.5) * 0.06;
+    }
+    const cv = document.createElement('canvas'); cv.width = cv.height = N;
+    const x = cv.getContext('2d'), img = x.createImageData(N, N), amp = 1.6;
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+      const dx = (Hf[j * N + ((i + 1) % N)] - Hf[j * N + ((i + N - 1) % N)]) * amp, dy = (Hf[((j + 1) % N) * N + i] - Hf[((j + N - 1) % N) * N + i]) * amp;
+      const l = Math.sqrt(dx * dx + dy * dy + 1), o = (j * N + i) * 4;
+      img.data[o] = (-dx / l * 0.5 + 0.5) * 255; img.data[o + 1] = (dy / l * 0.5 + 0.5) * 255; img.data[o + 2] = (1 / l * 0.5 + 0.5) * 255; img.data[o + 3] = 255;
+    }
+    x.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(cv);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
+    const tile = kind === 'knit' ? 0.012 : kind === 'twill' ? 0.011 : kind === 'denim' ? 0.016 : kind === 'fine' ? 0.006 : 0.009;   // metres per tile, UVs are in metres
+    t.repeat.set(1 / tile, 1 / tile);
+    NT.set(key, t);
+    return t;
+  }
   function cloth(kind, color, extra) {
     extra = extra || {};
-    const nm = normTex('crumple'), ns = (s) => ({ normalMap: nm, normalScale: new THREE.Vector2(s * 0.3, s * 0.3) });
-    if (kind === 'denim') return K.mat('p-denim', Object.assign({ color: 0xffffff, roughness: 0.9, map: clothTex('denim', color, 0, 0), sheen: 0.35, sheenColor: 0x8899bb, sheenRoughness: 0.7 }, ns(0.5)), true);
-    if (kind === 'plaid') return K.mat('p-plaid', Object.assign({ color: 0xffffff, roughness: 0.88, map: clothTex('plaid', color, extra.b, extra.c), sheen: 0.3, sheenColor: 0xffffff, sheenRoughness: 0.8 }, ns(0.45)), true);
-    if (kind === 'suit') return K.mat('p-suit', Object.assign({ color, roughness: 0.6, sheen: 0.5, sheenColor: 0x9a9a9a, sheenRoughness: 0.5 }, ns(0.22)), true);
+    // the surface pass adds its own creases on top; they were the lumps, so it is asked for about half
+    const tame = (m) => { m.userData.txRelief = 0.5; return m; };
+    const ns = (wk, s) => ({ normalMap: weaveTex(wk), normalScale: new THREE.Vector2(s, s) });
+    const tint = (c, w) => new THREE.Color(c).lerp(new THREE.Color(0xffffff), w).getHex();
+    if (kind === 'denim') return tame(K.mat('p-denim', Object.assign({ color: 0xffffff, roughness: 0.9, map: clothTex('denim', color, 0, 0), sheen: 0.3, sheenColor: 0x8899bb, sheenRoughness: 0.8 }, ns('denim', 0.55)), true));
+    if (kind === 'plaid') return tame(K.mat('p-plaid', Object.assign({ color: 0xffffff, roughness: 0.88, map: clothTex('plaid', color, extra.b, extra.c), sheen: 0.25, sheenColor: 0xf4efe6, sheenRoughness: 0.8 }, ns('plain', 0.55)), true));
+    // worsted wool: dull, a soft sheen in its own colour, never satin (it read as satin at roughness 0.6)
+    if (kind === 'suit') return tame(K.mat('p-suit', Object.assign({ color, roughness: 0.74, sheen: 0.35, sheenColor: tint(color, 0.35), sheenRoughness: 0.85 }, ns('fine', 0.45)), true));
     // fluorescent, so a little emissive, never enough to flatten the form (0.12 read as one flat tone, 2026-11-08)
-    if (kind === 'hivis') return K.mat('p-hivis', Object.assign({ color, roughness: 0.72, emissive: color, emissiveIntensity: 0.04 }, ns(0.45)));
-    return K.mat('p-cloth', Object.assign({ color, roughness: extra.rough || 0.86, sheen: 0.4, sheenColor: 0xffffff, sheenRoughness: 0.75 }, ns(0.45)), true);
+    if (kind === 'hivis') return tame(K.mat('p-hivis', Object.assign({ color, roughness: 0.72, emissive: color, emissiveIntensity: 0.04 }, ns('knit', 0.6))));
+    return tame(K.mat('p-cloth', Object.assign({ color, roughness: extra.rough || 0.86, sheen: 0.3, sheenColor: tint(color, 0.5), sheenRoughness: 0.8 },
+      ns(extra.weave || (extra.rough ? 'twill' : 'plain'), 0.45)), true));
+  }
+  // the inside of a garment, seen through a cuff or a hem: the same cloth in its own shadow
+  const clothIn = (m) => K.mat('p-cloth-in', { color: new THREE.Color(m.map ? 0x3a3a3c : m.color).multiplyScalar(m.map ? 0.5 : 0.32).getHex(), roughness: 0.95 });
+
+  /* ---- GARMENT DETAIL ON A FIELD: seams, stitches, hems and cloth pieces with thickness ------
+   * A garment's distance field gives every point its surface and its normal, so a detail is laid
+   * ON the cloth rather than floated in front of it: a point is walked down the gradient to the
+   * zero set and lifted out by the detail's own height. */
+  function fGrad(f, x, y, z, e, out) {
+    const a = f(x + e, y - e, z - e), b = f(x - e, y - e, z + e), c = f(x - e, y + e, z - e), d = f(x + e, y + e, z + e);
+    const gx = a - b - c + d, gy = -a - b + c + d, gz = -a + b - c + d, l = Math.hypot(gx, gy, gz) || 1;
+    out[0] = gx / l; out[1] = gy / l; out[2] = gz / l;
+    return (a + b + c + d) / 4;
+  }
+  function onF(f, p, lift, e) {          // [x, y, z, nx, ny, nz] on the surface, `lift` out along its normal
+    e = e || 0.0015;
+    const g = [0, 0, 1];
+    let x = p[0], y = p[1], z = p[2];
+    for (let it = 0; it < 5; it++) {
+      const d = fGrad(f, x, y, z, e, g), st = Math.max(-0.03, Math.min(0.03, d));
+      x -= g[0] * st; y -= g[1] * st; z -= g[2] * st;
+      if (Math.abs(d) < 1.5e-4) break;
+    }
+    fGrad(f, x, y, z, e, g);
+    return [x + g[0] * lift, y + g[1] * lift, z + g[2] * lift, g[0], g[1], g[2]];
+  }
+  // n samples on the surface along a Catmull-Rom curve through guide points near it
+  function curveOn(f, guide, n, lift) {
+    const c = new THREE.CatmullRomCurve3(guide.map((q) => V3(q[0], q[1], q[2])), false, 'centripetal'), out = [];
+    for (let i = 0; i <= n; i++) { const q = c.getPoint(i / n); out.push(onF(f, [q.x, q.y, q.z], lift)); }
+    return out;
+  }
+  const orientOut = (g, nx, ny, nz, vi) => {       // flip a strip's winding so vertex vi faces (nx, ny, nz)
+    g.computeVertexNormals();
+    const nn = g.attributes.normal;
+    if (nn.getX(vi) * nx + nn.getY(vi) * ny + nn.getZ(vi) * nz < 0) {
+      const ix = g.index.array; for (let q = 0; q < ix.length; q += 3) { const t = ix[q]; ix[q] = ix[q + 1]; ix[q + 1] = t; }
+      g.index.needsUpdate = true; g.computeVertexNormals();
+    }
+    return g;
+  };
+  /* A welt across surface samples: a seam's folded allowance stands a millimetre proud and throws
+   * a line of light and a line of shadow, which is what reads as a seam at any distance. */
+  const WELT = [[-1, -0.6], [-0.55, 0.55], [-0.15, 1], [0.15, 0.85], [0.55, 0.35], [1, -0.6]];
+  function weltGeo(S, w, h, prof) {
+    prof = prof || WELT;
+    const pos = [], uv = [], idx = [], np = prof.length;
+    let along = 0;
+    for (let i = 0; i < S.length; i++) {
+      const a = S[Math.max(0, i - 1)], b = S[Math.min(S.length - 1, i + 1)], s = S[i];
+      const tx = b[0] - a[0], ty = b[1] - a[1], tz = b[2] - a[2];
+      let bx = ty * s[5] - tz * s[4], by = tz * s[3] - tx * s[5], bz = tx * s[4] - ty * s[3];
+      const bl = Math.hypot(bx, by, bz) || 1; bx /= bl; by /= bl; bz /= bl;
+      if (i) along += Math.hypot(s[0] - S[i - 1][0], s[1] - S[i - 1][1], s[2] - S[i - 1][2]);
+      for (const [u, v] of prof) { pos.push(s[0] + bx * u * w / 2 + s[3] * v * h, s[1] + by * u * w / 2 + s[4] * v * h, s[2] + bz * u * w / 2 + s[5] * v * h); uv.push(u * w / 2, along); }
+    }
+    for (let i = 0; i < S.length - 1; i++) for (let j = 0; j < np - 1; j++) { const a = i * np + j, b = a + np; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx);
+    const h0 = Math.floor(S.length / 2), m = h0 * np + 2;
+    return orientOut(g, S[h0][3], S[h0][4], S[h0][5], m);
+  }
+  // topstitching: short dashes of thread along surface samples, `off` metres to one side
+  function stitchGeo(S, off, pitch, dash, w, h) {
+    const pos = [], idx = [], uv = [];
+    let acc = 0;
+    for (let i = 1; i < S.length; i++) {
+      const a = S[i - 1], b = S[i], L = Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
+      if (L < 1e-6) continue;
+      const tx = (b[0] - a[0]) / L, ty = (b[1] - a[1]) / L, tz = (b[2] - a[2]) / L;
+      let bx = ty * a[5] - tz * a[4], by = tz * a[3] - tx * a[5], bz = tx * a[4] - ty * a[3];
+      const bl = Math.hypot(bx, by, bz) || 1; bx /= bl; by /= bl; bz /= bl;
+      for (let t = (pitch - acc) % pitch; t < L; t += pitch) {
+        const q = t / L, cx = a[0] + (b[0] - a[0]) * q + bx * off, cy = a[1] + (b[1] - a[1]) * q + by * off, cz = a[2] + (b[2] - a[2]) * q + bz * off;
+        const nx = a[3], ny = a[4], nz = a[5], v0 = pos.length / 3;
+        for (const [u, s] of [[-0.5, -1], [-0.5, 1], [0.5, -1], [0.5, 1], [0, 0]]) {
+          const lift = s === 0 ? h : 0;
+          pos.push(cx + tx * u * dash + bx * s * w / 2 + nx * lift, cy + ty * u * dash + by * s * w / 2 + ny * lift, cz + tz * u * dash + bz * s * w / 2 + nz * lift);
+          uv.push(u, s);
+        }
+        // a low tent: four faces round the raised centre, wound to face along the surface normal
+        const ux = bx, uy = by, uz = bz, cr = (ty * uz - tz * uy) * nx + (tz * ux - tx * uz) * ny + (tx * uy - ty * ux) * nz;
+        if (cr > 0) idx.push(v0, v0 + 2, v0 + 4, v0 + 2, v0 + 3, v0 + 4, v0 + 3, v0 + 1, v0 + 4, v0 + 1, v0, v0 + 4);
+        else idx.push(v0, v0 + 4, v0 + 2, v0 + 2, v0 + 4, v0 + 3, v0 + 3, v0 + 4, v0 + 1, v0 + 1, v0 + 4, v0);
+      }
+      acc = (acc + L) % pitch;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx);
+    g.computeVertexNormals();
+    return g;
+  }
+  /* A piece of cloth laid on a field (a pocket, a flap, a collar point, a lapel, a belt loop):
+   * a grid on the surface `lift` out, `th` thick, its edges closed and softened by shared normals,
+   * so it has a real edge with a real shadow under it, never a decal. P(u, v) gives guide points
+   * near the surface; bulge(u, v) adds to the lift (a flap's roll, a lapel's turn). */
+  function slabGeo(f, P, NU, NV, lift, th, o) {
+    o = o || {};
+    const bot = [], W = NU + 1;
+    for (let j = 0; j <= NV; j++) for (let i = 0; i <= NU; i++) bot.push(onF(f, P(i / NU, j / NV), lift + (o.bulge ? o.bulge(i / NU, j / NV) : 0)));
+    const pos = [], uv = [], idx = [], n = bot.length;
+    const edgeK = (i, j) => (i === 0 || i === NU || j === 0 || j === NV ? 0.55 : 1);     // a soft edge: the top falls toward the rim
+    bot.forEach((s, q) => { const i = q % W, j = (q / W) | 0, t = th * edgeK(i, j); pos.push(s[0] + s[3] * t, s[1] + s[4] * t, s[2] + s[5] * t); uv.push(i / NU * (o.w || 0.05), j / NV * (o.h || 0.05)); });
+    bot.forEach((s, q) => { const i = q % W, j = (q / W) | 0; pos.push(s[0] - s[3] * 0.0004, s[1] - s[4] * 0.0004, s[2] - s[5] * 0.0004); uv.push(i / NU * (o.w || 0.05), j / NV * (o.h || 0.05)); });
+    for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) {
+      const a = j * W + i, b = a + W;
+      idx.push(a, a + 1, b, b, a + 1, b + 1);
+      idx.push(n + a, n + b, n + a + 1, n + b, n + b + 1, n + a + 1);
+    }
+    const ring = [];
+    for (let i = 0; i < NU; i++) ring.push(i);
+    for (let j = 0; j < NV; j++) ring.push(j * W + NU);
+    for (let i = NU; i > 0; i--) ring.push(NV * W + i);
+    for (let j = NV; j > 0; j--) ring.push(j * W);
+    for (let q = 0; q < ring.length; q++) { const a = ring[q], b = ring[(q + 1) % ring.length]; idx.push(a, n + a, b, b, n + a, n + b); }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx);
+    // the top's winding is decided against the surface normal at its middle; the rest follows from it
+    const mid = Math.floor(NV / 2) * W + Math.floor(NU / 2), s = bot[mid];
+    g.computeVertexNormals();
+    const nn = g.attributes.normal;
+    if (nn.getX(mid) * s[3] + nn.getY(mid) * s[4] + nn.getZ(mid) * s[5] < 0) {
+      const ix = g.index.array; for (let q = 0; q < ix.length; q += 3) { const t = ix[q]; ix[q] = ix[q + 1]; ix[q + 1] = t; }
+      g.computeVertexNormals();
+    }
+    return g;
+  }
+  /* A TURNED HEM round a garment's cut edge (a sleeve, a trouser leg, a shirt's hem). A plane cut
+   * through a distance field is a solid stump, which is what made a sleeve read as painted on. So
+   * the cut keeps a rounded bead in the field, and this lays the hem itself over it: a band whose
+   * profile [da, dr] (along the axis out through the cut, out from the cloth) steps out at the
+   * stitch line, runs flat and rolls over the lip into the opening, plus a dark cone inside that is
+   * the cloth's inner face going up into the sleeve, so the opening has depth.
+   * C is a point on the cut plane, A the axis out through it, Nr any direction across it. */
+  function hemGeo(f, C, A, Nr, prof, o) {
+    o = o || {};
+    const NA = o.na || (LOW ? 16 : 44);
+    const Ax = A.clone().normalize(), N = Nr.clone().sub(Ax.clone().multiplyScalar(Nr.dot(Ax))).normalize(), B = Ax.clone().cross(N);
+    const rsurf = new Float32Array(NA), dirs = [];
+    const P = new THREE.Vector3(), D = new THREE.Vector3();
+    const radiusAt = (dir, da, r) => {
+      for (let it = 0; it < 6; it++) {
+        P.copy(C).addScaledVector(Ax, da).addScaledVector(dir, r);
+        const d = f(P.x, P.y, P.z); r = Math.max(o.rMin || 0.004, r - d * 0.9);
+        if (Math.abs(d) < 1e-4) break;
+      }
+      return r;
+    };
+    const daS = -0.0035;
+    let guess = 0.05;
+    for (let i = 0; i < NA; i++) {
+      const th = (i / NA) * Math.PI * 2, dir = N.clone().multiplyScalar(Math.cos(th)).addScaledVector(B, Math.sin(th));
+      dirs.push(dir);
+      const off = o.off ? o.off(dir) : 0;
+      // the first bearing finds the surface by marching out; each later one starts from its neighbour
+      if (i === 0) { let r = 0.004; P.copy(C).addScaledVector(Ax, daS + off); while (r < 0.4 && f(P.x + dir.x * r, P.y + dir.y * r, P.z + dir.z * r) < 0) r += 0.004; guess = r; }
+      guess = radiusAt(dir, daS + off, guess); rsurf[i] = guess;
+    }
+    const pos = [], uv = [], idx = [], np = prof.length;
+    for (let i = 0; i <= NA; i++) {
+      const q = i % NA, dir = dirs[q], off = o.off ? o.off(dir) : 0;
+      let rPrev = rsurf[q];
+      for (let j = np - 1; j >= 0; j--) {            // from the lip up, so each row starts from the one below it
+        const [da, dr] = prof[j];
+        const r = da < daS ? (rPrev = radiusAt(dir, da + off, rPrev)) : rsurf[q];
+        D.copy(C).addScaledVector(Ax, da + off).addScaledVector(dir, r + dr);
+        pos[(i * np + j) * 3] = D.x; pos[(i * np + j) * 3 + 1] = D.y; pos[(i * np + j) * 3 + 2] = D.z;
+        uv[(i * np + j) * 2] = (i / NA) * Math.PI * 2 * rsurf[q]; uv[(i * np + j) * 2 + 1] = da;
+      }
+    }
+    for (let i = 0; i < NA; i++) for (let j = 0; j < np - 1; j++) { const a = i * np + j, b = a + np; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx);
+    const d0 = dirs[0], band = orientOut(g, d0.x, d0.y, d0.z, 3);
+    if (!o.inside) return { band };
+    // the inner face: from just inside the lip up into the garment
+    const ip = [], iu = [], ii = [], RW = 3;
+    for (let i = 0; i <= NA; i++) {
+      const q = i % NA, dir = dirs[q], off = o.off ? o.off(dir) : 0, rs = rsurf[q];
+      for (let j = 0; j < RW; j++) {
+        const t = j / (RW - 1), da = lerp(prof[np - 1][0] - 0.0002, -o.inside, t), r = lerp(rs + prof[np - 1][1] - 0.0004, rs * 0.72, t);
+        D.copy(C).addScaledVector(Ax, da + off).addScaledVector(dir, r);
+        ip.push(D.x, D.y, D.z); iu.push(i / NA, t);
+      }
+    }
+    for (let i = 0; i < NA; i++) for (let j = 0; j < RW - 1; j++) { const a = i * RW + j, b = a + RW; ii.push(a, b, a + 1, b, b + 1, a + 1); }
+    const gi = new THREE.BufferGeometry();
+    gi.setAttribute('position', new THREE.Float32BufferAttribute(ip, 3)); gi.setAttribute('uv', new THREE.Float32BufferAttribute(iu, 2)); gi.setIndex(ii);
+    // it faces into the opening: toward the axis
+    const inner = orientOut(gi, -d0.x, -d0.y, -d0.z, 1);
+    return { band, inner };
+  }
+  // hem profiles [da, dr] in metres: along the axis out through the cut, out from the cloth
+  const HEM = [[-0.027, -0.0009], [-0.023, 0.0007], [-0.0205, 0.0011], [-0.007, 0.0012], [-0.003, 0.001], [-0.0008, 0.0005], [0.0006, -0.0008], [0.0011, -0.0028]];
+  const CUFF = [[-0.066, -0.0009], [-0.062, 0.0013], [-0.058, 0.0019], [-0.008, 0.002], [-0.003, 0.0017], [-0.0008, 0.0009], [0.0007, -0.0008], [0.0012, -0.003]];
+  const ROLL = [[-0.05, -0.0009], [-0.046, 0.0022], [-0.04, 0.0036], [-0.03, 0.0038], [-0.026, 0.0016], [-0.023, 0.0038], [-0.01, 0.004], [-0.004, 0.0032], [-0.0009, 0.0014], [0.0008, -0.001], [0.0013, -0.0034]];
+  const scaleProf = (p, sa, sr) => p.map(([a, b]) => [a * sa, b * (sr || 1)]);
+
+  /* SKIN TAKES LIGHT IN (2026-11-15, "plastic skin"). Skin is translucent: light enters, scatters a
+   * few millimetres, red farthest, and leaves, so its terminator is soft and warm where a plastic's
+   * is a hard grey line. The physical lighting's Lambert term is replaced, for skin only, by a
+   * wrapped one whose wrap is per channel (red most), the standard real-time stand-in for
+   * subsurface scattering. Shadows still come from the shadow map, so a shadowed cheek stays in
+   * shadow. The specular is skin's own: index 1.4 (F0 about 0.028), a little less than a plastic,
+   * and a soft sheen for the down on the skin. Roughness about 0.5, varied by the surface pass. */
+  const SSS_KEY = 'reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );';
+  const SSS_REP = `{ float txNL = dot( geometryNormal, directLight.direction );
+      vec3 txW = vec3( 0.3, 0.14, 0.08 );
+      vec3 txL = clamp( ( vec3( txNL ) + txW ) / ( 1.0 + txW ), 0.0, 1.0 );
+      reflectedLight.directDiffuse += directLight.color * txL * BRDF_Lambert( material.diffuseColor ); }`;
+  function skinMat(key, params) {
+    const m = K.mat(key, Object.assign({ roughness: 0.52, ior: 1.4, specularIntensity: 0.62, sheen: 0.18, sheenColor: 0xf0d8cc, sheenRoughness: 0.65 }, params), true);
+    if (!m.userData.txSss) {
+      m.userData.txSss = true;
+      m.onBeforeCompile = (sh) => {
+        const ch = THREE.ShaderChunk && THREE.ShaderChunk.lights_physical_pars_fragment;
+        if (ch && ch.indexOf(SSS_KEY) >= 0) sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_pars_fragment>', ch.replace(SSS_KEY, SSS_REP));
+      };
+      m.customProgramCacheKey = () => 'tx-skin-sss';
+    }
+    return m;
   }
 
   /* ---- palettes ------------------------------------------------------------------------- */
@@ -473,25 +741,47 @@ export function install(K, THREE, TXT) {
     if (z > 0) z *= 1 - 0.1 * Math.max(0, y - 0.3) - 0.08 * x * x;
     let px = x * W, py = y * Hh, pz = z * D;
     px -= Math.sign(ux) * W * 0.035 * g2(Math.abs(ux) - 0.85, uy - 0.25, 0.2, 0.18) * smooth(uz / 0.3 + 0.5);
+    px += Math.sign(ux) * W * 0.022 * g2(Math.abs(ux) - 0.8, uy + 0.03, 0.14, 0.1) * smooth(uz / 0.3 + 0.6);   // the zygomatic arch
+    px += Math.sign(ux) * W * (fem ? 0.012 : 0.026) * g2(Math.abs(ux) - 0.72, uy + 0.62, 0.16, 0.12) * smooth(-uz / 0.3 + 0.8);   // the jaw's angle
     if (uz > -0.1) {
       const fz = smooth((uz + 0.1) / 0.5), ax = Math.abs(ux);
       let dz = 0;
+      /* THE FACE'S PLANES AND A LIVING MOUTH (2026-11-15, "dead faces"). The sculpt had a nose, lips
+       * and sockets but none of the planes between them, so the face read as one smooth mask: no
+       * nasolabial fold, no ala set into the cheek, no philtrum columns, no vermilion edge, a mouth
+       * line dead straight. The mouth now curves up a few millimetres at its corners with the cheek
+       * apples lifted over them, which is the resting half smile of a person, not a mannequin's line. */
       dz += (fem ? 0.045 : 0.07) * g2(ax, uy - 0.2, 0.55, 0.075) * (ax < 0.62 ? 1 : 0.4);    // brow ridge
+      dz += (fem ? 0.01 : 0.022) * g2(ux, uy - 0.17, 0.1, 0.05);                           // glabella
       dz -= 0.02 * g2(ux, uy - 0.1, 0.06, 0.05);                                          // nose root
       dz -= 0.115 * g2(ax - 0.33, uy - 0.06, 0.15, 0.1);                                   // eye sockets
+      dz -= 0.012 * g2(ax - 0.3, uy + 0.075, 0.11, 0.025);                                 // the lid's lower edge, the tear trough
       const tn = Math.pow(clamp01((0.08 - uy) / 0.38), 1.3), below = uy < -0.3 ? Math.exp(-Math.pow((uy + 0.3) / 0.075, 2)) : 1;
-      dz += (fem ? 0.18 : 0.21) * tn * below * g2(ux, 0, 0.06 + 0.045 * tn, 1);             // bridge to tip
-      dz += 0.03 * g2(ux, uy + 0.27, 0.065, 0.05);                                         // tip
-      dz += 0.035 * g2(ax - 0.09, uy + 0.3, 0.04, 0.04);                                    // alae
-      dz -= 0.012 * g2(ax - 0.05, uy + 0.34, 0.022, 0.018);                                // nostrils
+      dz += (fem ? 0.18 : 0.21) * tn * below * g2(ux, 0, 0.05 + 0.05 * tn, 1);              // bridge to tip
+      dz += 0.042 * g2(ux, uy + 0.265, 0.07, 0.06);                                        // the tip's ball
+      dz += 0.045 * g2(ax - 0.105, uy + 0.3, 0.045, 0.042);                                 // alae
+      dz -= 0.016 * g2(ax - 0.165, uy + 0.3, 0.02, 0.055);                                  // the crease that sets each ala into the cheek
+      dz -= 0.014 * g2(ax - 0.05, uy + 0.34, 0.022, 0.018);                                // nostrils
+      // the nasolabial fold: from beside the ala down past the mouth's corner, the cheek's mass outside it
+      { const x0 = 0.15, y0 = -0.29, x1 = 0.31, y1 = -0.62, vx = x1 - x0, vy = y1 - y0, L2 = vx * vx + vy * vy;
+        const t = clamp01(((ax - x0) * vx + (uy - y0) * vy) / L2), qx = ax - x0 - vx * t, qy = uy - y0 - vy * t;
+        const dn = Math.hypot(qx, qy) * Math.sign(qx * vy - qy * vx || 1) * -1, win = Math.sin(Math.PI * Math.min(1, t * 1.15 + 0.05));
+        dz -= 0.02 * win * Math.exp(-Math.pow(dn / 0.022, 2));
+        dz += 0.028 * win * Math.exp(-Math.pow((dn - 0.075) / 0.06, 2)); }
+      const mY = (q) => -0.515 + 0.03 * Math.pow(Math.min(1.3, q / 0.22), 2);               // the mouth line, its corners up
+      const mo = uy - mY(ax);
       dz -= 0.012 * g2(ux, uy + 0.41, 0.025, 0.04);                                        // philtrum
-      dz += 0.05 * g2(ux, uy + 0.465, 0.19, 0.035);                                        // upper lip
-      dz -= 0.03 * g2(ux, uy + 0.515, 0.2, 0.013);                                         // mouth line
-      dz += (fem ? 0.05 : 0.042) * g2(ux, uy + 0.56, 0.16, 0.035);                         // lower lip
-      dz -= 0.022 * g2(ax - 0.22, uy + 0.515, 0.04, 0.04);                                 // mouth corners
+      dz += 0.009 * g2(ax - 0.04, uy + 0.41, 0.014, 0.045);                                // its two columns
+      dz += 0.05 * g2(ux, mo - 0.05, 0.19, 0.035);                                         // upper lip
+      dz += 0.01 * g2(ux, mo - 0.074 + 0.008 * g2(ax, 0, 0.05, 1), 0.17, 0.01);            // the vermilion's edge, the bow
+      dz -= 0.034 * g2(ux, mo, 0.21, 0.012);                                               // mouth line
+      dz += (fem ? 0.05 : 0.042) * g2(ux, mo + 0.045, 0.16, 0.035);                        // lower lip
+      dz -= 0.022 * g2(ax - 0.22, mo, 0.035, 0.04);                                        // mouth corners
+      dz += 0.012 * g2(ax - 0.28, mo + 0.01, 0.035, 0.05);                                 // the knot of muscle beside each corner
       dz -= 0.025 * g2(ux, uy + 0.655, 0.16, 0.035);                                       // under the lip
       dz += 0.06 * g2(ux, uy + 0.82, 0.3, 0.13);                                           // chin
       dz += 0.045 * g2(ax - 0.55, uy + 0.05, 0.16, 0.12);                                  // cheekbones
+      dz += 0.02 * g2(ax - 0.4, uy + 0.22, 0.12, 0.1);                                     // the cheek's apple, lifted by the smile
       dz -= 0.018 * g2(ax - 0.5, uy + 0.35, 0.12, 0.14);                                   // under the cheekbone
       pz += D * dz * fz;
     }
@@ -519,6 +809,11 @@ export function install(K, THREE, TXT) {
     g -= warm * 0.9 * f; b -= warm * 1.1 * f;
     const sock = 0.1 * g2(ax - 0.33, uy - 0.08, 0.13, 0.08) * f;
     r -= sock * 0.9; g -= sock; b -= sock * 0.8;
+    // the thin skin under the eye is a little cooler and darker; the nose tip and the ear-side of the cheek warmer
+    const under = 0.05 * g2(ax - 0.3, uy + 0.06, 0.12, 0.05) * f;
+    r -= under * 0.7; g -= under; b -= under * 0.6;
+    const flush = 0.05 * g2(ux, uy + 0.27, 0.06, 0.06) * f + 0.03 * g2(ax - 0.75, uy + 0.15, 0.15, 0.2);
+    g -= flush * 0.8; b -= flush * 0.9;
     if (!fem) { const beard = 0.08 * smooth((-uy - 0.35) / 0.2) * smooth((uz + 0.35) / 0.3) * (1 - 0.8 * g2(ux, uy + 0.52, 0.2, 0.06)); r -= beard; g -= beard; b -= beard * 0.8; }
     const fade = smooth((uy + 0.95) / 0.2);               // back to exactly the body skin at the neck
     return [lerp(1, r, fade), lerp(1, g, fade), lerp(1, b, fade)];
@@ -527,7 +822,8 @@ export function install(K, THREE, TXT) {
   function headGeo(W, Hh, D, fem) {
     const key = [W, Hh, D, fem, LOW].map((v) => (typeof v === 'number' ? v.toFixed(4) : v)).join('|');
     if (HEADS.has(key)) return HEADS.get(key);
-    const NLON = LOW ? 24 : 62, NLAT = LOW ? 18 : 50;
+    // fine enough at the face that a lip's edge, a nostril and the fold beside the mouth are geometry
+    const NLON = LOW ? 24 : 104, NLAT = LOW ? 18 : 88;
     const lon = warp(NLON, -Math.PI, Math.PI, (a) => 1 + 1.7 * Math.exp(-Math.pow(a / 0.85, 2)));
     const lat = warp(NLAT, 0, Math.PI, (t) => 1 + 1.5 * Math.exp(-Math.pow((t - 1.75) / 0.5, 2)) + 0.9 * Math.exp(-Math.pow((t - 1.05) / 0.28, 2)));
     const pos = [], uv = [], dirs = [], idx = [], col = [];
@@ -553,6 +849,26 @@ export function install(K, THREE, TXT) {
       const a = i * Wd, b = a + NLON;
       const nx = nor.getX(a) + nor.getX(b), ny = nor.getY(a) + nor.getY(b), nz = nor.getZ(a) + nor.getZ(b), l = Math.hypot(nx, ny, nz) || 1;
       nor.setXYZ(a, nx / l, ny / l, nz / l); nor.setXYZ(b, nx / l, ny / l, nz / l);
+    }
+    /* CAVITY (2026-11-15): skin is darker where it folds in, the nostril, the mouth's line and corners,
+     * the fold beside the nose, the lid's crease, because less light reaches in and what does is
+     * scattered red. The concavity of each vertex against its grid neighbours two steps out darkens
+     * its tint, and a convexity lifts it a little, so the face's planes read without a light on them. */
+    if (!LOW) {
+      const pa = g.attributes.position, ca = g.attributes.color, cav = new Float32Array(pa.count);
+      for (let i = 2; i < NLAT - 1; i++) for (let j = 0; j <= NLON; j++) {
+        const v = i * Wd + j, jj = (q) => ((q % NLON) + NLON) % NLON;
+        const nb = [(i - 2) * Wd + j, (i + 2) * Wd + j, i * Wd + jj(j - 2), i * Wd + jj(j + 2)];
+        let mx = 0, my = 0, mz = 0, el = 0;
+        for (const q of nb) { mx += pa.getX(q); my += pa.getY(q); mz += pa.getZ(q); el += Math.hypot(pa.getX(q) - pa.getX(v), pa.getY(q) - pa.getY(v), pa.getZ(q) - pa.getZ(v)); }
+        mx = mx / 4 - pa.getX(v); my = my / 4 - pa.getY(v); mz = mz / 4 - pa.getZ(v); el /= 4;
+        cav[v] = (mx * nor.getX(v) + my * nor.getY(v) + mz * nor.getZ(v)) / (el * el + 1e-9) * 0.004;
+      }
+      for (let v = 0; v < pa.count; v++) {
+        const c = Math.max(-0.06, Math.min(0.3, cav[v] * 1.5)), fr = smooth((dirs[v * 3 + 2] + 0.2) / 0.5);
+        const dk = c > 0 ? c * fr : c * 0.5 * fr;
+        ca.setXYZ(v, ca.getX(v) * (1 - dk * 0.8), ca.getY(v) * (1 - dk), ca.getZ(v) * (1 - dk * 0.95));
+      }
     }
     g.userData.dirs = dirs;
     HEADS.set(key, g);
@@ -692,44 +1008,82 @@ export function install(K, THREE, TXT) {
 
   /* ---- hands -------------------------------------------------------------------------- */
   // Built hanging down -y with the palm facing -s*x (toward the body) and the thumb to +z.
-  function hand(k, s, mat, pose) {
+  /* A RELAXED HAND, NOT A RAKE (2026-11-15). The fingers were four thin tapered sticks curled by
+   * different amounts, so from three quarters they fanned out like a claw, and the palm was a flat
+   * paddle. A hand at rest: the knuckles sit on an arc (the middle lowest, the little finger well up),
+   * each finger bends a little at the knuckle and more at the middle joint, the bend growing toward
+   * the little finger, the fingers lean in toward the middle and touch, every joint is a slight
+   * swelling with the bone thinner between, each tip carries a nail, the thumb springs from a
+   * fleshy mound and rests along the side of the index finger, and the back of the hand shows its
+   * knuckles. */
+  function hand(k, s, mat, pose, nailM) {
     const g = new THREE.Group();
     const L = 0.1 * k, B = 0.084 * k, T = 0.03 * k;
     const palm = loft([
-      { p: [0, 0.012 * k, 0], rx: T * 0.42, ry: B * 0.34 },
-      { p: [0, -0.03 * k, 0.002 * k], rx: T * 0.58, ry: B * 0.47 },
-      { p: [-s * 0.003 * k, -0.07 * k, 0], rx: T * 0.52, ry: B * 0.5 },
-      { p: [-s * 0.006 * k, -L + 0.004 * k, 0], rx: T * 0.42, ry: B * 0.47 }], { seg: 16, per: 3, n: 2.4, ref: [1, 0, 0], capStart: 'flat', capEnd: 'dome', domeK: 0.5 });
+      { p: [0, 0.012 * k, 0], rx: T * 0.44, ry: B * 0.34 },
+      { p: [0, -0.03 * k, 0.002 * k], rx: T * 0.6, ry: B * 0.47 },
+      { p: [-s * 0.003 * k, -0.07 * k, 0], rx: T * 0.54, ry: B * 0.5 },
+      { p: [-s * 0.005 * k, -L + 0.006 * k, 0], rx: T * 0.44, ry: B * 0.48 }], { seg: LOW ? 10 : 18, per: 3, n: 2.4, ref: [1, 0, 0], capStart: 'flat', capEnd: 'dome', domeK: 0.5 });
     g.add(new THREE.Mesh(palm, mat));
-    const fl = [0.072, 0.082, 0.077, 0.062];
     if (LOW) {      // a mitten: the fingers as one curled blade
       g.add(new THREE.Mesh(loft([{ p: [0, -L + 0.01 * k, 0], rx: T * 0.38, ry: B * 0.45 }, { p: [-s * 0.022 * k, -L - 0.055 * k, 0], rx: T * 0.3, ry: B * 0.4 }],
         { seg: 12, capEnd: 'dome', ref: [1, 0, 0] }), mat));
+    } else {
+      // the mounds of the palm: the thumb's at the heel on the thumb side, the little finger's along the other edge
+      const blob = (p, sc, rot) => { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 10), mat); m.position.set(...p.map((v) => v * k)); m.scale.set(...sc.map((v) => v * k)); if (rot) m.rotation.set(...rot); g.add(m); };
+      blob([-s * 0.007, -0.035, 0.02], [0.012, 0.03, 0.016], [0, 0, s * 0.25]);
+      blob([-s * 0.006, -0.055, -0.026], [0.009, 0.034, 0.011]);
     }
+    const fl = [0.074, 0.084, 0.079, 0.064], kn = [0.005, 0, 0.003, 0.013];
+    const wr = [0.0104, 0.0108, 0.0102, 0.0091];
+    const CURL = pose === 'point' ? [[0.03, 0.06, 0.03], [0.95, 1.5, 0.85], [1, 1.55, 0.85], [1.05, 1.55, 0.85]]
+      : pose === 'fist' ? [[1.15, 1.55, 0.9], [1.2, 1.6, 0.9], [1.2, 1.6, 0.9], [1.2, 1.55, 0.9]]
+      : [[0.2, 0.4, 0.22], [0.27, 0.5, 0.26], [0.33, 0.57, 0.28], [0.4, 0.64, 0.3]];
+    const segs = [0.46, 0.3, 0.24];
     for (let f = 0; f < (LOW ? 0 : 4); f++) {
-      const zz = (0.029 - f * 0.0195) * k * (B / (0.084 * k));
-      const len = fl[f] * k;
-      // at rest the fingers curl more toward the little finger: a relaxed hand, not a paddle
-      // a hand at rest curls more than a paddle does, most at the little finger (2026-10-16)
-      const curl = pose === 'point' ? (f === 0 ? 0.05 : 1.45) : pose === 'fist' ? 1.4 : 0.8 + f * 0.16;
-      const ctrl = [];
-      let px = -s * 0.006 * k, py = -L + 0.004 * k, a = 0.08;
-      const rad = (0.0104 - f * 0.0006) * k;
-      ctrl.push({ p: [px, py + 0.01 * k, zz], rx: rad * 1.05, ry: rad * 0.9 });
-      const segs = [0.45, 0.31, 0.24];
-      for (let j = 1; j <= 3; j++) {
-        a += curl * (j === 1 ? 0.28 : j === 2 ? 0.4 : 0.32);
-        const seg = len * segs[j - 1];
-        py -= Math.cos(a) * seg; px += -s * Math.sin(a) * seg;
-        ctrl.push({ p: [px, py, zz * (1 - j * 0.06)], rx: rad * (1 - j * 0.1), ry: rad * 0.85 * (1 - j * 0.1) });
+      const z0 = (0.0285 - f * 0.019) * k, len = fl[f] * k, rad = wr[f] * k, c = CURL[f];
+      // the fingers lean in toward the middle as they go, so neighbours touch rather than fan
+      const zTip = z0 * 0.84 + (f === 0 ? -0.001 : f === 3 ? 0.002 : 0) * k;
+      let px = -s * 0.005 * k, py = -L + kn[f] * k, a = 0.06, run = 0;
+      const ctrl = [{ p: [px, py + 0.012 * k, z0], rx: rad * 1.02, ry: rad * 0.9 }];
+      const put = (r) => { const t = run / len; ctrl.push({ p: [px, py, lerp(z0, zTip, t)], rx: rad * r, ry: rad * r * 0.88 }); };
+      put(1.05);                                                    // the knuckle
+      let tipDir = null;
+      for (let j = 0; j < 3; j++) {
+        a += c[j];
+        const seg = len * segs[j], half = seg * 0.5;
+        const step = (d) => { py -= Math.cos(a) * d; px += -s * Math.sin(a) * d; run += d; };
+        step(half); put([0.93, 0.85, 0.8][j]);                      // the bone, thinner
+        step(half); put([0.95, 0.84, 0.66][j]);                     // the next joint swells; the last ring rounds the tip
+        if (j === 2) tipDir = a;
       }
-      g.add(new THREE.Mesh(loft(ctrl, { seg: 7, per: 2, capStart: 'flat', capEnd: 'dome', ref: [0, 0, 1] }), mat));
+      g.add(new THREE.Mesh(loft(ctrl, { seg: 9, per: 2, capStart: 'flat', capEnd: 'dome', domeK: 0.75, ref: [0, 0, 1] }), mat));
+      // the nail, on the back of the last bone
+      if (nailM) {
+        const nl = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), nailM);
+        const back = s, d = V3(-s * Math.sin(tipDir), -Math.cos(tipDir), 0), up = V3(back * Math.cos(tipDir), -Math.sin(tipDir), 0);
+        const cp = ctrl[ctrl.length - 2].p, rr = rad * 0.8 * 0.86;
+        nl.position.set(cp[0] + up.x * rr * 0.86 + d.x * 0.002 * k, cp[1] + up.y * rr * 0.86 + d.y * 0.002 * k, cp[2]);
+        nl.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(V3(0, 0, 1), d, up));
+        nl.scale.set(rad * 0.62, len * 0.12, 0.0016 * k); g.add(nl);
+      }
+      // the knuckle on the back of the hand
+      const kb = new THREE.Mesh(new THREE.SphereGeometry(1, 10, 8), mat);
+      kb.position.set(s * 0.008 * k, -L + kn[f] * k + 0.004 * k, z0 * 0.95); kb.scale.set(0.0052 * k, 0.0085 * k, rad * 0.8); g.add(kb);
     }
-    // thumb from the heel of the palm, forward and down, resting along the index finger
-    const th = [[-s * 0.004, -0.02, 0.028], [-s * 0.012, -0.045, 0.05], [-s * 0.022, -0.07, 0.058], [-s * 0.032, -0.088, 0.056]]
-      .map((q, i) => ({ p: q.map((v) => v * k), rx: (0.0125 - i * 0.0011) * k, ry: (0.0105 - i * 0.001) * k }));
-    if (pose === 'point' || pose === 'fist') th.forEach((t, i) => { t.p[0] -= s * 0.012 * k * i; t.p[2] -= 0.008 * k * i; });
-    g.add(new THREE.Mesh(loft(th, { seg: 8, per: 2, capStart: 'flat', capEnd: 'dome' }), mat));
+    // the thumb from its mound, forward and down, resting along the side of the index finger
+    const th = [[-s * 0.005, -0.016, 0.024], [-s * 0.012, -0.04, 0.045], [-s * 0.019, -0.062, 0.054], [-s * 0.026, -0.075, 0.056], [-s * 0.032, -0.087, 0.054]]
+      .map((q, i) => ({ p: q.map((v) => v * k), rx: [0.0135, 0.0118, 0.0112, 0.0102, 0.0094][i] * k, ry: [0.0115, 0.0102, 0.0098, 0.0086, 0.0078][i] * k }));
+    if (pose === 'point' || pose === 'fist') th.forEach((t, i) => { t.p[0] -= s * 0.012 * k * i / 1.3; t.p[2] -= 0.008 * k * i / 1.3; });
+    g.add(new THREE.Mesh(loft(th, { seg: LOW ? 6 : 10, per: 2, capStart: 'flat', capEnd: 'dome', domeK: 0.75 }), mat));
+    if (nailM && !LOW) {
+      const a = th[3].p, b = th[4].p, d = V3(b[0] - a[0], b[1] - a[1], b[2] - a[2]).normalize();
+      const up = V3(s * 0.25, 0, 1).sub(d.clone().multiplyScalar(d.z)).normalize(), sd = d.clone().cross(up).normalize();
+      const nl = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), nailM);
+      nl.position.set(b[0] + up.x * 0.0072 * k - d.x * 0.002 * k, b[1] + up.y * 0.0072 * k - d.y * 0.002 * k, b[2] + up.z * 0.0072 * k - d.z * 0.002 * k);
+      nl.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(sd, d, up));
+      nl.scale.set(0.0066 * k, 0.0085 * k, 0.0016 * k); g.add(nl);
+    }
     return g;
   }
 
@@ -923,8 +1277,14 @@ export function install(K, THREE, TXT) {
     for (const [mat, list] of groups) {
       const parts = list.map((m) => {
         let g = m.geometry.index ? m.geometry.toNonIndexed() : m.geometry.clone();
-        g.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld));
+        const Mx = new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld);
+        g.applyMatrix4(Mx);
         if (!g.attributes.normal) g.computeVertexNormals();
+        // a mirrored transform turns every triangle inside out once baked: wind them back
+        if (Mx.determinant() < 0) for (const key of Object.keys(g.attributes)) {
+          const at = g.attributes[key], is = at.itemSize, ar = at.array;
+          for (let t = 0; t < at.count; t += 3) for (let c = 0; c < is; c++) { const i1 = (t + 1) * is + c, i2 = (t + 2) * is + c, tmp = ar[i1]; ar[i1] = ar[i2]; ar[i2] = tmp; }
+        }
         return g;
       });
       const hasUV = parts.every((g) => g.attributes.uv);
@@ -969,11 +1329,16 @@ export function install(K, THREE, TXT) {
 
     // palette by seed and role
     const skinC = o.skin != null ? (o.skin < 20 ? SKIN[o.skin | 0] : o.skin) : pick(r, SKIN);
-    const skin = K.mat('p-skin', { color: skinC, roughness: 0.6, sheen: 0.25, sheenColor: 0xff9f86, sheenRoughness: 0.5, clearcoat: 0.04, clearcoatRoughness: 0.5 }, true);
+    const skin = skinMat('p-skin', { color: skinC });
+    // nails: the skin's colour through a hard, glossier plate, a little paler and pinker
+    const nailM = K.mat('p-nail', { color: new THREE.Color(skinC).multiplyScalar(1.1).lerp(new THREE.Color(0xd8a49a), 0.12).getHex(), roughness: 0.35, clearcoat: 0.45, clearcoatRoughness: 0.3 }, true);
+    // ears are thin and backlit, so they run redder than the face
+    const earM = skinMat('p-skin-ear', { color: new THREE.Color(skinC).lerp(new THREE.Color(0xc0605a), 0.08).getHex() });
     const hairC = pick(r, HAIR);
     const hairM = K.mat('p-hair', { color: new THREE.Color(hairC).multiplyScalar(1.12).getHex(), roughness: 0.55, map: clothTex('strands', 0, 0, 0),
       sheen: 0.55, sheenColor: 0xfff1e0, sheenRoughness: 0.45 }, true);
-    const faceM = K.mat('p-face', { color: skinC, roughness: 0.6, sheen: 0.25, sheenColor: 0xff9f86, sheenRoughness: 0.5, clearcoat: 0.04, clearcoatRoughness: 0.5, vertexColors: true }, true);
+    // the face carries its own tint per vertex and a faint oily sheen the body doesn't
+    const faceM = skinMat('p-skin-face', { color: skinC, vertexColors: true, clearcoat: 0.07, clearcoatRoughness: 0.4 });
     let shirtKind = 'tee', shirtM, trouserM, jacket = false, sleeves = 'long', tie = null, jeans = false;
     const sroll = r();
     if (role === 'official') {
@@ -1175,16 +1540,32 @@ export function install(K, THREE, TXT) {
       L.trF = (x, y, z) => {
         let d = f(x, y, z);
         const I = f.info, dk = I.along - kneeA, de = len - I.along;
+        /* FOLDS A GRID CAN HOLD (2026-11-15). The ripples were 3.7 cm waves on a 1.6 cm grid, which
+         * surface nets put down as lumps, and the critic saw "no folds". Each fold is now at least
+         * twice the grid in wavelength and deep enough to cast its own shade. */
         let fold = 0;
-        if (dk > -0.08 * k && dk < 0.08 * k) fold += 0.0026 * k * Math.exp(-Math.pow(dk / (0.045 * k), 2)) * Math.max(0, -I.c) * Math.sin(dk * 170 / k + I.s * 1.5 + ph[1]);
-        if (de < 0.13 * k) fold += 0.0038 * k * (1 - de / (0.13 * k)) * (0.6 + 0.4 * I.c) * Math.sin(de * 150 / k + I.s * 1.2 + ph[2]);
-        if (jeans && I.along < 0.2 * k && I.c > 0) fold += 0.0014 * k * I.c * Math.sin((I.along + I.s * 0.05) * 160 / k) * (1 - I.along / (0.2 * k));
-        d -= fold + 0.0009 * k * noise(x, y, z, 13);
-        // hem: a plane, lower at the back
-        d = Math.max(d, (x - hemP[0]) * tilt.x + (y - hemP[1]) * tilt.y + (z - hemP[2]) * tilt.z);
+        // over and behind the knee: soft horizontal ripples, deepest at the back
+        if (dk > -0.1 * k && dk < 0.1 * k) fold += 0.0032 * k * Math.exp(-Math.pow(dk / (0.05 * k), 2)) * (0.35 + 0.65 * Math.max(0, -I.c)) * Math.sin(dk * 115 / k + I.s * 1.6 + ph[1]);
+        // THE BREAK: the hem rests on the shoe, so the last 15 cm of the leg buckle in Z folds with one fold across the front
+        if (de < 0.15 * k) {
+          const w = 1 - de / (0.15 * k);
+          fold += 0.0042 * k * w * (0.55 + 0.45 * I.c) * Math.sin(de * 105 / k + I.s * 1.8 + ph[2]);
+          fold += 0.0055 * k * Math.exp(-Math.pow((de - 0.055 * k) / (0.018 * k), 2)) * smooth((I.c - 0.1) / 0.5);
+          // the front of the hem is carried forward over the instep, so the leg rests ON the shoe
+          fold += 0.011 * k * Math.pow(smooth(1 - de / (0.075 * k)), 1.5) * Math.pow(Math.max(0, I.c), 1.5);
+        }
+        // jeans: whiskers fanning from the crotch over the front of the thigh
+        if (jeans && I.along < 0.22 * k && I.c > 0) fold += 0.0018 * k * I.c * Math.sin((I.along * 0.7 + I.s * 0.06) * 140 / k) * (1 - I.along / (0.22 * k));
+        // the pressed crease down the front of a trouser leg (never jeans): a soft ridge from the hip to the break
+        if (!jeans && I.c > 0.55) fold += 0.0024 * k * Math.exp(-Math.pow(I.s / 0.11, 2)) * smooth(I.along / (0.12 * k)) * (1 - 0.6 * smooth((0.06 * k - de) / (0.05 * k)));
+        // the cloth hangs off the thigh and the seat in long shallow drapes
+        fold += 0.0014 * k * Math.sin(I.s * 3 + I.along * 9 / k + ph[0]) * smooth(I.along / (0.3 * k));
+        d -= fold + 0.0006 * k * noise(x, y, z, 13);
+        // hem: a plane, lower at the back, its edge a rounded bead (the turned hem is laid over it, see hemGeo)
+        d = smax(d, (x - hemP[0]) * tilt.x + (y - hemP[1]) * tilt.y + (z - hemP[2]) * tilt.z, 0.005 * k);
         return d;
       };
-      L.trTube = f;
+      L.trTube = f; L.hemP = hemP; L.tilt = tilt; L.hemR = hemR;
     }
     const crotchY = Yl(0.5);
     const trouserF = (x, y, z) => {
@@ -1249,18 +1630,29 @@ export function install(K, THREE, TXT) {
       const u = yy - hemAbs;
       let fold = 0;
       const fa = jacket ? 0.35 : 1;
-      if (!tucked && !jacket && u < 0.14 * k) {              // the hem hangs in soft vertical drapes
-        const th = Math.atan2(x, zz);
-        fold += 0.004 * k * Math.pow(1 - u / (0.14 * k), 2) * Math.sin(th * 5 + ph[0]);
+      const th = Math.atan2(x, zz);
+      if (!tucked && u < 0.14 * k) {                         // the hem hangs in soft vertical drapes
+        fold += (jacket ? 0.4 : 1) * 0.004 * k * Math.pow(1 - u / (0.14 * k), 2) * Math.sin(th * 5 + ph[0]);
       }
-      if (tucked && u > 0.012 * k && u < 0.09 * k) {         // blousing above the belt
-        const th = Math.atan2(x, zz), b = Math.sin(Math.PI * (u - 0.012 * k) / (0.078 * k));
-        fold += b * (0.0028 * k + 0.0014 * k * Math.sin(th * 7 + ph[1]));
+      // GRAVITY: below the chest an untucked shirt hangs in long vertical drapes that deepen toward the hem
+      if (!tucked) {
+        const dr = smooth((Yl(0.7) - yy) / (0.16 * k));
+        if (dr > 0) fold += fa * 0.0034 * k * dr * Math.sin(th * 6 + ph[0] + 0.8 * Math.sin(th * 2 + ph[1]));
+      }
+      // DRAG FOLDS from each armpit: the cloth is pulled from the arm's root toward the waist in a fan
+      { const ax = Math.abs(x), dxa = 0.158 * k - ax, dya = Yl(0.77) - yy;
+        if (dya > -0.01 * k && dxa > -0.02 * k) {
+          const rho = Math.hypot(dxa, dya), phi = Math.atan2(dya, dxa);
+          fold += fa * 0.0026 * k * smooth(rho / (0.04 * k)) * (1 - smooth((rho - 0.15 * k) / (0.07 * k))) * Math.sin(phi * 8 + (x > 0 ? ph[1] : ph[2]));
+        } }
+      if (tucked && u > 0.012 * k && u < 0.1 * k) {          // blousing above the belt: the shirt balloons and buckles over it
+        const b = Math.sin(Math.PI * (u - 0.012 * k) / (0.088 * k));
+        fold += b * (0.0035 * k + 0.0028 * k * Math.sin(th * 8 + ph[1] + 0.6 * Math.sin(th * 3 + ph[2])));
       }
       const side = smooth((Math.abs(x) / (0.16 * k) - 0.62) / 0.3);
       const yw = Yl(0.63);
       if (Math.abs(yy - yw) < 0.09 * k) fold += fa * 0.0016 * k * side * Math.exp(-Math.pow((yy - yw) / (0.035 * k), 2)) * Math.sin((yy - yw) * 150 / k + ph[2]);
-      fold += fa * 0.0011 * k * noise(x, yy, zz, 11);
+      fold += fa * 0.0006 * k * noise(x, yy, zz, 11);
       d -= fold;
       // the hem, with a little life in it. ROUNDED, never a knife edge (weekly pass 2026-10-22): a
       // plane cut through the field is a crease narrower than the 1.6 cm mesh grid, so surface nets
@@ -1334,26 +1726,36 @@ export function install(K, THREE, TXT) {
       const tot = f.len, elbowA = f.cum[2];
       const cutA = cover >= 1 ? tot - (jacket ? 0.026 : 0.012) * k : 0.016 * k + (upperArm + foreArm) * cover;
       const cp = f.at(cutA);
-      const famp = (0.0028 + 0.0045 * Math.min(1, bend * 1.6)) * k;
+      const famp = (0.003 + 0.0055 * Math.min(1, bend * 1.6)) * k;
       sleeveF[s] = (x, y, z) => {
         let d = f(x, y, z);
         if (d > 0.03 * k) return d;
         const I = f.info, de = I.along - elbowA, dc = cutA - I.along;
         let fold = 0;
-        if (Math.abs(de) < 0.12 * k) fold += famp * Math.exp(-Math.pow(de / (0.055 * k), 2)) * (0.3 + 0.7 * Math.max(0, I.c)) * Math.sin(de * 180 / k + I.s * 1.3 + ph[0]);
-        if (cover >= 1 && dc < 0.1 * k) fold += 0.0022 * k * (1 - dc / (0.1 * k)) * Math.sin(dc * 150 / k + I.s * 1.1 + ph[3]);
-        if (cover < 1 && dc < 0.07 * k) fold += (sleeves === 'rolled' ? 0.006 : 0.004) * k * smooth(1 - dc / (0.05 * k));   // the opening flares, the roll thickens
-        if (I.along > 0.01 * k && I.along < 0.03 * k) fold -= 0.0011 * k * Math.exp(-Math.pow((I.along - 0.02 * k) / (0.004 * k), 2));   // shoulder seam
-        d -= fold + 0.0009 * k * noise(x, y, z, 12);
-        return Math.max(d, (x - cp.p[0]) * cp.d[0] + (y - cp.p[1]) * cp.d[1] + (z - cp.p[2]) * cp.d[2]);
+        // the elbow: crescents on the inside of the bend, fanning round to the outside
+        if (Math.abs(de) < 0.14 * k) fold += famp * Math.exp(-Math.pow(de / (0.065 * k), 2)) * (0.3 + 0.7 * Math.max(0, I.c)) * Math.sin(de * 125 / k + I.s * 1.5 + ph[0]);
+        // a long sleeve is longer than the arm, so it stacks in twisting rings above the cuff
+        if (cover >= 1 && dc < 0.13 * k) fold += 0.0034 * k * (1 - dc / (0.13 * k)) * Math.sin(dc * 115 / k + I.s * 1.9 + ph[3]);
+        // the upper arm: the sleeve hangs from the shoulder in long folds down its inside
+        fold += 0.0016 * k * smooth(I.along / (0.06 * k)) * (1 - smooth((I.along - upperArm * 0.8) / (0.08 * k))) * Math.max(0, -I.s * s) * Math.sin(I.c * 4 + I.along * 30 / k + ph[1]);
+        if (cover < 1 && dc < 0.06 * k) fold += 0.0018 * k * smooth(1 - dc / (0.05 * k));   // the opening flares a little
+        d -= fold + 0.0006 * k * noise(x, y, z, 12);
+        return smax(d, (x - cp.p[0]) * cp.d[0] + (y - cp.p[1]) * cp.d[1] + (z - cp.p[2]) * cp.d[2], 0.005 * k);
       };
-      sleeveF[s].tube = f;
+      sleeveF[s].tube = f; sleeveF[s].cp = cp;
     }
     const armpitY = Math.min(S0[1].y, S0[-1].y) - 0.065 * k;
     const neckC = leanV(V3(0, Yl(0.85), -0.012 * k));
-    const clrLo = hemAbs - 0.005 * k, clrHi = Math.max(hemAbs + 0.1 * k, Yl(0.63));
+    const clrLo = hemAbs - 0.005 * k, clrHi = Math.max(hemAbs + 0.1 * k, Yl(0.63)) + 0.04 * k;
     const clr = 0.011 * k, vY0 = Yl(0.69);
     const HEMR = 0.012 * k;     // the hem's bead, see torsoF
+    // the shirt's body without its sleeves or neck hole: what a hem, a side seam or a vest is laid on
+    const shirtBodyF = (x, y, z) => {
+      let d = torsoF(x, y, z);
+      for (const t of traps) if (t.lb(x, y, z) < d + 0.035 * k) d = smin(d, t(x, y, z), 0.035 * k);
+      if (!tucked && y > clrLo && y < clrHi) d = smin(d, smax(trouserF(x, y, z) - clr, hemAbs - y, HEMR) + 0.7 * Math.max(0, y - clrHi + 0.06 * k), 0.008 * k);
+      return d;
+    };
     const shirtF = (x, y, z) => {
       let d = torsoF(x, y, z);
       for (const t of traps) if (t.lb(x, y, z) < d + 0.035 * k) d = smin(d, t(x, y, z), 0.035 * k);
@@ -1362,7 +1764,7 @@ export function install(K, THREE, TXT) {
       if (sleeveF[-1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[-1](x, y, z), ka);
       // the clearance band is a backstop only: the torso table below the waist is already widened
       // over the trousers (see THE UNTUCKED SHIRT FALLS OVER THE HIPS), so this band rarely shows
-      if (!tucked && y > clrLo && y < clrHi) d = Math.min(d, Math.max(smax(trouserF(x, y, z) - clr, hemAbs - y, HEMR), y - clrHi));
+      if (!tucked && y > clrLo && y < clrHi) d = smin(d, smax(trouserF(x, y, z) - clr, hemAbs - y, HEMR) + 0.7 * Math.max(0, y - clrHi + 0.06 * k), 0.008 * k);
       // the neck opening and the top
       const nz = z - (neckC.z + (y - neckC.y) * 0.08);
       const hole = Math.max(ell2(x, nz, neckR + 0.004 * k, neckR * 0.96 + 0.004 * k), Yl(0.83) - y);
@@ -1378,7 +1780,7 @@ export function install(K, THREE, TXT) {
 
     /* Mesh both garments. UVs are cylindrical in metres: the torso around the body, each sleeve
      * and trouser leg around its own axis, so a plaid meets itself at a seam, as cloth does. */
-    const hG = LOW ? 0.03 * k : 0.0158 * k;
+    const hG = LOW ? 0.03 * k : 0.0128 * k;
     const cyl = (f, R, x, y, z, out) => { f(x, y, z); const I = f.info; out[0] = Math.atan2(I.s, I.c) * R; out[1] = I.along; out[2] = Math.PI * 2 * R; };
     const shirtU = {
       region: (x, y, z) => { const t = torsoF(x, y, z), a = sleeveF[1].tube.lb(x, y, z) < t ? sleeveF[1](x, y, z) : 1, b = sleeveF[-1].tube.lb(x, y, z) < t ? sleeveF[-1](x, y, z) : 1; return t <= a && t <= b ? 0 : a < b ? 1 : -1; },
@@ -1392,12 +1794,15 @@ export function install(K, THREE, TXT) {
     grow(V3(0, hemAbs, 0), 0.2 * k); grow(V3(0, shirtTop, 0), 0.2 * k);
     for (const s of [1, -1]) { grow(S0[s], 0.1 * k); grow(Ecl[s], 0.07 * k); if (cover >= 0.9) grow(Wrl[s], 0.06 * k); }
     bb.min.y = Math.max(bb.min.y, hemAbs - 0.02 * k); bb.max.y = Math.min(bb.max.y, shirtTop + 0.01 * k);
+    // a long sleeve reaches the wrist, which on a short torso or a low hem hangs below the hem: the box
+    // clipped it there, and the sleeve ended in a cut at the hem's height (it read as a short sleeve with a gap)
+    for (const s of [1, -1]) { const cp = sleeveF[s].cp; bb.min.y = Math.min(bb.min.y, cp.p[1] - 0.06 * k); grow(V3(...cp.p), 0.06 * k); }
     G.add(new THREE.Mesh(sdfMesh(shirtF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG, shirtU), shirtM));
     const trU = {
       region: (x, y, z) => { const a = leg[1].trF(x, y, z), b = leg[-1].trF(x, y, z), c = seatRaw(x, y, z); return c < a && c < b ? 0 : a < b ? 1 : -1; },
       uv: (x, y, z, reg, out) => {
-        if (reg === 0) { out[0] = Math.atan2(x, z) * 0.15; out[1] = y; out[2] = Math.PI * 2 * 0.15; }
-        else cyl(leg[reg].trTube, 0.07, x, y, z, out);
+        // the seat takes the leg's own mapping on its side, so the weave meets itself only at the centre seam
+        cyl(leg[reg === 0 ? (x >= 0 ? 1 : -1) : reg].trTube, 0.07, x, y, z, out);
       },
     };
     bb.makeEmpty();
@@ -1406,22 +1811,125 @@ export function install(K, THREE, TXT) {
     bb.max.y = waistTop + 0.01 * k;
     G.add(new THREE.Mesh(sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG * 1.14, trU), trouserM));
 
+    /* GARMENT DETAIL (2026-11-15, "painted-on cloth that has no weave or folds"). A garment that is only
+     * its field is a smooth skin with a stump at every opening. Real cloth is cut and sewn: a hem turned
+     * up with thickness at every opening, seams that stand a millimetre proud over the shoulder, round
+     * the armhole and down the sides, an outseam down each leg, topstitching in gold thread on denim,
+     * pocket mouths, belt loops. Each piece is laid on the garment's own field (see onF), so it lies on
+     * the cloth and follows its folds. A crowd's low detail person skips all of it. */
+    if (!LOW) {
+      const threadC = (m) => (jeans && m === trouserM ? 0xc8902e : new THREE.Color(m.map ? 0x8a8478 : m.color).multiplyScalar(0.78).getHex());
+      const threadM = (m) => K.mat('p-cloth-thread-' + threadC(m).toString(16), { color: threadC(m), roughness: 0.8 });
+      const add = (geo, m) => { if (geo && geo.attributes.position.count) G.add(new THREE.Mesh(geo, m)); };
+      const stitchAlong = (S, m, offs) => {
+        const S2 = S.map((q) => [q[0] + q[3] * 0.0003 * k, q[1] + q[4] * 0.0003 * k, q[2] + q[5] * 0.0003 * k, q[3], q[4], q[5]]);
+        for (const off of offs) add(stitchGeo(S2, off, 0.0034 * k, 0.0024 * k, 0.0009 * k, 0.00045 * k), threadM(m));
+      };
+      const weltOn = (f, guide, n, m, w, h, stitch) => {
+        const S = curveOn(f, guide, n, 0);
+        add(weltGeo(S, w || 0.0055 * k, h || 0.0009 * k), m);
+        if (stitch) stitchAlong(S, m, stitch);
+        return S;
+      };
+      const Wl = (p) => leanV(V3(p[0], p[1], p[2])).toArray();
+      // hems: each sleeve, each trouser leg, and the shirt or jacket where it hangs free
+      for (const s of [1, -1]) {
+        const sf = sleeveF[s], cp = sf.cp;
+        const prof = cover >= 1 ? (jacket ? scaleProf(HEM, 1.4, 1.2) : CUFF) : sleeves === 'rolled' ? ROLL : HEM;
+        const h = hemGeo(sf, V3(...cp.p), V3(...cp.d), V3(0, 0, 1), scaleProf(prof, k, k), { inside: 0.04 * k, rMin: 0.02 * k });
+        add(h.band, shirtM); add(h.inner, clothIn(shirtM));
+        if (cover >= 1 && !jacket) {         // the cuff's button, on its outer side
+          const q = onF(sf, [cp.p[0] - cp.d[0] * 0.03 * k + s * 0.055 * k, cp.p[1] - cp.d[1] * 0.03 * k, cp.p[2] - cp.d[2] * 0.03 * k + 0.055 * k], 0.003 * k);
+          const bt = new THREE.Mesh(new THREE.CylinderGeometry(0.0038 * k, 0.0038 * k, 0.002 * k, 10), K.mat('p-btn', { color: 0xe9e4d8, roughness: 0.3 }));
+          bt.position.set(q[0], q[1], q[2]); bt.quaternion.setFromUnitVectors(V3(0, 1, 0), V3(q[3], q[4], q[5])); G.add(bt);
+        }
+        const L = leg[s];
+        const th = hemGeo(L.trF, V3(...L.hemP), L.tilt.clone(), V3(0, 0, 1), scaleProf(HEM, 1.25 * k, k), { inside: 0.03 * k, rMin: 0.03 * k });
+        add(th.band, trouserM); add(th.inner, clothIn(trouserM));
+      }
+      if (!tucked) {
+        const hb = hemGeo(shirtBodyF, leanV(V3(0, hemAbs, 0)), V3(0, -cl, -sl), V3(0, 0, 1), scaleProf(jacket ? scaleProf(HEM, 1.5, 1.3) : HEM, k, k),
+          { na: 72, inside: 0.05 * k, rMin: 0.08 * k, off: jacket ? null : (dir) => -0.0025 * k * Math.sin(Math.atan2(dir.x, dir.z) * 3 + ph[3]) });
+        add(hb.band, shirtM); add(hb.inner, clothIn(shirtM));
+      }
+      // seams on the shirt or jacket: over each shoulder, round each armhole, down each side
+      for (const s of [1, -1]) {
+        const S = S0[s];
+        weltOn(shirtF, [Wl([s * 0.055 * k, Yl(0.88), -0.012 * k]), Wl([s * 0.11 * k, Yl(0.865), -0.01 * k]), [S.x + s * 0.012 * k, S.y + 0.075 * k, S.z]], 16, shirtM);
+        // the armhole: an arc round the sleeve's root over the top, front, outside and back (the armpit is hidden)
+        const tf = sleeveF[s].tube, at = tf.at(0.03 * k), ax = V3(...at.d);
+        const n1 = V3(s, 0.4, 0).sub(ax.clone().multiplyScalar(ax.x * s + ax.y * 0.4)).normalize(), n2 = ax.clone().cross(n1), arc = [];
+        for (let i = 0; i <= 26; i++) { const a = lerp(-2.15, 2.15, i / 26), dv = n1.clone().multiplyScalar(Math.cos(a)).addScaledVector(n2, Math.sin(a));
+          arc.push(onF(shirtF, [at.p[0] + dv.x * 0.085 * k, at.p[1] + dv.y * 0.085 * k, at.p[2] + dv.z * 0.085 * k], 0)); }
+        add(weltGeo(arc, 0.0055 * k, 0.0009 * k), shirtM);
+        // the side seam, from under the arm to the hem
+        const g = [];
+        for (let yf = 0.75; yf >= hemY + 0.01; yf -= 0.03) { const rw = ringAt(yf, 0); g.push(Wl([s * (rw.rx + 0.05 * k), Yl(yf), rw.p[2] - 0.006 * k])); }
+        if (g.length > 2) weltOn(shirtBodyF, g, 26, shirtM);
+      }
+      if (!jacket && shirtKind !== 'tee' && shirtKind !== 'polo') {      // the back yoke
+        const g = [];
+        for (let i = 0; i <= 6; i++) { const x = lerp(-0.125, 0.125, i / 6) * k; g.push(Wl([x, Yl(0.785) + 0.01 * k * Math.pow(x / (0.125 * k), 2), -0.22 * k])); }
+        weltOn(shirtF, g, 24, shirtM);
+      }
+      // trousers: an outseam down each leg, on jeans an inseam too, both with gold topstitching
+      for (const s of [1, -1]) {
+        const L = leg[s], tf = L.trTube, g = [], gi = [];
+        for (let a = 0.03 * k; a < tf.len - 0.04 * k; a += 0.06 * k) { const q = tf.at(a); g.push([q.p[0] + s * 0.16 * k, q.p[1], q.p[2]]); gi.push([q.p[0] - s * 0.12 * k, q.p[1], q.p[2]]); }
+        if (g.length > 2) weltOn(trouserF, g, 44, trouserM, 0, 0, jeans ? [0.003 * k] : null);
+        if (jeans && gi.length > 5) weltOn(L.trF, gi.slice(3), 32, trouserM, 0, 0, [0.0028 * k, 0.0056 * k]);
+      }
+      if (tucked) {
+        // the pocket mouths and the fly, seen only when the shirt is tucked in
+        for (const s of [1, -1]) {
+          const g = jeans ? [[s * 0.05 * k, waistTop - 0.018 * k, 0.17 * k], [s * 0.1 * k, waistTop - 0.07 * k, 0.17 * k], [s * 0.2 * k, waistTop - 0.08 * k, 0.05 * k]]
+            : [[s * 0.085 * k, waistTop - 0.015 * k, 0.17 * k], [s * 0.13 * k, waistTop - 0.08 * k, 0.15 * k], [s * 0.22 * k, waistTop - 0.15 * k, 0.03 * k]];
+          weltOn(trouserF, g, 18, trouserM, 0.0045 * k, 0.0013 * k, jeans ? [0.0045 * k] : null);
+        }
+        weltOn(trouserF, [[0.004 * k, waistTop - 0.03 * k, 0.17 * k], [0.02 * k, waistTop - 0.09 * k, 0.17 * k], [0.01 * k, crotchY + 0.03 * k, 0.17 * k], [-0.003 * k, crotchY + 0.005 * k, 0.17 * k]],
+          16, trouserM, 0.0045 * k, 0.0008 * k, jeans ? [-0.0045 * k] : null);
+        if (!jacket) {        // belt loops, over the belt
+          const beltY = Yl(0.598), bx = 0.157 * k * hw + 0.006 * k, bzf = (0.103 + bk) * k + 0.006 * k, bzb = 0.095 * k + 0.006 * k, zc0 = 0.002 * k;
+          const beltF = (x, y, z) => ell2(x, z - zc0, bx * 1.02, (z - zc0 > 0 ? bzf : bzb) * 1.02);
+          for (const a of [-2.25, -1.45, -0.62, 0.62, 1.45, 2.25, Math.PI]) {
+            const P = (u, v) => { const aa = a + (u - 0.5) * 0.012 * k / bx; return [Math.sin(aa) * (bx + 0.04 * k), beltY + (0.5 - v) * 0.024 * k, zc0 + Math.cos(aa) * ((Math.cos(aa) > 0 ? bzf : bzb) + 0.04 * k)]; };
+            add(slabGeo(beltF, P, 2, 4, 0.0015 * k, 0.0018 * k, { w: 0.012 * k, h: 0.024 * k }), trouserM);
+          }
+        }
+      }
+      if (jeans) for (const s of [1, -1]) {      // back patch pockets with their topstitching
+        const x0 = s * 0.072 * k, y0 = waistTop - 0.075 * k, pw = 0.125 * k, pH = 0.145 * k;
+        const P = (u, v) => [x0 + (u - 0.5) * pw * (1 - 0.1 * v), y0 - v * pH - (v > 0.75 ? (1 - Math.abs(u - 0.5) * 2) * (v - 0.75) / 0.25 * 0.022 * k : 0), -0.24 * k];
+        add(slabGeo(trouserF, P, 6, 8, 0.0004 * k, 0.0016 * k, { w: pw, h: pH }), trouserM);
+        const rim = [];
+        for (const [u, v] of [[0.03, 0.02], [0.03, 0.5], [0.03, 0.75], [0.5, 1], [0.97, 0.75], [0.97, 0.5], [0.97, 0.02]]) rim.push(P(u, v));
+        stitchAlong(curveOn(trouserF, rim, 40, 0.0021 * k), trouserM, [0]);
+      }
+    }
+
     const body = new THREE.Group();
     const bandG = (y0, y1, rx, rz, zc, a0, a1, th, flare) => {      // a partial collar band, a0..a1 around from the front
-        const NA = 28, pos = [], idx = [];
+        const NA = 28, pos = [], idx = [], uv = [];
         for (let side = 0; side < 2; side++) for (let j = 0; j <= 1; j++) for (let i = 0; i <= NA; i++) {
           const a = lerp(a0, a1, i / NA), o = side ? -th : 0, yy = lerp(y0, y1 + 0.012 * k * Math.pow(Math.sin(a / 2), 2) - 0.01 * k * Math.pow(Math.cos(a / 2), 2), j);
-          const fl = (flare || 0) * (1 - j); pos.push(Math.sin(a) * (rx + o + fl), yy, zc + Math.cos(a) * (rz + o + fl));
+          const fl = (flare || 0) * (1 - j); pos.push(Math.sin(a) * (rx + o + fl), yy, zc + Math.cos(a) * (rz + o + fl)); uv.push(a * rx, yy);
         }
         const Wd = NA + 1;
         for (let side = 0; side < 2; side++) for (let i = 0; i < NA; i++) { const a = side * 2 * Wd + i, b = a + Wd; if (side) idx.push(a, a + 1, b, b, a + 1, b + 1); else idx.push(a, b, a + 1, b, b + 1, a + 1); }
         for (let i = 0; i < NA; i++) { const a = Wd + i, b = 3 * Wd + i; idx.push(a, b, a + 1, b, b + 1, a + 1); }     // the top edge
         // both windings: a thin band is seen from outside and inside, and neither side may cull
-        const n0 = idx.length, nv0 = pos.length / 3; pos.push(...pos);
+        const n0 = idx.length, nv0 = pos.length / 3; pos.push(...pos); uv.push(...uv);
         for (let q = 0; q < n0; q += 3) idx.push(idx[q] + nv0, idx[q + 2] + nv0, idx[q + 1] + nv0);
-        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+        // UVs in metres: a cloth with a weave map needs them on every piece, or the merged garment loses them all
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
         return g;
       };
+    // the torso's field in the body group's own (unleaned) frame, for pieces laid on the chest
+    const torsoU = torsoLean ? (x, y, z) => { const q = leanV(V3(x, y, z)); return torsoF(q.x, q.y, q.z); } : torsoF;
+    const quad = (c00, c10, c01, c11, zOut) => (u, v) => {         // a bilinear patch over the chest, its guides out in front
+      const x = lerp(lerp(c00[0], c10[0], u), lerp(c01[0], c11[0], u), v), yf = lerp(lerp(c00[1], c10[1], u), lerp(c01[1], c11[1], u), v);
+      return [x, Yl(yf), frontZ(yf) + (zOut || 0.05 * k)];
+    };
     // belt with a buckle when the shirt is tucked
     if (!jacket && tucked) {
       const beltY = 0.598;
@@ -1437,7 +1945,13 @@ export function install(K, THREE, TXT) {
       body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.866), neckR + 0.006 * k, neckR * 0.97 + 0.006 * k, -0.012 * k, 0.3, Math.PI * 2 - 0.3, 0.003 * k), shirtM));
       // the fall of the collar: a band folded over the stand, flaring at the back and sides
       body.add(new THREE.Mesh(bandG(Yl(0.843), Yl(0.869), neckR + 0.012 * k, neckR * 0.97 + 0.012 * k, -0.012 * k, 0.55, Math.PI * 2 - 0.55, 0.003 * k, 0.019 * k), shirtM));
-      for (const s of [1, -1]) {        // collar points folded down on the chest
+      /* COLLAR POINTS WITH THICKNESS (2026-11-15): they were flat extruded cards set at an angle in
+       * front of the neck, and at a near crop they floated as grey panes. Each is a slab of cloth laid
+       * on the chest, rolled up at its top where it turns over the stand, its edges rounded. */
+      if (!LOW) for (const s of [1, -1]) {
+        const P = quad([s * 0.01 * k, 0.851], [s * 0.048 * k, 0.848], [s * 0.007 * k, 0.838], [s * 0.032 * k, 0.808]);
+        body.add(new THREE.Mesh(slabGeo(torsoU, P, 5, 6, 0.0032 * k, 0.0024 * k, { w: 0.045 * k, h: 0.045 * k, bulge: (u, v) => 0.0045 * k * Math.pow(1 - v, 2) }), shirtM));
+      } else for (const s of [1, -1]) {
         const pt = TXT.extrude([[0, 0], [s * 0.04 * k, -0.004 * k], [s * 0.024 * k, -0.042 * k], [s * 0.004 * k, -0.011 * k]], 0.003 * k, shirtM, { bevel: false });
         pt.position.set(s * 0.01 * k, Yl(0.862), frontZ(0.84) - 0.001 * k); pt.rotation.set(-0.5, s * 0.25, 0); body.add(pt);
       }
@@ -1454,9 +1968,21 @@ export function install(K, THREE, TXT) {
       // chest pockets with flaps, never under a vest: the conformed vest of 2026-11-08 sits 5 mm off the shirt and
       // the flaps, which stand proud of it, came through as two dark slots on the chest (they did under the shell too)
       const underVest = o.vest === true || (o.vest === 'auto' || o.vest == null) && role === 'worker';
-      if ((shirtKind === 'plaid' || shirtKind === 'work') && !underVest) for (const s of [1, -1]) {
-        const pk = TXT.roundedBox(0.075 * k, 0.014 * k, 0.008 * k, 0.003 * k, shirtM);
-        pk.position.set(s * 0.085 * k, Yl(0.755), frontZ(0.755) + 0.0005 * k); body.add(pk);
+      // a patch pocket is a slab of the same cloth sewn on, a flap a thicker slab over its mouth with a button
+      const flapped = shirtKind === 'plaid' || shirtKind === 'work';
+      if ((flapped || shirtKind === 'button') && !underVest) for (const s of (flapped ? [1, -1] : [1])) {
+        const cx = s * 0.085 * k, pw = 0.052 * k;
+        if (LOW) { const pk = TXT.roundedBox(0.075 * k, 0.014 * k, 0.008 * k, 0.003 * k, shirtM); pk.position.set(cx, Yl(0.755), frontZ(0.755) + 0.0005 * k); body.add(pk); continue; }
+        const pocket = (u, v) => { const yb = 0.704 - (shirtKind === 'work' ? 0.008 * (1 - Math.abs(u - 0.5) * 2) * smooth((v - 0.8) / 0.2) : 0); return quad([cx - pw, 0.768], [cx + pw, 0.768], [cx - pw, yb], [cx + pw, yb])(u, v); };
+        body.add(new THREE.Mesh(slabGeo(torsoU, pocket, 6, 7, 0.0003 * k, 0.0012 * k, { w: 2 * pw, h: 0.07 * k }), shirtM));
+        if (flapped) {
+          const fw = pw + 0.003 * k;
+          const flap = (u, v) => { const tip = 0.012 * (1 - Math.abs(u - 0.5) * 2) * v; return quad([cx - fw, 0.773], [cx + fw, 0.773], [cx - fw, 0.75 - tip], [cx + fw, 0.75 - tip])(u, v); };
+          body.add(new THREE.Mesh(slabGeo(torsoU, flap, 6, 4, 0.0017 * k, 0.0022 * k, { w: 2 * fw, h: 0.03 * k, bulge: (u, v) => 0.0008 * k * v }), shirtM));
+          const q = onF(torsoU, [cx, Yl(0.745), frontZ(0.745) + 0.05 * k], 0.0045 * k);
+          const bt = new THREE.Mesh(new THREE.CylinderGeometry(0.0045 * k, 0.0045 * k, 0.0022 * k, 10), btnM);
+          bt.position.set(q[0], q[1], q[2]); bt.quaternion.setFromUnitVectors(V3(0, 1, 0), V3(q[3], q[4], q[5])); body.add(bt);
+        }
       }
     } else if (shirtKind === 'tee' && !jacket) {
       const neck = new THREE.Mesh(new THREE.TorusGeometry(1, 0.07, 6, 36), shirtM);
@@ -1490,13 +2016,25 @@ export function install(K, THREE, TXT) {
       body.add(new THREE.Mesh(bandG(Yl(0.838), Yl(0.862), neckR + 0.011 * k, neckR * 0.97 + 0.011 * k, -0.012 * k, 0.8, Math.PI * 2 - 0.8, 0.005 * k), shirtM));
       const knot = TXT.roundedBox(0.024 * k, 0.02 * k, 0.012 * k, 0.005 * k, tieM);
       knot.position.set(0, Yl(0.846), frontZ(0.846) + 0.004 * k); body.add(knot);
-      const lap = K.mat('p-lapel', { color: new THREE.Color(shirtM.color).multiplyScalar(0.8).getHex(), roughness: 0.5, side: THREE.DoubleSide });
-      for (const sd of [1, -1]) body.add(strip(ys.map((y) => { const x = vw(y); const lw = (0.012 + 0.03 * clamp01((0.852 - y) / 0.06) * clamp01((y - 0.69) / 0.1)) * k;
+      // LAPELS WITH A ROLL AND AN EDGE (2026-11-15): they were one-sided strips; a lapel is the jacket's own
+      // cloth turned back, so it is a slab laid on the jacket's front, rolled up along its inner edge
+      const lap = LOW ? K.mat('p-lapel', { color: new THREE.Color(shirtM.color).multiplyScalar(0.8).getHex(), roughness: 0.5, side: THREE.DoubleSide }) : cloth('suit', new THREE.Color(shirtM.color).multiplyScalar(0.86).getHex());
+      const lapW = (y) => (0.012 + 0.03 * clamp01((0.852 - y) / 0.06) * clamp01((y - 0.69) / 0.1)) * k;
+      if (LOW) for (const sd of [1, -1]) body.add(strip(ys.map((y) => { const x = vw(y), lw = lapW(y);
         return sd > 0 ? [y, x, x + lw, 0.005 * k] : [y, -x - lw, -x, 0.005 * k]; }), lap));
+      else for (const sd of [1, -1]) {
+        const P = (u, v) => { const yf = lerp(0.852, 0.692, v), x = sd * (vw(yf) + 0.001 * k + u * lapW(yf)); return [x, Yl(yf), frontZ(yf) + 0.05 * k]; };
+        body.add(new THREE.Mesh(slabGeo(torsoU, P, 4, 14, 0.0022 * k, 0.003 * k, { w: 0.04 * k, h: 0.16 * k, bulge: (u, v) => 0.0035 * k * Math.pow(1 - u, 2) * (1 - v * 0.6) }), lap));
+      }
       const bt = new THREE.Mesh(new THREE.SphereGeometry(0.008 * k, 10, 6), K.mat('p-sbtn', { color: 0x151515, roughness: 0.3 }));
       bt.scale.z = 0.5; bt.position.set(0, Yl(0.655), frontZ(0.655) + 0.004 * k); body.add(bt);
-      const pocket = (x, yf) => { const pk = TXT.roundedBox(0.1 * k, 0.012 * k, 0.01 * k, 0.003 * k, shirtM); pk.position.set(x, Yl(yf), frontZ(yf) * 0.94); body.add(pk); };
-      pocket(0.1 * k, 0.58); pocket(-0.1 * k, 0.58);
+      const pocket = (x, yf, w, h, th) => {
+        if (LOW) { const pk = TXT.roundedBox(0.1 * k, 0.012 * k, 0.01 * k, 0.003 * k, shirtM); pk.position.set(x, Yl(yf), frontZ(yf) * 0.94); body.add(pk); return; }
+        const P = (u, v) => { const y = Yl(yf) - v * h; return [x + (u - 0.5) * w, y, frontZ(yf) + 0.05 * k]; };
+        body.add(new THREE.Mesh(slabGeo(torsoU, P, 6, 3, 0.0005 * k, th, { w, h, bulge: (u, v) => 0.001 * k * v }), shirtM));
+      };
+      pocket(0.1 * k, 0.6, 0.12 * k, 0.045 * k, 0.0025 * k); pocket(-0.1 * k, 0.6, 0.12 * k, 0.045 * k, 0.0025 * k);
+      pocket(0.095 * k, 0.775, 0.085 * k, 0.016 * k, 0.0016 * k);       // the breast pocket's welt
     }
 
     // hi-vis vest for workers
@@ -1596,7 +2134,7 @@ export function install(K, THREE, TXT) {
         G.add(new THREE.Mesh(c, K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
       }
       const hp = A.hand === 'point' ? 'point' : A.hand === 'hip' || A.hand === 'grip' ? 'fist' : 'relax';
-      const hnd = hand(k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass), s, skin, hp);
+      const hnd = hand(k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass), s, skin, hp, nailM);
       hnd.quaternion.copy(new THREE.Quaternion().setFromUnitVectors(V3(0, -1, 0), Fd));
       if (A.hand === 'point') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), -s * Math.PI / 2 + s * 0.2));
       if (A.hand === 'hip') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), s * 0.3));
@@ -1639,22 +2177,37 @@ export function install(K, THREE, TXT) {
       : (hs < 0.3 ? 'crop' : hs < 0.5 ? 'side' : hs < 0.64 ? 'curly' : hs < 0.76 ? 'buzz' : hs < 0.88 ? 'recede' : 'bald');
     if (hatKind !== 'none') { if (!fem) style = style === 'bald' ? 'bald' : 'tight'; else if (style === 'curlyLong' || hatKind === 'hard') style = hatKind === 'hard' ? 'bun' : 'long'; }
     const longHair = style === 'long' || style === 'bob' || style === 'curlyLong';
-    // ears, under long hair they are not built at all
+    /* EARS WITH THEIR FOLDS (2026-11-15). An ear was a squashed sphere with a torus on it. It is a
+     * shell: the helix rolled over along the rim from the front of the top round to the lobe, the
+     * antihelix inside it forking at the top, the bowl of the concha behind the canal, the tragus in
+     * front of it and a soft lobe below, the whole standing a little off the skull and turned back. */
     if (!longHair) for (const s of [1, -1]) {
-      const ear = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 6 : 12, LOW ? 4 : 9), skin);
-      ear.scale.set(0.008 * k, 0.028 * k, 0.018 * k); ear.position.set(s * Wd * 0.93, -Hh * 0.08, -D * 0.1); ear.rotation.set(-0.15, s * 0.22, 0);
-      head.add(ear);
+      const ear = new THREE.Group();
+      const E = (x, y, z) => [x * k, y * k, z * k];        // ear frame: x out from the skull, y up, z forward
+      const plate = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 8 : 16, LOW ? 6 : 12), earM);
+      plate.scale.set(0.0042 * k, 0.026 * k, 0.0145 * k); plate.position.set(0.001 * k, 0.002 * k, -0.002 * k); ear.add(plate);
       if (!LOW) {
-        const rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.22, 6, 18, Math.PI * 1.45), skin);
-        rim.scale.set(0.016 * k, 0.025 * k, 0.016 * k); rim.position.set(s * (Wd * 0.93 + 0.004 * k), -Hh * 0.06, -D * 0.1);
-        rim.rotation.set(0, s * Math.PI / 2 + s * 0.22, -Math.PI * 0.2); head.add(rim);
+        const helix = [E(0.001, 0.012, 0.009), E(0.0035, 0.024, 0.004), E(0.005, 0.029, -0.004), E(0.0055, 0.025, -0.0125), E(0.0055, 0.013, -0.0165), E(0.005, 0.0, -0.016), E(0.0045, -0.012, -0.012), E(0.004, -0.019, -0.007)];
+        ear.add(new THREE.Mesh(loft(helix.map((p, i) => ({ p, rx: (0.0028 - 0.0002 * Math.abs(i - 3)) * k, ry: (0.0032 - 0.0002 * Math.abs(i - 3)) * k })), { seg: 8, per: 3, capStart: 'dome', capEnd: 'dome', ref: [1, 0, 0] }), earM));
+        const anti = [E(0.004, -0.004, -0.009), E(0.0052, 0.006, -0.0105), E(0.0055, 0.015, -0.008), E(0.005, 0.021, -0.002)];
+        ear.add(new THREE.Mesh(loft(anti.map((p, i) => ({ p, rx: 0.0022 * k, ry: (0.0026 - i * 0.0003) * k })), { seg: 7, per: 3, capStart: 'dome', capEnd: 'dome', ref: [1, 0, 0] }), earM));
+        const crus = [E(0.0052, 0.015, -0.008), E(0.0048, 0.017, 0.0)];
+        ear.add(new THREE.Mesh(loft(crus.map((p) => ({ p, rx: 0.0016 * k, ry: 0.0018 * k })), { seg: 6, per: 2, capStart: 'dome', capEnd: 'dome', ref: [1, 0, 0] }), earM));
+        const blobE = (p, sc) => { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 10, 8), earM); m.position.set(...p); m.scale.set(...sc.map((v) => v * k)); ear.add(m); };
+        blobE(E(0.0035, -0.018, -0.004), [0.0042, 0.0075, 0.0068]);     // the lobe
+        blobE(E(0.004, -0.004, 0.0065), [0.0028, 0.004, 0.0028]);       // the tragus
+        blobE(E(0.0018, 0.0, -0.0025), [0.0018, 0.0075, 0.0055]);       // the concha's floor, sunk behind the rims
       }
+      ear.position.set(s * Wd * 0.93, -Hh * 0.08, -D * 0.1);
+      if (s < 0) ear.scale.x = -1;
+      ear.rotation.set(-0.12, -s * 0.32, 0);
+      head.add(ear);
     }
     // eyes: sclera, iris and pupil caps, lids that give the almond, a lash line, brows
     const irisC = pick(r, [0x2a1a10, 0x3b2615, 0x4a3520, 0x2f3b45, 0x3b4a2c, 0x5a6a78]);
     // a brow is darker than the hair it goes with, and never paler than the skin under it: a blonde or
     // grey head's brows lerped toward the skin printed as two pale bands across the forehead
-    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).lerp(new THREE.Color(0x2a1d14), 0.45).lerp(new THREE.Color(skinC), 0.2).getHex(), roughness: 0.85 });
+    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).lerp(new THREE.Color(0x221710), 0.72).lerp(new THREE.Color(skinC), 0.08).getHex(), roughness: 0.95 });
     if (LOW) {
       for (const s of [1, -1]) {
         const p = surf(s * 0.33, 0.07);
@@ -1662,27 +2215,57 @@ export function install(K, THREE, TXT) {
         e.position.set(p[0], p[1], p[2] - 0.006 * k); e.scale.set(1.2, 0.6, 1); head.add(e);
       }
     } else {
-      const sclera = K.mat('p-eyew', { color: 0xd9d0c4, roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.05 }, true);
-      const iris = K.mat('p-iris-' + irisC.toString(16), { color: irisC, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.03 }, true);
-      const pupil = K.mat('p-pupil', { color: 0x060504, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.03 }, true);
-      const lashM = K.mat('p-lash', { color: new THREE.Color(hairC).multiplyScalar(0.5).getHex(), roughness: 0.7 });
+      /* EYES THAT ARE WET AND AT REST (2026-11-15, "dead stare"). The iris sat on the eyeball's own sphere,
+       * so its highlight was the sclera's and the eye read as painted; the lids stood wide open round a
+       * fully shown iris, which is a stare. Now the cornea bulges a millimetre over the iris as its own
+       * glossy dome, so it catches the sky; the iris darkens at its rim; the white is shaded toward its
+       * corners; a wet line of tear lies along the lower lid; the upper lid covers the top of the iris
+       * and carries its crease, and the lower lid rides up a little with the smile. */
+      const sclera = K.mat('p-eyew', { color: 0xe2d8cc, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.04, vertexColors: true }, true);
+      const iris = K.mat('p-iris-' + irisC.toString(16), { color: irisC, roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.02, vertexColors: true, envMapIntensity: 1.6 }, true);
+      const pupil = K.mat('p-pupil', { color: 0x060504, roughness: 0.15, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6 }, true);
+      const lashM = K.mat('p-lash', { color: new THREE.Color(hairC).multiplyScalar(0.45).getHex(), roughness: 0.7 });
+      const wetM = K.mat('p-eye-wet', { color: new THREE.Color(skinC).lerp(new THREE.Color(0xc87c78), 0.5).getHex(), roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.02 }, true);
       const R = 0.0118 * k;
+      // the white: shaded toward its corners and a touch pink there, as a real one is
+      const scG = new THREE.SphereGeometry(R, 20, 12), scC = [];
+      for (let i = 0; i < scG.attributes.position.count; i++) {
+        const fz = smooth(scG.attributes.position.getZ(i) / R * 1.2), l = 0.72 + 0.28 * fz;
+        scC.push(l * (1 + 0.04 * (1 - fz)), l * (1 - 0.02 * (1 - fz)), l * (1 - 0.04 * (1 - fz)));
+      }
+      scG.setAttribute('color', new THREE.Float32BufferAttribute(scC, 3));
+      // the cornea's dome over the iris: a cap of a smaller sphere meeting the eyeball at the iris's rim
+      const aI = 0.45, Rc = R * 0.62, aC = Math.asin(Math.sin(aI) * R / Rc), zC = R * Math.cos(aI) - Rc * Math.cos(aC);
+      const dome = (a1, rr, rings) => {
+        const gg = new THREE.SphereGeometry(Rc * rr, 28, rings, 0, Math.PI * 2, 0, a1); gg.rotateX(Math.PI / 2); gg.translate(0, 0, zC);
+        const cc = [];
+        for (let i = 0; i < gg.attributes.position.count; i++) {
+          const px = gg.attributes.position.getX(i), py = gg.attributes.position.getY(i), rad = Math.hypot(px, py) / (Rc * Math.sin(aC));
+          const ang = Math.atan2(py, px), fleck = 0.88 + 0.12 * Math.sin(ang * 23) * Math.sin(ang * 7 + 1.3);
+          const l = (rad > 0.82 ? lerp(1, 0.45, smooth((rad - 0.82) / 0.18)) : lerp(1.15, 1, smooth(rad / 0.6))) * fleck;
+          cc.push(l, l, l);
+        }
+        gg.setAttribute('color', new THREE.Float32BufferAttribute(cc, 3));
+        return gg;
+      };
       for (const s of [1, -1]) {
         const p = surf(s * 0.33, 0.065);
         const C = V3(p[0] - s * 0.001 * k, p[1], p[2] - 0.64 * R);
         const eye = new THREE.Group(); eye.position.copy(C); eye.rotation.y = s * 0.1; head.add(eye);
-        eye.add(new THREE.Mesh(new THREE.SphereGeometry(R, 16, 10), sclera));
-        const ir = new THREE.SphereGeometry(R * 1.004, 20, 4, 0, Math.PI * 2, 0, 0.45); ir.rotateX(Math.PI / 2);
-        const ei = new THREE.Mesh(ir, iris); ei.rotation.y = -s * 0.1; eye.add(ei);
-        const pu = new THREE.SphereGeometry(R * 1.007, 14, 2, 0, Math.PI * 2, 0, 0.2); pu.rotateX(Math.PI / 2);
+        eye.add(new THREE.Mesh(scG, sclera));
+        const ei = new THREE.Mesh(dome(aC, 1, 6), iris); ei.rotation.y = -s * 0.1; eye.add(ei);
+        const pu = new THREE.SphereGeometry(Rc * 1.003, 16, 3, 0, Math.PI * 2, 0, aC * 0.4); pu.rotateX(Math.PI / 2); pu.translate(0, 0, zC);
         const ep = new THREE.Mesh(pu, pupil); ep.rotation.y = -s * 0.1; eye.add(ep);
-        // lids: two sheets on a sphere just over the eyeball, meeting at the corners
-        const aM = 1.12, up = (a) => { const t = Math.abs(a + s * 0.12) / aM; return t >= 1 ? 0 : 0.36 * Math.pow(Math.cos(t * Math.PI / 2), 0.65) + 0.02; };
-        const dn = (a) => { const t = Math.abs(a - s * 0.1) / aM; return t >= 1 ? 0 : -(0.33 * Math.pow(Math.cos(t * Math.PI / 2), 0.85) + 0.02); };
-        const sheet = (edge, far, rr) => {
-          const NA = 16, NB = 4, pos = [], idx = [];
+        // lids: two sheets on a sphere just over the eyeball, meeting at the corners; the upper covers the iris's top
+        const aM = 1.12, up = (a) => { const t = Math.abs(a + s * 0.12) / aM; return t >= 1 ? 0 : 0.31 * Math.pow(Math.cos(t * Math.PI / 2), 0.62) + 0.02; };
+        const dn = (a) => { const t = Math.abs(a - s * 0.1) / aM; return t >= 1 ? 0 : -(0.27 * Math.pow(Math.cos(t * Math.PI / 2), 0.9) + 0.02); };
+        const sheet = (edge, far, rr, crease) => {
+          const NA = 18, NB = 6, pos = [], idx = [];
           for (let j = 0; j <= NB; j++) for (let i = 0; i <= NA; i++) {
-            const a = lerp(-1.35, 1.35, i / NA), be = lerp(edge(Math.max(-aM, Math.min(aM, a))), far, Math.pow(j / NB, 1.4)), rad = R * (rr + 0.05 * (1 - j / NB) * (Math.abs(a) < aM ? 1 : 0));
+            const a = lerp(-1.35, 1.35, i / NA), t = j / NB, be = lerp(edge(Math.max(-aM, Math.min(aM, a))), far, Math.pow(t, 1.4));
+            const inA = Math.abs(a) < aM ? 1 : 0;
+            // the lid's thickness at its margin, and on the upper lid the crease where it folds under the brow
+            const rad = R * (rr + 0.06 * (1 - t) * inA - (crease ? 0.045 * Math.exp(-Math.pow((t - 0.42) / 0.12, 2)) * Math.cos(a * 0.9) : 0) + (crease ? 0.03 * smooth((t - 0.55) / 0.3) : 0));
             pos.push(rad * Math.cos(be) * Math.sin(a), rad * Math.sin(be), rad * Math.cos(be) * Math.cos(a));
           }
           for (let j = 0; j < NB; j++) for (let i = 0; i < NA; i++) { const a = j * (NA + 1) + i, b = a + NA + 1; idx.push(a, b, a + 1, b, b + 1, a + 1); }
@@ -1691,8 +2274,8 @@ export function install(K, THREE, TXT) {
           if (nn.getX(9) * pp.getX(9) + nn.getY(9) * pp.getY(9) + nn.getZ(9) * pp.getZ(9) < 0) { const ix = g.index.array; for (let q = 0; q < ix.length; q += 3) { const t = ix[q]; ix[q] = ix[q + 1]; ix[q + 1] = t; } g.computeVertexNormals(); }
           return g;
         };
-        eye.add(new THREE.Mesh(sheet(up, 1.3, 1.1), skin));
-        eye.add(new THREE.Mesh(sheet(dn, -1.2, 1.07), skin));
+        eye.add(new THREE.Mesh(sheet(up, 1.3, 1.1, true), skin));
+        eye.add(new THREE.Mesh(sheet(dn, -1.2, 1.07, false), skin));
         const margin = (edge, rr, rad, mat, fwd) => {
           const pts = [];
           for (let i = 0; i <= 12; i++) { const a = lerp(-aM * 0.97, aM * 0.97, i / 12), be = edge(a); const q = R * rr;
@@ -1700,37 +2283,46 @@ export function install(K, THREE, TXT) {
           return new THREE.Mesh(loft(pts, { seg: 5, per: 1, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), mat);
         };
         eye.add(margin(up, 1.14, 0.0016 * k, skin, 0));
-        eye.add(margin(up, 1.17, 0.00075 * k, lashM, 0.0004 * k));
+        eye.add(margin(up, 1.17, 0.0008 * k, lashM, 0.0004 * k));
         eye.add(margin(dn, 1.1, 0.0009 * k, skin, 0));
+        eye.add(margin((a) => dn(a) + 0.035, 1.03, 0.00055 * k, wetM, 0));      // the tear line on the lower lid
+        eye.add(margin(dn, 1.12, 0.0004 * k, lashM, -0.0003 * k));               // the lower lashes, sparse and fine
       }
-      // brows follow the ridge, thick at the inner end
-      for (const s of [1, -1]) {
-        const pts = [];
+      /* BROWS LIE IN THE SKIN (2026-11-15): a round tube read as a painted stroke with its own highlight.
+       * A brow is short hair lying flat, so it is a flat stroke sunk at its edges into the ridge, with a
+       * thinner one over its upper half for the hairs that lie across, thick at the inner end. */
+      for (const s of [1, -1]) for (let st = 0; st < 2; st++) {
+        const pts = [], t0 = st ? 0.06 : 0, t1 = st ? 0.82 : 1, dy = st ? 0.006 : 0;
         for (let i = 0; i <= 8; i++) {
-          const t = i / 8, ux = lerp(0.1, 0.6, t), uy = 0.185 + 0.05 * Math.sin(Math.PI * Math.min(1, t * 1.25)) - 0.03 * t;
+          const t = lerp(t0, t1, i / 8), ux = lerp(0.1, 0.6, t), uy = 0.185 + 0.05 * Math.sin(Math.PI * Math.min(1, t * 1.25)) - 0.03 * t + dy * (1 - 0.6 * t);
           // ON the skin along its normal, half sunk. A +z offset left the outer end, where the brow
           // ridge turns toward the temple, standing proud of the skin with its own shadow, which
           // read as a sticker (weekly pass 2026-10-03, no. 36 to 38's "mask-like", "crude" face).
           const q = surf(s * ux, uy), e = 0.01, qa = surf(s * ux + e, uy), qb = surf(s * ux - e, uy), qc = surf(s * ux, uy + e), qd = surf(s * ux, uy - e);
           const nrm = V3(qa[0] - qb[0], qa[1] - qb[1], qa[2] - qb[2]).cross(V3(qc[0] - qd[0], qc[1] - qd[1], qc[2] - qd[2])).normalize();
           if (nrm.z < 0) nrm.negate();
-          const off = 0.0004 * k;
-          pts.push({ p: [q[0] + nrm.x * off, q[1] + nrm.y * off, q[2] + nrm.z * off], rx: 0.0011 * k, ry: lerp(fem ? 0.0026 : 0.0034, 0.001, t) * k });
+          const off = (st ? 0.00005 : -0.0001) * k;
+          pts.push({ p: [q[0] + nrm.x * off, q[1] + nrm.y * off, q[2] + nrm.z * off], rx: 0.0006 * k, ry: lerp(fem ? 0.0024 : 0.0031, 0.0009, t) * k * (st ? 0.55 : 1) });
         }
-        head.add(new THREE.Mesh(loft(pts, { seg: 8, per: 2, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), browM));
+        head.add(new THREE.Mesh(loft(pts, { seg: 6, per: 2, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), browM));
       }
-      // lips: a patch that lies on the sculpted mouth, a shade deeper than the skin
-      const lipC = new THREE.Color(skinC).multiplyScalar(0.84).lerp(new THREE.Color(0x9a5450), fem ? 0.2 : 0.1);
-      const lipM = K.mat('p-lip-' + lipC.getHexString(), { color: lipC.getHex(), roughness: 0.4, clearcoat: 0.3, clearcoatRoughness: 0.3 }, true);
-      const topL = (x) => -0.445 - 0.06 * Math.pow(Math.abs(x) / 0.21, 2) + 0.008 * Math.exp(-Math.pow((Math.abs(x) - 0.055) / 0.03, 2));
-      const botL = (x) => -0.595 + 0.075 * Math.pow(Math.abs(x) / 0.21, 2);
-      const NXL = 16, NYL = 8, lp = [], li = [];
+      // lips: a patch that lies on the sculpted mouth, a shade deeper than the skin; the corners turn up
+      // with the mouth line, the upper lip is darker than the lower (it faces down), the parting darkest
+      const lipC = new THREE.Color(skinC).multiplyScalar(0.88).lerp(new THREE.Color(0x9a5450), fem ? 0.2 : 0.12);
+      const lipM = skinMat('p-lip-' + lipC.getHexString(), { color: lipC.getHex(), roughness: 0.55, clearcoat: 0.08, clearcoatRoughness: 0.45, vertexColors: true });
+      const lift = (x) => 0.03 * Math.pow(Math.min(1.3, Math.abs(x) / 0.22), 2);
+      const topL = (x) => -0.445 - 0.06 * Math.pow(Math.abs(x) / 0.21, 2) + 0.008 * Math.exp(-Math.pow((Math.abs(x) - 0.055) / 0.03, 2)) + lift(x);
+      const botL = (x) => -0.595 + 0.075 * Math.pow(Math.abs(x) / 0.21, 2) + lift(x);
+      const NXL = 20, NYL = 12, lp = [], li = [], lc = [];
       for (let j = 0; j <= NYL; j++) for (let i = 0; i <= NXL; i++) {
         const x = lerp(-0.21, 0.21, i / NXL), y = lerp(topL(x), botL(x), j / NYL), q = surf(x, y);
         lp.push(q[0], q[1], q[2] + 0.0005 * k);
+        const mo = y - (-0.515 + lift(x)), part = Math.exp(-Math.pow(mo / 0.012, 2)), edge = Math.pow(Math.abs(x) / 0.21, 4);
+        const l = (mo > 0 ? 0.86 : 1.02) * (1 - 0.5 * part) * (1 - 0.25 * edge);
+        lc.push(l, l * 0.98, l * 0.98);
       }
       for (let j = 0; j < NYL; j++) for (let i = 0; i < NXL; i++) { const a = j * (NXL + 1) + i, b = a + NXL + 1; li.push(a, b, a + 1, b, b + 1, a + 1); }
-      const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3)); lg.setIndex(li); lg.computeVertexNormals();
+      const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3)); lg.setAttribute('color', new THREE.Float32BufferAttribute(lc, 3)); lg.setIndex(li); lg.computeVertexNormals();
       head.add(new THREE.Mesh(lg, lipM));
     }
     // hair

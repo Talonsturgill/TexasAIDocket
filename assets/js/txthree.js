@@ -44,6 +44,8 @@
  * - 3D DATA HONESTY still applies: perspective for scenes/objects, NEVER for
  *   quantity comparisons (bars/volumes stay parallel-projected 2D/cabinet).
  */
+import { installSurface } from './txsurface.js';
+
 export function init(THREE) {
   const TXT = { THREE };
 
@@ -1641,6 +1643,7 @@ export function init(THREE) {
   TXT.snapshot = async function (R, o) {
     o = o || {};
     prepareSurfaces(R);                          // the contact marks, worn grass and grit (THE RECEIVING SURFACE)
+    TXT.surface(R);  // a real surface on every material, a real edge on every primitive (txsurface.js)
     /* AN AUTOMATIC STAGE IS REDONE ON EVERY SNAPSHOT (Codex, PR 402), so a frame that previews and
      * then moves its camera or its subject is staged on what its kept snapshot shows, and
      * {stage:false} takes an automatic stage off. A stage the frame set with TXT.stage is its own. */
@@ -3467,5 +3470,6 @@ vec3 txTransl( vec3 L, vec3 lightColor, vec3 N, vec3 V, vec3 albedo ) {
     return group;
   };
 
+  installSurface(THREE, TXT);   // THE SURFACE PASS (2026-11-15), assets/js/txsurface.js
   return TXT;
 }

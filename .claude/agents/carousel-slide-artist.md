@@ -62,7 +62,15 @@ quiet. Never default to the old top left block at y 150 because it is there.
   in the dek exactly as the copy has it. Never change a word of the copy you were given, never add a
   number, never drop a claim id.
 - Build things properly. Rounded edges, real materials with roughness and tooth, contact shadows,
-  detail where the eye lands. A primitive left as a primitive is the template look.
+  detail where the eye lands. A primitive left as a primitive is the template look. Reach for a kit
+  model (`K.make`, listed in knowledge/carousel/ARSENAL.md) before you build a thing from boxes.
+- `TXT.snapshot` now runs the surface pass (assets/js/txsurface.js) on every mesh: each material gets
+  real micro relief, mottle and roughness break-up by its class (brushed or cast metal, paint,
+  plastic, rubber, concrete and dirt, fabric, skin, glass, wood), and a plain box, cylinder or
+  sphere gets a real rounded edge. Name a material for what it is (`'galv-steel'`, `'denim'`,
+  `'conc-pad'`) and the pass picks the right surface. Set `material.userData.txSurface = '<class>'`
+  to choose it, `= false` to keep a flat look on purpose (a diagram plate, a screen), and
+  `mesh.userData.txBevel = false` to keep a hard edge.
 
 ## Render, look, rework
 
