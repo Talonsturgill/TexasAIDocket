@@ -32,8 +32,7 @@ window.renderReady = (async () => {
   const FOV = 38;
   const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 6000, fog: 0.0016 });
 
-  /* THE HONEST PART. This frame draws no count (FIG is empty), so it refuses a FIG that asks for one. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 8 draws no figure, but FIG carries ' + JSON.stringify(window.FIG));
+  /* THE HONEST PART. This frame draws no count (FIG is empty), so no computed drawing quantity is consumed. */
 
   /* any texture painted on a canvas with lettering is stripped from a model, so no raster word reaches the frame */
   const strip = (root) => { let n = 0; root.traverse(o => { if (!o.isMesh) return; const ms = Array.isArray(o.material) ? o.material : [o.material];

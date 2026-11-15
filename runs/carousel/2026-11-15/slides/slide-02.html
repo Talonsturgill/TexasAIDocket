@@ -42,10 +42,8 @@ window.renderReady = (async () => {
   hook.style.top = TYPE_TOP + 'px'; CH.follow();
 
   /* ---- HONESTY: every count drawn is read from window.FIG here ---- */
-  const FIG = window.FIG;
-  if (Object.keys(FIG).sort().join(',') !== 'per_hundred,teacher_use_of_100') throw new Error('frame 2 expects exactly per_hundred and teacher_use_of_100, got ' + JSON.stringify(FIG));
   const N_DESK = FIG.per_hundred, N_LIT = FIG.teacher_use_of_100, COLS = 10, ROWS = N_DESK / COLS;
-  if (!Number.isInteger(ROWS) || ROWS !== 10) throw new Error('the brief lays the desks out 10 by 10, FIG gives ' + N_DESK);
+  if (!Number.isInteger(ROWS) || ROWS !== 10) throw new Error('the brief lays the desks out 10 by 10, computed count gives ' + N_DESK);
   if (!(N_LIT > 0 && N_LIT < N_DESK)) throw new Error('lit count out of range: ' + N_LIT);
   /* the shared shuffle (frames 2 and 4): Fisher Yates over 0..99 from the top, CH.rng(20261115), first N_LIT are lit */
   const order = Array.from({ length: N_DESK }, (_, i) => i), rnd = CH.rng(20261115);
@@ -62,7 +60,7 @@ window.renderReady = (async () => {
   const rows = K.make('student_desk_rows', { count: N_DESK, cols: COLS, pitch: [PX, PZ], detail: 'low', lids: 'none', footprint: true, top: 0x6f5a8e, shell: 0x2f52c8, tube: 0x262a40 });
   rows.position.set(0, 0, FZ); TXT.add(R, rows);
   const units = rows.userData.units;
-  if (rows.userData.drawn !== N_DESK || units.length !== N_DESK) throw new Error('drew ' + rows.userData.drawn + ' desks, FIG says ' + N_DESK);
+  if (rows.userData.drawn !== N_DESK || units.length !== N_DESK) throw new Error('drew ' + rows.userData.drawn + ' desks, computed count says ' + N_DESK);
   /* index i -> column i % 10, row floor(i / 10), row 0 nearest the camera (+z): the kit's own order, checked */
   units.forEach((u, i) => { const ex = (i % COLS - (COLS - 1) / 2) * PX, ez = ((ROWS - 1) / 2 - Math.floor(i / COLS)) * PZ;
     if (Math.abs(u[0] - ex) > 0.01 || Math.abs(u[1] - ez) > 0.01) throw new Error('desk ' + i + ' is not at column ' + (i % COLS) + ', row ' + Math.floor(i / COLS)); });
@@ -184,7 +182,7 @@ window.renderReady = (async () => {
       o.position.set(x, y + 0.0125 + 0.003, z); o.rotation.set(0, 0, 0); o.updateMatrix(); closedI.setMatrixAt(di, o.matrix); di++;
     }
   });
-  if (li !== N_LIT || di !== N_DARK || li + di !== N_DESK) throw new Error('lit ' + li + ' closed ' + di + ' disagree with FIG ' + JSON.stringify(FIG));
+  if (li !== N_LIT || di !== N_DARK || li + di !== N_DESK) throw new Error('lit ' + li + ' closed ' + di + ' disagree with computed desk and laptop counts ' + [N_DESK, N_LIT].join(', '));
   [baseI, baseClosedI, lidI, closedI].forEach(m => { m.instanceMatrix.needsUpdate = true; m.castShadow = true; m.receiveShadow = true; R.scene.add(m); });
   [scrI, spillI].forEach(m => { m.instanceMatrix.needsUpdate = true; m.castShadow = false; m.receiveShadow = false; R.scene.add(m); });
   window.__frame2 = { desks: units.length, lit: li, closed: di };

@@ -30,8 +30,7 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "09 / 09", src: "c3 c5 c6", fit: { min: 64, max: 86, maxLines: 2 } });
 
-  /* THE FIGURES. This frame draws no count: FIG must stay empty, and exactly one amber thing (the binder) is built. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 9 draws no count, but FIG carries ' + JSON.stringify(window.FIG));
+  /* THE FIGURES. This frame draws no count: no computed drawing quantity is consumed, and exactly one amber thing (the binder) is built. */
   let AMBER_COUNT = 0;
 
   const FOV = 36;

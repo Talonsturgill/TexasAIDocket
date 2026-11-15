@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BESPOKE, 2026-11-15, frame 3 of 9. THE LOCKER BANK: a hallway bank of a hundred cobalt steel lockers in five tiers,
+<!-- BESPOKE, 2026-11-15, frame 3 of 9. THE LOCKER BANKS: five separated hallway banks of a hundred cobalt steel lockers in five tiers,
      a material relief through txbench.js seen with a fifteen degree yaw so it recedes to the left, raked by the deck's key
      from the upper left. Sixty one doors stand swung out thirty five to fifty degrees on their left hinges, each slab
      catching the key on its face and throwing a hard cast across the door beside it. Inside every open one a small laptop
@@ -37,8 +37,9 @@ window.renderReady = (async () => {
   /* ---------------- THE FIGURE ----------------
    * One locker per leader in a hundred (drawn to illustrate), five tiers of COLS. An open door marks reported student
    * use. Both counts come from window.FIG and are checked against what is built. */
-  const ROWS = 5, N = FIG.per_hundred, COLS = N / ROWS;
+  const ROWS = 5, N = FIG.per_hundred, COLS = N / ROWS, BANKS = 5, BANK_COLS = COLS / BANKS;
   if (!Number.isInteger(COLS)) throw new Error('per_hundred does not split into ' + ROWS + ' tiers');
+  if (!Number.isInteger(BANK_COLS)) throw new Error('the locker count does not split into equal banks');
   const NOPEN = FIG.student_use_of_100;
   if (!(NOPEN >= 0 && NOPEN <= N && Number.isInteger(NOPEN))) throw new Error('student_use_of_100 is not a count of the hundred');
   const order = Array.from({ length: N }, (_, i) => i);
@@ -52,8 +53,8 @@ window.renderReady = (async () => {
       pack: PACKS[Math.floor(rng() * PACKS.length)] });
   }
   const builtOpen = doors.filter(d => d.open).length;
-  if (doors.length !== FIG.per_hundred) throw new Error('drew ' + doors.length + ' lockers, FIG says ' + FIG.per_hundred);
-  if (builtOpen !== FIG.student_use_of_100) throw new Error('opened ' + builtOpen + ' doors, FIG says ' + FIG.student_use_of_100);
+  if (doors.length !== FIG.per_hundred) throw new Error('drew ' + doors.length + ' lockers, computed count says ' + FIG.per_hundred);
+  if (builtOpen !== FIG.student_use_of_100) throw new Error('opened ' + builtOpen + ' doors, computed count says ' + FIG.student_use_of_100);
 
   /* ---------------- THE CAMERA ----------------
    * A pinhole looking down the hallway: the bank's plane is yawed PSI so it recedes to the left. The near end stands at
@@ -73,7 +74,9 @@ window.renderReady = (async () => {
 
   /* ---------------- THE BANK, in bank px ---------------- */
   const CT = 10, CB = 114, GY1 = 846, BASE1 = 880;
-  const GX0 = 12, GX1 = B - 12, PX = (GX1 - GX0) / COLS, PY = (GY1 - CB) / ROWS;
+  const BANK_GAP = 70, BANK_W = (B - (BANKS - 1) * BANK_GAP) / BANKS, BANK_STRIDE = BANK_W + BANK_GAP;
+  const GX0 = 12, GX1 = BANK_W - 12, PX = (GX1 - GX0) / BANK_COLS, PY = (GY1 - CB) / ROWS;
+  const doorX = k => Math.floor(k / BANK_COLS) * BANK_STRIDE + GX0 + (k % BANK_COLS) * PX + ST;
   const ST = 3, GAP = 1.3, DW = PX - 2 * ST, DH = PY - 8;
   const FF = 8, DF = 9.5, K = 1.5, CAV = -28, SHELF = 44;
   const M = { wall: 0, crown: 1, frame: 2, door: 3, edge: 4, groove: 5, slit: 6, chrome: 7, plate: 8, cav: 9, shelf: 10,
@@ -143,17 +146,19 @@ window.renderReady = (async () => {
    * screen px (bank heights scale with distance) and remembers the door it hit for the albedo. */
   let lx = -1, ly = -1, lh = 0, lm = 0, ld = null;
   function bankAt(w) {
-    const a = w.a, b = w.b, s = w.s;
-    const sideE = Math.min(a, B - a);
+    const bank = Math.min(BANKS - 1, Math.floor(w.a / BANK_STRIDE));
+    const a = w.a - bank * BANK_STRIDE, b = w.b, s = w.s;
+    const sideE = Math.min(a, BANK_W - a);
     if (b < CB) {
       if (b < CT + 20) return [4 + 9 * sstep(0, 20, b - CT) - 2 * (1 - sstep(0, 2, sideE)), M.cap];
       return [12 - 1.5 * (1 - sstep(0, 2.5, Math.min(sideE, CB - b, b - CT - 20))), M.crown];
     }
     if (b >= GY1) return [2.5 + 0.3 * TX.fbm2(a / 4, b / 30, 2), M.plinth];
     if (a < GX0 || a > GX1) return [12 - 2 * (1 - sstep(0, 3, sideE)), M.frame];
-    const k = Math.min(COLS - 1, Math.floor((a - GX0) / PX)), r = Math.min(ROWS - 1, Math.floor((b - CB) / PY));
+    const localK = Math.min(BANK_COLS - 1, Math.floor((a - GX0) / PX));
+    const k = bank * BANK_COLS + localK, r = Math.min(ROWS - 1, Math.floor((b - CB) / PY));
     const d = doors[r * COLS + k]; ld = d;
-    const x0 = GX0 + k * PX + ST, y0 = CB + r * PY + 4, u0 = a - x0, v = b - y0;
+    const x0 = GX0 + localK * PX + ST, y0 = CB + r * PY + 4, u0 = a - x0, v = b - y0;
     if (u0 < -GAP || u0 > DW + GAP || v < -GAP || v > DH + GAP) return [FF, M.frame];
     if (!d.open) { if (u0 < 0 || u0 > DW || v < 0 || v > DH) return [4, M.groove]; return doorFace(u0, v, d); }
     if (u0 < 0 || u0 > DW || v < 0 || v > DH) return [CAV + 8, M.cav];
@@ -178,7 +183,8 @@ window.renderReady = (async () => {
       if ((sa < hw || sd < hw) && ct > 0.02) { lh = 0.5 * ct; lm = M.strip; return; }
       lh = 0.12 * TX.fbm2(X / 9, Y / 9, 2); lm = M.floor; return;
     }
-    if (w.a < 0 || w.a > B || w.b < CT) {
+    const bankA = w.a - Math.floor(w.a / BANK_STRIDE) * BANK_STRIDE;
+    if (w.a < 0 || w.a > B || w.b < CT || bankA > BANK_W) {
       const mx = ((w.a + (Math.floor(w.b / 26) % 2) * 28) % 56 + 56) % 56, my = ((w.b % 26) + 26) % 26;
       lh = (-3 - (mx < 1.5 || my < 1.5 ? 1.2 : 0)) * w.s + 0.3 * TX.fbm2(w.a / 5, w.b / 5, 2); lm = M.wall; return;
     }
@@ -239,7 +245,7 @@ window.renderReady = (async () => {
   const quad = (pts) => { cx.beginPath(); cx.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) cx.lineTo(pts[i][0], pts[i][1]); cx.closePath(); };
   for (const d of doors) {
     if (!d.open) continue;
-    const x0 = GX0 + d.k * PX + ST, y0 = CB + d.r * PY + 4;
+    const x0 = doorX(d.k), y0 = CB + d.r * PY + 4;
     const mid = toScreen(x0 + DW / 2, y0 + DH / 2), w = onWall(mid[0], mid[1]);
     const hEdge = K * DW * Math.sin(d.th), wp = Math.max(0.16 * DW, Math.min(DW - 6, DW * Math.cos(d.th) + 0.4 * w.cU * hEdge));
     const lp = lapBox(d), a0 = Math.max(x0 + wp + 3.2, x0 + lp.u0 + 1.6), a1 = x0 + lp.u1 - 1.6;

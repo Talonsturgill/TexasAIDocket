@@ -1,9 +1,9 @@
 <!doctype html>
 <!-- BESPOKE, 2026-11-15, frame 6 of 9, the empty place. A reading room: a long honey oak shelf_run against a periwinkle wall,
-     seen from a crouch at its near end with a 35 degree lens, so it runs steeply away toward a window at the far wall. On it
+     seen from above the reading room with a 34 degree lens, so its complete run is visible against the library wall. On it
      stand FIG.states_with_guidance amber ring binders, blank spines, no names. The one further slot, the nearest, is held
-     empty between the last binder and a steel bookend, sharp, with the plain Texas pill over it. The far run softens toward
-     the window light. Every count is read from window.FIG. Drawn to illustrate. -->
+     empty inside the run, with the plain Texas pill below it. Every spine stays sharp and inside the frame.
+     Every count is read from window.FIG. Drawn to illustrate. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -41,7 +41,7 @@ window.renderReady = (async () => {
   const R = CH.stage(TXT, gl, W, { fov: 24, near: 0.05, far: 60, fog: 0 });
 
   /* THE ROOM: a reading room, periwinkle walls, a window on the far wall at the end of the shelf */
-  const RW = 7.2, RD = 4.4, RH = 3.0, BACKZ = -RD / 2;
+  const RW = 7.2, RD = 4.4, RH = 5.0, BACKZ = -RD / 2;
   TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: 0x4a6fd2, trim: 0x2c2466, window: 'left', windowW: 1.6, windowH: 1.9,
     windowColor: 0xffe2bc, windowI: 2.6, light: 0.5 });
 
@@ -109,7 +109,7 @@ window.renderReady = (async () => {
       pane(150, 110); pane(520, 178); pane(150, 480); pane(520, 548);
     });
     const pm = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.3), new THREE.MeshBasicMaterial({ map: patch, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false }));
-    pm.position.set(shelf.userData.slot(TEXAS_SLOT)[0] - 0.7, 1.1, WALLZ + 0.004); R.scene.add(pm);
+    pm.position.set(shelf.userData.slot(TEXAS_SLOT)[0] - 2.4, 1.1, WALLZ + 0.004); R.scene.add(pm);
   }
 
   /* THE BINDERS. Slot 0 is the +x end, nearest the camera, and is Texas's: empty. Slots 1..NB each take one amber binder. */
@@ -142,14 +142,23 @@ window.renderReady = (async () => {
     for (let i = 0; i < SLOTS; i++) if (i !== TEXAS && !filled.has(i)) throw new Error('slot ' + i + ' is empty, only Texas\'s may be');
   }
 
-  /* THE CAMERA: crouched at the near end, eye 0.72 m, steep along the shelf */
-  const near = [tx[0], tx[1] + 0.1, SZ + 0.1];
-  const from = [tx[0] + 1.4, 1.1, SZ + 1.8];
-  CH.aim(THREE, R, TXT, from, near, 540, 925, 24);
+  /* THE CAMERA: the full shelf from the reading room, all computed binders visible together. */
+  const near = [0, tx[1] + 0.1, SZ + 0.1];
+  const from = [0.25, 4.2, SZ + 5.8];
+  CH.aim(THREE, R, TXT, from, near, 540, 925, 34);
+  /* A constructed count must also fit the delivered picture. Check every binder's full projected bounds. */
+  R.scene.updateMatrixWorld(true);
+  const visibleBounds = binders.children.map(b => {
+    const box = new THREE.Box3().setFromObject(b), pts = [];
+    for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) pts.push(CH.project(THREE, R, [x, y, z]));
+    return [Math.min(...pts.map(p => p[0])), Math.min(...pts.map(p => p[1])), Math.max(...pts.map(p => p[0])), Math.max(...pts.map(p => p[1]))];
+  });
+  if (visibleBounds.length !== NB || visibleBounds.some(b => b[0] < 24 || b[2] > 1056 || b[1] < 80 || b[3] > 1200)) throw new Error('the complete computed binder count must fit inside the picture');
+  window.__frame6 = { drawn, visible: visibleBounds.length, empty_slots: SLOTS - drawn, bounds: visibleBounds };
 
   /* THE KEY: window light from the far end, low and grazing the spines, its casts running back along the shelf */
   CH.KEY_SCALE = 0.85;
-  const spec = CH.rigSpec(W, 6, 4096); spec.key = Object.assign({}, spec.key, { color: 0xffc78c });
+  const spec = CH.rigSpec(W, 6, 4096); spec.key = Object.assign({}, spec.key, { color: 0xfff4e8 });
   TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.3, SZ], { distance: 14, shadowFar: 40, normalBias: 0.004 }), { light: { az: 58, el: 30 } }));
   /* a warm pool on the hole itself, hung on the key's side, so the empty slot is the best lit place on the shelf */
   CH.flood(THREE, R, [tx[0] + 0.02, 1.95, SZ + 0.4], [tx[0], tx[1], SZ - 0.04], { color: 0xffdcae, i: 30, angle: 0.034, penumbra: 0.7, reach: 4 });
@@ -171,22 +180,9 @@ window.renderReady = (async () => {
 
   const cx = CH.develop(await TXT.snapshot(R), gl);
 
-  /* THE FOCUS: the near slot sharp, the far run softening toward the window. A blurred copy laid in along the shelf's axis. */
+  /* The whole counted shelf stays sharp so every binder remains a readable unit. */
   const qNear = CH.project(THREE, R, [tx[0], tx[1] + 0.15, SZ + 0.14]);
   const qFar = CH.project(THREE, R, [shelf.userData.slot(SLOTS - 1)[0], 0.45, SZ]);
-  {
-    const src = document.getElementById('art');
-    const tmp = document.createElement('canvas'); tmp.width = src.width; tmp.height = src.height; const t = tmp.getContext('2d');
-    [[4, 0.1, 0.32], [10, 0.3, 0.75]].forEach(([px, a0, a1]) => {
-      t.globalCompositeOperation = 'source-over'; t.clearRect(0, 0, tmp.width, tmp.height);
-      t.filter = 'blur(' + px + 'px)'; t.drawImage(src, 0, 0); t.filter = 'none';
-      const m = t.createLinearGradient(qNear[0] * 2, qNear[1] * 2, qFar[0] * 2, qFar[1] * 2);
-      m.addColorStop(0, 'rgba(0,0,0,0)'); m.addColorStop(a0, 'rgba(0,0,0,0)'); m.addColorStop(a1, 'rgba(0,0,0,1)'); m.addColorStop(1, 'rgba(0,0,0,1)');
-      t.globalCompositeOperation = 'destination-in'; t.fillStyle = m; t.fillRect(0, 0, tmp.width, tmp.height);
-      cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(tmp, 0, 0); cx.restore();
-    });
-  }
-
   CH.seat(cx, { a: 0.4, fade: 170 });
   ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 70 }));
   TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.9, height: 280 });

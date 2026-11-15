@@ -226,9 +226,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 13493,
+      "render_ms": 10826,
       "ok": true,
-      "load_ms": 280,
+      "load_ms": 156,
       "canvases": [
         {
           "x": 0,
@@ -420,9 +420,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 22347,
+      "render_ms": 22628,
       "ok": true,
-      "load_ms": 301,
+      "load_ms": 119,
       "canvases": [
         {
           "x": 0,
@@ -450,7 +450,7 @@
       "file": "slide-03.html",
       "png": "slide-03.png",
       "console_errors": [
-        "TXBENCH: RELIEF {\"height_range\":96.16220050116057,\"materials\":20,\"cast_fraction\":0.3067988683127572,\"area\":1,\"render_ms\":20801.700000000186}"
+        "TXBENCH: RELIEF {\"height_range\":75.46161839529523,\"materials\":20,\"cast_fraction\":0.25265243484224964,\"area\":1,\"render_ms\":13873.5}"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -614,9 +614,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 26001,
+      "render_ms": 18676,
       "ok": true,
-      "load_ms": 317,
+      "load_ms": 213,
       "canvases": [
         {
           "x": 0,
@@ -628,8 +628,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 94.6,
-          "variance": 1691.3
+          "mean": 86.5,
+          "variance": 1314.3
         }
       ],
       "breather": false,
@@ -1148,8 +1148,8 @@
         },
         {
           "text": "Texas",
-          "x": 421,
-          "y": 1075,
+          "x": 801,
+          "y": 952,
           "w": 127,
           "h": 48,
           "font_px": 26,
@@ -1160,8 +1160,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              443,
-              1081,
+              823,
+              958,
               83,
               35
             ]
@@ -1242,9 +1242,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 67506,
+      "render_ms": 26880,
       "ok": true,
-      "load_ms": 241,
+      "load_ms": 178,
       "canvases": [
         {
           "x": 0,
@@ -1256,8 +1256,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 122,
-          "variance": 2861.6
+          "mean": 105.5,
+          "variance": 1266.3
         }
       ],
       "breather": false,
@@ -1724,9 +1724,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 26257,
+      "render_ms": 21749,
       "ok": true,
-      "load_ms": 299,
+      "load_ms": 151,
       "canvases": [
         {
           "x": 0,
@@ -1918,9 +1918,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 37712,
+      "render_ms": 38272,
       "ok": true,
-      "load_ms": 275,
+      "load_ms": 128,
       "canvases": [
         {
           "x": 0,

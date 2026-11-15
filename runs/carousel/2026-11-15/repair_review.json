@@ -1,0 +1,348 @@
+{
+  "version": 1,
+  "scope": "Independent verification of six repaired or source-changed frames. Historical panel scores remain prior evaluations of the original artwork; no new quality-panel round.",
+  "prior_panel_score_sha256": "4706bb022e28d502484afc223f6ebdc98699ec30a49fa74d6b9a552922acf2b4",
+  "prior_panel_score": 7.086,
+  "storyboard_sha256": "daba289b9dce330e136aab2e0a60d183103406d368bff3c70c007eeb750f03d0",
+  "decision": "accept",
+  "frames": [
+    {
+      "slide": 1,
+      "role": "cover",
+      "score": 7.9,
+      "points": {
+        "only_this_sentence": 8,
+        "one_idea": 8,
+        "composed": 8.2,
+        "crafted": 7.2,
+        "unlike_neighbours": 8.2,
+        "honest": 9
+      },
+      "subject": "A recognizable school desk and chair, with a lit AI chat screen beside an empty clear sheet protector, against a vivid pink and plum studio sweep.",
+      "visual_consequence": "The active screen and empty document holder establish AI use alongside an unwritten rule. The complete desk remains contained within the frame, consistent with the corrected rectangle and absence of subject bleeds. No quantitative share is drawn.",
+      "weakness": "At feed size the pale protector initially resembles a blank sheet. The chair material and broad studio sweep retain a synthetic finish.",
+      "repair": "Advisory for future craft work: give the protector's open mouth a raised reflective lip so its empty construction reads faster.",
+      "encoding_reads": true,
+      "dominant_subject_finished": true,
+      "feed_legible": true,
+      "hard_problems": [],
+      "verdict": "accept_under_round_cap",
+      "reviewer": "independent carousel-slide-critic /root/review_01",
+      "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+      "inputs": {
+        "slides/slide-01.html": "702c890130338603bb746df5911990fc5c8f61d9a303a4ab33ce1eb25a9123bb",
+        "render/slide-01.png": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+        "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+        "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+        "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+        "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+        "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+        "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+        "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+        "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+        "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+        "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+        "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+      },
+      "viewed": [
+        "tmp/feed-01.png",
+        "render/slide-01.png",
+        "render/crops/slide-01-r1c1.png",
+        "render/crops/slide-01-r1c2.png",
+        "render/crops/slide-01-r2c1.png",
+        "render/crops/slide-01-r2c2.png",
+        "render/crops/slide-01-r3c1.png",
+        "render/crops/slide-01-r3c2.png"
+      ],
+      "delivery": {
+        "path": "slide-01.webp",
+        "sha256": "4882415ecc0d259f6f4f6eba4ebdf309a27a06e09e5c7569d05056bcdaa75974",
+        "reviewed_png_sha256": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+        "psnr_db": 41.054
+      }
+    },
+    {
+      "slide": 2,
+      "score": 7.7,
+      "subject": "Ten rows of ten student desks in a sunlit gym, with 86 illuminated open laptops and 14 closed laptops.",
+      "visual_consequence": "The predominantly lit desk field makes widespread reported teacher use visible. All hundred desktop units remain visible, including the nearest row above the headline.",
+      "weakness": "Simplified furnishings and bright screens limit material realism. The lower plum wash suppresses detail in the nearest row.",
+      "repair": "No required repair. Preserve the craft shortfall under the completed round-cap policy.",
+      "encoding_reads": true,
+      "dominant_subject_finished": true,
+      "feed_legible": true,
+      "hard_problems": [],
+      "count_verification": {
+        "desks": 100,
+        "lit_laptops": 86,
+        "closed_laptops": 14
+      },
+      "verdict": "accept_under_round_cap",
+      "reviewer": "independent carousel-slide-critic /root/review_02",
+      "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+      "inputs": {
+        "slides/slide-02.html": "4e744e3a985cab78766a0236dd97d35e722ab5c22b29f5c2f2e44d938b11f785",
+        "render/slide-02.png": "b50037d17ec630a9c9675b8774e3949bbf00acff6ae2fe4761743e024212d281",
+        "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+        "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+        "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+        "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+        "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+        "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+        "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+        "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+        "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+        "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+        "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+      },
+      "viewed": [
+        "tmp/feed-02.png",
+        "render/slide-02.png",
+        "render/crops/slide-02-r1c1.png",
+        "render/crops/slide-02-r1c2.png",
+        "render/crops/slide-02-r2c1.png",
+        "render/crops/slide-02-r2c2.png",
+        "render/crops/slide-02-r3c1.png",
+        "render/crops/slide-02-r3c2.png"
+      ],
+      "delivery": {
+        "path": "slide-02.png",
+        "sha256": "b50037d17ec630a9c9675b8774e3949bbf00acff6ae2fe4761743e024212d281",
+        "reviewed_png_sha256": "b50037d17ec630a9c9675b8774e3949bbf00acff6ae2fe4761743e024212d281",
+        "psnr_db": 999.0
+      }
+    },
+    {
+      "slide": 3,
+      "score": 7.8,
+      "subject": "Five separated locker banks, each with four columns and five tiers, with 100 visible lockers and 61 ajar.",
+      "visual_consequence": "Wide wall spaces separate five countable banks at feed size. The earlier continuous wall collapsed into two significant components. Open doors show swung slabs, cavities and cyan device light.",
+      "weakness": "Individual doors remain small at feed size, but grouping and open-door cues are readable.",
+      "repair": "The reviewer requested correction of false bleeds and the obsolete temporary brief. Both metadata corrections were applied and independently verified in an addendum; no further artwork round requested.",
+      "encoding_reads": true,
+      "dominant_subject_finished": true,
+      "feed_legible": true,
+      "hard_problems": [],
+      "count_verification": {
+        "visible_lockers": 100,
+        "visible_open_lockers": 61,
+        "open_by_bank_left_to_right": [
+          9,
+          15,
+          13,
+          13,
+          11
+        ],
+        "hidden_or_clipped_units": 0,
+        "primary_rect": [
+          12,
+          114,
+          1056,
+          732
+        ],
+        "projected_door_field_bounds": [
+          18.092,
+          118.268,
+          1061.302,
+          841.332
+        ],
+        "bleeds": []
+      },
+      "metadata_addendum": "Current rectangle contains all faces; bleeds are empty; regenerated critic brief matches the artwork. Source and image hashes unchanged.",
+      "verdict": "accept_under_round_cap",
+      "reviewer": "independent carousel-slide-critic /root/review_03",
+      "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+      "inputs": {
+        "slides/slide-03.html": "b837a71ff2ab678e858a8056d358ab5c3985497f5ebc759fd4c9227c11cb4934",
+        "render/slide-03.png": "dff8d0ec739bacac9a7fb47ca3255684adb6817db9b972805a66fa74992edad3",
+        "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+        "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+        "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+        "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+        "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+        "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+        "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+        "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+        "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+      },
+      "viewed": [
+        "tmp/feed-03.png",
+        "render/slide-03.png",
+        "render/crops/slide-03-r1c1.png",
+        "render/crops/slide-03-r1c2.png",
+        "render/crops/slide-03-r2c1.png",
+        "render/crops/slide-03-r2c2.png",
+        "render/crops/slide-03-r3c1.png",
+        "render/crops/slide-03-r3c2.png"
+      ],
+      "delivery": {
+        "path": "slide-03.png",
+        "sha256": "dff8d0ec739bacac9a7fb47ca3255684adb6817db9b972805a66fa74992edad3",
+        "reviewed_png_sha256": "dff8d0ec739bacac9a7fb47ca3255684adb6817db9b972805a66fa74992edad3",
+        "psnr_db": 999.0
+      }
+    },
+    {
+      "slide": 6,
+      "score": 7.7,
+      "subject": "An elevated view of the complete amber guidance-binder shelf with one empty place labelled Texas.",
+      "visual_consequence": "The downward viewpoint is real: binder page blocks, book tops and shelf surfaces are exposed. All 42 amber spines remain distinguishable, with 36 before the empty slot and six after it. The bare oak in the empty slot is clearer.",
+      "weakness": "The background bookcase competes with the counted run, and materials remain schematic. The elevated view creates no blocking defect.",
+      "repair": "No required repair. Preserve the original cap scores and the separately identified craft shortfall.",
+      "encoding_reads": true,
+      "dominant_subject_finished": true,
+      "feed_legible": true,
+      "hard_problems": [],
+      "count_verification": {
+        "visible_binders": 42,
+        "left_of_empty_slot": 36,
+        "right_of_empty_slot": 6,
+        "empty_slots": 1,
+        "occluded_or_cropped_count_units": 0,
+        "pixel_confirmation": "Native horizontal scans at y=1810,1820,1830,1840,1850,1860 each identify 42 separate cream spine-pocket runs, 36 before the empty slot and six after."
+      },
+      "verdict": "accept_under_round_cap",
+      "reviewer": "independent carousel-slide-critic /root/review_06",
+      "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+      "inputs": {
+        "slides/slide-06.html": "5f0d1ff1421b22acb9b99ed2d454f8d59b2b335ac35a680e855411e7a1b856b3",
+        "render/slide-06.png": "9c46094144b010e092e9f64bf0a4d9abe19da062350785dcf9c509c6303da4fd",
+        "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+        "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+        "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+        "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+        "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+        "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+        "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+        "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+        "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+        "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+        "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+      },
+      "viewed": [
+        "tmp/feed-06.png",
+        "render/slide-06.png",
+        "render/crops/slide-06-r1c1.png",
+        "render/crops/slide-06-r1c2.png",
+        "render/crops/slide-06-r2c1.png",
+        "render/crops/slide-06-r2c2.png",
+        "render/crops/slide-06-r3c1.png",
+        "render/crops/slide-06-r3c2.png"
+      ],
+      "prior_repair_status": "Complete count, whole-shelf focus and accurate Texas label retained; no window edge crosses type and neither end is cropped.",
+      "delivery": {
+        "path": "slide-06.png",
+        "sha256": "9c46094144b010e092e9f64bf0a4d9abe19da062350785dcf9c509c6303da4fd",
+        "reviewed_png_sha256": "9c46094144b010e092e9f64bf0a4d9abe19da062350785dcf9c509c6303da4fd",
+        "psnr_db": 999.0
+      }
+    },
+    {
+      "slide": 8,
+      "score": 6,
+      "subject": "Three parents wait under a brick school's covered walk, one carrying a blue backpack, with a bus beyond.",
+      "visual_consequence": "The scene brings the story to families without counting voters or encoding either percentage.",
+      "weakness": "Existing sky banding, mottled trousers and simplified hair remain visible. The canopy and curb cross behind type, but all words remain readable at 432 px.",
+      "repair": "Advisory: dither the sky and clean trouser materials; place the dek over uninterrupted pavement in future craft work.",
+      "encoding_reads": true,
+      "dominant_subject_finished": true,
+      "feed_legible": true,
+      "hard_problems": [],
+      "qa_rule_judgement": "The diagonal crosses the dek region without obscuring, joining or altering glyphs.",
+      "verdict": "accept_under_round_cap",
+      "reviewer": "independent carousel-slide-critic /root/review_08",
+      "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+      "inputs": {
+        "slides/slide-08.html": "961a1ce618f0ea47ab3589586e90800f333664b4d59931fb15bc31362da488e5",
+        "render/slide-08.png": "46521127b707c1ad29917b468485c50ede9c7808ce01f7568eeffd44729af1c1",
+        "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+        "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+        "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+        "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+        "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+        "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+        "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+        "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+        "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+        "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+        "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+      },
+      "viewed": [
+        "tmp/feed-08.png",
+        "render/slide-08.png",
+        "render/crops/slide-08-r1c1.png",
+        "render/crops/slide-08-r1c2.png",
+        "render/crops/slide-08-r2c1.png",
+        "render/crops/slide-08-r2c2.png",
+        "render/crops/slide-08-r3c1.png",
+        "render/crops/slide-08-r3c2.png"
+      ],
+      "delivery": {
+        "path": "slide-08.webp",
+        "sha256": "2bd7810e4c07ae8c0513069609404528ec1e0412259d89385144b5b2b8e850b0",
+        "reviewed_png_sha256": "46521127b707c1ad29917b468485c50ede9c7808ce01f7568eeffd44729af1c1",
+        "psnr_db": 40.466
+      }
+    },
+    {
+      "slide": 9,
+      "role": "close",
+      "score": 7,
+      "subject": "An empty aisle chair faces a public-comment podium and trustees' dais, with one illuminated amber binder on its central ledge.",
+      "visual_consequence": "The chair and aisle make the district-policy invitation readable at feed size. The illustrative room does not establish a policy adopted by any identified district.",
+      "weakness": "Existing procedural walnut and chair-fabric moire remain. Saturated wood competes with the amber binder; its highlight obscures material detail.",
+      "repair": "Advisory: use restrained straight-grain plum-brown walnut and finer upholstery detail in future craft work.",
+      "encoding_reads": true,
+      "dominant_subject_finished": true,
+      "feed_legible": true,
+      "hard_problems": [],
+      "verdict": "accept_under_round_cap",
+      "reviewer": "independent carousel-slide-critic /root/review_09",
+      "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+      "inputs": {
+        "slides/slide-09.html": "1d478dac4e9292150a838f33b7d595863162078f71e84c866a9a7478452a42aa",
+        "render/slide-09.png": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+        "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+        "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+        "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+        "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+        "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+        "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+        "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+        "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+        "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+        "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+        "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+      },
+      "viewed": [
+        "tmp/feed-09.png",
+        "render/slide-09.png",
+        "render/crops/slide-09-r1c1.png",
+        "render/crops/slide-09-r1c2.png",
+        "render/crops/slide-09-r2c1.png",
+        "render/crops/slide-09-r2c2.png",
+        "render/crops/slide-09-r3c1.png",
+        "render/crops/slide-09-r3c2.png"
+      ],
+      "delivery": {
+        "path": "slide-09.png",
+        "sha256": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+        "reviewed_png_sha256": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+        "psnr_db": 999.0
+      }
+    }
+  ],
+  "flow_review": {
+    "reviewer": "independent carousel-flow-critic /root/repair_flow",
+    "verdict": "ship_under_existing_cap",
+    "new_panel_round": false,
+    "hard_problems": [],
+    "finding": "The use, rules, statewide absence, proposed priorities, parents and district action sequence retains its spine. Frame 7 is a genuine second story turn, from missing guidance to proposed priorities. Remaining craft faults on 8 and 9 are historical shortfalls, not new hard defects.",
+    "inputs": {
+      "storyboard.md": "daba289b9dce330e136aab2e0a60d183103406d368bff3c70c007eeb750f03d0",
+      "copy.json": "0129c618a21ba56c3e01bd2ad9a8984ece9f2bfe0fda6a5d5f0488d373d5ed97",
+      "contact_sheet.png": "8106707d7024d232c3a14416acdfea77ea803df1c372311fafde81ca598dddd4"
+    },
+    "metadata_addendum": "The same independent flow reviewer verified the remaining frame 4 plan corrections against its unchanged source and image. Current beat, CRAFT PLAN, Showstopper and value structure describe dark laptop lids and only the policy folders counted. No new pass or scores."
+  }
+}

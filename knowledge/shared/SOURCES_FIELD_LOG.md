@@ -2605,6 +2605,45 @@ cookie wall logged on November 11th, so items citing them stayed unconfirmed. **
 refusing earlier in the week. **The Angelina County PDF answered** through `fetch_doc.py` after failing earlier in the
 week.
 
+## 2026-11-15 maintenance source measurements
+
+**League City answered from the writable cloud runtime.** Its robots file answered HTTP 200 and
+does not refuse the cited newsflash paths. The ballot wording, unofficial result and removal
+notice answered HTTP 200 and carried the quotations on tx-2026-0048. The Legistar API also
+answered. Its election-order title carries escaped line breaks between the title and sponsor
+request, so the quote is now the title itself rather than text joined across those breaks.
+The November 17th calendar response identifies regular Council event 2229. Its meeting link
+replaces the August meeting link, and the old claim that no later council meeting is listed is
+removed. The earlier movement entries remain unchanged.
+
+**PubMed still returned a browser challenge.** Its robots file allows the article paths, but
+the article responses were HTTP 203 challenge pages without the cited abstracts. No stamp rests
+on them. Europe PMC's official API on www.ebi.ac.uk answered HTTP 200 after its robots file was
+checked. Both PMID records carry every cited quotation, including the Texas affiliations.
+The claims now cite those answering API records and the public-access links open Europe PMC.
+The existing freshness thresholds and crawl boundary are unchanged.
+
+Freshly retrieved Europe PMC payloads, before the independent final quotation check:
+
+- https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
+  SHA256 b2d0daf3698ba4a558da9b55f5c9be529e8b51074125e05badfed202ebbd1ff8
+
+- https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json
+  SHA256 84a40d9d748689bf63cc24435b58fe156c77a5a215afe66476674a2e3fb59407
+
+
+## 2026-11-15 canvass agenda correction
+
+The dated calendar contains a regular meeting, a special meeting and a work session. The Proposition A canvass is explicitly on special meeting event 2232, in agenda item 83090. The participation link now opens that special meeting. The earlier regular-meeting observation above remains as recorded; its link was selected before the agenda was inspected. A new claim quotes the actual canvass item. Existing movement entries are retained.
+
+- https://webapi.legistar.com/v1/leaguecity/events/2232/eventitems
+  SHA256 8f8304ddf1f3ec8df639ff3dcf3c2a38e00436797097c44f02dc682a6f8c7873
+
+
+## 2026-11-15 scope of the two research records
+
+The answering Europe PMC records contain the abstracts and author affiliations. Those sources support the review's recommendations and the MRI study's retrospective model development and validation. They do not establish whether either institution has separately announced a purchasing or clinical-use policy. The current summaries are bounded to the retrieved research records. The two MRI confidence intervals overlap; that comparison does not establish whether the full paper reports a statistical test of their difference. No institutional or whole-paper absence is inferred from an abstract.
+
 ## 2026-11-15 (carousel no. 78)
 
 **www.texas2036.org answered** the November 10th preview article on AI in Texas schools, read in full, and every claim on

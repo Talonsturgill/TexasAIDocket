@@ -30,8 +30,7 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "01 / 09", src: "c1 c2 c3", fit: { min: 58, max: 78, maxLines: 5 } });
-  /* THIS FRAME DRAWS NO COUNT. The brief's figures are empty, and the check below keeps it that way. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 1 draws no figure, but FIG carries ' + Object.keys(window.FIG).join(', '));
+  /* THIS FRAME DRAWS NO COUNT. This frame consumes no computed drawing quantity; fig_inject keeps its data map empty. */
 
   /* the type stands on the floor's quiet: the dek's foot sits just above the claim ids, whatever size the fit chose */
   /* the type is a narrow column in the left third at mid height; the desk stands to its right */

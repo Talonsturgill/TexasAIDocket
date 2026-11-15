@@ -31,15 +31,15 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "console error: TXBENCH: RELIEF {\"height_range\":96.16220050116057,\"materials\":20,\"cast_fraction\":0.3067988683127572,\"area\":1,\"render_ms\":20801.700000000186}",
+        "console error: TXBENCH: RELIEF {\"height_range\":75.46161839529523,\"materials\":20,\"cast_fraction\":0.25265243484224964,\"area\":1,\"render_ms\":13873.5}",
         "busy art under text (bg edge density 0.03) beneath 'c2' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
       "bands": [
-        0.8676,
-        0.8971,
-        0.6838
+        0.9034,
+        0.8908,
+        0.6949
       ],
-      "band_ratio": 0.8441
+      "band_ratio": 0.8438
     },
     {
       "file": "slide-04.html",
@@ -76,11 +76,11 @@
         "outside safe zone: 'Some form of statewide AI guidance, mode' at 590,415 426x163 (margin 80px)"
       ],
       "bands": [
-        0.4496,
-        0.5651,
-        0.4393
+        0.1765,
+        0.4055,
+        0.8364
       ],
-      "band_ratio": 0.9103
+      "band_ratio": 1.7094
     },
     {
       "file": "slide-07.html",

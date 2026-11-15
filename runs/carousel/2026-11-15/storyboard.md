@@ -35,13 +35,13 @@ THE ACCENT is the people tone's amber #ff9f1c and means ONE thing: a WRITTEN RUL
 statewide guidance). It is absent from frames 1, 2, 3 and 8 and present on 4, 5, 6 and 9 only where a claim counts a written
 rule. The four priorities (7) are proposals and carry none. Data labels use the tone's plain ink pill (.lab.plain), never amber.
 
-CONTINUITY: MOTIF_EVOLUTION, ACCENT_MEANING, SCHOOL_DAY_CLOCK
+CONTINUITY: MOTIF_EVOLUTION, VALUE_ARC
 1. THE HUNDRED. One unit per leader in a hundred (figures.json per_hundred): 100 desks with 86 lit (2), 100 lockers with 61 ajar
    (3), the same 100 desks with 29 amber folders (4), 100 staff mailboxes with 20 amber sheets (5). Every dek says drawn to
    illustrate.
 2. THE ACCENT AS THE WRITTEN RULE. Nothing amber on the cover. Folders (4), sheets (5), binder spines (6), a policy binder on the
    board's dais (9). The colour's arrival is the story's turn from use to rules.
-3. THE SCHOOL DAY. Morning studio light (1), late morning gym (2), noon hallway (3), afternoon gym (4), office (5), library (6),
+3. VALUE ARC THROUGH THE SCHOOL DAY. Morning studio light (1), late morning gym (2), noon hallway (3), afternoon gym (4), office (5), library (6),
    desk blotter (7), after school pickup (8), evening board room (9).
 
 ## THE NINE BEATS
@@ -53,10 +53,10 @@ CONTINUITY: MOTIF_EVOLUTION, ACCENT_MEANING, SCHOOL_DAY_CLOCK
    A sunlit school gym (TXT.interior) seen from the top of the bleachers, a hundred student desks, 86 laptops lit by seeded order,
    14 dark. Perspective, never top down, a custodian at the far door for scale.
 3. USE, STUDENTS. Feel: it is in children's hands. Know: 61 in 100 reported student use. c2. FIG student_use_of_100, per_hundred.
-   A TXBENCH relief of a hallway locker bank, 25 columns by 4 tiers, 61 doors ajar with a cool screen light from the crack, the
+   A TXBENCH relief of five separated hallway locker banks, four columns by five tiers per bank, 61 doors ajar with a cool screen light from the crack, the
    rest shut. Raking key, off axis, long casts.
 4. THE TURN, STUDENT POLICY (the hardest frame). Feel: lots of glow and very little paper. Know: only 29 in 100 reported a
-   district policy on student AI use. c2 c3. FIG teacher_use_of_100 (same lit set as 2), student_policy_of_100, per_hundred.
+   district policy on student AI use. c2 c3. FIG student_policy_of_100, per_hundred. The laptop lids stay dark so only policy is counted.
    The same gym at a teacher's standing eye height, late sun through the doors, amber pocket folders on 29 desks. Every desk and
    every folder visible.
 5. STAFF POLICY. Feel: teachers were not handed a rulebook either. Know: 20 in 100 reported a policy for teachers and staff. c4.
@@ -65,7 +65,7 @@ CONTINUITY: MOTIF_EVOLUTION, ACCENT_MEANING, SCHOOL_DAY_CLOCK
 6. THE STATES. Feel: Texas is missing from a shelf most states are on. Know: 42 states have issued statewide school AI guidance by
    Texas 2036's count, and Texas is not among them. c5 c6. FIG states_with_guidance. A school library (TXT.interior) with a long
    oak shelf (chassis shelf_run) of 42 ring binders (chassis ring_binder) with amber spines and blank pockets, one empty slot
-   nearest the camera with a plain pill reading Texas. No other slots drawn, no state named.
+   inside the run with a plain pill reading Texas. Every binder visible, no other slots drawn, no state named.
 7. THE ASK. Feel: the fix is concrete and could be written. Know: the four priorities. c7 c8 c9 c10. FIG priorities.
    A TXBENCH relief of four pressboard tab dividers fanned on a desk blotter over blank leaves, four plain pills (statewide
    guidance, safety standards, teacher training, AI literacy). No amber.
@@ -77,6 +77,9 @@ CONTINUITY: MOTIF_EVOLUTION, ACCENT_MEANING, SCHOOL_DAY_CLOCK
    policy binder on it, the public comment podium facing it, public seating with one empty chair on the aisle nearest the camera.
 
 Showstopper frame: 04
+VALUE CUT: frame 7
+The cut moves from the institutional reading room to the report's proposed priorities as a close-up of brighter paper and coloured dividers. The changed world is the story's turn, not an implied common room.
+
 Tonal arc: warm morning studio, bright gym, cool noon hallway, gold afternoon gym, soft office, quiet library, desk close up,
 open after school sky, lamplit evening board room.
 
@@ -86,15 +89,15 @@ open after school sky, lamplit evening board room.
 |---|---|---|
 | 01 | CLOSE, eye 0.9 m, three quarter from the front left, 1.6 m off the desk, fov 32 | the kit student_desk with its putty laminate top and charcoal moulded seat, and the kit laptop open and lit on it, on a TXT.studio sweep in the people tone with TXT.contact under every foot |
 | 02 | WIDE, eye 7 m at the top of the bleachers, three quarter down the rows, fov 40 | a hundred kit student_desk models in ten rows on a maple gym floor in a TXT.interior gym, each with a kit laptop, 86 lit and 14 dark, a kit person at the far door for scale |
-| 03 | MEDIUM, orthographic relief, the locker bank raked from the upper left | a hallway locker bank as a TXBENCH.relief, 25 columns by 4 tiers of enamelled steel doors with pressed louvres and recessed handle cups, 61 doors ajar with a cool light from the crack |
-| 04 | WIDE, eye 1.7 m at the corner of the rows, fov 38 | the same hundred kit student_desk models in the TXT.interior gym, 86 laptops lit, and 29 chassis pocket_folder models in the accent amber lying on desks, late sun through the gym doors |
+| 03 | MEDIUM, orthographic relief, the locker bank raked from the upper left | five separated hallway locker banks as a TXBENCH.relief, four columns by five tiers per bank of enamelled steel doors with pressed louvres and recessed handle cups, 61 doors ajar with a cool light from the crack |
+| 04 | WIDE, eye 1.7 m at the corner of the rows, fov 38 | the same hundred kit student_desk models in the TXT.interior gym, rounded laminate tops and tubular steel legs with contact shadows, all laptops dark, and 29 chassis pocket_folder models in the accent amber lying on desks, late sun through the gym doors |
 | 05 | MEDIUM, eye 1.5 m, the wall at a slight angle, fov 34 | the chassis cubby_wall of a hundred oak staff mailbox cubbies on a TXT.studio sweep, 20 holding a chassis policy_sheet in the accent amber standing proud, a kit person's hand at one empty cubby |
-| 06 | CLOSE, eye 1.0 m beside the shelf, steep perspective along it, fov 35 | the chassis shelf_run in honey oak with grain, lit by window light, each of its 42 chassis ring_binder models in clear coated amber vinyl with blank spine pockets standing in a contact shade, one empty slot nearest the camera, in a TXT.interior school library |
+| 06 | AERIAL, eye 4.2 m above the reading room, the complete shelf from near its centre, fov 34 | the chassis shelf_run in honey oak with grain, lit by window light, each of its 42 chassis ring_binder models in clear coated amber vinyl with blank spine pockets standing in a contact shade, one empty slot inside the complete visible run, in a TXT.interior school library |
 | 07 | MACRO, orthographic relief, four dividers fanned on a desk blotter | four pressboard tab dividers as a TXBENCH.relief fanned on a navy leather desk blotter over blank leaves, each in a different tone colour, no accent |
 | 08 | WIDE, eye 1.4 m on the school drive, fov 36 | a kit school brick ISD wing with a covered walk, a kit school_bus at the curb and kit person models as parents at pickup, under TXT.sky in the people world with TXT.ground concrete and lawn |
 | 09 | MEDIUM, eye 1.1 m behind an empty aisle chair, looking up the aisle, fov 34 | a kit hearing_dais in a TXT.interior district board room in the evening, one chassis ring_binder in the accent amber on the dais, a kit podium facing it, kit public_seating with one empty chair on the aisle nearest the camera |
 
-Showstopper frame: 04, the sunlit gym at a teacher's eye height, a hundred desks with the screens lit on most and only 29 amber folders among them. Its depth is the rows receding from the lens, each desk occluding the next and casting onto the maple.
+Showstopper frame: 04, the sunlit gym at a teacher's eye height, a hundred desks with their laptop lids dark and only 29 amber folders among them. Its depth is the rows receding from the lens, each desk occluding the next and casting onto the maple.
 Tonal arc: warm morning studio on 01, a bright gym on 02, a cool hallway noon on 03, gold afternoon in the gym on 04, soft office light on 05, a quiet library on 06, a desk close up on 07, the open after school sky on 08, the lamplit evening board room on 09.
 
 ---
@@ -104,8 +107,8 @@ slide: 1
 layout: OBJECT_AND_CAPTION
 primary_image:
   subject: one student desk at true size on a warm studio sweep, its laptop open and lit, the bare laminate beside the laptop where a written rule would lie
-  rect: [456, 264, 600, 648]
-  bleeds: [left, right, bottom]
+  rect: [432, 234, 636, 750]
+  bleeds: []
 accent: '#ff9f1c'
 job: Put the story in one familiar object before any figure is read, a school desk with AI on it and nothing written beside it.
 claims: [c1, c2, c3]
@@ -161,9 +164,9 @@ type:
 slide: 3
 layout: GRID
 primary_image:
-  subject: a school hallway locker bank, a hundred doors, sixty one standing ajar with a cool screen light inside, the rest shut, raked by a low key
-  rect: [0, 0, 1080, 1350]
-  bleeds: [left, right, bottom]
+  subject: the counted door field across five separated school hallway locker banks, a hundred doors, sixty one standing ajar with a cool screen light inside, the rest shut
+  rect: [12, 114, 1056, 732]
+  bleeds: []
 accent: '#ff9f1c'
 data_in_art: {figure: student_use_of_100, drives: 'the number of locker doors standing ajar, sixty one, each throwing a cast across its neighbour'}
 job: Carry student use as a hundred lockers with sixty one open, a different school object at the same unit.
@@ -178,7 +181,7 @@ depth:
 composition: {structure: 'BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). MEDIUM, orthographic relief, the locker bank raked from the upper left.', bands: 'Top third, the tops of the lockers and the hallway wall with the type. Middle third, the open and shut doors with their louvres and casts. Bottom third, the foreground: the bottom tier of doors and the terrazzo floor strip with its aggregate, the open doors casting long shadows across the shut ones.', focal: the open doors and their light}
 art: {technique: 'TXBENCH.relief height field of the locker bank on TXLOOK.sky2d with TXLOOK.reliefLight, at least two materials', why_this_technique: 'lockers are where a student keeps a device, and an open door is a gesture a reader reads as in use without a legend', palette: 'saturated teal enamel, brushed steel handle cups, terrazzo floor strip, cool screen light, plum cast shadow', value_structure: Lightest is the key on the door bevels and the light from the cracks. Darkest is the cast inside the open doors. Colour in every mid tone.}
 verbatim: []
-acceptance: ['the frame''s code builds exactly FIG.per_hundred doors and opens exactly FIG.student_use_of_100, and throws if either differs', 'the relief report shows at least two materials, a real height range and cast shadows', open doors read as open at 432 px, the camera or key is off axis so the bank never reads as a flat grille, nothing in the accent amber appears in the frame, 'the locker bank fills at least 60 percent of the frame area at 1080 px, measured on the art', 'a hallway locker bank as a TXBENCH.relief is present and modelled, never a primitive stand in']
+acceptance: ['the frame''s code builds exactly FIG.per_hundred doors and opens exactly FIG.student_use_of_100, and throws if either differs', 'the relief report shows at least two materials, a real height range and cast shadows', open doors read as open at 432 px, the camera or key is off axis so the bank never reads as a flat grille, nothing in the accent amber appears in the frame, 'the hallway locker banks stand at least 700 px tall at 1080 px frame width and every counted door is inside its measured primary image rectangle', 'a hallway locker bank as a TXBENCH.relief is present and modelled, never a primitive stand in']
 risks: []
 type:
   hook: "61% reported students using it too"
@@ -206,7 +209,7 @@ depth:
   cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, OCCLUSION, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
 composition: {structure: 'BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). WIDE, eye 1.7 m at the corner of the rows, fov 38.', bands: 'Top third, the gym wall and doors with the sun and the type. Middle third, the receding rows with screens and folders. Bottom third, the foreground: the nearest desks at full size, a folder on a laminate top in sharp detail, the maple boards and their shadows.', focal: the nearest amber folder on a desk}
-art: {technique: physically based render of the kit desks and laptops and the chassis pocket_folder in the TXT.interior gym, why_this_technique: 'the same hundred desks make the turn visible, lots of screen light and very little amber paper, without setting two figures side by side as bars', palette: 'maple floor, putty desk tops, cool screen glow, amber folders, gold late sun, plum shade', value_structure: Lightest is the sun through the doors and the screens. Darkest is the plum shade under the near desks. The amber folders are the most saturated thing in the frame.}
+art: {technique: physically based render of the kit desks and laptops and the chassis pocket_folder in the TXT.interior gym, why_this_technique: 'the same hundred desks carry only the policy share in amber, without implying a joint distribution with teacher use', palette: 'maple floor, putty desk tops, dark laptop lids, amber folders, gold late sun, plum shade', value_structure: Lightest is the amber folders and laminate tops. Darkest is the plum shade under the near desks. The amber folders are the most saturated thing in the frame.}
 verbatim: []
 acceptance: ['the frame''s code builds exactly FIG.per_hundred desks and places exactly FIG.student_policy_of_100 amber folders, lights no laptop, and throws if either differs', every folder is visible at full size, the amber appears only on the folders, 'the camera stands at eye height, not above the rows', no numeral on this slide is absent from claims.json or figures.json, 'the rows of desks fill at least half the frame height at 1080 px, measured on the art', 'the same hundred kit student_desk models in the TXT.interior gym is present and modelled, never a primitive stand in']
 risks: []
@@ -247,9 +250,9 @@ type:
 
 ```yaml
 slide: 6
-layout: CLOSE_CROP
+layout: OBJECT_AND_CAPTION
 primary_image:
-  subject: a long oak library shelf of forty two amber binders receding into soft light, one empty slot sharp in the foreground with a plain pill reading Texas
+  subject: a complete oak library shelf of forty two sharp amber binders, one empty slot inside the run with a plain pill reading Texas
   rect: [0, 0, 1080, 1350]
   bleeds: [left, right, bottom]
 accent: '#ff9f1c'
@@ -264,10 +267,10 @@ depth:
   horizon: 560
   cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, OCCLUSION, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
-composition: {structure: 'BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). CLOSE, eye 1.0 m beside the shelf, steep perspective along it, fov 35.', bands: 'Top third, the library wall with the type. Middle third, the shelf and the binders receding. Bottom third, the foreground: the empty slot and its oak floor with a soft contact shade, the shelf front edge and the near binders sharp.', focal: the empty slot}
+composition: {structure: 'BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). AERIAL, eye 4.2 m above the reading room, the complete shelf from near its centre, fov 34.', bands: 'Top third, the library wall with the type. Middle third, the shelf and the binders receding. Bottom third, the foreground: the empty slot and its oak floor with a soft contact shade, the shelf front edge and the near binders sharp.', focal: the empty slot}
 art: {technique: physically based render of the chassis shelf_run and ring_binder in a TXT.interior library, why_this_technique: 'statewide guidance is a document a district keeps on a shelf, and an empty slot is an absence a reader sees without a sentence', palette: 'oak shelf, amber binder spines, clear spine pockets, library window light, plum wall', value_structure: Lightest is the key along the binder spines and the empty slot's floor. Darkest is the back of the shelf behind the binders.}
 verbatim: []
-acceptance: ['the frame''s code builds exactly FIG.states_with_guidance amber binders and one empty slot, and throws if the count differs', no state name appears on any binder, the empty slot is the nearest and sharpest part of the shelf, no total count of states is printed or drawn, the label Texas sits at the empty slot, 'the shelf and its binders span at least 800 px of the frame width at 1080 px, measured on the art', 'the chassis shelf_run in honey oak with grain is present and modelled, never a primitive stand in']
+acceptance: ['the frame''s code builds exactly FIG.states_with_guidance amber binders and one empty slot, and throws if the count differs', no state name appears on any binder, all binders and the empty slot are sharp and inside the frame, no total count of states is printed or drawn, the label Texas sits at the empty slot, 'the shelf and its binders span at least 800 px of the frame width at 1080 px, measured on the art', 'the chassis shelf_run in honey oak with grain is present and modelled, never a primitive stand in']
 risks: []
 type:
   hook: "42 states have issued school AI guidance. Not Texas."
