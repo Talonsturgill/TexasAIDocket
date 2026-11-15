@@ -2638,3 +2638,8 @@ The dated calendar contains a regular meeting, a special meeting and a work sess
 
 - https://webapi.legistar.com/v1/leaguecity/events/2232/eventitems
   SHA256 8f8304ddf1f3ec8df639ff3dcf3c2a38e00436797097c44f02dc682a6f8c7873
+
+
+## 2026-11-15 scope of the two research records
+
+The answering Europe PMC records contain the abstracts and author affiliations. Those sources support the review's recommendations and the MRI study's retrospective model development and validation. They do not establish whether either institution has separately announced a purchasing or clinical-use policy. The current summaries are bounded to the retrieved research records. The two MRI confidence intervals overlap; that comparison does not establish whether the full paper reports a statistical test of their difference. No institutional or whole-paper absence is inferred from an abstract.
