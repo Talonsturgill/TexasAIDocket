@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-11-14",
+  "generated": "2026-11-15",
   "gates": [
    "banned words",
    "claims",
@@ -49723,6 +49723,136 @@
    ],
    "last_verified": "2026-11-14",
    "id": "tx-2026-0247"
+  },
+  {
+   "title": "Texas 2036 finds AI in most Texas classrooms and a written AI policy in few districts, and asks the state for guidance",
+   "summary": "Texas 2036 is a nonprofit policy group. On November 10th, 2026 it published a preview of its report In Ctrl of AI in Schools. The preview reports a survey of Texas school and district leaders taken in fall 2025. In it 86% said teachers were using AI and 61% said students were. Only 29% reported a district policy governing student AI use. Just 20% reported a policy for teachers and staff. The group's own analysis counts 42 states with some form of statewide AI guidance for schools and says Texas is not among them. Its first ask is statewide guidance for every district. It also wants safety standards for AI tools before they reach classrooms, training for teachers and AI literacy for students. The report is a recommendation. No state agency or district has acted on it.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Texas 2036, a nonprofit public policy organization",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": false
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-11-10",
+     "kind": "filed",
+     "note": "Texas 2036 publishes its preview of the report on AI in Texas schools"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The report is advice to state policymakers and no public body has taken it up. A reader can raise school AI rules with a local school board, whose meetings are open. State lawmakers are reachable through their offices.",
+    "url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "Texas 2036 published its preview of the report on November 10th, 2026.",
+     "verbatim_quote": "Published on November 10, 2026",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c1"
+    },
+    {
+     "text": "The preview is for a new Texas 2036 report on AI in schools titled In Ctrl of AI in Schools.",
+     "verbatim_quote": "This is a preview of our Texas 2036 newsletter discussing our new AI report, In Ctrl of AI in Schools .",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c2"
+    },
+    {
+     "text": "In fall 2025 86% of Texas school and district leaders reported teachers using AI and 61% reported student use.",
+     "verbatim_quote": "In fall 2025, 86% of Texas school and district leaders reported that teachers were using AI, while 61% reported student use.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c3"
+    },
+    {
+     "text": "Only 29% of Texas school and district leaders reported a district policy on student AI use.",
+     "verbatim_quote": "Only 29% of Texas school and district leaders reported having a district policy governing student AI use.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c4"
+    },
+    {
+     "text": "Just 20% reported a policy for teachers and staff.",
+     "verbatim_quote": "Just 20% reported a policy for teachers and staff.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c5"
+    },
+    {
+     "text": "By Texas 2036's count, 42 states have issued some form of statewide AI guidance for schools.",
+     "verbatim_quote": "According to Texas 2036 analysis, 42 states have issued some form of statewide AI guidance, model policy, framework or support for schools.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c6"
+    },
+    {
+     "text": "Texas 2036 says Texas is not among those states.",
+     "verbatim_quote": "Texas is not among them.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c7"
+    },
+    {
+     "text": "The report's first priority is statewide guidance giving every district a common foundation for responsible AI use.",
+     "verbatim_quote": "Establish statewide guidance. Give every school district a common, evidence-based foundation for responsible AI use, building on laws already enacted by the Legislature.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c8"
+    },
+    {
+     "text": "It asks that AI tools meet standards for privacy and security and for educational effectiveness before they reach Texas classrooms.",
+     "verbatim_quote": "Ensure AI tools meet appropriate standards for data privacy, security and educational effectiveness before they ever reach Texas classrooms.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c9"
+    },
+    {
+     "text": "It says AI can help teachers and students when educators decide when and how it is used.",
+     "verbatim_quote": "AI has potential to support teachers and students when educators have the information, tools and flexibility to determine when and how it is appropriately used.",
+     "source_url": "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/",
+     "source_title": "Texas 2036, Who's In Control of AI in Texas Schools",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-15",
+     "id": "tx-2026-0248-c10"
+    }
+   ],
+   "notes_for_editor": "Admitted on Texas 2036's own published preview. The underlying survey of school leaders is reported by Texas 2036 and was not fetched separately, so every survey figure is stated as the group's report of it.",
+   "history": [
+    {
+     "date": "2026-11-15",
+     "note": "Admitted on Texas 2036's preview of its report. It recommends statewide guidance, and nothing in the record shows the state acting on it."
+    }
+   ],
+   "id": "tx-2026-0248",
+   "last_verified": "2026-11-15"
   }
  ]
 }
