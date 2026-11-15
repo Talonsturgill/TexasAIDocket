@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-15T08:00:22Z",
+  "checked_at": "2026-11-15T19:26:23Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "6372e5fcd8c3ad3854f949cf1f75e2120d547191f95a5d6afbf15b67c8444e83",
+  "response_sha256": "d75e9378900b03a32a40d85261614bad520651a7d9978f4552e43527800008f1",
   "articles": [
     {
       "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
@@ -41,162 +41,20 @@
     }
   ],
   "selected": {
-    "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-    "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-    "first_seen_at": "2026-11-11T21:14:08Z",
-    "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
+    "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+    "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+    "first_seen_at": "2026-11-12T17:12:27Z",
+    "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.091583,
+    "score": 0.117196,
     "priority": 3
   },
-  "expires_at": "2026-11-18T21:14:08Z",
+  "expires_at": "2026-11-19T17:12:27Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-15T07:23:00Z",
-      "selected": {
-        "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-        "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-        "first_seen_at": "2026-11-11T21:14:08Z",
-        "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.091583,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-          "first_seen_at": "2026-11-11T21:14:08Z",
-          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.091583,
-          "priority": 3
-        },
-        {
-          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
-          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
-          "first_seen_at": "2026-11-12T17:12:27Z",
-          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.163051,
-          "priority": 0
-        },
-        {
-          "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
-          "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
-          "first_seen_at": "2026-11-10T13:41:00Z",
-          "summary": "The deal makes it the largest known purchase of power-generation gear by any AI lab, according to the Financial Times. Anthropic signed the agreement back in late September with San Antonio-based supplier OnePWR Solutions. OnePWR had ordered the generators from Caterpillar about two years earlier, but it was still short... Read Entire Article",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.036818,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
-          "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
-          "first_seen_at": "2026-11-11T11:00:00Z",
-          "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.068145,
-          "priority": 4
-        },
-        {
-          "title": "SpaceX to build $24 billion data center in South Texas, sidestepping moratorium",
-          "url": "https://feeds.texastribune.org/link/16799/17521809/texas-spacex-data-center-power-plant",
-          "first_seen_at": "2026-11-10T22:55:46Z",
-          "summary": "The city of Starbase has scheduled a public hearing on a possible tax abatement agreement for the data center and power plant project.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.048087,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-15T13:23:00Z",
-      "selected": {
-        "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
-        "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
-        "first_seen_at": "2026-11-10T13:41:00Z",
-        "summary": "The deal makes it the largest known purchase of power-generation gear by any AI lab, according to the Financial Times. Anthropic signed the agreement back in late September with San Antonio-based supplier OnePWR Solutions. OnePWR had ordered the generators from Caterpillar about two years earlier, but it was still short... Read Entire Article",
-        "feed": "https://www.techspot.com/backend.xml",
-        "publisher": "TechSpot",
-        "coverage": 1,
-        "score": 0.031522,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
-          "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
-          "first_seen_at": "2026-11-10T13:41:00Z",
-          "summary": "The deal makes it the largest known purchase of power-generation gear by any AI lab, according to the Financial Times. Anthropic signed the agreement back in late September with San Antonio-based supplier OnePWR Solutions. OnePWR had ordered the generators from Caterpillar about two years earlier, but it was still short... Read Entire Article",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.031522,
-          "priority": 3
-        },
-        {
-          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
-          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
-          "first_seen_at": "2026-11-12T17:12:27Z",
-          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.139597,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-          "first_seen_at": "2026-11-11T21:14:08Z",
-          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.07841,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
-          "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
-          "first_seen_at": "2026-11-11T11:00:00Z",
-          "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.058343,
-          "priority": 4
-        },
-        {
-          "title": "SpaceX to build $24 billion data center in South Texas, sidestepping moratorium",
-          "url": "https://feeds.texastribune.org/link/16799/17521809/texas-spacex-data-center-power-plant",
-          "first_seen_at": "2026-11-10T22:55:46Z",
-          "summary": "The city of Starbase has scheduled a public hearing on a possible tax abatement agreement for the data center and power plant project.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.04117,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-15T19:23:00Z",
       "selected": {
@@ -207,7 +65,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.117387,
+        "score": 0.117196,
         "priority": 3
       },
       "stories": [
@@ -219,7 +77,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.117387,
+          "score": 0.117196,
           "priority": 3
         },
         {
@@ -230,7 +88,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.065934,
+          "score": 0.065827,
           "priority": 3
         },
         {
@@ -241,7 +99,7 @@
           "feed": "https://www.techspot.com/backend.xml",
           "publisher": "TechSpot",
           "coverage": 1,
-          "score": 0.026507,
+          "score": 0.026464,
           "priority": 3
         },
         {
@@ -252,7 +110,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.04906,
+          "score": 0.04898,
           "priority": 4
         },
         {
@@ -263,7 +121,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.03462,
+          "score": 0.034564,
           "priority": 4
         }
       ]
@@ -338,19 +196,151 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-16T07:23:00Z",
+      "selected": {
+        "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
+        "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
+        "first_seen_at": "2026-11-11T11:00:00Z",
+        "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.034691,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
+          "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
+          "first_seen_at": "2026-11-11T11:00:00Z",
+          "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.034691,
+          "priority": 4
+        },
+        {
+          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+          "first_seen_at": "2026-11-12T17:12:27Z",
+          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.083005,
+          "priority": 3
+        },
+        {
+          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
+          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
+          "first_seen_at": "2026-11-11T21:14:08Z",
+          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.046623,
+          "priority": 3
+        },
+        {
+          "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
+          "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
+          "first_seen_at": "2026-11-10T13:41:00Z",
+          "summary": "The deal makes it the largest known purchase of power-generation gear by any AI lab, according to the Financial Times. Anthropic signed the agreement back in late September with San Antonio-based supplier OnePWR Solutions. OnePWR had ordered the generators from Caterpillar about two years earlier, but it was still short... Read Entire Article",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.018743,
+          "priority": 3
+        },
+        {
+          "title": "SpaceX to build $24 billion data center in South Texas, sidestepping moratorium",
+          "url": "https://feeds.texastribune.org/link/16799/17521809/texas-spacex-data-center-power-plant",
+          "first_seen_at": "2026-11-10T22:55:46Z",
+          "summary": "The city of Starbase has scheduled a public hearing on a possible tax abatement agreement for the data center and power plant project.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.02448,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-16T13:23:00Z",
+      "selected": {
+        "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
+        "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
+        "first_seen_at": "2026-11-11T21:14:08Z",
+        "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.039205,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
+          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
+          "first_seen_at": "2026-11-11T21:14:08Z",
+          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.039205,
+          "priority": 3
+        },
+        {
+          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+          "first_seen_at": "2026-11-12T17:12:27Z",
+          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.069799,
+          "priority": 3
+        },
+        {
+          "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
+          "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
+          "first_seen_at": "2026-11-10T13:41:00Z",
+          "summary": "The deal makes it the largest known purchase of power-generation gear by any AI lab, according to the Financial Times. Anthropic signed the agreement back in late September with San Antonio-based supplier OnePWR Solutions. OnePWR had ordered the generators from Caterpillar about two years earlier, but it was still short... Read Entire Article",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.015761,
+          "priority": 3
+        },
+        {
+          "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
+          "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
+          "first_seen_at": "2026-11-11T11:00:00Z",
+          "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.029171,
+          "priority": 4
+        },
+        {
+          "title": "SpaceX to build $24 billion data center in South Texas, sidestepping moratorium",
+          "url": "https://feeds.texastribune.org/link/16799/17521809/texas-spacex-data-center-power-plant",
+          "first_seen_at": "2026-11-10T22:55:46Z",
+          "summary": "The city of Starbase has scheduled a public hearing on a possible tax abatement agreement for the data center and power plant project.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.020585,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
-      "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
-      "shown_at": "2026-11-08T13:23:00Z"
-    },
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/microsoft-design-change-delays-irens-data-center-delivery-in-texas/",
-      "title": "Microsoft design change delays Iren's data center delivery in Texas",
-      "shown_at": "2026-11-08T19:23:00Z"
-    },
     {
       "url": "https://feeds.texastribune.org/link/16799/17515484/data-center-texas-pause-gina-hinojosa-governor-policies",
       "title": "Gina Hinojosa won the governor’s race. What happens to Texas data centers now?",
@@ -480,6 +470,16 @@
       "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
       "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
       "shown_at": "2026-11-15T07:23:00Z"
+    },
+    {
+      "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
+      "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
+      "shown_at": "2026-11-15T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+      "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+      "shown_at": "2026-11-15T19:23:00Z"
     }
   ],
   "feeds": [
@@ -508,7 +508,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1387,
-      "sha256": "a253c2707743ebec3f16ee50626f5bcf46f597fca167dacd3e587cdbd47b6320"
+      "sha256": "1ffb9c568acb588ebd97ca902393e071166a43e0dd116c6c41addfbaa95b2cc6"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -531,23 +531,27 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 35,
+      "sha256": "653aa6ad01626ba3975c31f4f0796f4adb454c6144f5c95bc3cf9b660e1c540d"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "cc6fca8801da8e2d1c51410b0c3e20081d899acf5471f048567d03295198d0ef"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
       "status": "ok",
       "items": 60,
-      "sha256": "0130c7639867daa89b01de040ddf7c27430cee667f9ca4fbf99af09b845ac09e"
+      "sha256": "327dff34c526da5aef2b4ce4ca9e23fb1b939d201a3456fccca1eb9d5944ea10"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "df43500f227812764b97a4a171b4a28f00d194b199100c64a3b0f815f44d6ee1"
+      "sha256": "3feb73f35e5a68bb77ed6616d786a37dbb445ea5c6e0ff2c07fe0cb38fab41cb"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
@@ -559,17 +563,17 @@
       "etag": "\"6d3b61c452fa3707465265cb22c085fe\"",
       "last_modified": "Fri, 13 Nov 2026 22:44:47 GMT",
       "failures": 0,
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "sha256": "7275a34048f4f6fef8e647788c23bbbf36c93e816f3338e20292ace34cf53913",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f6c7639109e2a0fb3518544098303583c8900505c4ce2ff5b9ada155de34c082",
-      "etag": "\"6af9528a-aaa1\"",
-      "last_modified": "Sun, 15 Nov 2026 06:34:50 GMT"
+      "etag": "\"6af9f127-aaa1\"",
+      "last_modified": "Sun, 15 Nov 2026 17:51:35 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
@@ -580,29 +584,29 @@
       "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "5fca039c77d4691467745f66e24af3325a0680d1f8921b51b00581520f6a2c28",
-      "etag": "\"1794729267\"",
-      "last_modified": "Sun, 15 Nov 2026 07:54:27 GMT"
+      "etag": "\"1794770750\"",
+      "last_modified": "Sun, 15 Nov 2026 19:25:50 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "a253c2707743ebec3f16ee50626f5bcf46f597fca167dacd3e587cdbd47b6320"
+      "sha256": "1ffb9c568acb588ebd97ca902393e071166a43e0dd116c6c41addfbaa95b2cc6"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"302beba5eb902b0def867f17fc61ca3c-gzip\"",
       "last_modified": "Fri, 13 Nov 2026 23:41:50 GMT",
       "failures": 0,
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "sha256": "eddb961d91761914d93b6297bfca5a73ac8af17681a284e037074d27d9ae4230",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "eed4f0e2e3d11c5978e4277986831c5918e59c53ee0c1da3e5387c6bc10d13b8"
@@ -611,7 +615,7 @@
       "etag": "\"ea280c468e8938a69628e65137be0759\"",
       "last_modified": "Sat, 14 Nov 2026 20:33:38 GMT",
       "failures": 0,
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "sha256": "3d34052cd0870cb236faf84e46859070854161e0892ac129d6b687191ee25f60",
       "parser_version": 2
     },
@@ -625,38 +629,38 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "etag": "W/\"0fcdbd7d8b920ebed61c5b04047187d7\"",
-      "last_modified": "Sat, 14 Nov 2026 22:10:24 GMT",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
-      "ok_at": "2026-11-15T08:00:20Z",
-      "sha256": "ac3b8589e344e6c16a051da55c225b6b0240080cbc86fe856546bc5ade3728d0",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "653aa6ad01626ba3975c31f4f0796f4adb454c6144f5c95bc3cf9b660e1c540d",
+      "etag": "W/\"e01e220fa00fd3336994d6de58b9e3db\"",
+      "last_modified": "Sun, 15 Nov 2026 16:14:47 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "etag": "W/\"5e693a27cf66b2d4335dafc0df851b86\"",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
-      "ok_at": "2026-11-15T08:00:20Z",
-      "sha256": "8e073c5e1e157c76c01c667c6d97ccf64658a39a73157d5e65738e72d1a55013",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "cc6fca8801da8e2d1c51410b0c3e20081d899acf5471f048567d03295198d0ef",
+      "etag": "W/\"b62e25d4fd01d9191b1314bce116a8ae\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0130c7639867daa89b01de040ddf7c27430cee667f9ca4fbf99af09b845ac09e",
-      "last_modified": "Sun, 15 Nov 2026 04:50:53 GMT"
+      "sha256": "327dff34c526da5aef2b4ce4ca9e23fb1b939d201a3456fccca1eb9d5944ea10",
+      "last_modified": "Sun, 15 Nov 2026 14:32:22 GMT"
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "df43500f227812764b97a4a171b4a28f00d194b199100c64a3b0f815f44d6ee1"
+      "sha256": "3feb73f35e5a68bb77ed6616d786a37dbb445ea5c6e0ff2c07fe0cb38fab41cb"
     },
     "https://www.texasobserver.org/feed/": {
       "etag": "\"bc36f540656a17d8e190c92e7cb24292\"",
       "last_modified": "Sat, 14 Nov 2026 00:08:35 GMT",
       "failures": 0,
-      "ok_at": "2026-11-15T08:00:20Z",
+      "ok_at": "2026-11-15T19:26:21Z",
       "sha256": "cf76721bdc5f1e27e6e004a5ee99c8b345c63140c4cb06dfc3afe02cb7a4ca25",
       "parser_version": 2
     }
