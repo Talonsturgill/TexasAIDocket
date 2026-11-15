@@ -1,0 +1,209 @@
+{
+ "weighted_score": 7.26,
+ "judges": [
+  6.73,
+  7.33,
+  7.3
+ ],
+ "spread": 0.6,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.8,
+    7.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.3,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "Slide 4 sets two survey shares against each other: it lights FIG.teacher_use_of_100 laptops and places FIG.student_policy_of_100 folders on the same hundred desks, each desk one leader, implying a per-leader joint distribution Texas 2036 never publishes; the hook read 29 against 86. Repair: drop the lit laptops or give the 29 their own unit set and strike 'The same desks' and 'The lit laptops still mark reported teacher use'."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Slide 4 sets two survey shares against each other: it lights FIG.teacher_use_of_100 laptops and places FIG.student_policy_of_100 folders on the same hundred desks, each desk one leader, implying a per-leader joint distribution Texas 2036 never publishes; the hook read 29 against 86. Repair: drop the lit laptops or give the 29 their own unit set and strike 'The same desks' and 'The lit laptops still mark reported teacher use'."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.33 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.3 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.33,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.33 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.3,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.3 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Top 55 percent empty wall, desks crushed low, screens alias, flat folders; carries the integrity fault.",
+     "fix": "Camera nearer the first row, remove the laptops' encoding, folders with thickness and contact, late sun."
+    },
+    {
+     "judge": 2,
+     "problem": "Empty purple wall over the top 45 percent; desks cut off so 29 and 100 can't be counted; screen moire; camera above rows; no late sun.",
+     "fix": "Pull back so the whole 10x10 grid sits in frame from y about 500 to 1300, warm sun through the doors, smooth emissive screens."
+    },
+    {
+     "judge": 3,
+     "problem": "40 percent flat wall band, folders flat quads, moire, camera above rows.",
+     "fix": "Camera at the first row so rows run to the type; folders with thickness in contact; fix screen filtering."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Binders in a flat blue void, about 17 of 42 readable.",
+     "fix": "Library interior behind; pull back so all 42 and the empty slot read."
+    },
+    {
+     "judge": 2,
+     "problem": "About 15 binders in a flat blue gradient, slot mid-shelf, 42 promised but not visible.",
+     "fix": "Build the library wall, empty slot nearest and sharpest with the pill on its edge, the 42 receding."
+    },
+    {
+     "judge": 3,
+     "problem": "Slot mid frame with a muddy shadow, pill floats below, shelf leg a black slab.",
+     "fix": "Slot nearest and sharp, bare oak lit, pill in the slot."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "No parents; the bus is the whole subject and competes with amber.",
+     "fix": "Pull back, two or three parents at the covered walk, cooler bus yellow."
+    },
+    {
+     "judge": 2,
+     "problem": "Primitive yellow box bus, flat pink windows, floating STOP sign, no parents, no privacy tie, yellow competes with amber.",
+     "fix": "Parents at the covered walk at 1.4 m eye, bus pushed back and muted."
+    },
+    {
+     "judge": 3,
+     "problem": "No person, flat pink windows, yellow competes with amber.",
+     "fix": "Parents at the covered walk, bus secondary, hue away from the accent."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Near orthographic front view reads as a lit grille.",
+     "fix": "Rake 30 degrees and swing the doors visibly out."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "High camera flattens the desks; scale figure a few pixels.",
+     "fix": "Eye about 4 m, longer lens, custodian near left foreground."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Headline crosses beams, cone cuts district, dek on a frieze plate, binder pale yellow.",
+     "fix": "Tilt down so beams leave the type zone, seat the dek on a type wash, binder in #ff9f1c."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

@@ -1,0 +1,64 @@
+{
+ "date": "2026-11-15",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "42 states",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 42,
+   "quoted_from": "c5",
+   "quote": "42 states have issued some form of statewide AI guidance"
+  },
+  {
+   "phrase": "42 states",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 42,
+   "quoted_from": "c5",
+   "quote": "42 states have issued some form of statewide AI guidance"
+  },
+  {
+   "phrase": "42 states",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 42,
+   "quoted_from": "c5",
+   "quote": "42 states have issued some form of statewide AI guidance"
+  },
+  {
+   "phrase": "42 states",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 42,
+   "quoted_from": "c5",
+   "quote": "42 states have issued some form of statewide AI guidance"
+  },
+  {
+   "phrase": "four priorities",
+   "slide": "caption.txt",
+   "kind": "count",
+   "from_claims": [
+    "c7",
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "value": 4,
+   "computed_by": "compute.py priorities, len of the four priority claims"
+  },
+  {
+   "phrase": "four priorities",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "from_claims": [
+    "c7",
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "value": 4,
+   "computed_by": "compute.py priorities, len of the four priority claims"
+  }
+ ]
+}

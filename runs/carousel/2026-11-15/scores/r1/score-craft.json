@@ -1,0 +1,15 @@
+{"lens":"craft","criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.8,"why":"Five frames strong (01, 02, 03, 05, 07); four lean on defaults: 04 empty top wall, rows cropped, screen moire, camera above rows; 08 primitive bus, no privacy cue; 06 binders in a void, slot mid-shelf; 09 headline crosses beams, frieze plate, binder pale yellow."},
+{"name":"deck_coherence","weight":0.12,"score":7.8,"why":"Spine holds; hundred motif changes state in order; amber arrives at 04. Leaks: 08 chrome yellow bus near amber, 07 green and crimson tabs off palette, 09 binder pale yellow."},
+{"name":"claim_integrity","weight":0.20,"score":8.0,"why":"Every numeral traces; nearly 85% kept; per Texas 2036 framing; 04 and 06 counts not verifiable on frame because cropped."},
+{"name":"story_and_stakes","weight":0.16,"score":7.0,"why":"Learns what was reported and no state guidance; close names the district; no deadline or named body."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.3,"why":"29% stated three times blunts the turn; 08 could move."},
+{"name":"voice","weight":0.10,"score":7.0,"why":"Clean; drawn to illustrate recurs in six deks; 08 headline flat."},
+{"name":"variety","weight":0.10,"score":7.5,"why":"Unit per hundred is a familiar move; ledgers not read."}],
+"weighted_score":7.33,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Re-shoot slide 04 so all 100 desks and 29 folders sit in frame, the rows filling the empty top, screens without moire.",
+"artwork_weakest_frames":[
+{"slide":4,"problem":"Empty purple wall over the top 45 percent; desks cut off so 29 and 100 can't be counted; screen moire; camera above rows; no late sun.","fix":"Pull back so the whole 10x10 grid sits in frame from y about 500 to 1300, warm sun through the doors, smooth emissive screens."},
+{"slide":8,"problem":"Primitive yellow box bus, flat pink windows, floating STOP sign, no parents, no privacy tie, yellow competes with amber.","fix":"Parents at the covered walk at 1.4 m eye, bus pushed back and muted."},
+{"slide":6,"problem":"About 15 binders in a flat blue gradient, slot mid-shelf, 42 promised but not visible.","fix":"Build the library wall, empty slot nearest and sharpest with the pill on its edge, the 42 receding."},
+{"slide":9,"problem":"Headline crosses beams, cone cuts district, dek on a frieze plate, binder pale yellow.","fix":"Tilt down so beams leave the type zone, seat the dek on a type wash, binder in #ff9f1c."}]}

@@ -1,0 +1,14 @@
+{"lens":"reader","criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.5,"why":"Six of nine frames carry a picture made for their sentence (3 strongest, 2, 5, 6, 7); 8 generic exterior with capsule parents; 9 binder reads as a lamp and the room as a courtroom; 6 shows about 14 of 42; 2 dead lower third; 4 near twin of 2."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"Spine holds, order runs; bus yellow on 8 near the accent; 1 hot magenta slightly outside."},
+{"name":"claim_integrity","weight":0.20,"score":8.0,"why":"Every numeral traces with attribution; one advocacy article, survey instrument never found; slide 6 headline drops 'some form of', dek restores it."},
+{"name":"story_and_stakes","weight":0.16,"score":6.5,"why":"Clear finding; no decider, body, place or deadline; 'ask your district' without whom, where or when."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"Cover earns the swipe, 4 a real turn, close gives an action; 8 a side beat; cover dek front-loads 86."},
+{"name":"voice","weight":0.10,"score":6.5,"why":"Clean; deks mechanical, drawn to illustrate on seven slides; no regional texture."},
+{"name":"variety","weight":0.10,"score":6.5,"why":"Fresh palette; unit-count device repeats nos. 75 to 77; empty chair in a hearing room echoes no. 74."}],
+"weighted_score":7.24,"hard_fails":[],"ship":false,
+"artwork_weakest_frames":[
+{"slide":8,"problem":"Generic school exterior with a cropped bus and small capsule parents explains nothing about voters and privacy; bus yellow competes with amber.","fix":"A counted or measured image of the claim, or a close-up of a student device with a privacy lock; drop the bus yellow."},
+{"slide":9,"problem":"Binder reads as a lamp at thumb size; room reads as a courtroom.","fix":"Camera down the aisle, a district seal or nameplates and a trustees' table, binder 3x larger, open under the key."},
+{"slide":6,"problem":"Only about 14 binders visible; Texas gap narrow and partly hidden by the pill.","fix":"Pull back and raise so all 42 run across with a wide lit slot; pill above the slot."},
+{"slide":2,"problem":"Dead lower third under the headline; near twin of 4.","fix":"Lower the camera so the nearest desks run large into the bottom edge."}]}

@@ -1,0 +1,237 @@
+<!doctype html>
+<!-- 2026-11-15, carousel no. 78, frame 4 of 9, THE TURN. A spatial scene through txthree.js inside a TXT.interior school gym:
+the same hundred kit student desks as frame 2, ten by ten, seen from a teacher's standing eye (1.7 m) at the back corner of
+the rows. Late sun rakes in through a wall of open doors on the left. The laptops frame 2 lit are lit here by the same seeded
+order, and twenty nine amber pocket folders stand propped open on desks chosen by a second seeded shuffle. Amber is on the
+folders and nowhere else. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:90px; top:132px; width:900px; text-align:center">A student AI policy, reported by 29%</h1>
+<p class="dek" data-follow="10" style="left:80px; width:920px; font-size:30px; text-align:center">One desk for each leader in a hundred, drawn to illustrate. An amber folder marks a leader who reported a district policy governing student AI use.</p>
+<script>window.FIG = {"per_hundred": 100, "student_policy_of_100": 29};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "04 / 09", src: "c2 c3", fit: { min: 70, max: 86, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46, near: 0.05, far: 400, fog: 0.0 });
+  const P = CH.P;
+
+  /* ---- THE FIGURES ------------------------------------------------------------------------------------------------- */
+  const N = FIG.per_hundred, COLS = 10, ROWS = N / COLS;
+  if (!Number.isInteger(ROWS)) throw new Error('per_hundred ' + N + ' does not fill ' + COLS + ' columns');
+  const shuffle = (seed) => { const r = CH.rng(seed), a = Array.from({ length: N }, (_, i) => i);
+    for (let i = N - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+  const folderSet = new Set(shuffle(20261116).slice(0, FIG.student_policy_of_100)); /* this frame's own second shuffle */
+
+  /* ---- THE GYM ----------------------------------------------------------------------------------------------------- */
+  const GW = 22, GD = 46, GH = 7.6, ZC = 0;            /* room 22 x 46 m, 7.6 m to the deck; its centre z */
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { clouds: 0.1, horizon: 0xffc7a8, haze: 0xffd9bc, horizonGlow: 1.2 }));
+  const room = TXT.interior(R, { w: GW, d: GD, h: GH, floor: 'concrete', wall: 0x5f86e6, trim: 0x3b1f5e, window: null, ceiling: true, light: 0.9 });
+  room.position.z = ZC;
+  /* the room's left wall is replaced by a wall of open doors; every other wall and the deck CAST, so the sun only comes in
+   * through the doors and the clerestory */
+  room.children[1].visible = false;
+  room.traverse(m => { if (m.isMesh) m.castShadow = true; });
+
+  /* the lower walls: plum painted block to 2.4 m, with mortar coursing in the albedo */
+  const blockTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#5b3a9a'; g.fillRect(0, 0, w, h);
+    const r = CH.rng(404);
+    for (let row = 0; row < 8; row++) for (let c = 0; c < 4; c++) {
+      const x = (c + (row % 2) * 0.5) * w / 4, y = row * h / 8, k = 0.92 + r() * 0.12;
+      g.fillStyle = 'rgb(' + Math.round(91 * k) + ',' + Math.round(58 * k) + ',' + Math.round(154 * k) + ')';
+      g.fillRect(x + 3, y + 3, w / 4 - 6, h / 8 - 6); g.fillRect(x + 3 - w, y + 3, w / 4 - 6, h / 8 - 6);
+    }
+  }, [6, 1.2]);
+  const blockM = new THREE.MeshStandardMaterial({ color: 0xffffff, map: blockTex, roughness: 0.82 });
+  const upperM = new THREE.MeshStandardMaterial({ color: 0x5f86e6, roughness: 0.9 });
+  const wains = (w, x, z, ry) => { const m = TXT.roundedBox(w, 2.4, 0.06, 0.01, blockM); m.position.set(x, 1.2, z); m.rotation.y = ry; m.castShadow = false; m.receiveShadow = true; R.scene.add(m); };
+  wains(GW - 0.3, 0, ZC - GD / 2 + 0.13, 0);
+  wains(GD, GW / 2 - 0.13, ZC, Math.PI / 2);
+
+  /* the left wall of doors: five pairs of open steel doors, 2.0 x 2.7 m openings, with the sky behind them */
+  const XL = -GW / 2, doorW = 2.0, doorH = 2.7, DOORS = [-11.5, -6.5, -1.5, 3.5, 8.5].map(z => z + ZC + 2);
+  const wallM = new THREE.MeshStandardMaterial({ color: 0x5f86e6, roughness: 0.9 });
+  const wallG = new THREE.Group();
+  const seg = (z0, z1, y0, y1, mat) => { if (z1 - z0 < 0.01 || y1 - y0 < 0.01) return; const m = TXT.roundedBox(0.3, y1 - y0, z1 - z0, 0.01, mat || wallM); m.position.set(XL - 0.15, (y0 + y1) / 2, (z0 + z1) / 2); wallG.add(m); };
+  const zA = ZC - GD / 2, zB = ZC + GD / 2;
+  let zc = zA;
+  DOORS.forEach(dz => { seg(zc, dz - doorW / 2, 0, 2.4, blockM); seg(zc, dz - doorW / 2, 2.4, doorH); zc = dz + doorW / 2; });
+  seg(zc, zB, 0, 2.4, blockM); seg(zc, zB, 2.4, doorH);
+  /* above the doors: wall to 5.6 m, a clerestory band of glass to 6.8, wall to the deck */
+  const CL0 = 5.6, CL1 = 6.8;
+  seg(zA, zB, doorH, CL0);
+  seg(zA, ZC - 8, CL0, CL1);   /* the far end of the clerestory is closed, so no sun lands on the back wall behind the type */
+  for (let z = ZC - 8; z < zB - 0.01; z += 2.8) { seg(z, z + 0.25, CL0, CL1); }
+  seg(zA, zB, CL1, GH + 0.2);
+  /* door frames and the leaves swung open into the room, steel painted navy */
+  const steel = new THREE.MeshStandardMaterial({ color: 0x2a2f6e, roughness: 0.42, metalness: 0.35 });
+  DOORS.forEach(dz => {
+    [[-1, dz - doorW / 2], [1, dz + doorW / 2]].forEach(([s, z]) => { const j = TXT.roundedBox(0.34, doorH, 0.06, 0.008, steel); j.position.set(XL - 0.12, doorH / 2, z - s * 0.03); wallG.add(j); });
+    const hd = TXT.roundedBox(0.34, 0.08, doorW + 0.06, 0.008, steel); hd.position.set(XL - 0.12, doorH + 0.04, dz); wallG.add(hd);
+    [[-1, dz - doorW / 2], [1, dz + doorW / 2]].forEach(([s, z]) => {
+      const leaf = new THREE.Group(); leaf.position.set(XL + 0.02, 0, z);
+      const L = TXT.roundedBox(0.045, doorH - 0.04, doorW / 2 - 0.02, 0.01, steel); L.position.set(0, (doorH - 0.04) / 2 + 0.01, -s * (doorW / 4 - 0.01)); leaf.add(L);
+      const bar = TXT.roundedBox(0.07, 0.05, doorW / 2 - 0.2, 0.02, new THREE.MeshStandardMaterial({ color: 0xd9dde2, metalness: 1, roughness: 0.25 })); bar.position.set(0.05, 1.0, -s * (doorW / 4)); leaf.add(bar);
+      const vis = TXT.roundedBox(0.05, 0.6, 0.22, 0.01, new THREE.MeshPhysicalMaterial({ color: 0xcfe0ff, roughness: 0.05, metalness: 0, transmission: 0.6, thickness: 0.01 })); vis.position.set(0, 1.75, -s * (doorW / 4)); leaf.add(vis);
+      leaf.rotation.y = s * 1.25; wallG.add(leaf);
+    });
+  });
+  wallG.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  R.scene.add(wallG);
+
+  /* THE COURT: maple boards painted periwinkle in the playing area, the lines in cream, the border left in clear lacquer */
+  const courtTex = CH.canvasTex(THREE, 2048, 2048, (g, w, h) => {
+    const r = CH.rng(1115), bw = w / 64;
+    for (let i = 0; i < 64; i++) {           /* board strips running along z, each a shade of its own */
+      for (let y = 0; y < h;) { const len = h * (0.12 + r() * 0.3), k = 0.9 + r() * 0.16;
+        g.fillStyle = 'rgb(' + Math.round(222 * k) + ',' + Math.round(176 * k) + ',' + Math.round(124 * k) + ')'; g.fillRect(i * bw, y, bw, len);
+        g.fillStyle = 'rgba(90,60,30,0.35)'; g.fillRect(i * bw, y, bw, 2); y += len; }
+      g.fillStyle = 'rgba(80,50,25,0.4)'; g.fillRect(i * bw, 0, 1.5, h);
+    }
+    for (let k = 0; k < 2600; k++) { g.fillStyle = 'rgba(110,70,35,' + (0.05 + r() * 0.08) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 8 + r() * 30); }
+    /* the painted playing surface, translucent so the grain shows through */
+    const m = w * 0.07;
+    g.fillStyle = 'rgba(58,112,232,0.88)'; g.fillRect(m, m, w - 2 * m, h - 2 * m);
+    g.fillStyle = 'rgba(122,82,200,0.82)'; g.fillRect(w / 2 - w * 0.12, m, w * 0.24, h * 0.2); g.fillRect(w / 2 - w * 0.12, h - m - h * 0.2, w * 0.24, h * 0.2);
+    g.strokeStyle = 'rgba(255,240,224,0.92)'; g.lineWidth = 7;
+    g.strokeRect(m, m, w - 2 * m, h - 2 * m);
+    g.beginPath(); g.moveTo(m, h / 2); g.lineTo(w - m, h / 2); g.stroke();
+    g.beginPath(); g.arc(w / 2, h / 2, w * 0.09, 0, Math.PI * 2); g.stroke();
+    g.strokeRect(w / 2 - w * 0.12, m, w * 0.24, h * 0.2); g.strokeRect(w / 2 - w * 0.12, h - m - h * 0.2, w * 0.24, h * 0.2);
+    g.beginPath(); g.arc(w / 2, m, w * 0.34, 0, Math.PI); g.stroke();
+    g.beginPath(); g.arc(w / 2, h - m, w * 0.34, Math.PI, Math.PI * 2); g.stroke();
+  });
+  const floorM = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: courtTex, roughness: 0.32, clearcoat: 0.7, clearcoatRoughness: 0.18, metalness: 0 });
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(GW - 0.2, GD - 0.2), floorM);
+  floor.rotation.x = -Math.PI / 2; floor.position.set(0, 0.004, ZC); floor.receiveShadow = true; R.scene.add(floor);
+
+  /* ---- THE HUNDRED DESKS ------------------------------------------------------------------------------------------- */
+  const PITCH = [0.8, 1.55], GZ = -5;
+  const rows = K.make('student_desk_rows', { count: N, cols: COLS, pitch: PITCH, detail: 'full', lids: 'none', footprint: true,
+    top: 0xe4dcf0, shell: 0x2e2c86, tube: 0x1f1d3e });
+  rows.position.z = GZ; TXT.add(R, rows);
+  if (rows.userData.drawn !== N) throw new Error('drew ' + rows.userData.drawn + ' desks, FIG.per_hundred is ' + N);
+  const units = rows.userData.units;          /* index i: column i % 10, row floor(i / 10), row 0 nearest the camera */
+  const ref = K.make('student_desk', { detail: 'low' }), LA = ref.userData.laptopAt;
+  const TOPX = LA[0], TOPY = LA[1], TOPZ = LA[2];
+
+  /* the laptops, the kit's own, lit on the seeded teacher-use desks */
+  let lit = 0, laptops = 0; const blockers = [rows];
+  const lapOn = K.make('laptop', { open: 106, finish: 'silver', screen: 'doc' }), lapOff = K.make('laptop', { open: 106, finish: 'silver', screen: 'off' });
+  units.forEach(([ux, uz], i) => {
+    const on = false, lp = lapOff.clone();   /* every laptop the same: this frame counts only the written policies (integrity judge, round 1) */
+    lp.position.set(ux + TOPX + 0.1, TOPY, uz + GZ + TOPZ - 0.12);   /* pushed to the back of the top, so the folder lies in front of it */ lp.rotation.y = (CH.rng(500 + i)() - 0.5) * 0.12;
+    TXT.add(R, lp); blockers.push(lp); laptops++; if (on) lit++;
+  });
+  /* the screens a step down, so the white stops competing with the amber */
+  lapOn.traverse(m => { if (m.isMesh && m.material && m.material.emissiveMap) m.material.emissiveIntensity = 0.6; });
+  if (laptops !== N || lit !== 0) throw new Error('laptops ' + laptops + ' lit ' + lit + ': this frame lights none');
+
+  /* the written rules: the chassis's pocket folder, at one and a half times its letter size so it reads at feed size, lying
+   * across the near edge of the desk in front of the laptop where no lid can cover it, a plain sheet's
+   * edge peeking from under it, one uniform amber with a soft lift so none reads yellow in the sun or brown in the shade */
+  let folders = 0;
+  const amberM = new THREE.MeshPhysicalMaterial({ color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 0.55, roughness: 0.42, clearcoat: 0.5, clearcoatRoughness: 0.35 });
+  const folderMeshes = [];
+  units.forEach(([ux, uz], i) => {
+    if (!folderSet.has(i)) return;
+    const r = CH.rng(900 + i), g = new THREE.Group();
+    const sheet = K.make('policy_sheet', { amber: false, curl: 0.002 }); sheet.position.set(-0.02, 0, -0.035); sheet.rotation.y = 0.12; g.add(sheet);
+    const f = K.make('pocket_folder', { amber: true, sheets: 3 }); f.position.y = 0.002; g.add(f);
+    f.traverse(m => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === CH.ACCENT) { m.material = amberM; folderMeshes.push(m); } });
+    g.scale.setScalar(1.5); g.position.set(ux + TOPX - 0.02, TOPY + 0.0015, uz + GZ + TOPZ + 0.15); g.rotation.y = Math.PI / 2 + (r() - 0.5) * 0.3;
+    const tilt = new THREE.Group(); tilt.add(g); tilt.rotation.x = 0.3;   /* its back edge rests on the laptop's palm rest, so it faces the room */
+    const hold = new THREE.Group(); hold.position.copy(g.position); g.position.set(0, 0, 0); tilt.position.set(0, 0, 0.17); g.position.z = -0.17; hold.add(tilt);
+    hold.userData.policyFolder = true; TXT.add(R, hold); blockers.push(hold); folders++;
+  });
+  let counted = 0; R.scene.traverse(o => { if (o.userData && o.userData.policyFolder) counted++; });
+  if (folders !== FIG.student_policy_of_100 || counted !== FIG.student_policy_of_100) throw new Error('folders ' + counted + ' differ from FIG.student_policy_of_100');
+
+  /* ---- THE CAMERA: solved, not guessed. Over eye heights on the low bleacher rows, 2.4 to 4.5 m, bearings down the
+   * rows from the left, and lenses of 32 to 40, the nearest stand that keeps every folder in the frame; then the one whose
+   * hundred desks fill the most of the frame under the type, with every folder seen past the chair backs and lids. */
+  const fpts = [], deskTop = [], deskLow = [];
+  /* each folder as its four top corners and its centre, read off its own bounds */
+  const fbox = [];
+  R.scene.traverse(o => { if (o.userData && o.userData.policyFolder) { const b = new THREE.Box3().setFromObject(o), y = b.max.y;
+    fbox.push({ c: [(b.min.x + b.max.x) / 2, y, (b.min.z + b.max.z) / 2], k: [[b.min.x, y, b.min.z], [b.max.x, y, b.min.z], [b.min.x, y, b.max.z], [b.max.x, y, b.max.z]] }); } });
+  const TOP_Y = 500, FOOT_Y = 1180;   /* above the footer furniture */
+  const fitsFrame = () => fbox.every(F => F.k.every(p => { const q = CH.project(THREE, R, p); return q[0] > 26 && q[0] < CH.W - 26 && q[1] > TOP_Y + 20 && q[1] < FOOT_Y; }));
+  units.forEach(([ux, uz]) => { deskTop.push([ux, 0.98, uz + GZ - 0.4]); deskLow.push([ux, 0.0, uz + GZ + 0.45]); });
+  const CEN = [0, 0.75, GZ], cands = [];
+  for (const h of [2.4, 2.8, 3.2, 3.6, 4.0, 4.5]) for (const yaw of [0, -6, -12, -18, -26]) for (const FOV of [32, 36, 40, 44]) for (const sy of [900, 1000, 1100, 1200]) {
+    const dir = [Math.sin(yaw * Math.PI / 180), Math.cos(yaw * Math.PI / 180)];
+    for (let d = 4; d < 30; d += 0.25) {
+      const f = [CEN[0] + dir[0] * d, h, CEN[2] + dir[1] * d];
+      if (f[2] > ZC + GD / 2 - 0.5 || Math.abs(f[0]) > GW / 2 - 0.5) break;
+      const look = CH.aim(THREE, R, TXT, f, CEN, 540, sy, FOV);
+      TXT.frame(R, { fov: FOV, from: f, look });
+      if (!fitsFrame()) continue;
+      const tops = deskTop.map(p => CH.project(THREE, R, p)[1]), lows = deskLow.map(p => CH.project(THREE, R, p)[1]);
+      if (Math.min(...tops) < TOP_Y + 20) continue;
+      const fill = (Math.min(CH.H, Math.max(...lows)) - Math.min(...tops)) / CH.H;
+      cands.push({ f, look, FOV, fill, h }); break;
+    }
+  }
+  cands.sort((a, b) => b.fill - a.fill);
+  /* seen: a ray from the eye reaches the folder's face at three or more of its five points without meeting a desk, chair, lid or another folder (the only things that stand on the court) */
+  const rc = new THREE.Raycaster(), seenAll = (c) => {
+    TXT.frame(R, { fov: c.FOV, from: c.f, look: c.look }); R.camera.updateMatrixWorld(true);
+    const eye = new THREE.Vector3(...c.f);
+    return fbox.every(F => { let seen = 0;
+      [F.c].concat(F.k.map(p => [F.c[0] + (p[0] - F.c[0]) * 0.7, p[1], F.c[2] + (p[2] - F.c[2]) * 0.7])).forEach(p => {
+        const t = new THREE.Vector3(p[0], p[1] + 0.004, p[2]), dirv = t.clone().sub(eye), dist = dirv.length();
+        rc.set(eye, dirv.normalize()); rc.far = dist - 0.03;
+        const hit = rc.intersectObjects(blockers, true).find(x => x.object.visible && x.object.material && !x.object.material.transparent && !folderMeshes.includes(x.object));
+        if (!hit) seen++; });
+      return seen >= 3; });
+  };
+  let CAM = null;
+  for (const c of cands.slice(0, 90)) { if (seenAll(c)) { CAM = c; break; } }
+  if (!CAM) throw new Error('no camera shows all ' + FIG.student_policy_of_100 + ' folders past the desks (best fill ' + (cands[0] ? cands[0].fill.toFixed(2) : 'none') + ')');
+  TXT.frame(R, { fov: CAM.FOV, from: CAM.f, look: CAM.look }); R.camera.fov = CAM.FOV; R.camera.updateProjectionMatrix();
+  window.__cam = CAM;
+  if (CAM.fill < 0.55) console.warn('rows fill ' + CAM.fill.toFixed(2) + ' of the frame height');
+
+  /* every folder lies whole inside the frame, under the type and above the footer furniture */
+  const inFrame = fbox.filter(F => F.k.every(p => { const q = CH.project(THREE, R, p); return q[0] > 26 && q[0] < CH.W - 26 && q[1] > TOP_Y + 20 && q[1] < FOOT_Y; }));
+  if (fbox.length !== FIG.student_policy_of_100 || inFrame.length !== FIG.student_policy_of_100) throw new Error('only ' + inFrame.length + ' of ' + FIG.student_policy_of_100 + ' folders fall inside the frame');
+
+  /* ---- THE LIGHT: late sun low through the doors, from the left and a little ahead ---------------------------------- */
+  const AZ = -78, EL = 10;
+  const spec = CH.rigSpec(W, 18, 4096); spec.key = Object.assign({}, spec.key, { i: 12.5, radius: 2.5, color: 0xffb27a });
+  spec.fill = Object.assign({}, spec.fill, { i: 0.7 }); spec.rim = Object.assign({}, spec.rim, { i: 0.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, ZC], { distance: 40, shadowFar: 90, normalBias: 0.01 }), { light: { az: AZ, el: EL } }));
+  CH.unacne(R, 0.01);
+  R.scene.environmentIntensity = 0.85;
+  const hemi = new THREE.HemisphereLight(0xa8b8ff, 0xffb48a, 0.55); R.scene.add(hemi);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.66, fade: 240 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.22, fade: 120 }));
+  TXLOOK.footWash(cx, { a: 0.82, height: 300 });
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.72, fade: 200 }));
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

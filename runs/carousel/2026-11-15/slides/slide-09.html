@@ -1,0 +1,192 @@
+<!doctype html>
+<!-- BESPOKE, carousel no. 78, 2026-11-15, frame 9 of 9, the close. A school district board room in the evening, seen from
+     behind an empty public chair on the aisle: the aisle runs past the public comment podium to the trustees' dais, where
+     one amber binder (a written rule, the deck's accent) stands on the ledge. The headline hangs on the back wall where a
+     room's seal would. This frame draws no count. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:138px; width:920px; text-align:center">Ask your district whether it has an AI policy</h1>
+<p class="dek" data-follow="62" style="left:150px; width:780px; font-size:29px; text-align:center">Only 29% of Texas school and district leaders reported a district policy on student AI use, per Texas 2036. Texas is not among its 42 states with statewide guidance.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "09 / 09", src: "c3 c5 c6", fit: { min: 64, max: 86, maxLines: 2 } });
+
+  /* THE FIGURES. This frame draws no count: FIG must stay empty, and exactly one amber thing (the binder) is built. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 9 draws no count, but FIG carries ' + JSON.stringify(window.FIG));
+  let AMBER_COUNT = 0;
+
+  const FOV = 36;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 80, fog: 0.0 });
+
+  /* ---- THE ROOM: TXT.interior builds it; the studio supplies the coloured light the room holds ---- */
+  const RW = 10.4, RD = 17, RH = 3.5, BACKZ = -RD / 2;
+  const room = TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: 0x3e3472, trim: 0x2a1c4a, window: null, ceiling: true, light: 0.5 });
+  { const sw = TXT.studio(R, Object.assign(CH.studioOpts({ w: 4, d: 4 }), { env: 0.85, hemi: 0.42, softbox: 4.2 }));
+    sw.visible = false; R.scene.remove(sw); R.room = room; delete R.studio; }
+
+  const rng = CH.rng(909);
+  const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#808080'; g.fillRect(0, 0, w, h); const r = CH.rng(77);
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '60,60,60' : '200,200,200') + ',' + (0.04 + r() * 0.08) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+  }, [4, 4]);
+
+  /* the carpet: a woven coral field with a small repeating diamond, laid over the room's floor */
+  const carpetTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#c4553f'; g.fillRect(0, 0, w, h); const r = CH.rng(311);
+    for (let y = 0; y < h; y += 2) { g.fillStyle = 'rgba(' + (y % 4 ? '120,30,40' : '255,170,120') + ',0.08)'; g.fillRect(0, y, w, 1); }
+    for (let i = 0; i < 26000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(90,20,40,' + (0.08 + r() * 0.12) + ')' : 'rgba(255,190,140,' + (0.06 + r() * 0.1) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 1.5, 1 + r() * 1.5); }
+    g.strokeStyle = 'rgba(90,24,60,0.35)'; g.lineWidth = 3;
+    for (let x = 0; x < w; x += 128) for (let y = 0; y < h; y += 128) { g.beginPath(); g.moveTo(x + 64, y + 20); g.lineTo(x + 108, y + 64); g.lineTo(x + 64, y + 108); g.lineTo(x + 20, y + 64); g.closePath(); g.stroke(); }
+  }, [14, 22]);
+  const carpet = new THREE.Mesh(new THREE.PlaneGeometry(RW, RD), new THREE.MeshStandardMaterial({ color: 0xffffff, map: carpetTex, roughness: 0.97, metalness: 0 }));
+  carpet.rotation.x = -Math.PI / 2; carpet.position.set(0, 0.004, 0); carpet.receiveShadow = true; room.add(carpet);
+
+  /* the back wall: walnut panelling to 2.7 m behind the dais, a crown rail, blue paint above */
+  const walnut = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: K.tex('wood', { color: '#8a4f2c' }), roughness: 0.5, roughnessMap: tooth, clearcoat: 0.4, clearcoatRoughness: 0.35 });
+  const walnutDk = new THREE.MeshPhysicalMaterial({ color: 0x9a6a50, map: K.tex('wood', { color: '#6b3a20' }), roughness: 0.55, clearcoat: 0.3 });
+  const PANEL_H = 2.4, wallZ = BACKZ + 0.1;
+  { const back = TXT.roundedBox(RW - 0.25, PANEL_H, 0.06, 0.01, walnutDk); back.position.set(0, PANEL_H / 2, wallZ + 0.03); room.add(back);
+    const cols = 9, pw = (RW - 0.6) / cols;
+    for (let i = 0; i < cols; i++) { const p = TXT.roundedBox(pw - 0.12, PANEL_H - 0.5, 0.03, 0.012, walnut); p.position.set(-RW / 2 + 0.3 + pw * (i + 0.5), PANEL_H / 2 + 0.05, wallZ + 0.07); room.add(p); }
+    const crown = TXT.roundedBox(RW - 0.2, 0.09, 0.1, 0.02, walnut); crown.position.set(0, PANEL_H + 0.02, wallZ + 0.07); room.add(crown);
+    /* shallow plaster pilasters up the upper wall, over each walnut panel joint, so the wall behind the dek is built, not a band */
+    for (let i = 0; i <= cols; i++) { const pl = TXT.roundedBox(0.14, RH - PANEL_H - 0.3, 0.05, 0.02, new THREE.MeshStandardMaterial({ color: 0x463a7e, roughness: 0.85 })); pl.position.set(-RW / 2 + 0.3 + pw * i, PANEL_H + 0.08 + (RH - PANEL_H - 0.3) / 2, BACKZ + 0.125); room.add(pl); }
+    /* a stepped plaster cornice where the upper wall turns into the ceiling, so the room turns a corner rather than stopping */
+    [[0.16, 0.1, RH - 0.08], [0.1, 0.07, RH - 0.17]].forEach(([d, h, y]) => { const c = TXT.roundedBox(RW - 0.2, h, d, 0.02, new THREE.MeshStandardMaterial({ color: 0x433878, roughness: 0.85 })); c.position.set(0, y, BACKZ + 0.1 + d / 2); room.add(c); });
+    /* wainscot along both side walls */
+    [-1, 1].forEach((s) => { const wn = TXT.roundedBox(0.04, 1.05, RD - 0.4, 0.008, walnutDk); wn.position.set(s * (RW / 2 - 0.12), 0.525, 0); room.add(wn);
+      const cap = TXT.roundedBox(0.07, 0.05, RD - 0.4, 0.01, walnut); cap.position.set(s * (RW / 2 - 0.13), 1.07, 0); room.add(cap); }); }
+
+  /* tall evening windows down both side walls: a dusk gradient behind bronze mullions */
+  const duskTex = CH.canvasTex(THREE, 64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h);
+    gr.addColorStop(0, '#2b3fa8'); gr.addColorStop(0.45, '#7a5ad0'); gr.addColorStop(0.75, '#ff8fa0'); gr.addColorStop(1, '#ffc29a'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const bronze = new THREE.MeshStandardMaterial({ color: 0x3a2a3a, roughness: 0.4, metalness: 0.7 });
+  [-1, 1].forEach((s) => {
+    for (let k = 0; k < 5; k++) {
+      const z = 4.6 - k * 2.6, ww = 1.5, wh = 2.6, y = 2.35;
+      const pane = new THREE.Mesh(new THREE.PlaneGeometry(ww, wh), new THREE.MeshBasicMaterial({ map: duskTex, color: 0xffffff }));
+      pane.material.color.multiplyScalar(1.6);
+      pane.rotation.y = -s * Math.PI / 2; pane.position.set(s * (RW / 2 - 0.105), y, z); room.add(pane);
+      const fr = (w, h, dy, dz) => { const b = TXT.roundedBox(0.06, h, w, 0.012, bronze); b.position.set(s * (RW / 2 - 0.13), y + dy, z + dz); room.add(b); };
+      fr(ww + 0.08, 0.07, wh / 2, 0); fr(ww + 0.08, 0.07, -wh / 2, 0); fr(0.07, wh, 0, ww / 2); fr(0.07, wh, 0, -ww / 2); fr(0.04, wh, 0, 0); fr(ww, 0.04, 0.35, 0);
+      const sill = TXT.roundedBox(0.14, 0.04, ww + 0.2, 0.01, walnut); sill.position.set(s * (RW / 2 - 0.16), y - wh / 2 - 0.04, z); room.add(sill);
+    }
+  });
+
+  /* the ceiling: a soft lavender acoustic field with recessed downlights */
+  const CANS = [];
+  const ceilM = new THREE.MeshStandardMaterial({ color: 0x453a86, emissive: 0x0e0828, emissiveIntensity: 1.0, roughness: 0.9, roughnessMap: tooth });
+  { const c = new THREE.Mesh(new THREE.PlaneGeometry(RW, RD), ceilM); c.rotation.x = Math.PI / 2; c.position.set(0, RH - 0.01, 0); room.add(c);
+    const canM = new THREE.MeshBasicMaterial({ color: 0xfff1d8 }); canM.color.multiplyScalar(2.4);
+    const rimM = new THREE.MeshStandardMaterial({ color: 0xe8e4f4, roughness: 0.3, metalness: 0.6 });
+    /* coffer beams running up the room (never across it, so no beam rules a line of type), and a recessed downlight
+     * centred in each bay, receding toward the dais */
+    const beamM = new THREE.MeshStandardMaterial({ color: 0x4c3e8e, emissive: 0x0c0622, roughness: 0.8 });
+    for (let bx = -4.2; bx <= 4.21; bx += 1.2) { const b = TXT.roundedBox(0.16, 0.2, RD - 0.4, 0.03, beamM); b.position.set(bx, RH - 0.1, 0); room.add(b); }
+    for (let ix = -3; ix <= 3; ix++) for (let iz = 0; iz < 7; iz++) {
+      const x = ix * 1.2 + 0.6, z = BACKZ + 2.7 + iz * 1.6;
+      if (Math.abs(x) > 4.2) continue;
+      const d = new THREE.Mesh(new THREE.CircleGeometry(0.11, 28), canM); d.rotation.x = Math.PI / 2; d.position.set(x, RH - 0.02, z); room.add(d); CANS.push(d);
+      const rr = new THREE.Mesh(new THREE.TorusGeometry(0.125, 0.014, 8, 32), rimM); rr.rotation.x = Math.PI / 2; rr.position.set(x, RH - 0.02, z); room.add(rr); CANS.push(rr);
+    } }
+
+  /* ---- THE DAIS (kit), centred at the back of the room ---- */
+  const dais = K.make('hearing_dais', { seats: 7, curve: 8, wood: 0x8a5230, carpet: 0x3b2a6a, chairs: true, mics: true, plates: true, steps: false });
+  dais.position.set(0, 0, BACKZ + 2.45); TXT.add(R, dais); TXT.contact(R, dais, { opacity: 0.55 });
+  const inner = dais.children[0];
+  const daisPt = (x, y, z) => [dais.position.x + inner.position.x + x, dais.position.y + inner.position.y + y, dais.position.z + inner.position.z + z];
+
+  /* the flags behind the dais, off to the right */
+  const flags = K.make('flags_pair', {}); flags.position.set(3.9, 0, BACKZ + 0.8); flags.rotation.y = -0.25; TXT.add(R, flags); TXT.contact(R, flags, { opacity: 0.5 });
+
+  /* ---- THE ONE WRITTEN RULE: an amber binder standing on the transaction ledge at the centre seat ---- */
+  const binder = K.make('ring_binder', { amber: true, open: 70, leaves: 30, pocket: true }); AMBER_COUNT++;
+  /* the ledge top sits at y 1.151 in the dais's own frame, its front centre at z +0.07 */
+  const BP = daisPt(0.0, 1.152, -0.25);
+  binder.rotation.y = -Math.PI / 2 + 0.3; binder.position.set(BP[0], BP[1], BP[2]); TXT.add(R, binder); TXT.contact(R, binder, { opacity: 0.8 });
+  if (AMBER_COUNT !== 1) throw new Error('frame 9 builds exactly one amber written rule, built ' + AMBER_COUNT);
+
+  /* ---- THE PODIUM (kit), in the aisle, facing the dais ---- */
+  const pod = K.make('podium', { wood: 0x8a5230, seal: false, mic: true });
+  pod.rotation.y = Math.PI + 0.3; pod.position.set(-0.45, 0, BACKZ + 5.4); TXT.add(R, pod); TXT.contact(R, pod, { opacity: 0.75 });
+
+  /* ---- PUBLIC SEATING (kit), facing the dais, and the one empty aisle chair nearest the reader ---- */
+  const SEAT_C = 0x33266e, MINE_C = 0x6a4ae6;
+  const seats = K.make('public_seating', { rows: 2, perRow: 12, aisle: true, color: SEAT_C, frame: 'black' });
+  seats.rotation.y = Math.PI; seats.position.set(0, 0, BACKZ + 7.7); TXT.add(R, seats); TXT.contact(R, seats, { opacity: 0.5 });
+  const CHAIR = [0.62, 0, BACKZ + 9.35];
+  const chair = K.make('public_seating', { rows: 1, perRow: 1, aisle: false, color: MINE_C, frame: 'black' });
+  chair.rotation.y = Math.PI + 0.5; chair.position.set(CHAIR[0], 0, CHAIR[2]); TXT.add(R, chair); TXT.contact(R, chair, { opacity: 0.85 });
+
+  /* ---- CAMERA: eye 1.12 m, behind the empty chair, looking up the aisle ---- */
+  /* the camera is pitched so the ceiling meets the back wall in the gap between the hook and the dek: the hook sits in
+   * the dark ceiling, the dek on the lit upper wall, and no wall edge runs through a line of type */
+  const FROM = [0.3, 1.0, BACKZ + 12.2];
+  const hb = document.getElementById('hook').getBoundingClientRect(), db = document.querySelector('.dek').getBoundingClientRect();
+  const YJ = Math.round((hb.bottom + db.top) / 2);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, RH, BACKZ + 0.1], 540, YJ, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+  /* a downlight that would sit behind a line of type or the furniture is left out, so no bright ring cuts a letter */
+  { const boxes = ['hook', 'site'].map((id) => document.getElementById(id).getBoundingClientRect()).concat(Array.prototype.map.call(document.querySelectorAll('.kick, .count, .src'), (e) => e.getBoundingClientRect()));
+    CANS.forEach((m) => { const q = CH.project(THREE, R, [m.position.x, m.position.y, m.position.z]);
+      if (boxes.some((b) => q[0] > b.left - 70 && q[0] < b.right + 70 && q[1] > b.top - 50 && q[1] < b.bottom + 50)) m.visible = false; }); }
+
+  /* ---- LIGHT: a warm key from the front left and above, pools on the binder, the podium and the chair ---- */
+  CH.KEY_SCALE = 0.5;
+  TXT.deckRig(R, CH.rigSpec(W, 16, 4096), Object.assign(CH.rigOpts([0, 0, -2], { distance: 22, shadowFar: 50, normalBias: 0.015 }), { light: { az: -28, el: 58 } }));
+  CH.unacne(R, 0.015);
+  const spot = (from, at, i, angle, color) => CH.flood(THREE, R, from, at, { color: color || 0xffe2bc, i, reach: 12, angle, penumbra: 0.75 });
+    spot([-1.1, RH - 0.15, BACKZ + 7.0], [-0.45, 0.8, BACKZ + 5.4], 22, 0.24);
+  spot([CHAIR[0] - 0.4, RH - 0.15, CHAIR[2] + 0.3], [CHAIR[0], 0.3, CHAIR[2]], 34, 0.32, 0xffe6c4);
+  /* the binder's own downlight, narrow, so the written rule is the brightest warm shape on the dais */
+  spot([BP[0], RH - 0.05, BP[2] + 0.35], [BP[0], BP[1], BP[2]], 5, 0.16, 0xfff2e0);
+  /* the downlight's cone made visible: a soft additive shaft from its can to the binder */
+  { const H = RH - 0.05 - BP[1], cg = new THREE.ConeGeometry(0.42, H, 48, 1, true); cg.translate(0, -H / 2, 0);
+    const sh = CH.canvasTex(THREE, 8, 128, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,236,210,0.05)'); gr.addColorStop(0.5, 'rgba(255,236,210,0.5)'); gr.addColorStop(1, 'rgba(255,236,210,1)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const cone = new THREE.Mesh(cg, new THREE.MeshBasicMaterial({ map: sh, color: 0xffe6c8, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }));
+    cone.position.set(BP[0], RH - 0.05, BP[2] + 0.35); cone.castShadow = false; cone.receiveShadow = false; R.scene.add(cone);
+    const can = new THREE.Mesh(new THREE.CircleGeometry(0.1, 28), new THREE.MeshBasicMaterial({ color: new THREE.Color(0xfff4e0).multiplyScalar(3) })); can.rotation.x = Math.PI / 2; can.position.set(BP[0], RH - 0.03, BP[2] + 0.35); R.scene.add(can); }
+  /* a warm wash across the dais front from the room's downlights */
+  spot([0, RH - 0.15, BACKZ + 6.5], [0, 0.7, BACKZ + 2.6], 30, 0.55, 0xffd2a8);
+  /* wall washers: soft warm scallops grazing the blue wall above the panelling, so the field behind the type is lit, not flat */
+  [-4.2, -2.1, 0, 2.1, 4.2].forEach((x) => { const sp = new THREE.SpotLight(0xe6b8ff, 0, 5, 0.75, 1.0, 2); sp.position.set(x, 2.78, BACKZ + 0.32); sp.target.position.set(x, RH + 0.4, BACKZ - 0.1); sp.castShadow = false; R.scene.add(sp); R.scene.add(sp.target); });
+  CH.darkRoom(R);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+
+  /* ---- CHECKS on the art as drawn ---- */
+  const dr = CH.rectOf(THREE, R, dais, 0);
+  const span = Math.min(1080, dr[0] + dr[2]) - Math.max(0, dr[0]);
+  if (span < 520) throw new Error('the dais spans ' + Math.round(span) + ' px, under 520');
+  const near = [['chair', chair], ['seats', seats], ['podium', pod], ['dais', dais]].map(([n, o]) => { const b = new THREE.Box3().setFromObject(o); return [n, b.distanceToPoint(new THREE.Vector3(...FROM))]; });
+  if (near.sort((a, b) => a[1] - b[1])[0][0] !== 'chair') throw new Error('the empty chair is not the nearest object: ' + JSON.stringify(near));
+  window.__frame9 = { daisSpan: Math.round(span), near };
+
+  CH.follow();
+  CH.seat(cx, { a: 0.42, fade: 280 });
+  TXLOOK.footWash(cx, { a: 0.55, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+{
+ "weighted_score": 7.086,
+ "judges": [
+  6.87,
+  7.272,
+  7.13
+ ],
+ "spread": 0.402,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.8,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Declared showstopper. Every laptop is dark, contradicting slide 2's 'lit laptop = teacher use' key and the storyboard's 86-lit plan. The top 55% is a blank purple wall with type on it. The grid crops at the right edge, so 100 desks and 29 folders can't be counted. Near black is 0.243.",
+     "fix": "Light the same 86 laptop screens as frame 2, raise the eye to about 3 m and tilt down so the full 10x10 grid fills the frame from just under the headline to the footer, and seat the type in the receding rows' far quiet instead of on the bare wall."
+    },
+    {
+     "judge": 2,
+     "problem": "The planned showstopper spends its top 55% on a flat periwinkle-to-magenta wall with no light event. The desks are crowded into the bottom 45%, the laptops are flat black slabs, and the 'late sun through the doors' never appears, so the 29 folders sit in even, flat light.",
+     "fix": "Drop the camera to 1.7 m at the corner of the rows, as the craft plan specifies, so the rows fill the frame up to the type. Add a low warm sun shaft through open gym doors on the right that rakes across the desks and catches the nearest amber folder as the focal point."
+    },
+    {
+     "judge": 3,
+     "problem": "The declared showstopper spends its top 45% on an empty purple and magenta gym wall. Every laptop is dark, which contradicts slide 2's 'lit laptop' code. The rows are cropped at the right and bottom, so 29 of 100 can't be read.",
+     "fix": "Raise the camera to about 3 m and tilt down so the hundred desks fill the frame from below the headline to the footer with every desk inside the crop. Relight the same 86 laptops from slide 2 so the amber folders sit among the glow the storyboard promised."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Concentric banding rings in the upper-left sky gradient (ungraded banding). The parents are mannequin models with smeared trouser textures. Body type runs over their legs, and QA could not measure the rule crossing it.",
+     "fix": "Replace the sky with TXT.sky and IBL (or dither the gradient) to kill the banding, crop in so the two foreground parents' torsos and the covered walk fill the frame, and seat the dek on the dark concrete at lower left, clear of the figures."
+    },
+    {
+     "judge": 2,
+     "problem": "Concentric banding rings in the upper-left sky behind the headline (ungraded banding). Smeared pink texture patches on both parents' white trousers. A roof pole runs through the headline between '85%' and 'Texas', and the curb diagonal crosses the dek.",
+     "fix": "Render the sky gradient with blue-noise dither or at float precision before the grade, give the parents' trousers a clean solid albedo, and move the camera about 0.5 m left so the pole and roof edge clear the headline block and the curb line falls below the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "Visible concentric banding in the upper left sky gradient, and the three parents are primitive kit figures with flat glowing white trousers and smeared hair. They are the largest objects in the frame and read as unfinished at full size.",
+     "fix": "Re-render the sky with dithering or more gradient bit depth so the banding goes. Turn the parents three quarters toward the bus and drop the key on their legs so the trousers take form shading and plum shadow, not a flat white fill."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "'One binder per state', but about 14 binders are visible and the row runs off left, so the 42 can't be read. The background is a soft, empty blur, with no library world past the shelf.",
+     "fix": "Pull the camera back along the shelf so all 42 amber binders and the one empty Texas slot sit in frame as a countable run, with library stacks in soft focus behind."
+    },
+    {
+     "judge": 2,
+     "problem": "The dek promises 'one binder per state', but only about 14 binders are visible, so the 42 can't be read. The upper-left half is an out-of-focus violet void, and the type breaks the 80 px safe margin.",
+     "fix": "Pull the camera back and raise it so the shelf recedes in perspective across the full width and all 42 spines can be counted, with the Texas gap as the nearest sharp slot. Set the type back inside the safe zone over the library wall that the wider view now shows."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Primitive board room: procedural squiggle wood on the podium and dais, low-poly chairs, the dek on a flat purple band that reads as a plate. The spotlit amber binder implies the district has a policy, against the accent's meaning and the dek.",
+     "fix": "Turn the camera so the dark ceiling beams hold the type with no band behind it, give the dais and podium a real wood albedo with grain, and make the binder on the dais empty or uncoloured (or remove it) so the amber means 'written rule' only where one was reported."
+    },
+    {
+     "judge": 2,
+     "problem": "The walnut is a procedural wavy-line texture that reads cartoonish at full size, the aisle chair fabric shows pixel moire, and the saturated orange-red room competes with the amber binder that is meant to be the one accent.",
+     "fix": "Replace the wood with a straight-grain walnut texture at lower saturation toward plum-brown, and swap the chair fabric for a fine-weave normal map at render resolution, so the spotlit amber binder is the only warm-saturated object."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The desk and chair float on a pink-to-violet gradient with weak ground contact, an object in a gradient.",
+     "fix": "Ground it on a visible classroom floor plane (TXT.studio sweep with a floor albedo) with TXT.contact under each foot, and lower the eye to the planned 0.9 m so the desk fills more than half the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "The type sits in a soft purple box laid over the sweep on the left, which reads as a plate. The 'empty sheet protector' the dek names is a faint white rectangle a feed reader won't find.",
+     "fix": "Swing the camera so the desk sits right of centre with the sweep's own dark falloff on the left for the type, and give the sheet protector a specular edge in the key light so the empty rule reads beside the lit laptop."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The bottom two rows of desks dissolve under the type wash (QA: bottom third at 41% craft density). From the high camera each desk is a tiny glyph, so the lit and dark laptops barely separate at feed size.",
+     "fix": "Pull the camera down and closer, to about 4 m and fov 34, so the front rows read as desks with screens. Seat the headline over the darker gym floor at the near edge, not across the last row."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.086, 0.914 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

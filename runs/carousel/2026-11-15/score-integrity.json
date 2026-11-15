@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Bespoke reading. Each frame has its own world and camera, as distinct_check found (adjacent mean 0.199, type in 4 places). Several frames are genuinely good. Slide 7's pressboard tab relief has real grain, contact shade and a paperclip, and it is the best frame. Slide 3's locker bank is a real raked relief, and I counted 61 open doors of 20x5 to match c2. Slide 5's 10x10 cubby wall has 20 amber sheets, my count by column 1+1+3+2+2+2+4+4+1+0, and a person sets the scale. Slide 2's gym has 100 desks with 14 dark laptops (86 lit), and a custodian sets the scale. Against that, more than one frame falls to the 7 descriptor's single default, dead zone or artifact. Slide 4 is the declared showstopper and the hardest frame. Its top 55% is an empty purple wall with the type set on it, the desk grid runs off the right edge, every laptop is dark, and near black sits at 0.243, just under the 0.25 cap. Slide 8 shows visible concentric banding rings in the upper-left sky, mannequin figures with smeared trouser textures, and body type laid over the figures' legs. QA also could not measure the rule crossing that type. Slide 9 is a primitive board room: procedural squiggle wood, low-poly chairs, and the dek on a flat band that reads as a plate. Slide 1's desk floats on a pink gradient with little ground under it."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Bespoke reading. The spine holds on every frame: people-tone palette (value_register shows all nine vivid, grey mid 0.000 to 0.016), one serif and sans pair, the 'TEXAS SCHOOLS' kicker, the NN / 09 counter and the site line. The story runs in order, from use (2, 3) to rules (4, 5, 6) to the ask (7), the public (8) and the close (9). The hundred-unit motif changes state across 2 to 5 and works. The storyboard defines amber as one thing, a WRITTEN RULE. Slide 9 then spotlights a lit amber policy binder on the dais in a frame whose dek says most leaders reported no policy and Texas has no guidance, so the accent reads as 'this district has a rule'. Slide 4 reuses frame 2's desks but drops its lit-laptop encoding, which breaks the motif's continuity at the turn."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every slide and caption numeral traces. g_numtrace shows 20 numerals all reachable, g_agg is clean, and I matched 86, 61, 29, 20, 42, nearly 85 and 71 to c2, c3, c4, c5, c13 and c15 verbatim. Every figure is honestly attributed to Texas 2036, and the unnamed survey operator is handled by attribution. Deductions: (1) Slide 2's own legend says 'A lit laptop marks reported teacher use'. The storyboard's beat 4 says the same 86 stay lit on slide 4, but the slide 4 render shows all laptops dark. Read against the deck's own key, the turn frame draws zero teacher use, which contradicts c2 on the frame that matters most. (2) Slide 6 says 'One binder per state', but about 14 binders are drawn and the row runs off the left edge, so the 42 is asserted rather than shown. Slide 4's grid is cropped at the right, so neither 100 desks nor 29 folders can be checked, though my count lands near 29. (3) Slide 6's headline 'issued school AI guidance' drops c5's 'model policy, framework or support'. Slide 8's headline drops 'extremely or very'. Both bodies restore the wording, so this is looser phrasing that does not change what a reader believes. 'Four priorities' is counted from four claims, and no source quote says 'four'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what was reported (86/61/29/20) and that Texas lacks statewide guidance by Texas 2036's count. No body is named as the one that would issue statewide guidance (TEA, SBOE or the Legislature). Only the caption mentions the Legislature. No place, county or district is named, and the storyboard admits 'No Texas place is named'. There is no deadline or meeting. Slide 9's 'Ask your district whether it has an AI policy' is actionable but says nothing about how or where (a board meeting, public comment). By the descriptors this is closer to a topic with one concrete action than to a named body, decision and deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover's 29% earns the swipe. Frame 2 pays at once with 86, and the turn at 4, where amber first arrives, is real. Frames 2 and 3 are parallel use counts, and 8 (voter polling) could move without loss. The close is an action rather than a summary, but it restates 29% and 42 a third time, after the cover and slides 4 and 6, so it lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and house-rule compliant (caption_check clean, 0.71 commas per 100). The caption hook '86% is not a share of teachers.' is sharp. Most lines restate a think tank's preview ('per Texas 2036' appears on 5 frames). There is no regional specificity anywhere, no city, ISD or county, so it reads closer to a well-edited press summary than to a Texan who knows the schools. Slide 9's 'not among its 42 states' is awkward."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The people tone, school interiors and figures diverge from the last four decks: no. 77 wafer boats, no. 76 cooling yard reliefs, no. 75 parked car roster, no. 74 Starbase sign. Two moves are familiar. 'One unit per N' counted grids carried 75, 76 and 77 as well. The cover's desk with a lit laptop and a blank sheet closely repeats no. 48's (October 10th, ACC) hero desk."
+  }
+ ],
+ "weighted_score": 6.87,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Re-render slide 4, the turn and showstopper, with frame 2's same 86 laptops lit and all 100 desks inside the frame, camera raised so the desk field fills the empty upper wall. The deck's own legend then shows heavy AI use and only 29 amber folders, instead of a dark room that contradicts c2.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Declared showstopper. Every laptop is dark, contradicting slide 2's 'lit laptop = teacher use' key and the storyboard's 86-lit plan. The top 55% is a blank purple wall with type on it. The grid crops at the right edge, so 100 desks and 29 folders can't be counted. Near black is 0.243.",
+   "fix": "Light the same 86 laptop screens as frame 2, raise the eye to about 3 m and tilt down so the full 10x10 grid fills the frame from just under the headline to the footer, and seat the type in the receding rows' far quiet instead of on the bare wall."
+  },
+  {
+   "slide": 8,
+   "problem": "Concentric banding rings in the upper-left sky gradient (ungraded banding). The parents are mannequin models with smeared trouser textures. Body type runs over their legs, and QA could not measure the rule crossing it.",
+   "fix": "Replace the sky with TXT.sky and IBL (or dither the gradient) to kill the banding, crop in so the two foreground parents' torsos and the covered walk fill the frame, and seat the dek on the dark concrete at lower left, clear of the figures."
+  },
+  {
+   "slide": 9,
+   "problem": "Primitive board room: procedural squiggle wood on the podium and dais, low-poly chairs, the dek on a flat purple band that reads as a plate. The spotlit amber binder implies the district has a policy, against the accent's meaning and the dek.",
+   "fix": "Turn the camera so the dark ceiling beams hold the type with no band behind it, give the dais and podium a real wood albedo with grain, and make the binder on the dais empty or uncoloured (or remove it) so the amber means 'written rule' only where one was reported."
+  },
+  {
+   "slide": 6,
+   "problem": "'One binder per state', but about 14 binders are visible and the row runs off left, so the 42 can't be read. The background is a soft, empty blur, with no library world past the shelf.",
+   "fix": "Pull the camera back along the shelf so all 42 amber binders and the one empty Texas slot sit in frame as a countable run, with library stacks in soft focus behind."
+  },
+  {
+   "slide": 1,
+   "problem": "The desk and chair float on a pink-to-violet gradient with weak ground contact, an object in a gradient.",
+   "fix": "Ground it on a visible classroom floor plane (TXT.studio sweep with a floor albedo) with TXT.contact under each foot, and lower the eye to the planned 0.9 m so the desk fills more than half the frame."
+  }
+ ]
+}

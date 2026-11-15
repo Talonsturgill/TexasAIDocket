@@ -1,0 +1,233 @@
+<!doctype html>
+<!-- 2026-11-15, frame 5 of 9 (BESPOKE). THE STAFF MAILBOXES. A hundred oak staff mailboxes stand on a plum painted base in a
+     warm studio sweep. Twenty hold an amber sheet drooping over the lip (a written policy, the deck's accent), the rest stand
+     empty. A teacher at the near end reaches into an empty one. Type high and centred over the blue
+     upper sweep. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:90px; top:150px; width:900px; text-align:center">Just 20% reported a policy for staff</h1>
+<p class="dek" data-follow="26" style="left:150px; width:780px; font-size:28px; text-align:center">A policy for teachers and staff, per Texas 2036. Drawn to illustrate, one staff mailbox for each leader in a hundred, an amber sheet where a leader reported one.</p>
+
+<script>window.FIG = {"per_hundred": 100, "staff_policy_of_100": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { gl, K, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "05 / 09", src: "c4", fit: { min: 80, max: 104, maxLines: 2 } });
+  const P = CH.P;
+
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 60, fog: 0, exposure: 1.0 });
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 7, d: 7 }), { h: 9, env: 0.85, hemi: 0.55 }));
+
+  /* THE FIGURE. FIG.per_hundred mailboxes, ten across; FIG.staff_policy_of_100 of them hold an amber policy sheet. */
+  const COLS = 10, ROWS = FIG.per_hundred / COLS;
+  if (!Number.isInteger(ROWS)) throw new Error('per_hundred ' + FIG.per_hundred + ' does not fill whole rows of ' + COLS);
+  if (!Number.isInteger(FIG.staff_policy_of_100) || FIG.staff_policy_of_100 < 0 || FIG.staff_policy_of_100 > FIG.per_hundred) throw new Error('staff_policy_of_100 is not a count within the wall');
+  const CELL = [0.3, 0.11, 0.3], BASE = 0.4;
+  const wall = K.make('cubby_wall', { cols: COLS, rows: ROWS, cell: CELL, plinth: BASE });
+  if (wall.userData.count !== FIG.per_hundred) throw new Error('the wall has ' + wall.userData.count + ' mailboxes, not ' + FIG.per_hundred);
+  const YAW = 0.2, WZ = -0.7;
+  wall.position.set(-0.15, 0, WZ); wall.rotation.y = YAW;
+  CH.put(wall, true);
+  /* THE WOOD: a desaturated walnut, so the only hot warm thing on the wall is the amber. The kit's textured oak striped the
+   * narrow divider faces at this angle, so the dividers take a plain walnut with the same roughness and the shelves keep the grain. */
+  const walnutPlain = new THREE.MeshPhysicalMaterial({ color: 0x8a6e66, roughness: 0.6, metalness: 0, sheen: 0.3, sheenColor: 0xb8a0a0, clearcoat: 0.15, clearcoatRoughness: 0.5 });
+  wall.traverse((o) => {
+    if (!o.isMesh || !o.material || !o.material.map) return;
+    o.geometry.computeBoundingBox(); const b = o.geometry.boundingBox, sx = b.max.x - b.min.x, sy = b.max.y - b.min.y;
+    if (sx < 0.03 && sy > 0.5) { o.material = walnutPlain; return; }
+    if (!o.material._tuned) { o.material.color.set(0x9c94a8); o.material.roughness = 0.58; o.material._tuned = true; }
+  });
+
+  /* the cubby backs in the tone's deep plum, so every mailbox reads as a deep slot */
+  const Wd = COLS * CELL[0] + 0.012, Hd = ROWS * CELL[1] + 0.012;
+  const backC = document.createElement('canvas'); backC.width = COLS * 64; backC.height = ROWS * 24;
+  { const g = backC.getContext('2d'); g.fillStyle = '#1f1038'; g.fillRect(0, 0, backC.width, backC.height);
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) { const x0 = c * 64, y0 = r * 24, gr = g.createRadialGradient(x0 + 26, y0 + 9, 2, x0 + 30, y0 + 12, 40);
+      gr.addColorStop(0, '#46296f'); gr.addColorStop(0.55, '#311a56'); gr.addColorStop(1, '#1f1038'); g.fillStyle = gr; g.fillRect(x0, y0, 64, 24); } }
+  const backT = new THREE.CanvasTexture(backC); backT.colorSpace = THREE.SRGBColorSpace;
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(Wd - 0.01, Hd - 0.01), new THREE.MeshStandardMaterial({ color: 0xffffff, map: backT, roughness: 0.9 }));
+  back.position.set(0, BASE + Hd / 2, -CELL[2] / 2 + 0.0135); back.receiveShadow = true; wall.add(back);
+
+  /* THE DEPTH OF EACH SLOT: an occlusion card on every cell's floor, ceiling and both sides, clear at the lip and deepening to
+   * plum at the back, so a mailbox reads as a lit mouth falling off into a deep slot */
+  const occC = document.createElement('canvas'); occC.width = 4; occC.height = 128; { const g = occC.getContext('2d'), gr = g.createLinearGradient(0, 0, 0, 128);
+    gr.addColorStop(0, 'rgb(0,0,0)'); gr.addColorStop(0.4, 'rgb(50,50,50)'); gr.addColorStop(1, 'rgb(170,170,170)'); g.fillStyle = gr; g.fillRect(0, 0, 4, 128); }
+  const occT = new THREE.CanvasTexture(occC);
+  const occM = new THREE.MeshBasicMaterial({ color: 0x2c1652, alphaMap: occT, transparent: true, depthWrite: false, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2 });
+  {
+    const iw = CELL[0] - 0.012, ih = CELL[1] - 0.012, dd = CELL[2] - 0.016;
+    /* a plane whose v runs from the lip (0) to the back (1) */
+    const card = (w) => { const g = new THREE.PlaneGeometry(w, dd); g.rotateX(-Math.PI / 2); const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setY(i, 1 - uv.getY(i)); return g; };
+    const gF = card(iw), gS = card(ih);
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      const p = wall.userData.cell(c, r), zc = p[2] - 0.004;
+      const f = new THREE.Mesh(gF, occM); f.position.set(p[0], p[1] + 0.0008, zc); wall.add(f);
+      const t = new THREE.Mesh(gF, occM); t.rotation.z = Math.PI; t.position.set(p[0], p[1] + ih - 0.0008, zc); wall.add(t);
+      [-1, 1].forEach((sd) => { const m = new THREE.Mesh(gS, occM); m.rotation.z = sd * Math.PI / 2; m.position.set(p[0] + sd * (iw / 2 - 0.0008), p[1] + ih / 2, zc); wall.add(m); });
+    }
+  }
+
+  /* THE BASE AS A CABINET: an oak counter cap, four door panels proud of the carcass, brass pulls, a dark kick */
+  {
+    const capM = K.mat('s5_cap', { color: 0xffffff, roughness: 0.5, map: K.tex('wood', { color: '#7e6660' }) });
+    const doorM = K.mat('s5_door', { color: 0x3e3486, roughness: 0.55, clearcoat: 0.25, clearcoatRoughness: 0.4 }, true);
+    const pullM = K.mat('s5_pull', { color: 0xc6cad4, metalness: 1, roughness: 0.38 });
+    const kickM = K.mat('s5_kick', { color: 0x2f1a52, roughness: 0.7 });
+    const cap = TXT.roundedBox(Wd + 0.1, 0.035, CELL[2] + 0.11, 0.012, capM); cap.position.set(0, BASE - 0.018, 0.035); cap.castShadow = cap.receiveShadow = true; wall.add(cap);
+    const zf = (CELL[2] + 0.03) / 2, nD = 4, dw = (Wd + 0.02) / nD;
+    for (let i = 0; i < nD; i++) {
+      const d = TXT.roundedBox(dw - 0.016, BASE - 0.17, 0.02, 0.008, doorM); d.position.set(-Wd / 2 + dw * (i + 0.5), 0.09 + (BASE - 0.17) / 2 + 0.01, zf + 0.008); d.castShadow = d.receiveShadow = true; wall.add(d);
+      const px = -Wd / 2 + dw * (i + 0.5) + (i % 2 ? -1 : 1) * (dw / 2 - 0.06);
+      const pull = TXT.roundedBox(0.012, 0.1, 0.022, 0.006, pullM); pull.position.set(px, BASE - 0.15, zf + 0.03); pull.castShadow = true; wall.add(pull);
+    }
+    const kick = TXT.roundedBox(Wd - 0.02, 0.07, 0.02, 0.006, kickM); kick.position.set(0, 0.035, zf - 0.02); wall.add(kick);
+  }
+
+  /* the target: the empty mailbox the teacher reaches into, near end, upper middle */
+  const REACH = [COLS - 1, 7];
+
+  /* WHICH MAILBOXES HOLD WHAT, seeded: twenty amber, some plain memos, the rest empty. The reached cell stays empty. */
+  const RG = CH.rng(CH.SEED + 505);
+  const cells = []; for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) cells.push([c, r]);
+  const key = (c) => c[0] + ',' + c[1];
+  const pool = cells.filter((c) => !(c[0] === REACH[0] && c[1] === REACH[1]) && !(c[0] >= COLS - 1 && c[1] <= 9) && !(c[0] === COLS - 2 && c[1] >= 6 && c[1] <= 8));
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(RG() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  const amberSet = new Set(pool.slice(0, FIG.staff_policy_of_100).map(key));
+  const memoSet = new Set(pool.slice(FIG.staff_policy_of_100, FIG.staff_policy_of_100).map(key));
+
+  /* A SHEET IN ITS SLOT: lying on the cell floor with a soft curl, its back edge lifting against the back panel and one front
+   * corner turned out over the lip, a soft contact shadow under it. Policy sheets are the accent with a faint glow of their own;
+   * memos are small folded white slips lying wholly inside, flat and set back. */
+  const amberM = new THREE.MeshPhysicalMaterial({ color: 0xffa424, roughness: 0.8, metalness: 0, sheen: 0.3, sheenColor: 0xffb060, emissive: CH.AMBER, emissiveIntensity: 0.07, side: THREE.DoubleSide });
+  const memoM = new THREE.MeshPhysicalMaterial({ color: 0xf4efff, roughness: 0.9, metalness: 0, sheen: 0.4, sheenColor: 0xe8e0ff, side: THREE.DoubleSide });
+  const shC = document.createElement('canvas'); shC.width = shC.height = 64; { const g = shC.getContext('2d'), gr = g.createRadialGradient(32, 32, 4, 32, 32, 32);
+    gr.addColorStop(0, 'rgb(200,200,200)'); gr.addColorStop(0.6, 'rgb(110,110,110)'); gr.addColorStop(1, 'rgb(0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); }
+  const shM = new THREE.MeshBasicMaterial({ color: 0x1a0c30, alphaMap: new THREE.CanvasTexture(shC), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -4 });
+  function sheet(mat, wdt, len, out, lift, corner, skew) {
+    const geo = new THREE.PlaneGeometry(wdt, len, 8, 20); geo.rotateX(-Math.PI / 2);
+    const pos = geo.attributes.position, zFront = CELL[2] / 2 - 0.006, zBack = -CELL[2] / 2 + 0.016;
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i), u = (x / wdt) + 0.5, v = (pos.getZ(i) / len) + 0.5;      /* v 0 at the back, 1 at the front */
+      let z = zBack + v * len + out - (len - (zFront - zBack));                        /* the front edge sits `out` past the lip */
+      let y = 0.0016 + Math.sin(u * Math.PI) * 0.003;                                  /* a soft lengthwise curl */
+      if (z < zBack + 0.03) y += Math.pow((zBack + 0.03 - z) / 0.03, 2) * lift;       /* the back edge riding up the back panel */
+      const cd = Math.max(0, (v - 0.75) / 0.25) * Math.max(0, (u - 0.6) / 0.4);       /* one front corner turned out and up */
+      y += cd * cd * corner; z += cd * corner * 0.6;
+      pos.setXYZ(i, x + skew * v * 0.01, y, Math.max(zBack - 0.002, z));
+    }
+    geo.computeVertexNormals();
+    const m = new THREE.Mesh(geo, mat); m.castShadow = true; m.receiveShadow = true; return m;
+  }
+  /* A LETTER FOLDED IN THIRDS standing in its slot, leaning back a little, its creases zigzagging, its lower corner just over
+   * the lip: the way a policy lands in a staff mailbox, face out so it reads from the corridor. */
+  function folded(mat, wdt, hgt, lean, zig) {
+    const geo = new THREE.PlaneGeometry(wdt, hgt, 10, 18), pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i), y = pos.getY(i) + hgt / 2, t = y / hgt * 3, ph = t - Math.floor(t);
+      const z = (Math.floor(t) % 2 ? 1 - ph : ph) * zig + Math.sin((x / wdt + 0.5) * Math.PI) * 0.002;
+      pos.setXYZ(i, x, y, z);
+    }
+    geo.computeVertexNormals();
+    const m = new THREE.Mesh(geo, mat); m.rotation.x = -lean; m.castShadow = true; m.receiveShadow = true; return m;
+  }
+  /* A SHEET OF PAPER IN ITS SLOT: one thin page lying on the cell floor from just past the lip, bending through a small radius
+   * where floor meets back wall and tipping up against the back, its top edge curling forward and its width bowed, a soft
+   * contact shadow under it. */
+  const zBk = -CELL[2] / 2 + 0.016;
+  function paper(mat, wdt, out, up, seed) {
+    const zF = CELL[2] / 2 + out, rb = 0.018, Lf = zF - (zBk + rb), Lb = rb * Math.PI / 2, L = Lf + Lb + up;
+    const geo = new THREE.PlaneGeometry(wdt, L, 8, 40), pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i), u = x / wdt + 0.5, sl = (0.5 - pos.getY(i) / L) * L;   /* sl: distance along the page from the front edge */
+      const bow = Math.sin(u * Math.PI) * 0.0022;
+      let y, z;
+      if (sl <= Lf) { z = zF - sl; y = 0.0012 + bow * 0.6 + (sl < 0.02 ? Math.pow(1 - sl / 0.02, 2) * 0.004 * (u > 0.7 ? (u - 0.7) / 0.3 : 0) : 0); }
+      else if (sl <= Lf + Lb) { const th = (sl - Lf) / rb; z = zBk + rb - rb * Math.sin(th); y = 0.0012 + rb - rb * Math.cos(th); }
+      else { const h = sl - Lf - Lb; z = zBk + 0.0004 + bow; y = 0.0012 + rb + h; if (h > up - 0.016) z += Math.pow((h - up + 0.016) / 0.016, 2) * 0.007; }
+      pos.setXYZ(i, x + Math.sin(seed * 9 + sl * 20) * 0.0008, y, z);
+    }
+    geo.computeVertexNormals();
+    const m = new THREE.Mesh(geo, mat); m.castShadow = true; m.receiveShadow = true; return m;
+  }
+  /* THE CORNER WHERE BACK WALL MEETS FLOOR, darkened in every cell so the back reads as a recess rather than a card */
+  {
+    const cC = document.createElement('canvas'); cC.width = 4; cC.height = 64; const g = cC.getContext('2d'), gr = g.createLinearGradient(0, 0, 0, 64);
+    gr.addColorStop(0, 'rgb(0,0,0)'); gr.addColorStop(0.6, 'rgb(90,90,90)'); gr.addColorStop(1, 'rgb(205,205,205)'); g.fillStyle = gr; g.fillRect(0, 0, 4, 64);
+    const cM = new THREE.MeshBasicMaterial({ color: 0x160a2a, alphaMap: new THREE.CanvasTexture(cC), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3 });
+    const gB = new THREE.PlaneGeometry(CELL[0] - 0.014, 0.05), gFl = new THREE.PlaneGeometry(CELL[0] - 0.014, 0.06); gFl.rotateX(-Math.PI / 2);
+    { const uv = gFl.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setY(i, 1 - uv.getY(i)); }
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      const p = wall.userData.cell(c, r);
+      const bw = new THREE.Mesh(gB, cM); bw.position.set(p[0], p[1] + 0.025, -CELL[2] / 2 + 0.0145); wall.add(bw);
+      const fl = new THREE.Mesh(gFl, cM); fl.position.set(p[0], p[1] + 0.0011, -CELL[2] / 2 + 0.014 + 0.03); wall.add(fl);
+    }
+  }
+  let amberDrawn = 0, memoDrawn = 0;
+  cells.forEach((c) => {
+    const p = wall.userData.cell(c[0], c[1]), k = key(c);
+    if (amberSet.has(k)) {
+      const g = new THREE.Group(); g.position.set(p[0] + (RG() - 0.5) * 0.03, p[1], 0); g.rotation.y = (RG() - 0.5) * 0.05;
+      const s = paper(amberM, 0.216, 0.008 + RG() * 0.01, 0.06 + RG() * 0.012, RG()); s.userData.policy = true; g.add(s);
+      const sh = new THREE.Mesh(new THREE.PlaneGeometry(0.25, 0.3), shM); sh.rotation.x = -Math.PI / 2; sh.position.set(0.006, 0.0006, 0.0); g.add(sh);
+      wall.add(g); amberDrawn++;
+    } else if (memoSet.has(k)) {
+      const g = new THREE.Group(); g.position.set(p[0] + (RG() - 0.5) * 0.08, p[1], 0); g.rotation.y = (RG() - 0.5) * 0.12;
+      const s = paper(memoM, 0.1 + RG() * 0.04, -0.12 - RG() * 0.03, 0.035 + RG() * 0.01, RG()); s.userData.memo = true; g.add(s);
+      const sh = new THREE.Mesh(new THREE.PlaneGeometry(0.15, 0.14), shM); sh.rotation.x = -Math.PI / 2; sh.position.set(0, 0.0006, -0.07); g.add(sh);
+      wall.add(g); memoDrawn++;
+    }
+  });
+  let policyMeshes = 0; wall.traverse((o) => { if (o.userData && o.userData.policy) policyMeshes++; });
+  if (amberDrawn !== FIG.staff_policy_of_100 || policyMeshes !== FIG.staff_policy_of_100) throw new Error('drew ' + amberDrawn + ' amber sheets, not ' + FIG.staff_policy_of_100);
+  if (amberDrawn + memoDrawn >= FIG.per_hundred) throw new Error('no empty mailbox left');
+
+  /* THE TEACHER at the near end, turned to the wall, reaching into the empty mailbox */
+  wall.updateMatrixWorld(true);
+  const tc = wall.userData.cell(REACH[0], REACH[1]);
+  const target = new THREE.Vector3(tc[0] + 0.02, tc[1] + 0.045, 0.06).applyMatrix4(wall.matrixWorld);
+  const pPos = new THREE.Vector3().copy(new THREE.Vector3(1.7, 0, 0.36).applyMatrix4(wall.matrixWorld));
+  pPos.y = 0;
+  const face = Math.atan2(target.x - pPos.x, target.z - pPos.z);
+  const toLocal = (v) => { const d = v.clone().sub(pPos); return d.applyAxisAngle(new THREE.Vector3(0, 1, 0), -face); };
+  const grip = toLocal(target);
+  const teacher = K.make('person', { seed: 14, role: 'resident', pose: 'stand', build: 'female', height: 1.68, shirt: 0x5b6fd6, trousers: 0x2c2450, hands: [[grip.x, grip.y, grip.z], null], headPitch: -0.12 });
+  teacher.position.copy(pPos); teacher.rotation.y = face;
+  CH.put(teacher, true);
+
+  /* THE CAMERA: eye height, a little left of centre, the wall at a slight angle */
+  const FROM = [-0.7, 1.5, 6.4];
+  const mid = new THREE.Vector3(0, BASE + Hd / 2, 0).applyMatrix4(wall.matrixWorld);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [mid.x, mid.y, mid.z], 500, 860, 34);
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOK });
+
+  /* THE KEY, soft office light from the upper left, so the shelves shade each mailbox's floor */
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), Object.assign(CH.rigOpts([0, 1, WZ], { distance: 12, shadowFar: 30, normalBias: 0.004 }), { light: { az: -38, el: 34 } }));
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.7, height: 280 });
+  CH.seat(cx, { a: 0.55, fade: 180 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 70 }));
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-15, frame 2 of 9 (rework). THE GYM AT LAST PERIOD: a school gym in late afternoon sun, seen down a
+     longer lens from the bleachers. A hundred kit student desks stand in ten tidy rows across the varnished maple court,
+     one desk for each leader in a hundred, the block running from the far wall down behind the headline. Eighty six laptops
+     stand open with a lit screen and fourteen are closed, chosen by the shared seeded shuffle (frame 4 lights the same
+     desks). A custodian with a dust mop stands at the block's near corner for scale. Nothing here is a written rule, so
+     nothing carries the amber accent. The type sits in the bottom band over the near rows. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:900px; width:936px; text-align:left">86% of leaders reported teachers using AI</h1>
+<p class="dek" data-follow="22" style="left:74px; width:900px">Texas school and district leaders, fall 2025, per Texas 2036. Drawn to illustrate, one desk for each leader in a hundred. A lit laptop marks reported teacher use.</p>
+<script>window.FIG = {"per_hundred": 100, "teacher_use_of_100": 86};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "02 / 09", src: "c2", fit: { min: 72, max: 88, maxLines: 2 } });
+  const P = CH.P;
+
+  /* ---- THE TYPE SITS LOW: hook and dek as one block whose foot clears the furniture band ---- */
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  const FOOT = 1196;
+  hook.style.top = '0px'; CH.follow();
+  const blockH = dek.getBoundingClientRect().bottom - hook.getBoundingClientRect().top;
+  const TYPE_TOP = Math.round(FOOT - blockH);
+  hook.style.top = TYPE_TOP + 'px'; CH.follow();
+
+  /* ---- HONESTY: every count drawn is read from window.FIG here ---- */
+  const FIG = window.FIG;
+  if (Object.keys(FIG).sort().join(',') !== 'per_hundred,teacher_use_of_100') throw new Error('frame 2 expects exactly per_hundred and teacher_use_of_100, got ' + JSON.stringify(FIG));
+  const N_DESK = FIG.per_hundred, N_LIT = FIG.teacher_use_of_100, COLS = 10, ROWS = N_DESK / COLS;
+  if (!Number.isInteger(ROWS) || ROWS !== 10) throw new Error('the brief lays the desks out 10 by 10, FIG gives ' + N_DESK);
+  if (!(N_LIT > 0 && N_LIT < N_DESK)) throw new Error('lit count out of range: ' + N_LIT);
+  /* the shared shuffle (frames 2 and 4): Fisher Yates over 0..99 from the top, CH.rng(20261115), first N_LIT are lit */
+  const order = Array.from({ length: N_DESK }, (_, i) => i), rnd = CH.rng(20261115);
+  for (let i = N_DESK - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = order[i]; order[i] = order[j]; order[j] = t; }
+  const litSet = new Set(order.slice(0, N_LIT));
+
+  /* ---- THE STAGE: an interior, so no fog ---- */
+  const FOV = 26;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.5, far: 300, fog: 0.0 });
+  R.scene.fog = null;
+
+  /* ---- THE HUNDRED DESKS: the kit's rows with no lids; each laptop is built below, open and lit or closed ---- */
+  const PX = 1.15, PZ = 1.9, FZ = 0;
+  const rows = K.make('student_desk_rows', { count: N_DESK, cols: COLS, pitch: [PX, PZ], detail: 'low', lids: 'none', footprint: true, top: 0x6f5a8e, shell: 0x2f52c8, tube: 0x262a40 });
+  rows.position.set(0, 0, FZ); TXT.add(R, rows);
+  const units = rows.userData.units;
+  if (rows.userData.drawn !== N_DESK || units.length !== N_DESK) throw new Error('drew ' + rows.userData.drawn + ' desks, FIG says ' + N_DESK);
+  /* index i -> column i % 10, row floor(i / 10), row 0 nearest the camera (+z): the kit's own order, checked */
+  units.forEach((u, i) => { const ex = (i % COLS - (COLS - 1) / 2) * PX, ez = ((ROWS - 1) / 2 - Math.floor(i / COLS)) * PZ;
+    if (Math.abs(u[0] - ex) > 0.01 || Math.abs(u[1] - ez) > 0.01) throw new Error('desk ' + i + ' is not at column ' + (i % COLS) + ', row ' + Math.floor(i / COLS)); });
+
+  /* ---- THE CAMERA: a longer lens from high in the bleachers, about 35 degrees down, the block filling the frame from
+   * just under the kicker down behind the headline. Elevation and distance are searched so all hundred desks stay in. ---- */
+  const C = [0, 0.5, FZ], YAW = 3 * Math.PI / 180, TOPY = 150;
+  const place = (el, dist, yc, xc = 540) => { const e = el * Math.PI / 180, from = [C[0] + dist * Math.cos(e) * Math.sin(YAW), dist * Math.sin(e), C[2] + dist * Math.cos(e) * Math.cos(YAW)];
+    const look = CH.aim(THREE, R, TXT, from, C, xc, yc, FOV); TXT.frame(R, { fov: FOV, from, look }); return CH.rectOf(THREE, R, rows, 0); };
+  let best = null;
+  for (let el = 14; el <= 50; el += 1) {   /* the LOWEST eye that keeps all hundred desks in and the block deep enough */
+    let lo = 8, hi = 120;
+    for (let k = 0; k < 30; k++) { const mid = (lo + hi) / 2, r = place(el, mid, 640); if (r[2] > 990) lo = mid; else hi = mid; }
+    const r = place(el, hi, 640);
+    if (r[3] >= 800) { best = { el, dist: hi }; break; }
+  }
+  if (!best) throw new Error('no camera fits the hundred desks into the frame');
+  let yc = 640, xc = 540, fr;
+  for (let k = 0; k < 6; k++) { fr = place(best.el, best.dist, yc, xc); yc += TOPY - fr[1]; xc += 540 - (fr[0] + fr[2] / 2); }
+  fr = place(best.el, best.dist, yc, xc);
+  if (fr[0] < 8 || fr[0] + fr[2] > 1072) throw new Error('a desk falls out of the frame: ' + JSON.stringify(fr));
+  if (fr[3] < 0.5 * CH.H) throw new Error('the desk field fills ' + Math.round(fr[3]) + ' px of ' + CH.H + ', under half');
+  R.camera.updateMatrixWorld(true);
+  const floorAt = (sx, sy) => { const ray = new THREE.Raycaster(); ray.setFromCamera(new THREE.Vector2(sx / CH.W * 2 - 1, 1 - sy / CH.H * 2), R.camera);
+    const hit = new THREE.Vector3(); if (!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hit)) throw new Error('no floor at ' + sx + ',' + sy); return hit; };
+
+  /* ---- THE GYM: its far wall stands where the floor meets the frame at y 150, so the kicker sits on plain painted wall
+   * and the wall's foot runs under it, never through it ---- */
+  const farRowZ = FZ - (ROWS - 1) / 2 * PZ - 0.5, wallFoot = farRowZ - 1.0;
+  { const yl = CH.project(THREE, R, [-14, 0, wallFoot])[1], yr = CH.project(THREE, R, [14, 0, wallFoot])[1];
+    if (Math.min(yl, yr) < 138) throw new Error('the wall foot would cross the kicker band: y ' + Math.round(yl) + ' / ' + Math.round(yr)); }
+  const GW = 34, GH = 9, GD = Math.max(20, -2 * wallFoot), WALLZ = -GD / 2 + 0.1, CZ = FZ;
+  TXT.interior(R, { w: GW, d: GD, h: GH, floor: 'concrete', wall: 0x3d5cc4, trim: 0x1f2a66, window: null, ceiling: false, light: 0.7 });
+
+  /* THE COURT: varnished maple boards along the length with grain, the lines painted on top. It covers the floor from
+   * the far wall to under the camera, standing a hair proud of the room's ground so the two never fight. */
+  const nearZ = floorAt(540, 1350).z + 2, CW = 30, CLEN_M = nearZ - WALLZ, CZM = (nearZ + WALLZ) / 2;
+  const PPM = 2048 / CW, TW = 2048, TH = Math.min(8192, Math.round(CLEN_M * PPM));
+  const floorTex = CH.canvasTex(THREE, TW, TH, (g, w, h) => {
+    const r = CH.rng(7711), bw = 0.057 * PPM, sy = h / (CLEN_M * PPM);
+    g.fillStyle = '#e0b585'; g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += bw) {
+      const k = r(), c = k < 0.3 ? '#e1b789' : k < 0.6 ? '#dfb486' : k < 0.85 ? '#e3ba8d' : '#ddb183';   /* boards differ by a breath: at a grazing angle a strong board-to-board step reads as streaks */
+      g.fillStyle = c; g.fillRect(x, 0, bw + 0.5, h);
+      /* grain: soft wavy lines along the board, never across it */
+      for (let s = 0; s < 2; s++) { g.strokeStyle = 'rgba(150,95,55,' + (0.03 + r() * 0.03).toFixed(3) + ')'; g.lineWidth = 0.6; g.beginPath();
+        const ox = x + r() * bw, ph = r() * 6, amp = 0.3 + r() * 0.4; for (let y = 0; y <= h; y += 24) g.lineTo(ox + Math.sin(y / 90 + ph) * amp, y); g.stroke(); }
+      g.fillStyle = 'rgba(110,70,45,0.05)'; g.fillRect(x, 0, 0.7, h);   /* seam */
+    }
+    /* metres to pixels: canvas x from the west edge, canvas y from the far wall; z is world z */
+    const X = (m) => (m + CW / 2) * PPM, Y = (z) => (z - WALLZ) * PPM * sy, CL = 15.24, CLEN = 22.6;
+    const blue = '#3554c4', white = '#fbf4ea';
+    const fz = CZ - CLEN / 2, nz = CZ + CLEN / 2;
+    /* the far key painted soft blue; the near key only outlined, since the type sits over it */
+    g.fillStyle = blue; g.globalAlpha = 0.55; g.fillRect(X(-2.44), Y(fz), 4.88 * PPM, 5.79 * PPM * sy); g.globalAlpha = 1;
+    g.strokeStyle = white; g.lineWidth = 0.05 * PPM; g.globalAlpha = 0.8;
+    g.strokeRect(X(-CL / 2), Y(fz), CL * PPM, CLEN * PPM * sy);
+    g.beginPath(); g.moveTo(X(-CL / 2), Y(CZ)); g.lineTo(X(CL / 2), Y(CZ)); g.stroke();
+    g.beginPath(); g.ellipse(X(0), Y(CZ), 1.83 * PPM, 1.83 * PPM * sy, 0, 0, Math.PI * 2); g.stroke();
+    g.strokeRect(X(-2.44), Y(fz), 4.88 * PPM, 5.79 * PPM * sy);
+    g.strokeRect(X(-2.44), Y(nz - 5.79), 4.88 * PPM, 5.79 * PPM * sy);
+    g.globalAlpha = 1;
+    /* the out of bounds apron a cooler stain */
+    g.fillStyle = 'rgba(70,90,190,0.22)'; g.fillRect(0, 0, X(-CL / 2) - 0.6 * PPM, h); g.fillRect(X(CL / 2) + 0.6 * PPM, 0, w, h);
+  });
+  floorTex.anisotropy = 16;
+  const court = new THREE.Mesh(new THREE.PlaneGeometry(CW, CLEN_M), new THREE.MeshPhysicalMaterial({ map: floorTex, roughness: 0.38, clearcoat: 0.8, clearcoatRoughness: 0.12, envMapIntensity: 0.8 }));
+  court.rotation.x = -Math.PI / 2; court.position.set(0, 0.02, CZM); court.receiveShadow = true; R.scene.add(court);
+
+  /* THE FAR WALL'S DRESS: tall padded mats (their tops above the frame, so no edge reaches the kicker), the far door */
+  const pad = K.mat('gym_pad', { color: 0x22307a, roughness: 0.55, clearcoat: 0.3, clearcoatRoughness: 0.5 }, true);
+  const DX = -1.2;
+  for (let x = -GW / 2 + 0.9; x < GW / 2 - 0.8; x += 1.22) {
+    if (Math.abs(x - DX) < 1.7) continue;
+    const m = TXT.roundedBox(1.18, 3.4, 0.07, 0.025, pad); m.position.set(x, 0.1 + 1.7, WALLZ + 0.04); m.receiveShadow = true; R.scene.add(m);
+  }
+  const navySteel = new THREE.MeshStandardMaterial({ color: 0x27326e, metalness: 0.5, roughness: 0.4 });
+  const glassM = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xfff4e6).multiplyScalar(2.0) });
+  const doorG = new THREE.Group();
+  const hall = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 2.4), new THREE.MeshBasicMaterial({ color: new THREE.Color(0xfff1e2).multiplyScalar(1.6) }));
+  hall.position.set(DX, 1.2, WALLZ + 0.01); doorG.add(hall);
+  const jamb = TXT.roundedBox(0.1, 2.5, 0.16, 0.02, navySteel); jamb.position.set(DX - 1.05, 1.25, WALLZ + 0.06); doorG.add(jamb);
+  const jamb2 = jamb.clone(); jamb2.position.x = DX + 1.05; doorG.add(jamb2);
+  const head = TXT.roundedBox(2.2, 0.12, 0.16, 0.02, navySteel); head.position.set(DX, 2.46, WALLZ + 0.06); doorG.add(head);
+  const leafM = K.mat('gym_door', { color: 0x2c3c9a, roughness: 0.45, metalness: 0.3, clearcoat: 0.4 }, true);
+  const leaf2 = TXT.roundedBox(0.98, 2.36, 0.05, 0.015, leafM); leaf2.position.set(DX - 0.5, 1.2, WALLZ + 0.04); doorG.add(leaf2);
+  const win = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.7), glassM); win.position.set(DX - 0.5, 1.6, WALLZ + 0.07); doorG.add(win);
+  TXT.add(R, doorG);
+
+  /* ---- THE LAPTOPS: an open aluminium laptop with a lit screen on each of the N_LIT shuffled desks, a closed one with a
+   * near black lid and a bright aluminium rim on the rest ---- */
+  const probe = K.make('student_desk', { detail: 'low' }), A = probe.userData.laptopAt, ANG = (108 - 90) * Math.PI / 180;
+  const alu = new THREE.MeshPhysicalMaterial({ color: 0xc3c9d8, metalness: 0.9, roughness: 0.28, clearcoat: 0.3 });
+  const lidBlack = new THREE.MeshPhysicalMaterial({ color: 0x07081a, metalness: 0.2, roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.08 });
+  const litM = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xc8f4ff).multiplyScalar(3.2), toneMapped: false });
+  const baseG = TXT.roundedBox(0.312, 0.0125, 0.221, 0.004), lidG = TXT.roundedBox(0.312, 0.215, 0.006, 0.003);
+  const closedLidG = TXT.roundedBox(0.262, 0.006, 0.172, 0.0025), scrG = new THREE.PlaneGeometry(0.29, 0.19);
+  const N_DARK = N_DESK - N_LIT;
+  const aluBright = new THREE.MeshPhysicalMaterial({ color: 0xeef2fb, metalness: 0.85, roughness: 0.16, clearcoat: 0.6 });
+  const baseI = new THREE.InstancedMesh(baseG, alu, N_LIT), baseClosedI = new THREE.InstancedMesh(TXT.roundedBox(0.312, 0.0125, 0.221, 0.006), aluBright, N_DARK), lidI = new THREE.InstancedMesh(lidG, alu, N_LIT), scrI = new THREE.InstancedMesh(scrG, litM, N_LIT);
+  const closedI = new THREE.InstancedMesh(closedLidG, lidBlack, N_DARK);
+  /* the screen's own light on the desktop in front of it: a small cool glow, never a halo in the air */
+  const glowC = document.createElement('canvas'); glowC.width = glowC.height = 64; { const gx = glowC.getContext('2d'), rg = gx.createRadialGradient(32, 32, 2, 32, 32, 31); rg.addColorStop(0, 'rgba(255,255,255,1)'); rg.addColorStop(1, 'rgba(255,255,255,0)'); gx.fillStyle = rg; gx.fillRect(0, 0, 64, 64); }
+  const spillG = new THREE.PlaneGeometry(0.56, 0.4); spillG.rotateX(-Math.PI / 2);
+  const spillI = new THREE.InstancedMesh(spillG, new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(glowC), color: 0x7fdcff, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false }), N_LIT);
+  const o = new THREE.Object3D(), M = new THREE.Matrix4(), S = new THREE.Matrix4(), L = new THREE.Matrix4();
+  let li = 0, di = 0;
+  units.forEach((u, i) => {
+    const x = u[0] + A[0], y = A[1], z = FZ + u[1] + A[2] + 0.02;
+    o.position.set(x, y + 0.00625, z); o.rotation.set(0, 0, 0); o.updateMatrix();
+    if (litSet.has(i)) {
+      baseI.setMatrixAt(li, o.matrix);
+      o.position.set(x, y + 0.0125, z - 0.11); o.rotation.set(-ANG, 0, 0); o.updateMatrix();
+      L.makeTranslation(0, 0.1075, 0); M.multiplyMatrices(o.matrix, L); lidI.setMatrixAt(li, M);
+      S.makeTranslation(0, 0.1075, 0.0036); M.multiplyMatrices(o.matrix, S); scrI.setMatrixAt(li, M);
+      M.makeTranslation(x, y + 0.016, z + 0.05); spillI.setMatrixAt(li, M); li++;
+    } else {
+      baseClosedI.setMatrixAt(di, o.matrix);
+      o.position.set(x, y + 0.0125 + 0.003, z); o.rotation.set(0, 0, 0); o.updateMatrix(); closedI.setMatrixAt(di, o.matrix); di++;
+    }
+  });
+  if (li !== N_LIT || di !== N_DARK || li + di !== N_DESK) throw new Error('lit ' + li + ' closed ' + di + ' disagree with FIG ' + JSON.stringify(FIG));
+  [baseI, baseClosedI, lidI, closedI].forEach(m => { m.instanceMatrix.needsUpdate = true; m.castShadow = true; m.receiveShadow = true; R.scene.add(m); });
+  [scrI, spillI].forEach(m => { m.instanceMatrix.needsUpdate = true; m.castShadow = false; m.receiveShadow = false; R.scene.add(m); });
+  window.__frame2 = { desks: units.length, lit: li, closed: di };
+
+  /* ---- THE CUSTODIAN, a kit person with a dust mop at the block's near right corner, in the sun, for scale ---- */
+  const TYPE_TOP_PAD = TYPE_TOP - 16;
+  let manAt = null;
+  /* in the aisle in front of the nearest row whose aisle clears the type, at the right hand column */
+  for (let row = 0; row < ROWS - 1 && !manAt; row++) {
+    const u = units[row * COLS], p = [u[0] - 1.0, 0, FZ + u[1] + 0.2];
+    const foot = CH.project(THREE, R, p);
+    if (foot[1] < TYPE_TOP_PAD && foot[0] > 110) manAt = p;
+  }
+  if (!manAt) throw new Error('no place for the custodian clear of the type');
+  const man = new THREE.Group();
+  const cust = K.make('person', { seed: 4, role: 'worker', pose: 'stand', vest: false, hat: 'none', shirt: 0xe9ecfb, trousers: 0x26285a, build: 'male',
+    hands: [[0.16, 1.02, 0.3], [0.0, 0.86, 0.42]] });
+  man.add(cust);
+  const handleM = new THREE.MeshStandardMaterial({ color: 0xdfe2ec, metalness: 0.8, roughness: 0.3 });
+  K.bar([0.1, 1.2, 0.2], [0.0, 0.05, 0.95], 0.013, handleM, 10, man);
+  const mopFrame = TXT.roundedBox(0.9, 0.025, 0.05, 0.01, new THREE.MeshStandardMaterial({ color: 0x3a3f5a, metalness: 0.6, roughness: 0.4 })); mopFrame.position.set(0, 0.06, 0.96); man.add(mopFrame);
+  const fringe = TXT.roundedBox(0.94, 0.05, 0.14, 0.02, new THREE.MeshStandardMaterial({ color: 0x4a3c8e, roughness: 0.95 })); fringe.position.set(0, 0.025, 0.96); man.add(fringe);
+  man.position.set(manAt[0], 0.02, manAt[2]); man.rotation.y = 0.55;
+  TXT.add(R, man); TXT.contact(R, cust);
+
+  /* ---- THE LIGHT: low afternoon sun from the west; a light violet fill; the gym's own environment in the tone ---- */
+  CH.KEY_SCALE = 1.4;
+  TXT.deckRig(R, CH.rigSpec(W, 13, 4096), { target: [0, 0, FZ], distance: 40, shadowFar: 90, normalBias: 0.05, light: { az: -70, el: 30 } });
+  CH.unacne(R, 0.05);
+  /* the key's own pool on the custodian, on the key's bearing, so his edge catches the sun at feed size */
+  CH.pool(THREE, TXT, R, [manAt[0], 1.0, manAt[2]], { radius: 1.1, i: 2.2, color: 0xffe6c8 });
+  const env = new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.SphereGeometry(30, 32, 16), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+    uniforms: { a: { value: new THREE.Color(0x3f62d0) }, b: { value: new THREE.Color(0x8a74d8) }, c: { value: new THREE.Color(0xe9b38f) } },
+    vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+    fragmentShader: 'uniform vec3 a,b,c; varying vec3 vP; void main(){ float y = vP.y; vec3 col = y > 0.0 ? mix(b, a, smoothstep(0.0,0.8,y)) : mix(b, c, smoothstep(0.0,-0.5,y)); gl_FragColor = vec4(col,1.0); }' })));
+  const ep = (w, h, col, i, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(col).multiplyScalar(i), side: THREE.DoubleSide })); m.position.set(...p); m.lookAt(0, 0, 0); env.add(m); };
+  ep(20, 5, 0xfff0dc, 4.5, [-14, 9, 0]);
+  ep(4, 4, 0xfff1e2, 2.0, [-1, 2, -14]);
+  ep(24, 12, 0x6a7fe8, 1.0, [12, 4, 4]);
+  const pm = new THREE.PMREMGenerator(R.renderer); R.scene.environment = pm.fromScene(env, 0.03).texture; pm.dispose();
+  R.scene.environmentIntensity = 0.6;
+  R.scene.add(new THREE.HemisphereLight(0x9aa6ff, 0xf0b08a, 0.28));
+
+  console.log('frame2', JSON.stringify({ cam: best, rect: fr.map(Math.round), GD: +GD.toFixed(2), typeTop: TYPE_TOP, man: manAt }), JSON.stringify(window.__frame2));
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* ---- THE SEAT: the near rows go to the tone's deep hue under the type, and the footer's wash ---- */
+  const T = TXLOOK.palette('people');
+  const low = cx.createLinearGradient(0, TYPE_TOP - 160, 0, 1350);
+  low.addColorStop(0, TXLOOK.rgba(T.low, 0)); low.addColorStop(0.25, TXLOOK.rgba(T.low, 0.42)); low.addColorStop(0.7, TXLOOK.rgba(T.low, 0.62)); low.addColorStop(1, TXLOOK.rgba(T.low, 0.74));
+  cx.fillStyle = low; cx.fillRect(0, TYPE_TOP - 160, 1080, 1350);
+  const top = cx.createLinearGradient(0, 0, 0, 200); top.addColorStop(0, TXLOOK.rgba(T.low, 0.4)); top.addColorStop(1, TXLOOK.rgba(T.low, 0));
+  cx.fillStyle = top; cx.fillRect(0, 0, 1080, 200);
+  CH.seat(cx, { a: 0.5, fade: 220 });
+  CH.seat(cx, { sel: '.kick', a: 0.6, fade: 140 });
+  TXLOOK.footWash(cx, { a: 0.4, height: 200 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
