@@ -20,6 +20,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { assemble, familyOf, pickItems, splitPack, splitRecord, queryOf, wantsBreadth, pinnedIds, strangeness }
   from "../workers/ask/retrieve.js";
@@ -40,12 +41,30 @@ const head = (t) => console.log("\n" + t);
 
 // Built now from the record, never read from a file somebody last touched months ago. Same
 // reason ask_eval.mjs shells out for its cases: one implementation of what the pack is.
-const { pack: PACK, settled: SETTLED } = JSON.parse(execFileSync(PYTHON,
-  ["-c", "import sys,json; sys.path.insert(0,'scripts/site'); import ask_pack; " +
-         "p=ask_pack.build(); " +
-         "settled=[it['id'] for it in ask_pack.dk.load(ask_pack.LEDGER) " +
-         "if ask_pack.dk.window_state(it,p['generated']) != 'open']; " +
-         "json.dump(dict(pack=p,settled=settled), sys.stdout)"],
+const { pack: PACK, settled: SETTLED, growth: GROWTH } = JSON.parse(execFileSync(PYTHON,
+  ["-c", `import sys,json,hashlib
+from pathlib import Path
+from unittest.mock import patch
+sys.path.insert(0,'scripts/site')
+import ask_pack
+p=ask_pack.build()
+items=ask_pack.dk.load(ask_pack.LEDGER)
+settled=[it['id'] for it in items
+         if ask_pack.dk.window_state(it,p['generated']) != 'open']
+pool=sorted([it for it in items if it['id'] in settled],
+            key=lambda it:len(ask_pack.index_line(it,p['generated'])))
+seed=pool[len(pool)//2]
+by=max(p['index_headroom']['named']+1,1)
+grown=items+[dict(seed,id=f'tx-7000-{k:04d}') for k in range(by)]
+load=ask_pack.dk.load
+with patch.object(ask_pack.dk,'load',side_effect=lambda path:
+                  grown if Path(path)==ask_pack.LEDGER else load(path)):
+    gp=ask_pack.build(p['generated'])
+expected={it['id']:hashlib.sha256(ask_pack.item_prose(it,p['generated']).encode()).hexdigest()
+          for it in grown}
+json.dump(dict(pack=p,settled=settled,growth=dict(pack=gp,added=by,expected=expected,
+    order=[it['id'] for it in grown],settled=settled+[it['id'] for it in grown[len(items):]])),
+    sys.stdout)`],
   { encoding: "utf-8", maxBuffer: 64 << 20 }));
 const GOLD = JSON.parse(execFileSync(PYTHON, ["scripts/site/ask_eval.py"],
   { encoding: "utf-8", maxBuffer: 32 << 20 }));
@@ -148,16 +167,70 @@ ok("a pack without the mark refuses to split rather than guessing",
   splitPack("no mark here at all").items.length === 0);
 
 // ---------------------------------------------------------------- the index is complete
-head("B. the model always knows what exists, whatever the retriever thinks");
-ok("every decision has a line in the index",
-  ITEMS_RAW.every((it) => PACK.index.includes(`[[${it.id}]]`)),
-  JSON.stringify(ITEMS_RAW.filter((it) => !PACK.index.includes(`[[${it.id}]]`))
-    .map((i) => i.id).slice(0, 3)));
+head("B. the index accounts for every decision, whatever the retriever thinks");
+function indexCoverage(pack, order, settled) {
+  const n = pack.index_unlisted;
+  if (!Number.isInteger(n) || n < 0 || n > settled.length) return false;
+  const omitted = new Set(settled.slice(0, n));
+  const listed = [...pack.index.matchAll(/\[\[(tx-[a-z0-9-]+)\]\]$/gm)].map((m) => m[1]);
+  const notice = `${n} OF THE OLDEST SETTLED DECISIONS ARE NOT LISTED BELOW, out of ${order.length}.`;
+  return JSON.stringify(listed) === JSON.stringify(order.filter((id) => !omitted.has(id)))
+    && (n ? pack.index.includes(notice) : !pack.index.includes("ARE NOT LISTED BELOW"));
+}
+const recordOrder = ITEMS_RAW.map((it) => it.id);
+ok("every decision has a line or is counted in the exact oldest-settled disclosure",
+  indexCoverage(PACK, recordOrder, SETTLED), `${PACK.index_unlisted} unlisted`);
 const nonsenseAsm = assemble(PACK, [{ role: "user", content: "sourdough starter recipe" }], {});
-ok("...even when nothing at all is retrieved",
-  ITEMS_RAW.every((it) => nonsenseAsm.blocks.some((b) => b.text.includes(`[[${it.id}]]`))));
+ok("the entire index and its disclosure reach a question that retrieves nothing",
+  nonsenseAsm.blocks.some((b) => b.text.includes(PACK.index)));
 ok("and a question matching nothing sends no bodies rather than three random ones",
   nonsenseAsm.mode === "index only", nonsenseAsm.mode);
+
+// Replay the next naming boundary through the real builder and the real Worker parser.
+// Growing only index_fit misses admission walls in the self-test or in a downstream consumer.
+const growthPack = GROWTH.pack;
+const growthItems = splitRecord(growthPack).items;
+const growthTx = growthItems.filter((it) => familyOf(it.id) === "tx");
+ok("ordinary settled growth passes the naming boundary with a bounded disclosed index",
+  growthPack.index_headroom.named === -1 && growthPack.index_unlisted > 0
+  && growthPack.index.length <= 60000
+  && indexCoverage(growthPack, GROWTH.order, GROWTH.settled),
+  `${GROWTH.added} added, ${growthPack.index_unlisted} unlisted`);
+ok("the Worker receives every grown decision exactly once with its complete unchanged body",
+  growthTx.length === GROWTH.order.length
+  && new Set(growthTx.map((it) => it.id)).size === GROWTH.order.length
+  && growthTx.every((it) => createHash("sha256").update(it.text).digest("hex")
+    === GROWTH.expected[it.id]));
+ok("the grown core still moves only the oldest settled decisions in record order",
+  growthPack.pack.length <= 420000
+  && partitionInOrder(growthPack, GROWTH.order, GROWTH.settled));
+const omittedId = GROWTH.settled[0];
+const omittedBody = growthItems.find((it) => it.id === omittedId);
+const retrievedOmission = assemble(growthPack,
+  [{ role: "user", content: `Tell me about ${omittedId}` }], {});
+ok("an unlisted decision remains retrievable and citable with its exact sourced facts",
+  !growthPack.index.includes(`[[${omittedId}]]`)
+  && retrievedOmission.chosen.includes(omittedId)
+  && retrievedOmission.blocks.some((b) => b.text.includes(omittedBody.text)));
+ok("the unlisted decision can also be discovered by its title",
+  assemble(growthPack, [{ role: "user", content: omittedBody.title }], {})
+    .chosen.includes(omittedId));
+const growthEmpty = assemble(growthPack,
+  [{ role: "user", content: "sourdough starter recipe" }], {});
+ok("an empty grown retrieval still carries the complete index and exact omission notice",
+  growthEmpty.mode === "index only"
+  && growthEmpty.blocks.some((b) => b.text.includes(growthPack.index)));
+const growthOff = assemble(growthPack, [{ role: "user", content: "anything" }],
+  { ASK_RETRIEVAL: "off" });
+ok("the grown retrieval-off fallback stays bounded and carries the same disclosure",
+  growthOff.blocks[1].text === growthPack.pack + "\n\n" + growthPack.index
+  && growthOff.blocks[1].text.length <= 420000 + 2 + 60000);
+ok("the consumer rejects silent omissions and an incorrect omission count",
+  !indexCoverage({ ...growthPack, index: growthPack.index.replace(
+    /\d+ OF THE OLDEST SETTLED DECISIONS ARE NOT LISTED BELOW, out of \d+\./, "") },
+    GROWTH.order, GROWTH.settled)
+  && !indexCoverage({ ...growthPack, index_unlisted: growthPack.index_unlisted + 1 },
+    GROWTH.order, GROWTH.settled));
 
 // ---------------------------------------------------------------- the prompt's shape
 head("C. three blocks, one breakpoint, and it is in the only place it can be");
