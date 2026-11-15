@@ -2330,9 +2330,57 @@ def self_test() -> int:
 
     print("the index, which is what makes sending a slice safe")
     idx = p["index"]
-    check("every decision has a line in the index",
-          all(f"[[{it['id']}]]" in idx for it in items),
-          str([it["id"] for it in items if f"[[{it['id']}]]" not in idx][:3]))
+
+    def index_problems(record, shown, shortened, unlisted):
+        """Check the published contract at every rung, independently of the fit algorithm.
+
+        Requiring a positive naming horizon stopped a correct build at the next rung. A
+        missing line is safe only with the exact disclosure, complete county counts and a
+        whole retrievable body. Check those properties rather than making headroom a gate.
+        """
+        problems = []
+        rows = [line for line in shown.splitlines()
+                if re.search(r"\[\[tx-[a-z0-9-]+\]\]$", line)]
+        row_ids = [re.search(r"\[\[(tx-[a-z0-9-]+)\]\]$", line)[1] for line in rows]
+        listed = set(row_ids)
+        by_id = {it["id"]: it for it in record}
+        missing = [it["id"] for it in record if it["id"] not in listed]
+        eligible = [it["id"] for it in record
+                    if dk.window_state(it, p["generated"]) != "open"]
+        if len(row_ids) != len(listed) or listed - set(by_id):
+            problems.append("duplicate or unknown decision line")
+        if row_ids != [it["id"] for it in record if it["id"] in listed]:
+            problems.append("listed record order")
+        if (type(unlisted) is not int or unlisted < 0 or len(missing) != unlisted
+                or missing != eligible[:unlisted]):
+            problems.append("unlisted count or oldest settled order")
+        actual_short = 0
+        for ident, line in zip(row_ids, rows):
+            if ident not in by_id:
+                continue
+            it = by_id[ident]
+            if line == index_line(it, p["generated"]):
+                continue
+            if (dk.window_state(it, p["generated"]) == "open"
+                    or line != index_line(it, p["generated"], short=True)):
+                problems.append("changed line or shortened open window")
+            actual_short += 1
+        if type(shortened) is not int or shortened != actual_short:
+            problems.append("shortened count")
+        if (SHORT_LINE_NOTE in shown) != bool(shortened):
+            problems.append("shortened disclosure")
+        if bool(unlisted):
+            if UNLISTED_NOTE.format(n=unlisted, total=len(record)) not in shown:
+                problems.append("exact unlisted disclosure")
+        elif "ARE NOT LISTED BELOW" in shown:
+            problems.append("unexpected unlisted disclosure")
+        if index_manifest(record) not in shown:
+            problems.append("complete county counts")
+        return problems
+
+    check("every decision has its exact line or is counted and disclosed, oldest settled first",
+          not index_problems(items, idx, p["index_shortened"], p["index_unlisted"]),
+          str(index_problems(items, idx, p["index_shortened"], p["index_unlisted"])))
     # THE INDEX CARRIES DECISIONS LINE BY LINE AND ROLLS THE OTHER THREE FAMILIES UP, so this
     # counts what earns its own line rather than what exists. A decision is something a reader
     # hunts one at a time, and its line carries seven fields no rollup could fold together. The
@@ -2341,9 +2389,9 @@ def self_test() -> int:
     # names and ids are exactly what a rollup carries. So decisions get one line each here, and
     # the dossier, county and reservoir families each get one.
     dec_lines = [l for l in idx.splitlines() if l.rstrip().endswith("]]")]
-    check("the index has exactly one line per decision, plus one rolled line per other family",
-          len(dec_lines) == p["families"]["tx"],
-          f'{len(dec_lines)} of {p["families"]["tx"]}')
+    check("listed lines and disclosed omissions account for exactly every decision",
+          len(dec_lines) + p["index_unlisted"] == p["families"]["tx"],
+          f'{len(dec_lines)} listed, {p["index_unlisted"]} unlisted of {p["families"]["tx"]}')
     # THE ROLLUP DID NOT COST CITATION, which is the property that made the change safe rather
     # than merely cheaper. A dossier body sits in `facility_pack`, which the retrieval-off hatch
     # never sends, so a dossier is citable only from the index whenever its body is not
@@ -2549,6 +2597,8 @@ def self_test() -> int:
     _movable = [i for i, it in enumerate(items)
                 if dk.window_state(it, today_) != "open"]
     _pre = p["pack"].split("\n\n" + DECISIONS_MARK + "\n\n", 1)[0].split("\n\n")
+    check("every published body is byte for byte the complete sourced prose",
+          _Counter(blocks) == _Counter(_bodies + _tail + _fac))
 
     def _old_core_shape(bodies):
         """The core as it was assembled before 2026-09-11. Every body, no rungs, no ceiling."""
@@ -2605,6 +2655,10 @@ def self_test() -> int:
     check("every body is still published, in one field or the other",
           len(d_core_ids) + len(d_sib_ids) == len(deep_b) + len(_tail) + len(_fac),
           f"{len(d_core_ids)} + {len(d_sib_ids)} against {len(deep_b) + len(_tail) + len(_fac)}")
+    deep_blocks = [b for field in (d_core, d_sib)
+                   for b in field.split(fence, 1)[1].split("\n\n") if b.strip()]
+    check("growth preserves every complete body, not only its id or its block count",
+          _Counter(deep_blocks) == _Counter(deep_b + _tail + _fac))
 
     # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON, so its body stays in the core
     # however old it is and however tight the budget gets.
@@ -2656,7 +2710,7 @@ def self_test() -> int:
         base = items_ if items_ is not None else items
         for k in range(by):
             c = dict(base[k % len(base)])
-            c["id"] = f"tx-9{k:04d}"
+            c["id"] = f"tx-9000-{k:04d}"
             out.append(c)
         return out
 
@@ -2670,24 +2724,22 @@ def self_test() -> int:
     ship_extra = [dossier_block, _ch, _wh]
 
     head = index_headroom(items, p["generated"], ship_extra)
-    # THE ALARM IS ON THE RUNG WHERE THE GUARANTEE MOVES, NOT ON THE FIRST ONE. Reaching rung 2 is
-    # the designed state the header above describes: the oldest settled lines are cut to a title
-    # and an id, and nothing breaks. This check read `full > 0` until 2026-09-26, so admitting
-    # tx-2026-0188 put CI red on a record doing exactly what it was built to do, and the day's deck
-    # could not merge. `index_headroom` names the middle rung as the one a person should be told
-    # about, so the red line is `named`, where a decision would stop being listed.
-    #
-    # AND `full` IS NOT GATED AT ALL, NOT EVEN AT ZERO. The first fix read `full >= 0`, which let
-    # the record stand on the boundary and failed the moment a line actually shortened, because
-    # `last_true` returns -1 for a rung already spent. One more admission would have turned the
-    # next run red for the same designed behaviour (Codex, PR 365). The second check below stands
-    # the record ON the shortening rung and requires it green.
+    # HEADROOM IS A MEASUREMENT, NOT AN ADMISSION RULE. Both zero and -1 are valid naming
+    # horizons. The contract above still refuses hidden omissions, incorrect counts, changed
+    # lines and any loss of an open window. The size and body-preservation gates still apply.
     def _rung_ok(h):
-        return h["named"] > 0 and h["named"] >= h["full"]
+        return (all(type(h.get(k)) is int and h[k] >= -1 for k in ("full", "named"))
+                and h["named"] >= h["full"]
+                and (h["fits"] is None or h["fits"] >= h["named"]))
 
     check("the build publishes how far each rung is, measured against the index it ships",
           _rung_ok(head), f'{head["full"]} at full lines, {head["named"]} before one goes unnamed')
-    on_rung_2 = index_headroom(_grown(max(head["full"] + 1, 1)), p["generated"], ship_extra)
+    # Use a small settled fixture for the shortening test. Growing the live record here
+    # silently turned this into another all-named requirement once the live record hit rung 3.
+    rung_base = [dict(items[0], public_access={"room": "none"})]
+    rung_head = index_headroom(rung_base, p["generated"], ship_extra)
+    on_rung_2 = index_headroom(_grown(rung_head["full"] + 1, rung_base),
+                               p["generated"], ship_extra)
     check("and a record already standing on the shortening rung is green, not red",
           on_rung_2["full"] < 0 and _rung_ok(on_rung_2),
           f'{on_rung_2["full"]} at full lines, {on_rung_2["named"]} before one goes unnamed')
@@ -2696,7 +2748,7 @@ def self_test() -> int:
     check("and a rate to read it by, measured off the record rather than assumed",
           p["admissions_per_day"] >= 0, f'{p["admissions_per_day"]:g} a day')
 
-    grown = _grown(max(head["full"] + 5, 1))
+    grown = _grown(rung_head["full"] + 5, rung_base)
     grown_idx, grown_short, grown_unlisted = index_fit(grown, p["generated"], ship_extra)
     grown_lines = [l for l in grown_idx.splitlines() if l.rstrip().endswith("]]")]
     check("a record grown just past the full-line rung still fits",
@@ -2711,6 +2763,22 @@ def self_test() -> int:
     check("and every one of them is still citable by id",
           all(f"[[{c['id']}]]" in grown_idx for c in grown),
           str([c["id"] for c in grown if f"[[{c['id']}]]" not in grown_idx][:3]))
+
+    # Stand on BOTH sides of the naming boundary. The old `named > 0` alarm went red at
+    # zero, one admission before a line was actually omitted. Use the same median-row probe
+    # as the published headroom, then assert the disclosure contract on the assembled text.
+    pool = sorted(rung_base, key=lambda it: len(index_line(it, p["generated"])))
+    seed = pool[len(pool) // 2]
+    for by, want_named in ((rung_head["named"], 0), (rung_head["named"] + 1, -1)):
+        boundary = rung_base + [dict(seed, id=f"tx-0000-{k:04d}") for k in range(by)]
+        boundary_idx, boundary_short, boundary_unlisted = index_fit(
+            boundary, p["generated"], ship_extra)
+        boundary_head = index_headroom(boundary, p["generated"], ship_extra)
+        check(f"a naming horizon of {want_named} keeps a valid bounded index",
+              boundary_head["named"] == want_named and _rung_ok(boundary_head)
+              and len(boundary_idx) <= MAX_INDEX_CHARS
+              and not index_problems(boundary, boundary_idx, boundary_short, boundary_unlisted),
+              f"{len(boundary)} decisions, {boundary_unlisted} unlisted, {boundary_head}")
 
     # ------------------------------------------------------------------ RUNG 3
     #
@@ -2733,6 +2801,35 @@ def self_test() -> int:
     check("and it says how many decisions it could not list, rather than going quiet",
           deep_unlisted > 0 and str(deep_unlisted) in deep_idx,
           f"{deep_unlisted} unlisted")
+    check("the grown index keeps the same exact disclosure and open-window contract",
+          not index_problems(deep, deep_idx, deep_short, deep_unlisted),
+          str(index_problems(deep, deep_idx, deep_short, deep_unlisted)))
+    mutations = {
+        "a missing omission notice": deep_idx.replace(
+            UNLISTED_NOTE.format(n=deep_unlisted, total=len(deep)), ""),
+        "an incorrect omission count": deep_idx.replace(
+            UNLISTED_NOTE.format(n=deep_unlisted, total=len(deep)),
+            UNLISTED_NOTE.format(n=deep_unlisted + 1, total=len(deep))),
+        "a silently missing named decision": deep_idx.replace(
+            next(l for l in deep_idx.splitlines()
+                 if re.search(r"\[\[tx-[a-z0-9-]+\]\]$", l)), ""),
+        "a missing county manifest": deep_idx.replace(index_manifest(deep), ""),
+    }
+    for label, broken in mutations.items():
+        check(f"the index contract rejects {label}",
+              bool(index_problems(deep, broken, deep_short, deep_unlisted)))
+    open_fixture = dict(items[0], public_access={
+        "room": "open_comment", "opens": "2026-01-01", "closes": "2099-01-01"})
+    open_short = "\n\n".join([INDEX_HEAD, SHORT_LINE_NOTE, index_manifest([open_fixture]),
+                                 index_line(open_fixture, p["generated"], short=True)])
+    check("even a correctly counted short line may never shorten an open window",
+          "changed line or shortened open window" in index_problems(
+              [open_fixture], open_short, 1, 0))
+    open_omitted = "\n\n".join([INDEX_HEAD, UNLISTED_NOTE.format(n=1, total=1),
+                                   index_manifest([open_fixture])])
+    check("even a correctly counted omission may never hide an open window",
+          "unlisted count or oldest settled order" in index_problems(
+              [open_fixture], open_omitted, 0, 1))
 
     def _old_shape(its):
         """The index as it was built before 2026-09-10. Full lines, then short ones, no shape
@@ -2783,7 +2880,7 @@ def self_test() -> int:
           f"{deep_unlisted} of {len(deep)} unlisted")
     named = sum(1 for l in deep_idx.splitlines() if l.rstrip().endswith("]]"))
     check("and everything it does not name, it counts, so the two add up to the record",
-          named + deep_unlisted >= len(deep),
+          named + deep_unlisted == len(deep),
           f"{named} named plus {deep_unlisted} unlisted against {len(deep)}")
 
     # ------------------------------------------ AND THE CORE'S RUNG GIVES UP THE SAME DECISIONS
