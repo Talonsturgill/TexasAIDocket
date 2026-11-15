@@ -10,9 +10,9 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Status: decided
 - Public access: Public meeting
 - Comment closes: 2026-11-17
-- Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
+- Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2229&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-15
 
 ## Dates
 
@@ -59,6 +59,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The council's order calling the November 3rd vote on plate reader cameras still reads as passed. The county has not yet posted a canvass of the result.
 - 2026-11-08 · Voters said no to the fixed plate reader cameras, by the city's unofficial count. The council canvasses the result on November 17th, and the mayor has asked for the cameras to be covered until then.
 - 2026-11-14 · The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.
+- 2026-11-15 · League City's unofficial result still rejects the fixed plate reader cameras. The city still ties removal to the November 17th canvass and says the mayor requested covers beforehand.
 
 ## Evidence
 
@@ -66,7 +67,7 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### League City ordered a special election for November 3, 2026 on a proposition about police use of fixed automated license plate reader cameras.
 
-> Consider and take action on an ordinance ordering a Special Election for the City of League City, Texas, on Tuesday, November 3, 2026, to submit a proposition regarding the League City Police Department's continued use of automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes (Mayor Long) Sponsor requests approval on first and final reading.
+> Consider and take action on an ordinance ordering a Special Election for the City of League City, Texas, on Tuesday, November 3, 2026, to submit a proposition regarding the League City Police Department’s continued use of automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes (Mayor Long)
 
 Source (primary_official): https://webapi.legistar.com/v1/leaguecity/matters/13827
 
@@ -82,7 +83,7 @@ Source (primary_official): https://webapi.legistar.com/v1/leaguecity/matters/138
 
 Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318
 
-### The August 25th meeting was held, its record names no automated license plate reader item, and the city's calendar carries no council meeting after it.
+### The August 25th meeting was held in Council Chambers at 200 West Walker Street.
 
 > The City Council of the City of League City, Texas, met in a regular meeting in the Council Chambers at 200 West Walker Street on the above date at 6:00 p.m.
 

@@ -8831,17 +8831,17 @@
    "public_access": {
     "room": "open_meeting",
     "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The city says the council canvasses the November 3rd result at its November 17th meeting, and the cameras come down within 72 hours of that canvass under the council's resolution.",
-    "url": "https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D",
+    "url": "https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2229&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D",
     "closes": "2026-11-17"
    },
    "claims": [
     {
      "text": "League City ordered a special election for November 3, 2026 on a proposition about police use of fixed automated license plate reader cameras.",
-     "verbatim_quote": "Consider and take action on an ordinance ordering a Special Election for the City of League City, Texas, on Tuesday, November 3, 2026, to submit a proposition regarding the League City Police Department's continued use of automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes (Mayor Long) Sponsor requests approval on first and final reading.",
+     "verbatim_quote": "Consider and take action on an ordinance ordering a Special Election for the City of League City, Texas, on Tuesday, November 3, 2026, to submit a proposition regarding the League City Police Department’s continued use of automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes (Mayor Long)",
      "source_url": "https://webapi.legistar.com/v1/leaguecity/matters/13827",
      "source_title": "Legistar API, City of League City, Matter 13827 (File 26-0320)",
      "source_type": "primary_official",
-     "fetched": "2026-08-14",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0048-c1"
     },
     {
@@ -8864,12 +8864,12 @@
     },
     {
      "id": "tx-2026-0048-c4",
-     "text": "The August 25th meeting was held, its record names no automated license plate reader item, and the city's calendar carries no council meeting after it.",
+     "text": "The August 25th meeting was held in Council Chambers at 200 West Walker Street.",
      "verbatim_quote": "The City Council of the City of League City, Texas, met in a regular meeting in the Council Chambers at 200 West Walker Street on the above date at 6:00 p.m.",
      "source_url": "https://webapi.legistar.com/v1/leaguecity/events/2222/eventitems",
      "source_title": "Legistar API, City of League City, Event 2222 record",
      "source_type": "primary_official",
-     "fetched": "2026-08-29"
+     "fetched": "2026-11-15"
     },
     {
      "id": "tx-2026-0048-c5",
@@ -8963,7 +8963,7 @@
     }
    ],
    "id": "tx-2026-0048",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-08-19",
@@ -9128,6 +9128,11 @@
     {
      "date": "2026-11-14",
      "note": "The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "League City's unofficial result still rejects the fixed plate reader cameras. The city still ties removal to the November 17th canvass and says the mayor requested covers beforehand.",
      "checked": true
     }
    ],
@@ -31227,87 +31232,87 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The review is published in the American Journal of Roentgenology. The abstract and the author affiliations are readable without a subscription through the National Library of Medicine.",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
+    "how": "The review is published in the American Journal of Roentgenology. The abstract and the author affiliations are readable without a subscription through Europe PMC.",
+    "url": "https://europepmc.org/article/MED/42714442",
     "closes": null
    },
    "claims": [
     {
      "text": "The panel states that pediatric imaging is substantially underrepresented across the whole of AI in radiology.",
      "verbatim_quote": "Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c1"
     },
     {
      "text": "The panel's stated reason is that children change as they grow, so a model trained on adults is not the same model.",
      "verbatim_quote": "Unlike adults, children go through continuous physiologic and anatomic changes that require age-specific models trained on representative developmental data.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c2"
     },
     {
      "text": "The panel names what pediatric AI is limited by.",
      "verbatim_quote": "However, pediatric AI is limited by scarce publicly available datasets, fragmented institutional data, rare diseases, heterogeneous reporting practices, and insufficient external validation.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c3"
     },
     {
      "text": "Off-label use of a model trained on adults is named as an ethical and regulatory concern in children.",
      "verbatim_quote": "Ethical and regulatory challenges are also a concern in children, including consent for secondary data use, off-label use of adult-trained AI models, and the need for postdeployment surveillance.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c4"
     },
     {
      "text": "The panel asks for a dedicated pediatric AI infrastructure and standards rather than for adult tools to be reused.",
      "verbatim_quote": "The panel gives key recommendations, emphasizing the importance of an implementation roadmap to establish a dedicated pediatric AI infrastructure and standards that are essential to ensure diagnostic accuracy, workflow efficiency, and optimal clinical outcomes for children while minimizing bias and protecting patient safety.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c5"
     },
     {
      "text": "One of the review's authors is in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston.",
      "verbatim_quote": "Department of Radiology, Baylor College of Medicine and Texas Children's Hospital, Houston, Texas, USA.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c6"
     },
     {
      "text": "Another author is in the radiology department at UT Southwestern Medical Center in Dallas.",
      "verbatim_quote": "Department of Radiology, UT Southwestern Medical Center, Dallas, Texas, USA.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c7"
     },
     {
      "text": "The review names reimbursement as misaligned with what pediatric AI would need.",
      "verbatim_quote": "Additionally, reimbursement is misaligned and must be optimized to allow innovation.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
-     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0147-c8"
     }
    ],
    "confidence": "high",
    "id": "tx-2026-0150",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-13",
@@ -31412,6 +31417,11 @@
      "date": "2026-11-14",
      "note": "The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.",
      "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The pediatric imaging review still calls for models built for children. Europe PMC carries the abstract and the Baylor and UT Southwestern affiliations.",
+     "checked": true
     }
    ]
   },
@@ -31442,78 +31452,78 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The paper is published in the American Journal of Neuroradiology. The abstract, the figures it reports and the author affiliations are readable without a subscription through the National Library of Medicine.",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
+    "how": "The paper is published in the American Journal of Neuroradiology. The abstract, the figures it reports and the author affiliations are readable without a subscription through Europe PMC.",
+    "url": "https://europepmc.org/article/MED/42716711",
     "closes": null
    },
    "claims": [
     {
      "text": "The study built the model on one cohort and tested the fixed model on another without refitting it.",
      "verbatim_quote": "This retrospective study developed a T1 postcontrast MRI radiomics survival model in a public brain metastasis cohort of 198 patients and externally validated the fixed radiomics model, without refitting or recalibration, in an independent cohort of 69 patients.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c1"
     },
     {
      "text": "The model's discrimination was lower on the outside cohort than on the cohort it was built on.",
      "verbatim_quote": "The radiomics score had a C-index of 0.615 (95% CI, 0.543-0.687) in the training cohort and 0.574 (95% CI, 0.491-0.658) in external validation.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c2"
     },
     {
      "text": "The authors state the conclusion as a limit rather than as a result.",
      "verbatim_quote": "T1 postcontrast MRI radiomics showed limited standalone discrimination for overall survival in patients with brain metastases.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c3"
     },
     {
      "text": "The authors ask for cautious use and for models that carry more than imaging.",
      "verbatim_quote": "These results support cautious use of radiomics as an exploratory imaging biomarker and emphasize the need for integrated prognostic models that include clinical, treatment, molecular, and systemic disease variables.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c4"
     },
     {
      "text": "The neuroradiology authors are at MD Anderson in Houston and the radiology authors at the Medical Branch in Galveston.",
      "verbatim_quote": "From the Department of Neuroradiology (R.E., H.A.Q., S.A., A.M., P.K.), The University of Texas MD Anderson Cancer Center, Houston, TX 77030, USA; Department of Radiology (E.C.), Duke University Medical Center, Durham, NC, USA; Department of Radiology (H.A.S., A.N., M.W.), The University of Texas Medical Branch, Galveston, TX, USA",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c5"
     },
     {
      "text": "The final model kept a small number of imaging features after selection.",
      "verbatim_quote": "The final model retained 7 nonzero T1 postcontrast radiomics features after correlation filtering and elastic-net selection.",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c6"
     },
     {
      "text": "Adding the established clinical score did not lift the model above its training figure.",
      "verbatim_quote": "In the external-validation subset with available Graded Prognostic Assessment, the combined radiomics plus Graded Prognostic Assessment model had a C-index of 0.591 (95% CI, 0.509-0.672).",
-     "source_url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
-     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json",
+     "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, Europe PMC",
      "source_type": "primary_official",
-     "fetched": "2026-10-31",
+     "fetched": "2026-11-15",
      "id": "tx-2026-0148-c7"
     }
    ],
    "confidence": "high",
    "id": "tx-2026-0151",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-15",
    "history": [
     {
      "date": "2026-09-13",
@@ -31617,6 +31627,11 @@
     {
      "date": "2026-11-14",
      "note": "The MRI study's abstract is unconfirmed this time, because the index answered with a browser challenge rather than the record.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-15",
+     "note": "The MRI study still reports lower discrimination in its outside cohort. Europe PMC carries the abstract and the MD Anderson and UT Medical Branch affiliations.",
      "checked": true
     }
    ]

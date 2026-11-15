@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-11-14",
+    "generated": "2026-11-15",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -2275,7 +2275,9 @@
       "etag": null,
       "last_modified": null,
       "hash": "d61bfe0b57556c9d4218944d1216a2ba120fd2667bfd93a50c04546d7aeaf5cf",
-      "proven": []
+      "proven": [
+        "tx-2026-0048-c1"
+      ]
     },
     "https://webapi.legistar.com/v1/leaguecity/matters/13827/histories": {
       "etag": null,
@@ -2581,6 +2583,35 @@
       "proven": [
         "tx-2026-0244-c10",
         "tx-2026-0244-c11"
+      ]
+    },
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "0272360a1664b1ebb1369d4eac07647efcba4e131ddc0bd11ca5e0cfc633140b",
+      "proven": [
+        "tx-2026-0147-c1",
+        "tx-2026-0147-c2",
+        "tx-2026-0147-c3",
+        "tx-2026-0147-c4",
+        "tx-2026-0147-c5",
+        "tx-2026-0147-c6",
+        "tx-2026-0147-c7",
+        "tx-2026-0147-c8"
+      ]
+    },
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "84a40d9d748689bf63cc24435b58fe156c77a5a215afe66476674a2e3fb59407",
+      "proven": [
+        "tx-2026-0148-c1",
+        "tx-2026-0148-c2",
+        "tx-2026-0148-c3",
+        "tx-2026-0148-c4",
+        "tx-2026-0148-c5",
+        "tx-2026-0148-c6",
+        "tx-2026-0148-c7"
       ]
     },
     "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic": {
@@ -2946,7 +2977,7 @@
     "https://www.kedt.org/texas-news/2026-10-14/league-city-to-disable-flock-cameras-if-voters-reject-them-in-november": {
       "etag": null,
       "last_modified": null,
-      "hash": "974d8c07878174e73f0dcc046c341fc5dca35b4eb226ef47b6995cf4b5ccdd54",
+      "hash": "93b4919cf1d18c845899169d1c7f4393c61361be2a31ef0a6f07d8c9bbd705b4",
       "proven": [
         "tx-2026-0048-c5"
       ]
