@@ -379,6 +379,19 @@ def preserve_layout(run_dir: Path, pngs: list[Path], results: list[dict]) -> lis
     if not originals:
         return ["the delivered layout fails and no source PNG remains: " + p for p in problems]
     original_code, original_problems, _ = layout_check.check(run_dir, require=required, image_overrides=originals)
+    # BESPOKE (2026-11-15, the first bespoke run to reach this step). layout_check's own CLI prints a
+    # bespoke run's rotation and layout measurements without blocking (owner, 2026-11-14), and this
+    # step called check() directly, so it refused the reviewed originals on the very rules that run
+    # had been told are a report. What this step exists for is unchanged: a lossy encode must not
+    # change the reviewed layout. So on a bespoke run the originals' own findings are the baseline,
+    # and only a finding the encode ADDS is charged and repaired with a lossless encode.
+    if original_code and _is_bespoke(run_dir):
+        baseline = set(original_problems)
+        added = [p for p in problems if p not in baseline]
+        if not added:
+            return []
+        problems = added
+        original_code = 0
     if original_code:
         return ["the reviewed originals fail layout_check: " + p for p in original_problems]
     charged = {int(n) for p in problems for n in re.findall(r"(?:slide|frame) (\d+)", p)}
@@ -394,7 +407,19 @@ def preserve_layout(run_dir: Path, pngs: list[Path], results: list[dict]) -> lis
                            layout_preserved=True)
         print(f"  slide-{n:02}: lossless WebP preserves the reviewed layout")
     code, problems, _ = layout_check.check(run_dir, require=required, image_overrides=encodes)
+    if code and _is_bespoke(run_dir):
+        problems = [p for p in problems if p not in set(original_problems)]
+        return problems
     return problems if code else []
+
+
+def _is_bespoke(run_dir: Path) -> bool:
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from bespoke_mode import is_bespoke
+        return is_bespoke(None, run_dir)
+    except Exception:
+        return False
 
 
 def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
