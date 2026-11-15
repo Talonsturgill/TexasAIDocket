@@ -10,8 +10,9 @@
  * THE ACCENT. The people tone's amber #ff9f1c means ONE thing: a WRITTEN RULE, a district policy or statewide guidance. A
  * frame lights in amber only the policies, binders, stamps or guidance a claim counts, and nothing else on any frame.
  *
- * THE MODELS. The kit already holds everything this story stands on (student_desk, student_desk_rows, classroom_window,
- * school, school_bus, laptop, desk, document_stack, hearing_dais, public_seating, person), so the chassis builds none.
+ * THE MODELS. The kit holds the rooms and people (student_desk, student_desk_rows, classroom_window, school, school_bus,
+ * laptop, desk, hearing_dais, podium, public_seating, person). The chassis builds the written rules the kit lacks, in the
+ * kit's conventions so Phase 17 can queue the lift: ring_binder, pocket_folder, policy_sheet, cubby_wall and shelf_run.
  * Every count a frame draws is read from window.FIG in that frame's own code. The chassis types no figure.
  */
 (function (global) {
@@ -46,9 +47,95 @@
 
   /* LOOK V2: the studio sweep in place of the dark lab. A frame calls TXT.studio(R, CH.studioOpts({ w, d })) where it called
    * TXT.interior(R, CH.roomOpts({ w, d })), same footprint arguments. */
-  /* THE STORY NEEDS NO NEW MODEL: the kit already carries student_desk, student_desk_rows, classroom_window, school,
-   * school_bus, laptop, desk, document_stack, hearing_dais and person. installKit stays so a frame's boot is the same shape. */
-  N.installKit = function () {};
+  /* THE WRITTEN RULES, built here because the kit lacks them. A frame calls nothing: CH.boot installs them. */
+  N.AMBER = 0xff9f1c;   /* the accent as a material colour: a written rule */
+  N.installKit = function (K, THREE, TXT) {
+    if (K.registry && K.registry.ring_binder) return;
+    var amberM = function () { return K.mat('rr_amber', { color: N.AMBER, roughness: 0.42, metalness: 0, clearcoat: 0.6, clearcoatRoughness: 0.3 }, true); };
+    var paperM = function (c) { return K.mat('rr_paper' + (c || ''), { color: c || 0xfbf6ec, roughness: 0.9, metalness: 0, sheen: 0.6, sheenRoughness: 0.6, sheenColor: 0xf0e2c8 }, true); };
+    var vinylM = function (c) { return K.mat('rr_vinyl' + c, { color: c, roughness: 0.48, metalness: 0, clearcoat: 0.35, clearcoatRoughness: 0.4 }, true); };
+    var steelM = function () { return K.mat('rr_ring', { color: 0xd9dde2, metalness: 1, roughness: 0.18 }); };
+    var oakM = function () { return K.mat('rr_oak', { color: 0xffffff, roughness: 0.62, map: K.tex('wood', { color: '#c9935e' }) }); };
+
+    /* A 3 RING BINDER standing on its bottom edge, spine toward +z: two vinyl over board covers with rounded corners,
+     * a rounded spine, a clear spine pocket (blank), a steel D ring mechanism. open (degrees) swings the front cover
+     * about the spine; leaves is how many sheets ride the rings. amber paints the cover in the accent: a written rule. */
+    K.define("ring_binder", { size: [0.06, 0.30, 0.29], options: { open: 0, leaves: 0, amber: false, color: 0x5a6fd0, pocket: true },
+      note: "A 1.5 in 3 ring binder, 0.29 x 0.30 m covers, spine on +z, standing on its bottom edge. open swings the front cover (degrees), leaves rides that many blank sheets on the rings, amber paints it in the deck's accent (a written rule only).",
+      make: function (o) {
+        var g = new THREE.Group(), W = 0.06, H = 0.30, D = 0.29, t = 0.004, M = o.amber ? amberM() : vinylM(o.color);
+        K.box(t, H, D, M, -W / 2 + t / 2, 0, -0.0, 0.0015, g);                       /* back cover */
+        var spine = TXT.roundedBox(W, H, 0.006, 0.0028, M); spine.position.set(0, H / 2, D / 2 - 0.003); g.add(spine);
+        if (o.pocket) { var pk = new THREE.Mesh(new THREE.PlaneGeometry(W * 0.72, H * 0.78), K.finish.glass(0xdfe8f0)); pk.position.set(0, H / 2, D / 2 + 0.0006); g.add(pk);
+          var card = new THREE.Mesh(new THREE.PlaneGeometry(W * 0.62, H * 0.7), paperM()); card.position.set(0, H / 2, D / 2 + 0.0003); g.add(card); }
+        var hinge = new THREE.Group(); hinge.position.set(W / 2 - t / 2, 0, D / 2 - 0.006); g.add(hinge);
+        var front = K.box(t, H, D - 0.006, M, 0, 0, -(D - 0.006) / 2, 0.0015, hinge); hinge.rotation.y = -(o.open || 0) * Math.PI / 180;
+        /* the D rings on a plated base strip, on the back cover's inner face */
+        var base = K.box(0.004, 0.27, 0.03, steelM(), -W / 2 + t + 0.002, 0.015, D / 2 - 0.03, 0.001, g);
+        [0.06, 0.15, 0.24].forEach(function (y) { var r = new THREE.Mesh(new THREE.TorusGeometry(0.018, 0.0016, 8, 28, Math.PI * 1.25), steelM());
+          r.rotation.y = Math.PI / 2; r.position.set(-W / 2 + t + 0.004, y, D / 2 - 0.032); g.add(r); });
+        for (var i = 0; i < (o.leaves || 0); i++) K.box(0.0002, 0.279, 0.215, paperM(), -W / 2 + t + 0.006 + i * 0.0006, 0.01, D / 2 - 0.13, 0, g);
+        return g;
+      } });
+
+    /* A POCKET FOLDER lying flat, slightly curled at the free edge. amber marks a written policy. */
+    K.define("pocket_folder", { size: [0.24, 0.012, 0.31], options: { amber: true, color: 0x6b7fd8, sheets: 3 },
+      note: "A letter pocket folder lying flat on a desk, 0.24 x 0.31 m, front on +z, with sheets inside and a soft curl at the open edge. amber marks a written policy (the accent).",
+      make: function (o) {
+        var g = new THREE.Group(), M = o.amber ? amberM() : vinylM(o.color);
+        var geo = new THREE.BoxGeometry(0.24, 0.0012, 0.31, 12, 1, 1), pos = geo.attributes.position;
+        for (var i = 0; i < pos.count; i++) { var x = pos.getX(i); pos.setY(i, pos.getY(i) + Math.pow(Math.max(0, x / 0.12), 3) * 0.006); }
+        geo.computeVertexNormals();
+        var back = new THREE.Mesh(geo, M); back.position.y = 0.0006; g.add(back);
+        for (var k = 0; k < (o.sheets || 0); k++) K.box(0.214, 0.0002, 0.278, paperM(), -0.004 + k * 0.002, 0.0013 + k * 0.0003, -0.006 - k * 0.002, 0, g);
+        var front = new THREE.Mesh(geo, M); front.position.set(0.002, 0.0042, 0.0); front.scale.set(0.98, 1, 0.985); g.add(front);
+        var pocket = K.box(0.226, 0.0014, 0.11, M, 0.004, 0.005, 0.09, 0.0006, g);
+        return g;
+      } });
+
+    /* ONE SHEET standing or lying: a letter page. amber gives it the accent edge band (a written policy). */
+    K.define("policy_sheet", { size: [0.216, 0.0003, 0.279], options: { amber: true, curl: 0.004 },
+      note: "A letter sheet lying flat (front +z) with a soft curl; amber puts the accent on its whole face, a written policy only.",
+      make: function (o) {
+        var g = new THREE.Group(), geo = new THREE.PlaneGeometry(0.216, 0.279, 6, 8); geo.rotateX(-Math.PI / 2);
+        var pos = geo.attributes.position; for (var i = 0; i < pos.count; i++) { var z = pos.getZ(i); pos.setY(i, Math.pow(Math.abs(z) / 0.14, 2) * (o.curl || 0)); }
+        geo.computeVertexNormals();
+        var m = new THREE.Mesh(geo, o.amber ? amberM() : paperM()); m.material.side = THREE.DoubleSide; m.position.y = 0.0004; g.add(m);
+        return g;
+      } });
+
+    /* A STAFF MAILBOX WALL: cols x rows open cubbies in oak with label rails, on a plinth. userData.cell(c, r) gives a
+     * cubby's centre (world, base of the cubby) so a frame can place a sheet in it. */
+    K.define("cubby_wall", { size: [3.1, 1.32, 0.32], options: { cols: 10, rows: 10, cell: [0.3, 0.11, 0.3], plinth: 0.1 },
+      note: "A school staff mailbox wall of cols x rows open oak cubbies (0.30 x 0.11 x 0.30 m each) with label rails, front +z. userData.cell(c, r) is a cubby floor's centre; userData.count is cols x rows.",
+      make: function (o) {
+        var g = new THREE.Group(), c = o.cols, r = o.rows, cw = o.cell[0], ch = o.cell[1], cd = o.cell[2], t = 0.012, P = o.plinth;
+        var W = c * cw + t, H = r * ch + t, oak = oakM();
+        K.box(W + 0.04, P, cd + 0.03, K.finish.steelPaint(0x6a4e8a), 0, 0, 0, 0.004, g);
+        K.box(W, H, t, oak, 0, P, -cd / 2 + t / 2, 0, g);
+        for (var i = 0; i <= c; i++) K.box(t, H, cd, oak, -W / 2 + t / 2 + i * cw, P, 0, 0.002, g);
+        for (var j = 0; j <= r; j++) K.box(W, t, cd, oak, 0, P + j * ch, 0, 0.002, g);
+        var rail = K.mat('rr_rail', { color: 0xc8b08a, metalness: 0.6, roughness: 0.35 });
+        for (var jj = 0; jj < r; jj++) K.box(W - 0.01, 0.012, 0.004, rail, 0, P + jj * ch + t, cd / 2 + 0.002, 0, g);
+        g.userData.count = c * r;
+        g.userData.cell = function (ci, ri) { return [-W / 2 + t / 2 + (ci + 0.5) * cw, P + ri * ch + t, 0]; };
+        return g;
+      } });
+
+    /* A LIBRARY SHELF RUN: an oak plank shelf `length` long on steel standards with a back panel, binder slots at
+     * `pitch`. userData.slot(i) is the centre of slot i on the shelf top, counted from +x end. */
+    K.define("shelf_run", { size: [3.2, 0.42, 0.34], options: { length: 3.2, pitch: 0.066, depth: 0.32, back: true },
+      note: "An oak library shelf `length` m long, 0.32 m deep, top at 0.4 m, on steel standards with a back panel, front +z. userData.slot(i) is slot i's centre on the shelf top from the +x end at `pitch` m; userData.slots is how many fit.",
+      make: function (o) {
+        var g = new THREE.Group(), L = o.length, D = o.depth, top = 0.4, oak = oakM();
+        K.box(L, 0.028, D, oak, 0, top - 0.028, 0, 0.005, g);
+        if (o.back) K.box(L, 0.42, 0.012, oak, 0, top - 0.028, -D / 2 + 0.006, 0.002, g);
+        var st = K.finish.steelPaint(0x3c3a52); for (var x = -L / 2 + 0.06; x <= L / 2 - 0.05; x += Math.min(0.9, L - 0.12)) K.box(0.03, top - 0.028, 0.03, st, x, 0, -D / 2 + 0.04, 0.004, g);
+        g.userData.slots = Math.floor((L - 0.04) / o.pitch);
+        g.userData.slot = function (i) { return [L / 2 - 0.02 - (i + 0.5) * o.pitch, top, 0.0]; };
+        return g;
+      } });
+  };
   N.studioOpts = function (o) { o = o || {}; return { tone: N.TONE, w: (o.w || 4.2) * 1.6, d: (o.d || 3.2) * 1.4, h: 3.2, radius: 0.9, env: 0.95, hemi: 0.7 }; };
   N.roomOpts = function (o) {
     o = o || {};
