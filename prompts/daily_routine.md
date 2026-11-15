@@ -698,6 +698,10 @@ for.
   it says now, correct the claim, and write what changed.
 - `unreachable` means the source did not answer. Name what is therefore unconfirmed, never what
   the fetcher did.
+  PubMed and League City's own site refuse this run now, and each has a second route in
+  knowledge/shared/TEXAS_ENDPOINTS.md (Europe PMC for PubMed, Legistar minutes for League City).
+  Use it before letting an item age, because a refusal nobody records fails the staleness gate
+  after 6 days and skips the Pages deploy.
 
 For any item still on the worklist after that, fetch **one primary source** and update it.
 
