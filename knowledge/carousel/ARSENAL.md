@@ -17,7 +17,7 @@
 | engine calls (`TXT.*`) | 31 |
 | world presets | 13 |
 | kit models | 145 in 10 families |
-| asset libraries | 23 |
+| asset libraries | 24 |
 | carousel and shared tools | 80 |
 | record and site tools the routine names | 20 |
 | agents | 13 |
@@ -420,6 +420,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 | `txrelief.js` | `TX` | 2.5D relit-heightfield form-shading (offline, ZERO dependencies beyond the committed noise.js). | reliefDome, reliefLightVec, reliefRect, reliefShade |
 | `txscene.js` | `TXSCENE` | the 2.5D scene bench. | compose, create, hexToRgb, lum, mix, sprite |
 | `txsdf.js` | `TXSDF` | CPU signed-distance-field raymarcher (no GPU, no deps). | add, clamp, cross, dot, fbm3, len, mix, mix3, mul, noise3, norm, opInter, opRepXZ, opSub, opTwist, opUnion, render, reseed, sdBox, sdCapsule, sdCone, sdCylinder, sdPlane, sdRoundBox, sdSphere, sdTorus, smax, smin (+1) |
+| `txsurface.js` |  | THE SURFACE PASS: every material gets a real surface, every primitive a real edge (owner, 2026-11-15: "10x upgrade it all"). |  |
 | `txtype.js` | `TX` | display-type fitting helper for slide code (no dependencies). | fitText, measureLines, svgPlate, svgPlateAll |
 | `zdog.min.js` | vendored | Zdog v1.1.3 Round, flat, designer-friendly pseudo-3D engine Licensed MIT https://zzz.dog Copyright 2020 Metafizzy |  |
 

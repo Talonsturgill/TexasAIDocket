@@ -106,7 +106,9 @@ export function initKit(THREE, TXT) {
     const k = K.matKey(key, params, physical);
     if (!MATS.has(k)) {
       const P = Object.assign({ roughness: 0.8, metalness: 0 }, params || {});
-      MATS.set(k, physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P));
+      const m = physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P);
+      m.name = m.name || key;          // the surface pass (txsurface.js) reads its class from the key
+      MATS.set(k, m);
     }
     return MATS.get(k);
   };
