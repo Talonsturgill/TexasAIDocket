@@ -343,21 +343,26 @@ export function install(K, THREE, TXT) {
        * a shaded parting at both edges and a sheen down its middle, the widths uneven and scaled to
        * close the tile exactly so no seam shows, and the fine strands inside are short and of
        * uneven length so no single streak runs the height of the head. */
+      /* SOFTER LOCKS (2026-11-15, "a hairnet"). The lock bands were narrow with dark partings and
+       * 520 fine streaks over them, which at a deck's scale beat into a regular ridged grain. Locks are
+       * wider and uneven now, their shading a soft roll rather than a groove, and the fine strands are
+       * fewer and fainter, so the map adds texture without drawing lines. The value of the hair (dark
+       * roots, darker creases, one lock lighter than the next) is in the vertex colour, not here. */
       x.fillStyle = '#ffffff'; x.fillRect(0, 0, N, N);
       const ws = []; let tot = 0;
-      while (tot < N) { const w = 6 + r() * 12; ws.push(w); tot += w; }
+      while (tot < N) { const w = 12 + r() * 22; ws.push(w); tot += w; }
       let px = 0;
       for (const w0 of ws) {
-        const w = w0 * N / tot, dk = 0.16 + r() * 0.12;
+        const w = w0 * N / tot, dk = 0.07 + r() * 0.08, lt = r() * 0.06;
         const gr = x.createLinearGradient(px, 0, px + w, 0);
-        gr.addColorStop(0, 'rgba(0,0,0,' + dk + ')'); gr.addColorStop(0.3, 'rgba(0,0,0,0.02)');
-        gr.addColorStop(0.55, 'rgba(255,255,255,' + (0.04 + r() * 0.05) + ')'); gr.addColorStop(1, 'rgba(0,0,0,' + (dk * 0.8) + ')');
+        gr.addColorStop(0, 'rgba(0,0,0,' + dk + ')'); gr.addColorStop(0.45, 'rgba(0,0,0,' + lt + ')');
+        gr.addColorStop(0.7, 'rgba(0,0,0,' + (lt * 0.5) + ')'); gr.addColorStop(1, 'rgba(0,0,0,' + (dk * 0.9) + ')');
         x.fillStyle = gr; x.fillRect(px, 0, w, N);
         px += w;
       }
-      for (let i = 0; i < 520; i++) {
-        const sx = r() * N, sy = r() * N, len = 20 + r() * 90;
-        x.fillStyle = r() < 0.75 ? 'rgba(0,0,0,' + (0.04 + r() * 0.07) + ')' : 'rgba(255,255,255,' + (0.03 + r() * 0.05) + ')';
+      for (let i = 0; i < 220; i++) {
+        const sx = r() * N, sy = r() * N, len = 12 + r() * 50;
+        x.fillStyle = 'rgba(0,0,0,' + (0.03 + r() * 0.05) + ')';
         x.fillRect(sx, sy, 1, len); if (sy + len > N) x.fillRect(sx, sy - N, 1, len);
       }
     }
@@ -447,10 +452,13 @@ export function install(K, THREE, TXT) {
   }
   function cloth(kind, color, extra) {
     extra = extra || {};
+    color = capAlb(color);
+    if (extra.b != null) extra = Object.assign({}, extra, { b: capAlb(extra.b), c: capAlb(extra.c) });
     // the surface pass adds its own creases on top; they were the lumps, so it is asked for about half
     const tame = (m) => { m.userData.txRelief = 0.5; return m; };
     const ns = (wk, s) => ({ normalMap: weaveTex(wk), normalScale: new THREE.Vector2(s, s) });
-    const tint = (c, w) => new THREE.Color(c).lerp(new THREE.Color(0xffffff), w).getHex();
+    // a pale cloth's sheen is its own colour: a white sheen over a white shirt was the blow-out
+    const tint = (c, w) => { const C = new THREE.Color(c), L = 0.2126 * C.r + 0.7152 * C.g + 0.0722 * C.b; return C.lerp(new THREE.Color(0xffffff), w * (1 - smooth((L - 0.2) / 0.4))).getHex(); };
     if (kind === 'denim') return tame(K.mat('p-denim', Object.assign({ color: 0xffffff, roughness: 0.9, map: clothTex('denim', color, 0, 0), sheen: 0.3, sheenColor: 0x8899bb, sheenRoughness: 0.8 }, ns('denim', 0.55)), true));
     if (kind === 'plaid') return tame(K.mat('p-plaid', Object.assign({ color: 0xffffff, roughness: 0.88, map: clothTex('plaid', color, extra.b, extra.c), sheen: 0.25, sheenColor: 0xf4efe6, sheenRoughness: 0.8 }, ns('plain', 0.55)), true));
     // worsted wool: dull, a soft sheen in its own colour, never satin (it read as satin at roughness 0.6)
@@ -460,6 +468,35 @@ export function install(K, THREE, TXT) {
     return tame(K.mat('p-cloth', Object.assign({ color, roughness: extra.rough || 0.86, sheen: 0.3, sheenColor: tint(color, 0.5), sheenRoughness: 0.8 },
       ns(extra.weave || (extra.rough ? 'twill' : 'plain'), 0.45)), true));
   }
+  /* CLOTH IN ITS OWN SHADOW (2026-11-15, "a white shirt with no folds"). A fold, the inside of an
+   * elbow, the gap between the legs and the arm against the side get less sky than the open cloth,
+   * and the renderer has no ambient occlusion to say so, so a pale garment printed as one flat tone.
+   * The garment's own distance field answers it: a step out along the normal that lands nearer the
+   * cloth than the step itself is a step into a hollow. Two steps (7 mm for a fold, 2.4 cm for an arm
+   * against the body) give a per-vertex occlusion, written as vertex colour on a copy of the cloth
+   * material, so the hems and seams laid over it keep the plain one. */
+  function fieldAO(geo, f, k, depth) {
+    const P = geo.attributes.position, N = geo.attributes.normal, n = P.count, col = new Float32Array(n * 3), seen = new Map();
+    const d1 = 0.007 * k, d2 = 0.024 * k, dp = depth == null ? 0.55 : depth;
+    for (let i = 0; i < n; i++) {
+      const x = P.getX(i), y = P.getY(i), z = P.getZ(i), key = Math.round(x * 4e4) + ',' + Math.round(y * 4e4) + ',' + Math.round(z * 4e4);
+      let v = seen.get(key);
+      if (v == null) {
+        const nx = N.getX(i), ny = N.getY(i), nz = N.getZ(i);
+        const a = clamp01(f(x + nx * d1, y + ny * d1, z + nz * d1) / d1), b = clamp01(f(x + nx * d2, y + ny * d2, z + nz * d2) / d2);
+        v = 1 - dp * (1 - Math.pow(0.4 * a + 0.6 * b, 1.3));
+        seen.set(key, v);
+      }
+      col[i * 3] = v; col[i * 3 + 1] = v * 0.99; col[i * 3 + 2] = v * 0.985;
+    }
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    return geo;
+  }
+  const AOM = new WeakMap();
+  const aoMat = (m) => {
+    if (!AOM.has(m)) { const c = m.clone(); c.vertexColors = true; c.name = m.name; AOM.set(m, c); }
+    return AOM.get(m);
+  };
   // the inside of a garment, seen through a cuff or a hem: the same cloth in its own shadow
   const clothIn = (m) => K.mat('p-cloth-in', { color: new THREE.Color(m.map ? 0x3a3a3c : m.color).multiplyScalar(m.map ? 0.5 : 0.32).getHex(), roughness: 0.95 });
 
@@ -666,7 +703,7 @@ export function install(K, THREE, TXT) {
    * and a soft sheen for the down on the skin. Roughness about 0.5, varied by the surface pass. */
   const SSS_KEY = 'reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );';
   const SSS_REP = `{ float txNL = dot( geometryNormal, directLight.direction );
-      vec3 txW = vec3( 0.3, 0.14, 0.08 );
+      vec3 txW = vec3( 0.22, 0.11, 0.07 );
       vec3 txL = clamp( ( vec3( txNL ) + txW ) / ( 1.0 + txW ), 0.0, 1.0 );
       reflectedLight.directDiffuse += directLight.color * txL * BRDF_Lambert( material.diffuseColor ); }`;
   function skinMat(key, params) {
@@ -717,10 +754,38 @@ export function install(K, THREE, TXT) {
     };
     return { toLab, toHex };
   })();
-  const holdSkin = (hex) => { const [L, a, b] = LAB.toLab(hex), cl = (v, [p, q]) => Math.min(q, Math.max(p, v)); return LAB.toHex([L, cl(a, SKIN_ENV.a), cl(b, SKIN_ENV.b)]); };
+  /* THE MIDDLE OF THE MEASUREMENT, NOT ITS EDGE (2026-11-15, "orange-brown skin"). The clamp left seven
+   * of nine rungs on the envelope's most saturated corner (a* 12.1, b* 24.3, C* 27), two SD above every
+   * group's mean, and under the production apricot key that corner printed as orange. Each rung is now
+   * drawn halfway from where the clamp put it toward the measured mean of the group nearest its
+   * lightness (the darkest rungs toward the darker group's, the lightest toward the lighter's). Both
+   * points lie inside the envelope, so the result does too. */
+  const skinMean = (L) => {
+    const M = (g) => [SKIN_MEASURED[g + '_volar'][1][0] / 2 + SKIN_MEASURED[g + '_inner'][1][0] / 2, SKIN_MEASURED[g + '_volar'][2][0] / 2 + SKIN_MEASURED[g + '_inner'][2][0] / 2];
+    const B = M('black'), A = M('asian'), Wt = M('white');
+    return L < 53 ? B.map((v, i) => lerp(v, A[i], smooth((L - 40) / 13))) : A.map((v, i) => lerp(v, Wt[i], smooth((L - 53) / 12)));
+  };
+  const holdSkin = (hex) => {
+    const [L, a, b] = LAB.toLab(hex), cl = (v, [p, q]) => Math.min(q, Math.max(p, v)), m = skinMean(L);
+    return LAB.toHex([L, lerp(cl(a, SKIN_ENV.a), m[0], 0.5), lerp(cl(b, SKIN_ENV.b), m[1], 0.5)]);
+  };
   // the lightness ladder as first drawn, light to deep; the hue of every rung is the measured one above
   const SKIN = [0xf0d0b6, 0xe6b894, 0xd9a47c, 0xc98f64, 0xb37550, 0x9a6040, 0x7d4a2f, 0x5e3522, 0x4a2a1b].map(holdSkin);
-  const HAIR = [0x1d1510, 0x2a1d14, 0x3b2a1c, 0x5a3d25, 0x7a5a38, 0x9a8468, 0x8c8a86, 0xc2bdb4, 0x121010];
+  /* HAIR COLOUR AS PEOPLE HAVE IT (2026-11-15, "a white meringue"). One draw in nine was a near
+   * white grey (0xc2bdb4, lifted a further 12 percent by the material), so at a deck's scale a light
+   * head printed as a pale cap and the seed-1 hero carried it. Real heads run mostly near black to
+   * mid brown, some auburn and dark blond, a few fair; grey is one draw in eighteen and is a dark
+   * salt and pepper, never white. Same one draw, so no later seeded choice moves. */
+  const HAIR = [0x16110e, 0x1b140f, 0x1d1510, 0x221811, 0x281b12, 0x2e2015, 0x34241a, 0x3b2a1c, 0x45301f,
+                0x4f3622, 0x5a3d25, 0x623a22, 0x6e4a2c, 0x7a5a38, 0x7f6646, 0x8c7350, 0x121010, 0x6a6560];
+  /* NO GARMENT IS PAPER WHITE (2026-11-15). A shirt at 0xf2f0ea is 0.87 linear luminance, and under
+   * the production key it printed as flat white with no fold in it. Cloth that reads white is about
+   * 0.55 to 0.75 in albedo, and the production key is bright, so any garment colour above 0.62 is scaled down to it, in linear light,
+   * keeping its hue. */
+  const capAlb = (c, max) => {
+    const C = new THREE.Color(c), L = 0.2126 * C.r + 0.7152 * C.g + 0.0722 * C.b, M = max || 0.62;
+    return L > M ? C.multiplyScalar(M / L).getHex() : C.getHex();
+  };
   const SHIRTS = [0xf2f0ea, 0x9fb7d0, 0x2d3a52, 0x6b7d5c, 0xa2493b, 0x3d5f7a, 0xc9b58f, 0x484848, 0x7a2e2e, 0xe0d7c3, 0x5b6f8f];
   const PLAIDS = [[0x8c2a24, 0x2a2a2a, 0xd8c7a0], [0x2f4a6b, 0x1c2433, 0xc8c2b0], [0x4f6a3a, 0x2a3320, 0xd2c38f], [0x9d6a2f, 0x3b2a1a, 0xe8dcc0]];
   const DENIM = [0x2e4263, 0x3a5680, 0x243552, 0x4d6690, 0x1e2a3c];
@@ -805,14 +870,23 @@ export function install(K, THREE, TXT) {
   function faceTint(ux, uy, uz, fem) {
     const ax = Math.abs(ux), f = smooth((uz + 0.1) / 0.5);
     let r = 1, g = 1, b = 1;
-    const warm = 0.1 * g2(ax - 0.45, uy + 0.2, 0.2, 0.18) + 0.08 * g2(ux, uy + 0.22, 0.09, 0.12) + 0.05 * g2(ux, uy - 0.35, 0.3, 0.15);
-    g -= warm * 0.9 * f; b -= warm * 1.1 * f;
-    const sock = 0.1 * g2(ax - 0.33, uy - 0.08, 0.13, 0.08) * f;
-    r -= sock * 0.9; g -= sock; b -= sock * 0.8;
+    /* MORE LIFE IN THE TINT (2026-11-15, "flat orange-brown"). The face read as one colour at a deck's
+     * scale, so the blood is a little stronger where it shows (the cheeks, the nose, the ear side), the
+     * forehead and the chin a touch paler and yellower, and the form is shaded where light is kept
+     * off it: the band under the brow over the upper lid, and the underside of the jaw. All of it is a
+     * multiplier on the measured palette, so the skin's hue stays where the measurement put it. */
+    const warm = 0.2 * g2(ax - 0.45, uy + 0.2, 0.2, 0.17) + 0.15 * g2(ux, uy + 0.22, 0.08, 0.12) + 0.04 * g2(ux, uy - 0.35, 0.3, 0.15);
+    g -= warm * 0.85 * f; b -= warm * 1.05 * f; r -= warm * 0.12 * f;
+    const pale = 0.04 * (g2(ux, uy - 0.5, 0.35, 0.18) + g2(ux, uy + 0.8, 0.18, 0.1)) * f;
+    b -= pale * 0.5;
+    const sock = 0.13 * g2(ax - 0.33, uy - 0.08, 0.14, 0.08) * f + 0.09 * g2(ax - 0.33, uy - 0.15, 0.2, 0.05) * f;
+    r -= sock * 0.85; g -= sock; b -= sock * 0.85;
+    const jaw = 0.16 * smooth((-uy - 0.68) / 0.2) * smooth((uz + 0.2) / 0.4) * (1 - smooth((-uy - 0.9) / 0.08));
+    r -= jaw * 0.85; g -= jaw; b -= jaw * 0.9;
     // the thin skin under the eye is a little cooler and darker; the nose tip and the ear-side of the cheek warmer
     const under = 0.05 * g2(ax - 0.3, uy + 0.06, 0.12, 0.05) * f;
     r -= under * 0.7; g -= under; b -= under * 0.6;
-    const flush = 0.05 * g2(ux, uy + 0.27, 0.06, 0.06) * f + 0.03 * g2(ax - 0.75, uy + 0.15, 0.15, 0.2);
+    const flush = 0.07 * g2(ux, uy + 0.27, 0.06, 0.06) * f + 0.06 * g2(ax - 0.75, uy + 0.15, 0.15, 0.2);
     g -= flush * 0.8; b -= flush * 0.9;
     if (!fem) { const beard = 0.08 * smooth((-uy - 0.35) / 0.2) * smooth((uz + 0.35) / 0.3) * (1 - 0.8 * g2(ux, uy + 0.52, 0.2, 0.06)); r -= beard; g -= beard; b -= beard * 0.8; }
     const fade = smooth((uy + 0.95) / 0.2);               // back to exactly the body skin at the neck
@@ -877,12 +951,17 @@ export function install(K, THREE, TXT) {
   /* A shell grown off the head along its normals by thickness T(ux, uy, uz) metres. Where T is
    * negative the shell sinks under the skin, so a hairline or a beard edge tapers rather than
    * ending in a step; triangles entirely under the skin are dropped. */
-  function shellGeo(head, T) {
+  function shellGeo(head, T, tone) {
     const p = head.attributes.position, n = head.attributes.normal, dirs = head.userData.dirs, idx = head.index.array;
-    const cnt = p.count, out = new Float32Array(cnt * 3), th = new Float32Array(cnt);
+    const cnt = p.count, out = new Float32Array(cnt * 3), th = new Float32Array(cnt), col = new Float32Array(cnt * 3);
+    tone = tone || T.tone;
     for (let i = 0; i < cnt; i++) {
       const t = T(dirs[i * 3], dirs[i * 3 + 1], dirs[i * 3 + 2]);
       th[i] = t;
+      // where the hair is thin (a hairline, a parting, a crease between locks) the eye sees down to
+      // the darker roots; where it stands thick it shows its lit outer layer
+      const v = (tone ? tone(dirs[i * 3], dirs[i * 3 + 1], dirs[i * 3 + 2]) : 1) * (0.68 + 0.32 * smooth(t / 0.0055));
+      col[i * 3] = v; col[i * 3 + 1] = v * 0.985; col[i * 3 + 2] = v * 0.97;
       const tt = Math.max(t, -0.0015);
       out[i * 3] = p.getX(i) + n.getX(i) * tt; out[i * 3 + 1] = p.getY(i) + n.getY(i) * tt; out[i * 3 + 2] = p.getZ(i) + n.getZ(i) * tt;
     }
@@ -891,6 +970,7 @@ export function install(K, THREE, TXT) {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(out, 3));
     g.setAttribute('uv', head.attributes.uv.clone());
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3));
     g.setIndex(keep);
     g.computeVertexNormals();
     return g;
@@ -917,33 +997,53 @@ export function install(K, THREE, TXT) {
      * around the crown axis (12 locks, creased between, faded to nothing at the whorl so they
      * meet without a pinch) and the hairline is pushed in and out by two lock-scale waves. A
      * buzz, a tight crop and a bun are slicked or clipped and take a little of each. */
-    const relief = { buzz: 0.08, tight: 0.12, bun: 0.15, recede: 0.25, curly: 0, curlyLong: 0 }[style];
-    const lockAmp = relief == null ? 0.32 : relief;
+    /* CLUMPED, NOT RIDGED (2026-11-15, "a white meringue"). The lock profile was 1 - 2(1 - |sin|)^2,
+     * which has a cusp at every crease, at a third of the hair's thickness, so twelve identical sharp
+     * ridges ran from the crown and printed as piped meringue or a hairnet. The profile is now a smooth
+     * roll (-cos), half as deep, and each lock is its own: its depth and its lightness are hashed from
+     * its index, so one clump stands proud and lighter, its neighbour sits lower and darker. */
+    const relief = { buzz: 0.06, tight: 0.08, bun: 0.1, recede: 0.12, curly: 0, curlyLong: 0 }[style];
+    const lockAmp = relief == null ? 0.1 : relief;
     const lineAmp = style === 'buzz' || style === 'tight' ? 0.012 : 0.028;
-    return (ux, uy, uz) => {
+    const hsh = (q) => { const v = Math.sin(q * 12.9898 + ph * 7.13) * 43758.5453; return v - Math.floor(v); };
+    const lockAt = (ux, uy, uz) => {
+      const cd = Math.acos(Math.max(-1, Math.min(1, 0.82 * uy - 0.57 * uz)));              // angle from the crown whorl
+      const la = 6 * Math.atan2(-0.57 * uy - 0.82 * uz, ux) + 0.7 * Math.sin(cd * 4 + ph) + ph;
+      const id = Math.floor(la / Math.PI + 0.5), h = hsh(id + 40), h2 = hsh(id + 91);
+      return { cd, lk: -Math.cos(2 * la), h, h2 };
+    };
+    const curls = style === 'curly' || style === 'curlyLong';
+    const fn = (ux, uy, uz) => {
       const az = Math.abs(Math.atan2(ux, uz));
       const m = uy - lineAt(tab, az) + lineAmp * (0.6 * Math.sin(az * 19 + ph) + 0.4 * Math.sin(az * 41 + 2 * ph));   // > 0 inside the hair
-      const cd = Math.acos(Math.max(-1, Math.min(1, 0.82 * uy - 0.57 * uz)));              // angle from the crown whorl
-      const lk = 1 - 2 * Math.pow(1 - Math.abs(Math.sin(6 * Math.atan2(-0.57 * uy - 0.82 * uz, ux) + 1.4 * Math.sin(cd * 5 + ph) + ph)), 2);
-      const lockK = 1 + lockAmp * lk * smooth(cd / 0.35);
+      const { cd, lk, h } = lockAt(ux, uy, uz);
+      const lockK = 1 + lockAmp * (0.45 + 0.85 * h) * lk * smooth(cd / 0.35);
       const top = smooth((uy - 0.35) / 0.55) * (1 - 0.35 * smooth((Math.abs(ux) - 0.5) / 0.4)), front = smooth(uz / 0.6) * smooth((uy - 0.35) / 0.35), crown = smooth((uy + 0.2) / 0.7);
       let T;
       switch (style) {
         case 'buzz': T = 0.0032; break;
         case 'tight': T = 0.004 + 0.002 * top; break;
-        case 'side': T = 0.0045 + 0.004 * crown + 0.02 * top + 0.009 * front - 0.007 * g2(ux - 0.4, uy - 0.62, 0.045, 0.4) * smooth(uz / 0.3 + 0.3) + 0.004 * top * smooth(-ux / 0.4); break;
+        case 'side': T = 0.0045 + 0.004 * crown + 0.016 * top + 0.007 * front - 0.007 * g2(ux - 0.4, uy - 0.62, 0.045, 0.4) * smooth(uz / 0.3 + 0.3) + 0.004 * top * smooth(-ux / 0.4); break;
         case 'curly': T = 0.006 + 0.005 * crown + 0.016 * top + 0.003 * (Math.sin(ux * 31 + ph) * Math.sin(uy * 29 + ph * 2) + Math.sin(uz * 27 + uy * 13 + ph * 3)); break;
         case 'recede': T = 0.004 + 0.004 * top; break;
         case 'bun': T = 0.004 + 0.004 * top; break;
         case 'long': case 'bob': T = 0.007 + 0.004 * crown + 0.01 * top + 0.004 * front; break;
         case 'curlyLong': T = 0.012 + 0.016 * top + 0.004 * (Math.sin(ux * 27 + ph) * Math.sin(uy * 25 + ph * 2) + Math.sin(uz * 23 + ph * 3)); break;
-        default: T = 0.004 + 0.004 * crown + 0.014 * top + 0.008 * front;      // crop
+        default: T = 0.004 + 0.004 * crown + 0.0095 * top + 0.0055 * front;      // crop
       }
       T *= k * lockK;
       // a continuous taper through the hairline, so the edge is cut by interpolation, not by the grid
       if (m < -0.06) return -0.002;
-      return lerp(-0.002, T + 0.0006 * Math.sin(ux * 90 + uy * 40 + ph), smooth((m + 0.02) / (uz > 0.3 ? 0.22 : 0.12)));
+      return lerp(-0.002, T + 0.0003 * Math.sin(ux * 90 + uy * 40 + ph), smooth((m + 0.02) / (uz > 0.3 ? 0.22 : 0.12)));
     };
+    // the hair's value: each lock a little lighter or darker than the next, darker down in its creases
+    // and at the whorl, a little lighter where the top catches the sky
+    fn.tone = (ux, uy, uz) => {
+      if (curls) return 0.84 + 0.16 * (0.5 + 0.5 * Math.sin(ux * 37 + ph) * Math.sin(uy * 33 + uz * 21 + ph * 2));
+      const { cd, lk, h2 } = lockAt(ux, uy, uz), on = smooth(cd / 0.35);
+      return (0.9 + 0.16 * h2 * on) * (1 - 0.1 * on * (0.5 - 0.5 * lk)) * (0.9 + 0.1 * smooth(cd / 0.25));
+    };
+    return fn;
   }
   /* Hair that falls below the skull: a thick curved slab around the back and sides of the
    * head, open at the face, its lower edge layered. Rows run down, columns around.
@@ -957,7 +1057,7 @@ export function install(K, THREE, TXT) {
    * through the neck (turned about the head's centre it cut 2 cm into it) or out behind it. */
   function curtainGeo(W, Hh, D, k, len, curly, ph, hang, piv) {
     const NU = LOW ? 14 : 44, NV = LOW ? 6 : 22, th = (curly ? 0.034 : 0.024) * k;
-    const yTop = 0.05 * Hh, pos = [], uv = [], idx = [];
+    const yTop = 0.05 * Hh, pos = [], uv = [], idx = [], col = [];
     const a0 = 1.4, a1 = Math.PI * 2 - 1.4;                      // around the back
     const R = (a, y, s) => {                                      // outer radius factor
       const fl = smooth((-y) / (Hh * 1.2));
@@ -978,6 +1078,11 @@ export function install(K, THREE, TXT) {
         yy = py + dy * c - dz * sn; z = pz + dy * sn + dz * c;
       }
       pos.push(x, yy, z); uv.push(a / (Math.PI * 2), -y / 0.25);
+      // value: darker at the root and on the inside, each hanging lock its own shade, creases darker
+      const lockV = curly ? 0.88 + 0.12 * Math.sin(a * 11 + y * 60 + ph) : 0.8 + 0.2 * Math.sqrt(Math.abs(Math.sin(a * 7 + 0.8 * Math.sin(y * 18 + ph) + ph)));
+      const per = 0.9 + 0.12 * Math.sin(Math.floor((a * 7 + ph) / Math.PI) * 2.7 + ph);
+      const c = lockV * per * (inner ? 0.62 : 1) * lerp(0.82, 1.04, smooth(v * 1.6));
+      col.push(c, c * 0.985, c * 0.97);
     };
     for (let side = 0; side < 2; side++)
       for (let v = 0; v <= NV; v++) for (let u = 0; u <= NU; u++) {
@@ -1001,6 +1106,7 @@ export function install(K, THREE, TXT) {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
     g.setIndex(idx);
     g.computeVertexNormals();
     return g;
@@ -1333,10 +1439,12 @@ export function install(K, THREE, TXT) {
     // nails: the skin's colour through a hard, glossier plate, a little paler and pinker
     const nailM = K.mat('p-nail', { color: new THREE.Color(skinC).multiplyScalar(1.1).lerp(new THREE.Color(0xd8a49a), 0.12).getHex(), roughness: 0.35, clearcoat: 0.45, clearcoatRoughness: 0.3 }, true);
     // ears are thin and backlit, so they run redder than the face
-    const earM = skinMat('p-skin-ear', { color: new THREE.Color(skinC).lerp(new THREE.Color(0xc0605a), 0.08).getHex() });
+    const earM = skinMat('p-skin-ear', { color: new THREE.Color(skinC).lerp(new THREE.Color(0xb0524c), 0.14).getHex() });
     const hairC = pick(r, HAIR);
-    const hairM = K.mat('p-hair', { color: new THREE.Color(hairC).multiplyScalar(1.12).getHex(), roughness: 0.55, map: clothTex('strands', 0, 0, 0),
-      sheen: 0.55, sheenColor: 0xfff1e0, sheenRoughness: 0.45 }, true);
+    // hair takes its value per vertex (roots, creases, one lock against the next) over its own colour;
+    // its sheen is its own colour lifted, never a near white one, which frosted every head
+    const hairM = K.mat('p-hair', { color: hairC, roughness: 0.58, map: clothTex('strands', 0, 0, 0), vertexColors: true,
+      sheen: 0.3, sheenColor: new THREE.Color(hairC).lerp(new THREE.Color(0xe8d8c4), 0.35).getHex(), sheenRoughness: 0.5, specularIntensity: 0.6 }, true);
     // the face carries its own tint per vertex and a faint oily sheen the body doesn't
     const faceM = skinMat('p-skin-face', { color: skinC, vertexColors: true, clearcoat: 0.07, clearcoatRoughness: 0.4 });
     let shirtKind = 'tee', shirtM, trouserM, jacket = false, sleeves = 'long', tie = null, jeans = false;
@@ -1359,12 +1467,12 @@ export function install(K, THREE, TXT) {
       trouserM = o.trousers != null ? cloth('cloth', o.trousers, { rough: 0.9 }) : jeans ? cloth('denim', pick(r, DENIM)) : cloth('cloth', pick(r, KHAKI), { rough: 0.9 });
     }
     const shoeStyle = role === 'official' ? 'dress' : role === 'worker' ? 'work' : pick(r, ['sneaker', 'sneaker', 'western', 'boot']);
-    const shoeUpper = shoeStyle === 'sneaker' ? K.mat('p-sneak', { color: pick(r, [0xe8e6e0, 0x2a2c30, 0x5a6470, 0xb8b2a6]), roughness: 0.78, sheen: 0.3, sheenColor: 0xffffff, sheenRoughness: 0.8 }, true)
+    const shoeUpper = shoeStyle === 'sneaker' ? K.mat('p-sneak', { color: capAlb(pick(r, [0xe8e6e0, 0x2a2c30, 0x5a6470, 0xb8b2a6])), roughness: 0.78, sheen: 0.3, sheenColor: 0xffffff, sheenRoughness: 0.8 }, true)
       : shoeStyle === 'dress' ? K.mat('p-dress', { color: 0x151312, roughness: 0.3, clearcoat: 0.7, clearcoatRoughness: 0.25 }, true)
       : shoeStyle === 'work' ? K.mat('p-work', { color: pick(r, [0x7a5530, 0x5a3e24, 0x8f6a3e]), roughness: 0.72, sheen: 0.3, sheenColor: 0xd8b890, sheenRoughness: 0.7 }, true)
       : K.mat('p-leather', { color: pick(r, [0x5a3a22, 0x3a2416, 0x7a4c2a, 0x2a1d16]), roughness: 0.48, clearcoat: 0.35, clearcoatRoughness: 0.45 }, true);
-    const soleM = shoeStyle === 'sneaker' ? K.mat('p-sole', { color: 0xefece6, roughness: 0.65 }) : shoeStyle === 'work' ? K.mat('p-lug', { color: 0x2a211b, roughness: 0.8 }) : K.mat('p-dsole', { color: 0x3a2a1e, roughness: 0.6 });
-    const laceM = shoeStyle === 'sneaker' ? K.mat('p-lace', { color: 0xf1efe9, roughness: 0.85 }) : shoeStyle === 'dress' ? K.mat('p-lace-d', { color: 0x141210, roughness: 0.7 }) : K.mat('p-lace-w', { color: 0xa08058, roughness: 0.85 });
+    const soleM = shoeStyle === 'sneaker' ? K.mat('p-sole', { color: capAlb(0xefece6), roughness: 0.65 }) : shoeStyle === 'work' ? K.mat('p-lug', { color: 0x2a211b, roughness: 0.8 }) : K.mat('p-dsole', { color: 0x3a2a1e, roughness: 0.6 });
+    const laceM = shoeStyle === 'sneaker' ? K.mat('p-lace', { color: capAlb(0xf1efe9), roughness: 0.85 }) : shoeStyle === 'dress' ? K.mat('p-lace-d', { color: 0x141210, roughness: 0.7 }) : K.mat('p-lace-w', { color: 0xa08058, roughness: 0.85 });
 
     /* SKELETON (y from the ground, before the stance lift). */
     const Y = (f) => f * H;
@@ -1797,7 +1905,8 @@ export function install(K, THREE, TXT) {
     // a long sleeve reaches the wrist, which on a short torso or a low hem hangs below the hem: the box
     // clipped it there, and the sleeve ended in a cut at the hem's height (it read as a short sleeve with a gap)
     for (const s of [1, -1]) { const cp = sleeveF[s].cp; bb.min.y = Math.min(bb.min.y, cp.p[1] - 0.06 * k); grow(V3(...cp.p), 0.06 * k); }
-    G.add(new THREE.Mesh(sdfMesh(shirtF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG, shirtU), shirtM));
+    { const sg = sdfMesh(shirtF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG, shirtU);
+      G.add(LOW ? new THREE.Mesh(sg, shirtM) : new THREE.Mesh(fieldAO(sg, shirtF, k), aoMat(shirtM))); }
     const trU = {
       region: (x, y, z) => { const a = leg[1].trF(x, y, z), b = leg[-1].trF(x, y, z), c = seatRaw(x, y, z); return c < a && c < b ? 0 : a < b ? 1 : -1; },
       uv: (x, y, z, reg, out) => {
@@ -1809,7 +1918,8 @@ export function install(K, THREE, TXT) {
     for (const s of [1, -1]) { grow(leg[s].hip, 0.13 * k); grow(leg[s].knee, 0.09 * k); grow(leg[s].ankle, 0.1 * k); }
     grow(V3(0, waistTop, 0), 0.19 * k);
     bb.max.y = waistTop + 0.01 * k;
-    G.add(new THREE.Mesh(sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG * 1.14, trU), trouserM));
+    { const tg = sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG * 1.14, trU);
+      G.add(LOW ? new THREE.Mesh(tg, trouserM) : new THREE.Mesh(fieldAO(tg, trouserF, k, 0.45), aoMat(trouserM))); }
 
     /* GARMENT DETAIL (2026-11-15, "painted-on cloth that has no weave or folds"). A garment that is only
      * its field is a smooth skin with a stump at every opening. Real cloth is cut and sewn: a hem turned
@@ -2006,13 +2116,13 @@ export function install(K, THREE, TXT) {
       };
       const ys = []; for (let y = 0.852; y >= 0.69; y -= 0.012) ys.push(+y.toFixed(3));
       const vw = (yf) => 0.056 * k * clamp01((yf - 0.69) / 0.16);
-      const white = K.mat('p-white2', { color: 0xf3f1ec, roughness: 0.7, side: THREE.DoubleSide });
+      const white = K.mat('p-shirt-white2', { color: capAlb(0xf3f1ec), roughness: 0.7, side: THREE.DoubleSide });
       body.add(strip(ys.map((y) => [y, -vw(y), vw(y), 0.0035 * k]), white));
       const tieM = K.mat('p-tie', { color: tie, roughness: 0.45, sheen: 0.6, sheenColor: 0xffffff, side: THREE.DoubleSide }, true);
       const tw2 = (yf) => yf > 0.835 ? 0.011 * k : lerp(0.03, 0.009, (yf - 0.7) / 0.135) * k;
       const tys = ys.filter((y) => y >= 0.7).concat([0.69]);
       body.add(strip(tys.map((y) => [y, -tw2(y) * (y < 0.7 ? 0.1 : 1), tw2(y) * (y < 0.7 ? 0.1 : 1), 0.0055 * k]), tieM));
-      body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.872), neckR + 0.0045 * k, neckR * 0.97 + 0.0045 * k, -0.012 * k, 0.1, Math.PI * 2 - 0.1, 0.003 * k), K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
+      body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.872), neckR + 0.0045 * k, neckR * 0.97 + 0.0045 * k, -0.012 * k, 0.1, Math.PI * 2 - 0.1, 0.003 * k), K.mat('p-shirt-white', { color: capAlb(0xf3f1ec), roughness: 0.7 })));
       body.add(new THREE.Mesh(bandG(Yl(0.838), Yl(0.862), neckR + 0.011 * k, neckR * 0.97 + 0.011 * k, -0.012 * k, 0.8, Math.PI * 2 - 0.8, 0.005 * k), shirtM));
       const knot = TXT.roundedBox(0.024 * k, 0.02 * k, 0.012 * k, 0.005 * k, tieM);
       knot.position.set(0, Yl(0.846), frontZ(0.846) + 0.004 * k); body.add(knot);
@@ -2131,7 +2241,7 @@ export function install(K, THREE, TXT) {
       else G.add(new THREE.Mesh(loft(armPts.slice(-2), { seg: 14, per: 2, ref: [0, 0, 1], capEnd: 'flat' }), skin));   // the wrist
       if (jacket) {     // white shirt cuff shows past the jacket sleeve
         const c = loft([{ p: Wr.clone().addScaledVector(Fd, -0.03 * k).toArray(), rx: 0.031 * k, ry: 0.028 * k }, { p: Wr.clone().addScaledVector(Fd, -0.002 * k).toArray(), rx: 0.03 * k, ry: 0.027 * k }], { seg: 14, per: 2, ref: [0, 0, 1], capEnd: 'flat' });
-        G.add(new THREE.Mesh(c, K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
+        G.add(new THREE.Mesh(c, K.mat('p-shirt-white', { color: capAlb(0xf3f1ec), roughness: 0.7 })));
       }
       const hp = A.hand === 'point' ? 'point' : A.hand === 'hip' || A.hand === 'grip' ? 'fist' : 'relax';
       const hnd = hand(k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass), s, skin, hp, nailM);
@@ -2204,10 +2314,14 @@ export function install(K, THREE, TXT) {
       head.add(ear);
     }
     // eyes: sclera, iris and pupil caps, lids that give the almond, a lash line, brows
-    const irisC = pick(r, [0x2a1a10, 0x3b2615, 0x4a3520, 0x2f3b45, 0x3b4a2c, 0x5a6a78]);
+    const irisC = pick(r, [0x22150d, 0x2e1e11, 0x3a2919, 0x262f36, 0x2f3b24, 0x404c56]);
     // a brow is darker than the hair it goes with, and never paler than the skin under it: a blonde or
     // grey head's brows lerped toward the skin printed as two pale bands across the forehead
-    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).lerp(new THREE.Color(0x221710), 0.72).lerp(new THREE.Color(skinC), 0.08).getHex(), roughness: 0.95 });
+    // and on deep skin a fair head's brows still sit darker than the skin (2026-11-15: a blond rung on the
+    // L* 46 skin printed tan brows paler than the forehead), so the brow is held under 55 percent of it
+    const browC = new THREE.Color(hairC).lerp(new THREE.Color(0x221710), 0.72).lerp(new THREE.Color(skinC), 0.08);
+    { const lum = (c) => 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b, cap = 0.55 * lum(new THREE.Color(skinC)); if (lum(browC) > cap) browC.multiplyScalar(cap / lum(browC)); }
+    const browM = K.mat('p-brow', { color: browC.getHex(), roughness: 0.95 });
     if (LOW) {
       for (const s of [1, -1]) {
         const p = surf(s * 0.33, 0.07);
@@ -2221,16 +2335,21 @@ export function install(K, THREE, TXT) {
        * glossy dome, so it catches the sky; the iris darkens at its rim; the white is shaded toward its
        * corners; a wet line of tear lies along the lower lid; the upper lid covers the top of the iris
        * and carries its crease, and the lower lid rides up a little with the smile. */
-      const sclera = K.mat('p-eyew', { color: 0xe2d8cc, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.04, vertexColors: true }, true);
-      const iris = K.mat('p-iris-' + irisC.toString(16), { color: irisC, roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.02, vertexColors: true, envMapIntensity: 1.6 }, true);
-      const pupil = K.mat('p-pupil', { color: 0x060504, roughness: 0.15, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6 }, true);
+      // EYES THAT DON'T GLOW (2026-11-15): a near white sclera under a mirror coat caught the sky and, at a
+      // deck's scale, the two eyes printed as pale lit dots. A white of the eye in a face is a dim
+      // ivory in the brow's shadow, and its wet sheen is soft, so the coat is half and rougher.
+      const sclera = K.mat('p-eyew', { color: 0x9c8f82, roughness: 0.38, clearcoat: 0.25, clearcoatRoughness: 0.2, vertexColors: true, envMapIntensity: 0.45 }, true);
+      const iris = K.mat('p-iris-' + irisC.toString(16), { color: irisC, roughness: 0.25, clearcoat: 0.35, clearcoatRoughness: 0.15, vertexColors: true, envMapIntensity: 0.4 }, true);
+      const pupil = K.mat('p-pupil', { color: 0x060504, roughness: 0.25, clearcoat: 0.35, clearcoatRoughness: 0.15, envMapIntensity: 0.4 }, true);
       const lashM = K.mat('p-lash', { color: new THREE.Color(hairC).multiplyScalar(0.45).getHex(), roughness: 0.7 });
       const wetM = K.mat('p-eye-wet', { color: new THREE.Color(skinC).lerp(new THREE.Color(0xc87c78), 0.5).getHex(), roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.02 }, true);
+      // the upper lid sits under the brow's overhang, so it is a shade deeper and a touch redder than the face
+      const lidM = skinMat('p-skin-lid', { color: new THREE.Color(skinC).multiplyScalar(0.84).lerp(new THREE.Color(0x8a4a44), 0.06).getHex() });
       const R = 0.0118 * k;
       // the white: shaded toward its corners and a touch pink there, as a real one is
       const scG = new THREE.SphereGeometry(R, 20, 12), scC = [];
       for (let i = 0; i < scG.attributes.position.count; i++) {
-        const fz = smooth(scG.attributes.position.getZ(i) / R * 1.2), l = 0.72 + 0.28 * fz;
+        const fz = smooth(scG.attributes.position.getZ(i) / R * 1.2), up = smooth(scG.attributes.position.getY(i) / R * 2 + 0.6), l = (0.6 + 0.4 * fz) * (1 - 0.25 * up);
         scC.push(l * (1 + 0.04 * (1 - fz)), l * (1 - 0.02 * (1 - fz)), l * (1 - 0.04 * (1 - fz)));
       }
       scG.setAttribute('color', new THREE.Float32BufferAttribute(scC, 3));
@@ -2274,7 +2393,7 @@ export function install(K, THREE, TXT) {
           if (nn.getX(9) * pp.getX(9) + nn.getY(9) * pp.getY(9) + nn.getZ(9) * pp.getZ(9) < 0) { const ix = g.index.array; for (let q = 0; q < ix.length; q += 3) { const t = ix[q]; ix[q] = ix[q + 1]; ix[q + 1] = t; } g.computeVertexNormals(); }
           return g;
         };
-        eye.add(new THREE.Mesh(sheet(up, 1.3, 1.1, true), skin));
+        eye.add(new THREE.Mesh(sheet(up, 1.3, 1.1, true), lidM));
         eye.add(new THREE.Mesh(sheet(dn, -1.2, 1.07, false), skin));
         const margin = (edge, rr, rad, mat, fwd) => {
           const pts = [];
@@ -2282,7 +2401,7 @@ export function install(K, THREE, TXT) {
             pts.push({ p: [q * Math.cos(be) * Math.sin(a), q * Math.sin(be) + fwd, q * Math.cos(be) * Math.cos(a)], rx: rad * Math.sin(Math.PI * (0.08 + 0.84 * i / 12)), ry: rad * Math.sin(Math.PI * (0.08 + 0.84 * i / 12)) }); }
           return new THREE.Mesh(loft(pts, { seg: 5, per: 1, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), mat);
         };
-        eye.add(margin(up, 1.14, 0.0016 * k, skin, 0));
+        eye.add(margin(up, 1.14, 0.0016 * k, lidM, 0));
         eye.add(margin(up, 1.17, 0.0008 * k, lashM, 0.0004 * k));
         eye.add(margin(dn, 1.1, 0.0009 * k, skin, 0));
         eye.add(margin((a) => dn(a) + 0.035, 1.03, 0.00055 * k, wetM, 0));      // the tear line on the lower lid
@@ -2308,7 +2427,7 @@ export function install(K, THREE, TXT) {
       }
       // lips: a patch that lies on the sculpted mouth, a shade deeper than the skin; the corners turn up
       // with the mouth line, the upper lip is darker than the lower (it faces down), the parting darkest
-      const lipC = new THREE.Color(skinC).multiplyScalar(0.88).lerp(new THREE.Color(0x9a5450), fem ? 0.2 : 0.12);
+      const lipC = new THREE.Color(skinC).multiplyScalar(0.84).lerp(new THREE.Color(0x8f4a48), fem ? 0.3 : 0.2);
       const lipM = skinMat('p-lip-' + lipC.getHexString(), { color: lipC.getHex(), roughness: 0.55, clearcoat: 0.08, clearcoatRoughness: 0.45, vertexColors: true });
       const lift = (x) => 0.03 * Math.pow(Math.min(1.3, Math.abs(x) / 0.22), 2);
       const topL = (x) => -0.445 - 0.06 * Math.pow(Math.abs(x) / 0.21, 2) + 0.008 * Math.exp(-Math.pow((Math.abs(x) - 0.055) / 0.03, 2)) + lift(x);
@@ -2329,10 +2448,13 @@ export function install(K, THREE, TXT) {
     if (style !== 'bald') {
       const hT = hairThickness(style, k, ph[0]), hatted = hatKind !== 'none';
       // under a hat the crown is pressed flat, so no hair can come through the hat
-      head.add(new THREE.Mesh(shellGeo(hg, hatted ? (ux, uy, uz) => Math.min(hT(ux, uy, uz), lerp(0.009, 0.0035, smooth((uy - 0.1) / 0.3)) * k) : hT), hairM));
+      head.add(new THREE.Mesh(shellGeo(hg, hatted ? (ux, uy, uz) => Math.min(hT(ux, uy, uz), lerp(0.009, 0.0035, smooth((uy - 0.1) / 0.3)) * k) : hT, hT.tone), hairM));
       if (longHair) head.add(new THREE.Mesh(curtainGeo(Wd, Hh, D, k, style === 'bob' ? 0.95 : 1.75 + 0.35 * r(), style === 'curlyLong', ph[1], headPitch, [neckTop.y - headC.y, neckTop.z - headC.z]), hairM));
       if (style === 'bun') {
-        const bun = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 10 : 20, LOW ? 8 : 14), hairM);
+        const bg = new THREE.SphereGeometry(1, LOW ? 10 : 20, LOW ? 8 : 14), bc = [];
+        for (let i = 0; i < bg.attributes.position.count; i++) { const q = bg.attributes.position, v = 0.78 + 0.14 * (0.5 + 0.5 * q.getY(i)) + 0.08 * Math.sin(Math.atan2(q.getX(i), q.getZ(i)) * 5 + q.getY(i) * 3); bc.push(v, v * 0.985, v * 0.97); }
+        bg.setAttribute('color', new THREE.Float32BufferAttribute(bc, 3));
+        const bun = new THREE.Mesh(bg, hairM);
         if (hatKind === 'none') { bun.scale.set(0.036 * k, 0.03 * k, 0.034 * k); bun.position.set(0, Hh * 0.55, -D * 0.9); }
         else { bun.scale.set(0.03 * k, 0.026 * k, 0.03 * k); bun.position.set(0, -Hh * 0.3, -D * 1.02); }
         head.add(bun);
@@ -2359,7 +2481,7 @@ export function install(K, THREE, TXT) {
         }
         return mo < 0 ? -0.002 : 0.0035 * k * smooth(mo / 0.3);
       };
-      head.add(new THREE.Mesh(shellGeo(hg, beard), hairM));
+      head.add(new THREE.Mesh(shellGeo(hg, beard, (ux, uy, uz) => 0.8 + 0.1 * Math.sin(ux * 41 + uy * 23) * Math.sin(uy * 37 + uz * 19)), hairM));
     }
     if (hatKind !== 'none') {
       let hatC = hatKind === 'hard' ? pick(r, [0xf2f0ea, 0xf2c200, 0xf07a1a, 0xf2f0ea])
@@ -2369,8 +2491,8 @@ export function install(K, THREE, TXT) {
       // one). The seeded pick is still drawn first, so a person's other choices don't move. The cap's pale
       // stone was the brightest thing beside the face, where the mannequin read lives; a worn khaki took it.
       if (o.hatColor != null) hatC = o.hatColor;
-      const hm = hatKind === 'hard' ? K.mat('p-hard', { color: hatC, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 }, true)
-        : K.mat('p-hat', { color: hatC, roughness: hatKind === 'cowboy' && (hatC === 0xd9c69a || hatC === 0xe0d2a8) ? 0.85 : 0.75 });
+      const hm = hatKind === 'hard' ? K.mat('p-hard', { color: capAlb(hatC, 0.75), roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 }, true)
+        : K.mat('p-hat', { color: capAlb(hatC), roughness: hatKind === 'cowboy' && (hatC === 0xd9c69a || hatC === 0xe0d2a8) ? 0.85 : 0.75 });
       head.add(hat(hatKind, Wd * 1.03, D * 1.03, Hh * (hatKind === 'cowboy' ? 0.36 : hatKind === 'cap' ? 0.32 : 0.36), hm, r, Hh));
     }
     // the body pieces lean with the torso, about the hips
@@ -2385,7 +2507,7 @@ export function install(K, THREE, TXT) {
       const hipC = leg[1].hip.clone().add(leg[-1].hip).multiplyScalar(0.5);
       let seatY = hipC.y;
       M.traverse((m) => {
-        if (!m.isMesh || m.material !== trouserM) return;
+        if (!m.isMesh || (m.material !== trouserM && m.material !== AOM.get(trouserM))) return;
         const pa = m.geometry.attributes.position;
         for (let i = 0; i < pa.count; i++) {
           if (Math.abs(pa.getX(i)) < hipX && Math.abs(pa.getZ(i) - hipC.z) < 0.06 * k) seatY = Math.min(seatY, pa.getY(i));
