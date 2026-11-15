@@ -1,0 +1,117 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Schools",
+ "dek": {
+  "text": "Texas school leaders reported AI in classrooms far more often than a written policy for it, Texas 2036 says. By its count Texas has no statewide school AI guidance.",
+  "claims": [
+   "c2",
+   "c3",
+   "c6"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Texas 2036 published a preview of its report on AI in Texas schools on {{date:c1}}](c1). [In a survey of Texas school and district leaders taken in fall {{number:c2:0}}, {{number:c2:1}}% reported teachers using AI and {{number:c2:2}}% reported student use](c2).",
+   "claims": [
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "text": "[Only {{number:c3}}% of those leaders reported a district policy governing student AI use](c3). [Just {{number:c4}}% reported a policy for teachers and staff](c4). The figures are what leaders reported to the survey the group cites, not a count of classrooms.",
+   "claims": [
+    "c3",
+    "c4"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Texas among the states",
+   "paragraphs": [
+    {
+     "text": "[By the group's own analysis, {{number:c5}} states have issued some form of statewide AI guidance, model policy, framework or support for schools](c5). [Texas is not among them](c6).",
+     "claims": [
+      "c5",
+      "c6"
+     ]
+    },
+    {
+     "text": "The article does not name which states it counted or what each one issued, and it does not say who ran the survey of school leaders. Neither is in the published preview.",
+     "claims": [
+      "c5",
+      "c2"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the report asks for",
+   "paragraphs": [
+    {
+     "text": "[Its first priority is statewide guidance that gives every district a common foundation for responsible AI use, built on laws the Legislature already passed](c7). [The second is safety standards for AI tools covering data privacy, security and educational effectiveness before the tools reach classrooms](c8).",
+     "claims": [
+      "c7",
+      "c8"
+     ]
+    },
+    {
+     "text": "[The third is training and resources for teachers to recognize and respond to the risks of AI](c9). [The fourth is age appropriate AI literacy for students](c10).",
+     "claims": [
+      "c9",
+      "c10"
+     ]
+    },
+    {
+     "text": "[Report author Renzo Soto](c12) says [AI can be a useful tool for teachers when used responsibly and effectively](c16). [He also says AI has not changed what works for students, a strong teacher and a solid academic foundation](c11).",
+     "claims": [
+      "c12",
+      "c16",
+      "c11"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What voters told the group",
+   "paragraphs": [
+    {
+     "text": "[Texas 2036 reports that nearly {{number:c13}}% of Texas voters call protecting student data and privacy extremely or very important if schools use AI](c13). [It reports that {{number:c15}}% say teaching students to use AI responsibly and ethically is important](c15).",
+     "claims": [
+      "c13",
+      "c15"
+     ]
+    },
+    {
+     "text": "The report is a recommendation from a nonprofit policy group. No state agency or school district has acted on it in the record, and the article names no date by which the state would decide.",
+     "claims": [
+      "c7"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0248",
+   "label": "The record entry for the Texas 2036 report"
+  },
+  {
+   "id": "tx-2026-0053",
+   "label": "Houston ISD's AI board policy"
+  },
+  {
+   "id": "tx-2026-0177",
+   "label": "Richardson ISD's legislative ask on classroom AI guidance"
+  },
+  {
+   "id": "tx-2026-0194",
+   "label": "Machine scoring of STAAR written answers"
+  }
+ ]
+}
