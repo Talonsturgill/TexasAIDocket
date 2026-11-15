@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-15
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · The MD Anderson and UT Medical Branch MRI model result is unconfirmed again, the article's index page showing a cookie check rather than its abstract.
 - 2026-11-08 · The MD Anderson and UT Medical Branch study still reports that its MRI model scored lower on patients from outside the data it was built on.
 - 2026-11-14 · The MRI study's abstract is unconfirmed this time, because the index answered with a browser challenge rather than the record.
+- 2026-11-15 · The study's abstract still reports the radiomics score's modest standalone accuracy and still advises cautious, exploratory use.
 
 ## Evidence
 

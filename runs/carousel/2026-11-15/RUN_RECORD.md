@@ -49,7 +49,7 @@ Three rounds of three judges, combined by `panel.py`.
 
 ## Timing
 
-`studio_clock.json` holds the checkpoints: wake, record_done, audition_done, art_done, review_done, panel_done, package_done.
+`studio_clock.json` holds the checkpoints: wake, record_done, audition_done, art_done, review_done, panel_done, package_done. Measured minutes from wake: record 26.06, audition 42.97, art 66.95, review 116.28, panel 210.49, package 234.25.
 
 ## Package
 

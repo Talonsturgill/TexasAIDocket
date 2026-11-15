@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-17
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-15
 
 ## Dates
 
@@ -59,6 +59,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The council's order calling the November 3rd vote on plate reader cameras still reads as passed. The county has not yet posted a canvass of the result.
 - 2026-11-08 · Voters said no to the fixed plate reader cameras, by the city's unofficial count. The council canvasses the result on November 17th, and the mayor has asked for the cameras to be covered until then.
 - 2026-11-14 · The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.
+- 2026-11-15 · The council's agenda records behind the plate reader election still read as cited. The city's own results page did not answer, so the canvass remains unconfirmed here.
 
 ## Evidence
 
