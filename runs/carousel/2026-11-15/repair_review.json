@@ -344,5 +344,15 @@
       "contact_sheet.png": "8106707d7024d232c3a14416acdfea77ea803df1c372311fafde81ca598dddd4"
     },
     "metadata_addendum": "The same independent flow reviewer verified the remaining frame 4 plan corrections against its unchanged source and image. Current beat, CRAFT PLAN, Showstopper and value structure describe dark laptop lids and only the policy folders counted. No new pass or scores."
+  },
+  "palette_metadata_addendum": {
+    "reviewer": "independent carousel-flow-critic /root/repair_flow",
+    "decision": "accept_metadata_only_revision",
+    "prior_reviewed_storyboard_sha256": "daba289b9dce330e136aab2e0a60d183103406d368bff3c70c007eeb750f03d0",
+    "current_storyboard_sha256": "a0b5fd5544b0c672133ca88a19335c0e3af736e30a042efeeffb696384248d75",
+    "finding": "All eleven palette table values exactly match TXLOOK.TONES.people in assets/js/txlook.js. Removing only the new Palette block reproduces the prior reviewed storyboard hash. Source, image, copy and contact-sheet hashes are unchanged. The table documents existing base colours before lighting and grading.",
+    "prior_review_binding_preserved": true,
+    "original_scores_unchanged": true,
+    "new_panel_round": false
   }
 }

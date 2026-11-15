@@ -75,6 +75,7 @@ The fresh cloud environment ran pinned Chromium through its ordinary sandbox and
 
 - The cover's bounds now describe the viewed subject and declare no false bleed. Frame 7 documents the actual turn to the report's proposed priorities without repeating an unsupported luminance number.
 - Stale frame 4 plan references now describe the existing integrity repair, dark laptop lids with only the policy folders counted. Its source and pixels are unchanged.
+- Exact-head CI caught the original storyboard's missing readable palette declaration. The plan now records the existing `TXLOOK.TONES.people` base colours in a palette table; source, copy and artwork bytes are unchanged by this metadata correction. The unchanged plan-versus-render self-test and product check were run again.
 - Figure reads are statically explicit. Actual computed quantities and every construction/count assertion remain. Non-count frames consume no drawing quantity.
 - Frame 3 now draws five physically separated locker banks. Independent native-pixel review counted the complete computed locker total and open-door total. Its inset door-field rectangle contains every face and declares no bleed. The strict thumbnail test measures 5 significant pieces. It remains a GRID.
 - Frame 6 now uses an actually elevated camera aimed at the complete shelf. Independent pixel review counted every computed binder and the sole empty Texas slot. Projected bounds are asserted for every binder. The whole run stays sharp. Its measured amber share is 0.013254, below the unchanged 0.08 cap. The shot-scale limit remains in force.
@@ -104,7 +105,7 @@ The original Gmail draft was preserved. Its archived payload is byte identical. 
 | labels         | PASS   | 38 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 79 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
-| dossiers       | PASS   | 33,993 chars planned |
+| dossiers       | PASS   | 34,678 chars planned |
 | caption        | PASS   | 140 words |
 | craft floor    | PASS   | 9 frame(s), median 1660, floor 299 |
 | plan vs render | WARN   | 0 of 63 acceptance item(s) checkable |

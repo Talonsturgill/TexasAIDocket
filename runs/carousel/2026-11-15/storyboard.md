@@ -31,6 +31,24 @@ Dropped: the meter stick (it sets 61 beside 29 and reads as a comparison the sou
 `assets/js/deck/2026-11-15-ruleroom-bespoke.js`. LOOK V2, tone PEOPLE (warm apricot key, plum fill, periwinkle sky), bespoke.
 Each frame owns its world, light, camera and type position. Shadows lean plum, never black.
 
+### Palette
+
+The shared PEOPLE tone is `TXLOOK.TONES.people` in `assets/js/txlook.js`. These are its base colours before scene lighting and the grade; each dossier also describes its materials and local lighting.
+
+| token | hex | role |
+|---|---|---|
+| skyTop | #2b4fb8 | upper sky |
+| skyMid | #4a7be0 | middle sky |
+| skyLow | #ffc7a8 | low sky and rim |
+| floor | #ff9f62 | studio floor |
+| wall | #4673d8 | studio wall |
+| key | #ffdcb0 | warm key light |
+| fill | #7a52c8 | plum fill light |
+| shade | #3b1f5e | plum shadow |
+| ink | #fff6ec | headline ink |
+| dek | #f2e8ff | supporting type |
+| accent | #ff9f1c | a written rule |
+
 THE ACCENT is the people tone's amber #ff9f1c and means ONE thing: a WRITTEN RULE (a district policy, a staff policy sheet,
 statewide guidance). It is absent from frames 1, 2, 3 and 8 and present on 4, 5, 6 and 9 only where a claim counts a written
 rule. The four priorities (7) are proposals and carry none. Data labels use the tone's plain ink pill (.lab.plain), never amber.
