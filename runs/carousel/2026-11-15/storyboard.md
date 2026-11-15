@@ -94,7 +94,7 @@ open after school sky, lamplit evening board room.
 | 08 | WIDE, eye 1.4 m on the school drive, fov 36 | a kit school brick ISD wing with a covered walk, a kit school_bus at the curb and kit person models as parents at pickup, under TXT.sky in the people world with TXT.ground concrete and lawn |
 | 09 | MEDIUM, eye 1.1 m behind an empty aisle chair, looking up the aisle, fov 34 | a kit hearing_dais in a TXT.interior district board room in the evening, one chassis ring_binder in the accent amber on the dais, a kit podium facing it, kit public_seating with one empty chair on the aisle nearest the camera |
 
-Showstopper frame: 04, the sunlit gym at a teacher's eye height, a hundred desks with the screens lit on most and only twenty nine amber folders among them. Its depth is the rows receding from the lens, each desk occluding the next and casting onto the maple.
+Showstopper frame: 04, the sunlit gym at a teacher's eye height, a hundred desks with the screens lit on most and only 29 amber folders among them. Its depth is the rows receding from the lens, each desk occluding the next and casting onto the maple.
 Tonal arc: warm morning studio on 01, a bright gym on 02, a cool hallway noon on 03, gold afternoon in the gym on 04, soft office light on 05, a quiet library on 06, a desk close up on 07, the open after school sky on 08, the lamplit evening board room on 09.
 
 ---
@@ -190,12 +190,12 @@ type:
 slide: 4
 layout: FULL_BLEED
 primary_image:
-  subject: the gym from a raised corner, late sun through the doors, a hundred desks with their laptops dark and twenty nine amber folders among them
+  subject: the gym from a raised corner, late sun through the doors, a hundred desks with their laptops dark and 29 amber folders among them
   rect: [0, 0, 1080, 1350]
   bleeds: [left, right, bottom]
 accent: '#ff9f1c'
-data_in_art: {figure: student_policy_of_100, drives: 'the number of amber pocket folders lying on the desks, twenty nine; no other survey share is drawn on this frame'}
-job: Turn the deck from use to rules, the same room with only twenty nine written policies in it.
+data_in_art: {figure: student_policy_of_100, drives: 'the number of amber pocket folders lying on the desks, 29; no other survey share is drawn on this frame'}
+job: Turn the deck from use to rules, the same room with only 29 written policies in it.
 claims: [c2, c3]
 numerals:
 - {value_from: c2}
