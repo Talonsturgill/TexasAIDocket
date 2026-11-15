@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · The MD Anderson and UT Medical Branch study still reports that its MRI model scored lower on patients from outside the data it was built on.
 - 2026-11-14 · The MRI study's abstract is unconfirmed this time, because the index answered with a browser challenge rather than the record.
 - 2026-11-15 · The MRI study still reports lower discrimination in its outside cohort. Europe PMC carries the abstract and the MD Anderson and UT Medical Branch affiliations.
+- 2026-11-15 · The study's abstract still reports the radiomics score's modest standalone accuracy and still advises cautious, exploratory use.
 
 ## Evidence
 

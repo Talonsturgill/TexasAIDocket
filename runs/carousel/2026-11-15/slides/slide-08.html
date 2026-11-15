@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-15, frame 8 of 9. A spatial scene through txthree.js under the people tone's periwinkle late sky. Eye 1.4 m
+at the outer edge of a red brick Texas ISD wing's covered walk at pickup, the walk's posts and ribbed deck running away to the glazed
+entry. Three parents wait at true scale in the near third, turned toward the doors, one holding a child's backpack by its loop and one
+a blank paper slip. A pale activity bus sits soft at the far left edge of the drive. No count, no lettering, nothing in the accent. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:90px; top:150px; width:900px; text-align:center">Nearly 85% of Texas voters call student privacy important</h1>
+<p class="dek" style="left:80px; top:1040px; width:900px">They call protecting student data and privacy extremely or very important if schools use AI, Texas 2036 says. In the same reporting, 71% call teaching responsible use important.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "08 / 09", src: "c13 c15", fit: { min: 76, max: 100, maxLines: 3 } });
+  const FOV = 38;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 6000, fog: 0.0016 });
+
+  /* THE HONEST PART. This frame draws no count (FIG is empty), so no computed drawing quantity is consumed. */
+
+  /* any texture painted on a canvas with lettering is stripped from a model, so no raster word reaches the frame */
+  const strip = (root) => { let n = 0; root.traverse(o => { if (!o.isMesh) return; const ms = Array.isArray(o.material) ? o.material : [o.material];
+    ms.forEach((m, i) => { if (!m || !m.map || !m.map.image || !(m.map.image instanceof HTMLCanvasElement)) return;
+      const c = m.clone(); c.map = null; if (Array.isArray(o.material)) o.material[i] = c; else o.material = c; n++; }); }); return n; };
+
+  /* THE CAMPUS, placed so its own build coordinates are the world's: K.make centred it, the raw build says by how much */
+  const SOPT = { seed: 3, length: 56, brick: '#b0583e' };
+  const school = K.make('school', SOPT);
+  const sspec = K.registry.school, so = Object.assign({ seed: 1 }, sspec.options || {}, SOPT);
+  const sraw = sspec.make(so, K.rng(so.seed * 7919 + 'school'.length * 131));
+  const sb = new THREE.Box3().setFromObject(sraw);
+  school.position.set((sb.min.x + sb.max.x) / 2, 0, (sb.min.z + sb.max.z) / 2);
+  if (school.userData.flagpole) school.userData.flagpole.visible = false;
+  /* any saturated orange on the campus (a bronze storefront frame, a lamp) is turned to cool aluminium so nothing reads as the accent */
+  let cooled = 0;
+  school.traverse(o => { if (!o.isMesh) return; const ms = Array.isArray(o.material) ? o.material : [o.material];
+    ms.forEach((m, i) => { if (!m || !m.color) return; const hsl = {}; m.color.getHSL(hsl, THREE.SRGBColorSpace);
+      if (m.map && hsl.s < 0.06 && hsl.l > 0.7 && Math.abs(m.color.r - 0.584) < 0.05) { /* the ribbed deck (#c9cbcc): its sunlit lip toned down so it never strikes the headline */
+        const c = m.clone(); c.color.multiplyScalar(0.55); cooled++; if (Array.isArray(o.material)) o.material[i] = c; else o.material = c; return; }
+      if (m.map) return;
+      if (hsl.s > 0.35 && hsl.h > 0.05 && hsl.h < 0.17) { const c = m.clone(); c.color.setHSL(0.62, 0.08, Math.max(0.45, hsl.l), THREE.SRGBColorSpace); if (c.emissive) c.emissive.setHex(0); cooled++; if (Array.isArray(o.material)) o.material[i] = c; else o.material = c; } }); });
+  TXT.add(R, school);
+  /* the walk, as the kit builds it: wall z 7, slab centred on z 9.6 (4.5 m deep), posts on z 11.1, deck to 11.7 at 3.4 m, entry at x -15 */
+  const L = 56, D = 14, WZ = D / 2 + 2.6, EX = -L / 2 + 13, POSTZ = WZ + 1.5, SLAB_EDGE = WZ + 2.25;
+  [[-30, -14, 10, 21], [-2, -18, 9, 22], [24, -15, 9.5, 23]].forEach(([x, z, h, sd]) => { const t = K.make('live_oak', { seed: sd, height: h, spread: h * 1.9 });
+    t.position.set(x, 0, z); t.rotation.y = sd; TXT.add(R, t); });
+
+  /* THE CAMERA: eye 1.4 m at the outer lip of the walk, looking down it to the glazed entry */
+  const FROM = [8.2, 1.4, SLAB_EDGE + 0.95], LOOK = [EX, 1.75, WZ + 0.4];
+  const v = new THREE.Vector3(LOOK[0] - FROM[0], 0, LOOK[2] - FROM[2]).normalize(), rgt = new THREE.Vector3(-v.z, 0, v.x).negate();
+  /* a spot on the walk at a depth along the view and a lateral offset (+ toward the wall), clamped onto the slab */
+  const at = (depth, lat) => { const x = FROM[0] + v.x * depth + rgt.x * lat, z = Math.min(SLAB_EDGE - 0.35, FROM[2] + v.z * depth + rgt.z * lat); return [x, z]; };
+  const toward = (x, z, tx, tz) => Math.atan2(tx - x, tz - z);
+
+  /* THE PARENTS at pickup, true scale, turned toward the doors. Clothes in plum, teal, cream and pale chinos (light enough that a leg under the dek never reads as a rule), never orange. */
+  const WALK_Y = 0.08;
+  const P = [
+    { xz: [3.32, 11.45], seed: 41, build: 'female', shirt: 0x6b3f94, trousers: 0xcfc8e6, look: [EX, WZ - 1.5], hands: [null, [-0.26, 1.0, 0.12]], prop: 'pack' },
+    { xz: [1.79, 11.62], seed: 42, build: 'male', shirt: 0x2f8a92, trousers: 0xc2cbe0, look: [EX, WZ - 0.4], hands: [[0.07, 1.08, 0.3], [-0.07, 1.08, 0.3]], prop: 'slip', pitch: 0.42 },
+    { xz: [-1.25, 11.6], seed: 47, build: 'female', shirt: 0xe9e2f2, trousers: 0x5c5f96, look: [EX, WZ] }
+  ];
+  const packM = new THREE.MeshPhysicalMaterial({ color: 0x2d58c8, roughness: 0.62, sheen: 0.6, sheenColor: 0x9db8ff, sheenRoughness: 0.5 });
+  const packTrim = new THREE.MeshStandardMaterial({ color: 0x1b2450, roughness: 0.55 });
+  const paperM = new THREE.MeshStandardMaterial({ color: 0xf7f2ec, roughness: 0.85, side: THREE.DoubleSide });
+  const parents = P.map(p => {
+    const [x, z] = p.xz; if (z > SLAB_EDGE - 0.2) throw new Error('a parent stands off the walk');
+    const o = { seed: p.seed, role: 'resident', pose: 'stand', build: p.build, shirt: p.shirt, trousers: p.trousers, hat: 'none' };
+    if (p.hands) o.hands = p.hands; if (p.pitch != null) o.headPitch = p.pitch;
+    const m = K.make('person', o);
+    if (p.prop === 'pack') {   /* a child's backpack hanging from its top loop in the right hand: rounded body, front pocket, loop, straps */
+      const g = new THREE.Group(), hp = p.hands[1];
+      const body = TXT.roundedBox(0.27, 0.36, 0.15, 0.07, packM); body.position.set(0, -0.25, 0); g.add(body);
+      const dome = new THREE.Mesh(new THREE.SphereGeometry(0.135, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), packM); dome.scale.set(1, 0.45, 0.55); dome.position.set(0, -0.09, 0); g.add(dome);
+      const pocket = TXT.roundedBox(0.2, 0.15, 0.05, 0.025, packM); pocket.position.set(0, -0.3, 0.075); g.add(pocket);
+      const zip = TXT.roundedBox(0.18, 0.012, 0.012, 0.005, packTrim); zip.position.set(0, -0.23, 0.1); g.add(zip);
+      const loop = new THREE.Mesh(new THREE.TorusGeometry(0.035, 0.008, 8, 20, Math.PI), packTrim); loop.position.set(0, -0.03, 0); g.add(loop);
+      [-0.08, 0.08].forEach(sx => { const s = TXT.roundedBox(0.04, 0.3, 0.015, 0.006, packTrim); s.position.set(sx, -0.24, -0.085); g.add(s); });
+      g.position.set(hp[0], hp[1], hp[2]); g.rotation.y = Math.PI - 0.5; m.add(g);
+    }
+    if (p.prop === 'slip') {   /* a blank paper slip held in both hands, a little curled, nothing written on it */
+      const geo = new THREE.PlaneGeometry(0.2, 0.26, 8, 8), pos = geo.attributes.position;
+      for (let k = 0; k < pos.count; k++) pos.setZ(k, 0.012 * Math.pow(pos.getY(k) / 0.13, 2));
+      geo.computeVertexNormals();
+      const s = new THREE.Mesh(geo, paperM); s.position.set(0, 1.12, 0.32); s.rotation.x = -0.75; m.add(s);
+    }
+    m.position.set(x, WALK_Y, z); m.rotation.y = toward(x, z, p.look[0], p.look[1]);
+    TXT.add(R, m); TXT.contact(R, m, { opacity: 0.8 }); return m;
+  });
+  if (parents.length !== 3) throw new Error('the pickup scene lost a parent');
+
+  /* THE BUS, a soft secondary: a pale activity bus at the far curb on the left edge, paint well away from the amber accent */
+  /* the kit letters its stop arm and placards with fillText; while the bus is built nothing is lettered, so no raster word exists at all */
+  const CTX = CanvasRenderingContext2D.prototype, fillText0 = CTX.fillText; let unlettered = 0;
+  CTX.fillText = function () { unlettered++; };
+  let bus; try { bus = K.make('school_bus', { seed: 2, whiteRoof: true, stopArm: false }); } finally { CTX.fillText = fillText0; }
+  let repaint = 0;
+  bus.traverse(o => { if (!o.isMesh) return; const ms = Array.isArray(o.material) ? o.material : [o.material];
+    ms.forEach((m, i) => { if (!m || !m.color) return; const hsl = {}; m.color.getHSL(hsl, THREE.SRGBColorSpace);
+      if (hsl.s > 0.3 && hsl.h > 0.04 && hsl.h < 0.2 && hsl.l > 0.15) { const c = m.clone(); c.color.setHSL(0.66, 0.12, 0.88, THREE.SRGBColorSpace); repaint++; if (Array.isArray(o.material)) o.material[i] = c; else o.material = c; } }); });
+  if (!repaint) throw new Error('the bus paint was not found, so it would render in the accent hue');
+  strip(bus);
+  const [bx, bz] = at(34, 6.4);
+  bus.position.set(bx, 0, Math.max(bz, SLAB_EDGE + 3)); bus.rotation.y = -Math.PI / 2 + 0.05;
+  TXT.add(R, bus); TXT.contact(R, bus, { opacity: 0.8 });
+
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { clouds: 0 }));
+  TXT.ground(R, { surface: 'asphalt', color: 0x84606e, size: 3000, seed: 815 });
+
+  /* THE KEY: a low late sun across the drive, raking under the walk onto the parents and the brick */
+  const rs = CH.rigSpec(W, 30, 4096);
+  TXT.deckRig(R, rs, Object.assign(CH.rigOpts([0, 0, WZ], { distance: 60, shadowFar: 140, normalBias: 0.02 }), { light: { az: -58, el: 16 } }));
+  CH.unacne(R, 0.02);
+  TXT.weather(R, { grime: 0.14, height: 0.4, mottle: 0.12, skip: parents.concat([bus]) });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.52, fade: 260 });
+  /* the open sky reads brighter than the shaded deck beside it under the same line; a second soft seat over the sky part evens the ground under the headline */
+  CH.seat(cx, { box: { x: 60, y: 150, w: 470, h: 330 }, a: 0.36, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.55, fade: 220 });
+  ['.count', '.kick'].forEach(sel => CH.seat(cx, { sel, a: 0.22, fade: 140 }));
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 150 }));
+  TXLOOK.footWash(cx, { a: 0.55, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

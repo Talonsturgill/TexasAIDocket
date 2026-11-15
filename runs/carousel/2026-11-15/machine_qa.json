@@ -1,0 +1,129 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.334,
+        0.4328,
+        0.5221
+      ],
+      "band_ratio": 1.2034
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 61% of this slide's own average craft density (top 72% / mid 91% / bottom 41% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.7248,
+        0.9118,
+        0.4118
+      ],
+      "band_ratio": 0.6142
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":75.46161839529523,\"materials\":20,\"cast_fraction\":0.25265243484224964,\"area\":1,\"render_ms\":13873.5}",
+        "busy art under text (bg edge density 0.03) beneath 'c2' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.9034,
+        0.8908,
+        0.6949
+      ],
+      "band_ratio": 0.8438
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3424,
+        0.479,
+        0.6085
+      ],
+      "band_ratio": 1.2607
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.4139,
+        0.6828,
+        0.7923
+      ],
+      "band_ratio": 1.2437
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "outside safe zone: '42 states have issued school AI guidance' at 590,150 426x241 (margin 80px)",
+        "outside safe zone: 'Some form of statewide AI guidance, mode' at 590,415 426x163 (margin 80px)"
+      ],
+      "bands": [
+        0.1765,
+        0.4055,
+        0.8364
+      ],
+      "band_ratio": 1.7094
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":48.57910091043226,\"materials\":13,\"cast_fraction\":0.4892355967078189,\"area\":1,\"render_ms\":27565.200000001118}"
+      ],
+      "bands": [
+        0.9538,
+        0.7794,
+        0.6691
+      ],
+      "band_ratio": 0.8419
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "a drawn rule crosses the glyph band of 'They call protecting student data and pr' (canvas edge .pixels at 80,1094.5 814x1) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.4916,
+        0.6996,
+        0.7537
+      ],
+      "band_ratio": 1.154
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3908,
+        0.7752,
+        0.8768
+      ],
+      "band_ratio": 1.2711
+    }
+  ],
+  "fails": 0,
+  "warns": 14,
+  "verdict": "WARN"
+}

@@ -1,0 +1,157 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-15, carousel no. 78, frame 1 of 9, the cover. A spatial scene through txthree.js on a studio sweep:
+     one kit student desk at true size, seen from above and behind its open side so the lit laptop faces the camera. The
+     laptop sits on the left of the putty laminate and the right half of the top is bare, lit only by the screen's glow,
+     where a written rule would lie. Nothing on the frame is amber, because the deck's accent means a written rule and
+     this frame has none. The headline stands low over the deep floor in front of the desk. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:470px; width:400px; text-align:left">Only 29% of school leaders reported a student AI policy</h1>
+<p class="dek" data-follow="24" style="left:74px; width:400px">Texas 2036 said on November 10th that 86% of Texas school and district leaders reported teachers using AI in fall 2025. The desk and its empty sheet protector are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "01 / 09", src: "c1 c2 c3", fit: { min: 58, max: 78, maxLines: 5 } });
+  /* THIS FRAME DRAWS NO COUNT. This frame consumes no computed drawing quantity; fig_inject keeps its data map empty. */
+
+  /* the type stands on the floor's quiet: the dek's foot sits just above the claim ids, whatever size the fit chose */
+  /* the type is a narrow column in the left third at mid height; the desk stands to its right */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (db.bottom > 1200) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the claim ids');
+    const hx = hb.left + hb.width / 2, hy = hb.top + hb.height / 2;
+    if (!(hx < 360 && hy > 450 && hy < 900)) throw new Error('the hook centre ' + Math.round(hx) + ',' + Math.round(hy) + ' left the left third, middle third'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 28, near: 0.05, far: 80, fog: 0 });
+  const P = CH.P;
+
+  /* THE SWEEP: rose floor rising into a cobalt wall, no peach and no orange so nothing on the frame reads as the accent.
+   * The floor nearest the camera deepens to plum, which is where the type stands. No accent strip in the reflections. */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 6, d: 4.2 }), { radius: 0.8, h: 6, floor: '#e0638f', wall: '#3d63d4', top: '#1f3a9c', env: 1.0, hemi: 0.75, softbox: 4.5, accentStrip: 0 }));
+  { const sw = R.studio.sweep, pos = sw.geometry.attributes.position, col = sw.geometry.attributes.color, c = new THREE.Color();
+    const near = new THREE.Color('#5a2a78'), rose = new THREE.Color('#e0638f'), foot = new THREE.Color('#9a4fb8'), wall = new THREE.Color('#3d63d4'), top = new THREE.Color('#1e3796');
+    const SHIFT = 4.2 * 1.4 / 2 - 1.2; sw.position.z = SHIFT;
+    for (let i = 0; i < pos.count; i++) { const y = pos.getY(i), z = pos.getZ(i), x = pos.getX(i);
+      if (y < 0.002) { const zw = z + SHIFT, t = Math.min(1, Math.max(0, (zw - 0.45) / 1.6)), b = Math.min(1, Math.max(0, (-zw - 0.1) / 0.9)); c.copy(rose).lerp(near, Math.pow(t, 0.8)).lerp(foot, b); }
+      else { const t = Math.min(1, y / 1.2); c.copy(rose).lerp(foot, 1).lerp(wall, Math.pow(t, 0.7)); if (y > 1.2) c.copy(wall).lerp(top, Math.min(1, (y - 1.2) / 2.0)); }
+      const e = Math.abs(x) / (6 * 1.6 / 2); c.multiplyScalar(1 - 0.22 * e * e);
+      col.setXYZ(i, c.r, c.g, c.b); }
+    col.needsUpdate = true; }
+  /* a fine paper tooth in the sweep's roughness, so the key's falloff lands on a material */
+  { const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const im = g.createImageData(w, h), r = CH.rng(101);
+      for (let i = 0; i < w * h; i++) { const v = 200 + (r() - 0.5) * 70; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } g.putImageData(im, 0, 0); }, [18, 18]);
+    tooth.colorSpace = THREE.NoColorSpace; const m = R.studio.sweep.material; m.roughnessMap = tooth; m.bumpMap = tooth; m.bumpScale = 0.0006; m.needsUpdate = true; }
+
+  /* THE DESK: the kit student desk, right handed, its laminate putty and its seat charcoal, turned so the camera looks over
+   * the open side and the seat at the screen. */
+  const desk = K.make('student_desk', { hand: 'right', detail: 'full', laptop: null, top: 0xb7ae9c });
+  const YAW = 0.86;
+  desk.rotation.y = YAW;
+  const TOP = desk.userData.laptopAt;   /* the laminate's centre at its surface, in the desk's own frame */
+
+  /* THE SCREEN: a light assistant chat, no legible text: a sidebar, alternating message blocks, a spark mark, a prompt bar */
+  const scrTex = CH.canvasTex(THREE, 1024, 640, (g, w, h) => {
+    const rr = (x, y, ww, hh, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + ww, y, x + ww, y + hh, r); g.arcTo(x + ww, y + hh, x, y + hh, r); g.arcTo(x, y + hh, x, y, r); g.arcTo(x, y, x + ww, y, r); g.closePath(); };
+    const bg = g.createLinearGradient(0, 0, 0, h); bg.addColorStop(0, '#fdfbff'); bg.addColorStop(1, '#efe9ff'); g.fillStyle = bg; g.fillRect(0, 0, w, h);
+    /* the prompt: one blue bubble, top right */
+    g.fillStyle = '#3f6ff0'; rr(520, 44, 450, 120, 46); g.fill();
+    g.fillStyle = 'rgba(255,255,255,0.75)'; rr(566, 82, 340, 18, 9); g.fill(); rr(566, 116, 220, 18, 9); g.fill();
+    /* the reply: a spark mark and a long lavender card, left */
+    const spark = (x, y, sz, c) => { g.fillStyle = c; g.beginPath(); for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4, rad = k % 2 ? sz * 0.3 : sz; g.lineTo(x + Math.cos(a - Math.PI / 2) * rad, y + Math.sin(a - Math.PI / 2) * rad); } g.closePath(); g.fill(); };
+    spark(84, 236, 40, '#7a3fe0');
+    g.fillStyle = '#cdbcff'; rr(140, 196, 760, 250, 40); g.fill();
+    g.fillStyle = '#6f5ab8'; [640, 690, 600, 380].forEach((ww, k) => { rr(180, 236 + k * 48, ww, 20, 10); g.fill(); });
+    /* the prompt bar with a blinking cursor */
+    g.fillStyle = '#ffffff'; rr(60, 500, 904, 100, 50); g.fill(); g.strokeStyle = '#8f78e8'; g.lineWidth = 6; g.stroke();
+    g.fillStyle = '#3a2a7a'; g.fillRect(118, 520, 9, 60);
+    g.fillStyle = '#3f6ff0'; g.beginPath(); g.arc(908, 550, 34, 0, Math.PI * 2); g.fill();
+  });
+  const scrMat = new THREE.MeshStandardMaterial({ color: 0x050508, roughness: 0.12, metalness: 0.1, emissive: 0xffffff, emissiveMap: scrTex, emissiveIntensity: 2.3 });
+  const laptop = K.make('laptop', { open: 112, finish: 'space', screen: 'doc' });
+  let swapped = 0;
+  laptop.traverse(o => { if (o.isMesh && o.geometry && o.geometry.type === 'PlaneGeometry' && o.geometry.parameters && Math.abs(o.geometry.parameters.width - 0.296) < 1e-4) { o.material = scrMat; swapped++; } });
+  if (swapped !== 1) throw new Error('expected one laptop screen to light, found ' + swapped);
+  /* the laptop on the LEFT of the laminate (the open side), leaving the right half of the top bare */
+  const LX = -0.135, LZ = -0.02;
+  laptop.position.set(TOP[0] + LX, TOP[1], TOP[2] + LZ);
+  desk.add(laptop);
+  /* the bare laminate beside it must hold a letter sheet: the gap from the laptop's right edge to the top's right edge */
+  const bare = (TOP[0] + 0.3) - (TOP[0] + LX + 0.156);
+  if (bare < 0.216) throw new Error('the bare laminate beside the laptop is ' + bare.toFixed(3) + ' m, narrower than a letter sheet');
+
+  /* THE MISSING RULE: an empty clear sheet protector lying on the bare laminate, cool and neutral, never amber. A frosted
+   * punched strip on its left edge, welded seams on three sides, open at the top, and nothing inside it. */
+  const SPW = 0.236, SPD = 0.298, SPX = TOP[0] + LX + 0.156 + (bare - SPW) / 2, SPZ = TOP[2] + 0.005;
+  if (SPW > bare) throw new Error('the sheet protector is wider than the bare laminate');
+  const spTex = CH.canvasTex(THREE, 472, 596, (g, w, h) => {
+    g.clearRect(0, 0, w, h);
+    g.fillStyle = 'rgba(205,224,255,0.62)'; g.fillRect(0, 0, w, h);
+    g.fillStyle = 'rgba(250,252,255,0.97)'; g.fillRect(0, 0, 60, h);                         /* the reinforced punched strip */
+    g.globalCompositeOperation = 'destination-out'; [0.17, 0.5, 0.83].forEach(t => { g.beginPath(); g.arc(30, h * t, 15, 0, Math.PI * 2); g.fill(); });
+    g.globalCompositeOperation = 'source-over';
+    g.strokeStyle = 'rgba(255,255,255,0.95)'; g.lineWidth = 12; g.beginPath(); g.moveTo(60, 6); g.lineTo(60, h - 6); g.lineTo(w - 6, h - 6); g.lineTo(w - 6, 6); g.stroke();
+    g.strokeStyle = 'rgba(200,214,245,0.9)'; g.lineWidth = 3; g.beginPath(); g.moveTo(52, 10); g.lineTo(w - 3, 10); g.stroke();   /* the open mouth */
+  });
+  const spGeo = new THREE.PlaneGeometry(SPW, SPD, 8, 10); spGeo.rotateX(-Math.PI / 2);
+  { const pp = spGeo.attributes.position; for (let i = 0; i < pp.count; i++) { const x = pp.getX(i); pp.setY(i, Math.pow(Math.max(0, x / (SPW / 2)), 3) * 0.004); } spGeo.computeVertexNormals(); }
+  const spMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: spTex, transparent: true, roughness: 0.14, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.08, depthWrite: false, side: THREE.DoubleSide, envMapIntensity: 1.2 });
+  const sleeve = new THREE.Mesh(spGeo, spMat); sleeve.position.set(SPX + SPW / 2 - 0.0, TOP[1] + 0.0012, SPZ); sleeve.receiveShadow = true;
+  /* its soft footprint: the sleeve sits on the laminate, so a faint cool shadow lies a hair under its edge */
+  const fp = new THREE.Mesh(new THREE.PlaneGeometry(SPW + 0.006, SPD + 0.006), new THREE.MeshBasicMaterial({ color: 0x2a2050, transparent: true, opacity: 0.26, depthWrite: false }));
+  fp.rotation.x = -Math.PI / 2; fp.position.set(SPX + SPW / 2 + 0.003, TOP[1] + 0.0004, SPZ + 0.004);
+  desk.add(fp); desk.add(sleeve);
+  if (SPX < TOP[0] + LX + 0.156 - 1e-6 || SPX + SPW > TOP[0] + 0.3 + 1e-6) throw new Error('the sheet protector leaves the bare laminate');
+
+  TXT.add(R, desk);
+  TXT.contact(R, desk, { layers: [{ spread: 0.03, opacity: 0.7 }, { spread: 0.22, opacity: 0.32 }] });
+
+  /* THE SCREEN'S GLOW on the laminate: a cool lavender spill from the display across the bare half of the top */
+  desk.updateMatrixWorld(true);
+  const w2 = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyMatrix4(desk.matrixWorld);
+  const glowAt = w2([TOP[0] + LX, TOP[1] + 0.12, TOP[2] + LZ - 0.06]), bareAt = w2([TOP[0] + 0.17, TOP[1], TOP[2] + 0.03]);
+  const glow = new THREE.SpotLight(0xc4b8ff, 1.6, 1.2, 1.0, 0.9, 1.5);
+  glow.position.copy(glowAt); glow.target.position.copy(bareAt); glow.castShadow = false; R.scene.add(glow); R.scene.add(glow.target);
+
+  /* THE CAMERA: high and behind the open side, looking down onto the laminate and the lit screen */
+  const C = w2([TOP[0] + 0.05, TOP[1] - 0.18, TOP[2] + 0.08]);
+  const FROM = [C.x + 0.0, C.y + 3.25, C.z + 2.93];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [C.x, C.y, C.z], 738, 490, 28);
+  TXT.frame(R, { fov: 28, from: FROM, look: LOOK });
+
+  /* THE KEY: big and soft from the camera's left and above, so the desk throws its shadow right and back up the sweep */
+  const spec = CH.rigSpec(W, 3.2, 4096); spec.key = Object.assign({}, spec.key, { radius: 6, color: 0xffe6cc });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.4, 0], { distance: 7, shadowFar: 16, normalBias: 0.004 }), { light: { az: -40, el: 60 } }));
+  CH.unacne(R, 0.004);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* honesty of the picture: the desk spans at least half the frame's width, measured on its projected box */
+  { const rc = CH.rectOf(THREE, R, desk, 0); if (rc[2] < 540) throw new Error('the desk spans ' + Math.round(rc[2]) + ' px, under 540'); }
+
+  CH.seat(cx, { a: 0.62, fade: 260 });
+  CH.seat(cx, { a: 0.3, fade: 120 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.55, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.62, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

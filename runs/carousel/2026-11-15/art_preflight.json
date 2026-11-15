@@ -1,0 +1,282 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    4,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "702c890130338603bb746df5911990fc5c8f61d9a303a4ab33ce1eb25a9123bb",
+    "render/slide-01.png": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+    "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-04.html": "902bc09405f90adafd9847948b007f7927969b69a125dfaac6d954b9fdedf9d5",
+    "render/slide-04.png": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c",
+    "slides/slide-09.html": "1d478dac4e9292150a838f33b7d595863162078f71e84c866a9a7478452a42aa",
+    "render/slide-09.png": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 45.4,
+      "mid": 0.69,
+      "dark": 0.031,
+      "grey_mid": 0.006,
+      "vivid": 0.822,
+      "median_C": 53.6
+    },
+    {
+      "frame": "slide-04.png",
+      "median_L": 27.1,
+      "mid": 0.36,
+      "dark": 0.243,
+      "grey_mid": 0.002,
+      "vivid": 0.88,
+      "median_C": 54.1
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 26.8,
+      "mid": 0.37,
+      "dark": 0.106,
+      "grey_mid": 0.002,
+      "vivid": 0.904,
+      "median_C": 50.2
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "702c890130338603bb746df5911990fc5c8f61d9a303a4ab33ce1eb25a9123bb",
+      "render/slide-01.png": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+      "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "902bc09405f90adafd9847948b007f7927969b69a125dfaac6d954b9fdedf9d5",
+      "render/slide-04.png": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c",
+      "slides/slide-09.html": "1d478dac4e9292150a838f33b7d595863162078f71e84c866a9a7478452a42aa",
+      "render/slide-09.png": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "score": 7.9,
+        "points": {
+          "only_this_sentence": 8,
+          "one_idea": 8,
+          "composed": 8.2,
+          "crafted": 7.2,
+          "unlike_neighbours": 8.2,
+          "honest": 9
+        },
+        "subject": "A recognizable school desk and chair, with a lit AI chat screen beside an empty clear sheet protector, against a vivid pink and plum studio sweep.",
+        "visual_consequence": "The active screen and empty document holder establish AI use alongside an unwritten rule. The complete desk remains contained within the frame, consistent with the corrected rectangle and absence of subject bleeds. No quantitative share is drawn.",
+        "weakness": "At feed size the pale protector initially resembles a blank sheet. The chair material and broad studio sweep retain a synthetic finish.",
+        "repair": "Advisory for future craft work: give the protector's open mouth a raised reflective lip so its empty construction reads faster.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept_under_round_cap",
+        "reviewer": "independent carousel-slide-critic /root/review_01",
+        "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+        "inputs": {
+          "slides/slide-01.html": "702c890130338603bb746df5911990fc5c8f61d9a303a4ab33ce1eb25a9123bb",
+          "render/slide-01.png": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+          "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        },
+        "viewed": [
+          "tmp/feed-01.png",
+          "render/slide-01.png",
+          "render/crops/slide-01-r1c1.png",
+          "render/crops/slide-01-r1c2.png",
+          "render/crops/slide-01-r2c1.png",
+          "render/crops/slide-01-r2c2.png",
+          "render/crops/slide-01-r3c1.png",
+          "render/crops/slide-01-r3c2.png"
+        ]
+      },
+      {
+        "slide": 4,
+        "role": "evidence",
+        "score": 7.6,
+        "subject": "A violet gym seen from a raised corner. The hundred kit student desks run from the far baseline to the bottom edge, every one with an identical dark laptop, and a scattered minority carry a flat amber folder. The magenta wall band and upper wall hold the headline and dek.",
+        "visual_consequence": "Darkening every screen removes the implied cross-tab and leaves amber as the only hot note, so the picture says one thing: of a hundred desks, roughly three in ten carry a written rule, matching 'A student AI policy, reported by 29%'.",
+        "weakness": "The near folders are oversized flat amber slabs with no thickness, pocket edge or contact shadow, a few overhanging onto the chair backs; several back-row folders sit partly behind laptop lids so the share reads as about a third; the hundred dark lids repeat as a busy texture.",
+        "repair": "Scale the folders to about 1.2 times inside each desktop with a pocket lip, sheet and contact shadow; turn the back-row folders beside their laptops; close the lids or tint the screens deep violet.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "reviewer": "carousel-slide-critic, cold, session model, fresh look at this exact render after the integrity repair",
+        "inputs": {
+          "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-04.html": "902bc09405f90adafd9847948b007f7927969b69a125dfaac6d954b9fdedf9d5",
+          "render/slide-04.png": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "score": 7,
+        "subject": "An empty aisle chair faces a public-comment podium and trustees' dais, with one illuminated amber binder on its central ledge.",
+        "visual_consequence": "The chair and aisle make the district-policy invitation readable at feed size. The illustrative room does not establish a policy adopted by any identified district.",
+        "weakness": "Existing procedural walnut and chair-fabric moire remain. Saturated wood competes with the amber binder; its highlight obscures material detail.",
+        "repair": "Advisory: use restrained straight-grain plum-brown walnut and finer upholstery detail in future craft work.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept_under_round_cap",
+        "reviewer": "independent carousel-slide-critic /root/review_09",
+        "score_scope": "Separate repair review, not a panel round or replacement of the original capped scores.",
+        "inputs": {
+          "slides/slide-09.html": "1d478dac4e9292150a838f33b7d595863162078f71e84c866a9a7478452a42aa",
+          "render/slide-09.png": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+          "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        },
+        "viewed": [
+          "tmp/feed-09.png",
+          "render/slide-09.png",
+          "render/crops/slide-09-r1c1.png",
+          "render/crops/slide-09-r1c2.png",
+          "render/crops/slide-09-r2c1.png",
+          "render/crops/slide-09-r2c2.png",
+          "render/crops/slide-09-r3c1.png",
+          "render/crops/slide-09-r3c2.png"
+        ]
+      }
+    ],
+    "basis": "Fresh independent repair reviews for changed frames 1 and 9. Frame 4 retains its unchanged exact prior source, image and asset review. No historical panel score was transferred to changed artwork."
+  },
+  "plan": {
+    "hardest_frame": 4,
+    "visual_argument": "One unit, one leader in a hundred, carried in school objects a reader already counts by: lit laptops on a hundred desks, open lockers, amber folders among the same desks, amber sheets in staff mailboxes; then a shelf of state guidance with one empty slot and a board room with one amber binder.",
+    "build_risk": "Frame 4 must keep all twenty nine amber folders visible past a hundred desks and laptops at feed size while the rows fill the frame; occlusion and scale fight each other.",
+    "distinct_from_recent": "The last three decks were dark staged scenes of kit objects with the headline top left (a parked lot, a cooling yard, wafer boats on a black bench). This deck is lit LOOK V2 colour, nine bespoke worlds and four type placements.",
+    "bespoke_note": "BESPOKE run: no three-frame audition. The review bound in art_preflight.json is the cold carousel-slide-critic final critique of each selected frame (knowledge/carousel/BESPOKE.md, step 3)."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "702c890130338603bb746df5911990fc5c8f61d9a303a4ab33ce1eb25a9123bb",
+      "render/slide-01.png": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+      "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "4": {
+      "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "902bc09405f90adafd9847948b007f7927969b69a125dfaac6d954b9fdedf9d5",
+      "render/slide-04.png": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c"
+    },
+    "9": {
+      "assets/js/deck/2026-11-15-ruleroom-bespoke.js": "97fc58fe3552f5c5ff655aaa4e83a294a403d7d5a5ea8f1d666ea2cafe502e56",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "f81a2ba528bd67bf50d5f1f584bbe74214ba8713710331be987b2d5894af478d",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "1d478dac4e9292150a838f33b7d595863162078f71e84c866a9a7478452a42aa",
+      "render/slide-09.png": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "702c890130338603bb746df5911990fc5c8f61d9a303a4ab33ce1eb25a9123bb",
+    "slide-01.webp": "4882415ecc0d259f6f4f6eba4ebdf309a27a06e09e5c7569d05056bcdaa75974",
+    "slides/slide-04.html": "902bc09405f90adafd9847948b007f7927969b69a125dfaac6d954b9fdedf9d5",
+    "slide-04.png": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c",
+    "slides/slide-09.html": "1d478dac4e9292150a838f33b7d595863162078f71e84c866a9a7478452a42aa",
+    "slide-09.png": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "4882415ecc0d259f6f4f6eba4ebdf309a27a06e09e5c7569d05056bcdaa75974",
+      "from_sha256": "a9eb26acb03ae4782438d83b84aa0d62ae7ea3e46efb235b0c4c1c1dc0d70790",
+      "psnr_db": 41.054
+    },
+    {
+      "to": "slide-04.png",
+      "to_sha256": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c",
+      "from_sha256": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+      "from_sha256": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+      "psnr_db": 999.0
+    }
+  ]
+}

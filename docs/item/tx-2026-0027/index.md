@@ -1,6 +1,6 @@
 # Taylor City Council unanimously approved the amended Compal tax abatement agreement
 
-Taylor City Council approved the Amended and Restated Tax Abatement Agreement with PDC TP 01 LOT A LLC and Compal Technology, Inc. at its August 13th, 2026 meeting. The minutes record a unanimous vote after the item was pulled from the consent agenda for separate consideration. The staff packet says the amendment preserves the original incentives and performance obligations and authorizes no additional incentives. The attached agreement places the property in Tax Abatement Reinvestment Zone No. 11. Approval is recorded, while execution by the parties is not established by the minutes.
+Taylor City Council approved the Amended and Restated Tax Abatement Agreement with PDC TP 01 LOT A LLC and Compal Technology, Inc. at its August 13th, 2026 meeting. The minutes record a unanimous vote after the item was pulled from the consent agenda for separate consideration. The staff packet says the amendment preserves the original incentives and performance obligations and authorizes no additional incentives. The attached agreement places the property in Tax Abatement Reinvestment Zone No. 10. Approval is recorded, while execution by the parties is not established by the minutes.
 
 - Topic: data-centers
 - Decided by: Taylor City Council (city)
@@ -12,7 +12,7 @@ Taylor City Council approved the Amended and Restated Tax Abatement Agreement wi
 - Comment closes: 2026-08-13
 - Take part: https://taylortx.portal.civicclerk.com/event/2010/files/agenda/5956
 
-- Last checked: 2026-11-12
+- Last checked: 2026-11-15
 
 ## Dates
 
@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Taylor's amended Compal abatement still reads as approved in the council's own minutes and resolution.
 - 2026-11-08 · The amended Compal abatement still appears as approved in Taylor's council minutes.
 - 2026-11-12 · Checked against the council's own agenda record. The amended Compal abatement still reads as approved, with nothing reversing it.
+- 2026-11-15 · The council packet still records the amended Compal agreement. Read again, its recital names Reinvestment Zone No. 10, and the record now says so.
 
 ## Evidence
 
@@ -84,9 +85,9 @@ Source (primary_official): https://taylortx.api.civicclerk.com/v1/Meetings/GetMe
 
 Source (primary_official): https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)
 
-### The attached agreement identifies Tax Abatement Reinvestment Zone No. 11.
+### The attached agreement identifies Tax Abatement Reinvestment Zone No. 10.
 
-> WHEREAS, the City Council of the City of Taylor, Texas (the “City Council”), passed an Ordinance (the “Ordinance”) establishing Tax Abatement Reinvestment Zone No. 11 (the “Zone”),
+> WHEREAS, the City Council of the City of Taylor, Texas (the “City Council”), passed an Ordinance (the “Ordinance”) establishing Tax Abatement Reinvestment Zone No. 10 (the “Zone”),
 
 Source (primary_official): https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)
 

@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · The expert panel's review still opens on the same finding, that imaging AI has largely been built and tested on adults while children's scans stay underrepresented.
 - 2026-11-14 · The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.
 - 2026-11-15 · The pediatric imaging review still calls for models built for children. Europe PMC carries the abstract and the Baylor and UT Southwestern affiliations.
+- 2026-11-15 · The panel's review still says pediatric imaging is underrepresented in radiology AI, and its recommendations on data sharing and payment read as before.
 
 ## Evidence
 

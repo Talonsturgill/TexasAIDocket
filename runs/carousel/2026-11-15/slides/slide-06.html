@@ -1,0 +1,207 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-15, frame 6 of 9, the empty place. A reading room: a long honey oak shelf_run against a periwinkle wall,
+     seen from above the reading room with a 34 degree lens, so its complete run is visible against the library wall. On it
+     stand FIG.states_with_guidance amber ring binders, blank spines, no names. The one further slot, the nearest, is held
+     empty inside the run, with the plain Texas pill below it. Every spine stays sharp and inside the frame.
+     Every count is read from window.FIG. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:590px; top:150px; width:426px; text-align:right">42 states have issued school AI guidance. Not Texas.</h1>
+<p class="dek" data-follow="24" style="left:590px; width:426px; font-size:24px; line-height:1.36; text-align:right">Some form of statewide AI guidance, model policy, framework or support for schools, by Texas 2036's count. Texas is not among them. One binder per state, drawn to illustrate.</p>
+<div class="lab plain" id="l-tx" style="font-size:26px">Texas</div>
+<script>window.FIG = {"states_with_guidance": 42};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas schools", counter: "06 / 09", src: "c5 c6", fit: { min: 56, max: 62, maxLines: 5 } });
+  const P = CH.P;
+
+  /* THE FIGURE. FIG.states_with_guidance amber binders, and exactly one further slot, empty, for Texas. */
+  const NB = FIG.states_with_guidance;
+  if (!Number.isInteger(NB) || NB < 1) throw new Error('FIG.states_with_guidance is not a count: ' + NB);
+  const SLOTS = NB + 1, PITCH = 0.066;
+
+  const R = CH.stage(TXT, gl, W, { fov: 24, near: 0.05, far: 60, fog: 0 });
+
+  /* THE ROOM: a reading room, periwinkle walls, a window on the far wall at the end of the shelf */
+  const RW = 7.2, RD = 4.4, RH = 5.0, BACKZ = -RD / 2;
+  TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: 0x4a6fd2, trim: 0x2c2466, window: 'left', windowW: 1.6, windowH: 1.9,
+    windowColor: 0xffe2bc, windowI: 2.6, light: 0.5 });
+
+  /* a honey oak plank floor laid over the room's slab */
+  const plank = CH.canvasTex(THREE, 2048, 2048, (g, w, h) => {
+    const r = CH.rng(611), rows = 16, bh = h / rows;
+    for (let j = 0; j < rows; j++) {
+      let x = -r() * 600;
+      while (x < w) { const L = 380 + r() * 700, t = 0.78 + r() * 0.3;
+        g.fillStyle = 'rgb(' + Math.round(176 * t) + ',' + Math.round(104 * t) + ',' + Math.round(62 * t) + ')'; g.fillRect(x, j * bh, L, bh);
+        for (let k = 0; k < 18; k++) { g.strokeStyle = 'rgba(70,30,14,' + (0.05 + r() * 0.12) + ')'; g.lineWidth = 0.8 + r() * 2.2; const yy = j * bh + r() * bh;
+          g.beginPath(); g.moveTo(x, yy); g.bezierCurveTo(x + L * 0.3, yy + (r() - 0.5) * 8, x + L * 0.7, yy + (r() - 0.5) * 8, x + L, yy + (r() - 0.5) * 6); g.stroke(); }
+        g.fillStyle = 'rgba(40,16,30,0.18)'; g.fillRect(x, j * bh, 3, bh); x += L; }
+      g.fillStyle = 'rgba(40,16,30,0.14)'; g.fillRect(0, j * bh, w, 3);
+    }
+  }, [RW / 1.2, RD / 1.2]);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(RW * 2, RD * 2), new THREE.MeshPhysicalMaterial({ map: plank, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.35 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.y = 0.002; floor.receiveShadow = true; R.scene.add(floor);
+
+  /* THE SHELF: the chassis shelf_run, re-skinned in a finer honey oak whose grain runs along its length */
+  const LEN = SLOTS * PITCH + 0.04;
+  const shelf = K.make ? K.make('shelf_run', { length: LEN, pitch: PITCH, back: false }) : K.registry.shelf_run.make({ length: LEN, pitch: PITCH, depth: 0.32, back: true });
+  if (shelf.userData.slots !== SLOTS) throw new Error('the shelf holds ' + shelf.userData.slots + ' slots, the frame draws ' + SLOTS);
+  const oakTex = CH.canvasTex(THREE, 2048, 512, (g, w, h) => {
+    const r = CH.rng(915); g.fillStyle = '#d99a58'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 220; k++) { const y = r() * h, a = 0.04 + r() * 0.12; g.strokeStyle = (r() < 0.6 ? 'rgba(120,58,22,' : 'rgba(255,214,150,') + a + ')';
+      g.lineWidth = 0.6 + r() * 2.6; g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 64) g.lineTo(x, y + Math.sin(x / (90 + r() * 60) + k) * 3 + (r() - 0.5) * 1.5); g.stroke(); }
+    for (let k = 0; k < 4; k++) { const cx0 = r() * w, cy0 = r() * h; for (let q = 0; q < 6; q++) { g.strokeStyle = 'rgba(110,50,20,0.12)'; g.lineWidth = 1.2;
+      g.beginPath(); g.ellipse(cx0, cy0, 30 + q * 14, 5 + q * 3, 0, 0, Math.PI * 2); g.stroke(); } }
+  });
+  oakTex.wrapS = oakTex.wrapT = THREE.RepeatWrapping;
+  const oak = new THREE.MeshPhysicalMaterial({ map: oakTex, roughness: 0.46, clearcoat: 0.55, clearcoatRoughness: 0.32, sheen: 0.2, sheenColor: 0xffd7a0 });
+  shelf.traverse((m) => { if (!m.isMesh) return; m.castShadow = true; m.receiveShadow = true;
+    if (m.material && m.material.map) { K.uvBox(m.geometry, 0.9); m.material = oak; } });
+  const TEXAS_SLOT = 6;                          /* Texas's slot, inside the run, a binder on each side */
+  const SZ = BACKZ + 0.1 + 0.17;                 /* the shelf's centre line, its back panel against the wall */
+  shelf.position.set(0, 0, SZ);
+  TXT.add(R, shelf);
+
+  /* THE READING ROOM BEHIND IT: a tall oak bookcase on the back wall beyond the run's far end, its shelves full of
+   * ordinary books in plum, teal and cream (never amber: amber is a written rule), and the window's warm light lying
+   * across the back wall as a soft four pane patch. */
+  const WALLZ = BACKZ + 0.1;
+  {
+    const bc = new THREE.Group(), BW = 1.3, BH = 1.62, BD = 0.3, t = 0.032;
+    const side = (x) => { const m = TXT.roundedBox(t, BH, BD, 0.006, oak); m.position.set(x, BH / 2, 0); bc.add(m); };
+    side(-BW / 2); side(BW / 2);
+    const top = TXT.roundedBox(BW + 0.06, 0.05, BD + 0.03, 0.01, oak); top.position.set(0, BH + 0.025, 0.01); bc.add(top);
+    const back = new THREE.Mesh(new THREE.PlaneGeometry(BW, BH), new THREE.MeshStandardMaterial({ color: 0x2a1e5e, roughness: 0.9 })); back.position.set(0, BH / 2, -BD / 2 + 0.005); bc.add(back);
+    const br = CH.rng(77), cols = [0x5b3a9a, 0x2f8f8a, 0xf1e6d2, 0x7a4fd0, 0x3f5fbf, 0xc84f6f, 0x1f6f7a];
+    for (let k = 0; k < 4; k++) {
+      const y = 0.08 + k * 0.38, sh = TXT.roundedBox(BW, 0.024, BD, 0.004, oak); sh.position.set(0, y, 0); bc.add(sh);
+      let x = -BW / 2 + t / 2 + 0.01;
+      while (x < BW / 2 - 0.06) { const w = 0.022 + br() * 0.03, h = 0.2 + br() * 0.11;
+        const b = TXT.roundedBox(w, h, 0.2 + br() * 0.05, 0.003, new THREE.MeshStandardMaterial({ color: cols[Math.floor(br() * cols.length)], roughness: 0.7 }));
+        b.position.set(x + w / 2, y + 0.012 + h / 2, -0.02); b.rotation.z = br() < 0.1 ? 0.12 : 0; bc.add(b); x += w + 0.002; }
+    }
+    bc.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    bc.position.set(shelf.userData.slot(TEXAS_SLOT)[0] - 1.85, 0, WALLZ + BD / 2 + 0.002); R.scene.add(bc);
+  }
+  {
+    const patch = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+      g.filter = 'blur(34px)'; g.fillStyle = 'rgba(255,160,80,1)';
+      const pane = (x0, y0) => { g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + 330, y0 + 60); g.lineTo(x0 + 330, y0 + 390); g.lineTo(x0, y0 + 330); g.closePath(); g.fill(); };
+      pane(150, 110); pane(520, 178); pane(150, 480); pane(520, 548);
+    });
+    const pm = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.3), new THREE.MeshBasicMaterial({ map: patch, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false }));
+    pm.position.set(shelf.userData.slot(TEXAS_SLOT)[0] - 2.4, 1.1, WALLZ + 0.004); R.scene.add(pm);
+  }
+
+  /* THE BINDERS. Slot 0 is the +x end, nearest the camera, and is Texas's: empty. Slots 1..NB each take one amber binder. */
+  const TEXAS = TEXAS_SLOT, rr = CH.rng(4202), binders = new THREE.Group();
+  const sleeve = new THREE.MeshPhysicalMaterial({ name: 'sleeve', color: 0xffffff, roughness: 0.08, transparent: true, opacity: 0.18, clearcoat: 1, depthWrite: false });
+  for (let i = 0; i < SLOTS; i++) {
+    if (i === TEXAS) continue;
+    const s = shelf.userData.slot(i);
+    const b = K.registry.ring_binder.make({ amber: true, open: 0, leaves: 30, pocket: true });
+    b.position.set(s[0], s[1], s[2] + 0.004 + (rr() - 0.5) * 0.006);
+    b.rotation.y = (rr() - 0.5) * 0.02; b.rotation.z = (rr() - 0.5) * 0.008;
+        b.userData.binder = 'amber';
+    /* the spine pocket as clear sleeve, so the blank cream card reads through it */
+    b.traverse((m) => { if (m.isMesh && m.material && m.material.name !== 'sleeve' && m.material.roughness === 0.04) m.material = sleeve; });
+    b.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    binders.add(b);
+  }
+  binders.position.set(0, 0, SZ); TXT.add(R, binders);
+  /* THE CHECK: what is drawn is what the figure says */
+  const drawn = binders.children.filter((b) => b.userData.binder === 'amber').length;
+  if (drawn !== NB) throw new Error('the shelf draws ' + drawn + ' amber binders, FIG.states_with_guidance is ' + NB);
+  if (SLOTS - drawn !== 1) throw new Error('the shelf must hold exactly one empty slot, it holds ' + (SLOTS - drawn));
+
+  /* THE GAP: Texas's slot inside the run, a full binder pitch of bare oak with a binder standing on each side */
+  const tx = shelf.userData.slot(TEXAS);
+  {
+    const filled = new Set(binders.children.map((b) => Math.round((shelf.userData.slot(0)[0] - b.position.x) / PITCH)));
+    if (filled.has(TEXAS)) throw new Error('slot ' + TEXAS + ' holds a binder, it is Texas\'s');
+    if (!filled.has(TEXAS - 1) || !filled.has(TEXAS + 1)) throw new Error('the empty slot must have a binder on each side');
+    for (let i = 0; i < SLOTS; i++) if (i !== TEXAS && !filled.has(i)) throw new Error('slot ' + i + ' is empty, only Texas\'s may be');
+  }
+
+  /* THE CAMERA: the full shelf from the reading room, all computed binders visible together. */
+  const near = [0, tx[1] + 0.1, SZ + 0.1];
+  const from = [0.25, 4.2, SZ + 5.8];
+  CH.aim(THREE, R, TXT, from, near, 540, 925, 34);
+  /* A constructed count must also fit the delivered picture. Check every binder's full projected bounds. */
+  R.scene.updateMatrixWorld(true);
+  const visibleBounds = binders.children.map(b => {
+    const box = new THREE.Box3().setFromObject(b), pts = [];
+    for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) pts.push(CH.project(THREE, R, [x, y, z]));
+    return [Math.min(...pts.map(p => p[0])), Math.min(...pts.map(p => p[1])), Math.max(...pts.map(p => p[0])), Math.max(...pts.map(p => p[1]))];
+  });
+  if (visibleBounds.length !== NB || visibleBounds.some(b => b[0] < 24 || b[2] > 1056 || b[1] < 80 || b[3] > 1200)) throw new Error('the complete computed binder count must fit inside the picture');
+  window.__frame6 = { drawn, visible: visibleBounds.length, empty_slots: SLOTS - drawn, bounds: visibleBounds };
+
+  /* THE KEY: window light from the far end, low and grazing the spines, its casts running back along the shelf */
+  CH.KEY_SCALE = 0.85;
+  const spec = CH.rigSpec(W, 6, 4096); spec.key = Object.assign({}, spec.key, { color: 0xfff4e8 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.3, SZ], { distance: 14, shadowFar: 40, normalBias: 0.004 }), { light: { az: 58, el: 30 } }));
+  /* a warm pool on the hole itself, hung on the key's side, so the empty slot is the best lit place on the shelf */
+  CH.flood(THREE, R, [tx[0] + 0.02, 1.95, SZ + 0.4], [tx[0], tx[1], SZ - 0.04], { color: 0xffdcae, i: 30, angle: 0.034, penumbra: 0.7, reach: 4 });
+  CH.unacne(R, 0.004);
+
+  /* a coloured room for reflections: periwinkle dome, warm window band at the far end, plum low */
+  {
+    const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 64, 32), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { hi: { value: new THREE.Color(0x6f90f0) }, lo: { value: new THREE.Color(0x4a2a7a) }, warm: { value: new THREE.Color(0xffc690) } },
+      vertexShader: 'varying vec3 v; void main(){ v = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 hi,lo,warm; varying vec3 v; void main(){ vec3 k = mix(lo, hi, smoothstep(-0.3, 0.6, v.y));' +
+        ' float w = smoothstep(0.55, 0.95, -v.x) * smoothstep(-0.2, 0.15, v.y); k = mix(k, warm * 2.2, w); gl_FragColor = vec4(k, 1.0); }' })));
+    const pm = new THREE.PMREMGenerator(R.renderer); R.scene.environment = pm.fromScene(env, 0.03).texture; pm.dispose();
+    R.scene.environmentIntensity = 0.55;
+  }
+
+  TXT.contact(R, binders, { dirt: false, layers: [{ spread: 0.01, opacity: 0.3 }] }).forEach((m) => m.material.color.set(P.shade));
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* The whole counted shelf stays sharp so every binder remains a readable unit. */
+  const qNear = CH.project(THREE, R, [tx[0], tx[1] + 0.15, SZ + 0.14]);
+  const qFar = CH.project(THREE, R, [shelf.userData.slot(SLOTS - 1)[0], 0.45, SZ]);
+  CH.seat(cx, { a: 0.4, fade: 170 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 70 }));
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.9, height: 280 });
+  /* the claim ids sit where the wall meets the floor: a soft seat in the tone's deep hue takes the seam out from under them */
+  TXLOOK.typeSeat(cx, { tone: CH.TONE, box: { x: 70, y: 1215, w: 120, h: 70 }, a: 0.95, fade: 200 });
+
+  /* THE PILL: Texas, seated on the shelf's front lip directly under its own empty slot */
+  const lab = document.getElementById('l-tx'), qL = CH.project(THREE, R, [tx[0], tx[1] - 0.014, SZ + 0.162]);
+  lab.style.left = Math.round(qL[0] - lab.offsetWidth / 2) + 'px'; lab.style.top = Math.round(qL[1] - lab.offsetHeight / 2) + 'px';
+  lab.style.background = P.low;
+  /* the shelf lip knocked out behind the pill, so its edge never runs through the glyph band */
+  { const x = qL[0] - lab.offsetWidth / 2, y = qL[1] - lab.offsetHeight / 2;
+    cx.save(); cx.filter = 'blur(6px)'; cx.fillStyle = P.low; cx.beginPath();
+    cx.roundRect(x - 10, y - 8, lab.offsetWidth + 20, lab.offsetHeight + 16, 30); cx.fill(); cx.restore(); }
+  window.__dbg = { qNear, qFar, qL };
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -61,6 +61,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.
 - 2026-11-15 · League City's unofficial result still rejects the fixed plate reader cameras. The city still ties removal to the November 17th canvass and says the mayor requested covers beforehand.
 - 2026-11-15 · The Proposition A canvass is on the council's November 17th special meeting agenda.
+- 2026-11-15 · The council's agenda records behind the plate reader election still read as cited. The city's own results page did not answer, so the canvass remains unconfirmed here.
+- 2026-11-15 · The retained note that the canvass was unconfirmed records an earlier check. The special meeting agenda now carries the Proposition A canvass.
 
 ## Evidence
 

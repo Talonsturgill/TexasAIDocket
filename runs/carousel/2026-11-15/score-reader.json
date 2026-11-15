@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Read as a bespoke LOOK V2 deck. Every frame is its own picture made for its own sentence: a studio desk (1), a gym of desks seen from the bleachers (2), a locker relief (3), the gym again from a teacher's eye height (4), a mailbox wall (5), a binder shelf (6), a relief of tab dividers (7), school pickup (8) and an evening board room (9). The colour is vivid and the shadows lean plum, never black. Slide 7 is the best frame: the fanned dividers have real height, cast shadows and a paperclip, with the pills seated on the tabs. Slides 6 and 9 also hold up at 432 px. They fall short of a 10 in four places. Slide 8 has visible concentric banding in the upper left sky, and its parents are primitive kit figures with glowing flat white trousers and smeared hair. Slide 4, the declared showstopper, gives about 45% of its height to an empty purple and magenta gym wall. Every laptop on it is dark. The rows are cropped at the right and bottom, so a reader can't check 29 folders among 100 desks. Slide 2's bottom rows dissolve into the type wash (machine QA flags the bottom third at 41% craft density), and at feed size each desk is a tiny glyph."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Read as a bespoke deck. The spine holds: one people-tone palette, one serif headline face, one mono counter and footer, and amber meaning one thing, a written rule. Amber is absent on 1, 2, 3 and 8, then appears as folders (4), sheets (5), binder spines (6) and the lit binder on the dais (9). The arrival of amber at 4 is a real turn a reader can feel. One motif breaks. Slide 2 teaches 'a lit laptop marks reported teacher use', and the storyboard says 4 reuses the same lit set. On slide 4 every laptop is black, so a reader who learned the code on 2 sees 0 of 100 lit. Slide 9's red-orange wood floor sits warmest of the nine, but within the tone."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. 86, 61, 29, 20, 42, 85, 71, 2025 and four map to figures.json and from there to claims c2 to c15, which quote the Texas 2036 page. The cover's 29% is the district student policy in c3, and the cover dek keeps 86% as leaders reporting teacher use. The caption opens with '86% is not a share of teachers', a good guard against the misreading. The 85% is kept as 'Nearly'. Three things are looser than the source. (1) Slide 7 says 'The report names four priorities', but only the article previewing the report was fetched, and the claims file itself rejects the report as unpublished. 'The preview names' would be exact. (2) Slide 6's headline says '42 states have issued school AI guidance', dropping 'some form of' and 'by Texas 2036's count'. The dek restores both, but a feed reader reads the headline. (3) The whole deck rests on one advocacy group reporting a survey and a poll whose publisher it doesn't name. The deck says so honestly, but there is no second source."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns three things: AI use is widely reported in schools, few leaders report written rules, and 42 states have guidance while Texas doesn't. Slide 9 gives an action, 'Ask your district whether it has an AI policy'. Against the 10 descriptor, nothing was decided here. It is a nonprofit's report preview. No body is named as the one that would act (TEA? the Legislature? a board of trustees?), there is no deadline, no date the full report lands, and no place or county. The caption ends by asking 'Which of those laws would the guidance start from?', a question the deck raises and never answers. The reader leaves knowing the shortfall in rules and not knowing what Texas law already says."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover's desk and 29% earns a swipe. Slide 2 pays at once with the hundred desks, and slide 4 is a real turn from use to rules. Slides 2 to 5 are four counting frames in a row, all 'one ___ for each leader in a hundred'. Slide 3 (61% student use) could be cut with no loss. The figure 29% appears on slides 1, 4 and 9, so the close repeats the cover's number instead of adding one. The close lands as an image, an empty chair facing the dais."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, accurate and on register, with no doom and no boosterism, and the caption reads well in its first two lines. The repetition is mechanical, though. 'Drawn to illustrate' appears on six frames, 'per Texas 2036' or 'Texas 2036 says' on most, and 'one ___ for each leader in a hundred' four times. It reads as a compliance layer, not as a Texan who knows schools. There is no regional detail: no district, no region, no named law."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh against the last four decks (77 wafers in Lubbock, 76 ERCOT cooling yard, 75 roster of parked cars, 74 Starbase sign). This is the first education deck in weeks, in the people tone, with interiors of rooms a parent knows. One familiar move remains: a count drawn in physical units, one per hundred. Nos. 75, 76 and 77 each ran the same move with cars, reels and wafers."
+  }
+ ],
+ "weighted_score": 7.13,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Fetch and claim the laws the Legislature already passed that Texas 2036 says the guidance would build on. Then replace slide 3 (61% student use, the cuttable fourth counting frame) with a frame that names what Texas law already requires of districts. The close can then tell a reader exactly what to ask their board, instead of ending the caption on a question the deck never answers.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Visible concentric banding in the upper left sky gradient, and the three parents are primitive kit figures with flat glowing white trousers and smeared hair. They are the largest objects in the frame and read as unfinished at full size.",
+   "fix": "Re-render the sky with dithering or more gradient bit depth so the banding goes. Turn the parents three quarters toward the bus and drop the key on their legs so the trousers take form shading and plum shadow, not a flat white fill."
+  },
+  {
+   "slide": 4,
+   "problem": "The declared showstopper spends its top 45% on an empty purple and magenta gym wall. Every laptop is dark, which contradicts slide 2's 'lit laptop' code. The rows are cropped at the right and bottom, so 29 of 100 can't be read.",
+   "fix": "Raise the camera to about 3 m and tilt down so the hundred desks fill the frame from below the headline to the footer with every desk inside the crop. Relight the same 86 laptops from slide 2 so the amber folders sit among the glow the storyboard promised."
+  },
+  {
+   "slide": 2,
+   "problem": "The bottom two rows of desks dissolve under the type wash (QA: bottom third at 41% craft density). From the high camera each desk is a tiny glyph, so the lit and dark laptops barely separate at feed size.",
+   "fix": "Pull the camera down and closer, to about 4 m and fov 34, so the front rows read as desks with screens. Seat the headline over the darker gym floor at the near edge, not across the last row."
+  },
+  {
+   "slide": 1,
+   "problem": "The type sits in a soft purple box laid over the sweep on the left, which reads as a plate. The 'empty sheet protector' the dek names is a faint white rectangle a feed reader won't find.",
+   "fix": "Swing the camera so the desk sits right of centre with the sweep's own dark falloff on the left for the type, and give the sheet protector a specular edge in the key light so the empty rule reads beside the lit laptop."
+  }
+ ]
+}

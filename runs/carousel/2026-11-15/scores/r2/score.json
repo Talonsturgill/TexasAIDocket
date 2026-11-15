@@ -1,0 +1,217 @@
+{
+ "weighted_score": 7.254,
+ "judges": [
+  7.23,
+  7.33,
+  7.24
+ ],
+ "spread": 0.1,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.2,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    7.2,
+    7.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    7.8,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.3,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.23 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.33 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.24 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.23,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.23 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.33,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.33 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.24,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.24 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A generic stock school-and-bus scene with no argument. The three people are tiny, the bus is cropped to 'L BUS' with raster text, and nothing in the picture encodes the voters or the privacy figure.",
+     "fix": "Move the camera in to the covered walk so one parent at pickup, holding a child's backpack or a permission slip with a privacy line, fills half the frame. Drop the bus's raster lettering."
+    },
+    {
+     "judge": 2,
+     "problem": "A generic school exterior that encodes nothing. The 85% has no visual, the three parents are about 140 px tall in front of the doors rather than at the covered walk, the bus carries cropped raster text 'L BUS' and 'STOP', and the lower 30% is empty lot under the dek.",
+     "fix": "Move the camera to 1.4 m under the covered walk so two or three parents fill the near third at true scale with faces toward the school. Push the bus to a soft secondary at the right edge with its raster lettering removed, and let the walk's columns lead to the doors."
+    },
+    {
+     "judge": 3,
+     "problem": "Generic school exterior with a cropped bus and small capsule parents explains nothing about voters and privacy; bus yellow competes with amber.",
+     "fix": "A counted or measured image of the claim, or a close-up of a student device with a privacy lock; drop the bus yellow."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The headline sits across the ceiling beams and the dek on a band. The spotlit amber binder is small and reads as a policy already in place. The orange room dilutes the accent's single meaning.",
+     "fix": "Lower the camera so the beams leave the type's zone, and turn the room's wood and carpet to the tone's plum. Leave the dais bare under the spotlight, so the only amber is absent and the close asks the question rather than answering it."
+    },
+    {
+     "judge": 2,
+     "problem": "The podium and dais carry procedural wavy-line wood grain that reads as a kit texture. The spotlight is a flat translucent triangle, and the amber binder on the dais is a small yellow card at feed size.",
+     "fix": "Swap the wood for a straight-grain oak material with a roughness map and a soft sheen. Replace the drawn cone with a real spot that pools on the dais and the binder, and enlarge the binder to read as a ring binder lying open toward the empty chair."
+    },
+    {
+     "judge": 3,
+     "problem": "Binder reads as a lamp at thumb size; room reads as a courtroom.",
+     "fix": "Camera down the aisle, a district seal or nameplates and a trustees' table, binder 3x larger, open under the key."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Desks run off the right and bottom edges, so 29 of 100 can't be counted. A flat magenta wall fills the middle third. A hundred dark laptops push near black to 0.243 and read under slide 2's legend as no teacher use.",
+     "fix": "Remove the laptops. Raise the eye to about 4 m at the corner of the rows, so the full 10 by 10 grid fills the lower two thirds inside the margins and the empty wall band drops out of frame."
+    },
+    {
+     "judge": 2,
+     "problem": "The top 54% is empty wall: a gradient, then a flat featureless magenta band from y 840 to 1080. The desk grid is crammed into the lower 45% and cropped at the right and bottom edges, so the hundred-desk unit isn't visible and the showstopper frame has the weakest fill in the deck.",
+     "fix": "Drop the eye to about 1.2 m and pull the camera back and left until all ten rows sit inside the frame and fill from y~700 to the footer. Crop the wall to a thin strip with the late-sun door glow raking across the floor, and move the headline down onto a plum wash over the near rows."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "About 20 white sheets sit in non-amber cubbies with no legend, a second encoding next to the counted amber.",
+     "fix": "Empty every non-amber cubby, so the only paper on the wall is the 20 counted sheets."
+    },
+    {
+     "judge": 2,
+     "problem": "An indoor staff mailbox wall stands on an outdoor sunset gradient with a weak contact shadow (object floating in a gradient). White sheets in about 25 cubbies compete with the 20 amber ones.",
+     "fix": "Put the cubby wall in a built staff-room interior with a wall behind it and a tile floor, a hard contact shadow along the counter base and the teacher's cast shadow on the counter. Remove the white sheets so only the 20 amber sheets stand proud."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The dithered texture on the lockers and the identical cyan glow slits read as a wall of LED panels, not ajar doors. The 100 units become pattern noise at 432 px, and QA flags busy art under the dek.",
+     "fix": "Render the 61 ajar doors swung visibly open about 25 degrees, with real door-edge thickness and a cast shadow on the neighbouring door. Drop the dither for smooth enamel with one specular highlight per door, and cut the glow to a warm interior light inside each opened locker."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Only about 14 binders visible; Texas gap narrow and partly hidden by the pill.",
+     "fix": "Pull back and raise so all 42 run across with a wide lit slot; pill above the slot."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Dead lower third under the headline; near twin of 4.",
+     "fix": "Lower the camera so the nearest desks run large into the bottom edge."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.254 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 8, 9, 4, 5, 3, 6, 2 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

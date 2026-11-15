@@ -2643,3 +2643,14 @@ The dated calendar contains a regular meeting, a special meeting and a work sess
 ## 2026-11-15 scope of the two research records
 
 The answering Europe PMC records contain the abstracts and author affiliations. Those sources support the review's recommendations and the MRI study's retrospective model development and validation. They do not establish whether either institution has separately announced a purchasing or clinical-use policy. The current summaries are bounded to the retrieved research records. The two MRI confidence intervals overlap; that comparison does not establish whether the full paper reports a statistical test of their difference. No institutional or whole-paper absence is inferred from an abstract.
+
+## 2026-11-15 (carousel no. 78)
+
+**www.texas2036.org answered** the November 10th preview article on AI in Texas schools, read in full, and every claim on
+tx-2026-0248 quotes it. The article names neither the operator of the fall 2025 leaders' survey nor the pollster, and the
+full report was not yet published, so the deck rests on one source and says so. **www.faa.gov (16 requests),
+www.dhs.gov (11), www.wilcotx.gov (6), www.globenewswire.com (4), www.brownsvilletx.gov (3), www.leandertx.gov and
+www.brazoscountytx.gov (2 each) answered 403** to the reverify User-Agent. **The robots.txt of www.taylortx.gov and
+www.utep.edu did not answer (URLError) and www.oncor.com's timed out**, so the boundary read all three as refusing and
+their pages were not requested. The Kodiak and Atlas Permian announcement and both companies' SEC filings answered and
+named no county, so that story was held rather than drawn.

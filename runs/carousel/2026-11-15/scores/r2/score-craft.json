@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Strong overall, with three frames below the slide bar. The best is 06: about 14 amber binders run off the left edge, the gap has a deep plum contact shadow and the plain Texas pill sits in it. The frame is bold, saturated and built for its sentence. 07 is a real relief with pressboard grain, fanned tabs, cast shadows, a paper clip and stitched blotter edges, and its labels are pills. 01 is a convincing desk on a magenta sweep with a plum cast shadow and the type in the quiet left half. The empty sheet protector is too subtle at feed size to say 'no policy'. 02 now reads at true scale with the custodian and push broom. Ten rows of desks with cyan-lit laptops and a dozen or so dark ones carry 86 in 100. The front row's chair legs run through the headline band at y~1300 to 1400, and machine QA flags the bottom third at 41% craft density. 03 has a 20 by 5 locker bank (100). The dithered or posterised texture and the uniform cyan glow slits read as LED panels rather than ajar doors, and QA flags busy art under text. 04 is the declared showstopper and the turn. The top ~54% (y 0 to 1080) is flat wall: a periwinkle gradient, then a flat magenta band with no detail. The desks fill only the lower ~45% and are cropped at the right and bottom edges, so the 'one desk for each leader in a hundred' unit can't be checked. I counted the 29 amber folders and the darkened laptops do isolate them. 05 has a 10 by 10 cubby wall with about 20 amber sheets and a decent teacher figure. Staff mailboxes stand on an outdoor-looking sunset gradient sweep with weak contact. That is the 'object floating in a gradient' descriptor, and the white sheets in about 25 cubbies compete with the amber. 08 is a generic school exterior: a bus cropped to raster 'L BUS', and three parents about 140 px tall standing in front of glass doors. They are not clearly at the covered walk. Nothing in the picture argues privacy or 85%, and the lower 30% is empty purple lot under the dek. 09 is a good concept: an empty aisle chair, a podium and a spotlit amber folder on the dais. The procedural wavy-line wood grain on the podium and dais and the flat translucent spotlight triangle read as kit-default."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Bespoke reading. The spine holds through LOOK V2 people tone (plum, periwinkle, magenta), the same serif headline and mono kicker, counter and site line on all nine, and type in 4 positions with the longest run being 2 (g_distinct). Encoding stays consistent: cyan glow means use (02, 03) and amber means a written rule (04 folders, 05 sheets, 06 binders, 09 folder on the dais), as the storyboard declares. The story runs in order, use then rules then states then priorities then public then close. Two soft breaks. 07's tabs bring in emerald green and crimson that appear nowhere else in the deck. 08's yellow bus is close enough to the amber accent that the one-meaning rule blurs on the frame that is meant to carry none. 02 and 04 are one gym and one desk model shot twice, which is a deliberate echo but makes 04 read as a reshoot."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "I traced every numeral on the slides and in the caption to claims.json and figures.json: 86, 61 and 2025 (c2), 29 (c3), 20 (c4), 42 (c5), 'nearly 85%' (c13, kept approximate as figures.json requires), 71 (c15), 4 (c7 to c10) and November 10th (c1). Every universal names its set, for example 'by Texas 2036's count' on 06 and 'some form of statewide AI guidance, model policy, framework or support' in the dek. Two cautions, neither a fail. Every figure rests on Texas 2036's preview article, and the survey operator and the full report were not fetched (the claims file's rejected list says so honestly). Two drawn-to-illustrate encodings show fewer units than they declare: 06 says 'One binder per state' but about 14 are visible, and 04's desk grid is cropped. A reader can't verify the unit the dek promises."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what was reported and by whom (Texas 2036, fall 2025 leaders' survey), and 09 gives a concrete next step, ask your district. No deciding body is named past 'district', with no TEA, no Legislature session and no board date, and there is no deadline. The stake (privacy, 08) is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover's 29% earns the swipe. 02 then pays with the bigger number, 86%, and 04 returns to 29% as the turn, where the accent first appears. That works but restates the cover. 08 (voters) could move or be cut without loss. 09 lands on an action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, house-rule compliant (no colons, no dashes, no banned words seen), but report register. 'Drawn to illustrate' appears on six slides and reads as machine boilerplate. 'In the same reporting, 71% call teaching responsible use important' (08) is flat. The caption opener '86% is not a share of teachers.' is the one line with a person's voice."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The opening move is fresh: a single desk object cover, then counted school objects (desks, lockers, cubbies, binders). panel_ready reports no story repeated inside 30 days. The violet and magenta v2 grade and the stat-headline-over-scene structure are familiar moves from recent v2 decks."
+  }
+ ],
+ "weighted_score": 7.33,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-shoot frame 04, the declared showstopper and the deck's turn. Lower and push the camera in so the hundred desks fill the frame from y~700 down with every desk and all 29 amber folders inside the edges. Delete the empty upper wall and flat magenta band, seat the headline on a plum floor-wash in the near rows, and change one desk model or angle so it stops reading as 02 reshot.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The top 54% is empty wall: a gradient, then a flat featureless magenta band from y 840 to 1080. The desk grid is crammed into the lower 45% and cropped at the right and bottom edges, so the hundred-desk unit isn't visible and the showstopper frame has the weakest fill in the deck.",
+   "fix": "Drop the eye to about 1.2 m and pull the camera back and left until all ten rows sit inside the frame and fill from y~700 to the footer. Crop the wall to a thin strip with the late-sun door glow raking across the floor, and move the headline down onto a plum wash over the near rows."
+  },
+  {
+   "slide": 8,
+   "problem": "A generic school exterior that encodes nothing. The 85% has no visual, the three parents are about 140 px tall in front of the doors rather than at the covered walk, the bus carries cropped raster text 'L BUS' and 'STOP', and the lower 30% is empty lot under the dek.",
+   "fix": "Move the camera to 1.4 m under the covered walk so two or three parents fill the near third at true scale with faces toward the school. Push the bus to a soft secondary at the right edge with its raster lettering removed, and let the walk's columns lead to the doors."
+  },
+  {
+   "slide": 3,
+   "problem": "The dithered texture on the lockers and the identical cyan glow slits read as a wall of LED panels, not ajar doors. The 100 units become pattern noise at 432 px, and QA flags busy art under the dek.",
+   "fix": "Render the 61 ajar doors swung visibly open about 25 degrees, with real door-edge thickness and a cast shadow on the neighbouring door. Drop the dither for smooth enamel with one specular highlight per door, and cut the glow to a warm interior light inside each opened locker."
+  },
+  {
+   "slide": 5,
+   "problem": "An indoor staff mailbox wall stands on an outdoor sunset gradient with a weak contact shadow (object floating in a gradient). White sheets in about 25 cubbies compete with the 20 amber ones.",
+   "fix": "Put the cubby wall in a built staff-room interior with a wall behind it and a tile floor, a hard contact shadow along the counter base and the teacher's cast shadow on the counter. Remove the white sheets so only the 20 amber sheets stand proud."
+  },
+  {
+   "slide": 9,
+   "problem": "The podium and dais carry procedural wavy-line wood grain that reads as a kit texture. The spotlight is a flat translucent triangle, and the amber binder on the dais is a small yellow card at feed size.",
+   "fix": "Swap the wood for a straight-grain oak material with a roughness map and a soft sheen. Replace the drawn cone with a real spot that pools on the dais and the binder, and enlarge the binder to read as a ring binder lying open toward the empty chair."
+  }
+ ]
+}

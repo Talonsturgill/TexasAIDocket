@@ -1,0 +1,72 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3,
+   "why": "Each frame its own picture; LOOK V2 met; 1, 5, 7, 9 pass the showstopper test. Held down by 4 (wall band, flat folders, moire), 6 (slot mid frame, pill floats), 3 (front on grille), 8 (no parents)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Spine and order hold, both devices work; 8 bus yellow and 6 cobalt blur the spine."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, nearly kept, attribution on every share; single advocacy source; slide 6 headline drops attribution; slide 9 'its 42' unclear. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "One clear finding; Texas 2036 never introduced and reads as a year on 7; no body named to issue guidance; no place; ask lacks a route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 4 turns, close hands over a step; four counting frames sag; 3 and 8 movable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean; machinery shows ('drawn to illustrate' six times, 'reported' everywhere)."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh topic and palette; fourth unit-count spine in four days."
+  }
+ ],
+ "weighted_score": 7.3,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "40 percent flat wall band, folders flat quads, moire, camera above rows.",
+   "fix": "Camera at the first row so rows run to the type; folders with thickness in contact; fix screen filtering."
+  },
+  {
+   "slide": 6,
+   "problem": "Slot mid frame with a muddy shadow, pill floats below, shelf leg a black slab.",
+   "fix": "Slot nearest and sharp, bare oak lit, pill in the slot."
+  },
+  {
+   "slide": 3,
+   "problem": "Near orthographic front view reads as a lit grille.",
+   "fix": "Rake 30 degrees and swing the doors visibly out."
+  },
+  {
+   "slide": 8,
+   "problem": "No person, flat pink windows, yellow competes with amber.",
+   "fix": "Parents at the covered walk, bus secondary, hue away from the accent."
+  }
+ ]
+}

@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- BESPOKE, carousel no. 78, 2026-11-15, frame 7 of 9. THE OUTLINE: a material relief (txbench.js) in plan, a macro of a
+     desk. Four pressboard tab dividers (window.FIG.priorities) lie shingled on an indigo leather blotter, each a little
+     askew, their tabs stepping down to the right like four headings, each tab carrying one priority as a plain pill. Under
+     the last divider a fan of blank cream leaves shows: the pages behind the outline are still empty. Nothing here is a
+     written rule, so nothing is amber. The headline and dek sit bottom left on the quiet leather under the staircase. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:878px; width:900px; text-align:left">The report names four priorities</h1>
+<p class="dek" data-follow="22" style="left:82px; width:910px">Statewide guidance for every district. Safety standards before AI tools reach classrooms. Training for teachers. Age appropriate AI literacy for students.</p>
+<div class="lab plain" id="lab0" style="font-size:27px">Statewide guidance</div>
+<div class="lab plain" id="lab1" style="font-size:27px">Safety standards</div>
+<div class="lab plain" id="lab2" style="font-size:27px">Teacher training</div>
+<div class="lab plain" id="lab3" style="font-size:27px">AI literacy</div>
+
+<script>window.FIG = {"priorities": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-15-ruleroom-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Texas schools", counter: "07 / 09", src: "c7 c8 c9 c10", fit: { min: 76, max: 96, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED + 7);
+  const P = CH.P, L = TXLOOK.lin, fbm = (x, y, n) => TX.fbm2(x, y, { octaves: n || 3 });
+
+  /* ---------------- THE FIGURE ----------------
+   * One divider per priority, read from window.FIG. The labels in the DOM are the copy's four, verbatim; the count of
+   * dividers, tabs and pills must agree with the figure or the frame refuses to render. */
+  const N = FIG.priorities;
+  const LABS = Array.from(document.querySelectorAll('.lab.plain'));
+  if (!(Number.isInteger(N) && N >= 2)) throw new Error('slide 07: FIG.priorities must be an integer count, got ' + N);
+  if (LABS.length !== N) throw new Error('slide 07: ' + LABS.length + ' tab labels for ' + N + ' priorities');
+
+  /* ---------------- THE FAN, in page px ----------------
+   * Divider i (0 = front) is a pressboard sheet from BX0 to BX1 whose bottom edge sits S px lower than the one in front;
+   * a tab TW wide drops T px below that edge at a stagger that steps right. Each is turned about its own centre by a few
+   * degrees, the way a hand spreads them, so the strips open toward the tabs. The whole fan sits inside the frame. */
+  const BX0 = 84, BX1 = 934, BY0 = 200, YB0 = 458, S = 84, T = 78, TW = 398, TR = 16;
+  const TX0 = 22, TX1 = (BX1 - BX0) - TW - 22;              // tab offsets from the sheet's left edge
+  const LEAF_N = 12, LEAF_T = 1.2, THK = 7;
+  const ANG = [-5, -1.7, 1.5, 4.4, 6.5, 8.4];
+  const DIV = [];
+  for (let i = 0; i < N; i++) { const yb = YB0 + i * S, sx = i * 6;
+    DIV.push({ yb, x0: BX0 + sx, x1: BX1 + sx, tx: BX0 + sx + TX0 + i * (TX1 - TX0) / (N - 1), a: ANG[i % ANG.length] * Math.PI / 180,
+      ox: (BX0 + BX1) / 2 + sx, oy: (BY0 + yb) / 2, base: LEAF_N * LEAF_T + THK * (N - 1 - i) }); }
+  if (DIV.length !== N) throw new Error('slide 07: drew ' + DIV.length + ' dividers for ' + N + ' priorities');
+  /* THE BLANK LEAVES: a thick ream under the fan, each leaf a hair longer than the one on it so the page edges step out */
+  const LF = { x0: 70, x1: 960, y0: 214, y1: 806, a: -1.6 * Math.PI / 180, ox: 510, oy: 510 };
+  const HOLES = [272, 392];
+
+  function sdBox(px, py, x0, y0, x1, y1, r) {
+    const cxx = (x0 + x1) / 2, cyy = (y0 + y1) / 2, hx = (x1 - x0) / 2 - r, hy = (y1 - y0) / 2 - r;
+    const qx = Math.abs(px - cxx) - hx, qy = Math.abs(py - cyy) - hy;
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r;
+  }
+  function rot(X, Y, a, ox, oy) { const cs = Math.cos(a), sn = Math.sin(a), dx = X - ox, dy = Y - oy; return [ox + dx * cs + dy * sn, oy - dx * sn + dy * cs]; }
+  const edge = (d, w) => Math.max(0, Math.min(1, 0.5 - d / (w || 1.4)));
+  const bevel = (d, w) => { const t = Math.max(0, Math.min(1, -d / w)); return Math.sin(t * Math.PI / 2); };   // a rounded, worn shoulder
+
+  /* the blotter rails: padded leather bars down both sides, stitched 12 px in from their inner edge */
+  const RW = 46;
+  function rail(X) { return Math.min(RW - X, X - (1080 - RW)) <= 0 ? Math.max(RW - X, X - (1080 - RW)) : -1; }
+
+  const CLX = 236, CLY = 746;
+  function stad(X, Y, x, y0, y1, r) { const yy = Math.max(y0, Math.min(y1, Y)); return Math.abs(Math.hypot(X - x, Y - yy) - r); }
+  function clip(X, Y) { const q = rot(X, Y, -0.1, CLX, CLY), u = q[0], v = q[1];
+    return Math.min(stad(u, v, CLX, CLY, CLY + 96, 15), stad(u, v, CLX + 1, CLY + 14, CLY + 74, 9)); }
+
+  let mX = -1, mY = -1, mH = 0, mM = 0, mD = 0;
+  function geo(X, Y) {
+    if (X === mX && Y === mY) return; mX = X; mY = Y;
+    /* the pad: pebbled leather on a soft padded undulation, so the key's sheen rolls across it */
+    const calm = (Y < 140 || Y > 866) ? 0.4 : 1;   /* the pebble eased under the furniture and the type */
+    let h = calm * (0.3 * fbm(X / 2.2, Y / 2.2, 2) + 0.22 * fbm(X / 9, Y / 9, 2)) + 3.2 * fbm(X / 520, Y / 420, 2), m = 0, dd = 99;
+    const rr = rail(X);
+    if (rr >= 0) { const inner = X < 540 ? RW - X : X - (1080 - RW);   // 0 at the rail's inner edge, RW at the frame edge
+      h += 6 * bevel(-Math.min(inner, 14), 14) ; m = 1;
+      if (Math.abs(inner - 12) < 1.3 && ((Y % 14) + 14) % 14 < 9) { h -= 0.7; m = 2; } }
+    let best = h;
+    for (let k = 0; k < LEAF_N; k++) {
+      const st = LEAF_N - 1 - k, q = rot(X, Y, LF.a, LF.ox, LF.oy);
+      const d = sdBox(q[0], q[1], LF.x0 - st * 0.9, LF.y0, LF.x1 + st * 0.5, LF.y1 + st * 2.6, 3);
+      const s = edge(d, 1.1); if (s <= 0) continue;
+      const hh = k * LEAF_T + LEAF_T * s;
+      if (hh > best) { best = hh; if (s > 0.5) { m = 3; dd = d; } }
+    }
+    { const cl = clip(X, Y); if (cl < 1.2) { const hh = LEAF_N * LEAF_T + 2.6 * Math.sqrt(Math.max(0, 1 - (cl / 1.2) ** 2)); if (hh > best) { best = hh; m = 4; } } }
+    for (let i = N - 1; i >= 0; i--) {
+      const dv = DIV[i], q = rot(X, Y, dv.a, dv.ox, dv.oy), u = q[0], v = q[1];
+      const dBody = sdBox(u, v, dv.x0, BY0, dv.x1, dv.yb, 7), dTab = sdBox(u, v, dv.tx, dv.yb - 30, dv.tx + TW, dv.yb + T, TR);
+      let d = Math.min(dBody, dTab);
+      if (i === 0) for (const hy of HOLES) d = Math.max(d, -(Math.hypot(u - (dv.x0 + 34), v - hy) - 11));
+      if (d > 1.5) continue;
+      const wear = 2.2 + 1.2 * fbm(u / 18, v / 18, 2);                               // a worn, uneven shoulder
+      const s = bevel(d, wear), cov = edge(d, 1.2);
+      let hh = dv.base + THK * (0.35 + 0.65 * s) * cov + (0.14 * fbm(u / 3, v / 3, 2) + 4 * (0.5 + 0.5 * fbm(u / 420 + i * 3.1, v / 260, 2)) * Math.min(1, (u - dv.x0) / 160)) * cov;
+      const myl = u < dv.x0 + 70 ? 1 : 0;
+      if (myl) hh += 0.5 * edge(u - (dv.x0 + 70), 1.2) * cov;
+      if (hh > best) { best = hh; if (cov > 0.5) { m = (myl ? 20 : 10) + i; dd = d; } }
+    }
+    mH = best; mM = m; mD = dd;
+  }
+  const COL = ['#25a58e', '#e2506c', '#4b8cf0', '#9a5fe2', '#e86aa8', '#31b6d6'];
+  const PAPER = '#fbf8e8', LEATHER = '#3b3aa6', RAIL = '#2c2a88', THREAD = '#cfc4ff';
+
+  TXBENCH.relief(cx, { ...TXLOOK.reliefLight(), x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => { geo(X, Y); return mH; }, material: (X, Y) => { geo(X, Y); return mM; },
+    albedo: (X, Y, m) => {
+      if (m === 0 || m === 1) { const n = fbm(X / 60, Y / 60, 3), g = fbm(X / 2.2, Y / 2.2, 2);
+        return L(m ? RAIL : LEATHER, 0.86 + 0.12 * n + 0.05 * g); }
+      if (m === 2) return L(THREAD, 0.95);
+      if (m === 3) { geo(X, Y); const e = mD > -2.2 ? 0.86 : 1;   // each leaf's cut edge reads as a fine line
+        return L(PAPER, (1.2 + 0.03 * fbm(X / 3, Y / 3, 2)) * e); }
+      if (m === 4) return L('#dfe4ee', 0.95);
+      geo(X, Y);
+      const i = m % 10, base = COL[i % COL.length];
+      const n = 0.93 + 0.06 * fbm(X / 70, Y / 40, 3) + 0.04 * fbm(X / 2.5, Y / 2.5, 2) + 0.03 * fbm(X / 1.1, Y / 7, 2);   // pressboard's mottle and fibre
+      const fray = mD > -3 ? 1.12 + 0.1 * fbm(X / 4, Y / 4, 2) : 1;                   // the cut edge is paler where the fibre shows
+      return L(base, (m >= 20 ? 1.06 : 1.0) * n * fray);
+    },
+    spec: { 0: [0.42, 16], 1: [0.5, 18], 2: [0.1, 10], 3: [0.03, 6], 4: [1.2, 90],
+      10: [0.3, 38], 11: [0.3, 38], 12: [0.3, 38], 13: [0.3, 38], 14: [0.3, 38], 15: [0.3, 38],
+      20: [0.9, 140], 21: [0.9, 140], 22: [0.9, 140], 23: [0.9, 140], 24: [0.9, 140], 25: [0.9, 140] },
+    ambient: 0.42, diffuse: 1.15, ao: 1.0, aoRadius: 9, shadow: 0.74, softness: 4, castLength: 130, dither: true });
+
+  /* ---------------- THE PILLS, one on each tab ---------------- */
+  let placed = 0;
+  DIV.forEach((dv, i) => {
+    const el = LABS[i], r = el.getBoundingClientRect();
+    const q = rot(dv.tx + TW / 2, dv.yb + T / 2 - 2, -dv.a, dv.ox, dv.oy);   // the tab centre back on the page
+    el.style.left = Math.round(q[0] - r.width / 2) + 'px'; el.style.top = Math.round(q[1] - r.height / 2) + 'px';
+    el.style.transform = 'rotate(' + (dv.a * 180 / Math.PI).toFixed(2) + 'deg)';
+    if (r.width > TW - 24) throw new Error('slide 07: label ' + i + ' (' + r.width + ' px) is wider than its tab');
+    placed++;
+  });
+  if (placed !== N) throw new Error('slide 07: placed ' + placed + ' pills for ' + N + ' priorities');
+  const dek = document.querySelector('.dek').getBoundingClientRect();
+  if (dek.bottom > 1236) throw new Error('slide 07: the dek runs into the footer at ' + dek.bottom);
+
+  CH.seat(cx, { a: 0.3, fade: 150 });
+  TXLOOK.footWash(cx, { a: 0.32, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

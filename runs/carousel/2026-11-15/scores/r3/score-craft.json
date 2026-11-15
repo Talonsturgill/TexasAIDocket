@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Read against the bespoke slide bar. Each of the nine pictures was made for its own sentence and they differ in world, camera and medium: studio desk, bleacher-height gym, locker relief, eye-level gym, mailbox wall, binder shelf, divider relief, pickup curb, board room. distinct_check passes (adjacent mean 0.199, type in 4 places, longest same-place run 2). value_register shows LOOK V2 colour on every frame (vivid 0.589 to 0.943, grey mid 0.016 or less, near black 0.243 or less). Strongest frames: 1 (vivid cover, desk fills more than half, contact shadows, type in the plum wash the picture leaves), 2 (true perspective down 10 rows of 10, custodian for scale), 5 (I counted exactly 20 amber sheets in the 10x10 cubbies, person for scale, deep cells) and 7 (tactile pressboard relief, cast under each divider, labels as pills). The 7 descriptor allows one weak frame and this deck has more. Frame 8 has visible concentric banding rings in the upper-left sky behind 'Nearly 85%'. That is ungraded banding, a descriptor-4 fault. The parents' white trousers carry smeared pink texture patches. A roof pole runs through the headline between '85%' and 'Texas'. The curb diagonal crosses the dek, which QA flagged as unmeasurable. Frame 4, the planned showstopper, spends its top 55% on a flat periwinkle-to-magenta wall: a dead zone with no 'late sun through the doors'. Its laptops are flat black slabs, and the far rows jumble into occlusion. I did count 29 folders. Frame 6 says 'one binder per state' but only about 14 binders are visible, so the declared scale of 42 can't be checked in the image. The upper left is an out-of-focus violet void, and QA flags the headline and dek outside the 80 px safe zone. Frame 9's walnut is a procedural wavy-line texture that reads cartoonish at full size, the aisle chair fabric shows pixel moire, and the beams and light cone cut through the headline letters. Frame 3's open lockers read, but the louvres and door faces are flat and grainy at full size."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Bespoke reading. The spine holds: one serif headline face and one sans dek throughout, the same mono kicker, counter and site line on all nine, and every frame in the people tone's plum, periwinkle and apricot. The accent keeps its one meaning, a written rule. It is absent on 1, 2, 3, 7 and 8 and present only on the folders (4), sheets (5), binders (6) and the dais binder (9). The 'hundred' motif carries 2 to 5 as a measured unit that changes object and state, and the story runs in order from use to rules to states to priorities to public to ask. Two frames sit slightly off the spine. Frame 7's dividers are emerald and crimson, not the storyboard's cerulean, mint, apricot and periwinkle. Frame 9's saturated orange-red walnut and curtains are near enough the amber accent to compete with the lit binder that is meant to carry it."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides and in the caption traces to a claim with a verbatim quote: 29 to c3, 86 and 61 to c2, 20 to c4, 42 to c5 and c6, nearly 85 to c13, 71 to c15, November 10th to c1, fall 2025 to c2. Each dek says 'drawn to illustrate'. Slide 8's dek restores the 'extremely or very important' qualifier its headline compresses. The counts I checked by eye match: 20 sheets on frame 5, 29 folders on frame 4. One leaning point: every figure comes from an advocacy group's preview article, the survey and poll operators are unnamed, and the report itself was not fetched. The deck says this honestly ('per Texas 2036') rather than overstating it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what was reported and that Texas has no statewide guidance. The close gives one action, 'Ask your district whether it has an AI policy'. Nothing was decided, though. This is a nonprofit's report preview, with no deciding body, no named district or county, and no deadline or meeting. The caption's closing question, 'Which of those laws would the guidance start from?', points at laws the deck never names. The stakes stay statewide and general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover 1 sets 29 against a lit laptop and earns the swipe. Frame 2 pays at once with 86 of 100 desks. The turn from use to rules arrives on 4, where amber first appears. Frame 6 widens to the states, 7 gives the fix, and 9 lands in the board room. Frame 8, the voter poll, could move or be cut without loss, and 2 and 3 make the same move twice (a share of a hundred objects lit or open)."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, no boosterism, honest. The deks run on a formula, though: 'Drawn to illustrate, one X for each leader in a hundred' repeats on 2, 3, 4 and 5, and 'per Texas 2036' recurs throughout. There is no regional specificity (no ISD, city or region is named), so it reads as accurate rather than as a Texan who knows the subject."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The people tone and the school-object rooms are fresh. The last school AI policy deck in the topics ledger is no. 2 (HISD, 2026-08-18), well outside the window, and panel_ready reports no story repeat in 30 days. The per-hundred unit count is a familiar move for this product. I didn't read the artwork ledger, so this score is not checked against the last four decks' techniques."
+  }
+ ],
+ "weighted_score": 7.272,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Re-render frame 8's sky with dithering or higher-precision grading to remove the visible banding rings, and rebuild frame 4 at the planned teacher eye height with a real low sun shaft through the gym doors raking the desks and the top half of the frame filled by the room instead of a flat wall gradient, because those two frames, one carrying a descriptor-4 artifact and the other the storyboard's own showstopper, are what hold artwork_craft under 7.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Concentric banding rings in the upper-left sky behind the headline (ungraded banding). Smeared pink texture patches on both parents' white trousers. A roof pole runs through the headline between '85%' and 'Texas', and the curb diagonal crosses the dek.",
+   "fix": "Render the sky gradient with blue-noise dither or at float precision before the grade, give the parents' trousers a clean solid albedo, and move the camera about 0.5 m left so the pole and roof edge clear the headline block and the curb line falls below the dek."
+  },
+  {
+   "slide": 4,
+   "problem": "The planned showstopper spends its top 55% on a flat periwinkle-to-magenta wall with no light event. The desks are crowded into the bottom 45%, the laptops are flat black slabs, and the 'late sun through the doors' never appears, so the 29 folders sit in even, flat light.",
+   "fix": "Drop the camera to 1.7 m at the corner of the rows, as the craft plan specifies, so the rows fill the frame up to the type. Add a low warm sun shaft through open gym doors on the right that rakes across the desks and catches the nearest amber folder as the focal point."
+  },
+  {
+   "slide": 6,
+   "problem": "The dek promises 'one binder per state', but only about 14 binders are visible, so the 42 can't be read. The upper-left half is an out-of-focus violet void, and the type breaks the 80 px safe margin.",
+   "fix": "Pull the camera back and raise it so the shelf recedes in perspective across the full width and all 42 spines can be counted, with the Texas gap as the nearest sharp slot. Set the type back inside the safe zone over the library wall that the wider view now shows."
+  },
+  {
+   "slide": 9,
+   "problem": "The walnut is a procedural wavy-line texture that reads cartoonish at full size, the aisle chair fabric shows pixel moire, and the saturated orange-red room competes with the amber binder that is meant to be the one accent.",
+   "fix": "Replace the wood with a straight-grain walnut texture at lower saturation toward plum-brown, and swap the chair fabric for a fine-weave normal map at render resolution, so the spotlit amber binder is the only warm-saturated object."
+  }
+ ]
+}

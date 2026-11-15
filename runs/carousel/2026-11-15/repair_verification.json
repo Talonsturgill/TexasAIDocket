@@ -1,0 +1,103 @@
+{
+  "scope": "Maintainer repair of unpublished edition only",
+  "recorded_at": "2026-11-15T10:28:17.054505+00:00",
+  "browser_probe": {
+    "python": "3.11.18",
+    "playwright": "1.56.0",
+    "chromium": "141.0.7390.37",
+    "build": "1194",
+    "normal_sandbox_screenshot": true
+  },
+  "node": "24.18.0",
+  "layout": {
+    "exit_code": 0,
+    "frame3_pieces": 5,
+    "frame6_accent_fraction": 0.01325445816186557,
+    "accent_cap": 0.08
+  },
+  "delivery": [
+    {
+      "slide": 1,
+      "path": "slide-01.webp",
+      "sha256": "4882415ecc0d259f6f4f6eba4ebdf309a27a06e09e5c7569d05056bcdaa75974",
+      "bytes": 180468,
+      "psnr_db": 41.054
+    },
+    {
+      "slide": 2,
+      "path": "slide-02.png",
+      "sha256": "b50037d17ec630a9c9675b8774e3949bbf00acff6ae2fe4761743e024212d281",
+      "bytes": 5691524,
+      "psnr_db": 999.0
+    },
+    {
+      "slide": 3,
+      "path": "slide-03.png",
+      "sha256": "dff8d0ec739bacac9a7fb47ca3255684adb6817db9b972805a66fa74992edad3",
+      "bytes": 7114663,
+      "psnr_db": 999.0
+    },
+    {
+      "slide": 4,
+      "path": "slide-04.png",
+      "sha256": "334367814732597a212ca64c8410feeca4b2dd16d94c5605c83c812f971dcf9c",
+      "bytes": 4530950,
+      "psnr_db": 999.0
+    },
+    {
+      "slide": 5,
+      "path": "slide-05.png",
+      "sha256": "4f5a6bc533395063fb7f909a708b5e3f0677bbb7fc7b37eeb67bf0db4e8698a0",
+      "bytes": 3694955,
+      "psnr_db": 999.0
+    },
+    {
+      "slide": 6,
+      "path": "slide-06.png",
+      "sha256": "9c46094144b010e092e9f64bf0a4d9abe19da062350785dcf9c509c6303da4fd",
+      "bytes": 4144781,
+      "psnr_db": 999.0
+    },
+    {
+      "slide": 7,
+      "path": "slide-07.png",
+      "sha256": "8de5985ce998f258acea330b0be82752fa2abebd2a66f258c48ad996be0a3dea",
+      "bytes": 10415766,
+      "psnr_db": 999.0
+    },
+    {
+      "slide": 8,
+      "path": "slide-08.webp",
+      "sha256": "2bd7810e4c07ae8c0513069609404528ec1e0412259d89385144b5b2b8e850b0",
+      "bytes": 582800,
+      "psnr_db": 40.466
+    },
+    {
+      "slide": 9,
+      "path": "slide-09.png",
+      "sha256": "0d0f846d3492c5b8e9213aa3de215cf30a69797ac34fd1d594e5e27286d20f8e",
+      "bytes": 5435105,
+      "psnr_db": 999.0
+    }
+  ],
+  "original_panel_files_unchanged": true,
+  "gmail_payload_unchanged": true,
+  "social": {
+    "status": "BLOCKED",
+    "preflight_http_status": 401,
+    "provider_message": "Authorization header required",
+    "durable_nov15_records": 0,
+    "provider_writes_attempted": false,
+    "new_claims_created": false,
+    "youtube": "NOT_APPLICABLE"
+  },
+  "source_reconciliation": {
+    "main_sha": "362c0a829c39b9fc55e2eb3c3f6360c813bb5c54",
+    "prior_edition_sha": "7bebcf1616603643773121ff5673a3ec55c0e2d9",
+    "all_published_main_history_prefixes_preserved": true,
+    "all_prior_edition_history_entries_retained": true,
+    "three_main_claim_sets_and_participation_links_identical": true,
+    "published_source_field_log_prefix_preserved": true,
+    "dispatch_video_feed_identical": true
+  }
+}

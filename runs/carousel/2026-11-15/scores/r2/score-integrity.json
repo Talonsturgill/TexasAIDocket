@@ -1,0 +1,88 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Bespoke reading. Each frame is its own world and camera, and distinct_check confirms it (adjacent mean 0.209, type in 4 places). The counted frames hold up when checked. Slide 2 is a 10 by 10 gym grid and I counted 14 dark laptops, so 86 lit is right. Slide 5 is a 10 by 10 cubby wall and I counted exactly 20 amber sheets. Slide 3 is 20 by 5 lockers. Slide 6's binder shelf has a lit gap and a Texas pill, and it is the strongest image in the deck. Four frames hold the score down. Slide 4 is the planned showstopper, but desks run off the right and bottom edges, so the 29 of 100 can't be counted from the frame. The storyboard's 'every desk and every folder visible' is not met. A flat magenta wall fills the middle third. Near black is 0.243, against a 0.25 cap. Slide 8 is a stock school with a bus, three small figures, a cropped 'L BUS' and raster 'SCHOOL BUS'/'STOP' text (QA warn). Nothing in it argues anything. Slide 9's headline sits across the ceiling beams and its dek on a band. Slide 1 is a competent single object. Strong overall, with more than one frame leaning on a default."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds. The tone is violet and periwinkle, faces, counter and site line are the same on all nine, and the hundred-unit motif runs through 2, 3, 4 and 5. The accent's one declared meaning is 'a written rule'. Slide 9's whole room is orange-red wood and carpet, which dilutes the amber binder that is supposed to carry that meaning. Slide 4 reuses slide 2's desk and laptop with every laptop dark. Under slide 2's own legend ('a lit laptop marks reported teacher use'), that frame reads as zero teacher use. Order is clean: use, then rules, then states, then asks, public, close."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 86 and 61 come from c2, 29 from c3, 20 from c4, 42 from c5 and c6, nearly 85 from c13, 71 from c15, and fall 2025 and November 10th from c1 and c2. figures.json and aggregates.json agree, and g_agg, g_sync and g_caption are clean. The single source is Texas 2036's own article, and the rejected list honestly says the survey and poll runners are unnamed. Every figure is attributed 'per Texas 2036'. ROUND 1 REPAIR CHECKED. Slide 4 now draws every laptop identical and dark, counts only amber folders, and carries the new headline 'A student AI policy, reported by 29%' and a dek defining the folder alone. The implied cross-tab of laptops and folders is gone. Some phrasing is looser than its source, but no claim is stretched. Slide 6's headline drops 'by Texas 2036's count' and 'some form of ... support', although the dek on the same frame restores both. Slide 7 says 'The report names four priorities' when the source is an article previewing an unpublished report. Slide 4 still cites c2, none of whose figures appear on it. Slide 5 draws about 20 white sheets with no legend, a second unexplained encoding that a reader may take for a measured category. Slide 9 spotlights an amber 'written rule' binder on the dais of a district whose policy the headline tells the reader to ask about."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what was reported and has one concrete action on slide 9, 'Ask your district whether it has an AI policy'. Nobody decided anything, though. This is a think tank's preview of a report, and no body, session, date or deadline is named. 'The Legislature' and 'laws already passed' stay general, and the caption ends asking which laws without the deck being able to say. The stake is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover leads with 29% and slide 2 pays with the scale at once. The turn is at slide 4, where amber arrives, and the close gives an action. The 29% appears on slides 1, 4 and 9, so the close repeats rather than lands something new. Slide 8, the voters, could be cut with little loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and on register with no banned words. The caption opener '86% is not a share of teachers.' is a sharp, honest correction of the obvious misreading. Some lines are flat and generic, including slide 7's 'The report names four priorities', slide 3's 'Same leaders, same fall 2025 survey' and the 'drawn to illustrate' boilerplate on six frames. There is no regional specificity because the source has none."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A fresh room-and-hundred-units concept in the people tone, opening on a single desk object. The only earlier school-AI topic in the topics ledger, Houston ISD on August 18th, is outside the 30 day window. The violet LOOK V2 palette is a familiar move shared with recent decks."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail found. ship false is a threshold dissent only: 7.23 is under the round 2 rung of 7.7.",
+ "one_sentence_fix": "Rebuild slide 4, the turn and the planned showstopper. Take the laptops off its desks and raise the camera so all 100 desks and all 29 amber folders sit inside the frame. That makes the 29 countable, and the frame stops borrowing slide 2's dark-laptop code, which reads as zero teacher use.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Desks run off the right and bottom edges, so 29 of 100 can't be counted. A flat magenta wall fills the middle third. A hundred dark laptops push near black to 0.243 and read under slide 2's legend as no teacher use.",
+   "fix": "Remove the laptops. Raise the eye to about 4 m at the corner of the rows, so the full 10 by 10 grid fills the lower two thirds inside the margins and the empty wall band drops out of frame."
+  },
+  {
+   "slide": 8,
+   "problem": "A generic stock school-and-bus scene with no argument. The three people are tiny, the bus is cropped to 'L BUS' with raster text, and nothing in the picture encodes the voters or the privacy figure.",
+   "fix": "Move the camera in to the covered walk so one parent at pickup, holding a child's backpack or a permission slip with a privacy line, fills half the frame. Drop the bus's raster lettering."
+  },
+  {
+   "slide": 9,
+   "problem": "The headline sits across the ceiling beams and the dek on a band. The spotlit amber binder is small and reads as a policy already in place. The orange room dilutes the accent's single meaning.",
+   "fix": "Lower the camera so the beams leave the type's zone, and turn the room's wood and carpet to the tone's plum. Leave the dais bare under the spotlight, so the only amber is absent and the close asks the question rather than answering it."
+  },
+  {
+   "slide": 5,
+   "problem": "About 20 white sheets sit in non-amber cubbies with no legend, a second encoding next to the counted amber.",
+   "fix": "Empty every non-amber cubby, so the only paper on the wall is the 20 counted sheets."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/out/2026-11-15/copy.json",
+  "/home/user/TexasAIDocket/out/2026-11-15/claims.json",
+  "/home/user/TexasAIDocket/out/2026-11-15/figures.json",
+  "/home/user/TexasAIDocket/out/2026-11-15/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-11-15/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-11-15/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-11-15/document_title.txt",
+  "/home/user/TexasAIDocket/out/2026-11-15/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-11-15/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-11-15/render/slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png, slide-08.png, slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-11-15/tmp/g_*.log",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json (first 80 lines)"
+ ],
+ "not_checked": "Slides 1 and 7 were viewed only on the contact sheet, and the final/thumbs were not opened. Slide 4's amber folders were not counted exactly, because desks run off the frame edges. The 29 rests on figures.json. Only the first 80 lines of topics.json were read, and artwork.json and captions.json were not read, so the 30 day and last four decks checks are partial."
+}

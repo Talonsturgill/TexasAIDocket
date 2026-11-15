@@ -1,0 +1,102 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "teacher_use_pct": {
+  "value": 86,
+  "from": [
+   "c2"
+  ],
+  "basis": "share of Texas school and district leaders who reported teachers using AI, fall 2025, per Texas 2036"
+ },
+ "student_use_pct": {
+  "value": 61,
+  "from": [
+   "c2"
+  ],
+  "basis": "share who reported student use"
+ },
+ "student_policy_pct": {
+  "value": 29,
+  "from": [
+   "c3"
+  ],
+  "basis": "share who reported a district policy governing student AI use"
+ },
+ "staff_policy_pct": {
+  "value": 20,
+  "from": [
+   "c4"
+  ],
+  "basis": "share who reported a policy for teachers and staff"
+ },
+ "states_with_guidance": {
+  "value": 42,
+  "from": [
+   "c5"
+  ],
+  "basis": "states with some form of statewide AI guidance for schools, Texas 2036's count; Texas is not among them (c6)"
+ },
+ "voter_privacy_pct": {
+  "value": 85,
+  "from": [
+   "c13"
+  ],
+  "basis": "nearly this share of Texas voters, approximate, never exact"
+ },
+ "voter_literacy_pct": {
+  "value": 71,
+  "from": [
+   "c15"
+  ],
+  "basis": "share of Texas voters who say teaching responsible AI use is important"
+ },
+ "survey_year": {
+  "value": 2025,
+  "from": [
+   "c2"
+  ],
+  "basis": "the survey was taken in the fall of this year"
+ },
+ "priorities": {
+  "value": 4,
+  "from": [
+   "c7",
+   "c8",
+   "c9",
+   "c10"
+  ],
+  "basis": "the four priorities the report names"
+ },
+ "per_hundred": {
+  "value": 100,
+  "from": [],
+  "basis": "DRAWING UNIT: one desk, seat or chip per leader in a hundred"
+ },
+ "teacher_use_of_100": {
+  "value": 86,
+  "from": [
+   "c2"
+  ],
+  "basis": "units lit for teacher use at the drawing unit"
+ },
+ "student_use_of_100": {
+  "value": 61,
+  "from": [
+   "c2"
+  ],
+  "basis": "units lit for student use at the drawing unit"
+ },
+ "student_policy_of_100": {
+  "value": 29,
+  "from": [
+   "c3"
+  ],
+  "basis": "units carrying a written student policy at the drawing unit"
+ },
+ "staff_policy_of_100": {
+  "value": 20,
+  "from": [
+   "c4"
+  ],
+  "basis": "units carrying a written staff policy at the drawing unit"
+ }
+}

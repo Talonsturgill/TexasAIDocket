@@ -664,7 +664,8 @@
         "2026-11-10",
         "2026-11-11",
         "2026-11-12",
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "contradicted": []
     },
@@ -1869,6 +1870,22 @@
       "learned": "2026-11-14",
       "instinct": "When the panel names the same frame twice, rebuild it out of the deck's own object rather than relighting what is there, because two judges in two rounds were reading the wrong vocabulary, not a dim render.",
       "evidence": "No. 77 frames 7 and 8. A copper growth relief and a desk scene with a kit person were named in rounds 1 and 2 after relights and re-crops. Frame 7 recut inside one wafer's disc and frame 8 rebuilt as one die cut wafer, both in the deck's wafer vocabulary, and round 3's judges stopped naming 8 as a borrowed scene.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "integrity-repair-rewrites-brief",
+      "learned": "2026-11-15",
+      "instinct": "When a panel repair changes a frame's copy or encoding, rewrite that frame's brief before any critic reads it, because a cold critic scores the repaired frame against the plan the repair overruled.",
+      "evidence": "No. 78, round 3: fresh slide critics marked frames 4 and 8 down for missing laptops and changed copy that round 1's integrity hard fail and round 2's repair had removed on purpose, until each brief carried an amendment.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "decide-the-legend-once",
+      "learned": "2026-11-15",
+      "instinct": "Settle what a shared object means across frames before the panel, because one judge's repair can be the next judge's contradiction.",
+      "evidence": "No. 78: round 1's integrity judge failed frame 4 for drawing slide 2's lit laptops beside the folders as a cross tab, the repair darkened every laptop, and round 3's integrity judge charged the dark laptops as contradicting slide 2's own legend.",
       "confirmed": [],
       "contradicted": []
     }
