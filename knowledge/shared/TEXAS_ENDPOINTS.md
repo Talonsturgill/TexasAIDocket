@@ -157,6 +157,26 @@ poller must treat 404 as a schema break and never as an absence of news. `Crawl-
   success with an empty array, so assert on record count.
 - **EPA Envirofacts** (`data.epa.gov/efservice/`) filters to a single Texas county, which is the
   grain this record writes at. Pagination is a path segment, not a query parameter.
+- **PubMed records** (`pubmed.ncbi.nlm.nih.gov/<pmid>/`, `pmc.ncbi.nlm.nih.gov`). Since
+  2026-11-14 both serve a reCAPTCHA page to automated fetches (a cookie wall before that,
+  SOURCES_FIELD_LOG 2026-11-11), so `reverify.py` reports every PubMed-cited claim unreachable and
+  the item's stamp is withheld. Do not try the page another way. **Europe PMC carries the same
+  record**: `www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:<pmid>%20AND%20SRC:MED&resultType=core&format=json`
+  returns the title and abstract, and www.ebi.ac.uk answered on 2026-11-08. Check its robots.txt
+  first, as for any host. Confirm each quote against that abstract, re-stamp the item, and write
+  in the run record that the PubMed page refused and Europe PMC answered. If Europe PMC refuses
+  too, record the measured boundary on the item so the staleness gate reads it as unreachable
+  rather than rot, because an unrecorded refusal fails `gate_staleness` after 6 days and skips
+  the Pages deploy (tx-2026-0150 and tx-2026-0151 did exactly this on 2026-11-15).
+- **League City's own site** (`www.leaguecitytx.gov`). Its robots.txt has failed to answer on
+  several runs (SOURCES_FIELD_LOG 2026-10-12 and 2026-10-31), so the crawl boundary reads the host
+  as refusing and every item quoting its newsflash pages loses its stamp. tx-2026-0048 has 5 such
+  claims and went 7 days unstamped on 2026-11-15. Its front door is `leaguecity.legistar.com`, so
+  the unreachable carve-out does not cover it. Re-measure the robots file first. If it still
+  fails, re-anchor each of those claims on a source that answers and says the same thing
+  (`webapi.legistar.com/v1/leaguecity/...` minutes and histories, or the press report the item
+  already cites), with the new quote copied from that source, and write the swap in the run
+  record. A claim no answering source carries is dropped, not kept on a page nobody can read.
 
 ---
 

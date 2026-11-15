@@ -1,6 +1,6 @@
 {
   "_doc": "BESPOKE, one artist per slide (owner, 2026-11-14). knowledge/carousel/BESPOKE.md. A run dated on or after bespoke_from builds each slide with its own carousel-slide-artist and its own world, light, camera and type placement. null keeps the routine as it is. The owner sets the date.",
-  "bespoke_from": null,
+  "bespoke_from": "2026-11-15",
   "artists": {
     "parallel": 9,
     "max_renders_per_slide": 6,

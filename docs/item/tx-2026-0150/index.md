@@ -1,6 +1,6 @@
 # Texas Children's and UT Southwestern radiologists publish that imaging AI has largely skipped children
 
-An expert panel review in the American Journal of Roentgenology states that pediatric medical imaging remains substantially underrepresented across artificial intelligence in radiology. The panel means the development of models and their validation and their regulation and their use in the clinic. Two of its authors are Texas radiologists. One works in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston. The other is at UT Southwestern Medical Center in Dallas. The panel gives its reason plainly. Children go through continuous physiologic and anatomic changes that adults do not, so a model trained on adults is not the model a child needs. It names what holds pediatric work back. Public datasets are scarce and institutional data is fragmented and external validation is insufficient. It also names off-label use of adult-trained AI models among the ethical and regulatory concerns in children. The review is a recommendation document rather than a hospital policy. No Texas institution has published a purchasing change that follows from it.
+An expert panel review in the American Journal of Roentgenology states that pediatric medical imaging remains substantially underrepresented across artificial intelligence in radiology. The panel means the development of models and their validation and their regulation and their use in the clinic. Two of its authors are Texas radiologists. One works in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston. The other is at UT Southwestern Medical Center in Dallas. The panel gives its reason plainly. Children go through continuous physiologic and anatomic changes that adults do not, so a model trained on adults is not the model a child needs. It names what holds pediatric work back. Public datasets are scarce and institutional data is fragmented and external validation is insufficient. It also names off-label use of adult-trained AI models among the ethical and regulatory concerns in children. The review is a recommendation document rather than a hospital policy.
 
 - Topic: health-and-education
 - Decided by: American Journal of Roentgenology Expert Panel, with radiologists at Baylor College of Medicine and Texas Children's Hospital and at UT Southwestern Medical Center (company)
@@ -10,9 +10,9 @@ An expert panel review in the American Journal of Roentgenology states that pedi
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://pubmed.ncbi.nlm.nih.gov/42714442/
+- Take part: https://europepmc.org/article/MED/42714442
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-15
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · The pediatric imaging AI result is unconfirmed on November 7th, because the article's index page offered a cookie check rather than its abstract.
 - 2026-11-08 · The expert panel's review still opens on the same finding, that imaging AI has largely been built and tested on adults while children's scans stay underrepresented.
 - 2026-11-14 · The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.
+- 2026-11-15 · The pediatric imaging review still calls for models built for children. Europe PMC carries the abstract and the Baylor and UT Southwestern affiliations.
 
 ## Evidence
 
@@ -53,47 +54,47 @@ Every fact above rests on one of these. The words are the source's own.
 
 > Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### The panel's stated reason is that children change as they grow, so a model trained on adults is not the same model.
 
 > Unlike adults, children go through continuous physiologic and anatomic changes that require age-specific models trained on representative developmental data.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### The panel names what pediatric AI is limited by.
 
 > However, pediatric AI is limited by scarce publicly available datasets, fragmented institutional data, rare diseases, heterogeneous reporting practices, and insufficient external validation.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### Off-label use of a model trained on adults is named as an ethical and regulatory concern in children.
 
 > Ethical and regulatory challenges are also a concern in children, including consent for secondary data use, off-label use of adult-trained AI models, and the need for postdeployment surveillance.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### The panel asks for a dedicated pediatric AI infrastructure and standards rather than for adult tools to be reused.
 
 > The panel gives key recommendations, emphasizing the importance of an implementation roadmap to establish a dedicated pediatric AI infrastructure and standards that are essential to ensure diagnostic accuracy, workflow efficiency, and optimal clinical outcomes for children while minimizing bias and protecting patient safety.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### One of the review's authors is in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston.
 
 > Department of Radiology, Baylor College of Medicine and Texas Children's Hospital, Houston, Texas, USA.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### Another author is in the radiology department at UT Southwestern Medical Center in Dallas.
 
 > Department of Radiology, UT Southwestern Medical Center, Dallas, Texas, USA.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
 ### The review names reimbursement as misaligned with what pediatric AI would need.
 
 > Additionally, reimbursement is misaligned and must be optimized to allow innovation.
 
-Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
+Source (primary_official): https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42714442%20AND%20SRC:MED&resultType=core&format=json
 
