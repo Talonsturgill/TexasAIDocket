@@ -7,7 +7,8 @@
 For a family it writes one LINEUP page (every model side by side with a 1.75 m person) and one
 HERO page per model (a three-quarter close view). Each page logs `KIT_STATS {json}` through
 console.error, which render.py records in render_report.json: build time and triangle count.
-`--names a,b` limits it to some models. `--world` picks a TXT.worlds preset.
+`--names a,b` limits it to some models. `--world` picks a TXT.worlds preset (default v2people, the
+light the daily decks use, so a model is judged as it will ship; goldenHour crushes shade sides).
 
 This is a harness, not a style. A deck composes its own frames.
 """
@@ -106,7 +107,7 @@ def family_names(family: str) -> list[str]:
     return re.findall(r"K\.define\(\s*['\"]([a-z0-9_]+)['\"]", src)
 
 
-def page(specs, *, person=True, world="goldenHour", fov=34, dist=1.05, direction=(0.55, 0.32, 1.0),
+def page(specs, *, person=True, world="v2people", fov=34, dist=1.05, direction=(0.55, 0.32, 1.0),
          surface="grass", az=-40, el=18) -> str:
     return (PAGE.replace("__SPECS__", json.dumps(specs)).replace("__PERSON__", "true" if person else "false")
             .replace("__WORLD__", world).replace("__FOV__", str(fov)).replace("__DIST__", str(dist))
@@ -119,7 +120,7 @@ def main() -> int:
     ap.add_argument("--family", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--names", default="")
-    ap.add_argument("--world", default="goldenHour")
+    ap.add_argument("--world", default="v2people")  # production light, LOOK V2
     ap.add_argument("--surface", default="grass")
     a = ap.parse_args()
     names = [n for n in a.names.split(",") if n] or family_names(a.family)
