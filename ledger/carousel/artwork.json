@@ -4985,6 +4985,74 @@
     "hex": "#ff9f62",
     "note": "The people tone's apricot floor and plum shadow."
    }
+  },
+  {
+   "date": "2026-11-16",
+   "carousel_no": 79,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 explainer tone, nine slide artists. TXT.studio sweeps (1, 4, 7), TXT.interior rooms (2 kitchen table, 6 lamplit reading table), TXBENCH reliefs (3 sieve cutaway, 5 cantera inlays, 8 patch panel), an outdoor TXT scene (9 Hill Country gate). Spine assets/js/deck/2026-11-16-voicebench-bespoke.js with chassis models voice_ribbon, vernier_caliper and gauge_head.",
+   "structural_laws": [
+    "DUSK GOLD UNDER A COOL TONE RENDERS SALMON OR MAUVE. Every frame's gold ribbon read copper or rose until the metal got a warm reflection or fill; the explainer cobalt environment pulls #e0956a away from gold.",
+    "A CHASSIS SLOT CAN BE CLOSED BY ITS OWN POSTS. The gauge_head's corner posts blocked the ribbon slot its note promised, so frame 7 built its own head.",
+    "THE RELIEF BENCH LOCKS THE KEY TO THE CHASSIS LIGHT AND TAKES NO CAMERA, so a relief frame can't rake to an oblique; planning one as an oblique wastes a round.",
+    "A RADIAL TYPE WASH READS AS STRIKETHROUGH ROWS. qa flags each headline line whose background varies along its run; a level band behind the column clears it.",
+    "A COUNT OF BLOCKS READS AS ITS DIVIDERS. 18 blocks parted by 17 guides read as 17 until each block carried its own tab."
+   ],
+   "techniques": [
+    "a machined gold waveform ribbon on a studio sweep under an open stainless caliper",
+    "a family table seen over a veteran's shoulder, one short gold ribbon among violet talk",
+    "a brass sieve in cutaway catching two labelled stones while gold grains fall through",
+    "an oak card drawer of 18 year blocks under a task light",
+    "two polished gold waveform inlays in a cantera limestone slab",
+    "a lamplit reading table where a paper ribbon flattens into transcript lines",
+    "dark gauge heads in a receding row threaded by one gold ribbon",
+    "a patch panel with feature and symptom jacks and every plug hanging free",
+    "a gold ribbon stopping short of a closed ranch gate above the Hill Country, a caliper beside it"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     53.2,
+     31.9,
+     35.2,
+     38.5,
+     46.2,
+     34.4,
+     52.6,
+     34.4,
+     56.2
+    ],
+    "deck_median_L": 38.5,
+    "max_adjacent_delta": 21.8,
+    "mean_adjacent_delta": 13.2,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#e0956a",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     1,
+     2,
+     4,
+     5,
+     9
+    ],
+    "share": [
+     0.0023,
+     0.023,
+     0.0003,
+     0.0517,
+     0.023,
+     0.0,
+     0.0001,
+     0.0,
+     0.0035
+    ],
+    "note": "The veteran's own spoken words only: the voice ribbon and speech labels."
+   },
+   "ground": {
+    "hex": "#ffc68a",
+    "note": "The explainer tone's peach floor under cerulean and indigo."
+   }
   }
  ]
 }

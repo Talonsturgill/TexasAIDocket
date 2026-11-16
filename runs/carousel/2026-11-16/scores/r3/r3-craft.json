@@ -1,0 +1,67 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3,
+   "why": "Round 2 named five weak frames. Two repairs landed, one landed in part, and two frames are unchanged. LANDED, frame 6: the hand now comes in from the right in an indigo knit sleeve and rests on the open transcript. The bottom third, which was empty walnut before, now holds a foreground page and a violet pencil. The paper waveform rises off the left page and stays inside the frame. The stray white wedge at x 0 is gone. The transcript is the brightest thing in the frame, with warm light falling off across the walnut. No lamp is drawn now, so the light simply reads as the room's key. LANDED IN PART, frame 2: two long indigo talk ribbons now sweep across the table behind the short, broken gold ribbon, so the idea of one short voice among long ones finally shows. The hands around the blue mug are defocused, but at full size the fingers still look lumpy and toe-like. A dark figure sliver cuts the left edge at y 980 to 1280. The indigo ribbons also run under the second headline line. UNCHANGED, frame 9 (reverted to its reviewed version): the type wash leaves a visible boxy edge in the sky at about y 900 to 950, and a lighter halo shows around the oak. The oak still reads flat and pasted on. The ribbon is orange-red with a scalloped, broken crest, not the deck's gold. The ribbon and a small caliper fill well under half the frame, so the close is the weakest picture in the deck. UNCHANGED, frame 5: the cantera surface is covered in dense scribbled stroke marks that read as a hatch texture at 432 px. The relief is shallow (TXBENCH height 41.8, cast fraction 0.25, against 76 to 83 on frames 3 and 8). machine_qa flags it top-loaded, with the bottom third at 79 percent density. HOLDING UP: frames 1, 3, 4, 7 and 8. On 1, the extruded gold waveform runs off both edges under an open caliper. On 7, four rounded aluminium gauge heads recede with gold ribbon feeding through their windows. On 8, braided indigo leads hang above 4+4 hex terminals (height 76.1, 11 materials, cast 0.52). On 4, the raking-light card drawer has a warm cast shadow. Small notes: on 7 the label pills are mismatched in size ('Coherence' large, the other three small), and the headline's '4' renders with an odd ball-top glyph. This is better than round 2, with two frames still leaning on a defect and a third partly. That lands just above the 7 descriptor and well short of 8."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine is intact on all nine frames: the display serif, the mono kicker and counter, the site line, the claim-id line, indigo pills and shadows leaning indigo or violet. The gold ribbon motif changes state through 1 (extruded wave), 2 (broken short ribbon), 5 (inlaid lines), 6 (paper waveform), 7 (fed through the gauges) and 9 (laid on the ground). The story runs in order. Three things soften it. Frames 4 and 5 move into a peach-mauve field at the edge of the explainer palette. Frame 5's peach label pills put the accent colour on furniture. The motif turns orange-red at the close on 9, so it never resolves in its own accent."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces: $200,000 (c2), 18 (c5), 4 (c8), 01 to 09 counters. The drawn counts match the copy: 2 inlays on 5, 2 stones on 3, 4 gauges on 7, 4+4 terminals on 8. Tense holds throughout ('plans to', 'meant to', 'The measuring is still a plan'). The round 2 nit is fixed: first_comment.txt now lists c4, which slide 9 cites. What remains is small. Slide 7's 'names 4 features' is slightly more final than the source's 'features such as'. The grant comes from the grantee's own article, the one primary record fetched, because no foundation record was fetched."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "The deck names who (UT San Antonio, the San Antonio Medical Foundation, Rocio Norman, Alicia Swan of the South Texas Veterans Health Care System), what ($200,000, a one year pilot, 4 named features, 4 conditions), where (the San Antonio VA, #BexarCounty) and what next (federal grants if the pilot finds something). The stake for a Texan stays general. There is no decision or deadline a reader can act on, and the benefit to a veteran is implied rather than made concrete."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover question earns the swipe, and frame 2 pays at once with the human difficulty. The turn from 6 to 7, slow paper to four instruments, is real and now reads better with frame 6 repaired. Frame 8 states the research question cleanly. Frame 4 (18 years) could move or merge without loss. The close is honest, but its weak picture dulls the landing."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register. I found no banned words, colons, dashes or first person. 'The words are there. Finding them is hard.' is the strongest line. The 'drawn to illustrate' disclaimer repeats on 7 of 9 deks and reads mechanical. The art carries the Texas specifics (cantera, the Tower of the Americas skyline, a ranch gate) more than the words do."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "The deck is in explainer tone, with type in four positions and nine distinct worlds: studio sweep, interior, brass relief, card drawer, stone relief, lamplit desk, instrument line, patch panel and outdoor still life. That diverges from the recent people-tone and dark staged decks. The one familiar move is the warm-wood conference-table interior used on both 2 and 6."
+  }
+ ],
+ "weighted_score": 7.66,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 9 as the close the storyboard planned. Put one unbroken dusk-gold ribbon coil and the open caliper on a limestone ledge in real oak shade, filling the lower half with the camera at ledge height. Seat the headline in sky the composition leaves clear, with no wash box, so the deck's motif resolves in its own accent instead of ending on a thin orange-red line, a pasted tree and a visible halo.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The type wash leaves a boxy edge in the sky at about y 900 to 950, with a lighter halo around the oak. The oak is flat and pasted on. The ribbon is orange-red with a scalloped, broken crest instead of the deck's gold. The ribbon and caliper fill well under half the frame. This frame is unchanged because the rework was reverted.",
+   "fix": "Lower the camera to ledge height so a polished gold #E0956A ribbon coil and the open caliper fill the bottom half on limestone, with oak-leaf shadows cast across them. Drop the wash and set the headline in open sky above the gate."
+  },
+  {
+   "slide": 5,
+   "problem": "The cantera carries dense scribbled stroke marks that read as a hatch texture at 432 px. The relief is shallow (height 41.8, cast 0.25), and the bottom third is a top-loaded dead zone (machine_qa 79 percent).",
+   "fix": "Replace the stroke normal map with a low-frequency pore-and-chisel height field. Cut the inlay channels deeper so the gold lines cast long raking shadows. Bring the second inlay down into the lower third under the dek."
+  },
+  {
+   "slide": 2,
+   "problem": "The indigo talk ribbons are fixed, but the defocused hands around the blue mug still show lumpy, toe-like fingers at full size. A dark figure sliver cuts the left edge at y 980 to 1280. The indigo ribbons run under the headline's second line.",
+   "fix": "Crop the hands out below the frame edge so only the mug and a sleeve cuff remain. Remove the left-edge figure. Lower the two indigo ribbons about 120 px so they cross the table under the headline instead of through it."
+  }
+ ]
+}

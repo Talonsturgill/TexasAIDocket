@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Frames 1 (orange waveform under a caliper on a cerulean sweep), 3 (sieve relief, height_range 82.9, 9 materials, cast 0.54), 6 (the reworked transcription desk, with a waveform rising out of an open binder, a red wood desk and a dusk window) and 8 (patch panel relief, 11 materials, cast 0.52, eight unplugged leads over labelled jacks) are each made for their own sentence, lit, and full to the edges. Frame 6 is clearly better than in r2. Four frames hold the score down. Frame 2 is still mostly defocus blur, with mannequin hands round a mug at lower left and an orange ribbon floating above the table with no contact. Frame 9 kept the version that was reviewed, with the headline on a flat blue wash plate that softens across the post tops, and art_preflight still lists needs_review [9]. Frame 4 is a card drawer in a mauve and orange gradient void with no room or floor, and its 'one block of cards per year' can't be counted to 18 at feed size. machine_qa flags frame 5 as top loaded (bottom 67% vs 95%) and frame 3 the same way (55%)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds on the contact sheet. The same serif and mono faces, the counter and site line sit in place on all nine, the explainer blues carry through, and the gold voice ribbon changes state from frame 1 to 2, 5, 7 and 9 (whole, broken, recorded, threaded through gauges, running to a gate). Instruments shown open or unplugged are a second device that works. Frame 4 sits outside the deck, in a mauve and orange palette with no blue and no ribbon. Frame 5's violet relief also leans away from the deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces to figures.json. $200,000 comes from c2, 18 from c5, 4 features from c8, and 'one year' (spelled out) from c3. All cited claims are primary and quote the UT Health San Antonio release. The r2 fixes landed. Slide 8 now reads 'Can automation spot the differences?' and its body follows c11 ('That is the immediate goal'), with c8 cited for the four feature pills. The first comment now lists c4, which slide 9 uses. Slide 7 says 'names 4 features', which fits c8's 'such as' because it does not say four is all there are. Every illustrated element is disclosed as drawn to illustrate. Three small loosenings keep this under 9. (1) The caption opener 'Standard tests can miss the struggle' is stated as a general truth but rests on Norman's report about her own patients (c16) and her reading of what the tests were built for (c18). (2) The grant comes from the grantee's announcement. claims.json rejects the foundation's own award record as 'Not fetched', so a more primary source existed. (3) Frame 4 promises one block per year, and I could not count 18 blocks in the render. The deck says 'drawn to illustrate', so this is a looseness and not a fabrication. The hashtag #BexarCounty leans on c14 and c15, which the first comment does not list. San Antonio is in Bexar County, so it misleads no one. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "The what, who and where are clear. A $200,000 San Antonio Medical Foundation grant funds a UT San Antonio pilot that will analyze recordings made at the San Antonio VA, and Norman and Swan are named. Ta-Johnson, the third lead, never appears. No date appears anywhere, neither when the grant was announced nor when the one year starts or ends, so a reader can't place it in time. The r2 fix asking for the announcement date did not land. A Texan is given nothing to do next. Slide 9 says only 'If the pilot finds something, the team plans to seek federal grants'. The stake for veterans whose impairment standard tests miss is real but stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover question 'Can a spoken story be measured?' earns the swipe, and frame 2 pays at once with the human problem. The turn sits at 6 to 7, from slow transcription today to the planned NLP features, and frame 8 restates the cover's question in sharper form. Frame 4 (Norman's 18 years) could move or merge into frame 2 without loss. The close lands softly on a conditional and a disclaimer."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and house rule compliant, with no colons, dashes or banned words, and 'can't' style is kept. Lines like 'The words are there. Finding them is hard.' and 'The measuring is still a plan.' are honest and plain. A machine shows in the repeated '... drawn to illustrate' tag on eight of nine frames and in the flat closing body. The Texas texture (San Antonio skyline through a ranch gate on frame 9, the South Texas VA) is visual more than verbal."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A fresh concept for this feed, with nine worlds (studio, kitchen table, sieve relief, card drawer, stone relief, desk, gauge row, patch panel, Hill Country gate) and type in four positions. That breaks from the run of staged dark kit scenes named in art_preflight's distinct_from_recent. The familiar move is a cover question over one hero object on a studio sweep, plus the explainer blue palette the v2 decks share."
+  }
+ ],
+ "weighted_score": 7.27,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Give the story its time and its next step: put the announcement date and the pilot's one year window on slide 1 or 9 from a claim, and rebuild frame 2 as a sharp close crop on hands, mug and a grounded broken ribbon so the deck's human beat is not a blur.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "Most of the frame is defocus blur, the mannequin hands at lower left read as a primitive model, and the orange ribbon floats above the table with no contact shadow, so the struggle beat has no finished subject.",
+   "fix": "Move the camera down and in to a tight crop on two well modelled hands round the mug, and seat the broken ribbon flat on the wood with a contact shadow. Keep only a shallow blur behind it."
+  },
+  {
+   "slide": 9,
+   "problem": "The headline sits on a flat blue wash plate whose soft edge cuts across the post tops, the ribbon stops short of the gate, and art_preflight still lists needs_review [9].",
+   "fix": "Lower the camera so the sky behind the gate is the type's own quiet, drop the wash plate, and run the ribbon to the bottom rail in dusk gold with a contact shadow."
+  },
+  {
+   "slide": 4,
+   "problem": "The card drawer floats in a mauve and orange gradient void with no floor or room, off the deck's blue spine, and the 18 year blocks the copy promises can't be counted at feed size.",
+   "fix": "Stand the drawer on a lit tone sweep in the explainer blues, and raise the camera so the 18 tabbed blocks separate and can be counted."
+  },
+  {
+   "slide": 5,
+   "problem": "Top loaded per machine_qa (bottom third at 67% vs 95%). Both recording channels sit in the upper half and the lower stone is dead.",
+   "fix": "Spread the two channels down the stone so the second runs through the lower third, and seat the type below them."
+  }
+ ]
+}

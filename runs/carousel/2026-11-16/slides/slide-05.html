@@ -1,0 +1,203 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-16, carousel no. 79, frame 5 of 9, THE RECORDINGS. A material relief through txbench.js: a full bleed
+     plan view of a rose cantera limestone slab, bedded, pored and flecked, with polished dusk gold waveform ribbons inlaid in
+     sawn channels from edge to edge, one per thing the veterans described, each raised above the stone and throwing its
+     cast into its channel under the deck's raking key from the upper left. The ribbon count is read from window.FIG. The
+     gold is the accent and means the veterans' own spoken words; each ribbon carries a gold pill naming what was described.
+     The lower slab carries no inlay and the key falls away across it, which is where the headline stands. Drawn to
+     illustrate, never a recording, no session marks. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .kick, .count { text-shadow:0 0 2px rgba(15,31,92,0.85), 0 0 10px rgba(15,31,92,0.6), 0 1px 18px rgba(15,31,92,0.45) !important; }
+  .lab.gold { background:linear-gradient(180deg,#f3b88a,#e0956a 60%,#c97a52); color:#2b1406; font-size:30px; font-weight:700;
+    letter-spacing:0.03em; box-shadow:0 10px 24px rgba(42,24,90,0.45), 0 2px 5px rgba(42,24,90,0.35); text-shadow:none; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:770px; width:920px; text-align:left">The veterans' stories are already recorded</h1>
+<p class="dek" data-follow="26" style="left:80px; width:920px">At the San Antonio VA they described how they were injured and an important life event, at several points during treatment. The stone and its gold lines are drawn to illustrate.</p>
+<div class="lab gold" id="l-0">How they were injured</div>
+<div class="lab gold" id="l-1">An important life event</div>
+<script>window.FIG = {"grant_usd": 200000, "study_years": 1, "norman_years": 18, "features_named": 4, "symptoms_named": 4, "recording_prompts": 2, "tests_built_for": 2, "leads": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-16-voicebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  /* load the faces the fit and the anchor measure, so neither measures a fallback face */
+  await Promise.all(['700 100px "Fraunces"', '600 31px "Manrope"', '500 24px "JetBrains Mono"', '700 30px "JetBrains Mono"'].map(f => document.fonts.load(f)));
+  CH.start({ kicker: "The recordings", counter: "05 / 09", src: "c6 c7", fit: { min: 84, max: 112, maxLines: 2 } });
+  /* the type is anchored by its foot: the dek ends just above the claim ids, whatever size the fit chose */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek');
+    /* the hook's inked height from its own text, so a box sized for more lines than were set leaves no hole above the dek */
+    const tw = document.createTreeWalker(h, NodeFilter.SHOW_TEXT); let bot = -1e9, nd;
+    while ((nd = tw.nextNode())) { const rg = document.createRange(); rg.selectNodeContents(nd); for (const r of rg.getClientRects()) bot = Math.max(bot, r.bottom); }
+    const inkH = bot - h.getBoundingClientRect().top + 8;
+    h.style.height = Math.ceil(inkH) + 'px';
+    const dh = d.getBoundingClientRect().height, gap = 30;
+    const top = Math.round(1196 - dh - gap - inkH);
+    h.style.top = top + 'px'; d.style.top = Math.round(top + inkH + gap) + 'px'; }
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED + 5);
+  const L = TXLOOK.lin, rng = CH.rng(20261116 + 505);
+  const sstep = (a, b, t) => { t = Math.max(0, Math.min(1, (t - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const fb = (x, y, o) => TX.fbm2(x, y, { octaves: o || 3 });
+
+  /* ---------------- THE FIGURE ----------------
+   * One gold inlay per thing the veterans described (claims c6 c7), read from window.FIG. Each label is the copy's own
+   * words, so the copy and the figure must agree on the count. */
+  const LABELS = ['How they were injured', 'An important life event'];
+  const NR = FIG.recording_prompts;
+  if (!(Number.isInteger(NR) && NR > 0)) throw new Error('recording_prompts is not a positive count: ' + NR);
+  if (NR !== LABELS.length) throw new Error('FIG says ' + NR + ' recording prompts, the copy names ' + LABELS.length);
+
+  /* the inlays are finished set pieces: each starts and ends inside the slab in a rounded sawn end, offset from the other
+   * and laid on the same slight rise, so the stone between them is a composed band rather than a stripe */
+  const CW = 58, CH0 = 9, BEV = 8, SLOPE = -0.045;   /* channel half width, depth, bevel width (CSS px), rise per px */
+  const SPANS = [[146, 846, 322], [246, 946, 616]];   /* x start, x end, centre y at x 540, one per inlay in order */
+  if (SPANS.length < NR) throw new Error('no layout for ' + NR + ' inlays');
+  const ribbons = [];
+  for (let i = 0; i < NR; i++) {
+    const [x0, x1, y540] = SPANS[i];
+    /* the waveform's half width per device column: seeded, symmetric about the centre line, even peaks, never a recording.
+     * It tapers to a point inside each sawn end. */
+    const seed = 37 + i * 101, ph = [rng() * 6.28, rng() * 6.28, rng() * 6.28], k = 2 * Math.PI / (54 + 8 * i);
+    const g0 = x0 - CW * 0.35, g1 = x1 + CW * 0.35;
+    const hw = new Float32Array(2160 + 4);
+    for (let q = 0; q < hw.length; q++) {
+      const X = q / 2; if (X < g0 || X > g1) { hw[q] = -1; continue; }
+      const n = fb(X / 95, seed, 2), env = Math.pow(Math.max(0, Math.min(1, 0.55 + 1.1 * n)), 1.25);
+      const v = 0.5 * Math.sin(X * k + ph[0]) + 0.3 * Math.sin(X * k * 1.73 + ph[1]) + 0.2 * Math.sin(X * k * 0.41 + ph[2]);
+      const tip = Math.sqrt(sstep(0, 26, Math.min(X - g0, g1 - X)));
+      hw[q] = tip * (5 + 45 * env * Math.min(1, Math.abs(v) * 1.15));
+    }
+    ribbons.push({ x0, x1, y540, yc: X => y540 + SLOPE * (X - 540), hw });
+  }
+  if (ribbons.length !== FIG.recording_prompts) throw new Error('built ' + ribbons.length + ' ribbons, FIG says ' + FIG.recording_prompts);
+
+  /* ---------------- THE SLAB ----------------
+   * Height in CSS px out of the stone's face. Pores and vugs at two scales, a honed tooth, faint bedding ridges. Each
+   * channel is sawn CH0 deep with a BEV wide bevel on every wall, so the lower wall faces the key and catches it and the
+   * upper wall turns away into the violet shade; its honed floor carries faint saw marks along the cut. The gold sits in
+   * it as a domed strip standing well proud of the stone, so it throws its cast across the floor and up the far wall. */
+  const M = { stone: 0, chan: 1, gold: 2, pore: 3, fleck: 4, wall: 5 };
+  const hash = (a, b) => { let h = Math.imul(a, 374761393) + Math.imul(b, 668265263) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  function cells(X, Y, S, dens, r0, r1, salt) {
+    const gx = Math.floor(X / S), gy = Math.floor(Y / S); let best = 1e9;
+    for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) {
+      const cxk = gx + a, cyk = gy + b; if (hash(cxk + salt, cyk) > dens) continue;
+      const px = (cxk + hash(cyk, cxk + 9 + salt)) * S, py = (cyk + hash(cxk + 3, cyk + 7 + salt)) * S, r = r0 + (r1 - r0) * hash(cxk + 11, cyk + 5 + salt) ** 3;
+      const sx = 1 + 0.6 * hash(cxk, cyk + 13 + salt);
+      best = Math.min(best, Math.hypot((X - px) / sx, Y - py) / r);
+    }
+    return best < 1 ? 1 - best * best : 0;
+  }
+  let lx = -1, ly = -1, lh = 0, lm = 0, ldome = 0;
+  function geo(X, Y) {
+    if (X === lx && Y === ly) return; lx = X; ly = Y; ldome = 0;
+    const q = Math.min(2163, Math.max(0, Math.round(X * 2)));
+    for (const r of ribbons) {
+      const dyS = Y - r.yc(X), dy = Math.abs(dyS);
+      const ex = Math.max(r.x0 - X, 0, X - r.x1), dist = ex > 0 ? Math.hypot(ex, dy) : dy;   /* a stadium: rounded sawn ends */
+      if (dist < CW + BEV + 2) {
+        const w = r.hw[q];
+        if (w > 0 && dy < w) {
+          const t = dy / w, dome = Math.sqrt(Math.max(0, 1 - t * t)); ldome = dome;
+          /* every lobe a rounded peak: the crest rises with the lobe's width, the flank rolls into the floor with no step */
+          const crest = 12 + 0.6 * w; lh = -CH0 + crest * Math.pow(Math.max(0, 1 - t * t), 0.62); lm = M.gold; return;
+        }
+        if (dist < CW) {
+          lh = -CH0 + 0.05 * Math.sin(dyS * 1.7 + 0.5 * fb(X / 60, Y / 20, 2)) + 0.18 * fb(X / 9, Y / 9, 2); lm = M.chan; return;
+        }
+        if (dist < CW + BEV) { const u = (dist - CW) / BEV; lh = -CH0 * (1 - u) + 0.35 * u * u; lm = M.wall; return; }
+        lh = 0.5 * (1 - sstep(CW + BEV, CW + BEV + 2, dist)); lm = M.stone; return;   /* a crisp arris */
+      }
+    }
+    const tooth = 0.16 * fb(X / 2.6, Y / 2.6, 2) + 0.3 * fb(X / 22, Y / 22, 3);
+    /* tooled: drove chisel strokes about 7 px apart, their direction wandering patch to patch, broken where the mason
+     * lifted the tool */
+    const th = 0.8 + 0.18 * fb(X / 420, Y / 420 + 11, 2), cs = Math.cos(th), sn = Math.sin(th);
+    const pc = (X * cs + Y * sn) / 9 + 0.12 * fb(X / 60, Y / 60, 2), seg = sstep(0.05, 0.35, fb((X * -sn + Y * cs) / 34, Math.floor(pc) * 0.37, 2));
+    const bed = -0.9 * Math.pow(Math.max(0, Math.sin(pc * Math.PI * 2)), 10) * seg;
+    const p = Math.max(cells(X, Y, 15, 0.07, 0.5, 1.8, 0), 1.3 * cells(X, Y, 70, 0.2, 2.5, 6, 71));   /* sparse pores, a few fossil pits */
+    lh = tooth + bed - 1.8 * p; lm = p > 0.2 ? M.pore : M.stone;
+    if (lm === M.stone && cells(X, Y, 19, 0.05, 0.5, 2.2, 333) > 0) lm = M.fleck;
+  }
+  const height = (X, Y) => (geo(X, Y), lh), material = (X, Y) => (geo(X, Y), lm);
+
+  /* the drawing agrees with the figure: count the gold strips down the slab's centre column */
+  { let runs = 0, prev = false; for (let Y = 0; Y < 1350; Y += 0.5) { const g = material(540.25, Y) === M.gold; if (g && !prev) runs++; prev = g; }
+    if (runs !== FIG.recording_prompts) throw new Error('the slab shows ' + runs + ' gold inlays, FIG says ' + FIG.recording_prompts); }
+
+  /* ---------------- ALBEDO ----------------
+   * Rose cantera banded toward a warm tan in its bedding, rust and quartz flecks, the sawn channel floor a shade deeper,
+   * and the polished dusk gold, the deck's one accent. Shadows lean violet through the tone's sky ambient. */
+  const ROSE = L('#eeb2a2'), TAN = L('#f6caae'), DEEP = L('#dc9890'), HONED = L('#8e5480'), GOLD = L('#f9bc52', 1.12);
+  const RUST = L('#b0604f'), QTZ = L('#fff0e2'), VEIN = L('#fff1de'), VEIND = L('#c0664e');
+  const mixv = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const albedo = (X, Y, m) => {
+    if (m === M.gold) { geo(X, Y);   /* polished: bright down the crest, the edges falling dark the way a mirror strip does */
+      const s = (0.62 + 0.55 * Math.pow(ldome, 1.5)) * (1 + 0.03 * fb(X / 6, Y / 3, 2)); return GOLD.map(v => v * s); }
+    if (m === M.fleck) return hash(Math.floor(X / 3), Math.floor(Y / 3) + 7) > 0.45 ? RUST : QTZ;
+    /* the stone's grain runs on the diagonal: soft clouds and veins stretched along it, cream and rust */
+    const wx = X + 50 * fb(X / 300, Y / 300 + 9, 3), wy = Y + 50 * fb(X / 300 + 5, Y / 300, 3);
+    const ru = (wx + wy) * 0.7071, rv = (wy - wx) * 0.7071;
+    let a = mixv(ROSE, TAN, sstep(-0.4, 0.5, fb(ru / 520, rv / 170 + 2, 3)));
+    a = mixv(a, DEEP, Math.max(0, fb(ru / 300 + 4, rv / 120, 3)) * 0.5);
+    const v1 = 1 - sstep(0, 0.03, Math.abs(fb(ru / 1400, rv / 230 + 3, 3)));
+    const v2 = 1 - sstep(0, 0.02, Math.abs(fb(ru / 1100 + 7, rv / 170, 3)));
+    /* no marbling: cantera is a tuff, its colour drifts in clouds */
+    const mot = 1 + 0.05 * fb(X / 7, Y / 7, 2);
+    if (m === M.chan) a = mixv(a, HONED, 0.85);
+    if (m === M.wall) a = mixv(a, HONED, 0.45);
+    if (m === M.pore) a = mixv(a, DEEP, 0.35);
+    return a.map(v => v * mot);
+  };
+
+  /* the key rakes in from the upper left and falls away down the slab, so the lower stone where the type stands sinks
+   * into the sky's violet ambient rather than being washed over */
+  const keyMask = (X, Y) => 1 - 0.55 * sstep(560, 1350, Y + 0.25 * (X - 300));
+  const LT = TXLOOK.reliefLight();
+  TXBENCH.relief(cx, { ...LT, x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo, keyMask,
+    ambColor: L('#8a90ee', 1.0), keyColor: L('#ffe4c8', 1.22),
+    spec: { 0: [0.16, 22], 1: [0.12, 16], 2: [5.5, 130], 3: [0.03, 6], 4: [0.16, 22], 5: [0.12, 18] },
+    ambient: 0.36, diffuse: 1.32, ao: 0.85, shadow: 0.95, softness: 3, castLength: 90, visBlur: 1, visSharp: [2], dither: true });
+
+  /* the labels, gold pills naming what was described, each set above the left end of its own inlay */
+  ribbons.forEach((r, i) => { const el = document.getElementById('l-' + i), b = el.getBoundingClientRect();
+    const lx0 = r.x0 + 4; CH.pinLabel('l-' + i, [Math.max(72, lx0), r.yc(lx0 + b.width / 2) - CW - BEV - 14 - b.height]); });
+
+  /* the type stands low on the slab, under the inlays and clear of the claim ids */
+  { const h = document.getElementById('hook').getBoundingClientRect(), d = document.querySelector('.dek').getBoundingClientRect();
+    const lastInlay = Math.max.apply(null, ribbons.map(r => Math.max(r.yc(r.x0), r.yc(r.x1)) + CW + BEV));
+    if (h.top < lastInlay + 40) throw new Error('the hook at ' + Math.round(h.top) + ' runs into the inlays at ' + Math.round(lastInlay));
+    if (d.bottom > 1210) throw new Error('the dek runs to ' + Math.round(d.bottom) + ' px, into the claim ids'); }
+
+  /* the type wash rises from the foot of the frame only: the tone's deep hue, clear above the inlays */
+  { const P = CH.P, top = document.getElementById('hook').getBoundingClientRect().top - 150, g = cx.createLinearGradient(0, top, 0, 1350);
+    [[0, 0], [0.3, 0.3], [0.6, 0.48], [1, 0.55]].forEach(([t, a]) => g.addColorStop(t, TXLOOK.rgba(P.low, a)));
+    cx.fillStyle = g; cx.fillRect(0, top, 1080, 1350 - top); }
+  /* the kicker and counter sit under a smooth fall of the same deep hue from the top edge, never a blot around each word */
+  { const g = cx.createLinearGradient(0, 0, 0, 210);
+    [[0, 0.62], [0.5, 0.46], [1, 0]].forEach(([t, a]) => g.addColorStop(t, TXLOOK.rgba(CH.P.low, a)));
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 210); }
+  CH.seat(cx, { sel: '#hook', a: 0.3, fade: 140 });
+  TXLOOK.footWash(cx, { a: 0.42, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

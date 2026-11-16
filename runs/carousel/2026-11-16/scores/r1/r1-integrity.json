@@ -1,0 +1,68 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 5.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 6.37,
+ "hard_fails": [
+  "Slide 7 headline 'The team plans to assess 4 features' presents an unverified closed count as fact. c8's quote says 'features such as'. compute.py says every frame says named, and this frame does not. Repair: 'The team names 4 features it plans to assess'."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Name the condition, mild traumatic brain injury in veterans, on the cover or slide 2 and in the caption's first lines, and rewrite slide 7 to 'names 4 features it plans to assess'.",
+ "other_findings": [
+  "slide 9 'the team seeks federal grants' where the source says it plans to seek larger federal grants",
+  "slide 1 'grant pays for it' implies full funding",
+  "dek disclaimers on every frame read as compliance",
+  "no slide names mild brain injury"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "off plan gate, orange-red ribbon, sprite oak, wash blob",
+   "fix": "rebuild to plan"
+  },
+  {
+   "slide": 2,
+   "problem": "mannequins, dek over busy table",
+   "fix": "crop foreground, push talkers out of focus"
+  },
+  {
+   "slide": 6,
+   "problem": "lamp gives no warm pool, mannequin hand, empty lower third",
+   "fix": "emissive lamp with a warm pool on the transcript"
+  }
+ ]
+}

@@ -1,0 +1,221 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-16, carousel no. 79, frame 7 of 9, the plan. A spatial scene through txthree.js on a studio sweep:
+     four bead blasted aluminium gauge heads, one per feature the team plans to assess, stand in a row that recedes from a
+     large head at the lower left to the smallest at mid right, seen from 0.3 m off the floor down the line. Each head has
+     a dark smoked window with no needle, no tick, no scale and no value, because nothing has been measured. One dusk gold
+     voice ribbon (the accent, the veteran's own spoken words) threads through the open throat at the base of every head.
+     An indigo pill names each feature on the warm floor in front of its head. The headline stands as a right hand column
+     high in the quiet cerulean wall above the far heads. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .lab.feat { background:linear-gradient(180deg,#5a5ff0,#3a34b8); color:#f4f6ff; font-size:24px; padding:6px 17px 7px; letter-spacing:0.01em; white-space:normal; max-width:15.6ch; width:max-content; line-height:1.12; box-shadow:0 6px 14px rgba(15,31,92,0.45); transform:translate(-50%,0); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:300px; top:150px; width:700px; text-align:left">The team names 4 features it plans to assess</h1>
+<p class="dek" data-follow="22" style="left:302px; width:620px; font-size:26px; line-height:1.34">Natural language processing is meant to turn them into measurable data in a one year pilot. The dark windows are drawn to illustrate.</p>
+<div class="lab feat" id="lab0">Coherence</div>
+<div class="lab feat" id="lab1">Emotional tone</div>
+<div class="lab feat" id="lab2">Organization</div>
+<div class="lab feat" id="lab3">Level of detail</div>
+<script>window.FIG = {"grant_usd": 200000, "study_years": 1, "norman_years": 18, "features_named": 4, "symptoms_named": 4, "recording_prompts": 2, "tests_built_for": 2, "leads": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-16-voicebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The plan", counter: "07 / 09", src: "c8 c20 c3", fit: { min: 56, max: 72, maxLines: 3 } });
+
+  /* THE COUNT: one gauge head per feature the team names, read from FIG, and one pill per head */
+  const NF = window.FIG.features_named;
+  if (!Number.isInteger(NF) || NF < 1) throw new Error('FIG.features_named is not a count: ' + NF);
+  const labs = Array.from(document.querySelectorAll('.lab.feat'));
+  if (labs.length !== NF) throw new Error('the frame names ' + labs.length + ' features, FIG says ' + NF);
+
+  /* the type is a right hand column high in the wall; it must stay clear of the counter and inside the margin */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (hb.top < 130) throw new Error('the hook rises into the counter band');
+    if (Math.max(hb.right, db.right) > 1000) throw new Error('the type leaves the right margin');
+    if (db.bottom > 575) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the far heads'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 60, fog: 0 });
+
+  /* THE SWEEP: peach floor, cerulean wall, deep blue top, shifted so the camera's diagonal sees only sweep */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 8, d: 4.6 }), { radius: 0.9, h: 6, env: 1.0, hemi: 0.7, softbox: 5.0, accentStrip: 0 }));
+  { /* the sweep turned so its wall faces the camera down the line: the frame sees only sweep, no edge */
+    const fx = 0.9 - (-1.5), fz = 0 - 0.8, fn = Math.hypot(fx, fz), ux = fx / fn, uz = fz / fn;
+    R.studio.sweep.rotation.y = Math.atan2(-ux, -uz);
+    R.studio.sweep.position.set(0.9 + ux * 0.6, 0, uz * 0.6); }
+  /* the sweep's colour, set by height so the low eye sees saturated cerulean behind the type and warm peach underfoot */
+  { const sw = R.studio.sweep, pos = sw.geometry.attributes.position, col = sw.geometry.attributes.color, c = new THREE.Color();
+    const peach = new THREE.Color('#ffb07a'), coral = new THREE.Color('#f58a7a'), foot = new THREE.Color('#4c58d6'), wall = new THREE.Color('#1550bd'), top = new THREE.Color('#0e2c80');
+    for (let i = 0; i < pos.count; i++) { const y = pos.getY(i), z = pos.getZ(i);
+      if (y < 0.002) { const t = Math.min(1, Math.max(0, (z - 0.8) / 2.4)); c.copy(peach).lerp(coral, t * 0.6); }
+      else if (y < 0.9) { const t = y / 0.9; c.copy(peach).lerp(foot, Math.min(1, Math.pow(t * 3, 0.8))).lerp(wall, Math.min(1, Math.max(0, t - 0.25) * 1.6)); }
+      else { const t = Math.min(1, (y - 0.9) / 2.2); c.copy(wall).lerp(top, Math.max(0, t - 0.3) / 0.7); }
+      col.setXYZ(i, c.r, c.g, c.b); }
+    col.needsUpdate = true; }
+  /* a fine paper tooth in the sweep's roughness, so the key's falloff lands on a material */
+  { const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const im = g.createImageData(w, h), r = CH.rng(707);
+      for (let i = 0; i < w * h; i++) { const v = 200 + (r() - 0.5) * 70; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } g.putImageData(im, 0, 0); }, [24, 24]);
+    tooth.colorSpace = THREE.NoColorSpace; const m = R.studio.sweep.material; m.roughnessMap = tooth; m.bumpMap = tooth; m.bumpScale = 0.0005; m.needsUpdate = true; }
+
+  /* THE MATERIALS */
+  /* bead blast: a fine even grain in roughness and a whisper of bump, no mottle (the surface pass is told to leave it) */
+  const grain = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const im = g.createImageData(w, h), r = CH.rng(7071);
+    for (let i = 0; i < w * h; i++) { const v = 150 + (r() - 0.5) * 60; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } g.putImageData(im, 0, 0); }, [10, 10]);
+  grain.colorSpace = THREE.NoColorSpace;
+  const blast = new THREE.MeshPhysicalMaterial({ color: 0x8f9bb0, metalness: 0.85, roughness: 0.58, roughnessMap: grain, bumpMap: grain, bumpScale: 0.0003, envMapIntensity: 0.85 });
+  blast.name = 'bead-blasted-aluminium'; blast.userData.txSurface = false;
+  const turned = new THREE.MeshPhysicalMaterial({ color: 0xdfe3ea, metalness: 1, roughness: 0.18, envMapIntensity: 1.3 });
+  const anod = new THREE.MeshPhysicalMaterial({ color: 0x272c5e, metalness: 0.8, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.2, envMapIntensity: 1.3 });
+  anod.name = 'anodised-aluminium-bezel'; anod.userData.txSurface = 'brushed';
+  turned.name = 'turned-stainless-bezel'; turned.userData.txSurface = 'brushed';
+  const socket = new THREE.MeshStandardMaterial({ color: 0x1c2148, metalness: 0.6, roughness: 0.45 }); socket.name = 'cap-screw-socket';
+  const dial = new THREE.MeshStandardMaterial({ color: 0x121846, metalness: 0.1, roughness: 0.55 }); dial.name = 'empty-dial-cavity';
+  const gasket = new THREE.MeshStandardMaterial({ color: 0x0d1030, metalness: 0, roughness: 0.75 }); gasket.name = 'rubber-gasket';
+  const smoke = new THREE.MeshPhysicalMaterial({ color: 0x232a62, metalness: 0.1, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02, transparent: true, opacity: 0.5, envMapIntensity: 2.0, depthWrite: false });
+  smoke.name = 'smoked-glass-window'; smoke.userData.txSurface = 'glass';
+  const goldM = new THREE.MeshPhysicalMaterial({ color: CH.ACCENT, metalness: 0.9, roughness: 0.18, clearcoat: 0.8, clearcoatRoughness: 0.05, envMapIntensity: 1.9 });
+  /* the gold sees its own warm studio: an amber dome with a white softbox and a peach strip, so the cobalt sweep never
+   * turns it mauve. Only the ribbon takes this environment. */
+  { const es = new THREE.Scene();
+    es.add(new THREE.Mesh(new THREE.SphereGeometry(20, 32, 16), new THREE.MeshBasicMaterial({ color: new THREE.Color(0xb8a070), side: THREE.BackSide })));
+    const pnl = (w, h, c, i, pos) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(i), side: THREE.DoubleSide })); m.position.set(pos[0], pos[1], pos[2]); m.lookAt(0, 0, 0); es.add(m); };
+    pnl(9, 3, 0xfff0d8, 10, [-6, 7, 6]); pnl(16, 1.0, 0xffe8c8, 8, [3, 2.2, 8]); pnl(0.8, 10, 0xfff6e8, 6, [9, 3, -2]); pnl(12, 3, 0xe0b080, 1.4, [0, -4, 0]); pnl(10, 0.6, 0xfff0d8, 7, [-8, 1.2, -3]);
+    const pm = new THREE.PMREMGenerator(R.renderer); goldM.envMap = pm.fromScene(es, 0.03).texture; pm.dispose(); }
+  goldM.name = 'dusk-gold-voice-ribbon'; goldM.userData.txSurface = false;
+  const lathe = (pts, mat, seg) => new THREE.Mesh(new THREE.LatheGeometry(pts.map(q => new THREE.Vector2(q[0], q[1])), seg || 64), mat);
+
+  /* ONE GAUGE HEAD. 0.20 wide, 0.40 tall, 0.14 deep, front +z. A plinth; a base block with a rounded slot milled through
+   * it along x for the ribbon; four turned standoffs with collars and fillets; the head with a turned, chamfered bezel
+   * round a round window: an empty dark dial cavity, a gasket ring, a domed smoked glass. No needle, no tick, no scale,
+   * no value. */
+  const GW = 0.20, GD = 0.14, PL = 0.02, BASE_TOP = 0.16, SLOT = [0.04, 0.14], SLOT_HW = 0.042, SO = 0.03, GH = 0.40;
+  const HEAD_Y = BASE_TOP + SO, WIN_Y = HEAD_Y + (GH - HEAD_Y) * 0.5, WR = 0.064;
+  const baseGeo = (() => {
+    const rr = (sh, x0, y0, x1, y1, r, hole) => { const P = hole || sh; P.moveTo(x0 + r, y0); P.lineTo(x1 - r, y0); P.quadraticCurveTo(x1, y0, x1, y0 + r); P.lineTo(x1, y1 - r); P.quadraticCurveTo(x1, y1, x1 - r, y1); P.lineTo(x0 + r, y1); P.quadraticCurveTo(x0, y1, x0, y1 - r); P.lineTo(x0, y0 + r); P.quadraticCurveTo(x0, y0, x0 + r, y0); return P; };
+    const sh = new THREE.Shape(); rr(sh, -GD / 2 + 0.003, PL + 0.003, GD / 2 - 0.003, BASE_TOP - 0.003, 0.01);
+    const hole = new THREE.Path(); rr(null, -SLOT_HW, SLOT[0], SLOT_HW, SLOT[1], 0.028, hole); sh.holes.push(hole);
+    const g = new THREE.ExtrudeGeometry(sh, { depth: GW - 0.006, bevelEnabled: true, bevelThickness: 0.003, bevelSize: 0.003, bevelSegments: 3, curveSegments: 10 });
+    g.translate(0, 0, -(GW - 0.006) / 2); g.rotateY(Math.PI / 2); g.computeVertexNormals(); return g;
+  })();
+  const standoff = [[0, 0], [0.0125, 0], [0.0125, 0.005], [0.0105, 0.0065], [0.0085, 0.0085], [0.0085, SO - 0.0085], [0.0105, SO - 0.0065], [0.0125, SO - 0.005], [0.0125, SO], [0, SO]];
+  const bezel = [[WR - 0.002, 0], [WR - 0.002, 0.012], [WR + 0.002, 0.016], [WR + 0.016, 0.016], [WR + 0.022, 0.011], [WR + 0.024, 0.004], [WR + 0.024, 0]];
+  const gauge = () => {
+    const g = new THREE.Group();
+    K.box(GW + 0.02, PL, GD + 0.02, blast, 0, 0, 0, 0.007, g);                                     /* plinth */
+    const base = new THREE.Mesh(baseGeo, blast); g.add(base);                                       /* base, slot along x */
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([sx, sz]) => { const m = lathe(standoff, turned, 32); m.position.set(sx * (GW / 2 - 0.026), BASE_TOP, sz * (GD / 2 - 0.026)); g.add(m); });
+    K.box(GW, GH - HEAD_Y, GD, blast, 0, HEAD_Y, 0, 0.02, g);                                       /* the head */
+    const face = new THREE.Group(); face.position.set(0, WIN_Y, GD / 2); g.add(face);
+    const bz = lathe(bezel, anod); bz.rotation.x = Math.PI / 2; face.add(bz);
+    const cav = new THREE.Mesh(new THREE.CircleGeometry(WR - 0.002, 64), dial); cav.position.z = 0.0015; face.add(cav);
+    const gk = lathe([[WR - 0.009, 0.010], [WR - 0.002, 0.010], [WR - 0.002, 0.0125], [WR - 0.006, 0.0125]], gasket); gk.rotation.x = Math.PI / 2; face.add(gk);
+    const domePts = []; for (let k = 16; k >= 0; k--) { const r = (WR - 0.003) * k / 16; domePts.push([r, 0.0125 + 0.004 * (1 - (r / WR) * (r / WR))]); }
+    const glass = lathe(domePts, smoke); glass.rotation.x = Math.PI / 2; face.add(glass);
+    glass.userData.txBevel = false;
+    [[-1, 1], [1, 1], [-1, -1], [1, -1]].forEach(([sx, sy]) => {
+      const sc = lathe([[0, 0], [0.0072, 0], [0.0072, 0.0028], [0.0058, 0.0042], [0, 0.0042]], turned, 24); sc.rotation.x = Math.PI / 2;
+      sc.position.set(sx * (GW / 2 - 0.019), sy * ((GH - HEAD_Y) / 2 - 0.019), 0); face.add(sc);
+      const hx = new THREE.Mesh(new THREE.CylinderGeometry(0.0032, 0.0032, 0.002, 6), socket); hx.rotation.x = Math.PI / 2;
+      hx.position.set(sc.position.x, sc.position.y, 0.0036); face.add(hx);
+    });
+    g.traverse(m => { if (m.isMesh) { m.castShadow = m.material !== smoke; m.receiveShadow = true; } });
+    g.userData.glass = glass; g.userData.cavity = cav;
+    return g;
+  };
+
+  /* THE ROW, along +x from the near head, each head turned a little toward the camera */
+  const PITCH = 0.6, YAW = -0.22, heads = [];
+  /* a ribbon along x through a turned head shifts across the slot by tan(yaw) times half the head: it must clear the walls */
+  if (Math.tan(-YAW) * GW / 2 + 0.012 > SLOT_HW) throw new Error('the turned head\'s slot walls cut the ribbon');
+  for (let i = 0; i < NF; i++) { const g = gauge(); g.position.set(i * PITCH, 0, 0); g.rotation.y = YAW; TXT.add(R, g); TXT.contact(R, g, { layers: [{ spread: 0.01, opacity: 0.75 }, { spread: 0.08, opacity: 0.3 }] }); heads.push(g); }
+  if (heads.length !== NF) throw new Error('built ' + heads.length + ' gauge heads, FIG says ' + NF);
+  /* every window is empty: no needle, tick, scale or value is built, and neither glass nor cavity carries a map or a glow */
+  heads.forEach((h, i) => [h.userData.glass.material, h.userData.cavity.material].forEach(w => { if (w.map || w.emissiveMap || (w.emissive && w.emissive.getHex() !== 0)) throw new Error('gauge ' + i + ' window shows something'); }));
+
+  /* THE VOICE: one continuous dusk gold waveform, rounded peaks and rounded troughs (a soft absolute value, so no notch),
+   * from beyond the left edge of the frame, through every slot, and on past the last head. Drawn to illustrate. */
+  const RX0 = -1.3, RX1 = (NF - 1) * PITCH + 0.75, RL = RX1 - RX0, A = 0.039, TH = 0.011, CYC = 30, RS = CH.rng(79);
+  const ph = [RS() * 6.28, RS() * 6.28, RS() * 6.28];
+  const hAt = (t) => { const x = t * CYC * Math.PI * 2, v = 0.55 * Math.sin(x + ph[0]) + 0.3 * Math.sin(x * 1.63 + ph[1]) + 0.15 * Math.sin(x * 0.37 + ph[2]);
+    const soft = Math.sqrt(v * v + 0.02) - Math.sqrt(0.02), e = Math.min(1, t / 0.04, (1 - t) / 0.06);
+    return A * (0.2 + 0.8 * e * Math.min(1, soft / 0.86)); };
+  const mid = A + TH, rs = new THREE.Shape(), NP = 1400; rs.moveTo(0, mid);
+  for (let i = 0; i <= NP; i++) rs.lineTo(i / NP * RL, mid + hAt(i / NP));
+  for (let i = NP; i >= 0; i--) rs.lineTo(i / NP * RL, mid - hAt(i / NP));
+  rs.closePath();
+  const rg = new THREE.ExtrudeGeometry(rs, { depth: TH, bevelEnabled: true, bevelThickness: TH * 0.5, bevelSize: TH * 0.42, bevelSegments: 6, curveSegments: 4 });
+  rg.translate(0, 0, -TH / 2); rg.computeVertexNormals();
+  const ribbon = new THREE.Mesh(rg, goldM); ribbon.castShadow = true; ribbon.receiveShadow = true;
+  const RY = (SLOT[0] + SLOT[1]) / 2 - mid;
+  ribbon.position.set(RX0, RY, 0); TXT.add(R, ribbon);
+  /* the ribbon passes through every slot: its top and bottom stay inside the milled opening, and it spans the whole row */
+  { const bb = new THREE.Box3().setFromObject(ribbon);
+    if (bb.min.y < SLOT[0] + 0.002 || bb.max.y > SLOT[1] - 0.002) throw new Error('the ribbon (' + bb.min.y.toFixed(3) + ' to ' + bb.max.y.toFixed(3) + ') does not fit the slot');
+    heads.forEach((h, i) => { const x = h.position.x; if (x - GW / 2 < bb.min.x || x + GW / 2 > bb.max.x) throw new Error('the ribbon does not reach gauge ' + i); }); }
+
+  /* THE CAMERA: 0.10 m off the floor, left of the row and in front of it, so the near head climbs into the upper third, so the near head climbs into the upper third */
+  const FROM = [-1.5, 0.10, 0.8];
+  const AT = [0, 0.2, 0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, AT, 120, 780, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+
+  /* THE KEY: soft and high from the camera's left, so the heads cast back and right along the warm floor */
+  const spec = CH.rigSpec(W, 3, 4096); spec.key = Object.assign({}, spec.key, { radius: 5, color: 0xfff1e0 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.5, 0.1, 0], { distance: 6, shadowFar: 14, normalBias: 0.003 }), { light: { az: -55, el: 42 } }));
+  CH.unacne(R, 0.003);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* the row spans at least half the frame's width, and the near head climbs into the top 40 percent */
+  { let x0 = 1e9, x1 = -1e9; heads.forEach(h => { const rc = CH.rectOf(THREE, R, h, 0); x0 = Math.min(x0, rc[0]); x1 = Math.max(x1, rc[0] + rc[2]); });
+    if (x1 - x0 < 540) throw new Error('the gauge row spans ' + Math.round(x1 - x0) + ' px, under 540');
+    const top0 = CH.rectOf(THREE, R, heads[0], 0)[1]; if (top0 > 460) throw new Error('the near head tops out at ' + Math.round(top0) + ' px, below the upper third'); }
+  /* the heads keep clear of the type: each head's top front edge projects below the dek where it passes under it */
+  { const db = document.querySelector('.dek').getBoundingClientRect();
+    heads.forEach((h, i) => { h.updateMatrixWorld(true); [-1, 0, 1].forEach(sx => { const q = new THREE.Vector3(sx * GW / 2, GH, GD / 2).applyMatrix4(h.matrixWorld), s = CH.project(THREE, R, [q.x, q.y, q.z]);
+      if (s[0] > db.left - 10 && s[0] < db.right && s[1] < db.bottom + 8) throw new Error('gauge ' + i + ' rises into the dek at ' + s.map(Math.round)); }); }); }
+
+  /* THE PILLS, on the warm floor just in front of each plinth, clear of the slot and the ribbon, receding with their heads */
+  const under = (h) => { h.updateMatrixWorld(true); const f = new THREE.Vector3(0, (PL + BASE_TOP) / 2, GD / 2).applyMatrix4(h.matrixWorld), g = new THREE.Vector3(0, 0, GD / 2 + 0.03).applyMatrix4(h.matrixWorld);
+    return [CH.project(THREE, R, [f.x, f.y, f.z])[0], CH.project(THREE, R, [g.x, 0, g.z])[1]]; };
+  heads.forEach((h, i) => { const u = under(h), el = labs[i]; el.style.left = Math.round(u[0]) + 'px'; el.style.top = Math.round(u[1] + 10) + 'px';
+    const d0 = Math.hypot(heads[0].position.x - FROM[0], heads[0].position.z - FROM[2]), di = Math.hypot(h.position.x - FROM[0], h.position.z - FROM[2]);
+    const k = Math.max(0.6, d0 / di); labs[i].style.transformOrigin = '0 0'; labs[i].style.transform = 'scale(' + k.toFixed(3) + ') translate(-50%,0)'; });
+  /* one rule for every pill: centred under the middle of its own base's front face, 10 px below the plinth. If it would touch the pill before it, it drops
+   * straight down below that one, so it stays under its own head */
+  for (let i = 1; i < labs.length; i++) { const a = labs[i - 1].getBoundingClientRect(), b = labs[i].getBoundingClientRect();
+    if (!(a.right + 8 < b.left || b.right + 8 < a.left || a.bottom < b.top || b.bottom < a.top)) labs[i].style.top = (parseFloat(labs[i].style.top) + (a.bottom + 8 - b.top)) + 'px'; }
+  /* and it is under its head: the pill's centre sits within 6 px of its base's projected middle */
+  heads.forEach((h, i) => { const sx = under(h)[0], b = labs[i].getBoundingClientRect();
+    if (Math.abs((b.left + b.right) / 2 - sx) > 6) throw new Error('pill ' + i + ' is not under its head'); });
+  { const lb = labs.map(l => l.getBoundingClientRect());
+    lb.forEach((b, i) => { if (b.left < 64 || b.right > 1000 || b.bottom > 1215) throw new Error('pill ' + i + ' leaves the frame or meets the claim ids ' + JSON.stringify(lb.map(c => [c.left|0, c.top|0, c.right|0, c.bottom|0])));
+      lb.forEach((c, j) => { if (j > i && !(b.right < c.left || c.right < b.left || b.bottom < c.top || c.bottom < b.top)) throw new Error('pills ' + i + ' and ' + j + ' overlap ' + JSON.stringify(lb.map(c => [c.left|0, c.top|0, c.right|0, c.bottom|0]))); }); }); }
+
+  CH.seat(cx, { a: 0.34, fade: 180 });
+  CH.seat(cx, { sel: '.dek', a: 0.3, fade: 90 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.55, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

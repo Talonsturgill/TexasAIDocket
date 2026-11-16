@@ -1,0 +1,321 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-16, carousel no. 79, frame 9 of 9, the close (REBUILD). A spatial scene through txthree.js on a
+     Hill Country bluff on a clear morning. The gold voice ribbon starts on the limestone at the camera's feet and runs as
+     one continuous strip, standing on its edge, up a caliche track to a CLOSED galvanized ranch gate, and stops just short
+     of it. Nothing has crossed. Beyond the gate the land falls away to the valley and a small skyline far off, seen through
+     the rails. The open steel caliper lies in the sun beside the ribbon's start, set down, measuring nothing. The picture
+     is the "if": the gate is the condition, the far side is the next step. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:150px; width:540px; text-align:left">If the pilot finds something, the team plans to seek federal grants</h1>
+<p class="dek" data-follow="20" style="left:74px; width:560px">Alicia Swan of the South Texas Veterans Health Care System is one of its leads. The tool is meant to support clinicians, not replace them.</p>
+<script>window.FIG = {"study_years": 1};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-16-voicebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What comes next", counter: "09 / 09", src: "c12 c4 c9", fit: { min: 54, max: 62, maxLines: 4 } });
+
+  /* the type stands top left in clear sky; its foot stays well above the horizon and the gate */
+  /* pin the dek 24 px under the hook's last set line, measured on the text itself after the fit */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), rg = document.createRange(); rg.selectNodeContents(h);
+    const rs = Array.from(rg.getClientRects()); const bot = Math.max(...rs.map(r => r.bottom));
+    d.removeAttribute('data-follow'); d.style.top = Math.round(bot + 24) + 'px'; }
+  const typeFoot = (() => { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (db.bottom > 640) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, too near the horizon');
+    if (hb.right > 1016 || db.right > 1016) throw new Error('the type leaves the right safe margin');
+    return db.bottom; })();
+
+  const FOV = 36, EYE = 0.7;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.03, far: 9000, fog: 0.0009 });
+
+  /* THE FRAME'S BEARINGS. f looks away from the morning sun, which stands behind the camera and to its right, so the
+   * ribbon, the caliper and the gate are front lit and the sky ahead is the deep side. at(u, v, y): u ahead, v right. */
+  const f = CH.bearing(TXT, 128), side = [-f[1], f[0]];
+  const at = (u, v, y) => [f[0] * u + side[0] * v, y || 0, f[1] * u + side[1] * v];
+  const yawF = Math.atan2(f[0], f[1]);
+  const place = (o, u, v, y, yaw) => { const p = at(u, v, y); o.position.set(p[0], p[1], p[2]); o.rotation.y = yawF + (yaw || 0); return o; };
+
+  /* THE GROUND OF THE BLUFF: one displaced surface in (u, v). Bare Edwards limestone at the camera's feet with solution
+   * pits and a joint crack, giving way to a pale caliche track up to the gate, and past the fence line the bluff drops
+   * to the valley. Vertex colour turns the stone's cream to the track's warmer caliche. */
+  const GATE_U = 12.2, GATE_V = 1.05, BLUFF = (v) => 14.4 + 0.5 * Math.sin(v * 0.7 + 0.6) + 0.15 * Math.sin(v * 2.9);
+  const CAL_U = 3.55, CAL_V = 0.3;
+  const lime = CH.canvasTex(THREE, 2048, 2048, (g0, w, h) => {
+    const r = CH.rng(909);
+    /* TILEABLE: every mark is drawn at its eight wrapped copies too, so the repeat leaves no seam on the ground */
+    const g = new Proxy(g0, { get(t, k) { const v = t[k];
+      if (k === 'fill' || k === 'fillRect') return function (...a) { for (const dx of [-w, 0, w]) for (const dy of [-h, 0, h]) { t.save(); t.translate(dx, dy); v.apply(t, a); t.restore(); } };
+      return typeof v === 'function' ? v.bind(t) : v; }, set(t, k, v) { t[k] = v; return true; } });
+    g0.fillStyle = '#dcc39c'; g0.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, s = 60 + r() * 260, k = r();
+      const gr = g.createRadialGradient(x, y, 0, x, y, s), c = k < 0.4 ? '226,188,146' : k < 0.75 ? '252,242,222' : '206,190,180';
+      gr.addColorStop(0, 'rgba(' + c + ',' + (0.2 + r() * 0.2) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)'); g.fillStyle = gr; g.fillRect(x - s, y - s, 2 * s, 2 * s); }
+    for (let i = 0; i < 2600; i++) { const x = r() * w, y = r() * h, s = 3 + r() * 16, k = r();
+      g.fillStyle = k < 0.5 ? 'rgba(206,180,148,' + (0.12 + r() * 0.2) + ')' : 'rgba(250,240,222,' + (0.06 + r() * 0.1) + ')';
+      g.beginPath(); g.ellipse(x, y, s, s * (0.4 + r() * 0.6), r() * 3, 0, 6.3); g.fill(); }
+    for (let i = 0; i < 2400; i++) { const x = r() * w, y = r() * h, s = 0.8 + r() * 3.2;
+      g.fillStyle = 'rgba(120,94,82,' + (0.2 + r() * 0.35) + ')'; g.beginPath(); g.ellipse(x, y, s, s * 0.7, r() * 3, 0, 6.3); g.fill(); }
+    for (let i = 0; i < 60; i++) { const x = r() * w, y = r() * h, s = 14 + r() * 50, c = r() < 0.55 ? '206,212,180' : '236,170,92';
+      for (let k = 0; k < 22; k++) { g.fillStyle = 'rgba(' + c + ',' + (0.25 + r() * 0.4) + ')'; g.beginPath(); g.arc(x + (r() - 0.5) * s, y + (r() - 0.5) * s, 2 + r() * s * 0.22, 0, 6.3); g.fill(); } }
+  });
+  lime.wrapS = lime.wrapT = THREE.RepeatWrapping;
+  const limeM = new THREE.MeshPhysicalMaterial({ color: 0xd9c2a4, map: lime, vertexColors: true, roughness: 0.88, metalness: 0 });
+  limeM.name = 'limestone';
+  const pr = CH.rng(5150), pits = [];
+  for (let i = 0; i < 40; i++) { const u = 2.7 + pr() * 2.4, v = -1.9 + pr() * 3.6, rad = 0.02 + pr() * 0.06;
+    if (Math.hypot(u - CAL_U, v - CAL_V) < 0.52 || Math.abs(v + 0.8 - (u - 3.0) * 0.2) < 0.2) continue; pits.push([u, v, rad, 0.006 + pr() * 0.012]); }
+  const joint = [[2.6, -1.35], [5.0, -1.9]];
+  const segD = (u, v, A, B) => { const du = B[0] - A[0], dv = B[1] - A[1], t = Math.max(0, Math.min(1, ((u - A[0]) * du + (v - A[1]) * dv) / (du * du + dv * dv))); return Math.hypot(u - A[0] - t * du, v - A[1] - t * dv); };
+  const stoneEdge = (v) => 5.0 + 0.35 * Math.sin(v * 1.7 + 0.3) + 0.12 * Math.sin(v * 5.1);
+  const hgt = (u, v) => {
+    let y = 0.003 * Math.sin(u * 9.1 + v * 3.3) + 0.002 * Math.sin(u * 23 - v * 17);
+    const st = stoneEdge(v) - u;                                     /* the stone stands a few centimetres proud of the track */
+    y += 0.04 * Math.max(0, Math.min(1, st / 0.12 + 0.5));
+    pits.forEach(([pu, pv, rad, d]) => { const q = Math.hypot(u - pu, (v - pv) * 1.3) / rad; if (q < 1) y -= d * (1 - q * q) * (1 - q * q); });
+    { const d = segD(u, v, joint[0], joint[1]); if (d < 0.02) y -= 0.025 * Math.pow(1 - d / 0.02, 1.5); }
+    const tb = u - BLUFF(v); if (tb > 0) { const k = Math.min(1, tb / 0.6), e = k * k * (3 - 2 * k); y = y * (1 - e) - 4 * e; }
+    return y;
+  };
+  const LU0 = -0.5, LU1 = 18, LV0 = -9, LV1 = 9, NU = 420, NV = 560;
+  const lg = new THREE.PlaneGeometry(LV1 - LV0, LU1 - LU0, NV, NU); lg.rotateX(-Math.PI / 2);
+  { const p = lg.attributes.position, uv = lg.attributes.uv, col = new Float32Array(p.count * 3);
+    for (let i = 0; i < p.count; i++) { const v = p.getX(i) + (LV0 + LV1) / 2, u = -p.getZ(i) + (LU0 + LU1) / 2;
+      p.setXYZ(i, v, hgt(u, v), -u); uv.setXY(i, v * 0.5, u * 0.5);
+      const k = Math.max(0, Math.min(1, (u - stoneEdge(v)) / 0.25 + 0.5)), n = 0.06 * Math.sin(u * 3.1 + v * 2.3);
+      col[i * 3] = 1 - 0.0 * k + n * 0.3; col[i * 3 + 1] = 1 - 0.1 * k + n * 0.3; col[i * 3 + 2] = 1 - 0.24 * k + n * 0.3; }
+    lg.setAttribute('color', new THREE.BufferAttribute(col, 3)); lg.computeVertexNormals(); }
+  const ground = new THREE.Mesh(lg, limeM); ground.receiveShadow = true; ground.castShadow = true; ground.userData.txBevel = false;
+  ground.rotation.y = Math.atan2(-f[0], -f[1]); ground.updateMatrixWorld(true);
+  { const pX = new THREE.Vector3(0, 0, -1).applyQuaternion(ground.quaternion), pS = new THREE.Vector3(1, 0, 0).applyQuaternion(ground.quaternion);
+    if (Math.abs(pX.x - f[0]) > 1e-6 || Math.abs(pX.z - f[1]) > 1e-6 || Math.abs(pS.x - side[0]) > 1e-6) throw new Error('the bluff is turned off the bearing'); }
+  TXT.add(R, ground);
+
+  /* THE GATE: the kit pipe rail ranch gate, CLOSED, galvanized, its fence and barbed wire running off both sides */
+  const gate = K.make('ranch_gate', { w: 3.05, rails: 5, finish: 'galvanized', open: 0, fence: true, seed: 3 });
+  place(gate, GATE_U, GATE_V, 0, Math.PI); TXT.add(R, gate); TXT.contact(R, gate, { opacity: 0.45 });
+
+  /* THE VOICE: one continuous run of the gold waveform strip, standing on its edge, from the stone at the camera's feet up
+   * the track to the gate, ending short of the closed leaf. It is built as its own ribbon of quads along a measured path,
+   * phrased like speech, symmetric about its midline: drawn to illustrate, never a recording, no peak a measurement.
+   * FIG.study_years is the number of continuous runs drawn, one study and one unbroken strip, and it is counted back. */
+  const RUNS = FIG.study_years;
+  const A = 0.085, TH = 0.024, mid = A + TH;
+  /* THE SAME GOLD AS FRAME 1: the chassis ribbon material, polished (colour e0956a, metalness 0.9, roughness 0.2, clearcoat),
+   * reflecting its own warm world: a warm card behind the camera, a white softbox on the key side and a cyan rim strip, so
+   * a face turned to the light returns dusk gold whatever the blue sky does. */
+  const goldM = K.make('voice_ribbon', { length: 0.2, amp: 0.02 }).children[0].material.clone();
+  goldM.name = 'machined-gold'; goldM.color.set(0xe0956a); goldM.roughness = 0.27; goldM.metalness = 1; goldM.clearcoat = 0.4; goldM.clearcoatRoughness = 0.15; goldM.envMapIntensity = 1.05; goldM.side = THREE.FrontSide;
+  goldM.userData.txSurface = false;
+  { const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(30, 48, 24), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { uTop: { value: new THREE.Color('#7080b0') }, uMid: { value: new THREE.Color('#c8b8a8') }, uLow: { value: new THREE.Color('#ffe6c0') }, uFloor: { value: new THREE.Color('#4a3424') } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 uTop,uMid,uLow,uFloor; varying vec3 vP; void main(){ float y = vP.y; vec3 c = y > 0.0 ? mix(mix(uLow, uMid, smoothstep(0.0,0.35,y)), uTop, smoothstep(0.35,1.0,y)) : mix(uLow, uFloor, smoothstep(0.0,-0.3,y)); gl_FragColor = vec4(c, 1.0); }' })));
+    const card = (w, h, hex, k, pp) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(hex).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(pp[0], pp[1], pp[2]); m.lookAt(0, 0, 0); env.add(m); };
+    const bk = at(-12, 0, 1.5), lf = at(-4, -13, 1.5), rt = at(-4, 13, 1.5), sb = at(-6, 8, 9), rim = at(12, 0, 4);
+    card(46, 14, '#ffe0b8', 2.3, bk); card(22, 12, '#ffe0b8', 2.1, lf); card(22, 12, '#ffe0b8', 2.1, rt);
+    card(9, 6, '#fff4e6', 4.5, sb); card(16, 0.9, '#7fe3ff', 2.6, rim);
+    const pm = new THREE.PMREMGenerator(R.renderer); goldM.envMap = pm.fromScene(env, 0.02).texture; pm.dispose(); goldM.needsUpdate = true; }
+  const bez = (t, P) => { const s = 1 - t; return [0, 1].map(k => s * s * s * P[0][k] + 3 * s * s * t * P[1][k] + 3 * s * t * t * P[2][k] + t * t * t * P[3][k]); };
+  const PATH = [[3.05, -0.4], [5.4, -1.5], [7.0, 2.1], [GATE_U - 0.05, GATE_V - 0.15]];
+  const lut = [[0, 0, ...bez(0, PATH)]]; for (let i = 1; i <= 2000; i++) { const p = bez(i / 2000, PATH), q = lut[i - 1]; lut.push([i / 2000, q[1] + Math.hypot(p[0] - q[2], p[1] - q[3]), p[0], p[1]]); }
+  const LEN = lut[lut.length - 1][1];
+  const atLen = (d) => { let lo = 0, hi = lut.length - 1; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (lut[m][1] < d) lo = m; else hi = m; } const a = lut[lo], b = lut[hi], k = (d - a[1]) / Math.max(1e-9, b[1] - a[1]); return [a[2] + (b[2] - a[2]) * k, a[3] + (b[3] - a[3]) * k]; };
+  /* the chassis waveform itself (voice_ribbon's userData.heightAt), its cusps eased by a 5 tap average so no crease
+   * throws a glint, swept along the measured path as a rounded rectangle section square to the curve. The tall troughs
+   * are machined flat where they meet the ground, so it stands, exactly as frame 1 builds it. */
+  const CYC = Math.round(LEN / 0.8 * 9 * 0.55);
+  const src = K.make('voice_ribbon', { length: LEN, amp: A, thick: TH, seed: 115, cycles: CYC });
+  const hRaw = src.userData.heightAt; if (typeof hRaw !== 'function') throw new Error('the chassis voice_ribbon exposes no heightAt');
+  const hAt = (t) => { let a = 0; for (let k = -2; k <= 2; k++) a += hRaw(Math.min(1, Math.max(0, t + k * 0.00025))); return a / 5; };
+  const ribbons = [];
+  for (let run = 0; run < RUNS; run++) {
+    const NS = 6000; let hMax = 0; for (let i = 0; i <= NS; i++) hMax = Math.max(hMax, hAt(i / NS));
+    const MID = 0.032, botAt = (t) => 0;   /* a continuous machined band 5 cm tall, the waveform rising off its top */
+    const ringS = (a, b) => { const r = Math.min(a * 0.92, b), k = 5, out = [], cs = [[a - r, b - r, 0], [-(a - r), b - r, 1], [-(a - r), -(b - r), 2], [a - r, -(b - r), 3]];
+      cs.forEach(([cx0, cy0, q]) => { for (let j = 0; j <= k; j++) { const t = (q + j / k) * Math.PI / 2; out.push([cx0 + r * Math.cos(t), cy0 + r * Math.sin(t)]); } }); return out; };
+    const M = ringS(1, 1).length, P = [], I = [];
+    const frameAt = (s) => { const d = s * LEN, p = atLen(d), p2 = atLen(Math.min(LEN, d + 0.004)), p1 = atLen(Math.max(0, d - 0.004)); let tu = p2[0] - p1[0], tv = p2[1] - p1[1]; const tl = Math.hypot(tu, tv) || 1; return { p, nu: -tv / tl, nv: tu / tl }; };
+    for (let i = 0; i <= NS; i++) { const s = i / NS, F = frameAt(s), base = hgt(F.p[0], F.p[1]) - 0.002, top = MID + hAt(s) * 0.9, bot = botAt(s), yc = (top + bot) / 2;
+      ringS(TH / 2, Math.max(TH * 0.6, (top - bot) / 2)).forEach(([uu, vv]) => { const q = at(F.p[0] + F.nu * uu, F.p[1] + F.nv * uu, base + yc + vv); P.push(q[0], q[1], q[2]); }); }
+    for (let i = 0; i < NS; i++) for (let j = 0; j < M; j++) { const a0 = i * M + j, a1 = i * M + (j + 1) % M, b0 = a0 + M, b1 = a1 + M; I.push(a0, a1, b0, a1, b1, b0); }
+    [0, NS].forEach((i, e) => { const F = frameAt(i / NS), c = P.length / 3, q = at(F.p[0], F.p[1], hgt(F.p[0], F.p[1]) + (MID + hAt(i / NS) * 0.9) / 2); P.push(q[0], q[1], q[2]);
+      for (let j = 0; j < M; j++) { const a0 = i * M + j, a1 = i * M + (j + 1) % M; if (e === 0) I.push(c, a1, a0); else I.push(c, a0, a1); } });
+    const rg = new THREE.BufferGeometry(); rg.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); rg.setIndex(I); rg.computeVertexNormals();
+    const m = new THREE.Mesh(rg, goldM); m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; m.userData.voiceRun = true; TXT.add(R, m); ribbons.push(m);
+  }
+  { let n = 0; R.scene.traverse(o => { if (o.userData && o.userData.voiceRun) n++; });
+    if (n !== FIG.study_years) throw new Error('the frame draws ' + n + ' continuous voice runs, FIG.study_years is ' + FIG.study_years); }
+  /* the ribbon ends short of the gate and never crosses the fence line */
+  { const end = PATH[3]; if (!(end[0] < GATE_U - 0.03)) throw new Error('the ribbon reaches the gate line'); }
+
+  /* THE CALIPER: a long jaw stainless vernier caliper, built here as a machined tool. A beam engraved with a fine scale and
+   * no numerals, a depth rod, bevelled measuring jaws and nibs, a slider with its vernier window, a knurled lock screw and
+   * a knurled thumbwheel. Open, set down in the sun beside the ribbon's start, measuring nothing. */
+  const caliper = (() => {
+    const g = new THREE.Group(), KS = 2.2, Lb = 0.34 * KS, bw = 0.018 * KS, bt = 0.0036 * KS, open = 0.07 * KS;
+    const scaleTex = CH.canvasTex(THREE, 2048, 64, (c, w, h) => {
+      const gr = c.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#e6eaee'); gr.addColorStop(0.5, '#c9ced4'); gr.addColorStop(1, '#e0e4e8'); c.fillStyle = gr; c.fillRect(0, 0, w, h);
+      c.strokeStyle = 'rgba(60,66,76,0.9)'; for (let i = 0; i < 300; i++) { const x = 40 + i * 6.5; c.lineWidth = i % 10 === 0 ? 2.2 : 1.2; c.beginPath(); c.moveTo(x, 0); c.lineTo(x, i % 10 === 0 ? 34 : i % 5 === 0 ? 24 : 15); c.stroke(); }
+      c.fillStyle = 'rgba(255,255,255,0.18)'; for (let y = 0; y < h; y += 2) c.fillRect(0, y, w, 1); });
+    const steel = new THREE.MeshPhysicalMaterial({ color: 0xc9c9c9, metalness: 1, roughness: 0.3, anisotropy: 0.7, anisotropyRotation: 0, envMapIntensity: 0.55, side: THREE.DoubleSide }); steel.name = 'stainless-steel';
+    const beamM = new THREE.MeshPhysicalMaterial({ color: 0xd2d2d2, map: scaleTex, bumpMap: scaleTex, bumpScale: -1.2, metalness: 1, roughness: 0.3, envMapIntensity: 0.55, side: THREE.DoubleSide }); beamM.name = 'stainless-beam'; beamM.name = 'stainless-beam';
+    const rb = (w, h, d, m, x, y, z, r) => { const mm = new THREE.Mesh(TXT.roundedBox ? TXT.roundedBox(w, h, d, r || Math.min(w, h, d) * 0.3) : new THREE.BoxGeometry(w, h, d), m); mm.position.set(x, y, z); mm.castShadow = mm.receiveShadow = true; g.add(mm); return mm; };
+    const beam = rb(Lb, bt, bw, steel, 0, bt / 2, 0);
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(Lb * 0.86, bw * 0.62), beamM); face.rotation.x = -Math.PI / 2; face.position.set(Lb * 0.05, bt + 0.0003, -bw * 0.05); g.add(face);
+    /* a jaw: an extruded, bevelled taper reaching toward -z, with a small nib reaching toward +z */
+    const jaw = (x, dir) => {
+      const s = new THREE.Shape(), J = 0.052 * KS, wj = 0.014 * KS;
+      s.moveTo(0, -bw / 2); s.lineTo(0, -J); s.lineTo(dir * wj * 0.35, -J - 0.004 * KS); s.lineTo(dir * wj, -bw * 0.9); s.lineTo(dir * wj, bw / 2);
+      s.lineTo(dir * wj * 0.6, bw / 2 + 0.014 * KS); s.lineTo(0, bw / 2 + 0.016 * KS); s.closePath();
+      const geo = new THREE.ExtrudeGeometry(s, { depth: bt * 0.9, bevelEnabled: true, bevelThickness: bt * 0.25, bevelSize: 0.0012 * KS, bevelSegments: 3, curveSegments: 6 });
+      geo.rotateX(Math.PI / 2); const m = new THREE.Mesh(geo, steel); m.position.set(x, bt * 1.1, 0); m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; g.add(m); return m; };
+    const x0 = -Lb / 2 + 0.004 * KS; jaw(x0, 1);
+    const xs = x0 + 0.014 * KS + open;
+    jaw(xs, -1);
+    /* the slider: body over the beam, a vernier window, the knurled lock screw on top and the thumbwheel underneath */
+    const sl = 0.058 * KS; rb(sl, bt * 1.9, bw * 1.25, steel, xs + sl / 2 - 0.002, bt * 0.95, 0, bt * 0.5);
+    const vTex = CH.canvasTex(THREE, 256, 64, (c, w, h) => { c.fillStyle = '#d8dde2'; c.fillRect(0, 0, w, h); c.strokeStyle = 'rgba(50,56,66,0.9)'; c.lineWidth = 1.5; for (let i = 0; i <= 20; i++) { const x = 18 + i * 11; c.beginPath(); c.moveTo(x, h); c.lineTo(x, h - (i % 5 === 0 ? 30 : 18)); c.stroke(); } });
+    const vwM = new THREE.MeshPhysicalMaterial({ color: 0xd2d2d2, map: vTex, bumpMap: vTex, bumpScale: -1, metalness: 1, roughness: 0.32 }); vwM.name = 'stainless-vernier';
+    const vw = new THREE.Mesh(new THREE.PlaneGeometry(sl * 0.6, bw * 0.4), vwM); vw.rotation.x = -Math.PI / 2; vw.position.set(xs + sl * 0.45, bt * 1.92 + 0.0004, bw * 0.12); g.add(vw);
+    const knurl = (r, h, n, x, y, z) => { const s = new THREE.Shape(); for (let i = 0; i <= n * 2; i++) { const a = i / (n * 2) * Math.PI * 2, rr = i % 2 ? r : r * 0.9; s[i ? 'lineTo' : 'moveTo'](Math.cos(a) * rr, Math.sin(a) * rr); }
+      const geo = new THREE.ExtrudeGeometry(s, { depth: h, bevelEnabled: true, bevelThickness: h * 0.12, bevelSize: r * 0.06, bevelSegments: 2, curveSegments: 2 }); geo.rotateX(-Math.PI / 2);
+      const m = new THREE.Mesh(geo, steel); m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; g.add(m); return m; };
+    knurl(0.0045 * KS, 0.006 * KS, 24, xs + sl * 0.62, bt * 1.9, -bw * 0.18);                       /* lock screw */
+    const wheel = knurl(0.0065 * KS, 0.004 * KS, 30, xs + sl * 0.25, 0, bw * 0.78);                  /* thumbwheel */
+    wheel.rotation.x = Math.PI / 2; wheel.position.y = 0.0068 * KS;
+    rb(0.18 * KS, 0.0018 * KS, 0.0022 * KS, steel, Lb / 2 - 0.09 * KS + 0.03 * KS, 0.001 * KS, bw * 0.3, 0.0008);   /* depth rod */
+    /* A NEUTRAL WORLD FOR THE STEEL ONLY: a pale grey sky over a warm caliche floor with one long soft highlight, so the
+     * brushed stainless reads as steel rather than as a mirror of the blue sky */
+    { const env = new THREE.Scene();
+      env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 48, 24), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+        uniforms: { top: { value: new THREE.Color(0x8d939c) }, hz: { value: new THREE.Color(0xdcd6cc) }, low: { value: new THREE.Color(0xa88e72) } },
+        vertexShader: "varying vec3 v; void main(){ v = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
+        fragmentShader: "uniform vec3 top,hz,low; varying vec3 v; void main(){ float y = v.y; vec3 c = y > 0.0 ? mix(hz, top, smoothstep(0.0, 0.7, y)) : mix(hz, low, smoothstep(0.0, 0.25, -y)); gl_FragColor = vec4(c, 1.0); }" })));
+      const pnl = new THREE.Mesh(new THREE.PlaneGeometry(14, 1.2), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })); pnl.material.color.multiplyScalar(3);
+      pnl.position.set(0, 9, -9); pnl.lookAt(0, 0, 0); env.add(pnl);
+      const pm = new THREE.PMREMGenerator(R.renderer), tex = pm.fromScene(env, 0.0).texture; pm.dispose();
+      [steel, beamM, vwM].forEach(m => { m.envMap = tex; m.envMapIntensity = 1.0; m.needsUpdate = true; }); }
+    return g;
+  })();
+  /* it leans on a limestone block behind it, face tipped to the light and the camera, jaws up and away */
+  const calRig = new THREE.Group(); calRig.add(caliper); caliper.rotation.x = 0.42;
+  caliper.updateMatrixWorld(true); { const bb = new THREE.Box3().setFromObject(caliper); caliper.position.y = -bb.min.y; }
+  place(calRig, CAL_U, CAL_V, hgt(CAL_U, CAL_V) + 0.001, Math.PI + 0.22); TXT.add(R, calRig);
+  /* the rest it leans on: a weathered fist of Edwards limestone, layered. Its sides step in along bedding planes, its
+   * edges are chipped, and darker bedding lines run round it in vertex colour. */
+  { const g = new THREE.BoxGeometry(1, 1, 1, 40, 14, 20), pp = g.attributes.position, col = new Float32Array(pp.count * 3), rr = CH.rng(312);
+    const chips = []; for (let i = 0; i < 9; i++) chips.push([rr() * 2 - 1, rr() * 0.6 + 0.2, rr() * 2 - 1, 0.18 + rr() * 0.2]);
+    for (let k = 0; k < pp.count; k++) { let x = pp.getX(k) * 2, y = pp.getY(k) + 0.5, z = pp.getZ(k) * 2;
+      const bed = Math.floor(y * 4) / 4, inset = 1 - 0.06 * bed - 0.05 * Math.abs(Math.sin(bed * 9.1)) - 0.04 * Math.pow(Math.abs(((y * 4) % 1) - 0.5) * 2, 6);
+      const rx = Math.sign(x) * Math.pow(Math.abs(x), 1.6), rz = Math.sign(z) * Math.pow(Math.abs(z), 1.6);
+      let sx = x * inset, sz = z * inset, sy = y;
+      const rad = Math.hypot(rx, rz); if (rad > 0.85) { const t = (rad - 0.85) / 0.6; sy -= 0.25 * t * y; }
+      chips.forEach(([cx0, cy0, cz0, cr]) => { const d = Math.hypot(x - cx0, (y - cy0) * 1.5, z - cz0); if (d < cr) { const f = 1 - (d / cr) * 0.25 - 0.08; sx *= f; sz *= f; } });
+      sx += 0.03 * Math.sin(y * 21 + z * 5); sz += 0.03 * Math.cos(y * 17 + x * 4);
+      pp.setXYZ(k, sx * 0.18, sy * 0.085, sz * 0.075);
+      const line = Math.abs(((y * 4) % 1) - 0.5) > 0.38 ? 0.55 : 1, m = 0.92 + 0.08 * Math.sin(x * 7 + z * 3);
+      col[k * 3] = line * m; col[k * 3 + 1] = line * m * 0.97; col[k * 3 + 2] = line * m * 0.93; }
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.computeVertexNormals();
+    const bm = new THREE.MeshStandardMaterial({ color: 0xa79a88, map: lime, vertexColors: true, roughness: 0.95 }); bm.name = 'limestone-block';
+    const blk = new THREE.Mesh(g, bm); blk.userData.txBevel = false; blk.castShadow = blk.receiveShadow = true;
+    const q = at(CAL_U + 0.13, CAL_V + 0.02, hgt(CAL_U + 0.13, CAL_V) - 0.018); blk.position.set(q[0], q[1], q[2]); blk.rotation.y = yawF + 0.22; TXT.add(R, blk); TXT.contact(R, blk, { opacity: 0.6 }); }
+  const caliperRoot = calRig; TXT.contact(R, calRig, { opacity: 0.5 });
+  /* the caliper lies apart from the ribbon: every vertex stays clear of the ribbon's path, measured on the stone */
+  { calRig.updateMatrixWorld(true); const v3 = new THREE.Vector3(); let near = 1e9;
+    const pathPts = []; for (let k = 0; k <= 400; k++) pathPts.push(at(...atLen(k / 400 * LEN)));
+    caliper.traverse(o => { if (!o.isMesh) return; const pp = o.geometry.attributes.position; for (let i = 0; i < pp.count; i += 3) { v3.fromBufferAttribute(pp, i).applyMatrix4(o.matrixWorld);
+      pathPts.forEach(q => { near = Math.min(near, Math.hypot(v3.x - q[0], v3.z - q[2])); }); } });
+    if (near < 0.06) throw new Error('the caliper comes within ' + near.toFixed(3) + ' m of the ribbon'); }
+
+  /* limestone chips on the stone, seated */
+  { const r = CH.rng(4410), chipM = new THREE.MeshStandardMaterial({ color: 0xead2aa, roughness: 0.9 }); chipM.name = 'limestone-chip';
+    for (let i = 0; i < 22; i++) { const u = 3.0 + r() * 1.6, v = -1.3 + r() * 2.4;
+      let dp = 1e9; for (let k = 0; k < lut.length; k += 10) dp = Math.min(dp, Math.hypot(u - lut[k][2], v - lut[k][3]));
+      if (Math.hypot(u - CAL_U, v - CAL_V) < 0.52 || dp < 0.12) continue;
+      const g = new THREE.IcosahedronGeometry(1, 2), pp = g.attributes.position, sz = 0.005 + r() * 0.012, sq = 0.45 + r() * 0.3;
+      for (let k = 0; k < pp.count; k++) { const x = pp.getX(k), y = pp.getY(k), z = pp.getZ(k), n = 1 + 0.22 * Math.sin(x * 5 + i) * Math.cos(z * 4 - i) + 0.1 * Math.sin(y * 9);
+        pp.setXYZ(k, x * n * sz, Math.max(-0.3, y) * n * sz * sq, z * n * sz * 0.85); }
+      g.computeVertexNormals(); const m = new THREE.Mesh(g, chipM); const q = at(u, v, hgt(u, v) + sz * sq * 0.25); m.position.set(q[0], q[1], q[2]); m.rotation.y = r() * 6.3; TXT.add(R, m); } }
+
+  /* THE OAK: a kit live oak beyond the fence on the right, its crown holding the top right corner */
+  const oak = K.make('live_oak', { height: 7.5, spread: 11.5, seed: 4 });
+  /* the morning lights the crown: its leaf cards are lifted a step so the canopy reads green in the sun, not a silhouette */
+  { const seen = new Map(); oak.traverse(o => { if (!o.isMesh || !o.material || Array.isArray(o.material)) return; const m0 = o.material;
+      if (!(m0.alphaTest > 0 || m0.transparent || /leaf|fol/i.test(m0.name || ''))) return;
+      if (!seen.has(m0)) { const m = m0.clone(); m.color = (m0.color ? m0.color.clone() : new THREE.Color(1, 1, 1)).multiplyScalar(1.9); seen.set(m0, m); }
+      o.material = seen.get(m0); }); }
+  place(oak, 13.8, 8.6, -0.02, 0.4); TXT.add(R, oak);
+
+  /* THE VALLEY below the bluff: Hill Country with its ledges, and kit live oak mottes on it (no cone trees) */
+  const VALLEY = -55;
+  const hills = K.make('hill_country_terrain', { size: 900, relief: 60, trees: 0, season: 'summer', ground: 0x9a9a5c, budget: 220000, seed: 6 });
+  place(hills, 560, 40, VALLEY, 0); TXT.add(R, hills);
+  { const r = CH.rng(77); for (let i = 0; i < 12; i++) { const u = 140 + r() * 520, v = -300 + r() * 600, s = 6 + r() * 4;
+      const y = hills.userData.heightAt ? (() => { const lp = new THREE.Vector3(...at(u, v, 0)); hills.updateMatrixWorld(true); const loc = hills.worldToLocal(lp.clone()); const hh = hills.userData.heightAt(loc.x, loc.z); return VALLEY + (isFinite(hh) ? hh : 0); })() : VALLEY;
+      const t = K.make('live_oak', { height: s, spread: s * 1.9, seed: 20 + i }); place(t, u, v, y - 0.3, r() * 6); t.scale.setScalar(1.6); TXT.add(R, t); } }
+  const city = K.make('city_skyline', { city: 'san_antonio', aerial: 0.00015, lowrise: true, seed: 3 });
+  city.scale.setScalar(0.55); place(city, 2600, 230, VALLEY - 12, 0.2); R.scene.add(city);
+
+  /* THE CAMERA: eye 0.7 m on the stone, tilted up a touch so the horizon sits low, well under the type */
+  const FROM = [0, EYE, 0];
+  TXT.frame(R, { fov: FOV, from: FROM, look: at(10, 0.35, EYE + 0.5) });
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { clouds: 0.1, zenith: 0x0f3a9a }));
+  TXT.ground(R, { surface: 'grass', color: 0x9a9a5c, size: 16000, tile: 6, seed: 916, y: VALLEY });
+  const box = (u0, v0, u1, v1) => { const q = [at(u0, v0), at(u1, v0), at(u0, v1), at(u1, v1)]; return [Math.min(...q.map(p => p[0])), Math.min(...q.map(p => p[2])), Math.max(...q.map(p => p[0])), Math.max(...q.map(p => p[2]))]; };
+  /* grass in the verges either side of the track and along the fence, never on the stone or the ribbon's path */
+  TXT.scatter(R, { kind: 'grass', count: 520, area: box(6.0, -8, 14.2, -1.4), seed: 23, scale: [0.18, 0.5], colors: [0xd6b46a, 0xc49e58, 0xe2c27e, 0xa89a52] });
+  TXT.scatter(R, { kind: 'grass', count: 420, area: box(7.6, 2.4, 14.2, 8), seed: 24, scale: [0.18, 0.5], colors: [0xd6b46a, 0xc49e58, 0xe2c27e, 0xa89a52] });
+
+  const spec = CH.rigSpec(W, 18, 4096); spec.key = Object.assign({}, spec.key, { radius: 0.7 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts(at(4, 0.5, 0), { distance: 40, shadowFar: 90, normalBias: 0.004 }), { light: { az: TXDECK.deck().light.az, el: TXDECK.deck().light.el } }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.12, height: 0.05, mottle: 0.12, skip: ribbons.concat([caliper]) });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* the stone, ribbon and caliper span the frame */
+  { const rc = CH.rectOf(THREE, R, ribbons[0], 0); const w = Math.min(1080, rc[0] + rc[2]) - Math.max(0, rc[0]); if (w < 500) throw new Error('the ribbon spans ' + Math.round(w) + ' px'); }
+
+  /* THE TYPE'S SKY: a smooth falloff in the tone's deep hue from the top left corner, dithered so the grade can't step it,
+   * plus a soft seat for the counter. No plate, no box. */
+  /* a field of the tone's deep hue held level across the type column (so no line sees a change of paper along its run),
+   * strongest at the top, easing out under the dek and feathered away to the right of the column. Dithered, no edge. */
+  { const c = document.createElement('canvas'); c.width = 2160; c.height = 2700; const k = c.getContext('2d'), lo = '14,44,128', S = 2;
+    const y1 = (typeFoot + 20) * S, y2 = (typeFoot + 150) * S, gr = k.createLinearGradient(0, 0, 0, y2);
+    [[0, 0.5], [y1 / y2 * 0.5, 0.5], [y1 / y2 * 0.75, 0.56], [y1 / y2, 0.6], [y1 / y2 + (1 - y1 / y2) * 0.4, 0.15], [y1 / y2 + (1 - y1 / y2) * 0.75, 0.04], [1, 0]].forEach(([t, a]) => gr.addColorStop(t, 'rgba(' + lo + ',' + a + ')'));
+    k.fillStyle = gr; k.fillRect(0, 0, 2160, y2);
+    const m = k.createLinearGradient(700 * S, 0, 980 * S, 0); for (let i = 0; i <= 16; i++) { const t = i / 16, e = 1 - t * t * t * (t * (t * 6 - 15) + 10); m.addColorStop(t, 'rgba(0,0,0,' + e.toFixed(4) + ')'); }
+    k.globalCompositeOperation = 'destination-in'; k.fillStyle = m; k.fillRect(0, 0, 2160, 2700); k.globalCompositeOperation = 'source-over';
+    const im = k.getImageData(0, 0, 2160, Math.ceil(y2)), d = im.data, rr = CH.rng(99);
+    for (let i = 0; i < d.length; i += 4) { if (!d[i + 3]) continue; d[i + 3] = Math.max(0, Math.min(255, d[i + 3] + (rr() - 0.5) * 5)); }
+    k.putImageData(im, 0, 0);
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(c, 0, 0); cx.restore(); }
+  CH.seat(cx, { sel: '.count', a: 0.44, fade: 90 });
+  
+  ['.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.4, fade: 90 }));
+  TXLOOK.footWash(cx, { a: 0.3, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

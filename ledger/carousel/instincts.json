@@ -229,7 +229,8 @@
         "2026-11-10",
         "2026-11-12",
         "2026-11-13",
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-16"
       ],
       "contradicted": []
     },
@@ -665,7 +666,8 @@
         "2026-11-11",
         "2026-11-12",
         "2026-11-14",
-        "2026-11-15"
+        "2026-11-15",
+        "2026-11-16"
       ],
       "contradicted": []
     },
@@ -1886,6 +1888,14 @@
       "learned": "2026-11-15",
       "instinct": "Settle what a shared object means across frames before the panel, because one judge's repair can be the next judge's contradiction.",
       "evidence": "No. 78: round 1's integrity judge failed frame 4 for drawing slide 2's lit laptops beside the folders as a cross tab, the repair darkened every laptop, and round 3's integrity judge charged the dark laptops as contradicting slide 2's own legend.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "rebuilt-frame-can-restore-stale-copy",
+      "learned": "2026-11-16",
+      "instinct": "Diff every rebuilt or recomposed frame's printed text against copy.json before the deck is re-rendered, because an artist working from its own earlier context can bring back copy a panel repair already replaced.",
+      "evidence": "2026-11-16 no. 79 frame 9, a panel round 1 recomposition restored the headline seeks federal grants and the one year sentence that the round 1 integrity repair had replaced; the contact sheet caught it before round 2",
       "confirmed": [],
       "contradicted": []
     }

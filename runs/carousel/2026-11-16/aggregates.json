@@ -1,0 +1,64 @@
+{
+ "date": "2026-11-16",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "18 years",
+   "slide": "slide-04.html",
+   "kind": "duration",
+   "value": 18,
+   "quoted_from": "c5",
+   "quote": "worked with veterans for 18 years"
+  },
+  {
+   "phrase": "4 features",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c8"
+   ],
+   "computed_by": "compute.py features_named, len of the four features named in c8"
+  },
+  {
+   "phrase": "one year",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 1,
+   "quoted_from": "c3",
+   "quote": "one-year"
+  },
+  {
+   "phrase": "one year",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 1,
+   "quoted_from": "c3",
+   "quote": "one-year"
+  },
+  {
+   "phrase": "one year",
+   "slide": "document_title",
+   "kind": "duration",
+   "value": 1,
+   "quoted_from": "c3",
+   "quote": "one-year"
+  },
+  {
+   "phrase": "200,000 grant funds",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 200000,
+   "quoted_from": "c2",
+   "quote": "$200,000 collaborative grant"
+  },
+  {
+   "phrase": "one year",
+   "slide": "slide-01.html",
+   "kind": "duration",
+   "value": 1,
+   "quoted_from": "c3",
+   "quote": "one-year"
+  }
+ ]
+}

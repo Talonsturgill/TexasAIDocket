@@ -1,0 +1,292 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    7,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
+    "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
+    "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
+    "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff",
+    "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
+    "render/slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 52.3,
+      "mid": 0.588,
+      "dark": 0.0,
+      "grey_mid": 0.024,
+      "vivid": 0.753,
+      "median_C": 57.6
+    },
+    {
+      "frame": "slide-07.png",
+      "median_L": 52.2,
+      "mid": 0.729,
+      "dark": 0.004,
+      "grey_mid": 0.045,
+      "vivid": 0.649,
+      "median_C": 54.0
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 55.5,
+      "mid": 0.612,
+      "dark": 0.03,
+      "grey_mid": 0.166,
+      "vivid": 0.394,
+      "median_C": 20.8
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
+      "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
+      "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
+      "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff",
+      "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
+      "render/slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "score": 7.5,
+        "points": {
+          "only_this_sentence": 7,
+          "one_idea": 9,
+          "composed": 8,
+          "crafted": 6,
+          "unlike_neighbours": 8,
+          "honest": 9
+        },
+        "subject": "A machined orange-gold voice waveform stands on edge across a cerulean studio sweep, with a stainless caliper on a stand held open above it.",
+        "visual_consequence": "Speech becomes a solid object an instrument could close on, shown open and not yet reading, so nothing on the frame claims a result.",
+        "weakness": "The caliper is the weakest crafted thing in the frame, flat grey metal on a boxy base, and its jaws bracket no particular peak.",
+        "repair": "Named for the panel: jaws straddling the tallest peak, brushed stainless with a machined foot and contact shadows.",
+        "inputs": {
+          "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
+          "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
+          "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        },
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept_under_round_cap",
+        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px). Rebound after fig_inject: the source changed only in its window.FIG line and a dropped empty-FIG assertion, and the re-render is pixel identical to the reviewed PNG (same file hash), so this cold critique still describes these exact pixels.",
+        "viewed": [
+          "work/critic-01/r6/slide-01-432.png",
+          "render/slide-01.png"
+        ]
+      },
+      {
+        "slide": 7,
+        "role": "evidence",
+        "score": 7.3,
+        "points": {
+          "only_this_sentence": 7,
+          "one_idea": 8,
+          "composed": 7,
+          "crafted": 7,
+          "unlike_neighbours": 8,
+          "honest": 9
+        },
+        "subject": "Four aluminium gauge heads with windows that show nothing stand in a receding row on a blue to peach sweep, a gold voice ribbon threaded through their bases and one feature name pill per instrument.",
+        "visual_consequence": "Four separate instruments, each named for one feature, that the voice passes through but that show no reading yet.",
+        "weakness": "Without the pills the row of empty gauges could illustrate any measurement story, and the pills vary in size and placement.",
+        "repair": "Named for the panel: one size of pill seated on each plinth, one continuous calmer ribbon, smoked indigo windows, fine bead blast housings.",
+        "inputs": {
+          "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
+          "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff"
+        },
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept_under_round_cap",
+        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px). Rebound after fig_inject: the source changed only in its window.FIG line and a dropped empty-FIG assertion, and the re-render is pixel identical to the reviewed PNG (same file hash), so this cold critique still describes these exact pixels.",
+        "viewed": [
+          "work/critic-07/r6/slide-07-432.png",
+          "render/slide-07.png"
+        ]
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "score": 6.7,
+        "points": {
+          "only_this_sentence": 6,
+          "one_idea": 7,
+          "composed": 6,
+          "crafted": 6,
+          "unlike_neighbours": 7,
+          "honest": 8
+        },
+        "subject": "A gold voice ribbon winds across a sandy Hill Country yard toward a closed ranch gate, with an open caliper set down beside a stone and a skyline beyond the bars.",
+        "visual_consequence": "The veteran's speech runs up to a closed gate with the city beyond it, the next step on the condition the pilot finds something.",
+        "weakness": "The ribbon stops short of the gate and reads orange-red rather than dusk gold, and the type sits on a flat blue wash with a soft edge across the posts.",
+        "repair": "Named for the panel: ribbon flat against the bottom rail in polished dusk gold, camera lower so gate and latch fill the middle third. A panel round 1 recomposition to the plan's coil scored 5.2 cold and was reverted to this pixel identical render.",
+        "inputs": {
+          "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
+          "render/slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
+        },
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept_under_round_cap",
+        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px).",
+        "viewed": [
+          "work/critic-09/r6/slide-09-432.png",
+          "render/slide-09.png"
+        ]
+      }
+    ],
+    "reviewer": "carousel-slide-critic cold critiques; frames ship at their score after the rebuild round and the panel decides (BESPOKE.md step 3)."
+  },
+  "plan": {
+    "hardest_frame": 7,
+    "visual_argument": "A veteran's spoken story drawn as one machined gold ribbon that changes state across the deck while every instrument stays open, dark or unplugged: no frame shows a reading, because no result exists.",
+    "build_risk": "Frame 7 must make four empty gauge windows read as instruments and the gold ribbon read as the hero line at feed size, without any window or fill implying a measurement.",
+    "distinct_from_recent": "Yesterday's deck was school rooms in the people tone; the fourteen before it were dark staged kit scenes with the headline top left. This deck is the explainer tone in nine worlds with the type in four places.",
+    "bespoke_note": "BESPOKE run: no three-frame audition. The review bound in art_preflight.json is the cold carousel-slide-critic final critique of each selected frame (knowledge/carousel/BESPOKE.md, step 3)."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
+      "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
+      "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "7": {
+      "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
+      "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff"
+    },
+    "9": {
+      "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
+      "render/slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
+    }
+  },
+  "needs_review": [
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
+    "slide-01.webp": "9f69b7a5672d6ee3b5ec4537d61f0b7175b57e3d9f736ac0bd9c61c47ec2f6a4",
+    "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
+    "slide-07.webp": "b67a7d00a607eb6ff68c489c8893d23f437f39ef98b9ba715e4ef61bd126dca8",
+    "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
+    "slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "9f69b7a5672d6ee3b5ec4537d61f0b7175b57e3d9f736ac0bd9c61c47ec2f6a4",
+      "from_sha256": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
+      "psnr_db": 40.132
+    },
+    {
+      "to": "slide-07.webp",
+      "to_sha256": "b67a7d00a607eb6ff68c489c8893d23f437f39ef98b9ba715e4ef61bd126dca8",
+      "from_sha256": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff",
+      "psnr_db": 40.452
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0",
+      "from_sha256": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0",
+      "psnr_db": 999.0
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_score": 7.2,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rewrite slide 8 so it no longer invents a sequence, cite c8 beside c11 for the feature labels, and add the announcement date.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "mannequin hands, ribbon floats without contact",
+   "fix": "tight on hands and mug, seat the broken ribbon with a contact shadow"
+  },
+  {
+   "slide": 9,
+   "problem": "type on a flat blue wash plate, caliper and stone pasted",
+   "fix": "real sky behind the type, contact shadows"
+  },
+  {
+   "slide": 5,
+   "problem": "top loaded, dead lower stone",
+   "fix": "run the second channel into the lower third"
+  },
+  {
+   "slide": 4,
+   "problem": "mauve sweep off palette, 18 blocks uncountable",
+   "fix": "higher closer camera, violet shift"
+  }
+ ]
+}

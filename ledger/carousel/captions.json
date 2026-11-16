@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the plain question",
   "the object",
   "the quiet decision",
   "the two things",
   "the who",
-  "the place"
+  "the place",
+  "the number that is wrong"
  ],
  "entries": [
   {
@@ -1434,15 +1434,34 @@
    ],
    "critic_note": "A won over B with edits. B ran 905 characters and opened on a stock 'isn't coming, it's already there' line that fits any subject. A's hook became 'share', its unsourced 'Nothing statewide sits above them.' (contradicted by c7) and the line narrating its deck were cut, c16's 'can be' was restored, and its Austin or school board close, the open question substance refiled under another name, was replaced by a question about the laws c7 says the guidance builds on.",
    "move_note": "Opens by correcting what 86% counts, ladders through the reported policy shares and the 42 states, and closes on which laws the guidance would build on."
+  },
+  {
+   "date": "2026-11-16",
+   "carousel_no": 79,
+   "opening_move": "the correction",
+   "structure": "Ledger",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Standard tests can miss the struggle.",
+   "words": 124,
+   "commas": 6,
+   "commas_per_100w": 4.84,
+   "chars": 836,
+   "hashtags": [
+    "#SanAntonio",
+    "#BexarCounty",
+    "#UTSanAntonio"
+   ],
+   "critic_note": "B won after one rewrite by the critic. A failed the anti-template law (its opening reads with any pilot's nouns), used Known and Not known as scaffolding and asserted Nobody knows with no claim. B ran 940 characters and its opening shared the X is not Y skeleton of November 15th. The rewrite opens on Standard tests can miss the struggle (c16), cuts the abstraction about the clinic visit, keeps c10, c9 and c11 as the close.",
+   "move_note": "Opens by correcting the belief that a clear standard test means easy conversation, ledgers what Norman's patients reported, the tests, the recordings and the grant against the plain line that the measuring is still a plan, and closes on c11's open question."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Question and answer",
-  "Clock"
+  "Clock",
+  "Ladder"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "point at the record, plainly, without a call to action"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

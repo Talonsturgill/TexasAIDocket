@@ -1,0 +1,2249 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Can a spoken story be measured?",
+          "x": 90,
+          "y": 168,
+          "w": 900,
+          "h": 215,
+          "font_px": 109.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              154,
+              845,
+              135
+            ],
+            [
+              223,
+              261,
+              634,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A one year pilot plans to measure speech features linked to mild brain injury in veterans. It received a $200,000 San Antonio Medical Foundation grant.",
+          "x": 150,
+          "y": 409,
+          "w": 780,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              174,
+              409,
+              733,
+              42
+            ],
+            [
+              175,
+              451,
+              730,
+              42
+            ],
+            [
+              179,
+              494,
+              723,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Speech as data",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c6 c2",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17089,
+      "ok": true,
+      "load_ms": 364,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 133.4,
+          "variance": 2004.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The words are there. Finding them is hard.",
+          "x": 300,
+          "y": 146,
+          "w": 700,
+          "h": 263,
+          "font_px": 89.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              475,
+              134,
+              525,
+              111
+            ],
+            [
+              483,
+              222,
+              517,
+              111
+            ],
+            [
+              525,
+              309,
+              475,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Many veterans Rocio Norman treated reported trouble finding words or keeping up in fast or noisy talk, even when standard tests showed no clear impairment. The table, the people and their voice ribbons are drawn to illustrate.",
+          "x": 296,
+          "y": 982,
+          "w": 704,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              320,
+              982,
+              680,
+              42
+            ],
+            [
+              345,
+              1025,
+              655,
+              42
+            ],
+            [
+              298,
+              1068,
+              702,
+              42
+            ],
+            [
+              362,
+              1110,
+              638,
+              42
+            ],
+            [
+              389,
+              1153,
+              611,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The struggle",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 40998,
+      "ok": true,
+      "load_ms": 275,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 95.4,
+          "variance": 2963
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":82.90866328277299,\"materials\":9,\"cast_fraction\":0.5396044238683128,\"area\":1,\"render_ms\":21262.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Most adult language tests were built for other conditions",
+          "x": 80,
+          "y": 832,
+          "w": 916,
+          "h": 222,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              822,
+              783,
+              93
+            ],
+            [
+              80,
+              896,
+              595,
+              93
+            ],
+            [
+              80,
+              970,
+              325,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rocio Norman says they were made for aphasia after a stroke or for severe brain injury. The sieve is drawn to illustrate.",
+          "x": 82,
+          "y": 1080,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1080,
+              792,
+              42
+            ],
+            [
+              82,
+              1123,
+              774,
+              42
+            ],
+            [
+              82,
+              1165,
+              142,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Aphasia after a stroke",
+          "x": 97,
+          "y": 134,
+          "w": 438,
+          "h": 51,
+          "font_px": 28,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              119,
+              140,
+              394,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Severe brain injury",
+          "x": 571,
+          "y": 134,
+          "w": 384,
+          "h": 51,
+          "font_px": 28,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              593,
+              140,
+              340,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The tests",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c18",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 316.6,
+          "y": 190.6,
+          "w": 3,
+          "h": 134.2,
+          "by": "line",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 763.4,
+          "y": 190.6,
+          "w": 3,
+          "h": 114.6,
+          "by": "line",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25354,
+      "ok": true,
+      "load_ms": 148,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 87.2,
+          "variance": 1341.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rocio Norman has worked with veterans for 18 years",
+          "x": 296,
+          "y": 150,
+          "w": 720,
+          "h": 237,
+          "font_px": 80.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              405,
+              139,
+              611,
+              100
+            ],
+            [
+              308,
+              218,
+              708,
+              100
+            ],
+            [
+              637,
+              297,
+              379,
+              100
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "She is a speech language pathologist and one of the researchers on the grant. One block of cards per year, drawn to illustrate.",
+          "x": 476,
+          "y": 413,
+          "w": 540,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              644,
+              413,
+              372,
+              42
+            ],
+            [
+              627,
+              455,
+              389,
+              42
+            ],
+            [
+              490,
+              498,
+              526,
+              42
+            ],
+            [
+              482,
+              541,
+              534,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The clinician",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c2",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 28849,
+      "ok": true,
+      "load_ms": 301,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 102.4,
+          "variance": 1220.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":41.7762818826417,\"materials\":6,\"cast_fraction\":0.2524074074074074,\"area\":1,\"render_ms\":20618.39999999851}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The veterans' stories are already recorded",
+          "x": 80,
+          "y": 806,
+          "w": 920,
+          "h": 232,
+          "font_px": 107.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              792,
+              903,
+              132
+            ],
+            [
+              80,
+              897,
+              916,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At the San Antonio VA they described how they were injured and an important life event, at several points during treatment. The stone and its gold lines are drawn to illustrate.",
+          "x": 80,
+          "y": 1067,
+          "w": 920,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1067,
+              878,
+              42
+            ],
+            [
+              80,
+              1110,
+              757,
+              42
+            ],
+            [
+              80,
+              1153,
+              903,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How they were injured",
+          "x": 150,
+          "y": 197,
+          "w": 441,
+          "h": 53,
+          "font_px": 30,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 20, 6)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              172,
+              203,
+              397,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An important life event",
+          "x": 250,
+          "y": 485,
+          "w": 479,
+          "h": 53,
+          "font_px": 30,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 20, 6)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              272,
+              491,
+              435,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The recordings",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25856,
+      "ok": true,
+      "load_ms": 207,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 118.8,
+          "variance": 1429.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Today the work starts with slow transcription",
+          "x": 500,
+          "y": 150,
+          "w": 516,
+          "h": 226,
+          "font_px": 77,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              528,
+              140,
+              488,
+              95
+            ],
+            [
+              526,
+              215,
+              490,
+              95
+            ],
+            [
+              597,
+              291,
+              419,
+              95
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Detailed language analysis also takes coding, often by several reviewers. The hand and pages are drawn to illustrate.",
+          "x": 556,
+          "y": 402,
+          "w": 460,
+          "h": 141,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              628,
+              401,
+              389,
+              36
+            ],
+            [
+              649,
+              437,
+              367,
+              36
+            ],
+            [
+              591,
+              472,
+              425,
+              36
+            ],
+            [
+              784,
+              507,
+              232,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Today",
+          "x": 80,
+          "y": 80,
+          "w": 83,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              83,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c10",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 35879,
+      "ok": true,
+      "load_ms": 301,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 111,
+          "variance": 4893.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The team names 4 features it plans to assess",
+          "x": 300,
+          "y": 150,
+          "w": 700,
+          "h": 210,
+          "font_px": 71.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              300,
+              141,
+              535,
+              88
+            ],
+            [
+              300,
+              211,
+              534,
+              88
+            ],
+            [
+              300,
+              281,
+              183,
+              88
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Natural language processing is meant to turn them into measurable data in a one year pilot. The dark windows are drawn to illustrate.",
+          "x": 302,
+          "y": 382,
+          "w": 620,
+          "h": 104,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              302,
+              381,
+              556,
+              36
+            ],
+            [
+              302,
+              416,
+              612,
+              36
+            ],
+            [
+              302,
+              451,
+              450,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Coherence",
+          "x": 117,
+          "y": 1099,
+          "w": 166,
+          "h": 40,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              134,
+              1102,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Emotional tone",
+          "x": 422,
+          "y": 1057,
+          "w": 170,
+          "h": 50,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              457,
+              1059,
+              100,
+              23
+            ],
+            [
+              485,
+              1080,
+              44,
+              23
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Organization",
+          "x": 625,
+          "y": 1033,
+          "w": 127,
+          "h": 24,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              635,
+              1035,
+              106,
+              19
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Level of detail",
+          "x": 741,
+          "y": 1065,
+          "w": 135,
+          "h": 40,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              773,
+              1067,
+              70,
+              19
+            ],
+            [
+              782,
+              1083,
+              53,
+              19
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The plan",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c20 c3",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18360,
+      "ok": true,
+      "load_ms": 279,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 139.5,
+          "variance": 1990.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":76.10000305175781,\"materials\":11,\"cast_fraction\":0.5161040809327846,\"area\":1,\"render_ms\":25922.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Can automation spot the differences?",
+          "x": 566,
+          "y": 150,
+          "w": 434,
+          "h": 288,
+          "font_px": 73.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              140,
+              123,
+              91
+            ],
+            [
+              566,
+              212,
+              351,
+              91
+            ],
+            [
+              566,
+              284,
+              239,
+              91
+            ],
+            [
+              566,
+              356,
+              375,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That is the immediate goal, along with how they relate to anxiety, post traumatic stress, depression and sleep difficulties. The leads hang unplugged, drawn to illustrate.",
+          "x": 568,
+          "y": 462,
+          "w": 430,
+          "h": 212,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              568,
+              461,
+              408,
+              36
+            ],
+            [
+              568,
+              496,
+              385,
+              36
+            ],
+            [
+              568,
+              532,
+              418,
+              36
+            ],
+            [
+              568,
+              567,
+              389,
+              36
+            ],
+            [
+              568,
+              603,
+              322,
+              36
+            ],
+            [
+              568,
+              638,
+              119,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Coherence",
+          "x": 198,
+          "y": 882,
+          "w": 158,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              211,
+              887,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Emotional tone",
+          "x": 124,
+          "y": 967,
+          "w": 231,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              137,
+              972,
+              205,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Organization",
+          "x": 154,
+          "y": 1053,
+          "w": 202,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              167,
+              1058,
+              176,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Level of detail",
+          "x": 110,
+          "y": 1138,
+          "w": 246,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              123,
+              1143,
+              220,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Anxiety",
+          "x": 668,
+          "y": 882,
+          "w": 128,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              887,
+              102,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Post traumatic stress",
+          "x": 668,
+          "y": 967,
+          "w": 333,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              972,
+              307,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Depression",
+          "x": 668,
+          "y": 1053,
+          "w": 172,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              1058,
+              146,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Sleep difficulties",
+          "x": 668,
+          "y": 1138,
+          "w": 290,
+          "h": 44,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              1143,
+              264,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The question",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 31148,
+      "ok": true,
+      "load_ms": 214,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 88.6,
+          "variance": 693.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "If the pilot finds something, the team plans to seek federal grants",
+          "x": 72,
+          "y": 150,
+          "w": 540,
+          "h": 241,
+          "font_px": 61.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              142,
+              392,
+              76
+            ],
+            [
+              72,
+              202,
+              511,
+              76
+            ],
+            [
+              72,
+              263,
+              509,
+              76
+            ],
+            [
+              72,
+              323,
+              165,
+              76
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Alicia Swan of the South Texas Veterans Health Care System is one of its leads. The tool is meant to support clinicians, not replace them.",
+          "x": 74,
+          "y": 419,
+          "w": 560,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              419,
+              447,
+              42
+            ],
+            [
+              74,
+              462,
+              523,
+              42
+            ],
+            [
+              74,
+              505,
+              466,
+              42
+            ],
+            [
+              74,
+              547,
+              538,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What comes next",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c4 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 46690,
+      "ok": true,
+      "load_ms": 417,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 139.8,
+          "variance": 2356.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+ "date": "2026-11-16",
+ "carousel_no": 79,
+ "document_title": "A $200,000 grant funds a one year UT San Antonio pilot that plans to analyze veterans' recorded stories with natural language processing",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Standard tests can miss the struggle.\n\nMany veterans Rocio Norman treated reported trouble finding words, even when standard tests showed no clear impairment.\n\nResearchers at the San Antonio VA already recorded veterans describing how they were injured and an important life event. A $200,000 San Antonio Medical Foundation grant funds a one year UT San Antonio pilot to analyze them with natural language processing. It looks for speech features linked to mild brain injury. The measuring is still a plan.\n\nToday detailed language analysis takes slow transcription and coding, often by several reviewers. The tool is meant to support clinicians, not replace them.\n\nIf software can find communication differences, will they track anxiety, post traumatic stress, depression and sleep difficulties?\n\n#SanAntonio #BexarCounty #UTSanAntonio",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Speech as data",
+   "headline": "Can a spoken story be measured?",
+   "claims": [
+    "c3",
+    "c6",
+    "c2"
+   ],
+   "cite": "c3 c6 c2",
+   "body": "A one year pilot plans to measure speech features linked to mild brain injury in veterans. It received a $200,000 San Antonio Medical Foundation grant.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Can a spoken story be measured?",
+    "A one year pilot plans to measure speech features linked to mild brain injury in veterans. It received a $200,000 San Antonio Medical Foundation grant.",
+    "Speech as data",
+    "01 / 09",
+    "c3 c6 c2"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The struggle",
+   "headline": "The words are there. Finding them is hard.",
+   "claims": [
+    "c16",
+    "c17"
+   ],
+   "cite": "c16 c17",
+   "body": "Many veterans Rocio Norman treated reported trouble finding words or keeping up in fast or noisy talk, even when standard tests showed no clear impairment. The table, the people and their voice ribbons are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The words are there. Finding them is hard.",
+    "Many veterans Rocio Norman treated reported trouble finding words or keeping up in fast or noisy talk, even when standard tests showed no clear impairment. The table, the people and their voice ribbons are drawn to illustrate.",
+    "The struggle",
+    "02 / 09",
+    "c16 c17"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The tests",
+   "headline": "Most adult language tests were built for other conditions",
+   "claims": [
+    "c18"
+   ],
+   "cite": "c18",
+   "body": "Rocio Norman says they were made for aphasia after a stroke or for severe brain injury. The sieve is drawn to illustrate.",
+   "labels": [
+    "Aphasia after a stroke",
+    "Severe brain injury"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Most adult language tests were built for other conditions",
+    "Rocio Norman says they were made for aphasia after a stroke or for severe brain injury. The sieve is drawn to illustrate.",
+    "Aphasia after a stroke",
+    "Severe brain injury",
+    "The tests",
+    "03 / 09",
+    "c18"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The clinician",
+   "headline": "Rocio Norman has worked with veterans for 18 years",
+   "claims": [
+    "c5",
+    "c2"
+   ],
+   "cite": "c5 c2",
+   "body": "She is a speech language pathologist and one of the researchers on the grant. One block of cards per year, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Rocio Norman has worked with veterans for 18 years",
+    "She is a speech language pathologist and one of the researchers on the grant. One block of cards per year, drawn to illustrate.",
+    "The clinician",
+    "04 / 09",
+    "c5 c2"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The recordings",
+   "headline": "The veterans' stories are already recorded",
+   "claims": [
+    "c6",
+    "c7"
+   ],
+   "cite": "c6 c7",
+   "body": "At the San Antonio VA they described how they were injured and an important life event, at several points during treatment. The stone and its gold lines are drawn to illustrate.",
+   "labels": [
+    "How they were injured",
+    "An important life event"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The veterans' stories are already recorded",
+    "At the San Antonio VA they described how they were injured and an important life event, at several points during treatment. The stone and its gold lines are drawn to illustrate.",
+    "How they were injured",
+    "An important life event",
+    "The recordings",
+    "05 / 09",
+    "c6 c7"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Today",
+   "headline": "Today the work starts with slow transcription",
+   "claims": [
+    "c10"
+   ],
+   "cite": "c10",
+   "body": "Detailed language analysis also takes coding, often by several reviewers. The hand and pages are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Today the work starts with slow transcription",
+    "Detailed language analysis also takes coding, often by several reviewers. The hand and pages are drawn to illustrate.",
+    "Today",
+    "06 / 09",
+    "c10"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The plan",
+   "headline": "The team names 4 features it plans to assess",
+   "claims": [
+    "c8",
+    "c20",
+    "c3"
+   ],
+   "cite": "c8 c20 c3",
+   "body": "Natural language processing is meant to turn them into measurable data in a one year pilot. The dark windows are drawn to illustrate.",
+   "labels": [
+    "Coherence",
+    "Emotional tone",
+    "Organization",
+    "Level of detail"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The team names 4 features it plans to assess",
+    "Natural language processing is meant to turn them into measurable data in a one year pilot. The dark windows are drawn to illustrate.",
+    "Coherence",
+    "Emotional tone",
+    "Organization",
+    "Level of detail",
+    "The plan",
+    "07 / 09",
+    "c8 c20 c3"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The question",
+   "headline": "Can automation spot the differences?",
+   "claims": [
+    "c11",
+    "c8"
+   ],
+   "cite": "c11 c8",
+   "body": "That is the immediate goal, along with how they relate to anxiety, post traumatic stress, depression and sleep difficulties. The leads hang unplugged, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Can automation spot the differences?",
+    "That is the immediate goal, along with how they relate to anxiety, post traumatic stress, depression and sleep difficulties. The leads hang unplugged, drawn to illustrate.",
+    "Coherence",
+    "Emotional tone",
+    "Organization",
+    "Level of detail",
+    "Anxiety",
+    "Post traumatic stress",
+    "Depression",
+    "Sleep difficulties",
+    "The question",
+    "08 / 09",
+    "c11 c8"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What comes next",
+   "headline": "If the pilot finds something, the team plans to seek federal grants",
+   "claims": [
+    "c12",
+    "c4",
+    "c9"
+   ],
+   "cite": "c12 c4 c9",
+   "body": "Alicia Swan of the South Texas Veterans Health Care System is one of its leads. The tool is meant to support clinicians, not replace them.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "If the pilot finds something, the team plans to seek federal grants",
+    "Alicia Swan of the South Texas Veterans Health Care System is one of its leads. The tool is meant to support clinicians, not replace them.",
+    "What comes next",
+    "09 / 09",
+    "c12 c4 c9"
+   ]
+  }
+ }
+}
