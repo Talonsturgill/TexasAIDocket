@@ -20083,5 +20083,182 @@
   ],
   "id": "tx-2026-0248",
   "last_verified": "2026-11-15"
+ },
+ {
+  "title": "UT San Antonio and the VA test whether AI can read signs of mild brain injury in veterans' own stories",
+  "summary": "The San Antonio Medical Foundation gave a $200,000 grant to a one year pilot. Researchers at UT San Antonio and the South Texas Veterans Health Care System lead it. UT Health San Antonio announced it on November 5th, 2026. The study uses natural language processing, a form of AI, on recordings already made at the San Antonio VA. In them veterans describe how they were injured and an important life event. The recordings were made at several points during treatment. The transcribed speech is measured for coherence, emotional tone, organization and level of detail. Today that analysis takes slow transcription and coding, often by several reviewers. The team says the tool would support clinicians and not replace them. The first question is whether an automated method can find communication differences at all. The second is how those differences track symptoms such as anxiety, depression and poor sleep. The source reports no results yet.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "San Antonio Medical Foundation, funding a UT San Antonio and VA research team",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Bexar"
+   ],
+   "on_ercot": false
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-05",
+    "kind": "filed",
+    "note": "UT Health San Antonio announces the grant funded pilot"
+   }
+  ],
+  "public_access": {
+   "room": "closed",
+   "how": "A research grant has no public comment process. The study is a pilot and no clinic uses the tool.",
+   "url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Researchers at UT San Antonio are leading a project to turn veterans' language into data for clinicians treating mild traumatic brain injury.",
+    "verbatim_quote": "A new collaborative research project is bringing together researchers from The University of Texas at San Antonio with expertise in speech-language pathology, artificial intelligence and veteran care and rehabilitation to turn language into data that could help clinicians better understand, and ultimately treat, cognitive and communication difficulties.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c1"
+   },
+   {
+    "text": "The project received a $200,000 grant from the San Antonio Medical Foundation.",
+    "verbatim_quote": "Alicia Swan, PhD, Vivian Ta-Johnson, PhD, and Rocio Norman, PhD, CCC-SLP, received a $200,000 collaborative grant from the San Antonio Medical Foundation.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c2"
+   },
+   {
+    "text": "It is a one year proof of concept study. It uses natural language processing to measure speech and language features linked to mild brain injury.",
+    "verbatim_quote": "The one-year, proof-of-concept study will use natural language processing, a form of artificial intelligence, to analyze and measure speech and language patterns associated with mTBI, with the intention of creating a tool that would make language analysis practical during a routine clinic visit.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c3"
+   },
+   {
+    "text": "One of the three leads is Alicia Swan, director of rehabilitation research at the South Texas Veterans Health Care System.",
+    "verbatim_quote": "Alicia Swan, PhD, an mTBI expert and director of rehabilitation research at the South Texas Veterans Health Care System within the Department of Veterans Affairs.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c4"
+   },
+   {
+    "text": "Rocio Norman is a speech language pathologist and co-principal investigator. She has worked with veterans for 18 years.",
+    "verbatim_quote": "For Norman, a speech-language pathologist who has worked with veterans for 18 years",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c5"
+   },
+   {
+    "text": "The study draws on recordings already collected at the San Antonio VA, in which veterans described how they were injured and an important life event.",
+    "verbatim_quote": "The study builds on data from a targeted auditory plasticity study that Norman leads at the San Antonio VA, where researchers have already collected recordings in which veterans described how they were injured and recounted an important life event.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c6"
+   },
+   {
+    "text": "The recordings were made at several points during treatment.",
+    "verbatim_quote": "The recordings were collected at multiple points during treatment.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c7"
+   },
+   {
+    "text": "The transcribed recordings are measured for coherence, emotional tone, organization and level of detail.",
+    "verbatim_quote": "allowing the team to assess features such as coherence, emotional tone, organization and level of detail.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c8"
+   },
+   {
+    "text": "The researchers say the tool is meant to support clinicians and not replace them.",
+    "verbatim_quote": "The researchers emphasize that the technology is intended to support clinicians, not replace them.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c9"
+   },
+   {
+    "text": "Today detailed language analysis takes slow transcription and coding, often by several reviewers.",
+    "verbatim_quote": "Detailed language analysis currently requires time-consuming transcription and coding, often by multiple reviewers.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c10"
+   },
+   {
+    "text": "The immediate goal is to learn whether an automated method can objectively identify communication differences and how they relate to symptoms such as anxiety, post traumatic stress, depression and sleep difficulties.",
+    "verbatim_quote": "the immediate goal is to determine whether an automated method can objectively identify communication differences and how those differences relate to neurobehavioral symptoms such as anxiety, post-traumatic stress, depression and sleep difficulties.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c11"
+   },
+   {
+    "text": "If the pilot finds something meaningful, the team plans to seek larger federal grants.",
+    "verbatim_quote": "If the pilot produces meaningful findings, the team plans to seek larger federal grants",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c12"
+   },
+   {
+    "text": "Norman says the team hopes speech could become a biomarker for mild brain injury.",
+    "verbatim_quote": "We use the term ‘biomarker’ because we hope speech could become a biomarker for mild TBI.",
+    "source_url": "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/",
+    "source_title": "UT Health San Antonio, Collaborative AI project seeks to improve care for veterans with mild brain injuries",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c13"
+   },
+   {
+    "text": "The VA lists its Audie L. Murphy Memorial Veterans Hospital in San Antonio at ZIP code 78229.",
+    "verbatim_quote": "San Antonio, TX 78229-4404",
+    "source_url": "https://www.va.gov/south-texas-health-care/locations/audie-l-murphy-memorial-veterans-hospital/",
+    "source_title": "VA South Texas health care, Audie L. Murphy Memorial Veterans Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c14"
+   },
+   {
+    "text": "Census Bureau records place ZIP code area 78229 in Bexar County.",
+    "verbatim_quote": "221704258477524|78229|ZCTA5 78229|14973958|22716|G6350|B5|S|27590475823262|48029|Bexar County|3212413223|40802184|G4020|H1|A|14973958|22716",
+    "source_url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/zcta520/tab20_zcta520_county20_natl.txt",
+    "source_title": "US Census Bureau, 2020 ZCTA to county relationship file",
+    "source_type": "primary_official",
+    "fetched": "2026-11-16",
+    "id": "tx-2026-0249-c15"
+   }
+  ],
+  "notes_for_editor": "Admitted on UT Health San Antonio's own announcement. The county rests on the VA's address for its San Antonio hospital and the Census ZIP to county file. The article says only the San Antonio VA, so the hospital is the system's San Antonio medical center by that reading.",
+  "history": [
+   {
+    "date": "2026-11-16",
+    "note": "Admitted on UT Health San Antonio's announcement of the pilot. The study has begun and reports no findings yet."
+   }
+  ],
+  "id": "tx-2026-0249",
+  "last_verified": "2026-11-16"
  }
 ]
