@@ -11,7 +11,7 @@ The University of Texas Medical Branch migrated its electronic health record fro
 - Public access: Write to the decider
 - Take part: https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives
 
-- Last checked: 2026-11-13
+- Last checked: 2026-11-16
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · UTMB's move of its health record into Microsoft's cloud stands as the university described it.
 - 2026-11-10 · UTMB's move of its Epic record into Microsoft's cloud still reads as the university described it.
 - 2026-11-13 · UTMB's account of moving its Epic health record into Microsoft's cloud reads unchanged.
+- 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

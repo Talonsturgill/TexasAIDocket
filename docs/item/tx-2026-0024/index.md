@@ -9,7 +9,7 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-11-15
+- Last checked: 2026-11-16
 
 ## Dates
 
@@ -77,6 +77,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · The commission's live calendar feed keeps publishing open meetings far ahead.
 - 2026-11-14 · The commission's live calendar still lists open meetings well into the summer of next year. Past dates have dropped off the feed as they passed, which is how the feed works.
 - 2026-11-15 · Checked and unchanged. Still open, with no dated movement.
+- 2026-11-16 · The October and early November meetings have passed and dropped off the feed, as past listings do. The calendar now leads with an open meeting on November 19th and lists a public comment deadline on December 14th. The schedule still runs into 2027.
 
 ## Evidence
 
@@ -139,6 +140,18 @@ Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.
 ### The feed's next open meeting is on November 5th, 2026, in the commissioners hearing room.
 
 > Open Meeting - Thursday, November 5, 2026 Commissioners Hearing Room 7-100 ( Open To Public )
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+
+### The commission's next open meeting on the feed is Thursday, November 19th, in its hearing room, open to the public.
+
+> Open Meeting - Thursday, November 19, 2026 Commissioners Hearing Room 7-100 ( Open To Public )
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+
+### The feed lists a public comment deadline on Monday, December 14th.
+
+> Public Comment Deadline - Monday, December 14, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 

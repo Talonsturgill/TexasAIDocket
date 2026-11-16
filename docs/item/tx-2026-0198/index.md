@@ -12,7 +12,7 @@ Kodiak AI announced on September 25th, 2026 that its first driverless long-haul 
 - Public access: Write to the decider
 - Take part: https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane
 
-- Last checked: 2026-11-13
+- Last checked: 2026-11-16
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · Kodiak's first named driverless lane is still the Dallas to Houston stretch of Interstate 45.
 - 2026-11-10 · Kodiak's Interstate 45 driverless lane from Dallas to Houston still reads as the company described it.
 - 2026-11-13 · Kodiak's description of Interstate 45 as its first driverless truck lane reads unchanged.
+- 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

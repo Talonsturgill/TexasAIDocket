@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has opened Project 59550, the quinquennia
 - Comment closes: 2026-09-17
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-11-13
+- Last checked: 2026-11-16
 
 ## Dates
 
@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · The comment window closed on September 17th.
 - 2026-11-10 · The commission's review of the ERCOT offer caps still sits past its closed comment window.
 - 2026-11-13 · The comment window closed on September 17th.
+- 2026-11-16 · The comment window closed on September 17th.
 
 ## Evidence
 

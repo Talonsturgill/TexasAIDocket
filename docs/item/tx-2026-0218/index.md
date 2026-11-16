@@ -1,6 +1,6 @@
 # USDA's Kerrville laboratory builds AI models that pick where, when and how many sterile flies to release against New World screwworm
 
-The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones. The Texas Animal Health Commission counts 69 premises in 22 Texas counties with a confirmed detection, the first in a Zavala County calf on June 3rd. The drones' count of no cases covers only what the flights observed. An agency page last modified July 31st says USDA's dispersal facility in Edinburg deploys more than 80 million sterile flies a week over Texas and Mexico. The commission keeps movement restrictions in place across an established infested zone.
+The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones. The Texas Animal Health Commission counts 77 premises in 25 Texas counties with a confirmed detection, the first in a Zavala County calf on June 3rd. The drones' count of no cases covers only what the flights observed. An agency page last modified July 31st says USDA's dispersal facility in Edinburg deploys more than 80 million sterile flies a week over Texas and Mexico. The commission keeps movement restrictions in place across an established infested zone.
 
 - Topic: research-and-science
 - Decided by: U.S. Department of Agriculture, Agricultural Research Service (federal)
@@ -20,7 +20,7 @@ The USDA Agricultural Research Service says it is managing New World screwworm w
 - Public access: Write to the decider
 - Take part: https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm
 
-- Last checked: 2026-11-13
+- Last checked: 2026-11-16
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · The commission now counts 66 Texas premises in 22 counties with a confirmed screwworm detection, up from 64 premises in 21 counties. The infested zone now reaches parts of Fisher, Mitchell, Nolan and Scurry counties too.
 - 2026-11-10 · The commission now counts 69 Texas premises with a confirmed screwworm detection, up from 66, still across 22 counties. The infested zone covers the same counties it did on November 7th.
 - 2026-11-13 · The commission now counts 72 Texas premises in 24 counties with a confirmed screwworm detection, up from 69 premises in 22 counties. The infested zone has spread into parts of Bandera, Irion, Medina and Reagan counties. The USDA laboratory's account of the AI models that steer the sterile fly releases reads as cited.
+- 2026-11-16 · The commission now counts 77 Texas premises in 25 counties with a confirmed screwworm detection, up from 72 premises in 24 counties. The infested zone has spread into parts of Brooks, Dimmit, Frio, Goliad, La Salle and Zavala counties. The USDA laboratory's account of its AI release models reads as cited.
 
 ## Evidence
 
@@ -245,6 +246,24 @@ Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
 ### The infested zone's movement restrictions now reach parts of Bandera, Irion, Medina and Reagan counties as well.
 
 > There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Bandera, Brewster, Crockett, Culberson, Edwards, El Paso, Fisher, Hudspeth, Irion, Jeff Davis, Jim Hogg, Medina, Mitchell, Nolan, Pecos, Presidio, Reagan, Reeves, Schleicher, Scurry, Starr, Sutton, Terrell, Val Verde, Zapata.
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The commission now counts 25 Texas counties with a confirmed screwworm detection.
+
+> Total Texas counties with a confirmed NWS detection: 25
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The commission now counts 77 Texas premises confirmed with at least one screwworm detection.
+
+> Total Texas premises confirmed with at least one NWS detection: 77
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The infested zone's movement restrictions now reach parts of Brooks, Dimmit, Frio, Goliad, La Salle and Zavala counties as well.
+
+> There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Bandera, Brewster, Brooks, Crockett, Culberson, Dimmit, Edwards, El Paso, Fisher, Frio, Goliad, Hudspeth, Irion, Jeff Davis, Jim Hogg, La Salle, Medina, Mitchell, Nolan, Pecos, Presidio, Reagan, Reeves, Schleicher, Scurry, Starr, Sutton, Terrell, Val Verde, Zapata, Zavala.
 
 Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
 
