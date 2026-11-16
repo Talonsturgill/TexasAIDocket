@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Four frames hold up: 1, 3, 7 and 8. Frame 1: the extruded gold waveform runs off both edges, the caliper sits open over it, and the headline has clean cerulean sky behind it. Frame 7: four rounded aluminium gauge heads recede and overlap with contact shadows on a blue-to-peach sweep. Frame 8: braided indigo leads hang unplugged above 4+4 hex terminals on brushed aluminium. TXBENCH reports relief height 76.1, 11 materials and cast fraction 0.52, and the headline sits in its own column. Frame 3: the brass sieve cutaway has cast shadows (relief height 82.9, cast 0.54). Five frames pull the score down. Frame 9: a blotchy boxy halo from the type wash is visible in the sky around y 880 to 940 and up beside the oak. The tree reads flat and pasted. The ribbon is orange-red, not dusk gold, and the subject (ribbon plus a small caliper) fills well under half the frame. The storyboard's coil on a limestone ledge was never built. Frame 2: the foreground hands around the mug are mannequin-like with malformed fingers, the only 'others' is a magenta blur at top right, and the dek mentions plural 'voice ribbons' when one appears. Frame 6: the lamp hangs at upper left over the stacks, but the brightest pages are lower centre with no pool of light falling from the lamp onto them. The bottom third (y 1450 to 1900) is empty walnut, and the paper waveform is clipped at the left edge with a stray white wedge near x 0, y 1220. Frame 5: the cantera surface is covered in scribbled stroke marks that read as a hatch texture at 432 px. Its relief is shallow (height 41.8, cast 0.25), and machine_qa flags a dead lower zone. Frame 4: a handsome raking-light drawer, but the 18 blocks the dek promises are not individually countable at feed size. This is 'strong overall' with more than one frame leaning on a defect, so below the 7 descriptor's single-frame allowance at its upper edge, not higher."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds. Display serif and mono furniture are identical on all nine, as are the counter, the site line, indigo pills and indigo-leaning shadows. The gold ribbon motif changes state through 1, 2, 3, 5, 6 (as paper white), 7 and 9, and the story runs in order. Two softenings. Frames 4 and 5 move into a peach-mauve field that sits at the edge of the explainer palette. The accent drifts to orange-red on frame 9, which weakens the motif at the close, where it should resolve. Frame 5's gold label pills also put the accent on furniture."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces. $200,000 comes from c2 and grant_usd, 18 from c5 and norman_years, and 4 from c8 and features_named. The slide counts match the figures: 2 stones (tests_built_for), 2 inlays (recording_prompts), 4 gauges, 4+4 terminals. Every claim is from one primary institutional page, re-quoted closely. The future tense is held throughout ('plans to', 'meant to', 'The measuring is still a plan'). Small looseness: slide 7 says 'names 4 features' where the source says 'features such as'. That is accurate as a count of what is named but reads a shade more final. The grant comes from the grantee's announcement because the foundation record was not fetched, which the rejected list states. first_comment.txt lists c1 to c20 but omits c4, which slide 9 cites. The URL is the same, so this is not a fetch failure."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Who (UT San Antonio, San Antonio Medical Foundation, Norman, Swan of South Texas VA), what ($200,000, a one year pilot, 4 features, 4 symptoms), where (the San Antonio VA, #BexarCounty) and what next (federal grants only if it finds something) are all named. The stake for a Texan is stated generally. There is no decision or deadline a reader can act on, and the veteran's benefit is implied, not made concrete."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover question earns the swipe, and frame 2 pays at once with the human difficulty. Frames 3 and 5 set up why. The turn at 6 to 7 (slow paper, then four dark instruments) is real, and frame 8 frames the actual research question well. Frame 4 (the clinician's 18 years) could move or merge without loss. The close is honest but soft, and its weak art dulls the landing."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, measured and on register, with no banned words, colons or dashes seen. 'The words are there. Finding them is hard.' is strong. The repeated 'drawn to illustrate' disclaimer on 7 of 9 deks is flat, mechanical copy. Texas specificity is mostly carried by the art (cantera, the Tower of the Americas skyline) and little by the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Explainer tone with type in four positions and nine distinct worlds (studio, room, relief, macro, relief, lamplit interior, instrument line, panel, outdoor still life). That differs from the previous day's people-tone school rooms and the earlier dark staged kit scenes, as art_preflight's plan states. One familiar move: the kit conference_table room is used twice (2 and 6), in the same warm-wood interior idiom recent decks have used."
+  }
+ ],
+ "weighted_score": 7.59,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 9 as the close the storyboard planned: the polished dusk-gold ribbon in one unbroken coil on a limestone ledge, filling at least half the frame under real oak shade. Remove the boxy type-wash halo by seating the headline on sky the composition leaves clear, so the deck's motif resolves in its own accent instead of ending on an orange-red line and a pasted tree.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The type wash leaves a visible boxy halo in the sky (around y 880 to 940 and beside the oak). The tree is flat and pasted. The ribbon is orange-red, not the dusk gold accent. The ribbon and a small caliper fill well under half the frame.",
+   "fix": "Lower the camera to ledge height so a dusk-gold #E0956A ribbon coil and the open caliper fill the bottom half on limestone with oak-shade casts. Drop the wash and set the headline in the open sky above the gate."
+  },
+  {
+   "slide": 2,
+   "problem": "The foreground hands around the blue mug are mannequin-like with malformed fingers, and they are the sharpest thing in the frame. The 'others talking' are an unreadable magenta blur, so the 'one short ribbon among long ones' idea never shows.",
+   "fix": "Crop the hands to a wrist and sleeve at the bottom edge, or swap in the kit's finished hand model. Bring two indigo talk ribbons across the table in mid focus so the short gold ribbon reads by contrast."
+  },
+  {
+   "slide": 6,
+   "problem": "The lamp hangs at upper left over the stacks, but the brightest pages sit lower centre with no visible cone or pool from the lamp. The bottom third (y 1450 to 1900) is dead walnut, and the paper waveform clips the left edge with a stray white wedge.",
+   "fix": "Move the lamp over the open transcript so its pool visibly lands there with a falloff on the walnut. Dolly in so the transcript and the hand occupy the lower half, and keep the waveform inside the frame."
+  },
+  {
+   "slide": 5,
+   "problem": "The cantera surface carries dense scribbled stroke marks that read at 432 px as a hatch texture over the frame. The relief is shallow (height 41.8, cast fraction 0.25), and machine_qa flags a dead lower zone.",
+   "fix": "Replace the stroke normal map with a pore-and-chisel height field at lower frequency. Deepen the inlay channels so the gold casts long raking shadows. Run the lower ribbon down into the bottom third under the dek."
+  },
+  {
+   "slide": 4,
+   "problem": "The dek promises one block of cards per year, but the 18 blocks are not individually countable at feed size because the terracotta dividers merge in the receding run.",
+   "fix": "Raise the camera slightly and widen the divider spacing so 18 terracotta tabs read as separate steps at 432 px, with the near tabs larger and sharp."
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "This is a bespoke deck, and the nine frames really are nine different pictures. S1 is a gold waveform with a caliper on a cerulean sweep that runs off both edges. S3 is a brass sieve relief, S4 an oak card drawer, S5 two gold inlays in stone, S6 a lamplit table at blue hour, S7 four receding gauge heads, S8 a patch panel with eight unplugged leads, and S9 a caliche ground with a San Antonio skyline through a ranch gate. S1, S4, S7 and S8 pass the LOOK V2 showstopper test at feed size. Each has one rounded subject, saturated tone colour, indigo shadows and contact. Several frames hold the score down. S2 is built from mannequin kit figures with deformed hands around the blue mug, the background is blurred blocks, and the gold ribbon is a small floating shape that does not read as speech at 432 px. S9's headline wash shows as a hard pale-edged rectangle that cuts into the live oak, the skyline is flat cardboard, and the ribbon reads as a centipede. S6 has a disembodied hand coming in from the right edge. S3's rim is cut open at both sides and reads at thumb size as a broken model rather than a cutaway. S7's text wash is a visible dark cloud over the sky."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds. The same serif headline and mono kicker, counter and site line sit on every frame, and the explainer blue dominates. The gold accent means the veteran's voice on S1, S2, S3, S5, S7 and S9 and is withheld on S4, S6 and S8, as the storyboard declares. The ribbon changing state and the unread instrument (an open caliper on S1 and S9, dark windows on S7, unplugged leads on S8) are two continuity devices doing real work. The open caliper reappearing on the close is a good rhyme. S4 (mauve and orange) and S5 (pink stone) sit furthest from the blue on the filmstrip, but the tone and type keep them in the deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. $200,000 is c2, one year is c3, 18 years is c5 and the 4 features are c8, all in figures.json, and the S4 card blocks are counted from norman_years. The deck consistently keeps the measuring in the future tense ('plans to', 'is meant to', and the caption's 'The measuring is still a plan'), and it invents no sample size or result. There are two things to dock. Every claim rests on one source, the grantee's own newsroom, and the foundation's award record was not fetched, which claims.json admits under rejected. Two headlines also state Norman's view as fact, with the attribution only in the smaller body: S3 'Most adult language tests were built for other conditions' (c18 is 'Norman said') and S2 'The words are there' (c17 is her quote). The caption's 'will they track anxiety' is slightly looser than c11's 'how those differences relate to'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened (a pilot to analyse veterans' recorded speech for mild brain injury), where (the San Antonio VA, S5), and who paid (the San Antonio Medical Foundation, S1). They also learn why it exists: S2 shows standard tests missing a real struggle. The institution running the pilot, UT San Antonio, is never named on any slide. It appears only in the caption and the document title, so a reader of the frames alone doesn't know whose project this is. There is nothing to do next. No enrolment, no clinic, no start date and no point of contact, and the deck doesn't say that none exists. That is honest about the source, but it leaves the reader-lens question 'what can they do' unanswered. The stake for Texas veterans stays general, because the deck has no count of how many it could reach and says nothing about that missing number."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The S1 question 'Can a spoken story be measured?' earns the swipe. S2 pays it off at once with the human problem, and S3 explains why the tests miss it. The turn from voice to paper at S6 and on to instruments at S7 and S8 is where understanding changes. S9 lands on an honest 'if it finds something', with the support-not-replace line. S4, the clinician's 18 years, could move or merge into S2 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean, plain and on register, with no boosterism and no doom. 'The words are there. Finding them is hard.' is a good line. The repeated disclaimer drags the read: '...drawn to illustrate' closes the body on S2, S3, S4, S5, S6, S7 and S8, seven times, and a feed reader will hear it as boilerplate. Texas specificity is thin beyond 'San Antonio' and the skyline on S9."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A veterans' health research story, a question cover on a physical waveform, and a mixed relief and spatial bespoke build are a fresh concept against the record's usual grid, data-centre and policy decks. One familiar move is that the explainer-blue tone matches the Nov 14 v2 proof deck's register. I did not walk the full artwork ledger for the last four decks, so this is not scored higher."
+  }
+ ],
+ "weighted_score": 7.45,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put UT San Antonio's name and the plain status line ('no results yet, not enrolling, findings decide whether federal grants follow') on the frames themselves, S1 or S9, so a reader who never opens the caption knows whose pilot this is and what, if anything, they can do, and cut the seven repeated 'drawn to illustrate' tails to one line on the close.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "The mannequin kit figures have deformed hands on the mug, the background is unreadable blurred blocks, and the small floating gold ribbon doesn't read as speech at feed size",
+   "fix": "Re-crop to a tight over-the-shoulder close-up where the gold ribbon leaves the speaker's side of the frame and breaks into fragments across the table at half the frame's width. Push the figures out of focus past the hands, or crop the hands out entirely."
+  },
+  {
+   "slide": 9,
+   "problem": "The headline wash shows as a hard pale-edged rectangle clipping the live oak, the flat cardboard skyline weakens the depth, and the ribbon reads as a centipede",
+   "fix": "Feather the type wash into the sky gradient so it has no visible edge, move the oak clear of the type column, and lay the ribbon as a smooth machined strip with a contact shadow, matching its S1 form, instead of a serrated edge."
+  },
+  {
+   "slide": 6,
+   "problem": "A disembodied hand comes in from the right edge with no arm or person, and the stacks on the left are cramped",
+   "fix": "Bring a cropped sleeve and forearm into frame from the lower right so the hand belongs to someone, or remove the hand and let the lamp pool fall on the open transcript as the single subject."
+  },
+  {
+   "slide": 3,
+   "problem": "The sieve rim is cut open at both sides and reads at thumb size as a broken model, and the frame looks flatter than its neighbours",
+   "fix": "Close the rim, or show the cutaway with a clear cut face and an inner wall shade, and lower the raking key so the stones and grains cast longer shadows onto the pan."
+  },
+  {
+   "slide": 7,
+   "problem": "The headline wash is a visible dark cloud over the sky, and the feature pills float on the floor away from the gauges they name",
+   "fix": "Seat the type in the sky's own gradient without a blotch wash, and anchor each pill directly under its own gauge base, with the first gauge's pill under the cropped head."
+  }
+ ]
+}

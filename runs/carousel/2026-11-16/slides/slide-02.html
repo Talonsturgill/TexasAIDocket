@@ -1,0 +1,338 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-16, carousel no. 79, frame 2 of 9, the struggle. A spatial scene through txthree.js in a room built by
+     TXT.interior: a family table at late morning, the window behind it, seen over the shoulder of one seated man. Long
+     fast indigo voice ribbons loop between the three others across the table. His own gold voice ribbon, the deck's
+     accent and the only gold on the frame, leaves him and stops short over the wood. No face shows distress and nothing
+     on the frame is a reading. People, table and ribbons are drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:300px; top:146px; width:700px; text-align:right">The words are there. Finding them is hard.</h1>
+<p class="dek" id="dek" style="left:296px; width:704px; top:1000px; text-align:right">Many veterans Rocio Norman treated reported trouble finding words or keeping up in fast or noisy talk, even when standard tests showed no clear impairment. The table, the people and their voice ribbons are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-16-voicebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The struggle", counter: "02 / 09", src: "c16 c17", fit: { min: 64, max: 90, maxLines: 3 } });
+  /* THIS FRAME DRAWS NO COUNT. window.FIG is empty and nothing here is read from it or stands for a figure. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 2 carries no figure, FIG must stay empty');
+
+  /* the type is a right aligned column high on the right, over the quiet wall above the far talkers */
+  /* the headline hangs high on the right over the quiet wall; the dek stands low on the right over the dark rug under the
+   * table, its foot just above the site line, so the middle band is left to the talk */
+  { const h = document.getElementById('hook'), d = document.getElementById('dek');
+    d.style.top = Math.round(1196 - d.getBoundingClientRect().height) + 'px';
+    const hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (hb.bottom > 610) throw new Error('the hook runs to ' + Math.round(hb.bottom) + ' px, down into the talkers');
+    if (db.top < 900) throw new Error('the dek climbs to ' + Math.round(db.top) + ' px, up into the table top'); }
+
+  const FOV = 44;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 60, fog: 0 });
+
+  /* THE ROOM: a blue painted kitchen, warm oak floor, a tall window in the back wall on the left */
+  const RW = 5.2, RD = 4.6, RH = 2.75;
+  TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: 0x2f6fd0, trim: 0x1d2f6a, window: 'back', windowW: 1.5, windowH: 1.75, windowColor: 0xffffff, windowI: 1.0, ceiling: true, light: 0.9 });
+  R.scene.background = new THREE.Color('#1c3d8f');
+  /* the view out of the window: a late morning sky over a live oak canopy and a caliche yard, painted soft as seen through glass */
+  { const sky = CH.canvasTex(THREE, 512, 600, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#7cc4ff'); gr.addColorStop(0.55, '#cdeaff'); gr.addColorStop(0.75, '#fff1d8'); gr.addColorStop(1, '#f2d7a8'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      const r = CH.rng(7); g.filter = 'blur(6px)';
+      for (let i = 0; i < 70; i++) { const x = r() * w, y = h * (0.42 + r() * 0.28), rad = 30 + r() * 60; g.fillStyle = ['#4f7a44', '#6e8f4e', '#3e6a40', '#87a75c'][i % 4]; g.globalAlpha = 0.85; g.beginPath(); g.arc(x, y, rad, 0, Math.PI * 2); g.fill(); }
+      g.globalAlpha = 1; g.fillStyle = '#5a4632'; g.fillRect(w * 0.62, h * 0.6, 18, h * 0.3); g.filter = 'none'; });
+    let swapped = 0;
+    R.room.traverse(o => { if (o.isMesh && o.material && o.material.isMeshBasicMaterial) { o.material = new THREE.MeshBasicMaterial({ map: sky, color: new THREE.Color(1.15, 1.12, 1.08) }); o.material.userData.txSurface = false; swapped++; } });
+    if (swapped !== 1) throw new Error('expected one window pane, found ' + swapped); }
+
+  /* the window frame: a painted cream casing, mullions and a deep sill around the kit's lit pane */
+  const BZ = -RD / 2 + 0.11, WX = -1.75, WY = RH * 0.55;
+  R.room.traverse(o => { if (o.isMesh && o.material && o.material.isMeshBasicMaterial) o.position.x = WX; });
+  const trimM = new THREE.MeshStandardMaterial({ color: 0xf2ead8, roughness: 0.55 }); trimM.name = 'paint-trim';
+  const frameBar = (w, h, x, y) => { const m = TXT.roundedBox(w, h, 0.07, 0.012, trimM); m.position.set(x, y, BZ + 0.03); m.castShadow = false; m.receiveShadow = true; R.scene.add(m); return m; };
+  frameBar(1.66, 0.08, WX, WY + 0.915); frameBar(1.66, 0.08, WX, WY - 0.915);
+  frameBar(0.08, 1.9, WX - 0.79, WY); frameBar(0.08, 1.9, WX + 0.79, WY);
+  frameBar(0.04, 1.75, WX, WY); frameBar(1.5, 0.035, WX, WY + 0.2);
+  { const sill = TXT.roundedBox(1.86, 0.045, 0.2, 0.012, trimM); sill.position.set(WX, WY - 0.97, BZ + 0.1); R.scene.add(sill); }
+
+  /* THE WALL: hand troweled plaster in the tone's deep blue (a seeded mottle in its albedo and roughness), a panelled
+   * wainscot to chair rail height in a deeper navy, and a door casing on the right for depth */
+  { const plaster = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+      g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); const r = CH.rng(29);
+      for (let i = 0; i < 900; i++) { const x = r() * w, y = r() * h, rad = 6 + r() * 34, v = 200 + Math.round(r() * 55); g.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',0.22)'; g.beginPath(); g.ellipse(x, y, rad * 1.8, rad, r() * 3, 0, Math.PI * 2); g.fill(); }
+      const im = g.getImageData(0, 0, w, h); for (let i = 0; i < w * h; i++) { const n = (r() - 0.5) * 16; im.data[i * 4] += n; im.data[i * 4 + 1] += n; im.data[i * 4 + 2] += n; } g.putImageData(im, 0, 0); }, [3, 2]);
+    let walls = 0;
+    R.room.traverse(o => { if (o.isMesh && o.material && o.material.isMeshStandardMaterial && o.material.roughness > 0.9) { o.material.map = plaster; o.material.roughnessMap = plaster; o.material.color.set('#3a68c6'); o.material.name = 'paint-plaster'; o.material.needsUpdate = true; walls++; } });
+    if (!walls) throw new Error('the room wall material was not found');
+    const wainM = new THREE.MeshStandardMaterial({ color: 0x1c2f86, roughness: 0.42 }); wainM.name = 'paint-wainscot';
+    const railM = new THREE.MeshStandardMaterial({ color: 0x2c44a8, roughness: 0.38 }); railM.name = 'paint-rail';
+    const wz = -RD / 2 + 0.1, WH = 0.92;
+    const back = TXT.roundedBox(RW - 0.2, WH, 0.025, 0.006, wainM); back.position.set(0, WH / 2, wz + 0.013); R.scene.add(back);
+    const cap = TXT.roundedBox(RW - 0.2, 0.05, 0.05, 0.012, railM); cap.position.set(0, WH + 0.02, wz + 0.03); R.scene.add(cap);
+    for (let x = -RW / 2 + 0.55; x < RW / 2 - 0.4; x += 0.72) {
+      const fr = (w, h, px, py) => { const m = TXT.roundedBox(w, h, 0.014, 0.005, railM); m.position.set(px, py, wz + 0.03); R.scene.add(m); };
+      fr(0.56, 0.03, x, 0.78); fr(0.56, 0.03, x, 0.2); fr(0.03, 0.6, x - 0.265, 0.49); fr(0.03, 0.6, x + 0.265, 0.49); }
+    /* the door on the right: a cream casing round a deep teal slab with two raised panels and a brass knob */
+    const doorM = new THREE.MeshStandardMaterial({ color: 0x1f5f78, roughness: 0.45 }); doorM.name = 'paint-door';
+    const DX = 2.22, DW = 0.6, DH = 2.08;
+    const slab = TXT.roundedBox(DW, DH, 0.04, 0.008, doorM); slab.position.set(DX, DH / 2, wz + 0.04); R.scene.add(slab);
+    [[DX, DH * 0.72, 0.62, 0.62], [DX, DH * 0.3, 0.62, 0.7]].forEach(([x, y, w, h]) => { const pnl = TXT.roundedBox(w, h, 0.02, 0.01, doorM); pnl.position.set(x, y, wz + 0.065); R.scene.add(pnl); });
+    const knob = new THREE.Mesh(new THREE.SphereGeometry(0.028, 20, 14), new THREE.MeshStandardMaterial({ color: 0x9aa3b8, metalness: 1, roughness: 0.3 })); knob.position.set(DX - DW / 2 + 0.08, 0.98, wz + 0.09); R.scene.add(knob);
+    const casM = new THREE.MeshStandardMaterial({ color: 0xe9e2d2, roughness: 0.5 }); casM.name = 'paint-casing';
+    [[DX - DW / 2 - 0.045, DH / 2 + 0.03, 0.09, DH + 0.06], [DX + DW / 2 + 0.045, DH / 2 + 0.03, 0.09, DH + 0.06], [DX, DH + 0.07, DW + 0.2, 0.09]].forEach(([x, y, w, h]) => { const m = TXT.roundedBox(w, h, 0.03, 0.008, casM); m.position.set(x, y, wz + 0.05); R.scene.add(m); });
+    /* the window's own light raking along the back wall from the left, warm, so the plaster falls off into the blue */
+    const rake = new THREE.SpotLight(0xffd6a6, 9, 7, 0.55, 0.85, 1.4); rake.position.set(WX + 0.5, 1.9, wz + 0.5); rake.target.position.set(WX + 2.8, 1.1, wz);
+    /* late morning: the window's warm light spills wide across the upper plaster, strongest near the frame and falling off to the right */
+    const spill = new THREE.SpotLight(0xffb878, 60, 10, 0.9, 0.9, 1.1); spill.position.set(WX + 0.3, 2.35, wz + 1.1); spill.target.position.set(WX + 2.7, 1.8, wz); spill.castShadow = false;
+    R.scene.add(spill); R.scene.add(spill.target); rake.castShadow = false;
+    R.scene.add(rake); R.scene.add(rake.target); }
+
+  /* THE RUG under the table: a flat woven runner in deep indigo, teal and cream bands, so the floor the dek stands on is quiet colour */
+  { const rugT = CH.canvasTex(THREE, 1024, 768, (g, w, h) => {
+      g.fillStyle = '#23246e'; g.fillRect(0, 0, w, h);
+      const band = (x, ww, c) => { g.fillStyle = c; g.fillRect(x, 0, ww, h); g.fillRect(w - x - ww, 0, ww, h); };   /* bands run along the rug's length, so from the chair they recede and never cross the type */
+      band(40, 26, '#8f86c8'); band(80, 14, '#2e9a9a'); band(108, 8, '#8f86c8'); band(150, 40, '#3a3fa0');
+      const r = CH.rng(5); const im = g.getImageData(0, 0, w, h);
+      for (let i = 0; i < w * h; i++) { const n = (r() - 0.5) * 26 + ((i % w) % 4 < 2 ? 6 : -6); im.data[i * 4] += n; im.data[i * 4 + 1] += n; im.data[i * 4 + 2] += n; }
+      g.putImageData(im, 0, 0); });
+    const rugM = new THREE.MeshStandardMaterial({ map: rugT, roughness: 0.95 }); rugM.name = 'fabric-wool-rug';
+    const rug = TXT.roundedBox(3.6, 0.012, 4.6, 0.005, rugM); rug.position.set(0.1, 0.006, 0.6); rug.receiveShadow = true; R.scene.add(rug); }
+
+  /* THE TABLE: the kit conference table cut to a family table, rect, four places, no office chairs, in pecan */
+  const table = K.make('conference_table', { seats: 4, shape: 'rect', chairs: false, wood: 0x8a5634 });
+  /* the boardroom's flush power and data box has no place on a family table: its thin plates are left out */
+  { let hid = 0; table.updateMatrixWorld(true); table.traverse(o => { if (!o.isMesh) return; const b = new THREE.Box3().setFromObject(o), sz = b.getSize(new THREE.Vector3());
+      if (sz.y < 0.012 && b.min.y > 0.72 && sz.x < 0.4) { o.visible = false; hid++; } });
+    if (hid < 1) throw new Error('the table power box was not found'); }
+  TXT.add(R, table);
+  TXT.contact(R, table, { opacity: 0.75 });
+  const TOP = 0.74;
+
+  /* a kitchen chair: turned legs, a dished seat, two posts and a curved top rail, in a darker stained oak */
+  const chairM = new THREE.MeshStandardMaterial({ color: 0x4a2c1f, roughness: 0.5 }); chairM.name = 'wood-chair';
+  const chair = (seatY) => {
+    const g = new THREE.Group();
+    const seat = TXT.roundedBox(0.44, 0.045, 0.42, 0.018, chairM); seat.position.set(0, seatY - 0.022, 0); g.add(seat);
+    [[-0.19, -0.18], [0.19, -0.18], [-0.19, 0.18], [0.19, 0.18]].forEach(([x, z]) => {
+      const leg = TXT.lathe([[0.0, 0], [0.017, 0], [0.019, 0.08], [0.014, 0.2], [0.021, seatY * 0.6], [0.016, seatY - 0.05], [0.0, seatY - 0.05]], chairM, { segments: 16 });
+      leg.position.set(x, 0, z); g.add(leg); });
+    [-0.19, 0.19].forEach(x => { const p = TXT.roundedBox(0.035, 0.5, 0.035, 0.012, chairM); p.position.set(x, seatY + 0.23, -0.19); p.rotation.x = -0.08; g.add(p); });
+    const rail = TXT.roundedBox(0.44, 0.09, 0.03, 0.012, chairM); rail.position.set(0, seatY + 0.44, -0.215); rail.rotation.x = -0.08; g.add(rail);
+    const rail2 = TXT.roundedBox(0.38, 0.03, 0.022, 0.008, chairM); rail2.position.set(0, seatY + 0.27, -0.205); g.add(rail2);
+    g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return g;
+  };
+
+  /* THE FOUR PEOPLE. Kit persons seated upright, hands on the table, never a capsule, no face in distress. The near
+   * man in the navy shirt is the one illustrative veteran, seen from behind. */
+  const SEAT = [
+    { id: 'vet',  x: -0.3,  z: 0.98,  yaw: Math.PI,        seed: 12, build: 'male',   shirt: 0x24407a, trousers: 0x3a3f5c, pitch: 0.3,
+      hands: [[0.05, TOP + 0.05, 0.46], [-0.05, TOP + 0.05, 0.46]] },
+    { id: 'a',    x: 0.36,  z: -0.98, yaw: 0.25,           seed: 31, build: 'female', shirt: 0xb64a86, trousers: 0x2c2f58, pitch: 0.0,
+      hands: [[0.17, TOP + 0.03, 0.4], [-0.16, TOP + 0.05, 0.42]], mugAt: 1 },
+    { id: 'b',    x: 1.05,  z: -0.98, yaw: -0.5,           seed: 44, build: 'male',   shirt: 0x2fa3a0, trousers: 0x33395e, pitch: 0.02,
+      hands: [[0.17, TOP + 0.05, 0.42], [-0.17, TOP + 0.03, 0.4]], mugAt: 0 },
+    { id: 'c',    x: 1.5,  z: 0.05,   yaw: -Math.PI / 2 - 0.25, seed: 57, build: 'female', shirt: 0xe9e3f6, trousers: 0x4a4f86, pitch: 0.0 }
+  ];
+  const people = {}, cups = [];
+  SEAT.forEach(s => {
+    /* the hands rest on the table top, in the person's own frame (left is +x, forward is +z) */
+    const p = K.make('person', { seed: s.seed, role: 'resident', pose: 'sit_drive', build: s.build, shirt: s.shirt, trousers: s.trousers, hat: 'none', headPitch: s.pitch,
+      hands: s.hands || [[0.17, TOP + 0.03, 0.4], [-0.17, TOP + 0.03, 0.4]] });
+    const A = p.userData.attach; if (!A) throw new Error('the seated person published no attach points');
+    p.position.set(s.x, 0, s.z); p.rotation.y = s.yaw;
+    const c = chair(A.seat[1]); c.position.set(s.x, 0, s.z); c.rotation.y = s.yaw;
+    c.position.x -= Math.sin(s.yaw) * 0.02; c.position.z -= Math.cos(s.yaw) * 0.02;
+    /* white sneakers under the table would strike through the dek that stands over the rug: the shoes go navy */
+    p.updateMatrixWorld(true);
+    let shod = 0;
+    p.traverse(o => { if (!o.isMesh || !o.material || !o.material.color || !o.geometry.attributes.position) return; const hsl = {}; o.material.color.getHSL(hsl, THREE.SRGBColorSpace);
+      const pa = o.geometry.attributes.position; let low = 0; for (let i = 0; i < pa.count; i++) if (pa.getY(i) < 0.2) low++;
+      if (low / pa.count > 0.6 && hsl.l > 0.35) { o.material = o.material.clone(); o.material.color.setHex(0x262a52); if (o.material.map) o.material.map = null; shod++; } });
+    TXT.add(R, c); TXT.add(R, p); TXT.contact(R, c, { opacity: 0.6 });
+    p.updateMatrixWorld(true);
+    const eye = new THREE.Vector3().fromArray(A.eye).applyMatrix4(p.matrixWorld);
+    const fwd = new THREE.Vector3(Math.sin(s.yaw), 0, Math.cos(s.yaw));
+    if (s.mugAt != null) { const hp = new THREE.Vector3().fromArray(s.hands[s.mugAt]).applyMatrix4(p.matrixWorld); cups.push([hp.x, hp.z, s.mugAt]); }
+    people[s.id] = { obj: p, mouth: eye.clone().add(new THREE.Vector3(0, -0.075, 0)).addScaledVector(fwd, 0.1), fwd };
+  });
+
+  /* THE TABLE SET FOR LUNCH: stoneware plates, mugs and a water jug, all cool glaze so nothing reads as the accent */
+  const glazeM = new THREE.MeshPhysicalMaterial({ color: 0xe9f0f7, roughness: 0.25, clearcoat: 0.6, clearcoatRoughness: 0.2 }); glazeM.name = 'ceramic-glaze';
+  const blueGlazeM = new THREE.MeshPhysicalMaterial({ color: 0x3157b8, roughness: 0.3, clearcoat: 0.6, clearcoatRoughness: 0.25 }); blueGlazeM.name = 'ceramic-blue';
+  const plate = (x, z) => { const m = TXT.lathe([[0, 0], [0.07, 0], [0.075, 0.004], [0.1, 0.008], [0.125, 0.018], [0.12, 0.02], [0.095, 0.011], [0.0, 0.009]], glazeM, { segments: 40 });
+    m.position.set(x, TOP + 0.001, z); m.castShadow = true; m.receiveShadow = true; R.scene.add(m); return m; };
+  const mug = (x, z, mat, ry) => { const g = new THREE.Group();
+    const body = TXT.lathe([[0, 0], [0.038, 0], [0.041, 0.006], [0.042, 0.09], [0.038, 0.092], [0.037, 0.012], [0, 0.012]], mat, { segments: 32 }); g.add(body);
+    const h = new THREE.Mesh(new THREE.TorusGeometry(0.026, 0.0065, 10, 24, Math.PI * 1.15), mat); h.position.set(0.042, 0.048, 0); h.rotation.z = -Math.PI / 2 - 0.25; g.add(h);
+    const tea = new THREE.Mesh(new THREE.CircleGeometry(0.036, 24), new THREE.MeshStandardMaterial({ color: 0x5a2f1c, roughness: 0.1 })); tea.rotation.x = -Math.PI / 2; tea.position.y = 0.075; g.add(tea);
+    g.position.set(x, TOP + 0.001, z); g.rotation.y = ry; g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); R.scene.add(g); return g; };
+  plate(0.36, -0.36); plate(1.05, -0.36); plate(0.25, 0.32);
+  /* a hand round each held mug: the mug stands where the kit closed that hand, its body just inside the grip */
+  if (cups.length !== 2) throw new Error('expected two held mugs across the table, found ' + cups.length);
+  cups.forEach(([x, z, side], i) => mug(x, z, i === 1 ? glazeM : blueGlazeM, side ? 0.3 : 2.8));
+  mug(-0.55, -0.32, glazeM, 2.2);
+  /* the veteran's mug, both his hands round it at the near table edge */
+  const vetMug = new THREE.Vector3(0, 0, 0.46).applyMatrix4(people.vet.obj.matrixWorld);
+  mug(vetMug.x, vetMug.z, blueGlazeM, -0.5);
+
+  /* THE VOICE RIBBONS. The chassis voice_ribbon, bent along a curve between two mouths. Each indigo ribbon is the others'
+   * talk, long and dense. The one gold ribbon is the veteran's, short, and it stops in the air over the table. */
+  const bend = (rib, curve) => {
+    rib.updateMatrixWorld(true);
+    const mesh = rib.children[0], g = mesh.geometry.clone(), pa = g.attributes.position, mid = rib.userData.mid;
+    g.computeBoundingBox(); const x0 = g.boundingBox.min.x, x1 = g.boundingBox.max.x;
+    const P = new THREE.Vector3(), T = new THREE.Vector3(), U = new THREE.Vector3(), N = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
+    for (let i = 0; i < pa.count; i++) {
+      const t = Math.min(1, Math.max(0, (pa.getX(i) - x0) / (x1 - x0)));
+      curve.getPointAt(t, P); curve.getTangentAt(t, T);
+      N.crossVectors(T, up).normalize(); U.crossVectors(N, T).normalize();
+      const y = pa.getY(i) - mid, z = pa.getZ(i);
+      pa.setXYZ(i, P.x + U.x * y + N.x * z, P.y + U.y * y + N.y * z, P.z + U.z * y + N.z * z);
+    }
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, mesh.material); m.castShadow = true; m.receiveShadow = true; return m;
+  };
+  /* a ribbon's outline redrawn on the chassis model: a smooth symmetric waveform h(t) over length L, extruded T deep, bevelled */
+  const outline = (rib, L, A, T, h) => { const n = 220, mid = A + T, sh = new THREE.Shape();
+    sh.moveTo(0, mid); for (let k = 0; k <= n; k++) sh.lineTo(k / n * L, mid + h(k / n)); for (let k = n; k >= 0; k--) sh.lineTo(k / n * L, mid - h(k / n)); sh.closePath();
+    const gg = new THREE.ExtrudeGeometry(sh, { depth: T, bevelEnabled: true, bevelThickness: T * 0.35, bevelSize: T * 0.3, bevelSegments: 3, curveSegments: 4 });
+    gg.translate(-L / 2, 0, -T / 2); gg.computeVertexNormals(); rib.children[0].geometry.dispose(); rib.children[0].geometry = gg; rib.userData.mid = mid; return rib; };
+  const talkM = new THREE.MeshPhysicalMaterial({ color: 0x6c5cf0, roughness: 0.3, metalness: 0.0, clearcoat: 0.8, clearcoatRoughness: 0.12, emissive: 0x2a1f9a, emissiveIntensity: 0.18 });
+  talkM.userData.txSurface = false;
+  talkM.name = 'plastic-indigo-ribbon';
+  /* a soft indigo contact shadow on the table top under a ribbon: its xz footprint stroked and blurred into a decal */
+  const footprint = (curve, alpha, width) => { const pts = []; for (let k = 0; k <= 60; k++) pts.push(curve.getPointAt(k / 60));
+    let x0 = Infinity, x1 = -Infinity, z0 = Infinity, z1 = -Infinity; pts.forEach(q => { x0 = Math.min(x0, q.x); x1 = Math.max(x1, q.x); z0 = Math.min(z0, q.z); z1 = Math.max(z1, q.z); });
+    const pad = 0.12; x0 -= pad; x1 += pad; z0 -= pad; z1 += pad; const sw = x1 - x0, sd = z1 - z0, N = 512;
+    const t = CH.canvasTex(THREE, N, N, (g, w, h) => { g.clearRect(0, 0, w, h); g.filter = 'blur(' + Math.round(N * 0.025) + 'px)'; g.strokeStyle = 'rgba(28,18,96,' + alpha + ')'; g.lineCap = 'round'; g.lineJoin = 'round';
+      g.lineWidth = width / Math.max(sw, sd) * N; g.beginPath(); pts.forEach((q, i) => { const u = (q.x - x0) / sw * w, v = (q.z - z0) / sd * h; i ? g.lineTo(u, v) : g.moveTo(u, v); }); g.stroke(); });
+    const m = new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, color: 0xffffff }); m.userData.txSurface = false; m.name = 'decal-contact';
+    const d = new THREE.Mesh(new THREE.PlaneGeometry(sw, sd), m); d.rotation.x = -Math.PI / 2; d.position.set((x0 + x1) / 2, TOP + 0.002, (z0 + z1) / 2 + 0.03); d.userData.txBevel = false; d.renderOrder = 2; R.scene.add(d); return d; };
+  /* the others' talk: two long, dense indigo ribbons sweeping across the table from the far talkers past him, in the lens's focus band */
+  const talks = [
+    { pts: [new THREE.Vector3(1.75, 1.0, 0.3), new THREE.Vector3(0.8, 0.97, 0.12), new THREE.Vector3(0.0, 1.0, -0.03), new THREE.Vector3(-1.25, 1.05, -0.2)], amp: 0.024, cycles: 30 },
+    { pts: [new THREE.Vector3(1.7, 0.9, -0.1), new THREE.Vector3(0.7, 0.86, -0.18), new THREE.Vector3(-0.1, 0.88, -0.26), new THREE.Vector3(-1.3, 0.93, -0.45)], amp: 0.02, cycles: 34 }
+  ];
+  const talkLens = [], talkCurves = [];
+  talks.forEach(t => {
+    const curve = new THREE.CatmullRomCurve3(t.pts), L = curve.getLength();
+    const rib = K.make('voice_ribbon', { length: L, amp: t.amp, thick: 0.006, cycles: t.cycles });
+    outline(rib, L, t.amp, 0.006, (u) => { const e = Math.min(1, Math.sin(Math.PI * Math.min(1, u * 1.15)) * 1.6); return t.amp * (0.14 + 0.86 * e * (0.4 + 0.6 * Math.pow(Math.sin(u * t.cycles * Math.PI), 2))); });
+    rib.children[0].material = talkM;
+    R.scene.add(bend(rib, curve)); footprint(curve, 0.32, 0.11); talkLens.push(L); talkCurves.push(curve);
+  });
+  /* the veteran's own words: they lift from just above his hands round the mug and run toward the others, then stall in
+   * three ever shorter pieces and stop in mid air. One gold object: the pieces are shapes of one geometry on the chassis
+   * voice_ribbon, with the chassis's own gold material. */
+  const goldStart = new THREE.Vector3(vetMug.x + 0.03, TOP + 0.11, vetMug.z - 0.16), goldEnd = new THREE.Vector3(vetMug.x + 0.34, TOP + 0.17, vetMug.z - 0.36);
+  const goldCurve = new THREE.CatmullRomCurve3([goldStart, goldStart.clone().lerp(goldEnd, 0.5).add(new THREE.Vector3(0, 0.03, 0)), goldEnd]);
+  const goldLen = goldCurve.getLength();
+  const goldRib = K.make('voice_ribbon', { length: goldLen, amp: 0.05, thick: 0.012, seed: 79, cycles: 3 });
+  const SEGS = [[0, 0.56], [0.63, 0.75], [0.81, 0.87], [0.925, 0.955]];
+  { const A = 0.045, T = 0.012, CYC = 4.5, mid = A + T, shapes = [];
+    const fall = (t) => t < 0.56 ? Math.min(1, 0.3 + t / 0.1 * 0.7) : Math.max(0.25, 1 - (t - 0.56) * 1.6);
+    const h = (t) => A * (0.16 + 0.84 * fall(t) * (0.3 + 0.7 * Math.pow(Math.sin(t * CYC * Math.PI), 2)));
+    SEGS.forEach(([t0, t1]) => { const sh = new THREE.Shape(), n = Math.max(8, Math.round((t1 - t0) * 260));
+      sh.moveTo(t0 * goldLen, mid); for (let k = 0; k <= n; k++) { const t = t0 + (t1 - t0) * k / n; sh.lineTo(t * goldLen, mid + h(t)); }
+      for (let k = n; k >= 0; k--) { const t = t0 + (t1 - t0) * k / n; sh.lineTo(t * goldLen, mid - h(t)); } sh.closePath(); shapes.push(sh); });
+    const gg = new THREE.ExtrudeGeometry(shapes, { depth: T, bevelEnabled: true, bevelThickness: T * 0.35, bevelSize: T * 0.25, bevelSegments: 3, curveSegments: 4 });
+    gg.translate(-goldLen / 2, 0, -T / 2); gg.computeVertexNormals();
+    goldRib.children[0].geometry.dispose(); goldRib.children[0].geometry = gg; goldRib.userData.mid = mid; }
+  const goldMesh = bend(goldRib, goldCurve);
+  { const gm = goldMesh.material.clone(); gm.name = 'vb_gold-anodised'; gm.metalness = 0.7; gm.roughness = 0.17; gm.clearcoat = 1.0; gm.clearcoatRoughness = 0.03; gm.envMapIntensity = 1.4; gm.emissive = new THREE.Color(0xee9a48); gm.emissiveIntensity = 0.34;   /* the warm reflection of the window's light, so its lit face matches frame 1's gold */ gm.userData.txSurface = false;   /* polished, so the surface pass leaves it mirror smooth */ goldMesh.material = gm; }
+  R.scene.add(goldMesh);
+  footprint(goldCurve, 0.6, 0.09);
+  /* a small warm practical bounce in front of it, so the gold is the brightest warm shape in the frame */
+  { const gp = goldCurve.getPointAt(0.55);
+    /* a narrow warm spot from above the camera, cut to the ribbon alone, so its polished crests carry a sharp specular */
+    const sp = new THREE.SpotLight(0xffd9a0, 40, 0, 0.08, 0.35, 2); sp.position.set(-0.25, 1.95, 1.9); sp.target.position.copy(gp); sp.castShadow = false;
+    R.scene.add(sp); R.scene.add(sp.target); }
+  /* honesty of the picture: exactly one gold ribbon, and it is shorter than every indigo one */
+  { let gold = 0; R.scene.traverse(o => { if (o.isMesh && o.material && o.material.color && o.material.color.getHex() === CH.GOLD && o.material.metalness > 0.5) gold++; });
+    if (gold !== 1) throw new Error('expected exactly one gold ribbon, found ' + gold);
+    if (!(goldLen < Math.min.apply(null, talkLens) * 0.5)) throw new Error('the gold ribbon (' + goldLen.toFixed(2) + ' m) is not clearly shorter than the indigo ribbons'); }
+
+  /* THE CAMERA: seated eye height, behind and right of the veteran's shoulder, looking across the table to the window */
+  /* over his right shoulder, looking down at his hands round the mug and his words leaving them; his head stays out of frame */
+  const FROM = [0.14, 1.5, 1.58];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [vetMug.x, TOP + 0.05, vetMug.z], 250, 880, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+
+  /* THE KEY: late morning sun through the back window, low from behind the table on the left, so the talkers are rimmed
+   * and the table top catches a long warm pool; the room's blue walls fill the shade */
+  const spec = CH.rigSpec(W, 6, 4096); spec.key = Object.assign({}, spec.key, { color: 0xffd9a8, i: (spec.key.i || 3) * 1.35, radius: 3 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.7, 0], { distance: 9, shadowFar: 24, normalBias: 0.01 }), { light: { az: -148, el: 17 } }));
+  CH.unacne(R, 0.01);
+  const hemi = new THREE.HemisphereLight(0xa6dcff, 0xffc68a, 0.55); R.scene.add(hemi);
+  /* a soft warm fill from the camera side, the light the window throws back off the pale floor */
+  const fill = new THREE.DirectionalLight(0xffe1c2, 0.55); fill.position.set(1.5, 2.2, 4); R.scene.add(fill);
+  TXT.weather(R, { grime: 0.08, height: 0.3, mottle: 0.08, skip: Object.values(people).map(p => p.obj) });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* DEPTH OF FIELD: the lens is focused on the veteran and his words, so everything beyond the table's far edge (the two
+   * listeners, their talk, the wall) falls soft. A blurred copy of the art is laid over the far band through a feathered
+   * mask that keeps the veteran and the gold ribbon sharp. */
+  { const art = document.getElementById('art'), S = 2, Wd = 1080 * S, Ht = 1350 * S;
+    const farY = CH.project(THREE, R, [0.3, TOP, -0.6])[1];
+    const blur = document.createElement('canvas'); blur.width = Wd; blur.height = Ht; const b = blur.getContext('2d');
+    b.filter = 'blur(22px)'; b.drawImage(art, 0, 0); b.filter = 'none';
+    const mask = document.createElement('canvas'); mask.width = Wd; mask.height = Ht; const m = mask.getContext('2d');
+    const g = m.createLinearGradient(0, (farY - 60) * S, 0, (farY + 40) * S); g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    m.fillStyle = g; m.fillRect(0, 0, Wd, Ht);
+    /* keep in focus: the gold ribbon, and his shoulder and arm in the near left */
+    const keep = (cxp, cyp, rx, ry) => { m.save(); m.globalCompositeOperation = 'destination-out'; m.translate(cxp * S, cyp * S); m.scale(rx * S, ry * S);
+      const rg = m.createRadialGradient(0, 0, 0, 0, 0, 1); rg.addColorStop(0, 'rgba(0,0,0,1)'); rg.addColorStop(0.7, 'rgba(0,0,0,1)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
+      m.fillStyle = rg; m.beginPath(); m.arc(0, 0, 1, 0, Math.PI * 2); m.fill(); m.restore(); };
+    const gp = []; for (let k = 0; k <= 20; k++) { const q = goldCurve.getPointAt(k / 20); gp.push(CH.project(THREE, R, [q.x, q.y, q.z])); }
+    const xs = gp.map(q => q[0]), ys = gp.map(q => q[1]), gx0 = Math.min.apply(null, xs), gx1 = Math.max.apply(null, xs), gy0 = Math.min.apply(null, ys), gy1 = Math.max.apply(null, ys);
+    keep((gx0 + gx1) / 2, (gy0 + gy1) / 2, (gx1 - gx0) / 2 + 90, (gy1 - gy0) / 2 + 90);
+    talkCurves.forEach(c => { for (let k = 0; k <= 24; k++) { const q = c.getPointAt(k / 24), pp = CH.project(THREE, R, [q.x, q.y, q.z]); keep(pp[0], pp[1], 70, 55); } });
+    b.globalCompositeOperation = 'destination-in'; b.drawImage(mask, 0, 0);
+    cx.drawImage(blur, 0, 0, 1080, 1350);
+    /* the near foreground, his hands round the mug and the near plate, sit well inside the lens's minimum focus: a heavy defocus */
+    const nearY = CH.project(THREE, R, [vetMug.x, TOP + 0.04, vetMug.z])[1];
+    const nb = document.createElement('canvas'); nb.width = Wd; nb.height = Ht; const n = nb.getContext('2d');
+    n.filter = 'blur(46px)'; n.drawImage(art, 0, 0); n.filter = 'none';
+    const nm = document.createElement('canvas'); nm.width = Wd; nm.height = Ht; const q = nm.getContext('2d');
+    const ng = q.createLinearGradient(0, (nearY - 70) * S, 0, (nearY + 30) * S); ng.addColorStop(0, 'rgba(0,0,0,0)'); ng.addColorStop(1, 'rgba(0,0,0,1)');
+    q.fillStyle = ng; q.fillRect(0, 0, Wd, Ht);
+    n.globalCompositeOperation = 'destination-in'; n.drawImage(nm, 0, 0);
+    for (let k = 0; k < 2; k++) cx.drawImage(nb, 0, 0, 1080, 1350);
+    if (!(nearY - 40 > gy1)) throw new Error('the near defocus line at ' + Math.round(nearY) + ' would cut the gold ribbon');
+    if (!(farY > 250 && farY < 1100)) throw new Error('the table middle projects to ' + Math.round(farY) + ', outside the expected band'); }
+
+  /* the table and the near man own at least half the frame height */
+  { const rt = CH.rectOf(THREE, R, table, 0), rv = CH.rectOf(THREE, R, people.vet.obj, 0);
+    const y0 = Math.max(0, Math.min(rt[1], rv[1])), y1 = Math.min(1350, Math.max(rt[1] + rt[3], rv[1] + rv[3]));
+    if (y1 - y0 < 675) throw new Error('the table and the near man span ' + Math.round(y1 - y0) + ' px of height, under half'); }
+
+  CH.seat(cx, { sel: '.hook', a: 0.62, fade: 240 });
+  CH.seat(cx, { sel: '.dek', a: 0.8, fade: 220 });
+  /* the table's end panel shows warm behind the dek's right end; one more soft tint evens the ground under the last lines */
+  CH.seat(cx, { box: { x: 300, y: 1060, w: 720, h: 150 }, a: 0.5, fade: 160 });
+  CH.seat(cx, { sel: '.hook', a: 0.25, fade: 110 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.7, fade: 120 }));
+  ['.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.45, fade: 90 }));
+  TXLOOK.footWash(cx, { a: 0.5, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

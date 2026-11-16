@@ -1,0 +1,66 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 7.15,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put the pilot's real world hook on a frame (the South Texas VA lead, c4, and the routine clinic visit, c21) and rebuild S9 so the close shows the gold ribbon coiled beside the open caliper.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "off plan, red snake ribbon, small caliper",
+   "fix": "ledge, gold coil, caliper at scale"
+  },
+  {
+   "slide": 2,
+   "problem": "mannequin faces",
+   "fix": "crop to hands and ribbon, talkers out of focus"
+  },
+  {
+   "slide": 6,
+   "problem": "crude hand, lamp gives no pool",
+   "fix": "warm emissive lamp pool, crop hand"
+  },
+  {
+   "slide": 5,
+   "problem": "dash stroke stone reads as hatch",
+   "fix": "height field chisel and pores"
+  }
+ ]
+}

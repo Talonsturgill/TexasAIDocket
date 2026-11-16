@@ -1,0 +1,60 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or counted here from a list a quote carries.",
+ "grant_usd": {
+  "value": 200000,
+  "from": [
+   "c2"
+  ],
+  "basis": "grant from the San Antonio Medical Foundation, as UT Health San Antonio states it"
+ },
+ "study_years": {
+  "value": 1,
+  "from": [
+   "c3"
+  ],
+  "basis": "the pilot is a one year proof of concept study"
+ },
+ "norman_years": {
+  "value": 18,
+  "from": [
+   "c5"
+  ],
+  "basis": "years Rocio Norman has worked with veterans"
+ },
+ "features_named": {
+  "value": 4,
+  "from": [
+   "c8"
+  ],
+  "basis": "features the team names that it plans to assess: coherence, emotional tone, organization, level of detail"
+ },
+ "symptoms_named": {
+  "value": 4,
+  "from": [
+   "c11"
+  ],
+  "basis": "symptoms named that the differences will be compared with"
+ },
+ "recording_prompts": {
+  "value": 2,
+  "from": [
+   "c6"
+  ],
+  "basis": "what veterans described in the recordings: how they were injured, an important life event"
+ },
+ "tests_built_for": {
+  "value": 2,
+  "from": [
+   "c18"
+  ],
+  "basis": "the conditions most adult language assessments were developed for, per Norman: aphasia after a stroke, severe brain injury"
+ },
+ "leads": {
+  "value": 3,
+  "from": [
+   "c2",
+   "c4"
+  ],
+  "basis": "researchers named on the grant"
+ }
+}

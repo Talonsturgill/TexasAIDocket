@@ -1,0 +1,130 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2038,
+        0.6534,
+        0.6783
+      ],
+      "band_ratio": 1.306
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.6008,
+        0.8908,
+        0.5662
+      ],
+      "band_ratio": 0.832
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 72% of this slide's own average craft density (top 83% / mid 93% / bottom 55% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXBENCH: RELIEF {\"height_range\":82.90866328277299,\"materials\":9,\"cast_fraction\":0.5396044238683128,\"area\":1,\"render_ms\":21262.699999999255}"
+      ],
+      "bands": [
+        0.8298,
+        0.9307,
+        0.5515
+      ],
+      "band_ratio": 0.725
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "outside safe zone: 'Rocio Norman has worked with veterans fo' at 296,150 720x237 (margin 80px)",
+        "outside safe zone: 'She is a speech language pathologist and' at 476,413 540x171 (margin 80px)"
+      ],
+      "bands": [
+        0.2815,
+        0.3529,
+        0.6489
+      ],
+      "band_ratio": 1.4821
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 95% / mid 95% / bottom 67% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXBENCH: RELIEF {\"height_range\":41.7762818826417,\"materials\":6,\"cast_fraction\":0.2524074074074074,\"area\":1,\"render_ms\":19576.299999998882}"
+      ],
+      "bands": [
+        0.9496,
+        0.9517,
+        0.6728
+      ],
+      "band_ratio": 0.7919
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "outside safe zone: 'Today the work starts with slow transcri' at 500,150 516x226 (margin 80px)",
+        "outside safe zone: 'Detailed language analysis also takes co' at 556,402 460x141 (margin 80px)"
+      ],
+      "bands": [
+        0.437,
+        0.6513,
+        0.8511
+      ],
+      "band_ratio": 1.2979
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2101,
+        0.5861,
+        0.5938
+      ],
+      "band_ratio": 1.2653
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":76.10000305175781,\"materials\":11,\"cast_fraction\":0.5161040809327846,\"area\":1,\"render_ms\":26502.099999999627}"
+      ],
+      "bands": [
+        0.7353,
+        0.7458,
+        0.7923
+      ],
+      "band_ratio": 1.0434
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4076,
+        0.5735,
+        0.9743
+      ],
+      "band_ratio": 1.4619
+    }
+  ],
+  "fails": 0,
+  "warns": 15,
+  "verdict": "WARN"
+}

@@ -1,0 +1,200 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-16, carousel no. 79, frame 4 of 9, the clinician. A spatial macro through txthree.js: an oak 3 by 5
+     card drawer pulled out and set on a walnut desk, shot low and raking down its length under a warm task light, its
+     cards parted by terracotta guide cards into one block per year Rocio Norman has worked with veterans, the count read
+     from window.FIG. She is not drawn. Nothing on this frame is gold, because the
+     deck's accent means the veteran's own spoken words and this frame carries none. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:296px; top:150px; width:720px; text-align:right">Rocio Norman has worked with veterans for 18 years</h1>
+<p class="dek" data-follow="26" style="left:476px; width:540px; text-align:right">She is a speech language pathologist and one of the researchers on the grant. One block of cards per year, drawn to illustrate.</p>
+<script>window.FIG = {"norman_years": 18};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-16-voicebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The clinician", counter: "04 / 09", src: "c5 c2", fit: { min: 64, max: 86, maxLines: 3 } });
+
+  /* THE FIGURE. One block of cards per year Norman has worked with veterans, read from window.FIG and checked below. */
+  const YEARS = FIG.norman_years;
+  if (!Number.isInteger(YEARS) || YEARS < 1) throw new Error('norman_years must be a positive whole number, got ' + YEARS);
+
+  /* the type sits in the upper right over the wall beyond the desk, clear of the counter and inside the margin */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (hb.top < 130) throw new Error('the hook rides into the counter band at ' + Math.round(hb.top));
+    if (hb.right > 1016 || db.right > 1016) throw new Error('the type leaves the 64 px margin');
+    if (db.bottom > 760) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the drawer'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 40, fog: 0 });
+
+  /* THE ROOM: a studio sweep in the tone, the floor deep indigo and the wall cobalt rising to navy, no accent strip */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 8, d: 13 }), { radius: 0.7, h: 4, floor: '#3a3fae', wall: '#2f6fd0', top: '#152f86', env: 0.6, hemi: 0.45, softbox: 4.2, accentStrip: 0 }));
+  /* the sweep takes the room's light but no hard desk shadow, so no edge strikes through the headline */
+  R.scene.traverse(o => { if (o.isMesh && o.userData.txStudio) { o.position.z = 0.6; o.receiveShadow = false; } });
+
+  /* THE DESK: the kit office desk in walnut, its top at 0.76 m */
+  /* a big walnut work table, deep enough that its far edge passes out of the top of the frame: the whole picture is
+   * desk top, the lamp's pool on the drawer falling off into indigo shade where the type sits, and no horizon line */
+  const desk = K.make('desk', { w: 5, d: 10, pedestal: 'none', wood: 0x6a3f22 });
+  desk.position.set(-1.0, 0, -3.6);
+  /* a fine straight walnut grain for the top, cut for a macro, replacing the kit's broad figure */
+  const walTex = CH.canvasTex(THREE, 2048, 1024, (g, w, h) => {
+    const r = CH.rng(77); g.fillStyle = '#7c4828'; g.fillRect(0, 0, w, h);
+    g.filter = 'blur(6px)';
+    for (let i = 0; i < 30; i++) { const y = r() * h, hh = 20 + r() * 80; g.fillStyle = r() < 0.5 ? 'rgba(70,32,12,' + (0.05 + r() * 0.06) + ')' : 'rgba(190,118,70,' + (0.04 + r() * 0.05) + ')'; g.fillRect(0, y, w, hh); }
+    g.filter = 'blur(1.2px)';
+    for (let i = 0; i < 260; i++) { const y0 = r() * h, a = 1 + r() * 3, ph = r() * 6.28; g.strokeStyle = 'rgba(60,26,10,' + (0.04 + r() * 0.07) + ')'; g.lineWidth = 1 + r() * 2;
+      g.beginPath(); for (let x = 0; x <= w; x += 16) { const y = y0 + a * Math.sin(x / w * 6.28 + ph); if (x) g.lineTo(x, y); else g.moveTo(x, y); } g.stroke(); }
+    g.filter = 'none';
+  }, [2, 3]);
+  /* an oiled walnut top: broad soft figure bands only, no fine strokes, so the grain reads in the lamp's pool and never
+   * aliases into streaks at the grazing far end */
+  const walFig = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(77); g.fillStyle = '#a0603a'; g.fillRect(0, 0, w, h); g.filter = 'blur(10px)';
+    for (let i = 0; i < 26; i++) { const y = r() * h, hh = 14 + r() * 60, a = 8 + r() * 18, ph = r() * 6.28;
+      g.fillStyle = r() < 0.55 ? 'rgba(70,30,12,' + (0.10 + r() * 0.10) + ')' : 'rgba(214,140,86,' + (0.08 + r() * 0.08) + ')';
+      g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + a * Math.sin(x / w * 6.28 + ph)); for (let x = w; x >= 0; x -= 32) g.lineTo(x, y + hh + a * Math.sin(x / w * 6.28 + ph)); g.closePath(); g.fill();
+      for (const off of [-h, h]) { g.save(); g.translate(0, off); g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + a * Math.sin(x / w * 6.28 + ph)); for (let x = w; x >= 0; x -= 32) g.lineTo(x, y + hh + a * Math.sin(x / w * 6.28 + ph)); g.closePath(); g.fill(); g.restore(); } }
+    g.filter = 'none';
+  }, [5, 10]);
+  const walnut = new THREE.MeshStandardMaterial({ name: 'walnut-veneer', color: 0x5a3428, roughness: 0.6 });   /* the figure map aliased into streaks through the grade at this angle, so the top stays an even oiled walnut */
+  walnut.userData.txSurface = false;   /* the calm grain is in the map; the pass's relief streaked at a grazing view */
+  let wal = 0; desk.traverse(o => { if (o.isMesh && o.material && o.material.map && !o.material.metalness) { o.material = walnut; wal++; } });
+  if (!wal) throw new Error('the desk took no walnut');
+  TXT.add(R, desk);
+  const TOPY = 0.76;
+
+  /* OAK: a honey quartersawn veneer with straight grain and ray fleck, painted once and named for the surface pass */
+  const oakTex = CH.canvasTex(THREE, 1024, 512, (g, w, h) => {
+    const r = CH.rng(404);
+    g.fillStyle = '#c98a4b'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 26; i++) { const y = r() * h, hh = 8 + r() * 40; g.fillStyle = r() < 0.5 ? 'rgba(120,62,22,' + (0.06 + r() * 0.1) + ')' : 'rgba(255,214,150,' + (0.05 + r() * 0.08) + ')'; g.fillRect(0, y, w, hh); }
+    for (let i = 0; i < 220; i++) { const y0 = r() * h, a = 1 + r() * 4, ph = r() * 6.28; g.strokeStyle = 'rgba(100,48,14,' + (0.08 + r() * 0.2) + ')'; g.lineWidth = 0.6 + r() * 1.8;
+      g.beginPath(); for (let x = 0; x <= w; x += 8) { const y = y0 + a * Math.sin(x / w * 6.28 + ph); if (x) g.lineTo(x, y); else g.moveTo(x, y); } g.stroke(); }
+    for (let i = 0; i < 420; i++) { g.fillStyle = 'rgba(255,226,170,' + (0.12 + r() * 0.2) + ')'; g.fillRect(r() * w, r() * h, 6 + r() * 26, 1.5 + r() * 2); }
+  });
+  const oak = new THREE.MeshPhysicalMaterial({ name: 'oak-veneer', color: 0xffffff, map: oakTex, roughness: 0.42, metalness: 0, clearcoat: 0.55, clearcoatRoughness: 0.32 });
+  oak.userData.txSurface = 'wood';
+
+  /* THE DRAWER: the kit index card drawer, one block per year, terracotta guide cards, no flags. Its painted steel shell
+   * is re-dressed in oak, the way a library card drawer is made. */
+  const STEEL = 0x3a3c43;
+  const drawer = K.make('index_card_drawer', { length: 0.46, blocks: YEARS, per: 7, flagged: 0, fill: 0.9, color: STEEL, divider: 0xb4664f });
+  let reskinned = 0;
+  drawer.traverse(o => { if (o.isMesh && o.material && !Array.isArray(o.material) && o.material.color && o.material.metalness > 0.3 && o.material.metalness < 0.4 && o.material.color.getHex() === new THREE.Color(STEEL).getHex()) { o.material = oak; reskinned++; } });
+  if (reskinned < 4) throw new Error('expected the drawer shell to take oak, re-dressed ' + reskinned + ' parts');
+  const centres = drawer.userData.blocks;
+  if (!centres || centres.length !== YEARS) throw new Error('the drawer holds ' + (centres ? centres.length : 0) + ' blocks, the figure says ' + YEARS);
+  /* A GUIDE CARD AT THE FRONT OF EVERY BLOCK. The kit sets guides only BETWEEN blocks, so a stranger counted one fewer
+   * tab than years. A copy of a kit guide stands in front of the first block, so there is one tab per block. */
+  const kitGuides = drawer.children.filter(c => c.isGroup && c.children.length === 3);
+  if (kitGuides.length !== YEARS - 1) throw new Error('expected ' + (YEARS - 1) + ' kit guides between ' + YEARS + ' blocks, found ' + kitGuides.length);
+  const pitch = drawer.userData.pitch;
+  { const g0 = kitGuides[0], gap = g0.position.z - centres[1];   /* the kit guide's offset in front of the block it heads */
+    const front = kitGuides[Math.min(2, kitGuides.length - 1)].clone(); front.position.z = centres[0] + gap; front.userData.frontGuide = true; drawer.add(front); }
+  const tabs = drawer.children.filter(c => c.isGroup && c.children.length === 3).length;
+  if (tabs !== YEARS) throw new Error('the drawer shows ' + tabs + ' guide tabs, the figure says ' + YEARS + ' years');
+  /* THE CARDS: a soft paper face with a red head rule and fine blue ruled lines, no noise; the stock left white so each
+   * card's own instance colour carries its age, the front (oldest) blocks yellowed and soft, the back ones crisp */
+  const faceTex = CH.canvasTex(THREE, 512, 308, (g, w, h) => {
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    g.fillStyle = 'rgba(176,72,60,0.55)'; g.fillRect(w * 0.04, h * 0.2, w * 0.92, 3);
+    g.fillStyle = 'rgba(80,110,170,0.28)'; for (let k = 1; k <= 8; k++) g.fillRect(w * 0.04, h * (0.2 + k * 0.088), w * 0.92, 1.5);
+  });
+  const faceM = new THREE.MeshStandardMaterial({ name: 'card-paper-face', color: 0xffffff, map: faceTex, roughness: 0.9 }); faceM.userData.txSurface = false;
+  const stockM = new THREE.MeshStandardMaterial({ name: 'card-paper-stock', color: 0xffffff, roughness: 0.92 }); stockM.userData.txSurface = false;
+  const old = new THREE.Color(0xdcb27a), fresh = new THREE.Color(0xfbf5e8), cc = new THREE.Color(), m4 = new THREE.Matrix4(), rr = CH.rng(1818);
+  let cardsSeen = 0, refiled = 0;
+  drawer.traverse(o => {
+    if (!o.isInstancedMesh || !Array.isArray(o.material) || o.count < 2) return;
+    o.material = [stockM, stockM, stockM, stockM, faceM, stockM];
+    const per = 7, nB = Math.round(o.count / per);
+    if (nB !== YEARS) throw new Error('the card stack holds ' + o.count + ' cards in ' + nB + ' blocks, the figure says ' + YEARS);
+    for (let i = 0; i < o.count; i++) {
+      const b = Math.floor(i / per), t = b / (YEARS - 1);
+      cc.copy(old).lerp(fresh, Math.pow(t, 0.8)).multiplyScalar(0.97 + rr() * 0.05); o.setColorAt(i, cc);
+      /* a few cards stand proud, pulled and refiled, never the first card of a block so the tabs stay readable */
+      if (i % per !== 0 && rr() < 0.045) { o.getMatrixAt(i, m4); m4.elements[13] += 0.012 + rr() * 0.01; o.setMatrixAt(i, m4); refiled++; }
+    }
+    o.instanceColor.needsUpdate = true; o.instanceMatrix.needsUpdate = true; cardsSeen += o.count;
+  });
+  if (cardsSeen !== YEARS * 7) throw new Error('re-dressed ' + cardsSeen + ' cards, expected ' + YEARS * 7);
+  if (refiled < 3) throw new Error('only ' + refiled + ' cards stand proud');
+  /* THE TABS COUNT DOWN THE DRAWER: front to back, every guide's tab alternates between two positions, left and right */
+  const pressTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.filter = 'blur(1.5px)';
+    const r = CH.rng(5); for (let i = 0; i < 900; i++) { g.fillStyle = r() < 0.5 ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.05)'; g.fillRect(r() * w, r() * h, 3 + r() * 6, 2 + r() * 4); } g.filter = 'none'; }, [2, 2]);
+  const pressM = new THREE.MeshStandardMaterial({ name: 'pressboard-paper', color: 0xb05a40, map: pressTex, roughness: 0.85 }); pressM.userData.txSurface = false;
+  const guideList = drawer.children.filter(c => c.isGroup && c.children.length === 3).sort((p, q) => q.position.z - p.position.z);
+  if (guideList.length !== YEARS) throw new Error('found ' + guideList.length + ' guides to set, the figure says ' + YEARS);
+  guideList.forEach((gd, i) => { const tx = (i % 2 ? 1 : -1) * 0.034; gd.children[1].position.x = tx; gd.children[2].position.x = tx;
+    gd.children[0].material = pressM; gd.children[1].material = pressM; });
+  for (let i = 1; i < guideList.length; i++) { const d = guideList[i - 1].position.z - guideList[i].position.z, d0 = guideList[0].position.z - guideList[1].position.z;
+    if (Math.abs(d - d0) > pitch * 0.6) throw new Error('block spacing is uneven at guide ' + (i + 1)); }
+  /* A WORN FINGER PATCH on the oak front round the pull: years of hands have polished the finish pale there */
+  { const pt = CH.canvasTex(THREE, 256, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 4, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(255,226,170,0.75)'); gr.addColorStop(0.6, 'rgba(250,210,150,0.35)'); gr.addColorStop(1, 'rgba(250,210,150,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const pm = new THREE.MeshStandardMaterial({ name: 'worn-oak-patch', map: pt, transparent: true, depthWrite: false, roughness: 0.3, polygonOffset: true, polygonOffsetFactor: -2 }); pm.userData.txSurface = false;
+    const patch = new THREE.Mesh(new THREE.PlaneGeometry(0.085, 0.04), pm); const fz = 0.46 / 2 + 0.006 + 0.0062, FH = 0.06 + 0.022;
+    patch.position.set(0, FH * 0.3 + 0.004, fz + 0.0004); patch.userData.txBevel = false; drawer.add(patch); }
+  const YAW = 0.62;
+  drawer.rotation.y = YAW;
+  drawer.position.set(0.02, TOPY, 0.06);
+  drawer.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  TXT.add(R, drawer);
+  TXT.contact(R, drawer, { layers: [{ spread: 0.03, opacity: 0.75 }, { spread: 0.25, opacity: 0.3 }] });
+
+
+
+  /* THE CAMERA: a macro, eye 0.25 m over the desk top, low in front and to the right, raking back down the drawer */
+  drawer.updateMatrixWorld(true);
+  const wpt = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyMatrix4(drawer.matrixWorld);
+  const mid = wpt([0, 0.05, (centres[0] + centres[centres.length - 1]) / 2]);
+  const camL = wpt([0.60, 0.72, 0.96]);
+  const FROM = [camL.x, camL.y, camL.z];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [mid.x, mid.y, mid.z], 620, 900, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+
+  /* THE KEY: a warm task light low from the back left, raking along the card tops toward the lens */
+  const spec = CH.rigSpec(W, 1.6, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0xfff0e2, radius: 5, i: (spec.key.i || 4) * 0.9 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([mid.x, TOPY, mid.z], { distance: 5, shadowFar: 12, normalBias: 0.002 }), { light: { az: -70, el: 34 } }));
+  CH.unacne(R, 0.002);
+  R.scene.traverse(l => { if (l.isDirectionalLight && l.castShadow) l.castShadow = false; });
+  /* THE TASK LAMP'S POOL: a warm spot on the key's own bearing, concentrated on the drawer, so the cards read cream */
+  { const a = -70 * Math.PI / 180, e = 52 * Math.PI / 180, D = 1.3;
+    const lamp = new THREE.SpotLight(0xffd6a4, 12, 0, 0.5, 0.85, 2);
+    lamp.position.set(mid.x + D * Math.sin(a) * Math.cos(e), TOPY + D * Math.sin(e), mid.z + D * Math.cos(a) * Math.cos(e));
+    lamp.target.position.set(mid.x, TOPY, mid.z); lamp.castShadow = true; lamp.shadow.mapSize.set(2048, 2048); lamp.shadow.radius = 6; lamp.shadow.camera.near = 0.3; lamp.shadow.camera.far = 4; lamp.shadow.bias = -0.0004; lamp.shadow.normalBias = 0.002;
+    R.scene.add(lamp); R.scene.add(lamp.target); }
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* honesty of the picture: the drawer spans at least 700 px of the frame width, and every block centre is in frame */
+  { const rc = CH.rectOf(THREE, R, drawer, 0); if (rc[2] < 700) throw new Error('the drawer spans ' + Math.round(rc[2]) + ' px, under 700');
+    centres.forEach((z, i) => { const q = CH.project(THREE, R, (() => { const v = wpt([0, 0.07, z]); return [v.x, v.y, v.z]; })());
+      if (q[0] < 20 || q[0] > 1060 || q[1] < 20 || q[1] > 1330) throw new Error('block ' + (i + 1) + ' of ' + YEARS + ' leaves the frame at ' + q.map(Math.round)); }); }
+
+  CH.seat(cx, { a: 0.32, fade: 300 });
+  ['.src', '.tx-site', '.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.55, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

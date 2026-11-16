@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.6,
+   "why": "Each of the nine frames is still its own commissioned picture: the gold waveform and caliper on S1, the brass sieve on S3, the oak card drawer on S4, the gold inlays in stone on S5, the receding gauge heads on S7, the patch panel with unplugged leads on S8 and the caliche ranch gate on S9. S1, S4, S7 and S8 pass the LOOK V2 showstopper test at 432 px. The round 2 reworks partly landed. On S2 the figures are now pushed out of focus behind the hands, and the gold ribbon breaks into fragments mid table, which finally reads as speech failing. The hands on the blue mug are still visible lower left as soft kit-figure shapes, though, and the ribbon is small, about a fifth of the frame, beside a big blue streak that is louder than it. On S6 the hand now has a ribbed sleeve and forearm, which cures the disembodied hand. The waveform rising off the transcript is a good detail. S9 did not change. The headline wash is still a pale-haloed rectangle cutting into the live oak at top right. The skyline is flat cut-outs, and the orange ribbon still reads as a serrated centipede, not the machined ribbon from S1. S3's rim is still cut open at both sides."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds on the filmstrip: the same serif headline, mono kicker, counter, claim line and site line, with explainer blue dominant throughout. The gold accent stays on the veterans' voice (S1, S2, S5, S7, S9). The open caliper on S1 comes back on S9, and the unread instrument (dark windows on S7, unplugged leads on S8) is a working continuity device. S4 (mauve and orange) and S5 (pink stone) sit furthest from the blue, but neither breaks the spine."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces: $200,000 is c2, one year is c3, 18 years is c5 and 4 features is c8. The future tense holds all the way through ('plans to', 'is meant to', and the caption's 'The measuring is still a plan'). No sample size or result is invented. S8's new question headline, 'Can automation spot the differences?', matches c11 ('whether an automated method can objectively identify communication differences') more faithfully than the old wording did. There are three docks. Every claim rests on the grantee's own newsroom, and the foundation's award record was never fetched (claims.json admits this under rejected). The S3 headline states Norman's view as fact, and the attribution only comes in the body. The first comment says 'one primary record', yet the Bexar hashtag rests on c14 and c15 (VA and Census), which it does not list."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what is happening (a pilot to analyse recorded veterans' speech for mild brain injury), where (the San Antonio VA, S5), who paid (the San Antonio Medical Foundation, S1) and why (S2 and S3, standard tests miss the struggle). UT San Antonio, the institution running the pilot, still appears on no slide, only in the caption and the document title. Nothing on the frames tells a veteran what to do next: no enrolment, no clinic, no start date. The deck also doesn't say that nothing is open to them. The stake for Texas veterans is stated only in general terms."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The S1 question 'Can a spoken story be measured?' earns the swipe. S2 pays it off with the human struggle, and S3 explains why the tests miss it. The turn from recordings (S5) to slow paper (S6) to idle instruments (S7, S8) is where understanding changes. S8 rewritten as a question now sets up S9's 'If the pilot finds something' cleanly. S4, the clinician's 18 years, could still merge into S2 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is plain, clean and on register, with no boosterism and no doom. 'The words are there. Finding them is hard.' is the best line. The 'drawn to illustrate' tail still closes the body on seven frames (S2 to S8), and in the feed it reads as boilerplate. Texas specificity beyond 'San Antonio' and the S9 skyline is thin."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A veterans' speech-research story, opening on a question cover with a physical waveform, built as a mix of reliefs and spatial scenes, is a fresh concept against the record's grid, data-centre and policy decks. The familiar move is the explainer-blue tone, which repeats the Nov 14 v2 deck's register."
+  }
+ ],
+ "weighted_score": 7.47,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Put UT San Antonio's name and a plain status line ('No results yet and not enrolling. Findings decide whether federal grants follow') on the frames, on S1 or S9, so a reader who never opens the caption knows whose pilot this is and what they can and can't do, and replace the seven 'drawn to illustrate' tails with one line on the close.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Unchanged after the failed rework. The headline wash is a pale-haloed rectangle cutting into the live oak, the skyline is flat cut-outs, and the orange ribbon reads as a serrated centipede, not S1's machined ribbon.",
+   "fix": "Remove the wash and set the type in the open sky by moving the oak out of the type column to the far right edge, and re-model the ribbon as S1's smooth gold extrusion lying on the caliche with a contact shadow."
+  },
+  {
+   "slide": 2,
+   "problem": "The kit-figure hands on the mug are still visible lower left, and the broken gold ribbon, the actual subject, is small (about a fifth of the frame) and outshouted by the big blue streak behind it.",
+   "fix": "Crop in until the gold ribbon and its break span half the frame width at the focal point, and drop the blue ribbon into soft focus or cut it so the gold owns the frame."
+  },
+  {
+   "slide": 3,
+   "problem": "The sieve rim is cut open at both sides and reads at thumb size as a broken model. The frame is flatter than its neighbours.",
+   "fix": "Close the rim, or give the cutaway a clear cut face with a shaded inner wall, and lower the raking key so the stones and grains cast long shadows on the pan."
+  },
+  {
+   "slide": 7,
+   "problem": "The headline wash shows as a dark cloud over the sky, and the feature pills sit on the floor away from the gauges they name.",
+   "fix": "Seat the type in the sky's own gradient with no blotch, and anchor each pill directly under its own gauge base."
+  }
+ ]
+}

@@ -1,0 +1,334 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-16, carousel no. 79, frame 6 of 9, today's method (rework round 1). A spatial scene through txthree.js
+     in a room built by TXT.interior: a walnut reading table at blue hour, seen low and close from its near end. The open
+     transcript owns the lower half. A paper toned voice ribbon, 3 mm thick and standing on its edge, curls across the walnut,
+     climbs the leaves and dies down across the left page until it is a flat line among the ruled lines of the right page.
+     A reviewer's hand, cropped at the cuff, writes the flat line with one wooden pencil. One pendant, hung through the camera clear of
+     the headline, lights the transcript; the window's blue is the only other light. No gold: this frame carries no accent.
+     No face and no countable number of reviewers. The headline stands top right over the quiet indigo wall. Drawn to
+     illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:500px; top:150px; width:516px; text-align:right">Today the work starts with slow transcription</h1>
+<p class="dek" data-follow="26" style="left:556px; width:460px; font-size:26px; line-height:1.36; text-align:right">Detailed language analysis also takes coding, often by several reviewers. The hand and pages are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-16-voicebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Today", counter: "06 / 09", src: "c10", fit: { min: 66, max: 84, maxLines: 3 } });
+  /* THIS FRAME DRAWS NO COUNT. window.FIG stays empty and nothing below is a number a reader could count as a fact. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 6 draws no figure, FIG must be empty');
+
+  /* the type sits top right over the indigo wall, clear of the counter, and the dek ends above the table's far end */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (hb.right > 1016 || db.right > 1016) throw new Error('the type crosses the 64 px safe margin');
+    if (db.bottom > 560) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the table');
+    if (hb.left + hb.width / 2 < 540) throw new Error('the headline left the right half'); }
+
+  const P = CH.P;
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.02, far: 40, fog: 0 });
+
+  /* THE ROOM: deep indigo walls, no window of the engine's (the window below is this frame's own) */
+  const RW = 7.4, RD = 7.4, RH = 3.0, BACK = -RD / 2 + 0.1;
+  TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: 0x3552cc, trim: 0x2a2470, window: null, light: 0.45 });
+  const carpet = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(606); g.fillStyle = '#26306e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 60000; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(18,20,70,0.5)' : 'rgba(80,90,170,0.35)'; g.fillRect(r() * w, r() * h, 2, 2); }
+  }, [6, 9]);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(RW, RD + 4), new THREE.MeshStandardMaterial({ name: 'carpet-fabric', map: carpet, roughness: 0.97 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set(0, 0.003, 2); floor.receiveShadow = true; R.room.add(floor);
+
+  /* THE TABLE: the kit conference table, rectangular, re-skinned in straight grained walnut, run from the camera to the window */
+  const table = K.make('conference_table', { seats: 6, shape: 'rect', wood: 0x5a2c16, chairs: false, seed: 6 });
+  const walnutTex = CH.canvasTex(THREE, 2048, 1024, (g, w, h) => {
+    const r = CH.rng(2416); g.fillStyle = '#6e3c24'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 900; k++) { const y = r() * h, a = 0.03 + r() * 0.1, lw = 0.6 + r() * 3.2;
+      g.strokeStyle = (r() < 0.55 ? 'rgba(40,16,8,' : 'rgba(150,86,48,') + a + ')'; g.lineWidth = lw;
+      g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 128) g.lineTo(x, y + (r() - 0.5) * 1.6); g.stroke(); }
+    for (let k = 0; k < 40; k++) { const x0 = r() * w, y0 = r() * h; g.fillStyle = 'rgba(30,12,6,' + (0.04 + r() * 0.05) + ')'; g.fillRect(x0, y0, 60 + r() * 300, 1 + r() * 2); }
+  });
+  walnutTex.wrapS = walnutTex.wrapT = THREE.RepeatWrapping;
+  const walnut = new THREE.MeshPhysicalMaterial({ name: 'walnut-wood', map: walnutTex, roughness: 0.7, clearcoat: 0.04, clearcoatRoughness: 0.6, envMapIntensity: 0.35, specularIntensity: 0.35 });
+  walnut.userData.txSurface = false;   /* the grain is this frame's own; the surface pass's mottle blotched the lamp pool */
+  table.traverse(m => { if (m.isMesh && m.material && m.material.map) m.material = walnut; });
+  table.rotation.y = Math.PI / 2; table.position.set(-0.15, 0, 0.75);
+  TXT.add(R, table);
+  const TOP = 0.74;
+  table.updateMatrixWorld(true);
+  const tb = new THREE.Box3().setFromObject(table);
+  const zNear = tb.max.z, zFar = tb.min.z, xL = tb.min.x, xR = tb.max.x, XC = (xL + xR) / 2;
+
+  /* two chairs pulled out on the far left, in the dark beyond the lamp */
+  [[-1, zNear - 1.6, 0.3], [-1, zNear - 2.5, -0.2]].forEach(([s, z, ry], i) => {
+    const c = K.make('office_chair', { style: 'task', color: 0x26306e, seed: 10 + i });
+    c.rotation.y = -s * Math.PI / 2 + ry; c.position.set(XC + s * 1.05, 0, z); TXT.add(R, c); });
+
+  const put = (o, x, z, ry) => { o.position.set(x, TOP, z); o.rotation.y = ry || 0; TXT.add(R, o); return o; };
+  /* the rest of the work, few and far, at the dark end of the table */
+  const far = [put(K.make('document_stack', { count: 3, seed: 3 }), XC - 0.25, zFar + 0.5, 0.25),
+               put(K.make('bound_transcript', { open: 0, leaves: 0.034, curl: 0.5, seed: 8 }), XC - 0.3, zFar + 1.3, -0.4),
+               put(K.make('bound_transcript', { open: 0, leaves: 0.03, curl: 0.3, seed: 2 }), XC - 0.28, zFar + 1.33, -0.3)];
+  far[2].position.y = TOP + 0.036;
+
+  /* THE WEIGHT OF THE WORK: three piles of closed, flagged transcripts receding down the table behind the open one, each
+   * flag a coding tab in cyan, violet or rose (never the accent). Illustrative, and not a count of anything. */
+  { const tabCols = [0x5fd3f0, 0x9a7bff, 0xff7fb0], piles = [[0.3, 0.78, 3, 0.2], [0.18, 1.4, 2, -0.35], [0.06, 2.05, 3, 0.5]];
+    piles.forEach(([dx, dz, n, ry], k) => { let y = TOP;
+      for (let j = 0; j < n; j++) { const t = K.make('bound_transcript', { open: 0, leaves: 0.026 + 0.01 * ((j + k) % 2), curl: 0.2, tabs: 3 + ((j + k) % 3), tabColor: tabCols[(j + k) % 3], seed: 40 + k * 5 + j });
+        const bb = new THREE.Box3().setFromObject(t), h = bb.max.y - bb.min.y;
+        t.position.set(XC + dx + (j % 2 ? 0.008 : -0.006), y, zNear - 0.42 - dz); t.rotation.y = ry + (j - 1) * 0.07; TXT.add(R, t); far.push(t); y += h + 0.0005; } }); }
+
+  /* THE NEAR TRANSCRIPT: open, angled a touch toward the camera, the voice arriving on its right hand page */
+  const near = K.make('bound_transcript', { open: 1, leaves: 0.036, seed: 11 });
+  const NZ = zNear - 0.42, NX = XC + 0.3, NRY = -0.1;
+  put(near, NX, NZ, NRY);
+  near.updateMatrixWorld(true);
+  const pageW = new THREE.Vector3(...near.userData.page).applyMatrix4(near.matrixWorld);
+  const nb = new THREE.Box3().setFromObject(near);
+
+  /* one loose sheet and a spare pencil left of the book */
+  const sheetTex = CH.canvasTex(THREE, 512, 660, (g, w, h) => {
+    g.fillStyle = '#f3eee2'; g.fillRect(0, 0, w, h); const r = CH.rng(5);
+    g.fillStyle = 'rgba(60,64,96,0.55)';
+    for (let y = 70; y < h - 50; y += 21) { const L = 300 + r() * 120; if (r() < 0.08) { y += 14; continue; } g.fillRect(58, y, L, 5); }
+    g.fillStyle = 'rgba(70,90,200,0.35)'; for (let k = 0; k < 6; k++) { const y = 90 + r() * 480; g.fillRect(52, y, 200 + r() * 160, 14); }
+  });
+  const sheetM = new THREE.MeshStandardMaterial({ name: 'paper-sheet', map: sheetTex, roughness: 0.9, side: THREE.DoubleSide });
+  { const sh = new THREE.Mesh(new THREE.PlaneGeometry(0.216, 0.279), sheetM); sh.geometry.rotateX(-Math.PI / 2);
+    sh.position.set(nb.min.x + 0.07, TOP + 0.0006, nb.max.z + 0.15); sh.rotation.y = 0.5; sh.receiveShadow = true; /* a coded loose sheet in the foreground, its highlighter bands the reviewers' coding */ R.scene.add(sh); }
+  const pencil = (col) => {
+    const g = new THREE.Group(), L = 0.17;
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.0036, 0.0036, L, 6), new THREE.MeshStandardMaterial({ name: 'pencil-paint', color: col, roughness: 0.45 }));
+    body.rotation.z = Math.PI / 2; g.add(body);
+    const wood = new THREE.Mesh(new THREE.ConeGeometry(0.0036, 0.016, 6), new THREE.MeshStandardMaterial({ name: 'pencil-wood', color: 0xe2b98a, roughness: 0.8 }));
+    wood.rotation.z = -Math.PI / 2; wood.position.x = L / 2 + 0.008; g.add(wood);
+    const lead = new THREE.Mesh(new THREE.ConeGeometry(0.0011, 0.005, 8), new THREE.MeshStandardMaterial({ color: 0x2a2a33, roughness: 0.4, metalness: 0.3 }));
+    lead.rotation.z = -Math.PI / 2; lead.position.x = L / 2 + 0.0165; g.add(lead);
+    const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.0039, 0.0039, 0.012, 16), new THREE.MeshStandardMaterial({ name: 'ferrule-brushed-metal', color: 0xc9ccd2, metalness: 1, roughness: 0.3 }));
+    fer.rotation.z = Math.PI / 2; fer.position.x = -L / 2 - 0.006; g.add(fer);
+    const er = new THREE.Mesh(new THREE.CylinderGeometry(0.0037, 0.0037, 0.009, 16), new THREE.MeshStandardMaterial({ name: 'eraser-rubber', color: 0xd86a8a, roughness: 0.8 }));
+    er.rotation.z = Math.PI / 2; er.position.x = -L / 2 - 0.0165; g.add(er);
+    g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    R.scene.add(g); return g;
+  };
+  { const p0 = pencil(0x7a4fd0); p0.position.set(nb.min.x + 0.12, TOP + 0.0045, nb.max.z + 0.11); p0.rotation.y = -0.1; }
+
+  /* THE VOICE, FLATTENED. A paper strip 3 mm thick standing on its edge along a curling path. Its waveform stands full
+   * height on the walnut, climbs the transcript's leaves, and dies down across the left hand page until, on the right hand
+   * page, it is a flat line among the lines of type. Paper toned, matte: never the accent. Drawn to illustrate. */
+  const rib = (() => {
+    const x0 = nb.min.x - 0.012, bookL = nb.min.x + 0.01, x1 = pageW.x + 0.094, Z0 = pageW.z + 0.01;
+    const A = 0.07, N = 700, T = 0.003, rr = CH.rng(79), ph = [rr() * 6.28, rr() * 6.28, rr() * 6.28];
+    const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+    const base = (x) => TOP + 0.0005 + sm(bookL - 0.025, bookL + 0.004, x) * (pageW.y - TOP);
+    const env = (x) => 1 - 0.99 * Math.pow(sm(bookL + 0.02, pageW.x - 0.03, x), 0.85);
+    const amp = (x) => { const u = (x - x0) * 2 * Math.PI * 30; const v = 0.5 * Math.sin(u + ph[0]) + 0.3 * Math.sin(u * 1.73 + ph[1]) + 0.2 * Math.sin(u * 0.41 + ph[2]);
+      return A * (0.08 + 0.92 * Math.abs(v)) * env(x) + 0.0007; };
+    /* the curl: off the book the path swings toward the camera and back, so the strip reads as a thing standing in space */
+    const zAt = (x) => Z0 + 0.035 * (1 - sm(x0, bookL, x)) * Math.sin((x - x0) / (bookL - x0) * Math.PI * 1.15);
+    const pos = [], idx = [];
+    for (let i = 0; i <= N; i++) {
+      const x = x0 + (x1 - x0) * i / N, z = zAt(x), dx = 0.001, tz = (zAt(x + dx) - zAt(x - dx)) / (2 * dx), nl = Math.hypot(1, tz);
+      const nx = -tz / nl, nz = 1 / nl, b = base(x), t = b + amp(x);
+      pos.push(x + nx * T / 2, b, z + nz * T / 2, x + nx * T / 2, t, z + nz * T / 2, x - nx * T / 2, b, z - nz * T / 2, x - nx * T / 2, t, z - nz * T / 2);
+    }
+    for (let i = 0; i < N; i++) { const a = i * 4, c = a + 4;
+      idx.push(a, c, a + 1, a + 1, c, c + 1);           /* front face */
+      idx.push(a + 2, a + 3, c + 2, a + 3, c + 3, c + 2); /* back face */
+      idx.push(a + 1, c + 1, a + 3, a + 3, c + 1, c + 3); /* top edge */ }
+    const e = N * 4; idx.push(0, 1, 2, 1, 3, 2, e, e + 2, e + 1, e + 1, e + 2, e + 3);
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+    const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ name: 'paper-ribbon', color: 0xf6efe2, roughness: 0.82, side: THREE.DoubleSide }));
+    m.material.userData.txSurface = false; m.userData.txBevel = false; m.castShadow = true; m.receiveShadow = true;
+    if (!(amp(x1) < 0.0015 && amp(bookL - 0.05) > 0.004)) throw new Error('the ribbon must stand tall on the walnut and lie flat on the page');
+    /* its contact: a soft indigo line pressed under the foot of the strip */
+    const sp = [], si = [], su = [];
+    for (let i = 0; i <= N; i++) { const x = x0 + (x1 - x0) * i / N, z = zAt(x), b = base(x) + 0.0003, w = 0.01 + 0.012 * env(x);
+      sp.push(x, b, z - w * 0.4, x, b, z + w); su.push(i / N, 0, i / N, 1); }
+    for (let i = 0; i < N; i++) { const a = i * 2; si.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); }
+    const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3)); cg.setAttribute('uv', new THREE.Float32BufferAttribute(su, 2)); cg.setIndex(si);
+    const ct = CH.canvasTex(THREE, 8, 64, (q, w, h) => { const gr = q.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(20,14,60,0)'); gr.addColorStop(0.3, 'rgba(20,14,60,0.6)'); gr.addColorStop(1, 'rgba(20,14,60,0)'); q.fillStyle = gr; q.fillRect(0, 0, w, h); });
+    const cm = new THREE.Mesh(cg, new THREE.MeshBasicMaterial({ map: ct, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+    cm.material.userData.txSurface = false; cm.renderOrder = 1;
+    return { m, cm, x0, x1, amp, z1: zAt(x1) };
+  })();
+  R.scene.add(rib.m, rib.cm);
+
+  /* A REVIEWER'S HAND, cropped by the right edge: a knit cuff, the wrist and a right hand pinching one unpainted wooden
+   * pencil whose graphite tip rests exactly where the voice ribbon has gone flat, as if it were writing the line. Built
+   * here from skin and knit, three fingers and a thumb on the pencil, nails on the tips. No face, no body, one hand. */
+  const tipW = new THREE.Vector3(rib.x1 + 0.004, pageW.y + 0.0016, rib.z1);
+  const U = new THREE.Vector3(0.015, -0.05, -0.11).normalize();          /* from the hand toward the tip */
+  const HX = U.clone(), HZ = new THREE.Vector3().crossVectors(U, new THREE.Vector3(0, 1, 0)).normalize(), HY = new THREE.Vector3().crossVectors(HZ, HX).normalize();
+  const basis = new THREE.Matrix4().makeBasis(HX, HY, HZ), qH = new THREE.Quaternion().setFromRotationMatrix(basis);
+  { const pw = pencil(0xd8c09a); pw.traverse(m => { if (m.isMesh && m.material.name === 'pencil-paint') { m.material = m.material.clone(); m.material.name = 'pencil-cedar-wood'; m.material.roughness = 0.62; } });
+    pw.quaternion.copy(qH); pw.position.copy(tipW).addScaledVector(U, -0.1035); }
+  const hand = new THREE.Group(); hand.quaternion.copy(qH); hand.position.copy(tipW).addScaledVector(U, -0.034); R.scene.add(hand);
+  const skin = new THREE.MeshPhysicalMaterial({ name: 'hand-skin', color: 0xa86f5a, roughness: 0.66, sheen: 0.45, sheenColor: 0xffc4ae, sheenRoughness: 0.7, specularIntensity: 0.4 });
+  const nailM = new THREE.MeshPhysicalMaterial({ name: 'nail-skin', color: 0xd9aaa0, roughness: 0.25, clearcoat: 0.6 });
+  const knitTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { g.fillStyle = '#2b3a8f'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 8) { g.fillStyle = 'rgba(12,16,60,0.55)'; g.fillRect(x, 0, 3, h); g.fillStyle = 'rgba(120,140,230,0.25)'; g.fillRect(x + 4, 0, 2, h); } }, [6, 1]);
+  const knit = new THREE.MeshStandardMaterial({ name: 'cuff-knit-fabric', map: knitTex, roughness: 0.95 });
+  const seg = (r, a, b, m) => { const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b), L = A.distanceTo(B);
+    const c = new THREE.Mesh(new THREE.CapsuleGeometry(r, L, 8, 16), m); c.position.copy(A).add(B).multiplyScalar(0.5);
+    c.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), B.clone().sub(A).normalize()); hand.add(c); return c; };
+  const blob = (sx, sy, sz, at, m) => { const b = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 20), m); b.scale.set(sx, sy, sz); b.position.set(...at); hand.add(b); return b; };
+  /* the index finger rides the top of the pencil, bent at two knuckles */
+  seg(0.0085, [-0.062, 0.022, 0.004], [-0.03, 0.019, 0.002], skin); seg(0.0079, [-0.03, 0.019, 0.002], [-0.008, 0.012, 0.001], skin); seg(0.0072, [-0.008, 0.012, 0.001], [0.008, 0.0075, 0], skin);
+  blob(0.0068, 0.0028, 0.0058, [0.007, 0.0132, 0], nailM);
+  /* the thumb on the near side */
+  seg(0.0105, [-0.07, 0.0, -0.022], [-0.035, 0.002, -0.016], skin); seg(0.0092, [-0.035, 0.002, -0.016], [-0.006, 0.002, -0.0095], skin);
+  blob(0.0068, 0.0058, 0.0028, [-0.008, 0.004, -0.0172], nailM);
+  /* the middle finger under it, the ring and little fingers curled into the palm */
+  seg(0.0086, [-0.06, -0.004, 0.018], [-0.03, -0.008, 0.014], skin); seg(0.0078, [-0.03, -0.008, 0.014], [-0.012, -0.009, 0.007], skin);
+  seg(0.0082, [-0.066, -0.008, 0.03], [-0.045, -0.02, 0.026], skin); seg(0.0074, [-0.045, -0.02, 0.026], [-0.05, -0.028, 0.016], skin);
+  seg(0.0072, [-0.072, -0.012, 0.04], [-0.058, -0.026, 0.036], skin);
+  /* the palm, the wrist and the cuff */
+  blob(0.046, 0.026, 0.036, [-0.09, 0.008, 0.012], skin);
+  seg(0.027, [-0.12, 0.006, 0.01], [-0.175, 0.004, 0.008], skin);
+  { const cuff = new THREE.Mesh(new THREE.CylinderGeometry(0.037, 0.04, 0.16, 40, 1, true), knit); cuff.rotation.z = Math.PI / 2; cuff.position.set(-0.23, 0.004, 0.008); hand.add(cuff);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(0.0365, 0.005, 12, 40), knit); lip.rotation.y = Math.PI / 2; lip.position.set(-0.15, 0.004, 0.008); hand.add(lip);
+    const inner = new THREE.Mesh(new THREE.CylinderGeometry(0.033, 0.033, 0.02, 32, 1, true), new THREE.MeshStandardMaterial({ color: 0x141a4a, roughness: 1, side: THREE.BackSide })); inner.rotation.z = Math.PI / 2; inner.position.set(-0.16, 0.004, 0.008); hand.add(inner);
+    /* the forearm in its sleeve, running back out of the frame at the lower right, so the hand belongs to someone */
+    const sleeveTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { g.fillStyle = '#3a4bb0'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 10) { g.fillStyle = 'rgba(14,18,70,0.5)'; g.fillRect(x, 0, 4, h); g.fillStyle = 'rgba(140,160,240,0.22)'; g.fillRect(x + 5, 0, 2, h); } }, [10, 3]);
+    const sleeveM = new THREE.MeshStandardMaterial({ name: 'sleeve-knit-fabric', map: sleeveTex, roughness: 0.96, side: THREE.DoubleSide });
+    const prof = []; for (let i = 0; i <= 24; i++) { const t = i / 24, x = -0.3 - 0.62 * t, r = 0.041 + 0.03 * Math.pow(t, 0.8) + 0.003 * Math.sin(t * 40); prof.push(new THREE.Vector2(r, x)); }
+    const sleeve = new THREE.Mesh(new THREE.LatheGeometry(prof, 48), sleeveM); sleeve.rotation.z = -Math.PI / 2; sleeve.position.set(0, 0.006, 0.008); hand.add(sleeve);
+    const fold = new THREE.Mesh(new THREE.TorusGeometry(0.043, 0.008, 12, 48), sleeveM); fold.rotation.y = Math.PI / 2; fold.position.set(-0.305, 0.006, 0.008); hand.add(fold); }
+  hand.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  hand.updateMatrixWorld(true);
+  { const lb = new THREE.Box3().setFromObject(hand); if (lb.min.y < pageW.y - 0.002) throw new Error('the hand sinks ' + (pageW.y - lb.min.y).toFixed(3) + ' m into the page'); }
+
+  /* the leaf edges as fine layered paper, never a noise of blue specks */
+  { const edgeTex = CH.canvasTex(THREE, 64, 1024, (g, w, h) => { g.fillStyle = '#efe7d6'; g.fillRect(0, 0, w, h); const r = CH.rng(31);
+      for (let y = 0; y < h; y += 6) { g.fillStyle = 'rgba(120,104,90,' + (0.03 + r() * 0.05) + ')'; g.fillRect(0, y, w, 2); } });
+    edgeTex.generateMipmaps = true; edgeTex.minFilter = THREE.LinearMipmapLinearFilter;
+    const edgeM = new THREE.MeshStandardMaterial({ name: 'paper-edge', map: edgeTex, roughness: 0.95 });
+    [near].concat(far).forEach(b => b.traverse(m => { if (!m.isMesh) return;
+      if (Array.isArray(m.material)) m.material = m.material.map(x => (x.name || '').indexOf('edge') >= 0 && (x.name || '').indexOf('clear') < 0 ? edgeM : x);
+      else if ((m.material.name || '').indexOf('bt-edge') >= 0) m.material = edgeM; })); }
+
+  /* THE CAMERA: low beside the near end, 1.0 m, close to the transcript, turned a little right so the far end and the window
+   * fall to the left and the wall above the right half stays quiet for the type */
+  const FROM = [nb.min.x + 0.04, 1.06, zNear + 0.5];
+  const HAND_OFF = [pageW.x - 0.1, pageW.y, pageW.z];   /* where the waveform goes flat, at 45 to 65 percent of the height */
+  const LOOK = CH.aim(THREE, R, TXT, FROM, HAND_OFF, 560, 870, 40);
+  TXT.frame(R, { fov: 40, from: FROM, look: LOOK });
+
+  /* THE WINDOW: on the left of the back wall, blue hour outside, a soft horizon with no skyline */
+  /* placed through the camera: the window's centre is where the ray through screen (190, 330) meets the back wall */
+  const WY = 1.62, WW = 1.5, WH = 1.9;
+  const WX = (() => { R.camera.updateMatrixWorld(true); const o = R.camera.position.clone(), d = new THREE.Vector3(190 / CH.W * 2 - 1, 1 - 330 / CH.H * 2, 0.5).unproject(R.camera).sub(o).normalize();
+    const x = o.x + d.x * (BACK - o.z) / d.z; return Math.max(-RW / 2 + WW / 2 + 0.3, Math.min(RW / 2 - WW / 2 - 0.3, x)); })();
+  const skyTex = CH.canvasTex(THREE, 600, 760, (g, w, h) => {
+    const s = g.createLinearGradient(0, 0, 0, h);
+    s.addColorStop(0, '#0f2a86'); s.addColorStop(0.5, '#2f63d8'); s.addColorStop(0.78, '#86b0f2'); s.addColorStop(0.9, '#e9b4a0'); s.addColorStop(1, '#6a5aa8');
+    g.fillStyle = s; g.fillRect(0, 0, w, h);
+    g.filter = 'blur(18px)'; g.fillStyle = 'rgba(40,36,110,0.55)'; g.fillRect(-40, h * 0.95, w + 80, h * 0.2); g.filter = 'none';
+    g.fillStyle = 'rgba(255,255,255,0.85)'; [[90, 120], [430, 70], [520, 210]].forEach(p => { g.beginPath(); g.arc(p[0], p[1], 1.6, 0, 7); g.fill(); });
+  });
+  const glass = new THREE.Mesh(new THREE.PlaneGeometry(WW, WH), new THREE.MeshBasicMaterial({ map: skyTex, toneMapped: true }));
+  glass.material.color.multiplyScalar(1.35); glass.material.userData.txSurface = false;
+  glass.position.set(WX, WY, BACK + 0.002); R.room.add(glass);
+  { const frameM = new THREE.MeshStandardMaterial({ name: 'window-paint', color: 0xc9d0ea, roughness: 0.5 });
+    const bar = (w, h, x, y) => { const m = TXT.roundedBox(w, h, 0.06, 0.008, frameM); m.position.set(x, y, BACK + 0.03); m.castShadow = false; m.receiveShadow = true; R.room.add(m); };
+    bar(WW + 0.12, 0.06, WX, WY + WH / 2); bar(WW + 0.12, 0.06, WX, WY - WH / 2); bar(0.06, WH, WX - WW / 2, WY); bar(0.06, WH, WX + WW / 2, WY);
+    bar(0.035, WH, WX, WY); bar(WW, 0.035, WX, WY + 0.18);
+    const sill = TXT.roundedBox(WW + 0.24, 0.035, 0.16, 0.01, frameM); sill.position.set(WX, WY - WH / 2 - 0.04, BACK + 0.08); R.room.add(sill); }
+
+  /* THE LAMP: one pendant, low over the near end, its open underside lit, its warm pool centred on the transcript */
+  /* hung through the camera: hung 0.78 m over the near end of the transcript, above the top of the frame: only its beam is seen */
+  const LP = new THREE.Vector3(nb.min.x - 0.02, TOP + 0.78, NZ - 0.12);
+  { const q = CH.project(THREE, R, [LP.x, LP.y, LP.z]); window.__lamp = q; if (q[1] > -20) throw new Error('the lamp must hang above the frame, it projects at y ' + Math.round(q[1])); }
+  const LX = LP.x, LZ = LP.z, LY = LP.y;
+  if (LY - TOP < 0.3) throw new Error('the pendant hangs ' + (LY - TOP).toFixed(2) + ' m over the table, too low');
+  { const prof = [[0.006, 0.17], [0.03, 0.165], [0.06, 0.14], [0.13, 0.06], [0.2, 0.0], [0.198, -0.006]].map(p => new THREE.Vector2(p[0], p[1]));
+    const shade = new THREE.Mesh(new THREE.LatheGeometry(prof, 64), new THREE.MeshPhysicalMaterial({ name: 'shade-paint', color: 0x2c49c4, roughness: 0.32, metalness: 0.1, clearcoat: 0.8, side: THREE.BackSide }));
+    const inner = new THREE.Mesh(new THREE.LatheGeometry(prof.map(p => new THREE.Vector2(p.x * 0.97, p.y - 0.003)), 64), new THREE.MeshStandardMaterial({ color: 0xfff0d8, emissive: 0xffd2a0, emissiveIntensity: 5, side: THREE.FrontSide }));
+    inner.material.userData.txSurface = false;
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.199, 0.004, 10, 96), new THREE.MeshStandardMaterial({ color: 0xe9edf7, roughness: 0.3 })); rim.rotation.x = Math.PI / 2; rim.position.y = -0.004;
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.045, 24, 16), new THREE.MeshBasicMaterial({ color: 0xffe0b0 })); bulb.material.color.multiplyScalar(5); bulb.position.y = -0.022; bulb.scale.setScalar(0.8);
+    const cord = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, 2, 8), new THREE.MeshStandardMaterial({ color: 0x15153a, roughness: 0.6 })); cord.position.y = 1.17;
+    void shade; void inner; void rim; void bulb; void cord; }
+  /* the pendant's far wash on the piles, no shadow */
+  { const wash = new THREE.SpotLight(0xffd8b0, 7, 8, 0.3, 1.0, 2); wash.position.set(LX, LY + 0.03, LZ); wash.target.position.set(XC, TOP, NZ - 1.2); wash.castShadow = false; R.scene.add(wash, wash.target); }
+  /* THE POOL: the pendant's cone, carried on its own bearing down onto the open transcript and the handoff, the brightest warm
+   * region of the frame. It stands in for the lamp's beam at its working distance, so the piles do not shade it out. */
+  const POOL = [(nb.min.x + nb.max.x) / 2 + 0.04, TOP, (nb.min.z + nb.max.z) / 2 + 0.02];
+  const lamp = new THREE.SpotLight(0xffcf9a, 3.2, 4, 0.62, 0.85, 2);
+  lamp.position.set(LX, LY - 0.02, LZ); lamp.target.position.set(...POOL);
+  lamp.castShadow = true; lamp.shadow.mapSize.set(4096, 4096); lamp.shadow.bias = -0.0006; lamp.shadow.normalBias = 0.012; lamp.shadow.radius = 8; lamp.shadow.blurSamples = 16;
+  lamp.shadow.camera.near = 0.3; lamp.shadow.camera.far = 3;
+  R.scene.add(lamp, lamp.target);
+  /* the beam made visible: a soft additive cone of lit air from the shade's mouth down to the pages, fading as it falls */
+  { const top = new THREE.Vector3(LX, LY - 0.01, LZ), bot = new THREE.Vector3(...POOL), L = top.distanceTo(bot);
+    const rTop = 0.12, rBot = Math.tan(0.38) * L;
+    const cg = new THREE.CylinderGeometry(rTop, rBot, L, 64, 24, true);
+    const beamTex = CH.canvasTex(THREE, 256, 256, (q, w, h) => {
+      const gv = q.createLinearGradient(0, 0, 0, h); gv.addColorStop(0, 'rgba(255,214,160,0.55)'); gv.addColorStop(0.7, 'rgba(255,200,140,0.22)'); gv.addColorStop(1, 'rgba(255,200,140,0)');
+      q.fillStyle = gv; q.fillRect(0, 0, w, h);
+      q.globalCompositeOperation = 'destination-in'; const gh = q.createLinearGradient(0, 0, w, 0);
+      [0, 0.25, 0.5, 0.75, 1].forEach((t, k) => gh.addColorStop(t, k % 2 ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,1)')); q.fillStyle = gh; q.fillRect(0, 0, w, h); });
+    const cm = new THREE.MeshBasicMaterial({ map: beamTex, transparent: true, opacity: 0.32, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, toneMapped: false });
+    cm.userData.txSurface = false;
+    const cone = new THREE.Mesh(cg, cm); cone.position.copy(top).add(bot).multiplyScalar(0.5);
+    cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), top.clone().sub(bot).normalize()); cone.renderOrder = 5; cone.userData.txBevel = false; void cone; /* the beam washed the window, so the pool alone carries the lamp */ }
+  /* the lamp's own bounce off the pages, from the camera side, so the ribbon's near face takes the warm light it stands in */
+  { const f = new THREE.SpotLight(0xffe2c4, 1.6, 3, 0.5, 0.95, 2); f.position.set(nb.min.x - 0.1, 1.2, zNear + 0.6);
+    f.target.position.set(nb.min.x, TOP + 0.03, pageW.z); f.castShadow = false; R.scene.add(f, f.target); }
+
+  /* the window's last blue: a weak cool key from behind the far end, the rim on every edge, never the light that reads */
+  const spec = CH.rigSpec(W, 6, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0x8fb0ff, i: (spec.key.i || 3) * 0.22, radius: 5 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([XC, TOP, 0], { distance: 10, shadowFar: 24, normalBias: 0.003 }), { light: { az: 196, el: 16 } }));
+  CH.unacne(R, 0.003);
+  R.scene.traverse(l => { if (l.isLight && !l.castShadow && (l.isDirectionalLight)) l.intensity *= 0.5; });
+
+  { const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 64, 32), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { hi: { value: new THREE.Color(0x4a62d8) }, lo: { value: new THREE.Color(0x2a1e78) }, warm: { value: new THREE.Color(0xffd4a8) }, win: { value: new THREE.Color(0x6aa0ff) } },
+      vertexShader: 'varying vec3 v; void main(){ v = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 hi,lo,warm,win; varying vec3 v; void main(){ vec3 k = mix(lo, hi, smoothstep(-0.4, 0.5, v.y));' +
+        ' k = mix(k, warm * 2.0, smoothstep(0.85, 0.98, v.y)); k = mix(k, win * 1.4, smoothstep(0.75, 0.95, -v.z) * smoothstep(-0.1, 0.3, v.y)); gl_FragColor = vec4(k, 1.0); }' })));
+    const pm = new THREE.PMREMGenerator(R.renderer); R.scene.environment = pm.fromScene(env, 0.03).texture; pm.dispose();
+    R.scene.environmentIntensity = 0.8;
+    R.scene.add(new THREE.HemisphereLight(0x7a90ff, 0x5a36a0, 0.8)); }
+
+  TXT.contact(R, near, { layers: [{ spread: 0.01, opacity: 0.6 }, { spread: 0.05, opacity: 0.25 }] });
+  far.forEach(o => TXT.contact(R, o, { layers: [{ spread: 0.012, opacity: 0.45 }] }));
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* honesty of the picture: the table and its pages own at least half the frame height, the transcript owns the lower half */
+  { const rc = CH.rectOf(THREE, R, table, 0), top = Math.max(0, rc[1]);
+    if (1350 - top < 675) throw new Error('the table owns ' + Math.round(1350 - top) + ' px of the frame height, under half');
+    const rb = CH.rectOf(THREE, R, near, 0); window.__f6 = { tableTop: top, book: rb };
+    { const q = CH.project(THREE, R, HAND_OFF); if (q[1] < 0.45 * 1350 || q[1] > 0.65 * 1350) throw new Error('the voice to page handoff sits at y ' + Math.round(q[1])); }
+    if (rb[2] < 600 || rb[1] + rb[3] / 2 < 675) throw new Error('the transcript is ' + Math.round(rb[2]) + ' px wide at y ' + Math.round(rb[1]) + ', it must own the lower half'); }
+
+  { const q = CH.project(THREE, R, [rib.x0, TOP + 0.04, pageW.z]); window.__f6.ribX = q[0]; if (q[0] < 40) throw new Error('the ribbon starts off frame at x ' + Math.round(q[0])); }
+  CH.seat(cx, { a: 0.6, fade: 220 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 70 }));
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.5, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
