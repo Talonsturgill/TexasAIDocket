@@ -2,7 +2,7 @@
  "_spec": 1,
  "source": "waterdatafortexas.org recent-conditions.json, archived under ledger/gridwatch/raw by waterwatch_collect",
  "note": "Gauge positions, which do not change. Storage and capacity are not here: those move daily and live in ledger/gridwatch/water.jsonl. Built by scripts/shared/reservoirs.py, never hand-edited.",
- "count": 122,
+ "count": 123,
  "reservoirs": {
   "Abilene": {
    "name": "Lake Abilene",
@@ -38,6 +38,12 @@
    "name": "Aquilla Lake",
    "lon": -97.20279,
    "lat": 31.89988,
+   "texas": true
+  },
+  "Arbuckle": {
+   "name": "Arbuckle Reservoir",
+   "lon": -96.04323,
+   "lat": 29.19707,
    "texas": true
   },
   "Arlington": {
