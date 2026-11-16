@@ -33,6 +33,8 @@ Phase 7 logs are under `out/2026-11-16/tmp/p7_*.log`. `gridwatch_pagecheck.py` e
 - **shipped_check at package time** found three more. (1) `fig_inject --check` read six slides as stale. Slides 1, 2 and 6 asserted an empty FIG with `Object.keys(window.FIG)`, which the injector reads as dynamic use, so the assertions were dropped and the FIG lines rewritten. Every re-render was pixel identical, and slides 1 and 7 kept their PNG file hashes, so their cold critiques were rebound with that stated in `art_preflight.json`. (2) The sources block listed c1, which no frame or caption prints, and `sources_block.py --build` regenerated it. (3) The topics entry used number words (one, two, four, nine) that `ledger_check` binds to its counting figures, so the topic and angle were reworded with no count changed.
 - **A site build was killed by this run's own 20 minute wrapper timeout**, which left `docs/` half deleted and turned `port_audit` and `seo_check` red. `docs/` was restored from HEAD and rebuilt with no timeout.
 
+- **The gate block's score row reads STALE** because frames were re-rendered after round 3 scored them. Every one of those re-renders was pixel identical to what the judges saw, except slide 4, whose desk and key light were cooled to meet the accent cap. The deck was not scored again for that.
+
 **Named shortfall.** The craft median of 7.3 is held down by frame 9 (serrated orange ribbon, type wash edge, subject under half the frame), frame 2's soft kit hands, frame 5's shallow hatch-like cantera and frame 4's uncountable blocks at feed size. On story, UT San Antonio is named in the caption and title but on no slide, the deck carries no announcement date, and "drawn to illustrate" closes seven deks.
 
 ## Timing
@@ -67,12 +69,12 @@ Social delivery for this edition runs after the merge, under the DAILY SOCIAL DE
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 9 warn(s) |
-| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 4 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.83 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 31,519 chars planned |
 | caption        | PASS   | 124 words |
 | craft floor    | PASS   | 9 frame(s), median 1991, floor 358 |
