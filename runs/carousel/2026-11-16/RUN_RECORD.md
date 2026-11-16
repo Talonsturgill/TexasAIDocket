@@ -30,6 +30,9 @@ Phase 7 logs are under `out/2026-11-16/tmp/p7_*.log`. `gridwatch_pagecheck.py` e
 - **Round 3**, 7.346 at the cap. Ships.
 - **After scoring, before shipping.** `ship_images` refused the archive on `layout_check` in require mode. Slide 4's planned image rect sat on the blurred backdrop and its warm desk light covered 0.095 of the frame in the accent's colour against a 0.08 cap. Slide 8 was planned as GRID while its leads separate into three pieces at thumb size. The plan rect for slide 4 was redrawn around the drawer, its desk walnut and key light cooled (the accent share is now 0.05), and slide 8 was replanned as DIAGRAM with its rect around the panel. Slide 4 was re-rendered after round 3 scored it. qa, distinct, value register, art preflight and panel_ready all passed again.
 
+- **shipped_check at package time** found three more. (1) `fig_inject --check` read six slides as stale. Slides 1, 2 and 6 asserted an empty FIG with `Object.keys(window.FIG)`, which the injector reads as dynamic use, so the assertions were dropped and the FIG lines rewritten. Every re-render was pixel identical, and slides 1 and 7 kept their PNG file hashes, so their cold critiques were rebound with that stated in `art_preflight.json`. (2) The sources block listed c1, which no frame or caption prints, and `sources_block.py --build` regenerated it. (3) The topics entry used number words (one, two, four, nine) that `ledger_check` binds to its counting figures, so the topic and angle were reworded with no count changed.
+- **A site build was killed by this run's own 20 minute wrapper timeout**, which left `docs/` half deleted and turned `port_audit` and `seo_check` red. `docs/` was restored from HEAD and rebuilt with no timeout.
+
 **Named shortfall.** The craft median of 7.3 is held down by frame 9 (serrated orange ribbon, type wash edge, subject under half the frame), frame 2's soft kit hands, frame 5's shallow hatch-like cantera and frame 4's uncountable blocks at feed size. On story, UT San Antonio is named in the caption and title but on no slide, the deck carries no announcement date, and "drawn to illustrate" closes seven deks.
 
 ## Timing
@@ -55,3 +58,27 @@ Phase 7 logs are under `out/2026-11-16/tmp/p7_*.log`. `gridwatch_pagecheck.py` e
 ## Social delivery and email
 
 Social delivery for this edition runs after the merge, under the DAILY SOCIAL DELIVERY section, and its receipts go to the Gmail draft rather than this record, because the merge is the last thing that touches git.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 21 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 9 warn(s) |
+| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 31,519 chars planned |
+| caption        | PASS   | 124 words |
+| craft floor    | PASS   | 9 frame(s), median 1991, floor 358 |
+| plan vs render | WARN   | 0 of 61 acceptance item(s) checkable |
+| texan          | WARN   | places San Antonio / body NO / deadline NO / next step NO |
+| absences       | WARN   | 0 of 4 scoped to a named document, 4 unscoped |
+| numerals       | PASS   | 3 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->

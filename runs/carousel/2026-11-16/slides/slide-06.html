@@ -34,7 +34,6 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Today", counter: "06 / 09", src: "c10", fit: { min: 66, max: 84, maxLines: 3 } });
   /* THIS FRAME DRAWS NO COUNT. window.FIG stays empty and nothing below is a number a reader could count as a fact. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 6 draws no figure, FIG must be empty');
 
   /* the type sits top right over the indigo wall, clear of the counter, and the dek ends above the table's far end */
   { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();

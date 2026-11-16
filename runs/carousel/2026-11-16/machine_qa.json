@@ -60,7 +60,7 @@
       "fails": [],
       "warns": [
         "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 95% / mid 95% / bottom 67% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
-        "console error: TXBENCH: RELIEF {\"height_range\":41.7762818826417,\"materials\":6,\"cast_fraction\":0.2524074074074074,\"area\":1,\"render_ms\":19576.299999998882}"
+        "console error: TXBENCH: RELIEF {\"height_range\":41.7762818826417,\"materials\":6,\"cast_fraction\":0.2524074074074074,\"area\":1,\"render_ms\":20618.39999999851}"
       ],
       "bands": [
         0.9496,
@@ -101,7 +101,7 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "console error: TXBENCH: RELIEF {\"height_range\":76.10000305175781,\"materials\":11,\"cast_fraction\":0.5161040809327846,\"area\":1,\"render_ms\":26502.099999999627}"
+        "console error: TXBENCH: RELIEF {\"height_range\":76.10000305175781,\"materials\":11,\"cast_fraction\":0.5161040809327846,\"area\":1,\"render_ms\":25922.699999999255}"
       ],
       "bands": [
         0.7353,

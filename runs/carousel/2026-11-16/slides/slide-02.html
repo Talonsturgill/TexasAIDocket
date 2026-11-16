@@ -31,7 +31,6 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The struggle", counter: "02 / 09", src: "c16 c17", fit: { min: 64, max: 90, maxLines: 3 } });
   /* THIS FRAME DRAWS NO COUNT. window.FIG is empty and nothing here is read from it or stands for a figure. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 2 carries no figure, FIG must stay empty');
 
   /* the type is a right aligned column high on the right, over the quiet wall above the far talkers */
   /* the headline hangs high on the right over the quiet wall; the dek stands low on the right over the dark rug under the

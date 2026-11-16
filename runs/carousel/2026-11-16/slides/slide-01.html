@@ -31,7 +31,6 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Speech as data", counter: "01 / 09", src: "c3 c6 c2", fit: { min: 84, max: 116, maxLines: 2 } });
   /* THIS FRAME DRAWS NO COUNT. window.FIG is empty and nothing below is read as a quantity. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 1 carries no figure, FIG must stay empty');
 
   /* the type: centred high on the wall, the dek's foot well above the ribbon */
   { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();

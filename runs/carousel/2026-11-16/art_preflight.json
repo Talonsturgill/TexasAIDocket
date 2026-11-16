@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "96a762ea125738b432281a2c02bce576ebbf7ba3afa277df60b0713c6f281478",
+    "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
     "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
     "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -19,7 +19,7 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-07.html": "363c02ea87be659cd170153c2697bf0895e938a63fd472586df579ea377f7d7b",
+    "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
     "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff",
     "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
     "render/slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
@@ -56,7 +56,7 @@
   "review": {
     "decision": "accept",
     "inputs": {
-      "slides/slide-01.html": "96a762ea125738b432281a2c02bce576ebbf7ba3afa277df60b0713c6f281478",
+      "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
       "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
       "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -69,7 +69,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-07.html": "363c02ea87be659cd170153c2697bf0895e938a63fd472586df579ea377f7d7b",
+      "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
       "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff",
       "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
       "render/slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
@@ -92,7 +92,7 @@
         "weakness": "The caliper is the weakest crafted thing in the frame, flat grey metal on a boxy base, and its jaws bracket no particular peak.",
         "repair": "Named for the panel: jaws straddling the tallest peak, brushed stainless with a machined foot and contact shadows.",
         "inputs": {
-          "slides/slide-01.html": "96a762ea125738b432281a2c02bce576ebbf7ba3afa277df60b0713c6f281478",
+          "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
           "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
           "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -111,7 +111,7 @@
         "feed_legible": true,
         "hard_problems": [],
         "verdict": "accept_under_round_cap",
-        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px).",
+        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px). Rebound after fig_inject: the source changed only in its window.FIG line and a dropped empty-FIG assertion, and the re-render is pixel identical to the reviewed PNG (same file hash), so this cold critique still describes these exact pixels.",
         "viewed": [
           "work/critic-01/r6/slide-01-432.png",
           "render/slide-01.png"
@@ -145,7 +145,7 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-07.html": "363c02ea87be659cd170153c2697bf0895e938a63fd472586df579ea377f7d7b",
+          "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
           "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff"
         },
         "encoding_reads": true,
@@ -153,7 +153,7 @@
         "feed_legible": true,
         "hard_problems": [],
         "verdict": "accept_under_round_cap",
-        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px).",
+        "score_scope": "Cold carousel-slide-critic critique of this render (frame 9 re-rendered from the same source, pixel identical, mean difference 0 at 432 px). Rebound after fig_inject: the source changed only in its window.FIG line and a dropped empty-FIG assertion, and the re-render is pixel identical to the reviewed PNG (same file hash), so this cold critique still describes these exact pixels.",
         "viewed": [
           "work/critic-07/r6/slide-07-432.png",
           "render/slide-07.png"
@@ -213,7 +213,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "96a762ea125738b432281a2c02bce576ebbf7ba3afa277df60b0713c6f281478",
+      "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
       "render/slide-01.png": "96b4a0679137d043b59c91d2cac85f62125adc5f9252230c2173ec82d50e1607",
       "assets/js/deck/2026-11-16-voicebench-bespoke.js": "7ededf3f66f4ecbbc8d65e33ca144ec29ecd1bf1c06819073737d72f2599a905",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -239,7 +239,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-07.html": "363c02ea87be659cd170153c2697bf0895e938a63fd472586df579ea377f7d7b",
+      "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
       "render/slide-07.png": "0449d58699220daa0c0137facccefccdb92cb4bd89b41f53a1a5e520eb622fff"
     },
     "9": {
@@ -262,9 +262,9 @@
     9
   ],
   "shipped_inputs": {
-    "slides/slide-01.html": "96a762ea125738b432281a2c02bce576ebbf7ba3afa277df60b0713c6f281478",
+    "slides/slide-01.html": "6cdc1410691cf66db62a37e62969ef3427a1d474386551c54354b8c255000a60",
     "slide-01.webp": "9f69b7a5672d6ee3b5ec4537d61f0b7175b57e3d9f736ac0bd9c61c47ec2f6a4",
-    "slides/slide-07.html": "363c02ea87be659cd170153c2697bf0895e938a63fd472586df579ea377f7d7b",
+    "slides/slide-07.html": "e5619123f41f5c90fa224ce039c63fa9588d9606f707f69f95b2a1d8c11921aa",
     "slide-07.webp": "b67a7d00a607eb6ff68c489c8893d23f437f39ef98b9ba715e4ef61bd126dca8",
     "slides/slide-09.html": "e7f08666a57369344942652c5ec288c99d56188238a18fe0ce6b452c06cdebe7",
     "slide-09.png": "88e0b29d5f2b075f3caa8c33aa506422a7d86da80ad05f25798ba832438cefc0"
