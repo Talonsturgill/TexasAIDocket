@@ -1,0 +1,108 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health",
+ "dek": {
+  "text": "A one year pilot in San Antonio plans to test whether software can find signs of mild brain injury in how veterans tell their own stories. It has no results yet.",
+  "claims": [
+   "c3",
+   "c6",
+   "c11"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[A UT San Antonio research project aims to turn language into data that could help clinicians understand and treat cognitive and communication difficulties](c1). [It received a ${{number:c2}} grant from the San Antonio Medical Foundation](c2). [The work is a one year proof of concept study that will use natural language processing, a form of artificial intelligence](c3).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[One of the three leads is Alicia Swan, director of rehabilitation research at the South Texas Veterans Health Care System](c4). [Another, Rocio Norman, is a speech language pathologist who has worked with veterans for {{number:c5}} years](c5).",
+   "claims": [
+    "c4",
+    "c5"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the tests miss",
+   "paragraphs": [
+    {
+     "text": "[Many veterans Norman treated reported trouble finding words, organizing their thoughts or keeping up in fast or noisy conversations, even when standard assessments did not show a clear impairment](c16). [She says people with brain injury still have words and their grammar generally remains intact](c17).",
+     "claims": [
+      "c16",
+      "c17"
+     ]
+    },
+    {
+     "text": "[Norman says most adult language assessments were developed for people with aphasia after a stroke or for severe brain injury](c18). [She says the team hopes speech could become a biomarker for mild brain injury](c13).",
+     "claims": [
+      "c18",
+      "c13"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the study will use",
+   "paragraphs": [
+    {
+     "text": "[The study builds on recordings already collected at the San Antonio VA, in which veterans described how they were injured and recounted an important life event](c6). [The recordings were collected at several points during treatment](c7).",
+     "claims": [
+      "c6",
+      "c7"
+     ]
+    },
+    {
+     "text": "[After transcription, the team plans to assess features such as coherence, emotional tone, organization and level of detail](c8). [Today detailed language analysis takes slow transcription and coding, often by several reviewers](c10). [An automated system could flag language features for a clinician to weigh alongside observations and standard assessments](c19).",
+     "claims": [
+      "c8",
+      "c10",
+      "c19"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it has not shown",
+   "paragraphs": [
+    {
+     "text": "[The immediate goal is to learn whether an automated method can objectively identify communication differences at all, and how those differences relate to anxiety, post traumatic stress, depression and sleep difficulties](c11). [The researchers say the technology is meant to support clinicians, not replace them](c9).",
+     "claims": [
+      "c11",
+      "c9"
+     ]
+    },
+    {
+     "text": "The announcement reports no findings, no accuracy figure and no count of veterans in the recordings, and no clinic uses the tool. [If the pilot produces meaningful findings, the team plans to seek larger federal grants](c12).",
+     "claims": [
+      "c3",
+      "c12"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0249",
+   "label": "The record entry for the San Antonio pilot"
+  },
+  {
+   "id": "tx-2026-0201",
+   "label": "UT REAL Health AI's pilot projects in UT System hospitals"
+  },
+  {
+   "id": "tx-2026-0228",
+   "label": "UT Southwestern's study of AI triage models"
+  }
+ ]
+}
