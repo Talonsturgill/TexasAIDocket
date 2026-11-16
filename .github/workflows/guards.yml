@@ -935,10 +935,13 @@ jobs:
           # learn to skip, which is how the shallow-clone property would have stopped being
           # checked at all.
           #
-          # RE-RUNNABLE AND CONCURRENCY-SAFE. A fixed /tmp path let two local Codex tasks
-          # delete or compare each other's clones. `mktemp` gives this invocation sole
-          # ownership, and the trap removes only the directory it just created.
-          scratch="$(mktemp -d /tmp/texas-ai-docket-guards.XXXXXX)"
+          # RE-RUNNABLE AND CONCURRENCY-SAFE. A fixed scratch path let two local tasks delete
+          # or compare each other's clones. `mktemp` gives this invocation sole ownership,
+          # and the trap removes only the directory it just created. Keep the two large clones
+          # on the workspace volume: /tmp is a 5 GiB tmpfs on the local runner, while one
+          # shallow clone and one full clone exceed that together.
+          mkdir -p out
+          scratch="$(mktemp -d "$PWD/out/texas-ai-docket-guards.XXXXXX")"
           trap 'rm -rf "$scratch"' EXIT
           shallow="$scratch/shallow"
           full="$scratch/full"
