@@ -1286,7 +1286,7 @@ jobs:
 
   browser-read:
     # The lanes a reader types into.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     steps:
       - uses: actions/checkout@v4
 
@@ -1433,7 +1433,7 @@ jobs:
 
   browser-render:
     # What the page actually paints, and how it moves under a thumb.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     steps:
       - uses: actions/checkout@v4
 
@@ -1539,7 +1539,7 @@ jobs:
 
   browser-layout:
     # Whether it fits the screen and can be read on it.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     steps:
       - uses: actions/checkout@v4
 
