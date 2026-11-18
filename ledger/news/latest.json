@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-18T08:43:43Z",
+  "checked_at": "2026-11-18T21:31:19Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "7198f1062ff6e0d97f25ecb838ea7a2f2670b07355d40503e044bda3a72ef993",
+  "response_sha256": "b8dfc6bbc336a7da15f2ee92b14f9dfd8469f5680d6a9622d9897bba2006d9c9",
   "articles": [
     {
       "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
@@ -19,20 +19,6 @@
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
-      "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-      "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-      "first_seen_at": "2026-11-11T21:14:08Z",
-      "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-      "feed": "https://dallasinnovates.com/feed/"
-    },
-    {
-      "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
-      "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
-      "first_seen_at": "2026-11-11T11:00:00Z",
-      "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
-      "feed": "https://feeds.texastribune.org/feeds/main/"
-    },
-    {
       "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
       "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
       "first_seen_at": "2026-11-17T11:00:00Z",
@@ -45,176 +31,37 @@
       "first_seen_at": "2026-11-17T22:24:27Z",
       "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
       "feed": "https://feeds.texastribune.org/feeds/main/"
+    },
+    {
+      "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+      "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+      "first_seen_at": "2026-11-18T13:56:28Z",
+      "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+      "feed": "https://siliconangle.com/feed/"
+    },
+    {
+      "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+      "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+      "first_seen_at": "2026-11-18T14:35:37Z",
+      "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+      "feed": "https://www.texasobserver.org/feed/"
     }
   ],
   "selected": {
-    "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
-    "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
-    "first_seen_at": "2026-11-17T11:00:00Z",
-    "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
-    "feed": "https://feeds.texastribune.org/feeds/main/",
-    "publisher": "The Texas Tribune",
+    "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+    "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+    "first_seen_at": "2026-11-12T17:12:27Z",
+    "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.5339,
-    "priority": 1
+    "score": 0.013794,
+    "priority": 3
   },
-  "expires_at": "2026-11-24T11:00:00Z",
+  "expires_at": "2026-11-19T17:12:27Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-18T07:23:00Z",
-      "selected": {
-        "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
-        "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
-        "first_seen_at": "2026-11-17T11:00:00Z",
-        "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.5339,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
-          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
-          "first_seen_at": "2026-11-17T11:00:00Z",
-          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.5339,
-          "priority": 1
-        },
-        {
-          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
-          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
-          "first_seen_at": "2026-11-17T18:01:21Z",
-          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.653947,
-          "priority": 0
-        },
-        {
-          "title": "Texas regulators are resuming environmental permits for data centers",
-          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
-          "first_seen_at": "2026-11-17T22:24:27Z",
-          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.742238,
-          "priority": 1
-        },
-        {
-          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
-          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
-          "first_seen_at": "2026-11-12T17:12:27Z",
-          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.01996,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-          "first_seen_at": "2026-11-11T21:14:08Z",
-          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.011211,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
-          "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
-          "first_seen_at": "2026-11-11T11:00:00Z",
-          "summary": "The Lubbock university’s student senate approved surveying students to gauge the impact of restrictions on what’s taught.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.008342,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-18T13:23:00Z",
-      "selected": {
-        "title": "Texas regulators are resuming environmental permits for data centers",
-        "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
-        "first_seen_at": "2026-11-17T22:24:27Z",
-        "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.648873,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Texas regulators are resuming environmental permits for data centers",
-          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
-          "first_seen_at": "2026-11-17T22:24:27Z",
-          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.648873,
-          "priority": 1
-        },
-        {
-          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
-          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
-          "first_seen_at": "2026-11-17T18:01:21Z",
-          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.571687,
-          "priority": 0
-        },
-        {
-          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
-          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
-          "first_seen_at": "2026-11-17T11:00:00Z",
-          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.466741,
-          "priority": 1
-        },
-        {
-          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
-          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
-          "first_seen_at": "2026-11-12T17:12:27Z",
-          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.01745,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-          "first_seen_at": "2026-11-11T21:14:08Z",
-          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.009801,
-          "priority": 3
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-18T19:23:00Z",
       "selected": {
@@ -225,7 +72,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.014673,
+        "score": 0.013794,
         "priority": 3
       },
       "stories": [
@@ -237,8 +84,19 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.014673,
+          "score": 0.013794,
           "priority": 3
+        },
+        {
+          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+          "first_seen_at": "2026-11-18T13:56:28Z",
+          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.803367,
+          "priority": 0
         },
         {
           "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
@@ -248,8 +106,19 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.48073,
+          "score": 0.451936,
           "priority": 0
+        },
+        {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.81865,
+          "priority": 1
         },
         {
           "title": "Texas regulators are resuming environmental permits for data centers",
@@ -259,7 +128,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.545635,
+          "score": 0.512953,
           "priority": 1
         },
         {
@@ -270,36 +139,36 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.392481,
+          "score": 0.368973,
           "priority": 1
-        },
-        {
-          "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-          "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-          "first_seen_at": "2026-11-11T21:14:08Z",
-          "summary": "A Dallas startup is launching pilot tests this month of wearable medical devices designed to benefit military veterans and first responders. Optimus OS pairs wearable biosensor technology with AI-powered analytics to address mental and physical health care needs of veterans, police officers, firefighters and others. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.008242,
-          "priority": 3
         }
       ]
     },
     {
       "starts_at": "2026-11-19T01:23:00Z",
       "selected": {
-        "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
-        "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
-        "first_seen_at": "2026-11-17T18:01:21Z",
-        "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
+        "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+        "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+        "first_seen_at": "2026-11-18T13:56:28Z",
+        "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+        "feed": "https://siliconangle.com/feed/",
+        "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.404244,
+        "score": 0.71859,
         "priority": 0
       },
       "stories": [
+        {
+          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+          "first_seen_at": "2026-11-18T13:56:28Z",
+          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.71859,
+          "priority": 0
+        },
         {
           "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
           "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
@@ -310,6 +179,17 @@
           "coverage": 1,
           "score": 0.404244,
           "priority": 0
+        },
+        {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.73226,
+          "priority": 1
         },
         {
           "title": "Texas regulators are resuming environmental permits for data centers",
@@ -345,19 +225,173 @@
           "priority": 3
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-19T07:23:00Z",
+      "selected": {
+        "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+        "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+        "first_seen_at": "2026-11-18T14:35:37Z",
+        "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+        "feed": "https://www.texasobserver.org/feed/",
+        "publisher": "Texas Observer",
+        "coverage": 1,
+        "score": 0.615755,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.615755,
+          "priority": 1
+        },
+        {
+          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+          "first_seen_at": "2026-11-18T13:56:28Z",
+          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.60426,
+          "priority": 0
+        },
+        {
+          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
+          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
+          "first_seen_at": "2026-11-17T18:01:21Z",
+          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.339927,
+          "priority": 0
+        },
+        {
+          "title": "Texas regulators are resuming environmental permits for data centers",
+          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
+          "first_seen_at": "2026-11-17T22:24:27Z",
+          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.385822,
+          "priority": 1
+        },
+        {
+          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
+          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
+          "first_seen_at": "2026-11-17T11:00:00Z",
+          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.277526,
+          "priority": 1
+        },
+        {
+          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+          "first_seen_at": "2026-11-12T17:12:27Z",
+          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.010376,
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-19T13:23:00Z",
+      "selected": {
+        "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
+        "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
+        "first_seen_at": "2026-11-17T18:01:21Z",
+        "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.285844,
+        "priority": 0
+      },
+      "stories": [
+        {
+          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
+          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
+          "first_seen_at": "2026-11-17T18:01:21Z",
+          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.285844,
+          "priority": 0
+        },
+        {
+          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+          "first_seen_at": "2026-11-18T13:56:28Z",
+          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.50812,
+          "priority": 0
+        },
+        {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.517786,
+          "priority": 1
+        },
+        {
+          "title": "Texas regulators are resuming environmental permits for data centers",
+          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
+          "first_seen_at": "2026-11-17T22:24:27Z",
+          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.324436,
+          "priority": 1
+        },
+        {
+          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
+          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
+          "first_seen_at": "2026-11-17T11:00:00Z",
+          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.233371,
+          "priority": 1
+        },
+        {
+          "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+          "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+          "first_seen_at": "2026-11-12T17:12:27Z",
+          "summary": "Dallas-based AI startup 4Minds, which emerged from stealth mode in April, is already halfway to unicorn status. The company said today that it has raised a $15 million Series A round at a $500 million post-money valuation. Investors include Dallas-based Waterwood Capital Group and Lubbock-based Isom Holdings — both led in part by Clayton Isom, whose family founded Wichita Falls-based oil and gas management company Stephens & Johnson in the 1960s — and several family offices with ties to the energy and data center industries. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.008725,
+          "priority": 3
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17521809/texas-spacex-data-center-power-plant",
-      "title": "SpaceX to build $24 billion data center in South Texas, sidestepping moratorium",
-      "shown_at": "2026-11-11T13:23:00Z"
-    },
-    {
-      "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
-      "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
-      "shown_at": "2026-11-11T19:23:00Z"
-    },
     {
       "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
       "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
@@ -487,193 +521,207 @@
       "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
       "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
       "shown_at": "2026-11-18T07:23:00Z"
+    },
+    {
+      "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
+      "title": "Texas regulators are resuming environmental permits for data centers",
+      "shown_at": "2026-11-18T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-ai-startup-4minds-raises-15m-series-a-at-500m-valuation/",
+      "title": "Dallas AI Startup 4Minds Raises $15M Series A at $500M Valuation",
+      "shown_at": "2026-11-18T19:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "eab3b157adec743751921701bc4001ffb60d620b952cca27470336c4b009ebc5"
+      "status": "not_modified"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "814778e4c9541d2a1d4f099ea1bf4e1a9b215c829693a9c1c53dfc8bf42f5a6a"
+      "sha256": "fead0da8a5c2d46c72a85d9ad1d6fb0942dd10c952633dcef9009b11c5e95bdd"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "backoff",
-      "retry_at": "2026-11-18T09:24:07Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-19T21:31:17Z",
+      "reason": "feed disallowed by source robots policy"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "8be793de4c78ade814be65eac9c7b66bc50695cdbd689285827cb6ee3926919c"
+      "sha256": "4bd34ea1f39f94ae29bac787e6248894a30c46f7e0b5a9b14576e5ac0706de36"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1406,
-      "sha256": "b1c95084d0c630e495eed250dcf366d8b2acf651a2b3dd5ff88acbb2f299182a"
+      "items": 1411,
+      "sha256": "1054379131e5c8b6e05dbfc9614a2ddb2ec3bab6a56ce1223417bdf278ed1b3a"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "11f3a129160aed97bae1e2f1b0e56e738bdb92f82af7974d7c3238c07c858182"
+      "sha256": "149af179ea2317b3f122f83ccaca5c688308b61f0a2a772cd1298450bdf5f7bc"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "20b49867778e29c2d72ad4b12d9cd91b0681a5fb1f456b10cbf8bbbac9016b06"
+      "sha256": "d5db6cc51598871d82c74c4e6afe662461bc3bd6561b4401a8087d599ca6541a"
     },
     {
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "f28324febb86ea9ca5306de35894ae8047262896e8a322182caa7d366c125aed"
+      "sha256": "3c9e68e4f859fa777ec47fd235c817ffa458a64a9578487bca6e7a437608db9c"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-11-18T09:24:07Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-19T21:31:17Z",
+      "reason": "not well-formed (invalid token): line 1, column 119"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "4c368ab20c3733192ec53cb53c29a7b19d6d1789c78d0a1608c400229468b197"
+      "sha256": "72e8b3b383d26f02813fd9d83ef69971a0e529a74ad69af59f93ed9d4ba517ce"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "829ab52368dfcd2a5ad73c45af1b5d0d423220cc6b61263d28692aa2b567419b"
+      "sha256": "d49aece44c519117dd0fd4b822116f2bb78293c27bb63cbdd90a5bb6ebae6dc5"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "b1235ae6ea686df5caffdb7d826f27f0426f9b4c2af0765d40fafe129aaa9fa1"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "3245b862d6f99d13864222b955aae44f5213518df51a9568a8d2ec58f4f51dfc"
+      "sha256": "dd5e3ff2f6900d67010585b84882dcf2d96d14a6b0b3a616cc11edcaffb30a83"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "220e53216b85816678186ddabe03de56b9d726cd3524587966d08ef636c5f4a8"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-11-18T08:43:41Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "eab3b157adec743751921701bc4001ffb60d620b952cca27470336c4b009ebc5",
       "etag": "\"85af67320a3a5bc24aa131934b027327\"",
-      "last_modified": "Tue, 17 Nov 2026 22:35:19 GMT"
+      "last_modified": "Tue, 17 Nov 2026 22:35:19 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-18T21:31:17Z",
+      "sha256": "eab3b157adec743751921701bc4001ffb60d620b952cca27470336c4b009ebc5",
+      "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "814778e4c9541d2a1d4f099ea1bf4e1a9b215c829693a9c1c53dfc8bf42f5a6a",
-      "etag": "\"6afd5b96-a40f\"",
-      "last_modified": "Wed, 18 Nov 2026 08:02:30 GMT"
+      "sha256": "fead0da8a5c2d46c72a85d9ad1d6fb0942dd10c952633dcef9009b11c5e95bdd",
+      "etag": "\"6afe1246-a1b5\"",
+      "last_modified": "Wed, 18 Nov 2026 21:01:58 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
-      "retry_at": "2026-11-18T09:24:07Z",
+      "retry_at": "2026-11-19T21:31:17Z",
       "failures": 8,
       "ok_at": "2026-11-09T08:15:15Z",
       "sha256": "afda343724d4492645e57027a90163034f01e8b0c367b42d95d3113b60a95f01",
       "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8be793de4c78ade814be65eac9c7b66bc50695cdbd689285827cb6ee3926919c",
-      "etag": "\"1794990291\"",
-      "last_modified": "Wed, 18 Nov 2026 08:24:51 GMT"
+      "sha256": "4bd34ea1f39f94ae29bac787e6248894a30c46f7e0b5a9b14576e5ac0706de36",
+      "etag": "\"1795037161\"",
+      "last_modified": "Wed, 18 Nov 2026 21:26:01 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b1c95084d0c630e495eed250dcf366d8b2acf651a2b3dd5ff88acbb2f299182a"
+      "sha256": "1054379131e5c8b6e05dbfc9614a2ddb2ec3bab6a56ce1223417bdf278ed1b3a"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "11f3a129160aed97bae1e2f1b0e56e738bdb92f82af7974d7c3238c07c858182",
-      "etag": "\"83f78deba1a0ebe70090c36282839386-gzip\"",
-      "last_modified": "Tue, 17 Nov 2026 23:50:42 GMT"
+      "sha256": "149af179ea2317b3f122f83ccaca5c688308b61f0a2a772cd1298450bdf5f7bc",
+      "etag": "\"200ad6d85539e001ad49a736b01d0cb6-gzip\"",
+      "last_modified": "Wed, 18 Nov 2026 20:32:47 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "20b49867778e29c2d72ad4b12d9cd91b0681a5fb1f456b10cbf8bbbac9016b06"
+      "sha256": "d5db6cc51598871d82c74c4e6afe662461bc3bd6561b4401a8087d599ca6541a"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "f28324febb86ea9ca5306de35894ae8047262896e8a322182caa7d366c125aed",
-      "etag": "\"89f2525a28c9b25b649eb89610908b85\"",
-      "last_modified": "Wed, 18 Nov 2026 06:00:04 GMT"
+      "sha256": "3c9e68e4f859fa777ec47fd235c817ffa458a64a9578487bca6e7a437608db9c",
+      "etag": "\"705a9fad75ad612d62be6f954295c5cd\"",
+      "last_modified": "Wed, 18 Nov 2026 20:35:08 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-11-18T09:24:07Z",
+      "retry_at": "2026-11-19T21:31:17Z",
       "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4c368ab20c3733192ec53cb53c29a7b19d6d1789c78d0a1608c400229468b197",
-      "etag": "W/\"d59251581d9c8497f503164f9e31f1d2\"",
-      "last_modified": "Wed, 18 Nov 2026 07:00:00 GMT"
+      "sha256": "72e8b3b383d26f02813fd9d83ef69971a0e529a74ad69af59f93ed9d4ba517ce",
+      "etag": "W/\"e536d2dc93380792eddcb4b48bb07692\"",
+      "last_modified": "Wed, 18 Nov 2026 21:23:57 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "829ab52368dfcd2a5ad73c45af1b5d0d423220cc6b61263d28692aa2b567419b",
-      "etag": "W/\"3da5467ce8985dac294e3982e8240b8e\""
+      "sha256": "d49aece44c519117dd0fd4b822116f2bb78293c27bb63cbdd90a5bb6ebae6dc5",
+      "etag": "W/\"2ad49c02a33d12f087015903bd798adb\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Tue, 17 Nov 2026 12:34:53 GMT",
-      "failures": 0,
-      "ok_at": "2026-11-18T08:43:41Z",
-      "sha256": "335cd99cfaf29e74ae56823229008f0065d99e5f500e8010d4d323b9098264c7",
-      "parser_version": 2
-    },
-    "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-18T08:43:41Z",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "3245b862d6f99d13864222b955aae44f5213518df51a9568a8d2ec58f4f51dfc"
+      "sha256": "b1235ae6ea686df5caffdb7d826f27f0426f9b4c2af0765d40fafe129aaa9fa1",
+      "last_modified": "Wed, 18 Nov 2026 12:55:39 GMT"
+    },
+    "https://www.tpr.org/index.rss": {
+      "ok_at": "2026-11-18T21:31:17Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "dd5e3ff2f6900d67010585b84882dcf2d96d14a6b0b3a616cc11edcaffb30a83"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "W/\"7e41297fa6a91de2fc767b1f77a4bb9d\"",
-      "last_modified": "Tue, 17 Nov 2026 13:00:00 GMT",
+      "ok_at": "2026-11-18T21:31:17Z",
       "failures": 0,
-      "ok_at": "2026-11-18T08:43:41Z",
-      "sha256": "09d8aa824cdf0de5ebb137b300b1aaa0ee36f311e187d0290a1eb358dd419261",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "220e53216b85816678186ddabe03de56b9d726cd3524587966d08ef636c5f4a8",
+      "etag": "W/\"6f155916ceb95104189647c861697c7f\"",
+      "last_modified": "Wed, 18 Nov 2026 14:35:43 GMT"
     }
   }
 }
