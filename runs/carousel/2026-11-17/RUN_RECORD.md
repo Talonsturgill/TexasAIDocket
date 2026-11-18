@@ -33,7 +33,9 @@ Cold slide critics read frame 1 five times (6.4, 5.8, 5.6, 5.6, 5.9) and frame 9
 - **Round 1**, 7.26 (6.96, 7.46, 7.16), no hard fail, under the 8.0 rung. Repairs: copy (frame 1 "English", frame 3 TEA's own "closed database" wording, frame 5 "Then the requests multiplied", frame 7's "one in five of this spring's requests" removed because no quote ties 13,300 raised scores to the 64,489 requests, and frame 8 names Dallas County); art on 4, 6, 7 and 9.
 - **Round 2**, 7.336 (7.26, 7.31, 7.53), no hard fail, under the 7.7 rung. Repairs: frame 2 cites TEA's own March 2024 document (c18) for the hand scoring cost, and `compute.py` now parses c18 and asserts it equals c10. "Redesigned" is gone from frame 2, frame 5 says "regrade" as its source does, and the caption's first line says "written answer" because no claim says STAAR answers are typed. Frame 7 became a diagonal macro of a block of 200 sheets with one gilded sheet pulled proud, `changed_one_in` = 200 computed from c5's 0.5 percent. Its first version, seven gilded pages in 44, contradicted the dek's "fewer than half of one percent". Frame 4 was pushed in, frame 6's floating foot and stray desk leg were fixed, frame 8's gold tiles retuned and frame 5 polished.
 - **Round 3**, 7.378 at the cap. Ships.
-- **After scoring, before shipping.** `fig_inject --check` read eight slides as dynamic FIG users because error strings named FIG. The checks were rewritten as static reads before round 3, and every re-render was pixel identical except small noise patches on 4 and 6. `layout_check --require` then refused the ship at the image step because dusk gold measured on one frame: the gold on 4, 6 and 7 was too small or rendered orange under the watch grade. Frames 7 and 8 were retuned until 7, 8 and 9 carried it (coverage 0.0065, 0.008 and 0.003 against a 0.002 floor). Frame 7's single gold stripe now reads more strongly than the judges saw. **The deck was not scored again for those two retunes.** The sources block was rebuilt to list c18 and drop c10.
+- **After scoring, before shipping.** `fig_inject --check` read eight slides as dynamic FIG users because error strings named FIG. The checks were rewritten as static reads before round 3, and every re-render was pixel identical except small noise patches on 4 and 6. `layout_check --require` then refused the ship at the image step because dusk gold measured on one frame: the gold on 4, 6 and 7 was too small or rendered orange under the watch grade. Frames 7 and 8 were retuned until 7, 8 and 9 carried it (coverage 0.0065, 0.008 and 0.003 against a 0.002 floor). Frame 7's single gold stripe now reads more strongly than the judges saw. **The deck was not scored again for those two retunes.** The sources block was rebuilt to list c18 and drop c10. `numeral_trace` found frame 4's "March 2024" reached by no cited claim, because the claims carried no document title. Each claim now carries the title of the document it was fetched from, as the first comment already names them.
+
+**The gate block's score row reads STALE** because frames 4, 6, 7 and 8 were re-rendered after round 3 scored them. Frames 4 and 6 differ by render noise only. Frames 7 and 8 carry the accent retune described above.
 
 **Named shortfall.** The craft median of 7.4 is held down by frame 2 (flat orthographic relief, aliased strata texture), frame 4 (the one-in-four pages small at feed size, an empty left third), frame 1 (a machine still close to a typewriter silhouette) and the kit desk and chair on 1, 4, 6 and 9 two days after a desks deck. On story, every judge asked for a rescore window or deadline and the route a parent takes through a district. Neither is in the claims file, so neither is on the deck. "Drawn to illustrate" closes eight deks.
 
@@ -57,3 +59,31 @@ Social delivery for this edition runs after the merge, under the DAILY SOCIAL DE
 ## Discoverability signoff
 
 The web edition at `ledger/articles/2026-11-17.json` passes `article_check` and `tests/test_article_edition.py`. The site build passes `seo_check`, `schema_check`, `media_check` and `site_fresh_check`, and the questions page is restored.
+
+## Timing
+
+`studio_clock.py --report`, minutes from wake. record 19.2, audition 47.2, art 128.7, review 225.5, panel 333.6, package 379.3. The three-frame review took 97 minutes, most of it on frame 1's three representations, and three panel rounds with repairs between took 108.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 26 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 1 warn(s) |
+| aggregates     | PASS   | 13 declaration(s), 14 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.86 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | PASS   | 48 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 71 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 31,111 chars planned |
+| caption        | PASS   | 149 words |
+| craft floor    | PASS   | 9 frame(s), median 2049, floor 369 |
+| plan vs render | WARN   | 0 of 54 acceptance item(s) checkable |
+| texan          | WARN   | places Dallas County, Dallas ISD / body yes / deadline yes / next step NO |
+| absences       | PASS   | 0 of 0 scoped to a named document |
+| numerals       | PASS   | 20 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->

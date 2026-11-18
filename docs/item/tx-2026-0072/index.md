@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-11-13
+- Last checked: 2026-11-17
 
 ## Dates
 
@@ -62,6 +62,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · The audit has a date now. ERCOT told the commission on November 5th that it must finish verifying the queue this month to file its report on December 10th.
 - 2026-11-10 · ERCOT gave the commission a first look at the community impact questionnaire on November 5th. Every large load answered it, and cooling was the question projects most often could not answer because their designs are unsettled.
 - 2026-11-13 · ERCOT's November 5th papers to the commission still set December 10th for both reports. All 245 large loads answered the community impact questionnaire, and cooling remains the part projects most often left unanswered.
+- 2026-11-17 · ERCOT's November 5th update to the commission and its August Batch Zero presentation still read as the record quotes them. The Governor's own directive pages could not be checked again, so their wording rests on the earlier reading.
 
 ## Evidence
 

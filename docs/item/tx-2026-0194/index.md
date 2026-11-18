@@ -1,6 +1,6 @@
 # A machine scores the longer written answers on English STAAR first
 
-The Texas Education Agency scores the constructed responses on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to people. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Constructed responses on Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for a constructed response to be rescored by a person for a fee, and the fee is waived if the score changes.
+The Texas Education Agency scores the constructed responses on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to people. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Constructed responses on Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for a constructed response to be rescored by a person for a fee, and the fee is waived if the score changes. Districts asked for many more of those rescores in 2026. Requests to regrade open-ended reading answers rose from 2,758 in spring 2024 to 64,489 this spring, the Texas Tribune reported on October 7th, 2026. The state raised more than 13,300 reading scores after the reviews. People did every rescore.
 
 - Topic: health-and-education
 - Decided by: Texas Education Agency (state-agency)
@@ -9,7 +9,7 @@ The Texas Education Agency scores the constructed responses on English language 
 - Public access: Write to the decider
 - Take part: https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-17
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The agency still scores the longer English STAAR answers by machine first, as its pages describe.
 - 2026-11-13 · The education agency still has a machine score the longer English STAAR answers first.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-17 · Rescore requests on reading answers rose to 64,489 this spring from 2,758 in spring 2024, and the state raised more than 13,300 scores after people reviewed them.
 
 ## Evidence
 
@@ -129,4 +130,40 @@ Source (journalism): https://www.texastribune.org/2026/09/04/school-districts-im
 > No students’ scores will be lowered as a result of the review.
 
 Source (journalism): https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/
+
+### In spring 2024 the state received 2,758 requests to regrade open-ended response scores on STAAR reading exams.
+
+> In spring 2024, the state had 2,758 requests to regrade open-ended response scores on reading exams.
+
+Source (journalism): https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/
+
+### This spring the number of regrade requests reached 64,489.
+
+> This spring, that jumped to 64,489.
+
+Source (journalism): https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/
+
+### The state raised more than 13,300 reading scores after the reviews.
+
+> The state improved more than 13,300 reading scores after the reviews.
+
+Source (journalism): https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/
+
+### Fewer than .5% of all open-ended responses on reading exams had a score change.
+
+> In total, less than .5% of total open-ended responses on reading exams saw changes.
+
+Source (journalism): https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/
+
+### Every rescore was done by a human scorer.
+
+> Humans conducted all re-scores.
+
+Source (journalism): https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/
+
+### Dallas ISD sent more than 5,100 reading tests for rescoring and 34% came back with a higher score.
+
+> In total, the district submitted more than 5,100 reading tests for rescoring, and 34% returned with a higher score.
+
+Source (journalism): https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/
 

@@ -11,7 +11,7 @@ Permian Resources filed its third quarter results with the SEC on November 4th, 
 - Public access: Write to the decider
 - Take part: https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm
 
-- Last checked: 2026-11-14
+- Last checked: 2026-11-17
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · Permian Resources still tells investors that an AI system watches its artificial lift.
 - 2026-11-11 · Permian Resources' account of its AI lift monitoring still stands, and it still reports no measured result.
 - 2026-11-14 · Permian Resources still describes AI watching its artificial lift, and still gives no measured result for it.
+- 2026-11-17 · Permian Resources still says AI watches its artificial lift, and it still publishes no measured result.
 
 ## Evidence
 
