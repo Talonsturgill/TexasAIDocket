@@ -23,6 +23,23 @@ CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
 2. THE BOOKEND. Frame 1 leaves the person's desk dark behind the machine, frame 9 lights that desk at the end of the gold route.
 3. THE GOLD GROWS. No gold on 1, 2 and 5. From a tab edge on 3 to the lit route on 9, the warm share tracks the turn from engine to people.
 
+### Palette
+
+The shared WATCH tone is `TXLOOK.TONES.watch` in `assets/js/txlook.js`, with the deck's own accent and ground from the chassis declare.
+
+| token | hex | role |
+|---|---|---|
+| skyTop | #2a1f78 | upper sky and wall top |
+| skyMid | #5b4bc4 | middle sky |
+| skyLow | #f0a6c0 | low sky |
+| wall | #5444b8 | studio wall |
+| key | #ffc2a8 | coral key light |
+| fill | #7a4fd0 | violet fill |
+| shade | #1e1b4b | violet shadow, never black |
+| ground | #c98a9a | violet rose floor, never the coral |
+| accent | #e0956a | dusk gold, a person's score only |
+| paper | #f3ead9 | cream page |
+
 ## THE NINE BEATS
 
 1. READ BY A MACHINE FIRST. Feel: a small chill. Know: A machine reads English STAAR answers first. c9 c13 c21.
