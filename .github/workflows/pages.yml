@@ -75,7 +75,7 @@ jobs:
       # can begin while another collector is moving the branch. This workflow only ever publishes
       # main, so naming it is correct for every trigger and the exact-SHA proof below decides
       # whether that current commit is releasable.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
 
@@ -196,7 +196,7 @@ jobs:
             sleep "${GUARDS_POLL_SECONDS}"
           done
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: steps.guarded.outputs.deploy == 'true'
         with:
           python-version: "3.11"
@@ -242,33 +242,33 @@ jobs:
     steps:
       # PINNED TO THE VERIFIED SHA. Main can move between jobs, and checking out its name again
       # would package a commit the verify job never examined.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ needs.verify.outputs.sha }}
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         # enablement turns Pages on via the API if it is not already configured, so the site
         # does not sit behind a settings toggle nobody knows to flip. The workflow already
         # holds pages:write, which is the permission this needs.
         with:
           enablement: true
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: docs
 
       - name: Deploy, with backoff
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         continue-on-error: true
 
       - name: Retry once
         if: steps.deployment.outcome == 'failure'
         id: retry1
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         continue-on-error: true
 
       - name: Retry twice
         if: steps.retry1.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       # TELL THE INDEX WHAT CHANGED, once the deploy has actually landed.
       #

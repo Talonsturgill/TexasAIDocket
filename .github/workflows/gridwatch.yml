@@ -88,12 +88,12 @@ jobs:
       # Naming the branch fixes both halves at once. The workspace is trunk, so the only
       # commit a rebase can replay is this job's own reading, and there is no longer any
       # path by which this job pushes somebody else's work.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip

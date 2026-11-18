@@ -80,11 +80,11 @@ jobs:
     # Every gate that needs neither a browser nor a full site build.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0          # ownership needs the diff against the base
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -1217,9 +1217,9 @@ jobs:
     # clone comparison needs real history to compare against.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -1256,9 +1256,9 @@ jobs:
     # clone comparison needs real history to compare against.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -1288,9 +1288,9 @@ jobs:
     # The lanes a reader types into.
     runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
@@ -1317,7 +1317,7 @@ jobs:
       # libraries chromium needs. If that ever stops being true this fails loudly at launch,
       # in seconds, which is a better failure than the one it replaces.
       - name: Cache the browser
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -1373,7 +1373,7 @@ jobs:
 
       - name: Keep the document demo visual checks
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: document-demo-screenshots
           path: out/document-demo-screenshots
@@ -1435,9 +1435,9 @@ jobs:
     # What the page actually paints, and how it moves under a thumb.
     runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
@@ -1464,7 +1464,7 @@ jobs:
       # libraries chromium needs. If that ever stops being true this fails loudly at launch,
       # in seconds, which is a better failure than the one it replaces.
       - name: Cache the browser
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -1541,9 +1541,9 @@ jobs:
     # Whether it fits the screen and can be read on it.
     runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
@@ -1570,7 +1570,7 @@ jobs:
       # libraries chromium needs. If that ever stops being true this fails loudly at launch,
       # in seconds, which is a better failure than the one it replaces.
       - name: Cache the browser
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
