@@ -14985,7 +14985,7 @@
      "fetched": "2026-11-10"
     }
    ],
-   "last_verified": "2026-11-13",
+   "last_verified": "2026-11-17",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
    "history": [
@@ -15165,6 +15165,11 @@
     {
      "date": "2026-11-13",
      "note": "ERCOT's November 5th papers to the commission still set December 10th for both reports. All 245 large loads answered the community impact questionnaire, and cooling remains the part projects most often left unanswered.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-17",
+     "note": "ERCOT's November 5th update to the commission and its August Batch Zero presentation still read as the record quotes them. The Governor's own directive pages could not be checked again, so their wording rests on the earlier reading.",
      "checked": true
     }
    ]
@@ -15589,7 +15594,7 @@
      "fetched": "2026-11-13"
     }
    ],
-   "last_verified": "2026-11-13",
+   "last_verified": "2026-11-17",
    "confidence": "high",
    "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The commission's report is a recommendation to the council. The ordinance submits the measures as listed in an exhibit that was not readable, so the record says the commission recommends this section and never that a ballot proposition carries this wording. The proposition letters are not published here for the same reason.",
    "history": [
@@ -15760,6 +15765,11 @@
     {
      "date": "2026-11-13",
      "note": "Unofficial returns with every precinct counted show Pflugerville voters passed Proposition B. That charter section requires privacy rules and a public approval process before the city uses facial recognition, surveillance tools or AI. Propositions A, C, H and L failed. The city has not posted its canvass, so the result is not yet official."
+    },
+    {
+     "date": "2026-11-17",
+     "note": "The council's voting history and the news account of the charter election still read as quoted. The city's attached ordinance text could not be checked again, so it rests on the earlier reading.",
+     "checked": true
     }
    ]
   },
