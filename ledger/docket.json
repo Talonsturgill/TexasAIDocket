@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-11-16",
+  "generated": "2026-11-17",
   "gates": [
    "banned words",
    "claims",
@@ -37515,7 +37515,7 @@
   },
   {
    "title": "Governor directs the environmental agency to issue no data center permits until the grid audit is done",
-   "summary": "On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency. It states that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency must report to the Office of the Governor on its compliance by October 19th, 2026. The agency answered on October 19th. Its letter says it has paused issuing permits for infrastructure directly supporting data centers and has paused each pending application the directive reaches. It also says it met with the water board, the utility commission and ERCOT to align their directives.",
+   "summary": "On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency. It states that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency must report to the Office of the Governor on its compliance by October 19th, 2026. The agency answered on October 19th. Its letter says it has paused issuing permits for infrastructure directly supporting data centers and has paused each pending application the directive reaches. It also says it met with the water board, the utility commission and ERCOT to align their directives. On November 17th, 2026 the Texas Tribune reported that the agency had resumed its normal permit review. It acted on notice from the Governor's office that grid officials had finished gathering information on community impacts from data centers. ERCOT plans to give its full findings to the utility commission on December 10th.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "Office of the Texas Governor",
@@ -37674,10 +37674,46 @@
      "source_title": "TCEQ, letter to Governor Abbott of October 19th, 2026 on the data center directive",
      "source_type": "primary_official",
      "fetched": "2026-11-07"
+    },
+    {
+     "text": "Texas environmental regulators have resumed reviewing data center permits.",
+     "verbatim_quote": "State environmental regulators have resumed reviewing data center permits",
+     "source_url": "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/",
+     "source_title": "Texas Tribune, Emily Foxhall, November 17, 2026, Texas regulators are resuming environmental permits for data centers",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0182-c15"
+    },
+    {
+     "text": "TCEQ said it has resumed its normal permit review process.",
+     "verbatim_quote": "The agency has resumed its normal permit review process",
+     "source_url": "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/",
+     "source_title": "Texas Tribune, Emily Foxhall, November 17, 2026, Texas regulators are resuming environmental permits for data centers",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0182-c16"
+    },
+    {
+     "text": "TCEQ got notice from the Governor's office on a Friday that grid officials had finished gathering information on community impacts from data centers.",
+     "verbatim_quote": "received notice on Friday from Abbott’s office",
+     "source_url": "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/",
+     "source_title": "Texas Tribune, Emily Foxhall, November 17, 2026, Texas regulators are resuming environmental permits for data centers",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0182-c17"
+    },
+    {
+     "text": "ERCOT officials plan to give their full findings to the PUC on December 10th and discuss them at the PUC open meeting on December 17th.",
+     "verbatim_quote": "ERCOT officials plan to report their full findings to the PUC on Dec. 10 and discuss them at the next PUC open meeting Dec. 17.",
+     "source_url": "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/",
+     "source_title": "Texas Tribune, Emily Foxhall, November 17, 2026, Texas regulators are resuming environmental permits for data centers",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0182-c18"
     }
    ],
    "id": "tx-2026-0182",
-   "last_verified": "2026-11-16",
+   "last_verified": "2026-11-17",
    "history": [
     {
      "date": "2026-09-23",
@@ -37793,6 +37829,10 @@
      "date": "2026-11-16",
      "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
+    },
+    {
+     "date": "2026-11-17",
+     "note": "The environmental agency has resumed its normal review of data center permits, after the Governor's office told it the grid operator had finished gathering community impact information. ERCOT's full findings are due to the utility commission on December 10th."
     }
    ]
   },
@@ -39952,7 +39992,7 @@
   {
    "id": "tx-2026-0194",
    "title": "A machine scores the longer written answers on English STAAR first",
-   "summary": "The Texas Education Agency scores the constructed responses on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to people. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Constructed responses on Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for a constructed response to be rescored by a person for a fee, and the fee is waived if the score changes.",
+   "summary": "The Texas Education Agency scores the constructed responses on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to people. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Constructed responses on Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for a constructed response to be rescored by a person for a fee, and the fee is waived if the score changes. Districts asked for many more of those rescores in 2026. Requests to regrade open-ended reading answers rose from 2,758 in spring 2024 to 64,489 this spring, the Texas Tribune reported on October 7th, 2026, and the state raised more than 13,300 reading scores after the reviews. People did every rescore.",
    "topic": "health-and-education",
    "decider": {
     "name": "Texas Education Agency",
@@ -40059,6 +40099,10 @@
      "date": "2026-11-16",
      "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
+    },
+    {
+     "date": "2026-11-17",
+     "note": "Rescore requests on reading answers rose to 64,489 this spring from 2,758 in spring 2024, and the state raised more than 13,300 scores after people reviewed them."
     }
    ],
    "claims": [
@@ -40196,9 +40240,63 @@
      "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4th, 2026",
      "source_type": "journalism",
      "fetched": "2026-09-30"
+    },
+    {
+     "text": "In spring 2024 the state received 2,758 requests to regrade open-ended response scores on STAAR reading exams.",
+     "verbatim_quote": "In spring 2024, the state had 2,758 requests to regrade open-ended response scores on reading exams.",
+     "source_url": "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/",
+     "source_title": "Texas Tribune, Megan Menchaca, October 7, 2026, STAAR rescoring requests triple after more Texas schools question computer grading",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0194-c16"
+    },
+    {
+     "text": "This spring the number of regrade requests reached 64,489.",
+     "verbatim_quote": "This spring, that jumped to 64,489.",
+     "source_url": "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/",
+     "source_title": "Texas Tribune, Megan Menchaca, October 7, 2026, STAAR rescoring requests triple after more Texas schools question computer grading",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0194-c17"
+    },
+    {
+     "text": "The state raised more than 13,300 reading scores after the reviews.",
+     "verbatim_quote": "The state improved more than 13,300 reading scores after the reviews.",
+     "source_url": "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/",
+     "source_title": "Texas Tribune, Megan Menchaca, October 7, 2026, STAAR rescoring requests triple after more Texas schools question computer grading",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0194-c18"
+    },
+    {
+     "text": "Fewer than .5% of all open-ended responses on reading exams had a score change.",
+     "verbatim_quote": "In total, less than .5% of total open-ended responses on reading exams saw changes.",
+     "source_url": "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/",
+     "source_title": "Texas Tribune, Megan Menchaca, October 7, 2026, STAAR rescoring requests triple after more Texas schools question computer grading",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0194-c19"
+    },
+    {
+     "text": "Every rescore was done by a human scorer.",
+     "verbatim_quote": "Humans conducted all re-scores.",
+     "source_url": "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/",
+     "source_title": "Texas Tribune, Megan Menchaca, October 7, 2026, STAAR rescoring requests triple after more Texas schools question computer grading",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0194-c20"
+    },
+    {
+     "text": "Dallas ISD sent more than 5,100 reading tests for rescoring and 34% came back with a higher score.",
+     "verbatim_quote": "In total, the district submitted more than 5,100 reading tests for rescoring, and 34% returned with a higher score.",
+     "source_url": "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/",
+     "source_title": "Texas Tribune, Megan Menchaca, October 7, 2026, STAAR rescoring requests triple after more Texas schools question computer grading",
+     "source_type": "journalism",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0194-c21"
     }
    ],
-   "last_verified": "2026-11-16"
+   "last_verified": "2026-11-17"
   },
   {
    "title": "Amazon and Wiwynn say they will expand the El Paso County plant that builds the racks going into AI data centers",
@@ -50815,6 +50913,102 @@
    ],
    "id": "tx-2026-0249",
    "last_verified": "2026-11-16"
+  },
+  {
+   "title": "TACC opens Horizon to early users, a GPU supercomputer in Round Rock that ranks No. 24 in the world",
+   "summary": "The Texas Advanced Computing Center at UT Austin has opened its Horizon supercomputer to early users, the university said on November 17th, 2026. Horizon is the centerpiece of the National Science Foundation's Leadership-Class Computing Facility. Its first phase has 4,000 GPUs. It delivered 132 petaflops on the High-Performance Linpack benchmark, and the university says that ranks it No. 24 on the November 2026 TOP500 list. The machine runs in a new 20 megawatt data center with liquid cooling in Round Rock. The university's release gives no opening date, no count of early users and no list of the first projects.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "Texas Advanced Computing Center, The University of Texas at Austin",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Williamson"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-11-17",
+     "kind": "filed",
+     "note": "UT Austin announces Horizon is open to early users"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "Researchers apply for time on the system through the center. There is no public comment process.",
+    "url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The Horizon supercomputer at TACC has opened to early users.",
+     "verbatim_quote": "which has now opened to early users",
+     "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+     "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+     "source_type": "primary_official",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0250-c1"
+    },
+    {
+     "text": "UT says Horizon ranks No. 24 on the November 2026 TOP500 list.",
+     "verbatim_quote": "Horizon ranks No. 24 on the November 2026 TOP500 list of the world’s most powerful supercomputers",
+     "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+     "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+     "source_type": "primary_official",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0250-c2"
+    },
+    {
+     "text": "Horizon delivered 132 petaflops on the High-Performance Linpack benchmark.",
+     "verbatim_quote": "delivering 132 petaflops on the High-Performance Linpack (HPL) benchmark",
+     "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+     "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+     "source_type": "primary_official",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0250-c3"
+    },
+    {
+     "text": "Phase One of Horizon has 4,000 GPUs.",
+     "verbatim_quote": "Phase One: 4,000 GPUs",
+     "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+     "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+     "source_type": "primary_official",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0250-c4"
+    },
+    {
+     "text": "Horizon runs in a new 20 megawatt liquid cooled data center in Round Rock.",
+     "verbatim_quote": "Powered by a new 20 megawatt data center with advanced liquid cooling in Round Rock, Texas",
+     "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+     "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+     "source_type": "primary_official",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0250-c5"
+    },
+    {
+     "text": "Horizon is the centerpiece of the NSF Leadership-Class Computing Facility.",
+     "verbatim_quote": "Horizon, which is the centerpiece of the U.S. NSF Leadership-Class Computing Facility (NSF LCCF)",
+     "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+     "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+     "source_type": "primary_official",
+     "fetched": "2026-11-17",
+     "id": "tx-2026-0250-c6"
+    }
+   ],
+   "notes_for_editor": "Admitted on UT Austin's own release, dated November 17th, 2026. The county rests on the release naming Round Rock; Round Rock lies mostly in Williamson County. The TOP500 list page corroborates rank 24 and an Rmax of 132.00 PFlop/s but was read through a summarising fetch, so the record cites the university's sentence. The release's superlative headline is not carried as a claim.",
+   "history": [
+    {
+     "date": "2026-11-17",
+     "note": "Admitted on UT Austin's announcement that Horizon is open to early users. The release names no first projects yet."
+    }
+   ],
+   "id": "tx-2026-0250",
+   "last_verified": "2026-11-17"
   }
  ]
 }

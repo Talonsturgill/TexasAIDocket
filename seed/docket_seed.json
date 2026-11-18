@@ -20260,5 +20260,101 @@
   ],
   "id": "tx-2026-0249",
   "last_verified": "2026-11-16"
+ },
+ {
+  "title": "TACC opens Horizon to early users, a GPU supercomputer in Round Rock that ranks No. 24 in the world",
+  "summary": "The Texas Advanced Computing Center at UT Austin has opened its Horizon supercomputer to early users, the university said on November 17th, 2026. Horizon is the centerpiece of the National Science Foundation's Leadership-Class Computing Facility. Its first phase has 4,000 GPUs. It delivered 132 petaflops on the High-Performance Linpack benchmark, and the university says that ranks it No. 24 on the November 2026 TOP500 list. The machine runs in a new 20 megawatt data center with liquid cooling in Round Rock. The university's release gives no opening date, no count of early users and no list of the first projects.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas Advanced Computing Center, The University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Williamson"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-17",
+    "kind": "filed",
+    "note": "UT Austin announces Horizon is open to early users"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "Researchers apply for time on the system through the center. There is no public comment process.",
+   "url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "The Horizon supercomputer at TACC has opened to early users.",
+    "verbatim_quote": "which has now opened to early users",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-17",
+    "id": "tx-2026-0250-c1"
+   },
+   {
+    "text": "UT says Horizon ranks No. 24 on the November 2026 TOP500 list.",
+    "verbatim_quote": "Horizon ranks No. 24 on the November 2026 TOP500 list of the world’s most powerful supercomputers",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-17",
+    "id": "tx-2026-0250-c2"
+   },
+   {
+    "text": "Horizon delivered 132 petaflops on the High-Performance Linpack benchmark.",
+    "verbatim_quote": "delivering 132 petaflops on the High-Performance Linpack (HPL) benchmark",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-17",
+    "id": "tx-2026-0250-c3"
+   },
+   {
+    "text": "Phase One of Horizon has 4,000 GPUs.",
+    "verbatim_quote": "Phase One: 4,000 GPUs",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-17",
+    "id": "tx-2026-0250-c4"
+   },
+   {
+    "text": "Horizon runs in a new 20 megawatt liquid cooled data center in Round Rock.",
+    "verbatim_quote": "Powered by a new 20 megawatt data center with advanced liquid cooling in Round Rock, Texas",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-17",
+    "id": "tx-2026-0250-c5"
+   },
+   {
+    "text": "Horizon is the centerpiece of the NSF Leadership-Class Computing Facility.",
+    "verbatim_quote": "Horizon, which is the centerpiece of the U.S. NSF Leadership-Class Computing Facility (NSF LCCF)",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon opens to early users, America's most powerful academic supercomputer begins serving science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-17",
+    "id": "tx-2026-0250-c6"
+   }
+  ],
+  "notes_for_editor": "Admitted on UT Austin's own release, dated November 17th, 2026. The county rests on the release naming Round Rock; Round Rock lies mostly in Williamson County. The TOP500 list page corroborates rank 24 and an Rmax of 132.00 PFlop/s but was read through a summarising fetch, so the record cites the university's sentence. The release's superlative headline is not carried as a claim.",
+  "history": [
+   {
+    "date": "2026-11-17",
+    "note": "Admitted on UT Austin's announcement that Horizon is open to early users. The release names no first projects yet."
+   }
+  ],
+  "id": "tx-2026-0250",
+  "last_verified": "2026-11-17"
  }
 ]
