@@ -261,7 +261,12 @@ def gpu_report(src: str) -> dict | None:
     # The two planes z-fought into banding from 120 m on no. 56 frames 5 and 6, and the cure was to
     # lift the second ground and every object 0.2 m. The self-test reads the engine and goes red if
     # TXT.interior ever stops laying its floor unconditionally, which would end this exception.
-    grounded = has("ground") or has("interior")
+    # A STUDIO SWEEP IS A GROUND TOO (2026-11-17). TXT.studio lays one continuous floor and wall as
+    # a single shadow receiving mesh that the engine tags `txGround`, and LOOK V2 asks every object
+    # frame to stand in one. Read by name only, a run had to lay a second TXT.ground under its sweep,
+    # which is the z-fighting the room exception above was written to end. The self-test reads the
+    # engine and goes red if TXT.studio stops tagging its sweep as ground.
+    grounded = has("ground") or has("interior") or has("studio")
     return {
         "cues": cues,
         "bench": True,
@@ -701,6 +706,16 @@ def self_test() -> int:
        not frame("c", GPU.replace("T.ground(R,{});", "const s='T.interior'; const f=T.interior;"))["staged"])
     ok("...and the room carries the plane's depth cue, as a ground does",
        "HEIGHT_IN_FIELD" in frame("room", ROOM)["cues"], str(sorted(frame("room", ROOM)["cues"])))
+    STUDIO = GPU.replace("T.ground(R,{});", "T.studio(R,{tone:'watch'});")
+    ok("a GPU frame standing in a TXT.studio sweep is STAGED without a second ground",
+       frame("studio", STUDIO)["staged"] and frame("studio", STUDIO)["ground"], str(frame("studio", STUDIO)))
+    ok("...and a studio on an UNBOUND name grounds nothing",
+       not frame("us", GPU.replace("T.ground(R,{});", "X.studio(R,{});"))["staged"])
+    _st = (REPO / "assets" / "js" / "txthree.js").read_text(encoding="utf-8")
+    _sb = _st[_st.find("  TXT.studio = function (R, o) {"):]
+    _sb = _sb[:_sb.find("\n  };\n")]
+    ok("the engine's TXT.studio tags its sweep as ground and lets it take shadows",
+       "userData.txGround = true" in _sb and "receiveShadow = true" in _sb, _sb[:120])
     ok("...and a room on an UNBOUND name grounds nothing",
        not frame("u", GPU.replace("T.ground(R,{});", "X.interior(R,{});"))["staged"])
     # THE EXCEPTION IS THE ENGINE'S, so it is read from the engine. TXT.interior must lay its floor
