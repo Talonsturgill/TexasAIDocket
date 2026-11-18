@@ -32,14 +32,14 @@ jobs:
   read:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
 
       # THE SITE BUILD NEEDS THESE AND THE COLLECTOR DOES NOT, which is why they were missing.
       # `gridwatch.yml` installs the same one before its own rebuild.
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip

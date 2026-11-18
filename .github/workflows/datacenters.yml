@@ -33,7 +33,7 @@ jobs:
   read:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
@@ -41,7 +41,7 @@ jobs:
       # THE SITE BUILD NEEDS THESE AND THE COLLECTOR DOES NOT. The rebuild step below was
       # added to close the stale-page hole and could never have run without them, and
       # `continue-on-error` kept that quiet. `gridwatch.yml` installs the same one.
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
