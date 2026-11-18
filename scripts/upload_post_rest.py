@@ -145,6 +145,11 @@ def build(manifest):
     if platform == 'tiktok':
         fixed('post_mode', 'DIRECT_POST')
         fixed('privacy_level', 'PUBLIC_TO_EVERYONE')
+        if kind == 'photos':
+            # A TikTok photo post shows `title` as a short headline and `description` as the caption.
+            # Decks posted with no caption (Nov 13, Nov 15) held viewers 2 to 3 s; decks with one held 7 to 12 s.
+            caption = options.get('tiktok_description') or options.get('description')
+            require(isinstance(caption, str) and caption.strip(), 'TikTok photo post needs a caption in description')
     else:
         require('post_mode' not in options and 'privacy_level' not in options, 'TikTok options on another platform')
     if platform == 'youtube':

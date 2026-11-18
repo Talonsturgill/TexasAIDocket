@@ -90,7 +90,7 @@ destination or clickable CTA unless it actually exists. Do not change profile bi
 Inspect the live upload schema for `first_comment` and placement options. Use supported fields
 only; unknown platform options can be silently ignored. For TikTok, verify the account's publishing
 settings with `read tiktok-settings --query profile=<bound-user>`, then use
-`post_mode=DIRECT_POST` and `privacy_level=PUBLIC_TO_EVERYONE`, never an inbox draft. Do not alter
+`post_mode=DIRECT_POST` and `privacy_level=PUBLIC_TO_EVERYONE`, never an inbox draft. A TikTok photo post shows `title` as a short headline only, so always pass the full post caption as `description` (the helper refuses one without it). Do not alter
 account privacy or connection permissions. Set LinkedIn `visibility=PUBLIC` and YouTube
 `privacyStatus=public`; use public visibility on the other authorized channels.
 The owner's standing approval covers publishing the finished daily edition to these bound brand
