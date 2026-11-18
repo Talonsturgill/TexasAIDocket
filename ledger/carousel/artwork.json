@@ -5053,6 +5053,72 @@
     "hex": "#ffc68a",
     "note": "The explainer tone's peach floor under cerulean and indigo."
    }
+  },
+  {
+   "date": "2026-11-17",
+   "carousel_no": 80,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 watch tone, nine slide artists. TXT.studio sweeps (1, 4, 7, 8, 9), a TXBENCH relief (2 paper strata), TXT.interior rooms (3 archive bay, 6 lamplit desk), an outdoor TXT dusk plaza (5). Spine assets/js/deck/2026-11-17-scorebench-bespoke.js with chassis models scoring_engine, response_sheet, card_cabinet and paper_column.",
+   "structural_laws": [
+    "DUSK GOLD UNDER THE WATCH CORAL KEY RENDERS ORANGE OR PEACH. Every gilt and tab frame fought it; violet rose floors and a cooled key are the cure.",
+    "K.MAKE CENTRES A MODEL'S FOOTPRINT, so a model with a long arm (the engine's chute) shifts every child off its userData coordinates.",
+    "A STUDIO SWEEP IS A GROUND, and depth_floor now says so.",
+    "A RECT IS X, Y, WIDTH, HEIGHT. Writing corners pads the box with empty field and the detail floor refuses it.",
+    "A CAMERA PUSHED IN TO A PAGE CROPS THE MACHINE THAT READS IT. The cover needed the whole infeed face and never got both."
+   ],
+   "techniques": [
+    "a graphite violet instrument with a smoked glass read chamber where a typed page curls over a roller under a lilac scan bar, an unlit desk waiting behind it",
+    "a relief of one paper band beside a stack six to seven times its height with a graphite staff",
+    "a card catalog drawer of 3,000 cards in 30 blocks with ticked gold tabs",
+    "a smoked glass engine with three pages in its tray and one gold page riding a chute up to a reader under a lamp",
+    "three plumb true scale paper columns with kraft ream wrappers on a dusk plaza beside a person looking up",
+    "an over the shoulder reader at a walnut desk under a gold lamp in a dusk office",
+    "a diagonal macro of a block of two hundred sheets with one gilded sheet pulled proud",
+    "Dallas County as a limestone tablet with 34 of 100 tiles raised on gilt stacks",
+    "the cover's lit desk at the end of a railed gold chute from the scoring machine"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     35.5,
+     31.1,
+     35.0,
+     40.1,
+     28.4,
+     30.1,
+     46.4,
+     38.5,
+     32.2
+    ],
+    "deck_median_L": 35.0,
+    "max_adjacent_delta": 16.3,
+    "mean_adjacent_delta": 7.16,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#e0956a",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     7,
+     8,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0002,
+     0.0065,
+     0.008,
+     0.003
+    ],
+    "note": "A person's score only."
+   },
+   "ground": {
+    "hex": "#c98a9a",
+    "note": "Violet rose floors under the watch tone's violet sky, never its coral floor."
+   }
   }
  ]
 }

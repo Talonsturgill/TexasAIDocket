@@ -1,0 +1,141 @@
+{
+ "date": "2026-11-17",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "64,489 this",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 64489,
+   "quoted_from": "c3",
+   "quote": "This spring, that jumped to 64,489."
+  },
+  {
+   "phrase": "64,489 this",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 64489,
+   "quoted_from": "c3",
+   "quote": "This spring, that jumped to 64,489."
+  },
+  {
+   "phrase": "64,489 this",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 64489,
+   "quoted_from": "c3",
+   "quote": "This spring, that jumped to 64,489."
+  },
+  {
+   "phrase": "13,300 scores",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 13300,
+   "quoted_from": "c4",
+   "quote": "The state improved more than 13,300 reading scores after the reviews."
+  },
+  {
+   "phrase": "13,300 reading scores",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 13300,
+   "quoted_from": "c4",
+   "quote": "The state improved more than 13,300 reading scores after the reviews."
+  },
+  {
+   "phrase": "5,100 tests",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 5100,
+   "quoted_from": "c8",
+   "quote": "more than 5,100 reading tests for rescoring"
+  },
+  {
+   "phrase": "5,100 reading tests",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 5100,
+   "quoted_from": "c8",
+   "quote": "more than 5,100 reading tests for rescoring"
+  },
+  {
+   "phrase": "3,000 field test answers",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3000,
+   "quoted_from": "c20",
+   "quote": "~3,000 human scored responses"
+  },
+  {
+   "phrase": "7 times more written answers",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 7,
+   "from_claims": [
+    "c19"
+   ],
+   "computed_by": "compute.py responses_multiple_high, parsed from c19's '6-7x more constructed responses' by the pattern (\\d+)-(\\d+)x"
+  },
+  {
+   "phrase": "seven times the written answers",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 7,
+   "from_claims": [
+    "c19"
+   ],
+   "computed_by": "compute.py responses_multiple_high, parsed from c19's '6-7x more constructed responses' by the pattern (\\d+)-(\\d+)x"
+  },
+  {
+   "phrase": "five times",
+   "slide": "slide-02.html",
+   "kind": "ratio",
+   "value": 5,
+   "quoted_from": "c11",
+   "quote": "four to five times the number of human scorers"
+  },
+  {
+   "phrase": "23 times",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 23,
+   "from_claims": [
+    "c1",
+    "c3"
+   ],
+   "computed_by": "compute.py growth_2024_to_2026, requests_2026 // requests_2024, rounded down so 'more than' holds"
+  },
+  {
+   "phrase": "four also goes",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c13",
+    "c22"
+   ],
+   "computed_by": "compute.py human_one_in, 100 // human_pct_min (25), so 'at least one in four'"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c13",
+    "c19"
+   ],
+   "computed_by": "sources_block.py counts the primary_official documents the block lists: TEA's scoring process document and its hybrid scoring key questions"
+  },
+  {
+   "phrase": "gilded page in 200",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 200,
+   "computed_by": "compute.py changed_one_in = round(100 / changed_pct_max), from c5",
+   "from_claims": [
+    "c5"
+   ]
+  }
+ ]
+}

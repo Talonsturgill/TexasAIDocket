@@ -6930,3 +6930,9 @@ and nothing will re-render, then lands before the merge with its own pixel proof
 ### Carried
 
 Every other open item is carried as it stands. No frontier scan: the brief for this pass names none.
+
+## 2026-11-17, carousel no. 80. One proposal for a maintainer
+
+### PROPOSAL: TXT.ground offsets its grid from a level camera (`assets/js/txthree.js`, human)
+
+Frame 5 held a level camera with a vertical lens shift so its paper columns stood plumb. The camera sat directly over a ground mesh vertex, that vertex projected at zero depth, and the whole 18.75 m cell under the lens rendered as a flat red and dark wall. The frame shifted its ground by whole 3 m tiles and throws when any nearby vertex sits within 0.75 m of the camera plane. The engine could do that itself, so the next level camera does not rediscover it. Queue item `level-camera-over-ground-vertex`. The K.make offset item queued today repeats the 2026-11-13 proposal 2 above.

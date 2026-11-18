@@ -1,0 +1,187 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 5 of 9, the turn. A spatial scene through txthree.js, outdoors on a jointed concrete plaza
+     at watch dusk under a violet sky. Three free standing columns of letter paper, one modelled 0.1 mm sheet per rescore
+     request, step up from a knee high stub near the lens to a head high column and a needle more than six metres tall,
+     a person beside it looking up. Worm's eye at 0.6 m. Every column height is read from window.FIG. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:168px; width:560px; text-align:left">Then the requests multiplied</h1>
+<p class="dek" data-follow="24" style="left:74px; width:540px; font-size:29px">Requests to regrade reading answers went from 2,758 in spring 2024 to 21,620 a year later and 64,489 this spring, the Texas Tribune reported. That is more than 23 times the 2024 count. One sheet stands for one request, drawn to illustrate.</p>
+<script>window.FIG = {"requests_2024": 2758, "requests_2025": 21620, "requests_2026": 64489, "growth_2024_to_2026": 23};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The turn", counter: "05 / 09", src: "c1 c2 c3", fit: { min: 80, max: 112, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 58, near: 0.05, far: 4000, fog: 0.0016 });
+
+  /* THE FIGURES. One modelled sheet is 0.1 mm, so each column is its count times SHEET metres tall. */
+  const SHEET = 0.0001;
+  const YEARS = [['requests_2024', 2758], ['requests_2025', 21620], ['requests_2026', 64489]];
+  const FV = { requests_2024: FIG.requests_2024, requests_2025: FIG.requests_2025, requests_2026: FIG.requests_2026 };
+  YEARS.forEach(([k]) => { if (!Number.isInteger(FV[k]) || FV[k] <= 0) throw new Error('figure ' + k + ' is missing'); });
+  const ratio = FIG.requests_2026 / FIG.requests_2024;
+  if (!(ratio > FIG.growth_2024_to_2026 && ratio < FIG.growth_2024_to_2026 + 1)) throw new Error('the drawn ratio ' + ratio + ' is not more than ' + FIG.growth_2024_to_2026 + ' times');
+
+  /* THE BEARINGS. The camera looks 140 degrees right of the deck's sun, so the coral key comes from behind the left
+   * shoulder, lights the faces of the columns and throws their shadows long to the right and away. at(u, v) is u metres
+   * ahead and v metres right of the camera's foot. */
+  const f = CH.bearing(TXT, 140), side = [-f[1], f[0]];
+  const at = (u, v, y) => [f[0] * u + side[0] * v, y || 0, f[1] * u + side[1] * v];
+  const yawF = Math.atan2(f[0], f[1]);
+  const kd = [-f[0] * 0.5 - side[0] * 0.87, -f[1] * 0.5 - side[1] * 0.87], KAZ0 = Math.atan2(kd[0], kd[1]) * 180 / Math.PI;
+
+  /* THE PAPER: an off white stack whose sides carry fine irregular sheet edge striation, never a band. Four seeded
+   * striation maps, one ream (0.05 m, 500 sheets at two texels a sheet) to a tile, so no two neighbouring reams repeat. */
+  const PAPER = 0xd9d7d3;
+  const striation = (seed) => CH.canvasTex(THREE, 64, 128, (g, w, h) => {
+    const r = CH.rng(seed); g.fillStyle = '#dedcd8'; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '255,255,255,' + (r() * 0.35).toFixed(3) : '78,80,96,' + (r() * 0.1).toFixed(3)) + ')'; g.fillRect(0, y, w, 1); }
+    const n = 2 + Math.floor(r() * 3);                                                       /* a few uneven seams where sheets settle */
+    for (let i = 0; i < n; i++) { const y = r() * h, t = 2 + r() * 7; g.fillStyle = 'rgba(76,78,98,' + (0.08 + r() * 0.16).toFixed(3) + ')'; g.fillRect(0, y, w, t); }
+    g.fillStyle = 'rgba(255,255,255,0.6)'; g.fillRect(0, r() * h, w, 2 + r() * 3);           /* one sheet a touch proud, catching light */
+    g.fillStyle = 'rgba(74,76,96,' + (0.12 + r() * 0.12).toFixed(3) + ')'; g.fillRect(0, 0, w, 2);   /* the ream's own settle line, faint and grey */
+  });
+  const sideMats = [11, 12, 13, 14].map((sd) => new THREE.MeshStandardMaterial({ name: 'paper-stack-edge', color: 0xffffff, map: striation(sd), roughness: 0.9 }));
+  const proudM = new THREE.MeshStandardMaterial({ name: 'paper-sheet', color: 0xe2e0dc, emissive: 0x4a4656, roughness: 0.85, side: THREE.DoubleSide });
+  const REAM = 500;
+  const kraftM = new THREE.MeshStandardMaterial({ name: 'kraft-paper-band', color: 0x6a6052, roughness: 0.95 });
+  kraftM.userData.txSurface = 'paper';
+  const column = (count, seed) => {
+    const c = K.make('paper_column', { count, sheet: SHEET, ream: 500, seed, color: PAPER, loose: 0, bands: false });
+    const r = CH.rng(seed * 7);
+    let drawn = 0, bands = 0;
+    c.children.forEach((g) => { const m = g.children && g.children[0]; if (!g.isGroup || !m || !m.geometry || !m.geometry.parameters) return;
+      const h = m.geometry.parameters.height; if (h < 0.002) return;            /* the loose curled top sheet */
+      drawn += Math.round(h / SHEET);
+      g.position.x *= 0.75; g.position.z *= 0.75; g.rotation.y *= 0.35;         /* squared up so the needle stands straight, its edge still a little ragged */
+      const sm = sideMats[Math.floor(r() * 4)]; m.material = [sm, sm, proudM, proudM, sm, sm];
+      if (Math.round(h / SHEET) === REAM) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.2195, 0.004, 0.2825), kraftM);
+        b.position.y = h * 0.5; b.castShadow = true; b.receiveShadow = true; b.userData.txKraft = true; g.add(b); bands++; }
+      if (r() < 0.3) { const pr = new THREE.Mesh(new THREE.BoxGeometry(0.216, 0.0004, 0.279), proudM);   /* the odd sheet sitting proud */
+        pr.position.set((r() < 0.5 ? -1 : 1) * (0.001 + r() * 0.0015), h * (0.15 + r() * 0.7), (r() - 0.5) * 0.003); pr.castShadow = true; pr.receiveShadow = true; g.add(pr); } });
+    c.traverse((o) => { if (o.isMesh && !o.userData.txKraft && o.geometry && o.geometry.parameters && o.geometry.parameters.height < 0.0006) o.material = Array.isArray(o.material) ? o.material.map(() => proudM) : proudM; });
+    /* the one loose sheet on every column: its curl eased and turned a little off square, so it reads as a lifted
+     * sheet of the same paper and never as a coloured cap */
+    c.children.forEach((g) => { if (g.isGroup && g.children[0] && g.children[0].geometry && g.children[0].geometry.parameters && g.children[0].geometry.parameters.height < 0.0006) { g.scale.y = 0.35; g.rotation.y += 0.22; } });
+    if (bands !== Math.floor(count / REAM)) throw new Error('the column wears ' + bands + ' ream bands where ' + count + ' sheets make ' + Math.floor(count / REAM) + ' full reams');
+    c.userData.bands = bands;
+    if (drawn !== count) throw new Error('the column draws ' + drawn + ' sheets where the figure is ' + count);
+    if (Math.abs(c.userData.height - count * SHEET) > 1e-9) throw new Error('column height ' + c.userData.height + ' differs from ' + count + ' x ' + SHEET);
+    return c;
+  };
+  const cols = YEARS.map(([k], i) => column(FV[k], 50 + i));
+  const H = cols.map((c) => c.userData.height);
+  cols.forEach((c, i) => { if (c.userData.bands !== Math.floor(FV[YEARS[i][0]] / REAM)) throw new Error('band count off on ' + YEARS[i][0]); });
+
+
+  /* THE PLAZA'S EDGE: live oaks well back, their foliage toned into the dusk (a deep violet green lifted by the rose
+   * haze, low contrast) so they sit behind the paper; two benches nearer */
+  const barkM = new THREE.MeshStandardMaterial({ name: 'oak-bark', color: 0x5a4660, emissive: 0x2a1a34, emissiveIntensity: 0.4, roughness: 0.95 });
+  [[48, 11, 1], [56, 23, 2], [46, 33, 3], [64, -18, 4], [74, 42, 5]].forEach(([u, v, s]) => { const t = K.make('live_oak', { seed: s }); const p = at(u, v); t.position.set(p[0], 0, p[2]); t.rotation.y = s;
+    t.traverse((m) => { if (!m.isMesh || !m.material) return; const mm = Array.isArray(m.material) ? m.material[0] : m.material; const hsl = {}; (mm.color || new THREE.Color(0)).getHSL(hsl);
+      const leaf = !!(mm.alphaMap || mm.map || (hsl.h > 0.12 && hsl.h < 0.45));
+      if (!leaf) { m.material = barkM; return; }
+      const n = mm.clone(); n.name = 'oak-leaf'; n.color = new THREE.Color(0x7f86c4);              /* the leaf texture kept, its green pulled to violet green */
+      n.emissive = new THREE.Color(0x3a2246); n.emissiveIntensity = 0.5; n.roughness = 0.85; m.material = n; });
+    TXT.add(R, t); });
+  [[14, 5.5, 0.1], [15, -4, -0.2]].forEach(([u, v, r]) => { const b = K.make('bench', { length: 1.8 }); const p = at(u, v); b.position.set(p[0], 0, p[2]); b.rotation.y = yawF + Math.PI + r; TXT.add(R, b, { cast: false }); TXT.contact(R, b); });
+
+  /* THE CAMERA: worm's eye at 0.6 m, the needle's foot on the right third near the bottom, tilted up just enough to hold
+   * the whole needle */
+  /* SHIFT CORRECTED: the camera stays level (no pitch, no roll) so every column stands plumb, it yaws until the needle's
+   * foot sits at x FX, and a vertical lens shift (setViewOffset) lifts the frame to hold the whole needle */
+  const FROM = [0, 0.6, 0], TP = at(6.0, 2.35), FOV = 65, FX = 820;
+  let yaw = Math.atan2(TP[0] - FROM[0], TP[2] - FROM[2]);
+  const levelLook = () => [FROM[0] + Math.sin(yaw) * 10, FROM[1], FROM[2] + Math.cos(yaw) * 10];
+  R.camera.clearViewOffset();
+  for (let it = 0; it < 60; it++) {
+    TXT.frame(R, { fov: FOV, from: FROM, look: levelLook() });
+    const q = CH.project(THREE, R, [TP[0], 0, TP[2]]), ex = q[0] - FX; if (Math.abs(ex) < 0.3) break;
+    yaw -= Math.atan(ex / (675 / Math.tan(FOV * Math.PI / 360)));
+  }
+  const LOOK = levelLook();
+  { const q = CH.project(THREE, R, [TP[0], 0, TP[2]]);
+    R.camera.setViewOffset(1080, 1350, 0, q[1] - 1190, 1080, 1350); R.camera.updateProjectionMatrix(); }
+  R._txLook = [TP[0], 0, TP[2]];   /* the engine's auto stage reads its subject off the look point: the needle's foot, as before */
+  { R.camera.updateMatrixWorld(true); const fw = new THREE.Vector3(); R.camera.getWorldDirection(fw); const up = new THREE.Vector3().setFromMatrixColumn(R.camera.matrixWorld, 1);
+    if (Math.abs(fw.y) > 1e-6 || Math.abs(up.y - 1) > 1e-6) throw new Error('the camera is tilted, the columns would lean');
+    const a = CH.project(THREE, R, [TP[0], 0, TP[2]]), b = CH.project(THREE, R, [TP[0], H[2], TP[2]]);
+    if (Math.abs(a[0] - b[0]) > 0.5) throw new Error('the needle axis leans ' + (b[0] - a[0]).toFixed(2) + ' px');
+    if (Math.abs(a[0] - FX) > 1 || Math.abs(a[1] - 1190) > 1) throw new Error('the needle foot is at ' + a.map(Math.round)); }
+  const top = CH.project(THREE, R, [TP[0], H[2], TP[2]]);
+  if (top[1] < 70) throw new Error('the needle runs out of the top of the frame at ' + Math.round(top[1]));
+  const span = (1190 - top[1]) / 1350; if (span < 0.7) throw new Error('the needle spans only ' + span.toFixed(2) + ' of the frame height');
+
+  /* THE PLACES, set through the lens: a point on the plaza under each screen position. The needle's foot is on the right
+   * third, the person stands left of it looking up, and the head high column and the knee high stub stand on the same
+   * line further left, the stub alone in open ground, so all three are seen at one distance and compare honestly. */
+  const groundAt = (sx, sy) => { R.camera.updateMatrixWorld(true); const o = R.camera.position.clone();
+    const d = new THREE.Vector3(sx / 1080 * 2 - 1, 1 - sy / 1350 * 2, 0.5).unproject(R.camera).sub(o).normalize();
+    if (d.y >= 0) throw new Error('screen point ' + sx + ',' + sy + ' is above the horizon'); const t = -o.y / d.y; return [o.x + d.x * t, 0, o.z + d.z * t]; };
+  const SPOTS = [groundAt(457, 1190), groundAt(620, 1190), [TP[0], 0, TP[2]]], TURN = [0.5, 0.2, 0.75];
+  cols.forEach((c, i) => { const p = SPOTS[i]; c.position.set(p[0], 0, p[2]); c.rotation.y = yawF + TURN[i]; TXT.add(R, c); TXT.contact(R, c, { opacity: 0.95 }); });
+  const person = K.make('person', { seed: 14, pose: 'look_up', role: 'resident', shirt: 0x3f6f8a, trousers: 0x2b2d52, hat: 'none', detail: 'high' });
+  const shadowHitsNeedle = (az, el, pts) => { const L = [Math.sin(az * Math.PI / 180) * Math.cos(el * Math.PI / 180), Math.sin(el * Math.PI / 180), Math.cos(az * Math.PI / 180) * Math.cos(el * Math.PI / 180)];
+    return pts.some((P) => { for (let t = 0; t < 40; t += 0.02) { const x = P[0] - L[0] * t, y = P[1] - L[1] * t, z = P[2] - L[2] * t; if (y < 0) return false;
+      if (Math.hypot(x - TP[0], z - TP[2]) < 0.42 && y < H[2]) return true; } return false; }); };
+  const occluders = (pp) => { const o = []; for (let y = 0.15; y <= 1.8; y += 0.1) [-0.28, 0, 0.28].forEach((d) => o.push([pp[0] + side[0] * d, y, pp[2] + side[1] * d]));
+    for (let y = 0.1; y <= H[1]; y += 0.1) [-0.17, 0.17].forEach((d) => o.push([SPOTS[1][0] + side[0] * d, y, SPOTS[1][2] + side[1] * d])); return o; };
+  let KAZ = null, PP = null; const KEL = 13;
+  search: for (const dAz of [0, -6, 6, -12, 12, -18, 18, -24]) for (const [sx, sy] of [[735, 1193], [742, 1205], [730, 1212], [748, 1222], [736, 1232], [752, 1240]]) {
+    const pp = groundAt(sx, sy); if (!shadowHitsNeedle(KAZ0 + dAz, KEL, occluders(pp))) { KAZ = KAZ0 + dAz; PP = pp; break search; } }
+  if (KAZ === null) throw new Error('no key and stance keep the shadows off the needle');
+  person.position.set(PP[0], 0, PP[2]);
+  person.rotation.y = Math.atan2(TP[0] - PP[0], TP[2] - PP[2]) - 0.35;
+  TXT.add(R, person); TXT.contact(R, person, { opacity: 0.75 });
+  { const pt = CH.project(THREE, R, [PP[0], 1.8, PP[2]]); if (pt[0] < document.querySelector(".dek").getBoundingClientRect().right + 60) throw new Error('the person stands into the type column'); }
+  { const m = CH.project(THREE, R, [SPOTS[1][0], H[1], SPOTS[1][2]]), t2 = CH.project(THREE, R, [TP[0], H[1], TP[2]]);
+    if (t2[0] - m[0] < 120) throw new Error('the head high column crowds the needle: ' + Math.round(t2[0] - m[0]) + ' px apart'); }
+
+  /* the type must clear the columns */
+  { const d = document.querySelector('.dek').getBoundingClientRect(), mid = SPOTS[1], mt = CH.project(THREE, R, [mid[0], H[1], mid[2]]);
+    if (mt[0] - 40 < d.right && mt[1] < d.bottom) throw new Error('the head high column runs into the dek at ' + mt.map(Math.round)); }
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2watch, { clouds: 0.16, stars: 0.05, zenith: 0x3b2ca6 }));
+  const gnd = TXT.ground(R, { surface: 'concrete', color: 0xc4909e, size: 3000, tile: 3.0, seed: 1117, joints: 2 });
+  /* A LEVEL CAMERA STRAIGHT OVER A GROUND VERTEX puts that vertex at view depth zero, and the rasteriser then tears the
+   * whole 18.75 m cell under the lens into a flat wall. The plane slides by a fraction of a cell (whole tiles, so the
+   * joints don't move) and every vertex near the lens is checked to sit well off the camera plane. */
+  { const cell = 3000 / 160; gnd.position.x += 3.0 * 2; gnd.position.z += 3.0 * 3; gnd.updateMatrixWorld(true); R.camera.updateMatrixWorld(true);
+    const fw = new THREE.Vector3(); R.camera.getWorldDirection(fw);
+    for (let i = -4; i <= 4; i++) for (let j = -4; j <= 4; j++) { const vx = gnd.position.x + i * cell - FROM[0], vz = gnd.position.z + j * cell - FROM[2];
+      const dz = vx * fw.x - FROM[1] * fw.y + vz * fw.z; if (Math.abs(dz) < 0.75) throw new Error('a ground vertex sits ' + dz.toFixed(2) + ' m off the camera plane'); } }
+
+  const spec = CH.rigSpec(W, 18, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.6, color: 0xfff1e6, i: spec.key.i * 0.55 });
+  /* the key from behind the left shoulder, so the faces are lit and every shadow runs right and away from its own foot */
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts(at(4.5, 1.5), { distance: 40, shadowFar: 100, normalBias: 0.01 }), { light: { az: KAZ, el: KEL } }));
+  console.log('slide05 key az ' + KAZ.toFixed(1) + ' person ' + PP.map((v) => v.toFixed(2)));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.12, height: 0.04, mottle: 0.12, skip: cols.concat([person]) });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.4, fade: 260 });
+  ['.count', '.tx-site', '.src'].forEach((sel) => CH.seat(cx, { sel, a: 0.24, fade: 150 }));
+  TXLOOK.footWash(cx, { a: 0.5, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

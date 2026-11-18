@@ -1,0 +1,221 @@
+{
+ "weighted_score": 7.26,
+ "judges": [
+  6.96,
+  7.46,
+  7.16
+ ],
+ "spread": 0.5,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.96 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.46 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.16 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.96,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.96 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.46,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.46 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.16,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.16 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A giant disembodied hand and pen enter from the top edge at a scale that reads as an artifact, which breaks the frame's own 'hands in shadow' rule. The person and room promised in the storyboard are not visible, and machine_qa flags a dead lower third.",
+     "fix": "Move the camera back to the planned seated over-the-shoulder shot at 1.3 m so head, shoulder, lamp pool and page all read, with the hand in shadow at the page edge and the desk front carrying the type."
+    },
+    {
+     "judge": 2,
+     "problem": "The hand is a primitive with sausage fingers and a capsule pen it doesn't grip. The '06 / 09' counter sits on the wrist. An unexplained maroon limb shape cuts in at the right edge (about y 1550 to 1800 of 2000), and the bottom 45 percent is a flat violet desk-edge band acting as a type plate.",
+     "fix": "Pull the camera back to a three-quarter view of one person's hand writing a score in the margin, with a modelled pen and a mark on the page. Keep the forearm out of the counter's corner, delete the stray limb mesh, and light the desk's front edge so the type seats on wood rather than a flat band."
+    },
+    {
+     "judge": 3,
+     "problem": "A disembodied hand cropped in from the top edge with a pen on a page reads as a generic stock gesture at 432 px, and the scorer's lamp promised by the deck's argument is barely visible.",
+     "fix": "Pull the camera back to show the forearm and the lamp's warm cone on the page, so the gold accent of a person scoring is the light source, not a tint."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The gilt stack sits on a soft blobby pink-violet blur with no readable surface or light direction, and the gilt reads coral rather than the dusk-gold accent.",
+     "fix": "Give the macro a defined studio sweep with a raking key from the upper left that casts the stack's shadow into the tray, and shift the gilt material to satin dusk gold #E0956A."
+    },
+    {
+     "judge": 2,
+     "problem": "The 'gilded' pages render orange-red rather than gold, so the accent doesn't read as raised scores. The pages are flat slabs on a blurred violet field with no surface under the rack.",
+     "fix": "Give the raised pages a metallic gold edge material with a warm specular highlight, and seat the rack on a lit tabletop surface with a contact shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "The page rack sits on a blurred sweep with no readable floor, and the 'gilded' raised pages read as flat orange stripes, so the gold that means a person's raised score is lost.",
+     "fix": "Give the raised pages a metallic gold edge material lit by a warm key so they catch a highlight, and ground the rack on a visible sweep floor with a contact shadow."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The machine, tray and reader sit in the bottom 40% on a mottled fog floor with no studio sweep. The upper half is text on fog, and the machine is cropped off the left edge, so the fork reads as small objects in a void at feed size.",
+     "fix": "Replace the fog with the TXT.studio watch sweep used on S1 and S9, and pull the orthographic camera in so the machine cutaway and the reader's desk span the full width and fill at least half the frame height under the type."
+    },
+    {
+     "judge": 2,
+     "problem": "The subject is confined to the bottom 40 percent on a mottled noise cloud field. The machine, tray and desk float in a smoky void with no floor contact, and the top half behind the type is noise.",
+     "fix": "Swap the cloud ground for TXT.studio in the watch tone with soft contact shadows. Raise the camera and push in so the machine, the three-page tray and the chute to the seated scorer fill at least half the frame."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The chute deck is mottled with a pale streak and a hard navy rectangle that reads as a hole, and its lip cuts into the tray and page. A hard-edged pink floor patch under the chair has no source, and a navy slab floats at top right.",
+     "fix": "Give the chute a clean satin gold surface with one cream page partway down, stop the lip just above the tray, delete the unsourced floor light, and crop or remove the top right slab."
+    },
+    {
+     "judge": 3,
+     "problem": "The close frame still shows the preflight's named defects: a hard navy rectangle that reads as a hole in the chute, the chute lip intersecting the tray and page, an unsourced pink light patch under the chair, a navy slab floating top right, and a machine face that does not match the cover machine.",
+     "fix": "Re-model the chute deck as clean satin gold with a cream page partway down. Stop its lip above the tray edge. Delete the floor light patch. Replace the right-edge machine face with the cover's indigo machine and its glowing status strip, so the deck's bookend reads."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Stacks of paper float on a flat violet field with no ground, contact shadow or room. It is an object in a gradient that reads as a diagram at feed size.",
+     "fix": "Put the 1x stack and the 6 to 7x stack on a lit studio sweep floor with soft contact shadows and a person or desk for scale, and push the camera low so the tall stack runs off the top edge."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The three paper columns render as smooth white prisms. Ream bands and curled top sheets don't read at 432 px, so the true-scale argument looks like plinths rather than paper, and the person is small beside the middle column.",
+     "fix": "Model visible kraft ream bands every 500 sheets and seeded sheet skew on all three columns, and lower the camera nearer the person so the 2,758 column and the figure read in the foreground."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The machine fills under half the frame, the lower front panel is plain, and the background desk, the beat that pays off on slide 9, is hazed to a ghost at 432 px.",
+     "fix": "Push the camera in about 20 percent so the machine fills half the frame. Cut the haze on the dark desk so it reads at feed size, and move it lower right so its lamp clears the dek."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared_note": "the cards carry a round number and it was not believed, because the cards carry [1, 1, None] and a round is one number. `rounds` is this module's own count of 1",
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.26 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 6, 7, 4, 9, 2, 5, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

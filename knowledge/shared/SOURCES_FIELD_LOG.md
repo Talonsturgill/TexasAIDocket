@@ -2654,3 +2654,12 @@ www.brazoscountytx.gov (2 each) answered 403** to the reverify User-Agent. **The
 www.utep.edu did not answer (URLError) and www.oncor.com's timed out**, so the boundary read all three as refusing and
 their pages were not requested. The Kodiak and Atlas Permian announcement and both companies' SEC filings answered and
 named no county, so that story was held rather than drawn.
+
+## 2026-11-17 (carousel no. 80)
+
+**interchange.puc.texas.gov filing list pages page older filings away.** The lists cited on tx-2026-0003 and tx-2026-0076
+answered but no longer showed the filings quoted by c17 to c21, so the re-verification left both items unstamped rather
+than reading absence as a change. The filing itself, not the list, is the stable citation. **TEA's rescore pages answered
+404** to the scout, so the spring 2026 rescore counts on tx-2026-0194 rest on the Texas Tribune's October 7th report, and
+the deck and the record say so. TEA's December 2023 and March 2024 scoring documents answered and carry the design figures.
+The ZIP cited on tx-2026-0072 was read through zipfile and pypdf rather than WebFetch.

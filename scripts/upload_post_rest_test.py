@@ -168,6 +168,14 @@ class RestTests(unittest.TestCase):
         m['options']['post_mode'] = 'MEDIA_UPLOAD'
         with self.assertRaises(ValueError): rest.build(m)
 
+    def test_tiktok_photos_need_caption(self):
+        m = manifest('tiktok', kind='photos', repo='TexasAIDocket')
+        with self.assertRaises(ValueError): rest.build(m)
+        m['options']['description'] = '   '
+        with self.assertRaises(ValueError): rest.build(m)
+        m['options']['description'] = 'Standard tests can miss the struggle.'
+        self.assertEqual(rest.build(m)[1]['description'], 'Standard tests can miss the struggle.')
+
     def test_youtube_separate_description(self):
         m = manifest('youtube')
         with self.assertRaises(ValueError): rest.build(m)

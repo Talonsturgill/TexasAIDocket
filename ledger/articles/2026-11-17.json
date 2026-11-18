@@ -1,0 +1,109 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Education",
+ "dek": {
+  "text": "A Texas Education Agency engine scores written STAAR answers first. This spring districts asked for far more human rescores, and people raised thousands of reading scores.",
+  "claims": [
+   "c9",
+   "c3",
+   "c4"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The Texas Education Agency began using an automated scoring engine in December 2023 to grade open-ended questions on STAAR](c9). [As the agency described its hybrid model then, the engine scores written responses first and at least {{number:c13}} percent of them are also routed to human scorers](c13). [Where a person scores an answer, that score is the score of record](c17).",
+   "claims": [
+    "c9",
+    "c13",
+    "c17"
+   ]
+  },
+  {
+   "text": "[Written answers on Spanish language STAAR tests are scored entirely by people and never by the engine](c16). [TEA says the engine is programmed on a sample of about {{number:c20}} human scored field test responses](c20). [It describes the engine as a closed database whose student answers only TEA can access](c23).",
+   "claims": [
+    "c16",
+    "c20",
+    "c23"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Why the agency uses it",
+   "paragraphs": [
+    {
+     "text": "[STAAR now leaves TEA with many times more constructed responses to grade each year](c19). [A TEA spokesperson said scoring the essays by hand would cost an additional ${{number:c10}} million to ${{number:c10:1}} million a year](c10). [It would also take four to five times as many human scorers](c11). [The spokesperson described the result as a system that keeps human judgment at the center of scoring](c12).",
+     "claims": [
+      "c19",
+      "c10",
+      "c11",
+      "c12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What districts did",
+   "paragraphs": [
+    {
+     "text": "[In spring 2024 the state received {{number:c1:1}} requests to regrade open-ended answers on reading exams](c1). [The next year it received {{number:c2}}](c2). [This spring the count reached {{number:c3}}](c3), the Texas Tribune reported on October 7th.",
+     "claims": [
+      "c1",
+      "c2",
+      "c3"
+     ]
+    },
+    {
+     "text": "[People conducted every rescore](c7), [and TEA sends each rescore request for human scoring](c14). [The state raised more than {{number:c4}} reading scores after the reviews](c4). [Across all open-ended responses on reading exams, fewer than half of one percent changed](c5).",
+     "claims": [
+      "c7",
+      "c14",
+      "c4",
+      "c5"
+     ]
+    },
+    {
+     "text": "[Dallas ISD submitted more than {{number:c8}} reading tests for rescoring, and {{number:c8:1}}% came back with a higher score](c8).",
+     "claims": [
+      "c8"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it costs to ask, and what is not known",
+   "paragraphs": [
+    {
+     "text": "[A district pays ${{number:c6}} per test when it asks for a rescore and the score does not change](c6). [TEA waives the fee when the score changes](c15).",
+     "claims": [
+      "c6",
+      "c15"
+     ]
+    },
+    {
+     "text": "The 2026 counts come from the Texas Tribune's reporting, and no TEA page with them was available when this was checked. The agency's description of the design comes from its December 2023 and March 2024 documents, so whether every detail still holds this spring is not established here. The reporting does not say the engine was wrong about any one student's answer. It shows how often districts asked for a person and how often a person raised the score.",
+     "claims": [
+      "c3",
+      "c13",
+      "c22"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0194",
+   "label": "The record entry for STAAR's automated scoring"
+  },
+  {
+   "id": "tx-2026-0248",
+   "label": "Texas 2036's survey of AI in Texas classrooms"
+  }
+ ]
+}

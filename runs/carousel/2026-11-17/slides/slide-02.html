@@ -1,0 +1,169 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 3 of 9, "Why a machine". A material relief through txbench.js in orthographic elevation:
+     two free standing stacks of paper on a studio floor against a violet sweep. On the left, under the dek, one ream thick
+     band, the old load. On the right, on the same footprint, a stack of FIG.responses_multiple_low such bands and a paler
+     band for the top of the range, each ream seated in a violet seam, typed answer sheets slipping out of the seams, both
+     stacks casting onto the sweep. A graphite and cream surveyor's staff stands on the shelf with one segment per band. The key rakes from the upper left (the chassis key, az -40, el 14). The type sits
+     low, in the violet shade under the shelf. No dusk gold on this frame: it is the workload, never a person's score. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:176px; width:470px; text-align:left">Six to seven times the written answers</h1>
+<p class="dek" data-follow="30" style="left:82px; width:450px; text-align:left">TEA says STAAR now brings 6 to 7 times more written answers a year. Scoring them all by hand would cost $15 million to $20 million more a year and take four to five times as many scorers.</p>
+<script>window.FIG = {"responses_multiple_low": 6, "responses_multiple_high": 7};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Why a machine", counter: "02 / 09", src: "c19 c18 c11", fit: { min: 70, max: 100, maxLines: 4 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED);
+  const P = CH.P, L = TXLOOK.lin;
+
+  /* ---- THE FIGURE. The old load is one band U px thick, a stack of its own on the left. The tall stack on the right has
+   * the same footprint and stands FIG.responses_multiple_low bands of that U in solid paper, then (high - low) paler bands
+   * for the top of the range. The staff carries one segment per band of the tall stack. ---- */
+  const LOW = FIG.responses_multiple_low, HIGH = FIG.responses_multiple_high;
+  if (!(Number.isInteger(LOW) && Number.isInteger(HIGH) && HIGH > LOW && LOW > 0)) throw new Error('slide 3: the multiples must be whole and ordered');
+  const U = 96, FY = 1112, SW_ = 392;                       /* band thickness, the floor line, the shared footprint width */
+  const tall = []; for (let i = 0; i < HIGH - LOW; i++) tall.push('cap'); for (let i = 0; i < LOW; i++) tall.push('solid');
+  const STACKS = [
+    { x0: 124, kinds: ['solid'] },                           /* the old load */
+    { x0: 566, kinds: tall }                                 /* the new load */
+  ].map(q => Object.assign(q, { x1: q.x0 + SW_, top: FY - q.kinds.length * U }));
+  const [OLD, NEW] = STACKS;
+  const bandsOf = (q, kind) => q.kinds.filter(k => k === kind).length * U;
+  if (OLD.x1 - OLD.x0 !== NEW.x1 - NEW.x0) throw new Error('slide 3: the two stacks do not share a footprint');
+  if (OLD.x1 + 30 > NEW.x0) throw new Error('slide 3: no floor between the stacks');
+  if (FY - OLD.top !== U || bandsOf(OLD, 'solid') !== U) throw new Error('slide 3: the old load is not one band');
+  if (bandsOf(NEW, 'solid') / U !== LOW) throw new Error('slide 3: the tall stack is ' + bandsOf(NEW, 'solid') / U + ' bands, the figure says ' + LOW);
+  if ((bandsOf(NEW, 'solid') + bandsOf(NEW, 'cap')) / U !== HIGH) throw new Error('slide 3: the tall stack with its range is not ' + HIGH + ' bands');
+  const SX = NEW.x1 + 30, SW = 22, STOP = NEW.top, SBOT = FY;  /* the surveyor's staff, graphite and cream (no accent colour on this frame), fully inside the 64 px margin */
+  if ((SBOT - STOP) / U !== HIGH) throw new Error('slide 3: the staff is not one segment per band');
+  if (SX + SW / 2 > 1080 - 64) throw new Error('slide 3: the staff leaves the safe margin');
+
+  const NX = 1084;
+  const hsh = (a, b) => { const v = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return v - Math.floor(v); };
+  const prof = (fx, fy, oct) => { const a = new Float32Array(NX); for (let x = 0; x < NX; x++) a[x] = TX.fbm2(x / fx, fy, { octaves: oct || 3 }); return a; };
+  const face = []; for (let k = 0; k < 8; k++) face.push(prof(150, k * 3.1 + 7, 3));
+  const rows = new Float32Array(2800), rr = CH.rng(311);
+  for (let i = 0; i < rows.length; i++) rows[i] = rr() < 0.1 ? 0.1 + 0.08 * rr() : 0.045 * rr();
+
+  const M = { WALL: 0, CAP: 1, SOLID: 2, SEAM: 4, FLOOR: 6, STAFF_R: 7, STAFF_C: 8, STEEL: 9, STAFF_P: 11, SHEET: 12 };
+  /* typed answer sheets slipping out of the tall stack's seams (greeked, never legible) */
+  const SHEETS = [[612, 1, 140, 56, 10], [770, 3, 124, 44, 8], [640, 4, 116, 48, 9], [800, 0, 104, 40, 6], [700, 2, 96, 36, 7]]
+    .map(([x, k, w, len, curl], i) => ({ x, k, w, len, curl, y: NEW.top + (k + 1) * U - 3, a: (i % 2 ? 1 : -1) * (0.03 + 0.05 * ((i * 0.37) % 1)) }));
+  const sheetUV = (sh, X, Y) => { const dx = X - sh.x, dy = Y - sh.y, c = Math.cos(sh.a), s = Math.sin(sh.a); return [(dx * c + dy * s) / sh.w, (-dx * s + dy * c) / sh.len]; };
+
+  /* a stack's sides: every sheet ends a hair off the next (deckled), the ream bows out at its middle and fans at its corners */
+  function sideX(q, Y, right) {
+    const k = Math.floor((Y - q.top) / U), yl = Y - q.top - k * U, r = Math.floor(Y * 1.6), corner = Math.max(0, 1 - Math.min(yl, U - yl) / 16);
+    const j = (hsh(r, right ? 9 : 4) - 0.5) * (1.6 + 5 * corner) + 3 * Math.sin(Math.PI * yl / U) + (hsh(k, right ? 21 : 13) - 0.5) * 8;
+    return right ? q.x1 + j : q.x0 - j;
+  }
+  function inStack(X, Y) {
+    for (const q of STACKS) { if (Y < q.top || Y >= FY || X < q.x0 - 14 || X > q.x1 + 14) continue;
+      const xl = sideX(q, Y, false), xr = sideX(q, Y, true);
+      if (X >= xl && X <= xr && Y >= q.top + 1.5 * TX.simplex2(X / 30, 3.3)) return { q, xl, xr }; }
+    return null;
+  }
+  function geo(X, Y) {
+    const xi = Math.max(0, Math.min(NX - 1, X | 0)), dx = X - SX;
+    if (Math.abs(dx) < SW / 2 && Y > STOP - 8 && Y < SBOT) {                     /* the staff, a round rod on the floor */
+      const r = dx / (SW / 2), hgt = 44 + 11 * Math.sqrt(1 - r * r);
+      if (Y < STOP) return [hgt - 2, M.STEEL];
+      if (Y > SBOT - 10) return [hgt - 1, M.STEEL];
+      const sgi = Math.floor((Y - STOP) / U);
+      if (Math.abs((Y - STOP) - Math.round((Y - STOP) / U) * U) < 0.9) return [hgt - 1.2, M.STEEL];
+      return [hgt, NEW.kinds[sgi] === 'cap' ? M.STAFF_P : (sgi % 2 ? M.STAFF_R : M.STAFF_C)];
+    }
+    const hit = Y < FY ? inStack(X, Y) : null;
+    if (hit) {
+      const q = hit.q;
+      for (const sh of (q === NEW ? SHEETS : [])) {
+        const [u, v] = sheetUV(sh, X, Y);
+        if (u >= 0 && u <= 1 && v >= 0 && v <= 1) {
+          const curl = 2 + sh.curl * 0.6 * v * v * (0.6 + 0.4 * u) + 1.2 * Math.sin(u * Math.PI) * v;
+          return [42 + curl - (Math.min(u, 1 - u) * sh.w < 1.2 || (1 - v) * sh.len < 1.2 ? 0.6 : 0), M.SHEET];
+        }
+      }
+      const k = Math.min(q.kinds.length - 1, Math.floor((Y - q.top) / U)), yl = Y - q.top - k * U, t = yl / U, kind = q.kinds[k];
+      const mat = kind === 'cap' ? M.CAP : M.SOLID;
+      let h = 36 + 2 * face[k + (q === OLD ? 1 : 0)][xi] + 4 * Math.sin(Math.PI * t) - (kind === 'cap' ? 3 : 0);  /* the ream bows */
+      const r = Math.floor(Y * 1.6), sg = Math.floor((X + 300 * hsh(r, 1)) / (50 + 90 * hsh(r, 2))), e = hsh(r, sg + 11);
+      h += e > 0.5 ? 1.1 * (e - 0.5) / 0.5 : 0;                                    /* sheet edges standing proud by their own amounts */
+      if (hsh(r, 77 + k) > 0.985) h += 2.6;                                        /* a whole sheet slid out of true */
+      let m = mat;
+      if ((yl < 2.5 && k > 0) || (yl > U - 2.5 && k < q.kinds.length - 1)) { h -= 7; m = M.SEAM; }   /* where one ream sits on the next */
+      const ex = Math.min(X - hit.xl, hit.xr - X), et = k === 0 ? yl * 2.5 : 99, ee = Math.min(ex, et);   /* the top edge rounds tighter, so it stays crisp */
+      if (ee < 8) h *= 0.25 + 0.75 * Math.sin(Math.max(0, ee) / 8 * Math.PI / 2);   /* rounded, fanned edges */
+      return [h, m];
+    }
+    if (Y >= FY) return [0, M.FLOOR];                                            /* a clean sweep: flat, so nothing on it casts */
+    return [0, M.WALL];
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const A = {
+    cap: L('#fffaf6', 1.0), solid: L('#fff2d2'), seam: L(P.shade, 1.4), red: L('#3a3552', 1.0), cream: L('#fff4ea'), pale: L('#b9b4cc'),
+    steel: L('#c9cde6'), sheet: L('#fffbf4')
+  };
+  const WALL_TOP = L(P.skyTop, 1.05), WALL_MID = L(P.skyMid, 1.0), WALL_LOW = L(TXLOOK.mix(P.skyMid, P.skyLow, 0.55), 0.95), FLOOR = L('#8f5fa6', 1.0), FLOOR2 = L('#6a4596', 1.0);
+  const lerp = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const albedo = (X, Y, m) => {
+    const sp = hsh((X * 2) | 0, (Y * 2) | 0);
+    if (m === M.SOLID || m === M.CAP) {
+      const a = m === M.SOLID ? A.solid : A.cap;
+      const lam = rows[(Y * 2) | 0] * (m === M.CAP ? 0.6 : 1), k = 1 - lam + 0.02 * TX.simplex2(X / 80, Y / 6), g = sp > 0.998 ? 0.6 : 1;
+      return [a[0] * k * g, a[1] * k * g, a[2] * k * g];
+    }
+    if (m === M.SHEET) {
+      const sh = SHEETS.find(q => { const [u, v] = sheetUV(q, X, Y); return u >= 0 && u <= 1 && v >= 0 && v <= 1; }), uv = sheetUV(sh, X, Y), lu = uv[0] * sh.w, lv = uv[1] * sh.len;
+      const line = lv > 8 && (lv - 8) % 7 < 2.2 && lu > 12 && lu < sh.w - 14 - 22 * hsh(Math.floor((lv - 8) / 7), sh.x) && hsh(Math.floor(lu / 10), Math.floor((lv - 8) / 7) + sh.x) > 0.18;
+      const k = line ? 0.42 : 0.98 - 0.04 * hsh(lu | 0, lv | 0);
+      return [A.sheet[0] * k, A.sheet[1] * k * (line ? 0.98 : 1), A.sheet[2] * k * (line ? 1.25 : 1)];
+    }
+    if (m === M.SEAM) return A.seam;
+    if (m === M.WALL) { const t = Y / FY; return t < 0.6 ? lerp(WALL_TOP, WALL_MID, t / 0.6) : lerp(WALL_MID, WALL_LOW, (t - 0.6) / 0.4); }
+    if (m === M.FLOOR) return lerp(FLOOR, FLOOR2, Math.min(1, (Y - FY) / 200));
+    if (m === M.STAFF_R) return A.red;
+    if (m === M.STAFF_C) return A.cream;
+    if (m === M.STAFF_P) return A.pale;
+    return A.steel;
+  };
+
+  /* ---- one relief: the sweep, the floor, both stacks and the staff, so every cast lands on something ---- */
+  TXBENCH.relief(cx, { ...TXLOOK.reliefLight(), ambColor: L(TXLOOK.mix(TXLOOK.mix(P.skyMid, P.skyLow, 0.6), '#ffffff', 0.5), 1.0),
+    keyColor: L(TXLOOK.mix(TXLOOK.mix(P.key, '#fff1c8', 0.6), '#ffffff', 0.45), 1.22),
+    x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 1: [0.05, 20], 2: [0.15, 24], 7: [0.35, 60], 8: [0.6, 60], 9: [0.9, 90], 11: [0.6, 60], 12: [0.1, 16] },
+    ambient: 0.6, diffuse: 2.4, ao: 0.7, shadow: 0.8, softness: 6, visBlur: 3, castLength: 260, aoRadius: 10, dither: true });
+  /* the soft horizon where the sweep meets the floor, and a violet contact shadow under each stack and the staff */
+  const hz = cx.createLinearGradient(0, FY - 40, 0, FY + 24); hz.addColorStop(0, TXLOOK.rgba(P.skyLow, 0)); hz.addColorStop(0.62, TXLOOK.rgba(P.skyLow, 0.16)); hz.addColorStop(1, TXLOOK.rgba(P.skyLow, 0));
+  cx.fillStyle = hz; cx.fillRect(0, FY - 40, 1080, 64);
+  cx.save(); cx.filter = 'blur(7px)';
+  [[OLD.x0, OLD.x1], [NEW.x0, NEW.x1], [SX - 14, SX + 14]].forEach(([a, b]) => {
+    cx.fillStyle = TXLOOK.rgba(P.shade, 0.55); cx.beginPath(); cx.ellipse((a + b) / 2 + 10, FY + 5, (b - a) / 2 + 16, 9, 0, 0, Math.PI * 2); cx.fill(); });
+  cx.filter = 'none'; cx.restore();
+
+  CH.seat(cx, { a: 0.24, fade: 170 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 60 }));
+  TXLOOK.footWash(cx, { a: 0.4, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

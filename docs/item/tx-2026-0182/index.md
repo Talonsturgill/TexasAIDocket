@@ -1,6 +1,6 @@
 # Governor directs the environmental agency to issue no data center permits until the grid audit is done
 
-On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency. It states that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency must report to the Office of the Governor on its compliance by October 19th, 2026. The agency answered on October 19th. Its letter says it has paused issuing permits for infrastructure directly supporting data centers and has paused each pending application the directive reaches. It also says it met with the water board, the utility commission and ERCOT to align their directives.
+On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency. It states that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency must report to the Office of the Governor on its compliance by October 19th, 2026. The agency answered on October 19th. Its letter says it has paused issuing permits for infrastructure directly supporting data centers and has paused each pending application the directive reaches. It also says it met with the water board, the utility commission and ERCOT to align their directives. On November 17th, 2026 the Texas Tribune reported that the agency had resumed its normal permit review. It acted on notice from the Governor's office that grid officials had finished gathering information on community impacts from data centers. ERCOT plans to give its full findings to the utility commission on December 10th.
 
 - Topic: land-water-and-permitting
 - Decided by: Office of the Texas Governor (governor)
@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-17
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The Governor's directive that the environmental agency issue no data center permits until the audit is done still stands.
 - 2026-11-13 · The Governor's order holding data center permits at the environmental agency until the audit ends is still in effect.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-17 · The environmental agency has resumed its normal review of data center permits, after the Governor's office told it the grid operator had finished gathering community impact information. ERCOT's full findings are due to the utility commission on December 10th.
 
 ## Evidence
 
@@ -132,4 +133,28 @@ Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-re
 > TCEQ has met with the Texas Water Development Board (TWDB), the Public Utility Commission of Texas (PUCT), and the Electric Reliability Council of Texas (ERCOT) to ensure that all agency directives are aligned.
 
 Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf
+
+### Texas environmental regulators have resumed reviewing data center permits.
+
+> State environmental regulators have resumed reviewing data center permits
+
+Source (journalism): https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/
+
+### TCEQ said it has resumed its normal permit review process.
+
+> The agency has resumed its normal permit review process
+
+Source (journalism): https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/
+
+### TCEQ got notice from the Governor's office on a Friday that grid officials had finished gathering information on community impacts from data centers.
+
+> received notice on Friday from Abbott’s office
+
+Source (journalism): https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/
+
+### ERCOT officials plan to give their full findings to the PUC on December 10th and discuss them at the PUC open meeting on December 17th.
+
+> ERCOT officials plan to report their full findings to the PUC on Dec. 10 and discuss them at the next PUC open meeting Dec. 17.
+
+Source (journalism): https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/
 

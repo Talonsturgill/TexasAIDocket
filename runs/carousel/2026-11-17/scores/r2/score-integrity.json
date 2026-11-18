@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3,
+   "why": "Slide 5 is a true showstopper. Three paper columns stand beside a person on a dusk plaza, with long violet shadows, a low wide lens, and the tall column running off the top of the frame. Slide 2's paper relief draws the 6 to 7 multiple correctly: the base band is about 140 px, the mass above is six bands of the same height, and the lighter cap is the seventh. Slide 8's tile tablet has real raking casts. Slide 6's over-the-shoulder lamplit room is a proper interior. Four frames hold the score down. Slide 7 is a flat-front stack centred on a blank violet field, the left half empty except for the dek on a dark wash. Its one gilt line, the whole point, is a hairline you can't see at feed size. Slide 4's cutaway and desk fill under half the frame, seen from far above, and the top 45% is type on a wash. Slide 9's desk and chute sit small in a wide violet sweep. Slide 3's drawer macro is clean but generic. On the BESPOKE bar the frames do differ in world, camera and medium, and the type is composed per frame (top, side and bottom placements)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "The spine holds. All nine frames sit in the watch-tone violet and rose with shadows leaning violet, never black. Type faces, counter and site line are consistent. Dusk gold keeps the one meaning the storyboard gives it, a person's score: it is absent on 1, 2 and 5 and present on 3, 4, 6, 7, 8 and 9. The cover's dark desk is lit on 9, and that bookend works. The story runs in order. Slide 8's map tablet is the one frame whose medium sits a little outside the paper and machine world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces to a claim quote or to a compute.py extraction: 2,758, 21,620, 64,489, 23 (floor of 64489/2758 = 23.38, so 'more than 23' holds), 13,300, 200 (1/0.5%), 5,100, 34%, 25, 3,000, 6 to 7, $15M to $20M, $50. The 2026 counts are honestly attributed to the Tribune, and TEA's design is honestly dated December 2023 and March 2024 on slide 4 and in the caption, whose closing question names the limit. Defects: (1) slide 2 rests the hand-scoring cost on c10, a spokesperson via the Tribune, when TEA's own March 2024 PDF (c18, '$15-20M more per year') was fetched and is not cited. (2) The caption opens 'One typed answer on a STAAR reading test', and no claim says STAAR answers are typed; only the storyboard does. (3) 'the redesigned test' on slide 2 is not in c19's quote. (4) Slide 5's 'Requests for a human rescore' adds 'human' to c1 to c3's 'regrade' while citing only c1 to c3; the support is c14, cited elsewhere. (5) 'English STAAR tests' can be misread as the English subject rather than the English-language versions as opposed to Spanish (c16). compute.py types scorers_lo and scorers_hi = 4, 5 but asserts 'four to five times' in the quote, and the slide prints the words, so I don't charge it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who decided (TEA), and the scale of the response (the 2,758 to 64,489 rise, 13,300 raised, Dallas ISD's 34% of 5,100) are clear and concrete. The weak point is the action. Slide 9's 'A district can ask for a person' gives the $50 fee and the waiver but no window or deadline for a rescore request, and it doesn't say whether this spring's window is still open. Its last sentence hands the reader to 'TEA's scoring documents and the Texas Tribune's October 7th report' instead. A parent, the likeliest Texan reader, isn't told whether they can start a request."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover's machine-first hook earns the swipe. Slide 2 pays at once with TEA's reason. Slide 5 is a real declared turn ('Then the requests multiplied'), and 7 and 8 carry the consequence. Slide 3 (training data and closed database) could go without loss. The Spanish human-scoring line on slide 6 is a side fact that slows the turn's payoff."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. Fair to TEA on slide 2, honest about the small overall share on slide 7 without doom. 'Drawn to illustrate' appears in some form on eight of nine deks and reads as boilerplate. Texas specificity is thin beyond Dallas ISD. The caption's 'Their score counted.' is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The subject is new, and the paper-column scale beside a person is fresh. Slide 3's index-card drawer in blocks repeats the November 16th deck's 'card drawer of 18 year blocks' and the October 23rd drawer. Slide 6's single page under a desk lamp echoes November 16th's 'transcript pages under a lamp'. The desk and office chair on 4, 6 and 9 echo the desks of November 15th. The storyboard says it dropped the chairs for that reason, yet they are on three frames."
+  }
+ ],
+ "weighted_score": 7.26,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make slide 9 a real action frame by adding TEA's rescore request window or deadline and who files the request (district on a parent's behalf), sourced to TEA's own page, and cite TEA's March 2024 c18 instead of the Tribune's spokesperson quote for the $15 million to $20 million on slide 2.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A flat-front stack centred in an empty violet field. The single gilt edge is a hairline you can't see at 432 px, so the 1-in-200 argument doesn't read, and the left half of the frame is dead.",
+   "fix": "Shoot the planned 40 cm macro with the stack edge running corner to corner and fanned, so the gilt edge catches the key as a visible gold band in the foreground and the stack fills the frame."
+  },
+  {
+   "slide": 4,
+   "problem": "The cutaway machine, chute and desk sit small in the lower half, seen from high and far, and the top 45% of the frame is type on a wash.",
+   "fix": "Drop the camera to a lower three-quarter view and push in until the glass housing and the gold page on the chute fill at least half the frame, with the person's lamp pool cropped at the right edge."
+  },
+  {
+   "slide": 9,
+   "problem": "The desk, chair and chute float small in a wide empty violet sweep. The gold route, the payoff of the bookend, is a thin rail at upper right.",
+   "fix": "Move the camera in and down so the lit desk and the page landing in the tray fill the middle third, with the chute entering large from the right edge."
+  },
+  {
+   "slide": 3,
+   "problem": "A competent but generic drawer macro that repeats the November 16th deck's card drawer. The gold tabs are the only thing that ties it to this story.",
+   "fix": "Swap the cabinet for this deck's own object, such as one wall of about 3,000 scored answer pages in a sealed glass case beside the engine, so the closed database reads as this machine's, not an archive."
+  }
+ ]
+}
