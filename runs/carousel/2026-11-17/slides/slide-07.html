@@ -1,0 +1,232 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, carousel no. 80, frame 7 of 9, What came back. A diagonal macro along the fore edge of a slightly
+     fanned stack of FIG.changed_one_in typed answer sheets (thickness exaggerated, drawn to illustrate), the block running
+     corner to corner between the hook and the dek and bleeding off both sides, on an out of focus violet laminate tabletop.
+     Exactly one sheet, mid stack, is fanned out of the fore edge so its satin dusk gold edge and a sliver of gilt stand
+     proud, caught by a raking key from the left as the frame's brightest warm highlight, in the plane of focus. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:454px; top:176px; width:546px; text-align:right">More than 13,300 reading scores went up</h1>
+<p class="dek" id="dek" style="left:72px; width:430px; font-size:28px; text-align:left">The state raised them after the reviews, the Tribune reported. Across every open-ended reading answer, fewer than half of one percent changed. The single gilded page in 200 is drawn to illustrate.</p>
+<script>window.FIG = {"scores_raised_min": 13300, "changed_one_in": 200};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What came back", counter: "07 / 09", src: "c4 c3 c5", fit: { min: 76, max: 90, maxLines: 3 } });
+
+  /* THE COUNT. The headline's floor (FIG.scores_raised_min) is printed in the type and is never drawn. The stack holds
+   * exactly FIG.changed_one_in sheets (computed upstream as 100 / 0.5 from c5) and exactly one of them is gilded, so the
+   * frame draws the dek's one page in two hundred and nothing else. */
+  { if (FIG.scores_raised_min !== 13300 || FIG.changed_one_in !== 200) throw new Error('figure values changed'); }
+  { const want = FIG.scores_raised_min.toLocaleString('en-US'); if (!document.getElementById('hook').textContent.includes(want)) throw new Error('the hook does not carry ' + want); }
+  const PAGES = FIG.changed_one_in;
+  if (!(Number.isInteger(PAGES) && PAGES > 1)) throw new Error('changed_one_in must be an integer above 1');
+  const GILT_AT = Math.floor(PAGES * 0.56);   /* one sheet, a little above the middle of the block */
+
+  /* the type: the hook a right aligned column top right, the dek low left, the stack's diagonal between them */
+  const placeDek = () => { const d0 = document.getElementById('dek'); d0.style.top = Math.round(1224 - d0.getBoundingClientRect().height) + 'px'; };
+  placeDek();
+  { const h = document.getElementById('hook'), d = document.getElementById('dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (hb.top < 150) throw new Error('the hook rides into the counter band');
+    if (hb.right > 1000 || db.left < 64) throw new Error('type outside the safe margin');
+    if (db.bottom > 1236) throw new Error('the dek runs to ' + Math.round(db.bottom) + ', into the footer'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 14, near: 0.05, far: 80, fog: 0 });
+
+  /* THE SWEEP: violet rose floor, never the coral, curving up into the watch indigo */
+  TXT.studio(R, Object.assign(CH.studioOpts(), { floor: '#8a5a9e', wall: '#4b3aa8', top: '#231a66', env: 1.0, hemi: 0.2, accentStrip: 0.0, w: 30, d: 20, h: 12 }));
+  { const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const im = g.createImageData(w, h), r = CH.rng(7071);
+      for (let i = 0; i < w * h; i++) { const v = 200 + (r() - 0.5) * 50; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } g.putImageData(im, 0, 0); }, [60, 60]);
+    tooth.colorSpace = THREE.NoColorSpace; const m = R.studio.sweep.material; m.roughnessMap = tooth; m.needsUpdate = true; }
+
+  /* THE TABLETOP: a violet rose laminate with a fine tooth that fades into the sweep, so it has a surface and no hard edge */
+  { const lam = CH.canvasTex(THREE, 1024, 1024, (c, w, h) => { const r = CH.rng(7271); c.fillStyle = '#b585b8'; c.fillRect(0, 0, w, h);
+      for (let i = 0; i < 900; i++) { const y = r() * h; c.fillStyle = 'rgba(' + (r() < 0.5 ? '90,50,120' : '235,210,240') + ',' + (0.01 + r() * 0.02).toFixed(3) + ')'; c.fillRect(0, y, w, 1); }
+      for (let i = 0; i < 60000; i++) { c.fillStyle = 'rgba(' + (r() < 0.5 ? '70,40,100' : '240,215,245') + ',' + (r() * 0.07).toFixed(3) + ')'; c.fillRect(r() * w, r() * h, 2, 2); }
+      c.globalCompositeOperation = 'destination-in'; const gr = c.createRadialGradient(w / 2, h / 2, w * 0.18, w / 2, h / 2, w * 0.5);
+      gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); c.fillStyle = gr; c.fillRect(0, 0, w, h); });
+    const tm = new THREE.MeshStandardMaterial({ name: 'desk-laminate', color: 0xffffff, map: lam, transparent: true, depthWrite: false, roughness: 0.55, metalness: 0 });
+    tm.userData.txSurface = false;
+    const top = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 3.2), tm); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.0004, 0); top.receiveShadow = true; top.userData.txBevel = false; R.scene.add(top); }
+
+  /* THE REFLECTIONS: a dome in the sweep's hues, a neutral softbox high on the key side, a warm white strip behind the lens
+   * at eye height so every gilt bead facing the lens returns a bright gold line, and a lilac rim behind */
+  { const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(30, 48, 24), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { uTop: { value: new THREE.Color('#231a66') }, uMid: { value: new THREE.Color('#5b4bc4') }, uLow: { value: new THREE.Color('#c99ad6') }, uFloor: { value: new THREE.Color('#b06fa6') } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 uTop,uMid,uLow,uFloor; varying vec3 vP; void main(){ float y = vP.y; vec3 c = y > 0.0 ? mix(mix(uLow, uMid, smoothstep(0.0,0.35,y)), uTop, smoothstep(0.35,1.0,y)) : mix(uLow, uFloor*0.8, smoothstep(0.0,-0.4,y)); gl_FragColor = vec4(c, 1.0); }' })));
+    const card = (w, h, hex, k, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(hex).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(p[0], p[1], p[2]); m.lookAt(0, 0, 0); env.add(m); };
+    card(14, 8, '#fffaf0', 4.2, [-10, 9, 6]);      /* the key's softbox */
+    card(34, 9.0, '#fbf6ff', 5.0, [0, 2.0, 12]);   /* the strip behind the lens the gilt sees */
+    card(18, 0.9, '#c9b6ff', 2.0, [0, 4, -12]);    /* rim strip */
+    const pm = new THREE.PMREMGenerator(R.renderer); R.scene.environment = pm.fromScene(env, 0.02).texture; pm.dispose();
+    if ('environmentIntensity' in R.scene) R.scene.environmentIntensity = 0.42;
+    /* the gilt's own reflections: a warm neutral studio, so dusk gold reads gold and not violet red */
+    const genv = new THREE.Scene(); genv.background = new THREE.Color('#8c8478');
+    genv.add(new THREE.Mesh(new THREE.SphereGeometry(30, 32, 16), new THREE.MeshBasicMaterial({ color: new THREE.Color('#9a9080'), side: THREE.BackSide })));
+    const gcard = (w, h, hex, k, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(hex).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(p[0], p[1], p[2]); m.lookAt(0, 0, 0); genv.add(m); };
+    gcard(16, 10, '#fff6e6', 5.0, [-10, 10, 6]); gcard(34, 7, '#fff4e0', 4.0, [0, 2.0, 12]); gcard(30, 3, '#3a3040', 1.0, [0, -3, 12]);
+    const pg = new THREE.PMREMGenerator(R.renderer); window.__giltEnv = pg.fromScene(genv, 0.02).texture; pg.dispose(); }
+
+  /* THE MATERIALS. Two warm off white papers alternating sheet by sheet so the stripes count as paper, and the gilt, the
+   * accent, satin dusk gold and the only dusk gold on the frame. */
+  const fibre = (seed, base) => CH.canvasTex(THREE, 512, 512, (c, w, h) => { const r = CH.rng(seed); c.fillStyle = base; c.fillRect(0, 0, w, h);
+      for (let i = 0; i < 5000; i++) { const a = r() * Math.PI, L = 3 + r() * 12, x = r() * w, y = r() * h; c.strokeStyle = 'rgba(' + (r() < 0.5 ? '150,120,90' : '255,250,240') + ',' + (0.04 + r() * 0.08).toFixed(3) + ')'; c.lineWidth = 1; c.beginPath(); c.moveTo(x, y); c.lineTo(x + Math.cos(a) * L, y + Math.sin(a) * L); c.stroke(); } });
+  const edgeA = new THREE.MeshStandardMaterial({ name: 'paper-edge', color: 0xffffff, map: fibre(7177, '#efe1c4'), roughness: 0.9, metalness: 0 });
+  const edgeB = new THREE.MeshStandardMaterial({ name: 'paper-edge-b', color: 0xffffff, map: fibre(7178, '#dccaa8'), roughness: 0.92, metalness: 0 });
+  edgeA.userData.txSurface = false; edgeB.userData.txSurface = false;
+  const paperTop = CH.canvasTex(THREE, 1024, 800, (c, w, h) => { const r = CH.rng(7117); c.fillStyle = '#f2e5ca'; c.fillRect(0, 0, w, h);
+      c.fillStyle = 'rgba(52,46,84,0.42)'; let y = 120;   /* greeked TYPED lines, never handwriting, never legible */
+      while (y < h - 80) { let x = 80; const end = w - 80 - r() * 150; while (x < end) { const ww = 14 + r() * 64; if (x + ww > end) break; c.fillRect(x, y, ww, 9); x += ww + 12; } y += r() < 0.12 ? 56 : 32; } });
+  const topM = new THREE.MeshStandardMaterial({ name: 'paper-sheet', color: 0xffffff, map: paperTop, roughness: 0.9, metalness: 0 }); topM.userData.txSurface = false;
+  const giltM = new THREE.MeshPhysicalMaterial({ name: 'gilt-gold-leaf', color: CH.GOLD, metalness: 1.0, roughness: 0.28, clearcoat: 0.5, clearcoatRoughness: 0.1, envMap: window.__giltEnv, envMapIntensity: 1.5, emissive: new THREE.Color(0xe0956a), emissiveIntensity: 0.28 });
+  giltM.userData.txSurface = false;
+
+  /* THE FIT, solved before anything is built. Letter sheets lie flat, long side along x, fore edge toward the lens. The
+   * camera looks along the fore edge from the left and a little above, rolled so the block runs corner to corner from upper
+   * left to lower right through the one corridor the hook (top right) and the dek (low left) leave. For each exaggerated
+   * sheet pitch, thickest first, the nearest camera is found whose view holds ALL the geometry clear of every glyph box
+   * while the block bleeds off both sides of the frame. */
+  const SW = 0.279, SD = 0.216, GPULL_MAX = 0.03, FOV = 14, ROLL = 0.30;
+  const DIR = new THREE.Vector3(-0.42, 0.16, 0.90).normalize();
+  const boxOf = (el, mx, my) => { const b = el.getBoundingClientRect(); return [b.left - mx, b.top - my, b.right + mx, b.bottom + my]; };
+  const glyphs = [boxOf(document.getElementById('hook'), 18, 22), boxOf(document.getElementById('dek'), 20, 18)];
+  document.querySelectorAll('.kick, .count, .tx-site, .src').forEach(el => glyphs.push(boxOf(el, 14, 14)));
+  const cornersFor = (P) => { const H = PAGES * P, c = [];
+    [-SW / 2 - 0.004, SW / 2 + 0.004].forEach(x => [0, H].forEach(y => [-SD / 2 - 0.006, SD / 2 + GPULL_MAX + 0.006].forEach(z => c.push([x, y, z])))); return c; };
+  const hull = (Pt) => { Pt = Pt.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]); const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lo = [], up = []; for (const p of Pt) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+    for (let i = Pt.length - 1; i >= 0; i--) { const p = Pt[i]; while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
+    lo.pop(); up.pop(); return lo.concat(up); };
+  const inside = (Hl, q) => { for (let i = 0; i < Hl.length; i++) { const a = Hl[i], b = Hl[(i + 1) % Hl.length]; if ((b[0] - a[0]) * (q[1] - a[1]) - (b[1] - a[1]) * (q[0] - a[0]) < 0) return false; } return true; };
+  const segX = (a, b, c, d) => { const r = (p, q, s) => (q[0] - p[0]) * (s[1] - p[1]) - (q[1] - p[1]) * (s[0] - p[0]); return r(a, b, c) * r(a, b, d) < 0 && r(c, d, a) * r(c, d, b) < 0; };
+  const hitsRect = (Hl, r) => { const rc = [[r[0], r[1]], [r[2], r[1]], [r[2], r[3]], [r[0], r[3]]];
+    if (rc.some(q => inside(Hl, q))) return true; if (Hl.some(p => p[0] > r[0] && p[0] < r[2] && p[1] > r[1] && p[1] < r[3])) return true;
+    for (let i = 0; i < Hl.length; i++) for (let j = 0; j < 4; j++) if (segX(Hl[i], Hl[(i + 1) % Hl.length], rc[j], rc[(j + 1) % 4])) return true; return false; };
+  let S, P, fit = null;
+  const place = (D) => { const F = S.clone().addScaledVector(DIR, D); R.camera.clearViewOffset(); TXT.frame(R, { fov: FOV, from: [F.x, F.y, F.z], look: [S.x, S.y, S.z] }); R.camera.rotateZ(ROLL); R.camera.updateMatrixWorld(true); };
+  const proj = (p) => CH.project(THREE, R, p);
+  for (const Pmm of [0.5, 0.42, 0.36, 0.3, 0.26, 0.22, 0.19, 0.16]) {
+    P = Pmm / 1000; const H = PAGES * P; S = new THREE.Vector3(0, H * 0.56, SD / 2);
+    const C8 = cornersFor(P);
+    for (let D = 0.25; D <= 6 && !fit; D *= 1.03) {
+      place(D);
+      const pc = C8.map(proj), fb = [proj([-SW / 2, 0, SD / 2]), proj([SW / 2, 0, SD / 2]), proj([-SW / 2, H, SD / 2]), proj([SW / 2, H, SD / 2])];
+      for (let dy = -420; dy <= 420 && !fit; dy += 12) for (const dx of [0, -60, 60, -120, 120]) {
+        const fx = fb.map(q => q[0] + dx); if (Math.min(...fx) > -12 || Math.max(...fx) < 1092) continue;
+        const Hl = hull(pc.map(q => [q[0] + dx, q[1] + dy]));
+        if (glyphs.some(r => hitsRect(Hl, r))) continue;
+        fit = { Pmm, D: +D.toFixed(3), dx, dy }; break;
+      }
+    }
+    if (fit) break;
+  }
+  if (!fit) throw new Error('no sheet pitch and camera hold the block clear of the type while it bleeds off both sides');
+  const H = PAGES * P;
+  place(fit.D); R.camera.setViewOffset(1080, 1350, -fit.dx, -fit.dy, 1080, 1350); R.camera.updateProjectionMatrix(); R.camera.updateMatrixWorld(true);
+  { const Hl = hull(cornersFor(P).map(proj)); if (glyphs.some(r => hitsRect(Hl, r))) throw new Error('the block crosses a glyph box'); }
+
+  /* the gilt pull is solved so its proud sliver stands about 20 render px tall, inside 0.006 to GPULL_MAX m */
+  const yG = (GILT_AT + 1) * P;
+  const bandDir = (() => { const a = proj([-SW / 2, yG, SD / 2]), b = proj([SW / 2, yG, SD / 2]), l = Math.hypot(b[0] - a[0], b[1] - a[1]); return [(b[0] - a[0]) / l, (b[1] - a[1]) / l]; })();
+  const across = (p0, p1, len) => { const a = proj(p0), b = proj(p1); return Math.abs(bandDir[0] * (b[1] - a[1]) - bandDir[1] * (b[0] - a[0])) / len; };
+  const perM = across([0, yG, SD / 2], [0, yG, SD / 2 + 0.01], 0.01);
+  const perY = across([0, yG, SD / 2], [0, yG + 0.01, SD / 2], 0.01);
+  const GPULL = Math.min(GPULL_MAX, Math.max(0.006, (10 - P * perY) / perM));
+  const giltPx = Math.round(2 * (GPULL * perM + P * perY));
+  if (giltPx < 12 || giltPx > 40) throw new Error('the gilt sliver stands ' + giltPx + ' render px');
+
+  /* THE STACK, built at the solved pitch. Every sheet jogged by hand within a millimetre, a gentle fan leaning the upper
+   * sheets forward, and the one gilt sheet pulled GPULL out of the fore edge and turned a hair, its edge, bead and the proud
+   * strip of its face in satin dusk gold. */
+  const stack = new THREE.Group(), rnd = CH.rng(20261107), LEAN = 0.0025;
+  let giltDrawn = 0, sheets = 0;
+  for (let i = 0; i < PAGES; i++) {
+    const gilt = i === GILT_AT; if (gilt) giltDrawn++;
+    const em = (i % 2 || rnd() < 0.2) ? edgeB : edgeA;
+    const m = new THREE.Mesh(new THREE.BoxGeometry(SW, P * 0.94, SD), [em, em, i === PAGES - 1 ? topM : em, em, gilt ? giltM : em, em]);
+    const y = i * P + P / 2, dx = (rnd() - 0.5) * 0.0016, dz = (rnd() - 0.5) * 0.0009 + LEAN * i / PAGES + (gilt ? GPULL : 0);
+    m.position.set(dx, y, dz); m.rotation.y = gilt ? 0.012 : (rnd() - 0.5) * 0.004; m.userData.txBevel = false; m.userData.sheet = true; stack.add(m); sheets++;
+    m.castShadow = true; m.receiveShadow = i === PAGES - 1;
+    if (gilt) {
+      const bead = new THREE.Mesh(new THREE.CylinderGeometry(P * 0.5, P * 0.5, SW, 24), giltM); bead.rotation.set(0, m.rotation.y, Math.PI / 2, 'YXZ'); bead.position.set(dx, y, dz + SD / 2); bead.userData.txBevel = false; stack.add(bead);
+      const strip = new THREE.Mesh(new THREE.BoxGeometry(SW, P * 0.12, GPULL + 0.002), giltM); strip.rotation.y = m.rotation.y; strip.position.set(dx, y + P * 0.5, dz + SD / 2 - (GPULL + 0.002) / 2); strip.userData.txBevel = false; stack.add(strip);
+    }
+  }
+  if (sheets !== PAGES || stack.children.filter(o => o.userData.sheet).length !== FIG.changed_one_in) throw new Error('the stack does not hold FIG.changed_one_in sheets');
+  if (giltDrawn !== 1) throw new Error('drew ' + giltDrawn + ' gilt edges, the dek says one');
+  TXT.add(R, stack);
+  TXT.contact(R, stack);
+  { const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d');
+    g.filter = 'blur(6px)'; g.fillStyle = 'rgba(36,18,78,0.8)'; g.fillRect(256 - 512 * SW / (SW + 0.008) / 2, 256 - 512 * SD / (SD + 0.008) / 2, 512 * SW / (SW + 0.008), 512 * SD / (SD + 0.008));
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    const m = new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }); m.userData.txSurface = false;
+    const q = new THREE.Mesh(new THREE.PlaneGeometry(SW + 0.008, SD + 0.008), m); q.rotation.x = -Math.PI / 2; q.position.set(0, 0.0008, 0); q.userData.txSurface = false; q.userData.txBevel = false; R.scene.add(q); }
+  const focusW = new THREE.Vector3(0, yG, SD / 2 + GPULL);
+  window.__s07 = Object.assign({ pages: PAGES, gilt_at: GILT_AT, gilt_px: giltPx, gpull_mm: +(GPULL * 1000).toFixed(1) }, fit);
+
+  /* THE KEY: cool, raking from the left along the fore edge and a little above, so the proud gilt takes the hot line */
+  CH.KEY_SCALE = 0.6; const spec = CH.rigSpec(W, 0.9, 4096);
+  spec.key = Object.assign({}, spec.key, { radius: 0.5, color: 0xf6f2ff });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, H / 2, 0], { distance: 4, shadowFar: 10, normalBias: 0.0003 }), { light: { az: -100, el: 22 } }));
+  CH.unacne(R, 0.0003);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* THE LENS: a depth pass and a circle of confusion for everything but the sweep, focused on the gilt */
+  {
+    const dN = 0.05, dF = 8.0, dFocus = R.camera.position.distanceTo(focusW), A = 90;
+    const depthMat = new THREE.ShaderMaterial({ uniforms: { uN: { value: dN }, uF: { value: dF } },
+      vertexShader: 'varying float vD; void main(){ vec4 mv = modelViewMatrix * vec4(position,1.0); vD = length(mv.xyz); gl_Position = projectionMatrix * mv; }',
+      fragmentShader: 'uniform float uN,uF; varying float vD; void main(){ float d = clamp((vD-uN)/(uF-uN),0.0,0.999); float hi = floor(d*254.0)/255.0; float lo = fract(d*254.0); gl_FragColor = vec4(hi, lo, 0.0, 1.0); }' });
+    const bg = R.scene.background, tm = R.renderer.toneMapping, sweep = R.studio.sweep;
+    sweep.visible = false; R.scene.background = new THREE.Color(1, 1, 1); R.scene.overrideMaterial = depthMat; R.renderer.toneMapping = THREE.NoToneMapping;
+    R.renderer.render(R.scene, R.camera);
+    const W2 = 2160, H2 = 2700, dc = document.createElement('canvas'); dc.width = W2; dc.height = H2; const dg = dc.getContext('2d');
+    dg.drawImage(gl, 0, 0, W2, H2);
+    R.scene.overrideMaterial = null; R.scene.background = bg; R.renderer.toneMapping = tm; sweep.visible = true;
+    const dd = dg.getImageData(0, 0, W2, H2).data;
+    const LV = [0, 2, 4.5, 8, 13];
+    const base = document.createElement('canvas'); base.width = W2; base.height = H2; const bgc = base.getContext('2d'); bgc.drawImage(cx.canvas, 0, 0);
+    const lv = LV.map(b => { if (!b) return bgc.getImageData(0, 0, W2, H2).data; const c = document.createElement('canvas'); c.width = W2; c.height = H2; const g = c.getContext('2d'); g.filter = 'blur(' + b + 'px)'; g.drawImage(base, 0, 0); return g.getImageData(0, 0, W2, H2).data; });
+    const out = bgc.getImageData(0, 0, W2, H2), o = out.data;
+    for (let p = 0, n = W2 * H2; p < n; p++) {
+      const v = dd[p * 4]; if (v >= 254) continue;
+      const d = dN + ((v + dd[p * 4 + 1] / 255) / 254) * (dF - dN);
+      const coc = Math.min(LV[LV.length - 1], A * Math.abs(d - dFocus) / d);
+      let k = 0; while (k < LV.length - 2 && coc > LV[k + 1]) k++;
+      const t = Math.min(1, Math.max(0, (coc - LV[k]) / (LV[k + 1] - LV[k]))), a = lv[k], b = lv[k + 1], q = p * 4;
+      o[q] = a[q] + (b[q] - a[q]) * t; o[q + 1] = a[q + 1] + (b[q + 1] - a[q + 1]) * t; o[q + 2] = a[q + 2] + (b[q + 2] - a[q + 2]) * t;
+    }
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.putImageData(out, 0, 0); cx.restore();
+  }
+
+  placeDek();
+  CH.seat(cx, { sel: '#hook', a: 0.22, fade: 140 });
+  CH.seat(cx, { sel: '#dek', a: 0.36, fade: 120 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.16, fade: 50 }));
+  TXLOOK.footWash(cx, { a: 0.6, height: 200 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.92, strength: 0.05, radius: 5 } });
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 8 of 9, Dallas ISD. A spatial scene through txthree.js on a violet rose studio sweep:
+     Dallas County cut from its real boundary (assets/geo/tx-counties.topo.json through TXGeo) as a thick limestone tablet
+     standing proud of its rose clay neighbours. On its top a ten by ten field of paper tiles, each a typed greeked sheet on a
+     thin paper pad, and FIG.dallas_higher_pct of the hundred lifted on gilt stacks in dusk gold, a person's score, so they
+     throw long shadows across the stone under a low western key. Seen from the south west, raked low. The headline stands
+     centred in the violet wall above the map. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:84px; top:176px; width:912px; text-align:center">In Dallas ISD 34% came back higher</h1>
+<p class="dek" data-follow="24" style="left:120px; width:840px; text-align:center">The district sent more than 5,100 reading tests for rescoring, the Tribune reported. Each tile on this Dallas County relief is one in a hundred, drawn to illustrate.</p>
+<script>window.FIG = {"dallas_higher_pct": 34};</script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dallas ISD", counter: "08 / 09", src: "c8", fit: { min: 92, max: 124, maxLines: 2 } });
+
+  /* THE FIGURES. One tile stands for one in a hundred of the district's rescored tests, so the field is 100 tiles and the
+   * raised count is the reported share of 100. dallas_tests_min is carried in the dek and drawn nowhere. */
+  const PER_TILE = 0.01, TILES = Math.round(1 / PER_TILE), RAISED = Math.round(FIG.dallas_higher_pct / 100 * TILES);
+  if (TILES !== 100) throw new Error('one tile in a hundred means 100 tiles, computed ' + TILES);
+  if (RAISED !== FIG.dallas_higher_pct) throw new Error('raised tiles ' + RAISED + ' disagree with FIG.dallas_higher_pct ' + FIG.dallas_higher_pct);
+
+  /* THE TYPE, centred high on the violet wall; the dek's foot must stay above the tablet's far edge */
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  { const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+    if (hb.top < 140) throw new Error('the hook rides into the kicker band');
+    if (db.bottom > 560) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the map'); }
+  const DEK_FOOT = dek.getBoundingClientRect().bottom;
+
+  /* THE GEOMETRY, from the committed TopoJSON through TXGeo */
+  /* XHR, not fetch: the harness opens a slide over file://, where Chromium refuses fetch and allows XHR (craft_floor) */
+  const topo = await new Promise((ok, no) => { const x = new XMLHttpRequest(); x.open('GET', '@@ASSETS@@/geo/tx-counties.topo.json'); x.onload = () => { try { ok(JSON.parse(x.responseText)); } catch (e) { no(e); } }; x.onerror = () => no(new Error('tx-counties.topo.json did not load')); x.send(); });
+  const counties = TXGeo.counties(topo), state = TXGeo.outline(topo);
+  if (counties.features.length !== 254) throw new Error('expected the 254 Texas counties, found ' + counties.features.length);
+  const nameOf = (f) => f.properties.name || f.properties.NAME;
+  const dalF = counties.features.filter(f => nameOf(f) === 'Dallas');
+  if (dalF.length !== 1) throw new Error('Dallas County must be one feature, found ' + dalF.length);
+  const proj = TXGeo.texasProjection(state, [[-500, -500], [500, 500]]);
+  const ringsOf = (f) => { const g = f.geometry; return (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).map(p => p[0]); };
+  const dRing = ringsOf(dalF[0]).sort((a, b) => b.length - a.length)[0].map(ll => proj(ll));
+  let bx0 = 1e9, bx1 = -1e9, bz0 = 1e9, bz1 = -1e9;
+  dRing.forEach(p => { bx0 = Math.min(bx0, p[0]); bx1 = Math.max(bx1, p[0]); bz0 = Math.min(bz0, p[1]); bz1 = Math.max(bz1, p[1]); });
+  const TAB_W = 3.6, S = TAB_W / (bx1 - bx0), CX = (bx0 + bx1) / 2, CZ = (bz0 + bz1) / 2;
+  const toW = (p) => [(p[0] - CX) * S, (p[1] - CZ) * S];   /* [x east, z south], metres */
+  const dW = dRing.map(toW);
+  const tabD = (bz1 - bz0) * S;
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 120, fog: 0 });
+  const P = CH.P;
+  const TAB_H = 0.34;   /* the tablet stands a third of a metre, a quarter metre proud of its neighbours */
+
+  /* THE CAMERA: from the south south west, raised to 40 degrees so the whole ten by ten field and all four tablet edges read,
+   * then pulled in until the tablet, its boundary points at the foot and at the top of a raised stack, fills the box from
+   * just under the dek to just over the foot. Set before the neighbours, so they can be cut where they would strike type. */
+  const EL = 46 * Math.PI / 180, AZ = Math.atan2(-0.36, 0.93);
+  const DIR = [Math.sin(AZ) * Math.cos(EL), Math.sin(EL), Math.cos(AZ) * Math.cos(EL)];
+  const BOX = { x0: 80, x1: 1000, y0: DEK_FOOT + 40, y1: 1270 };
+  const hull = []; dW.forEach(p => { hull.push([p[0], 0, p[1]]); hull.push([p[0], TAB_H + 0.26, p[1]]); });
+  const fitAt = (dist) => {
+    const FROMd = [DIR[0] * dist, TAB_H + DIR[1] * dist, DIR[2] * dist];
+    let look = [0, TAB_H, 0];
+    for (let it = 0; it < 6; it++) {
+      TXT.frame(R, { fov: 30, from: FROMd, look });
+      const q = hull.map(h => CH.project(THREE, R, h));
+      const xs = q.map(v => v[0]), ys = q.map(v => v[1]);
+      const cxp = (Math.min(...xs) + Math.max(...xs)) / 2, cyp = (Math.min(...ys) + Math.max(...ys)) / 2;
+      const an = CH.project(THREE, R, [0, TAB_H * 0.5, 0]);
+      look = CH.aim(THREE, R, TXT, FROMd, [0, TAB_H * 0.5, 0], an[0] + (540 - cxp), an[1] + ((BOX.y0 + BOX.y1) / 2 - cyp), 30);
+    }
+    TXT.frame(R, { fov: 30, from: FROMd, look });
+    const q = hull.map(h => CH.project(THREE, R, h));
+    const xs = q.map(v => v[0]), ys = q.map(v => v[1]);
+    return { FROM: FROMd, look, ok: Math.min(...xs) >= BOX.x0 && Math.max(...xs) <= BOX.x1 && Math.min(...ys) >= BOX.y0 && Math.max(...ys) <= BOX.y1,
+             rect: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
+  };
+  let best = null;
+  for (let dist = 30; dist > 6; dist -= 0.1) { const f = fitAt(dist); if (f.ok) best = f; else if (best) break; }
+  if (!best) throw new Error('no camera distance fits the tablet inside the frame');
+  const FROM = best.FROM, LOOK = best.look;
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  console.log('frame8 fit rect', JSON.stringify(best.rect.map(Math.round)));
+
+  /* THE ROOM: a violet rose sweep, never the coral floor, so the gold is the only warm note that sings */
+  TXT.studio(R, { tone: 'watch', w: 46, d: 30, h: 18, radius: 6, floor: '#9a5c96', wall: '#4b3aa8', top: '#2a1f78', env: 0.7, hemi: 0.45, softbox: 3.4, accentStrip: 0 });
+
+  /* tooth for stone and clay: pores and mottle in the albedo, the surface pass adds the relief */
+  const tooth = (seed, base, dark, light) => CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = base; g.fillRect(0, 0, w, h); const r = CH.rng(seed);
+    for (let i = 0; i < 2400; i++) { const x = r() * w, y = r() * h, s = 1 + r() * 7; g.fillStyle = (r() < 0.5 ? light : dark).replace('A', (0.025 + r() * 0.05).toFixed(3)); g.beginPath(); g.arc(x, y, s, 0, Math.PI * 2); g.fill(); }
+    for (let i = 0; i < 2600; i++) { g.fillStyle = dark.replace('A', (0.06 + r() * 0.12).toFixed(3)); const s = 0.8 + r() * 1.8; g.fillRect(r() * w, r() * h, s, s); }
+    /* a few fossil shell flecks, the Austin chalk's own */
+    for (let i = 0; i < 90; i++) { g.strokeStyle = dark.replace('A', '0.18'); g.lineWidth = 1.2; g.beginPath(); g.arc(r() * w, r() * h, 2 + r() * 5, 0, Math.PI * (0.6 + r())); g.stroke(); }
+  }, [2, 2]);
+
+  /* THE NEIGHBOURS: every county near Dallas as a low rose clay slab, cooling to violet with distance */
+  const extrude = (ring, h, mat, inset, bevel) => {
+    let cx0 = 0, cz0 = 0; ring.forEach(p => { cx0 += p[0]; cz0 += p[1]; }); cx0 /= ring.length; cz0 /= ring.length;
+    const sh = new THREE.Shape();
+    ring.forEach((p, i) => { const x = cx0 + (p[0] - cx0) * inset, z = cz0 + (p[1] - cz0) * inset; if (i) sh.lineTo(x, -z); else sh.moveTo(x, -z); });
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: Math.max(0.001, h - 2 * bevel), bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 4, curveSegments: 4 });
+    geo.rotateX(-Math.PI / 2); geo.translate(0, bevel, 0);
+    const m = new THREE.Mesh(geo, mat); m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; return m;
+  };
+  const clayTex = tooth(811, '#ffffff', 'rgba(70,40,80,A)', 'rgba(255,235,240,A)');
+  const NB_H = 0.07, nbGroup = new THREE.Group();
+  /* the seams: a bright rose bed under every neighbour, so each county line reads as a thin lit seam */
+  const seamM = new THREE.MeshStandardMaterial({ color: 0xffb8d6, emissive: 0x7a2c5c, emissiveIntensity: 0.35, roughness: 0.6 }); seamM.name = 'seam-paint';
+  let nbCount = 0;
+  counties.features.forEach(f => {
+    if (f === dalF[0]) return;
+    ringsOf(f).forEach(rg => {
+      const ring = rg.map(ll => toW(proj(ll)));
+      let mx = 0, mz = 0; ring.forEach(p => { mx += p[0]; mz += p[1]; }); mx /= ring.length; mz /= ring.length;
+      const dist = Math.hypot(mx, mz);
+      if (dist > TAB_W * 4.6) return;   /* the far ring recedes into the room's haze before it reaches the type */
+      const t = Math.min(1, dist / (TAB_W * 4.0));
+      const jit = (Math.sin(mx * 12.9898 + mz * 78.233) * 43758.5453) % 1, jj = Math.abs(jit);
+      const col = new THREE.Color(TXLOOK.mix(TXLOOK.mix('#b06a9a', '#8a5cbc', jj * 0.6), '#4a3aa0', 0.38 + t * 0.55));
+      const mat = new THREE.MeshPhysicalMaterial({ color: col, roughness: 0.8, map: clayTex, clearcoat: 0.08, envMapIntensity: 0.6 });
+      mat.name = 'clay-county'; mat.userData.txSurface = 'mineral';
+      nbGroup.add(extrude(ring, NB_H, mat, 0.955, 0.012));
+      const seam = extrude(ring, 0.022, seamM, 1.0, 0.004); seam.castShadow = false; nbGroup.add(seam); nbCount++;
+    });
+  });
+  if (nbCount < 6) throw new Error('expected Dallas County\'s neighbours around it, found ' + nbCount);
+  R.scene.add(nbGroup);
+
+  /* THE TABLET: Dallas County in limestone, cut from its boundary, a quarter metre proud of its neighbours */
+  const stone = new THREE.MeshPhysicalMaterial({ color: 0xcfdc9e, roughness: 0.9, map: tooth(4417, '#ffffff', 'rgba(120,84,60,A)', 'rgba(255,248,232,A)'), clearcoat: 0.05, envMapIntensity: 0.4 });
+  stone.name = 'limestone-tablet'; stone.userData.txSurface = 'mineral';
+  const tablet = extrude(dW, TAB_H, stone, 1.0, 0.03);
+  R.scene.add(tablet);
+
+  /* THE FIELD: ten by ten tiles centred on the tablet, every tile corner checked inside the county's own boundary */
+  const N10 = Math.round(Math.sqrt(TILES));
+  if (N10 * N10 !== TILES) throw new Error('the field must be square, ' + TILES + ' tiles');
+  const cell = Math.min(TAB_W, tabD) * 0.86 / N10;
+  const TW = cell * 0.7, TD = cell * 0.8;   /* a letter page's proportion, near enough, laid portrait */
+  const inside = (x, z) => d3.polygonContains(dW, [x, z]);
+  const order = Array.from({ length: TILES }, (_, i) => i), rr = CH.rng(20261117 + 8);
+  for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(rr() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+  const raisedSet = new Set(order.slice(0, RAISED));
+
+  const BASE_H = 0.018, RISER = 0.04, LIFT_H = 0.2;   /* every raised stack the same height, one riser plus one stack */
+  const edgeTex = (col, seed) => CH.canvasTex(THREE, 64, 512, (g, w, h) => { const r = CH.rng(seed); g.fillStyle = col; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 3 + Math.floor(r() * 2)) { g.fillStyle = 'rgba(120,70,40,' + (0.1 + r() * 0.14).toFixed(3) + ')'; g.fillRect(0, y, w, 1); g.fillStyle = 'rgba(255,246,228,' + (0.3 + r() * 0.25).toFixed(3) + ')'; g.fillRect(0, y + 1.6, w, 0.9); }
+    for (let i = 0; i < 6; i++) { g.fillStyle = 'rgba(80,40,30,0.18)'; g.fillRect(0, r() * h, w, 1.2); } });
+  const padM = new THREE.MeshPhysicalMaterial({ color: 0xaab8a6, map: edgeTex('#f2e9da', 3), roughness: 0.92, envMapIntensity: 0.3 }); padM.name = 'paper-pad';
+  /* the gilt: true dusk gold #E0956A in satin metal, its edge stripes neutral so the albedo is the accent itself; the violet
+   * room is held out of its reflection and a faint warm self light keeps its shade gold rather than salmon */
+  const ACC = new THREE.Color(0xe0956a).lerp(new THREE.Color(0xfff0d0), 0.42);   /* dusk gold, lifted toward a warm neutral so the watch grade lands it on #E0956A, not red */
+  const giltM = new THREE.MeshPhysicalMaterial({ color: ACC, map: edgeTex('#ffffff', 5), roughness: 0.3, metalness: 0.88, envMapIntensity: 0.22, emissive: new THREE.Color(0x3a3020), emissiveIntensity: 0.18, specularColor: new THREE.Color(0xfff0d8), specularIntensity: 1 });
+  giltM.userData.txSurface = 'metal';
+  /* the riser: a narrower violet stone step under each raised stack, so a shadow gap shows it lifted off the field */
+  const riserM = new THREE.MeshPhysicalMaterial({ color: 0x3e2f78, roughness: 0.7 }); riserM.name = 'riser-stone'; giltM.name = 'gilt-paper-stack';
+  const sheetScale = TW / 0.216;
+  const field = new THREE.Group();
+  let nUp = 0, nDown = 0;
+  for (let k = 0; k < TILES; k++) {
+    const i = k % N10, j = Math.floor(k / N10);
+    const x = (i - (N10 - 1) / 2) * cell, z = (j - (N10 - 1) / 2) * cell;
+    [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(([sx, sz]) => { if (!inside(x + sx * TW / 2, z + sz * TD / 2)) throw new Error('tile ' + k + ' falls outside Dallas County'); });
+    const up = raisedSet.has(k), h = up ? LIFT_H : BASE_H, y0 = up ? TAB_H + RISER : TAB_H;
+    if (up) { const rs = TXT.roundedBox(TW * 0.78, RISER, TD * 0.78, 0.003, riserM); rs.position.set(x, TAB_H + RISER / 2, z); rs.castShadow = true; rs.receiveShadow = true; field.add(rs); }
+    const pad = TXT.roundedBox(TW, h, TD, 0.004, up ? giltM : padM);
+    pad.position.set(x, y0 + h / 2, z); pad.castShadow = true; pad.receiveShadow = true;
+    pad.userData.raised = up; field.add(pad);
+    const sh = K.make('response_sheet', up ? { state: 'gold', gilt: true } : { state: 'blank' });
+    sh.scale.set(sheetScale, 1, (TD / 0.279) * 0.985);
+    sh.userData.raisedSheet = up; sh.position.set(x, y0 + h + 0.0005, z); sh.rotation.y = (rr() - 0.5) * 0.05; field.add(sh);
+    if (up) nUp++; else nDown++;
+  }
+  if (nUp !== RAISED || nUp + nDown !== TILES) throw new Error('drawn ' + nUp + ' raised of ' + (nUp + nDown) + ', figures say ' + RAISED + ' of ' + TILES);
+  R.scene.add(field);
+  /* paper stays paper: the violet room reflects less into the sheets */
+  field.traverse(m => { if (m.isMesh) (Array.isArray(m.material) ? m.material : [m.material]).forEach(mt => { if (mt.name !== 'gilt-paper-stack' && mt.envMapIntensity != null) mt.envMapIntensity = 0.45;
+    if (/sb_paper|sb_edge/.test(mt.name || '')) { mt.color.set(0xbfcbb8); mt.envMapIntensity = 0.3; mt.userData.txSurface = false; } }); });
+  /* the raised tiles' top sheets in gilt paper: the paper's own typed lines under a dusk gold satin metal, so a raised tile
+   * reads gold from above, not cream on a gold stack */
+  { const paperSrc = (() => { let f = null; field.traverse(m => { if (!f && m.isMesh && Array.isArray(m.material)) f = m.material[2]; }); return f; })();
+    const giltPaper = new THREE.MeshPhysicalMaterial({ color: new THREE.Color(0xe0956a).lerp(new THREE.Color(0xfff4e0), 0.5), map: paperSrc && paperSrc.map, roughness: 0.32, metalness: 0.72, envMapIntensity: 0.3, emissive: new THREE.Color(0x3a3020), emissiveIntensity: 0.2, specularColor: new THREE.Color(0xfff0d8) });
+    giltPaper.name = 'gilt-paper-top'; giltPaper.userData.txSurface = false;
+    let gTops = 0;
+    field.children.forEach((ch, idx) => { if (ch.isGroup && ch.userData.raisedSheet) ch.traverse(m => { if (m.isMesh && Array.isArray(m.material)) { m.material = m.material.slice(); m.material[2] = giltPaper; gTops++; } }); });
+    if (gTops !== RAISED) throw new Error('gilt tops ' + gTops + ' disagree with raised ' + RAISED); }
+  TXT.contact(R, tablet);
+
+
+  /* THE KEY: a low western sun across the field, so every raised stack throws its shadow east over the stone; the paper
+   * stays paper because the key is warmed only a step from white */
+  CH.KEY_SCALE = 1.2;
+  const spec = CH.rigSpec(W, 6, 4096); spec.key = Object.assign({}, spec.key, { color: 0xfff7f0, radius: 1.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, TAB_H, 0], { distance: 24, shadowFar: 60, normalBias: 0.004 }), { light: { az: -76, el: 22 } }));
+  CH.unacne(R, 0.004);
+
+  /* the haze: a linear fog in the sweep's own violet, starting past the tablet, so the far counties recede toward the
+   * horizon and no county line reaches the type at strength */
+  { const dCam = Math.hypot(FROM[0], FROM[1] - TAB_H, FROM[2]);
+    R.scene.fog = new THREE.Fog(new THREE.Color('#8e44b0'), dCam * 1.18, dCam * 2.1); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* measured on the art: the tablet's span, and its far edge clear of the dek */
+  { const rc = CH.rectOf(THREE, R, tablet, 0);
+    const span = Math.min(1080, rc[0] + rc[2]) - Math.max(0, rc[0]);
+    if (span < 760) throw new Error('the tablet spans ' + Math.round(span) + ' px, under 760');
+    if (rc[1] < DEK_FOOT + 10) console.warn('tablet top ' + Math.round(rc[1]) + ' near the dek foot ' + Math.round(DEK_FOOT));
+    console.log('frame8 tablet rect', JSON.stringify(rc.map(Math.round)), 'dek foot', Math.round(DEK_FOOT)); }
+
+  CH.seat(cx, { a: 0.52, fade: 220 });
+  CH.seat(cx, { sel: '.dek', a: 0.56, fade: 130 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.45, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.34, height: 200 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

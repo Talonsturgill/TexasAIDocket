@@ -1,0 +1,53 @@
+{
+ "note": "Every universal this deck prints, and the set it ranges over.",
+ "quantifiers": [
+  {
+   "phrase": "all of them",
+   "about": "the rescores done this spring",
+   "figures_key": "requests_2026",
+   "from_items": [
+    "tx-2026-0194"
+   ],
+   "set": [
+    "every human rescore of a reading answer the state did on this spring's 64,489 requests (c3), which the Tribune reports as 'Humans conducted all re-scores.' (c7)"
+   ],
+   "why": "The universal is the source's own: c7 says humans conducted all re-scores, and c14 says TEA sends rescore requests for human scoring. The slide claims nothing beyond the set the Tribune named."
+  },
+  {
+   "phrase": "every rescore",
+   "about": "the rescores done this spring",
+   "figures_key": "requests_2026",
+   "from_items": [
+    "tx-2026-0194"
+   ],
+   "set": [
+    "every rescore on this spring's 64,489 requests (c3), per 'Humans conducted all re-scores.' (c7)"
+   ],
+   "why": "The headline form of the same universal, over the same set, resting on c7."
+  },
+  {
+   "phrase": "every written answer",
+   "about": "constructed responses on English STAAR under TEA's hybrid design",
+   "figures_key": "human_pct_min",
+   "from_items": [
+    "tx-2026-0194"
+   ],
+   "set": [
+    "every constructed response on English STAAR as TEA described the design in March 2024: 'All scores go through auto scoring engine' (c22); Spanish answers are excluded and scored by people alone (c16)"
+   ],
+   "why": "The slide dates the design to TEA's December 2023 and March 2024 documents and the universal is TEA's own wording."
+  },
+  {
+   "phrase": "every open-ended reading answer",
+   "about": "open-ended reading responses this spring",
+   "figures_key": "changed_pct_max",
+   "from_items": [
+    "tx-2026-0194"
+   ],
+   "set": [
+    "all open-ended responses on reading exams, per 'In total, less than .5% of total open-ended responses on reading exams saw changes.' (c5)"
+   ],
+   "why": "The set is the Tribune's own 'total open-ended responses on reading exams'."
+  }
+ ]
+}

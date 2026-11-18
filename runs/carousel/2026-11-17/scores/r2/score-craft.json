@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Scored frame by frame against THE SLIDE BAR. Per-frame scores: 1=7.0, 2=6.5, 3=7.5, 4=6.5, 5=8.0, 6=7.5, 7=5.0, 8=7.0, 9=7.0, mean 6.89. The best frame is slide 5. A dusk plaza with three paper columns, the 2,758 block about 100 px, 21,620 about 670 px and 64,489 about 1660 px, beside a 1.75 m figure about 560 px tall. That is roughly true scale, and the figure looking up is a real image only this sentence could own. Its faults: the tall column leans visibly, top x 1125 to 1195 against base x 1230 to 1340 at 1600 px display. The trees are flat dark cards. There are still no kraft ream bands, which the art director had already flagged. Slide 3 is a one-point macro down an open card drawer, with gold check tabs and the drawer front bleeding off the bottom. It is composed and has detail where the eye lands. Slide 6 has a warm lamp pool on the page, a reflective desk and a dusk window, and it is the strongest room. But the scorer's foot floats beside the chair arm at about (900,1150), and a stray brown slab sits on the left edge at about (0 to 20, 1500 to 1620). Slide 7 holds the score down. It is a frontal flat rectangle of ruled lines in a featureless mauve void, and the right half of the frame carries it. The one gilded page, the frame's whole idea, is a 2 px orange line at y 1268 that disappears at 432 px. The dark blotch wash behind the headline reads as a smudge, not quiet the picture made. The storyboard's 40 cm diagonal macro of a fanned stack in a worn graphite tray was abandoned. Slide 4 has a good fork concept: a glass engine, a gold ramp to a person, a side tray of pages. But one in four can't be read as a ratio at feed size, the left third is empty pink, and the heavy dark wash under the type is close to a plate. Slide 2's paper bundles read as weight, 1 bundle against 7. But the strata texture is streaky and aliased, the slips look pasted on, and the orthographic elevation flattens the relief. Slides 1 and 9 bookend well with the same machine and desk, and the close lights the empty chair under a gold chute. Slide 1's machine is still close to a rounded-box primitive with a typewriter read, and slide 9's machine body is cropped hard off the top right. LOOK V2 colour holds everywhere: vivid 0.92 to 0.95 and grey_mid 0.0 on the three preflight frames, with violet shadows and no black field. More than one soft frame plus one failing frame lands below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds. One watch tone violet-to-rose palette on all nine frames, Fraunces, Manrope and JetBrains Mono at constant furniture sizes, the counter and site line identical. The accent keeps its single declared meaning, a person's score. It is gold on the tabs (3), the ramp (4), the lamp (6), the gilded page (7), the raised tiles (8) and the chute (9), and absent from 1, 2 and 5 as the storyboard declares. The bookend works: the dark desk behind the machine on 1 is the lit desk at the end of the gold route on 9. The story runs in order, with the turn on 5. Off-spine moments are minor: slide 5's blue shirt and orange skin are the only non-tone hues, and slide 7's void sits outside the built worlds the others stand in."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide numeral I checked traces to figures.json and claims: 2,758 (c1), 21,620 (c2), 64,489 (c3), 23 (computed floor of 64489/2758), 13,300 (c4), 200 (computed from c5's 0.5), 34 and 5,100 (c8), $50 (c6), 3,000 (c20), $15M to $20M (c10), 6 to 7 (c19), 4 to 5 (c11), 25 (c13, c22). The caption's figures are the same set. Design claims are dated to December 2023 and March 2024, which is honest. The 2026 counts rest on Texas Tribune journalism because no TEA page answered. The storyboard says so, and it is the one 7-descriptor lean. Slide 8's 'each tile ... is one in a hundred' is ambiguous: the plan's 10x10 field means each tile is 1 percent, but it could be read as one tile per 100 tests, which would be 51 tiles."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (an engine reads English STAAR answers first), who decided it (TEA), where (statewide, with Dallas ISD named on 8), and what a district can do (slide 9: $50 a test, waived when the score changes). No request window or deadline is named on slide 9 or in the caption, so the action is stated without a when."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover headline earns the swipe and slide 2 pays at once with the why. Slide 5, 'Then the requests multiplied', is a real turn, and the close lands on agency. Slide 3 (training data) could move or merge with 4 without much loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register: no colons, dashes or banned words seen, and fairness to TEA on slide 2 with the cost case. It reads more as a careful report than as a Texan who knows schools. 'TEA's scoring documents and the Texas Tribune's October 7th report have the detail' on 9 is a flat close line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Watch tone, a violet palette, and a fresh subject after the Nov 14 wafers, Nov 15 school desks and Nov 16 gold ribbon. But desks and office chairs recur on 1, 4, 6 and 9, two days after a desks deck. Slide 8's county relief with tiles repeats the Nov 14 county relief move."
+  }
+ ],
+ "weighted_score": 7.31,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slide 7 as the storyboard planned it: a 40 cm macro running corner to corner across a fanned stack of 200 cream sheets in a worn graphite tray under a raking key, with the one gilded edge widened and lit so it is the brightest thing in the frame at 432 px, and the headline set in quiet the macro's out-of-focus field actually leaves.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A frontal flat slab of ruled lines in an empty mauve void. The one gilded page is a 2 px line invisible at feed size, half the frame is dead, and the dark wash behind the headline reads as a smudge.",
+   "fix": "Re-shoot as the planned 40 cm diagonal macro of a slightly fanned stack in a graphite tray, raking key from the left, with the gilded edge fanned out a few mm and lit as the frame's brightest highlight."
+  },
+  {
+   "slide": 4,
+   "problem": "'At least one in four' is not countable at 432 px. The side tray, the ramp page and the engine pages are tiny, the left third is empty pink, and the dark type wash approaches a plate.",
+   "fix": "Pull the camera in so the engine and fork fill the lower 60 percent, and show four large pages leaving the engine with exactly one riding the gold ramp to the person while three go to the tray."
+  },
+  {
+   "slide": 2,
+   "problem": "The paper strata texture is streaky and aliased, the slips look pasted on, and the orthographic elevation flattens a relief meant to read as a cliff of weight.",
+   "fix": "Rotate the relief to a three-quarter raking view with the key from the upper left so each bundle casts onto the next, and replace the streak texture with fine sheet-edge displacement."
+  },
+  {
+   "slide": 6,
+   "problem": "The scorer's foot floats beside the chair arm at about (900,1150), and a stray brown slab sits on the left edge at about (0 to 20, 1500 to 1620).",
+   "fix": "Re-pose the figure's legs under the desk behind the chair and delete or crop the stray left-edge mesh."
+  },
+  {
+   "slide": 5,
+   "problem": "The tallest column leans visibly from lens distortion, there are no kraft ream bands, and the trees are flat dark cards.",
+   "fix": "Shift-correct the camera (vertical lens shift instead of tilt) so the columns stand plumb, and add kraft bands every 500 sheets so the 2,758 block shows five."
+  }
+ ]
+}

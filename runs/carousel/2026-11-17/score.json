@@ -1,0 +1,188 @@
+{
+ "weighted_score": 7.378,
+ "judges": [
+  7.3,
+  7.37,
+  7.53
+ ],
+ "spread": 0.23,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.4,
+   "weight": 0.22,
+   "judges": [
+    7.4,
+    7.1,
+    7.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    7.8,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.6,
+   "weight": 0.2,
+   "judges": [
+    7.6,
+    7.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The glass machine, chute and scorer's desk sit small in the lower half, seen from high and far, and the top 45% is type on a wash.",
+     "fix": "Drop the camera to a low three-quarter view and push in until the glass housing and the gold page on the chute fill at least half the frame, with the desk cropped at the right edge."
+    },
+    {
+     "judge": 2,
+     "problem": "The one-in-four pages are about 25 px at 432, the left third of the frame is empty pink, and the dark wash under the body type (y 560 to 900) reads close to a plate.",
+     "fix": "Dolly in and shift the camera left so the engine, the three tray pages and the one ramp page fill the lower 60 percent, with the pages at least twice their current size, and thin the type wash to the tone's deep hue."
+    },
+    {
+     "judge": 3,
+     "problem": "Unchanged since round 2. The cutaway machine, the chute and the reader sit small on a diagonal in the lower half of an empty rose sweep. The one-in-four fork, a thin chute with a single orange page, doesn't read as one silhouette at 432 px.",
+     "fix": "Push the camera in and lower it until the glass housing and the rising chute fill at least half the frame width. Crop the reader's desk off the right edge, and light the single orange page on the chute as the brightest point."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The gilded page, the frame's whole idea, is a pale orange line about 3 px at 432 that is not the brightest thing in the frame. The stack floats on a mauve blur with no tray or surface contact.",
+     "fix": "Fan the gilded sheet out 3 to 4 mm and give it a metallic gold material that catches the key as a specular highlight, then seat the stack in the planned worn graphite tray with a contact shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "The macro now fills the frame, but the headline and body still sit on soft dark wash patches over the out-of-focus field, so they read as type on plates.",
+     "fix": "Rotate the stack so its out-of-focus top-right falls into the deep violet sweep, which gives the headline real quiet. Then remove both wash patches."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The desk, chair and chute float small in a wide empty violet sweep, and the gold route that pays off the cover is a thin rail at upper right.",
+     "fix": "Move the camera in and down so the lit desk and the page landing in the tray fill the middle third, with the chute entering large from the right edge."
+    },
+    {
+     "judge": 3,
+     "problem": "A kit desk, empty swivel chair and lamp, the same furniture as slides 1, 4 and 6. Read without its type, it says 'office', not 'a district can ask for a person'.",
+     "fix": "Make the request the subject. Frame the chute's end tight, with a district-letterhead request sheet and a $50 tag being handed into the lamp pool by a hand. Let the desk fall off the frame edge."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Unchanged since r2. A flat orthographic elevation with a streaky, aliased strata texture, a blown white edge on the top bundle, slips that look pasted on, and hard diagonal cast plates on the floor that read as cut paper.",
+     "fix": "Rotate the relief camera to a three-quarter view about 25 degrees above the floor with a raking upper-left key, and swap the streak texture for fine per-sheet edge displacement so the bundles read as stacked paper weight."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A competent but generic card-drawer close-up that repeats drawers from recent decks. Only the gold tabs tie it to this story.",
+     "fix": "Replace the cabinet with this deck's own object, a sealed glass case of scored answer pages beside the engine, so the 'closed database' reads as this machine's."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The machine is still a rounded-box printer close to a primitive, and it fills well under half the frame on a bare sweep.",
+     "fix": "Move the camera closer and lower so the engine fills more than half the frame, and add one built-in reading detail, such as a lit scan bar crossing the answer sheet, that makes it a scoring engine rather than a printer."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The window mullion at x about 590 drops exactly onto the lamp shade tip at y about 400, a tangency that makes the lamp read as hanging from the ceiling.",
+     "fix": "Move the mullion 80 to 120 px left, or angle the lamp arm lower, so the shade sits clear against the skyline."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.378, 0.622 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.4 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

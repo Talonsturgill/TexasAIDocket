@@ -1,0 +1,296 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 6 of 9, "Who rescored". A spatial scene through txthree.js inside a TXT.interior room at
+     dusk, seen over the left shoulder of one reader in a task chair at one walnut office desk: one typed answer (the chassis response_sheet,
+     state gold) in the dusk gold pool of an articulated desk lamp built here. At its head the machine's first score is a
+     cool violet printed stamp (greeked, no numeral), and beside it the reader's gilt score box with a pen's tip resting in
+     it. At the desk's far corners a wire in tray holds a stack of identical returned sheets and a wire out tray holds just
+     one. Nothing is counted. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:860px; width:700px; text-align:left">People did every rescore</h1>
+<p class="dek" data-follow="24" style="left:82px; width:680px; text-align:left">TEA sends rescore requests to human scorers, and the Tribune reports people did all of them. Written answers on Spanish STAAR tests are scored by people alone. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Who rescored", counter: "06 / 09", src: "c7 c14 c16", fit: { min: 84, max: 108, maxLines: 2 } });
+  /* THIS FRAME DRAWS NO COUNT. window.FIG is empty and nothing below is read as a quantity. */
+
+  /* the type, bottom left across the near desk top in the lamp's falloff, clear of the claim ids */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek');
+    /* the block's foot sits at 1200 px, whatever the fit chose for the hook */
+    h.style.top = (h.offsetTop + 1190 - d.getBoundingClientRect().bottom) + 'px'; CH.follow();
+    const hb = h.getBoundingClientRect(), db = d.getBoundingClientRect(); window.__type06 = { hook: [hb.left, hb.top, hb.right, hb.bottom].map(Math.round), dek: [db.left, db.top, db.right, db.bottom].map(Math.round) };
+    if (db.bottom > 1222) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the site line');
+    if (hb.right > 1000 || db.right > 1000) throw new Error('the type crosses the 64 px safe margin'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.02, far: 40, fog: 0 });
+
+  /* THE ROOM: a small scoring office, plum violet walls, no window from the engine (the dusk window is built below) */
+  const ROOM = { w: 5.2, d: 4.4, h: 2.9 }, BACK = -ROOM.d / 2 + 0.1;
+  TXT.interior(R, { w: ROOM.w, d: ROOM.d, h: ROOM.h, floor: 'concrete', wall: 0x8a5a8e, trim: 0x3a2c6a, window: null, ceiling: true, light: 0.6 });
+
+  /* the carpet: violet rose office carpet tiles with a fine loop tooth, so the floor is never the coral floor */
+  { const tex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(606);
+      g.fillStyle = '#a06a9e'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 26000; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(60,34,84,0.4)' : 'rgba(210,160,200,0.32)'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r()); }
+      /* broadloom, no tile seams: a seam line would run through the dek */ }, [ROOM.w / 0.5, ROOM.d / 0.5]);
+    const m = new THREE.MeshStandardMaterial({ name: 'carpet-tile', map: tex, roughness: 0.97, metalness: 0 }); m.userData.txSurface = 'fabric';
+    const c = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), m); c.rotation.x = -Math.PI / 2; c.position.y = 0.002; c.receiveShadow = true; c.userData.txBevel = false; R.scene.add(c); }
+
+  /* THE DUSK WINDOW: a wide two bay window over the desk, sill just above the desk top, a sky that runs violet to rose
+   * with a low far skyline, in a satin plum frame with a transom and a deep sill */
+  const WIN = { x: -0.05, w: 2.6, y0: 0.9, y1: 2.55 }, WZ = BACK + 0.005;
+  { const sky = CH.canvasTex(THREE, 1024, 660, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, 0, h);
+      [[0, '#2c2280'], [0.32, '#5a48c0'], [0.6, '#a678d8'], [0.78, '#f2a8c4'], [0.86, '#ffc6c8'], [1, '#e89ab8']].forEach(([o, c]) => gr.addColorStop(o, c));
+      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      /* a far skyline in three depths, each a step bluer and lighter, with rows of small lilac lit windows */
+      const r = CH.rng(61);
+      [[0.8, '#8a6ac8', 0.5, 40], [0.86, '#6a4ea8', 0.8, 70], [0.93, '#4e3888', 1.0, 110]].forEach(([base, col, a, tall]) => {
+        let x = -20; while (x < w) { const bw = 28 + r() * 80, bh = 14 + r() * (r() < 0.18 ? tall * 2.2 : tall), y0 = h * base - bh;
+          g.fillStyle = col; g.fillRect(x, y0, bw, bh + h);
+          if (a > 0.6) for (let yy = y0 + 8; yy < h * base - 6; yy += 9) for (let xx = x + 5; xx < x + bw - 5; xx += 8) if (r() < 0.09) { g.fillStyle = 'rgba(236,224,255,' + (0.35 + r() * 0.45).toFixed(2) + ')'; g.fillRect(xx, yy, 3, 4); }
+          x += bw + (r() < 0.35 ? 6 + r() * 16 : 0); } });
+      g.fillStyle = '#3e2c78'; g.fillRect(0, h * 0.95, w, h);
+    });
+    const pm = new THREE.MeshBasicMaterial({ map: sky, toneMapped: true }); pm.color.setScalar(1.1); pm.userData.txSurface = false;
+    const pane = new THREE.Mesh(new THREE.PlaneGeometry(WIN.w, WIN.y1 - WIN.y0), pm); pane.position.set(WIN.x, (WIN.y0 + WIN.y1) / 2, WZ); pane.userData.txBevel = false; R.scene.add(pane);
+    const frameM = new THREE.MeshPhysicalMaterial({ name: 'painted-aluminium-frame', color: 0x3c2c70, metalness: 0.35, roughness: 0.38, clearcoat: 0.4, clearcoatRoughness: 0.3 });
+    const bar = (w, h, d, x, y, z) => { const b = TXT.roundedBox(w, h, d, Math.min(0.012, w / 2.2, h / 2.2), frameM); b.position.set(x, y, z); b.castShadow = true; b.receiveShadow = true; R.scene.add(b); return b; };
+    const F = 0.06, FD = 0.07, cy = (WIN.y0 + WIN.y1) / 2;
+    bar(WIN.w + 2 * F, F, FD, WIN.x, WIN.y1 + F / 2, WZ + FD / 2);
+    bar(F, WIN.y1 - WIN.y0 + 2 * F, FD, WIN.x - WIN.w / 2 - F / 2, cy, WZ + FD / 2);
+    bar(F, WIN.y1 - WIN.y0 + 2 * F, FD, WIN.x + WIN.w / 2 + F / 2, cy, WZ + FD / 2);
+    bar(0.04, WIN.y1 - WIN.y0, 0.05, WIN.x, cy, WZ + 0.03);
+    bar(WIN.w, 0.035, 0.05, WIN.x, WIN.y0 + (WIN.y1 - WIN.y0) * 0.72, WZ + 0.03);
+    const sillM = new THREE.MeshPhysicalMaterial({ name: 'painted-wood-sill', color: 0x6a4a78, roughness: 0.8 });
+    const sill = TXT.roundedBox(WIN.w + 0.3, 0.035, 0.16, 0.012, sillM); sill.position.set(WIN.x, WIN.y0 - 0.02, WZ + 0.08); sill.castShadow = true; sill.receiveShadow = true; R.scene.add(sill); }
+
+  /* THE DESK: one office desk against the window wall, drawers toward the sitter, dark walnut */
+  const DESK = { z: BACK + 0.38 + 0.05, top: 0.76 };
+  const desk = K.make('desk', { w: 2.4, pedestal: 'left', wood: 0x4a2c22, seed: 6 }); desk.position.set(0, 0, DESK.z); TXT.add(R, desk); TXT.contact(R, desk);
+  /* the veneer redrawn as a fine straight walnut grain, so no wavy kit figure crosses the lamp pool */
+  { const grain = CH.canvasTex(THREE, 1024, 256, (g, w, h) => { const r = CH.rng(66); g.fillStyle = '#62392f'; g.fillRect(0, 0, w, h);
+      for (let y = 0; y < h; y++) { const k = Math.sin(y * 0.21) * 0.5 + Math.sin(y * 0.047 + 1.3) * 0.5; g.fillStyle = 'rgba(' + (k > 0 ? '110,64,44,' : '34,18,16,') + (Math.abs(k) * 0.22 + r() * 0.05).toFixed(3) + ')'; g.fillRect(0, y, w, 1); }
+      for (let i = 0; i < 900; i++) { g.fillStyle = 'rgba(20,10,10,' + (0.08 + r() * 0.12).toFixed(2) + ')'; g.fillRect(r() * w, r() * h, 6 + r() * 30, 1); } });
+    const cache = new Map();
+    desk.traverse(m => { if (!m.isMesh || !m.material || !m.material.map || !/veneer/i.test(m.material.name || 'veneer')) return;
+      if (!cache.has(m.material)) { const c = m.material.clone(); const t = grain.clone(); t.needsUpdate = true; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.copy(m.material.map.repeat); t.offset.copy(m.material.map.offset); t.rotation = m.material.map.rotation; c.map = t; c.color.set(0xffffff); c.roughness = 0.42; c.name = 'walnut-veneer'; cache.set(m.material, c); }
+      m.material = cache.get(m.material); });
+    window.__veneer = cache.size; }
+
+  /* THE PAGE: one typed answer, the chassis response_sheet with its gold score box, square to the reader */
+  const PAGE = [0.02, DESK.top + 0.0004, DESK.z + 0.16];
+  const page = K.make('response_sheet', { state: 'gold', seed: 6, curl: 0.22 }); page.position.set(PAGE[0], PAGE[1], PAGE[2]); page.rotation.y = 0.1; TXT.add(R, page);
+  /* its face redrawn: greeked TYPED lines, never handwriting, and at its head the machine's first score as a cool violet
+   * printed stamp, greeked, with no numeral; the reader's box beside it is the chassis gold mark, enlarged */
+  const face = CH.canvasTex(THREE, 1024, 1324, (g, w, h) => { const r = CH.rng(1706);
+    g.fillStyle = '#f6f3ff'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(110,96,120,' + (r() * 0.05).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1); }
+    g.fillStyle = 'rgba(46,40,70,0.7)'; let y = 300;
+    while (y < h - 90) { let x = 92; const end = w - 92 - r() * 140; while (x < end) { const ww = 16 + r() * 66; if (x + ww > end) break; g.fillRect(x, y, ww, 11); x += ww + 13; } y += r() < 0.12 ? 64 : 38; }
+    /* the stamp: a double ruled rounded box in violet ink, a row of greeked bars and a dot glyph, slightly skewed */
+    g.save(); g.translate(500, 150); g.rotate(-0.035); g.strokeStyle = 'rgba(92,64,200,0.92)'; g.fillStyle = 'rgba(92,64,200,0.9)';
+    const rr = (x, y, w0, h0, k) => { g.beginPath(); g.moveTo(x + k, y); g.arcTo(x + w0, y, x + w0, y + h0, k); g.arcTo(x + w0, y + h0, x, y + h0, k); g.arcTo(x, y + h0, x, y, k); g.arcTo(x, y, x + w0, y, k); g.closePath(); };
+    g.lineWidth = 9; rr(-150, -86, 300, 172, 22); g.stroke(); g.lineWidth = 4; rr(-132, -68, 264, 136, 14); g.stroke();
+    g.fillRect(-110, -44, 120, 16); g.fillRect(-110, -14, 84, 16);
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if (r() < 0.7) { g.beginPath(); g.arc(46 + i * 18, -34 + j * 18, 6.5, 0, 6.3); g.fill(); }
+    g.fillRect(-110, 22, 220, 10);
+    /* ink tooth: the stamp breaks up a little where the plate missed */
+    g.globalCompositeOperation = 'destination-out'; for (let i = 0; i < 900; i++) { g.fillStyle = 'rgba(0,0,0,' + (0.2 + r() * 0.6).toFixed(2) + ')'; g.fillRect(-160 + r() * 320, -96 + r() * 192, 2 + r() * 4, 2 + r() * 3); }
+    g.restore();
+    /* the reader's box: a deep ruled border round where the gilt mark sits */
+    g.strokeStyle = 'rgba(70,40,110,0.85)'; g.lineWidth = 7; g.strokeRect(704, 16, 268, 196);
+    });
+  let mark = null;
+  page.traverse(m => { if (!m.isMesh) return;
+    if (Array.isArray(m.material)) m.material = m.material.map((mt, i) => { const c = mt.clone(); if (i === 2) { c.map = face; c.color.set(0xffffff); c.name = 'paper-sheet'; } return c; });
+    else if (m.geometry && m.geometry.type === 'PlaneGeometry') mark = m; });
+  if (!mark) throw new Error('the response_sheet carries no score box mark in state gold');
+  /* the reader's box: the chassis gold mark, half again as big, a hair proud of the paper, beside the stamp */
+  mark.scale.set(1.5, 1.5, 1); mark.position.x -= 0.004; mark.position.z += 0.004; mark.position.y += 0.0002;
+  mark.material = mark.material.clone(); mark.material.name = 'gilt-foil-box'; mark.material.color.set(0xd07a3e); mark.material.roughness = 0.38; mark.material.metalness = 0.35; mark.material.clearcoat = 0.6;
+  page.updateMatrixWorld(true);
+  const boxW = mark.getWorldPosition(new THREE.Vector3());
+
+  /* THE PEN: a slim lacquered pen lying across the page, its tip resting in the gold box */
+  { const lac = new THREE.MeshPhysicalMaterial({ name: 'lacquered-pen-barrel', color: 0x2a2250, metalness: 0.1, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.05 });
+    const steel = new THREE.MeshPhysicalMaterial({ name: 'brushed-steel-clip', color: 0xd6d2e2, metalness: 1, roughness: 0.22 });
+    const pen = new THREE.Group(), L = 0.138, R0 = 0.0048;
+    const body = TXT.lathe([[0, 0], [0.0006, 0.0015], [0.0022, 0.009], [R0 * 0.8, 0.022], [R0, 0.03], [R0, L - 0.012], [R0 * 0.85, L - 0.004], [0, L]], lac, { segments: 40 });
+    const ring = new THREE.Mesh(new THREE.CylinderGeometry(R0 * 1.03, R0 * 1.03, 0.004, 40), steel); ring.position.y = 0.03;
+    const clip = TXT.roundedBox(0.0024, 0.05, 0.0016, 0.0007, steel); clip.position.set(0, L - 0.036, R0 + 0.0012);
+    const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.0004, 0.0012, 0.003, 16), steel); tip.position.y = 0.0006;
+    pen.add(body, ring, clip, tip);
+    /* laid down: the tip rests in the gold box and the barrel lies across the page toward the reader */
+    const dir = new THREE.Vector3(0.62, 0.0, 0.78).normalize();
+    pen.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    const holder = new THREE.Group(); holder.add(pen); holder.position.set(boxW.x - 0.003, PAGE[1] + R0 + 0.0004, boxW.z + 0.002);
+    holder.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; } });
+    TXT.add(R, holder);
+    holder.updateMatrixWorld(true);
+    const tipW = tip.getWorldPosition(new THREE.Vector3());
+    if (Math.hypot(tipW.x - boxW.x, tipW.z - boxW.z) > 0.03) throw new Error('the pen tip is not in the gold box');
+    window.__grip = holder.position.clone().addScaledVector(dir, 0.066); }
+
+  /* THE READER: one kit person in a task chair pulled up to the desk front, back to the camera, head bowed to the page.
+   * The right hand rests at the page's near right edge and the left on the desk, both under the head, in its shadow. */
+  const READ = { x: 0.29, z: DESK.z + 0.38 + 0.16 };  /* pulled in close, so her knees and feet go under the desk behind the chair */
+  { const chair = K.make('office_chair', { style: 'task', color: 0x5a4cb0, arms: true }); chair.rotation.y = Math.PI + 0.45; chair.position.set(READ.x, 0, READ.z + 0.04); TXT.add(R, chair); chair.traverse(m => { if (m.isMesh) m.castShadow = false; }); TXT.contact(R, chair);
+    chair.updateMatrixWorld(true);
+    const rc = new THREE.Raycaster(new THREE.Vector3(READ.x, 2, READ.z + 0.04), new THREE.Vector3(0, -1, 0)); const hits = rc.intersectObject(chair, true);
+    if (!hits.length) throw new Error('the chair has no seat under the reader');
+    const SEAT = hits[0].point.y; window.__seat = +SEAT.toFixed(3);
+    const GR = [PAGE[0] + 0.15, DESK.top + 0.02, PAGE[2] + 0.13], GL = [PAGE[0] - 0.02, DESK.top + 0.02, PAGE[2] + 0.22];
+    let py = 0.03, person = null;
+    for (let it = 0; it < 4; it++) {
+      const o = new THREE.Object3D(); o.position.set(READ.x, py, READ.z); o.rotation.y = Math.PI; o.updateMatrixWorld(true);
+      const loc = q => { const v = o.worldToLocal(new THREE.Vector3(q[0], q[1], q[2])); return [v.x, v.y, v.z]; };
+      if (person) R.scene.remove(person);
+      person = K.make('person', { role: 'resident', pose: 'sit_read', seed: 41, build: 'female', hat: 'none', shirt: 0x6a3a5e, trousers: 0x2a2446, hands: [loc(GL), loc(GR)] });
+      person.position.copy(o.position); person.rotation.y = Math.PI; TXT.add(R, person); window.__person = person;
+      const A = person.userData.attach || {}, seatErr = A.seat ? (SEAT - A.seat[1]) - py : 0, sh = A.hands && A.hands[1] ? A.hands[1].short || 0 : 0;
+      window.__reader = { it, seatErr: +seatErr.toFixed(3), short: +sh.toFixed(3) };
+      if (Math.abs(seatErr) < 0.01) break;
+      py += seatErr;
+    }
+    /* her feet stay tucked under the desk in its shadow: the pale shoes are dropped so nothing reads as a foot floating beside the chair arm */
+    { let hid = 0; person.updateMatrixWorld(true); person.traverse(m => { if (!m.isMesh) return; const bb = new THREE.Box3().setFromObject(m); if (bb.max.y < 0.17) { m.visible = false; hid++; } }); window.__feet = hid; }
+    if (window.__reader.short > 0.05) throw new Error('the reading hand falls ' + window.__reader.short + ' m short of the page edge');
+  }
+
+  /* THE TRAYS: wire letter trays in violet powder coat at the desk's far corners, built here. In: a stack of identical
+   * returned sheets (the chassis paper_column). Out: one sheet (a chassis response_sheet). Drawn to illustrate. */
+  const wireM = new THREE.MeshPhysicalMaterial({ name: 'powder-coat-steel-wire', color: 0x5a4aa0, metalness: 0.5, roughness: 0.4, clearcoat: 0.3 });
+  const tray = (x, z, ry) => { const g = new THREE.Group(), TW = 0.27, TD = 0.34, TH = 0.065, r = 0.0022, top = TH;
+    const P = (a, b) => K.bar(a, b, r, wireM, 8, g);
+    const rect = (y, w0, d0) => { const c = [[-w0 / 2, y, -d0 / 2], [w0 / 2, y, -d0 / 2], [w0 / 2, y, d0 / 2], [-w0 / 2, y, d0 / 2]]; for (let i = 0; i < 4; i++) P(c[i], c[(i + 1) % 4]); };
+    rect(0.006, TW - 0.01, TD - 0.01); rect(top, TW, TD);
+    for (let i = 1; i < 9; i++) { const xx = -TW / 2 + 0.005 + i * (TW - 0.01) / 9; P([xx, 0.006, -TD / 2 + 0.005], [xx, 0.006, TD / 2 - 0.005]); }
+    for (let i = 0; i <= 10; i++) { const zz = -TD / 2 + i * TD / 10; [-1, 1].forEach(sx => P([sx * (TW / 2 - 0.005), 0.006, zz * 0.97], [sx * TW / 2, top, zz])); }
+    for (let i = 0; i <= 8; i++) { const xx = -TW / 2 + i * TW / 8; P([xx * 0.97, 0.006, -TD / 2 + 0.005], [xx, top, -TD / 2]); if (i % 2 === 0) P([xx * 0.97, 0.006, TD / 2 - 0.005], [xx, top * 0.55, TD / 2]); }
+    [-1, 1].forEach(sx => [-1, 1].forEach(sz => K.cyl(0.006, 0.006, 0.004, K.finish.rubber(), sx * (TW / 2 - 0.02), -0.001, sz * (TD / 2 - 0.02), 12, g)));
+    g.position.set(x, DESK.top + 0.003, z); g.rotation.y = ry; g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); TXT.add(R, g); TXT.contact(R, g); return g; };
+  const trayIn = tray(-0.62, PAGE[2] - 0.14, 0.1), trayOut = tray(0.31, PAGE[2] - 0.33, -0.08);
+  const IN_SHEETS = 220;   /* illustrative, not a figure: a deep stack of returned sheets, labelled drawn to illustrate in the dek */
+  const stack = K.make('paper_column', { count: IN_SHEETS, sheet: 0.0001, ream: 500, bands: false, loose: 2, seed: 61, color: 0xe8e2f2 });
+  stack.position.set(0, 0.009, 0); trayIn.add(stack);
+  const one = K.make('response_sheet', { state: 'blank', seed: 9 }); one.position.set(0.004, 0.009, 0.006); one.rotation.y = 0.04; trayOut.add(one);
+
+  /* THE LAMP: an articulated desk lamp built here, a weighted round base, twin rods with springs, a knuckle and a
+   * deep conical shade in satin plum enamel, its mouth over the page. Its light is the frame's dusk gold. */
+  const LAMP = { base: [-0.3, DESK.top, PAGE[2] - 0.26], elbow: [-0.36, 1.12, PAGE[2] - 0.34], head: [-0.13, 1.01, PAGE[2] - 0.08] };
+  const shadeAim = new THREE.Vector3(PAGE[0] - 0.02, PAGE[1], PAGE[2] + 0.02);
+  { const enamel = new THREE.MeshPhysicalMaterial({ name: 'enamel-steel-lamp', color: 0x32285e, metalness: 0.3, roughness: 0.3, clearcoat: 0.7, clearcoatRoughness: 0.15 });
+    const chrome = new THREE.MeshPhysicalMaterial({ name: 'polished-steel-rod', color: 0xd8d4e8, metalness: 1, roughness: 0.18 });
+    const lamp = new THREE.Group();
+    const base = TXT.lathe([[0, 0], [0.085, 0], [0.09, 0.006], [0.088, 0.022], [0.07, 0.03], [0.022, 0.034], [0.02, 0.05], [0, 0.05]], enamel, { segments: 64 });
+    base.position.set(LAMP.base[0], LAMP.base[1], LAMP.base[2]); lamp.add(base);
+    const pivot = [LAMP.base[0], LAMP.base[1] + 0.05, LAMP.base[2]];
+    const rods = (a, b, off) => { const d = new THREE.Vector3(b[0] - a[0], b[1] - a[1], b[2] - a[2]), side = new THREE.Vector3(0, 1, 0).cross(d).normalize().multiplyScalar(off);
+      [-1, 1].forEach(s => lamp.add(TXT.tube([[a[0] + side.x * s, a[1] + side.y * s, a[2] + side.z * s], [b[0] + side.x * s, b[1] + side.y * s, b[2] + side.z * s]], 0.0045, chrome, { segments: 8, radial: 12 })));
+      /* a tension spring alongside */
+      const pts = [], n = 120, L = d.length(), u = d.clone().normalize(), v = side.clone().normalize(), w = u.clone().cross(v).normalize();
+      for (let i = 0; i <= n; i++) { const t = 0.2 + 0.45 * i / n, ang = i * 0.9; const c = new THREE.Vector3(a[0], a[1], a[2]).addScaledVector(u, t * L).addScaledVector(w, 0.018);
+        pts.push([c.x + v.x * 0.006 * Math.cos(ang) + w.x * 0.006 * Math.sin(ang), c.y + v.y * 0.006 * Math.cos(ang) + w.y * 0.006 * Math.sin(ang), c.z + v.z * 0.006 * Math.cos(ang) + w.z * 0.006 * Math.sin(ang)]); }
+      lamp.add(TXT.tube(pts, 0.0012, chrome, { segments: 600, radial: 6, tension: 0 })); };
+    rods(pivot, LAMP.elbow, 0.012); rods(LAMP.elbow, LAMP.head, 0.012);
+    [pivot, LAMP.elbow].forEach(p => { const k = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.04, 24), enamel); k.rotation.z = Math.PI / 2; k.position.set(p[0], p[1], p[2]); lamp.add(k); });
+    /* the shade, its axis from the head toward the page */
+    const shade = new THREE.Group(); shade.position.set(LAMP.head[0], LAMP.head[1], LAMP.head[2]);
+    const outer = TXT.lathe([[0.016, 0.07], [0.02, 0.066], [0.03, 0.05], [0.06, 0.004], [0.072, -0.03], [0.074, -0.034], [0.071, -0.034], [0.069, -0.03], [0.057, 0.002], [0.028, 0.046], [0.018, 0.06]], enamel, { segments: 64 });
+    outer.material = enamel; shade.add(outer);
+    const innerM = new THREE.MeshStandardMaterial({ name: 'white-enamel-reflector', color: 0xfff4e6, emissive: 0xffd9a0, emissiveIntensity: 0.9, roughness: 0.35, side: THREE.BackSide }); innerM.userData.txSurface = false;
+    const inner = TXT.lathe([[0.068, -0.03], [0.056, 0.0], [0.028, 0.044], [0.018, 0.058]], innerM, { segments: 64 }); shade.add(inner);
+    const bulbM = new THREE.MeshStandardMaterial({ name: 'bulb', color: 0xffffff, emissive: 0xffe2b0, emissiveIntensity: 6 }); bulbM.userData.txSurface = false;
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.022, 24, 16), bulbM); bulb.position.y = 0.008; shade.add(bulb);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.016, 0.03, 20), enamel); cap.position.y = 0.08; shade.add(cap);
+    const axis = shadeAim.clone().sub(new THREE.Vector3(LAMP.head[0], LAMP.head[1], LAMP.head[2])).normalize();
+    shade.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), axis);
+    lamp.add(shade);
+    lamp.traverse(m => { if (m.isMesh) { m.castShadow = m.material !== innerM && m.material !== bulbM; m.receiveShadow = true; } });
+    TXT.add(R, lamp);
+    /* its light: dusk gold, the accent, a soft spot from the bulb onto the page */
+    const mouth = new THREE.Vector3(LAMP.head[0], LAMP.head[1], LAMP.head[2]).addScaledVector(axis, 0.012);
+    const sp = new THREE.SpotLight(0xffc488, 4.0, 3.5, 0.66, 0.65, 2);
+    sp.position.copy(mouth); sp.target.position.copy(shadeAim); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0003; sp.shadow.normalBias = 0.004; sp.shadow.radius = 4;
+    sp.shadow.camera.near = 0.02; sp.shadow.camera.far = 3;
+    R.scene.add(sp); R.scene.add(sp.target);
+    window.__lamp = sp; }
+
+  /* THE CAMERA: seated eye height behind the reader, over the left shoulder, the page a small bright sheet in the
+   * lamp pool, the trays beyond it at the desk's far corners */
+  const pageShare = () => { const c = [[-0.108, -0.1395], [0.108, -0.1395], [0.108, 0.1395], [-0.108, 0.1395]].map(([x, z]) => { const v = page.localToWorld(new THREE.Vector3(x, 0, z)); return CH.project(THREE, R, [v.x, v.y, v.z]); });
+    let a = 0; for (let i = 0; i < 4; i++) { const p = c[i], q = c[(i + 1) % 4]; a += p[0] * q[1] - q[0] * p[1]; } return Math.abs(a) / 2 / (1080 * 1350); };
+  const AIM = [PAGE[0] - 0.02, PAGE[1], PAGE[2]];
+  /* the camera rises in small steps until the reader's head sits clear below the counter, measured on her bounds */
+  const cb = document.querySelector('.count').getBoundingClientRect();
+  const headClear = () => { R.camera.updateMatrixWorld(true); window.__person.updateMatrixWorld(true); let top = 1e9, right = -1e9; const v = new THREE.Vector3();
+    window.__person.traverse(m => { if (m.isSkinnedMesh && m.skeleton) m.skeleton.update(); if (!m.isMesh || !m.geometry || !m.geometry.attributes.position) return; const P = m.geometry.attributes.position, st = Math.max(1, Math.floor(P.count / 1500));
+      for (let i = 0; i < P.count; i += st) { v.fromBufferAttribute(P, i); if (m.isSkinnedMesh) { if (m.applyBoneTransform) m.applyBoneTransform(i, v); else if (m.boneTransform) m.boneTransform(i, v); } v.applyMatrix4(m.matrixWorld).project(R.camera); const sx = (v.x + 1) / 2 * 1080, sy = (1 - v.y) / 2 * 1350; if (sx > cb.left - 30) { top = Math.min(top, sy); } right = Math.max(right, sx); } });
+    return { top, right }; };
+  let FROM = null, LOOK = null, hc = null;
+  for (let y = 1.74; y <= 2.22; y += 0.03) { FROM = [-0.9, y, DESK.z + 0.38 + 0.3 + 1.8];
+    LOOK = CH.aim(THREE, R, TXT, FROM, AIM, 545, 490, 40); TXT.frame(R, { fov: 40, from: FROM, look: LOOK });
+    hc = headClear(); if (hc.top > cb.bottom + 24) break; }
+  window.__head = { top: Math.round(hc.top), counterBottom: Math.round(cb.bottom), camY: +FROM[1].toFixed(2) };
+  if (hc.top < cb.bottom + 10) throw new Error('the reader\'s head reaches ' + Math.round(hc.top) + ' px, into the counter');
+  window.__cam06 = { FROM: FROM.map(v => +v.toFixed(3)), share: +pageShare().toFixed(3) };
+
+  /* THE ROOM'S LIGHT: the dusk through the window from behind the desk, lilac rather than coral, a violet fill from the
+   * room, and the environment rebuilt so polish carries the window and the lamp */
+  const spec = CH.rigSpec(W, 6, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0xc8a8ff, i: 0.8, radius: 3 });
+  spec.fill = Object.assign({}, spec.fill, { color: 0x9a7af0, i: 1.8 });
+  spec.ambient = Object.assign({}, spec.ambient, { color: 0x8a6ad8, i: 0.8 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.7, DESK.z + 0.4], { distance: 7, shadowFar: 16, normalBias: 0.01 }), { light: { az: 168, el: 18 } }));
+  CH.unacne(R, 0.01);
+  { const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 32, 16), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'varying vec3 vP; void main(){ float y = vP.y; vec3 c = mix(vec3(0.30,0.18,0.42), vec3(0.42,0.32,0.72), smoothstep(-0.4,0.7,y)); gl_FragColor = vec4(c,1.0); }' })));
+    const card = (w, h, col, k, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(col).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(p[0], p[1], p[2]); m.lookAt(0, 0, 0); env.add(m); };
+    card(10, 5, 0xe6a8d8, 2.2, [0, 3, -9]);     /* the window */
+    card(2, 2, 0xffc890, 3.0, [2, 3, -2]);      /* the lamp */
+    card(8, 4, 0x6a50c0, 1.2, [0, 2, 9]);       /* the room behind the camera */
+    const pm = new THREE.PMREMGenerator(R.renderer); R.scene.environment = pm.fromScene(env, 0.02).texture; pm.dispose();
+    if ('environmentIntensity' in R.scene) R.scene.environmentIntensity = 0.9; }
+  /* the room's bounce behind the camera: a soft lilac wash on everything that faces the reader, so the chair, the
+   * pedestal and the shade side hold violet and never go black */
+  { const b = new THREE.DirectionalLight(0xa48cff, 1.6); b.position.set(FROM[0] + 2, 1.6, FROM[2] + 4); b.target.position.set(0, 0.55, DESK.z); R.scene.add(b); R.scene.add(b.target); }
+  /* a low lilac bounce off the carpet in front of the chair, so its shadow on the floor under the dek holds violet rather than a dark pool */
+  { const fl = new THREE.PointLight(0xb89aff, 1.6, 2.6, 2); fl.position.set(READ.x - 0.35, 0.45, READ.z + 0.95); R.scene.add(fl); }
+  const hemi = new THREE.HemisphereLight(0xb090ff, 0x9a5a8a, 1.5); R.scene.add(hemi);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* the page is a small sheet in the room, measured on its projected corners */
+  { const a = pageShare(); window.__s06 = { pageShare: +a.toFixed(3) }; if (a < 0.005 || a > 0.09) throw new Error('the page fills ' + a.toFixed(3) + ' of the frame, not a small sheet in a room'); }
+
+  CH.seat(cx, { a: 0.5, fade: 180 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.62, fade: 80 })); ['.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.4, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.45, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

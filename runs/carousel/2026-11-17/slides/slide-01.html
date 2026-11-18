@@ -1,0 +1,232 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 1 of 9, the cover. SEQUENCE, so that FIRST is drawn. A spatial scene through txthree.js on
+     a violet rose watch sweep. Foreground: a scoring engine built in this frame as an instrument (graphite body, satin metal
+     plinth and cap band, front panel seams, a lilac status strip and a vent) under a read chamber of raked smoked glass. One
+     bare typed page (greeked TYPED lines in a ruled response frame, an empty score box, never handwriting, never legible)
+     rests half outside on a short infeed lip; the swallowed half drops through a slot, past a lit lilac scan bar, and curls
+     over a roller, all seen through the glass. Behind, deeper and softer: a person's reading station the page has not
+     reached, a desk with its lamp switched off, an empty in tray and an empty chair. No dusk gold. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:158px; width:920px; text-align:center">A machine reads English STAAR answers first</h1>
+<p class="dek" data-follow="24" style="left:90px; width:900px; text-align:center">Since December 2023 an automated scoring engine has scored the written answers on English STAAR tests first, the Texas Education Agency says. The machine is drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Read by a machine first", counter: "01 / 09", src: "c9 c13 c21", fit: { min: 80, max: 100, maxLines: 2 } });
+  /* THIS FRAME DRAWS NO COUNT. window.FIG is empty and nothing below is read as a quantity. */
+
+  /* the type: centred high on the sweep's clean violet wall, the dek's foot well above the machine's crown */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (db.bottom > 590) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the machine');
+    if (hb.top < 140) throw new Error('the hook rides into the kicker band'); }
+
+  const FOV = 50;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.02, far: 60, fog: 0.06 });
+
+  /* THE SWEEP: violet rose floor (never the coral), a violet wall deepening to the watch indigo. The watch key is peach and
+   * glints orange on polished violet, so this frame takes a cold lilac key and rim and no accent strip: no gold anywhere,
+   * the machine reads first. A little violet haze sets the far station back. */
+  const PAL = Object.assign({}, TXLOOK.palette('watch'), { key: '#ece4ff', rim: '#c9b8ff', accent: '#8f7bff', floor: '#a5609e' });
+  TXT.studio(R, { palette: PAL, w: 40, d: 24, h: 14, radius: 1.4, floor: '#a65f9f', wall: '#5444b8', top: '#2a1f78', env: 1.0, hemi: 0.7, softbox: 4.2, accentStrip: 0.0 });
+  { const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const im = g.createImageData(w, h), r = CH.rng(1117);
+      for (let i = 0; i < w * h; i++) { const v = 200 + (r() - 0.5) * 50; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } g.putImageData(im, 0, 0); }, [40, 40]);
+    tooth.colorSpace = THREE.NoColorSpace; const m = R.studio.sweep.material; m.roughnessMap = tooth; m.needsUpdate = true; }
+
+  const box = (w, h, d, r, m, x, y, z, par, flat) => { const b = TXT.roundedBox(w, h, d, r, m); b.position.set(x, y, z); b.castShadow = b.receiveShadow = true; if (flat) b.userData.txBevel = false; par.add(b); return b; };
+  const cyl = (rt, rb, h, m, x, y, z, par, seg) => { const c = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 32), m); c.position.set(x, y, z); c.castShadow = c.receiveShadow = true; par.add(c); return c; };
+
+  /* THE ENGINE, an instrument and not a printer: a graphite body on a satin metal plinth and a satin cap band, and on top a
+   * READ CHAMBER behind raked smoked glass. The page drops through a slot at the chamber's back, falls past a lit lilac scan
+   * bar and curls over a roller, all seen through the glass; its trailing half still rests outside on a short infeed lip.
+   * The front carries panel seams, a slim lilac status strip and a vent. No screen, no logo, no eye. Metres, floor origin. */
+  const eng = new THREE.Group();
+  const graphite = K.mat('sb_graphite_anodised', { color: 0x3a3168, metalness: 0.5, roughness: 0.44, clearcoat: 0.2, clearcoatRoughness: 0.35 }, true);
+  const trim = K.mat('sb_trim_brushed_alu', { color: 0xb3abd8, metalness: 0.9, roughness: 0.3 });
+  const seamM = K.mat('sb_seam_rubber', { color: 0x17122e, roughness: 0.8, metalness: 0.1 });
+  const trayM = K.mat('sb_tray_anodised', { color: 0x6f62c2, metalness: 0.45, roughness: 0.5 });
+  const lamp = K.mat('sb_scanlamp', { color: 0x111111, emissive: 0xd2c2ff, emissiveIntensity: 14.0 }); lamp.userData.txSurface = false;
+  const footM = K.mat('sb_foot_rubber', { color: 0x1a1628, roughness: 0.85 });
+  const rubber = K.mat('sb_roller_rubber', { color: 0x231c3c, roughness: 0.6 });
+  const glass = new THREE.MeshPhysicalMaterial({ name: 'sb_smoke_glass', color: 0x2b2356, metalness: 0, roughness: 0.05, transparent: true, opacity: 0.26, clearcoat: 1, clearcoatRoughness: 0.03, depthWrite: false, side: THREE.DoubleSide });
+  glass.userData.txSurface = 'glass';
+  const BW = 0.56, BD = 0.40, ZF = BD / 2, CY = 0.374, TOP = 0.5;
+  [[-0.24, 0.16], [-0.24, -0.16], [0.24, 0.16], [0.24, -0.16]].forEach(([x, z]) => cyl(0.026, 0.03, 0.02, footM, x, 0.01, z, eng));
+  const plinth = box(BW + 0.04, 0.03, BD + 0.03, 0.012, trim, 0, 0.035, 0, eng);                      /* satin plinth */
+  box(BW, 0.30, BD, 0.05, graphite, 0, 0.2, 0, eng);                                                   /* graphite body */
+  box(BW + 0.012, 0.024, BD + 0.012, 0.011, trim, 0, 0.362, 0, eng);                                   /* satin cap band */
+
+  /* the front: a horizontal and two vertical panel seams, a slim lilac status strip, a vent of seven slots */
+  [-0.2, 0.2].forEach(x => box(0.004, 0.22, 0.003, 0.0012, seamM, x, 0.2, ZF + 0.0006, eng, true));
+  box(0.4, 0.004, 0.003, 0.0012, seamM, 0, 0.27, ZF + 0.0006, eng, true);
+  box(0.15, 0.007, 0.004, 0.002, K.mat('sb_status_lamp', { color: 0x111111, emissive: 0xb9a8ff, emissiveIntensity: 2.2 }), -0.09, 0.305, ZF + 0.001, eng, true);
+  for (let i = 0; i < 7; i++) box(0.13, 0.006, 0.004, 0.002, seamM, 0.1, 0.1 + i * 0.019, ZF + 0.0008, eng, true);
+  for (let i = 0; i < 5; i++) box(0.003, 0.007, 0.14, 0.002, seamM, -BW / 2 - 0.0004, 0.12 + i * 0.022, -0.03, eng, true);
+
+  /* THE READ CHAMBER. In (z, y): the glass rakes from (0.185, CY) up and back to (0.115, TOP); a satin top plate runs back to
+   * the slot at z -0.01 to -0.03; a solid graphite block fills the rest. Both ends are smoked glass too. */
+  const GZ0 = 0.185, GZ1 = 0.115, SZ = -0.02, RW = 0.5;
+  { const rake = Math.atan2(GZ0 - GZ1, TOP - CY), gl = Math.hypot(GZ0 - GZ1, TOP - CY);
+    const pane = new THREE.Mesh(new THREE.BoxGeometry(RW, gl, 0.005), glass); pane.position.set(0, (CY + TOP) / 2, (GZ0 + GZ1) / 2); pane.rotation.x = -rake; pane.userData.txBevel = false; eng.add(pane);
+    const sh = new THREE.Shape(); sh.moveTo(GZ0, CY); sh.lineTo(GZ1, TOP); sh.lineTo(-0.08, TOP); sh.lineTo(-0.08, CY); sh.closePath();
+    const sg = new THREE.ExtrudeGeometry(sh, { depth: 0.005, bevelEnabled: false });
+    [-1, 1].forEach(s => { const m = new THREE.Mesh(sg, glass); m.rotation.y = -Math.PI / 2; m.position.x = s * RW / 2 + (s < 0 ? 0.005 : 0); m.userData.txBevel = false; eng.add(m); });
+    /* satin rails on every glass edge */
+    box(RW + 0.03, 0.014, 0.018, 0.006, trim, 0, CY + 0.007, GZ0, eng);
+    [-1, 1].forEach(s => { const p = box(0.016, gl + 0.01, 0.016, 0.006, trim, s * (RW / 2 + 0.006), (CY + TOP) / 2, (GZ0 + GZ1) / 2, eng); p.rotation.x = -rake;
+      box(0.016, 0.016, GZ1 + 0.08, 0.006, trim, s * (RW / 2 + 0.006), TOP, (GZ1 - 0.08) / 2, eng); });
+    box(RW + 0.03, 0.016, 0.13, 0.006, trim, 0, TOP + 0.002, (GZ1 + -0.01) / 2 + 0.0025, eng);                       /* top plate */
+    box(BW - 0.02, TOP - CY + 0.008, 0.11, 0.02, graphite, 0, (CY + TOP) / 2 + 0.003, -0.135, eng);                 /* rear block */
+    box(RW + 0.03, 0.016, 0.05, 0.006, trim, 0, TOP + 0.002, -0.055, eng);                                        /* the cover behind the slot */
+    box(RW, 0.004, GZ0 + 0.08, 0.0015, K.mat('sb_chamber_floor', { color: 0x1a1340, roughness: 0.7, emissive: 0x3a2a9a, emissiveIntensity: 0.35 }), 0, CY + 0.002, (GZ0 - 0.08) / 2, eng, true);
+    const pl = new THREE.PointLight(0xb4a2ff, 0.18, 0.5, 2); pl.position.set(0, 0.45, 0.08); eng.add(pl); }
+
+  /* THE ROLLER, behind the falling page, and a lower idler, both rubber on satin hubs */
+  const RR = 0.025, RZ = SZ - RR, RYc = 0.44;
+  { const r1 = cyl(RR, RR, RW - 0.03, rubber, 0, RYc, RZ, eng, 40); r1.rotation.z = Math.PI / 2;
+    [-1, 1].forEach(s => { const h = cyl(RR * 0.6, RR * 0.6, 0.012, trim, s * (RW / 2 - 0.02), RYc, RZ, eng, 32); h.rotation.z = Math.PI / 2; });
+    const r2 = cyl(0.012, 0.012, RW - 0.06, rubber, 0, 0.395, RZ - 0.04, eng, 28); r2.rotation.z = Math.PI / 2; }
+
+  /* THE INFEED LIP: a short satin plate rising up and back from the slot at 60 degrees. Plain, no posts, no bar. */
+  const LEAN = 60 * Math.PI / 180, OUT = 0.12, LL = 0.1;   /* shorter and narrower than the page, so the bare page overhangs it */
+  { const lip = new THREE.Group(); lip.position.set(0, TOP + 0.002, SZ); lip.rotation.x = LEAN; eng.add(lip);
+    box(0.18, 0.007, LL, 0.003, trayM, 0, -0.006, -LL / 2, lip);
+    if (!(Math.sin(LEAN) > 0.8)) throw new Error('the lip must rise up and back'); }
+
+  /* THE ANSWER: one bare typed page, 0.279 m. From its trailing edge: OUT on the lip, then straight down VD past the scan
+   * bar, round the roller, and flat on under the rear block. Its swallowed share is computed and checked. */
+  const PW = 0.216, PD = 0.279, VD = TOP - RYc, ARC = RR * Math.PI / 2, FLAT = PD - OUT - VD - ARC;
+  const SWALLOW = (PD - OUT) / PD;
+  if (!(FLAT > 0.02 && SWALLOW > 0.45 && SWALLOW < 0.62)) throw new Error('the page must be about half swallowed, at ' + SWALLOW.toFixed(2));
+  const BARY = 0.466, CW = 864, CHh = 1116, rowRead = Math.round((OUT + (TOP - BARY)) / PD * CHh);
+  const pageAlb = CH.canvasTex(THREE, CW, CHh, (g, w, h) => { const r = CH.rng(2117);
+    g.fillStyle = '#f4f0f2'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 3000; i++) { g.fillStyle = 'rgba(110,100,130,' + (r() * 0.04).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1); }
+    g.fillStyle = 'rgba(52,46,84,0.75)'; g.fillRect(60, 70, 240, 16); g.fillRect(320, 70, 110, 16); g.fillRect(60, 110, 150, 12);
+    g.strokeStyle = 'rgba(70,60,130,0.95)'; g.lineWidth = 12; g.strokeRect(w - 268, 40, 212, 132);     /* the empty score box */
+    g.strokeStyle = 'rgba(70,60,130,0.85)'; g.lineWidth = 6; g.strokeRect(56, 210, w - 112, 870);
+    g.fillStyle = 'rgba(70,60,130,0.85)'; g.fillRect(56, 210, 14, 870);
+    g.fillStyle = 'rgba(36,30,66,0.9)';
+    for (let y = 250; y < 1050; y += 38) { let x = 100; const end = w - 96 - (r() < 0.2 ? 120 + r() * 200 : r() * 40); while (x < end) { const ww = 18 + r() * 60; if (x + ww > end) break; g.fillRect(x, y, ww, 16); x += ww + 13; } } });
+  const pageEmi = CH.canvasTex(THREE, CW, CHh, (g, w, h) => { g.fillStyle = '#000'; g.fillRect(0, 0, w, h);
+    g.fillStyle = 'rgb(120,98,235)'; g.fillRect(0, rowRead, w, h - rowRead);
+    const gr = g.createLinearGradient(0, rowRead - 16, 0, rowRead + 16); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.35, 'rgba(255,255,255,0.95)'); gr.addColorStop(0.5, 'rgba(255,255,255,1)'); gr.addColorStop(0.65, 'rgba(255,255,255,0.95)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, rowRead - 16, w, 32); });
+  { const geo = new THREE.PlaneGeometry(PW, PD, 1, 160), p = geo.attributes.position, up = [Math.sin(LEAN), -Math.cos(LEAN)];
+    for (let i = 0; i < p.count; i++) { const t = PD / 2 - p.getY(i); let z, y;
+      if (t <= OUT) { z = SZ + 0.004 + (OUT - t) * up[1]; y = TOP + 0.004 + (OUT - t) * up[0]; }
+      else if (t <= OUT + VD) { z = SZ + 0.004; y = TOP + 0.004 - (t - OUT); }
+      else if (t <= OUT + VD + ARC) { const ph = -(t - OUT - VD) / RR; z = RZ + (RR + 0.004) * Math.cos(ph); y = RYc + (RR + 0.004) * Math.sin(ph); }
+      else { z = RZ - (t - OUT - VD - ARC); y = RYc - RR - 0.004; }
+      p.setXYZ(i, p.getX(i), y, z); }
+    geo.computeVertexNormals();
+    const pm = new THREE.MeshStandardMaterial({ name: 'sb_paper_sheet', map: pageAlb, color: 0xf2eef4, roughness: 0.86, metalness: 0, emissive: new THREE.Color(0xc8b8ff), emissiveMap: pageEmi, emissiveIntensity: 1.25, side: THREE.DoubleSide });
+    pm.userData.txSurface = 'paper';
+    const page = new THREE.Mesh(geo, pm); page.castShadow = true; page.receiveShadow = true; page.userData.txBevel = false; eng.add(page); }
+  /* THE SCAN BAR: across the falling page inside the glass, 9 mm in front of it, the brightest lilac in the frame */
+  { box(RW - 0.06, 0.009, 0.007, 0.003, lamp, 0, BARY, SZ + 0.013, eng, true);
+    [-1, 1].forEach(s => box(0.016, 0.02, 0.014, 0.004, trim, s * (RW / 2 - 0.022), BARY, SZ + 0.013, eng));
+    [-0.09, 0, 0.09].forEach(x => { const gw = CH.lampGlow(THREE, R, [x, BARY, SZ + 0.02], 0xb9a4ff, 0.09); gw.material.opacity = 0.55; });
+    const sp = new THREE.SpotLight(0xc4b4ff, 0.9, 0.2, 0.9, 0.7, 2); sp.position.set(0, BARY, SZ + 0.03); sp.target.position.set(0, BARY, SZ); eng.add(sp); eng.add(sp.target);
+    if (Math.abs(rowRead - (OUT + TOP - BARY) / PD * CHh) > 0.5 || !(rowRead > 300 && rowRead < 1000)) throw new Error('the scan line must cross the typed lines at the bar'); }
+
+  TXT.add(R, eng); TXT.contact(R, eng, { opacity: 0.7 });
+
+  /* THE PERSON'S STATION, built before the camera so each trial lens can place it */
+  /* THE PERSON'S STATION, later in the story: a small desk deeper on the sweep, a desk lamp switched OFF with a lilac grey
+   * shade (no gold, nobody's score yet), an empty in tray and an empty chair. Its foot is placed where a ray through
+   * screen point (840, 840) meets the floor, then turned to face the lens. Nothing on it glows. */
+  const station = new THREE.Group();
+  { const desk = K.make('desk', { w: 1.1, d: 0.6, h: 0.74, pedestal: 'left', wood: 0x463c62, pulls: 'brushed' }); station.add(desk);
+    /* the hazed desk takes a flat matte laminate, no veneer grain to wave at feed size */
+    desk.traverse(m => { if (m.isMesh && m.material && !Array.isArray(m.material) && m.material.map) { const c = m.material.clone(); c.map = null; c.color = new THREE.Color(0x433a5e); c.roughness = 0.7; c.name = 'sb_desk_laminate'; m.material = c; } });
+    const chair = K.make('office_chair', { style: 'task', color: 0x3c3462, arms: true }); chair.position.set(0.12, 0, -0.5); station.add(chair);
+    const shadeM = K.mat('sb_lamp_shade_paint_off', { color: 0x8a84a3, metalness: 0.2, roughness: 0.55 });
+    const armM = K.mat('sb_lamp_arm_steel', { color: 0x4a4466, metalness: 0.7, roughness: 0.4 });
+    const lx = -0.42, lz = -0.14, ly = 0.74;
+    cyl(0.075, 0.085, 0.022, armM, lx, ly + 0.011, lz, station, 40);
+    const a1 = cyl(0.009, 0.009, 0.26, armM, lx + 0.045, ly + 0.14, lz, station, 16); a1.rotation.z = -0.35;
+    const a2 = cyl(0.009, 0.009, 0.24, armM, lx + 0.18, ly + 0.29, lz + 0.02, station, 16); a2.rotation.z = 1.05;
+    const sh = new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.13, 40, 1, true), shadeM); sh.material.side = THREE.DoubleSide; sh.position.set(lx + 0.3, ly + 0.25, lz + 0.03); sh.rotation.z = 0.5; sh.castShadow = true; station.add(sh);
+    cyl(0.03, 0.03, 0.05, shadeM, lx + 0.27, ly + 0.31, lz + 0.03, station, 24).rotation.z = 0.5;
+    const tm = K.mat('sb_intray_powdercoat', { color: 0x6a6290, metalness: 0.3, roughness: 0.55 }), tx = 0.28, tz = 0.06, ty = ly + 0.004;
+    box(0.26, 0.006, 0.33, 0.002, tm, tx, ty, tz, station);
+    [-1, 1].forEach(s => { box(0.006, 0.05, 0.33, 0.002, tm, tx + s * 0.127, ty + 0.025, tz, station); box(0.26, 0.05, 0.006, 0.002, tm, tx, ty + 0.025, tz + s * 0.162, station); }); }
+  const vertsOf = (o) => { const pts = []; o.updateMatrixWorld(true); o.traverse(m => { if (!m.isMesh) return; const p = m.geometry.attributes.position, v = new THREE.Vector3(); for (let i = 0; i < p.count; i += 5) { v.fromBufferAttribute(p, i).applyMatrix4(m.matrixWorld); pts.push([v.x, v.y, v.z]); } }); return pts; };
+  const extOf = (pts) => { let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; pts.forEach(p => { const q = CH.project(THREE, R, p); x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); }); return [x0, y0, x1, y1]; };
+  const glyphs = []; ['#hook', '.dek'].forEach(q => { const rg = document.createRange(); rg.selectNodeContents(document.querySelector(q)); Array.prototype.forEach.call(rg.getClientRects(), r => glyphs.push([r.left - 18, r.top - 18, r.right + 18, r.bottom + 18])); });
+  const hitsType = (e) => glyphs.some(g => e[0] < g[2] && e[2] > g[0] && e[1] < g[3] && e[3] > g[1]);
+  TXT.add(R, station);
+
+  /* THE CAMERA, fitted rather than guessed. For each trial eye height (lowest that still sees into the chamber first), the
+   * distance is the nearest at which the satin plinth spans PLW of the frame width on its own projected vertices; the
+   * engine's foot is set at y 1172 and centred at x 480; it must stay off every glyph. The station's foot is then searched
+   * up the screen at x 860 for the first floor point at least 2.5 m behind the engine, off every glyph. First trial that
+   * passes both wins. */
+  const AZ = -26 * Math.PI / 180, FOV2 = FOV, C = [0, 0.27, 0.05], EP = vertsOf(eng), PP = vertsOf(plinth);
+  const span = (pts) => { const e = extOf(pts); return (e[2] - e[0]) / 1080; };
+  let from = null, look = null, placed = null, plinthFrac = 0, engExt = null;
+  const tryEye = (EYE, PLW) => {
+    let d = 0.5; for (; d <= 6; d += 0.01) { from = [C[0] + d * Math.sin(AZ), EYE, C[2] + d * Math.cos(AZ)]; look = CH.aim(THREE, R, TXT, from, C, 540, 900, FOV2); TXT.frame(R, { fov: FOV2, from, look }); if (span(PP) <= PLW) break; }
+    let sx = 540, sy0 = 900; for (let k = 0; k < 4; k++) { const e = extOf(EP); sx -= (e[0] + e[2]) / 2 - 480; sy0 -= e[3] - 1172; look = CH.aim(THREE, R, TXT, from, C, sx, sy0, FOV2); TXT.frame(R, { fov: FOV2, from, look }); }
+    const e = extOf(EP); if (e[0] < 64 || e[2] > 1016 || e[3] > 1192 || hitsType(e)) return false;
+    const ray = new THREE.Raycaster(); R.camera.updateMatrixWorld(true); let best = null;
+    for (let sy = 1180; sy >= 560; sy -= 4) {
+      ray.setFromCamera(new THREE.Vector2(860 / 540 - 1, 1 - sy / 675), R.camera);
+      const hit = new THREE.Vector3(); if (!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hit)) continue;
+      if (hit.z < -10) break;
+      station.position.copy(hit); station.rotation.y = Math.atan2(from[0] - hit.x, from[2] - hit.z) + 0.35; station.updateMatrixWorld(true);
+      const se = extOf(vertsOf(station)); if (hitsType(se) || se[2] > 1030) continue;
+      best = { p: hit.clone(), r: station.rotation.y, z: hit.z }; if (hit.z <= -2.5) break;
+    }
+    if (!best || best.z > -2.0) return false;
+    station.position.copy(best.p); station.rotation.y = best.r; placed = best; plinthFrac = span(PP); engExt = e; return true;
+  };
+  let won = null;
+  for (const PLW of [0.52, 0.49, 0.46]) { for (const EYE of [0.64, 0.6, 0.7, 0.56, 0.76]) { if (tryEye(EYE, PLW)) { won = [EYE, PLW]; break; } } if (won) break; }
+  if (!won) throw new Error('no trial lens frames the engine at 45 percent with the station clear of the type');
+  if (plinthFrac < 0.45) throw new Error('the plinth spans only ' + plinthFrac.toFixed(3) + ' of the frame width');
+  document.body.dataset.plinthFrac = plinthFrac.toFixed(3);
+  console.warn('PLINTH ' + plinthFrac.toFixed(3) + ' eye ' + won[0] + ' station z ' + placed.z.toFixed(2));
+  TXT.contact(R, station, { opacity: 0.5 });
+
+
+  /* THE KEY: big, soft, near white, high and from the lens side, so the page is the brightest value in the frame */
+  const spec = CH.rigSpec(W, 12, 4096); spec.key = Object.assign({}, spec.key, { radius: 9, color: 0xf6f0ff });
+  spec.rim = Object.assign({}, spec.rim, { color: 0xb8a8ff });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.3, 0.3, -0.8], { distance: 10, shadowFar: 24, normalBias: 0.003 }), { light: { az: 10, el: 50 } }));
+  CH.unacne(R, 0.003);
+  R.scene.traverse(l => { if (l.isDirectionalLight && l.castShadow && 'intensity' in l.shadow) l.shadow.intensity = 0.6; });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  CH.seat(cx, { a: 0.34, fade: 280 });
+  CH.seat(cx, { sel: '.dek', a: 0.26, fade: 180 });
+  ['.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 110 }));
+  CH.seat(cx, { sel: '.kick', a: 0.42, fade: 190 });
+  CH.seat(cx, { sel: '.count', a: 0.38, fade: 170 });
+  TXLOOK.footWash(cx, { a: 0.3, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

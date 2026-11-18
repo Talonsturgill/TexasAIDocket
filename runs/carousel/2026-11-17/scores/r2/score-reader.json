@@ -1,0 +1,69 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Most frames are bespoke images made for their own sentence. Slide 5 is the showstopper. Three paper columns are built at true scale at 0.1 mm a sheet, with a person looking up at the 64,489 tower in a dusk plaza with long shadows, and a reader feels the 23 times rise before reading a numeral. Slide 8 has a Dallas County limestone tablet with raised tiles that cast under a low key. Slide 2 is a paper strata relief beside a measuring rod. Slides 6 and 9 are lamplit desk scenes. Each frame differs from its neighbours in world, camera and scale. Slide 7 is what holds the score down. The storyboard asked for a 40 cm macro running corner to corner, fanned, with the stack spanning at least 900 px. The render is a stack seen flat from the front, spanning about 380 of 1080 px. The left half of the frame is empty violet, and two muddy dark wash blobs sit behind the headline and the body text, which reads as type on plates. The one gilded edge is a hairline that disappears at 432 px. Slide 4's machine and reader are small on a large rose field. Slide 8's 'gold' raised tiles render salmon pink rather than the dusk gold accent."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds across all nine frames: the violet and rose watch tone, one serif headline face, a mono kicker and counter, and the site line. The bookend works. Slide 1 leaves the desk dark behind the machine and slide 9 lights that desk at the end of a gold chute. The recurring typed page is easy to follow on slides 1, 4, 6 and 9. The accent mostly means 'a person's score', on the tabs on 3, the lamp on 4, 6 and 9 and the gilt line on 7. On slide 8, though, the raised tiles read coral pink rather than gold, so the accent's one meaning blurs on the frame where it carries the data. The story runs in order."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral I checked traces to claims.json or computed.json. 2,758, 21,620, 64,489 and 13,300 trace to c1 to c4. 23 is the floor of 64489/2758, and 200 is 100 divided by 0.5. 34% and 5,100 trace to c8, $50 to c6, 3,000 to c20, 25 percent to c13 and c22, and 6 to 7 times, $15 million to $20 million and four to five times to c19, c10 and c11. The design figures are held to TEA's December 2023 and March 2024 primary PDFs, and slide 4 dates the design in its text. Slide 7 sets 13,300 raised against fewer than half of one percent changed, which is honest framing. One deduction: every 2026 count rests on a single Texas Tribune article. The run reports that TEA pages returned 404, so this is disclosed, but nothing confirms the counts independently. A second, smaller one: the slide 1 headline says in the present tense 'A machine reads English STAAR answers first', from 2023 and 2024 documents. The caption's closing question admits it is unknown whether the design still holds. Also, 'English STAAR' can read as the English subject rather than the English-language test until slide 6 mentions Spanish."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened (the machine scores first, at least 25 percent also go to people, rescore requests rose 23 times), who decided (TEA), where (statewide, with Dallas ISD as the named place), and one action (a district can ask for a person, $50 a test, waived if the score changes). The action is for a district only. Most feed readers are parents or teachers, and the deck never tells them how to reach that lever, for example asking their district. It also names no window or deadline for a rescore request. It never says why districts spent the money, meaning what a raised reading score changes for a school or a student. So the stake stays general: 'scores went up', with no consequence."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook is clear and earns the swipe. Slide 2 pays at once with TEA's reason. The turn is declared and visible at slide 5 ('Then the requests multiplied'), and the cut to the lamplit room on slide 6 marks the return to people. The close names an action. Slide 3, on the training data, could move or be cut without loss. The pacing also sags after the slide 5 peak through slides 6 and 7, two quiet frames before the Dallas payoff."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register. It is fair to TEA without boosterism and honest about the costs, and I found no banned words, colons or dashes. The repeated 'drawn to illustrate' tag appears on eight of nine slides, and once on slide 3 as 'The drawer is drawn to illustrate', which is mechanical and reads like a machine's disclaimer rather than a Texan writing. Apart from Dallas ISD there is no regional texture: no other district and nothing about what STAAR means to a family in July. The caption's 'Their score counted.' is a flat fragment."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The topic (education assessment) is fresh, and the bespoke techniques vary within the deck: an instrument render, a strata relief, an archive macro, a cutaway, a true-scale plaza, an interior, a stack, a county relief and a studio close. The one familiar move is the office desk, chair and lamp from the kit, which carries slides 1, 4, 6 and 9. The storyboard itself notes that November 15th's desk room is close."
+  }
+ ],
+ "weighted_score": 7.53,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make the close a reader's action, not only a district's: say how a parent or teacher gets a rescore requested through their district and by when, and add a computed statewide share of rescores that came back higher next to Dallas's 34%, so a Texan knows whether to ask and what the odds are.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The stack is seen flat from the front and spans about 380 of 1080 px against the storyboard's 900. The left half of the frame is dead violet, dark wash blobs sit behind the headline and the body text, and the single gilded edge is an invisible hairline at feed size.",
+   "fix": "Re-shoot it as the planned 40 cm macro with the stack edge running corner to corner and filling the frame, sheets slightly fanned and raked by a side key so the one gilt edge catches a highlight. Then drop the wash blobs, because the out-of-focus sweep will give the type its quiet."
+  },
+  {
+   "slide": 4,
+   "problem": "The cutaway machine, the chute and the reader sit small on a diagonal across a mostly empty rose sweep, so the fork, one page in four rising to a person, doesn't read as one silhouette at 432 px.",
+   "fix": "Push the camera in until the cutaway housing and chute fill at least half the frame width, and crop the reader's lamp pool off the right edge so the rising gold page is the focal point."
+  },
+  {
+   "slide": 8,
+   "problem": "The raised 'gold' tiles render salmon pink and sit close in value to the cream unraised tiles, so the 34 of 100 reads as noise rather than a count, and the accent's meaning breaks.",
+   "fix": "Give the raised tiles the true dusk gold #E0956A in satin metal and drop the cream tiles a step in value, so the 34 raised tiles separate at a glance under the low south-west key."
+  }
+ ]
+}
