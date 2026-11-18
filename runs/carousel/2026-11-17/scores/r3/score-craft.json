@@ -1,0 +1,80 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.1,
+   "why": "Each frame was scored against THE SLIDE BAR and the LOOK V2 showstopper test, from the 1600x2000 renders and the contact sheet. Per-frame scores were 1=7.0, 2=6.0, 3=7.5, 4=7.0, 5=8.0, 6=7.5, 7=7.0, 8=7.5, 9=7.5, a mean of 7.22. I took it down to 7.1 because three frames (1, 4, 9) have subjects under the v2 half-frame fill. Every frame is its own picture made for its own sentence, and the v2 colour holds everywhere: violet and navy shadows, no black field, accent pills absent but none needed. The best frame is still slide 5. The r2 lean is fixed: the tall column now stands plumb, x about 1170 to 1260 at both top and base. A 1.75 m figure against the 64,489 column gives a true scale check. The kraft ream bands that would let a reader count were never added. Slide 8 is a material relief with real height, cast shadows and county seams. I counted the raised orange stacks and there are 34 of 100, matching the headline. Slide 3 is a composed one-point macro with the detail on the gold check tabs. Slide 6 lost its r2 floating foot and its stray left-edge slab. One new tangency remains: the window mullion at x about 590 drops straight onto the lamp shade's tip at y about 400, so the lamp reads as hung from the ceiling. Slide 7 was rebuilt as the planned diagonal macro of a page stack with shallow depth of field. That is a real improvement over r2's flat slab. The gilded page is now an orange line about 10 px thick at display, roughly 3 px at 432. It is paler than the page faces and not the brightest thing in the frame. There is no tray, and the stack floats on a mauve blur. Slide 4 now reads as one in four at full size: three pages sit in the side tray and one rides the gold ramp to the person. At 432 the pages are about 25 px and the ratio barely holds. The left third is still empty pink, and the dark wash under the body type (y 560 to 900) is close to a plate. Slide 2 is unchanged from r2 and holds the score down. It is a flat orthographic elevation with a streaky, aliased strata texture. The top bundle has a blown white edge, the slips look pasted on, and the hard diagonal cast plates on the floor read as cut paper, not light. Slide 1's machine is still a rounded-box printer close to a primitive, and it fills well under half the frame. Slide 9's empty chair under the lamp and gold chute is a good close. Its machine is cropped hard off the right edge, and the lower half is flat magenta. Several frames are strong and one weak frame plus two soft ones put this just above the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds across all nine frames. There is one watch-tone violet-to-magenta palette and grade. The furniture is identical: Fraunces headlines, Manrope body, JetBrains Mono kicker, counter, claim ids and site line, all at constant positions. The gold accent keeps one meaning, a person's score or route. It appears on the tabs (3), the ramp (4), the lamp pool (6), the gilded page (7), the raised stacks (8) and the chute and lamp (9). The bookend works: the dim desk behind the machine on 1 becomes the lit desk at the end of the gold chute on 9. The story runs in order with the turn on 5. Two small spine breaks: the blue shirt on 5 is the one off-tone hue, and slide 7's blurred void sits outside the built worlds the others stand in."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "These slide numerals trace to the claim ids the slides cite: 2,758, 21,620 and 64,489 (c1 to c3), 13,300 (c4), 34% and 5,100 (c8), $50 (c6), 3,000 (c20), $15M to $20M, 6 to 7 and four to five (c18, c19, c11), and 25 percent (c13, c22). The 23x and the 1 in 200 are derived figures. No colons, dashes or banned words appear on the slides or in the caption. The slide 8 relief's drawn count matches its claim (34 raised stacks). The 2025 and 2026 counts rest on Texas Tribune journalism, labelled as such on every slide that uses them. That is the one 7-descriptor lean. Slide 8's 'each tile ... is one in a hundred' could be read as one tile per 100 tests rather than one percent. Slide 7 draws exactly 1 in 200 for 'fewer than half of one percent', which illustrates the upper bound and stays honest."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (an engine scores English STAAR written answers first), who decided it (TEA), where (statewide, with Dallas ISD named on 8) and what a district can do (slide 9: ask for a person, $50 a test, waived if the score changes). No rescore request window or deadline is named on 9 or in the caption, so the action has no when."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover headline earns the swipe, and slide 2 pays at once with the reason (the volume and the cost). 'Then the requests multiplied' on 5 is a real, declared turn, and 9 closes on agency. Slide 3 (training data) could merge into 4 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. It is fair to TEA, giving the cost case on 2 and the under-half-a-percent figure on 7, without doom. It reads as a careful reporter more than as a Texan who knows schools. Slide 9's 'TEA's scoring documents and the Texas Tribune's October 7th report have the detail' is a flat closing line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The subject and palette are fresh against the November 14th to 16th decks. Office desks and chairs recur on 1, 4, 6 and 9 two days after a school desks deck, and slide 8's tiled county relief repeats the November 14th relief move."
+  }
+ ],
+ "weighted_score": 7.37,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is the round cap. The score is under the round's 7.7 rung by 0.33, and the deck ships with that shortfall named. I found no hard fail: machine_qa reports 0 fails, the slide 8 count matches its claim, and no unfinished frame.",
+ "one_sentence_fix": "Rebuild slide 2 as a three-quarter raking view of the 1 against 7 bundles, keyed from the upper left so each bundle casts a soft shadow onto the next, with real sheet-edge displacement in place of the aliased streak texture and the slips seated into the strata, because it is now the one frame still well below the deck's level and it is the frame that has to make 'six to seven times' felt as weight.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "Unchanged since r2. A flat orthographic elevation with a streaky, aliased strata texture, a blown white edge on the top bundle, slips that look pasted on, and hard diagonal cast plates on the floor that read as cut paper.",
+   "fix": "Rotate the relief camera to a three-quarter view about 25 degrees above the floor with a raking upper-left key, and swap the streak texture for fine per-sheet edge displacement so the bundles read as stacked paper weight."
+  },
+  {
+   "slide": 7,
+   "problem": "The gilded page, the frame's whole idea, is a pale orange line about 3 px at 432 that is not the brightest thing in the frame. The stack floats on a mauve blur with no tray or surface contact.",
+   "fix": "Fan the gilded sheet out 3 to 4 mm and give it a metallic gold material that catches the key as a specular highlight, then seat the stack in the planned worn graphite tray with a contact shadow."
+  },
+  {
+   "slide": 4,
+   "problem": "The one-in-four pages are about 25 px at 432, the left third of the frame is empty pink, and the dark wash under the body type (y 560 to 900) reads close to a plate.",
+   "fix": "Dolly in and shift the camera left so the engine, the three tray pages and the one ramp page fill the lower 60 percent, with the pages at least twice their current size, and thin the type wash to the tone's deep hue."
+  },
+  {
+   "slide": 1,
+   "problem": "The machine is still a rounded-box printer close to a primitive, and it fills well under half the frame on a bare sweep.",
+   "fix": "Move the camera closer and lower so the engine fills more than half the frame, and add one built-in reading detail, such as a lit scan bar crossing the answer sheet, that makes it a scoring engine rather than a printer."
+  },
+  {
+   "slide": 6,
+   "problem": "The window mullion at x about 590 drops exactly onto the lamp shade tip at y about 400, a tangency that makes the lamp read as hanging from the ceiling.",
+   "fix": "Move the mullion 80 to 120 px left, or angle the lamp arm lower, so the shade sits clear against the skyline."
+  }
+ ]
+}

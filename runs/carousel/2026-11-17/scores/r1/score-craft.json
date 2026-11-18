@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Per frame, against THE SLIDE BAR and the LOOK V2 showstopper test. Strongest is slide 5: three paper columns on a dusk plaza with a person for scale. Measured on the PNG, the tall column is about 3.7 person heights, roughly 6.4 m, which matches 64,489 sheets at 0.1 mm, and the middle column and the knee-high cube follow the same scale. The cast shadows agree and the frame could only belong to its sentence (8). Slide 2 is a true relief, 55 units of height, 10 materials and a cast fraction of 0.26 in render_report. It sets one bundle against seven beside a ruler, and the type column sits in quiet the art left for it (7.5). Slide 3 is a deep card drawer with salmon check tabs in strong perspective (7.5). Slide 8 is a tile relief over a county map with hard cast shadows and raised stacks for higher scores (7.5). Slides 1, 7 and 9 are solid but flawed (about 7). Slide 1 is a rounded machine on a plinth, but it fills under half the frame and the background desk is a near-invisible ghost. Slide 7 is a tilted rack of pages that reads abstractly, and its 'gilded' edges render orange-red, not gold. Slide 9 has the chute defects its own preflight names: a mottled deck with a navy hole, a lip that cuts into the tray, an unsourced pink floor patch under the chair, and a navy slab floating top right. Two frames pull the score down. Slide 6 has a primitive hand with sausage fingers and a capsule pen that it doesn't grip. The '06 / 09' counter sits on the wrist, and an unexplained maroon limb shape intrudes at the right edge around y 1550 to 1800 of 2000. The bottom 45 percent is a flat violet desk-edge band that works as a type plate (5.5). Slide 4 encodes one in four well, three pages on the tray and one going up the chute to a person. But the subject sits in the bottom 40 percent on a mottled noise cloud field, so the objects float in a smoky void, and the top half is noise behind the type (6.5). On colour the deck passes v2: the preflight probes measured vivid 0.92 to 0.95, grey middle 0.0 and near black under 0.07. The 7 descriptor allows one frame on a default. Here two frames clearly lean on one and a third has visible artifacts, so the score sits just under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Read as a bespoke deck, the spine holds. It keeps one violet-to-magenta watch palette and grade, the same type faces at the same furniture sizes, the counter, the site line and the claim ids on all nine. The headline sits in at least five places: top centre on 1, 3 and 8, left column on 2 and 5, top left on 4, right on 7, bottom on 6 and 9. The warm accent mostly means 'a person's score': the lamp on 4, 6 and 9, the chute to the person on 4 and 9, the gilded pages on 7, the raised tiles on 8. The machine-to-desk motif turns from the dark desk on 1 to the fork on 4 to the lit desk and chute on 9, and that is a real through line. The story runs in order with a declared turn on 5. One soft spot: the salmon check tabs on 3 mark people's scores in a different hue from the gold chute and gilt, so the accent reads slightly two ways."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral I saw on the slides is in figures.json with its claim ids: 2,758, 21,620, 64,489, 23, 13,300, 5, 4, 25, 3,000, 15 to 20 million, 4 to 5, 6 to 7, 5,100, 34, 50. Floors are worded as floors ('more than 13,300', 'at least one in five', 'more than 5,100'). The 25 percent design is pinned to its December 2023 and March 2024 dates on slide 4 and in the caption, which even asks whether it still holds. Every illustrative device is labelled 'drawn to illustrate'. The slide 5 scale checks out on the pixels. I roughly counted about 32 raised tiles on slide 8 against an implied 34 of 100, which is consistent within my counting error. The integrity judge should verify it from the slide code. The growth, the human results, the rescore counts and Dallas ISD all rest on the Texas Tribune, so it is journalism-led wherever TEA data could exist. That keeps this under 9."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (machine-first scoring of English STAAR written answers since December 2023), who decided (TEA), where (statewide, with Dallas ISD named) and what can be done (slide 9: a district can ask for a human rescore at $50, waived if the score changes). No deadline or rescore window is named. The action belongs to a district, and nothing tells a parent how to push their district."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook is clean, and slide 2 pays off at once with the why. The turn on slide 5 is declared in its kicker and is the strongest picture in the deck. The close moves from the dark desk on 1 to the lit desk on 9. Slides 6 and 7 are close to one beat (people rescored, scores rose), and 6 could fold into 7 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "It follows the house rules and is plain: 'Then districts started asking' and 'A district can ask for a person' have some life. It is mostly agency-report register, though. Lines like 'TEA says the redesigned test brings 6 to 7 times more written answers a year' are flat, and beyond Dallas ISD there is little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Per the preflight plan it is distinct from November 14th (wafers and county relief), November 15th (school desks, people tone) and November 16th (gold ribbon, explainer tone). It runs the watch tone across nine worlds, with type in five or more places and no school building. One familiar move: slide 8's county-map relief echoes the November 14th county relief, and the saturated violet sweep is close to the recent v2 decks."
+  }
+ ],
+ "weighted_score": 7.46,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slide 6 around a properly modelled hand gripping a real pen, or remove the hand and show the human mark itself (a rubric score written in a margin), crop out the maroon limb at the right edge, move the art off the counter, and let the desk carry the lower half instead of a flat violet band; then replace slide 4's noise-cloud ground with a lit studio floor so its machine-to-person fork stands on something.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The hand is a primitive with sausage fingers and a capsule pen it doesn't grip. The '06 / 09' counter sits on the wrist. An unexplained maroon limb shape cuts in at the right edge (about y 1550 to 1800 of 2000), and the bottom 45 percent is a flat violet desk-edge band acting as a type plate.",
+   "fix": "Pull the camera back to a three-quarter view of one person's hand writing a score in the margin, with a modelled pen and a mark on the page. Keep the forearm out of the counter's corner, delete the stray limb mesh, and light the desk's front edge so the type seats on wood rather than a flat band."
+  },
+  {
+   "slide": 4,
+   "problem": "The subject is confined to the bottom 40 percent on a mottled noise cloud field. The machine, tray and desk float in a smoky void with no floor contact, and the top half behind the type is noise.",
+   "fix": "Swap the cloud ground for TXT.studio in the watch tone with soft contact shadows. Raise the camera and push in so the machine, the three-page tray and the chute to the seated scorer fill at least half the frame."
+  },
+  {
+   "slide": 9,
+   "problem": "The chute deck is mottled with a pale streak and a hard navy rectangle that reads as a hole, and its lip cuts into the tray and page. A hard-edged pink floor patch under the chair has no source, and a navy slab floats at top right.",
+   "fix": "Give the chute a clean satin gold surface with one cream page partway down, stop the lip just above the tray, delete the unsourced floor light, and crop or remove the top right slab."
+  },
+  {
+   "slide": 1,
+   "problem": "The machine fills under half the frame, the lower front panel is plain, and the background desk, the beat that pays off on slide 9, is hazed to a ghost at 432 px.",
+   "fix": "Push the camera in about 20 percent so the machine fills half the frame. Cut the haze on the dark desk so it reads at feed size, and move it lower right so its lamp clears the dek."
+  },
+  {
+   "slide": 7,
+   "problem": "The 'gilded' pages render orange-red rather than gold, so the accent doesn't read as raised scores. The pages are flat slabs on a blurred violet field with no surface under the rack.",
+   "fix": "Give the raised pages a metallic gold edge material with a warm specular highlight, and seat the rack on a lit tabletop surface with a contact shadow."
+  }
+ ],
+ "notes": [
+  "No hard fail found. All nine slides are ok:true in render_report with no page errors, overflow, missing fonts, canvas text or svg plates. The console lines are SKY/ROOM verdicts or a RELIEF stat, not defects.",
+  "Lead for the showrunner: art_preflight.json still lists needs_review: [1] although the cover has an accept review bound to the same hashes. Confirm panel_ready treats that as resolved.",
+  "Write this JSON to out/2026-11-17/score-craft.json. This judge had no write tool."
+ ]
+}

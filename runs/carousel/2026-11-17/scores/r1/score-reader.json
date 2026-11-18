@@ -1,0 +1,73 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "On a bespoke deck the nine frames really are nine pictures. They differ in world, camera, scale and type position: a machine on a plinth (1), a card drawer (3), a fork with a seated scorer (4), paper towers on a dusk plaza (5), a hand with a pen (6), a tilted page rack (7), a raised tile board on a county relief (8) and a lit desk with a chute (9). Slide 5 is the best frame. At feed size three paper stacks beside a 1.75 m woman make the jump in requests something a reader can feel, and the ratios hold by eye: small 95 px, middle 660 px, tower about 1655 px with perspective. The weaker frames are objects in a gradient, not in a world. Slide 2 is paper stacks floating on flat violet with no ground or contact. Slide 7 is a page rack on a soft blurred sweep, and its gilded edges read as orange stripes, not gilt. Slide 9 has its own preflight defects still visible: a hard navy rectangle like a hole on the chute, the chute lip running through the tray, a pink floor light with no source under the chair, and a navy slab floating top right. Slide 6 crops so tight on a disembodied hand that at 432 px it reads as a stock gesture. That is strong overall with more than one frame leaning on a default, so it sits at 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds across the contact sheet: one violet and magenta watch palette, one serif headline face with the sans dek, mono kicker, counter, cite line and site line on every frame. The accent keeps one meaning, warm gold and salmon for a person or a raised score: the lamp (4, 9), the hand light (6), the gilt pages (7) and the raised tiles (8). The story runs in order. Two things hold it short of a filmstrip. The cover's machine and the slide 9 machine face do not match, which preflight also noted, so the motif that should bookend the deck breaks. Slide 8's flat county relief also sits outside the studio and object language of its neighbours."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral I checked traces to a claim or to computed.json. The checks: 2,758, 21,620 and 64,489 (c1 to c3); 'more than 23 times' (growth 23, 64489/2758 = 23.38); 13,300 (c4); 'at least one in five' (raised_one_in 5, 13300/64489 = 0.206); under half of one percent (c5); 34% of more than 5,100 (c8); $50 (c6); $15M to $20M (c10, and primary c18); 6 to 7 times (c19); about 3,000 (c20); 'at least one in four' and 25 percent (c13, c22). Sources are primary TEA PDFs for the design. Every rescore count leans on the Tribune, and the run says a TEA primary page returned 404, which it recorded honestly in rejected. Two phrasings are looser than they should be. Slide 7 says 'Each page stands for a request' over about 45 drawn pages, when it is a sample, not one page per request. Slide 1's 'has scored ... first' as present continuing practice rests on c9, which is rated medium confidence. The caption's closing question does admit the design documents date to December 2023 and March 2024, which is the right hedge."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened (a machine reads English STAAR written answers first, and rescore requests rose about 23 times), who decided (TEA), and where (statewide, with Dallas ISD as the named case). From the reader's seat three things are missing. (1) The deck never says what a STAAR reading score decides for a child or a school. The run fetched c25, nine campuses and five districts got higher A-F ratings after rescoring, and left it out, so the stake stays abstract. (2) There is no deadline or window. Slide 9 says 'A district can ask for a person' but not by when, and gives a parent no step at all, such as asking their district to file. (3) Slide 7 puts 'more than 13,300 went up' beside 'fewer than half of one percent changed' and never says what each one is a share of, so a reader can't square the two. Clear and accurate, but the stake is general and the action is aimed at an institution, not the reader."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover headline 'A machine reads the STAAR answer first' earns the swipe. Slide 2 pays at once with why (6 to 7 times the answers, $15M to $20M). Slide 5 is a labelled, real turn ('Then districts started asking') with the strongest image. The close lands on an action with the fee terms. Slide 3, on what the engine was built from, could be cut or folded into slide 4 without loss. Slide 6's 'people did every rescore' is also partly repeated on slide 5's 'human rescore'."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register. It follows the house rules: no colons, no em dashes, ordinal dates, no year on October 7th in the caption. It is not alarmist, and the caption's closing question is honest. It does not sound like a Texan who knows schools. There is no line about a classroom, a parent or a STAAR spring, only agency summary. A machine tic also shows in front of the reader: 'drawn to illustrate' closes the body copy on eight of nine slides (1, 3, 4, 5, 6, 7, 8 and the slide 3 'drawer is drawn'). Read in a row it is filler and a giveaway."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Per preflight's distinct_from_recent and the contact sheet, this is the watch tone after people (November 15th) and explainer (November 16th), with type in five places and no school-desks-in-rows. The subject (state test scoring) is new against the November 14th to 16th decks. The one familiar move is the counted-object relief on slide 8, a tile grid on a county map, which repeats the November 14th county relief idea."
+  }
+ ],
+ "weighted_score": 7.16,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slide 9 around the reader's action: name what a STAAR reading score decides (the c25 A-F rating changes, already fetched), say when and how a district files a rescore, and add the one thing a parent can do, which is to ask their district to request one. Then cut the 'drawn to illustrate' tag from the body copy on all eight slides that carry it.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The close frame still shows the preflight's named defects: a hard navy rectangle that reads as a hole in the chute, the chute lip intersecting the tray and page, an unsourced pink light patch under the chair, a navy slab floating top right, and a machine face that does not match the cover machine.",
+   "fix": "Re-model the chute deck as clean satin gold with a cream page partway down. Stop its lip above the tray edge. Delete the floor light patch. Replace the right-edge machine face with the cover's indigo machine and its glowing status strip, so the deck's bookend reads."
+  },
+  {
+   "slide": 2,
+   "problem": "Stacks of paper float on a flat violet field with no ground, contact shadow or room. It is an object in a gradient that reads as a diagram at feed size.",
+   "fix": "Put the 1x stack and the 6 to 7x stack on a lit studio sweep floor with soft contact shadows and a person or desk for scale, and push the camera low so the tall stack runs off the top edge."
+  },
+  {
+   "slide": 7,
+   "problem": "The page rack sits on a blurred sweep with no readable floor, and the 'gilded' raised pages read as flat orange stripes, so the gold that means a person's raised score is lost.",
+   "fix": "Give the raised pages a metallic gold edge material lit by a warm key so they catch a highlight, and ground the rack on a visible sweep floor with a contact shadow."
+  },
+  {
+   "slide": 6,
+   "problem": "A disembodied hand cropped in from the top edge with a pen on a page reads as a generic stock gesture at 432 px, and the scorer's lamp promised by the deck's argument is barely visible.",
+   "fix": "Pull the camera back to show the forearm and the lamp's warm cone on the page, so the gold accent of a person scoring is the light source, not a tint."
+  }
+ ]
+}

@@ -1,0 +1,252 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "fb87a3e82e48c28708c94f0a3131a12881d5522c3ab1861c2ce5f7ccf98c6704",
+    "render/slide-01.png": "3f7a4b381654a9f61f787f9ff4f8a15c84d6ac6cfeaeb68b57479e2b40bb0596",
+    "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "c6f970a4a641e0ce5383ac8292ca31a90430c7dfef8d1c8089380b864d37617b",
+    "render/slide-05.png": "94abca7b2386c33bd04575ebcc49840e4c51660bd19ff18f9bc02b6db8bc4af4",
+    "slides/slide-09.html": "b3bf626272cb7f9ac56fbfcb6e90c25482096538d4a919a475c191f3e7a97a1f",
+    "render/slide-09.png": "539eb78f9b9e51d9e1cb4af44dee8799f042803840baf3851a7e0801339f3914"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 34.2,
+      "mid": 0.531,
+      "dark": 0.011,
+      "grey_mid": 0.0,
+      "vivid": 0.952,
+      "median_C": 70.6
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 27.8,
+      "mid": 0.352,
+      "dark": 0.05,
+      "grey_mid": 0.0,
+      "vivid": 0.926,
+      "median_C": 83.9
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 31.9,
+      "mid": 0.584,
+      "dark": 0.069,
+      "grey_mid": 0.0,
+      "vivid": 0.928,
+      "median_C": 70.2
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "fb87a3e82e48c28708c94f0a3131a12881d5522c3ab1861c2ce5f7ccf98c6704",
+      "render/slide-01.png": "3f7a4b381654a9f61f787f9ff4f8a15c84d6ac6cfeaeb68b57479e2b40bb0596",
+      "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "c6f970a4a641e0ce5383ac8292ca31a90430c7dfef8d1c8089380b864d37617b",
+      "render/slide-05.png": "94abca7b2386c33bd04575ebcc49840e4c51660bd19ff18f9bc02b6db8bc4af4",
+      "slides/slide-09.html": "b3bf626272cb7f9ac56fbfcb6e90c25482096538d4a919a475c191f3e7a97a1f",
+      "render/slide-09.png": "539eb78f9b9e51d9e1cb4af44dee8799f042803840baf3851a7e0801339f3914"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A rounded indigo machine on a lilac plinth with feet, panel seams, a glowing status strip and two vent banks. On its crown is a smoked glass read chamber where the swallowed half of a typed page curls over a dark roller under a lilac scan bar. The trailing half, with header bars, a ruled answer frame and an empty score box, rises from the slot. An unlit desk with its lamp off and an empty chair stands at upper right.",
+        "visual_consequence": "The page is inside the machine under its scan light while the person's desk waits dark behind it. The machine reads first and the person's place comes later.",
+        "weakness": "Only the source changed. The rendered image digest (3f7a4b38...) is the same as the build I accepted last round, and the full frame and tiles match it. The residual notes stand. A page standing up behind a roller is still close to a typewriter shape. The typed lines inside the chamber soften where the scan bar crosses them. The lamp shade sits about 40 native px below the dek's last line. The lower front panel is plain but seamed.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept",
+        "inputs": {
+          "slides/slide-01.html": "fb87a3e82e48c28708c94f0a3131a12881d5522c3ab1861c2ce5f7ccf98c6704",
+          "render/slide-01.png": "3f7a4b381654a9f61f787f9ff4f8a15c84d6ac6cfeaeb68b57479e2b40bb0596",
+          "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        },
+        "score_scope": "carousel-art-director review of this exact render, 2026-11-18, before panel round 3"
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "Three plumb stacks of white letter paper on a tiled dusk plaza, each ream marked by a thin kraft wrapper line: a knee-high block with five wrappers, a column above head height and a tower over six metres that stops just left of the counter. A person seen from behind stands between the two tall columns looking up, with benches and dark trees behind.",
+        "visual_consequence": "Requests grew from a block below the knee to a tower the person must look up to. The fine ream lines make each column countable as stacked paper.",
+        "weakness": "The coral is gone. The wrappers are now thin, dull brown-grey lines (r1c2, r2c2, r3c2), and the columns read as white paper with fine wrappers at native size and at 432 px. Nothing on the frame sits near the dusk gold accent. The block's five wrappers read clearly (r3c1). Earlier fixes hold: the columns stand plumb, the top sheets are off-white, no stripe falls on the tower face, there is no bench smear, and the tower clears the counter. Minor notes that remain. The back-view person's hair ends in stiff spikes, with small jagged blue fragments at the collar (r2c2). She stands slightly in front of the columns, which softens the side-by-side scale comparison a little. At 432 px the tower's wrapper lines merge into a faint texture, so its paper reading leans on the off-white colour and the shading on its side faces.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept",
+        "inputs": {
+          "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "c6f970a4a641e0ce5383ac8292ca31a90430c7dfef8d1c8089380b864d37617b",
+          "render/slide-05.png": "94abca7b2386c33bd04575ebcc49840e4c51660bd19ff18f9bc02b6db8bc4af4"
+        },
+        "score_scope": "carousel-art-director review of this exact render, 2026-11-18, before panel round 3"
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "An empty walnut desk and a pulled-out violet office chair under a warm cone lamp. A railed satin gold chute on two navy posts carries a cream typed page down from the rounded indigo scoring machine at the right edge. The machine has a lilac collar, satin trim, a status strip and vent slats. The chute ends just above a tray holding a landed page.",
+        "visual_consequence": "The dark desk from the cover is lit, and a gold route runs from the same machine to an empty seat. That reads as a way back to a person.",
+        "weakness": "Only the source changed. The rendered image digest (539eb78f...) is the same as the build I accepted last round, and the full frame matches it. Minor notes stand. A thin navy line runs under the riding page on the chute. The machine body leans steeply off the top right, with its status strip close to the counter. The near desk leg shows wavy kit grain.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "hard_problems": [],
+        "verdict": "accept",
+        "inputs": {
+          "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "b3bf626272cb7f9ac56fbfcb6e90c25482096538d4a919a475c191f3e7a97a1f",
+          "render/slide-09.png": "539eb78f9b9e51d9e1cb4af44dee8799f042803840baf3851a7e0801339f3914"
+        },
+        "score_scope": "carousel-art-director review of this exact render, 2026-11-18, before panel round 3"
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "One sealed violet scoring machine reads every typed answer first, and a person's score is the only gold in the deck: the machine at the infeed on the cover, the closed drawer of human scored cards, the fork where one in four goes on to a person, the requests as true scale paper towers, the lamp a person rescores by, the gilt raised pages, Dallas County's raised tiles, and the route back to a person lit at the close.",
+    "build_risk": "Frame 5 must make three request counts physical at true scale, 0.1 mm a modelled sheet beside a 1.75 m person, so the paper reads as paper and the shortest stack still counts at feed size, without becoming a bar chart.",
+    "distinct_from_recent": "November 15th was school desks and a gym in the people tone, November 16th a gold ribbon and dark instruments in the explainer tone, November 14th wafers and a county relief. This deck is the watch tone in nine worlds, type in five places, no desks in rows and no school building.",
+    "bespoke_note": "BESPOKE run: no three-frame audition. The review bound in art_preflight.json is the cold carousel-slide-critic final critique of each selected frame (knowledge/carousel/BESPOKE.md, step 3)."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "fb87a3e82e48c28708c94f0a3131a12881d5522c3ab1861c2ce5f7ccf98c6704",
+      "render/slide-01.png": "3f7a4b381654a9f61f787f9ff4f8a15c84d6ac6cfeaeb68b57479e2b40bb0596",
+      "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "c6f970a4a641e0ce5383ac8292ca31a90430c7dfef8d1c8089380b864d37617b",
+      "render/slide-05.png": "94abca7b2386c33bd04575ebcc49840e4c51660bd19ff18f9bc02b6db8bc4af4"
+    },
+    "9": {
+      "assets/js/deck/2026-11-17-scorebench-bespoke.js": "1e54d2a71e7ed7b98dfe03935332c5b1fadf63afb84160c3f829aeaf408c73f3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "b3bf626272cb7f9ac56fbfcb6e90c25482096538d4a919a475c191f3e7a97a1f",
+      "render/slide-09.png": "539eb78f9b9e51d9e1cb4af44dee8799f042803840baf3851a7e0801339f3914"
+    }
+  },
+  "needs_review": [
+    5
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "fb87a3e82e48c28708c94f0a3131a12881d5522c3ab1861c2ce5f7ccf98c6704",
+    "slide-01.webp": "3e8a75947a961ae02d32b2d866a72f1de5577397f015705a5b8387aa776fc90e",
+    "slides/slide-05.html": "c6f970a4a641e0ce5383ac8292ca31a90430c7dfef8d1c8089380b864d37617b",
+    "slide-05.webp": "a256d9d7d03cd4893636fe10096d0bf5cc25f1cc0ccf74aec9d8a86d3bc25a25",
+    "slides/slide-09.html": "b3bf626272cb7f9ac56fbfcb6e90c25482096538d4a919a475c191f3e7a97a1f",
+    "slide-09.webp": "1ce4e5b0731d5125767f3ad5a4e77851886bac92be67d5092c97ca6421e873ee"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "3e8a75947a961ae02d32b2d866a72f1de5577397f015705a5b8387aa776fc90e",
+      "from_sha256": "3f7a4b381654a9f61f787f9ff4f8a15c84d6ac6cfeaeb68b57479e2b40bb0596",
+      "psnr_db": 40.585
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "a256d9d7d03cd4893636fe10096d0bf5cc25f1cc0ccf74aec9d8a86d3bc25a25",
+      "from_sha256": "94abca7b2386c33bd04575ebcc49840e4c51660bd19ff18f9bc02b6db8bc4af4",
+      "psnr_db": 40.059
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "1ce4e5b0731d5125767f3ad5a4e77851886bac92be67d5092c97ca6421e873ee",
+      "from_sha256": "539eb78f9b9e51d9e1cb4af44dee8799f042803840baf3851a7e0801339f3914",
+      "psnr_db": 40.373
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 9 of 9, the close. A spatial scene through txthree.js on a wide violet rose studio sweep:
+     the chassis scoring_engine seen high from behind at its outfeed, the reverse of the cover, and a gold chute leaving it
+     and curving across the floor up to an empty office desk and a pulled out chair waiting under a lit gold desk lamp.
+     One typed page (greeked, never legible) rides the chute toward the desk. The gold is the route back to a person and
+     nothing else. The headline sits low left over the empty near floor. This frame draws no count. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:850px; width:900px; text-align:left">A district can ask for a person</h1>
+<p class="dek" data-follow="24" style="left:82px; width:880px; text-align:left">A rescore costs $50 a test if the score holds, and TEA waives the fee when it changes. TEA's scoring documents and the Texas Tribune's October 7th report have the detail.</p>
+<script>window.FIG = {"fee_usd": 50};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What a district can do", counter: "09 / 09", src: "c6 c15 c14", fit: { min: 84, max: 112, maxLines: 2 } });
+
+  /* THE FIGURES. This frame draws no count and no length. The one figure, the fee, is printed in the dek, and the dek
+   * must carry exactly the figure window.FIG gives, so the two can never drift apart. */
+  {
+    const dek = document.querySelector('.dek').textContent;
+    if (dek.indexOf('$' + window.FIG.fee_usd + ' a test') < 0) throw new Error('the dek fee disagrees with FIG.fee_usd ' + window.FIG.fee_usd); }
+
+  /* the type: low left over the empty near floor, clear of the footer */
+  { const d = document.querySelector('.dek'), db = d.getBoundingClientRect(), hb = document.getElementById('hook').getBoundingClientRect();
+    if (db.bottom > 1226) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the footer');
+    if (hb.left < 64 || db.right > 1016) throw new Error('the type leaves the safe margin'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.05, far: 60, fog: 0 });
+
+  /* THE SWEEP: violet rose floor, never the coral, rising into the watch wall and its deep indigo top */
+  TXT.studio(R, { tone: 'watch', w: 200, d: 40, h: 30, radius: 2.4, floor: '#9a5c92', wall: '#5040b0', top: '#2c2180', env: 0.62, hemi: 0.34, softbox: 4, accentStrip: 0 });
+  R.studio.sweep.position.set(0, 0, -9.0); R.scene.background = new THREE.Color('#2c2180');
+  { const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const im = g.createImageData(w, h), r = CH.rng(9909);
+      for (let i = 0; i < w * h; i++) { const v = 200 + (r() - 0.5) * 50; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } g.putImageData(im, 0, 0); }, [40, 40]);
+    tooth.colorSpace = THREE.NoColorSpace; const m = R.studio.sweep.material; m.roughnessMap = tooth; m.bumpMap = tooth; m.bumpScale = 0.0005; m.needsUpdate = true; }
+
+  /* the gold of this frame: a person's score, the route back to one */
+  const gold = new THREE.MeshPhysicalMaterial({ name: 'satin-gold-anodised', color: CH.GOLD, metalness: 0.6, roughness: 0.5, clearcoat: 0.2, clearcoatRoughness: 0.35, envMapIntensity: 0.5 });
+  /* the gold reflects its own warm card, so it reads as satin gold and never as pale paper */
+  { const e = new THREE.Scene();
+    e.add(new THREE.Mesh(new THREE.SphereGeometry(30, 32, 16), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'varying vec3 vP; void main(){ float y = vP.y; vec3 c = mix(vec3(0.22,0.10,0.20), vec3(1.0,0.84,0.62), smoothstep(-0.2,0.7,y)); gl_FragColor = vec4(c,1.0); }' })));
+    [[10, 6, 3.0, [-6, 9, -4]], [14, 0.8, 2.2, [6, 4, 8]]].forEach(([w, h, k, q]) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(1, 0.86, 0.66).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(q[0], q[1], q[2]); m.lookAt(0, 0, 0); e.add(m); });
+    const pm = new THREE.PMREMGenerator(R.renderer); gold.envMap = pm.fromScene(e, 0.02).texture; pm.dispose(); gold.metalness = 1; gold.roughness = 0.4; gold.envMapIntensity = 1.0; gold.clearcoat = 0.4; gold.needsUpdate = true; }
+  const graphite = new THREE.MeshPhysicalMaterial({ name: 'anodised-graphite', color: 0x3a3170, metalness: 0.6, roughness: 0.38, clearcoat: 0.3 });
+
+  /* THE DESK AND THE EMPTY CHAIR, waiting */
+  const DESK = [-1.35, 0, -2.0];
+  const desk = K.make('desk', { pedestal: 'left', wood: 0x4a3044 });
+  desk.position.set(DESK[0], 0, DESK[2]); TXT.add(R, desk); TXT.contact(R, desk);
+  const chair = K.make('office_chair', { style: 'task', color: 0x4b3f8c });
+  chair.position.set(DESK[0] - 0.15, 0, DESK[2] + 0.95); chair.rotation.y = Math.PI + 0.55;
+  TXT.add(R, chair); TXT.contact(R, chair);
+  const TOP = 0.76;
+  const TRAY = [DESK[0] + 0.33, TOP, DESK[2] + 0.05], TRAY_W = 0.46, TRAY_D = 0.58;
+
+  /* THE TRAY on the desktop inside the lamp pool, and THE PAGE at its lip: cream paper, greeked typed lines, drawn large */
+  { const tray = new THREE.Group();
+    const floorT = TXT.roundedBox(TRAY_W, 0.008, TRAY_D, 0.004, gold); floorT.position.y = 0.004; tray.add(floorT);
+    [[0, TRAY_D / 2], [0, -TRAY_D / 2]].forEach(([x, z]) => { const w = TXT.roundedBox(TRAY_W, 0.03, 0.012, 0.005, gold); w.position.set(x, 0.015, z); tray.add(w); });
+    { const w = TXT.roundedBox(0.012, 0.03, TRAY_D, 0.005, gold); w.position.set(-TRAY_W / 2, 0.015, 0); tray.add(w); }
+    tray.position.set(TRAY[0], TOP, TRAY[2]); tray.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); TXT.add(R, tray);
+    const PS = 1.95, sheet = K.make('response_sheet', { state: 'blank', curl: 0.0 });
+    if (0.216 * PS > TRAY_D - 0.03 || 0.279 * PS > TRAY_W + 0.2) throw new Error('the page does not sit in the tray');
+    sheet.scale.setScalar(PS); sheet.rotation.y = Math.PI / 2 + 0.06; sheet.position.set(TRAY[0] + 0.07, TOP + 0.009, TRAY[2] + 0.005);
+    sheet.traverse(m => { if (m.isMesh && Array.isArray(m.material)) m.material = m.material.map(x => { const c = x.clone(); if (c.map) c.color.set(0xe6d6bc); return c; }); });
+    TXT.add(R, sheet); }
+
+  let lampG = null;
+  /* THE LAMP: an architect's lamp at the desk's back left, gold shade, lit and aimed at the empty desk */
+  const LB = [DESK[0] - 0.55, TOP, DESK[2] - 0.22];
+  { const lamp = new THREE.Group();
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.095, 0.03, 40), graphite); base.position.set(LB[0], LB[1] + 0.015, LB[2]); lamp.add(base);
+    const elbow = [LB[0] + 0.05, LB[1] + 0.38, LB[2] - 0.05], head = [LB[0] + 0.38, LB[1] + 0.42, LB[2] + 0.12];
+    const steel = K.finish && K.finish.chrome ? K.finish.chrome() : graphite;
+    K.bar([LB[0], LB[1] + 0.03, LB[2]], elbow, 0.011, steel, 16, lamp); K.bar([LB[0] + 0.025, LB[1] + 0.03, LB[2]], [elbow[0] + 0.025, elbow[1], elbow[2]], 0.006, steel, 12, lamp);
+    K.bar(elbow, head, 0.011, steel, 16, lamp);
+    const knuckle = new THREE.Mesh(new THREE.SphereGeometry(0.02, 20, 14), graphite); knuckle.position.set(elbow[0], elbow[1], elbow[2]); lamp.add(knuckle);
+    const shade = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.1, 0.16, 40, 1, true), gold); shade.material = new THREE.MeshPhysicalMaterial({ name: 'satin-gold-enamel', color: CH.GOLD, emissive: CH.GOLD, emissiveIntensity: 0.22, metalness: 0.0, roughness: 0.5, clearcoat: 0.4, clearcoatRoughness: 0.25, side: THREE.DoubleSide }); shade.material.envMap = null;
+    const sh = new THREE.Group(); sh.position.set(head[0], head[1], head[2]); sh.add(shade); shade.position.y = -0.06;
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(0.036, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), gold); cap.position.y = 0.02; sh.add(cap);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.04, 24, 16), new THREE.MeshStandardMaterial({ color: 0x221a10, emissive: 0xfff0c8, emissiveIntensity: 6 }));
+    bulb.material.userData.txSurface = false; bulb.position.y = -0.1; sh.add(bulb);
+    const POOL = new THREE.Vector3(DESK[0] + 0.05, 0.55, DESK[2] + 0.45); sh.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), POOL.clone().sub(new THREE.Vector3(head[0], head[1], head[2])).normalize()); lamp.add(sh);
+    lamp.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    TXT.add(R, lamp); lampG = lamp;
+    sh.updateMatrixWorld(true); const bw = new THREE.Vector3(0, -0.1, 0).applyMatrix4(sh.matrixWorld);
+    const sp = new THREE.SpotLight(0xffc488, 52, 1.02, 0.72, 1.0, 1.3);   /* range stops above the floor, so no pool lands under the chair */
+    sp.position.copy(bw); sp.target.position.copy(POOL);
+    sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; sp.shadow.normalBias = 0.01; sp.shadow.radius = 6;
+    R.scene.add(sp); R.scene.add(sp.target);
+    /* the lamp's warm bounce off the page and desktop, lifting the person's end over the machine */
+    { const pl = new THREE.PointLight(0xffd6a0, 0.9, 2.0, 2); pl.position.set(DESK[0] - 0.1, TOP + 0.4, DESK[2] + 0.55); R.scene.add(pl); }
+    CH.lampGlow(THREE, R, [bw.x, bw.y - 0.01, bw.z], 0xffe2b0, 0.5, 0); }
+
+  /* THE CAMERA: low and close, three quarter from the front left, on the person's end. The desk, the empty chair and the
+   * lamp fill the frame from y 232 css to just above the headline. */
+  const FROM = [DESK[0] - 1.05, 1.62, DESK[2] + 2.75];
+  const solidRect = (o) => { const xs = [], ys = [], v = new THREE.Vector3(); o.updateMatrixWorld(true);
+    o.traverse(m => { if (!m.isMesh || !m.geometry || (m.material && (m.material.transparent || m.material.isMeshBasicMaterial))) return;
+      m.geometry.computeBoundingBox(); const bb = m.geometry.boundingBox;
+      [bb.min.x, bb.max.x].forEach(x => [bb.min.y, bb.max.y].forEach(y => [bb.min.z, bb.max.z].forEach(z => { v.set(x, y, z).applyMatrix4(m.matrixWorld); const q = CH.project(THREE, R, [v.x, v.y, v.z]); xs.push(q[0]); ys.push(q[1]); }))); });
+    const x0 = Math.min(...xs), y0 = Math.min(...ys); return [x0, y0, Math.max(...xs) - x0, Math.max(...ys) - y0]; };
+  { const objs = [desk, chair, lampG], X0 = 70, X1 = 900, Y0 = 232, Y1 = 832;
+    let fov = 40, sx = 480, sy = 530; const C = [DESK[0] + 0.15, 0.55, DESK[2] + 0.3];
+    for (let it = 0; it < 16; it++) {
+      const look = CH.aim(THREE, R, TXT, FROM, C, sx, sy, fov); TXT.frame(R, { fov, from: FROM, look });
+      let a = 1e9, b = 1e9, c = -1e9, d = -1e9; objs.forEach(o => { const r = solidRect(o); a = Math.min(a, r[0]); b = Math.min(b, r[1]); c = Math.max(c, r[0] + r[2]); d = Math.max(d, r[1] + r[3]); });
+      const k = Math.max((c - a) / (X1 - X0), (d - b) / (Y1 - Y0));
+      fov = 2 * Math.atan(Math.tan(fov * Math.PI / 360) * k) * 180 / Math.PI;
+      sx += ((X0 + X1) / 2 - (a + c) / 2); sy += ((Y0 + Y1) / 2 - (b + d) / 2);
+      window.__s09f = { fov, rect: [a, b, c, d].map(Math.round) }; }
+    const look = CH.aim(THREE, R, TXT, FROM, C, sx, sy, fov); TXT.frame(R, { fov, from: FROM, look });
+    let a = 1e9, c = -1e9, d = -1e9; objs.forEach(o => { const r = solidRect(o); a = Math.min(a, r[0]); c = Math.max(c, r[0] + r[2]); d = Math.max(d, r[1] + r[3]); });
+    if (a < 40) throw new Error('the person\'s end is cropped at the left: ' + Math.round(a));
+    if (d > 850) throw new Error('the art runs into the type at ' + Math.round(d)); }
+  R.camera.updateMatrixWorld(true);
+
+  /* THE MACHINE, now only a sliver of its face at the right edge: a violet lacquered wall of panel seams with one lit slot.
+   * Its slot is placed on the camera ray through x 1010, y 330 css, a step behind the desk, so it is always at the edge. */
+  const camP = R.camera.position.clone(), trayV = new THREE.Vector3(TRAY[0], TRAY[1], TRAY[2]);
+  let SLOT = null;
+  for (let syc = 340; syc >= 150; syc -= 10) { const ray = new THREE.Vector3(1046 / 1080 * 2 - 1, 1 - syc / 1350 * 2, 0.5).unproject(R.camera).sub(camP).normalize();
+    SLOT = camP.clone().addScaledVector(ray, camP.distanceTo(trayV) + 0.5); window.__s09slot = syc; if (SLOT.y >= TOP + 0.5) break; }
+  if (SLOT.y < TOP + 0.3) throw new Error('the outfeed must sit above the desk so the chute falls: ' + SLOT.y.toFixed(2));
+  const up = new THREE.Vector3(0, 1, 0);
+  const toCam = camP.clone().sub(SLOT); toCam.y = 0; toCam.normalize();
+  const toTray = trayV.clone().sub(SLOT); toTray.y = 0; toTray.normalize();
+  const nF = toCam.clone().add(toTray).normalize(), rgt = new THREE.Vector3().crossVectors(up, nF).normalize();
+  const eng = new THREE.Group();
+  {     const seamM = new THREE.MeshStandardMaterial({ name: 'seam-shadow-paint', color: 0x150f30, roughness: 0.8 });
+    const PW = 1.3, PH = SLOT.y + 1.4, PD = 0.5, sx0 = -PW / 2 + 0.17;   /* slot centre, local x */
+    const add = (m, x, y, z) => { m.position.set(x, y, z); eng.add(m); return m; };
+    /* the cover machine's look: one rounded deep indigo body, satin lilac trim, a glowing lilac status strip */
+    const body = new THREE.MeshPhysicalMaterial({ name: 'indigo-graphite-paint', color: 0x2c1696, metalness: 0.15, roughness: 0.3, clearcoat: 0.9, clearcoatRoughness: 0.12, envMapIntensity: 1.1 });
+    const trim = new THREE.MeshPhysicalMaterial({ name: 'satin-lilac-aluminium', color: 0xa892e6, metalness: 0.9, roughness: 0.3, envMapIntensity: 1.1 });
+    const BH = PH - 0.12, by = 0.12 + BH / 2;
+    add(TXT.roundedBox(PW + 0.08, 0.06, PD + 0.1, 0.025, trim), 0, 0.03, 0.02);              /* satin lilac base plate */
+    add(TXT.roundedBox(PW, BH, PD, 0.11, body), 0, by, 0);                                    /* the rounded body */
+    const zf = PD / 2;
+    add(TXT.roundedBox(PW + 0.04, 0.035, PD + 0.05, 0.015, trim), 0, SLOT.y - 0.24, 0.0);     /* satin trim band under the throat */
+    /* vent slats, as on the cover's flank */
+    for (let k = 0; k < 6; k++) { const v = add(TXT.roundedBox(0.36, 0.012, 0.012, 0.005, seamM), sx0 + 0.18, 0.32 + k * 0.05, zf - 0.002); v.userData.txBevel = false; }
+    /* the glowing lilac status strip above the throat */
+    { const lm = new THREE.MeshStandardMaterial({ name: 'status-strip', color: 0x18103a, emissive: 0xd8ccff, emissiveIntensity: 2.6 }); lm.userData.txSurface = false;
+      const st = add(TXT.roundedBox(0.4, 0.018, 0.012, 0.006, lm), sx0 + 0.02, SLOT.y + 0.16, zf + 0.004); st.userData.txBevel = false; }
+    /* THE SLOT: a raised rounded collar, a dark throat, a dusk gold glow from inside */
+    add(TXT.roundedBox(0.5, 0.15, 0.06, 0.03, trim), sx0 + 0.02, SLOT.y, zf + 0.02);
+    const rec = add(TXT.roundedBox(0.42, 0.065, 0.03, 0.015, seamM), sx0 + 0.02, SLOT.y, zf + 0.04); rec.userData.txBevel = false;
+    const glowM = new THREE.MeshStandardMaterial({ name: 'throat-glow', color: 0x0e0a20, emissive: CH.GOLD, emissiveIntensity: 3.4 }); glowM.userData.txSurface = false;
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.045), glowM); glow.userData.txBevel = false; add(glow, sx0 + 0.02, SLOT.y, zf + 0.056);
+    /* the throat's lip, a rounded gold shelf the chute leaves from */
+    add(TXT.roundedBox(0.5, 0.018, 0.12, 0.008, gold), sx0 + 0.02, SLOT.y - 0.04, zf + 0.09);
+    const basis = new THREE.Matrix4().makeBasis(rgt, up, nF); eng.quaternion.setFromRotationMatrix(basis);
+    /* place the group so its slot centre is SLOT, in plan */
+    const off = rgt.clone().multiplyScalar(sx0 + 0.02).add(nF.clone().multiplyScalar(zf + 0.06));
+    eng.position.set(SLOT.x - off.x, 0, SLOT.z - off.z); }
+  eng.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  TXT.add(R, eng); TXT.contact(R, eng);
+  { const tl = new THREE.PointLight(0xffc48a, 0.6, 1.0, 2); tl.position.copy(SLOT).addScaledVector(nF, 0.2); R.scene.add(tl); }
+  CH.lampGlow(THREE, R, [SLOT.x + nF.x * 0.07, SLOT.y, SLOT.z + nF.z * 0.07], CH.GOLD, 0.3, 0);
+
+  /* THE ROUTE: a gold U channel falling from the slot onto the desk tray's lip. One arc, downhill all the way. */
+  const P0 = SLOT.clone().addScaledVector(nF, 0.07);
+  const P2 = trayV.clone().add(toTray.clone().negate().multiplyScalar(TRAY_W / 2 + 0.07)); P2.y = TOP + 0.085;   /* the lip stops just above and short of the tray wall, so the page drops in */
+  const P1 = P0.clone().addScaledVector(nF, 0.45 * Math.hypot(P2.x - P0.x, P2.z - P0.z)); P1.y = P0.y - 0.12;
+  const curve = new THREE.QuadraticBezierCurve3(P0, P1, P2);
+  { let sg = 0; for (let i = 1; i < 40; i++) { const a = curve.getTangentAt((i - 1) / 40), b = curve.getTangentAt(i / 40), c = a.x * b.z - a.z * b.x;
+      if (Math.abs(c) > 1e-5) { const k = Math.sign(c); if (sg && k !== sg) throw new Error('the route bends twice'); sg = k; } }
+    for (let i = 1; i <= 40; i++) if (curve.getPointAt(i / 40).y > curve.getPointAt((i - 1) / 40).y + 1e-4) throw new Error('the chute climbs'); }
+  const NS = 260;
+  const frames = []; for (let i = 0; i <= NS; i++) { const t = i / NS, P = curve.getPointAt(t), T = curve.getTangentAt(t).normalize();
+    const S = new THREE.Vector3().crossVectors(T, up).normalize(), U = new THREE.Vector3().crossVectors(S, T).normalize(); frames.push({ P, T, S, U }); }
+  const CW = 0.22, CT = 0.012, CH_ = 0.06;
+  const prof = [[-CW, CH_], [-CW, -CT / 2], [CW, -CT / 2], [CW, CH_], [CW - CT, CH_], [CW - CT, CT / 2], [-CW + CT, CT / 2], [-CW + CT, CH_]];
+  { const pos = [], idx = [];
+    for (let k = 0; k < prof.length; k++) { const a = prof[k], b = prof[(k + 1) % prof.length], base = pos.length / 3;
+      for (let i = 0; i <= NS; i++) { const f = frames[i];
+        [a, b].forEach(q => { const v = f.P.clone().addScaledVector(f.S, q[0]).addScaledVector(f.U, q[1]); pos.push(v.x, v.y, v.z); }); }
+      for (let i = 0; i < NS; i++) { const a0 = base + i * 2, b0 = a0 + 2; idx.push(a0, b0, a0 + 1, a0 + 1, b0, b0 + 1); } }
+    /* end caps */
+    const tri = THREE.ShapeUtils.triangulateShape(prof.map(q => new THREE.Vector2(q[0], q[1])), []);
+    [0, NS].forEach(i => { const f = frames[i], base = pos.length / 3; prof.forEach(q => { const v = f.P.clone().addScaledVector(f.S, q[0]).addScaledVector(f.U, q[1]); pos.push(v.x, v.y, v.z); });
+      tri.forEach(t3 => idx.push(base + t3[0], base + t3[1], base + t3[2])); });
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+    const deckM = gold.clone(); deckM.name = 'satin-gold-deck'; deckM.roughness = 0.34; deckM.clearcoat = 0.5; deckM.clearcoatRoughness = 0.2; deckM.userData.txSurface = false; deckM.side = THREE.DoubleSide;
+    const m = new THREE.Mesh(g, deckM); m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; TXT.add(R, m); }
+  /* rolled lips along both wall tops, and a guard rail on short balusters above each */
+  { const along = (sx, uy, i0, i1) => new THREE.CatmullRomCurve3(frames.slice(i0, i1 + 1).filter((_, i) => i % 10 === 0 || i === i1 - i0).map(f => f.P.clone().addScaledVector(f.S, sx).addScaledVector(f.U, uy)));
+    [-1, 1].forEach(sd => {
+      const lip = new THREE.Mesh(new THREE.TubeGeometry(along(sd * (CW - CT / 2), CH_, 0, NS), 200, 0.014, 12, false), gold); lip.castShadow = true; lip.userData.txBevel = false; TXT.add(R, lip);
+      const fm = frames[NS >> 1]; if (fm.S.clone().multiplyScalar(sd).dot(R.camera.position.clone().sub(fm.P)) > 0) return;   /* no guard rail on the near side, so the sheet reads */
+      const i0 = Math.round(0.06 * NS), i1 = Math.round(0.94 * NS);
+      const rail = new THREE.Mesh(new THREE.TubeGeometry(along(sd * (CW - CT / 2), CH_ + 0.075, i0, i1), 180, 0.011, 12, false), gold); rail.castShadow = true; rail.userData.txBevel = false; TXT.add(R, rail);
+      for (let t = 0.06; t <= 0.941; t += 0.11) { const f = frames[Math.round(t * NS)];
+        const a1 = f.P.clone().addScaledVector(f.S, sd * (CW - CT / 2)).addScaledVector(f.U, CH_), a2 = a1.clone().addScaledVector(f.U, 0.075);
+        K.bar([a1.x, a1.y, a1.z], [a2.x, a2.y, a2.z], 0.006, gold, 10, R.scene); } }); }
+  /* two supports: a weighted base, a turned column and a cradle laid square under the channel's sloping underside */
+  [0.42, 0.74].forEach(t => { const f = frames[Math.round(t * NS)], st = new THREE.Group();
+    const under = f.P.clone().addScaledVector(f.U, -CT / 2 - 0.012), y = under.y - 0.012;
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.085, 0.022, 40), graphite); base.position.y = 0.011; st.add(base);
+    const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.04, 0.03, 32), graphite); boss.position.y = 0.037; st.add(boss);
+    const col = new THREE.Mesh(new THREE.CylinderGeometry(0.019, 0.019, y - 0.05, 28), graphite); col.position.y = 0.05 + (y - 0.05) / 2; st.add(col);
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.027, 0.027, 0.03, 28), graphite); collar.position.y = y - 0.02; st.add(collar);
+    st.position.set(under.x, 0, under.z); st.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    TXT.add(R, st); TXT.contact(R, st);
+    const cradle = TXT.roundedBox(2 * CW + 0.03, 0.024, 0.08, 0.008, graphite);
+    cradle.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(f.S, f.U, f.T)); cradle.position.copy(under);
+    cradle.castShadow = true; cradle.receiveShadow = true; TXT.add(R, cradle);
+    const yoke = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.04, 20), graphite); yoke.position.set(under.x, y + 0.0, under.z); yoke.castShadow = true; TXT.add(R, yoke); });
+  { const fe = frames[NS]; if (Math.abs(fe.P.x - DESK[0]) > 0.8 || Math.abs(fe.P.z - DESK[2]) > 0.38) throw new Error('the route does not end over the desk'); }
+
+  /* THE TRAVELLING PAGE: one typed sheet partway down the chute, laid along its tangent, on its way to the desk */
+  { const f = frames[Math.round(0.4 * NS)], PS2 = 1.8;
+    if (0.216 * PS2 > 2 * (CW - CT)) throw new Error('the travelling page is wider than the chute');
+    const sheet = K.make('response_sheet', { state: 'blank', curl: 0 });
+    { const bx = new THREE.Matrix4().makeBasis(f.S, f.U, f.T.clone().negate()); if (bx.determinant() < 0) throw new Error('the travelling page basis is mirrored'); sheet.quaternion.setFromRotationMatrix(bx); }
+    sheet.scale.setScalar(PS2); sheet.position.copy(f.P).addScaledVector(f.U, CT / 2 + 0.008);
+    sheet.traverse(m => { if (m.isMesh && Array.isArray(m.material)) m.material = m.material.map(x => { const c = x.clone(); if (c.map) c.color.set(0xe6d6bc); return c; }); });
+    TXT.add(R, sheet); }
+  /* THE KEY: soft, from high back left, so the shadows fall toward the reader and the lamp pool holds the desk */
+  const spec = CH.rigSpec(W, 7, 4096); spec.key = Object.assign({}, spec.key, { radius: 5.0, color: 0xf4e8ff, i: (spec.key.i || 3) * 0.3 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([-0.2, 0.3, -0.3], { distance: 10, shadowFar: 30, normalBias: 0.01 }), { light: { az: -125, el: 70 } }));
+  CH.unacne(R, 0.01);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* the desk and machine stay above the type */
+  { const rd = CH.rectOf(THREE, R, desk, 0), re = CH.rectOf(THREE, R, eng, 0);
+    window.__s09 = { desk: rd.map(Math.round), eng: re.map(Math.round) }; }
+
+  CH.seat(cx, { a: 0.3, fade: 200 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.45, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.5, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

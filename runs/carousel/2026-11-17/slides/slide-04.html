@@ -1,0 +1,294 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 4 of 9, THE DESIGN. A spatial scene through txthree.js on a violet rose studio sweep: the
+     chassis scoring_engine in smoked glass cutaway, seen in three quarter perspective from a little above. A deep stack
+     waits in its infeed. At its outfeed FIG.human_one_in pages leave it: three lie in the outfeed tray with the engine's
+     lilac tick, and exactly one, the only gold page, rides a polished chute up and back to a desk where a person reads,
+     back to the camera, under the dusk gold lamp. Rework: camera turned down toward a side elevation, four outfeed
+     slots, three pages apart in a tilted tray, glass with a graphite rim and the mechanism inside, the desk on the sweep,
+     and the type high on the wall. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:82px; top:178px; width:916px; text-align:left">At least one in four also goes to a person</h1>
+<p class="dek" data-follow="24" style="left:84px; width:900px; text-align:left">As TEA described it in December 2023 and March 2024, every written answer goes through the engine and at least 25 percent are also scored by people. Where a person scores an answer, that score counts. Drawn to illustrate.</p>
+<script>window.FIG = {"human_one_in": 4, "human_pct_min": 25};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The design", counter: "04 / 09", src: "c13 c22 c17", fit: { min: 78, max: 100, maxLines: 2 } });
+
+  /* THE FIGURES. One page in FIG.human_one_in goes on to a person; the rest stay in the outfeed tray. */
+  const F = { human_one_in: window.FIG.human_one_in, human_pct_min: window.FIG.human_pct_min };
+  if (F.human_one_in !== 4 || F.human_pct_min !== 25) throw new Error('the figures are not the brief\'s');
+  if (Math.round(100 / F.human_one_in) !== F.human_pct_min) throw new Error('one in ' + F.human_one_in + ' is not ' + F.human_pct_min + ' percent');
+  const N_OUT = F.human_one_in, N_PERSON = 1, N_TRAY = N_OUT - N_PERSON;
+
+  /* the type: high on the quiet wall, the art below it */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (db.bottom > 640) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the art');
+    if (hb.top < 160) throw new Error('the hook rides into the kicker');
+    if (hb.left < 80 || hb.right > 1000 || db.right > 1000) throw new Error('the type leaves the safe margin'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 60, fog: 0 });
+
+  /* THE SWEEP: violet rose, never coral. A deep violet floor at the camera for the type, warming to rose under the
+   * machine, then up a periwinkle wall into indigo. */
+  TXT.studio(R, { tone: 'watch', w: 34, d: 14, h: 10, radius: 1.4, floor: '#b8789e', wall: '#5444b8', top: '#2a1f78', env: 0.95, hemi: 0.6, softbox: 5.0, accentStrip: 0.0 });
+  { const sw = R.studio.sweep, pp = sw.geometry.attributes.position, col = sw.geometry.attributes.color, c = new THREE.Color();
+    const fl = [[7, '#2e1a5e'], [3.2, '#3a2168'], [2.0, '#5a2f80'], [0.8, '#94568f'], [-0.8, '#b77a9f'], [-7, '#a26aa2']].map(([z, h]) => [z, new THREE.Color(h)]);
+    const wl = [[0, '#9a64a8'], [0.8, '#7a58b8'], [1.8, '#5444b8'], [3.0, '#3a2c94'], [4.6, '#2a1f78'], [10, '#241a6a']].map(([y, h]) => [y, new THREE.Color(h)]);
+    const ramp = (st, v, desc) => { let k = 0; if (desc) { while (k < st.length - 2 && v < st[k + 1][0]) k++; } else { while (k < st.length - 2 && v > st[k + 1][0]) k++; }
+      const a = st[k], b = st[k + 1], t = Math.min(1, Math.max(0, (v - a[0]) / (b[0] - a[0]))); return c.copy(a[1]).lerp(b[1], t * t * (3 - 2 * t)); };
+    for (let i = 0; i < pp.count; i++) { const y = pp.getY(i), x = pp.getX(i), z = pp.getZ(i);
+      if (y < 0.002) ramp(fl, z, true); else { ramp(wl, y, false); }
+      const e = Math.abs(x) / 17; c.multiplyScalar(1 - 0.22 * e * e); col.setXYZ(i, c.r, c.g, c.b); }
+    col.needsUpdate = true; }
+
+  /* materials: paper reads as paper under the warm key, a touch cool in its albedo */
+  const recolorPaper = (obj, hex) => obj.traverse(m => { if (!m.isMesh) return; const arr = Array.isArray(m.material) ? m.material : [m.material];
+    m.material = arr.map(mt => { if (!mt || !mt.name) return mt; if (/sb_paper|sb_edge|sb_col/.test(mt.name)) { const q = mt.clone(); q.color.multiply(new THREE.Color(hex)); return q; } return mt; });
+    if (m.material.length === 1) m.material = m.material[0]; });
+  const steelV = new THREE.MeshPhysicalMaterial({ name: 'polished-steel-violet', color: 0xb9b4d8, metalness: 1, roughness: 0.16, clearcoat: 0.4, clearcoatRoughness: 0.1 });
+  const darkV = new THREE.MeshPhysicalMaterial({ name: 'anodised-graphite-violet', color: 0x3a3170, metalness: 0.7, roughness: 0.32, clearcoat: 0.3 });
+
+  /* THE ENGINE, in cutaway, rebuilt as a scoring machine: a lilac smoked glass housing with a graphite rim on every
+   * edge and panel seams, the inside lit (feed rollers, a read head, a page in transit under the scan bar), rubber feet,
+   * and four outfeed slots on its exit face. Its chute is polished steel, not gold: only the page and the lamp carry the
+   * accent. */
+  const LIFT = 0.05;
+  const eng = K.make('scoring_engine', { cutaway: true, chute: true, chuteGold: false, chuteLen: 1.5, scan: true });
+  /* K.make centres the footprint, chute included; undo it so the chassis's own coordinates hold */
+  { const p0 = eng.children[0], dx = p0.position.x, dz = p0.position.z; eng.children.forEach(c => { c.position.x -= dx; c.position.z -= dz; });
+    if (Math.abs(eng.children[0].position.x) > 1e-6) throw new Error('the engine origin was not restored'); }
+  const glass = new THREE.MeshPhysicalMaterial({ name: 'smoked-glass', color: 0x7d6ad6, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.46, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 1.5, depthWrite: false });
+  glass.userData.txSurface = 'glass';
+  let chute = null, nRoll = 0;
+  eng.children.slice().forEach(c => {
+    if (c.isGroup && Math.abs(c.rotation.z - 0.42) < 1e-6) { chute = c; return; }
+    if (!c.isMesh) return;
+    const p = c.position;
+    if (Math.abs(p.x) < 0.01 && Math.abs(p.y - 0.395) < 0.01) { c.material = glass; c.renderOrder = 5; c.castShadow = false; }           /* housing */
+    else if (Math.abs(p.x - 0.05) < 0.01 && Math.abs(p.y - 0.77) < 0.01) { c.material = glass; c.renderOrder = 5; c.castShadow = false; } /* crown */
+    else if (Math.abs(p.x - 0.98) < 0.01 || Math.abs(p.x - 1.17) < 0.01) c.visible = false;                                              /* the chassis outfeed tray: replaced below */
+    else if (c.geometry && c.geometry.type === 'CylinderGeometry' && Math.abs(p.x + 0.8) < 0.01) { p.set(-0.6, 0.60 + 0.046 * nRoll++, 0); }  /* rollers, inside the throat */
+    else if (c.material && c.material.name && /sb_gold/.test(c.material.name)) c.material = darkV;                                        /* the diverter */
+  });
+  if (!chute) throw new Error('the engine has no chute');
+  if (nRoll !== 2) throw new Error('expected two feed rollers, found ' + nRoll);
+  /* the chassis chute is replaced below by one that runs from the fourth slot down onto the reader's desk */
+  chute.visible = false;
+  /* the rim: graphite bars on all twelve edges of the housing and crown, and two seams down the front panel */
+  const rimM = new THREE.MeshPhysicalMaterial({ name: 'anodised-graphite-rim', color: 0x2e2660, metalness: 0.75, roughness: 0.3, clearcoat: 0.5 });
+  const bar = (w, h, d, x, y, z) => { const m = TXT.roundedBox(w, h, d, Math.min(w, h, d) * 0.45, rimM); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; eng.add(m); return m; };
+  const rim = (x0, x1, y0, y1, z0, z1, t) => {
+    [y0, y1].forEach(y => [z0, z1].forEach(z => bar(x1 - x0, t, t, (x0 + x1) / 2, y, z)));
+    [y0, y1].forEach(y => [x0, x1].forEach(x => bar(t, t, z1 - z0, x, y, (z0 + z1) / 2)));
+    [x0, x1].forEach(x => [z0, z1].forEach(z => bar(t, y1 - y0, t, x, (y0 + y1) / 2, z))); };
+  rim(-0.8, 0.8, 0.13, 0.66, -0.35, 0.35, 0.03);
+  rim(-0.6, 0.7, 0.675, 0.865, -0.3, 0.3, 0.024);
+  [-0.27, 0.27].forEach(x => bar(0.014, 0.53, 0.014, x, 0.395, 0.352));
+  const rubber = new THREE.MeshPhysicalMaterial({ name: 'black-rubber', color: 0x221c38, roughness: 0.8 });
+  /* the mechanism inside the lower housing: a graphite drive block with a cooling grille and a belt drum, seen through the glass */
+  { const blk = TXT.roundedBox(1.36, 0.27, 0.5, 0.03, darkV); blk.position.set(-0.02, 0.27, 0); blk.castShadow = true; eng.add(blk);
+    for (let k = 0; k < 9; k++) { const g = TXT.roundedBox(0.012, 0.15, 0.012, 0.005, rimM); g.position.set(-0.5 + k * 0.05, 0.27, 0.252); eng.add(g); }
+    [-0.45, 0.45].forEach(x => { const d = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.42, 32), steelV); d.rotation.x = Math.PI / 2; d.position.set(x, 0.5, 0); eng.add(d); });
+    const belt = TXT.roundedBox(0.9, 0.012, 0.38, 0.005, rubber); belt.position.set(0, 0.552, 0); eng.add(belt); }
+  /* rubber feet: the machine stands on them */
+  [-0.66, 0.66].forEach(x => [-0.25, 0.25].forEach(z => { const ft = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.055, LIFT, 28), rubber); ft.position.set(x, -LIFT / 2, z); ft.castShadow = true; eng.add(ft); }));
+  /* the read head over the paper path, its lilac scan line, and the light it throws down on the page */
+  { const hd = TXT.roundedBox(0.13, 0.05, 0.5, 0.012, darkV); hd.position.set(0.05, 0.72, 0); eng.add(hd);
+    const scanM = new THREE.MeshStandardMaterial({ name: 'scan-line', color: 0x111111, emissive: 0xd6ccff, emissiveIntensity: 3.0 }); scanM.userData.txSurface = false;
+    const ln = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.006, 0.47), scanM); ln.position.set(0.05, 0.692, 0); eng.add(ln);
+    const pl = new THREE.PointLight(0xcfc4ff, 0.9, 0.7, 2); pl.position.set(0.05, 0.68, 0); eng.add(pl); }
+  /* a page in transit, on the paper path under the head (it is inside the engine, not one of the pages out) */
+  { const s = K.make('response_sheet', { state: 'blank' }); recolorPaper(s, 0xeef0ff); s.position.set(-0.1, 0.629, 0); s.rotation.y = Math.PI / 2; eng.add(s); }
+  /* the four outfeed slots on the exit face, side by side; the back one opens on the chute */
+  const SLOT_Z = [-0.21, -0.07, 0.07, 0.21];
+  if (SLOT_Z.length !== F.human_one_in) throw new Error('slots ' + SLOT_Z.length + ' do not match FIG.human_one_in');
+  SLOT_Z.forEach(z => { bar(0.05, 0.03, 0.12, 0.825, 0.47, z); const mouth = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.008, 0.1), new THREE.MeshBasicMaterial({ color: 0x120e2a })); mouth.material.userData.txSurface = false; mouth.position.set(0.852, 0.47, z); eng.add(mouth); });
+  eng.position.set(-1.05, LIFT, 0); eng.rotation.y = -0.16;
+  TXT.add(R, eng); TXT.contact(R, eng);
+
+  /* the infeed: a deep stack waiting, every answer goes in */
+  const inStack = K.make('paper_column', { count: 420, sheet: 0.0001, ream: 500, loose: 3, seed: 41, bands: false });
+  recolorPaper(inStack, 0xeef0ff);
+  inStack.position.set(-0.98, 0.621, 0); inStack.rotation.y = 0.04; eng.add(inStack);
+
+  /* THE TRAY: butted straight under the exit face's slots, a violet shelf tilted to the camera on two brackets, its
+   * N_TRAY pages laid flat and well apart so each one counts */
+  const trayG = new THREE.Group(), TL = 0.98, TD = 0.34, TZ = 0.08;
+  { const trayM = new THREE.MeshPhysicalMaterial({ name: 'violet-powder-coat', color: 0x5b4aa8, metalness: 0.35, roughness: 0.42, clearcoat: 0.4 });
+    const bed = TXT.roundedBox(TL, 0.018, TD, 0.008, trayM); bed.position.y = 0.009; trayG.add(bed);
+    [[TL, 0.04, 0.016, 0, -TD / 2], [TL, 0.04, 0.016, 0, TD / 2], [0.016, 0.04, TD, TL / 2, 0]].forEach(([w, h, d, x, z]) => { const l = TXT.roundedBox(w, h, d, 0.006, trayM); l.position.set(x, 0.02, z); trayG.add(l); });
+    trayG.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); }
+  const tray = [];
+  for (let i = 0; i < N_TRAY; i++) { const s = K.make('response_sheet', { state: 'routed', curl: 0.02 });
+    recolorPaper(s, 0xeef0ff); s.position.set(-TL / 2 + TL * (i + 0.5) / N_TRAY, 0.019, 0); s.rotation.y = (i - 1) * 0.05; trayG.add(s); tray.push(s); }
+  /* in the engine's own frame: the shelf's inner edge meets the exit face just under the three slots it serves */
+  const trayHolder = new THREE.Group(); trayHolder.add(trayG); trayG.rotation.x = 0.32; trayG.position.set(0.81 + TL / 2, 0.33, TZ);
+  [0.81 + 0.08, 0.81 + TL - 0.08].forEach(x => { const lg = TXT.roundedBox(0.03, 0.38, 0.2, 0.01, darkV); lg.position.set(x, 0.19 - LIFT, TZ); lg.castShadow = true; trayHolder.add(lg); });
+  eng.add(trayHolder);
+
+  /* THE STATION: the desk on the sweep, the person at the desk */
+  eng.updateMatrixWorld(true);
+  const slotA = new THREE.Vector3(0.86, 0.47, SLOT_Z[0]).applyMatrix4(eng.matrixWorld);   /* the fourth page's slot */
+  const RISE = 0, DW = 1.15, deskX = slotA.x + 0.95 + DW / 2, deskZ = slotA.z - 1.6;   /* the station stands behind and right of the engine, so the chute climbs back to it */
+  /* no dais: the desk and chair stand on the sweep, with their own contact */
+  const desk = K.make('desk', { w: DW, pedestal: 'right', wood: 0x4b3d66 }); desk.position.set(deskX, RISE, deskZ);
+  { const lam = new THREE.MeshPhysicalMaterial({ name: 'violet-laminate', color: 0x5a4a8c, roughness: 0.5, clearcoat: 0.25 });
+    desk.traverse(m => { if (!m.isMesh) return; const arr = Array.isArray(m.material) ? m.material : [m.material]; const out = arr.map(mt => (mt && mt.map) ? lam : mt); m.material = out.length === 1 ? out[0] : out; }); }
+  TXT.add(R, desk); TXT.contact(R, desk);
+  const TOP = RISE + 0.76;
+  const seatX = deskX - DW / 2 + 0.62;
+  /* a low violet mesh task chair: its back stops below the shoulder blades, so the reader's arms and the page show */
+  const chair = K.make('office_chair', { style: 'mesh', color: 0x7a66d2 }); chair.rotation.y = Math.PI; chair.position.set(seatX, RISE, deskZ + 0.62); TXT.add(R, chair);
+  chair.updateMatrixWorld(true);
+  chair.traverse(m => { if (!m.isMesh) return; const bb = new THREE.Box3().setFromObject(m); if (bb.min.y > RISE + 0.6 || bb.max.y > RISE + 0.72) m.visible = false; });
+  chair.traverse(m => { if (m.isMesh && m.material && !Array.isArray(m.material) && m.material.color && m.material.color.getHSL({}).l < 0.12) { m.material = m.material.clone(); m.material.color.set(0x4a3c86); } });
+  const who = K.make('person', { role: 'resident', pose: 'sit_read', seed: 12, hat: 'none', shirt: 0x8a76d8, trousers: 0x2c2650 });
+  who.rotation.y = Math.PI; who.position.set(seatX, RISE, deskZ + 0.5); TXT.add(R, who);
+
+  /* THE CHUTE: satin violet with gold lips, from the fourth slot straight down onto the desktop at the reader's left */
+  const chuteEnd = new THREE.Vector3(deskX - DW / 2 + 0.1, TOP + 0.018, deskZ + 0.1);
+  const route = new THREE.Group(); let chuteRun = null, chuteL = 0;
+  { const d = chuteEnd.clone().sub(slotA), L = d.length(), CW = 0.24;
+    const satin = new THREE.MeshPhysicalMaterial({ name: 'satin-violet-enamel', color: 0x6a56c6, metalness: 0.3, roughness: 0.34, clearcoat: 0.7, clearcoatRoughness: 0.12 });
+    const lipM = new THREE.MeshPhysicalMaterial({ name: 'satin-gold-lip', color: 0xe0956a, metalness: 0.85, roughness: 0.3, clearcoat: 0.5 });
+    const run = new THREE.Group(); route.add(run); chuteRun = run; chuteL = L;
+    const fl = TXT.roundedBox(L, 0.016, CW, 0.006, satin); fl.position.set(L / 2, 0, 0); run.add(fl);
+    [-1, 1].forEach(k => { const lp = TXT.roundedBox(L, 0.04, 0.014, 0.006, lipM); lp.position.set(L / 2, 0.02, k * CW / 2); run.add(lp); });
+    run.position.copy(slotA);
+    const yaw = Math.atan2(-d.z, d.x), pitch = Math.atan2(d.y, Math.hypot(d.x, d.z));
+    run.rotation.order = 'YZX'; run.rotation.y = yaw; run.rotation.z = pitch;
+    /* one steel post under its middle, on the floor */
+    const mid = slotA.clone().lerp(chuteEnd, 0.45), post = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, mid.y - 0.01, 20), steelV);
+    post.position.set(mid.x, (mid.y - 0.01) / 2, mid.z); route.add(post);
+    const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 0.016, 32), darkV); foot.position.set(mid.x, 0.008, mid.z); route.add(foot);
+    route.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); }
+  TXT.add(R, route);
+
+  /* THE ONE PAGE THAT GOES ON: gold, gilt, landed off the chute in front of the reader */
+  const LAND = new THREE.Vector3(seatX - 0.2, TOP + 0.001, deskZ + 0.16);
+  const toPerson = [];
+  { const s = K.make('response_sheet', { state: 'gold', gilt: true, curl: 0.05 });
+    s.traverse(m => { if (!m.isMesh) return; const arr = Array.isArray(m.material) ? m.material : [m.material];
+      const out = arr.map(mt => { if (mt && mt.name && /sb_paper/.test(mt.name)) { const q = mt.clone(); q.color.set(0xe08a50); q.emissive = new THREE.Color(0xe0956a); q.emissiveIntensity = 0.14; return q; } return mt; });
+      m.material = out.length === 1 ? out[0] : out; });
+    /* it rides the chute, a little past halfway up, lying on the satin run between the gold lips */
+    s.rotation.y = Math.PI / 2; s.position.set(chuteL * 0.56, 0.009, 0); chuteRun.add(s); toPerson.push(s); }
+  const goldPage = toPerson[0];
+  if (tray.length + toPerson.length !== N_OUT) throw new Error('the drawing has ' + (tray.length + toPerson.length) + ' pages out, the figure says ' + N_OUT);
+  if (toPerson.length !== N_PERSON) throw new Error('more than one page goes on to the person');
+  if (tray.length !== N_TRAY) throw new Error('the tray holds ' + tray.length + ', not ' + N_TRAY);
+
+  /* the lamp: a weighted base, a two part arm, a dusk gold shade, a lit bulb, and a warm dusk gold pool on the page */
+  const gold = new THREE.MeshPhysicalMaterial({ name: 'satin-gold-shade', color: 0xe0956a, metalness: 0.85, roughness: 0.28, clearcoat: 0.6, clearcoatRoughness: 0.15 });
+  const lamp = new THREE.Group();
+  const LB = new THREE.Vector3(deskX - DW / 2 + 0.36, TOP, deskZ - 0.27);
+  { const base = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.085, 0.022, 40), darkV); base.position.set(0, 0.011, 0); lamp.add(base);
+    const j0 = new THREE.Vector3(0, 0.03, 0), j1 = new THREE.Vector3(-0.04, 0.38, 0.04), j2 = new THREE.Vector3(0.0, 0.44, 0.3);
+    const rod = (a, b) => { const d = b.clone().sub(a), L = d.length(), m = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, L, 16), steelV);
+      m.position.copy(a).add(b).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); lamp.add(m); };
+    rod(j0, j1); rod(j1, j2);
+    [j0, j1].forEach(p => { const k = new THREE.Mesh(new THREE.SphereGeometry(0.014, 20, 12), steelV); k.position.copy(p); lamp.add(k); });
+    const shadeG = new THREE.Group(); shadeG.position.copy(j2); lamp.add(shadeG);
+    const shade = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.095, 0.15, 40, 1, true), gold); shade.position.y = -0.04; shadeG.add(shade);
+    const inner = new THREE.Mesh(new THREE.CylinderGeometry(0.029, 0.093, 0.148, 40, 1, true), new THREE.MeshBasicMaterial({ color: 0xffe2b8, side: THREE.BackSide }));
+    inner.material.userData.txSurface = false; inner.position.y = -0.04; shadeG.add(inner);
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(0.03, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), gold); cap.position.y = 0.035; shadeG.add(cap);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.034, 20, 14), new THREE.MeshBasicMaterial({ color: 0xfff6e6 })); bulb.material.userData.txSurface = false; bulb.position.y = -0.09; shadeG.add(bulb);
+    lamp.position.copy(LB); lamp.updateMatrixWorld(true);
+    shadeG.lookAt(LAND); shadeG.rotateX(-Math.PI / 2); lamp.updateMatrixWorld(true);
+    const head = new THREE.Vector3(); bulb.getWorldPosition(head);
+    lamp.traverse(m => { if (m.isMesh) { m.castShadow = m.material.type !== 'MeshBasicMaterial'; m.receiveShadow = true; } });
+    TXT.add(R, lamp);
+    const sp = new THREE.SpotLight(0xff9a52, 22, 2.6, 0.55, 0.75, 1.4); sp.position.copy(head); sp.target.position.copy(LAND);
+    sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; sp.shadow.normalBias = 0.01; sp.shadow.camera.near = 0.03;
+    R.scene.add(sp); R.scene.add(sp.target);
+    const glow = new THREE.PointLight(0xffb878, 1.4, 1.4, 2); glow.position.copy(head); R.scene.add(glow);
+    /* the lit bulb seen past the shade: a soft warm halo at its mouth, so the lamp reads as on */
+    const hc = document.createElement('canvas'); hc.width = hc.height = 128; const hg = hc.getContext('2d'), rg = hg.createRadialGradient(64, 64, 2, 64, 64, 64);
+    rg.addColorStop(0, 'rgba(255,236,200,1)'); rg.addColorStop(0.25, 'rgba(255,190,120,0.55)'); rg.addColorStop(1, 'rgba(224,149,106,0)'); hg.fillStyle = rg; hg.fillRect(0, 0, 128, 128);
+    const ht = new THREE.CanvasTexture(hc); ht.colorSpace = THREE.SRGBColorSpace;
+    const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: ht, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    halo.material.userData.txSurface = false; halo.scale.set(0.3, 0.3, 1); halo.position.copy(head); R.scene.add(halo);
+    gold.emissive = new THREE.Color(0xe0956a); gold.emissiveIntensity = 0.18; }
+
+  /* THE CAMERA: three quarter from the front left, 19 degrees up, so the chute's climb reads and the reader is seen from
+   * behind and to the left, the gold page on the desk past the left shoulder. It keeps that bearing and backs off until engine, tray, desk, person and lamp fill the band under the
+   * type, centred across the frame */
+  const dekB = document.querySelector('.dek').getBoundingClientRect().bottom;
+  const BAND = [dekB + 30, 1250], XL = 36, XR = 1044;
+  /* raised and turned along the line of work: the engine near at the left, the chute climbing away up the frame to the
+   * reader, so the fork fills the whole middle of the frame and nothing is cropped */
+  /* lowered and pushed in: a low three quarter view from the front left. The housing, the three tray pages and the gold
+   * page on the chute fill the frame; the desk, lamp and reader may run off the right edge, never into the type */
+  const focus = [0.2, 0.45, 0.0], DIR = new THREE.Vector3(-0.7, 0.8, 1).normalize();
+  const all = [eng, route, desk, chair, who, lamp, goldPage];
+  /* the rect of what is actually drawn: sampled vertices of visible meshes, not world boxes (hidden chassis parts and
+   * yawed corners inflate those) */
+  const shown = (m) => { for (let o = m; o; o = o.parent) if (!o.visible) return false; return true; };
+  const V = new THREE.Vector3();
+  const rectU = (list) => { let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    list.forEach(o => { o.updateMatrixWorld(true); o.traverse(m => { if (!m.isMesh || !shown(m) || !m.geometry || !m.geometry.attributes.position) return;
+      const pa = m.geometry.attributes.position, st = Math.max(1, Math.floor(pa.count / 160));
+      for (let i = 0; i < pa.count; i += st) { V.fromBufferAttribute(pa, i).applyMatrix4(m.matrixWorld); const q = CH.project(THREE, R, [V.x, V.y, V.z]);
+        x0 = Math.min(x0, q[0]); y0 = Math.min(y0, q[1]); x1 = Math.max(x1, q[0]); y1 = Math.max(y1, q[1]); } }); });
+    return [x0, y0, x1, y1]; };
+  const unionRect = () => rectU(all);
+  const CXL = 48, CXR = 1036, YB = 1228, YT = dekB + 34;
+  let dist = 4.0, sx = 540, sy = 900, FROM, LOOK;
+  for (let it = 0; it < 200; it++) {
+    FROM = [focus[0] + DIR.x * dist, focus[1] + DIR.y * dist, focus[2] + DIR.z * dist];
+    LOOK = CH.aim(THREE, R, TXT, FROM, focus, sx, sy, 34);
+    const u = rectU(all), c = u;
+    const ex = (CXL + CXR) / 2 - (c[0] + c[2]) / 2, ey = YB - u[3];
+    sx += ex * 0.7; sy += ey * 0.7;
+    const fill = Math.max((c[2] - c[0]) / (CXR - CXL), (u[3] - u[1]) / (YB - YT));
+    if (Math.abs(fill - 0.995) < 0.004 && Math.abs(ex) < 1.5 && Math.abs(ey) < 1.5) break;
+    dist *= 1 + (fill - 0.995) * 0.5;
+  }
+  { const u = rectU(all), c = u; if (c[0] < 30 || c[2] > 1050 || u[1] < dekB + 10 || u[3] > 1250) throw new Error('the scene crops the engine or enters the type: core ' + c.map(Math.round) + ' all ' + u.map(Math.round)); }
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOK });
+  { const gp = new THREE.Vector3(); goldPage.updateMatrixWorld(true); goldPage.getWorldPosition(gp); const q = CH.project(THREE, R, [gp.x, gp.y, gp.z]);
+    if (q[0] < 70 || q[0] > 1010 || q[1] < dekB + 20 || q[1] > 1230) throw new Error('the gold page leaves the clear art: ' + q.map(Math.round)); }
+  window.__s04cam = { from: FROM.map(v => +v.toFixed(2)), union: unionRect().map(Math.round) };
+
+  /* THE KEY: big, soft, warm white from high front left, so paper stays paper */
+  const spec = CH.rigSpec(W, 7, 4096); spec.key = Object.assign({}, spec.key, { radius: 2.2, color: 0xfff1ea });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.4, 0.4, 0], { distance: 12, shadowFar: 30, normalBias: 0.004 }), { light: { az: -38, el: 46 } }));
+  CH.unacne(R, 0.004);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* acceptance: the cutaway spans at least 640 px of the frame */
+  { const rc = CH.rectOf(THREE, R, eng, 0), x0 = Math.max(0, rc[0]), x1 = Math.min(1080, rc[0] + rc[2]);
+    window.__s04 = { engine: rc.map(Math.round) };
+    if (x1 - x0 < 640) throw new Error('the engine spans ' + Math.round(x1 - x0) + ' px, under 640'); }
+
+  CH.seat(cx, { a: 0.46, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.5, fade: 140 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.4, fade: 90 }));
+  TXLOOK.footWash(cx, { a: 0.45, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

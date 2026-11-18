@@ -1,0 +1,69 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Two of the three frames named in round 2 are fixed. Slide 7 is now a real macro. A paper stack edge runs off the left and right edges across the whole frame, with one peach gilt line that reads at feed size. That replaces the flat 380 px stack from round 2. On slide 8 the raised tiles are now the orange accent and separate clearly from the cream sunken tiles. I counted 34 raised tiles, which matches the 34%, and they cast long shadows on a raised slab over felt-textured county pieces. Slide 5 is still the showstopper. The 2,758 cube, the 21,620 column and the 64,489 tower measure at about 7.3 to 1 and 3 to 1 in pixels, against true ratios of 7.8 and 3.0. A person stands at true scale in a dusk plaza with long cast shadows. The frame is still held under 8 by three things. (1) Slide 4 has not changed. The cutaway machine, chute and reader sit small on a diagonal in the lower half of an empty rose sweep. The fork that carries one page in four up the chute is a thin strip that doesn't read at 432 px. (2) Slides 1, 6 and 9 all lean on the same kit desk, swivel chair and lamp. Slide 9's desk and empty chair look like a stock furniture render rather than a picture made for 'a district can ask'. (3) Slide 7's headline and body still sit on soft dark wash patches over the out-of-focus field, which reads as type on a plate."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds on all nine frames: the violet-to-rose watch palette, one serif headline face, a mono kicker and counter top right, and claim ids and the site line in the footer. The accent now carries one meaning, a person's score or a raised score. It is the tabs on slide 3, the lamp and the chute page on slide 4, the lamplit page on slide 6, the gilt line on slide 7, the raised tiles on slide 8 and the orange chute on slide 9. The slide 8 colour break from round 2 is repaired. The machine-to-desk bookend runs from slide 1, where the machine is foregrounded and the desk dark behind it, to slide 9, where the desk is lit at the end of the chute. The story runs in order. Slide 5 shifts the value cooler and bluer than its neighbours, and on a bespoke deck that change of world is permitted."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 2,758, 21,620, 64,489, 13,300, 34%, 5,100 and $50 come from c1 to c4, c8 and c6, each quoted verbatim from the Tribune. 3,000 is c20, 25 percent is c13 and c22, 6 to 7 times is c19, $15 million to $20 million is c18 and c10, and four to five times is c11. 23 is the floor of 64489/2758, which is 23.38. 200 comes from 0.5%, and 'one in a hundred' is the tile scale. The design and fee-waiver facts rest on the two fetched TEA PDFs. Slide 4 dates the design in its own text, and the caption asks openly whether it still applies. Deductions: (1) Every 2026 count rests on one Tribune article. The run says the TEA pages returned 404, which is disclosed, but nothing corroborates the counts. (2) The slide 1 headline 'A machine reads English STAAR answers first' is present tense, drawn from 2023 and 2024 documents and from the Tribune's medium-confidence c9. 'English' is inferred from c16's Spanish exclusion rather than stated in c13. Both are looser than the sources without changing what a reader believes. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened. An engine scores first, at least a quarter also go to a person, requests rose more than 23 times, and more than 13,300 scores went up. They learn who decided it (TEA), and they get one named place (Dallas ISD, 34% of more than 5,100). The close names an action with a price: a district can ask, at $50 a test, waived if the score changes. Round 2's named defect is still open. The lever belongs to a district, but most feed readers are parents and teachers, and nothing tells them how to get their district to file or by when. The deck names no request window or deadline. It also never says what a raised reading score changes, though c25 shows A-F ratings moving after a TEA review. So the stake stays 'scores went up' with no consequence. Slide 7 puts 13,300 raised next to 'fewer than half of one percent changed' and leaves the reader to reconcile the two. That is honest, but it doesn't tell them whether asking is worth it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook ('A machine reads English STAAR answers first') earns the swipe, and slide 2 pays at once with TEA's reason and cost. The turn is declared and drawn on slide 5, 'Then the requests multiplied', and the towers make it felt. Slides 6 to 8 move from people rescoring to what came back to the Dallas payoff, and slide 9 closes on an action. Slide 3, on the training data and the closed database, could be cut or moved without loss. Slides 6 and 7 are two quiet frames after the slide 5 peak."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register. It is fair to TEA, with no boosterism and no doom, and I found no dashes, colons, semicolons or banned words. The 'drawn to illustrate' disclaimer is still on eight of nine slides, and slide 3 still reads 'The drawer is drawn to illustrate.' That is a machine's tic, not a Texan's voice. The only regional texture is Dallas ISD, and nothing says what STAAR results mean to a family or a campus. The caption's 'Their score counted.' is still a flat fragment."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The topic, education assessment, is fresh, and the techniques vary within the deck: an instrument render (1), a strata relief with a rod (2), an archive drawer (3), a cutaway (4), a true-scale plaza (5), a lamplit interior (6), a macro (7), a county tile relief (8) and a studio close (9). The familiar move is the kit desk, chair and lamp on slides 1, 4, 6 and 9, which the storyboard itself flags as close to November 15th's desk room."
+  }
+ ],
+ "weighted_score": 7.53,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Turn the close into a reader's action as well as a district's. Say in one line that a parent or teacher gets a rescore by asking their district, and by what date. Then show what a raised score changes, for example campus A-F ratings, so a Texan knows why to ask.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Unchanged since round 2. The cutaway machine, the chute and the reader sit small on a diagonal in the lower half of an empty rose sweep. The one-in-four fork, a thin chute with a single orange page, doesn't read as one silhouette at 432 px.",
+   "fix": "Push the camera in and lower it until the glass housing and the rising chute fill at least half the frame width. Crop the reader's desk off the right edge, and light the single orange page on the chute as the brightest point."
+  },
+  {
+   "slide": 9,
+   "problem": "A kit desk, empty swivel chair and lamp, the same furniture as slides 1, 4 and 6. Read without its type, it says 'office', not 'a district can ask for a person'.",
+   "fix": "Make the request the subject. Frame the chute's end tight, with a district-letterhead request sheet and a $50 tag being handed into the lamp pool by a hand. Let the desk fall off the frame edge."
+  },
+  {
+   "slide": 7,
+   "problem": "The macro now fills the frame, but the headline and body still sit on soft dark wash patches over the out-of-focus field, so they read as type on plates.",
+   "fix": "Rotate the stack so its out-of-focus top-right falls into the deep violet sweep, which gives the headline real quiet. Then remove both wash patches."
+  }
+ ]
+}
