@@ -184,7 +184,7 @@ primary_image:
   bleeds: [right]
 accent: '#e0956a'
 data_in_art: {figure: requests_2026, drives: "column height, each count times one modelled sheet of 0.1 mm, from FIG.requests_2024, FIG.requests_2025 and FIG.requests_2026"}
-job: "The turn, felt in the body, requests that grew from knee high to two storeys."
+job: "The turn, felt in the body, requests that grew from knee high to a tower over the head of a person."
 claims: [c1, c2, c3]
 numerals:
 - {value_from: c1}
