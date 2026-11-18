@@ -122,7 +122,15 @@ def attributes(line: str) -> bool:
 # allowed, compared without case, so another name at the owner's address is refused as firmly
 # as another assistant is. A new identity is a maintainer's decision, made here, and this file
 # is `human` lane so no run can widen it.
+#
+# THE OWNER'S GITHUB NOREPLY ADDRESS, added 2026-11-18 on the owner's instruction. From
+# 2026-11-17 GitHub has authored every web or API merge, and the synthetic merge commit a pull
+# request's checks run on, as "Talon <217072424+Talonsturgill@users.noreply.github.com>". Without
+# it the attribution step failed on every pull request, the daily run's included, whatever the
+# branch's own commits said. It is the owner's account under GitHub's private address, nothing
+# wider: the numeric id pins the one account.
 AUTHORS = {("talon sturgill", "talon.sturgill@gmail.com"), ("talon", "talon.sturgill@gmail.com"),
+           ("talon", "217072424+talonsturgill@users.noreply.github.com"),
            ("texas-ai-docket-bot", "bot@texasaidocket.com")}
 COMMITTERS = AUTHORS | {("github", "noreply@github.com")}
 
