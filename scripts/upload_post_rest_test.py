@@ -25,7 +25,8 @@ def manifest(platform='facebook', kind='video', placement='feed', repo='TexasAID
             'placement': placement, 'segment_index': 0, 'media_type': kind,
             'media': [{'path': str(MEDIA), 'sha256': SHA}],
             'title': 'Released daily edition',
-            'options': {'facebook_page_id': '113073681274871'} if platform == 'facebook' else {}}
+            'options': ({'facebook_page_id': '113073681274871'} if platform == 'facebook' else
+                        {'first_comment': 'The record is at https://texasaidocket.com/'} if kind == 'document' else {})}
 
 
 class MemoryState:
@@ -157,8 +158,34 @@ class RestTests(unittest.TestCase):
         path, fields, _, _ = rest.build(m)
         self.assertEqual(path, '/upload_document')
         self.assertNotIn('async_upload', fields)
-        m['options']['first_comment'] = 'test'
+        m['options']['media_type'] = 'IMAGE'
         with self.assertRaises(ValueError): rest.build(m)
+
+    def test_linkedin_document_link_goes_in_first_comment(self):
+        m = manifest('linkedin', 'document', repo='TexasAIDocket')
+        m['options'] = {'description': 'One written answer on a STAAR reading test.'}
+        with self.assertRaises(ValueError): rest.build(m)  # no first comment
+        m['options']['first_comment'] = 'The record is at https://texasaidocket.com/'
+        fields = rest.build(m)[1]
+        self.assertEqual(fields['first_comment'], 'The record is at https://texasaidocket.com/')
+        self.assertNotIn('texasaidocket', fields['description'])
+        for body in ('Read more.\n\nThe record is at https://texasaidocket.com/',
+                     'More at texasaidocket.com', 'See www.example.org/x', 'Read http://tea.texas.gov'):
+            bad = copy.deepcopy(m)
+            bad['options']['description'] = body
+            with self.assertRaises(ValueError): rest.build(bad)
+        bad = copy.deepcopy(m)
+        bad['title'] = 'Title at texasaidocket.com'
+        with self.assertRaises(ValueError): rest.build(bad)
+        # Numbers and abbreviations are not links.
+        ok = copy.deepcopy(m)
+        ok['options']['description'] = 'Requests rose from 2,758 to 64,489, 0.5 percent changed. U.S. data.'
+        self.assertTrue(rest.build(ok))
+
+    def test_first_comment_rule_is_linkedin_document_only(self):
+        m = manifest('instagram', 'photos', repo='TexasAIDocket')
+        m['options']['description'] = 'The record is at https://texasaidocket.com/'
+        self.assertTrue(rest.build(m))
 
     def test_tiktok_public_not_draft(self):
         m = manifest('tiktok')

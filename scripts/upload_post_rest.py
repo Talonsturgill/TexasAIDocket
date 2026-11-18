@@ -54,8 +54,10 @@ OPTIONS = {
         'auto_add_music', 'is_ai_generated', 'brand_content_toggle',
         'brand_organic_toggle', 'disable_comment',
     },
-    'document': {'description', 'target_linkedin_page_id', 'visibility'},
+    'document': {'description', 'first_comment', 'target_linkedin_page_id', 'visibility'},
 }
+# A URL or bare domain in post copy, such as https://texasaidocket.com/ or texasaidocket.com.
+LINK = re.compile(r'https?://|www\.|\b[a-z0-9-]+\.(?:com|org|net|gov|edu|io|us|co)\b', re.I)
 ENDPOINTS = {'video': ('/upload', 'video'), 'photos': ('/upload_photos', 'photos[]'),
              'document': ('/upload_document', 'document')}
 
@@ -121,6 +123,14 @@ def build(manifest):
         require(key not in options or options[key] == value, 'conflicting placement/account option: ' + key)
         options[key] = value
 
+    if kind == 'document':
+        # The owner's rule, 2026-11-18: the site link never goes in the LinkedIn post itself, it goes
+        # in the first comment, posted by Upload-Post right after the document. A link in the post
+        # body suppresses reach, which is also why brand.yaml sets linkedin_post.links_in_body false.
+        comment = options.get('first_comment')
+        require(isinstance(comment, str) and comment.strip(), 'LinkedIn document needs the site link as first_comment')
+        for text in (manifest['title'], options.get('description', '')):
+            require(not LINK.search(str(text)), 'LinkedIn post copy must not carry a link; put it in first_comment')
     if platform == 'linkedin':
         urn = 'urn:li:organization:' + organization
         require(options.get('target_linkedin_page_id', urn) in {organization, urn},
