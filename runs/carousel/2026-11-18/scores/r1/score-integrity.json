@@ -1,0 +1,75 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Nine frames in distinct worlds, each made for its sentence; 4 is a real measured relief, 7's slate clumps read at feed size, 5 reads as about four in five, 6's haze steps. Held down by 8 (crude kit figure, salmon plank kerb, unexplained pink wash), 3 (blue on blue bus, flat fan, type on a blurred plate), 1 (sheet reads as a plate clipped over the Panhandle, box satellite, faint beam), 4 (bands still read as liquid in a tank)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "The spine holds and the story runs orbit to ground to person to land with named devices. The accent's meaning is diluted by peach slab, caliche pad and lit limestone on frames declared accent-free."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces; no hard fail. Looseness: 'lead author' and 'Rahman says' rest on claim text whose quotes name no speaker; 'satellites measured eight air pollutants' (release wording) against c23's Sentinel-5P and CAMS; R squared disclaimer technically loose and the deck never says the model used non-environmental predictors; c5 under 'Worse air east' invites an East Texas cancer inference no claim makes; c21 medium confidence printed unhedged."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.3,
+   "why": "What, who, where and when are clear; a study, so no decision, deadline or action. Slide 9 rests on a general remark; the caption's closing question is not something any claim addresses; no place named beyond east, west and central."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns the swipe and 2 pays; the finding arrives only on 6; 3 repeats the cover; the turn at 8 lands; the close is soft."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and careful; 'Stand in any one of those counties' is human. 'Drawn to illustrate' on all nine reads as boilerplate; no Texas texture; house rules clean."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New topic in the window; glass cases and stone relief fresh. Flagged lath stakes repeat November 11th; the county slab echoes November 14th."
+  }
+ ],
+ "weighted_score": 6.84,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail; threshold dissent only. Asks the run to confirm a visual review is bound to the current slide-08.png.",
+ "one_sentence_fix": "Say slide 5's fit is of a model of pollution plus other factors, and move c5 off the east and west frame so no reader infers East Texas has more cancer.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Crude plastic kit figure filling the left half; kerb a salmon plank; house and truck in a pink wash.",
+   "fix": "Lower, wider camera with the figure a third of the height in silhouette; a thin bright #E0956A inlay turning a visible corner past the oaks."
+  },
+  {
+   "slide": 3,
+   "problem": "Blue foil on a blue sweep with no shadow; flat fan without countable wedges; type on a blurred plate.",
+   "fix": "Silver and graphite with a cool rim, a floor for an indigo shadow, eight seamed glass wedges ending above the type."
+  },
+  {
+   "slide": 1,
+   "problem": "The sheet reads as a plate over the Panhandle; box satellite; faint beam.",
+   "fix": "Sheet cut to the state outline floating evenly with its own shadow; a visible gold footprint landing on the sheet."
+  },
+  {
+   "slide": 4,
+   "problem": "Bands read as tinted liquid in a copper-framed tank.",
+   "fix": "Matte frosted bands with soft gradients and a thinner copper inlay."
+  }
+ ]
+}

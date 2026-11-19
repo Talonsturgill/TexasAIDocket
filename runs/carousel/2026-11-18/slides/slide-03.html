@@ -1,0 +1,255 @@
+<!doctype html>
+<!-- 2026-11-18, frame 3 of 9, THE INSTRUMENT. BESPOKE. The instrument alone: an illustrative survey satellite in silver
+     and graphite foil, close and large in a cerulean studio sweep, its blue cell wing rising to the upper left. From its
+     hooded nadir aperture window.FIG.pollutants seamed dusk gold glass wedges fan down to the lower right and off the
+     frame onto the sweep, with contact light where they land. The type sits in a column at the lower left. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:600px; width:480px; text-align:left">Where the readings came from</h1>
+<p class="dek" data-follow="22" style="left:82px; width:540px; font-size:28px">The air readings came from the Sentinel-5 Precursor satellite and the Copernicus Atmosphere Monitoring Service. Public CDC data supplied the cancer side. The craft, its swath and the ground are drawn to illustrate.</p>
+
+<script>window.FIG = {"pollutants": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The instrument", counter: "03 / 09", src: "c23 c2", fit: { min: 64, max: 88, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.1, far: 200, fog: 0 });
+  const P = CH.P;
+
+  /* ---------------- THE FIGURE ----------------
+   * The swath is cut across track into one glass wedge per pollutant the paper read. The count comes from FIG and
+   * nothing else, and the check after the build throws if the wedges drawn differ from it. */
+  const NB = FIG.pollutants;
+  if (!(Number.isInteger(NB) && NB > 0)) throw new Error("FIG.pollutants must be a positive integer, got " + NB);
+
+  /* ---------------- THE STUDIO ----------------
+   * A cerulean sweep, run out past the camera so the floor is seamless under the swath. */
+  const sweep = TXT.studio(R, { tone: CH.TONE, palette: Object.assign({}, TXLOOK.palette(CH.TONE), { floor: "#3f86dc" }), w: 180, d: 90, h: 50, radius: 10, floor: 0x3a7ed6, wall: 0x1d56b4, top: 0x123d8f, env: 0.9, hemi: 0.5, softbox: 9 });
+  sweep.position.z = 18;
+
+  /* ---------------- THE SATELLITE ----------------
+   * The chassis model, silver and graphite foil, the wing on a diagonal. */
+  const sat = K.make('survey_satellite', { wing: 7, yaw: 0.35 });
+  sat.scale.setScalar(1.18);
+  sat.position.set(0, 6.6, 0);
+  sat.rotation.set(0.0, -2.48, 0.16);
+  /* the foil goes silver under a blue studio: less mirror, more diffuse, so the key paints it white rather than the
+   * sweep painting it blue */
+  /* CRINKLE: a height field of overlapping foil facets turned into a normal map, so the key breaks into sharp silver
+   * glints across every face instead of lying on it as a flat tint */
+  const crinkle = (() => {
+    const N = 512, c = document.createElement("canvas"); c.width = c.height = N; const g = c.getContext("2d"), r = CH.rng(318);
+    g.fillStyle = "#808080"; g.fillRect(0, 0, N, N);
+    for (let i = 0; i < 7000; i++) { const x = r() * N, y = r() * N, sz = 3 + r() * 13, a = r() * Math.PI * 2, v = Math.floor(70 + r() * 120);
+      g.save(); g.translate(x, y); g.rotate(a); g.fillStyle = "rgba(" + v + "," + v + "," + v + ",0.4)"; g.beginPath();
+      g.moveTo(-sz, -sz * 0.2); g.lineTo(sz * 0.3, -sz * 0.5); g.lineTo(sz, sz * 0.15); g.lineTo(-sz * 0.2, sz * 0.45); g.closePath(); g.fill(); g.restore(); }
+    const h = g.getImageData(0, 0, N, N).data, out = g.createImageData(N, N), H = (x, y) => h[(((y + N) % N) * N + ((x + N) % N)) * 4] / 255;
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const dx = (H(x + 1, y) - H(x - 1, y)) * 3.2, dy = (H(x, y + 1) - H(x, y - 1)) * 3.2, l = Math.hypot(dx, dy, 1), o = (y * N + x) * 4;
+      out.data[o] = (-dx / l * 0.5 + 0.5) * 255; out.data[o + 1] = (dy / l * 0.5 + 0.5) * 255; out.data[o + 2] = (1 / l * 0.5 + 0.5) * 255; out.data[o + 3] = 255; }
+    g.putImageData(out, 0, 0); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(5, 5); return t; })();
+  /* the nadir instrument and the baffle in a lit graphite, never near black (LOOK V2) */
+  const instM = new THREE.MeshPhysicalMaterial({ name: "graphite-instrument", color: 0x666b78, metalness: 0.45, roughness: 0.28, clearcoat: 0.4, clearcoatRoughness: 0.2 });
+  sat.traverse(m => { if (!m.isMesh || !m.material) return;
+    if (m.material.name === 'lb_black') { m.material = m.material.clone(); m.material.color.set(0x50545f); }
+    if (m.material.name === 'lb_foil_graphite' && Math.abs(m.position.y + 1.6) < 0.05) m.material = instM; });
+  sat.traverse(m => { if (!m.isMesh || !m.material) return; const mm = m.material;
+    if (mm.name === 'lb_foil_silver') { mm.metalness = 0.55; mm.roughness = 0.22; mm.color.set(0xf4efe6); mm.normalMap = crinkle; mm.normalScale = new THREE.Vector2(0.22, 0.22); mm.envMapIntensity = 0.12; mm.needsUpdate = true; mm.userData.txSurface = false; }
+    if (mm.name === 'lb_foil_graphite') { mm.metalness = 0.5; mm.roughness = 0.3; mm.color.set(0x5a5f6b); mm.envMapIntensity = 0.15; mm.normalMap = crinkle; mm.normalScale = new THREE.Vector2(0.2, 0.2); mm.needsUpdate = true; mm.userData.txSurface = false; } });
+  /* THE WING: a perimeter frame, cross rails at every panel joint, hinge knuckles and a yoke fork from the boom */
+  let wing = null; sat.traverse(m => { if (!wing && m.isGroup && m !== sat && m.children.some(c => c.material && c.material.name === 'lb_cells')) wing = m; });
+  if (!wing) throw new Error("no wing on the satellite");
+  const railM = new THREE.MeshStandardMaterial({ name: "anodised-aluminium-rail", color: 0xd9dee8, metalness: 0.95, roughness: 0.22 });
+  const span = 7, npan = 3, pw = span / npan;
+  for (let k = 0; k <= npan; k++) { const cr = TXT.roundedBox(0.07, 0.07, 2.1, 0.02, railM); cr.position.set(k * pw, 0, 0); wing.add(cr);
+    if (k > 0 && k < npan) [-0.7, 0, 0.7].forEach(z => { const kn = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.22, 16), railM); kn.rotation.x = Math.PI / 2; kn.position.set(k * pw, 0.05, z); wing.add(kn); }); }
+  [1, -1].forEach(sd => { const lr = TXT.roundedBox(span, 0.07, 0.07, 0.02, railM); lr.position.set(span / 2, 0, sd * 1.05); wing.add(lr);
+    wing.add(TXT.tube([[-0.55, 0, 0], [0, 0, sd * 0.95]], 0.035, railM, { segments: 2 })); });
+  const yokeHub = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.2, 24), railM); yokeHub.rotation.z = Math.PI / 2; yokeHub.position.set(-0.6, 0, 0); wing.add(yokeHub);
+  wing.traverse(m => { if (m.isMesh && m.material && m.material.name === 'lb_cells') { m.material.clearcoat = 1; m.material.clearcoatRoughness = 0.03; m.material.roughness = 0.12; m.material.color.set(0xdfe8ff); } });
+  /* detail where the eye lands: a louvred radiator on the front face, thruster nozzles under the bus, an omni mast */
+  const bus = sat.children[0], bp = bus.position;
+  const radM = new THREE.MeshPhysicalMaterial({ name: "white-paint-radiator", color: 0xf4f6fa, roughness: 0.42, clearcoat: 0.3 });
+  const louvM = new THREE.MeshStandardMaterial({ name: "polished-aluminium-louvre", color: 0xdfe5ee, metalness: 0.95, roughness: 0.18 });
+  const nozM = new THREE.MeshStandardMaterial({ name: "cast-metal-nozzle", color: 0x8d94a6, metalness: 0.9, roughness: 0.32 });
+  const det = new THREE.Group(); det.position.copy(bp); sat.add(det);
+  const rad = TXT.roundedBox(1.55, 1.6, 0.05, 0.02, radM); rad.position.set(0, 0.1, 1.53); det.add(rad);
+  for (let i = 0; i < 7; i++) { const l = TXT.roundedBox(1.35, 0.11, 0.035, 0.012, louvM); l.position.set(0, -0.55 + i * 0.22, 1.575); l.rotation.x = -0.35; det.add(l); }
+  [[-0.78, -0.95], [0.78, -0.95], [-0.78, 0.95], [0.78, 0.95]].forEach(q => {
+    const n = TXT.lathe([[0.0, 0], [0.05, 0], [0.05, -0.06], [0.03, -0.1], [0.09, -0.26], [0.095, -0.27]], nozM, { segments: 32 });
+    n.material.side = THREE.DoubleSide; n.position.set(q[0], -1.05, q[1] * 1.3); det.add(n); });
+  /* a deep sun hood on the nadir baffle: graphite outside, black inside, three vane rings, a machined rim */
+  let baffleMesh = null; sat.traverse(m => { if (m.isMesh && m.geometry.type === "CylinderGeometry" && m.geometry.parameters.openEnded && Math.abs(m.geometry.parameters.radiusTop - 0.22) < 1e-3) baffleMesh = m; });
+  if (!baffleMesh) throw new Error("no baffle on the satellite");
+  const hoodOut = new THREE.MeshStandardMaterial({ name: "graphite-composite-hood", color: 0x5c6680, metalness: 0.45, roughness: 0.4 });
+  const hoodIn = new THREE.MeshStandardMaterial({ name: "black-anodised-vane", color: 0x2c3248, metalness: 0.2, roughness: 0.7, side: THREE.BackSide });
+  const bpos = baffleMesh.position, HOOD = 0.75, hy = bpos.y - 0.25 - HOOD / 2;
+  const hood = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.42, HOOD, 48, 1, true), hoodOut); hood.material.side = THREE.FrontSide; hood.position.set(bpos.x, hy, bpos.z); baffleMesh.parent.add(hood);
+  const hoodI = new THREE.Mesh(new THREE.CylinderGeometry(0.265, 0.415, HOOD, 48, 1, true), hoodIn); hoodI.position.copy(hood.position); baffleMesh.parent.add(hoodI);
+  for (let i = 1; i <= 3; i++) { const t = i / 4, rv = 0.27 + (0.42 - 0.27) * t; const v = new THREE.Mesh(new THREE.TorusGeometry(rv - 0.02, 0.012, 8, 48), hoodIn.clone()); v.material.side = THREE.FrontSide; v.rotation.x = Math.PI / 2; v.position.set(bpos.x, hy + HOOD / 2 - HOOD * t, bpos.z); baffleMesh.parent.add(v); }
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.425, 0.022, 10, 56), railM); rim.rotation.x = Math.PI / 2; rim.position.set(bpos.x, hy - HOOD / 2, bpos.z); rim.name = "hoodRim"; baffleMesh.parent.add(rim);
+  const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.7, 12), louvM); mast.position.set(0.6, 1.4, 0.9); det.add(mast);
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.07, 20, 14), radM); ball.position.set(0.6, 1.78, 0.9); det.add(ball);
+  TXT.add(R, sat);
+  /* the wing's long shadow ran under the type as a blue ribbon; the bus keeps its shadow, the wing casts none */
+  sat.traverse(m => { if (m.isMesh) m.castShadow = false; });
+    sat.updateMatrixWorld(true);
+  /* K.make recentres the footprint, so the aperture is found on the model itself: the baffle's machined lip */
+  const lipMesh = sat.getObjectByName("hoodRim");
+  if (!lipMesh) throw new Error("no aperture lip on the satellite");
+  const apex = new THREE.Vector3().setFromMatrixPosition(lipMesh.matrixWorld); apex.y -= 0.02;
+  const busC = new THREE.Box3().setFromObject(sat.children[0]).getCenter(new THREE.Vector3());
+
+  /* ---------------- THE LIGHT ---------------- */
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), Object.assign(CH.rigOpts([0, 3, 0], { distance: 50, shadowFar: 120, normalBias: 0.015 }), { light: { az: -50, el: 52 } }));
+  const rimL = new THREE.DirectionalLight(0xbfe9ff, 6.5); rimL.position.set(sat.position.x - 8, sat.position.y + 6, sat.position.z - 18); rimL.target.position.copy(sat.position); R.scene.add(rimL, rimL.target);
+  const box = new THREE.SpotLight(0xffffff, 140, 40, 0.35, 0.7, 2); box.position.set(busC.x - 4, busC.y + 7, busC.z + 10); box.target.position.copy(busC); R.scene.add(box, box.target);
+  /* a warm white key from over the camera's shoulder, so the foil reads silver rather than the sweep's blue */
+  const keyW = new THREE.DirectionalLight(0xfff1e2, 3.4); keyW.position.set(busC.x + 16, busC.y + 12, busC.z + 20); keyW.target.position.copy(busC); R.scene.add(keyW, keyW.target);
+
+  /* ---------------- THE CAMERA ----------------
+   * From the front right a little above the bus, 23 m out, a 40 degree lens; the bus at the upper middle right. */
+  const FROM = [busC.x + 18, busC.y + 4.5, busC.z + 23.5];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [busC.x, busC.y, busC.z], 720, 320, 40);
+  TXT.frame(R, { fov: 40, from: FROM, look: LOOK });
+
+  /* the satellite must span at least 600 px of the 1080 px frame */
+  const rr = CH.rectOf(THREE, R, sat, 0);
+  const visW = Math.min(1080, rr[0] + rr[2]) - Math.max(0, rr[0]);
+  if (visW < 600) throw new Error("satellite spans only " + Math.round(visW) + " px");
+
+  /* ---------------- THE SWATH ----------------
+   * NB seamed glass wedges from the aperture, cut across track. The landing is placed through the camera: its four
+   * corners are where four chosen points of the frame meet the sweep, so the fan opens down the right of the frame,
+   * clear of the type column, and runs off the bottom. Each wedge is a pyramid from the hood rim onto its strip. */
+  const onFloor = (sx, sy) => { R.camera.updateMatrixWorld(true);
+    const o = R.camera.position.clone(), d = new THREE.Vector3(sx / CH.W * 2 - 1, 1 - sy / CH.H * 2, 0.5).unproject(R.camera).sub(o).normalize();
+    if (d.y >= -1e-4) throw new Error("frame point " + sx + "," + sy + " never meets the floor"); return o.addScaledVector(d, -o.y / d.y).setY(0.012); };
+  const FAR0 = onFloor(690, 1095), FAR1 = onFloor(1010, 1072), NEAR1 = onFloor(1130, 1460), NEAR0 = onFloor(600, 1480);
+  /* THE GROUND: a broad strip of illustrative Texas ground under the swath (caliche, scrub, field edges, county roads and
+   * a dry creek), no county, no value. It is laid on the sweep through the camera, runs off the bottom of the frame and
+   * fades into the cove along a short band at its far edge. The detail is the land's own features, never a ruled grid. */
+  { const G0 = onFloor(-300, 715), G1 = onFloor(1380, 690), G2 = onFloor(1560, 1700), G3 = onFloor(-480, 1700);
+    const TW = 4096, TH = 2048, c = document.createElement("canvas"); c.width = TW; c.height = TH; const g = c.getContext("2d"), r = CH.rng(77);
+    g.fillStyle = "#c29360"; g.fillRect(0, 0, TW, TH);
+    /* fields: irregular quadrilaterals at a few headings, each its own albedo, with a darker worn edge */
+    const pal = ["#9aa356", "#c99a5e", "#a8814c", "#87984e", "#d2a468", "#a9aa5e", "#b88a55", "#93884c"];
+    for (let i = 0; i < 260; i++) { const x = r() * TW, y = r() * TH, w = 90 + r() * 320, h = 60 + r() * 220, a = (r() < 0.6 ? 0.12 : -0.35) + (r() - 0.5) * 0.12;
+      g.save(); g.translate(x, y); g.rotate(a); g.globalAlpha = 0.5 + r() * 0.4; g.fillStyle = pal[i % pal.length];
+      g.beginPath(); g.moveTo(-w / 2, -h / 2); g.lineTo(w / 2 + (r() - 0.5) * 30, -h / 2); g.lineTo(w / 2, h / 2 + (r() - 0.5) * 30); g.lineTo(-w / 2 + (r() - 0.5) * 30, h / 2); g.closePath(); g.fill();
+      g.globalAlpha = 0.45; g.strokeStyle = "rgba(92,72,44,1)"; g.lineWidth = 2 + r() * 2; g.stroke();
+      /* furrow wear inside some fields, ragged, never ruled */
+      if (r() < 0.45) { g.globalAlpha = 0.18; g.lineWidth = 1.5; for (let f = -h / 2 + 6; f < h / 2; f += 5 + r() * 6) { g.beginPath(); g.moveTo(-w / 2 + r() * 10, f); g.lineTo(w / 2 - r() * 10, f + (r() - 0.5) * 4); g.stroke(); } }
+      g.restore(); }
+    g.globalAlpha = 1;
+    /* albedo wear: mottled caliche patches and fine grain */
+    for (let i = 0; i < 1400; i++) { g.fillStyle = r() < 0.5 ? "rgba(225,196,150,0.22)" : "rgba(96,74,46,0.18)"; g.beginPath(); g.ellipse(r() * TW, r() * TH, 6 + r() * 40, 4 + r() * 22, r() * 3, 0, 7); g.fill(); }
+    for (let i = 0; i < 160000; i++) { const v = r(); g.fillStyle = v < 0.5 ? "rgba(70,56,36,0.4)" : "rgba(232,206,160,0.32)"; g.fillRect(r() * TW, r() * TH, 1 + r() * 3, 1 + r() * 3); }
+    /* county roads: a few long pale caliche lines at irregular headings, with a darker shoulder */
+    for (let i = 0; i < 7; i++) { const y0 = r() * TH, y1 = y0 + (r() - 0.5) * 900, x0 = -50, x1 = TW + 50;
+      g.strokeStyle = "rgba(84,66,42,0.55)"; g.lineWidth = 11; g.beginPath(); g.moveTo(x0, y0); g.quadraticCurveTo(TW / 2, (y0 + y1) / 2 + (r() - 0.5) * 300, x1, y1); g.stroke();
+      g.strokeStyle = "rgba(236,214,172,0.9)"; g.lineWidth = 6; g.stroke(); }
+    for (let i = 0; i < 4; i++) { const x0 = r() * TW, x1 = x0 + (r() - 0.5) * 700;
+      g.strokeStyle = "rgba(84,66,42,0.5)"; g.lineWidth = 9; g.beginPath(); g.moveTo(x0, -20); g.lineTo(x1, TH + 20); g.stroke(); g.strokeStyle = "rgba(236,214,172,0.85)"; g.lineWidth = 5; g.stroke(); }
+    /* a dry creek: a pale gravel bed between darker banks lined with trees */
+    const creek = []; for (let x = -40; x <= TW + 40; x += 24) creek.push([x, TH * 0.58 + Math.sin(x / 260) * 160 + Math.sin(x / 83) * 40]);
+    const path = () => { g.beginPath(); creek.forEach((q, i) => i ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1])); };
+    g.lineCap = "round"; g.lineJoin = "round";
+    path(); g.strokeStyle = "rgba(76,84,52,0.85)"; g.lineWidth = 46; g.stroke();
+    path(); g.strokeStyle = "rgba(214,196,160,0.95)"; g.lineWidth = 20; g.stroke();
+    path(); g.strokeStyle = "rgba(120,130,150,0.6)"; g.lineWidth = 5; g.stroke();
+    for (const q of creek) for (let k = 0; k < 4; k++) { const ox = (r() - 0.5) * 30, oy = (r() < 0.5 ? -1 : 1) * (22 + r() * 26);
+      g.fillStyle = "rgba(48,60,40,0.45)"; g.beginPath(); g.arc(q[0] + ox + 4, q[1] + oy + 5, 9 + r() * 6, 0, 7); g.fill();
+      g.fillStyle = "rgba(92,112,62,0.95)"; g.beginPath(); g.arc(q[0] + ox, q[1] + oy, 8 + r() * 6, 0, 7); g.fill(); }
+    /* scrub: mesquite and brush clumps, each with its contact shade offset away from the key and a lit crown */
+    for (let i = 0; i < 9000; i++) { const x = r() * TW, y = r() * TH, s = 3 + r() * 9;
+      g.fillStyle = "rgba(52,58,38,0.42)"; g.beginPath(); g.ellipse(x + s * 0.6, y + s * 0.5, s * 1.1, s * 0.8, 0, 0, 7); g.fill();
+      g.fillStyle = r() < 0.5 ? "rgba(98,114,62,0.95)" : "rgba(122,128,70,0.95)"; g.beginPath(); g.arc(x, y, s, 0, 7); g.fill();
+      g.fillStyle = "rgba(170,178,108,0.6)"; g.beginPath(); g.arc(x - s * 0.3, y - s * 0.3, s * 0.4, 0, 7); g.fill(); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 16;
+    const gm = new THREE.MeshStandardMaterial({ name: "caliche-scrub-ground", map: t, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: 0.32, vertexColors: true, transparent: true, roughness: 0.95, metalness: 0, depthWrite: false, envMapIntensity: 0.3, side: THREE.DoubleSide });
+    gm.userData.txSurface = false;
+    /* two rows: a short fade band at the far edge, then full ground to the near edge */
+    const F = 0.06, M0 = G0.clone().lerp(G3, F), M1 = G1.clone().lerp(G2, F);
+    const V = [G0, G1, M1, M0, G2, G3], UV = [[0, 1], [1, 1], [1, 1 - F], [0, 1 - F], [1, 0], [0, 0]], A = [0, 0, 1, 1, 1, 1];
+    const tri = [0, 1, 2, 0, 2, 3, 3, 2, 4, 3, 4, 5], pos = [], uv = [], col = [];
+    tri.forEach(i => { pos.push(V[i].x, 0.004, V[i].z); uv.push(UV[i][0], UV[i][1]); col.push(1, 1, 1, A[i]); });
+    const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); gg.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); gg.setAttribute('color', new THREE.Float32BufferAttribute(col, 4)); gg.computeVertexNormals();
+    const gmesh = new THREE.Mesh(gg, gm); gmesh.receiveShadow = true; gmesh.userData.txBevel = false; gmesh.renderOrder = 0; R.scene.add(gmesh); }
+  const GAPF = 0.025;   /* the seam as a share of the landing's width */
+  const gold = new THREE.Color(0xe0956a);
+  const swath = new THREE.Group(); swath.name = "swath";
+  const edgeM = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xffc596).multiplyScalar(1.25), transparent: true, opacity: 1, depthWrite: false }); edgeM.userData.txSurface = false;
+  const lerp = (a, b, t) => a.clone().lerp(b, t);
+  /* the contact light: a soft warm pool where the light lands */
+  const poolTex = (() => { const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d"), gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    gr.addColorStop(0, "rgba(255,190,140,0.9)"); gr.addColorStop(0.5, "rgba(240,150,100,0.35)"); gr.addColorStop(1, "rgba(224,149,106,0)"); g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const poolM = new THREE.MeshBasicMaterial({ map: poolTex, transparent: true, depthWrite: false, opacity: 0.6 }); poolM.userData.txSurface = false;
+  const mid = FAR0.clone().add(FAR1).add(NEAR0).add(NEAR1).multiplyScalar(0.25), wFar = FAR0.distanceTo(FAR1), dep = FAR0.distanceTo(NEAR0);
+  const pool = new THREE.Mesh(new THREE.PlaneGeometry(wFar * 1.9, dep * 1.4), poolM); poolM.blending = THREE.AdditiveBlending; poolM.opacity = 0.14; pool.rotation.x = -Math.PI / 2;
+  pool.rotation.z = -Math.atan2(FAR1.z - FAR0.z, FAR1.x - FAR0.x); pool.position.copy(mid).setY(0.006); pool.userData.txBevel = false; swath.add(pool);
+  const sw = (1 - GAPF * (NB - 1)) / NB;
+  for (let k = 0; k < NB; k++) {
+    const t0 = k * (sw + GAPF), t1 = t0 + sw;
+    const base = [lerp(FAR0, FAR1, t0), lerp(FAR0, FAR1, t1), lerp(NEAR0, NEAR1, t1), lerp(NEAR0, NEAR1, t0)];
+    const pos = [];
+    for (let s2 = 0; s2 < 4; s2++) { const a = base[s2], b = base[(s2 + 1) % 4]; pos.push(apex.x, apex.y, apex.z, a.x, a.y, a.z, b.x, b.y, b.z); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
+    /* the glass is densest at the aperture and thins toward the floor, so the landing below it reads */
+    const col = []; for (let s2 = 0; s2 < 4; s2++) col.push(1, 1, 1, 0.55, 1, 1, 1, 0.03, 1, 1, 1, 0.03);
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 4));
+    const m = new THREE.MeshBasicMaterial({ name: "swath-glass", color: gold.clone().multiplyScalar(k % 2 ? 1.0 : 0.86), vertexColors: true, transparent: true, opacity: k % 2 ? 1.0 : 0.8, side: THREE.DoubleSide, depthWrite: false });
+    m.userData.txSurface = false;
+    const w = new THREE.Mesh(g, m); w.castShadow = false; w.receiveShadow = false; w.userData.txBevel = false; w.userData.wedge = true; swath.add(w);
+    /* the strip's landing on the sweep, gold at full strength, its seam the blue floor between */
+    const fg = new THREE.BufferGeometry(); fg.setAttribute('position', new THREE.Float32BufferAttribute([base[0].x, base[0].y, base[0].z, base[1].x, base[1].y, base[1].z, base[2].x, base[2].y, base[2].z, base[0].x, base[0].y, base[0].z, base[2].x, base[2].y, base[2].z, base[3].x, base[3].y, base[3].z], 3));
+    const fm = new THREE.MeshBasicMaterial({ color: gold.clone().multiplyScalar(k % 2 ? 0.95 : 0.8), transparent: true, opacity: 0.2, side: THREE.DoubleSide, depthWrite: false }); fm.userData.txSurface = false;
+    const fp = new THREE.Mesh(fg, fm); fp.userData.txBevel = false; fp.renderOrder = 2; swath.add(fp);
+    /* bright bevelled edges: the four rods from the aperture */
+    base.forEach(q => { const t = TXT.tube([[apex.x, apex.y, apex.z], [q.x, q.y, q.z]], 0.03, edgeM, { segments: 2 }); t.castShadow = false; t.userData.txBevel = false; swath.add(t); });
+  }
+  R.scene.add(swath);
+  const wedges = swath.children.filter(c => c.userData.wedge).length;
+  if (wedges !== FIG.pollutants) throw new Error("swath draws " + wedges + " wedges but FIG.pollutants is " + FIG.pollutants);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* the type's seat: a soft gradient deepening toward the lower left, feathered both ways, no edge anywhere */
+  { const c = document.createElement("canvas"); c.width = CH.W; c.height = CH.H; const k = c.getContext("2d");
+    const hg = k.createLinearGradient(0, 0, 900, 0); for (let i = 0; i <= 8; i++) { const t = i / 8, e = 1 - t * t * (3 - 2 * t); hg.addColorStop(t, TXLOOK.rgba(CH.P.low, (0.78 * (0.72 + 0.28 * e)).toFixed(3))); }
+    k.fillStyle = hg; k.fillRect(0, 0, CH.W, CH.H);
+    const xg = k.createLinearGradient(650, 0, 1000, 0); xg.addColorStop(0, "rgba(0,0,0,1)"); xg.addColorStop(1, "rgba(0,0,0,0)");
+    k.globalCompositeOperation = "destination-in"; k.fillStyle = xg; k.fillRect(0, 0, CH.W, CH.H);
+    const vg = k.createLinearGradient(0, 380, 0, 640); vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,1)");
+    k.fillStyle = vg; k.fillRect(0, 0, CH.W, CH.H);
+    /* the seat lets go under the dek so the ground below it shows warm */
+    const bg = k.createLinearGradient(0, 1110, 0, 1240); bg.addColorStop(0, "rgba(0,0,0,1)"); bg.addColorStop(1, "rgba(0,0,0,0.25)");
+    k.fillStyle = bg; k.fillRect(0, 0, CH.W, CH.H);
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(c, 0, 0, CH.W * 2, CH.H * 2); cx.restore(); }
+  /* the far sweep deepens toward the top, full width and smooth, so the kicker and counter sit on the cove, no bar */
+  { const g = cx.createLinearGradient(0, 0, 0, 330); for (let i = 0; i <= 8; i++) { const t = i / 8, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, TXLOOK.rgba(CH.P.low, (0.64 * e).toFixed(3))); }
+    cx.fillStyle = g; cx.fillRect(0, 0, CH.W, 330); }
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.42, height: 200 });
+  ['.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.45, fade: 110 }));
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

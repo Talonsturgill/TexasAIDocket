@@ -1,27 +1,27 @@
 {
- "last_pass": "2026-11-13",
+ "last_pass": "2026-11-18",
  "themes": [
   {
-   "theme": "K.make re-centres a model its chassis declared off centre (queue kmake-recentres-after-make, repeat 2: nos. 47, 50 and 76)",
+   "theme": "art preflight has no bespoke route (queue art-preflight-has-no-bespoke-route, repeat 2: nos. 78, 80 and 81)",
    "runs": 3,
    "rounds": null,
    "action": "fixed",
-   "what": "scripts/carousel/deck_chassis.py refuses a chassis K.define that declares an off centre origin and keeps none of keepOrigin, attach, heightAt or anchor 'base'; binds chassis dated after 2026-11-13; nine self-test cases, no shipped deck changed. The undeclared shape is a txkit.js proposal (UPGRADE_BACKLOG 2026-11-13 item 2)."
+   "what": "scripts/carousel/art_preflight.py --write --critics binds frame 1, the hardest frame and the close from the slide critics' hand-backs, each at verdict ship at or above bespoke.json critic_ship with all six points and the SHA-256 of the render it read, for runs dated after 2026-11-18. Fourteen self-test cases. The routine wording is a prompts/daily_routine.md proposal (UPGRADE_BACKLOG 2026-11-18 item 1)."
+  },
+  {
+   "theme": "a relief can't take the slide's own light or camera (queue relief-bench-locks-camera-and-key: nos. 79 and 81; no. 80 round 3 top ranked defect)",
+   "runs": 3,
+   "rounds": null,
+   "action": "fixed",
+   "what": "BESPOKE.md says a TXBENCH relief owns neither its light nor its camera and routes a raked or rekeyed picture to txthree. The key override is a txbench.js proposal (UPGRADE_BACKLOG 2026-11-18 item 2)."
   },
   {
    "theme": "primitive or low-poly model where a kit model belongs",
-   "runs": 5,
-   "rounds": 14,
+   "runs": 6,
+   "rounds": 16,
    "action": "deferred",
-   "what": "The craft card's last shipped round (2026-11-12 r3) is the one the 2026-11-12 pass lifted from; no. 76's chassis models would re-render today's deck if lifted under their names. First artwork item for the next pass."
-  },
-  {
-   "theme": "kit person near detail (queue kit-person-reads-as-mannequin-within-two-metres, repeat 6)",
-   "runs": null,
-   "rounds": null,
-   "action": "escalated",
-   "what": "Default geometry on a model today's deck renders, deferred a second time; when a pass may change a kit default is a prompts/daily_routine.md proposal (UPGRADE_BACKLOG 2026-11-13 item 4)."
+   "what": "The last shipped round's ranked defects are one-deck story models, a relief and a composition. The recurring model, the kit person, is rendered by no. 81 on frames 2, 5 and 8 while its artists rework them, and kit files are outside art_preflight's binding. Carried a third time; UPGRADE_BACKLOG 2026-11-13 item 4 is the unblocking proposal."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from scripts/carousel/week_digest.py --date 2026-11-13, five shipped runs. The recentre theme's run count is the distinct decks its queue line names; rounds not counted for it."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from scripts/carousel/week_digest.py --date 2026-11-18, seven shipped runs. The two fixed themes' run counts are the distinct decks their queue lines and the digest's ranked defects name; rounds not counted for them."
 }

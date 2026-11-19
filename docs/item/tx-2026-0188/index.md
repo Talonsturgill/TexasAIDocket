@@ -9,7 +9,7 @@ The Texas Department of Motor Vehicles now requires any company running automate
 - Public access: Write to the decider
 - Take part: https://txmccs.txdmv.gov/truckstop
 
-- Last checked: 2026-11-15
+- Last checked: 2026-11-18
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The state authorization required to run driverless vehicles commercially still reads as cited.
 - 2026-11-12 · The department now publishes who holds an authorization. Its report with data as of October 29th lists 17 companies and 3,164 automated vehicles, led by Waymo and Tesla Robotaxi.
 - 2026-11-15 · The department's report and its rule responses still read as cited, including its answer that the statute does not let it require crash history.
+- 2026-11-18 · The state's rule that driverless commercial operation needs its own authorization still reads as cited, with no fee and no expiry added.
 
 ## Evidence
 

@@ -1,0 +1,238 @@
+<!doctype html>
+<!-- 2026-11-18, frame 7 of 9, NEIGHBOURS. BESPOKE, LOOK V2 explainer. A material relief through txbench.js, raked: a
+     courtyard floor of exactly FIG.counties hand laid limestone flags of mixed sizes in recessed sand mortar, built in
+     plan as a weighted (power) Voronoi, lit by the deck's key, then projected through a low camera so the far flags
+     foreshorten into the cast shadow of a low wall and its piers just off the top of the frame, where the type sits. The
+     bluebonnet riven slate flags gather in contiguous clumps in the sunlit near floor. No dusk gold: cancer clustering is
+     the CDC layer, not the satellite. Drawn to illustrate; no flag stands for a real county. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:138px; width:700px; text-align:left">High cancer counties sit near each other</h1>
+<p class="dek" data-follow="30" style="left:75px; width:640px">The paper scores that clustering of cancer prevalence at a Moran's index of 0.69. The stones are drawn to illustrate.</p>
+
+<script>window.FIG = {"counties": 254};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Clustering", counter: "07 / 09", src: "c9 c22", fit: { min: 80, max: 112, maxLines: 3 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 7);
+  const W = 1080, H = 1350, DW = W * 2, DH = H * 2;
+  const NSTONE = window.FIG.counties;
+  if (!Number.isInteger(NSTONE) || NSTONE < 20) throw new Error("FIG.counties must be a positive integer count, got " + NSTONE);
+  const rnd = CH.rng(CH.SEED + 707);
+
+  /* ---- THE CAMERA: a low rake. The frame maps onto a trapezoid of the plan, narrow and near at the bottom, wide and far
+   * at the top; a homography is exactly the projection of a flat floor, so depth foreshortens truly. ---- */
+  const WP = 1620, HP = 2700, YF = 300, WN = 1080, CXP = WP / 2, SP = 1.75;      /* plan size, far line, near width, relief scale */
+  function homog(src, dst) {
+    const A = [], b = [];
+    for (let k = 0; k < 4; k++) { const [x, y] = src[k], [u, v] = dst[k];
+      A.push([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.push(u); A.push([0, 0, 0, x, y, 1, -v * x, -v * y]); b.push(v); }
+    for (let c = 0; c < 8; c++) { let p = c; for (let r = c + 1; r < 8; r++) if (Math.abs(A[r][c]) > Math.abs(A[p][c])) p = r;
+      [A[c], A[p]] = [A[p], A[c]]; [b[c], b[p]] = [b[p], b[c]];
+      for (let r = 0; r < 8; r++) if (r !== c) { const f = A[r][c] / A[c][c]; for (let k = c; k < 8; k++) A[r][k] -= f * A[c][k]; b[r] -= f * b[c]; } }
+    const h = b.map((v, i) => v / A[i][i]); return (x, y) => { const w = h[6] * x + h[7] * y + 1; return [(h[0] * x + h[1] * y + h[2]) / w, (h[3] * x + h[4] * y + h[5]) / w]; };
+  }
+  const toPlan = homog([[0, 0], [W, 0], [W, H], [0, H]], [[0, YF], [WP, YF], [CXP + WN / 2, HP], [CXP - WN / 2, HP]]);
+  const toOut = homog([[0, YF], [WP, YF], [CXP + WN / 2, HP], [CXP - WN / 2, HP]], [[0, 0], [W, 0], [W, H], [0, H]]);
+  const inView = (u, v) => { if (v < YF || v > HP) return false; const t = (v - YF) / (HP - YF), half = WP / 2 + (WN / 2 - WP / 2) * t; return Math.abs(u - CXP) <= half; };
+
+  /* ---- THE FLAGS: exactly FIG.counties, of mixed sizes, every one inside the view, as a power (weighted) Voronoi ---- */
+  const AREA = (WP + WN) / 2 * (HP - YF);
+  const F = Array.from({ length: NSTONE }, (_, i) => { const r = rnd(); return r < 0.25 ? 0.62 : r < 0.75 ? 1.0 : 1.5; });
+  const meanF2 = F.reduce((s, f) => s + f * f, 0) / NSTONE;
+  let base = Math.sqrt(AREA / (NSTONE * meanF2 * 3.6)), P = null;
+  for (let attempt = 0; attempt < 12 && !P; attempt++, base *= 0.96) {
+    const Q = [];
+    for (let i = 0; i < NSTONE; i++) {
+      let ok = false;
+      for (let t = 0; t < 4000 && !ok; t++) {
+        const u = rnd() * WP, v = YF + rnd() * (HP - YF); if (!inView(u, v)) continue;
+        if (Q.every(q => Math.hypot(q[0] - u, q[1] - v) > 0.92 * base * (q[2] + F[i]))) { Q.push([u, v, F[i]]); ok = true; }
+      }
+      if (!ok) break;
+    }
+    if (Q.length === NSTONE) P = Q;
+  }
+  if (!P || P.length !== NSTONE) throw new Error("could not lay FIG.counties flags in view");
+  const WT = P.map(p => (0.85 * base * p[2]) ** 2);
+  const B = 130, NX = Math.ceil(WP / B), NY = Math.ceil(HP / B), G = Array.from({ length: NX * NY }, () => []);
+  P.forEach((p, i) => G[Math.min(NY - 1, p[1] / B | 0) * NX + Math.min(NX - 1, p[0] / B | 0)].push(i));
+  function near2(x, y) {
+    const bx = Math.min(NX - 1, Math.max(0, x / B | 0)), by = Math.min(NY - 1, Math.max(0, y / B | 0)); let a = -1, b = -1, da = 1e18, db = 1e18;
+    for (let r = 4, yy = by - r; yy <= by + r; yy++) { if (yy < 0 || yy >= NY) continue;
+      for (let xx = bx - r; xx <= bx + r; xx++) { if (xx < 0 || xx >= NX) continue;
+        const L = G[yy * NX + xx]; for (let k = 0; k < L.length; k++) { const i = L[k], dx = P[i][0] - x, dy = P[i][1] - y, d = dx * dx + dy * dy - WT[i];
+          if (d < da) { db = da; b = a; da = d; a = i; } else if (d < db) { db = d; b = i; } } } }
+    return [a, b, da, db];
+  }
+
+  /* one pass at relief resolution: which flag, distance to its joint, who borders whom, and each flag's area in view */
+  const BW = Math.round(WP * SP), BH = Math.round(HP * SP), N = BW * BH;
+  const LAB = new Int16Array(N), DIS = new Float32Array(N), adj = Array.from({ length: NSTONE }, () => new Set()), seenA = new Float64Array(NSTONE);
+  for (let j = 0; j < BH; j++) for (let i = 0; i < BW; i++) {
+    const X = (i + 0.5) / SP, Y = (j + 0.5) / SP, [a, b, da, db] = near2(X, Y);
+    const ab = Math.hypot(P[a][0] - P[b][0], P[a][1] - P[b][1]), d = (db - da) / (2 * ab), k = j * BW + i;
+    LAB[k] = a; DIS[k] = d;
+    if (d < 0.8 && Y > YF) { adj[a].add(b); adj[b].add(a); }
+    if (inView(X, Y)) seenA[a] += 1 / (SP * SP);
+  }
+  const shown = [...seenA].filter(v => v > 300).length;
+  if (shown !== NSTONE) throw new Error("the floor shows " + shown + " flags, FIG.counties is " + NSTONE);
+
+  /* ---- THE SLATE: bluebonnet flags grown into contiguous clumps in the sunlit near floor, plus a few lone ones ---- */
+  const slate = new Int8Array(NSTONE);
+  const nearestTo = (ox, oy) => { const [u, v] = toPlan(ox, oy); return near2(u, v)[0]; };
+  const CLUMPS = [[650, 1010, 9], [150, 1110, 5]];
+  CLUMPS.forEach(([ox, oy, size], k) => {
+    const id = k + 1, [cu, cv] = toPlan(ox, oy), s0 = nearestTo(ox, oy), mem = [s0]; slate[s0] = id;
+    const free = n => slate[n] === 0 && P[n][1] > toPlan(540, 830)[1] && [...adj[n]].every(m => slate[m] === 0 || slate[m] === id);
+    while (mem.length < size) {
+      let best = -1, bd = 1e18;
+      mem.forEach(m => adj[m].forEach(n => { if (!free(n)) return; const d = Math.hypot(P[n][0] - cu, P[n][1] - cv) * (0.75 + 0.5 * rnd()); if (d < bd) { bd = d; best = n; } }));
+      if (best < 0) throw new Error("clump " + id + " could not grow to " + size);
+      slate[best] = id; mem.push(best);
+    }
+  });
+  [[390, 880], [990, 1170]].forEach(([ox, oy]) => {
+    const [u, v] = toPlan(ox, oy), order = [...P.keys()].sort((m, n) => Math.hypot(P[m][0] - u, P[m][1] - v) - Math.hypot(P[n][0] - u, P[n][1] - v));
+    const n = order.find(c => slate[c] === 0 && P[c][1] > toPlan(540, 830)[1] && [...adj[c]].every(m => slate[m] === 0));
+    /* a lone flag is illustrative texture, not data: where none fits near its mark it is simply left out */
+    if (n == null || Math.hypot(P[n][0] - u, P[n][1] - v) > 300) return;
+    slate[n] = -1;
+  });
+  for (let id = 1; id <= CLUMPS.length; id++) {
+    const mem = [...slate.keys()].filter(i => slate[i] === id), got = new Set([mem[0]]), q = [mem[0]];
+    while (q.length) { const m = q.pop(); adj[m].forEach(n => { if (slate[n] === id && !got.has(n)) { got.add(n); q.push(n); } }); }
+    if (got.size !== mem.length || mem.length !== CLUMPS[id - 1][2]) throw new Error("clump " + id + " is not one contiguous group");
+  }
+
+  /* ---- per flag: thickness, a little out of level, riven grain, its own limestone, and a fissure on a few ---- */
+  const LIME = ["#dde8ee", "#e3ecee", "#d9e5ee", "#e1ebec", "#dce7ec", "#e5eeec", "#d6e2ec"].map(c => TXLOOK.lin(c));
+  const SLATE = ["#2c4a9e", "#274395", "#3253a8", "#233d8a", "#2e4ea2"].map(c => TXLOOK.lin(c));
+  const st = P.map((p, i) => ({ h: slate[i] ? 6.5 + rnd() * 1.2 : 7.5 + rnd() * 2.2, tx: (rnd() - 0.5) * 0.012, ty: (rnd() - 0.5) * 0.012,
+    dir: rnd() * Math.PI, ph: rnd() * 100, tone: slate[i] ? SLATE[i % SLATE.length] : LIME[(i * 5 + (rnd() * 3 | 0)) % LIME.length], k: 0.93 + rnd() * 0.12,
+    crack: !slate[i] && p[2] >= 1 && rnd() < 0.07, ca: rnd() * Math.PI, co: (rnd() - 0.5) * 30 }));
+
+  /* ---- THE WALL just off the top of the frame: a low coped wall with piers, its height set so the edge of its cast
+   * shadow lands under the measured type. The shadow is the wall's own silhouette projected along the deck's key, with a
+   * penumbra that widens with distance, so it is a real cast with a soft but definite edge. ---- */
+  const tb = (() => { let y1 = 0; document.querySelectorAll(".hook, .dek").forEach(e => { y1 = Math.max(y1, e.getBoundingClientRect().bottom); }); return y1; })();
+  const deck = TXDECK.deck(), el = deck.light.el * Math.PI / 180, az = deck.light.az * Math.PI / 180, TE = Math.tan(el);
+  /* the wall's face runs a little off square to the floor, nearer the camera on the left, and its coping is laid in
+   * blocks of uneven height, so the shadow's edge is the wall's real outline rather than a ruled line */
+  const Y0W = YF - 60, MW = -0.12, CA = Math.cos(az), SA = Math.sin(az);
+  const reach = (X, Y) => (Y - Y0W - MW * X) / (CA + MW * SA);                     /* plan distance toward the key to the wall's face */
+  let need = 0; for (let x = 40; x <= W; x += 20) { const [u, v] = toPlan(x, tb + 85); if (x < 860) need = Math.max(need, reach(u, v)); }
+  const HW = need * TE;
+  const hashH = n => { const t = Math.sin(n * 127.1 + 311.7) * 43758.5453; return t - Math.floor(t); };
+  const blockH = x => { const n = Math.floor((x + 1000) / 118); return HW * (1 + 0.07 * (hashH(n) - 0.35)); };
+  const wallH = (x, blur) => (blockH(x - blur) + blockH(x) + blockH(x + blur) + blockH(x - blur / 2) + blockH(x + blur / 2)) / 5;
+  const shadeAt = (X, Y) => { const r = reach(X, Y); if (r <= 0) return 0; const xw = X + SA * r, w = 6 + 0.026 * r, g = r * TE - wallH(xw, 5 + 0.025 * r);
+    const t = Math.max(0, Math.min(1, (g + w) / (2 * w))); return t * t * (3 - 2 * t); };   /* 0 in the wall's shadow, 1 in sun */
+  for (const e of document.querySelectorAll(".hook, .dek")) { const r = e.getBoundingClientRect();
+    for (let x = r.left; x <= r.right; x += 12) for (let y = r.top; y <= r.bottom; y += 12) { const [u, v] = toPlan(x, y); if (shadeAt(u, v) > 0.08) throw new Error("the type at " + Math.round(x) + "," + Math.round(y) + " is out of the wall's shadow"); } }
+  if (reach(...toPlan(0, 0)) <= 0 || reach(...toPlan(W, 0)) <= 0) throw new Error("the wall would show in frame");
+
+  /* ---- the height and material fields ---- */
+  const HB = new Float32Array(N), MB = new Uint8Array(N), J = 4.0;
+  for (let j = 0; j < BH; j++) for (let i = 0; i < BW; i++) {
+    const k = j * BW + i, X = (i + 0.5) / SP, Y = (j + 0.5) / SP;
+    const a = LAB[k], s = st[a];
+    const dn = DIS[k] + 0.9 * TX.simplex2(X / 40 + s.ph, Y / 40);                   /* a hand cut, irregular outline, never a fringe */
+    if (dn < J) { HB[k] = -0.6 * (1 - dn / J) + 0.2 * TX.simplex2(X / 1.3, Y / 1.3); MB[k] = 0; continue; }
+    const isS = slate[a] !== 0, e = dn - J;
+    let top = s.h + s.tx * (X - P[a][0]) + s.ty * (Y - P[a][1]);
+    if (isS) {
+      const cs = Math.cos(s.dir), sn = Math.sin(s.dir), u = X * cs + Y * sn, v = -X * sn + Y * cs;
+      /* cleft slate: two or three broad riven planes with soft risers and a gently undulating face for the satin to ride */
+      const c = u / 55 + 0.2 * TX.simplex2(X / 90 + s.ph, Y / 90), f = c - Math.floor(c), riser = f < 0.12 ? (f / 0.12) ** 2 * (3 - 2 * f / 0.12) : 1;
+      top += 0.9 * riser + 0.35 * TX.fbm2(X / 40 + s.ph, Y / 40, { octaves: 2 }) + 0.06 * TX.simplex2(u / 1.2, v / 14);
+    } else {
+      top += 0.5 * TX.simplex2(X / 70 + s.ph, Y / 70) + 0.28 * TX.fbm2(X / 3 + s.ph, Y / 3, { octaves: 2 });
+      const pit = TX.simplex2(X / 4 + s.ph, Y / 4 - s.ph); if (pit > 0.84) top -= 1.2 * (pit - 0.84) / 0.16;
+      if (s.crack) {                                                                /* a real fissure, with depth */
+        const dl = Math.abs((X - P[a][0]) * Math.sin(s.ca) - (Y - P[a][1]) * Math.cos(s.ca) + s.co + 7 * TX.simplex2(X / 26 + s.ph, Y / 26));
+        if (dl < 1.6) top -= 3.6 * (1 - (dl / 1.6) ** 2);
+      }
+    }
+    /* a clean chamfer to a crisp arris, with a few chips knocked out of it */
+    const chip = e < 4.5 ? Math.max(0, TX.simplex2(X / 6 + s.ph, Y / 6) - (isS ? 0.35 : 0.5)) * (isS ? 2.8 : 2.2) * (1 - e / 4.5) : 0;
+    const t = Math.min(1, e / 2.4), prof = t * (2 - t);
+    HB[k] = top * prof - chip * top * 0.35;
+    MB[k] = isS ? 2 : 1;
+  }
+
+  /* ---- light it in plan with the deck's key, on an offscreen bench ---- */
+  const oc = document.createElement("canvas"); oc.width = BW; oc.height = BH; const ocx = oc.getContext("2d");
+  const MORTAR = TXLOOK.lin("#a9b6cc"), WALL = TXLOOK.lin("#e6d3b4");
+  TXBENCH.relief(ocx, {
+    x: 0, y: 0, w: WP, h: HP, scale: SP,
+    height: (X, Y) => HB[(Y * SP | 0) * BW + (X * SP | 0)],
+    material: (X, Y) => MB[(Y * SP | 0) * BW + (X * SP | 0)],
+    albedo: (X, Y, m) => {
+      if (m === 3) return WALL;
+      const k = (Y * SP | 0) * BW + (X * SP | 0), s = st[LAB[k]];
+      if (m === 0) { const g = 0.86 + 0.14 * TX.simplex2(X / 1.6, Y / 1.6); return MORTAR.map(v => v * g); }
+      const mot = 1 + 0.09 * TX.fbm2(X / 40 + s.ph, Y / 40, { octaves: 3 }) + 0.04 * TX.simplex2(X / 3, Y / 3);
+      if (m === 2) {                                                             /* laminae in the stone's own grain, a rusty bloom on a few */
+        const cs = Math.cos(s.dir), sn = Math.sin(s.dir), u = X * cs + Y * sn, v = -X * sn + Y * cs;
+        const lam = 1 + 0.14 * TX.simplex2(u / 70 + s.ph, v / 7) + 0.05 * TX.simplex2(X / 4, Y / 4), rust = Math.max(0, TX.simplex2(X / 30 - s.ph, Y / 30) - 0.55) * 0.5;
+        return [s.tone[0] * s.k * lam * (1 + rust * 1.6), s.tone[1] * s.k * lam * (1 + rust * 0.4), s.tone[2] * s.k * lam * (1 - rust * 0.5)];
+      }
+      const stain = Math.max(0, TX.simplex2(X / 80 - s.ph, Y / 80)) * 0.14;
+      return [s.tone[0] * s.k * mot * (1 - stain * 0.7), s.tone[1] * s.k * mot * (1 - stain * 0.6), s.tone[2] * s.k * mot * (1 - stain * 0.4)];
+    },
+    spec: { 0: [0, 1], 1: [0.08, 14], 2: [0.34, 26], 3: [0, 1] },
+    keyMask: (X, Y) => 0.06 + 0.94 * shadeAt(X, Y), keyColor: TXLOOK.lin("#ffdcb0", 1.32), ambColor: TXLOOK.lin("#3f6cff", 1.15),
+    ambient: 0.2, diffuse: 1.45, ao: 0.85, aoRadius: 5, shadow: 0.86, softness: 4, castLength: 60, dither: true
+  });
+
+  /* ---- the camera: every output pixel reads the lit plan through the homography, 2 x 2 supersampled ---- */
+  const src = ocx.getImageData(0, 0, BW, BH).data, out = cx.createImageData(DW, DH), od = out.data;
+  const samp = (u, v, c) => { const x = u * SP - 0.5, y = v * SP - 0.5, x0 = Math.max(0, Math.min(BW - 2, x | 0)), y0 = Math.max(0, Math.min(BH - 2, y | 0)), fx = Math.min(1, Math.max(0, x - x0)), fy = Math.min(1, Math.max(0, y - y0));
+    const i00 = (y0 * BW + x0) * 4 + c, i10 = i00 + 4, i01 = i00 + BW * 4, i11 = i01 + 4;
+    return (src[i00] * (1 - fx) + src[i10] * fx) * (1 - fy) + (src[i01] * (1 - fx) + src[i11] * fx) * fy; };
+  for (let j = 0; j < DH; j++) for (let i = 0; i < DW; i++) {
+    let r = 0, g = 0, b = 0;
+    for (const [ox, oy] of [[0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]]) { const [u, v] = toPlan((i + ox) / 2, (j + oy) / 2); r += samp(u, v, 0); g += samp(u, v, 1); b += samp(u, v, 2); }
+    const k = (j * DW + i) * 4; od[k] = r / 4; od[k + 1] = g / 4; od[k + 2] = b / 4; od[k + 3] = 255;
+  }
+  cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.putImageData(out, 0, 0); cx.restore();
+  /* THE LENS: a low camera focused on the near clumps, so the far floor under the type falls softly out of focus,
+   * deepest at the top and sharp again by the shadow's edge */
+  const lens = document.createElement("canvas"); lens.width = DW; lens.height = DH; const lc = lens.getContext("2d");
+  const yS = (tb + 120) * 2;
+  [[12, 0, 0.55], [6, 0.35, 1.0]].forEach(([px, a0, a1]) => {
+    lc.clearRect(0, 0, DW, DH); lc.filter = "blur(" + px + "px)"; lc.drawImage(cx.canvas, 0, 0); lc.filter = "none";
+    const m = lc.createLinearGradient(0, 0, 0, yS * (px > 8 ? 0.7 : 1));
+    m.addColorStop(0, "rgba(0,0,0,1)"); m.addColorStop(a0, "rgba(0,0,0,1)"); m.addColorStop(1, "rgba(0,0,0,0)");
+    lc.globalCompositeOperation = "destination-in"; lc.fillStyle = m; lc.fillRect(0, 0, DW, DH); lc.globalCompositeOperation = "source-over";
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(lens, 0, 0); cx.restore();
+  });
+
+  CH.seat(cx, { a: 0.16, fade: 220 });
+  TXLOOK.footWash(cx, { a: 0.6, height: 260 });
+  [".src", ".tx-site"].forEach(sel => { const e = document.querySelector(sel); if (!e) return; const r = e.getBoundingClientRect();
+    CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.4, fade: 110 }); });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

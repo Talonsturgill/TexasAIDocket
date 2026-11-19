@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Four frames strong at 432 px (4 the proud sulfur dioxide band, 7 the slate clumps in limestone, 6 three grounds in cases, 5 the four pads with 21 bare stakes in front). Held down by 8 (game-grade resident mesh, kerb renders salmon pink like garden edging), 9 (the gold outline holds a plain empty block, the monitor pit reads as a hole), 3 (type on a darker rectangular wash, satellite in a soft void) and 2 (subject only the lower third)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds on all nine: explainer palette, one serif, mono furniture, indigo shadows, west left and east right, and an orbit to ground camera move. The accent's one meaning does not survive at feed size: the cover slab top matches the sheet, losing pads and caliche are near-accent peach, the frame 8 kerb renders pink."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces (254 c1 c24, 2022 and eight c4, 0.791 c21, 79 of 100 computed, 0.69 c22, four c20, March 5th c11). Caveats follow c11 and c10. Deductions: c21 is medium confidence yet headline level; the fit-not-a-share gloss is the run's own; the caption's closing question goes past c25 and c14. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A Texan learns that more pollution went with more cancer across counties, the east is worse, and the link is not proof for a person. No county, city or region beyond east and west is named; nothing says where sulfur dioxide comes from; the close offers no next step a reader can take."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover never says cancer or pollution; the finding first appears in frame 6's body after four method frames. 2 and 3 could merge; 5 is a statistics lesson where momentum should build. The turn on 8 lands; 9 closes on a quote and a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register, no banned words, honest without alarm; 'A place is not a person' reads like a person. Support vector machine, R squared and Moran's I printed with partial translation; 'drawn to illustrate' on all nine; the copy names no Texas place."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh topic in the window, varied techniques. Survey stakes with flagging as a ratio unit repeat November 11th and 5th; the explainer cerulean repeats the November 14th proof tone."
+  }
+ ],
+ "weighted_score": 7.05,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "Under the round 1 rung of 8.0, no hard fail. A work order for round 2.",
+ "one_sentence_fix": "Put the finding on the cover, name places where the claims allow, and pull the finding forward by merging 3 into 2.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Game-grade resident mesh, plastic shirt, clumped hair, no contact shadow; the kerb renders salmon pink and reads as garden edging.",
+   "fix": "Push the resident to a darker rim-lit silhouette at the left edge; rebuild the kerb as a wider true #E0956A glass strip that catches the key and turns its corner behind the house."
+  },
+  {
+   "slide": 9,
+   "problem": "The gold outline encloses an empty plain block; the monitor pit reads as a hole.",
+   "fix": "Model a town inside the gold block lit as the brightest point; raise the sharp circle level with the terrain."
+  },
+  {
+   "slide": 3,
+   "problem": "Type on a darker rectangular wash; the satellite floats in a soft void.",
+   "fix": "Satellite upper right, swath to a curved Earth limb lower left, type in the dark below the limb, delete the wash plate."
+  },
+  {
+   "slide": 2,
+   "problem": "Shelter, fence, pickup and worker fill only the bottom third at feed size.",
+   "fix": "Knee height camera about 20 m out so the shelter fills half the width; type in open sky without a wash."
+  }
+ ]
+}

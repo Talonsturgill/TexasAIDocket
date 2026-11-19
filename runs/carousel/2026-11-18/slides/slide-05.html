@@ -1,0 +1,208 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-18, frame 5 of 9, THE FIT (rework). A spatial scene through txthree.js, outdoors in a fall pasture under
+the explainer morning sky, seen from a 6 m lift through a shift lens so the horizon sits under the type. FIG.algorithms
+graded caliche pads stand in one rank stepping back east to frame right, one per method compared. Each of the
+others is laid out with corner stakes and a white string line only, no grid and no count. The nearest pad, the one that won, carries a 10 by 10 grid of
+five foot lath stakes: FIG.r2_of_100 wear bluebonnet flagging, filled row by row from the back, and the rest stand bare
+with white paint caps in one block across the front rows. No dusk gold on this frame: the fit is the model's. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:140px; top:124px; width:800px; text-align:center">Four methods tried, one fit best</h1>
+<p class="dek" data-follow="20" style="left:80px; width:920px; text-align:center; text-wrap:balance">A support vector machine fit best, with an R squared of 0.791, drawn here as 79 flagged stakes in 100 on the one pad that won. Rahman says socioeconomic and other variables were controlled for. The 0.791 is a model's fit, not how much cancer pollution causes. Cancer reflects many influences besides pollution.</p>
+<script>window.FIG = {"algorithms": 4, "r_squared": 0.791, "r2_of_100": 79};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The fit", counter: "05 / 09", src: "c3 c20 c21 c27 c19", fit: { min: 70, max: 88, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 60, near: 1.0, far: 4000, fog: 0.00035 });
+
+  /* THE FIGURES. One pad per method compared, FIG.algorithms of them. On the winner, 100 stakes with FIG.r2_of_100 flagged,
+   * which must equal the R squared rounded to a hundredth. */
+  const N = 10, TOTAL = N * N, FLAGGED = FIG.r2_of_100, PADS = FIG.algorithms;
+  if (Math.round(FIG.r_squared * TOTAL) !== FLAGGED) throw new Error('FIG.r2_of_100 ' + FLAGGED + ' is not FIG.r_squared ' + FIG.r_squared + ' of ' + TOTAL);
+  if (!(PADS >= 2)) throw new Error('FIG.algorithms ' + PADS + ' gives no contest');
+  const PITCH = 0.8, SPAN = PITCH * (N - 1), PAD = SPAN + 1.8, SLAB = 0.12;
+  const BLUEBONNET = 0x4e5fa8, SC = 1.25;   /* a five foot lath */
+  const TAG_W = 0.11, TAG_L = 0.40;
+
+  const padTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    const r = CH.rng(77); g.fillStyle = '#e6a667'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { const x = r() * w, y = r() * h, s = 0.6 + r() * 2.4; g.fillStyle = r() < 0.5 ? 'rgba(255,236,200,' + (0.1 + r() * 0.25).toFixed(2) + ')' : 'rgba(150,92,50,' + (0.08 + r() * 0.2).toFixed(2) + ')'; g.fillRect(x, y, s, s); }
+    for (let k = 0; k < 40; k++) { g.strokeStyle = 'rgba(170,110,62,0.10)'; g.lineWidth = 2 + r() * 5; g.beginPath(); const y = r() * h; g.moveTo(0, y); g.lineTo(w, y + (r() - 0.5) * 30); g.stroke(); }   /* grader passes */
+    /* the roller's tyre tracks: two compacted bands with a chevron tread, darker and smoother than the loose caliche */
+    [[0.18, 0.13], [0.62, 0.13]].forEach(([x0, bw]) => {
+      g.fillStyle = 'rgba(160,96,50,0.16)'; g.fillRect(x0 * w, 0, bw * w, h);
+      for (let y = 0; y < h; y += 14) { g.strokeStyle = 'rgba(120,70,36,0.20)'; g.lineWidth = 3; g.beginPath();
+        g.moveTo(x0 * w + 3, y); g.lineTo((x0 + bw / 2) * w, y + 7); g.lineTo((x0 + bw) * w - 3, y); g.stroke(); }
+      g.fillStyle = 'rgba(255,240,215,0.10)'; g.fillRect(x0 * w - 3, 0, 3, h); g.fillRect((x0 + bw) * w, 0, 3, h);   /* the pressed lip */
+    });
+  }, [3, 3]);
+  const padMat = K.mat('caliche-pad', { color: 0xffffff, map: padTex, roughness: 0.96 }); padMat.userData.txSurface = false;
+  const tagMat = new THREE.MeshStandardMaterial({ color: BLUEBONNET, roughness: 0.55, side: THREE.DoubleSide, emissive: BLUEBONNET, emissiveIntensity: 0.35 }); tagMat.name = 'flagging-tape'; tagMat.userData.txSurface = 'fabric';
+  const paint = K.mat('white-paint-cap', { color: 0xfbfbf6, roughness: 0.45, emissive: 0xffffff, emissiveIntensity: 0.08 });
+  const stringMat = K.mat('mason-line', { color: 0xf6f8ff, roughness: 0.6, emissive: 0xffffff, emissiveIntensity: 0.25 });
+
+  /* the pads in one rank: the winner nearest at frame left, the other three stepping back east (frame right) and away */
+  const PADAT = [[0, -8.1], [6, -21], [14, -28], [22, -37]];
+  if (PADAT.length < PADS) throw new Error('need ' + PADS + ' pad positions');
+  const padsDrawn = [];
+  for (let p = 0; p < PADS; p++) {
+    const [px, pz] = PADAT[p];
+    const FRONT = p === 0 ? 1.4 : 0;   /* the winner's apron runs on toward the camera so its front edge leaves the frame */
+    const slab = TXT.roundedBox(PAD, SLAB * 2, PAD + FRONT, 0.11, padMat, { segments: 5 });   /* a chamfered compacted edge */ slab.position.set(px, 0, pz + FRONT / 2); slab.receiveShadow = true; slab.castShadow = true; slab.userData.txBevel = false;
+    TXT.add(R, slab); TXT.contact(R, slab, { opacity: 0.5 }); padsDrawn.push(slab);
+  }
+  if (padsDrawn.length !== PADS) throw new Error('drew ' + padsDrawn.length + ' pads, FIG.algorithms is ' + PADS);
+
+  const stake = (x, z, flagged, seed) => {
+    const r = CH.rng(seed);
+    const s = K.make('lath_stake', { seed, flag: flagged ? BLUEBONNET : 'none', tails: 2, flagGlow: flagged ? 0.3 : 0, mud: 0.12, driven: 0.15, lean: (r() - 0.5) * 0.04, scale: SC });
+    if (flagged) {   /* two short flagging tags tied at the stake top, each one flat strip with a soft bend, blown a little
+                      * east, so each flagged stake is one mark with its tie showing; the kit's long tails are left off */
+      let head = null;
+      s.traverse(o => { if (o.isMesh && o.geometry && o.geometry.type === 'PlaneGeometry') o.visible = false;
+        if (!head && o.isMesh && o.geometry && o.geometry.type !== 'PlaneGeometry' && o.material && o.material.color && o.material.color.getHex() === BLUEBONNET) head = o; });
+      if (!head) throw new Error('flagged stake ' + seed + ' has no tie');
+      head.scale.set(1.5, 2.2, 1.5);
+      [-1, 1].forEach((e, k) => {
+        const tg = new THREE.PlaneGeometry(TAG_W, TAG_L, 1, 6); tg.translate(0, -TAG_L / 2, 0);
+        const pa = tg.attributes.position; for (let i = 0; i < pa.count; i++) { const t = -pa.getY(i) / TAG_L; pa.setZ(i, 0.05 * t * t + 0.01 * Math.sin(t * 5 + k)); }
+        tg.computeVertexNormals();
+        const tag = new THREE.Mesh(tg, tagMat); tag.position.set(head.position.x + e * 0.012, head.position.y - 0.008, head.position.z + LT * SC / 2 + 0.003);
+        tag.rotation.set(0.1, e * 0.35 + (r() - 0.5) * 0.2, 0.5 + e * 0.12 + (r() - 0.5) * 0.15); tag.castShadow = true;
+        tag.userData.txBevel = false; head.parent.add(tag); });
+    } else {         /* a bare stake carries a white paint cap */
+      s.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(s);
+      const cap = TXT.roundedBox(LW * SC + 0.004, 0.11, LT * SC + 0.004, 0.003, paint); cap.position.y = bb.max.y - 0.05; cap.castShadow = true; s.add(cap);
+    }
+    s.position.set(x, SLAB, z); s.rotation.y = flagged ? (r() - 0.5) * 0.1 : (r() - 0.5) * 0.4; TXT.add(R, s);
+    return s;
+  };
+  const LW = 0.0381, LT = 0.0095;
+
+  /* THE WINNER: row j 0 nearest the camera, 9 farthest; flags fill row by row from the back, west to east */
+  const [wx, wz] = PADAT[0];
+  let nFlag = 0, nBare = 0;
+  for (let j = N - 1; j >= 0; j--) for (let i = 0; i < N; i++) {
+    const idx = (N - 1 - j) * N + i, flagged = idx < FLAGGED, r = CH.rng(300 + idx);
+    stake(wx - SPAN / 2 + i * PITCH + (r() - 0.5) * 0.04, wz + SPAN / 2 - j * PITCH + (r() - 0.5) * 0.04, flagged, 500 + idx * 7);
+    if (flagged) nFlag++; else nBare++;
+  }
+  if (nFlag !== FLAGGED || nFlag + nBare !== TOTAL) throw new Error('drew ' + nFlag + ' flagged of ' + (nFlag + nBare) + ', the figures say ' + FLAGGED + ' of ' + TOTAL);
+
+  /* the surveyor's kit for a pad that was set out but never scored */
+  const legWood = K.mat('ash-wood-tripod-leg', { color: 0xd9b88a, roughness: 0.6 });
+  const alu = K.mat('cast-aluminium-head', { color: 0xc4c9d0, metalness: 0.9, roughness: 0.35 });
+  const bodyPaint = K.mat('white-paint-instrument', { color: 0xf3f4f2, roughness: 0.4, clearcoat: 0.4 }, true);
+  const navy = K.mat('navy-plastic-trim', { color: 0x1f2a4e, roughness: 0.5 });
+  const strap = K.mat('black-rubber-strap', { color: 0x232634, roughness: 0.85 });
+  let pineMat = null; K.make('lath_stake', { seed: 3, flag: 'none' }).traverse(o => { if (!pineMat && o.isMesh && o.material && o.material.map) pineMat = o.material; });
+  const level = () => {
+    const g = new THREE.Group(), H = 1.42, spread = 0.52;
+    for (let k = 0; k < 3; k++) { const a = k * Math.PI * 2 / 3 + 0.3, fx = Math.cos(a) * spread, fz = Math.sin(a) * spread;
+      const leg = TXT.tube([[fx, 0, fz], [fx * 0.5, H * 0.5, fz * 0.5], [0, H, 0]], 0.022, legWood); if (leg) { leg.castShadow = true; g.add(leg); }
+      const shoe = new THREE.Mesh(new THREE.ConeGeometry(0.018, 0.08, 10), alu); shoe.rotation.x = Math.PI; shoe.position.set(fx, 0.04, fz); g.add(shoe); }
+    const head = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.1, 0.05, 24), alu); head.position.y = H + 0.02; g.add(head);
+    const body = TXT.roundedBox(0.13, 0.13, 0.24, 0.025, bodyPaint); body.position.y = H + 0.12; g.add(body);
+    const scope = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.08, 20), navy); scope.rotation.x = Math.PI / 2; scope.position.set(0, H + 0.13, 0.15); g.add(scope);
+    const knob = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.03, 16), navy); knob.rotation.z = Math.PI / 2; knob.position.set(0.08, H + 0.11, 0); g.add(knob);
+    g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return g;
+  };
+  const bundle = () => {   /* lath laid flat, three courses, two rubber straps */
+    const g = new THREE.Group(), L = LATH_LEN, w = LW * SC, t = LT * SC * 2.2;
+    for (let c = 0; c < 3; c++) for (let k = 0; k < 5 - c; k++) {
+      const b = TXT.roundedBox(L, t, w, 0.003, pineMat); b.position.set((c % 2) * 0.03, t / 2 + c * t, (k - (4 - c) / 2) * w * 1.05); b.castShadow = true; b.receiveShadow = true; g.add(b); }
+    [-0.45, 0.45].forEach(x => { const sb = TXT.roundedBox(0.04, 3 * t + 0.01, 5 * w * 1.05 + 0.012, 0.004, strap); sb.position.set(x, 1.5 * t, 0); g.add(sb); });
+    return g;
+  };
+  const LATH_LEN = 1.2192 * SC;
+
+  /* THE OTHERS: three contestants, each laid out with four plain corner stakes and a white string line, no grid,
+   * no caps and no count, because no claim gives their fit */
+  const plain = (x, z, seed) => { const r = CH.rng(seed);
+    const s = K.make('lath_stake', { seed, flag: 'none', mud: 0.12, driven: 0.15, lean: (r() - 0.5) * 0.04, scale: SC });
+    s.position.set(x, SLAB, z); s.rotation.y = (r() - 0.5) * 0.4; TXT.add(R, s); return s; };
+  for (let p = 1; p < PADS; p++) {
+    const [px, pz] = PADAT[p], h = SPAN / 2, Y = SLAB + 0.42;
+    const C = [[px - h, pz + h], [px + h, pz + h], [px + h, pz - h], [px - h, pz - h]];
+    C.forEach((c, k) => plain(c[0], c[1], 9000 + p * 10 + k));
+    /* surveyed but unscored: a tripod level set up on the pad and a strapped bundle of lath beside it, never driven */
+    const lv = level(); lv.position.set(px - 0.6, SLAB, pz + 0.4); lv.rotation.y = -0.6 + p * 0.3; TXT.add(R, lv); TXT.contact(R, lv, { opacity: 0.45 });
+    const bd = bundle(); bd.position.set(px + 1.6, SLAB, pz + 1.9); bd.rotation.y = 0.4 + p * 0.5; TXT.add(R, bd); TXT.contact(R, bd, { opacity: 0.5 });
+    for (let k = 0; k < 4; k++) { const a = C[k], b = C[(k + 1) % 4];
+      const m = TXT.tube([[a[0], Y, a[1]], [(a[0] + b[0]) / 2, Y - 0.03, (a[1] + b[1]) / 2], [b[0], Y, b[1]]], 0.012 + p * 0.004, stringMat); if (m) { m.castShadow = true; R.scene.add(m); } }
+  }
+
+  /* SCALE: a worker at the winner's front east corner, off the pad */
+  const man = K.make('person', { seed: 18, role: 'worker', pose: 'hands_on_hips', vest: false, shirt: 0x9cc4e4, trousers: 0x3a4a6e, hat: true, hatColor: 0xf2efe6 });
+  man.position.set(wx + PAD / 2 + 0.9, 0, wz - 2.4); man.rotation.y = -Math.PI / 2 - 0.5; TXT.add(R, man); TXT.contact(R, man, { opacity: 0.55 });
+
+  /* THE PASTURE: fall prairie west of the winner and beyond the pads, scattered grass between them */
+  [[-24, -30, 30, 60], [10, -82, 90, 40]].forEach(([x, z, w, d], k) => {
+    const p = K.make('pasture', { seed: 31 + k, width: w, depth: d, height: 0.7, density: 0.9, season: 'fall', flowers: 'none', drift: 0.5 });
+    p.position.set(x, 0, z); TXT.add(R, p);
+  });
+  for (let k = 0; k < 14; k++) {
+    const r = CH.rng(900 + k), kind = r() < 0.6 ? 'mesquite' : 'live_oak';
+    const t = K.make(kind, { seed: 40 + k }); t.position.set(-420 + k * 64 + (r() - 0.5) * 30, 0, -380 - r() * 160); TXT.add(R, t);
+  }
+
+  /* THE CAMERA: 4 m up just south of the winner, looking north (east is frame right), level, the lens shifted so the
+   * horizon sits at y 640 under the type and the verticals stay vertical. Focal 700 px on the 1350 px frame. */
+  const CAMH = 4, HZ = 640, F = 700, DFRONT = 5.4, CAMZ = wz + SPAN / 2 + DFRONT;   /* 4 m up, the front stake row 5.4 m out spans F*SPAN/DFRONT css px */
+  const GRIDW_FRONT = 2 * F * SPAN / DFRONT, GRIDW_BACK = 2 * F * SPAN / (DFRONT + SPAN);
+  if (GRIDW_BACK < 650) throw new Error('back row of the winning grid is ' + GRIDW_BACK.toFixed(0) + ' px, floor 650');
+  console.log('GRID front ' + GRIDW_FRONT.toFixed(0) + ' back ' + GRIDW_BACK.toFixed(0) + ' pad front ' + (2 * F * PAD / (DFRONT - 0.9)).toFixed(0));
+  TXT.frame(R, { from: [0, CAMH, CAMZ], look: [0, CAMH, CAMZ - 10] });
+  const FULLH = 2 * (1350 - HZ);
+  R.camera.fov = 2 * Math.atan((FULLH / 2) / F) * 180 / Math.PI;
+  R.camera.aspect = 1080 / FULLH;
+  R.camera.setViewOffset(1080, FULLH, 0, FULLH / 2 - HZ, 1080, 1350);
+  R.camera.updateProjectionMatrix();
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { clouds: 0.18 }));
+  const gnd = TXT.ground(R, { surface: 'caliche', color: 0xcf9c5c, size: 1600, tile: 3, seed: 1118 });
+  /* the ground's 10 m vertex rows must never lie in the level camera's own plane (depth 0 there breaks the raster) */
+  gnd.position.x += 5; gnd.position.z += 5;
+  const avoid = PADAT.slice(0, PADS).map(([x, z]) => [x - PAD / 2 - 0.2, z - PAD / 2 - 0.2, x + PAD / 2 + 0.2, z + PAD / 2 + 0.2]);
+  TXT.scatter(R, { kind: 'grass', count: 6200, area: [-14, -64, 60, wz + PAD / 2 + 4.5], avoid, seed: 23, scale: [0.35, 0.75], colors: [0xc9a05a, 0xb07a48, 0x9aa060, 0xd8b878] });
+  TXT.scatter(R, { kind: 'grass', count: 2600, area: [-260, -420, 260, -100], seed: 24, scale: [0.5, 0.9] });
+
+  /* THE KEY: low from the southwest, behind the camera's left shoulder, the stake shadows running away to the northeast */
+  const spec = CH.rigSpec(W, 46, 4096); spec.key = Object.assign({}, spec.key, { radius: 2.5, color: 0xfff0d8, i: (spec.key.i || 3) * 1.15 });
+  spec.ambient = Object.assign({}, spec.ambient, { i: (spec.ambient.i || 0.5) * 0.7 }); spec.fill = Object.assign({}, spec.fill, { i: (spec.fill.i || 0.9) * 0.75 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([10, 0, -24], { distance: 60, shadowFar: 140, normalBias: 0.01 }), { light: { az: -45, el: 22 } }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.12, height: 0.05, mottle: 0.15 });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.5, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.3, fade: 150 });
+  CH.seat(cx, { sel: '.kick', a: 0.3, fade: 160 });
+  ['.count', '.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 160 }));
+  CH.seat(cx, { sel: '.src', a: 0.3, fade: 140 });
+  TXLOOK.footWash(cx, { a: 0.5, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The UT Dallas team studied all 254 Texas counties and found geographic associations between air pollution and cancer prevalence.",
+   "quote": "In a study of all 254 Texas counties, a team from the School of Economic, Political and Policy Sciences found geographic associations between air pollution and cancer prevalence.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c1"
+  },
+  {
+   "id": "c2",
+   "text": "The researchers used CDC cancer prevalence data and satellite air pollution data.",
+   "quote": "Researchers used publicly accessible data collected from the Centers for Disease Control and Prevention on cancer prevalence and satellite data on air pollution to identify patterns, said geospatial information sciences doctoral student Fangchao Dong, co-corresponding author of the study.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c2"
+  },
+  {
+   "id": "c3",
+   "text": "The team applied a machine learning method to the correlations.",
+   "quote": "And we applied a machine-learning method to analyze the correlations.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c3"
+  },
+  {
+   "id": "c4",
+   "text": "The satellites measured eight air pollutants in 2022.",
+   "quote": "Dong and other researchers analyzed data collected by a suite of remote-sensing satellites in 2022 of eight air pollutants: sulfur dioxide, nitrogen dioxide, carbon monoxide, formaldehyde, methane, particulate matter smaller than 1 micrometer, particulate matter smaller than 10 micrometers and aerosols.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c4"
+  },
+  {
+   "id": "c5",
+   "text": "Counties with more pollution tended to have more cancer.",
+   "quote": "The researchers found that Texas counties with higher concentrations of pollutants also tended to have higher cancer prevalence.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c5"
+  },
+  {
+   "id": "c6",
+   "text": "Sulfur dioxide was the strongest environmental predictor.",
+   "quote": "Sulfur dioxide was the most influential environmental predictor of cancer.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c6"
+  },
+  {
+   "id": "c7",
+   "text": "Dong says Texas air pollution falls into three major clusters.",
+   "quote": "There are three major clusters of air pollution in Texas,” Dong said.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c7"
+  },
+  {
+   "id": "c8",
+   "text": "East Texas is worse in air quality and the west is better.",
+   "quote": "What we found is that the east part of Texas is worse in air quality, while the west is better. The central part of Texas is somewhere in between.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c8"
+  },
+  {
+   "id": "c9",
+   "text": "High cancer counties sit near other high cancer counties.",
+   "quote": "Counties with higher cancer prevalence tended to be near other counties with a similarly high prevalence, rather than being randomly distributed across Texas.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c9"
+  },
+  {
+   "id": "c10",
+   "text": "Not every more polluted place had more cancer.",
+   "quote": "The study did not find a simple relationship in which every more-polluted location had higher cancer prevalence.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c10"
+  },
+  {
+   "id": "c11",
+   "text": "The authors say the result does not establish that pollution causes cancer in individuals, and the paper appeared online March 5th.",
+   "quote": "The researchers caution, however, that the results, published online March 5 in the journal Environmental Monitoring and Assessment , do not constitute sufficient epidemiological evidence to establish a causal relationship between air pollution exposure and cancer risk at the individual level.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c11"
+  },
+  {
+   "id": "c12",
+   "text": "Satellite readings may be less precise than ground monitors.",
+   "quote": "But there are also limitations: The satellite data may not be as precise as data obtained through ground monitoring.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c12"
+  },
+  {
+   "id": "c13",
+   "text": "Collecting pollution data from ground monitors is costly, which has limited spatial analyses in the past.",
+   "quote": "In the past, spatial analyses using remote-sensing data have been limited, Dong said, because collecting pollution data from monitors on the ground is costly.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c13"
+  },
+  {
+   "id": "c14",
+   "text": "The team says the method can show where medical centers sit and where government should focus.",
+   "quote": "This allows us to not only look at past trends, but it also allows us to look at the distributions of medical centers and facilities and see what the government needs to focus on for the betterment of all Texans suffering from cancer.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th",
+   "docket_claim": "tx-2026-0251-c14"
+  },
+  {
+   "id": "c15",
+   "text": "Muhammad Tauhidur Rahman is an associate professor of geospatial information sciences and sustainability.",
+   "quote": "Dr. Muhammad Tauhidur Rahman, associate professor of geospatial information sciences and sustainability",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th"
+  },
+  {
+   "id": "c16",
+   "text": "Doctoral student Hao Chen also worked on the study.",
+   "quote": "Geospatial information sciences doctoral student Hao Chen also contributed to the study.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th"
+  },
+  {
+   "id": "c17",
+   "text": "Remote sensing lets the team look at air pollution across all of Texas.",
+   "quote": "This remote-sensing technology gives us the chance to look at air pollution across all of Texas,",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th"
+  },
+  {
+   "id": "c18",
+   "text": "The team wants further research on cost and data accuracy.",
+   "quote": "We need to do further research to deal with the challenges, like the cost and the data accuracy.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th"
+  },
+  {
+   "id": "c19",
+   "text": "Cancer reflects many influences besides pollution.",
+   "quote": "Cancer patterns reflect multiple influences, not just pollution alone, the researchers said.",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th"
+  },
+  {
+   "id": "c20",
+   "text": "The paper compared four machine learning algorithms.",
+   "quote": "Random Forest, Support Vector Machine, Multi-Layer Perceptron, and Ordinary Least Squares",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c21",
+   "text": "The support vector machine model performed best, with an R squared of 0.791.",
+   "quote": "SVM showed the best performance (RMSE = 0.347, R2 = 0.791)",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "medium",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c22",
+   "text": "Cancer prevalence across counties was strongly clustered, with a Moran's index of 0.69.",
+   "quote": "high spatial autocorrelation (Moran’s I = 0.69)",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c23",
+   "text": "The pollution data came from the Sentinel-5 Precursor satellite and the Copernicus Atmosphere Monitoring Service.",
+   "quote": "Sentinel-5 Precursor and the Copernicus Atmosphere Monitoring Service.",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c24",
+   "text": "The paper covers all 254 Texas counties in 2022.",
+   "quote": "across all 254 Texas counties in 2022",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c25",
+   "text": "The paper says satellite data can support health assessment where ground monitoring is unavailable.",
+   "quote": "where ground-based monitoring is unavailable",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c26",
+   "text": "The paper names sulfur dioxide as the strongest environmental predictor.",
+   "quote": "identified SO2 as the most influential environmental predictor",
+   "url": "https://link.springer.com/article/10.1007/s10661-026-15102-w",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "Dong, Rahman and Chen, Spatial analysis of air pollution and cancer prevalence in Texas: a machine learning approach using satellite remote sensing data, Environmental Monitoring and Assessment, published March 5th"
+  },
+  {
+   "id": "c27",
+   "text": "Socioeconomic and other variables were controlled for, Rahman says.",
+   "quote": "Socioeconomic and other variables were controlled for, said Dr. Muhammad Tauhidur Rahman",
+   "url": "https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-18",
+   "confidence": "high",
+   "document": "UT Dallas News Center, Study: How Data, AI Could Identify Texas Health Patterns, November 6th"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "liquor consumption as the strongest predictor overall",
+   "reason": "the abstract says only relative to the top socio-demographic predictor"
+  },
+  {
+   "finding": "AER AI, CH4 and particulate matter at 30 to 60 percent of predictive weight",
+   "reason": "meaning relative to another predictor, not statable plainly"
+  },
+  {
+   "finding": "TROPOMI as the instrument",
+   "reason": "not named in the abstract"
+  },
+  {
+   "finding": "a licence string on the article page",
+   "reason": "not visible in what was read, Crossref lists CC BY-NC-ND 4.0 metadata only"
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<!-- 2026-11-18, frame 8 of 9, A PLACE IS NOT A PERSON. BESPOKE, LOOK V2 explainer, round 3. A spatial scene through
+txthree.js. The camera stands 1.2 m up on a fall pasture, 28 mm, looking north, so east is frame right. A flush dusk gold
+inlay, set in a cut turf channel, runs from the bottom of the frame back to a corner on the ground in front of a limestone
+ranch house and turns west. A resident stands at the left edge as a back-lit silhouette, inside the measured place and
+unread by it. Afternoon sun from the north west. Drawn to illustrate. No count. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:300px; top:150px; width:700px; text-align:right">A place is not a&nbsp;person</h1>
+<p class="dek" data-follow="22" style="left:290px; width:710px; text-align:right">The researchers say the results don't establish that pollution causes cancer in any one person. Not every more polluted place had more cancer, and satellite data may be less precise than ground monitors. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  /* THIS FRAME DRAWS NO QUANTITY. The brief gives window.FIG = {}; any key here would be a figure the art does not carry. */
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The limit", counter: "08 / 09", src: "c11 c10 c12", fit: { min: 80, max: 96, maxLines: 2 } });
+  const FOV = 58;   /* about 28 mm across the long side of a portrait frame */
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.03, far: 4000, fog: 0.0004 });
+
+  /* WORLD AXES: the camera stands at the origin looking north (-z), so east (+x) is frame right. 0.2 m lower than round 2,
+   * so the far corner turns on the ground in front of the house rather than as a hairline above it. */
+  const FROM = [0, 1.2, 0];
+
+  /* ---------- THE BOUNDARY: a flush gold inlay set in a cut turf channel. The near leg runs north along x = KX from below
+   * the frame to the corner, then turns west along z = KZ in front of the house. Illustrative, no quantity. ---------- */
+  const KX = 1.6, KZ = -22, KW = 0.55, FW = 2.0;
+  const turfM = new THREE.MeshStandardMaterial({ name: 'cut-turf-soil', color: 0x4a3a52, roughness: 1 });
+  const shadeM = new THREE.MeshBasicMaterial({ color: 0x1e1c48, transparent: true, opacity: 0.35, depthWrite: false }); shadeM.userData.txSurface = false;
+  const kerbM = new THREE.MeshBasicMaterial({ name: 'gold-inlay', color: CH.GOLD, toneMapped: false, fog: false }); kerbM.userData.txSurface = false;
+  const lipM = new THREE.MeshBasicMaterial({ color: 0xffd9bc, toneMapped: false, fog: false }); lipM.userData.txSurface = false;
+  const add = (m) => { R.scene.add(m); return m; };
+  /* near leg: soil channel, then the inlay flush with the trimmed turf, a lit west lip and an indigo shade line on its east edge */
+  { const L = -KZ + FW / 2 + 0.5, cz = (KZ - FW / 2 + 0.5) / 2;
+    const ch = add(TXT.roundedBox(KW + 0.26, 0.02, L, 0.01, turfM)); ch.position.set(KX, 0.0, cz); ch.receiveShadow = true;
+    const kb = add(TXT.roundedBox(KW, 0.035, L, 0.012, kerbM)); kb.position.set(KX, 0.012, cz);
+    const lip = add(new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.01, L), lipM)); lip.position.set(KX - KW / 2 + 0.03, 0.031, cz); lip.userData.txBevel = false;
+    const sh = add(new THREE.Mesh(new THREE.PlaneGeometry(0.1, L), shadeM)); sh.rotation.x = -Math.PI / 2; sh.position.set(KX + KW / 2 + 0.18, 0.022, cz); sh.userData.txBevel = false; }
+  /* far leg: wider so the turned corner reads at feed size, with a lit south face catching the key */
+  { const x0 = KX + KW / 2, x1 = -60, L = x0 - x1, cx0 = (x0 + x1) / 2;
+    const ch = add(TXT.roundedBox(L + 0.4, 0.02, FW + 0.6, 0.01, turfM)); ch.position.set(cx0, 0.0, KZ); ch.receiveShadow = true;
+    const kb = add(TXT.roundedBox(L, 0.09, FW, 0.03, kerbM)); kb.position.set(cx0, 0.02, KZ);
+    const lip = add(new THREE.Mesh(new THREE.BoxGeometry(L, 0.03, 0.05), lipM)); lip.position.set(cx0, 0.065, KZ + FW / 2 - 0.02); lip.userData.txBevel = false;
+    const sh = add(new THREE.Mesh(new THREE.PlaneGeometry(L, 0.5), shadeM)); sh.rotation.x = -Math.PI / 2; sh.position.set(cx0, 0.024, KZ - FW / 2 - 0.25); sh.userData.txBevel = false; }
+
+  /* ---------- THE PLACE: a limestone house just beyond the corner, oaks, a caliche road with a pickup ---------- */
+  const house = K.make('ranch_house', { material: 'limestone', color: 0xeee4cf, roof: 0x4a5878, trim: 0xf6f3ea, door: 0x2f4f7a, garage: 'left', chimney: false, gable: true, shutters: 0x3b5a86 });
+  house.scale.setScalar(0.55); house.position.set(5.5, 0, -31); house.rotation.y = 0.04; TXT.add(R, house); TXT.contact(R, house, { opacity: 0.6 });
+  [[-9, -38, 6.5, 14, 0.4], [-16, -27, 6.0, 13, 2.1], [12, -40, 5.5, 10, 4.0]].forEach(([x, z, h, s, ry]) => {
+    const t = K.make('live_oak', { height: h, spread: s }); t.position.set(x, 0, z); t.rotation.y = ry; TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 });
+  });
+  const road = K.make('caliche_road', { length: 40, width: 4, curve: 0.1, centerGrass: true, verge: 1.4, ground: 0x9a8448 });
+  road.rotation.y = Math.PI / 2 + 0.03; road.position.set(-17, 0, -27.5); TXT.add(R, road);
+  const truck = K.make('pickup', { seed: 4, color: 0xf2f4f6, trim: 'chrome' });
+  truck.position.set(-4.5, 0, -27.8); truck.rotation.y = Math.PI / 2 + 0.05; TXT.add(R, truck); TXT.contact(R, truck, { opacity: 0.7 });
+
+  /* ---------- THE RESIDENT: a back-lit silhouette at the left edge, about a third of the frame tall ---------- */
+  const PX = -1.75, PZ = -4.7;
+  const person = K.make('person', { seed: 7, role: 'resident', pose: 'stand', build: 'female', height: 1.72, hat: 'none', shirt: 0x4a6f9e, trousers: 0x2a3150, headPitch: -0.03, detail: 'full' });
+  person.position.set(PX, 0, PZ); person.rotation.y = Math.PI + 0.2; TXT.add(R, person); TXT.contact(R, person, { opacity: 0.9 });
+  person.traverse(m => { if (!m.isMesh || !m.material) return; (Array.isArray(m.material) ? m.material : [m.material]).forEach(mt => {
+    if (mt.__dark) return; mt.__dark = true; if (mt.color) mt.color.setHex(0x1b1f44);
+    if ('envMapIntensity' in mt) mt.envMapIntensity = 0.12; if ('roughness' in mt) mt.roughness = 0.8; if ('sheen' in mt) mt.sheen = 0; mt.needsUpdate = true; }); });
+  { const rim = new THREE.SpotLight(0xffd6ae, 60, 2.4, 0.32, 0.5, 2);
+    rim.position.set(PX - 0.7, 1.95, PZ - 1.3); rim.target.position.set(PX, 1.4, PZ); R.scene.add(rim); R.scene.add(rim.target); }
+
+  /* ---------- THE PASTURE: fall bunchgrass either side of the channel, kept clear of the inlay ---------- */
+  const past = (x, z, w, dp, h, seed) => { const p = K.make('pasture', { width: w, depth: dp, height: h, density: 2.2, flowers: 'none', season: 'fall', drift: 0.5, seed }); p.position.set(x, 0, z); TXT.add(R, p); };
+  past(-5.6, -8.5, 7.6, 12, 0.5, 3); past(6.6, -8.5, 8.0, 12, 0.45, 4);
+
+  /* ---------- CAMERA ---------- */
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, 1.4, -3000], 540, 772, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { clouds: 0.2, zenith: 0x1450c0, horizon: 0x5aa6ee, haze: 0x8cc4f2 }));
+  TXT.ground(R, { surface: 'grass', color: 0xa88a40, size: 6000, tile: 3, seed: 1118 });
+  TXT.scatter(R, { kind: 'grass', count: 7000, area: [-60, -160, 70, -1.6], avoid: [[KX - 0.75, KZ - 1.6, KX + 0.75, 1], [-70, KZ - 1.7, KX + 0.9, KZ + 6.5], [-1, -35, 11, -27], [-12, -30, 3, -25.5], [PX - 0.6, PZ - 0.6, PX + 0.6, PZ + 0.6], [-9.4, -14.5, -1.8, -2.5], [2.6, -14.5, 10.6, -2.5]], seed: 41, scale: [0.7, 1.2], colors: [0xc89a40, 0xb08a3a, 0xd2a450, 0x9c8a3c] });
+
+  /* ---------- THE KEY: afternoon, from the north west, behind the resident, so she reads as a rim-lit silhouette ---------- */
+  const spec = CH.rigSpec(W, 60, 4096); spec.key = Object.assign({}, spec.key, { radius: 3 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, -16], { distance: 90, shadowFar: 220, normalBias: 0.01 }), { light: { az: -135, el: 28 } }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.12, height: 0.4, mottle: 0.15, skip: [person] });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.55, fade: 260 });
+  TXLOOK.typeWash(cx, { tone: 'explainer', to: 116, pad: 0, fade: 150, a: 0.86 });
+  CH.seat(cx, { sel: '.src', a: 0.72, fade: 170 }); CH.seat(cx, { sel: '.tx-site', a: 0.4, fade: 150 });
+  TXLOOK.footWash(cx, { a: 0.5, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

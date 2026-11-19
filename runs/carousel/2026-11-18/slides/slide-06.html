@@ -1,0 +1,306 @@
+<!doctype html>
+<!-- 2026-11-18, frame 6 of 9, EAST TO WEST. Three slabs of Texas ground in a row on an explainer studio sweep, west at
+frame left: caliche with a mesquite, central limestone ledges with a live oak and an Ashe juniper, east red clay with three
+loblolly pines. Each stands sealed under a tall dusk gold glass block of air, the only dusk gold in the frame, and the haze
+inside the glass steps up from west to east. The haze is an ordering only, never a county value. The number of slabs and
+blocks is read from window.FIG.clusters and checked. Type top left over the cerulean wall, the row and its reflection in the lower half. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:146px; width:540px; text-align:left">Worse air east, better air west</h1>
+<p class="dek" data-follow="22" style="left:82px; width:820px">Dong describes three major clusters of air pollution, with central Texas in between. The haze shows the order of air quality only, not cancer or county values.</p>
+<script>window.FIG = {"clusters": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "West to east", counter: "06 / 09", src: "c7 c8", fit: { min: 78, max: 96, maxLines: 3 } });
+  const P = CH.P, rnd = CH.rng(CH.SEED + 6);
+  const FLOOR = -0.9;            /* the sweep's floor; every slab's ground stands at y = 0 */
+  const SLAB = 3.0, SOIL = 0.9, AIR = 5.2, PITCH = 4.3;   /* a 1.3 m floor gap between slabs */
+
+  /* ---- THE FIGURE ---------------------------------------------------------------------------------------------
+   * FIG.clusters slabs, each under one air block. The haze in each block is a RANK, west lowest, east highest, so the
+   * picture draws order and never a county value. */
+  if (!Number.isInteger(FIG.clusters) || FIG.clusters < 1) throw new Error('clusters is not a whole count');
+  const GROUNDS = [
+    { key: 'west', soil: 'caliche' },
+    { key: 'central', soil: 'limestone' },
+    { key: 'east', soil: 'redclay' }
+  ];
+  if (GROUNDS.length !== FIG.clusters) throw new Error('the frame draws ' + GROUNDS.length + ' grounds, FIG.clusters is ' + FIG.clusters);
+  const XS = GROUNDS.map((g, i) => (i - (FIG.clusters - 1) / 2) * PITCH);
+  const RANK = GROUNDS.map((g, i) => (i + 1) / FIG.clusters);          /* west to east, order only */
+  for (let i = 1; i < RANK.length; i++) if (!(RANK[i] > RANK[i - 1] && XS[i] > XS[i - 1])) throw new Error('the haze must step up from west at frame left to east at frame right');
+
+  const R = CH.stage(TXT, gl, W, { fov: 22, near: 0.5, far: 400, fog: 0.0035 });
+  const sweep = TXT.studio(R, { tone: CH.TONE, w: 140, d: 70, h: 60, radius: 9, y: FLOOR, env: 0.85, hemi: 0.5, softbox: 5,
+    floor: '#4a3fc0', wall: '#2f86dc', top: '#173f9a', accentStrip: 0.6 });
+  sweep.position.z = 22;          /* floor runs from z = 57 to z = -13, the wall rises behind the row */
+
+  /* the camera: level at the slabs' ground, a slight three quarter from the east so the nearest block is the east one */
+  const YAW = 12 * Math.PI / 180, D = 41;
+  const FROM = [Math.sin(YAW) * D + 0.6, 0.15, Math.cos(YAW) * D];
+  CH.aim(THREE, R, TXT, FROM, [0.2, 2.5, 0], 540, 850, 22);
+
+  /* ---- MATERIALS ------------------------------------------------------------------------------------------------ */
+  const tex = (w, h, paint, rep) => CH.canvasTex(THREE, w, h, paint, rep);
+  const vnoise = (seed) => { const r = CH.rng(seed), G = 64, a = new Float32Array(G * G); for (let i = 0; i < a.length; i++) a[i] = r();
+    const at = (x, y) => a[((y % G + G) % G) * G + ((x % G + G) % G)];
+    return (x, y) => { const xi = Math.floor(x), yi = Math.floor(y), fx = x - xi, fy = y - yi, sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
+      return (at(xi, yi) * (1 - sx) + at(xi + 1, yi) * sx) * (1 - sy) + (at(xi, yi + 1) * (1 - sx) + at(xi + 1, yi + 1) * sx) * sy; }; };
+  const fbm = (n, x, y, o) => { let s = 0, a = 0.5, f = 1; for (let i = 0; i < (o || 5); i++) { s += a * n(x * f, y * f); a *= 0.5; f *= 2; } return s; };
+
+  /* a soil section, its horizons [from, to, colour] down the cut face */
+  const LBEDS = [0.17], LTONE = [], LSOFT = []; { const r = CH.rng(808); while (LBEDS[LBEDS.length - 1] < 0.95) { LBEDS.push(LBEDS[LBEDS.length - 1] + 0.05 + r() * 0.17); LTONE.push(0.86 + r() * 0.22); LSOFT.push(r() < 0.35); } LTONE.push(1); LSOFT.push(false); }
+  function section(kind, seed) {
+    /* 2048 px across 3.4 m and 544 px down 0.9 m, so a pebble is a few centimetres and the horizons read at feed size */
+    return tex(2048, 544, (g, w, h) => {
+      const r = CH.rng(seed), n = vnoise(seed), n2 = vnoise(seed + 9), im = g.createImageData(w, h), d = im.data;
+      const B = {
+        caliche: [[0, 0.16, [128, 92, 60]], [0.16, 0.5, [226, 208, 170]], [0.5, 1.0, [200, 160, 112]]],
+        limestone: [[0, 0.17, [66, 50, 38]], [0.17, 1.0, [196, 184, 156]]],
+        redclay: [[0, 0.17, [84, 44, 28]], [0.17, 0.5, [170, 70, 40]], [0.5, 1.0, [138, 54, 34]]]
+      }[kind];
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const fy = y / h, wob = (fbm(n, x / 260, 3, 3) - 0.5) * 0.07;
+        let bi = B.length - 1; for (let b = 0; b < B.length; b++) if (fy + wob >= B[b][0] && fy + wob < B[b][1]) { bi = b; break; }
+        let c = B[bi][2].slice();
+        /* a soft blend across each horizon boundary, never a ruled line */
+        if (bi > 0) { const t = Math.min(1, (fy + wob - B[bi][0]) / 0.04); const p0 = B[bi - 1][2]; c = c.map((v, j) => p0[j] + (v - p0[j]) * t); }
+        let k = 0.84 + 0.2 * fbm(n, x / 40, y / 40, 4) + 0.12 * (n2(x / 3.5, y / 3.5) - 0.5);
+        if (kind === 'limestone' && bi === 1) {
+          /* bedded limestone: beds of uneven thickness under wavy partings, each its own tone, the softer beds weathered back */
+          const fyw = fy + (fbm(n, x / 180, 11, 3) - 0.5) * 0.05;
+          let bn = 0; while (bn < LBEDS.length - 1 && fyw > LBEDS[bn + 1]) bn++;
+          const lo = LBEDS[bn], hi = LBEDS[bn + 1] || 1, f = (fyw - lo) / (hi - lo);
+          k *= LTONE[bn];
+          const part = Math.min(fyw - lo, hi - fyw) * h; if (part < 2.2) k *= 0.5 + 0.5 * part / 2.2;
+          if (LSOFT[bn]) k *= 0.88 + 0.1 * Math.abs(f - 0.5);
+          if (fbm(n2, x / 9, y / 2.5, 3) > 0.74) k *= 0.82;
+        }
+        if (kind === 'redclay' && bi > 0) { const m = fbm(n2, x / 26 + 40, y / 26, 4); if (m > 0.66) c = [200, 150, 96]; else if (m < 0.3) c = [110, 40, 30]; }
+        if (kind === 'caliche' && bi === 1) { const m = fbm(n2, x / 14 + 7, y / 14, 4); if (m > 0.66) c = [248, 240, 222]; }
+        const i4 = (y * w + x) * 4; d[i4] = Math.min(255, c[0] * k); d[i4 + 1] = Math.min(255, c[1] * k); d[i4 + 2] = Math.min(255, c[2] * k); d[i4 + 3] = 255;
+      }
+      g.putImageData(im, 0, 0);
+      /* roots down from the turf, then pebbles, nodules and iron concretions, each with a shaded lower edge */
+      g.lineCap = 'round';
+      for (let i = 0; i < 160; i++) { let x = r() * w, y = h * 0.02; g.strokeStyle = 'rgba(36,22,14,' + (0.3 + r() * 0.35) + ')'; g.lineWidth = 0.8 + r() * 2;
+        g.beginPath(); g.moveTo(x, y); for (let s = 0; s < 8; s++) { x += (r() - 0.5) * 18; y += 5 + r() * 11; g.lineTo(x, y); } g.stroke(); }
+      const peb = kind === 'redclay' ? ['#3c1a10', '#d0a46a', '#6a2a18'] : kind === 'limestone' ? ['#8a8070', '#ece4d2', '#a89c86'] : ['#fbf6ea', '#a07a52', '#e8dcc4'];
+      for (let i = 0; i < 900; i++) { const x = r() * w, y = h * (0.17 + r() * 0.83), s = 1.2 + r() * r() * r() * 9, a = r() * 3;
+        g.fillStyle = 'rgba(20,12,30,0.35)'; g.beginPath(); g.ellipse(x + 0.6, y + s * 0.4, s * 1.3, s, a, 0, 6.3); g.fill();
+        g.fillStyle = peb[i % 3]; g.beginPath(); g.ellipse(x, y, s * 1.3, s, a, 0, 6.3); g.fill(); }
+    });
+  }
+  function topTex(kind, seed) {
+    return tex(512, 512, (g, w, h) => {
+      const r = CH.rng(seed), n = vnoise(seed + 1), im = g.createImageData(w, h), d = im.data;
+      const base = { caliche: [226, 212, 186], limestone: [120, 124, 70], redclay: [140, 70, 40] }[kind];
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const k = 0.8 + 0.4 * fbm(n, x / 30, y / 30, 4), i4 = (y * w + x) * 4;
+        d[i4] = base[0] * k; d[i4 + 1] = base[1] * k; d[i4 + 2] = base[2] * k; d[i4 + 3] = 255; }
+      g.putImageData(im, 0, 0);
+      const dots = { caliche: ['#f6efe0', '#b39a74', '#cdbb98'], limestone: ['#d8d0bc', '#8a8a4c', '#6e7438'], redclay: ['#c0703c', '#7a3e22', '#b8864c'] }[kind];
+      for (let i = 0; i < 2600; i++) { g.fillStyle = dots[i % 3]; const s = 0.6 + r() * 2.4; g.beginPath(); g.ellipse(r() * w, r() * h, s * 1.4, s, r() * 3, 0, 6.3); g.fill(); }
+      if (kind === 'redclay') { g.lineCap = 'round'; for (let i = 0; i < 900; i++) { const x = r() * w, y = r() * h, a = r() * 6.3, l = 6 + r() * 16;
+        g.strokeStyle = ['#b8763a', '#9a5a2a', '#d2944e'][i % 3]; g.lineWidth = 1 + r(); g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); g.stroke(); } }
+    });
+  }
+  const soilMat = (kind, i) => {
+    const sec = section(kind, 600 + i), top = topTex(kind, 700 + i);
+    const side = new THREE.MeshStandardMaterial({ name: 'soil-' + kind, map: sec, bumpMap: sec, bumpScale: 0.02, roughness: 0.95 });
+    side.userData.txSurface = false;
+    const up = new THREE.MeshStandardMaterial({ name: 'ground-' + kind, map: top, bumpMap: top, bumpScale: 0.015, roughness: 0.95 });
+    up.userData.txSurface = false;
+    const under = new THREE.MeshStandardMaterial({ name: 'soil-under', color: 0x2a1e4a, roughness: 1 });
+    return [side, side, up, under, side, side];
+  };
+
+  /* dusk gold glass: the air as the satellite read it, the only dusk gold in the frame */
+  const GOLD = new THREE.Color(CH.ACCENT);
+  const glassMat = (op, side) => { const m = new THREE.MeshPhysicalMaterial({ name: 'gold-glass', color: GOLD, metalness: 0, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.03,
+    transparent: true, opacity: op, depthWrite: false, side: side || THREE.FrontSide, envMapIntensity: 1.6, specularIntensity: 1, ior: 1.5 }); m.userData.txSurface = false; return m; };
+  const edgeMat = (() => { const m = new THREE.MeshPhysicalMaterial({ name: 'gold-glass-edge', color: GOLD.clone().multiplyScalar(0.95), emissive: GOLD, emissiveIntensity: 0.05, metalness: 0,
+    roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.03, transparent: true, opacity: 0.62, envMapIntensity: 1.4 }); m.userData.txSurface = false; return m; })();
+
+  /* the haze: a soft fBm cloud in gold, heavier at the foot of the block where air sits on the ground */
+  const hazeTex = (seed) => tex(256, 512, (g, w, h) => {
+    const n = vnoise(seed), im = g.createImageData(w, h), d = im.data;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const fy = y / h, edge = Math.min(1, Math.min(x, w - 1 - x) / 26), v = fbm(n, x / 48, y / 48, 5);
+      const a = Math.max(0, Math.min(1, (0.38 + 0.62 * Math.pow(fy, 1.3)) * (0.8 + 0.5 * (v - 0.5)))) * edge, i4 = (y * w + x) * 4;
+      d[i4] = 238; d[i4 + 1] = 158 + 24 * v; d[i4 + 2] = 92 + 20 * v; d[i4 + 3] = Math.round(255 * a);
+    }
+    g.putImageData(im, 0, 0);
+  });
+
+  /* ---- THE LOBLOLLY PINE: the kit has none, so it is built here the kit's way (metres, y up, origin at the foot) --- */
+  const barkTex = tex(256, 512, (g, w, h) => { const r = CH.rng(77); g.fillStyle = '#6a4632'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, pw = 14 + r() * 30, ph = 24 + r() * 50; g.fillStyle = ['#7d553c', '#8e6446', '#5a3a2a'][i % 3];
+      g.beginPath(); g.ellipse(x, y, pw / 2, ph / 2, 0, 0, 6.3); g.fill(); g.strokeStyle = 'rgba(30,18,12,0.55)'; g.lineWidth = 2; g.stroke(); } }, [1, 2]);
+  const barkM = new THREE.MeshStandardMaterial({ name: 'pine-bark', map: barkTex, bumpMap: barkTex, bumpScale: 0.03, roughness: 0.95 });
+  const needleTex = (seed, cols) => tex(256, 256, (g, w, h) => { const r = CH.rng(seed); g.clearRect(0, 0, w, h); g.lineCap = 'round';
+    /* a pine bough spray: five twigs from the middle, each set with fascicles of long needles swept forward */
+    for (let t = 0; t < 5; t++) { const a0 = -Math.PI / 2 + (t - 2) * 0.55 + (r() - 0.5) * 0.2, L = 70 + r() * 40;
+      for (let s = 10; s < L; s += 5) { const px = w / 2 + Math.cos(a0) * s, py = h * 0.62 + Math.sin(a0) * s;
+        for (let q = -1; q <= 1; q += 2) { const a = a0 + q * (0.45 + r() * 0.25), l = 20 + r() * 16; g.strokeStyle = cols[Math.floor(r() * cols.length)]; g.lineWidth = 1.3 + r() * 0.9;
+          g.beginPath(); g.moveTo(px, py); g.lineTo(px + Math.cos(a) * l, py + Math.sin(a) * l); g.stroke(); } }
+      g.strokeStyle = '#4a3424'; g.lineWidth = 2.2; g.beginPath(); g.moveTo(w / 2, h * 0.62); g.lineTo(w / 2 + Math.cos(a0) * L * 0.8, h * 0.62 + Math.sin(a0) * L * 0.8); g.stroke(); } });
+  const needleMats = [needleTex(11, ['#1f4029', '#2a5034', '#345e3a', '#24482e']), needleTex(12, ['#2a5034', '#3f7a44', '#2f5a3a', '#4a8248']), needleTex(13, ['#3f7a44', '#5a8f4e', '#4a8248', '#6a9a52'])].map((t) => {
+    const m = new THREE.MeshStandardMaterial({ name: 'pine-needles', map: t, alphaTest: 0.38, side: THREE.DoubleSide, roughness: 0.8 }); m.userData.txSurface = false; return m; });
+  function loblolly(H, seed) {
+    /* a loblolly: a tall clean trunk, dead stubs below the crown, then whorls of branches up the top half, longest low and
+     * shortening to the leader, each set with bough sprays, so the crown is a stack of layered tiers */
+    const r = CH.rng(seed), g = new THREE.Group(), lean = (r() - 0.5) * 0.05;
+    const tr = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.08, H, 14, 8), barkM); tr.position.y = H / 2; tr.rotation.z = lean; g.add(tr);
+    const flare = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.13, 0.12, 14), barkM); flare.position.y = 0.06; g.add(flare);
+    const trunkAt = (y) => new THREE.Vector3(-Math.sin(lean) * y, y, 0);
+    const card = new THREE.PlaneGeometry(1, 1);
+    const spray = (p, s, az, mat) => { for (let k = 0; k < 2; k++) { const c = new THREE.Mesh(card, mat); c.position.copy(p); c.scale.setScalar(s * (0.85 + r() * 0.3));
+      c.rotation.order = 'YXZ'; c.rotation.y = -az + Math.PI / 2 + k * Math.PI / 2 + (r() - 0.5) * 0.4; c.rotation.x = -0.25 + (r() - 0.5) * 0.7; c.rotation.z = (r() - 0.5) * 0.6; g.add(c); } };
+    for (let k = 0; k < 4; k++) { const y = H * (0.3 + 0.1 * r()), a = r() * 6.3; K.bar([trunkAt(y).x, y, 0], [trunkAt(y).x + Math.cos(a) * 0.12, y - 0.03, Math.sin(a) * 0.12], 0.008, barkM, 5, g); }
+    const tiers = 11, base = 0.5, maxL = 0.46 * H / 4.4;
+    for (let w = 0; w < tiers; w++) {
+      const tt = w / (tiers - 1), y = H * (base + (0.96 - base) * tt), L0 = maxL * Math.pow(1 - tt, 0.75) + 0.1;
+      const mat = needleMats[Math.min(needleMats.length - 1, Math.floor(tt * needleMats.length))];
+      for (let b = 0; b < 6; b++) {
+        const a = w * 0.9 + b * Math.PI / 3 + (r() - 0.5) * 0.5, L = L0 * (0.8 + r() * 0.4);
+        const p0 = trunkAt(y), p1 = p0.clone().add(new THREE.Vector3(Math.cos(a) * L, -0.06 * L + 0.04, Math.sin(a) * L));
+        K.bar([p0.x, p0.y, p0.z], [p1.x, p1.y, p1.z], 0.006 * (1 - tt * 0.4), barkM, 5, g);
+        for (const f of [0.3, 0.6, 0.95]) spray(p0.clone().lerp(p1, f).add(new THREE.Vector3(0, 0.06, 0)), (0.4 + 0.14 * (1 - tt)) * (0.75 + 0.3 * f), a, mat);
+      }
+    }
+    for (let k = 0; k < 3; k++) spray(trunkAt(H * 0.99).add(new THREE.Vector3((r() - 0.5) * 0.12, 0.05, (r() - 0.5) * 0.12)), 0.36, r() * 6.3, needleMats[needleMats.length - 1]);
+    g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return g;
+  }
+
+  const MOTE = tex(64, 64, (g, w, h) => { const gr = g.createRadialGradient(32, 32, 0, 32, 32, 30); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.35, 'rgba(255,240,220,0.7)'); gr.addColorStop(1, 'rgba(255,230,200,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  /* ---- THE ROW ---------------------------------------------------------------------------------------------- */
+  const built = [];
+  const real = (name, o, s, x, z, ry) => { const m = K.make(name, o); m.scale.setScalar(s); m.position.set(x, 0, z); m.rotation.y = ry || 0; R.scene.add(m); return m; };
+  GROUNDS.forEach((G, i) => {
+    const x = XS[i], grp = new THREE.Group();
+    /* the slab of ground with its soil section on every cut face */
+    const slab = TXT.roundedBox(SLAB, SOIL, SLAB, 0.05, soilMat(G.soil, i)); slab.position.set(x, -SOIL / 2, 0); slab.userData.txBevel = false;
+    /* TXT.roundedBox keeps BoxGeometry's even UV grid, so the flat of each face holds only its middle ninth of the map:
+     * project the UVs again by each vertex's normal, so the soil section covers the whole cut face once */
+    { const gp = slab.geometry.attributes.position, gn = slab.geometry.attributes.normal, uv = slab.geometry.attributes.uv;
+      for (let v = 0; v < gp.count; v++) { const px = gp.getX(v) / SLAB + 0.5, py = gp.getY(v) / SOIL + 0.5, pz = gp.getZ(v) / SLAB + 0.5, ax = Math.abs(gn.getX(v)), ay = Math.abs(gn.getY(v)), az = Math.abs(gn.getZ(v));
+        if (ay >= ax && ay >= az) uv.setXY(v, px, 1 - pz); else if (ax >= az) uv.setXY(v, gn.getX(v) > 0 ? 1 - pz : pz, py); else uv.setXY(v, gn.getZ(v) > 0 ? px : 1 - px, py); }
+      uv.needsUpdate = true; } slab.castShadow = true; slab.receiveShadow = true; R.scene.add(slab);
+    TXT.contact(R, slab, { opacity: 0.95 });
+    const area = [x - SLAB / 2 + 0.12, -SLAB / 2 + 0.12, x + SLAB / 2 - 0.12, SLAB / 2 - 0.12];
+    if (G.soil === 'caliche') {
+      real('mesquite', { seed: 31, height: 6.4, spread: 5.4 }, 0.45, x - 0.1, -0.2, 0.6);
+      TXT.scatter(R, { kind: 'rock', count: 260, area, seed: 41, scale: [0.02, 0.07], colors: [0xf2e8d2, 0xd9c8a6, 0xe8dcc0], near: false });
+      TXT.scatter(R, { kind: 'grass', count: 90, area, seed: 42, scale: [0.12, 0.26], colors: [0xc8b06a, 0xb59a58, 0xd8c27e], near: false });
+    } else if (G.soil === 'limestone') {
+      real('live_oak', { seed: 32, height: 9, spread: 7.6 }, 0.31, x + 0.25, -0.5, 0.2);
+      real('ashe_juniper', { seed: 33, height: 5.4, spread: 2.6 }, 0.44, x - 0.7, 0.68, 0);
+      /* limestone ledges breaking through the turf */
+      const lm = new THREE.MeshStandardMaterial({ name: 'limestone-ledge', color: 0xe4dccb, roughness: 0.9 });
+      for (let k = 0; k < 5; k++) { const w = 0.5 + rnd() * 0.7, s = TXT.roundedBox(w, 0.09 + rnd() * 0.06, 0.3 + rnd() * 0.4, 0.03, lm);
+        s.position.set(x - 1.0 + rnd() * 2.0, 0.02, -1.0 + rnd() * 2.0); s.rotation.y = rnd() * 3; s.castShadow = true; s.receiveShadow = true; R.scene.add(s); }
+      TXT.scatter(R, { kind: 'grass', count: 420, area, seed: 43, scale: [0.14, 0.3], colors: [0x7f8a3e, 0x9a9a4e, 0x6c7a36, 0xb0a85c], near: false });
+    } else {
+      [[x - 0.55, -0.5, 3.55], [x + 0.45, -0.25, 3.05], [x - 0.05, 0.62, 3.3]].forEach((p, k) => { const t = loblolly(p[2], 90 + k); t.position.set(p[0], 0, p[1]); R.scene.add(t); });
+      TXT.scatter(R, { kind: 'grass', count: 220, area, seed: 44, scale: [0.12, 0.26], colors: [0x6f8a3a, 0x5c7a34, 0x8a9a48], near: false });
+      real('shrub', { seed: 34, kind: 'yaupon', form: 'mound', length: 1.6, height: 1.0 }, 0.4, x + 0.95, 0.95, 0);
+    }
+    const air = AIR * 0.75;   /* every case the same height, so no case reads as a bar of magnitude */
+    /* the air block: a sealed glass block of air over this ground, its haze at this cluster's rank */
+    const back = TXT.roundedBox(SLAB, air, SLAB, 0.08, glassMat(0.08, THREE.BackSide)); back.position.set(x, air / 2, 0); back.renderOrder = 1; R.scene.add(back);
+    /* the haze, in three stages read off the rank: none in the west, a light gold fog in the centre, a dense gold fog in
+     * the east. Ten veils stand through the volume, starting clear of the rear pane so it never lights as a wall. In the
+     * east the veils behind the front pine are dense and the three nearest are thin, so the far trunks sink and the front
+     * crown stays crisp: the fog's depth does the softening, not a backlight. */
+    const stage = (RANK[i] - RANK[0]) / (1 - RANK[0]), hz = hazeTex(500 + i), layers = 10;
+    const z0 = -SLAB / 2 + 0.45, z1 = SLAB / 2 - 0.12;
+    if (stage > 0) for (let k = 0; k < layers; k++) {
+      const z = z0 + (z1 - z0) * k / (layers - 1), front = z > 0.55;
+      const op = stage < 1 ? 0.19 : (front ? 0.06 : 0.55);
+      const m = new THREE.MeshBasicMaterial({ name: 'gold-haze', map: hz, transparent: true, depthWrite: false, opacity: op, color: 0xffffff });
+      m.userData.txSurface = false;
+      const pl = new THREE.Mesh(new THREE.PlaneGeometry(SLAB - 0.1, air - 0.1), m);
+      pl.position.set(x, air / 2, z); pl.rotation.y = 0; pl.renderOrder = 2 + k; pl.userData.txSurface = false; R.scene.add(pl);
+    }
+    /* suspended motes through the whole volume, their count by the same stage */
+    { const nm = Math.round(1500 * Math.pow(stage, 1.3));
+      if (nm > 0) { const pos = new Float32Array(nm * 3), mr = CH.rng(900 + i);
+        for (let k = 0; k < nm; k++) { pos[k * 3] = x + (mr() - 0.5) * (SLAB - 0.15); pos[k * 3 + 1] = 0.05 + Math.pow(mr(), 1.8) * (air - 0.15); pos[k * 3 + 2] = (mr() - 0.5) * (SLAB - 0.15); }
+        const pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        const pm = new THREE.PointsMaterial({ name: 'gold-motes', map: MOTE, color: 0xf4b27a, size: 0.085, sizeAttenuation: true, transparent: true, opacity: 0.85, depthWrite: false });
+        pm.userData.txSurface = false; const pts = new THREE.Points(pg, pm); pts.renderOrder = 15; R.scene.add(pts); } }
+    const front = TXT.roundedBox(SLAB, air, SLAB, 0.08, glassMat(0.12)); front.position.set(x, air / 2, 0); front.renderOrder = 20; R.scene.add(front);
+    /* the lid: a thick plate of the same gold glass, so the block reads as glass and never as a wire cage */
+    { const lid = TXT.roundedBox(SLAB + 0.04, 0.12, SLAB + 0.04, 0.05, glassMat(0.42)); lid.position.set(x, air - 0.06, 0); lid.renderOrder = 22; R.scene.add(lid); }
+    /* the block's lit edges, where thick glass reads darkest and most saturated */
+    const ex = SLAB / 2 - 0.04, ey0 = 0.02, ey1 = air - 0.04;
+    for (const sx of [-1, 1]) for (const sz of [-1, 1]) { const b = K.bar([x + sx * ex, ey0, sz * ex], [x + sx * ex, ey1, sz * ex], 0.03, edgeMat, 10, R.scene); if (b) b.renderOrder = sz < 0 ? 1.5 : 21; }
+    for (const y of [ey0, ey1]) for (const s of [-1, 1]) {
+      const b1 = K.bar([x - ex, y, s * ex], [x + ex, y, s * ex], 0.03, edgeMat, 10, R.scene); if (b1) b1.renderOrder = s < 0 ? 1.5 : 21;
+      const b2 = K.bar([x + s * ex, y, -ex], [x + s * ex, y, ex], 0.03, edgeMat, 10, R.scene); if (b2) b2.renderOrder = 21; }
+    built.push({ slab, block: front, rank: RANK[i], air });
+  });
+  if (built.length !== FIG.clusters) throw new Error('built ' + built.length + ' slabs, FIG.clusters is ' + FIG.clusters);
+
+  /* ---- THE LIGHT: a high key from the west front, the shadows falling east and back onto the resin ------------ */
+  const spec = CH.rigSpec(W, 26, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 2, 0], { distance: 40, shadowFar: 90, normalBias: 0.02 }), { light: { az: -38, el: 38 } }));
+  CH.unacne(R, 0.02);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  const pj = (p) => CH.project(THREE, R, p);
+
+  /* the acceptance measurement: the three slabs together span at least 900 px */
+  { const a = pj([XS[0] - SLAB / 2, 0, SLAB / 2])[0], b = pj([XS[XS.length - 1] + SLAB / 2, 0, SLAB / 2])[0], c = pj([XS[XS.length - 1] + SLAB / 2, 0, -SLAB / 2])[0];
+    const span = Math.max(b, c) - Math.min(a, pj([XS[0] - SLAB / 2, 0, -SLAB / 2])[0]); window.__span06 = span; if (span < 900) throw new Error('the three slabs span ' + Math.round(span) + ' px, under 900'); }
+
+  /* ---- THE RESIN AND THE GLASS ----------------------------------------------------------------------------------
+   * the cobalt resin floor is polished: each slab and the foot of its block answer in it, flipped and fading */
+  { const art = document.getElementById('art'), S = 2;
+    for (let i = 0; i < FIG.clusters; i++) {
+      const xa = pj([XS[i] - SLAB / 2, FLOOR, SLAB / 2]), xb = pj([XS[i] + SLAB / 2, FLOOR, SLAB / 2]), xc = pj([XS[i] + SLAB / 2, FLOOR, -SLAB / 2]);
+      const top = pj([XS[i], 0.9, SLAB / 2])[1], base = Math.max(xa[1], xb[1]) + 2, x0 = Math.min(xa[0], pj([XS[i] - SLAB / 2, FLOOR, -SLAB / 2])[0]), x1 = Math.max(xb[0], xc[0]);
+      const hgt = base - top, tmp = document.createElement('canvas'); tmp.width = Math.round((x1 - x0) * S); tmp.height = Math.round(hgt * S);
+      const t = tmp.getContext('2d'); t.drawImage(art, x0 * S, top * S, tmp.width, tmp.height, 0, 0, tmp.width, tmp.height);
+      t.globalCompositeOperation = 'destination-in'; const m = t.createLinearGradient(0, tmp.height, 0, 0); m.addColorStop(0, 'rgba(0,0,0,0.30)'); m.addColorStop(0.55, 'rgba(0,0,0,0.06)'); m.addColorStop(1, 'rgba(0,0,0,0)'); t.fillStyle = m; t.fillRect(0, 0, tmp.width, tmp.height);
+      cx.save(); cx.translate(x0, base); cx.scale(1, -0.7); cx.drawImage(tmp, 0, 0, tmp.width, tmp.height, 0, -hgt, x1 - x0, hgt); cx.restore();
+    }
+    /* a soft sheen raked across each block's front pane, the one reflection that says glass rather than frame */
+    for (let i = 0; i < FIG.clusters; i++) {
+      const q = [[-1, 0.05], [1, 0.05], [1, built[i].air - 0.05], [-1, built[i].air - 0.05]].map(([sx, y]) => pj([XS[i] + sx * (SLAB / 2 - 0.03), y, SLAB / 2]));
+      cx.save(); cx.beginPath(); q.forEach((p, k) => k ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1])); cx.closePath(); cx.clip();
+      const xL = q[0][0], xR = q[1][0], yT = q[3][1], yB = q[0][1], g = cx.createLinearGradient(xL, yT, xR, yB);
+      g.addColorStop(0.18, 'rgba(255,240,226,0)'); g.addColorStop(0.27, 'rgba(255,240,226,0.20)'); g.addColorStop(0.31, 'rgba(255,240,226,0.07)'); g.addColorStop(0.36, 'rgba(255,240,226,0.14)'); g.addColorStop(0.44, 'rgba(255,240,226,0)');
+      cx.globalCompositeOperation = 'screen'; cx.fillStyle = g; cx.fillRect(xL, yT, xR - xL, yB - yT); cx.restore();
+    }
+  }
+
+  /* ---- THE TYPE AND THE FURNITURE ------------------------------------------------------------------------------ */
+  CH.seat(cx, { a: 0.34, fade: 140 });
+  for (const sel of ['.kick', '.count']) { const r = document.querySelector(sel).getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.42, fade: 70 }); }
+  TXLOOK.footWash(cx, { a: 0.3, height: 170 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -21,6 +21,64 @@ SINCE = "2026-10-07"  # first new run is October 8th; shipped history is preserv
 ROLES = ("cover", "evidence", "close")
 STUDIO_SINCE = "2026-10-16"
 
+# THE BESPOKE ROUTE (weekly machine pass 2026-11-18, queue art-preflight-has-no-bespoke-route,
+# nos. 78, 80 and 81). A bespoke run has no three-frame audition: each frame is scored cold by its
+# own carousel-slide-critic, and three runs in a row then assembled this review BY HAND from those
+# verdicts and re-assembled it after every repair of frame 1, the hardest frame or the close.
+# `--write --critics <file>` binds the critics' own hand-backs instead. Nothing the review proves
+# gets weaker: the critic's verdict must be `ship` at or above bespoke.json `critic_ship`, carry all
+# six points of THE SLIDE BAR, and name the SHA-256 of the exact render it read, which must equal
+# the render bound here. A changed image therefore still needs a new critic. A source edit that
+# leaves the render byte-identical rebinds to the same verdict, because the critic judged pixels.
+# Dated so it applies only from the first run after the pass: a run dated on or before
+# CRITIC_SINCE can't use it, and the art director's shape is checked exactly as before.
+CRITIC_SINCE = "2026-11-18"
+CRITIC_SOURCE = "carousel-slide-critic"
+# The six points the critic hands back (.claude/agents/carousel-slide-critic.md, "Hand back").
+CRITIC_POINTS = ("only_this_sentence", "one_idea", "composed", "crafted", "unlike_neighbours", "honest")
+
+
+def bespoke_config() -> dict:
+    return json.loads((ROOT / "config/carousel/bespoke.json").read_text())
+
+
+def critic_problems(frame: dict, render_digest: str | None, run: str) -> list[str]:
+    """A slide critic's hand-back stands in for the art director's reading of one frame."""
+    n = frame.get("slide")
+    cfg = bespoke_config()
+    start = cfg.get("bespoke_from")
+    if not (re.fullmatch(r"\d{4}-\d{2}-\d{2}", run) and run > CRITIC_SINCE
+            and isinstance(start, str) and run >= start):
+        return [f"frame {n}: a slide critic verdict binds only a bespoke run dated after {CRITIC_SINCE}"]
+    critic = frame.get("critic")
+    if not isinstance(critic, dict) or critic.get("slide") != n:
+        return [f"frame {n}: the critic hand-back is missing or names another slide"]
+    out = []
+    score, bar = critic.get("score"), cfg["artists"]["critic_ship"]
+    if critic.get("verdict") != "ship" or type(score) not in (int, float) or not math.isfinite(score) or score < bar:
+        out.append(f"frame {n}: the slide critic did not ship it at {bar} or more; repair and re-score the frame")
+    points = critic.get("points")
+    if (not isinstance(points, dict) or set(points) != set(CRITIC_POINTS)
+            or not all(type(v) in (int, float) and math.isfinite(v) for v in points.values())):
+        out.append(f"frame {n}: the critic hand-back must score all six points of THE SLIDE BAR")
+    if not isinstance(critic.get("fixes"), list):
+        out.append(f"frame {n}: the critic hand-back must carry its fixes list")
+    if not render_digest or frame.get("render_sha256") != render_digest:
+        out.append(f"frame {n}: the critic read a different render; score this exact image again")
+    return out
+
+
+def load_critics(path: Path) -> dict:
+    """Hand-backs, each with the `render_sha256` of the PNG the critic was given, keyed by slide."""
+    data = json.loads(path.read_text())
+    rows = data.get("frames", []) if isinstance(data, dict) else data
+    out = {}
+    for row in rows:
+        if not isinstance(row, dict) or type(row.get("slide")) is not int:
+            raise ValueError("each critic hand-back needs its integer slide")
+        out[row["slide"]] = row
+    return out
+
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -44,7 +102,8 @@ def inputs(base: Path, selected: list[int], assets: Path) -> dict:
     return files
 
 
-def review_problems(review: dict, selected: list[int]) -> list[str]:
+def review_problems(review: dict, selected: list[int], inputs_map: dict | None = None,
+                    run: str = "") -> list[str]:
     out = []
     if review.get("decision") != "accept":
         out.append("art preflight needs an accepted visual review; repair the named frames")
@@ -59,6 +118,10 @@ def review_problems(review: dict, selected: list[int]) -> list[str]:
             continue
         if f.get("role") != role:
             out.append(f"frame {f.get('slide')}: expected role {role}")
+        if f.get("source") == CRITIC_SOURCE:
+            out.extend(critic_problems(f, (inputs_map or {}).get(f"render/slide-{f.get('slide'):02}.png")
+                                       if type(f.get("slide")) is int else None, run))
+            continue
         for field in ("subject", "visual_consequence", "weakness", "repair"):
             if not isinstance(f.get(field), str) or not f[field].strip():
                 out.append(f"frame {f.get('slide')}: reviewer must record {field}")
@@ -84,6 +147,8 @@ def studio_problems(record: dict, base: Path) -> list[str]:
         n = frame.get("slide")
         if frame.get("inputs") != frame_inputs(record["inputs"], n, base):
             out.append(f"frame {n}: its review is not bound to its source, image and shared assets")
+        if frame.get("source") == CRITIC_SOURCE:
+            continue  # its judgement is the critic's six points, checked in review_problems
         for key in ("encoding_reads", "dominant_subject_finished", "feed_legible"):
             if frame.get(key) is not True:
                 out.append(f"frame {n}: {key} needs a positive visual judgement")
@@ -139,7 +204,7 @@ def check(base: Path, assets: Path = ROOT / "assets", archived: bool = False) ->
         # silently transfer an earlier review to a replacement PNG or chassis.
         if record.get("review", {}).get("inputs") != record["inputs"]:
             out.append("the visual review is not bound to these images and this chassis")
-        out.extend(review_problems(record.get("review", {}), selected))
+        out.extend(review_problems(record.get("review", {}), selected, record["inputs"], base.name))
         if record.get("version", 1) >= 2:
             out.extend(studio_problems(record, base))
             if not archived and json.loads((base / "art_plan.json").read_text()) != record.get("plan"):
@@ -151,7 +216,42 @@ def check(base: Path, assets: Path = ROOT / "assets", archived: bool = False) ->
         return [f"art preflight evidence is missing or unreadable: {e}"]
 
 
-def build(base: Path, middle: int | None, assets: Path) -> None:
+def bind_review(base: Path, record: dict, plan: dict, old: dict, critics: dict | None) -> None:
+    """Carry every still-bound review, bind fresh critic hand-backs, and decide acceptance."""
+    selected = record["selected"]
+    old_frames = {f.get("slide"): f for f in old.get("review", {}).get("frames", [])}
+    per_frame = {str(n): frame_inputs(record["inputs"], n, base) for n in selected}
+    kept = [old_frames[n] for n in selected if n in old_frames
+            and old_frames[n].get("inputs") == per_frame[str(n)]
+            and old.get("plan") == plan]
+    # THE BESPOKE ROUTE: a frame without a still-bound review takes its slide critic's
+    # hand-back when that critic read this exact render (CRITIC_SINCE above).
+    bound = {f["slide"]: f for f in kept}
+    for n, role in zip(selected, ROLES):
+        row = (critics or {}).get(n)
+        if n in bound or row is None:
+            continue
+        digest = record["inputs"][f"render/slide-{n:02}.png"]
+        frame = {"slide": n, "role": role, "source": CRITIC_SOURCE,
+                 "critic": {k: v for k, v in row.items() if k != "render_sha256"},
+                 "render_sha256": row.get("render_sha256"), "inputs": per_frame[str(n)]}
+        if not critic_problems(frame, digest, base.name):
+            bound[n] = frame
+    frames = [bound[n] for n in selected if n in bound]
+    record.update(version=2, plan=plan, frame_inputs=per_frame,
+                  needs_review=[n for n in selected if n not in bound])
+    record["review"] = {"decision": "revise", "inputs": record["inputs"], "frames": frames}
+    # An art director's kept frame still needs its whole earlier review accepted; a critic
+    # frame carries its own verdict and is re-checked by review_problems below.
+    directors = [f for f in frames if f.get("source") != CRITIC_SOURCE]
+    if (len(frames) == 3 and (not directors or old.get("review", {}).get("decision") == "accept")
+            and not studio_problems(record, base)
+            and not review_problems(record["review"] | {"decision": "accept"}, selected,
+                                    record["inputs"], base.name)):
+        record["review"]["decision"] = "accept"
+
+
+def build(base: Path, middle: int | None, assets: Path, critics: dict | None = None) -> None:
     from PIL import Image, ImageDraw
     import panel_ready
     import value_register
@@ -164,6 +264,8 @@ def build(base: Path, middle: int | None, assets: Path) -> None:
         middle = plan.get("hardest_frame")
     elif re.fullmatch(r"\d{4}-\d{2}-\d{2}", base.name) and base.name > STUDIO_SINCE:
         raise ValueError("write art_plan.json and name the hardest frame before the audition")
+    if critics and plan is None:
+        raise ValueError("the bespoke route binds critics only to a run with art_plan.json")
     middle = 4 if middle is None else middle
     numbers = sorted(int(p.stem.split("-")[1]) for p in (base / "slides").glob("slide-*.html"))
     if not numbers or type(middle) is not int or not 1 < middle < numbers[-1]:
@@ -192,19 +294,8 @@ def build(base: Path, middle: int | None, assets: Path) -> None:
               "value_measurements": rows, "review": {"decision": "revise", "frames": []}}
     if plan is not None:
         old_path = base / "art_preflight.json"
-        old = json.loads(old_path.read_text()) if old_path.exists() else {}
-        old_frames = {f.get("slide"): f for f in old.get("review", {}).get("frames", [])}
-        per_frame = {str(n): frame_inputs(record["inputs"], n, base) for n in selected}
-        kept = [old_frames[n] for n in selected if n in old_frames
-                and old_frames[n].get("inputs") == per_frame[str(n)]
-                and old.get("plan") == plan]
-        record.update(version=2, plan=plan, frame_inputs=per_frame,
-                      needs_review=[n for n in selected if n not in {f["slide"] for f in kept}])
-        record["review"] = {"decision": "revise", "inputs": record["inputs"], "frames": kept}
-        if (len(kept) == 3 and old.get("review", {}).get("decision") == "accept"
-                and not studio_problems(record, base)
-                and not review_problems(record["review"] | {"decision": "accept"}, selected)):
-            record["review"]["decision"] = "accept"
+        bind_review(base, record, plan, json.loads(old_path.read_text()) if old_path.exists() else {},
+                    critics)
     (base / "art_preflight.json").write_text(json.dumps(record, indent=2) + "\n")
     sheet = Image.new("RGB", (3 * 452, 590), "#0c1118")
     draw = ImageDraw.Draw(sheet)
@@ -322,6 +413,90 @@ def self_test() -> int:
         except ValueError:
             rejected = True
         test("a different image cannot be exported as a faithful encode", rejected)
+    # THE BESPOKE ROUTE (2026-11-18): the critics' hand-backs bind only the exact renders they
+    # read, only at or above critic_ship with all six points, and only from the next run.
+    bar = bespoke_config()["artists"]["critic_ship"]
+    with tempfile.TemporaryDirectory() as directory:
+        def bespoke_run(name):
+            base = Path(directory) / name
+            assets = base / "assets"
+            (assets / "js/deck").mkdir(parents=True)
+            (assets / "js/deck/test.js").write_text("spine")
+            (base / "slides").mkdir()
+            (base / "render").mkdir()
+            for n in (1, 4, 9):
+                (base / "slides" / f"slide-{n:02}.html").write_text(
+                    f'<script src="@@ASSETS@@/js/deck/test.js"></script><h1>frame {n}</h1>')
+                (base / "render" / f"slide-{n:02}.png").write_bytes(f"pixels {n}".encode())
+            plan = {"hardest_frame": 4, "visual_argument": "a named argument",
+                    "build_risk": "a named risk", "distinct_from_recent": "a named difference"}
+            (base / "art_plan.json").write_text(json.dumps(plan))
+            return base, assets, plan
+        def handbacks(base, change=None):
+            out = {}
+            for n in (1, 4, 9):
+                row = {"slide": n, "score": bar + 0.5, "points": {k: 8 for k in CRITIC_POINTS},
+                       "fixes": [], "verdict": "ship",
+                       "render_sha256": sha(base / "render" / f"slide-{n:02}.png")}
+                row.update((change or {}).get(n, {}))
+                out[n] = row
+            return out
+        def bind(base, assets, plan, critics, old=None):
+            record = {"version": 1, "selected": [1, 4, 9], "inputs": inputs(base, [1, 4, 9], assets),
+                      "review": {"decision": "revise", "frames": []}}
+            bind_review(base, record, plan, old or {}, critics)
+            (base / "art_preflight.json").write_text(json.dumps(record))
+            return record
+        base, assets, plan = bespoke_run("2026-11-19")
+        rec = bind(base, assets, plan, handbacks(base))
+        test("three shipped critic hand-backs on these renders accept the bespoke review",
+             rec["review"]["decision"] == "accept" and not check(base, assets))
+        accepted = rec
+        (base / "render/slide-04.png").write_bytes(b"repaired pixels")
+        test("a repaired render goes stale under the critic route", bool(check(base, assets)))
+        read_before = {f["slide"]: f["render_sha256"] for f in accepted["review"]["frames"]}
+        rec = bind(base, assets, plan, {n: dict(r, render_sha256=read_before[n])
+                                        for n, r in handbacks(base).items()}, accepted)
+        test("a critic who read the earlier render can't bind the repaired one",
+             rec["review"]["decision"] == "revise" and rec["needs_review"] == [4])
+        rec = bind(base, assets, plan, handbacks(base), accepted)
+        test("a fresh critic on the repaired render rebinds it", rec["review"]["decision"] == "accept"
+             and not check(base, assets))
+        (base / "slides/slide-09.html").write_text(
+            '<script src="@@ASSETS@@/js/deck/test.js"></script><h1>frame 9, source only</h1>')
+        rec = bind(base, assets, plan, handbacks(base), rec)
+        test("a source edit that leaves the render byte-identical keeps the critic's verdict",
+             rec["review"]["decision"] == "accept" and not check(base, assets))
+        for label, change in (("a rework verdict", {4: {"verdict": "rework"}}),
+                              ("a ship verdict under critic_ship", {4: {"score": bar - 0.5}}),
+                              ("a hand-back missing a point", {4: {"points": {k: 8 for k in CRITIC_POINTS[:-1]}}}),
+                              ("a hand-back naming another slide", {4: {"slide": 5}})):
+            rec = bind(base, assets, plan, handbacks(base, change))
+            test(f"{label} does not bind the frame", rec["review"]["decision"] == "revise"
+                 and 4 in rec["needs_review"])
+        rec = bind(base, assets, plan, handbacks(base))
+        rec["review"]["frames"][1]["critic"]["verdict"] = "rework"
+        (base / "art_preflight.json").write_text(json.dumps(rec))
+        test("a stored critic frame edited to rework fails the check", bool(check(base, assets)))
+        rec["review"]["frames"][1]["critic"]["verdict"] = "ship"
+        rec["review"]["frames"][1]["render_sha256"] = "0" * 64
+        (base / "art_preflight.json").write_text(json.dumps(rec))
+        test("a stored critic frame bound to another render fails the check", bool(check(base, assets)))
+        director = {"slide": 1, "role": "cover", "subject": "s", "visual_consequence": "v",
+                    "weakness": "w", "repair": "r", "encoding_reads": True,
+                    "dominant_subject_finished": True, "feed_legible": True,
+                    "inputs": frame_inputs(inputs(base, [1, 4, 9], assets), 1, base)}
+        old = {"plan": plan, "review": {"decision": "revise", "frames": [director]}}
+        rec = bind(base, assets, plan, {n: r for n, r in handbacks(base).items() if n != 1}, old)
+        test("a director frame from a review left at revise does not ride in on the critics",
+             rec["review"]["decision"] == "revise")
+        closed, assets_c, plan_c = bespoke_run(CRITIC_SINCE)
+        rec = bind(closed, assets_c, plan_c, handbacks(closed))
+        test("a run dated on or before CRITIC_SINCE can't use the critic route",
+             rec["review"]["decision"] == "revise" and rec["needs_review"] == [1, 4, 9])
+        rec["review"] = accepted["review"] | {"inputs": rec["inputs"]}
+        (closed / "art_preflight.json").write_text(json.dumps(rec))
+        test("a critic-shaped review copied into a closed run fails the check", bool(check(closed, assets_c)))
     # WIRED, NOT DECORATIVE (2026-10-30): the audition's detail read exists only if build calls it
     # before writing the proof, and a refactor that drops the call would leave layout_check's own
     # self-test green. Read the source of build, not the docstring.
@@ -339,6 +514,8 @@ def main() -> int:
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--archive", type=Path)
     parser.add_argument("--middle", type=int, help="legacy selection; new runs read art_plan.json")
+    parser.add_argument("--critics", type=Path, help="with --write on a bespoke run: the slide critics' "
+                        "hand-backs, each with the render_sha256 of the PNG it read")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -356,7 +533,8 @@ def main() -> int:
             return 1
     if args.write:
         try:
-            build(base, args.middle, ROOT / "assets")
+            build(base, args.middle, ROOT / "assets",
+                  load_critics(args.critics) if args.critics else None)
             print(f"Wrote {base / 'art_preflight.json'} and the three-frame proof. Review the images.")
             return 0
         except (OSError, ValueError, KeyError) as e:

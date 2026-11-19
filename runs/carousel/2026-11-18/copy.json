@@ -1,0 +1,206 @@
+{
+ "date": "2026-11-18",
+ "carousel_no": 81,
+ "document_title": "A UT Dallas study paired satellite readings of eight air pollutants from 2022 with CDC cancer data for all 254 Texas counties, and found that counties with more pollution tended to have more cancer",
+ "_note": "Caption carried verbatim from caption.txt. Slide strings polished from storyboard.md, each held to its claim quotes.",
+ "caption": "Does dirtier air go with more cancer?\n\nCounty by county across Texas, it tended to. A UT Dallas team paired satellite readings of eight air pollutants from 2022 with CDC cancer data for all 254 counties. Machine learning did the weighing. Sulfur dioxide was the strongest environmental predictor. The paper ran March 5th in Environmental Monitoring and Assessment.\n\nThe east has worse air and the west better. High cancer counties sit near other high cancer counties. Not every more polluted place had more cancer.\n\nGround monitors are costly. The paper says satellites can help where none stand. Satellite readings may be less precise.\n\nStand in any one of those counties. The researchers say the results don't establish that pollution causes cancer in the person standing there.\n\nWhere should Texas put its next ground monitor?\n\n#UTDallas #Sentinel5P #AirQuality",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Read from orbit",
+   "headline": "All 254 Texas counties, read from above",
+   "claims": [
+    "c1",
+    "c2",
+    "c24",
+    "c5"
+   ],
+   "cite": "c1 c2 c24 c5",
+   "body": "A UT Dallas team paired satellite readings of the air with CDC cancer data, county by county. Counties with more pollution tended to have more cancer. The slab, its sheet of air and the satellite are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "All 254 Texas counties, read from above",
+    "A UT Dallas team paired satellite readings of the air with CDC cancer data, county by county. Counties with more pollution tended to have more cancer. The slab, its sheet of air and the satellite are drawn to illustrate.",
+    "Read from orbit",
+    "01 / 09",
+    "c1 c2 c24 c5"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Why satellites",
+   "headline": "Ground monitoring is costly",
+   "claims": [
+    "c13",
+    "c25"
+   ],
+   "cite": "c13 c25",
+   "body": "That cost has limited this kind of study, Dong says. The paper says satellite data can help where ground monitoring is unavailable. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Ground monitoring is costly",
+    "That cost has limited this kind of study, Dong says. The paper says satellite data can help where ground monitoring is unavailable. Drawn to illustrate.",
+    "Why satellites",
+    "02 / 09",
+    "c13 c25"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The instrument",
+   "headline": "Where the readings came from",
+   "claims": [
+    "c23",
+    "c2"
+   ],
+   "cite": "c23 c2",
+   "body": "The air readings came from the Sentinel-5 Precursor satellite and the Copernicus Atmosphere Monitoring Service. Public CDC data supplied the cancer side. The craft, its swath and the ground are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Where the readings came from",
+    "The air readings came from the Sentinel-5 Precursor satellite and the Copernicus Atmosphere Monitoring Service. Public CDC data supplied the cancer side. The craft, its swath and the ground are drawn to illustrate.",
+    "The instrument",
+    "03 / 09",
+    "c23 c2"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "What it read",
+   "headline": "Eight pollutants, sulfur dioxide strongest",
+   "claims": [
+    "c4",
+    "c6",
+    "c26"
+   ],
+   "cite": "c4 c6 c26",
+   "body": "The study read eight air pollutants from 2022 data. Among the environmental predictors of cancer, sulfur dioxide was the most influential. The bands are drawn to illustrate, not heights in the sky.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Eight pollutants, sulfur dioxide strongest",
+    "The study read eight air pollutants from 2022 data. Among the environmental predictors of cancer, sulfur dioxide was the most influential. The bands are drawn to illustrate, not heights in the sky.",
+    "What it read",
+    "04 / 09",
+    "c4 c6 c26"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The fit",
+   "headline": "Four methods tried, one fit best",
+   "claims": [
+    "c3",
+    "c20",
+    "c21",
+    "c27",
+    "c19"
+   ],
+   "cite": "c3 c20 c21 c27 c19",
+   "body": "A support vector machine fit best, with an R squared of 0.791, drawn here as 79 flagged stakes in 100 on the one pad that won. Rahman says socioeconomic and other variables were controlled for. The 0.791 is a model's fit, not how much cancer pollution causes. Cancer reflects many influences besides pollution.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Four methods tried, one fit best",
+    "A support vector machine fit best, with an R squared of 0.791, drawn here as 79 flagged stakes in 100 on the one pad that won. Rahman says socioeconomic and other variables were controlled for. The 0.791 is a model's fit, not how much cancer pollution causes. Cancer reflects many influences besides pollution.",
+    "The fit",
+    "05 / 09",
+    "c3 c20 c21 c27 c19"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "West to east",
+   "headline": "Worse air east, better air west",
+   "claims": [
+    "c7",
+    "c8"
+   ],
+   "cite": "c7 c8",
+   "body": "Dong describes three major clusters of air pollution, with central Texas in between. The haze shows the order of air quality only, not cancer or county values.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Worse air east, better air west",
+    "Dong describes three major clusters of air pollution, with central Texas in between. The haze shows the order of air quality only, not cancer or county values.",
+    "West to east",
+    "06 / 09",
+    "c7 c8"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Clustering",
+   "headline": "High cancer counties sit near each other",
+   "claims": [
+    "c9",
+    "c22"
+   ],
+   "cite": "c9 c22",
+   "body": "The paper scores that clustering of cancer prevalence at a Moran's index of 0.69. The stones are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "High cancer counties sit near each other",
+    "The paper scores that clustering of cancer prevalence at a Moran's index of 0.69. The stones are drawn to illustrate.",
+    "Clustering",
+    "07 / 09",
+    "c9 c22"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The limit",
+   "headline": "A place is not a person",
+   "claims": [
+    "c11",
+    "c10",
+    "c12"
+   ],
+   "cite": "c11 c10 c12",
+   "body": "The researchers say the results don't establish that pollution causes cancer in any one person. Not every more polluted place had more cancer, and satellite data may be less precise than ground monitors. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A place is not a person",
+    "The researchers say the results don't establish that pollution causes cancer in any one person. Not every more polluted place had more cancer, and satellite data may be less precise than ground monitors. Drawn to illustrate.",
+    "The limit",
+    "08 / 09",
+    "c11 c10 c12"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What it is for",
+   "headline": "Where to look first",
+   "claims": [
+    "c14",
+    "c18",
+    "c11"
+   ],
+   "cite": "c14 c18 c11",
+   "body": "The team says the method can show where medical centers are and where government should focus. The team wants more research on cost and accuracy. The paper ran online March 5th in Environmental Monitoring and Assessment. The land and its blocks are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Where to look first",
+    "The team says the method can show where medical centers are and where government should focus. The team wants more research on cost and accuracy. The paper ran online March 5th in Environmental Monitoring and Assessment. The land and its blocks are drawn to illustrate.",
+    "What it is for",
+    "09 / 09",
+    "c14 c18 c11"
+   ]
+  }
+ }
+}

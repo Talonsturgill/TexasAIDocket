@@ -1,0 +1,228 @@
+<!doctype html>
+<!-- 2026-11-18, frame 4 of 9, WHAT IT READ. BESPOKE, LOOK V2 explainer. A material relief through txbench.js raked from the
+     upper left: a carved column of air cut into one band per entry of FIG.pollutant_names, each band its own surface, standing
+     on a cut plug of Texas ground in three weathered strata (topsoil, caliche, limestone), the column outlined by an inlaid dusk
+     gold bead, the sulfur dioxide band projecting proud and wider in satin gold. Drawn to illustrate; the bands are not heights
+     in the sky and carry no value. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:226px; width:460px; text-align:left">Eight pollutants, sulfur dioxide strongest</h1>
+<p class="dek" data-follow="30" style="left:78px; width:468px">The study read eight air pollutants from 2022 data. Among the environmental predictors of cancer, sulfur dioxide was the most influential. The bands are drawn to illustrate, not heights in the sky.</p>
+<script>window.FIG = {"pollutants": 8, "pollutant_names": ["sulfur dioxide", "nitrogen dioxide", "carbon monoxide", "formaldehyde", "methane", "particulate matter smaller than 1 micrometer", "particulate matter smaller than 10 micrometers", "aerosols"]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "What it read", counter: "04 / 09", src: "c4 c6 c26", fit: { min: 62, max: 96, maxLines: 4 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED);
+  const P = CH.P, L = TXLOOK.lin, f2 = (x, y, o) => TX.fbm2(x, y, { octaves: o || 3 });
+  const hsh = (a, b, k) => { const v = Math.sin(a * 127.1 + b * 311.7 + k * 74.7) * 43758.5453; return v - Math.floor(v); };
+
+  /* ---- THE FIGURE. One band per entry of FIG.pollutant_names, asserted to equal FIG.pollutants. The first name is the
+   * strongest predictor (c6, c26) and is the one band that stands proud. ---- */
+  const NAMES = FIG.pollutant_names;
+  if (!Array.isArray(NAMES) || NAMES.length !== FIG.pollutants) throw new Error('band count ' + (NAMES && NAMES.length) + ' differs from FIG.pollutants ' + FIG.pollutants);
+  if (NAMES[0] !== 'sulfur dioxide') throw new Error('the proud band must be sulfur dioxide, the figures list ' + NAMES[0] + ' first');
+  const N = NAMES.length;
+  const order = NAMES.slice();                       /* top to bottom in c4's own listed order, so sulfur dioxide is the top band */
+  if (order[0] !== 'sulfur dioxide' || order.some((n, i) => n !== NAMES[i])) throw new Error('band order departs from FIG.pollutant_names');
+  /* each band is clear glass holding what it is: the gases as graded haze with wisps, the two particulate bands as fine and
+   * coarser suspended specks, aerosols as soft motes. No water, no bubbles. */
+  const KIND = n => n === 'sulfur dioxide' ? 'gold' : /smaller than 1 /.test(n) ? 'fine' : /smaller than 10 /.test(n) ? 'coarse' : n === 'aerosols' ? 'drop' : 'gas';
+  const TINT = { 'nitrogen dioxide': '#5aa9f2', 'carbon monoxide': '#cfeeff', 'formaldehyde': '#4c4fd0', 'methane': '#8fe6f4',
+    'particulate matter smaller than 1 micrometer': '#8d74e6', 'particulate matter smaller than 10 micrometers': '#3b7fe0', 'aerosols': '#bfc8ff' };
+
+  /* ---- THE GEOMETRY, design px. ---- */
+  const CX = 792, RC = 198, YT = 150, RR = 56, YB = 962;       /* the column: x CX +- RC, its top corners rounded RR, so the top band is a band like the rest */
+  const BT = YT, THICK = 1.3, BH = (YB - YT) / (N - 1 + THICK);  /* the proud band is a little thicker; the other seven share the rest */
+  const HC = 34, LIFT = 30, INSET = 42;                           /* column crown height, how much prouder the band stands, kept inside the rail */
+  const GX0 = -120, GX1 = 1200, GY0 = 946, GY1 = 1480;         /* the ground: a section of Texas ground across the frame, down past the footer */
+  const S1 = 1000, S2 = 1086, S3 = 1178;                       /* strata boundaries: topsoil, caliche, limestone, a deeper shale */
+  let yy = BT; const bands = order.map((n, i) => { const k = KIND(n), h = BH * (k === 'gold' ? THICK : 1), b = { name: n, kind: k, y0: yy, y1: yy + h, h: h, id: 10 + i }; yy += h; return b; });
+  if (Math.abs(yy - YB) > 0.01) throw new Error('bands do not fill the column');
+  const bandAt = Y => { for (const b of bands) if (Y < b.y1) return b; return bands[N - 1]; };
+  if (bands.length !== FIG.pollutants) throw new Error('drawn bands ' + bands.length + ' differ from FIG.pollutants');
+  if (bands.filter(b => b.kind === 'gold').length !== 1) throw new Error('exactly one band stands proud');
+
+  /* signed distance (px, + outside) to the column silhouette: a rect with an elliptical cap */
+  function colSD(X, Y) {
+    const dx = Math.abs(X - CX) - (RC - RR), dy = (YT + RR) - Y;
+    if (dy > 0 && dx > 0) return Math.hypot(dx, dy) - RR;
+    return Math.max(Math.abs(X - CX) - RC, YT - Y);
+  }
+  /* the column's half width at Y (for the dome profile under the cap) */
+  function halfW(Y) { const dy = (YT + RR) - Y; if (dy <= 0) return RC; return RC - RR + Math.sqrt(Math.max(0, RR * RR - dy * dy)); }
+  function rrSD(X, Y, x0, y0, x1, y1, r) { const qx = Math.abs(X - (x0 + x1) / 2) - ((x1 - x0) / 2 - r), qy = Math.abs(Y - (y0 + y1) / 2) - ((y1 - y0) / 2 - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; }
+
+  /* ---- surfaces ---- */
+  function grains(X, Y, G, rad, dens, k) {   /* raised grains on a jittered grid: [height 0..1, nearest distance] */
+    const ci = Math.floor(X / G), cj = Math.floor(Y / G); let best = 0;
+    for (let a = ci - 1; a <= ci + 1; a++) for (let b = cj - 1; b <= cj + 1; b++) {
+      if (hsh(a, b, k) > dens) continue;
+      const r = rad * (0.6 + 0.6 * hsh(a, b, k + 1)), px = (a + hsh(a, b, k + 2)) * G, py = (b + hsh(a, b, k + 3)) * G, d = Math.hypot(X - px, Y - py);
+      if (d < r) best = Math.max(best, Math.sqrt(1 - (d / r) * (d / r)));
+    }
+    return best;
+  }
+  function bandSurface(b, X, Y) { return 0; }   /* every band is smooth glass; what it holds is inside, in the albedo */
+  /* suspended specks, albedo only: [strength 0..1] of the nearest speck */
+  function specks(X, Y, G, rad, dens, k) {
+    const ci = Math.floor(X / G), cj = Math.floor(Y / G); let best = 0;
+    for (let a = ci - 1; a <= ci + 1; a++) for (let b = cj - 1; b <= cj + 1; b++) {
+      if (hsh(a, b, k) > dens) continue;
+      const r = rad * (0.5 + hsh(a, b, k + 1)), px = (a + hsh(a, b, k + 2)) * G, py = (b + hsh(a, b, k + 3)) * G, d = Math.hypot(X - px, Y - py);
+      best = Math.max(best, Math.exp(-(d / r) * (d / r)));
+    }
+    return best;
+  }
+
+  /* ---- the height field ---- */
+  let mX = NaN, mY = NaN, mG = null;
+  function geo(X, Y) {
+    if (X === mX && Y === mY) return mG; mX = X; mY = Y; mG = geo0(X, Y); return mG;
+  }
+  function geo0(X, Y) {
+    /* the proud band first: the same frosted cushion as its siblings, extruded LIFT further forward, its lift easing out before the rail on the shadow side so its cast falls inside the column */
+    const pb = bands.find(b => b.kind === 'gold');
+    if (Y >= pb.y0 && Y < pb.y1) {   /* a carved gold slab, inset from both rails so its cast lands on the column, never outside it */
+      const dd = Math.max(rrSD(X, Y, CX - RC + INSET, pb.y0 + 14, CX + RC - INSET, pb.y1 - 6, 24), colSD(X, Y) + INSET);
+      if (dd < 0) { const t = (Y - pb.y0) / pb.h, e = Math.min(1, -dd / 16), bev = Math.sqrt(1 - (1 - e) * (1 - e));
+        const tooth = 0.6 * f2(X / 8, Y / 8, 2) + 0.3 * f2(X / 2.4, Y / 2.4, 2);
+        return [(HC * 0.6 + LIFT + 6 * t + tooth) * bev + 8 * (1 - bev), pb.id]; }
+    }
+    const sd = colSD(X, Y);
+    const soilLine = GY0 + 2.5 * f2(X / 40, 5.5, 2);
+    const inCol = sd < 0 && Y < Math.min(YB + 4, soilLine);
+    if (inCol) {
+      const hw = halfW(Y), dx = (X - CX) / Math.max(1, hw), dome = Math.sqrt(Math.max(0, 1 - dx * dx * 0.92));
+      const b = bandAt(Y);
+      const t = Math.min(1, Math.max(0, (Y - b.y0) / b.h));
+      const top = Math.min(1, (Y - b.y0) / 9), bot = Math.min(1, (b.y1 - Y) / 8);   /* soft carved bevels at the head and the lip of every stratum */
+      const rt = Math.sqrt(1 - (1 - top) * (1 - top)), rb = Math.sqrt(1 - (1 - bot) * (1 - bot));
+      const ledge = 4 + 20 * Math.pow(t, 1.25);                                   /* each face leans out to a rounded lower lip that casts onto the next */
+      const tooth = 0.7 * f2(X / 8, Y / 8, 2) + 0.3 * f2(X / 2.4, Y / 2.4, 2);   /* chisel tooth, matte stone */
+      const edge = Math.min(1, -sd / 34);                                         /* a wide rolled silhouette, so the column's cast onto the sky stays a soft thin edge */
+      let h = (10 + 10 * dome + ledge * Math.min(rt, rb) + tooth) * (0.3 + 0.7 * Math.min(rt, rb)) * (0.2 + 0.8 * Math.sqrt(edge));
+      if (b.kind === 'gold') h = (8 + 4 * dome + tooth) * (0.2 + 0.8 * Math.sqrt(edge));                            /* the recess the gold slab is carved out of */
+      h += bandSurface(b, X, Y) * edge;
+      return [h, b.id];
+    }
+    /* the gold inlay bead hugging the silhouette (sides and cap, down to the ground) */
+    if (sd >= 1 && sd < 6 && Y < GY0 + 6) { const u = (sd - 3.5) / 2.5; return [3.5 * Math.sqrt(Math.max(0, 1 - u * u)), 20]; }   /* a thin copper inlay */
+    /* a fringe of grass blades along the ground line, either side of the column */
+    if (Y > GY0 - 22 && Y < GY0 + 3 && Math.abs(X - CX) > RC + 16) {
+      const k = Math.floor(X / 5), tuft = 0.5 + 0.5 * Math.sin(X / 37 + 2 * hsh(Math.floor(X / 60), 1, 70)), bl = 6 + 16 * tuft * hsh(k, 3, 71), lean = (hsh(k, 4, 72) - 0.5) * 6, xc = k * 5 + 2.5 + lean * (GY0 - Y) / 16;
+      if (hsh(k, 5, 73) < 0.45 + 0.45 * tuft && Y > GY0 - bl && Math.abs(X - xc) < 1.6 * (1 - (GY0 - Y) / (bl + 1))) return [17 + (GY0 - Y) * 0.4, 24];
+    }
+    /* the ground plug, weathered at its edge, the strata eroded differently */
+    const wob = 7 * f2(X / 70, Y / 70, 3) + 3 * f2(X / 14, Y / 14, 2);
+    const gd = rrSD(X, Y, GX0, GY0, GX1, GY1, 34) + wob * (Y > GY0 + 30 ? 1 : 0.35);
+    if (gd < 0) {
+      const s1 = S1 + 10 * f2(X / 120, 3.1, 2) + 3 * f2(X / 18, 7.7, 2), s2 = S2 + 12 * f2(X / 140, 9.3, 2) + 3 * f2(X / 20, 1.9, 2);
+      const e = Math.min(1, -gd / 9), roll = Math.sqrt(1 - (1 - e) * (1 - e));
+      if (Y < s1) {   /* topsoil: crumbly clay, root threads */
+        const crumb = 2.6 * f2(X / 9, Y / 9, 3) + 1.5 * grains(X, Y, 8, 3, 0.5, 41), root = Math.abs(Math.sin(X / 23 + 4 * f2(X / 60, Y / 30, 2))) < 0.05 ? -2.5 : 0;
+        const near = Math.max(0, 1 - Math.max(0, Math.abs(X - CX) - RC + 10) / 90), heap = 13 * near * Math.exp(-(((Y - GY0) / 22) ** 2));   /* soil heaped against the glass */
+        return [(15 + crumb + root + heap) * roll + (Y - s1 > -3 ? -2.5 : 0), 21];
+      }
+      if (Y < s2) {   /* caliche: chalky, nodular */
+        const nod = 2.6 * grains(X, Y, 46, 11, 0.3, 51) + 0.35 * f2(X / 5, Y / 5, 2) + 1.6 * f2(X / 40, Y / 22, 3);
+        const crack = 0;
+        const lip = 7 * Math.exp(-(((Y - s1 - 5) / 5) ** 2)) + 7 * Math.max(0, Math.min(1, (Y - s1) / 10));   /* a rounded ledge standing out of the topsoil */
+        return [(17 + nod + crack + lip) * roll + (Y - s2 > -3 ? -2.5 : 0), 22];
+      }
+      const s3 = S3 + 8 * f2(X / 160, 4.4, 2) + 2 * f2(X / 22, 8.1, 2);
+      if (Y > s3) {   /* a deeper shale: fissile laminations, a violet grey under the limestone, its beds dipping so none runs as a rule under the footer */
+        const lam = 0.5 * Math.sin((Y - 0.22 * X + 10 * f2(X / 120, Y / 40, 2)) / 5) + 0.9 * f2(X / 30, Y / 12, 2), chip = 0;
+        return [18 + lam + chip + 3 * Math.max(0, Math.min(1, (Y - s3) / 10)), 25];
+      }
+      /* limestone: the hardest stratum stands furthest, with bedding planes and a few pits */
+      const bed = Math.abs(Math.sin((Y + 6 * f2(X / 150, Y / 40, 2)) / 15)) < 0.08 ? -2.2 : 0, pit = -3 * grains(X, Y, 30, 4, 0.35, 61);
+      const lip2 = 8 * Math.exp(-(((Y - s2 - 5) / 5) ** 2)) + 8 * Math.max(0, Math.min(1, (Y - s2) / 10));   /* the limestone's hard lip, furthest forward */
+      return [(26 + lip2 + 0.8 * f2(X / 40, Y / 9, 2) + 0.25 * f2(X / 4, Y / 4, 2) + bed + pit) * roll, 23];
+    }
+    /* the sky field: flat, so it takes the clean TXLOOK.sky2d gradient and the casts and nothing else */
+    return [0, 0];
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+
+  /* ---- albedo, linear ---- */
+  const WALL = [P.skyTop, P.skyMid, TXLOOK.mix(P.skyMid, P.skyLow, 0.35)].map(h => L(h));
+  const mixL = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
+  const GOLD = '#e0956a';
+  /* the relief light is cool (reliefLight's key and sky ambient), so a warm material is given its albedo divided by the
+   * light a flat lit face receives, and renders at its own hex on that face */
+  const LS = (() => { const r = TXLOOK.reliefLight(), lam = Math.sin(34 * Math.PI / 180); return [0, 1, 2].map(i => 0.36 * r.ambColor[i] + 1.15 * lam * r.keyColor[i]); })();
+  const comp = (h, k) => L(h).map((v, i) => { const t = v / Math.max(0.05, 1 - 0.35 * v); return (k || 1) * t / LS[i]; });
+  /* THE SKY FIELD: a clean TXLOOK.sky2d gradient in the explainer tone, drawn offscreen and read by the wall's albedo, its key
+   * glow at the horizon behind the column so the type's side stays deep */
+  const SKY = (() => { const k = document.createElement('canvas'); k.width = 1080; k.height = 1350; const g = k.getContext('2d');
+    TXLOOK.sky2d(g, { y0: 0, y1: 1350, keyX: 900, keyR: 560 });   /* the gradient runs to the frame's foot, so its palest band lies under the ground and the dek keeps a deep field */
+    return g.getImageData(0, 0, 1080, 1350).data; })();
+  const albedo = (X, Y, m) => {
+    const n = f2(X / 12, Y / 12, 2);
+    if (m === 0) {   /* read straight from the TXLOOK.sky2d field, given back the light a flat face loses so it renders at sky2d's own colour */
+      const xi = Math.max(0, Math.min(1079, Math.floor(X))), yi = Math.max(0, Math.min(1349, Math.floor(Y))), o = (yi * 1080 + xi) * 4;
+      return [0, 1, 2].map(i => { const v = SKY[o + i] / 255, lv = v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); return (lv / Math.max(0.05, 1 - 0.35 * lv)) / LS[i]; });
+    }
+    if (m === 20) return comp(GOLD, 0.92 + 0.06 * n);
+    if (m >= 10 && m < 10 + N) {
+      const b = bands[m - 10];
+      const t = (Y - b.y0) / b.h, dx = (X - CX) / RC;
+      const mott = 1 + 0.07 * f2(X / 30, Y / 14 + b.id, 3) + 0.05 * f2(X / 3, Y / 3, 2);   /* matte carved stone: mottle and tooth, no glow, no haze */
+      const lift = (1.04 - 0.16 * t) * mott;
+      if (b.kind === 'gold') { const inSlab = Math.max(rrSD(X, Y, CX - RC + INSET, b.y0 + 14, CX + RC - INSET, b.y1 - 6, 24), colSD(X, Y) + INSET) < 0;
+        return comp(GOLD, (inSlab ? 0.95 : 0.62) * mott); }
+      const base = L(TINT[b.name]), white = L('#f4fbff');
+      let col = base.map(v => v * lift);
+      if (b.kind === 'fine') { const sp = specks(X, Y, 5, 0.9, 0.8, 11); col = col.map(v => v * (1 - 0.35 * sp)); }
+      if (b.kind === 'coarse') { const sp = specks(X, Y, 12, 2.0, 0.55, 21); col = col.map(v => v * (1 - 0.45 * sp)); }
+      if (b.kind === 'drop') { const sp = specks(X, Y, 22, 5, 0.5, 31); col = col.map((v, i) => v + (white[i] - v) * 0.25 * sp); }
+      return col;
+    }
+    if (m === 21) { const near = Math.max(0, 1 - Math.max(0, Math.abs(X - CX) - RC) / 46), cs = near * Math.exp(-Math.max(0, Y - GY0) / 20);   /* the column's soft indigo contact */
+      return mixL(comp('#8c5a3c', 0.95 + 0.14 * n), L(P.shade, 0.9), 0.5 * cs); }
+    if (m === 25) return mixL(comp('#6a5d8c', 0.9), comp('#544a78', 0.9), 0.4 + 0.4 * f2(X / 50, Y / 6, 2));
+    if (m === 24) { const tip = Math.min(1, Math.max(0, (GY0 - Y) / 18)); return mixL(comp('#4f7f30', 0.9 + 0.2 * hsh(Math.floor(X / 5), 1, 9)), comp('#d8ec8a'), 0.85 * tip); }   /* tips catching the key */
+    if (m === 22) return mixL(comp('#e8d3b0', 0.85), comp('#d9b98a', 0.85), 0.35 + 0.3 * n);
+    if (m === 23) return mixL(comp('#efe4cc', 0.85), comp('#dccfb4', 0.85), 0.3 + 0.3 * f2(X / 30, Y / 8, 2));
+    return [0.5, 0.5, 0.5];
+  };
+  const spec = { 0: [0, 8], 24: [0.3, 18], 25: [0.15, 16], 20: [0.7, 30], 21: [0.04, 6], 22: [0.08, 10], 23: [0.12, 14] };
+  bands.forEach(b => { spec[b.id] = [0.03, 5]; });
+
+  const proof = TXBENCH.relief(cx, { ...TXLOOK.reliefLight(), x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo, spec,
+    ambient: 0.36, diffuse: 1.15, ao: 0.9, shadow: 0.8, softness: 5, castLength: 150, dither: true, visBlur: 4 });
+
+  /* ---- the drawing agrees with the figure: walk the column's centre line and count the bands the material buffer holds ---- */
+  const seen = []; let last = -1;
+  for (let Y = YT + 2; Y < YB; Y += 1) { const m = material(CX - 40, Y); if (m >= 10 && m < 10 + N && m !== last) { seen.push(m); last = m; } }
+  if (seen.length !== FIG.pollutants) throw new Error('the column draws ' + seen.length + ' bands, FIG.pollutants is ' + FIG.pollutants);
+  const pbb = bands.find(b => b.kind === 'gold'), hp = height(CX - 60, (pbb.y0 + pbb.y1) / 2);
+  bands.forEach(b => { if (b !== pbb && height(CX - 60, (b.y0 + b.y1) / 2) >= hp) throw new Error('band ' + b.name + ' stands as proud as sulfur dioxide'); });
+  if (YB - YT < 800) throw new Error('the column is under 800 px tall');
+
+  CH.seat(cx, { a: 0.42, fade: 200 });
+  TXLOOK.footWash(cx, { a: 0.42, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

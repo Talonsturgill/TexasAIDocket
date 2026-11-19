@@ -1,0 +1,121 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "round2_defects_check": [
+  {
+   "defect": "Slide 9 gave Rahman a quote (c14) that names no speaker, and cited c25 with no c25 content on the slide",
+   "status": "FIXED. It now reads 'The team says', and the cite is c14 c18 c11. Each sentence maps to one of those claims. c11 carries the March 5th date."
+  },
+  {
+   "defect": "Slide 5's 0.791 could be read as pollution's fit after controls, with c19 unused",
+   "status": "LARGELY FIXED. c19 'Cancer reflects many influences besides pollution.' now closes the dek and is cited. The dek still never says that the model's own predictors include non-environmental variables, so the looseness is smaller but still there."
+  },
+  {
+   "defect": "Slide 2 'the researchers say' widened c13's 'Dong said'",
+   "status": "FIXED. It now reads 'Dong says'."
+  },
+  {
+   "defect": "Slide 6 joins c7's three clusters to c8's east, central and west, and the art draws three cases as regions",
+   "status": "NOT CHANGED. It still reads 'Dong describes three major clusters of air pollution, with central Texas in between.' This is minor."
+  },
+  {
+   "defect": "The caption closes on 'Where should Texas put its next ground monitor?', which the study does not address",
+   "status": "NOT CHANGED."
+  },
+  {
+   "defect": "Slide 7's warm stones meant 'not high cancer'",
+   "status": "FIXED. The ordinary stones are pale and cool, and the high cancer stones are blue. Seen in render/slide-07.png."
+  },
+  {
+   "defect": "Frame 4's bands were out of c4's order",
+   "status": "FIXED. The proud orange band, sulfur dioxide, is now on top, and the other bands are matte textured strata."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.6,
+   "why": "Better than round 2 on the frames that were named. Frame 4: the bands are now matte stippled strata with bevels, sulfur dioxide sits proud on top in c4's order, and they rest on a cut soil section. Frame 8: the resident is now a dark navy silhouette at the left edge, with oak canopies and a brick ranch house with a pickup. It is a Texas place. Frame 7 is the strongest relief. Cracked stone carries real crack and groove relief, and the blue high cancer cluster reads at feed size. Frames 2 and 6 hold from round 2. What still holds the score down: (1) Frame 9's monitor hut is a plain white box at mid-left in a field of blocky tan tiles. The type covers the top 40 percent over a busy tile field. The orange-framed town reads as a diorama tray, and no single subject fills half the frame. (2) Frame 3's satellite bus is skinned in crumpled white foil that reads as a paper bag. The swath now reaches the ground, but that ground is a blurred, spotted haze with a stray blue polyline. (3) Frame 8's orange inlay now turns a corner, but in the lower right it is still a thick salmon stripe, the brightest thing in the frame, and it pulls the eye away from the person and the house. (4) Frame 4 is a stack of eight unlabelled colour swatches. It argues 'eight, one stands out' and stops there."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds across all nine. The palette is one explainer blue and the grade is shared. The serif hook, sans dek, mono kicker, counter, cite line and texasaidocket.com sit in the same positions. The story runs in order: orbit, cost, instrument, pollutants, fit, regions, clustering, limit, use. Slide 7's repair removed the worst accent contradiction. The warm accent still means more than one thing, though. On 4 it marks sulfur dioxide and on 6 the east case's red ground, which reads as pollution. On 3 it is the satellite swath, on 8 a property-line inlay, and on 9 the frame around the town to check first. A reader can follow it, but the accent's single meaning, which the spine requires, is not kept."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.7,
+   "why": "Every numeral traces. 254 comes from c1 and c24. 2022 comes from c4 and c24. The count of eight comes from c4, and figures.json lists all eight names in c4's order. 'Four methods' is c20, three clusters is c7, 0.791 is c21, 79 of 100 is round(0.791 x 100) per figures.json, 0.69 is c22, and March 5th is c11. Sentinel-5 Precursor is c23's proper noun. Round 2's two main faults are closed: slide 9's attribution and slide 5's missing c19. Every slide quote is now attributed the way its claim quote supports. Dong is attributed on 2 (c13 'Dong said'), Rahman on 5 (c27 names him), and 'the team' and 'the researchers' on 8 and 9. What stays loose: (1) Slide 6 still fuses c7's 'three major clusters' with c8's east, west and central into one Dong sentence, and three glass cases draw them as three regions. That maps clusters onto regions when the source only places the two statements side by side. (2) Slide 5 says socioeconomic variables 'were controlled for' (c27) beside an R squared of 0.791. The rejected list shows a socio-demographic predictor sits in that model, so 0.791 is not a pollution-only fit, and the deck never says so outright. c19 softens this. (3) c21, the 0.791, is the one claim held at confidence 'medium', and it is stated plainly. (4) first_comment.txt lists c1 to c19 against the news release and omits c27, which slide 5 cites. The URL is listed, so the source was fetched, but the id list is incomplete. (5) The caption ends on a question about where to site a ground monitor, which the study does not address. None of these invents a figure or a fact, so there is no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.7,
+   "why": "What happened, who did it (a UT Dallas team with Dong and Rahman named), the data year, the coverage (all 254 counties), the journal and the regional result are all clear. It is a study, so no body decided anything and there is no deadline. Slide 9's use case, 'where medical centers are and where government should focus', is stated generally. No county, city or named region beyond east, central and west appears anywhere in the copy, so a reader can't place themselves. The caption's monitor question is not something the record lets a reader act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe, and slide 2's cost of monitors pays at once. Slide 3, the instrument, repeats the cover's satellite and could move or merge without loss. The finding is spread over 1, 4, 6 and 7. Slide 8, 'A place is not a person', is a real turn. The close, 'Where to look first', is soft and ends on a publication date and a 'drawn to illustrate' line."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, and the house rules hold. There are no colons, semicolons or dashes, no banned words, 'don't' is a contraction, 'March 5th' carries no year, and no sentence opens with And or But. 'Stand in any one of those counties' in the caption reads as a person. A 'drawn to illustrate' disclaimer closes all nine deks, or eight plus slide 6's haze note, and it reads as boilerplate. The Texas texture is in the art (the mesquite, oak and pine on 6, the ranch house on 8), not in the copy, which names no Texas place."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The subject is new inside the window, and the stone relief and glass cases are fresh. There are familiar moves. A university release read with its paper repeats recent decks, flagged stakes on 5 echo November 11th's flagged stakes, and the county slab on the cover echoes November 14th's county relief."
+  }
+ ],
+ "weighted_score": 7.26,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is the round cap. No hard fail was found: every numeral traces to a claim or a figures.json computation, every cited source was fetched, and nothing in the copy goes past its quote enough to change a fact. The deck ships at 7.26 against the 7.7 rung, a shortfall of 0.44, which should be named in the email and the run record.",
+ "one_sentence_fix": "Give the deck one Texas place a reader can stand in, by having the paper's own county or region results name a specific high-cancer, high-pollution area on slides 6 and 9, and make the warm accent mean only pollution by recolouring the swath on 3, the inlay on 8 and the town frame on 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "No subject owns the frame. A small white monitor box sits mid-left and an orange-framed toy town sits right, in a field of blocky tan tiles under a dense type block.",
+   "fix": "Push the camera low and close on the flagged town block so it and the monitor hut fill the lower 60 percent. Recolour the frame out of the pollution orange, and leave a flat sky above for the type."
+  },
+  {
+   "slide": 3,
+   "problem": "The satellite bus is skinned in crumpled white foil that reads as a paper bag, and the swath lands on a blurred, spotted haze with a stray blue polyline.",
+   "fix": "Re-skin the bus in gold MLI foil and graphite with a cool rim light, remove the stray polyline, and land the swath on a readable strip of Texas terrain with a lit coastline."
+  },
+  {
+   "slide": 8,
+   "problem": "The thick salmon property inlay in the lower right is the brightest, most saturated element and pulls the eye from the person and the house.",
+   "fix": "Narrow the inlay to a flush line about a quarter of its current width and drop its saturation to a pale stone, so the silhouette and the house carry the frame."
+  },
+  {
+   "slide": 4,
+   "problem": "Eight unlabelled swatch bands in a tray argue only 'eight, one stands out', and the tray floats against a flat sky.",
+   "fix": "Set small accent-pill labels on the bands, or at least on sulfur dioxide, and make the proud band clearly taller in relief, with a cast shadow on the band below."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/out/2026-11-18/scores/r2-score-integrity.json",
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-11-18/copy.json",
+  "/home/user/TexasAIDocket/out/2026-11-18/claims.json",
+  "/home/user/TexasAIDocket/out/2026-11-18/figures.json",
+  "/home/user/TexasAIDocket/out/2026-11-18/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-11-18/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-11-18/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-11-18/render/slide-03.png",
+  "/home/user/TexasAIDocket/out/2026-11-18/render/slide-04.png",
+  "/home/user/TexasAIDocket/out/2026-11-18/render/slide-07.png",
+  "/home/user/TexasAIDocket/out/2026-11-18/render/slide-08.png",
+  "/home/user/TexasAIDocket/out/2026-11-18/render/slide-09.png"
+ ],
+ "not_checked_this_round": "Not re-checked this round: topics.json and artwork.json, compute.py, aggregates.json, art_preflight.json and the slide HTML assertions. The topic-window and 79-of-100 findings rest on the round 2 card. Frames 1, 2, 5 and 6 were judged from the contact sheet only."
+}

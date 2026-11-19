@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.8,
+   "why": "Round 2 defects checked against the repaired renders. Slide 5 is fixed in the main. The camera is pushed in and the blue flags read as flags in the contact sheet. The 21 bare stakes now form a clear front band, and a person standing beside them gives scale. The losing pads behind are still pale white outlines on tan. Slide 8 is fixed. The resident is now a navy silhouette at the left edge, and the kerb is a wide orange band that leads the eye to the house. Slide 9 is partly fixed. The town block is bigger, has an orange edge and carries readable rooftops, and the monitor shelter sits large in the foreground. At 432 px the field of yellow tiles still reads as an abstract board game. The circular cut around the shelter still reads as a pit, and the upper third of tiles sits in grey-green mid tones behind the dek. Slide 1 is partly fixed. A translucent sheet now sits on the slab and a light beam drops from the satellite. The sheet is clear and pale rather than gold, so at feed size the cover is a peach Texas slab with a satellite, which is clean and bold but explains nothing about air. Slides 4, 6 and 7 stay strong: the pollutant column over soil strata, the three terrariums and the cracked caliche clusters. Slide 2 is a good scene, but the shelter and truck are small in a wide field. Most frames are bold, rounded and vivid on the v2 palette. Two frames still lean on a weak read, so this is a strong 7 rising toward 8, not an 8."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds on all nine frames: cerulean-to-navy washes, the same serif headline, mono kicker and counter, claim ids and site line. The camera runs from orbit (1, 3) down to the ground (2, 5, 8). The orange accent now carries a meaning on 8 (the kerb) and 9 (the town's border). The same warm hue is also the cover slab, the top band of 4 and the limestone and caliche on 6 and 7, so the accent still means more than one thing. Slide 9's tiled board sits slightly outside the deck's material vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides traces to a claim: 254 (c24), 2022 (c4), 0.791 (c21), 0.69 (c22), March 5th (c11). The 79 in 100 is a drawn rendering of 0.791 and is said to be one. Every source is primary: the UT Dallas release and the Springer paper. Caveats are present and faithful. Slide 8 uses c11, c10 and c12. Slide 5 says the 0.791 is 'a model's fit, not how much cancer pollution causes' and adds c19. The Rahman attribution for controls (c27) is correct. Deductions: c21 is medium confidence and carries slide 5's headline figure. Slide 6's dek attributes three clusters to Dong while the headline paraphrases the east-to-west ordering from c8, which is fine but compressed. The caption's closing question about where to put the next ground monitor goes a little past c25 and c14, which talk about satellites filling in and where government should focus, not siting monitors. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "Unchanged from round 2 in substance. A reader learns what was found and its limit: the cover finding is c5, and slide 8 is 'A place is not a person'. Nothing names a county, city or metro below 'east' and 'west'. Nothing says where sulfur dioxide comes from in Texas. Nothing names a body that will act, a decision or a deadline. Slide 9's 'where government should focus' stays general. The 10 descriptor asks for the county, the body, the decision and the deadline, and none is named. This is a topic with a finding, under the 7 descriptor's 'one stake stated generally'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover carries the finding and earns the swipe. Slides 2 and 3 are both background on why satellites were used and which ones, so one is cuttable. Slide 5 is a statistics lesson. Slides 6 and 7 deliver the geography, 8 is the turn and lands, and 9 closes on a quote, a research wish and a publication date rather than a place or an action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and fair, and 'A place is not a person' and 'Stand in any one of those counties' in the caption read human. Jargon is left untranslated: 'support vector machine', 'R squared' and 'Moran's I' on 5 and 7. Some form of 'drawn to illustrate' closes all nine deks and reads like boilerplate. No Texas place, industry or landmark is named, so it reads as someone describing a study rather than a Texan who knows the ground."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh topic (satellite air and cancer). The question opener is off the recent list, and the orbit, terrarium and caliche vocabulary is new. The explainer cerulean repeats the November 14th look-v2 deck, and the flag stakes repeat devices from early November."
+  }
+ ],
+ "weighted_score": 7.28,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is the round cap, so the deck ships at its score. 7.28 sits 0.72 under the 8.0 top rung, and the shortfall should be named in the email and the run record. No hard fail found: every numeral traces, every source is primary and fetched, and no placeholder frame.",
+ "one_sentence_fix": "Name the place: put the east Texas cluster's actual counties or metros on slide 6 and the close, plus where Texas sulfur dioxide comes from, from a fetched primary source (TCEQ or EPA emissions inventory), so the reader gets a where and a who instead of 'east' and 'government should focus'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "At 432 px the field of yellow tiles reads as an abstract board game, the circular cut around the monitor shelter reads as a pit, and the upper third sits in grey-green mid tones behind the dek.",
+   "fix": "Drop the camera to a low three-quarter view across real terrain (mesquite scrub and a road) with the orange-bordered town as the brightest mass in the middle ground. Replace the circular cut with a level fenced pad so the shelter reads as standing on ground."
+  },
+  {
+   "slide": 1,
+   "problem": "The sheet of air over the slab is clear and pale, so the cover shows a peach Texas slab and a satellite and says nothing about air or pollution at feed size.",
+   "fix": "Give the sheet a visible tint that thickens from west to east (deeper toward the eastern counties) and casts a coloured shadow on the slab, so the cover previews slide 6's east-worse finding."
+  },
+  {
+   "slide": 5,
+   "problem": "The three losing pads behind are pale white outlines on tan sand and vanish at feed size, so 'four methods tried' isn't visible. Only the winning pad reads.",
+   "fix": "Give each losing pad a sparse stand of dimmer stakes so the four pads compare at a glance, and crop the empty sand margin on the left."
+  },
+  {
+   "slide": 2,
+   "problem": "The monitor shelter and pickup are small in a wide empty field, so 'costly' doesn't register as an image.",
+   "fix": "Push the camera in so the shelter, its fence and its instruments fill half the frame, with the truck cropped at the edge for scale."
+  }
+ ]
+}

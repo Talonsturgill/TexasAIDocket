@@ -52,6 +52,15 @@ a page."* The chassis answered "flow together" and lost "custom". This page rest
 - **its light.** `TXT.deckRig(R, spec, { light: { az, el } })` turns the key for this picture.
 - **its camera.** Lens, height, distance, crop. A worm's eye, an aerial, a 30 cm macro, an orthographic
   plan.
+- **Except on a material relief, which owns neither.** `TXBENCH.relief` draws plan view only and, on any
+  deck, takes the chassis key and throws `TXBENCH light differs from the chassis` on any other
+  (`assets/js/txbench.js`, at `TXDECK.deck()`). Choose a relief only for a thing that reads in plan
+  under the chassis key. When the picture needs a raked three quarter view or a lower, warmer key, build
+  it in `txthree` (an `OrthographicCamera` keeps a measured count parallel). Nos. 79 and 81 planned
+  reliefs, the critics asked for a raked oblique or another key, and the frames couldn't move. No. 80's
+  round 3 top ranked defect was a flat orthographic relief elevation whose fix was a three quarter
+  camera. (queue `relief-bench-locks-camera-and-key`. A key override for a bespoke deck is a
+  `txbench.js` proposal, UPGRADE_BACKLOG 2026-11-18.)
 - **its composition and its type.** The slide decides where the headline sits, how big, in how many
   lines, and how the art makes quiet for it: top, bottom, a column beside the subject, inside the sky,
   across a wall. Seat it with `TXLOOK.typeSeat` (or `CH.seat`), which follows the type wherever it is.
@@ -116,6 +125,19 @@ soft spot. 6 is competent and could have run on another story. 4 is a template.
   fixed `.hook` position, the twelve call recipe and the "unmistakably from this deck" reading of
   `deck_coherence` in the rubric, which on a bespoke deck asks whether the nine read as one post by the
   spine and the story.
+- **The three-frame art review is bound from the slide critics, never assembled by hand** (runs dated
+  after 2026-11-18, weekly machine pass of that date, queue `art-preflight-has-no-bespoke-route`, nos.
+  78, 80 and 81). Phase 12 renders the deck into `out/<date>/render` and gives each critic its PNG.
+  Before spawning the critics, record each PNG's `sha256`. Save each hand-back verbatim to
+  `out/<date>/slide_critics.json` (a list) with `"render_sha256"` added: the digest of the exact PNG
+  that critic read. Then run
+  `python3 scripts/carousel/art_preflight.py --date <date> --write --critics out/<date>/slide_critics.json`.
+  Frame 1, `art_plan.json`'s hardest frame and the close bind when their critic said `ship` at or above
+  `bespoke.json` `critic_ship`, scored all six points and read this exact render. A repaired frame
+  needs its re-scoring critic's hand-back for the new render, appended to the same file. A source
+  edit that leaves the render byte-identical keeps the verdict. A frame shipped under the bar after its
+  rebuild round doesn't bind, so it falls to `carousel-art-director` as before. `needs_review` in
+  `art_preflight.json` names what is still unbound.
 
 ## What the worked example measured (2026-11-14)
 
