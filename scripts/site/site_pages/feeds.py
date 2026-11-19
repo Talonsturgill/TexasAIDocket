@@ -312,13 +312,19 @@ def questions_hub(items: list, today: str) -> tuple:
     total = sum(len(v) for v in groups.values())
     figures = {str(total), str(len(schema.QUESTION_KINDS))}
     figures |= {str(len(v)) for v in groups.values()}
+    figures |= {"0"} if any(sh in DATED_SHAPES and not groups.get(sh)
+                             for sh, _s, _h, _b in schema.QUESTION_KINDS) else set()
 
     cards = "".join(
         f'<li data-prose="data"><a class="dcard open" href="{slug}/">'
-        f'<span class="big">{len(groups[shape]):02d}</span>'
+        f'<span class="big">{len(groups.get(shape, [])):02d}</span>'
         f'<span class="left">answered</span>'
         f'<h3>{e(head)}</h3><span class="note">{e(blurb)}</span></a></li>'
-        for shape, slug, head, blurb in schema.QUESTION_KINDS if groups.get(shape))
+        for shape, slug, head, blurb in schema.QUESTION_KINDS
+        # A DATED SHAPE KEEPS ITS CARD WHEN EMPTY. Its page is still written, saying no window is
+        # open today, and on 2026-11-19 link_check failed CI because a card hidden on an empty day
+        # left that page with nothing linking to it.
+        if groups.get(shape) or shape in DATED_SHAPES)
 
     body = f"""
 <article>
@@ -354,7 +360,8 @@ def questions_kind_page(items: list, today: str, kind: tuple) -> tuple:
 
     others = "".join(
         f'<a href="../{s}/">{e(h)}</a>'
-        for sh, s, h, _b in schema.QUESTION_KINDS if sh != shape and groups.get(sh))
+        for sh, s, h, _b in schema.QUESTION_KINDS
+        if sh != shape and (groups.get(sh) or sh in DATED_SHAPES))
     lede = (f"Answered here for {len(rows)} of the decisions on the record, from the same "
             "fields the decision page prints.") if rows else (
             "No decision on the record has a comment window open today. Each decision page "
