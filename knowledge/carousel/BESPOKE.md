@@ -52,6 +52,15 @@ a page."* The chassis answered "flow together" and lost "custom". This page rest
 - **its light.** `TXT.deckRig(R, spec, { light: { az, el } })` turns the key for this picture.
 - **its camera.** Lens, height, distance, crop. A worm's eye, an aerial, a 30 cm macro, an orthographic
   plan.
+- **Except on a material relief, which owns neither.** `TXBENCH.relief` draws plan view only and, on any
+  deck, takes the chassis key and throws `TXBENCH light differs from the chassis` on any other
+  (`assets/js/txbench.js`, at `TXDECK.deck()`). Choose a relief only for a thing that reads in plan
+  under the chassis key. When the picture needs a raked three quarter view or a lower, warmer key, build
+  it in `txthree` (an `OrthographicCamera` keeps a measured count parallel). Nos. 79 and 81 planned
+  reliefs, the critics asked for a raked oblique or another key, and the frames couldn't move. No. 80's
+  round 3 top ranked defect was a flat orthographic relief elevation whose fix was a three quarter
+  camera. (queue `relief-bench-locks-camera-and-key`. A key override for a bespoke deck is a
+  `txbench.js` proposal, UPGRADE_BACKLOG 2026-11-18.)
 - **its composition and its type.** The slide decides where the headline sits, how big, in how many
   lines, and how the art makes quiet for it: top, bottom, a column beside the subject, inside the sky,
   across a wall. Seat it with `TXLOOK.typeSeat` (or `CH.seat`), which follows the type wherever it is.
