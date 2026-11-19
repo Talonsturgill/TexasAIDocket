@@ -1,0 +1,75 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3,
+   "why": "Each picture is made for its own sentence and differs from its neighbours in world, camera and medium. Frame 2 is the strongest: a fenced monitor shelter with gas cylinders, a utility pole, a pickup and a worker for scale on a caliche flat. Frame 5 draws its figure correctly. The HTML throws unless exactly 79 of 100 stakes are flagged, filled row by row from the back, and the four pads match c20's four methods. Frame 7's stone relief has a clustered blue patch and real crack relief, and it reads at feed size. Frame 6's three glass cases, with mesquite, oak and pine over pale, grey and red ground, are regionally specific. What holds the score down: frame 8's figure is a plastic kit person filling the left third, and the salmon kerb plank runs through the grass. Frame 4's eight bands still read as tinted liquid in a copper tank, and the proud orange band sits fourth although c4 lists sulfur dioxide first. Frame 3 is a box satellite in blue foil on a blue sky with no shadow or floor, and type covers half the frame. Frame 9's coral frame and blue pixel strip read as a swimming pool, not 'a block to check first'."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "The spine holds. All nine frames share the explainer blue sky palette, the serif hook with the sans dek, the mono kicker, the counter and the site line, and the story runs in order from orbit to ground monitor to instrument, finding, limit and use. The fault is the warm accent, which means two things. On 4 it marks sulfur dioxide and on 6 the east case's haze, so it means pollution. On 7 the orange stones are the counties that are NOT high cancer, because high cancer is blue. On 3, 8 and 9 the orange or coral is the swath, a path and a frame around a town. A reader who learned 'orange = dirty air' on 4 and 6 misreads 7."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.1,
+   "why": "Every numeral traces to a source. 254 comes from c1 and c24, both asserted equal in compute.py. 2022 is c4 and c24. Eight is c4, checked against the eight names listed. Four is c20, three is c7, 0.791 is c21, 0.69 is c22, and March 5th is c11. 79 is round(0.791 x 100) in figures.json, and slide-05.html asserts both the count and the 100 total. Sentinel-5 is c23's own proper noun. Round 1's fixes landed: c5 is now on the cover, slide 6 attributes the clusters to 'Dong' (whom c7's quote names), and c27's quote names Rahman. Remaining looseness: (1) Slide 9 still says 'Rahman says the method can show where medical centers are and where government should focus'. The c14 quote names no speaker, so the attribution rests only on the run's own claim text, which is the same defect round 1 named. Slide 9 also cites c25, but no c25 content appears on it, and c15's title never prints. (2) Slide 5 now places 'Rahman says socioeconomic and other variables were controlled for' between the R squared and the disclaimer. The deck never says that the 0.791 is the fit of a model whose predictors include non-environmental variables. The run's own rejected list cites a socio-demographic top predictor, and c19 'Cancer reflects many influences besides pollution' sits unused. A reader can still take 0.791 as pollution's fit after controls. 'not how much cancer pollution causes' limits the damage but doesn't close it. (3) Slide 6 joins c7's 'three major clusters' to c8's east, central and west into one sentence, and the art draws three cases as those three regions. That maps the clusters onto regions when the source only quotes the two statements side by side. (4) Slide 2's 'the researchers say' widens c13's 'Dong said'. (5) The caption's closing 'Where should Texas put its next ground monitor?' poses a question the study does not address (c25 is about places without monitors). None of these changes a figure or invents a fact, so there is no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.6,
+   "why": "What happened, who did it (a UT Dallas team, with Dong and Rahman named), the data year, the coverage (all 254 counties) and the regional result (east worse, west better) are clear and concrete. It is a study, so no body decided anything and there is no deadline or action. Slide 9's use case is a general remark ('where government should focus'). No county, city or region beyond east, central and west is named anywhere. The caption's monitor question is not something the record lets a reader act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe, and slide 2's cost-of-monitors frame pays straight away. Slide 3, the instrument, repeats the cover's satellite and could move without loss. The finding is spread across 1, 4, 6 and 7 rather than landing once. Slide 8, 'A place is not a person', is a real turn. The close, 'Where to look first', is soft and ends on a publication date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and careful, and house rules hold: no colons, no dashes, no banned words, and 'March 5th' carries no year. 'Stand in any one of those counties' in the caption reads human. Some form of 'Drawn to illustrate' or 'drawn to illustrate' closes eight of nine deks and reads as boilerplate. Texas texture lives mostly in the art (the mesquite, oak and pine on 6). The copy names no Texas place beyond the regions."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The subject is new in the 30-day window, and topics.json shows no air or cancer deck. The glass cases and the stone relief are fresh. Familiar moves: the instrument, a university release read with its paper, repeats November 8th (AgriLife release plus PMC paper) and November 16th (UT Health release). Flagged lath stakes on 5 repeat November 11th's '90 flagged stakes'. The Texas county slab on the cover echoes November 14th's county relief."
+  }
+ ],
+ "weighted_score": 7.04,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail. Threshold dissent only: 7.04 against the round 2 rung of 7.7.",
+ "one_sentence_fix": "On slide 5, replace or add to the 'controlled for' line with c19 so the dek says the 0.791 is the fit of a model of pollution together with other factors. Then either attach a quote that names Rahman to slide 9's medical-centers line or rewrite it as 'the team says', and drop the unused c25 from its cite.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A plastic kit figure fills the left third, and the salmon kerb plank cutting diagonally through the grass reads as a render artifact, not a boundary.",
+   "fix": "Lower and widen the camera so the resident is a back-lit silhouette about a third of the frame height at the left edge, and replace the plank with a thin flush inlay that turns one visible corner at the house."
+  },
+  {
+   "slide": 4,
+   "problem": "The eight bands read as tinted liquid in a copper-framed tank, and the proud sulfur dioxide band sits fourth, out of c4's order.",
+   "fix": "Rebuild the bands as matte carved strata with soft edge bevels and a thin copper inlay, and move the proud orange band to the top position to follow c4's listed order."
+  },
+  {
+   "slide": 3,
+   "problem": "A box satellite in blue foil on a blue sky with no floor or shadow, and the warm swath ends in a flat fan beside a type block covering half the frame.",
+   "fix": "Re-skin the bus in silver and graphite with a cool rim light, and drop the swath onto a visible strip of Texas ground so the eight wedges land on something."
+  },
+  {
+   "slide": 9,
+   "problem": "The coral-framed block with a blue pixel strip reads as a swimming pool rather than an averaged block holding a town, and the monitor circle is small and mid-frame.",
+   "fix": "Remove the blue strip, make the outline a thin raised rim, and push the camera in so the monitor circle and the flagged block together fill the lower half."
+  }
+ ]
+}

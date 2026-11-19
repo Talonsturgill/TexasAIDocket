@@ -86,7 +86,9 @@
       "learned": "2026-09-03",
       "instinct": "Compute the drawn quantity's share and THROW unless it equals the arithmetic it depicts.",
       "evidence": "Deck no. 14, slide 2, rounds 2 and 3. A 21 step density ramp with two knockouts read to two independent judges as two bars with the DARKER one SHORTER, inverting 34.82 against 51.16, and its most saturated block sat on the headroom that was not achieved while the frame's words were gated against naming a shortfall. Every numeral traced. The picture was the only thing lying, and nothing measured it. It is now ink laid down to the measured figure and an outline to the rated one, and the frame throws unless the inked share equals RMAX over RPEAK.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-17"
+      ],
       "contradicted": []
     },
     {
@@ -230,7 +232,9 @@
         "2026-11-12",
         "2026-11-13",
         "2026-11-14",
-        "2026-11-16"
+        "2026-11-16",
+        "2026-11-17",
+        "2026-11-19"
       ],
       "contradicted": []
     },
@@ -790,7 +794,8 @@
       "instinct": "Before a frame ships, check that every string set under a dated attribution is a verbatim substring of a quote in that slide's declared claims.",
       "evidence": "Slide 7 of the 2026-08-26 deck printed 'clinical care, research, advanced computing' under 'BOARD ITEM, AUGUST 12TH, 2026'. That string is in none of the 31 claims in the run's claims file. Every mechanical gate was green on it and two of three panel judges caught it as a hard fail.",
       "confirmed": [
-        "2026-09-04"
+        "2026-09-04",
+        "2026-11-19"
       ],
       "contradicted": []
     },
@@ -1896,6 +1901,22 @@
       "learned": "2026-11-16",
       "instinct": "Diff every rebuilt or recomposed frame's printed text against copy.json before the deck is re-rendered, because an artist working from its own earlier context can bring back copy a panel repair already replaced.",
       "evidence": "2026-11-16 no. 79 frame 9, a panel round 1 recomposition restored the headline seeks federal grants and the one year sentence that the round 1 integrity repair had replaced; the contact sheet caught it before round 2",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "parallel-renders-clobber-one-report",
+      "learned": "2026-11-17",
+      "instinct": "Run one render.py at a time into a run's render directory, because each run rewrites render_report.json from its own slides, and a gate reading that report then judges stale text against the plan",
+      "evidence": "2026-11-17 no. 80: four artists rendering into out/<date>/render at once left render_report.json carrying round 1 headlines, plan_render_check and copy_sync failed on frames whose PNGs were current, and slide 8 failed on a missing .resolved file",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "one-accent-one-meaning-across-every-artist",
+      "learned": "2026-11-19",
+      "instinct": "Give every slide artist the accent's meaning and its reserved warm hues in the brief, because nine artists left alone each spend the warm family on whatever their own frame needs and a reader learns two meanings.",
+      "evidence": "2026-11-18 no. 81, round 2 integrity judge: warm orange meant dirty air on frames 4 and 6, while apricot limestone on frame 7 marked the counties that were not high cancer and coral marked a swath, a kerb and a block outline on 3, 8 and 9.",
       "confirmed": [],
       "contradicted": []
     }

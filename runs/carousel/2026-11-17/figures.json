@@ -1,0 +1,139 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "requests_2024": {
+  "value": 2758,
+  "from": [
+   "c1"
+  ],
+  "basis": "spring 2024 requests to regrade open-ended reading answers"
+ },
+ "requests_2025": {
+  "value": 21620,
+  "from": [
+   "c2"
+  ],
+  "basis": "the year before spring 2026"
+ },
+ "requests_2026": {
+  "value": 64489,
+  "from": [
+   "c3"
+  ],
+  "basis": "spring 2026 requests"
+ },
+ "growth_2024_to_2026": {
+  "value": 23,
+  "from": [
+   "c1",
+   "c3"
+  ],
+  "basis": "requests_2026 // requests_2024, rounded down so 'more than N times' holds"
+ },
+ "scores_raised_min": {
+  "value": 13300,
+  "from": [
+   "c4"
+  ],
+  "basis": "reading scores the state raised after the reviews, a floor"
+ },
+ "human_one_in": {
+  "value": 4,
+  "from": [
+   "c13",
+   "c22"
+  ],
+  "basis": "100 / human_pct_min, so at least one in this many answers also goes to people, TEA's design as of Dec 2023 and Mar 2024"
+ },
+ "changed_pct_max": {
+  "value": 0.5,
+  "from": [
+   "c5"
+  ],
+  "basis": "fewer than this percent of all open-ended reading responses changed, a ceiling; printed in words as fewer than half of one percent"
+ },
+ "changed_one_in": {
+  "value": 200,
+  "from": [
+   "c5"
+  ],
+  "basis": "100 / changed_pct_max: fewer than one in this many open-ended reading responses changed, a ceiling; drawn on slide 7 as one gilded page among this many and printed on slide 7 as the single gilded page in 200"
+ },
+ "fee_usd": {
+  "value": 50,
+  "from": [
+   "c6"
+  ],
+  "basis": "per test, charged when the score does not change"
+ },
+ "dallas_tests_min": {
+  "value": 5100,
+  "from": [
+   "c8"
+  ],
+  "basis": "Dallas ISD reading tests sent for rescoring, a floor"
+ },
+ "dallas_higher_pct": {
+  "value": 34,
+  "from": [
+   "c8"
+  ],
+  "basis": "share of Dallas ISD's that came back higher"
+ },
+ "human_pct_min": {
+  "value": 25,
+  "from": [
+   "c13",
+   "c22"
+  ],
+  "basis": "share of answers also routed to people, TEA's design as of Dec 2023 and Mar 2024"
+ },
+ "training_responses": {
+  "value": 3000,
+  "from": [
+   "c20"
+  ],
+  "basis": "about this many human scored field test responses program the engine per question"
+ },
+ "hand_cost_low_musd": {
+  "value": 15,
+  "from": [
+   "c18"
+  ],
+  "basis": "extra cost per year of scoring by hand, low end"
+ },
+ "hand_cost_high_musd": {
+  "value": 20,
+  "from": [
+   "c18"
+  ],
+  "basis": "high end"
+ },
+ "scorers_multiple_low": {
+  "value": 4,
+  "from": [
+   "c11"
+  ],
+  "basis": "four to five times as many human scorers"
+ },
+ "scorers_multiple_high": {
+  "value": 5,
+  "from": [
+   "c11"
+  ],
+  "basis": "high end"
+ },
+ "responses_multiple_low": {
+  "value": 6,
+  "from": [
+   "c19"
+  ],
+  "basis": "6-7x more constructed responses to grade each year"
+ },
+ "responses_multiple_high": {
+  "value": 7,
+  "from": [
+   "c19"
+  ],
+  "basis": "high end"
+ }
+}

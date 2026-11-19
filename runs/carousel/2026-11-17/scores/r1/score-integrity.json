@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Bespoke holds: nine different worlds and cameras. S2's paper relief matches its figure (one base band against six bands plus a lighter cap). S8's 10x10 tablet raises about 34 tiles, which matches 'one in a hundred'. S4's outfeed carries 4 pages with 1 at the person's desk, which matches human_one_in = 4. S7's gilt edges run at roughly every fifth page. Weak frames: S4 puts its subject in a mottled fog with nothing in the upper 55% but text on fog, and the machine is cropped off the left edge. S6's hand is oversized and cut off at the top edge, which breaks its own acceptance rule that hands stay in shadow; machine_qa also flags S6 as top-loaded with a dead lower zone. S5's columns are plain white prisms whose ream bands don't read at feed size. S7 sits on a blurred blob ground."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds: watch violet across all nine frames, Fraunces/Manrope/JetBrains type, the counter, and one accent meaning a person's score, absent on 1, 2 and 5 as declared. The page motif recurs on 1, 4, 6, 7 and 9, and the bookend works (dark desk on S1, lit desk on S9). The story runs in order. S8's limestone and paper tablet sits slightly outside the paper-and-machine vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every digit traces to computed.json or a claim: 2,758, 21,620, 64,489, 23 (64489//2758, rounded down), 13,300, 5,100, 34%, 25, 3,000, $15M to $20M, 6 to 7, $50, 0.5. The 2023/2024 design is dated on S4 and in the caption. Four phrasings run looser than their sources. (1) S7 'at least one in five of this spring's requests' divides c4's 'more than 13,300 reading scores ... after the reviews' by c3's request count. No quote ties the two to the same unit or the same season; compute.py asserts the tie in its own docstring. The art then fixes it as page = request, gilt = raised score. (2) S3 'rather than AI that teaches itself': c23's quote is only 'Instead, the automated scoring engine is a closed database with student response data accessible only by TEA'. The contrast it answers is not in any quoted text. 'Each question's engine' is likewise in c20's claim text but not its quote. (3) S1's headline 'A machine reads the STAAR answer first' is a present-tense universal, while c16 says Spanish STAAR is 100 percent human scored; only the dek says English. (4) S5 'Then districts started asking': 2,758 requests in spring 2024 means they were already asking, and c1 to c3 never name who files. The 2026 counts rest on the Tribune (secondary). The record shows the TEA primary returned 404, so this is acceptable but not a 10."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who decided it (TEA), statewide scope, one named district (Dallas ISD, S8) and one action (S9: ask for a person, $50 unless the score changes, c6/c15) are all clear. No rescore request window or deadline is given, a parent's route goes unsaid, and S8 has no locator telling a reader the tablet is Dallas County."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe. S2 pays the 'why' at once. The turn is declared at S5 and lands on the paper columns, and S9 closes the S1 bookend. S6's Spanish STAAR line is a detour inside the 'who rescored' beat and could move without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "House rules are clean in caption and slides: no colons, semicolons or dashes, no banned words, 'October 7th' with no year, no 'And'/'But' openers. It is fair to TEA without boosterism. It reads as careful wire copy rather than a Texan's voice; 'Drawn to illustrate.' repeated on six frames is flat, and the only Texas place is Dallas ISD."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "This is the second schools/AI deck in three days (no. 78 on November 15th, Texas 2036, whose related_items lists today's tx-2026-0194). S8's 100-tile grid repeats no. 78's 'one unit per hundred' device (100 desks, lockers, mailboxes), and S3's card drawer repeats no. 58's drawer of index cards. It is not a topic repeat: no STAAR deck appears in the 30-day window. The cover object, the true-scale columns and the gilt macro are fresh."
+  }
+ ],
+ "weighted_score": 6.96,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rewrite S7's dek and its page/gilt drawing rule so they stop asserting that the Tribune's 13,300 raised scores are a share of this spring's 64,489 requests (print both figures side by side, or quote the article line that ties them), and reword S3's 'rather than AI that teaches itself' and S1's universal headline to what the quoted TEA text actually says.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The machine, tray and reader sit in the bottom 40% on a mottled fog floor with no studio sweep. The upper half is text on fog, and the machine is cropped off the left edge, so the fork reads as small objects in a void at feed size.",
+   "fix": "Replace the fog with the TXT.studio watch sweep used on S1 and S9, and pull the orthographic camera in so the machine cutaway and the reader's desk span the full width and fill at least half the frame height under the type."
+  },
+  {
+   "slide": 6,
+   "problem": "A giant disembodied hand and pen enter from the top edge at a scale that reads as an artifact, which breaks the frame's own 'hands in shadow' rule. The person and room promised in the storyboard are not visible, and machine_qa flags a dead lower third.",
+   "fix": "Move the camera back to the planned seated over-the-shoulder shot at 1.3 m so head, shoulder, lamp pool and page all read, with the hand in shadow at the page edge and the desk front carrying the type."
+  },
+  {
+   "slide": 5,
+   "problem": "The three paper columns render as smooth white prisms. Ream bands and curled top sheets don't read at 432 px, so the true-scale argument looks like plinths rather than paper, and the person is small beside the middle column.",
+   "fix": "Model visible kraft ream bands every 500 sheets and seeded sheet skew on all three columns, and lower the camera nearer the person so the 2,758 column and the figure read in the foreground."
+  },
+  {
+   "slide": 7,
+   "problem": "The gilt stack sits on a soft blobby pink-violet blur with no readable surface or light direction, and the gilt reads coral rather than the dusk-gold accent.",
+   "fix": "Give the macro a defined studio sweep with a raking key from the upper left that casts the stack's shadow into the tray, and shift the gilt material to satin dusk gold #E0956A."
+  }
+ ],
+ "notes": {
+  "hard_fail_sweep": "No hard fail found. machine_qa: 0 fails, 12 warns (S6/S7 top-loaded, S8 headline outside the safe zone at x=70 against an 80px margin, plus engine verdict lines). Every slide and caption digit is in computed.json or a claim quote. Every cited claim id resolves to a fetched URL listed in first_comment.txt, and the three sources match. Topics ledger: no STAAR or tx-2026-0194 deck in the 30 days before 2026-11-17. Caption, slide and comment copy checked by eye against the house rules; no violation.",
+  "traceability_nit": "S8 'one in a hundred' is a drawing-scale number word. compute.py's docstring names dallas_higher_of_100, but no such key is emitted to computed.json. It is a convention, not a fact, so it is not a hard fail; emitting the key would close it.",
+  "omission_checked": "c24 to c26 (TEA's September review: 27,200 students, about 1.7% of more than 1.6 million exams improved) are left out deliberately and kept apart from the requests. That is defensible, but a reader who knows the 1.7% figure may set it against 'fewer than half of one percent' on S7. The two measure different things."
+ }
+}

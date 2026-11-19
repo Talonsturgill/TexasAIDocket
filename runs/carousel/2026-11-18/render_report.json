@@ -1,0 +1,1898 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "All 254 Texas counties, read from above",
+          "x": 72,
+          "y": 150,
+          "w": 620,
+          "h": 269,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              138,
+              514,
+              112
+            ],
+            [
+              72,
+              228,
+              525,
+              112
+            ],
+            [
+              72,
+              317,
+              420,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A UT Dallas team paired satellite readings of the air with CDC cancer data, county by county. Counties with more pollution tended to have more cancer. The slab, its sheet of air and the satellite are drawn to illustrate.",
+          "x": 74,
+          "y": 445,
+          "w": 690,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              445,
+              643,
+              42
+            ],
+            [
+              74,
+              488,
+              580,
+              42
+            ],
+            [
+              74,
+              531,
+              656,
+              42
+            ],
+            [
+              74,
+              573,
+              660,
+              42
+            ],
+            [
+              74,
+              616,
+              575,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Read from orbit",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c24 c5",
+          "x": 80,
+          "y": 1234,
+          "w": 193,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 12537,
+      "ok": true,
+      "load_ms": 196,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 136.3,
+          "variance": 1852.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ground monitoring is costly",
+          "x": 76,
+          "y": 168,
+          "w": 920,
+          "h": 215,
+          "font_px": 109.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              154,
+              885,
+              135
+            ],
+            [
+              76,
+              261,
+              355,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That cost has limited this kind of study, Dong says. The paper says satellite data can help where ground monitoring is unavailable. Drawn to illustrate.",
+          "x": 80,
+          "y": 411,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              411,
+              802,
+              42
+            ],
+            [
+              80,
+              453,
+              701,
+              42
+            ],
+            [
+              80,
+              496,
+              661,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Why satellites",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c25",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22963,
+      "ok": true,
+      "load_ms": 130,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 121,
+          "variance": 1752.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where the readings came from",
+          "x": 80,
+          "y": 600,
+          "w": 480,
+          "h": 257,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              588,
+              376,
+              108
+            ],
+            [
+              80,
+              674,
+              315,
+              108
+            ],
+            [
+              80,
+              760,
+              385,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The air readings came from the Sentinel-5 Precursor satellite and the Copernicus Atmosphere Monitoring Service. Public CDC data supplied the cancer side. The craft, its swath and the ground are drawn to illustrate.",
+          "x": 82,
+          "y": 879,
+          "w": 540,
+          "h": 232,
+          "font_px": 28,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              879,
+              411,
+              38
+            ],
+            [
+              82,
+              918,
+              498,
+              38
+            ],
+            [
+              82,
+              957,
+              476,
+              38
+            ],
+            [
+              82,
+              995,
+              500,
+              38
+            ],
+            [
+              82,
+              1034,
+              529,
+              38
+            ],
+            [
+              82,
+              1072,
+              400,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The instrument",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c23 c2",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 12839,
+      "ok": true,
+      "load_ms": 156,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 146,
+          "variance": 2096.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":55.94101333618164,\"materials\":15,\"cast_fraction\":0.39960390946502056,\"area\":1,\"render_ms\":10956.099999999627}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Eight pollutants, sulfur dioxide strongest",
+          "x": 76,
+          "y": 226,
+          "w": 460,
+          "h": 304,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              215,
+              174,
+              96
+            ],
+            [
+              76,
+              291,
+              343,
+              96
+            ],
+            [
+              76,
+              367,
+              437,
+              96
+            ],
+            [
+              76,
+              443,
+              302,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The study read eight air pollutants from 2022 data. Among the environmental predictors of cancer, sulfur dioxide was the most influential. The bands are drawn to illustrate, not heights in the sky.",
+          "x": 78,
+          "y": 560,
+          "w": 468,
+          "h": 342,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              78,
+              560,
+              348,
+              42
+            ],
+            [
+              78,
+              603,
+              391,
+              42
+            ],
+            [
+              78,
+              645,
+              382,
+              42
+            ],
+            [
+              78,
+              688,
+              396,
+              42
+            ],
+            [
+              78,
+              731,
+              310,
+              42
+            ],
+            [
+              78,
+              774,
+              374,
+              42
+            ],
+            [
+              78,
+              816,
+              453,
+              42
+            ],
+            [
+              78,
+              859,
+              147,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What it read",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c6 c26",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14192,
+      "ok": true,
+      "load_ms": 78,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 109.4,
+          "variance": 1861.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four methods tried, one fit best",
+          "x": 140,
+          "y": 124,
+          "w": 800,
+          "h": 172,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              185,
+              112,
+              710,
+              108
+            ],
+            [
+              347,
+              198,
+              386,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A support vector machine fit best, with an R squared of 0.791, drawn here as 79 flagged stakes in 100 on the one pad that won. Rahman says socioeconomic and other variables were controlled for. The 0.791 is a model's fit, not how much cancer pollution causes. Cancer reflects many influences besides pollution.",
+          "x": 80,
+          "y": 316,
+          "w": 920,
+          "h": 257,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              156,
+              316,
+              768,
+              42
+            ],
+            [
+              172,
+              358,
+              736,
+              42
+            ],
+            [
+              164,
+              401,
+              752,
+              42
+            ],
+            [
+              164,
+              444,
+              752,
+              42
+            ],
+            [
+              157,
+              487,
+              766,
+              42
+            ],
+            [
+              166,
+              529,
+              749,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The fit",
+          "x": 80,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c20 c21 c27 c19",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 31445,
+      "ok": true,
+      "load_ms": 138,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 125.8,
+          "variance": 1554.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Worse air east, better air west",
+          "x": 80,
+          "y": 146,
+          "w": 540,
+          "h": 281,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              383,
+              117
+            ],
+            [
+              80,
+              228,
+              434,
+              117
+            ],
+            [
+              80,
+              321,
+              304,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Dong describes three major clusters of air pollution, with central Texas in between. The haze shows the order of air quality only, not cancer or county values.",
+          "x": 82,
+          "y": 449,
+          "w": 820,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              449,
+              762,
+              42
+            ],
+            [
+              82,
+              492,
+              742,
+              42
+            ],
+            [
+              82,
+              534,
+              767,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "West to east",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18542,
+      "ok": true,
+      "load_ms": 184,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 142.8,
+          "variance": 854.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":15.546358380998884,\"materials\":3,\"cast_fraction\":0.5042876365909875,\"area\":1,\"render_ms\":8607}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "High cancer counties sit near each other",
+          "x": 72,
+          "y": 138,
+          "w": 700,
+          "h": 309,
+          "font_px": 105,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              124,
+              526,
+              130
+            ],
+            [
+              72,
+              227,
+              700,
+              130
+            ],
+            [
+              72,
+              330,
+              453,
+              130
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The paper scores that clustering of cancer prevalence at a Moran's index of 0.69. The stones are drawn to illustrate.",
+          "x": 75,
+          "y": 477,
+          "w": 640,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              75,
+              477,
+              624,
+              42
+            ],
+            [
+              75,
+              519,
+              611,
+              42
+            ],
+            [
+              75,
+              562,
+              438,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Clustering",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c22",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21980,
+      "ok": true,
+      "load_ms": 130,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 105.1,
+          "variance": 2240.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A place is not a person",
+          "x": 300,
+          "y": 150,
+          "w": 700,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              492,
+              138,
+              508,
+              117
+            ],
+            [
+              666,
+              232,
+              334,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The researchers say the results don't establish that pollution causes cancer in any one person. Not every more polluted place had more cancer, and satellite data may be less precise than ground monitors. Drawn to illustrate.",
+          "x": 290,
+          "y": 359,
+          "w": 710,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              311,
+              359,
+              689,
+              42
+            ],
+            [
+              305,
+              402,
+              695,
+              42
+            ],
+            [
+              302,
+              445,
+              698,
+              42
+            ],
+            [
+              377,
+              487,
+              623,
+              42
+            ],
+            [
+              461,
+              530,
+              539,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The limit",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c10 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 30739,
+      "ok": true,
+      "load_ms": 128,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 96.2,
+          "variance": 1603.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where to look first",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 109,
+          "font_px": 111.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              136,
+              852,
+              137
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The team says the method can show where medical centers are and where government should focus. The team wants more research on cost and accuracy. The paper ran online March 5th in Environmental Monitoring and Assessment. The land and its blocks are drawn to illustrate.",
+          "x": 110,
+          "y": 281,
+          "w": 860,
+          "h": 257,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              223,
+              281,
+              633,
+              42
+            ],
+            [
+              169,
+              324,
+              742,
+              42
+            ],
+            [
+              206,
+              367,
+              668,
+              42
+            ],
+            [
+              208,
+              410,
+              665,
+              42
+            ],
+            [
+              202,
+              452,
+              676,
+              42
+            ],
+            [
+              205,
+              495,
+              671,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What it is for",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c14 c18 c11",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21303,
+      "ok": true,
+      "load_ms": 148,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 130.4,
+          "variance": 1145.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

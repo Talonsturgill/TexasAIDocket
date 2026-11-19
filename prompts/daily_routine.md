@@ -73,8 +73,11 @@ the connected account supports that format. Convert WebP to supported JPEG/PNG i
 checking identical dimensions, full content and legibility; do not change the released artwork.
 YouTube does not accept an image carousel through this flow: mark it NOT_APPLICABLE, not
 published. Do not invent a slideshow video merely to populate a platform. Never omit slides
-silently to fit a platform cap; report the unsupported format instead. This helper intentionally omits document first-comment fields: put the CTA and any required external attribution in `description`.
-Do not invoke a separate comment-writing tool as a workaround.
+silently to fit a platform cap; report the unsupported format instead. On LinkedIn the post itself carries no link (owner rule, 2026-11-18). Pass the caption as
+`description` with no URL or domain in it, and pass the site CTA as the document's `first_comment`,
+exactly `The record is at https://texasaidocket.com/`, which Upload-Post posts under the document
+right after it publishes. The helper refuses a LinkedIn document with no `first_comment` or with a
+link in its title or description. Do not invoke a separate comment-writing tool.
 
 Use a concise final caption, without duplicating source links or music credits already present
 in the released video. Do not copy the production source/credit block into the caption or first
@@ -82,7 +85,8 @@ comment by default. Verify the actual license: include an external credit/link o
 terms require that placement or the released media lacks required attribution. Keep source and
 license records in the existing production/archive evidence. For carousels, preserve attribution
 required by their media and licenses. This owner update controls over older caption templates. Add a short factual CTA to https://texasaidocket.com/ in the
-platform caption/description or supported first comment, respecting that platform's length
+platform caption/description or supported first comment (on LinkedIn always the first comment,
+never the post), respecting that platform's length
 limit and the existing prose checks. Do not add claims, promises or endorsements. A bare URL in
 an Instagram/TikTok caption is not a clickable link: do not claim a link sticker, link-in-bio
 destination or clickable CTA unless it actually exists. Do not change profile bios in this run.
@@ -90,7 +94,7 @@ destination or clickable CTA unless it actually exists. Do not change profile bi
 Inspect the live upload schema for `first_comment` and placement options. Use supported fields
 only; unknown platform options can be silently ignored. For TikTok, verify the account's publishing
 settings with `read tiktok-settings --query profile=<bound-user>`, then use
-`post_mode=DIRECT_POST` and `privacy_level=PUBLIC_TO_EVERYONE`, never an inbox draft. Do not alter
+`post_mode=DIRECT_POST` and `privacy_level=PUBLIC_TO_EVERYONE`, never an inbox draft. A TikTok photo post shows `title` as a short headline only, so always pass the full post caption as `description` (the helper refuses one without it). Do not alter
 account privacy or connection permissions. Set LinkedIn `visibility=PUBLIC` and YouTube
 `privacyStatus=public`; use public visibility on the other authorized channels.
 The owner's standing approval covers publishing the finished daily edition to these bound brand

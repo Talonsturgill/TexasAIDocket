@@ -1,0 +1,69 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.4,
+   "why": "Slide 5 is the strongest frame. Three paper columns stand beside a person on a dusk plaza, and the drawn heights match the data. Measured on the frame, the short block is about 70 px, the middle column about 555 px and the tall one about 1670 px, which is 1 to 7.9 to 23.9 against the data's 1 to 7.84 to 23.4. Slide 2's relief draws six full bands plus a lighter seventh beside a one-band base, a correct 6 to 7 times, with real cast shadows. Slide 7 is now a close-up of the page edges with the single gold edge clearly visible at feed size, which fixes round 2's hairline. Slide 8's tablet holds about 34 raised orange tiles out of a 10 by 10 grid, which matches 34%, with raking shadows. Slide 4 draws its 1 in 4 correctly, one gold page on the chute and three on the tray. Its subjects still sit small in the lower half, seen from high and far, and the top 45% of the frame is type on a wash. Slide 9's desk and chute are still small in a wide violet sweep. Slide 3's drawer close-up is generic. Each frame differs in world, camera and medium, and the type placement is composed per frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "The shared look holds. All nine frames are in the watch tone's violet and rose, with shadows leaning violet and never black. Type faces, the counter and the site line are the same throughout. Gold keeps one meaning, a person's page or score: none on 1, 2 or 5, gold on 4, 7 and 8. The dark desk on the cover comes back lit on 9. The story runs in order. Slide 8's map tablet is the one medium a little outside the paper and machine world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Every numeral traces to a claim quote or to a value in figures.json. That covers 2,758 (c1), 21,620 (c2), 64,489 (c3) and 'more than 23 times', which is 64489 divided by 2758 = 23.38 rounded down, so 'more than' holds. It also covers 13,300 (c4), 'fewer than half of one percent' and 200 (c5, 100 divided by 0.5), 5,100 and 34% (c8), 25 percent and one in four (c13, c22), 3,000 (c20), 6 to 7 (c19), $15 million to $20 million (now TEA's own c18), four to five (c11) and $50 (c6). The drawn counts on slides 2, 4, 5 and 8 follow their figures. Every printed universal ('every rescore', 'every written answer', 'every open-ended reading answer') names its set in quantifiers.json and uses the source's own wording. The design is honestly dated December 2023 and March 2024, and the caption's closing question names that limit. Four smaller defects: (1) Slide 3 says 'each question's engine is programmed on about 3,000'. The 'per question' comes from c20's paraphrase, not its quote ('The engine uses a sample of ~3,000 human scored responses from the field test for programming'). (2) Slide 2 says 'STAAR now brings 6 to 7 times'. That rests on a March 2024 document, and 'now' goes further than the date. (3) Slide 8's 'Each tile ... is one in a hundred' is ambiguous. With 5,100 tests a reader can take a tile as 100 tests, which would mean 10,000 tests on a 100-tile grid, when the grid actually shows percent. The slide also puts Dallas ISD on a 'Dallas County relief', and the district is not the county. (4) All 2026 counts, the core of the story, rest on one Tribune report. The run tried a TEA page with 2026 counts and got a 404, and says so in its rejected list, so this is attributed honestly and is not a stretch."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who decided (TEA), when (December 2023) and the scale of the pushback are clear and concrete: the 2,758 to 64,489 rise, 13,300 scores raised, and Dallas ISD's 34% of more than 5,100. The action is still general. Slide 9 says 'A district can ask for a person' and gives the $50 fee and the waiver. It gives no request window or deadline, does not say who files for a student, and hands the reader off to 'TEA's scoring documents' instead."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover's 'machine reads first' hook earns the swipe. Slide 2 pays at once with TEA's reason. Slide 5 is a declared turn ('Then the requests multiplied'), and 7 and 8 carry the result. Slide 3, on training data, could be cut without loss. The Spanish human-scoring line on slide 6 slows the turn's payoff."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. It is fair to TEA on slide 2 and honest about the small overall share on slide 7 without doom. Some form of 'Drawn to illustrate' closes eight of nine deks and reads as boilerplate. Texas specifics beyond Dallas ISD are thin. 'Their score counted.' in the caption is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The subject is new, and the paper columns beside a person on slide 5 are fresh. Slide 3's index-card drawer repeats drawers from recent decks. Slide 6's page under a desk lamp, and the desk with office chair on 4, 6 and 9, echo the desk-and-lamp scenes of the last few days."
+  }
+ ],
+ "weighted_score": 7.3,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make slide 9 a real action frame by adding TEA's rescore request window and who files it for a student, sourced to TEA's own page, and reword slide 8's 'each tile is one in a hundred' to 'each tile is one percent of the district's tests' so the drawn 34 of 100 can't be read as 100 tests a tile.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The glass machine, chute and scorer's desk sit small in the lower half, seen from high and far, and the top 45% is type on a wash.",
+   "fix": "Drop the camera to a low three-quarter view and push in until the glass housing and the gold page on the chute fill at least half the frame, with the desk cropped at the right edge."
+  },
+  {
+   "slide": 9,
+   "problem": "The desk, chair and chute float small in a wide empty violet sweep, and the gold route that pays off the cover is a thin rail at upper right.",
+   "fix": "Move the camera in and down so the lit desk and the page landing in the tray fill the middle third, with the chute entering large from the right edge."
+  },
+  {
+   "slide": 3,
+   "problem": "A competent but generic card-drawer close-up that repeats drawers from recent decks. Only the gold tabs tie it to this story.",
+   "fix": "Replace the cabinet with this deck's own object, a sealed glass case of scored answer pages beside the engine, so the 'closed database' reads as this machine's."
+  }
+ ]
+}

@@ -1,0 +1,229 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-17, frame 2 of 9, "What it learned from". A spatial scene through txthree.js inside a windowless
+     violet archive bay built by TXT.interior: a powder coated steel card catalog cabinet, three by four drawers, every
+     drawer shut but one. The top middle drawer, the kit index_card_drawer, is pulled most of its length toward a macro
+     camera 0.25 m over the card tops, and its thirty blocks of a hundred cards (read from window.FIG) recede into the
+     cabinet's dark slot, each block opened by a dusk gold guide tab, the accent's one meaning, a person's score. The type
+     is centred high over the cabinet top and the bay wall, both thrown out of focus. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:90px; top:150px; width:900px; text-align:center">People scored what it was built on</h1>
+<p class="dek" data-follow="24" style="left:120px; width:840px; text-align:center">TEA says each question's engine is programmed on about 3,000 field test answers scored by people. The agency calls it a closed database whose student answers only TEA can access. The drawer is drawn to illustrate.</p>
+<script>window.FIG = {"training_responses": 3000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-17-scorebench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What it learned from", counter: "03 / 09", src: "c20 c23", fit: { min: 80, max: 104, maxLines: 2 } });
+
+  /* THE COUNT, from window.FIG and nothing else: thirty blocks, each block the figure's thirtieth */
+  const TOTAL = window.FIG.training_responses, BLOCKS = 30, PER = TOTAL / BLOCKS;
+  if (!Number.isInteger(PER) || BLOCKS * PER !== TOTAL) throw new Error('FIG.training_responses ' + TOTAL + ' does not split into ' + BLOCKS + ' blocks');
+
+  /* the type: centred high, the dek's foot above the cabinet's front edge */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    if (hb.top < 130) throw new Error('the hook rides into the kicker band');
+    if (db.bottom > 600) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the cabinet'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 30, fog: 0 });
+
+  /* THE BAY: a closed windowless room, rose violet walls, a sealed slab floor */
+  TXT.interior(R, { w: 4.2, d: 8, h: 2.8, floor: 'concrete', joints: false, wall: 0x7b4f9e, trim: 0x3a2a66, window: null, ceiling: false, light: 0.6 });
+  R.scene.background = new THREE.Color('#3a2470');
+  /* the slab sealed in the bay's violet rose, never the coral floor */
+  R.scene.traverse(m => { if (m.isMesh && m.userData.txGround && !m.userData.txStudio && m.material && m.material.color) m.material.color.set(0x8a5a8e); });
+
+  /* THE BAY'S LIGHT, for every polished face: a violet dome, a big near white softbox on the key side so cream paper
+   * stays cream, a rose rim strip behind the cabinet */
+  { const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(30, 48, 24), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { uTop: { value: new THREE.Color('#3a2a8a') }, uMid: { value: new THREE.Color('#7a5ac8') }, uLow: { value: new THREE.Color('#c48ab8') }, uFloor: { value: new THREE.Color('#6a4a8a') } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 uTop,uMid,uLow,uFloor; varying vec3 vP; void main(){ float y = vP.y; vec3 c = y > 0.0 ? mix(mix(uLow, uMid, smoothstep(0.0,0.35,y)), uTop, smoothstep(0.35,1.0,y)) : mix(uLow, uFloor*0.8, smoothstep(0.0,-0.4,y)); gl_FragColor = vec4(c, 1.0); }' })));
+    const card = (w, h, hex, k, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(hex).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(p[0], p[1], p[2]); m.lookAt(0, 0, 0); env.add(m); };
+    card(9, 6, '#fff6ee', 3.6, [-7, 8, 7]);
+    card(16, 0.9, '#ffb0d0', 2.2, [0, 3, -12]);
+    card(10, 8, '#8a6ad8', 1.2, [9, 4, 4]);
+    const pm = new THREE.PMREMGenerator(R.renderer); R.scene.environment = pm.fromScene(env, 0.02).texture; pm.dispose();
+    if ('environmentIntensity' in R.scene) R.scene.environmentIntensity = 0.85;
+    const hemi = new THREE.HemisphereLight(0xb9a6ff, 0x7a4a9a, 0.7); R.scene.add(hemi); }
+
+  /* THE CABINET: a card catalog in powder coated violet steel, 3 columns by 4 rows of drawer openings between full
+   * depth shelves and stiles, a rounded top slab, a back, a recessed plinth and a lock in the top rail */
+  const steel = new THREE.MeshPhysicalMaterial({ name: 'powder-coat-steel', color: 0x4d3f96, metalness: 0.35, roughness: 0.42, clearcoat: 0.35, clearcoatRoughness: 0.35 });
+  const dark = new THREE.MeshStandardMaterial({ name: 'cast-steel-plinth', color: 0x4a3a80, metalness: 0.4, roughness: 0.55 });
+  const chrome = new THREE.MeshPhysicalMaterial({ name: 'chrome-lock', color: 0xd8d6e8, metalness: 1, roughness: 0.16 });
+  const ROWS = 4, COLS = 3, RP = 0.105, CP = 0.17, RT = 0.012, Y0 = 0.52, DEP = 1.45, OPEN_H = RP - RT, OPEN_W = CP - RT;
+  const BODY_H = ROWS * RP + RT, BODY_W = COLS * CP + RT;
+  const openBottom = (r) => Y0 + RT + r * RP, colX = (c) => -CP + c * CP;
+  const LZ = 1.4, FRONT = LZ / 2 + 0.012, VIOLET = 0x4f4590, GOLD = CH.ACCENT;
+  const makeCab = (skipOpen) => {
+    const cab = new THREE.Group();
+    const rb = (w, h, d, r, m, x, y, z) => { const b = TXT.roundedBox(w, h, d, r, m); b.position.set(x, y, z); b.castShadow = true; b.receiveShadow = true; cab.add(b); return b; };
+    for (let k = 0; k <= ROWS; k++) rb(BODY_W, RT, DEP, 0.003, steel, 0, Y0 + RT / 2 + k * RP, -DEP / 2);           /* shelves and rails */
+    for (let k = 0; k <= COLS; k++) rb(RT, BODY_H, DEP, 0.003, steel, -BODY_W / 2 + RT / 2 + k * CP, Y0 + BODY_H / 2, -DEP / 2);  /* sides and stiles */
+    rb(BODY_W, BODY_H, 0.01, 0.002, dark, 0, Y0 + BODY_H / 2, -DEP + 0.005);                                        /* back */
+    rb(BODY_W + 0.024, 0.024, DEP + 0.02, 0.008, steel, 0, Y0 + BODY_H + 0.012, -DEP / 2 + 0.004);                  /* top slab */
+    rb(BODY_W - 0.04, Y0, DEP - 0.08, 0.006, dark, 0, Y0 / 2, -DEP / 2 - 0.02);                                     /* plinth */
+    { const lk = new THREE.Mesh(new THREE.CylinderGeometry(0.0085, 0.0085, 0.012, 32), chrome); lk.rotation.x = Math.PI / 2; lk.position.set(0, Y0 + RT / 2 + ROWS * RP, 0.004); lk.castShadow = true; cab.add(lk);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0088, 0.0014, 10, 40), chrome); ring.position.set(0, lk.position.y, 0.0105); cab.add(ring);
+      const kw = new THREE.Mesh(new THREE.BoxGeometry(0.0016, 0.009, 0.002), dark); kw.position.set(0, lk.position.y, 0.0105); cab.add(kw); }
+    /* the kit index_card_drawer in every opening, shut, its front at the face */
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      if (skipOpen && r === ROWS - 1 && c === 1) continue;
+      const d = K.make('index_card_drawer', { length: LZ, blocks: 1, per: 1, flagged: 0, color: VIOLET, divider: 0x5a4a8a });
+      d.position.set(colX(c), openBottom(r) + (OPEN_H - 0.082) / 2, 0.004 - FRONT); cab.add(d);
+    }
+    return cab; };
+  TXT.add(R, makeCab(true));
+  /* the rest of the bay: two more catalogs, every drawer shut, standing back along the wall */
+  [[-0.95, -2.2, 0.12], [0.9, -2.35, -0.1]].forEach(([x, z, ry]) => { const c = makeCab(false); c.position.set(x, 0, z); c.rotation.y = ry; TXT.add(R, c); });
+
+  /* THE DRAWER THAT CARRIES THE FIGURE: the top middle one, pulled toward the camera */
+  const PULL = 0.78;
+  const drawer = K.make('index_card_drawer', { length: LZ, blocks: BLOCKS, per: PER, flagged: 0, fill: 0.93, color: VIOLET, divider: 0xcabfdd });
+  const DY = openBottom(ROWS - 1) + (OPEN_H - 0.082) / 2;
+  drawer.position.set(0, DY, PULL - FRONT);
+  /* pressboard, a fine fibre in albedo and bump, so the guide cards read as board and not as flat colour */
+  const fibre = CH.canvasTex(THREE, 512, 512, (x, w, h) => { const r = CH.rng(77); x.fillStyle = '#e4e4e4'; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 5000; i++) { const v = 190 + r() * 65 | 0; x.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; x.fillRect(r() * w, r() * h, 2 + r() * 7, 1); } }, [2, 2]);
+  const boardM = new THREE.MeshPhysicalMaterial({ name: 'pressboard-board', color: 0xcabfdd, roughness: 0.78, map: fibre, bumpMap: fibre, bumpScale: 0.0004 }); boardM.userData.txSurface = false;
+
+  /* THE BLOCKS OPENED UP. The kit packs its blocks 1.6 mm apart, which no reader can count. The kit's own card
+   * instances are re-seated here into BLOCKS blocks of PER at a 0.3 mm card pitch with an even seam between blocks,
+   * each card a shade off its neighbour and a hair off its height so the block reads as stacked stock. */
+  const CWc = 0.127, CHc = 0.0762, P = 0.0003, BL = (PER - 1) * P, zTop = LZ / 2 - 0.03, zEnd = -LZ / 2 + 0.03;
+  const SEAM = ((zTop - zEnd) - BLOCKS * BL) / (BLOCKS - 1);
+  if (SEAM < 0.008) throw new Error('the seams between blocks fall to ' + (SEAM * 1000).toFixed(1) + ' mm');
+  const blockFront = (b) => zTop - b * (BL + SEAM);
+  let cards = 0;
+  { const ims = drawer.children.filter(m => m.isInstancedMesh && m.count > 0), rr = CH.rng(5150), m4 = new THREE.Matrix4(), pp = new THREE.Vector3(), qq = new THREE.Quaternion(), ss = new THREE.Vector3(), col = new THREE.Color(), e = new THREE.Euler();
+    if (ims.length !== 1) throw new Error('expected one card instance set, found ' + ims.length);
+    const im = ims[0]; if (im.count !== BLOCKS * PER) throw new Error('the kit made ' + im.count + ' cards');
+    for (let i = 0; i < im.count; i++) { const b = Math.floor(i / PER), c = i % PER;
+      im.getMatrixAt(i, m4); m4.decompose(pp, qq, ss);
+      /* the block's first few cards fan back off the guide a little, the rest stand packed */
+      const fan = c < 4 ? (4 - c) * 0.012 : 0;
+      e.set(-0.07 - fan + (rr() - 0.5) * 0.02, (rr() - 0.5) * 0.012, (rr() - 0.5) * 0.006); qq.setFromEuler(e);
+      pp.set((rr() - 0.5) * 0.0014, 0.003 + CHc / 2 + (rr() - 0.5) * 0.0012, blockFront(b) - c * P);
+      im.setMatrixAt(i, m4.compose(pp, qq, ss));
+      const k = 0.8 + rr() * 0.2; im.setColorAt(i, col.setRGB(k, k * 0.985, k * 0.97)); }
+    im.instanceMatrix.needsUpdate = true; im.instanceColor.needsUpdate = true; cards = im.count; }
+  /* the kit's packed guides and follower come out; thirty guides go into the seams and the follower behind the last */
+  drawer.children.filter(g => g.isGroup && g.children.length === 3 && Math.abs(g.rotation.x + 0.07) < 1e-6).forEach(g => drawer.remove(g));
+  drawer.children.filter(g => g.isGroup && Math.abs(g.rotation.x + 0.19) < 1e-6).forEach(g => { g.position.z = blockFront(BLOCKS - 1) - BL - 0.008; });
+
+  /* THE GUIDES: a lilac pressboard card in the seam at the front of every block, its dusk gold tab rising out of it,
+   * the accent's one meaning, a person's score. Each tab carries a scorer's hand: a pencilled tick or a rubber stamp
+   * ring in violet ink, no numerals. */
+  const marks = [0, 1, 2].map(v => CH.canvasTex(THREE, 256, 128, (x, w, h) => { const r = CH.rng(900 + v);
+    x.clearRect(0, 0, w, h);
+    if (v === 1) { x.strokeStyle = 'rgba(40,32,58,0.9)'; x.lineWidth = 12; x.lineCap = 'round'; x.lineJoin = 'round';
+      x.beginPath(); x.moveTo(78, 70); x.lineTo(102, 98); x.quadraticCurveTo(140, 40, 184, 24); x.stroke();
+      x.lineWidth = 5; x.beginPath(); x.moveTo(74, 112); x.quadraticCurveTo(130, 104, 186, 110); x.stroke(); }
+    else { x.strokeStyle = 'rgba(40,32,58,0.9)'; x.lineWidth = 14; x.lineCap = 'round'; x.lineJoin = 'round';
+      const o = v === 0 ? 0 : 14; x.beginPath(); x.moveTo(70 + o, 62); x.quadraticCurveTo(94 + o, 84, 104 + o, 104); x.quadraticCurveTo(136 + o, 50, 190 + o, 18); x.stroke(); } }));
+  const tabM = new THREE.MeshPhysicalMaterial({ name: 'pressboard-tab', color: GOLD, roughness: 0.48, clearcoat: 0.4, clearcoatRoughness: 0.35, sheen: 0.4, sheenColor: new THREE.Color(0xffe2c8) }); tabM.userData.txSurface = false;
+  const markMs = marks.map((t, v) => { const m = new THREE.MeshStandardMaterial({ name: 'pencil-mark', color: 0xffffff, map: t, transparent: true, depthWrite: false, roughness: 0.7, polygonOffset: true, polygonOffsetFactor: -2 }); m.userData.txSurface = false; return m; });
+  let tabs = 0;
+  for (let b = 0; b < BLOCKS; b++) {
+    const g = new THREE.Group(); g.position.set(0, 0.003, blockFront(b) + 0.0055); g.rotation.x = -0.11; drawer.add(g);
+    const board = TXT.roundedBox(CWc, CHc, 0.0007, 0.0002, boardM); board.position.y = CHc / 2; g.add(board);
+    const tx = -CWc / 2 + 0.022 + (b % 5) * (CWc - 0.044) / 4;
+    const tab = TXT.roundedBox(0.034, 0.018, 0.0012, 0.0028, tabM); tab.position.set(tx, CHc + 0.006, 0); g.add(tab); tabs++;
+    const mk = new THREE.Mesh(new THREE.PlaneGeometry(0.026, 0.013), markMs[(b * 7) % 3]); mk.position.set(tx, CHc + 0.0065, 0.0008); mk.rotation.z = ((b * 37) % 11 - 5) * 0.02; mk.userData.txSurface = false; mk.userData.txBevel = false; g.add(mk);
+    g.traverse(m => { if (m.isMesh) { m.castShadow = m !== g.children[2]; m.receiveShadow = true; m.userData.txBevel = false; } }); }
+  TXT.add(R, drawer);
+  /* THE CARD FACES at macro resolution: cream stock with a red head rule, faint blue rules and greeked TYPED lines,
+   * never handwriting, never legible */
+  { const faceTex = CH.canvasTex(THREE, 1024, 614, (x, w, h) => { const r = CH.rng(2002); x.fillStyle = '#efe6d3'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 9000; i++) { x.fillStyle = r() < 0.5 ? 'rgba(120,100,70,0.05)' : 'rgba(255,252,240,0.08)'; x.fillRect(r() * w, r() * h, 1 + r() * 3, 1); }
+      x.fillStyle = 'rgba(176,70,64,0.6)'; x.fillRect(36, 118, w - 72, 4);
+      x.fillStyle = 'rgba(90,110,160,0.28)'; for (let k = 1; k <= 8; k++) x.fillRect(36, 118 + k * 54, w - 72, 2);
+      x.fillStyle = 'rgba(52,46,84,0.55)';
+      for (let k = 0; k < 7; k++) { let px = 48; const y = 118 + k * 54 + 30, end = w - 60 - r() * 260; while (px < end) { const ww = 14 + r() * 50; if (px + ww > end) break; x.fillRect(px, y, ww, 9); px += ww + 11; } }
+      x.fillRect(48, 52, 150, 12); x.fillRect(214, 52, 90, 12); });
+    drawer.traverse(m => { if (m.isInstancedMesh && Array.isArray(m.material)) { m.material = m.material.slice(); m.material[4] = m.material[4].clone(); m.material[4].name = 'index-card-paper'; m.material[4].map = faceTex; m.material[4].needsUpdate = true; } }); }
+
+  /* THE CHECK: the drawer holds exactly the figure's cards in BLOCKS blocks of PER, and exactly one gold tab per block */
+  { let n = 0, golds = 0;
+    drawer.traverse(m => { if (m.isInstancedMesh && m.parent === drawer) n += m.count;
+      if (m.isMesh && !m.isInstancedMesh) { const ms = Array.isArray(m.material) ? m.material : [m.material]; if (ms.some(x => x.color && x.color.getHex() === GOLD)) golds++; } });
+    if (n !== TOTAL || cards !== TOTAL) throw new Error('the drawer holds ' + n + ' cards, FIG.training_responses is ' + TOTAL);
+    if (golds !== BLOCKS || tabs !== BLOCKS) throw new Error('the drawer carries ' + golds + ' gold tabs for ' + BLOCKS + ' blocks');
+    window.__s02 = { cards: n, blocks: BLOCKS, per: PER, tabs: golds, seam_mm: +(SEAM * 1000).toFixed(1) }; }
+
+  /* ENAMEL: the drawers' kit steel and the nickel swapped for a stove enamel with a hard clear coat and scuffed
+   * roughness, and a brushed nickel, so the metal reads as metal and not as plastic */
+  { const scuff = CH.canvasTex(THREE, 1024, 1024, (x, w, h) => { const r = CH.rng(3131); x.fillStyle = '#6a6a6a'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 26000; i++) { const g = 80 + r() * 60 | 0; x.fillStyle = 'rgb(' + g + ',' + g + ',' + g + ')'; x.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+      x.lineCap = 'round'; for (let i = 0; i < 160; i++) { const g = 150 + r() * 80 | 0, x0 = r() * w, y0 = r() * h, L = 10 + r() * 70, a = (r() - 0.5) * 0.6; x.strokeStyle = 'rgba(' + g + ',' + g + ',' + g + ',0.7)'; x.lineWidth = 1 + r() * 1.5; x.beginPath(); x.moveTo(x0, y0); x.lineTo(x0 + Math.cos(a) * L, y0 + Math.sin(a) * L); x.stroke(); } }, [3, 3]);
+    scuff.colorSpace = THREE.NoColorSpace;
+    const enamel = (hex) => { const m = new THREE.MeshPhysicalMaterial({ name: 'stove-enamel-steel', color: hex, metalness: 0.3, roughness: 0.55, roughnessMap: scuff, clearcoat: 0.85, clearcoatRoughness: 0.14 }); m.userData.txSurface = 'paint'; return m; };
+    const labelM = new THREE.MeshStandardMaterial({ name: 'label-card-paper', roughness: 0.85, map: CH.canvasTex(THREE, 512, 176, (x, w, h) => { const r = CH.rng(61); x.fillStyle = '#e9e1d2'; x.fillRect(0, 0, w, h);
+      x.fillStyle = 'rgba(52,46,84,0.32)'; let px = 70; while (px < 400) { const ww = 14 + r() * 40; x.fillRect(px, 80, ww, 9); px += ww + 12; } }) }); labelM.userData.txSurface = false;
+    const drawerEnamel = enamel(VIOLET), cabEnamel = enamel(0x463c86);
+    const nickel = new THREE.MeshPhysicalMaterial({ name: 'brushed-nickel', color: 0xc9c8d6, metalness: 1, roughness: 0.3, roughnessMap: scuff });
+    R.scene.traverse(m => { if (!m.isMesh || m.isInstancedMesh || Array.isArray(m.material) || !m.material || !m.material.color) return;
+      const hx = m.material.color.getHex();
+      if (m.material === steel) m.material = cabEnamel;
+      else if (hx === VIOLET) m.material = drawerEnamel;
+      else if (hx === 0xb9bcbf) m.material = nickel;
+      else if (hx === 0xf0ebe0) m.material = labelM; }); }
+
+  /* THE CAMERA: macro, 0.11 m over the card tops, raking down the drawer's length into the cabinet */
+  const cardTop = DY + drawer.userData.top;
+  const FROM = [0.04, cardTop + 0.14, PULL + 0.40];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, Y0 + BODY_H + 0.024, 0], 540, 650, 44);
+  TXT.frame(R, { fov: 44, from: FROM, look: LOOK });
+
+  /* THE KEY: near white, high front left, raking down the drawer so every tab casts back onto its block */
+  const spec = CH.rigSpec(W, 2.2, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.6, color: 0xfff3ea });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, cardTop, 0.2], { distance: 6, shadowFar: 14, normalBias: 0.001 }), { light: { az: -58, el: 36 } }));
+  CH.unacne(R, 0.001);
+  /* the bay wall lit low behind the catalogs and falling to deep violet above, so the type sits on the dark */
+  { const sp = new THREE.SpotLight(0xff9ec8, 30, 9, 0.5, 0.9, 1.5); sp.position.set(0, 2.6, 0.5); sp.target.position.set(0, 0.7, -3); sp.castShadow = false; R.scene.add(sp); R.scene.add(sp.target); }
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* THE LENS: a macro's shallow focus, the far cabinet and the wall softened by height, the near cards sharp */
+  { const art = document.getElementById('art'), Wd = art.width, Hd = art.height;
+    [[20, 0, 0.36, 0.46], [8, 0.36, 0.45, 0.55]].forEach(([blur, a0, a1, a2]) => {
+      const c = document.createElement('canvas'); c.width = Wd; c.height = Hd; const k = c.getContext('2d');
+      k.filter = 'blur(' + blur + 'px)'; k.drawImage(art, 0, 0); k.filter = 'none';
+      const m = k.createLinearGradient(0, 0, 0, Hd); m.addColorStop(0, 'rgba(0,0,0,1)'); m.addColorStop(a1, 'rgba(0,0,0,1)'); m.addColorStop(a2, 'rgba(0,0,0,0)'); m.addColorStop(1, 'rgba(0,0,0,0)');
+      k.globalCompositeOperation = 'destination-in'; k.fillStyle = m; k.fillRect(0, 0, Wd, Hd);
+      cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(c, 0, 0); cx.restore(); });
+  }
+
+  /* the open drawer and its cards own at least half the frame height */
+  { const rc = CH.rectOf(THREE, R, drawer, 0), y0 = Math.max(0, rc[1]), y1 = Math.min(1350, rc[1] + rc[3]);
+    window.__s02.drawer_px = Math.round(y1 - y0);
+    if (y1 - y0 < 675) throw new Error('the drawer spans ' + Math.round(y1 - y0) + ' px of height, under half'); }
+
+  CH.seat(cx, { a: 0.4, fade: 200 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.45, fade: 70 }));
+  TXLOOK.footWash(cx, { a: 0.7, height: 260 });
+  ['.src', '.tx-site'].forEach(sel => CH.seat(cx, { sel, a: 0.75, fade: 90 }));
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

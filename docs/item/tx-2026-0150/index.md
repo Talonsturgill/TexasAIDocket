@@ -12,7 +12,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 - Public access: Write to the decider
 - Take part: https://europepmc.org/article/MED/42714442
 
-- Last checked: 2026-11-15
+- Last checked: 2026-11-18
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.
 - 2026-11-15 · The pediatric imaging review still calls for models built for children. Europe PMC carries the abstract and the Baylor and UT Southwestern affiliations.
 - 2026-11-15 · The panel's review still says pediatric imaging is underrepresented in radiology AI, and its recommendations on data sharing and payment read as before.
+- 2026-11-18 · The radiologists' paper on imaging AI and children is still published as cited, with its finding that few tools were built for pediatric use.
 
 ## Evidence
 

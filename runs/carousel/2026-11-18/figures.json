@@ -1,0 +1,84 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "counties": {
+  "value": 254,
+  "from": [
+   "c1",
+   "c24"
+  ],
+  "basis": "every Texas county the study covered"
+ },
+ "pollutants": {
+  "value": 8,
+  "from": [
+   "c4"
+  ],
+  "basis": "air pollutants the satellites measured, equal to the names listed"
+ },
+ "pollutant_names": {
+  "value": [
+   "sulfur dioxide",
+   "nitrogen dioxide",
+   "carbon monoxide",
+   "formaldehyde",
+   "methane",
+   "particulate matter smaller than 1 micrometer",
+   "particulate matter smaller than 10 micrometers",
+   "aerosols"
+  ],
+  "from": [
+   "c4"
+  ],
+  "basis": "the eight pollutants in the order c4 lists them"
+ },
+ "data_year": {
+  "value": 2022,
+  "from": [
+   "c4",
+   "c24"
+  ],
+  "basis": "the year of the satellite readings"
+ },
+ "clusters": {
+  "value": 3,
+  "from": [
+   "c7"
+  ],
+  "basis": "major clusters of air pollution, east worst, west best, central between (c8)"
+ },
+ "algorithms": {
+  "value": 4,
+  "from": [
+   "c20"
+  ],
+  "basis": "machine learning algorithms the paper compared"
+ },
+ "r_squared": {
+  "value": 0.791,
+  "from": [
+   "c21"
+  ],
+  "basis": "the best model's R squared, support vector machine"
+ },
+ "r2_of_100": {
+  "value": 79,
+  "from": [
+   "c21"
+  ],
+  "basis": "r_squared x 100 rounded, drawn as filled cells of 100, a model fit"
+ },
+ "morans_i": {
+  "value": 0.69,
+  "from": [
+   "c22"
+  ],
+  "basis": "clustering of cancer prevalence between neighbouring counties"
+ },
+ "pub_day": {
+  "value": 5,
+  "from": [
+   "c11"
+  ],
+  "basis": "the day in March the paper went online"
+ }
+}

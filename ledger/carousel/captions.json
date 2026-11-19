@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the object",
-  "the quiet decision",
   "the two things",
   "the who",
   "the place",
-  "the number that is wrong"
+  "the number that is wrong",
+  "the correction",
+  "the object"
  ],
  "entries": [
   {
@@ -1453,12 +1453,50 @@
    ],
    "critic_note": "B won after one rewrite by the critic. A failed the anti-template law (its opening reads with any pilot's nouns), used Known and Not known as scaffolding and asserted Nobody knows with no claim. B ran 940 characters and its opening shared the X is not Y skeleton of November 15th. The rewrite opens on Standard tests can miss the struggle (c16), cuts the abstraction about the clinic visit, keeps c10, c9 and c11 as the close.",
    "move_note": "Opens by correcting the belief that a clear standard test means easy conversation, ledgers what Norman's patients reported, the tests, the recordings and the grant against the plain line that the measuring is still a plan, and closes on c11's open question."
+  },
+  {
+   "date": "2026-11-17",
+   "carousel_no": 80,
+   "opening_move": "the object",
+   "structure": "Pivot",
+   "closing_move": "point at the record, plainly, without a call to action",
+   "first_line": "One written answer on a STAAR reading test.",
+   "words": 149,
+   "commas": 1,
+   "commas_per_100w": 0.67,
+   "chars": 868,
+   "hashtags": [
+    "#STAAR",
+    "#TexasEducationAgency",
+    "#DallasISD"
+   ],
+   "critic_note": "A won over B. B was refused for 'The ask.' and 'The answer.' as scaffolding, a link in the body, a close that said $50 applies to every request when c15 waives it if the score changes, and that close being the November 16th open-question substance under another name. A was taken with one cut, the line narrating its deck, which also brought it under 900 characters. The showrunner added STAAR to the first line so Texas is above the fold.",
+   "move_note": "Opens on the typed answer itself, the thing the engine reads, then pivots on one line: fewer than half of one percent of all open-ended reading answers changed."
+  },
+  {
+   "date": "2026-11-18",
+   "carousel_no": 81,
+   "opening_move": "the plain question",
+   "structure": "Zoom in",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Does dirtier air go with more cancer?",
+   "words": 137,
+   "commas": 1,
+   "commas_per_100w": 0.73,
+   "chars": 864,
+   "hashtags": [
+    "#UTDallas",
+    "#Sentinel5P",
+    "#AirQuality"
+   ],
+   "critic_note": "A won over B. B was refused for 'What the method sees.' and 'What it can't see.' as label scaffolding, a Ledger structure filed as Two columns, a two-things opening filed as before and after, and a line narrating its deck. A was taken with five edits: the deck-narrating pasture line cut (bringing it under 900 characters), a 7 word first line, Texas restored in the second line, 'near' for c9's wording, and c11's 'don't establish'.",
+   "move_note": "Asks the question a reader brings, answers it county by county, then lands on one person standing in one county, where the answer stops."
   }
  ],
  "structures_recent": [
-  "Question and answer",
-  "Clock",
-  "Ladder"
+  "Ladder",
+  "Ledger",
+  "Pivot"
  ],
  "closing_moves_recent": [
   "point at the record, plainly, without a call to action"

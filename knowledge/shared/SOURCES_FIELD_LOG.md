@@ -2654,3 +2654,22 @@ www.brazoscountytx.gov (2 each) answered 403** to the reverify User-Agent. **The
 www.utep.edu did not answer (URLError) and www.oncor.com's timed out**, so the boundary read all three as refusing and
 their pages were not requested. The Kodiak and Atlas Permian announcement and both companies' SEC filings answered and
 named no county, so that story was held rather than drawn.
+
+## 2026-11-17 (carousel no. 80)
+
+**interchange.puc.texas.gov filing list pages page older filings away.** The lists cited on tx-2026-0003 and tx-2026-0076
+answered but no longer showed the filings quoted by c17 to c21, so the re-verification left both items unstamped rather
+than reading absence as a change. The filing itself, not the list, is the stable citation. **TEA's rescore pages answered
+404** to the scout, so the spring 2026 rescore counts on tx-2026-0194 rest on the Texas Tribune's October 7th report, and
+the deck and the record say so. TEA's December 2023 and March 2024 scoring documents answered and carry the design figures.
+The ZIP cited on tx-2026-0072 was read through zipfile and pypdf rather than WebFetch.
+
+## 2026-11-18 (carousel no. 81)
+
+**PubMed Central answered with a browser challenge page** for the UT Dallas air pollution and cancer paper, and
+**link.springer.com answered a cookie and client challenge** to WebFetch, so the paper's abstract was read through
+`scripts/shared/fetch_doc.py` and the journal's own abstract page rather than the full text. **Europe PMC answered 503**
+and **the EBI REST endpoint timed out**, and Crossref's record for the DOI carries no abstract. The UT Dallas news release
+answered and carries the quotes. **news.rice.edu answered 406 to the re-verification fetcher** while `fetch_doc.py`
+read the same page, so that item's stamp rests on the fetch_doc read. The TCEQ commission calendar cited on tx-2026-0057
+no longer lists the agenda item, so the item was left unstamped rather than reading the listing's absence as a change.

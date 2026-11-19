@@ -1,0 +1,101 @@
+{
+ "date": "2026-11-18",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "254 Texas counties",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 254,
+   "quoted_from": "c1",
+   "quote": "all 254 Texas counties"
+  },
+  {
+   "phrase": "254 counties",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 254,
+   "quoted_from": "c1",
+   "quote": "all 254 Texas counties"
+  },
+  {
+   "phrase": "254 Texas counties",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 254,
+   "quoted_from": "c1",
+   "quote": "all 254 Texas counties"
+  },
+  {
+   "phrase": "Eight pollutants",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c4",
+   "quote": "eight air pollutants"
+  },
+  {
+   "phrase": "eight air pollutants",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c4",
+   "quote": "eight air pollutants"
+  },
+  {
+   "phrase": "eight air pollutants",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c4",
+   "quote": "eight air pollutants"
+  },
+  {
+   "phrase": "eight air pollutants",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c4",
+   "quote": "eight air pollutants"
+  },
+  {
+   "phrase": "Four methods",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c20"
+   ],
+   "computed_by": "compute.py algorithms, the number of algorithms c20 names, asserted equal to 4"
+  },
+  {
+   "phrase": "79 flagged stakes",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 79,
+   "from_claims": [
+    "c21"
+   ],
+   "computed_by": "compute.py r2_of_100, round(0.791 x 100) from c21's R squared, drawn as flagged stakes of 100"
+  },
+  {
+   "phrase": "three major clusters",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c7",
+   "quote": "three major clusters"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c20"
+   ],
+   "computed_by": "sources_block.py counts the primary_official documents the block lists: the UT Dallas news release and the journal paper"
+  }
+ ]
+}

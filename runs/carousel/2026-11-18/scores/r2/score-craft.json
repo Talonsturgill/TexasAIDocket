@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.9,
+   "why": "Per frame 1=7.0, 2=7.0, 3=6.8, 4=6.3, 5=7.3, 6=7.3, 7=7.8, 8=6.5, 9=7.2. Repairs real but partial: 2's shelter now spans about 60 percent and the mesa is gone, but the navy wash still reads as a plate; 1 has regional albedo but the sheet reads as clear glass with no gold; 9 has a town but the outline renders salmon and lips smear; 4 still reads as glossy UI buttons with a shadow lump outside the rail; 3 still shows a blue streak and a swath ending in floating cards; 8 still the weakest (avatar figure, plank kerb, a diagonal light cone artifact). 7 the best frame; 5 and 6 solid."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.4,
+   "why": "Spine holds: one palette and grade, constant type furniture, east right, a real camera move. The accent is weaker than claimed: no gold on the cover, warm limestone on 7 reads as gold, salmon outline on 9; frame 4 sits outside the rendered worlds."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.7,
+   "why": "Slide numerals trace to cited claims and art counts are asserted in code. Slide 5 states R squared is a fit, slide 8 the ecological limit. The clusters on 6 rest on the lead author's interview wording."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, method, finding and limit are clear. No county, body, action or deadline; the civic stake lives only in the caption."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 pays, 8 is a real turn, 9 closes on purpose. 3 restates the cover's satellite."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "Careful, on register, no doom. 'Drawn to illustrate' on all nine reads mechanical; 9's dek is four stacked sentences; no place named below central Texas."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Topic, palette and land treatment fresh; the extruded slab cover is a familiar opener; 7 and 9 echo November 14th's relief move."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No fault found. Under the round 2 rung of 7.7, a work order for round 3.",
+ "one_sentence_fix": "Rebuild frame 8 around a sculpted rim-lit resident and a true #E0956A kerb seated in cut turf that visibly turns a corner before the house, and delete the diagonal light cone.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Avatar resident with clumped hair; kerb lies on the grass like a plank with blades piercing it; the turned corner a hairline above the house; a diagonal light cone artifact upper right.",
+   "fix": "Sink the kerb into a cut turf channel with contact shadow, lower the camera about 0.2 m so the corner turns in front of the house, remove the cone volume, keep the figure in silhouette."
+  },
+  {
+   "slide": 4,
+   "problem": "Flat elevation, bands read as glossy UI buttons; SO2 shadow a lump outside the right rail; strata with little height.",
+   "fix": "Keep the SO2 shadow inside the column, give the strata lips real height in place of flat band texture."
+  },
+  {
+   "slide": 3,
+   "problem": "A blurred blue streak at right; the swath ends in floating cards and hits nothing; foil reads as crinkled paper.",
+   "fix": "Delete the streak, let the swath bleed off the bottom edge onto the sweep with a warm glow, finer specular crinkle with a cool rim."
+  },
+  {
+   "slide": 1,
+   "problem": "The air sheet renders as clear glass with no gold; primitive satellite.",
+   "fix": "A transmissive #E0956A tint at about 0.35 opacity casting a warm shadow on the counties."
+  },
+  {
+   "slide": 2,
+   "problem": "Navy type wash reads as a rounded plate; tree sprites on a hard fog line; flat caliche.",
+   "fix": "A vertical gradient wash fading to zero by y 760, horizon scrub in ground haze, scatter and tyre ruts on the caliche."
+  },
+  {
+   "slide": 6,
+   "problem": "Vitrines fill a third of the height over an empty reflection floor; dark blobs behind kicker and counter.",
+   "fix": "Dolly in so the vitrines fill y 820 to 1800, crop the floor, drop the blobs."
+  }
+ ]
+}

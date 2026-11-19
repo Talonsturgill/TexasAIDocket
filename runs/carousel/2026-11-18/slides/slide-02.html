@@ -1,0 +1,182 @@
+<!doctype html>
+<!-- 2026-11-18, frame 2 of 9, WHY SATELLITES. A spatial scene through txthree.js, outdoors on an immense empty caliche flat
+under the explainer morning sky. One fibreglass air monitoring shelter behind its chain link fence, a worker at the door and
+a pickup beside it, stands small on land that runs empty to one mesa on the horizon. A low camera 1.1 m off the caliche, 20 m back on a
+long lens, under a raking left light: the door open on a lit analyser rack, the technician with his calibration case. No dusk gold: a ground monitor is not the satellite. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:168px; width:920px; text-align:left">Ground monitoring is costly</h1>
+<p class="dek" data-follow="28" style="left:80px; width:860px">That cost has limited this kind of study, Dong says. The paper says satellite data can help where ground monitoring is unavailable. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Why satellites", counter: "02 / 09", src: "c13 c25", fit: { min: 96, max: 124, maxLines: 2 } });
+  /* this frame draws no quantity: FIG must stay empty */
+
+  const FOV = 30;   /* a long lens, so the shelter is big and the flat behind it stacks up to the horizon */
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 9000, fog: 0.00028 });
+  const galv = K.mat('galv-steel', { color: 0xc3c8ce, metalness: 0.9, roughness: 0.38 });
+  const pvc = K.mat('pvc-conduit', { color: 0x8e96a3, roughness: 0.55 });
+
+  /* THE STATION: the chassis shelter turned so its HVAC wall faces the light and its door faces frame right */
+  const YAW = 0.6;
+  const station = new THREE.Group(); station.rotation.y = YAW;
+  const sh = K.make('air_monitor_shelter', { mast: 7.2 }); station.add(sh);
+  sh.traverse(m => { if (m.isMesh && /fibreglass/.test(m.material.name || '')) m.material.color.setHex(0xeceeec); });
+  /* the closed door and its kick plate come off: the door stands open on the lit rack */
+  sh.traverse(m => { if (!m.isMesh) return; const q = m.position; if (Math.abs(q.x - 0.6) < 0.02 && (Math.abs(q.z - 1.31) < 0.02 || Math.abs(q.z - 1.33) < 0.02)) m.visible = false; });
+
+  /* THE RACK THROUGH THE DOOR: analysers with lit readouts under a cool ceiling strip */
+  const rackTex = CH.canvasTex(THREE, 256, 576, (g, w, h) => {
+    const bg = g.createLinearGradient(0, 0, 0, h); bg.addColorStop(0, '#2a3f78'); bg.addColorStop(1, '#101a3a'); g.fillStyle = bg; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#eaf4ff'; g.fillRect(20, 6, w - 40, 10);
+    g.fillStyle = '#1b2440'; g.fillRect(34, 40, w - 68, h - 70);
+    const rr = CH.rng(5); let y = 52;
+    const units = [44, 58, 40, 62, 44, 52, 40, 70, 46];
+    units.forEach((uh, i) => {
+      g.fillStyle = i % 3 === 1 ? '#c9ced8' : '#8d97ab'; g.fillRect(42, y, w - 84, uh - 6);
+      g.fillStyle = '#0c1430'; g.fillRect(52, y + 8, 64, Math.min(22, uh - 20));
+      g.fillStyle = i % 2 ? '#7fe8ff' : '#9dffb8'; g.fillRect(56, y + 11, 56 * (0.5 + rr() * 0.5), Math.min(14, uh - 26));
+      for (let k = 0; k < 4; k++) { g.fillStyle = rr() < 0.6 ? '#6cff9a' : '#ff5a6a'; g.fillRect(140 + k * 14, y + 12, 7, 7); }
+      g.fillStyle = 'rgba(0,0,0,0.35)'; g.fillRect(42, y + uh - 8, w - 84, 2);
+      y += uh;
+    });
+  });
+  const rackM = new THREE.MeshStandardMaterial({ color: 0x18213d, emissive: 0xffffff, emissiveMap: rackTex, emissiveIntensity: 1.25, roughness: 0.6 });
+  rackM.userData.txSurface = false;
+  const rack = new THREE.Mesh(new THREE.PlaneGeometry(0.86, 1.92), rackM); rack.position.set(0.6, 0.15 + 0.98, 1.302); rack.userData.txBevel = false; station.add(rack);
+  const spill = new THREE.PointLight(0xdcecff, 2.2, 4, 2); spill.position.set(0.6, 1.4, 1.75); station.add(spill);
+  /* the door, swung wide on its hinge at the right edge, its inside face the same fibreglass */
+  const hinge = new THREE.Group(); hinge.position.set(1.06, 0.17, 1.33); hinge.rotation.y = 1.85; station.add(hinge);
+  const door = TXT.roundedBox(0.9, 1.95, 0.05, 0.02, K.mat('door-fibreglass', { color: 0xdfe2e3, roughness: 0.5 })); door.position.set(-0.45, 0.975, 0); hinge.add(door);
+  K.box(0.9, 0.25, 0.055, galv, -0.45, 0.02, 0, 0, hinge);
+  K.cyl(0.025, 0.025, 0.12, galv, -0.8, 1.0, 0.05, 12, hinge);
+
+  /* A BIG WALL AC UNIT on the lit wall, a condenser grille and fan */
+  const acM = K.mat('ac-paint', { color: 0xd6d9d6, metalness: 0.3, roughness: 0.45 });
+  const ac = TXT.roundedBox(0.42, 0.95, 0.85, 0.04, acM); ac.position.set(-1.72, 1.45, 0.2); station.add(ac);
+  const grilleTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { g.fillStyle = '#3a4152'; g.fillRect(0, 0, w, h); g.strokeStyle = '#b9bfc8'; g.lineWidth = 3; for (let x = 6; x < w; x += 12) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } g.beginPath(); g.arc(w / 2, h / 2, w * 0.4, 0, 7); g.lineWidth = 8; g.stroke(); });
+  const grille = new THREE.Mesh(new THREE.PlaneGeometry(0.7, 0.72), new THREE.MeshStandardMaterial({ map: grilleTex, roughness: 0.6, metalness: 0.4 }));
+  grille.material.userData.txSurface = false; grille.rotation.y = -Math.PI / 2; grille.position.set(-1.935, 1.45, 0.2); station.add(grille);
+  /* conduit: AC line down the wall into the pad, a power run from the meter post, a sample line up to the roof */
+  const tube = (pts, r, m) => { const t = TXT.tube(pts, r, m); t.castShadow = true; station.add(t); return t; };
+  tube([[-1.72, 0.95, 0.55], [-1.72, 0.4, 0.55], [-1.6, 0.17, 0.75]], 0.025, pvc);
+  tube([[-1.52, 2.2, 1.1], [-1.52, 0.6, 1.1], [-1.52, 0.3, 1.6], [-2.6, 0.06, 2.3]], 0.03, pvc);
+  tube([[-1.53, 2.55, -0.9], [-1.53, 1.0, -0.9]], 0.022, galv);
+  /* the meter pedestal the power comes in through */
+  const ped = new THREE.Group(); ped.position.set(-2.7, 0, 2.4); station.add(ped);
+  K.cyl(0.05, 0.05, 1.3, galv, 0, 0, 0, 12, ped);
+  const box = TXT.roundedBox(0.36, 0.5, 0.18, 0.02, K.mat('meter-box', { color: 0x9aa2ad, metalness: 0.5, roughness: 0.4 })); box.position.set(0, 1.25, 0.1); ped.add(box);
+
+  /* ROOF GEAR: two sampler inlets with their funnel heads and rain caps, a guard rail and a ladder */
+  const inletHead = (x, z, hgt) => {
+    K.cyl(0.035, 0.035, hgt, galv, x, 2.6, z, 16, station);
+    const body = TXT.lathe([[0, 0], [0.05, 0], [0.13, 0.06], [0.13, 0.26], [0.06, 0.3], [0.04, 0.34], [0, 0.34]], galv, { segments: 40 });
+    body.position.set(x, 2.6 + hgt, z); body.castShadow = true; station.add(body);
+    const cap = TXT.lathe([[0, 0.1], [0.24, 0.0], [0.25, 0.03], [0.05, 0.14], [0, 0.14]], galv, { segments: 40 });
+    cap.position.set(x, 2.6 + hgt + 0.36, z); cap.castShadow = true; station.add(cap);
+  };
+  inletHead(-0.75, -0.35, 1.25); inletHead(0.15, -0.55, 1.6);
+  [[-1.3, -1.1], [1.3, -1.1], [1.3, 1.1], [-1.3, 1.1]].forEach(([x, z]) => K.cyl(0.022, 0.022, 1.05, galv, x, 2.6, z, 10, station));
+  [[[-1.3, 3.62, -1.1], [1.3, 3.62, -1.1]], [[1.3, 3.62, -1.1], [1.3, 3.62, 1.1]], [[-1.3, 3.62, -1.1], [-1.3, 3.62, 1.1]],
+   [[-1.3, 3.15, -1.1], [1.3, 3.15, -1.1]], [[-1.3, 3.15, -1.1], [-1.3, 3.15, 1.1]]].forEach(([a, b]) => K.bar(a, b, 0.02, galv, 8, station));
+  [-0.35, 0.05].forEach(z => K.bar([-1.62, 0.1, z - 0.9], [-1.62, 3.6, z - 0.9], 0.02, galv, 8, station));
+  for (let k = 0; k < 11; k++) K.bar([-1.62, 0.35 + k * 0.3, -1.25], [-1.62, 0.35 + k * 0.3, -0.85], 0.014, galv, 6, station);
+
+  /* THE PAD AND THE COMPOUND: a concrete apron inside 7 x 6 m of chain link, the gate open in line with the door */
+  const apron = K.box(7.4, 0.1, 6.4, K.mat('conc-pad', { color: 0xd3cbbd, roughness: 0.9 }), 0, 0, 0.3, 0.03, station);
+  const FW = 7, FD = 6, FZ = 0.3;
+  const fence = (len, x, z, ry, seed) => { const f = K.make('chain_link_fence', { length: len, height: 1.83, color: 'galvanized', seed }); f.position.set(x, 0.1, z); f.rotation.y = ry; station.add(f); return f; };
+  fence(FW, 0, FZ - FD / 2, 0, 3); fence(FD, -FW / 2, FZ, Math.PI / 2, 4); fence(FD, FW / 2, FZ, Math.PI / 2, 5);
+  fence(1.9, -FW / 2 + 0.95, FZ + FD / 2, 0, 6); fence(2.2, FW / 2 - 1.1, FZ + FD / 2, 0, 7);
+  /* the gate leaf, swung open outward */
+  const gate = K.make('chain_link_fence', { length: 2.6, height: 1.83, color: 'galvanized', seed: 8 }); gate.rotation.y = 1.25; gate.position.set(-1.6 - 1.3 * Math.cos(1.25), 0.1, FZ + FD / 2 + 1.3 * Math.sin(1.25)); station.add(gate);
+
+  /* THE TECHNICIAN: in his vest at the open door, a hard case for the calibration gear in his right hand */
+  const HAND = [-0.3, 0.8, 0.06];
+  const tech = K.make('person', { role: 'worker', vest: true, pose: 'stand', seed: 12, hat: 'hard', hatColor: 0xf2f4f6, hands: [null, HAND] });
+  const caseM = K.mat('case-plastic', { color: 0x2b3142, roughness: 0.45 });
+  const kase = TXT.roundedBox(0.16, 0.4, 0.52, 0.03, caseM); kase.position.set(HAND[0], HAND[1] - 0.27, HAND[2]); tech.add(kase);
+  K.bar([HAND[0], HAND[1] - 0.06, HAND[2] - 0.08], [HAND[0], HAND[1] - 0.02, HAND[2] + 0.08], 0.014, caseM, 8, tech);
+  tech.position.set(0.15, 0.1, 2.15); tech.rotation.y = -0.35; station.add(tech);
+
+
+  /* THE CALIBRATION GAS: a rack of cylinders chained to the inside of the left fence */
+  const cylM = [K.mat('gas-cyl-paint-green', { color: 0x4f8f6c, metalness: 0.3, roughness: 0.4 }), K.mat('gas-cyl-paint-grey', { color: 0xaab2bc, metalness: 0.4, roughness: 0.35 })];
+  for (let k = 0; k < 4; k++) {
+    const c = TXT.lathe([[0, 0], [0.115, 0], [0.12, 0.03], [0.12, 1.3], [0.09, 1.42], [0.04, 1.47], [0, 1.47]], cylM[k % 2], { segments: 32 });
+    c.position.set(-3.15, 0.1, 0.9 + k * 0.3); c.castShadow = true; station.add(c);
+    K.cyl(0.025, 0.025, 0.1, galv, -3.15, 1.57, 0.9 + k * 0.3, 10, station);
+  }
+  K.bar([-3.0, 1.05, 0.65], [-3.0, 1.05, 2.05], 0.012, galv, 6, station);
+  K.bar([-3.0, 0.55, 0.65], [-3.0, 0.55, 2.05], 0.012, galv, 6, station);
+  /* THE UTILITY DROP: a pole outside the fence and the service cable to the meter pedestal */
+  const pole = K.make('utility_pole', { height: 6.6, transformer: true, guy: false, seed: 3 });
+  pole.position.set(-6.5, 0, -3.5); pole.rotation.y = 0.4; station.add(pole);
+  K.cable([-6.5, 5.5, -3.5], [-2.7, 1.45, 2.4], 0.6, 0.015, K.mat('service-cable', { color: 0x22262e, roughness: 0.6 }), station);
+
+  TXT.add(R, station);
+  TXT.contact(R, apron, { opacity: 0.75 });
+  TXT.contact(R, sh, { opacity: 0.6 });
+  TXT.contact(R, tech, { opacity: 0.8 });
+
+  /* THE PICKUP, parked behind the compound at its own true scale, nose to the gate road */
+  const truck = K.make('pickup', { color: 0x2c5fae, metallic: 0.45, seed: 5 });
+  truck.position.set(-9.2, 0, 3.6); truck.rotation.y = 0.35; TXT.add(R, truck); TXT.contact(R, truck, { opacity: 0.95 });
+
+  /* THE EMPTY LAND: one caprock mesa far off at left, scattered mesquite thinning in depth, no second station anywhere */
+  const mesa = K.make('mesa', { width: 150, height: 20, rock: 'red', aerial: 0.0004, seed: 9 });
+  { const dx = 16, dz = -68, n = Math.hypot(dx, dz), ux = dx / n, uz = dz / n; mesa.position.set(-16 + ux * 1300 + uz * 300, -1, 68 + uz * 1300 - ux * 300); }
+  mesa.rotation.y = 0.3; /* mesa left out: its base read as a ruled line */
+  /* low scrub mesquite in the middle distance, so the raking key has something to throw long shadows from */
+  [[-26, 30, 1.7], [-34, 14, 2.0], [-34, 46, 1.6], [8, 34, 1.6], [-40, -2, 2.2]].forEach(([x, z, h], i) => { const t = K.make('mesquite', { height: h, spread: h * 1.8, stems: 3, seed: 90 + i }); t.position.set(x, 0, z); t.rotation.y = i * 2.1; TXT.add(R, t); TXT.contact(R, t, { opacity: 0.6 }); });
+  const rr = CH.rng(77);
+  for (let i = 0; i < 9; i++) {
+    const z = -160 - Math.pow(rr(), 1.2) * 700, x = (rr() - 0.5) * (80 + -z * 1.4);
+    if (x > -6 && x < 14 && z > -40) continue;
+    const h = 2.2 + rr() * 1.6; const t = K.make('mesquite', { height: h, spread: h * 1.3, stems: 3, seed: 50 + i }); t.position.set(x, 0, z); t.rotation.y = rr() * 6; TXT.add(R, t);
+  }
+
+  const FROM = [-9.6, 6.1, 37];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [-2, 0, 1.5], 610, 1150, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { clouds: 0.1 }));
+  TXT.ground(R, { surface: 'caliche', color: 0xec9655, size: 9000, tile: 5, seed: 1118 });
+  TXT.scatter(R, { kind: 'grass', count: 7000, area: [-70, -260, 50, 66], avoid: [[-5, -4, 5, 5], [-9, 0, -4, 6]], seed: 21, scale: [0.35, 0.75] });
+  TXT.scatter(R, { kind: 'rock', count: 2600, area: [-40, -10, 20, 66], avoid: [[-4.5, -3.5, 4.5, 4.5]], seed: 22, scale: [0.012, 0.05], colors: [0xe8d2b0, 0xc79e78, 0xb08a6a] });
+
+  /* THE KEY: low from frame left, raking across the flat so every tuft throws a long shadow to the right */
+  const spec = CH.rigSpec(W, 56, 8192);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([-3, 0, 8], { distance: 90, shadowFar: 200, normalBias: 0.008 }), { light: { az: -86, el: 8 } }));
+  CH.unacne(R, 0.008);
+  TXT.weather(R, { grime: 0.25, height: 0.35, mottle: 0.2, skip: [rack] });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.46, fade: 220 });
+  CH.seat(cx, { sel: '.dek', a: 0.52, fade: 170 }); CH.seat(cx, { a: 0.4, fade: 320 });
+  ['.count', '.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.4, fade: 160 })); CH.seat(cx, { sel: '.kick', a: 0.34, fade: 170 });
+  TXLOOK.footWash(cx, { a: 0.45, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

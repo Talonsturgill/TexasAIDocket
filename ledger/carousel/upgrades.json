@@ -4036,4 +4036,47 @@
   "frontier scan": "None: prompts/machine_weekly.md names none"
  }
 }
+,
+"2026-11-18 weekly": {
+ "date": "2026-11-18",
+ "upgrades": [
+  {
+   "what": "art_preflight --write --critics binds the three-frame review from the slide critics' hand-backs on a bespoke run dated after 2026-11-18",
+   "why": "Queue art-preflight-has-no-bespoke-route at repeat 2: nos. 78, 80 and 81 each assembled art_preflight.json by hand from slide critic verdicts and re-assembled it after every repair of frame 1, the hardest frame or the close. The trigger for this pass.",
+   "files": [
+    "scripts/carousel/art_preflight.py",
+    "knowledge/carousel/BESPOKE.md"
+   ],
+   "verification": "python3 scripts/carousel/art_preflight.py --self-test: fourteen new cases. A critic frame binds only at verdict ship and score at or above bespoke.json critic_ship, with all six points, naming the render it read, in a run dated after CRITIC_SINCE; a stale render, a rework verdict, a score under the bar, a missing point, another slide, a stored frame edited afterwards, a director frame from a revise review and a closed run date all stay red. Mutations dropping the render binding, the score bar and the date each turned self-test cases red. Every shipped run since 2026-10-08 checks as before, and out/2026-11-18's check output is unchanged.",
+   "revert": "65713e28",
+   "how_i_would_know_this_was_wrong": "A bespoke run binds a frame through --critics that the panel then charges with a defect an art director's three positive judgements (encoding reads, subject finished, feed legible) would have refused, or a showrunner records a render_sha256 the critic never read; either means the critic's six points are a weaker reading than the art director's and the route should go back to the director for the evidence frame"
+  },
+  {
+   "what": "BESPOKE.md says a material relief owns neither its light nor its camera, and routes a raked or rekeyed picture to txthree",
+   "why": "Queue relief-bench-locks-camera-and-key (nos. 79 and 81) and no. 80's round 3 top ranked artwork defect (slide 2, a flat orthographic TXBENCH relief whose fix was a three quarter camera). The doctrine promised every slide its own light and camera, and txbench.js throws on any key but the chassis's.",
+   "files": [
+    "knowledge/carousel/BESPOKE.md"
+   ],
+   "verification": "grep -q 'TXBENCH light differs from the chassis' assets/js/txbench.js && grep -q 'TXBENCH light differs from the chassis' knowledge/carousel/BESPOKE.md: the doctrine quotes the engine's own refusal, and goes stale visibly if txbench.js changes it. Its real test is the next bespoke decks: no TXBENCH relief frame charged for want of a rake.",
+   "revert": "abf9dd4c",
+   "how_i_would_know_this_was_wrong": "Bespoke decks stop using reliefs altogether and six of nine physical frames gets harder to meet, or a relief frame is still charged for want of a raked camera, which would mean artists don't read this section and the fix belongs in the artist's brief or in txbench.js"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "BESPOKE MODE in prompts/daily_routine.md names the art_preflight --critics route after the slide critics",
+   "owner": "human",
+   "why": "The routine says a bespoke run has no three-frame audition while panel_ready requires one. UPGRADE_BACKLOG 2026-11-18 item 1"
+  },
+  {
+   "what": "TXBENCH.relief accepts its own light on a bespoke deck",
+   "owner": "human",
+   "why": "assets/js/txbench.js is human; nos. 79, 80 and 81. UPGRADE_BACKLOG 2026-11-18 item 2"
+  }
+ ],
+ "not_done": {
+  "artwork lift": "The last shipped round's ranked defects are one-deck story models, a relief (txbench, human) and a composition. The kit person is the recurring model and no. 81 renders it on frames 2, 5 and 8 while its artists rework them, and kit files are outside art_preflight's binding, so a default change would move pixels under an accepted review unseen. Carried a third time",
+  "frontier scan": "None: prompts/machine_weekly.md names none"
+ }
+}
 }
