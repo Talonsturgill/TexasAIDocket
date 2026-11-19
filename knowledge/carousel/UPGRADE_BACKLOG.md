@@ -6936,3 +6936,48 @@ Every other open item is carried as it stands. No frontier scan: the brief for t
 ### PROPOSAL: TXT.ground offsets its grid from a level camera (`assets/js/txthree.js`, human)
 
 Frame 5 held a level camera with a vertical lens shift so its paper columns stood plumb. The camera sat directly over a ground mesh vertex, that vertex projected at zero depth, and the whole 18.75 m cell under the lens rendered as a flat red and dark wall. The frame shifted its ground by whole 3 m tiles and throws when any nearby vertex sits within 0.75 m of the camera plane. The engine could do that itself, so the next level camera does not rediscover it. Queue item `level-camera-over-ground-vertex`. The K.make offset item queued today repeats the 2026-11-13 proposal 2 above.
+
+## 2026-11-18, the twenty-second weekly machine pass. One gate route, one doctrine fix, two proposals, carried items
+
+Due because `art-preflight-has-no-bespoke-route` reached repeat 2 (nos. 78, 80 and 81). The digest
+(`out/2026-11-18/week_digest.md`, seven runs, six scored) ranks "primitive or low-poly model where a kit
+model belongs" first at 6 runs and 16 rounds, and `variety` lowest on 4 runs.
+
+Shipped in lane: `scripts/carousel/art_preflight.py --write --critics` binds the three-frame review from the
+slide critics' hand-backs on a bespoke run dated after 2026-11-18 (commit 65713e28), and `BESPOKE.md` says a
+material relief owns neither its light nor its camera (commit abf9dd4c).
+
+### 1. PROPOSAL, for a maintainer: BESPOKE MODE names the critic route (`prompts/daily_routine.md`, human)
+
+BESPOKE MODE step 3 says "There is no three-frame audition", and Phase 12's `panel_ready` still requires an
+accepted `art_preflight.json`, so three runs assembled it by hand. Proposed wording for step 5, after the
+critics: "Save each hand-back to `out/<date>/slide_critics.json` with the `render_sha256` of the PNG that
+critic read, and run `art_preflight.py --date <date> --write --critics out/<date>/slide_critics.json`.
+`needs_review` names any frame that still needs `carousel-art-director`." `BESPOKE.md`, "The gates on a
+bespoke run", already carries it, so a run reading the doctrine finds it today. A further option, under
+`.claude/agents/carousel-slide-critic.md`: the critic prints the `sha256` of the PNG it read in its hand-back,
+so the digest comes from the reader rather than the showrunner.
+
+### 2. PROPOSAL, for a maintainer: a TXBENCH key and a modest oblique on a bespoke deck (`assets/js/txbench.js`, human)
+
+`TXBENCH.relief` replaces any light with the chassis's and throws `TXBENCH light differs from the chassis`
+otherwise, and draws plan view only. A bespoke deck gives each slide its own light (BESPOKE.md), so the relief
+is the one route that can't take it. Evidence: nos. 79 (frames 3, 5 and 8) and 81 (queue
+`relief-bench-locks-camera-and-key`), and no. 80's round 3 top ranked artwork defect, slide 2, a flat
+orthographic relief whose named fix was a three quarter camera. Proposed: when `TXDECK.deck().bespoke` is
+true, accept `o.light` as given. An oblique is a larger change (the cast march assumes plan), so the doctrine
+now routes that picture to `txthree`.
+
+### Deferred in lane
+
+- **The artwork lift.** The last shipped round is 2026-11-17 round 3. Its ranked defects are slide 2, the
+  relief (item 2 above), slide 7's gilded page stack, slide 4's tray pages and slide 1's scoring machine, all
+  one-deck story models, and slide 6's mullion tangency, a composition. The recurring model under the top
+  theme is the kit person (repeat 8, hands named on nos. 79 and 80), and no. 81 renders it on frames 2, 5 and
+  8 while its artists rework them. Kit files are not in `art_preflight`'s binding
+  (`art-preflight-binding-misses-kit-families`), so a default change today would move pixels under an
+  accepted review without staling it. Carried a third time. 2026-11-13 item 4 is the proposal that unblocks it.
+
+### Carried
+
+Every other open item is carried as it stands. No frontier scan: the brief for this pass names none.
