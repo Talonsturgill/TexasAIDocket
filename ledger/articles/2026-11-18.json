@@ -1,0 +1,99 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research",
+ "dek": {
+  "text": "UT Dallas researchers paired satellite air readings with CDC cancer data for every Texas county. Dirtier counties tended to have more cancer, and the authors say what that can't prove.",
+  "claims": [
+   "c1",
+   "c5",
+   "c11"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[A team in UT Dallas's School of Economic, Political and Policy Sciences studied all {{number:c1}} Texas counties and found geographic associations between air pollution and cancer prevalence](c1). [It used public CDC data on cancer prevalence and satellite data on air pollution](c2), [and applied a machine learning method to the correlations](c3).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[The satellites measured eight air pollutants in {{number:c4}}, among them sulfur dioxide, nitrogen dioxide, carbon monoxide, formaldehyde and methane](c4). [The readings came from the Sentinel-5 Precursor satellite and the Copernicus Atmosphere Monitoring Service](c23). [The paper went online {{date:c11}} in Environmental Monitoring and Assessment](c11).",
+   "claims": [
+    "c4",
+    "c23",
+    "c11"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the model found",
+   "paragraphs": [
+    {
+     "text": "[Counties with more pollution tended to have more cancer](c5). [Sulfur dioxide was the most influential environmental predictor](c6). [The paper compared four machine learning algorithms](c20), [and a support vector machine fit the data best](c21).",
+     "claims": [
+      "c5",
+      "c6",
+      "c20",
+      "c21"
+     ]
+    },
+    {
+     "text": "[The lead author describes three major clusters of air pollution in Texas](c7). [The east part of the state is worse in air quality, the west is better and the central part sits in between](c8). [Counties with higher cancer prevalence tended to sit near others with similarly high prevalence rather than at random](c9).",
+     "claims": [
+      "c7",
+      "c8",
+      "c9"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Why satellites",
+   "paragraphs": [
+    {
+     "text": "[Collecting pollution data from monitors on the ground is costly, which has limited this kind of spatial analysis](c13). [Remote sensing let the team look at air pollution across all of Texas](c17), [and the paper says satellite data can support health assessment where ground monitoring is unavailable](c25). [Rahman says the method can also show where medical centers are and where government should focus](c14).",
+     "claims": [
+      "c13",
+      "c17",
+      "c25",
+      "c14"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it can't show",
+   "paragraphs": [
+    {
+     "text": "[The study did not find that every more polluted place had more cancer](c10), [and the researchers say cancer reflects many influences besides pollution](c19). [They say the results are not sufficient evidence of a causal link between pollution and cancer risk in any one person](c11).",
+     "claims": [
+      "c10",
+      "c19",
+      "c11"
+     ]
+    },
+    {
+     "text": "[Satellite readings may also be less precise than readings from ground monitors](c12), [and the team wants more research on the cost and accuracy of the approach](c18). The published findings describe places, so a reader can't use them to judge the risk to a particular person or to rank a particular county.",
+     "claims": [
+      "c12",
+      "c18"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0251",
+   "label": "The study in the record"
+  }
+ ]
+}
