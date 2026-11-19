@@ -1,0 +1,255 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "1f313bb87a117c4c9bb6914811ae8506282786824c8d640d4b661231fcd70502",
+    "render/slide-01.png": "b5fe23757e8facffa33e23ff84afd93eecd364b295efa357bfaf0d5b6a6e9cf3",
+    "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "e21e0bbc270bd1fec3b67682f671c4a4cc209a975d82f224da87722164ad6a08",
+    "render/slide-05.png": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac",
+    "slides/slide-09.html": "4e4c1a9448e142e9fbe515602b80cf63512d97cabec653e9e7d44d23ec2ef0a4",
+    "render/slide-09.png": "dc748a9562ded23d9dffa0b2932ca36ed3d1f3074d7adc6d59e57d696fe027c6"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 53.5,
+      "mid": 0.62,
+      "dark": 0.002,
+      "grey_mid": 0.011,
+      "vivid": 0.837,
+      "median_C": 43.8
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 50.6,
+      "mid": 0.717,
+      "dark": 0.0,
+      "grey_mid": 0.142,
+      "vivid": 0.464,
+      "median_C": 29.2
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 53.5,
+      "mid": 0.694,
+      "dark": 0.0,
+      "grey_mid": 0.245,
+      "vivid": 0.45,
+      "median_C": 26.8
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "An extruded Texas slab with grooved county lines and layered stone walls, casting an attached shadow on a blue sweep. A lighter tinted sheet sits close over it, and a box satellite with one solar wing is upper right with a pale beam below it.",
+        "visual_consequence": "Every county, coast and Rio Grande included, sits under the accent sheet, so the image says one instrument in orbit read the whole state without the headline. At the lower opacity the county grooves read crisper through the sheet, and the sheet still shows as a distinct tinted layer with a glass rim.",
+        "weakness": "Minor. The sheet reads peach or salmon more than dusk gold. A clear glass rim runs past the panhandle and the far west edge. The beam is a faint wedge that lands near the slab's east edge. The satellite is a plain box with one flat panel.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "1f313bb87a117c4c9bb6914811ae8506282786824c8d640d4b661231fcd70502",
+          "render/slide-01.png": "b5fe23757e8facffa33e23ff84afd93eecd364b295efa357bfaf0d5b6a6e9cf3",
+          "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+          "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "A 10 by 10 grid of wooden lath stakes on a caliche pad in a grassland. The back rows carry bluebonnet ribbon flags and the near rows end in bare white caps. Three roped, empty pads with tripod levels sit behind it, and a small figure stands at the winning pad's corner.",
+        "visual_consequence": "One of four plots was staked and about four in five of its stakes are flagged. The other three were surveyed and carry nothing, so it reads as one method produced the fit without the headline.",
+        "weakness": "Minor. The three losing pads are small pale slabs in the hazy middle distance and read more as background lots than as rivals. The flags are flat unshaded ribbon planes of one blue. The figure is a stock kit person.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "e21e0bbc270bd1fec3b67682f671c4a4cc209a975d82f224da87722164ad6a08",
+          "render/slide-05.png": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A raking relief of flat-topped terrace blocks running to the horizon. A sunken detail circle holds a white monitor shelter with a short met mast, and next to it a warm-rimmed block holds a small town of pastel cubes.",
+        "visual_consequence": "The land is coarse everywhere except a sharp patch round one ground monitor, and one coarse block holding a town is marked as the place to check first.",
+        "weakness": "Minor. The rim reads warm orange gold. The blue strips inside the town block still read as water. The block tops have crumbly displaced edges at native size, and the left end of the circle's curved wall is a flat vertical fence.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "4e4c1a9448e142e9fbe515602b80cf63512d97cabec653e9e7d44d23ec2ef0a4",
+          "render/slide-09.png": "dc748a9562ded23d9dffa0b2932ca36ed3d1f3074d7adc6d59e57d696fe027c6"
+        }
+      }
+    ],
+    "inputs": {
+      "slides/slide-01.html": "1f313bb87a117c4c9bb6914811ae8506282786824c8d640d4b661231fcd70502",
+      "render/slide-01.png": "b5fe23757e8facffa33e23ff84afd93eecd364b295efa357bfaf0d5b6a6e9cf3",
+      "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "e21e0bbc270bd1fec3b67682f671c4a4cc209a975d82f224da87722164ad6a08",
+      "render/slide-05.png": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac",
+      "slides/slide-09.html": "4e4c1a9448e142e9fbe515602b80cf63512d97cabec653e9e7d44d23ec2ef0a4",
+      "render/slide-09.png": "dc748a9562ded23d9dffa0b2932ca36ed3d1f3074d7adc6d59e57d696fe027c6"
+    },
+    "reviewer": "carousel-art-director",
+    "note": "Refreshed after panel round 3 repairs of frames 1, 5 and 9. Frames 1 and 9 were revised once (sheet coverage, mast through type), frame 1 again for the detail floor, and accepted on re-review. After the review, fig_inject rewrote frames 5 and 9's FIG lines and a dead FIG check was removed from 9. Both re-rendered pixel identical to the accepted images (max difference 0), so the accepted verdicts were rebound to the new source hashes."
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "Texas held up as a slab of its own ground under a gold sheet of what the satellite read: the act of reading all 254 counties from orbit, one costly ground monitor on an empty flat, the satellite's eight gold wedges onto the state, a carved column of eight air bands with sulfur dioxide proud, four survey pads with the fit staked on the winner, three grounds under rising gold haze west to east, a floor of 254 flags with slate clumps, one resident inside a block of averaged air, and satellite blocks everywhere but a sharp circle round a monitor with one gold block to check first.",
+    "build_risk": "Frame 5 must stage a contest of four methods while drawing a fit value only for the winner: 79 of 100 flagged stakes must read at feed size and the three losing pads must read as contestants without implying any fit value for them.",
+    "distinct_from_recent": "November 17th was a violet scoring machine, a card drawer, paper towers and a lamplit desk in the watch tone; November 16th a gold ribbon and instruments; November 15th school desks and a gym; November 14th wafers and a county relief. This deck is the explainer tone in nine worlds, land, sky, studio and relief, with type in at least four places and no desks, paper or per county height map.",
+    "bespoke_note": "BESPOKE run: no three-frame audition before the build. The review bound in art_preflight.json is a carousel-art-director reading of the finished cover, frame 5 and the close after the slide critics' rounds."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "1f313bb87a117c4c9bb6914811ae8506282786824c8d640d4b661231fcd70502",
+      "render/slide-01.png": "b5fe23757e8facffa33e23ff84afd93eecd364b295efa357bfaf0d5b6a6e9cf3",
+      "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "e21e0bbc270bd1fec3b67682f671c4a4cc209a975d82f224da87722164ad6a08",
+      "render/slide-05.png": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac"
+    },
+    "9": {
+      "assets/js/deck/2026-11-18-landbench-bespoke.js": "912afea86d9cdb7fce70169bfb771e3861743ee8c8b2ce86e923b41da9a10bfd",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "4e4c1a9448e142e9fbe515602b80cf63512d97cabec653e9e7d44d23ec2ef0a4",
+      "render/slide-09.png": "dc748a9562ded23d9dffa0b2932ca36ed3d1f3074d7adc6d59e57d696fe027c6"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "1f313bb87a117c4c9bb6914811ae8506282786824c8d640d4b661231fcd70502",
+    "slide-01.webp": "709234febaddceb421a5d04189283cabad59273cba5bd51d9a41ce2a5ad437ea",
+    "slides/slide-05.html": "e21e0bbc270bd1fec3b67682f671c4a4cc209a975d82f224da87722164ad6a08",
+    "slide-05.png": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac",
+    "slides/slide-09.html": "4e4c1a9448e142e9fbe515602b80cf63512d97cabec653e9e7d44d23ec2ef0a4",
+    "slide-09.webp": "587f7dfd21e1106349fa5abfb12c2f596a91dd50c73279e20424af3d7f964f08"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "709234febaddceb421a5d04189283cabad59273cba5bd51d9a41ce2a5ad437ea",
+      "from_sha256": "b5fe23757e8facffa33e23ff84afd93eecd364b295efa357bfaf0d5b6a6e9cf3",
+      "psnr_db": 40.354
+    },
+    {
+      "to": "slide-05.png",
+      "to_sha256": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac",
+      "from_sha256": "9c0e024f4b6920daf4325a73899590a0ac780d9f2959a001c1d49e20432193ac",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "587f7dfd21e1106349fa5abfb12c2f596a91dd50c73279e20424af3d7f964f08",
+      "from_sha256": "dc748a9562ded23d9dffa0b2932ca36ed3d1f3074d7adc6d59e57d696fe027c6",
+      "psnr_db": 41.054
+    }
+  ]
+}

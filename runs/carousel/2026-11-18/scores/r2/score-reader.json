@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Bespoke; strong 4, 6, 7, improved 3 and 2. Held at 7.5 by 5 (79 of 100 specks at feed size), 8 (game-grade resident, thin kerb), 9 (abstract tiles at thumb size, tiny town, circle reads as a crater), 1 (gold sheet invisible at 432 px)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Spine holds on all nine; orbit to ground camera; west left, east right. The accent's meaning doesn't survive at feed size: cover sheet invisible, warm limestone on 7, warm caliche on 5."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; cover finding is c5; caveats follow c11, c10, c12; R squared framed as a fit. Deductions: c21 medium confidence carries 5's dek; slide 6 joins c7 and c8 into one Dong sentence; the caption's closing question leans past c25 and c14. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "The finding is now on the cover and the limit is clear, but no county, city or metro is named, nothing says where sulfur dioxide comes from, and the close gives no place or lever."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover now carries the finding. The middle is method heavy (2 and 3 background, 5 a statistics lesson); 6 and 7 deliver, 8 lands, 9 closes on a quote and a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and fair; 'A place is not a person' and 'Stand in any one of those counties' read human. Jargon untranslated (support vector machine, R squared, Moran's I); 'drawn to illustrate' on seven deks; no place named below east and west."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh topic; question opener off the recent list; new orbit and terrarium vocabulary. Flagged stakes repeat November 11th and 5th; the explainer cerulean repeats November 14th."
+  }
+ ],
+ "weighted_score": 7.21,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "Under the round 2 rung of 7.7 by score only; no hard fail.",
+ "one_sentence_fix": "Give the reader a place and a lever, sourced.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "79 flagged and 21 bare stakes are specks at 432 px; the four pads a pale blur.",
+   "fix": "Camera about 4 m and pushed in so the grid fills the width with flags large; 21 bare as one front band; losing pads visible behind."
+  },
+  {
+   "slide": 9,
+   "problem": "Abstract tiles at feed size; the town tiny; the circle reads as a crater.",
+   "fix": "Lower, tighter camera with the gold block a third of the frame in the foreground, rooftops legible, brightest point; raise the monitor as a readable mast."
+  },
+  {
+   "slide": 8,
+   "problem": "Game-grade resident; thin kerb weak against the grass.",
+   "fix": "Crop the resident to a rim-lit silhouette; widen the kerb; focus on its far turned corner."
+  },
+  {
+   "slide": 1,
+   "problem": "Gold air sheet invisible at 432 px; slab pale lavender white.",
+   "fix": "Visible dusk gold transmission tint catching the key, its shadow across the eastern counties."
+  }
+ ]
+}

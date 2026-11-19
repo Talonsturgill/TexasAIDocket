@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.9,
+   "why": "Per frame 1=7.0, 2=6.8, 3=7.0, 4=6.8, 5=7.3, 6=7.5, 7=7.5, 8=6.0, 9=7.0, taken under the mean because the declared showstopper (8) is the weakest. The bespoke half passes: nine pictures made for nine sentences in distinct worlds, v2 colour everywhere. Craft stops it: 8 is a game-avatar figure with a pale pink kerb and a clip edge slicing the right oak; 3 has a near black instrument block and a stray blue streak; 4 reads as a flat UI graphic with a detached shadow lump; 2's subject is a third of the width under a heavy navy wash; 1's slab top is one peach; 9's outlined block sits over an empty field."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "The spine holds: one palette and grade, fixed type furniture, a real orbit to ground camera move, east right. The accent's one meaning is diluted by peach ground on 1, 5 and 7 and renders pink on 8 and coral on 9. Frame 4's flat column sits slightly outside the rendered worlds."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every slide numeral traces to figures.json and claims; art counts are asserted in code. Slide 5 states R squared is a fit, slide 8 the ecological limit. Frame 6's three clusters rest on the lead author's interview wording (c7), not the paper's text."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Clear what happened, where and what it can't say. No county named and no action for a reader; the caption's closing question carries the only civic stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 pays at once, 8 is a real turn and 9 closes on purpose. 3 restates the cover's satellite."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Careful and on register without doom. 'Drawn to illustrate' on all nine reads mechanical; 9's dek is four stacked sentences with a citation; reads as a science desk more than a Texan."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Topic, palette and land treatment fresh against November 17th. The extruded Texas cover is a familiar opener; 7 and 9's reliefs echo November 14th."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No fault found. Under the round 1 rung of 8.0, so a work order for another round, not a hold.",
+ "one_sentence_fix": "Rebuild frame 8 around a properly modelled, rim-lit resident filling 45 percent of the height, a true #E0956A kerb running to a visible turned corner, and no haze clip on the right oak.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Game-avatar figure, kerb pale pink with no turned corner, a vertical clip edge slices the right live oak, house washed pink.",
+   "fix": "A sculpted rim-lit figure, kerb true #E0956A, camera 0.2 m lower so the far corner shows, feather the haze volume causing the clip."
+  },
+  {
+   "slide": 3,
+   "problem": "Near black instrument block, a floating blue streak artifact, cellophane foil, the swath hits nothing.",
+   "fix": "Graphite instrument at L* 25 or more with a cool rim, delete the streak, a sweep floor for the swath to land on with glow and shadow."
+  },
+  {
+   "slide": 4,
+   "problem": "Reads as a flat UI graphic; the SO2 band's shadow is a detached lump outside the rail; flat strata.",
+   "fix": "Lower raking key so each band casts onto the next and the SO2 shadow falls inside the column; real height on the strata lips."
+  },
+  {
+   "slide": 2,
+   "problem": "Station a third of the width, mesa on a ruled cut, navy wash over the top 45 percent reads as a plate.",
+   "fix": "Dolly in, horizon 0.55, mesa base in ground haze, wash thinned to a gradient behind the type only."
+  },
+  {
+   "slide": 1,
+   "problem": "Slab top one peach, air sheet reads as a clear box, jagged orange fringes on the cut edge.",
+   "fix": "Regional low-chroma albedos, a full-state #E0956A glass layer with its own shadow, clip the fringes."
+  },
+  {
+   "slide": 9,
+   "problem": "No town visible, the outlined block sits over empty field; low-chroma mustard tops.",
+   "fix": "A town grid averaged to the block's height inside the outline; saturated warm caliche and limestone."
+  }
+ ]
+}

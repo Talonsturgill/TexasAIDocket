@@ -2791,6 +2791,37 @@
     "testing",
     "reading"
    ]
+  },
+  {
+   "date": "2026-11-18",
+   "carousel_no": 81,
+   "docket_item": "tx-2026-0251",
+   "related_items": [],
+   "instrument": "UT Dallas's November 6th, 2026 news release on its Texas air pollution and cancer study and the abstract of the paper in Environmental Monitoring and Assessment, fetched November 18th, 2026.",
+   "topic": "A UT Dallas team paired satellite readings of air pollutants from 2022 with CDC cancer prevalence for every Texas county and used machine learning. Counties with more pollution tended to have more cancer, sulfur dioxide was the strongest environmental predictor, the east had the worst air and the west the best, and high cancer counties sat near each other. The researchers say it is an association between places, not evidence that pollution causes cancer in any single person, and that satellite data may be less precise than ground monitors.",
+   "angle": "Texas as a slab of its own ground read from orbit under a gold sheet of measured air. A costly ground monitor on an empty caliche flat, the satellite and its gold swath landing on fields and roads, a carved column of air bands with sulfur dioxide proud on top, survey pads with most stakes flagged on the pad that won, Texas grounds west to east under rising haze, a floor of flags with slate stones clumped, a resident in silhouette beside a parcel's gold boundary, and satellite blocks everywhere but a sharp circle round a monitor with a gold block to check first.",
+   "angle_note": "Every frame is drawn to illustrate. No county is named or valued. R squared is a model fit and Moran's index is cancer clustering. Gold means what the satellite read only.",
+   "entities": [
+    "UT Dallas",
+    "CDC",
+    "Sentinel-5 Precursor",
+    "Copernicus Atmosphere Monitoring Service",
+    "Environmental Monitoring and Assessment"
+   ],
+   "places": [
+    "Texas"
+   ],
+   "what_was_refused": "liquor consumption as the strongest predictor overall (the abstract says only relative), the 30 to 60 percent predictor weights, TROPOMI (not named), a licence string on the article page, and the synapsesocial aggregator as any source.",
+   "keywords": [
+    "air pollution",
+    "cancer",
+    "satellite",
+    "machine learning",
+    "sulfur dioxide",
+    "UT Dallas",
+    "public health",
+    "remote sensing"
+   ]
   }
  ]
 }

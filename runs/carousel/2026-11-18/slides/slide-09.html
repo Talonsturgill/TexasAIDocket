@@ -1,0 +1,284 @@
+<!doctype html>
+<!-- 2026-11-18, frame 9 of 9, the close. BESPOKE. A spatial scene through txthree.js: a high oblique aerial over an
+illustrative stretch of Texas land. Everywhere outside one circle the land is flattened into satellite blocks, each the
+average of its own ground's height and colour, receding in a grid to the horizon. Inside the circle the terraced ground
+keeps its full detail round one small air monitor station. One block away from the monitor, itself a coarse average like
+every other block, is framed in raised dusk gold, the only accent on the frame. Key low from the east, frame right. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:150px; width:920px; text-align:center">Where to look first</h1>
+<p class="dek" data-follow="22" style="left:110px; width:860px; text-align:center; text-wrap:balance">The team says the method can show where medical centers are and where government should focus. The team wants more research on cost and accuracy. The paper ran online March 5th in Environmental Monitoring and Assessment. The land and its blocks are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  /* THIS FRAME DRAWS NO QUANTITY. The brief hands it no figure, so nothing here is a count or a length. */
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What it is for", counter: "09 / 09", src: "c14 c18 c11", fit: { min: 84, max: 112, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 60, near: 0.1, far: 3000, fog: 0.0042 });
+  TX.reseed(20261118);
+
+  /* ---- THE LAND -------------------------------------------------------------------------------------------------
+   * BLOCK is the size of one satellite block, an ILLUSTRATIVE constant in scene units, never a real pixel size.
+   * terr() is the full detail land, terraced caliche and limestone with scrub, from noise.js fBm. Outside the one
+   * circle round the monitor, every point takes the AVERAGE height and colour of its own block's ground (cell()). */
+  const BLOCK = 6;                 /* illustrative block size */
+  const M = [-6.2, -13.2], RC = 5.5;    /* the monitor post stands at the centre of the one sharp circle */
+  const TOWN = [0, -2];            /* the block (i, j) over the town, framed in dusk gold */
+  const lin = (hex) => { const c = new THREE.Color(hex); return [c.r, c.g, c.b]; };
+  /* ONE FAMILY OF GROUND VALUES, caliche and limestone, so no block reads as a mapped value and the gold is the only
+   * warm saturated note on the land */
+  const PAL = { caliche: lin(0xc6a644), lime: lin(0xdcc46a), grey: lin(0x8ea228), cut: lin(0x7a7240),
+    scrub: lin(0x58622f), curb: lin(0xf2f6fb), townTop: lin(0xe8e2cc), roofA: lin(0xa4a8a0), roofB: lin(0xe6e2d6), roofC: lin(0x6c7068), pad: lin(0xe2d2b8), road: lin(0x4a423e), lot: lin(0xd8c49e) };
+  const mix3 = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const ss = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+  /* the full detail ground: height and colour at one point */
+  const TER = 0.8;
+  function terr(x, z) {
+    const base = TX.fbm2(x * 0.032 + 7.3, z * 0.032 - 2.1, { octaves: 5 });
+    let h = 2.4 + base * 2.7;
+    const q = h / TER, f = q - Math.floor(q);
+    h = (Math.floor(q) + ss(0.45, 0.98, f)) * TER;                      /* treads and limestone risers */
+    h += TX.simplex2(x * 0.9, z * 0.9) * 0.035;
+    const b = TX.simplex2(x * 1.7 + 40, z * 1.7 - 11);
+    const bush = b > 0.5 ? (b - 0.5) * 0.4 : 0;
+    return { h: h + bush, riser: f > 0.5 && f < 0.95 ? 1 : 0, bush: bush > 0 ? 1 : 0 };
+  }
+  function terrCol(x, z, t) {
+    const p = TX.fbm2(x * 0.018 + 50, z * 0.018 - 30, { octaves: 3 });
+    const p2 = TX.fbm2(x * 0.026 - 90, z * 0.026 + 15, { octaves: 3 });
+    let c = mix3(PAL.caliche, PAL.lime, ss(-0.1, 0.3, p));
+    c = mix3(c, PAL.grey, ss(-0.05, 0.35, p2) * 0.85);
+    if (t.riser) c = mix3(c, PAL.lime, 0.7);
+    if (t.bush) c = mix3(c, PAL.scrub, 0.8);
+    if (Math.hypot(x - M[0], z - M[1]) < RC) c = mix3(c, PAL.scrub, ss(0.1, 0.5, p2) * 0.35);   /* grass in the hollows, seen only where the ground is seen whole */
+    const m = 1 + TX.simplex2(x * 2.3, z * 2.3) * 0.05;
+    return [c[0] * m, c[1] * m, c[2] * m];
+  }
+  /* one block's reading: the mean of an 8 by 8 sample of its ground's height and colour */
+  const cells = new Map();
+  function cell(i, j) {
+    const key = i + ',' + j; let c = cells.get(key); if (c) return c;
+    let h = 0, col = [0, 0, 0]; const n = 8;
+    for (let a = 0; a < n; a++) for (let b = 0; b < n; b++) {
+      const x = (i + (a + 0.5) / n) * BLOCK, z = (j + (b + 0.5) / n) * BLOCK, t = terr(x, z), k = terrCol(x, z, t);
+      h += t.h; col[0] += k[0]; col[1] += k[1]; col[2] += k[2];
+    }
+    c = { h: h / (n * n), col: col.map(v => v / (n * n)) };
+    cells.set(key, c); return c;
+  }
+  /* the marked block is a satellite block like every other: its height and colour are its own ground's average.
+   * Only the raised gold outline sets it apart. */
+  const townCell = cell(TOWN[0], TOWN[1]);
+  const TOWN_H = townCell.h;
+    /* THE CIRCLE IS CUT INTO THE GRID: its full detail ground keeps every terrace, recessed below the lowest block
+   * that touches it so the block faces form its edge and throw their shadow across it */
+  let tMean = 0, nM = 0; for (let a = -RC; a <= RC; a += 0.5) for (let b = -RC; b <= RC; b += 0.5) if (a * a + b * b < RC * RC) { tMean += terr(M[0] + a, M[1] + b).h; nM++; } tMean /= nM;
+  let rimMin = Infinity; for (let i = Math.floor((M[0] - RC) / BLOCK); i <= Math.floor((M[0] + RC) / BLOCK); i++) for (let j = Math.floor((M[1] - RC) / BLOCK); j <= Math.floor((M[1] + RC) / BLOCK); j++) rimMin = Math.min(rimMin, cell(i, j).h);
+  const FLOOR = rimMin - 0.32;
+  const hin = (t) => Math.min(rimMin - 0.06, (t.h - tMean) * 0.5 + FLOOR);
+  const padM = hin(terr(M[0], M[1]));
+  const LIP = 0.2;
+  const TX0 = TOWN[0] * BLOCK, TZ0 = TOWN[1] * BLOCK, RIM = 0.2;
+  const STREETS = [1.55, 3.0, 4.45], SW = 0.16;
+
+  /* the town's streets, shared by the ground colour and the building placement */
+  function townStreet(u, v) {
+    const SU = [0.95, 1.8, 2.55, 3.5, 4.35, 5.05], SV = [1.05, 1.95, 2.75, 3.65, 4.55];
+    const near = (w, L) => L.reduce((m, g) => Math.min(m, Math.abs(w - g)), 9);
+    const main = Math.abs(u - 2.55) < 0.09 || Math.abs(v - 2.75) < 0.09;          /* the two wider main streets */
+    const hwy = Math.abs((u - 0.6) * 0.42 - (v - 0.4) * 0.91) < 0.08 && !main;     /* a highway cutting across on a slant */
+    const brk = (k) => Math.abs(Math.sin(k * 91.7)) < 0.3;   /* some side streets end at a lot */
+    let su = near(u, SU), sv = near(v, SV); if (!main && brk(Math.floor(v / 0.9) * 7 + Math.floor(u))) su = 9; if (!main && brk(Math.floor(u / 0.85) * 5 + Math.floor(v) + 3)) sv = 9;
+    return { street: hwy ? 0 : Math.min(su, sv), gw: main || hwy ? 0.09 : 0.05, main, su, sv };
+  }
+
+  /* height and colour at a point, the whole rule of the frame in one place */
+  function ground(x, z, out) {
+    const dM = Math.hypot(x - M[0], z - M[1]);
+    if (dM < RC) {                                                      /* THE SHARP CIRCLE: full detail */
+      const t = terr(x, z); let h = hin(t), c = terrCol(x, z, t);
+      const pk = 1 - ss(1.1, 1.9, dM); h = h + (padM - h) * pk;         /* the station's levelled pad */
+      if (pk > 0.5) c = mix3(c, PAL.pad, 0.8);
+      const e = ss(RC - 0.42, RC - 0.12, dM);                            /* the pale cut rim of the circle */
+      out[0] = h; out[1] = c; return;
+    }
+    const i = Math.floor(x / BLOCK), j = Math.floor(z / BLOCK);
+    const u = x - i * BLOCK, v = z - j * BLOCK, d = Math.min(u, BLOCK - u, v, BLOCK - v);
+    let a, c, town = true;
+    {                                                                    /* A SATELLITE BLOCK: the average */
+      const k = cell(i, j); a = k.h; town = false; const mo = 1 + TX.simplex2(x * 1.3, z * 1.3) * 0.045 + TX.simplex2(x * 6, z * 6) * 0.02; c = [k.col[0] * mo, k.col[1] * mo, k.col[2] * mo];
+      if (i === TOWN[0] && j === TOWN[1]) {
+        /* THE TOWN AT SATELLITE RESOLUTION: the block keeps its averaged height, and its top carries only a faint town,
+         * shallow street grooves and blurred roof tints at reduced contrast, so a reader sees a town under the reading */
+        town = true;
+        const u = x - i * BLOCK, v = z - j * BLOCK, inner = Math.min(u, BLOCK - u, v, BLOCK - v) > RIM + 0.05;
+        c = mix3(c, PAL.townTop, 0.2);
+        if (inner) {
+          const { street, gw, main } = townStreet(u, v);
+          if (street < gw) { a -= 0.02 * (1 - street / gw); c = mix3(c, PAL.road, (main ? 0.32 : 0.22) * (1 - street / gw)); }
+          else {
+            const n = TX.simplex2(x * 6.5, z * 6.5) * 0.6 + TX.simplex2(x * 15, z * 15) * 0.4;
+            const lotn = Math.abs(Math.sin(Math.floor(u / 0.5) * 12.99 + Math.floor(v / 0.44) * 78.23)) % 1;
+            c = mix3(c, lotn < 0.3 ? PAL.roofA : lotn < 0.55 ? PAL.roofB : lotn < 0.7 ? PAL.roofC : mix3(PAL.roofA, PAL.roofB, ss(-0.35, 0.35, n)), 0.72);
+            /* rooftops stand up off their lots, so the town reads as buildings at feed size */
+
+            const tr = TX.simplex2(x * 9 + 13, z * 9 - 4); if (tr > 0.55) c = mix3(c, PAL.scrub, (tr - 0.55) * 0.9);
+          }
+        }
+      }
+    }
+    if (!town && d < 0.55) {                                             /* chipped, weathered lips: limestone shows where the edge wore */
+      const n = TX.simplex2(x * 3.1 + j * 7.7, z * 3.1 + i * 5.3) * 0.7 + TX.simplex2(x * 9, z * 9) * 0.3;
+      if (n > 0.2) { const k2 = Math.min(1, (n - 0.2) / 0.5) * (1 - d / 0.55); a -= k2 * 0.15; c = mix3(c, PAL.lime, k2 * 0.7); }
+    }
+    if (d < LIP) {                                                       /* a rounded lip down into the seam */
+      const drop = LIP - Math.sqrt(LIP * LIP - (LIP - d) * (LIP - d));
+      a -= drop + (d < 0.05 ? 0.12 : 0);
+      const ao = 0.62 + 0.38 * (d / LIP); c = [c[0] * ao, c[1] * ao, c[2] * ao * 1.04];
+    }
+    out[0] = a; out[1] = c;
+  }
+
+  const landMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.93, metalness: 0 });
+  landMat.name = 'caliche-limestone-land';
+  const WALL = lin(0xa8904a);
+  function field(x0, x1, z0, z1, step) {
+    const nx = Math.round((x1 - x0) / step) + 1, nz = Math.round((z1 - z0) / step) + 1;
+    const P = new Float32Array(nx * nz * 3), C = new Float32Array(nx * nz * 3), Hh = new Float32Array(nx * nz), o = [0, null];
+    for (let r = 0; r < nz; r++) for (let q = 0; q < nx; q++) {
+      const x = x0 + q * step, z = z0 + r * step, k = r * nx + q; ground(x, z, o);
+      Hh[k] = o[0]; P[k * 3] = x; P[k * 3 + 1] = o[0]; P[k * 3 + 2] = z; C[k * 3] = o[1][0]; C[k * 3 + 1] = o[1][1]; C[k * 3 + 2] = o[1][2];
+    }
+    const Nn = new Float32Array(nx * nz * 3);
+    for (let r = 0; r < nz; r++) for (let q = 0; q < nx; q++) {
+      const k = r * nx + q, hl = Hh[r * nx + Math.max(0, q - 1)], hr = Hh[r * nx + Math.min(nx - 1, q + 1)];
+      const hu = Hh[Math.max(0, r - 1) * nx + q], hd = Hh[Math.min(nz - 1, r + 1) * nx + q];
+      let ax = -(hr - hl) / (2 * step), az = -(hd - hu) / (2 * step); const l = Math.hypot(ax, 1, az);
+      Nn[k * 3] = ax / l; Nn[k * 3 + 1] = 1 / l; Nn[k * 3 + 2] = az / l;
+      /* A CLIFF IS A CLEAN FACE: on a wall steeper than 70 degrees the normal snaps to the wall's own axis and the
+       * colour to one cut limestone value, so a block face takes a clean cast and carries no smear streaks */
+      if (Math.hypot(ax, az) > 2.75) {
+        const sx = Math.abs(ax) >= Math.abs(az), n0 = sx ? Math.sign(ax) : 0, n2 = sx ? 0 : Math.sign(az), ln = Math.hypot(n0, 0.12, n2);
+        Nn[k * 3] = n0 / ln; Nn[k * 3 + 1] = 0.12 / ln; Nn[k * 3 + 2] = n2 / ln;
+        C[k * 3] = WALL[0]; C[k * 3 + 1] = WALL[1]; C[k * 3 + 2] = WALL[2];
+      }
+    }
+    const I = new Uint32Array((nx - 1) * (nz - 1) * 6); let n = 0;
+    for (let r = 0; r < nz - 1; r++) for (let q = 0; q < nx - 1; q++) {
+      const a = r * nx + q, b = a + 1, c = a + nx, d = c + 1; I[n++] = a; I[n++] = c; I[n++] = b; I[n++] = b; I[n++] = c; I[n++] = d;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(P, 3)); g.setAttribute('normal', new THREE.BufferAttribute(Nn, 3));
+    g.setAttribute('color', new THREE.BufferAttribute(C, 3)); g.setIndex(new THREE.BufferAttribute(I, 1));
+    const m = new THREE.Mesh(g, landMat); m.castShadow = true; m.receiveShadow = true;
+    m.userData.txGround = true; m.userData.txBevel = false; R.scene.add(m); return m;
+  }
+  field(-42, 42, -60, 24, 0.06);
+  field(-108, 108, -162, -60, 0.2);
+  field(-450, 450, -720, -162, 1.0);
+
+  /* ---- THE TOWN'S BUILDINGS: real boxes with flat roofs on their lots, so rooftops read at feed size --------- */
+  {
+    const roofs = [0xe9e5da, 0xb9bcb4, 0xd7cdb8, 0x9fa6ac].map((h, k) => { const m = new THREE.MeshStandardMaterial({ color: h, roughness: 0.7 }); m.name = 'painted-roof-' + k; return m; });
+    let nB = 0;
+    for (let qi = 0; qi < 12; qi++) for (let qj = 0; qj < 14; qj++) {
+      const u = (qi + 0.5) * 0.5, v = (qj + 0.5) * 0.44;
+      if (Math.min(u, BLOCK - u, v, BLOCK - v) < RIM + 0.3) continue;
+      const lotn = Math.abs(Math.sin(qi * 12.99 + qj * 78.23)) % 1;
+      if (lotn >= 0.72) continue;
+      const st = townStreet(u, v), sw = Math.min(st.su, st.sv);
+      const hw = 0.17, hd = 0.14;
+      if (st.main || Math.min(townStreet(u - hw, v).street, townStreet(u + hw, v).street, townStreet(u, v - hd).street, townStreet(u, v + hd).street, st.street) < 0.07) continue;
+      const bh = 0.1 + lotn * 0.32 + (Math.hypot(u - 2.55, v - 2.75) < 1.2 ? 0.35 : 0);
+      const b = new THREE.Mesh(new THREE.BoxGeometry(hw * 2, bh, hd * 2), roofs[Math.floor(lotn * 10) % 4]);
+      b.position.set(TX0 + u, TOWN_H - 0.02 + bh / 2, TZ0 + v); b.castShadow = true; b.receiveShadow = true; TXT.add(R, b); nB++;
+    }
+    if (nB < 20) throw new Error('town drew too few buildings: ' + nB);
+  }
+
+  /* ---- THE CIRCLE'S CUT EDGE: a pale limestone curb that follows the ground round the sharp circle, so its rim
+   * is one clean line where the full detail ground meets the averaged blocks ---------------------------------- */
+  {
+    const curbM = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92, side: THREE.DoubleSide }); curbM.name = 'caliche-cut-face';
+    const NS = 900, CW = 0.1, P = [], C = [], I = [], o = [0, null];
+    const inner = (a) => hin(terr(M[0] + Math.cos(a) * (RC - 0.3), M[1] + Math.sin(a) * (RC - 0.3)));
+    const outer = (a) => { ground(M[0] + Math.cos(a) * (RC + 0.03), M[1] + Math.sin(a) * (RC + 0.03), o); return [o[0], o[1]]; };
+    for (let k = 0; k <= NS; k++) {
+      const a = k / NS * Math.PI * 2, hi = inner(a), oc = outer(a), ho = oc[0], top = Math.max(hi + 0.05, ho + 0.004), bot = hi - 0.4, kc = oc[1];
+      const c = Math.cos(a), sn = Math.sin(a);
+      [[RC - CW, bot, PAL.cut], [RC - CW, top, kc], [RC + CW, top, kc], [RC + CW, bot, PAL.cut]].forEach(([r, y, col]) => { P.push(M[0] + c * r, y, M[1] + sn * r); C.push(col[0], col[1], col[2]); });
+    }
+    for (let k = 0; k < NS; k++) for (let f = 0; f < 3; f++) { const a = k * 4 + f, b = a + 1, c2 = a + 4, d = b + 4; I.push(a, c2, b, b, c2, d); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(C, 3)); g.setIndex(I); g.computeVertexNormals();
+    const curb = new THREE.Mesh(g, curbM); curb.castShadow = true; curb.receiveShadow = true; curb.userData.txBevel = false; R.scene.add(curb);
+  }
+
+  /* ---- THE MONITOR: the chassis's air monitor shelter, scaled down, on its pad at the circle's centre --------- */
+  const SCALE = 0.85;
+  const station = K.make('air_monitor_shelter', { mast: 4 });
+  station.scale.setScalar(SCALE); station.position.set(M[0], padM, M[1]); station.rotation.y = -0.5;
+  /* the shelter reads second: its white is toned toward the field's own caliche */
+  station.traverse(o => { if (o.isMesh && o.material && o.material.color && !o.material.__toned) { o.material = o.material.clone(); o.material.color.lerp(new THREE.Color(0xb4b29a), 0.45); o.material.__toned = true; } });
+  TXT.add(R, station); TXT.contact(R, station, { opacity: 0.6 });
+  if (Math.hypot(station.position.x - M[0], station.position.z - M[1]) > 1e-9) throw new Error('the monitor post must stand at the centre of the sharp circle');
+
+  /* ---- THE ACCENT: the one block over the town, outlined in raised dusk gold --------------------------------- */
+  const gold = new THREE.MeshPhysicalMaterial({ color: 0xe8a04e, emissive: 0xd88a3c, emissiveIntensity: 0.3, metalness: 0.35, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.08 });
+  gold.name = 'dusk-gold-rim';
+  const RH = 0.2, RW = 0.17;
+  [[BLOCK / 2, RW / 2, BLOCK, RW], [BLOCK / 2, BLOCK - RW / 2, BLOCK, RW], [RW / 2, BLOCK / 2, RW, BLOCK - 2 * RW], [BLOCK - RW / 2, BLOCK / 2, RW, BLOCK - 2 * RW]].forEach(([cxu, cxv, w, d]) => {
+    const bar = TXT.roundedBox(w, RH, d, 0.09, gold); bar.position.set(TX0 + cxu, TOWN_H - 0.06 + RH / 2, TZ0 + cxv); TXT.add(R, bar);
+  });
+
+  /* ---- CAMERA, SKY, KEY ------------------------------------------------------------------------------------- */
+  const FROM = [-1.2, 12.5, 12];
+  TXT.frame(R, { fov: 50, from: FROM, look: [-1.9, 1.5, -26] });
+  const where = (p) => CH.project(THREE, R, p).map(Math.round);
+  console.log('FRAME9 townH ' + TOWN_H.toFixed(2) + ' own ' + townCell.h.toFixed(2) + ' town ' + where([TX0 + 3, TOWN_H, TZ0 + 3]) + ' monitor ' + where([M[0], padM, M[1]]) + ' horizon ' + where([0, 0, -5000]));
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { zenith: 0x1a4fb6, horizon: 0x6fb2f2, haze: 0x9ccdf6, clouds: 0.1 }));
+  const spec = CH.rigSpec(W, 30, 4096); spec.key = Object.assign({}, spec.key, { radius: 3, i: 4.4, color: 0xfff6e8 });
+  /* shade sides lean into indigo, never grey */
+  spec.fill = Object.assign({}, spec.fill, { color: 0x4f3fd8, i: 1.25 }); spec.ambient = { color: 0x5546d6, i: 0.72 };
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([-5, 0, -16], { distance: 70, shadowFar: 160, normalBias: 0.03 }), { light: { az: 82, el: 27 } }));
+  CH.unacne(R, 0.03);
+
+  /* THE BRIGHTEST POINT: a narrow spot on the frame's own key bearing, so the marked block is lit hardest and its
+   * casts run with the sun's */
+  {
+    const az = 82 * Math.PI / 180, el = 27 * Math.PI / 180, d = 80, at = [TX0 + BLOCK / 2, TOWN_H, TZ0 + BLOCK / 2];
+    const sp = new THREE.SpotLight(0xfff8ec, 0.9, 0, Math.atan(4.6 / d), 0.45, 0);
+    sp.position.set(at[0] + d * Math.sin(az) * Math.cos(el), at[1] + d * Math.sin(el), at[2] + d * Math.cos(az) * Math.cos(el));
+    sp.target.position.set(at[0], at[1], at[2]); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0005; sp.shadow.normalBias = 0.03;
+    sp.shadow.camera.near = d * 0.6; sp.shadow.camera.far = d * 1.4; R.scene.add(sp); R.scene.add(sp.target);
+  }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.55, fade: 260 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.25, fade: 140 }));
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 150 }));
+  TXLOOK.footWash(cx, { a: 0.62, height: 270 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

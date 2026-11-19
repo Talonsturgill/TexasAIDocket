@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- 2026-11-18, frame 1 of 9, the cover, READ FROM ORBIT. A spatial scene through txthree.js on a cerulean studio sweep.
+Texas cut from its real outline (assets/geo/tx-counties.topo.json, Albers as txgeo.js) as a thick slab of land, its top
+coloured by region from caliche in the west to red clay and pine in the east, every county line engraved as a hairline
+groove, its sides cut through the strata. Over it floats one thin dusk gold glass sheet of air, the only accent, its soft
+shadow lying across the counties. Seen high from over the Gulf, east frame right. Drawn to illustrate; no county is
+named or valued, and the regional colour is continuous across county lines on purpose. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:150px; width:620px; text-align:left">All 254 Texas counties, read from above</h1>
+<p class="dek" data-follow="26" style="left:74px; width:690px">A UT Dallas team paired satellite readings of the air with CDC cancer data, county by county. Counties with more pollution tended to have more cancer. The slab, its sheet of air and the satellite are drawn to illustrate.</p>
+<script>window.FIG = {"counties": 254};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-18-landbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Read from orbit", counter: "01 / 09", src: "c1 c2 c24 c5", fit: { min: 76, max: 92, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 400, fog: 0.0 });
+
+  /* ---- THE GEOGRAPHY, from the committed topology ---- */
+  const topo = await new Promise((ok, no) => { const x = new XMLHttpRequest(); x.open('GET', '@@ASSETS@@/geo/tx-counties.topo.json'); x.onload = () => { try { ok(JSON.parse(x.responseText)); } catch (e) { no(e); } }; x.onerror = () => no(new Error('tx-counties.topo.json did not load')); x.send(); });
+  const counties = TXGeo.counties(topo), state = TXGeo.outline(topo);
+  if (counties.features.length !== FIG.counties) throw new Error('topology holds ' + counties.features.length + ' counties, FIG.counties is ' + FIG.counties);
+  const CW = 4096, CHh = 4096, PAD = 24;
+  const proj = TXGeo.texasProjection(state, [[PAD, PAD], [CW - PAD, CHh - PAD]]);
+  const SW = 14.0, s = SW / CW, SH = CHh * s;                      /* the slab spans 14 m east to west */
+  const toShape = (p) => [p[0] * s, (CHh - p[1]) * s];             /* canvas px to slab metres, north up */
+
+  /* the state's rings: the mainland and the barrier islands */
+  const geom = state.type === 'Feature' ? state.geometry : state;
+  const polys = geom.type === 'MultiPolygon' ? geom.coordinates : [geom.coordinates];
+  const rings = polys.map(pl => pl[0].map(c => proj(c))).map(r => ({ r, a: Math.abs(d3.polygonArea(r)) })).sort((a, b) => b.a - a.a);
+  /* the coast decimated to 12 canvas px (4 cm) steps, so the extruded wall and its bevel run clean instead of stair stepping */
+  const mainRing = rings[0].r.filter((q, i, a) => { if (i === 0) return true; const L = a._last || a[0]; if (Math.hypot(q[0] - L[0], q[1] - L[1]) < 12) return false; a._last = q; return true; });
+  const isles = rings.slice(1).filter(o => o.a > 40 * 40).map(o => o.r);
+
+  /* ---- THE TOP OF THE SLAB: land coloured by region, county lines engraved ---- */
+  const lerp = (a, b, t) => a + (b - a) * t, sm = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const mix = (c1, c2, t) => [lerp(c1[0], c2[0], t), lerp(c1[1], c2[1], t), lerp(c1[2], c2[2], t)];
+  const CAL = [248, 240, 216], PLAIN = [240, 232, 206], LIME = [162, 178, 196], HILL = [140, 156, 160], BRUSH = [196, 194, 180], CLAY = [104, 100, 104], PINE = [78, 104, 94], COAST = [120, 140, 142];   /* three cool low chroma grounds: bone caliche west, ice grey limestone centre, grey green pine and muted clay east, none near the gold */
+  TX.reseed(1118);
+  const G = 512, landPx = document.createElement('canvas'); landPx.width = landPx.height = G;
+  { const g = landPx.getContext('2d'), im = g.createImageData(G, G);
+    for (let j = 0; j < G; j++) for (let i = 0; i < G; i++) {
+      const u = i / G, v = j / G;                                  /* u east, v south */
+      const n = TX.fbm2(u * 6, v * 6, { octaves: 5 }) * 0.5, n2 = TX.fbm2(u * 22 + 9, v * 22, { octaves: 3 });
+      const ue = u + n * 0.06;
+      let c = mix(CAL, PLAIN, sm(0.15, 0.4, 1 - v) * 0.6);         /* high plains to the north west */
+      c = mix(c, LIME, sm(0.38, 0.43, ue));                          /* limestone centre */
+      c = mix(c, HILL, sm(0.42, 0.55, ue) * (1 - sm(0.62, 0.7, ue)) * sm(0.45, 0.6, v) * (1 - sm(0.66, 0.74, v)) * 0.7);   /* hill country cedar */
+      c = mix(c, BRUSH, sm(0.66, 0.8, v) * (1 - sm(0.7, 0.8, ue)));  /* south Texas brush */
+      c = mix(c, CLAY, sm(0.6, 0.65, ue) * (1 - sm(0.76, 0.84, v)));  /* red clay east */
+      c = mix(c, PINE, sm(0.68, 0.76, ue + n * 0.1) * sm(0.2, 0.3, v) * (1 - sm(0.74, 0.84, v)));   /* the piney woods */
+      c = mix(c, COAST, sm(0.74, 0.86, v) * sm(0.62, 0.8, ue) * 0.6);
+      const k = 0.9 + n2 * 0.1 + n * 0.14, o = (j * G + i) * 4;
+      im.data[o] = c[0] * k; im.data[o + 1] = c[1] * k; im.data[o + 2] = c[2] * k; im.data[o + 3] = 255;
+    }
+    g.putImageData(im, 0, 0); }
+
+  /* THE AIR SHEET's height above the slab top, and where its soft shadow falls on the land */
+  const LIGHT = { az: -118, el: 46 };
+  const sa = LIGHT.az * Math.PI / 180, se = LIGHT.el * Math.PI / 180;
+  const sun = new THREE.Vector3(Math.sin(sa) * Math.cos(se), Math.sin(se), Math.cos(sa) * Math.cos(se));
+  const DEPTH = 0.6, LIFT = 0.3;                                   /* slab 0.6 m thick, the sheet 1.15 m above its top */
+  const SHL = 0.85, shX = -SHL * sun.x / sun.y, shZ = -SHL * sun.z / sun.y;   /* the soft shadow drawn as from 0.45 m so its offset reads on the counties */   /* world shadow offset in metres */
+
+  let drawn = 0;
+  const path = d3.geoPath(proj);
+  const albedo = CH.canvasTex(THREE, CW, CHh, (g, w, h) => {
+    g.imageSmoothingQuality = 'high'; g.drawImage(landPx, 0, 0, w, h);
+    /* field tooth: fine speckle so the land is never a flat fill */
+    const r = CH.rng(77);
+    for (let i = 0; i < 90000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(255,250,235,0.10)' : 'rgba(60,40,30,0.10)'; g.fillRect(r() * w, r() * h, 2 + r() * 5, 2 + r() * 5); }
+    /* the sheet's shadow: the same outline, offset along the light, soft, indigo */
+    /* the gold sheet's transmitted light: a warm dusk gold cast thrown east and south along the key, its clear western edge showing where the sheet ends */
+    g.save(); g.beginPath(); d3.geoPath(proj, g)(state); g.clip();
+    g.filter = 'blur(18px)'; g.translate(shX / s, shZ / s); g.globalCompositeOperation = 'multiply'; g.fillStyle = 'rgba(232,150,96,0.62)';
+    g.beginPath(); d3.geoPath(proj, g)(state); g.fill();
+    g.globalCompositeOperation = 'source-over'; g.fillStyle = 'rgba(240,160,100,0.16)'; g.fill(); g.restore();
+    /* the engraved county lines, one stroke per county, counted */
+    g.lineJoin = 'round';
+    counties.features.forEach(f => {
+      g.beginPath(); d3.geoPath(proj, g)(f);
+      g.strokeStyle = 'rgba(52,34,40,0.55)'; g.lineWidth = 5; g.stroke();
+      drawn++;
+    });
+  });
+  if (drawn !== FIG.counties) throw new Error('engraved ' + drawn + ' county outlines, FIG.counties is ' + FIG.counties);
+  const bump = CH.canvasTex(THREE, CW, CHh, (g, w, h) => {
+    g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
+    g.lineJoin = 'round'; g.strokeStyle = '#000'; g.lineWidth = 7;
+    g.beginPath(); d3.geoPath(proj, g)(TXGeo.borders(topo)); g.stroke();
+  });
+  bump.colorSpace = THREE.NoColorSpace;
+  [albedo, bump].forEach(t => { t.repeat.set(1 / SW, 1 / SH); t.offset.set(0, 0); t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; });
+  const topMat = new THREE.MeshStandardMaterial({ map: albedo, bumpMap: bump, bumpScale: 2.2, roughness: 0.88, metalness: 0 });
+  topMat.name = 'land-top'; topMat.userData.txSurface = false;
+
+  /* ---- THE SIDES: cut through the strata, topsoil over caliche over bedded limestone ---- */
+  const strata = CH.canvasTex(THREE, 1024, 512, (g, w, h) => {
+    const bands = [[0.00, '#4e3a36'], [0.10, '#7a6458'], [0.17, '#d9d0bc'], [0.38, '#c2bcae'], [0.46, '#d4d0c6'], [0.62, '#aeb0ac'], [0.70, '#c8c6be'], [0.86, '#8e9094'], [1.0, '#8e9094']];
+    for (let i = 0; i < bands.length - 1; i++) { g.fillStyle = bands[i][1]; g.fillRect(0, bands[i][0] * h, w, (bands[i + 1][0] - bands[i][0]) * h + 1); }
+    const r = CH.rng(5);
+    g.fillStyle = 'rgba(70,50,50,0.35)'; [0.17, 0.46, 0.62, 0.70, 0.86].forEach(y => g.fillRect(0, y * h - 1, w, 2));   /* bedding planes, level along the wall so faces never step */
+  });
+  strata.repeat.set(0.5, -1 / DEPTH); strata.offset.set(0, 1 / DEPTH);
+  const sideMat = new THREE.MeshStandardMaterial({ map: strata, roughness: 0.92, metalness: 0 });
+  sideMat.name = 'conc-strata'; sideMat.userData.txSurface = 'concrete';
+
+  const slab = new THREE.Group();
+  const extr = (ring, depth, mats, bevel) => {
+    const shape = new THREE.Shape(ring.map(p => new THREE.Vector2(...toShape(p))));
+    const geo = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 3, curveSegments: 1 });
+    const m = new THREE.Mesh(geo, mats); m.userData.txBevel = false; return m;
+  };
+  [mainRing].forEach(ring => { const m = extr(ring, DEPTH, [topMat, sideMat], 0.035); slab.add(m); });
+  slab.rotation.x = -Math.PI / 2;
+  slab.position.set(-SW / 2, 0.0, SH / 2);
+  const SLAB_Y = 0.0;                                              /* the slab stands proud of the sweep on a hidden plinth */
+  const lift = new THREE.Group(); lift.add(slab); lift.position.y = SLAB_Y;
+
+
+  const FP = { x: 0.9, z: 0.2, w: 3.2, d: 2.4 };                 /* the satellite's scan footprint on the sheet, illustrative */
+  /* ---- THE AIR SHEET: 3 mm of dusk gold glass in the state's outline, the only accent ---- */
+  /* the satellite's footprint as a fine pixel grid etched in the glass: uniform, so it reads as a reading and never as a value */
+  const grid = CH.canvasTex(THREE, 2048, 2048, (g, w, h) => {
+    g.fillStyle = '#000'; g.fillRect(0, 0, w, h);
+    const step = w / 24, px = (x) => (x + SW / 2) / SW * w, pz = (z) => (0.5 + z / SH) * h;
+    g.strokeStyle = 'rgba(255,255,255,0.62)'; g.lineWidth = 6;
+    for (let i = 0; i <= 24; i++) { g.beginPath(); g.moveTo(i * step, 0); g.lineTo(i * step, h); g.stroke(); g.beginPath(); g.moveTo(0, i * step); g.lineTo(w, i * step); g.stroke(); }
+    /* the footprint: the cells under the scan lit, its edge bright */
+    /* the scan covers the whole state: every county is read, so the whole outline glows evenly, brightest at its rim */
+    g.save(); g.scale(w / CW, h / CHh); g.beginPath(); mainRing.forEach((q, i) => i ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1])); g.closePath();
+    g.fillStyle = 'rgba(255,255,255,0.14)'; g.fill(); g.clip();
+    g.filter = 'blur(16px)'; g.strokeStyle = 'rgba(255,255,255,0.7)'; g.lineWidth = 90; g.stroke(); g.filter = 'none';
+    g.strokeStyle = 'rgba(255,255,255,1)'; g.lineWidth = 34; g.stroke(); g.restore();   /* one even gold layer, a bright band all the way round its edge */   /* the gold body deepens toward the rim, clear over the middle so the ground reads */
+  });
+  grid.repeat.set(1 / SW, 1 / SH); grid.colorSpace = THREE.NoColorSpace;
+  const glass = new THREE.MeshStandardMaterial({ color: 0xe0956a, metalness: 0, roughness: 0.18, transparent: true, opacity: 0.27,
+    emissive: 0xe0956a, emissiveMap: grid, emissiveIntensity: 0.9, depthWrite: false, side: THREE.DoubleSide });
+  glass.name = 'glass-air'; glass.userData.txSurface = false;   /* a tinted transmission sheet, kept tinted rather than handed to the clear glass pass */
+  const edge = new THREE.MeshStandardMaterial({ color: CH.GOLD, emissive: 0xe0956a, emissiveIntensity: 0.55, roughness: 0.3, metalness: 0.1, transparent: true, opacity: 0.8 });   /* self lit, so the tint edge reads gold on every side, lit or not */
+  edge.name = 'glass-edge'; edge.userData.txSurface = false;
+  const sheet = new THREE.Group();
+  const SHEET_T = 0.26; const sm2 = extr(mainRing, SHEET_T, [glass, edge], 0.03); sm2.rotation.x = -Math.PI / 2; sm2.position.set(-SW / 2, 0, SH / 2); sheet.add(sm2);
+  sheet.position.y = SLAB_Y + DEPTH + 0.035 + LIFT; sheet.scale.set(1.04, 1, 1.04);   /* a hair wider than the slab, so every county, coast and border included, sits under the sheet */
+
+
+  TXT.add(R, lift);
+  TXT.add(R, sheet, { cast: false });
+
+  /* ---- THE ROOM: a cerulean sweep, deep at the top where the headline sits ---- */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 40, d: 30 }), { floor: 0x3f8fe0, wall: 0x2a6fd0, top: 0x123d8f, radius: 6, h: 30 }));
+
+  /* ---- THE CAMERA: high over the Gulf, looking north north west ---- */
+  const FROM = [8.1, 33.5, 38.5];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0.3, 1.2, -0.4], 556, 905, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  const spec = CH.rigSpec(W, 22, 4096); spec.key = Object.assign({}, spec.key, { radius: 3 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.5, 0], { distance: 40, shadowFar: 90, normalBias: 0.01 }), { light: LIGHT }));
+  CH.unacne(R, 0.01);
+
+  /* ---- THE READER: the chassis satellite, small in the quiet beside the headline, its scan landing on the air only ---- */
+  {
+    const sat = K.make('survey_satellite', { wing: 7, yaw: 0.35 });
+    const ray = new THREE.Vector3(900 / 1080 * 2 - 1, 1 - 300 / 1350 * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    const SP = R.camera.position.clone().add(ray.multiplyScalar(30));
+    sat.scale.setScalar(0.32); sat.position.copy(SP);
+    const topY = sheet.position.y + SHEET_T + 0.03, tgt = new THREE.Vector3(0.4, topY, 0.0);
+    const down = tgt.clone().sub(SP).normalize();
+    sat.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), down);
+    sat.rotateY(0.9);
+    TXT.add(R, sat, { cast: false });
+    /* a small cool lamp on the camera side of the satellite only (its reach ends metres short of the slab), so the foil reads as foil */
+    const toCam = R.camera.position.clone().sub(SP).normalize();
+    const pl = new THREE.PointLight(0xf2f8ff, 260, 8, 2); pl.position.copy(SP).add(toCam.clone().multiplyScalar(3)).add(new THREE.Vector3(-1.8, 2.0, 0)); R.scene.add(pl);
+    /* a cool rim from behind, so the silhouette separates from the blue */
+    const rim = new THREE.PointLight(0x9fe8ff, 320, 7, 2); rim.position.copy(SP).add(toCam.clone().multiplyScalar(-2.5)).add(new THREE.Vector3(1.2, 1.8, 0)); R.scene.add(rim);
+    /* silver frames and foil: lift the satellite's metals to bright silver, keep the cells blue, never gold */
+    sat.traverse(m => { if (!m.isMesh) return; const mm = m.material; if (!mm || !mm.color) return;
+      const hsl = {}; mm.color.getHSL(hsl);
+      if (mm.name === 'lb_foil_graphite' || hsl.l < 0.12) { m.material = mm.clone(); m.material.envMapIntensity = 1.3; }   /* graphite foil and the black baffles keep their dark crinkle */
+      else if (mm.metalness > 0.4 || hsl.s < 0.2) { m.material = mm.clone(); m.material.color.lerp(new THREE.Color(0xeef3f8), 0.35); m.material.roughness = Math.min(mm.roughness, 0.32); m.material.envMapIntensity = 1.4; }
+      else { m.material = mm.clone(); m.material.emissive = new THREE.Color(0x2a5ad0); m.material.emissiveIntensity = 0.9; m.material.roughness = 0.18; m.material.map = null; } });
+    const apex = SP.clone().add(down.clone().multiplyScalar(1.85 * 0.32));   /* the nadir instrument's aperture, 1.85 m below the bus centre at model scale */
+    /* the beam: a cone from the instrument to the whole state outline, transparent at the satellite and brightening toward the air */
+    const rim2 = d3.polygonHull(mainRing).map(q => [q[0] * s - SW / 2, q[1] * s - SH / 2]);   /* the hull, so the cone has no folds */
+    const pos = [], al = [];
+    for (let i = 0; i < rim2.length; i++) { const A = rim2[i], B = rim2[(i + 1) % rim2.length];
+      pos.push(apex.x, apex.y, apex.z, A[0], topY, A[1], B[0], topY, B[1]); al.push(0, 1, 1); }
+    const typeBox = (() => { let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; document.querySelectorAll('.hook, .dek').forEach(e => { const r = e.getBoundingClientRect(); x0 = Math.min(x0, r.left); y0 = Math.min(y0, r.top); x1 = Math.max(x1, r.right); y1 = Math.max(y1, r.bottom); }); return new THREE.Vector4(x0 - 20, y0 - 20, x1 + 20, y1 + 20); })();
+    const bg = new THREE.BufferGeometry(); bg.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); bg.setAttribute('a', new THREE.Float32BufferAttribute(al, 1));
+    const beamM = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending,
+      uniforms: { col: { value: new THREE.Color(CH.GOLD) }, box: { value: typeBox } },
+      vertexShader: 'attribute float a; varying float va; varying vec3 vv; varying vec2 vn; void main(){ va = a; vec4 mv = modelViewMatrix * vec4(position, 1.0); vv = mv.xyz; gl_Position = projectionMatrix * mv; vn = gl_Position.xy / gl_Position.w; }',
+      /* one continuous pyramid from the aperture: each face fades as it turns edge on, so no face draws a seam, and the
+       * whole beam thins to a breath where it crosses the type box, so the dek keeps its contrast */
+      fragmentShader: 'uniform vec3 col; uniform vec4 box; varying float va; varying vec3 vv; varying vec2 vn; void main(){' +
+        ' vec3 n = normalize(cross(dFdx(vv), dFdy(vv))); float face = smoothstep(0.0, 0.3, abs(dot(n, normalize(-vv))));' +
+        ' vec2 p = vec2((vn.x + 1.0) * 540.0, (1.0 - vn.y) * 675.0);' +
+        ' float dx = max(max(box.x - p.x, p.x - box.z), 0.0), dy = max(max(box.y - p.y, p.y - box.w), 0.0);' +
+        ' float t = mix(0.12, 1.0, smoothstep(0.0, 70.0, length(vec2(dx, dy))));' +
+        ' gl_FragColor = vec4(col, mix(0.75, 0.3, smoothstep(0.3, 1.0, va)) * face * t * 0.16); }' });
+    beamM.name = 'glass-beam'; beamM.userData.txSurface = false;
+    const beam = new THREE.Mesh(bg, beamM); beam.castShadow = false; beam.receiveShadow = false; R.scene.add(beam);
+  }
+  /* an indigo contact shadow in the state's own outline, thrown with the key toward the south east like the coast's */
+  {
+    const cs = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+      g.fillStyle = '#000'; g.fillRect(0, 0, w, h); g.filter = 'blur(22px)'; g.fillStyle = '#fff';
+      g.beginPath(); mainRing.forEach((q, i) => { const x = q[0] / CW * w, y = q[1] / CHh * h; i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.closePath(); g.fill();
+    });
+    cs.colorSpace = THREE.NoColorSpace;
+    const csM = new THREE.MeshBasicMaterial({ color: 0x161a5e, alphaMap: cs, transparent: true, opacity: 0.9, depthWrite: false });
+    csM.name = 'shadow-contact'; csM.userData.txSurface = false;
+    const csP = new THREE.Mesh(new THREE.PlaneGeometry(SW * 1.04, SH * 1.04), csM);
+    csP.rotation.x = -Math.PI / 2; csP.position.set(0.35, 0.02, 0.3); csP.userData.txBevel = false; csP.renderOrder = -1; R.scene.add(csP);
+  }
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.6, fade: 260 });
+  ['.count', '.kick', '.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.34, fade: 140 }));
+  TXLOOK.footWash(cx, { a: 0.45, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

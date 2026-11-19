@@ -1,0 +1,122 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "round2_defect_check": [
+  {
+   "slide": 8,
+   "status": "mostly fixed",
+   "note": "The kerb is now a true orange strip with a navy channel. It turns its corner in front of the house, not as a hairline above it. The figure is a silhouette, and the diagonal cone has become a soft glow. Still open: the silhouette is a flat cutout with no rim light, cropped at the left edge, with a clumped braid. The near grass blades are oversized and blurred sprites."
+  },
+  {
+   "slide": 4,
+   "status": "partly fixed",
+   "note": "The strata now have real lips and height, and the SO2 tile sits inside the rail. A dark smear still runs down the column's right edge at about x 1470 to 1490, y 560 to 1300 (display px). The column still reads as a glossy phone or UI stack in flat elevation."
+  },
+  {
+   "slide": 3,
+   "status": "partly fixed",
+   "note": "The blue streak is gone and the swath bleeds off the bottom edge. The foil is still crumpled paper at a coarse scale. The swath ends in flat parallel cards over blurry ground blotches."
+  },
+  {
+   "slide": 1,
+   "status": "not fixed",
+   "note": "The air sheet still renders as clear glass with no #E0956A tint and no warm shadow on the counties. The satellite is still a primitive box with a panel."
+  },
+  {
+   "slide": 2,
+   "status": "partly fixed",
+   "note": "There is now scatter on the caliche and the navy wash is a gradient. Its rounded bulging lower edge at about y 880 still reads as a plate. The two horizon trees still float as sprites on a hard fog line."
+  },
+  {
+   "slide": 6,
+   "status": "not fixed",
+   "note": "The headline column is narrower. The dark blobs behind the kicker and the counter are still there. The vitrines still fill only about y 1060 to 1700 over an empty reflection floor, so no dolly-in was done."
+  },
+  {
+   "slide": 9,
+   "status": "improved",
+   "note": "The town is inside a proper orange outline and the station sits in a cut ring. The block lips smear with displacement waviness, and the far field fogs into grey-olive middle tones under the body copy."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.1,
+   "why": "Per-frame scores: 1=7.0, 2=7.1, 3=7.1, 4=6.7, 5=7.3, 6=7.2, 7=7.7, 8=7.0, 9=7.2, mean 7.14. Every frame is rendered and on LOOK V2 colour, and none is a slab in a void. Frame 7's clustered-stone relief is the best picture: real cracks, cast shadow and the accent blue on the cluster. Frame 5 gives the stake field true scale against a standing person. Frame 8's kerb now turns in front of the house and carries the argument. What holds the score near 7 is that several frames still lean on a default. Frame 4 is a flat UI-like stack with a side smear. Frame 1's air sheet is clear glass and its satellite a primitive. Frame 6 has dark halos behind the type furniture and small vitrines over a dead floor. Frame 2's type wash still reads as a plate and its trees float. None passes the LOOK V2 showstopper test of one rounded subject filling half the frame with a lit edge. Frames 1, 4 and 7 come closest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds across the contact sheet: one blue-to-violet palette and grade, the same type furniture, counter and site line, east to the right, and a camera that moves from orbit (1, 3) to ground (2, 5, 8) to relief (4, 7, 9). The orange accent is now consistent on 8's kerb and 9's outline, which it was not in round 2. Frame 4's elevation diagram still sits outside the rendered worlds. The cover's air sheet carries no accent."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.7,
+   "why": "Every slide numeral traces to a claim: 254 to c1/c24, 2022 to c4, 0.791 to c21, 0.69 to c22, March 5th to c11. The 79 in 100 stakes is the stated rendering of c21's 0.791. Slide 5 says R squared is a fit and not causation, and slide 8 states the ecological limit from c11. The east/west clusters on 6 rest on the lead author's interview wording (c7, c8), not on the paper. c21 is marked medium confidence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, method, finding and limit are clear. No county, body, decision or deadline is named. The civic question (where to put the next ground monitor) lives only in the caption, and slide 9's 'where government should focus' stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 pays with the cost reason at once, 8 is a real turn, and 9 closes on use. Slide 3 restates the cover's satellite and could move without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "Careful and on register, with no doom. 'Drawn to illustrate' on all nine frames reads mechanical. Slide 9's body is four stacked sentences ending in a disclaimer, and nothing is named below 'central Texas'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The topic, the blue/violet palette and the land treatments are fresh. The extruded-state cover is a familiar opener, and the 7 and 9 reliefs echo November 14th's relief move."
+  }
+ ],
+ "weighted_score": 7.28,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No hard fail found from the craft lens. Round 3 is the cap, so the deck ships at its score. 7.28 is 0.72 under the 8.0 top rung and should be named in the email and the run record.",
+ "one_sentence_fix": "Model frames 1 and 4 as the hero objects they claim to be. Give the cover's air sheet a transmissive #E0956A tint casting a warm shadow on the counties, with a modelled satellite. Rebuild frame 4's column as a rounded, side-lit three-quarter relief standing in the strata with a contact shadow, not a flat elevation stack.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Flat elevation. The eight bands read as a glossy phone or UI stack, and a dark smear runs down the column's right edge outside the rail (about x 1470 to 1490, y 560 to 1300 display px).",
+   "fix": "Rotate the camera about 25 degrees to a three-quarter view under a side key so each band shows a lit top and a shadowed side. Seat the column in the strata with a contact shadow, and delete the edge smear."
+  },
+  {
+   "slide": 1,
+   "problem": "The air sheet over the counties is clear glass with no accent tint, so the 'sheet of air' carries nothing. The satellite is a primitive box and panel.",
+   "fix": "Give the sheet a transmissive #E0956A tint at about 0.35 opacity so it casts a warm shadow on the counties. Add bus detail, a sensor aperture and foil to the satellite."
+  },
+  {
+   "slide": 6,
+   "problem": "Dark halo blobs remain behind the kicker and the counter. The vitrines fill only about y 1060 to 1700 over an empty reflective floor.",
+   "fix": "Remove the two halos and dolly in so the vitrines fill y 820 to 1800, cropping the dead floor."
+  },
+  {
+   "slide": 8,
+   "problem": "The resident is a flat dark cutout cropped at the left edge, with a clumped braid and no rim light. The near grass blades are oversized blurred sprites.",
+   "fix": "Move the figure about 120 px in from the edge and add a cool rim light on its shoulder and head. Thin and sharpen the foreground grass to blades at true scale."
+  },
+  {
+   "slide": 2,
+   "problem": "The navy type wash ends in a rounded, bulging lower edge that reads as a plate. Two tree sprites float on a hard fog line.",
+   "fix": "Make the wash a straight vertical gradient that reaches zero by y 760, and seat horizon scrub inside ground haze in place of the two floating sprites."
+  },
+  {
+   "slide": 3,
+   "problem": "The foil reads as coarse crumpled paper. The swath ends in flat parallel cards over formless ground blotches.",
+   "fix": "Use a fine specular crinkle with a cool rim on the foil. Land the swath on legible terrain (county lines or field texture) with a warm glow where it strikes."
+  }
+ ]
+}
