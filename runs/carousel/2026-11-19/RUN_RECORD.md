@@ -66,8 +66,6 @@ The web edition at `ledger/articles/2026-11-19.json` passes `article_check`, `te
 
 ## Gate status
 
-## Gate status
-
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
@@ -77,9 +75,9 @@ The web edition at `ledger/articles/2026-11-19.json` passes `article_check`, `te
 | aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 8.48 MB, vector |
 | score          | WARN   | 7.47 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 76 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 34,008 chars planned |
 | caption        | PASS   | 134 words |
 | craft floor    | PASS   | 9 frame(s), median 1908, floor 343 |
