@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-19-the-call-comes-first",
+      "date": "2026-11-19",
+      "title": "The call comes first",
+      "caption": "In a small Texas ER with no trauma surgeon on call, deciding to transfer a badly hurt patient takes 15 to 30 minutes. A UT Health San Antonio led team is building an AI tool to prompt that call sooner.",
+      "video": "/runs/2026-11-19/dispatch.mp4",
+      "poster": "/runs/2026-11-19/poster.png",
+      "video_mobile": "/runs/2026-11-19/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-19/poster-540.jpg",
+      "county": "Frio",
+      "beat": "clinic"
+    },
+    {
       "id": "2026-11-18-the-bag-is-already-here",
       "date": "2026-11-18",
       "title": "The bag is already here",
