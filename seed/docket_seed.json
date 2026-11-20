@@ -20522,5 +20522,179 @@
       }
     ],
     "last_verified": "2026-11-18"
+  },
+  {
+    "id": "tx-2026-0252",
+    "title": "UT Arlington leads a USDA funded project to build an AI smart trap that tells wild screwworm flies from sterile ones",
+    "summary": "UT Arlington is coordinating a $3.1 million project funded by the U.S. Department of Agriculture against New World screwworm, a parasite that has reemerged with more than 120 confirmed animal cases, most of them in Texas. The center of it is a smart trap that uses AI to tell wild flies from the sterile ones a federal program releases, and females from males, keeping the wild females and letting the rest go. Today's traps catch everything and need sorting by hand. The trap does not exist yet as a field system. Its lead researcher expects a prototype next spring, and the project runs through June 2028 with fieldwork in Texas and other states.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "UT Arlington Smart Agriculture Research Center, with U.S. Department of Agriculture funding",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "on_ercot": false
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-11-12",
+        "kind": "filed",
+        "note": "UT Arlington announces the USDA funded project"
+      }
+    ],
+    "public_access": {
+      "room": "closed",
+      "how": "A funded research project has no public comment process. The team says producers and veterinarians will be able to report cases with smartphone images once its tools are built.",
+      "url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "UT Arlington is coordinating a $3.1 million USDA funded project to stop the spread of New World screwworm, a parasite threatening livestock across Texas and other states.",
+        "verbatim_quote": "The University of Texas at Arlington is coordinating a $3.1 million project funded by the U.S. Department of Agriculture to stop the spread of New World screwworm, a flesh-eating parasite threatening livestock across Texas and other states.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c1"
+      },
+      {
+        "text": "Screwworm was declared eliminated from the United States in 1966 and has reemerged, with more than 120 confirmed animal cases as of November 12th, most of them in Texas, per the USDA case dashboard.",
+        "verbatim_quote": "New World screwworm was declared eliminated from the United States in 1966 but has recently reemerged, with more than 120 confirmed animal cases reported as of Nov. 12, most of them in Texas, according to the USDA's case dashboard.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c2"
+      },
+      {
+        "text": "Female screwworm flies lay eggs in open wounds, and untreated infestations can be fatal.",
+        "verbatim_quote": "Female screwworm flies lay eggs in open wounds or mucous membranes of warm-blooded animals; left untreated, the resulting infestations can be fatal.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c3"
+      },
+      {
+        "text": "The center of the project is an AI powered smart trap meant to tell wild screwworm flies from sterile ones and females from males.",
+        "verbatim_quote": "At the center of the project is an AI-powered \"smart trap\" capable of distinguishing wild screwworm flies from sterile ones and females from males.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c4"
+      },
+      {
+        "text": "The trap is meant to capture wild females selectively, because they produce the larvae.",
+        "verbatim_quote": "Because wild female flies are responsible for producing the destructive larvae, the trap selectively captures them, allowing for earlier detection of potential outbreaks.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c5"
+      },
+      {
+        "text": "Shouyi Wang, a UTA associate professor, expects a smart trap prototype by next spring.",
+        "verbatim_quote": "The technology builds on previous AI-based fruit fly trap research by Shouyi Wang, a UTA associate professor, who expects to have a smart-trap prototype ready by next spring.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c6"
+      },
+      {
+        "text": "Current traps capture insects indiscriminately and need extensive manual sorting.",
+        "verbatim_quote": "Current screwworm traps capture insects indiscriminately, requiring extensive manual sorting and delaying confirmation of the screwworm’s presence.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c7"
+      },
+      {
+        "text": "Conventional traps can interfere with the federal sterile fly program because they can't tell sterile flies from wild ones.",
+        "verbatim_quote": "They can also interfere with a federal program that releases sterile flies to suppress wild screwworm populations because conventional traps cannot distinguish sterile flies from wild ones.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c8"
+      },
+      {
+        "text": "Wang says the trap is designed to keep wild flies, especially females, and release sterile flies and other insects.",
+        "verbatim_quote": "The smart trap is designed to recognize and selectively retain targeted wild screwworm flies, especially high-risk females, while releasing sterile flies and non-target insects back into the environment.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c9"
+      },
+      {
+        "text": "Wang says each detection can feed alerts, tracking and risk maps to USDA's Animal and Plant Health Inspection Service.",
+        "verbatim_quote": "Connected through a smart-trap network, each detection can feed real-time alerts, location-based tracking and predictive risk maps that provide the USDA’s Animal and Plant Health Inspection Service (APHIS) with timely, actionable information for faster, more targeted responses.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c10"
+      },
+      {
+        "text": "The UTA project was one of 40 selected nationwide in roughly $105 million of USDA funding.",
+        "verbatim_quote": "UTA's project was one of 40 selected nationwide as part of roughly $105 million in USDA funding.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c11"
+      },
+      {
+        "text": "The project runs through June 2028, with fieldwork across several states including Texas and in affected regions of Mexico.",
+        "verbatim_quote": "The project runs through June 2028, with fieldwork taking place across multiple states, including Texas, and in affected regions of Mexico.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c12"
+      },
+      {
+        "text": "UTA's Smart Agriculture Research Center leads the project, and its associate director says it aims to build real time surveillance and AI diagnostic tools.",
+        "verbatim_quote": "“Our project aims to develop a real-time surveillance system and AI-enabled on-site diagnostic tools to support producers, veterinary practitioners and government agencies,” said Prasanna Gowda, research professor and associate director of UTA’s Smart Agriculture Research Center (SARC), which leads the project.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c13"
+      },
+      {
+        "text": "Producers and veterinarians would report cases with smartphone images, Gowda says.",
+        "verbatim_quote": "Our proposed AI-enabled diagnostic tools will not only allow producers and veterinary practitioners to identify infections faster but also enable them to report directly to our real-time surveillance system with high-resolution images captured on their smartphones.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c14"
+      },
+      {
+        "text": "By the end of the project UTA aims to deliver a field tested system to APHIS.",
+        "verbatim_quote": "By the end of the project, UTA aims to deliver a complete field-tested system to APHIS for ongoing use in nationwide screwworm surveillance and response.",
+        "source_url": "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm",
+        "source_title": "UT Arlington, UTA leads fight against screwworm",
+        "source_type": "primary_official",
+        "fetched": "2026-11-19",
+        "id": "tx-2026-0252-c15"
+      }
+    ],
+    "last_verified": "2026-11-19",
+    "history": [
+      {
+        "date": "2026-11-19",
+        "note": "Admitted from UT Arlington's November 12th announcement. The trap is still in development, and its lead researcher expects a prototype next spring."
+      }
+    ]
   }
 ]
