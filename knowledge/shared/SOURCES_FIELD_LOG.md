@@ -2673,3 +2673,12 @@ and **the EBI REST endpoint timed out**, and Crossref's record for the DOI carri
 answered and carries the quotes. **news.rice.edu answered 406 to the re-verification fetcher** while `fetch_doc.py`
 read the same page, so that item's stamp rests on the fetch_doc read. The TCEQ commission calendar cited on tx-2026-0057
 no longer lists the agenda item, so the item was left unstamped rather than reading the listing's absence as a change.
+
+## 2026-11-19 (carousel no. 82)
+
+**www.uta.edu answered** the November 12th news release on the USDA screwworm smart trap, its robots.txt allows `/news`,
+and all fifteen claims on tx-2026-0252 quote it. The release cites the USDA case dashboard for the count of more than 120
+confirmed cases and **the dashboard itself was not opened**, so the deck gives the figure on the university's citation of
+it. **www.ars.usda.gov and www.aphis.usda.gov answered** the screwworm program pages that carry the release models, the
+Edinburg facility and the weekly release volume. **The PUCT rolling calendar answers only when redirects are followed**,
+and the re-verification counted 215 sources unreachable, the same set as the prior runs, all left unstamped.
