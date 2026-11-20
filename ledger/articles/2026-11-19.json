@@ -7,12 +7,12 @@
  },
  "section": "Research",
  "dek": {
-  "text": "UT Arlington is designing an AI trap meant to keep wild screwworm flies and free the sterile ones. The trap isn't built yet, and a prototype is expected next spring.",
+  "text": "UT Arlington is designing an AI trap meant to keep wild screwworm flies and free the sterile ones. The trap isn't built yet. A prototype is expected next spring.",
   "claims": ["c4", "c9", "c6"]
  },
  "introduction": [
   {
-   "text": "[UT Arlington is coordinating a {{money:c1}} project funded by the U.S. Department of Agriculture to stop the spread of New World screwworm, a parasite threatening livestock across Texas and other states](c1). [The parasite was declared eliminated from the United States in {{number:c2}} and has reemerged, with more than {{number:c2:1}} confirmed animal cases as of November 12th, most of them in Texas, according to the USDA case dashboard UT Arlington cites](c2).",
+   "text": "[UT Arlington is coordinating a {{money:c1}} million project funded by the U.S. Department of Agriculture to stop the spread of New World screwworm. The parasite threatens livestock across Texas and other states](c1). [The parasite was declared eliminated from the United States in {{number:c2}} and has reemerged. More than {{number:c2:1}} confirmed animal cases were reported as of November 12th, most of them in Texas, according to the USDA case dashboard UT Arlington cites](c2).",
    "claims": ["c1", "c2"]
   },
   {
@@ -38,7 +38,7 @@
    "heading": "The machine already in the air",
    "paragraphs": [
     {
-     "text": "[An APHIS page says the {{money:c22}} facility at Moore Air Force Base in Edinburg deploys more than {{number:c22:1}} million sterile flies a week over Texas and Mexico](c22). [USDA developed a strain that yields only male flies for those releases](c23). [Its research service says AI models already help choose where, when and how many sterile flies to release](c17), [work led from its Knipling-Bushland laboratory in Kerrville](c19). [The service also says those models can't predict every scenario](c20).",
+     "text": "[An APHIS page says the {{money:c22}} million facility at Moore Air Force Base in Edinburg deploys more than {{number:c22:1}} million sterile flies a week over Texas and Mexico](c22). [USDA developed a strain that yields only male flies for those releases](c23). [Its research service says AI models already help choose where, when and how many sterile flies to release](c17), [work led from its Knipling-Bushland laboratory in Kerrville](c19). [The service also says those models can't predict every scenario](c20).",
      "claims": ["c22", "c23", "c17", "c19", "c20"]
     }
    ]
@@ -47,11 +47,11 @@
    "heading": "What exists today",
    "paragraphs": [
     {
-     "text": "[The smart trap is still in development. Shouyi Wang, the UT Arlington associate professor whose fruit fly trap research it builds on, expects a prototype by next spring](c6). [The project runs through June {{number:c12}}, with fieldwork in Texas, other states and affected regions of Mexico](c12). [It is one of {{number:c11}} projects selected nationwide in roughly {{money:c11}} of USDA funding](c11).",
+     "text": "[The smart trap is still in development. It builds on fruit fly trap research by UT Arlington associate professor Shouyi Wang. Wang expects a prototype by next spring](c6). [The project runs through June {{number:c12}}. Fieldwork takes place in Texas, other states and affected regions of Mexico](c12). [It is one of {{number:c11}} projects selected nationwide in roughly {{money:c11}} million of USDA funding](c11).",
      "claims": ["c6", "c12", "c11"]
     },
     {
-     "text": "[By the end of the project, UT Arlington aims to deliver a field tested system to APHIS](c15). No accuracy figure, field result or catch count exists yet, because no trap has been built to produce one.",
+     "text": "[By the end of the project, UT Arlington aims to deliver a field tested system to APHIS](c15). No accuracy figure, field result or catch count exists yet. No trap has been built to produce one.",
      "claims": ["c15", "c6"]
     }
    ]

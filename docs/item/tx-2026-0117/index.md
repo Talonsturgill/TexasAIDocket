@@ -11,7 +11,7 @@ The Office of the Executive Vice President and Provost requires a Course Artific
 - Public access: Closed
 - Take part: https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-19
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · UT Austin still requires every course syllabus to state its AI policy.
 - 2026-11-13 · UT Austin syllabi must still state each course's AI policy.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

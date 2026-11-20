@@ -1,0 +1,244 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "d0244f9a785a04e77b5773dcf98ee3d34533ae06baab1c51664d4a22518b8084",
+    "render/slide-01.png": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+    "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "fa7a0c0cc9c2eaa9373a6d1e555d89170656d67cc56defafb2b1f8e12b659a12",
+    "render/slide-03.png": "c83692b361bae53571835d75d261b1712f1d40e6fc2eda477b17f44cf51beea6",
+    "slides/slide-09.html": "165cab0190fcc108a9f8025d51f3f3b257c555a3a186c1f3bf19145a99cdf2e3",
+    "render/slide-09.png": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 22.9,
+      "mid": 0.087,
+      "dark": 0.004,
+      "grey_mid": 0.002,
+      "vivid": 0.948,
+      "median_C": 93.4
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 41.9,
+      "mid": 0.64,
+      "dark": 0.001,
+      "grey_mid": 0.062,
+      "vivid": 0.702,
+      "median_C": 49.9
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 55.2,
+      "mid": 0.674,
+      "dark": 0.003,
+      "grey_mid": 0.074,
+      "vivid": 0.455,
+      "median_C": 28.5
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "d0244f9a785a04e77b5773dcf98ee3d34533ae06baab1c51664d4a22518b8084",
+      "render/slide-01.png": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+      "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "fa7a0c0cc9c2eaa9373a6d1e555d89170656d67cc56defafb2b1f8e12b659a12",
+      "render/slide-03.png": "c83692b361bae53571835d75d261b1712f1d40e6fc2eda477b17f44cf51beea6",
+      "slides/slide-09.html": "165cab0190fcc108a9f8025d51f3f3b257c555a3a186c1f3bf19145a99cdf2e3",
+      "render/slide-09.png": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A macro blowfly perched on the lit rim of a clear borosilicate funnel that narrows into a ball joint splitting into two glass branches, the keep branch carrying a glowing dusk gold band, on a cobalt studio sweep.",
+        "visual_consequence": "One insect at the mouth of a glass passage that forks two ways, one way marked gold. A door with a choice behind it.",
+        "weakness": "Accepted on the art director's fourth reading. No fly shadow reads on the rim, and the far wingtip is cut by the right edge.",
+        "repair": "None required. If touched again, raise the fly's shadow on the bead and widen the camera 3 to 4 percent.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "d0244f9a785a04e77b5773dcf98ee3d34533ae06baab1c51664d4a22518b8084",
+          "render/slide-01.png": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+          "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "A clear violet borosilicate Y on a honed caliche plinth, one fly at the fork, one in the capped keep bulb behind a dusk gold band, a beetle climbing out of the open J release branch, three flies rising to its right.",
+        "visual_consequence": "One way in and two ways out. The eye reads keep one, free the rest.",
+        "weakness": "Unchanged render, bound at the prior acceptance. The released flies hang in an even column and the kept fly is only partly lit.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "fa7a0c0cc9c2eaa9373a6d1e555d89170656d67cc56defafb2b1f8e12b659a12",
+          "render/slide-03.png": "c83692b361bae53571835d75d261b1712f1d40e6fc2eda477b17f44cf51beea6"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The same Y glass with the gold band on its keep bulb on a cedar bench, a phone beside it showing a camera frame, both with contact shadows, a spring pasture and stock tank under a dusk sky behind.",
+        "visual_consequence": "The lab object has moved outdoors next to a producer's phone. The device and the reporting route meet on a ranch.",
+        "weakness": "Accepted on the art director's second reading, render unchanged since. The oak is a flat cutout, the phone screen is abstract, the grass cards repeat.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "165cab0190fcc108a9f8025d51f3f3b257c555a3a186c1f3bf19145a99cdf2e3",
+          "render/slide-09.png": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "One door or two. A glass passage that forks carries the deck: a fly at its mouth, four identical flies in four cells, the Y that keeps one kind and frees the rest, then today's single exits (a rack of one tube per trap and a dead end jar, a one way bucket trap in brush with the released flies streaming past), the Kerrville and Edinburg relief where another AI picks the release, forty bales for forty projects, a fence post per month to June 2028, and a producer's phone at the close.",
+    "build_risk": "Frame 3 must render transmissive borosilicate glass that reads as glass on a studio sweep, with one fly behind a gold band in the keep chamber and three flies and a beetle leaving the open branch, and never imply a camera, flap or mechanism.",
+    "distinct_from_recent": "November 18th was a survey satellite, stake grids and reliefs of air and stone in the explainer tone; November 17th a violet scoring machine, card drawer and paper towers in watch; November 16th a gold ribbon and caliper; October 18th told the same parasite from USDA's side in bluebonnet with a tank, a trap and release boxes. This deck is the wonder tone, macro glass and studio work turning into brush country and a pasture, with type in at least six places.",
+    "bespoke_note": "BESPOKE run: no three-frame audition before the build. The review is bound from the slide critics, per BESPOKE.md, with carousel-art-director as fallback for any unbound frame."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "d0244f9a785a04e77b5773dcf98ee3d34533ae06baab1c51664d4a22518b8084",
+      "render/slide-01.png": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+      "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "fa7a0c0cc9c2eaa9373a6d1e555d89170656d67cc56defafb2b1f8e12b659a12",
+      "render/slide-03.png": "c83692b361bae53571835d75d261b1712f1d40e6fc2eda477b17f44cf51beea6"
+    },
+    "9": {
+      "assets/js/deck/2026-11-19-sortglass-bespoke.js": "54742dc89772f990ec5e7d5fb40e61050e4db64864a7d53f36bd2ededcf6b303",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "165cab0190fcc108a9f8025d51f3f3b257c555a3a186c1f3bf19145a99cdf2e3",
+      "render/slide-09.png": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e"
+    }
+  },
+  "needs_review": [
+    1,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "d0244f9a785a04e77b5773dcf98ee3d34533ae06baab1c51664d4a22518b8084",
+    "slide-01.png": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+    "slides/slide-03.html": "fa7a0c0cc9c2eaa9373a6d1e555d89170656d67cc56defafb2b1f8e12b659a12",
+    "slide-03.webp": "8f4f9b4f96a731529802c17ad409b5845163b5b9c62908c44aa00808a727288d",
+    "slides/slide-09.html": "165cab0190fcc108a9f8025d51f3f3b257c555a3a186c1f3bf19145a99cdf2e3",
+    "slide-09.png": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.png",
+      "to_sha256": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+      "from_sha256": "94014a324db6ab0faf4e120736ffaef12fffdba80963be4f967bfa3a247988a1",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-03.webp",
+      "to_sha256": "8f4f9b4f96a731529802c17ad409b5845163b5b9c62908c44aa00808a727288d",
+      "from_sha256": "c83692b361bae53571835d75d261b1712f1d40e6fc2eda477b17f44cf51beea6",
+      "psnr_db": 40.633
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e",
+      "from_sha256": "dc1c480b21b90051e968aff7c2481374f1efad3ebe5d8cb09520caa2aed44d1e",
+      "psnr_db": 999.0
+    }
+  ]
+}

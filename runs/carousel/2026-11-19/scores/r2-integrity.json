@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.4,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "round 2, see hand-back"
+  }
+ ],
+ "weighted_score": 7.338,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give slide 9 its own picture instead of slide 3's glass tube and close on what a producer can do.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "repeats slide 3's Y-tube and the phone shows a placeholder icon",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 1,
+   "problem": "funnel floats in a void with no ground or contact",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 2,
+   "problem": "pills point at empty wells and a wash plate sits behind the headline",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 5,
+   "problem": "the swarm reads as ants at 432 px",
+   "fix": "see round 2 notes"
+  }
+ ]
+}

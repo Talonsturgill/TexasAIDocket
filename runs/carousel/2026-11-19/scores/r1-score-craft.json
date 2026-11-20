@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Bespoke test met; 1, 3 and 6 strong; 8 generic road with no subject and uncountable posts at feed size; 9 empty sorter beside a wireframe phone; 2 flies low separation with a dark blob; 7 dead lower half; 4 monochrome room with a mannequin."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Spine holds; the peach of 1's collar, 5's pail and 7's cubes dilutes the accent; no tonal arc."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Numerals trace. Looser: 'Four kinds of fly' against c23; 'Every trap keeps everything' broader than c7; 'Models from USDA's lab in Kerrville' rests on c19's title only."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and when are clear; no action today."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Turn at 4 and 5 is real; 6 a detour; 8 cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Careful explainer, little ranch vernacular."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Fresh topic; the one unit per count rack is familiar."
+  }
+ ],
+ "weighted_score": 6.89,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 9 as the payoff of 3 and cut or reconceive 8.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Empty sorter beside a wireframe phone on a flat green band, no focal.",
+   "fix": "Push in low on the planks so the sorter fills half the frame and the phone screen is modelled, held at the frame edge."
+  },
+  {
+   "slide": 8,
+   "problem": "Generic road with uncountable posts and empty sky.",
+   "fix": "Camera at post height, fence diagonal from the lower left so all 19 are large, type over the dark ground."
+  },
+  {
+   "slide": 2,
+   "problem": "Flies are dark blobs on lavender with a dark wash behind the tray.",
+   "fix": "Camera in 25 percent, warm key and rim on each fly, contact shadow under the tray only."
+  },
+  {
+   "slide": 7,
+   "problem": "Even cubes on a flat void, dead lower half.",
+   "fix": "Tilt the tray off the bottom edge and set the lifted cube large and warm in the foreground."
+  },
+  {
+   "slide": 4,
+   "problem": "Monochrome blue room, mannequin, catch unreadable at feed size.",
+   "fix": "Crop to the front rows at macro and put gloved hands sorting under a warm lamp in the foreground."
+  }
+ ]
+}

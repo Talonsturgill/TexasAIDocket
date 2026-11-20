@@ -1,0 +1,2115 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One fly at the door. Which one stays?",
+          "x": 72,
+          "y": 144,
+          "w": 560,
+          "h": 275,
+          "font_px": 93.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              132,
+              502,
+              115
+            ],
+            [
+              72,
+              224,
+              475,
+              115
+            ],
+            [
+              72,
+              315,
+              400,
+              115
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Screwworm was declared eliminated from the US in 1966. More than 120 animal cases were confirmed as of November 12th, most of them in Texas. A trap planned at UT Arlington would decide fly by fly. Drawn to illustrate.",
+          "x": 74,
+          "y": 445,
+          "w": 500,
+          "h": 280,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              445,
+              349,
+              40
+            ],
+            [
+              74,
+              485,
+              427,
+              40
+            ],
+            [
+              74,
+              525,
+              453,
+              40
+            ],
+            [
+              74,
+              565,
+              435,
+              40
+            ],
+            [
+              74,
+              605,
+              396,
+              40
+            ],
+            [
+              74,
+              645,
+              413,
+              40
+            ],
+            [
+              74,
+              685,
+              487,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At the door",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c4 c1",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 23819,
+      "ok": true,
+      "load_ms": 236,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 73.3,
+          "variance": 443.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Wild or sterile, female or male. The trap must tell them apart.",
+          "x": 90,
+          "y": 128,
+          "w": 900,
+          "h": 228,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              151,
+              117,
+              777,
+              96
+            ],
+            [
+              165,
+              193,
+              750,
+              96
+            ],
+            [
+              356,
+              269,
+              369,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It has to tell wild flies from sterile ones and females from males. Wild females lay their eggs in open wounds, and an untreated infestation can kill. Each kind is the same fly, drawn to illustrate.",
+          "x": 80,
+          "y": 378,
+          "w": 920,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              378,
+              824,
+              42
+            ],
+            [
+              117,
+              421,
+              846,
+              42
+            ],
+            [
+              89,
+              464,
+              903,
+              42
+            ],
+            [
+              450,
+              506,
+              179,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "wild female",
+          "x": 152,
+          "y": 1027,
+          "w": 150,
+          "h": 79,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 18, 6)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              192,
+              1033,
+              69,
+              36
+            ],
+            [
+              175,
+              1064,
+              104,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "wild male",
+          "x": 501,
+          "y": 887,
+          "w": 150,
+          "h": 79,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              541,
+              893,
+              69,
+              36
+            ],
+            [
+              541,
+              924,
+              69,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "sterile female",
+          "x": 97,
+          "y": 769,
+          "w": 150,
+          "h": 79,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              775,
+              121,
+              36
+            ],
+            [
+              120,
+              806,
+              104,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "sterile male",
+          "x": 801,
+          "y": 603,
+          "w": 150,
+          "h": 79,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              816,
+              609,
+              121,
+              36
+            ],
+            [
+              841,
+              640,
+              69,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Wild or sterile",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c3 c5",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32116,
+      "ok": true,
+      "load_ms": 195,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 139.6,
+          "variance": 2332.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Keep the wild ones. Free the rest.",
+          "x": 76,
+          "y": 176,
+          "w": 470,
+          "h": 382,
+          "font_px": 97.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              163,
+              356,
+              120
+            ],
+            [
+              76,
+              259,
+              396,
+              120
+            ],
+            [
+              76,
+              354,
+              328,
+              120
+            ],
+            [
+              76,
+              450,
+              179,
+              120
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The trap is meant to keep wild flies and especially wild females. Sterile flies and other insects would go free. It isn't built yet. Drawn to illustrate the decision, not the device.",
+          "x": 78,
+          "y": 588,
+          "w": 420,
+          "h": 286,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              78,
+              587,
+              359,
+              41
+            ],
+            [
+              78,
+              628,
+              399,
+              41
+            ],
+            [
+              78,
+              669,
+              350,
+              41
+            ],
+            [
+              78,
+              710,
+              398,
+              41
+            ],
+            [
+              78,
+              750,
+              353,
+              41
+            ],
+            [
+              78,
+              791,
+              375,
+              41
+            ],
+            [
+              78,
+              832,
+              157,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The sort",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c4 c6",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 28694,
+      "ok": true,
+      "load_ms": 191,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 123,
+          "variance": 1442.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Today's traps catch everything",
+          "x": 300,
+          "y": 150,
+          "w": 700,
+          "h": 183,
+          "font_px": 93.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              491,
+              138,
+              509,
+              115
+            ],
+            [
+              367,
+              230,
+              633,
+              115
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Today's screwworm traps catch insects indiscriminately and need extensive sorting by hand. USDA has monitored more than 100 screwworm specific traps since July 2025. One tube stands for one trap, drawn to illustrate.",
+          "x": 330,
+          "y": 353,
+          "w": 670,
+          "h": 179,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              517,
+              352,
+              483,
+              36
+            ],
+            [
+              352,
+              388,
+              648,
+              36
+            ],
+            [
+              417,
+              424,
+              583,
+              36
+            ],
+            [
+              380,
+              460,
+              620,
+              36
+            ],
+            [
+              652,
+              496,
+              348,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Today, by hand",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c24",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 71749,
+      "ok": true,
+      "load_ms": 178,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 105.4,
+          "variance": 2515.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It can't tell sterile from wild",
+          "x": 556,
+          "y": 150,
+          "w": 440,
+          "h": 263,
+          "font_px": 89.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              556,
+              138,
+              381,
+              111
+            ],
+            [
+              556,
+              226,
+              428,
+              111
+            ],
+            [
+              556,
+              313,
+              158,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "So conventional traps can interfere with the federal program that releases sterile flies. An APHIS page says the Edinburg facility deploys more than 80 million a week over Texas and Mexico. One fly stands for a million, drawn to illustrate.",
+          "x": 558,
+          "y": 437,
+          "w": 438,
+          "h": 298,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              558,
+              437,
+              333,
+              37
+            ],
+            [
+              558,
+              474,
+              434,
+              37
+            ],
+            [
+              558,
+              512,
+              366,
+              37
+            ],
+            [
+              558,
+              549,
+              382,
+              37
+            ],
+            [
+              558,
+              586,
+              370,
+              37
+            ],
+            [
+              558,
+              623,
+              373,
+              37
+            ],
+            [
+              558,
+              661,
+              352,
+              37
+            ],
+            [
+              558,
+              698,
+              339,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The allies",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c22 c21",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25864,
+      "ok": true,
+      "load_ms": 190,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 110.2,
+          "variance": 2875.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":58.990238952636716,\"materials\":13,\"cast_fraction\":0.149363683127572,\"area\":1,\"render_ms\":31407.900000002235}",
+        "SLIDE6 {\"A\":[236.00000000000006,292],\"B\":[389.61289652590756,818.0295410154463],\"chTh\":-16.27903590554307,\"span\":{\"kmDrawn\":423.4586553588536,\"kmTrue\":423.2881482797427,\"px\":548.0000000000002}}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI models already inform the release",
+          "x": 560,
+          "y": 610,
+          "w": 440,
+          "h": 201,
+          "font_px": 68.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              560,
+              601,
+              285,
+              84
+            ],
+            [
+              560,
+              668,
+              418,
+              84
+            ],
+            [
+              560,
+              735,
+              302,
+              84
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "USDA's research service says it uses insights from AI models to choose where, when and how many sterile flies to release. It says the models can't predict every scenario. Its Kerrville lab and the Edinburg facility are pinned, drawn to illustrate.",
+          "x": 562,
+          "y": 839,
+          "w": 436,
+          "h": 316,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              562,
+              838,
+              423,
+              40
+            ],
+            [
+              562,
+              878,
+              429,
+              40
+            ],
+            [
+              562,
+              917,
+              405,
+              40
+            ],
+            [
+              562,
+              957,
+              411,
+              40
+            ],
+            [
+              562,
+              996,
+              403,
+              40
+            ],
+            [
+              562,
+              1036,
+              416,
+              40
+            ],
+            [
+              562,
+              1075,
+              384,
+              40
+            ],
+            [
+              562,
+              1114,
+              368,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Kerrville",
+          "x": 260,
+          "y": 226,
+          "w": 240,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              282,
+              231,
+              196,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Edinburg",
+          "x": 146,
+          "y": 832,
+          "w": 218,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              168,
+              837,
+              174,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Who picks the sky",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 c19 c20 c21",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 37256,
+      "ok": true,
+      "load_ms": 153,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 105.3,
+          "variance": 2079
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One project in 40",
+          "x": 72,
+          "y": 136,
+          "w": 936,
+          "h": 98,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              123,
+              713,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT Arlington's $3.1 million project is one of 40 selected nationwide in roughly $105 million of USDA funding. One box stands for one project, not its dollars. Drawn to illustrate.",
+          "x": 74,
+          "y": 256,
+          "w": 880,
+          "h": 120,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              256,
+              741,
+              40
+            ],
+            [
+              74,
+              296,
+              824,
+              40
+            ],
+            [
+              74,
+              336,
+              782,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One of 40",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c11",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19264,
+      "ok": true,
+      "load_ms": 178,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 111.5,
+          "variance": 1154.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The work runs to June 2028",
+          "x": 384,
+          "y": 136,
+          "w": 616,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              384,
+              124,
+              551,
+              112
+            ],
+            [
+              384,
+              214,
+              499,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Fieldwork will take place in Texas, other states and affected regions of Mexico. By the end, UT Arlington aims to hand APHIS a field tested system. One post stands for one month, drawn to illustrate.",
+          "x": 386,
+          "y": 341,
+          "w": 612,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              386,
+              341,
+              575,
+              42
+            ],
+            [
+              386,
+              384,
+              604,
+              42
+            ],
+            [
+              386,
+              427,
+              601,
+              42
+            ],
+            [
+              386,
+              470,
+              611,
+              42
+            ],
+            [
+              386,
+              512,
+              451,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The road to 2028",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22593,
+      "ok": true,
+      "load_ms": 183,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 105.9,
+          "variance": 1907.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Watch for the prototype next spring",
+          "x": 72,
+          "y": 150,
+          "w": 560,
+          "h": 251,
+          "font_px": 85.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 247, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              138,
+              472,
+              106
+            ],
+            [
+              72,
+              222,
+              516,
+              106
+            ],
+            [
+              72,
+              306,
+              228,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTA's Shouyi Wang expects a smart trap prototype by then. Producers and veterinarians would report cases with phone photos. Each trap detection could feed alerts and risk maps to APHIS. The glass and the phone are drawn to illustrate.",
+          "x": 74,
+          "y": 425,
+          "w": 500,
+          "h": 270,
+          "font_px": 28,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              425,
+              470,
+              38
+            ],
+            [
+              74,
+              464,
+              450,
+              38
+            ],
+            [
+              74,
+              503,
+              492,
+              38
+            ],
+            [
+              74,
+              541,
+              389,
+              38
+            ],
+            [
+              74,
+              580,
+              469,
+              38
+            ],
+            [
+              74,
+              618,
+              440,
+              38
+            ],
+            [
+              74,
+              657,
+              389,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Next spring",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c14 c10",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 72361,
+      "ok": true,
+      "load_ms": 188,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 143.6,
+          "variance": 1524.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

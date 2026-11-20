@@ -1,0 +1,126 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.1492,
+        0.3508,
+        0.2188
+      ],
+      "band_ratio": 0.9167
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3319,
+        0.6954,
+        0.7353
+      ],
+      "band_ratio": 1.2373
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3445,
+        0.3739,
+        0.6379
+      ],
+      "band_ratio": 1.385
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3571,
+        0.792,
+        0.5919
+      ],
+      "band_ratio": 1.019
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3908,
+        0.6975,
+        0.5956
+      ],
+      "band_ratio": 1.0582
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":58.990238952636716,\"materials\":13,\"cast_fraction\":0.149363683127572,\"area\":1,\"render_ms\":31407.900000002235}",
+        "console error: SLIDE6 {\"A\":[236.00000000000006,292],\"B\":[389.61289652590756,818.0295410154463],\"chTh\":-16.27903590554307,\"span\":{\"kmDrawn\":423.4586553588536,\"kmTrue\":423.2881482797427,\"px\":548.0000000000002}}"
+      ],
+      "bands": [
+        0.9811,
+        0.8971,
+        0.7684
+      ],
+      "band_ratio": 0.8761
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.4118,
+        0.9412,
+        0.9007
+      ],
+      "band_ratio": 1.1883
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.271,
+        0.6345,
+        0.8787
+      ],
+      "band_ratio": 1.4461
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4202,
+        0.7164,
+        0.954
+      ],
+      "band_ratio": 1.3465
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN"
+}
