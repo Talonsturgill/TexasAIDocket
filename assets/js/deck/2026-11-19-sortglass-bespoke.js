@@ -252,11 +252,11 @@
     });
 
     /* A GENERIC ONE WAY BUCKET TRAP, drawn to no agency's design: a 0.25 m white polymer drum, a single funnel mouth in the
-     * lid, a galvanized wire bail. Origin at the top of the bail, so a frame hangs it from a limb. Options: weather (0 to 1). */
+     * lid, a galvanized wire bail, built down from the bail's top. K.make re-centres the footprint, so a frame hangs it by reading the bail from the geometry. Options: weather (0 to 1). */
     K.define("bucket_trap", {
       size: [0.24, 0.42, 0.24],
       options: { weather: 0.5 },
-      note: "An illustrative one way bucket trap: a 0.25 m white polymer drum, one funnel mouth, a wire bail. Origin at the bail's top. Drawn to no agency design.",
+      note: "An illustrative one way bucket trap: a 0.25 m white polymer drum, one funnel mouth, a wire bail. Built down from the bail's top; K.make re-centres its footprint, so a frame places it by that centre or reads the bail from the built geometry. Drawn to no agency design.",
       make: function (o) {
         o = o || {}; var g = new THREE.Group(), w = o.weather == null ? 0.5 : o.weather;
         var tex = N.canvasTex(THREE, 512, 256, function (x, ww, hh) { x.fillStyle = "#eeeae2"; x.fillRect(0, 0, ww, hh); var r = N.rng(13);
