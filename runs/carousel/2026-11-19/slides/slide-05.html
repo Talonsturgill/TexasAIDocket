@@ -1,0 +1,293 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-19, frame 5 of 9. THE ALLIES. A weathered, chalky one way bucket trap hangs by its wire bail from
+     the long limb of a mesquite whose trunk and canopy stand at the left, swung back on its bail so its one moulded funnel
+     mouth shows. A ribbon of FIG.flies_week_millions bronze flies, one per million released a week, comes in from off the
+     upper left, passes close in front of the open mouth, nearer the camera than the bucket, and leaves the right edge under
+     the type. No fly is inside or entering the trap: the frame shows a one door trap hanging in the released flies' path,
+     never a catch. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:556px; top:150px; width:440px; text-align:left">It can't tell sterile from wild</h1>
+<p class="dek" data-follow="24" style="left:558px; width:438px; font-size:27px">So conventional traps can interfere with the federal program that releases sterile flies. An APHIS page says the Edinburg facility deploys more than 80 million a week over Texas and Mexico. One fly stands for a million, drawn to illustrate.</p>
+
+<script>window.FIG = {"flies_week_millions": 80};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The allies", counter: "05 / 09", src: "c8 c22 c21", fit: { min: 70, max: 90, maxLines: 3 } });
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  const FOV = 52;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.02, far: 9000, fog: 0.0016 });
+  const RG = CH.rng(CH.SEED + 505);
+
+  /* BEARINGS. The camera looks 150 degrees clockwise of the sun, so the low honey sun sits behind its left shoulder and the
+   * sky ahead stays deep cobalt for the type. side is screen right; at(u, v, y) is u ahead, v right, y up. */
+  const f = CH.bearing(TXT, 150), side = [-f[1], f[0]];
+  const at = (u, v, y) => [f[0] * u + side[0] * v, y || 0, f[1] * u + side[1] * v];
+
+  /* THE BARK */
+  const barkTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#3a2f28'; g.fillRect(0, 0, w, h); const r = CH.rng(91);
+    /* mesquite bark: long shaggy strips running along the limb (texture u is the length), deep fissures between them */
+    for (let i = 0; i < 220; i++) { const y = r() * h, hh = 2 + r() * 8, x = r() * w, len = w * (0.2 + r() * 0.8); g.fillStyle = r() < 0.55 ? 'rgba(14,10,9,0.7)' : 'rgba(132,112,94,0.45)'; g.fillRect(x, y, len, hh); g.fillRect(x - w, y, len, hh); }
+    for (let i = 0; i < 1400; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '16,11,9' : '160,138,112') + ',' + (0.12 + r() * 0.25).toFixed(2) + ')'; g.fillRect(r() * w, r() * h, 6 + r() * 40, 1 + r() * 2); }
+  });
+  barkTex.repeat.set(10, 2);
+  const bark = new THREE.MeshStandardMaterial({ color: 0xffffff, map: barkTex, bumpMap: barkTex, bumpScale: 4, roughness: 0.94, metalness: 0, name: 'mesquite-bark' });
+  bark.userData.txSurface = 'wood';
+  function taperLimb(pts, r0, r1, mat) {
+    const curve = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p)));
+    const seg = 160, rad = 14, geo = new THREE.TubeGeometry(curve, seg, 1, rad, false), pos = geo.attributes.position;
+    for (let i = 0; i <= seg; i++) {
+      const t = i / seg, c = curve.getPointAt(t), rr = r0 + (r1 - r0) * Math.pow(t, 0.8);
+      const wob = 1 + 0.08 * Math.sin(t * 40) + 0.05 * Math.sin(t * 97);
+      for (let j = 0; j <= rad; j++) { const k = i * (rad + 1) + j, v = new THREE.Vector3(pos.getX(k), pos.getY(k), pos.getZ(k)).sub(c);
+        v.multiplyScalar(rr * wob); pos.setXYZ(k, c.x + v.x, c.y + v.y, c.z + v.z); }
+    }
+    geo.computeVertexNormals(); const m = new THREE.Mesh(geo, mat); m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; return { mesh: m, curve };
+  }
+
+  /* THE LIMB: from off the left edge, rising away, through the bail, ending in a fork just right of the trap and well left
+   * of the type column */
+  const BAIL = [0.9, -0.2, 1.4];
+  const TRUNK = [3.0, -1.05];
+  const limbPts = [at(TRUNK[0] - 0.06, TRUNK[1] + 0.03, 1.92), at(2.2, -1.05, 1.75), at(1.55, -0.75, 1.57), at(1.06, -0.52, 1.45), at(BAIL[0], BAIL[1], BAIL[2] + 0.034), at(0.9, -0.12, 1.44), at(0.94, -0.08, 1.462)];
+  const limb = taperLimb(limbPts, 0.1, 0.009, bark); R.scene.add(limb.mesh);
+  /* THE TREE the limb grows from: a thick leaning trunk at the left, the kit mesquite's stems and canopy over it */
+  /* the fork: a second branch leaving the limb up and back to the left, the way mesquite zigzags */
+  const forkEnds = [];
+  { const p0 = limb.curve.getPointAt(0.3), a = [p0.x, p0.y, p0.z], m1 = at(0.22, -0.12, 0), m2 = at(0.55, -0.3, 0);
+    const pts = [a, [a[0] + m1[0], a[1] + 0.2, a[2] + m1[2]], [a[0] + m2[0], a[1] + 0.48, a[2] + m2[2]]];
+    R.scene.add(taperLimb(pts, 0.034, 0.008, bark).mesh); forkEnds.push(pts[2], pts[1]); }
+  /* knots and stubs where old twigs broke off */
+  [0.3, 0.52, 0.66, 0.8].forEach((t, k) => { const q = limb.curve.getPointAt(t), tg = limb.curve.getTangentAt(t);
+    const n = new THREE.Vector3(0, 1, 0).cross(tg).normalize().multiplyScalar(k % 2 ? 1 : -1).add(new THREE.Vector3(0, 0.6, 0)).normalize();
+    const rr = 0.06 - 0.03 * t, st = [q.x + n.x * rr * 0.6, q.y + n.y * rr * 0.6, q.z + n.z * rr * 0.6], en = [st[0] + n.x * 0.05, st[1] + n.y * 0.05, st[2] + n.z * 0.05];
+    R.scene.add(taperLimb([st, [(st[0] + en[0]) / 2, (st[1] + en[1]) / 2 + 0.005, (st[2] + en[2]) / 2], en], 0.014, 0.008, bark).mesh); });
+  /* the tip fork was dropped: its lower twig hung straight down past the bail like a spike */
+  /* twigs with leaflet sprays on the far, left run of the limb only */
+  const leafMat = new THREE.MeshStandardMaterial({ color: 0x8fb04a, roughness: 0.6, side: THREE.DoubleSide, name: 'mesquite-leaf' });
+  leafMat.userData.txSurface = false;
+  const twigEnds = [];
+  [[0.06, 0.4, 0.4, 0.5], [0.2, 0.5, 0.45, 0.4], [0.3, 0.7, 0.75, 0.3], [-1, 0.5, 0.6, 0.22], [-2, 0.6, 0.5, 0.2]].forEach(([t, du, dy, L]) => {
+    const p = t >= 0 ? limb.curve.getPointAt(t) : new THREE.Vector3(...forkEnds[-1 - t]), a = [p.x, p.y, p.z];
+    const dir = at(du * L, -0.3 * L, 0), b = [a[0] + dir[0], a[1] + dy * L + 0.05, a[2] + dir[2]];
+    const mid = [(a[0] + b[0]) / 2 + (RG() - 0.5) * 0.06, (a[1] + b[1]) / 2 + 0.04, (a[2] + b[2]) / 2 + (RG() - 0.5) * 0.06];
+    R.scene.add(taperLimb([a, mid, b], 0.014, 0.004, bark).mesh); twigEnds.push(b);
+  });
+  const leafGeo = new THREE.PlaneGeometry(0.009, 0.034); leafGeo.translate(0, 0.017, 0);
+  const leaves = [];
+  twigEnds.forEach(e => { for (let s = 0; s < 9; s++) {
+    const th = RG() * Math.PI * 2, ph = 0.3 + RG() * 1.2, L = 0.16 + RG() * 0.12;
+    const d = new THREE.Vector3(Math.cos(th) * Math.sin(ph), -0.1 - RG() * 0.5, Math.sin(th) * Math.sin(ph)).normalize();
+    for (let k = 0; k < 12; k++) { const q = k / 12, c = new THREE.Vector3(e[0], e[1], e[2]).addScaledVector(d, L * q); c.y -= 0.03 * q * q; [-1, 1].forEach(sg => leaves.push({ c, d, sg })); } } });
+  const leafIM = new THREE.InstancedMesh(leafGeo, leafMat, leaves.length), M4 = new THREE.Matrix4(), Q = new THREE.Quaternion(), S3 = new THREE.Vector3(1, 1, 1);
+  const lcol = [0x86a843, 0x9cbd55, 0x7a9a3c, 0xa8c46a];
+  leaves.forEach((l, i) => {
+    const sd = new THREE.Vector3().crossVectors(l.d, new THREE.Vector3(0, 1, 0)).normalize().multiplyScalar(l.sg);
+    const out = sd.clone().addScaledVector(l.d, 0.5).addScaledVector(new THREE.Vector3(0, -1, 0), 0.25).normalize();
+    Q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), out); Q.premultiply(new THREE.Quaternion().setFromAxisAngle(out, (RG() - 0.5) * 1.2));
+    M4.compose(l.c, Q, S3); leafIM.setMatrixAt(i, M4); leafIM.setColorAt(i, new THREE.Color(lcol[i % 4]));
+  });
+  leafIM.castShadow = leafIM.receiveShadow = true; R.scene.add(leafIM);
+
+  /* THE TRAP. The chassis bucket_trap keeps its bail; its drum, lid and funnel are rebuilt here in weathered polymer with a
+   * lid you can see into: an annular lid, a moulded funnel cone with a rolled lip, an open throat into a dark drum. */
+  let TT = 0, best = 1e9; for (let i = 0; i <= 400; i++) { const q = limb.curve.getPointAt(i / 400), B = at(BAIL[0], BAIL[1]), dd = Math.hypot(q.x - B[0], q.z - B[2]); if (dd < best) { best = dd; TT = i / 400; } }
+  const lp = limb.curve.getPointAt(TT), tang = limb.curve.getTangentAt(TT);
+  const trap = K.make('bucket_trap', { weather: 0.8 });
+  trap.children.slice().forEach(m => { if (m.isMesh && m.geometry.type !== 'TubeGeometry') trap.remove(m); });
+  const polyTex = CH.canvasTex(THREE, 1024, 512, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#ece4d2'); gr.addColorStop(0.3, '#f7f4ee'); gr.addColorStop(1, '#f3efe7'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    const sg = g.createLinearGradient(0, 0, w, 0); sg.addColorStop(0, 'rgba(214,180,100,0.0)'); sg.addColorStop(0.35, 'rgba(214,180,100,0.28)'); sg.addColorStop(0.6, 'rgba(214,180,100,0.05)'); sg.addColorStop(1, 'rgba(214,180,100,0.0)'); g.fillStyle = sg; g.fillRect(0, 0, w, h);
+    const r = CH.rng(29);
+    for (let i = 0; i < 70; i++) { const x = r() * w, y = r() * h, rad = 20 + r() * 70, ch = g.createRadialGradient(x, y, 0, x, y, rad);   /* sun chalking */
+      ch.addColorStop(0, 'rgba(255,255,255,' + (0.08 + r() * 0.12).toFixed(2) + ')'); ch.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = ch; g.fillRect(x - rad, y - rad, 2 * rad, 2 * rad); }
+    for (let i = 0; i < 44; i++) { const x = r() * w, len = h * (0.08 + r() * 0.42), ww = 1.5 + r() * 3.5, st = g.createLinearGradient(0, h * 0.05, 0, h * 0.05 + len);   /* drip stains from under the rim */
+      st.addColorStop(0, 'rgba(92,72,48,' + (0.18 + r() * 0.2).toFixed(2) + ')'); st.addColorStop(1, 'rgba(92,72,48,0)'); g.fillStyle = st; g.fillRect(x, h * 0.05, ww, len);
+      g.fillStyle = 'rgba(92,72,48,0.12)'; g.beginPath(); g.ellipse(x + ww / 2, h * 0.05 + len * 0.85, ww * 0.9, ww * 1.6, 0, 0, 6.283); g.fill(); }
+    const db = g.createLinearGradient(0, h * 0.72, 0, h); db.addColorStop(0, 'rgba(150,118,80,0)'); db.addColorStop(1, 'rgba(150,118,80,0.45)'); g.fillStyle = db; g.fillRect(0, h * 0.72, w, h * 0.28);
+    for (let i = 0; i < 2600; i++) { g.fillStyle = 'rgba(' + (r() < 0.6 ? '110,90,62' : '255,250,235') + ',' + (0.05 + r() * 0.14).toFixed(2) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 3); }
+    const ao = g.createLinearGradient(0, 0, 0, h * 0.08); ao.addColorStop(0, 'rgba(70,52,70,0.55)'); ao.addColorStop(1, 'rgba(70,52,70,0)'); g.fillStyle = ao; g.fillRect(0, 0, w, h * 0.08);   /* the lip's shadow */
+  });
+  const poly = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: polyTex, roughness: 0.62, metalness: 0, clearcoat: 0.08, side: THREE.DoubleSide, name: 'polymer-trap-weathered' });
+  poly.userData.txSurface = 'plastic';
+  const lidTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { g.fillStyle = '#e4cf98'; g.fillRect(0, 0, w, h); const r = CH.rng(31);
+    for (let i = 0; i < 3000; i++) { g.fillStyle = 'rgba(' + (r() < 0.7 ? '120,96,60' : '255,248,225') + ',' + (0.05 + r() * 0.16).toFixed(2) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 4, 1 + r() * 4); } });
+  const lidMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: lidTex, roughness: 0.58, clearcoat: 0.1, side: THREE.DoubleSide, name: 'polymer-lid-uv-yellowed' });
+  lidMat.userData.txSurface = 'plastic';
+  const funMat = new THREE.MeshPhysicalMaterial({ color: 0x7a6c8a, roughness: 0.6, clearcoat: 0.1, envMapIntensity: 0.5, side: THREE.DoubleSide, name: 'polymer-funnel-smoke' });
+  funMat.userData.txSurface = 'plastic';
+  const Y0 = -0.42, TOP = Y0 + 0.26;
+  const drum = new THREE.Mesh(new THREE.CylinderGeometry(0.115, 0.1, 0.26, 72, 1, true), poly); drum.position.y = Y0 + 0.13; trap.add(drum);
+  const base = new THREE.Mesh(new THREE.CircleGeometry(0.1, 64), poly); base.rotation.x = Math.PI / 2; base.position.y = Y0; trap.add(base);
+  const inner = new THREE.Mesh(new THREE.CircleGeometry(0.098, 48), new THREE.MeshStandardMaterial({ color: 0x463a58, roughness: 1, name: 'trap-interior' })); inner.rotation.x = -Math.PI / 2; inner.position.y = Y0 + 0.004; trap.add(inner);
+  [0.03, 0.09, 0.21].forEach(dy => { const rr = 0.1 + 0.015 * dy / 0.26; const ring = new THREE.Mesh(new THREE.TorusGeometry(rr + 0.0015, 0.0035, 10, 72), poly); ring.rotation.x = Math.PI / 2; ring.position.y = Y0 + dy; trap.add(ring); });
+  const LIDY = TOP + 0.02;
+  const lid = new THREE.Mesh(new THREE.LatheGeometry([new THREE.Vector2(0.088, 0), new THREE.Vector2(0.123, 0), new THREE.Vector2(0.127, -0.004), new THREE.Vector2(0.127, -0.022), new THREE.Vector2(0.116, -0.024)], 96), lidMat);
+  lid.position.y = LIDY; trap.add(lid);
+  const fp = []; for (let i = 0; i <= 16; i++) { const t = i / 16; fp.push(new THREE.Vector2(0.016 + 0.072 * Math.pow(t, 0.9), -0.11 + 0.11 * t)); }
+  const fun = new THREE.Mesh(new THREE.LatheGeometry(fp, 72), funMat); fun.position.y = LIDY + 0.001; trap.add(fun);
+  /* the throat: the cone's narrow end opening into the dark drum */
+  { const th = new THREE.Mesh(new THREE.CircleGeometry(0.017, 32), new THREE.MeshStandardMaterial({ color: 0x1c1428, roughness: 1, name: 'trap-throat' })); th.material.userData.txSurface = false; th.rotation.x = -Math.PI / 2; th.position.y = LIDY - 0.108; trap.add(th); }
+  /* a lure cap clipped to the lid, a small screw top vial in teal polymer, drawn to no agency design */
+  const lureMat = new THREE.MeshPhysicalMaterial({ color: 0x2f7280, roughness: 0.38, clearcoat: 0.4, name: 'polymer-lure-cap' }); lureMat.userData.txSurface = 'plastic';
+  { const a = Math.atan2(-0.6, 1) + 0.4, lx = Math.sin(a) * 0.106, lz = Math.cos(a) * 0.106;
+    const vial = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.026, 32), lureMat); vial.position.set(lx, LIDY + 0.013, lz); trap.add(vial);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.009, 32), lidMat); cap.position.set(lx, LIDY + 0.03, lz); trap.add(cap);
+    for (let k = 0; k < 10; k++) { const rib = new THREE.Mesh(new THREE.BoxGeometry(0.002, 0.008, 0.002), lidMat); const b = k / 10 * 6.283; rib.position.set(lx + Math.sin(b) * 0.0165, LIDY + 0.03, lz + Math.cos(b) * 0.0165); trap.add(rib); } }
+  const lip = new THREE.Mesh(new THREE.TorusGeometry(0.089, 0.0045, 10, 96), lidMat); lip.rotation.x = Math.PI / 2; lip.position.y = LIDY + 0.002; trap.add(lip);
+  trap.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  /* hung from the limb at the wire wraps, then swung back on its bail so the lid turns to the camera */
+  const swing = new THREE.Group(); swing.position.set(lp.x, lp.y - 0.034, lp.z); swing.add(trap); trap.rotation.y = Math.atan2(f[0], f[1]) + 0.3;
+  swing.quaternion.setFromAxisAngle(new THREE.Vector3(side[0], 0, side[1]), 0.72);
+  TXT.add(R, swing);
+  if (Math.abs(lp.y - swing.position.y - 0.034) > 1e-6) throw new Error('trap does not hang from the limb');
+  const galv = new THREE.MeshStandardMaterial({ color: 0xc4c8cc, metalness: 0.9, roughness: 0.35, name: 'galv-steel' });
+  for (let k = 0; k < 2; k++) { const tor = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.0028, 8, 40), galv);
+    tor.position.set(lp.x + tang.x * (k - 0.5) * 0.012, lp.y, lp.z + tang.z * (k - 0.5) * 0.012); tor.lookAt(lp.x + tang.x, lp.y + tang.y, lp.z + tang.z); tor.castShadow = true; R.scene.add(tor); }
+  swing.updateMatrixWorld(true);
+  const FP = at(0.2, 0.02), FROM = [FP[0], 1.0, FP[2]];   /* eye dropped so the camera looks up and the horizon falls well under the dek */
+  swing.updateMatrixWorld(true);
+  const mouthW = new THREE.Vector3(0, LIDY, 0).applyMatrix4(trap.matrixWorld), throatW = new THREE.Vector3(0, LIDY - 0.07, 0).applyMatrix4(trap.matrixWorld);
+  const lidN = new THREE.Vector3(0, 1, 0).applyQuaternion(new THREE.Quaternion().setFromRotationMatrix(trap.matrixWorld));
+
+  /* THE CAMERA: eye 1.2 m, close and low, the trap close and left so the right column stays sky */
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [mouthW.x, mouthW.y, mouthW.z], 290, 610, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+
+  /* THE MESQUITE: a twisted multi trunk, zigzag branches and feathery bipinnate leaflets, built here so the canopy can be
+   * kept clear of the kicker and the type. Stem 0 carries the limb. */
+  const kickEl = document.querySelector('.kick, .kicker, [class*="kick"]'), kr = kickEl ? kickEl.getBoundingClientRect() : { left: 80, top: 80, right: 320, bottom: 110 };
+  const hb0 = hook.getBoundingClientRect(), db0 = dek.getBoundingClientRect();
+  const avoid = (q) => { const s2 = CH.project(THREE, R, q); return (s2[0] < kr.right + 70 && s2[1] < kr.bottom + 70) || (s2[0] > Math.min(hb0.left, db0.left) - 60 && s2[1] < db0.bottom + 40); };
+  const anchors = [];
+  const L0 = limbPts[0];
+  const stems = [
+    [at(TRUNK[0], TRUNK[1], -0.05), at(TRUNK[0] + 0.05, TRUNK[1] + 0.06, 0.9), [L0[0], L0[1], L0[2]], at(TRUNK[0] - 0.2, TRUNK[1] + 0.1, 2.7), at(TRUNK[0] - 0.12, TRUNK[1] + 0.3, 3.4)],
+    [at(TRUNK[0] + 0.05, TRUNK[1] - 0.05, -0.05), at(TRUNK[0] + 0.25, TRUNK[1] - 0.25, 0.8), at(TRUNK[0] + 0.3, TRUNK[1] - 0.6, 1.6), at(TRUNK[0] + 0.6, TRUNK[1] - 0.7, 2.4), at(TRUNK[0] + 0.7, TRUNK[1] - 1.1, 3.1)],
+    [at(TRUNK[0] - 0.04, TRUNK[1] - 0.06, -0.05), at(TRUNK[0] - 0.3, TRUNK[1] - 0.15, 0.7), at(TRUNK[0] - 0.35, TRUNK[1] - 0.5, 1.4), at(TRUNK[0] - 0.75, TRUNK[1] - 0.55, 2.1), at(TRUNK[0] - 0.85, TRUNK[1] - 0.95, 2.7)]
+  ];
+  stems.forEach((pts, si) => {
+    const st = taperLimb(pts, si ? 0.11 : 0.15, 0.035, bark); R.scene.add(st.mesh);
+    [0.62, 0.8, 1].forEach((t, bi) => { const p0 = st.curve.getPointAt(t), a = [p0.x, p0.y, p0.z];
+      const dv = (si === 1 ? -1 : si === 2 ? -0.6 : 0.4) * (0.6 + bi * 0.2), du = (bi % 2 ? 0.5 : -0.4);
+      const m1 = at(du * 0.5, dv * 0.5, 0), m2 = at(du, dv, 0), b1 = [a[0] + m1[0], a[1] + 0.35, a[2] + m1[2]], b2 = [a[0] + m2[0] + 0.1, a[1] + 0.55, a[2] + m2[2]];
+      R.scene.add(taperLimb([a, [(a[0] + b1[0]) / 2 + 0.08, (a[1] + b1[1]) / 2, (a[2] + b1[2]) / 2], b1, b2], 0.035, 0.007, bark).mesh);
+      anchors.push(b2, b1, [(b1[0] + b2[0]) / 2, (b1[1] + b2[1]) / 2 + 0.05, (b1[2] + b2[2]) / 2]); });
+  });
+  const fineGeo = new THREE.PlaneGeometry(0.006, 0.024); fineGeo.translate(0, 0.012, 0);
+  const fronds = [];
+  anchors.forEach(e => { for (let s2 = 0; s2 < 34; s2++) {
+    const th = RG() * 6.283, L = 0.2 + RG() * 0.16, base = new THREE.Vector3(e[0] + (RG() - 0.5) * 0.35, e[1] + (RG() - 0.5) * 0.2, e[2] + (RG() - 0.5) * 0.35);
+    if (avoid(base.toArray())) continue;
+    const d = new THREE.Vector3(Math.cos(th), -0.35 - RG() * 0.4, Math.sin(th)).normalize();
+    for (let k = 0; k < 14; k++) { const q = k / 14, c = base.clone().addScaledVector(d, L * q); c.y -= 0.04 * q * q; [-1, 1].forEach(sg => fronds.push({ c, d, sg })); } } });
+  const fineIM = new THREE.InstancedMesh(fineGeo, leafMat, fronds.length), FM = new THREE.Matrix4(), FQ = new THREE.Quaternion(), FS = new THREE.Vector3(1, 1, 1);
+  fronds.forEach((l, i) => { const sd = new THREE.Vector3().crossVectors(l.d, new THREE.Vector3(0, 1, 0)).normalize().multiplyScalar(l.sg);
+    const out = sd.clone().addScaledVector(l.d, 0.45).addScaledVector(new THREE.Vector3(0, -1, 0), 0.2).normalize();
+    FQ.setFromUnitVectors(new THREE.Vector3(0, 1, 0), out); FQ.premultiply(new THREE.Quaternion().setFromAxisAngle(out, (RG() - 0.5) * 1.4));
+    FM.compose(l.c, FQ, FS); fineIM.setMatrixAt(i, FM); fineIM.setColorAt(i, new THREE.Color([0x93b84c, 0xa9c862, 0x7f9f3e, 0xb5cf72][i % 4])); });
+  fineIM.castShadow = fineIM.receiveShadow = true; R.scene.add(fineIM);
+  const toCam = new THREE.Vector3(...FROM).sub(mouthW).normalize();
+  if (lidN.dot(toCam) < 0.2) throw new Error('the funnel mouth is not turned to the camera (' + lidN.dot(toCam).toFixed(2) + ')');
+
+  /* THE WORLD */
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2wonder, { clouds: 0.22 }));
+  TXT.ground(R, { surface: 'caliche', color: 0xeec08e, size: 6000, tile: 2.2, seed: 519 });
+  const box = (u0, v0, u1, v1) => { const q = [at(u0, v0), at(u1, v0), at(u0, v1), at(u1, v1)]; return [Math.min(...q.map(p => p[0])), Math.min(...q.map(p => p[2])), Math.max(...q.map(p => p[0])), Math.max(...q.map(p => p[2]))]; };
+  TXT.scatter(R, { kind: 'grass', count: 3000, area: box(1.0, -10, 40, 12), seed: 41, scale: [0.3, 0.75] });
+  TXT.scatter(R, { kind: 'rock', count: 1200, area: box(0.8, -5, 12, 6), seed: 47, scale: [0.01, 0.05] });
+  /* the horizon: honey mesquite far off, tall and ragged on two or three leaning stems, low in the haze */
+  const haze = new Map();
+  [[180, -60, 5, 1], [240, -20, 5.5, 2], [210, 40, 4.5, 3], [330, -110, 5, 4], [380, 30, 6, 5], [300, 95, 5, 6], [450, -40, 6, 7], [150, -95, 4.2, 8], [420, 140, 5.5, 9], [520, 10, 6, 10]].forEach(([u, v, hgt, s]) => {
+    const t = K.make('mesquite', { seed: 400 + s, height: hgt, spread: hgt * 0.7, stems: 3 }); const p = at(u, v); t.position.set(p[0], 0, p[2]); t.rotation.y = s * 1.3;
+    t.traverse(m => { if (m.isMesh && m.material && !Array.isArray(m.material)) { if (!haze.has(m.material)) { const c = m.material.clone(); c.color = new THREE.Color(0x7d6fa8); c.map = c.map; c.name = 'haze-silhouette'; c.userData.txSurface = false; haze.set(m.material, c); } m.material = haze.get(m.material); } });
+    { const hb1 = hook.getBoundingClientRect(), db1 = dek.getBoundingClientRect(), tp = CH.project(THREE, R, [p[0], hgt, p[2]]);
+      if (tp[0] > Math.min(hb1.left, db1.left) - 80 && tp[1] < db1.bottom + 60) return; }
+    TXT.add(R, t);
+  });
+  { const hz = CH.project(THREE, R, at(5000, 0, 0)), db2 = dek.getBoundingClientRect();
+    if (hz[1] < db2.bottom + 180) throw new Error('the horizon sits at ' + Math.round(hz[1]) + ', too close under the dek (' + Math.round(db2.bottom) + ')'); }
+
+  /* THE FIGURE: FIG.flies_week_millions flies, one per million a week, in from off the upper left, close past the open mouth
+   * and nearer the camera than the bucket, out of the right edge under the type. */
+  const NF = FIG.flies_week_millions * 1;
+  if (!Number.isInteger(NF) || NF < 1) throw new Error('flies_week_millions is not a whole count');
+  const cam = R.camera; cam.updateMatrixWorld(true);
+  const unproject0 = (sx, sy, dist) => { const v = new THREE.Vector3(sx / 540 - 1, 1 - sy / 675, 0.5).unproject(cam).sub(cam.position).normalize(); return cam.position.clone().addScaledVector(v, dist); };
+  const M = CH.project(THREE, R, [mouthW.x, mouthW.y, mouthW.z]), TH = CH.project(THREE, R, [throatW.x, throatW.y, throatW.z]);
+  const dMouth = cam.position.distanceTo(mouthW), dThroat = cam.position.distanceTo(throatW);
+  const PATH = [[12, 190, 0.9], [90, 300, 0.75], [180, 400, 0.55], [290, 470, 0.32], [450, 505, 0.31], [515, 640, 0.32], [540, 800, 0.36], [700, 850, 0.36], [880, 830, 0.36], [1070, 790, 0.36]];
+  const pathAt = (t) => { const x = t * (PATH.length - 1), i = Math.min(PATH.length - 2, Math.floor(x)), u = x - i, a = PATH[i], b = PATH[i + 1]; return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u]; };
+  const unproject = (sx, sy, dist) => { const v = new THREE.Vector3(sx / 540 - 1, 1 - sy / 675, 0.5).unproject(cam).sub(cam.position).normalize(); return cam.position.clone().addScaledVector(v, dist); };
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  const TYPE = { x0: Math.min(hb.left, db.left) - 30, y0: hb.top - 30, x1: Math.max(hb.right, db.right) + 30, y1: db.bottom + 30 };
+  /* the limb stays out of the type column */
+  for (let i = 0; i <= 60; i++) { const q = limb.curve.getPointAt(i / 60), s2 = CH.project(THREE, R, [q.x, q.y, q.z]);
+    if (s2[0] > TYPE.x0 && s2[0] < TYPE.x1 && s2[1] > TYPE.y0 && s2[1] < TYPE.y1) throw new Error('the limb runs into the type column at ' + s2.map(Math.round)); }
+  const flies = [];
+  const NS = NF;
+  for (let i = 0; i < NS; i++) {
+    const t = Math.min(1, (i + 0.5) / NS);
+    const p = pathAt(t), q = pathAt(Math.min(1, t + 0.02)), wdt = t < 0.3 ? 100 - 160 * t : t < 0.6 ? 34 : 34 + (t - 0.6) * 130;
+    const nx = -(q[1] - p[1]), ny = q[0] - p[0], nl = Math.hypot(nx, ny) || 1, off = (RG() + RG() - 1) * wdt;
+    const sx = Math.min(1070, Math.max(8, p[0] + nx / nl * off)); let sy = Math.max(190, p[1] + ny / nl * off + (RG() - 0.5) * wdt * 0.5); if (sx > TYPE.x0 - 10) sy = Math.max(sy, TYPE.y1 + 14);
+    /* depth bands: on the right, clear of the trap, a near band close to the lens, a mid band and a far band */
+    const band = t > 0.6 ? (i % 3 === 0 ? 1.5 : 1.1) : 1 + (RG() - 0.5) * 0.15, d = p[2] * band;
+    const w = unproject(sx, sy, d), w2 = unproject(sx + (q[0] - p[0]), sy + (q[1] - p[1]), q[2] * (1 + 0.001));
+    const fly = K.make('blowfly', { seed: 1 + (i % 9), flying: 0.85 + RG() * 0.15, spread: 0.25 + RG() * 0.35 });
+    fly.position.copy(w); fly.lookAt(w2); fly.rotation.z += (RG() - 0.5) * 0.6;
+    fly.traverse(m => { if (m.isMesh && m.material && m.material.name === 'bf-eye') m.material.color.set(0x7a3424); });
+    TXT.add(R, fly); flies.push(fly);
+  }
+  if (flies.length !== FIG.flies_week_millions) throw new Error('stream draws ' + flies.length + ' flies, not FIG.flies_week_millions ' + FIG.flies_week_millions);
+  flies.forEach(fl => { const s = CH.project(THREE, R, [fl.position.x, fl.position.y, fl.position.z]);
+    if (s[0] < 0 || s[0] > 1080 || s[1] < 0 || s[1] > 1350) throw new Error('a fly falls outside the frame at ' + s.map(Math.round));
+    if (s[0] > TYPE.x0 && s[0] < TYPE.x1 && s[1] > TYPE.y0 && s[1] < TYPE.y1) throw new Error('a fly sits in the type column at ' + s.map(Math.round)); });
+  /* none inside or entering the trap: every fly outside the rim's cylinder from the base to 4 cm over the mouth, in the trap's own frame */
+  let maxX = 0;
+  flies.forEach(fl => { const lc = trap.worldToLocal(fl.position.clone()), rr = Math.hypot(lc.x, lc.z);
+    if (rr < 0.14 && lc.y > Y0 - 0.02 && lc.y < LIDY + 0.04) throw new Error('a fly is drawn inside or entering the trap');
+    maxX = Math.max(maxX, CH.project(THREE, R, fl.position.toArray())[0]); });
+  if (maxX < 1040) throw new Error('the stream stops short of the right edge at ' + Math.round(maxX));
+  { const tp = CH.project(THREE, R, at(TRUNK[0], TRUNK[1], 1.2)); if (tp[0] < -40 || tp[0] > 260) throw new Error('the trunk is not at the left of the frame (' + tp.map(Math.round) + ')'); }
+  const tTop = CH.project(THREE, R, [swing.position.x, swing.position.y, swing.position.z]), tBot = CH.project(THREE, R, new THREE.Vector3(0, Y0, 0).applyMatrix4(trap.matrixWorld).toArray());
+  if (tBot[1] - tTop[1] < 220) throw new Error('the trap stands only ' + Math.round(tBot[1] - tTop[1]) + ' px tall');
+
+  /* THE KEY: the low honey sun from the camera's left, so the drum turns a firm violet core shadow toward the type */
+  const kh = [-f[0] * 0.3 - side[0] * 0.95, -f[1] * 0.3 - side[1] * 0.95], KAZ = Math.atan2(kh[0], kh[1]) * 180 / Math.PI;
+  CH.KEY_SCALE = 1.2;
+  const spec = CH.rigSpec(W, 6, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.5 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([mouthW.x, 1.2, mouthW.z], { distance: 20, shadowFar: 60, normalBias: 0.004 }), { light: { az: KAZ, el: 22 } }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.12, height: 0.05, mottle: 0.12, skip: flies });
+  if ('environmentIntensity' in R.scene) R.scene.environmentIntensity *= 0.72;
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.66, height: 270 });
+  CH.seat(cx, { a: 0.4, fade: 200 }); CH.seat(cx, { sel: '.dek', a: 0.35, fade: 120 });
+  CH.seat(cx, { sel: '[class*="src"]', a: 0.55, fade: 90 });   /* knock the trunk's bark streaks back behind the claim line */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

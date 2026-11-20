@@ -1,0 +1,69 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.6,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "round 2, see hand-back"
+  }
+ ],
+ "weighted_score": 7.502,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace the watch-for close with a frame a Texas rancher can act on, sourced as a verified claim.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "flat cube grid with a ghost shadow band",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 9,
+   "problem": "placeholder phone glyph and a repeat of frame 3's glass",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 2,
+   "problem": "lilac slab dominates and pills carry the frame",
+   "fix": "see round 2 notes"
+  }
+ ]
+}

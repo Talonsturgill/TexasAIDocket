@@ -1,0 +1,78 @@
+{
+ "date": "2026-11-19",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "120 animal cases",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 120,
+   "quoted_from": "c2",
+   "quote": "more than 120 confirmed animal cases"
+  },
+  {
+   "phrase": "120 confirmed animal cases",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 120,
+   "quoted_from": "c2",
+   "quote": "more than 120 confirmed animal cases"
+  },
+  {
+   "phrase": "100 screwworm specific traps",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c24",
+   "quote": "more than 100 NWS-specific traps"
+  },
+  {
+   "phrase": "one of 40",
+   "slide": "slide-07.html",
+   "kind": "ratio",
+   "value": 40,
+   "quoted_from": "c11",
+   "quote": "one of 40 selected nationwide"
+  },
+  {
+   "phrase": "One of 40",
+   "slide": "slide-07.html",
+   "kind": "ratio",
+   "value": 40,
+   "quoted_from": "c11",
+   "quote": "one of 40 selected nationwide"
+  },
+  {
+   "phrase": "3.1 million USDA project runs",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3.1,
+   "quoted_from": "c1",
+   "quote": "$3.1 million project"
+  },
+  {
+   "phrase": "one month",
+   "slide": "slide-08.html",
+   "kind": "span",
+   "value": 1,
+   "from_claims": [
+    "c12"
+   ],
+   "computed_by": "the drawing unit, one fence post per calendar month, the first of them December 2026; compute.py months_to_end counts December 2026 through June 2028 inclusive from c12, drawn as posts and never printed",
+   "from_date": "2026-12-01",
+   "to_date": "2026-12-31"
+  },
+  {
+   "phrase": "three official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c16",
+    "c21"
+   ],
+   "computed_by": "the documents the source block lists: the UT Arlington release, the USDA ARS page and the USDA APHIS page"
+  }
+ ]
+}

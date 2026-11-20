@@ -1909,7 +1909,9 @@
       "learned": "2026-11-17",
       "instinct": "Run one render.py at a time into a run's render directory, because each run rewrites render_report.json from its own slides, and a gate reading that report then judges stale text against the plan",
       "evidence": "2026-11-17 no. 80: four artists rendering into out/<date>/render at once left render_report.json carrying round 1 headlines, plan_render_check and copy_sync failed on frames whose PNGs were current, and slide 8 failed on a missing .resolved file",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-19"
+      ],
       "contradicted": []
     },
     {
@@ -1917,6 +1919,24 @@
       "learned": "2026-11-19",
       "instinct": "Give every slide artist the accent's meaning and its reserved warm hues in the brief, because nine artists left alone each spend the warm family on whatever their own frame needs and a reader learns two meanings.",
       "evidence": "2026-11-18 no. 81, round 2 integrity judge: warm orange meant dirty air on frames 4 and 6, while apricot limestone on frame 7 marked the counties that were not high cancer and coral marked a swath, a kerb and a block outline on 3, 8 and 9.",
+      "confirmed": [
+        "2026-11-19"
+      ],
+      "contradicted": []
+    },
+    {
+      "id": "read-the-rendered-token",
+      "learned": "2026-11-19",
+      "instinct": "Read every templated figure on the built page, not in the source, before the push.",
+      "evidence": "No. 82's web edition passed article_check and 1305 reader checks while its money tokens rendered '$3.1 project', '$8.5 facility' and '$105 of', because the token drops the unit; a phone screenshot caught it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-review-hash-is-a-time-not-a-truth",
+      "learned": "2026-11-19",
+      "instinct": "Before charging a binding, compare the review's hash with the file on disk now, not with another review's hash.",
+      "evidence": "No. 82's round 3 craft judge charged a hard fail by reading superseded cold critic hashes as newer than the art director's bound ones, and withdrew it when shown the current renders.",
       "confirmed": [],
       "contradicted": []
     }

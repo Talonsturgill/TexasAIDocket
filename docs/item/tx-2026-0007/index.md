@@ -9,7 +9,7 @@ Texas law restricts the channels through which the Public Utility Commission may
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-19
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The Utilities Code limits on how the commission directs ERCOT, and its bar on verbal directives, read as cited.
 - 2026-11-13 · The statute still limits how the commission may direct ERCOT and still forbids a directive given by word of mouth.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

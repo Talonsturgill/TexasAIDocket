@@ -1,0 +1,258 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-19, frame 9 of 9, the close (ROUND 3 RECOMPOSITION). A spatial scene through txthree.js on a short
+     cedar bench at the edge of a spring pasture at dusk. The unbuilt glass study of the two-exit sort stands large and
+     centre right in front, its keep band the only dusk gold, its rims lit by the low sun behind the left of frame. Behind
+     it on the left, smaller, a phone leans on the bench showing its camera view of a calf's hide, the photo a producer or
+     vet would report a case with. No gold, no upload, no fly on the phone. Beyond the bench the new green pasture, a stock
+     tank and a live oak soften into the peach haze under the cobalt sky. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:150px; width:560px; text-align:left">Watch for the prototype next spring</h1>
+<p class="dek" data-follow="24" style="left:74px; width:500px; font-size:28px">UTA's Shouyi Wang expects a smart trap prototype by then. Producers and veterinarians would report cases with phone photos. Each trap detection could feed alerts and risk maps to APHIS. The glass and the phone are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Next spring", counter: "09 / 09", src: "c6 c14 c10", fit: { min: 66, max: 86, maxLines: 4 } });
+
+  /* NO FIGURE ON THIS FRAME. The brief gives window.FIG = {} and the art draws no count or length. */
+  { const h = document.getElementById('hook').getBoundingClientRect(), d = document.querySelector('.dek').getBoundingClientRect();
+    if (h.right > 1016 || d.right > 1016 || h.left < 64) throw new Error('the type leaves the safe margin'); }
+
+  const FOV = 30;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.03, far: 6000, fog: 0.022 });
+
+  /* THE BEARINGS. f looks out over the bench to the pasture, 55 degrees clockwise of the sun, so the low sun sits off the
+   * left of frame and behind the subject: it rims the glass and throws the peach glow along the horizon. at(u, v, y): u
+   * away from the camera, v to its right. */
+  const f = CH.bearing(TXT, 55), side = [-f[1], f[0]];
+  const at = (u, v, y) => [f[0] * u + side[0] * v, y || 0, f[1] * u + side[1] * v];
+  const yawF = Math.atan2(f[0], f[1]);
+  const place = (o, u, v, y, yaw) => { const p = at(u, v, y); o.position.set(p[0], p[1], p[2]); o.rotation.y = yawF + (yaw || 0); return o; };
+
+  /* ---- CEDAR: a grain map 2048 by 512 for 1.2 by 0.3 m of board. Long smooth growth lines drawn in fine steps (no
+   * polyline stair), a few cathedral arches where a ring breaks the face, open pores. No knot. ---- */
+  const grain = (seed, base) => { const t = CH.canvasTex(THREE, 2048, 512, (g, w, h) => {
+    const r = CH.rng(seed); g.fillStyle = base; g.fillRect(0, 0, w, h);
+    /* broad soft bands of early and late wood */
+    for (let i = 0; i < 26; i++) { const y = r() * h, bh = 10 + r() * 40, gr = g.createLinearGradient(0, y - bh, 0, y + bh);
+      const c = r() < 0.5 ? '96,48,26' : '236,184,140'; gr.addColorStop(0, 'rgba(' + c + ',0)'); gr.addColorStop(0.5, 'rgba(' + c + ',' + (0.05 + r() * 0.08) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)');
+      g.fillStyle = gr; g.fillRect(0, y - bh, w, bh * 2); }
+    g.save(); g.filter = 'blur(0.8px)';
+    for (let i = 0; i < 150; i++) { const y0 = r() * h, a = 0.05 + r() * 0.12, dark = r() < 0.65, amp = 1 + r() * 4, fr = 0.0015 + r() * 0.002, ph = r() * 6;
+      g.strokeStyle = dark ? 'rgba(88,42,22,' + a + ')' : 'rgba(255,212,168,' + a * 0.7 + ')'; g.lineWidth = 0.8 + r() * 2;
+      g.beginPath(); for (let x = 0; x <= w; x += 4) { const y = y0 + Math.sin(x * fr + ph) * amp + Math.sin(x * fr * 3.1 + ph * 2) * amp * 0.25; if (x) g.lineTo(x, y); else g.moveTo(x, y); } g.stroke(); }
+    /* cathedral arches: nested parabolas opening along the board */
+    for (let k = 0; k < 2; k++) { const cx0 = 300 + r() * (w - 600), cy0 = 120 + r() * (h - 240);
+      for (let j = 1; j < 9; j++) { g.strokeStyle = 'rgba(92,44,22,' + (0.06 + r() * 0.06) + ')'; g.lineWidth = 1 + r() * 1.5; g.beginPath();
+        const s = j * (10 + r() * 4), L = j * (60 + r() * 30);
+        for (let x = -L; x <= 900; x += 4) { const y = x < 0 ? s * Math.sqrt(1 - Math.min(1, (x * x) / (L * L))) : s; const xx = cx0 + x;
+          if (x === -L) g.moveTo(xx, cy0 - y); else g.lineTo(xx, cy0 - y); }
+        g.stroke(); } }
+    g.restore();
+    for (let i = 0; i < 7000; i++) { g.fillStyle = 'rgba(40,20,10,' + (0.04 + r() * 0.08) + ')'; g.fillRect(r() * w, r() * h, 2 + r() * 5, 1); }
+  }, [1, 4]); t.anisotropy = 16; return t; };
+  const cedar = (seed, base) => { const m = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: grain(seed, base), roughness: 0.6, clearcoat: 0.2, clearcoatRoughness: 0.5 }); m.name = 'cedar-wood'; m.userData.txSurface = 'wood'; return m; };
+
+  /* ---- THE BENCH: a short cedar top of planks running across the view on a solid cedar underboard, so a seam shows a
+   * dark wood shadow and never sky, its far edge open to the pasture beyond ---- */
+  const TOP = 0.9;
+  const bench = new THREE.Group();
+  const PL = 0.14, NPL = 6, BW = 1.6, SEAM = 0.004;
+  const tones = ['#b97c4e', '#ad7046', '#c08656', '#a96c44', '#b67a4c', '#b37548'];
+  for (let i = 0; i < NPL; i++) {
+    const b = TXT.roundedBox(BW, 0.035, PL - SEAM, 0.006, cedar(70 + i, tones[i])); K.uvBox(b.geometry, 1.2);
+    b.geometry.translate(((i * 37) % 7) * 0.05, 0, 0);
+    b.position.set(-((i * 37) % 7) * 0.05, TOP - 0.0175, (i - (NPL - 1) / 2) * PL);
+    b.castShadow = b.receiveShadow = true; bench.add(b);
+  }
+  { const sub = TXT.roundedBox(BW - 0.04, 0.03, NPL * PL - 0.03, 0.006, cedar(88, '#5e3522')); sub.position.set(0, TOP - 0.045, 0); sub.receiveShadow = true; bench.add(sub);
+    const legM = cedar(91, '#6e3f28');
+    [[-0.68, -0.32], [0.68, -0.32], [-0.68, 0.32], [0.68, 0.32]].forEach(([x, z]) => { const l = TXT.roundedBox(0.08, TOP - 0.06, 0.08, 0.012, legM); l.position.set(x, (TOP - 0.06) / 2, z); l.castShadow = l.receiveShadow = true; bench.add(l); }); }
+  /* bench centred at u 1.32: planks run along v (local x), stacked along u (local z) */
+  const BU = 1.32;
+  place(bench, BU, 0.02, 0, 0); bench.rotation.y = yawF + Math.PI / 2; TXT.add(R, bench);
+
+  /* ---- THE GLASS: frame 3's study, large, centre right and in front. No block under it: its feet stand on the cedar.
+   * The release branch is redrawn as a J that bends to the bench and turns up, open. ---- */
+  const GU = 1.1, GV = 0.07;
+  const GH = 0.30, gs = GH / 0.30;
+  const study = new THREE.Group();
+  const sg = K.make('sort_glass', { height: GH, band: true }); study.add(sg);
+  sg.traverse((m) => { if (m.isMesh && m.material && m.material.transmission) { m.material = m.material.clone(); m.material.userData.txSurface = 'glass'; m.material.color = new THREE.Color(0xe4ecff); m.material.transmission = 1; m.material.roughness = 0.012; m.material.envMapIntensity = 1.3; m.material.attenuationColor = new THREE.Color(0x9ab6ff); m.material.attenuationDistance = 0.08; m.material.thickness = 0.022; m.material.ior = 1.5; m.material.specularIntensity = 1; m.material.name = 'borosilicate-glass'; } });
+  sg.traverse((m) => { if (m.isMesh && m.material && !m.material.transmission && m.material.metalness >= 0.85) m.visible = false; });
+  let bandMesh = null;
+  sg.traverse((m) => { if (m.isMesh && m.material && m.material.emissive && m.material.emissive.getHex() === 0xe0956a) { m.material = m.material.clone(); m.material.color = new THREE.Color(0xe0956a); m.material.emissiveIntensity = 0.35; m.material.metalness = 0.35; m.material.roughness = 0.3; m.material.envMapIntensity = 1.0; m.material.name = 'band-gold-enamel'; bandMesh = m; } });
+  if (!bandMesh) throw new Error('the keep band is missing from the glass');
+  bandMesh.scale.set(1.04, 1.04, 2.2);
+  const U = sg.userData, keep = U.keep;
+  const bore = 0.010 * gs;
+  let glassMat = null; sg.traverse((m) => { if (!glassMat && m.isMesh && m.material && m.material.transmission) glassMat = m.material; });
+  const solid = glassMat.clone(); solid.thickness = 0.03; solid.attenuationColor = new THREE.Color(0xa8bcff); solid.attenuationDistance = 0.12; solid.name = 'borosilicate-solid';
+  sg.traverse((m) => { if (m.isMesh && m.position.x > 0.004) m.visible = false; });
+  const rOut = bore + 0.0018 * gs;
+  const JK = gs / (0.42 / 0.30);
+  const jPts = [[0, U.fork[1]], [0.03, 0.15], [0.052, 0.07], [0.07, 0.026], [0.088, 0], [0.108, 0.03], [0.12, 0.07], [0.128, 0.112]].map((q) => new THREE.Vector3(q[0] * JK, q[1] * JK, 0));
+  jPts[0].y = U.fork[1]; jPts[4].y = rOut + 0.0012;
+  const jCurve = new THREE.CatmullRomCurve3(jPts, false, 'centripetal');
+  study.add(new THREE.Mesh(new THREE.TubeGeometry(jCurve, 160, rOut, 48, false), glassMat));
+  { const E = jPts[jPts.length - 1].clone(), dOut = jCurve.getTangent(1).normalize();
+    const rp = []; for (let j = 0; j <= 16; j++) { const u = j / 16; rp.push(new THREE.Vector2(rOut + 0.012 * gs * u * u, u * 0.026 * gs)); }
+    const fl = new THREE.Mesh(new THREE.LatheGeometry(rp, 64), glassMat); fl.position.copy(E); fl.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dOut); study.add(fl);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(rOut + 0.012 * gs, 0.0024 * gs, 16, 72), solid); lip.position.copy(E).addScaledVector(dOut, 0.026 * gs);
+    lip.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dOut); study.add(lip); }
+  const bendX = 0.088 * JK;
+  { const kr = new THREE.Mesh(new THREE.TorusGeometry(0.014 * gs, 0.0028 * gs, 20, 64), solid); kr.rotation.x = Math.PI / 2; kr.position.set(keep[0], 0.0028 * gs, 0); study.add(kr);
+    const jr = new THREE.Mesh(new THREE.TorusGeometry(0.010 * gs, 0.0026 * gs, 20, 64), solid); jr.rotation.x = Math.PI / 2; jr.position.set(bendX, 0.0026 * gs, 0); study.add(jr); }
+  { const bulbR = 0.026 * gs, fr = new THREE.Mesh(new THREE.CylinderGeometry(bulbR * 0.975, bulbR * 0.975, 0.003, 64), new THREE.MeshPhysicalMaterial({ color: 0xeef2ff, roughness: 0.55, transmission: 0.55, thickness: 0.003, ior: 1.47 }));
+    fr.material.name = 'glass-frit'; fr.material.userData.txSurface = 'glass'; fr.position.set(keep[0], keep[1] + 0.0015, 0); study.add(fr); }
+  /* a short glass foot under the keep chamber, so the study stands on two feet: the keep foot ring and the J's bend */
+  { const kc = keep[1] - 0.026 * 1.25 * gs; const ft = new THREE.Mesh(new THREE.CylinderGeometry(0.006 * gs, 0.009 * gs, Math.max(0.002, kc), 32), solid); ft.position.set(keep[0], kc / 2, 0); if (kc > 0.003) study.add(ft); }
+  study.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = true; } });
+  const GLASS_TURN = Math.PI + 0.12;   /* the fork faces the camera, keep to the left, the J to the right */
+  place(study, GU, GV, TOP, GLASS_TURN); TXT.add(R, study);
+  /* TXT.add arms every mesh to cast; clear glass throws no solid shadow, so disarm it after */
+  study.traverse((m) => { if (m.isMesh) m.castShadow = false; });
+  TXT.contact(R, study, { opacity: 0.25 });
+  { let steel = 0; study.traverse((m) => { if (m.isMesh && m.visible && m.material && !m.material.transmission && m.material.metalness >= 0.85) steel++; }); if (steel) throw new Error('steel still shows on the glass study: ' + steel); }
+
+  /* ---- THE PHONE, behind and left: its camera view of a calf's hide in the viewfinder, painted as a photograph (a
+   * shaded barrel, laid hair, the pasture behind thrown out of focus, the focus plane sharp only at the centre). No gold,
+   * no upload, no fly, no wound. ---- */
+  const paintHide = (x, w, h) => {
+    const r = CH.rng(909);
+    const A = document.createElement('canvas'); A.width = w; A.height = h; const a = A.getContext('2d');
+    /* the pasture behind the calf, spring green under a pale sky */
+    { const bg = a.createLinearGradient(0, 0, 0, 440); bg.addColorStop(0, '#a9c2ea'); bg.addColorStop(0.45, '#b9cfe0'); bg.addColorStop(0.62, '#7fae6a'); bg.addColorStop(1, '#4f8a4a'); a.fillStyle = bg; a.fillRect(0, 0, w, 460);
+      for (let i = 0; i < 60; i++) { a.fillStyle = 'rgba(' + (60 + r() * 50 | 0) + ',' + (120 + r() * 50 | 0) + ',' + (60 + r() * 30 | 0) + ',0.5)'; a.beginPath(); a.ellipse(r() * w, 290 + r() * 170, 20 + r() * 50, 8 + r() * 14, 0, 0, 6.3); a.fill(); } }
+    /* the calf's back across the upper third, rising to the hip at the right */
+    const top = (X) => 330 - 26 * (X / w) - 30 * Math.exp(-Math.pow((X - w * 0.72) / 90, 2));
+    a.save(); a.beginPath(); a.moveTo(0, h); a.lineTo(0, top(0)); for (let X = 0; X <= w; X += 3) a.lineTo(X, top(X)); a.lineTo(w, h); a.closePath(); a.clip();
+    /* a black hide, its barrel rounded by the sky: a cool sheen along the back, deep shade toward the belly */
+    a.fillStyle = '#211d2c'; a.fillRect(0, 0, w, h);
+    { const P = document.createElement('canvas'); P.width = w; P.height = h; const pc = P.getContext('2d'); pc.fillStyle = '#e6e8f4';
+      const blot = (cx0, cy0, rx, ry, seed) => { const q = CH.rng(seed), ph = [q() * 6, q() * 6, q() * 6]; pc.beginPath();
+        for (let k = 0; k <= 96; k++) { const t = k / 96 * Math.PI * 2, rr = 1 + 0.2 * Math.sin(t * 2 + ph[0]) + 0.1 * Math.sin(t * 5 + ph[1]) + 0.05 * Math.sin(t * 9 + ph[2]); const X = cx0 + Math.cos(t) * rx * rr, Y = cy0 + Math.sin(t) * ry * rr; if (k) pc.lineTo(X, Y); else pc.moveTo(X, Y); }
+        pc.closePath(); pc.fill(); };
+      blot(w * 0.78, 560, 170, 210, 21); blot(w * 0.12, 930, 190, 130, 22); blot(w * 0.55, 1010, 120, 70, 23);
+      a.save(); a.filter = 'blur(3px)'; a.drawImage(P, 0, 0); a.restore(); }
+    { const sh = a.createLinearGradient(0, 260, 0, h); sh.addColorStop(0, 'rgba(150,170,226,0.55)'); sh.addColorStop(0.12, 'rgba(120,136,200,0.32)'); sh.addColorStop(0.4, 'rgba(70,74,120,0.1)'); sh.addColorStop(0.8, 'rgba(10,8,22,0.3)'); sh.addColorStop(1, 'rgba(8,6,18,0.6)'); a.fillStyle = sh; a.fillRect(0, 0, w, h);
+      const hp = a.createRadialGradient(w * 0.72, 340, 6, w * 0.72, 380, 210); hp.addColorStop(0, 'rgba(170,186,236,0.35)'); hp.addColorStop(1, 'rgba(170,186,236,0)'); a.fillStyle = hp; a.fillRect(0, 0, w, h);
+      /* the ribs: soft long ripples under the hide */
+      for (let k = 0; k < 6; k++) { const y = 470 + k * 70; const rg = a.createLinearGradient(0, y - 30, 0, y + 30); rg.addColorStop(0, 'rgba(140,150,210,0)'); rg.addColorStop(0.45, 'rgba(140,150,210,0.08)'); rg.addColorStop(0.55, 'rgba(8,6,20,0.12)'); rg.addColorStop(1, 'rgba(8,6,20,0)');
+        a.save(); a.translate(w * 0.3, y); a.rotate(-0.5 + k * 0.03); a.fillStyle = rg; a.fillRect(-w, -30 - y + y, w * 2, 60); a.restore(); }
+      const flank = a.createRadialGradient(w * 0.35, 640, 20, w * 0.35, 640, 420); flank.addColorStop(0, 'rgba(110,120,180,0.12)'); flank.addColorStop(1, 'rgba(0,0,0,0)'); a.fillStyle = flank; a.fillRect(0, 0, w, h); }
+    /* hair: fine strokes laid along a flow field, lighter where the sheen is */
+    for (let i = 0; i < 42000; i++) { const X = r() * w, Y = 250 + r() * (h - 250), ang = 1.75 + 0.35 * Math.sin(X * 0.005 + Y * 0.003) + 0.2 * Math.sin(Y * 0.011) + (r() - 0.5) * 0.25, L = 4 + r() * 8;
+      const sheen = Math.max(0, 1 - (Y - 300) / 380); const light = r() < 0.25 + 0.4 * sheen;
+      a.strokeStyle = light ? 'rgba(196,206,244,' + (0.04 + r() * 0.1 * (0.4 + sheen)) + ')' : 'rgba(10,8,22,' + (0.06 + r() * 0.14) + ')'; a.lineWidth = 0.6 + r() * 0.8;
+      a.beginPath(); a.moveTo(X, Y); a.quadraticCurveTo(X + Math.cos(ang) * L * 0.5 + (r() - 0.5) * 2, Y + Math.sin(ang) * L * 0.5, X + Math.cos(ang) * L, Y + Math.sin(ang) * L); a.stroke(); }
+    /* a cowlick whorl on the flank where the hair turns */
+    for (let i = 0; i < 1400; i++) { const t = r() * 6.3, rr = 6 + r() * 70, X = w * 0.4 + Math.cos(t) * rr, Y = 640 + Math.sin(t) * rr * 0.8, ang = t + 1.9;
+      a.strokeStyle = r() < 0.4 ? 'rgba(180,192,236,0.08)' : 'rgba(8,6,20,0.14)'; a.lineWidth = 0.7; a.beginPath(); a.moveTo(X, Y); a.lineTo(X + Math.cos(ang) * 7, Y + Math.sin(ang) * 7); a.stroke(); }
+    a.restore();
+    /* the back's fringe of hair, lit from behind by the sky */
+    a.strokeStyle = 'rgba(214,224,250,0.55)'; a.lineWidth = 1; for (let X = 0; X < w; X += 1.6) { const Y = top(X); a.beginPath(); a.moveTo(X, Y + 4); a.lineTo(X + (r() - 0.5) * 4, Y - 1 - r() * 5); a.stroke(); }
+    /* the lens: everything out of focus, then the focus plane laid back sharp through a soft round mask */
+    x.save(); x.filter = 'blur(7px)'; x.drawImage(A, 0, 0); x.restore();
+    const B = document.createElement('canvas'); B.width = w; B.height = h; const b = B.getContext('2d'); b.drawImage(A, 0, 0);
+    b.globalCompositeOperation = 'destination-in'; const fm = b.createRadialGradient(w * 0.46, 600, 60, w * 0.46, 600, 360); fm.addColorStop(0, 'rgba(0,0,0,1)'); fm.addColorStop(0.55, 'rgba(0,0,0,0.85)'); fm.addColorStop(1, 'rgba(0,0,0,0)'); b.fillStyle = fm; b.fillRect(0, 0, w, h);
+    x.drawImage(B, 0, 0);
+    /* lens vignette */
+    { const v = x.createRadialGradient(w / 2, h / 2, h * 0.25, w / 2, h / 2, h * 0.7); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(6,6,20,0.45)'); x.fillStyle = v; x.fillRect(0, 0, w, h); }
+    /* the viewfinder: a thin status strip, corner brackets, a focus square and the shutter */
+    x.fillStyle = 'rgba(10,12,30,0.5)'; x.fillRect(0, 0, w, 64); x.fillRect(0, h - 200, w, 200);
+    x.strokeStyle = 'rgba(244,246,255,0.9)'; x.lineWidth = 5; x.lineCap = 'round';
+    const M = 46, T = 110, Bt = h - 240, Lb = 60;
+    [[M, T, 1, 1], [w - M, T, -1, 1], [M, Bt, 1, -1], [w - M, Bt, -1, -1]].forEach(([X, Y, sx, sy]) => { x.beginPath(); x.moveTo(X, Y + sy * Lb); x.lineTo(X, Y); x.lineTo(X + sx * Lb, Y); x.stroke(); });
+    x.lineWidth = 3; x.strokeStyle = 'rgba(244,246,255,0.75)'; x.strokeRect(w * 0.46 - 44, 600 - 44, 88, 88);
+    x.beginPath(); x.arc(w / 2, h - 100, 50, 0, 6.3); x.lineWidth = 7; x.strokeStyle = 'rgba(244,246,255,0.95)'; x.stroke();
+    x.fillStyle = 'rgba(244,246,255,0.95)'; x.beginPath(); x.arc(w / 2, h - 100, 39, 0, 6.3); x.fill();
+  };
+  const phone = K.make('smartphone', { screen: paintHide });
+  const screenMesh = phone.children.find(m => m.isMesh && m.geometry.type === 'PlaneGeometry');
+  if (!screenMesh) throw new Error('the chassis smartphone has no screen plane');
+  { const tex = screenMesh.material.map; tex.anisotropy = 16; screenMesh.material = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false, color: 0xe8ecff }); screenMesh.material.userData.txSurface = false; screenMesh.userData.txBevel = false; screenMesh.position.z = 0.0043; }
+  /* the screen holds no dusk gold: sample its canvas */
+  { const c = screenMesh.material.map.image, d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+    for (let i = 0; i < d.length; i += 4 * 97) { const r = d[i], g = d[i + 1], b = d[i + 2]; if (r > g + 30 && r > b + 50) throw new Error('warm accent on the phone screen'); } }
+  /* the body in deep navy anodised aluminium, a bevelled cover glass over the screen, and a camera bump on the back */
+  phone.traverse((m) => { if (m.isMesh && m !== screenMesh && m.material && m.material.metalness >= 0.9) { m.material = m.material.clone(); m.material.color = new THREE.Color(0x3a4a86); m.material.roughness = 0.32; m.material.name = 'anodised-aluminium'; } });
+  { const cg = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.1, roughness: 0.02, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6, depthWrite: false });
+    cg.name = 'cover-glass'; cg.userData.txSurface = 'glass';
+    const cover = TXT.roundedBox(0.0712, 0.1492, 0.0016, 0.0014, cg); cover.position.z = 0.0053; cover.renderOrder = 2; phone.add(cover);
+    const bm = K.mat('phone-bump-glass', { color: 0x2c3866, roughness: 0.18, metalness: 0.4 });
+    const bump = TXT.roundedBox(0.03, 0.03, 0.0022, 0.006, bm); bump.position.set(-0.016, 0.054, -0.005); phone.add(bump);
+    const lensM = K.mat('phone-lens', { color: 0x0e1230, roughness: 0.05, metalness: 0.2 });
+    [[-0.023, 0.061], [-0.009, 0.061], [-0.016, 0.047]].forEach(([lx, ly]) => { const l = new THREE.Mesh(new THREE.CylinderGeometry(0.0052, 0.0056, 0.0018, 40), lensM); l.rotation.x = Math.PI / 2; l.position.set(lx, ly, -0.0068); phone.add(l); }); }
+  const LEAN = 0.3;
+  const phoneRig = new THREE.Group(); phone.position.set(0, 0.075, 0.004); phoneRig.add(phone); phoneRig.rotation.x = -LEAN;
+  const PU = 1.26, PV = -0.125;
+  const phoneHold = new THREE.Group(); phoneHold.add(phoneRig); place(phoneHold, PU, PV, TOP, Math.PI - 0.3); TXT.add(R, phoneHold);
+  /* what it leans on, out of sight behind it: a rounded cedar block */
+  { const blk = TXT.roundedBox(0.045, 0.04, 0.035, 0.008, cedar(61, '#6a3e26')); blk.position.set(0, 0.02, -0.05); blk.castShadow = blk.receiveShadow = true; phoneHold.add(blk); }
+  phoneHold.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  screenMesh.castShadow = false;
+  TXT.contact(R, phoneHold, { opacity: 0.6 });
+
+  /* ---- THE SKY AND THE PASTURE: a cobalt zenith over a peach horizon, new spring grass running out under the haze to a
+   * stock tank and a live oak, softened by distance ---- */
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2wonder, { zenith: 0x1d3cba, horizon: 0xf2b18f, haze: 0xf7b993, horizonGlow: 0.7, glow: 0.9, span: 0.2 }));
+  TXT.ground(R, { surface: 'grass', color: 0x6fa24a, size: 1200, seed: 919 });
+  { const cs = [at(3, -6, 0), at(3, 6, 0), at(40, -16, 0), at(40, 16, 0)], xs = cs.map(c => c[0]), zs = cs.map(c => c[2]);
+    TXT.scatter(R, { kind: 'grass', count: 16000, area: [Math.min(...xs), Math.min(...zs), Math.max(...xs), Math.max(...zs)], seed: 1919, scale: [0.18, 0.5], colors: [0x6aa444, 0x77b04a, 0x82ba52, 0x6fa846, 0x8cc25a] }); }
+  { const tank = K.make('stock_tank', { water: 0.8 }); place(tank, 40, 8.2, 0, 0.4); TXT.add(R, tank); TXT.contact(R, tank, { opacity: 0.4 }); }
+  { const oak = K.make('live_oak', { height: 9, spread: 18 }); place(oak, 90, 17, 0, 1.1); TXT.add(R, oak); }
+
+  /* ---- THE CAMERA: a little above the bench, close on the glass ---- */
+  const camP = at(-0.1, -0.02, TOP + 0.3);
+  const gW = at(GU, GV, TOP + 0.16);
+  const look = CH.aim(THREE, R, TXT, camP, gW, 730, 880, FOV);
+  TXT.frame(R, { fov: FOV, from: camP, look });
+
+  /* ---- THE LIGHT: the declared sun's bearing at a low dusk elevation, ahead and left, rimming the glass ---- */
+  const spec = CH.rigSpec(W, 3, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.0 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts(at(GU, 0, TOP), { distance: 12, shadowFar: 40, normalBias: 0.004 }), { light: { az: TXDECK.deck().light.az, el: 24 } }));
+  CH.unacne(R, 0.014);
+  /* a cool rim from behind the glass, so every tube carries a clean edge line against the pasture */
+  { const rim = new THREE.DirectionalLight(0xd2e2ff, 5.5), rp0 = at(GU + 2.5, GV - 1.6, TOP + 0.9), rt = at(GU, GV, TOP + 0.15);
+    rim.position.set(rp0[0], rp0[1], rp0[2]); rim.target.position.set(rt[0], rt[1], rt[2]); rim.castShadow = false; R.scene.add(rim); R.scene.add(rim.target);
+    const rim2 = new THREE.DirectionalLight(0xc8d6ff, 3.0), r2 = at(GU + 2.0, GV + 1.8, TOP + 0.6); rim2.position.set(r2[0], r2[1], r2[2]); rim2.target.position.set(rt[0], rt[1], rt[2]); rim2.castShadow = false; R.scene.add(rim2); R.scene.add(rim2.target); }
+
+  const rg = CH.rectOf(THREE, R, study, 0), rp = CH.rectOf(THREE, R, phoneHold, 0);
+  window.__s9 = { glass: rg.map(Math.round), phone: rp.map(Math.round) };
+  console.log('S9 RECTS ' + JSON.stringify(window.__s9));
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+
+  /* the glass is the subject: at least 620 px tall, centre right below the type; the phone stands smaller beside it */
+  if (rg[3] < 620) throw new Error('the glass stands only ' + Math.round(rg[3]) + ' px');
+  if (rp[3] >= rg[3] * 0.7) throw new Error('the phone is not smaller than the glass');
+
+  CH.seat(cx, { a: 0.42, fade: 240 }); CH.seat(cx, { sel: '.dek', a: 0.5, fade: 160 });
+  CH.seat(cx, { sel: '.count', a: 0.3, fade: 90 });
+  CH.seat(cx, { sel: '.src', a: 0.4, fade: 90 }); CH.seat(cx, { sel: '.tx-site', a: 0.55, fade: 90 });
+  TXLOOK.footWash(cx, { a: 0.5, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

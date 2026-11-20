@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs carries an interim 
 - Public access: Write to the decider
 - Take part: https://senate.texas.gov/cmte.php?c=700
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-19
 
 ## Dates
 
@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The Senate water committee's hearings on data center cooling water are still the last recorded step.
 - 2026-11-13 · The Senate water committee has published no recommendation from its hearings on data center cooling water.
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-19 · Checked again. The Senate committee's interim work on data center cooling water is still awaiting its written recommendations.
 
 ## Evidence
 

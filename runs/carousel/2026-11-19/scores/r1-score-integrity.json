@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Bespoke test passed; 1 and 3 strongest; 2 decal flies and a dark blob; 9 dowel support and flat pasture; 5 marching ants and a pail; 7 abstract and top loaded; 4 mannequin."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Spine and accent hold; glass motif works; 6 and 7 furthest from the vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "No hard fail. Looser phrasings: slide 6 'Models from USDA's lab in Kerrville' an inference from c19 and 'already plans the release' stronger than c17; slide 4 universal set over APHIS's traps; caption 'None of it is built yet' broader than c6; slide 2 'sterile female' against c23; 120 cases relayed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, why, where and when clear; no action today."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe; 6 and 7 detours."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean; 'Drawn to illustrate' nine times; generic closing question."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "No. 54 on October 18th told the same parasite with the same Kerrville models and Edinburg figure, 32 days ago; slides 5 and 6 reuse its claims."
+  }
+ ],
+ "weighted_score": 6.85,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace slides 5 and 6 with frames built on c13 and c14, the surveillance system and the smartphone report.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Dowel support, mockup phone on a wedge, flat green band.",
+   "fix": "Squared caliche block, phone flat on the plank plane facing the glass, world scaled grain, camera lower so the bulb sits on cobalt."
+  },
+  {
+   "slide": 2,
+   "problem": "Decal flies, dark blob, lavender plastic block.",
+   "fix": "Flies standing on rims with contact shadows, delete the blob, brushed metal with a lit chamfer."
+  },
+  {
+   "slide": 5,
+   "problem": "Marching ants stream, pail trap, acacia tree.",
+   "fix": "Depth banded near flies with wings, funnel cone and lure cap, a twisted multi trunk mesquite."
+  },
+  {
+   "slide": 7,
+   "problem": "Abstract boxes, dead bottom third.",
+   "fix": "Lower and push the camera, run a drag scuff from the slot to the pulled box."
+  },
+  {
+   "slide": 4,
+   "problem": "Mannequin in a flat blue room.",
+   "fix": "Worker at the bench with forceps under a warm lamp pool, warmer walls."
+  }
+ ]
+}

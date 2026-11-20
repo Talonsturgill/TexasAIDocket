@@ -1,0 +1,220 @@
+{
+ "date": "2026-11-19",
+ "carousel_no": 82,
+ "document_title": "UT Arlington is designing an AI trap meant to keep wild screwworm flies and free the sterile ones, in a $3.1 million USDA project that runs through June 2028",
+ "_note": "Caption carried verbatim from caption.txt. Slide strings polished from storyboard.md, each held to its claim quotes in claims.json.",
+ "caption": "Today's screwworm traps keep everything. The planned one would choose.\n\nScrewworm is back, with more than 120 confirmed animal cases as of November 12th. Most are in Texas. Traps in the field now catch insects indiscriminately. People sort the catch by hand. Those traps can't tell wild flies from the sterile flies a federal program releases.\n\nThe trap UT Arlington is designing is meant to do that sorting itself. Its AI would keep wild flies, especially the females that lay the eggs. Sterile flies and other insects would go free. Producers and veterinarians would report cases with phone photos.\n\nThe trap isn't built yet. The $3.1 million USDA project runs through June 2028.\n\nUTA associate professor Shouyi Wang expects a prototype by next spring. Will one be ready by then?\n\n#NewWorldScrewworm #APHIS #UTArlington",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "At the door",
+   "headline": "One fly at the door. Which one stays?",
+   "claims": [
+    "c2",
+    "c4",
+    "c1"
+   ],
+   "cite": "c2 c4 c1",
+   "body": "Screwworm was declared eliminated from the US in 1966. More than 120 animal cases were confirmed as of November 12th, most of them in Texas. A trap planned at UT Arlington would decide fly by fly. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "One fly at the door. Which one stays?",
+    "Screwworm was declared eliminated from the US in 1966. More than 120 animal cases were confirmed as of November 12th, most of them in Texas. A trap planned at UT Arlington would decide fly by fly. Drawn to illustrate.",
+    "At the door",
+    "01 / 09",
+    "c2 c4 c1"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Wild or sterile",
+   "headline": "Wild or sterile, female or male. The trap must tell them apart.",
+   "claims": [
+    "c4",
+    "c3",
+    "c5"
+   ],
+   "cite": "c4 c3 c5",
+   "body": "It has to tell wild flies from sterile ones and females from males. Wild females lay their eggs in open wounds, and an untreated infestation can kill. Each kind is the same fly, drawn to illustrate.",
+   "labels": [
+    "wild female",
+    "wild male",
+    "sterile female",
+    "sterile male"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Wild or sterile, female or male. The trap must tell them apart.",
+    "It has to tell wild flies from sterile ones and females from males. Wild females lay their eggs in open wounds, and an untreated infestation can kill. Each kind is the same fly, drawn to illustrate.",
+    "Wild or sterile",
+    "wild female",
+    "wild male",
+    "sterile female",
+    "sterile male",
+    "02 / 09",
+    "c4 c3 c5"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The sort",
+   "headline": "Keep the wild ones. Free the rest.",
+   "claims": [
+    "c9",
+    "c4",
+    "c6"
+   ],
+   "cite": "c9 c4 c6",
+   "body": "The trap is meant to keep wild flies and especially wild females. Sterile flies and other insects would go free. It isn't built yet. Drawn to illustrate the decision, not the device.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Keep the wild ones. Free the rest.",
+    "The trap is meant to keep wild flies and especially wild females. Sterile flies and other insects would go free. It isn't built yet. Drawn to illustrate the decision, not the device.",
+    "The sort",
+    "03 / 09",
+    "c9 c4 c6"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Today, by hand",
+   "headline": "Today's traps catch everything",
+   "claims": [
+    "c7",
+    "c24"
+   ],
+   "cite": "c7 c24",
+   "body": "Today's screwworm traps catch insects indiscriminately and need extensive sorting by hand. USDA has monitored more than 100 screwworm specific traps since July 2025. One tube stands for one trap, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Today's traps catch everything",
+    "Today's screwworm traps catch insects indiscriminately and need extensive sorting by hand. USDA has monitored more than 100 screwworm specific traps since July 2025. One tube stands for one trap, drawn to illustrate.",
+    "Today, by hand",
+    "04 / 09",
+    "c7 c24"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The allies",
+   "headline": "It can't tell sterile from wild",
+   "claims": [
+    "c8",
+    "c22",
+    "c21"
+   ],
+   "cite": "c8 c22 c21",
+   "body": "So conventional traps can interfere with the federal program that releases sterile flies. An APHIS page says the Edinburg facility deploys more than 80 million a week over Texas and Mexico. One fly stands for a million, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It can't tell sterile from wild",
+    "So conventional traps can interfere with the federal program that releases sterile flies. An APHIS page says the Edinburg facility deploys more than 80 million a week over Texas and Mexico. One fly stands for a million, drawn to illustrate.",
+    "The allies",
+    "05 / 09",
+    "c8 c22 c21"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Who picks the sky",
+   "headline": "AI models already inform the release",
+   "claims": [
+    "c16",
+    "c17",
+    "c19",
+    "c20",
+    "c21"
+   ],
+   "cite": "c16 c17 c19 c20 c21",
+   "body": "USDA's research service says it uses insights from AI models to choose where, when and how many sterile flies to release. It says the models can't predict every scenario. Its Kerrville lab and the Edinburg facility are pinned, drawn to illustrate.",
+   "labels": [
+    "Kerrville",
+    "Edinburg"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "AI models already inform the release",
+    "USDA's research service says it uses insights from AI models to choose where, when and how many sterile flies to release. It says the models can't predict every scenario. Its Kerrville lab and the Edinburg facility are pinned, drawn to illustrate.",
+    "Who picks the sky",
+    "Kerrville",
+    "Edinburg",
+    "06 / 09",
+    "c16 c17 c19 c20 c21"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "One of 40",
+   "headline": "One project in 40",
+   "claims": [
+    "c1",
+    "c11"
+   ],
+   "cite": "c1 c11",
+   "body": "UT Arlington's $3.1 million project is one of 40 selected nationwide in roughly $105 million of USDA funding. One box stands for one project, not its dollars. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "One project in 40",
+    "UT Arlington's $3.1 million project is one of 40 selected nationwide in roughly $105 million of USDA funding. One box stands for one project, not its dollars. Drawn to illustrate.",
+    "One of 40",
+    "07 / 09",
+    "c1 c11"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The road to 2028",
+   "headline": "The work runs to June 2028",
+   "claims": [
+    "c12",
+    "c15"
+   ],
+   "cite": "c12 c15",
+   "body": "Fieldwork will take place in Texas, other states and affected regions of Mexico. By the end, UT Arlington aims to hand APHIS a field tested system. One post stands for one month, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The work runs to June 2028",
+    "Fieldwork will take place in Texas, other states and affected regions of Mexico. By the end, UT Arlington aims to hand APHIS a field tested system. One post stands for one month, drawn to illustrate.",
+    "The road to 2028",
+    "08 / 09",
+    "c12 c15"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Next spring",
+   "headline": "Watch for the prototype next spring",
+   "claims": [
+    "c6",
+    "c14",
+    "c10"
+   ],
+   "cite": "c6 c14 c10",
+   "body": "UTA's Shouyi Wang expects a smart trap prototype by then. Producers and veterinarians would report cases with phone photos. Each trap detection could feed alerts and risk maps to APHIS. The glass and the phone are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Watch for the prototype next spring",
+    "UTA's Shouyi Wang expects a smart trap prototype by then. Producers and veterinarians would report cases with phone photos. Each trap detection could feed alerts and risk maps to APHIS. The glass and the phone are drawn to illustrate.",
+    "Next spring",
+    "09 / 09",
+    "c6 c14 c10"
+   ]
+  }
+ }
+}

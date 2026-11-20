@@ -1,0 +1,154 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-19, frame 7 of 9, ONE OF 40, rebuilt after the cold critic. A spatial scene through txthree.js on a
+cool periwinkle studio sweep under a cobalt wall. FIG.projects glazed stoneware boxes, five rows of eight. Every box has one
+round opening facing the reader, the deck's ONE DOOR kept abstract. One box has been dragged out of the front row, leaving its
+empty place and a scuffed track across the sweep, and it stands turned in a little more of the key with TWO openings, one on
+its face and one on its side. No flap, camera or circuit, no dusk gold. Drawn to illustrate; one box stands for one project,
+not its dollars. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:136px; width:936px; text-align:left">One project in 40</h1>
+<p class="dek" data-follow="22" style="left:74px; width:880px; font-size:29px">UT Arlington's $3.1 million project is one of 40 selected nationwide in roughly $105 million of USDA funding. One box stands for one project, not its dollars. Drawn to illustrate.</p>
+<script>window.FIG = {"projects": 40};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "One of 40", counter: "07 / 09", src: "c1 c11", fit: { min: 80, max: 100, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 27, near: 0.02, far: 60, fog: 0.07 });
+
+  /* THE ROOM: no back wall in the picture. The sweep's floor runs twenty metres back into a periwinkle haze, so every cast
+   * lies on the tray and the floor and nothing climbs up behind the type */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 30, d: 26 }), { floor: 0x6a82ee, wall: 0x5a72e0, top: 0x4a64d8, env: 0.62, hemi: 0.38 }));
+
+  /* THE UNIT: a glazed stoneware box with one round opening on its face. Equal size for every project. */
+  const UW = 0.13, UH = 0.15, UD = 0.13, HOLE = 0.036;
+  /* SPECKLED GLAZE: an oatmeal glaze over iron bearing clay, warm mottle and dark iron specks bleeding through */
+  const speck = CH.canvasTex(THREE, 512, 512, (g, cw, ch) => {
+    g.fillStyle = '#e6e2d6'; g.fillRect(0, 0, cw, ch); const r3 = CH.rng(313);
+    for (let k = 0; k < 260; k++) { const x = r3() * cw, y = r3() * ch, rad = 10 + r3() * 40, gr = g.createRadialGradient(x, y, 0, x, y, rad);
+      const warm = r3() < 0.5; gr.addColorStop(0, warm ? 'rgba(196,186,160,0.22)' : 'rgba(250,250,246,0.25)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
+    for (let k = 0; k < 4200; k++) { const x = r3() * cw, y = r3() * ch, rad = 0.35 + Math.pow(r3(), 4) * 1.5;
+      g.fillStyle = 'rgba(' + (88 + r3() * 40 | 0) + ',' + (54 + r3() * 24 | 0) + ',30,' + (0.45 + r3() * 0.45).toFixed(2) + ')'; g.beginPath(); g.arc(x, y, rad, 0, Math.PI * 2); g.fill();
+      if (rad > 1.3) { g.fillStyle = 'rgba(150,104,60,0.18)'; g.beginPath(); g.arc(x, y, rad * 2.4, 0, Math.PI * 2); g.fill(); } }
+  });
+  speck.wrapS = speck.wrapT = THREE.RepeatWrapping; speck.repeat.set(2, 2);
+  const glaze = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: speck, roughness: 0.46, metalness: 0, clearcoat: 0.35, clearcoatRoughness: 0.3, transmission: 0, thickness: 0, name: 'glazed-stoneware' });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x1a2160, roughness: 0.9, metalness: 0, name: 'opening-shade' }); dark.userData.txSurface = false;
+  const holeOn = (g, face) => {   /* face 'front' (+z) or 'side' (+x): a dark recess with a glazed lip, never a flap */
+    const h = new THREE.Group();
+    const mouth = new THREE.Mesh(new THREE.CircleGeometry(HOLE, 48), dark); mouth.position.z = 0.0012; h.add(mouth);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(HOLE + 0.002, 0.0045, 14, 48), glaze); lip.position.z = 0.0005; h.add(lip);
+    h.position.y = (UH - 0.0355) * 0.5;
+    if (face === 'front') h.position.z = UD / 2; else { h.rotation.y = Math.PI / 2; h.position.x = UW / 2; }
+    g.add(h); g.userData.openings = (g.userData.openings || 0) + 1;
+  };
+  /* stoneware detail: a thin unglazed foot ring, then the glazed body with a glossier roll of glaze pooled at its bottom edge */
+  const FOOT = 0.005, TRAY = 0.018;
+  const clay = new THREE.MeshStandardMaterial({ color: 0xa87a58, roughness: 0.98, metalness: 0, name: 'unglazed-stoneware-foot' }); clay.userData.txSurface = 'concrete';
+  const seamMat = new THREE.MeshStandardMaterial({ color: 0x5d50a8, roughness: 0.95, metalness: 0, name: 'lid-seam-shade' }); seamMat.userData.txSurface = false;
+  const pool = new THREE.MeshPhysicalMaterial({ color: 0xc9bd9f, roughness: 0.1, map: speck, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06, name: 'glaze-pooled' });
+  const unit = (two, rnd) => {
+    const g = new THREE.Group(), lean = new THREE.Group(); g.add(lean);
+    const foot = TXT.roundedBox(UW - 0.008, FOOT, UD - 0.008, 0.0022, clay); foot.position.y = FOOT / 2; lean.add(foot);
+    const LID = 0.032, GAP = 0.002, BASE = UH - LID - GAP;
+    const body = TXT.roundedBox(UW, BASE, UD, 0.022, glaze); body.position.y = FOOT + BASE / 2; lean.add(body);
+    const core = TXT.roundedBox(UW - 0.006, GAP + 0.008, UD - 0.006, 0.004, seamMat); core.position.y = FOOT + BASE + GAP / 2; lean.add(core);
+    const lid = TXT.roundedBox(UW + 0.004, LID, UD + 0.004, 0.011, glaze); lid.position.y = FOOT + BASE + GAP + LID / 2; lean.add(lid);
+    const knob = TXT.roundedBox(UW * 0.36, 0.008, UD * 0.36, 0.0035, glaze); knob.position.y = FOOT + UH + 0.004; lean.add(knob);
+    g.userData.lid = true;
+    const roll = TXT.roundedBox(UW + 0.0026, 0.011, UD + 0.0036, 0.0065, pool); roll.position.y = FOOT + 0.0072; lean.add(roll);
+    const hp = new THREE.Group(); hp.position.y = FOOT; lean.add(hp);
+    holeOn(hp, 'front'); if (two) holeOn(hp, 'side');
+    g.userData.openings = hp.userData.openings;
+    if (rnd) { lean.rotation.x = (rnd() - 0.5) * 0.04; lean.rotation.z = (rnd() - 0.5) * 0.04; lean.scale.set(1 + (rnd() - 0.5) * 0.04, 1 + (rnd() - 0.5) * 0.05, 1 + (rnd() - 0.5) * 0.04); }
+    return g;
+  };
+
+  /* THE FIGURE: FIG.projects units, rows of ROW. The front row gives up one slot. */
+  const ROW = 8, NROWS = FIG.projects / ROW;
+  if (!Number.isInteger(NROWS)) throw new Error('FIG.projects ' + FIG.projects + ' does not make whole rows of ' + ROW);
+  const SX = 0.215, SZ = 0.25, Z0 = 0.15, PICK = 7;
+  const at = (i, j) => [(i - (ROW - 1) / 2) * SX, Z0 - j * SZ];
+  const CAM = { from: [1.61, 2.93, 5.38], look: [0.12, 0.36, -0.25], fov: 27 };
+  const faceCam = (x, z) => Math.atan2(CAM.from[0] - x, CAM.from[2] - z);
+  const GRIDYAW = faceCam(0, Z0 - (NROWS - 1) * SZ / 2);   /* one shared yaw so the rows stay true and the single doors face the reader */
+  const rr = CH.rng(7019), units = [];
+  const KEY = { az: 50, el: 10 }, s0p = at(PICK, 0), KD = 0.48;
+  const FWD = [s0p[0] + Math.sin(KEY.az * Math.PI / 180) * KD, s0p[1] + Math.cos(KEY.az * Math.PI / 180) * KD];   /* up the key from the socket it left */
+  for (let j = 0; j < NROWS; j++) for (let i = 0; i < ROW; i++) {
+    const chosen = j === 0 && i === PICK, u = unit(chosen, chosen ? null : rr);
+    let p = at(i, j);
+    if (chosen) { p = FWD; u.rotation.y = faceCam(FWD[0], FWD[1]) - Math.PI / 4; u.userData.chosen = true; }   /* an even three quarter: front and side doors both 45 degrees off the camera */
+    else { p = [p[0] + (rr() - 0.5) * 0.008, p[1] + (rr() - 0.5) * 0.008]; u.rotation.y = GRIDYAW + (rr() - 0.5) * 0.06; }
+    u.position.set(p[0], TRAY, p[1]); TXT.add(R, u); TXT.contact(R, u, { opacity: 0.45 });
+    units.push(u);
+  }
+  if (units.length !== FIG.projects) throw new Error('drew ' + units.length + ' units, FIG.projects is ' + FIG.projects);
+  const chosenUnits = units.filter(u => u.userData.chosen);
+  if (chosenUnits.length !== 1 || chosenUnits[0].userData.openings !== 2) throw new Error('exactly one unit stands forward with two openings');
+  if (units.filter(u => !u.userData.chosen).some(u => u.userData.openings !== 1)) throw new Error('every other unit has one opening');
+
+  /* THE TRAY AND ITS EMPTY SOCKET: the 39 stand on a low felt tray in the sweep's violet, and the place the fortieth left is a
+   * real hole cut through it, so its inner walls stand in their own violet shadow. The fortieth stands off the tray. */
+  {
+    const s0 = at(PICK, 0), X0 = -6, X1 = 6, ZF = 4, ZB = -7, HS = 0.078, rad = 0.05;
+    const rr2 = (sh, x0, y0, x1, y1, r) => { sh.moveTo(x0 + r, y0); sh.lineTo(x1 - r, y0); sh.quadraticCurveTo(x1, y0, x1, y0 + r); sh.lineTo(x1, y1 - r); sh.quadraticCurveTo(x1, y1, x1 - r, y1);
+      sh.lineTo(x0 + r, y1); sh.quadraticCurveTo(x0, y1, x0, y1 - r); sh.lineTo(x0, y0 + r); sh.quadraticCurveTo(x0, y0, x0 + r, y0); };
+    const shape = new THREE.Shape(); rr2(shape, X0, -ZF, X1, -ZB, rad);
+    const hole = new THREE.Path(), hc = Math.cos(GRIDYAW), hs = Math.sin(GRIDYAW), hp2 = [];
+    for (let q = 0; q < 4; q++) for (let a = 0; a <= 8; a++) {   /* a rounded square turned with the grid */
+      const cxq = (q === 0 || q === 3 ? 1 : -1) * (HS - 0.022), czq = (q < 2 ? 1 : -1) * (HS - 0.022), ang = q * Math.PI / 2 + a / 8 * Math.PI / 2;
+      const lx = cxq + Math.cos(ang) * 0.022, lz = czq + Math.sin(ang) * 0.022;
+      /* shape space is (x, -z); a world yaw Y turns (lx, lz) to (lx cos + lz sin, -lx sin + lz cos) in world x, z */
+      const wx = lx * hc + lz * hs, wz = -lx * hs + lz * hc; hp2.push([s0[0] + wx, -(s0[1] + wz)]); }
+    hole.moveTo(hp2[0][0], hp2[0][1]); hp2.slice(1).forEach(v => hole.lineTo(v[0], v[1])); hole.closePath(); shape.holes.push(hole);
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: TRAY - 0.003, bevelEnabled: true, bevelThickness: 0.003, bevelSize: 0.003, bevelSegments: 3, curveSegments: 16 });
+    geo.rotateX(-Math.PI / 2);
+    const felt = new THREE.MeshStandardMaterial({ color: 0x6b64a6, roughness: 0.98, metalness: 0, name: 'felt-tray' }); felt.userData.txSurface = 'fabric';
+    const tray = new THREE.Mesh(geo, felt); tray.castShadow = true; tray.receiveShadow = true; R.scene.add(tray);
+    /* the socket floor, the sweep showing through, a touch darker where the walls close it in */
+    const sf = new THREE.Mesh(new THREE.PlaneGeometry(HS * 2, HS * 2).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x4a5cc8, roughness: 0.9, name: 'socket-floor' }));
+    sf.material.userData.txSurface = false; sf.position.set(s0[0], 0.0008, s0[1]); sf.rotation.y = GRIDYAW; sf.receiveShadow = true; R.scene.add(sf);
+  }
+
+  /* THE CAMERA: a raised three quarter from front right, pulled back so all forty places sit in frame with floor to their left */
+  TXT.frame(R, CAM);
+
+  /* THE KEY: one warm low key from front right, so every cast lies left along the rows, and the lifted box's long
+   * shadow crosses the gap straight into the socket it left */
+  const spec = CH.rigSpec(W, 4, 4096); spec.key = Object.assign({}, spec.key, { radius: 0.6, color: 0xffc286, i: (spec.key.i || 3) * 1.45 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.4, 0, -0.2], { distance: 8, shadowFar: 20, normalBias: 0.004 }), { light: { az: KEY.az, el: KEY.el } }));
+  CH.unacne(R, 0.004);
+  CH.pool(THREE, TXT, R, [FWD[0], UH / 2, FWD[1]], { radius: 0.32, i: 1.2, color: 0xfff2e0, normalBias: 0.004 });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.42, fade: 160 });
+    /* the furniture's seat: one soft wash down from the top edge in the tone's deep hue, no blobs, plus a tight feathered
+   * seat at the footer */
+  { const g = cx.createLinearGradient(0, 0, 0, 470); for (let k = 0; k <= 6; k++) { const t = k / 6, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, TXLOOK.rgba(CH.P.low, (0.55 * e).toFixed(3))); } cx.fillStyle = g; cx.fillRect(0, 0, CH.W, 470); }
+  ['.count', '.kick'].forEach(sel => CH.seat(cx, { sel, a: 0.22, fade: 80 }));
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.35, fade: 110 }));
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.5, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

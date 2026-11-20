@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.9,
+   "why": "round 3 craft lens, see hand-back"
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "round 3 craft lens, see hand-back"
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "round 3 craft lens, see hand-back"
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "round 3 craft lens, see hand-back"
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "round 3 craft lens, see hand-back"
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "round 3 craft lens, see hand-back"
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "round 3 craft lens, see hand-back"
+  }
+ ],
+ "weighted_score": 7.378,
+ "hard_fails": [],
+ "ship": true,
+ "note": "An initial hard fail on the art preflight binding was withdrawn by the judge after the bound hashes were shown to equal the current renders (verified by sha256sum and art_preflight.py exit 0).",
+ "one_sentence_fix": "Give the close its own picture rather than a reprise of frame 3's glass.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Reprises frame 3's glass, cutout oak, repeated grass cards, dek on a wash.",
+   "fix": "Phone as hero in a producer's hand at a stock tank, modelled oak."
+  },
+  {
+   "slide": 5,
+   "problem": "Chevron foliage, crawling flies, the bucket reads as a pail.",
+   "fix": "Modelled leaflets, flies in flight past a funnel mouth, one wild fly among them."
+  },
+  {
+   "slide": 7,
+   "problem": "Boxes cover a third of a flat floor.",
+   "fix": "Lower and push the camera, key light pool, sweep edge."
+  },
+  {
+   "slide": 2,
+   "problem": "Dek's last line meets the top lid ring, slab under the footer.",
+   "fix": "Lower and shrink the tray."
+  },
+  {
+   "slide": 4,
+   "problem": "Flat walls and a glow behind the cite.",
+   "fix": "Remove the glow, bounce gradient on the walls."
+  },
+  {
+   "slide": 1,
+   "problem": "Featureless cobalt, no fly shadow on the rim.",
+   "fix": "Readable sweep, fly shadow on the bead, widen 3 to 4 percent."
+  }
+ ]
+}

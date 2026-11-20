@@ -11,7 +11,7 @@ Texas A&M University Technology Services published guidance on August 31st, 2026
 - Public access: Write to the decider
 - Take part: https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-19
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · Texas A&M still tells its campus to use the university's AI portal rather than a public chatbot.
 - 2026-11-13 · Texas A&M still steers its campus to the university AI portal and away from public chatbots.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

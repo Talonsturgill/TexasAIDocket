@@ -5185,6 +5185,71 @@
     "hex": "#e4d8c3",
     "note": "Caliche and limestone grounds under the explainer tone's cerulean sky."
    }
+  },
+  {
+   "date": "2026-11-19",
+   "carousel_no": 82,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 wonder tone, nine slide artists. TXT.studio sweeps (1, 2, 3, 7), TXT.interior lab (4), outdoor TXT.sky worlds (5, 8, 9), a TXBENCH relief (6). Spine assets/js/deck/2026-11-19-sortglass-bespoke.js with chassis models blowfly, beetle, sort_glass, cell_block, stone_plinth, dead_end_jar, bucket_trap and smartphone.",
+   "structural_laws": [
+    "FIG_INJECT FILLS A FRAME WITH EVERY FIGURE WHEN ITS CODE READS window.FIG DYNAMICALLY, so a 'FIG must be empty' check written with Object.keys throws at the full render; a no-figure frame must read no FIG name at all.",
+    "THE CHASSIS CELL_BLOCK'S WELLS ARE SOLID DISCS, so a fly placed in one is buried; frame 2 built its own bored block.",
+    "A WARM HONEY KEY TURNS CLEAR GLASS AND A GOLD BAND PEACH, so the gold accent stops reading as one thing; keep glass cool tinted and seat the gold against cobalt.",
+    "A BRIGHT HORIZON BAND IN A WINDOW OR SKY BEHIND A DEK LINE IS REFUSED BY QA AS A STRIKETHROUGH; place the type over flat wall or deep sky."
+   ],
+   "techniques": [
+    "a macro fly astride a clear glass funnel lip with the fork and a gold keep band seen through the glass",
+    "a raked machined block of four glass topped cells, the wild female shut under the one gold rim",
+    "a borosilicate Y on a caliche pedestal keeping one fly behind a gold band and freeing three and a beetle",
+    "a stepped stand of 100 tubes of mixed catch in a cobalt lab with a sorter at a lamp",
+    "a weathered bucket trap on a mesquite limb taking in a stream of 80 flies",
+    "a caliche relief of South Texas with a fan of resin release swaths from Edinburg led back to Kerrville",
+    "forty stoneware boxes on a periwinkle sweep, the two-door box pulled forward from its slot",
+    "a blue hour pipe fence of 19 posts ending at a braced post beside a caliche road",
+    "the unbuilt sort glass on a cedar bench beside a phone with a gold report pill"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     23.3,
+     46.8,
+     42.4,
+     36.7,
+     36.5,
+     45.7,
+     37.8,
+     35.5,
+     55.8
+    ],
+    "deck_median_L": 37.8,
+    "max_adjacent_delta": 23.5,
+    "mean_adjacent_delta": 9.19,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#e0956a",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     2,
+     4,
+     6
+    ],
+    "share": [
+     0.0007,
+     0.0129,
+     0.0005,
+     0.0048,
+     0.0011,
+     0.0092,
+     0.0,
+     0.0,
+     0.0006
+    ],
+    "note": "The fly the sort keeps only."
+   },
+   "ground": {
+    "hex": "#e4d8c3",
+    "note": "Caliche under the wonder tone's cobalt and peach."
+   }
   }
  ]
 }

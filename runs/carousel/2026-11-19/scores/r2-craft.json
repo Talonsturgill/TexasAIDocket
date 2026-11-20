@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "round 2, see hand-back"
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "round 2, see hand-back"
+  }
+ ],
+ "weighted_score": 7.456,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace frame 9's placeholder phone with a real report screen and seat frame 1's funnel on a lit surface with a contact shadow.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "placeholder phone UI and an unlit horizon strip",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 5,
+   "problem": "trees poke through the dek and ground flies outscale grass",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 1,
+   "problem": "blue funnel on blue field with no ground",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 2,
+   "problem": "backing slab and counter halo read as plates",
+   "fix": "see round 2 notes"
+  },
+  {
+   "slide": 7,
+   "problem": "primitive cubes and shadows streak up the back wall",
+   "fix": "see round 2 notes"
+  }
+ ]
+}
