@@ -51,7 +51,10 @@ The web edition at `ledger/articles/2026-11-19.json` passes `article_check`, `te
 
 ## Retro
 
-Written in Phase 17 and appended below.
+- **Weekly machine pass not due** (last pass November 18th, no repeat offender). No machine change in this run.
+- **Queued** five new machine defects and raised one repeat: `money-token-drops-unit`, `layout-cli-passes-what-ship-refuses`, `cover-rebuild-takes-four-readings`, `slide-critics-rows-not-marked-superseded`, `v2-banding-in-seat-washes`, and `render-report-clobbered-by-parallel-renders` to repeat 1.
+- **Instincts.** Confirmed `parallel-renders-clobber-one-report` and `one-accent-one-meaning-across-every-artist`, added `read-the-rendered-token` and `a-review-hash-is-a-time-not-a-truth`.
+- **Sources field log**, commit 39558f03, records the UT Arlington, ARS and APHIS reads and the PUCT calendar redirects.
 
 ## Prompt audit
 
