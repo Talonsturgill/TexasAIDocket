@@ -2682,3 +2682,13 @@ confirmed cases and **the dashboard itself was not opened**, so the deck gives t
 it. **www.ars.usda.gov and www.aphis.usda.gov answered** the screwworm program pages that carry the release models, the
 Edinburg facility and the weekly release volume. **The PUCT rolling calendar answers only when redirects are followed**,
 and the re-verification counted 215 sources unreachable, the same set as the prior runs, all left unstamped.
+
+## 2026-11-20 (carousel no. 83)
+
+**www.etamu.edu answered** the November 16th news release on the GPS spoofing study, and every claim on tx-2026-0253
+quotes it. **watch-miniconf.github.io answered** the WATCH 2026 programme and **arxiv.org answered** the Chronos paper,
+one claim each. **The study's own paper and the public flight dataset were not opened**, so the dataset's name and the
+other seven models stay off the deck. Twenty three
+boundaries that had lapsed were **re-measured with the project user agent and refused again**, and their notes were
+re-stamped rather than routed around. Eight earlier boundaries (tx-2026-0044, 0062, 0125, 0161, 0166, 0173, 0186, 0227)
+now answer or allow robots and were left to lapse on their own seven day clock.
