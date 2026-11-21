@@ -11,7 +11,7 @@ Houston Methodist researchers published a study in the Journal of Imaging on Jun
 - Public access: Write to the decider
 - Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/
 
-- Last checked: 2026-11-17
+- Last checked: 2026-11-20
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · Houston Methodist's paper and its own account of the operating room cameras both read as cited, and the claim of association rather than cause is unchanged.
 - 2026-11-14 · Houston Methodist's paper on its operating room cameras still carries every passage the record quotes.
 - 2026-11-17 · Houston Methodist's paper on its operating room cameras still carries every passage the record quotes.
+- 2026-11-20 · Houston Methodist's account of camera AI in its cardiothoracic operating rooms still reads as published.
 
 ## Evidence
 

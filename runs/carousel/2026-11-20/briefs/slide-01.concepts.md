@@ -1,0 +1,9 @@
+# Slide 01 concepts, THE SEARCH
+
+1. **On the crest, behind the searchers.** Two searchers stand turned away on the rounded brow of a copper bluestem ridge beside a white pickup, one pointing left along the crest they were sent to sweep, while the survey quadcopter banks right off the crest line and out over the drop toward a plum shaded valley under a periwinkle sky. Only this sentence has it, because the picture splits the headline in two: the ridge the people are pointing at and the valley the machine is turning into.
+2. **From the wrong valley, looking back.** A long lens from the creek bed of the next valley looks up the slope to the ridge skyline, where two tiny searchers and a pickup stand against the sky while the drone descends toward the camera into plum shade. Only this beat has it, because the camera stands where the drone is going and the ridge it was sent to is out of reach.
+3. **Over one shoulder, two directions.** A close over the shoulder of one searcher, his raised arm and hand pointing left along the ridge, while above and to the right the drone banks the opposite way against the sky. Only this beat has it, because the hand and the aircraft disagree about where the search is.
+
+**Chosen: 1**, with concept 3's pointing arm folded in. It is the one a stranger reads in a second as "sent here, went there" at 432 px, with the ridge, the people and the valley all in one frame, and it keeps the subjects large and the people turned away. Concept 2 puts the subjects small and far, which the judges have charged lately.
+
+**Type.** Headline top left in the deep periwinkle sky away from the sun, two lines, dek in a left column under it. The drone flies in the open sky to the right of the dek, above the far valley, so the type and the focal point never overlap. The sun sits off frame upper right.

@@ -1,0 +1,217 @@
+{
+ "weighted_score": 7.338,
+ "judges": [
+  7.316,
+  7.53,
+  7.322
+ ],
+ "spread": 0.214,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.5,
+   "weight": 0.22,
+   "judges": [
+    7.4,
+    7.6,
+    7.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.0,
+    6.7
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.316 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.53 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.322 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.316,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.316 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.53,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.53 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.322,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.322 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The mast floats above the body, the left laptop screen pierces a drone arm, a ceiling slab is clipped at the top, a stray rod crosses the lower right.",
+     "fix": "Seat the mast, move the left laptop back so it clears the arm, delete the slab and the rod."
+    },
+    {
+     "judge": 2,
+     "problem": "Wall seam at about y 370 through the headline, clipped ceiling light, dead violet void, near black primitive drone.",
+     "fix": "Lower and dolly in so the tabletop starts under the dek, drop the fixture out of frame, one continuous wall, a lit violet grey drone body with a rim light."
+    },
+    {
+     "judge": 3,
+     "problem": "Three laptops and a monitor read, not four; dark primitive drone with a puck on a mast; a lid edge cuts a drone arm; clipped ceiling light; wall seam behind the headline.",
+     "fix": "Four laptops in a ring at table height around the drone, clear the lid from the arm, seat the puck on the body, crop the clipped light, a continuous wall behind the type."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat magenta field with no floor contact.",
+     "fix": "A lit studio surface with a soft contact shadow, the field toward violet."
+    },
+    {
+     "judge": 2,
+     "problem": "Speckle on the glass strip, dead bottom third.",
+     "fix": "Clean glass with one specular edge, the held out tray down to the footer."
+    },
+    {
+     "judge": 3,
+     "problem": "Isometric tray on a flat magenta field, lower right empty, an unexplained red strap on the held back box.",
+     "fix": "Pull the camera down and in so the box of 22 fills the lower right and bleeds off; delete the strap or make it a lid seal."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The trough filled almost to its stop reads as a percent gauge and competes with the ten readings.",
+     "fix": "Cut the trough or set the pill on the glass frame's rail and let the rods fill the lower half."
+    },
+    {
+     "judge": 2,
+     "problem": "The channel reads full, so 97.5 against 100 is invisible; pins are untextured primitives.",
+     "fix": "A visible empty stub with an engraved stop line, the pill on it; knurled lit posts."
+    },
+    {
+     "judge": 3,
+     "problem": "The upper frame still reads as orange tinted plastic over ten identical rods and competes with the gauge.",
+     "fix": "Make the rods a clear glass rack with amber only on the rim, push it back and up, let the gauge fill the lower half."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Streak grain across the upper sky.",
+     "fix": "Halve it and remove the horizontal streak."
+    },
+    {
+     "judge": 2,
+     "problem": "Streak grain across the upper sky.",
+     "fix": "Half strength, no directional streak."
+    },
+    {
+     "judge": 3,
+     "problem": "Horizontal streak grain reads as scanlines behind the dek.",
+     "fix": "Halve the grain and make it isotropic."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Wash seam at about y 370 behind the headline, glyphs read as texture, the pair in a raised rim.",
+     "fix": "Feather the type wash with no visible edge, crop the grid tighter, cut the pair into a recessed well."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Speckled canopies; the case competes with the drone.",
+     "fix": "S1's solid canopies; cut or close the case."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared_note": "the cards carry a round number and it was not believed, because the cards carry [2, None, None] and a round is one number. `rounds` is this module's own count of 2",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.338 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 7, 8, 2, 6, 9 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

@@ -1,0 +1,212 @@
+{
+ "weighted_score": 7.228,
+ "judges": [
+  7.18,
+  7.36,
+  7.316
+ ],
+ "spread": 0.18,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    7.0,
+    7.4
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.18 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.36 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.316 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.18,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.18 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.36,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.36 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.316,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.316 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequin figures dominate; the drone is a small dark primitive.",
+     "fix": "Table height camera, drone filling the lower half at 600 px or more; crop people to hands and forearms."
+    },
+    {
+     "judge": 2,
+     "problem": "Faceless mannequin figures, a small dark drone, the dek printed across heads.",
+     "fix": "Dolly in and drop the camera so the drone on the near table fills about 40 percent of the frame width, figures behind it in defocus below the dek baseline."
+    },
+    {
+     "judge": 3,
+     "problem": "Mannequin figures, smeared tabletop, body copy over heads.",
+     "fix": "Drop the camera to table height and push in on the drone with two hands working on it; figures out of the top half."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Loupe reads as tinted plastic; pins primitives; stub illegible.",
+     "fix": "A clear glass block with amber only on its rim; a dark recessed stub with an engraved stop line."
+    },
+    {
+     "judge": 2,
+     "problem": "The loupe a flat orange rectangle, the lower bar an ambiguous trough; rod heights look like data with no drawn to illustrate.",
+     "fix": "One machined gauge channel filled to 97.5 with a recessed stub and stop line, pill on its face; a clear glass frame over the ten rods."
+    },
+    {
+     "judge": 3,
+     "problem": "Ten tubes read as an abstract bar chart; the red trough competes as the subject.",
+     "fix": "Cut the trough and make the ten readings the hero with the score pill seated on them."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grid reads as texture; enlarged pair on stilts.",
+     "fix": "Press the pair into a channel with an incised leader; shrink the grid to the upper half."
+    },
+    {
+     "judge": 2,
+     "problem": "Glyphs illegible squiggles at feed size; enlarged pair reads as loose ribbons on a hoop.",
+     "fix": "Bleed the slab off the bottom and press the enlarged pair into a bevelled recessed well with deep casts."
+    },
+    {
+     "judge": 3,
+     "problem": "Tracks thread thin at 432 px; enlarged pair unexplained and not in copy.json strings.",
+     "fix": "Crop to the field so tracks are thicker, spoofed kinks visible; caption or delete the enlarged pair."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Hero small in the lower third; far hills featureless dunes not frame 1's ridge.",
+     "fix": "Lower the eye and dolly in; re-model the far terrain as frame 1's ridge and saddle."
+    },
+    {
+     "judge": 2,
+     "problem": "Far hills smooth blobs rather than S1's ridge; hero small in the lower third.",
+     "fix": "Reuse S1's crest and saddle terrain; dolly in until the drone fills the middle third."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Isometric tray on a flat orange field with a dead lower third.",
+     "fix": "Bring the held back case to the foreground filling the lower half; shift the sweep toward the deck's violet to amber studio."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Ghost propeller cuts the dek at into; heavy grain on the sweep.",
+     "fix": "Slide the ghost 8 percent right and up clear of the text; halve the grain."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.228 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 8, 6, 9, 7, 2 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

@@ -1,0 +1,293 @@
+<!doctype html>
+<!-- 2026-11-20, frame 5 of 9. ITS OWN MOTION. A raked macro of the drone's flight controller on a periwinkle and apricot
+     sweep: solder mask, gold pads, a pinned processor and the small motion sensor chip, with three machined amber arrows
+     rising out of that chip, one straight (how fast), one bending away (which way), one curling round like a clock sweep
+     (how long). The GPS puck lies unplugged on the sweep in frosted periwinkle glass that casts no shadow, its plug a
+     finger short of the empty socket. Type in the right column. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:580px; top:168px; width:420px; text-align:right">It never asks the GPS</h1>
+<p class="dek" data-follow="26" style="left:600px; width:400px; font-size:27px; line-height:1.36; text-align:right">The method reads the drone's own motion sensors for how fast it moves, in what direction and over how much time. It uses no GPS data. One arrow stands for each, drawn to illustrate.</p>
+<div class="lab" id="lab-fast" style="transform:translate(-50%,-50%)">how fast</div>
+<div class="lab" id="lab-way" style="transform:translate(-50%,-50%)">which way</div>
+<div class="lab" id="lab-long" style="transform:translate(-50%,-50%)">how long</div>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Its own motion", counter: "05 / 09", src: "c4 c15", fit: { min: 84, max: 112, maxLines: 3 } });
+  const P = CH.P, RG = CH.rng(CH.SEED + 505);
+
+  /* THE QUANTITIES. The copy names three things the motion sensors give, and the art draws one arrow for each. FIG is empty
+   * on this frame, so the only count drawn is the copy's own three, checked against the labels set on the page. */
+  const QUANT = ['how fast', 'which way', 'how long'];
+  const labs = ['lab-fast', 'lab-way', 'lab-long'].map(id => document.getElementById(id));
+  if (Object.keys(FIG).length !== 0) throw new Error('slide 05 carries no figure, FIG must be empty');
+  if (labs.map(l => l.textContent).join('|') !== QUANT.join('|')) throw new Error('labels differ from the three quantities');
+
+  /* scale: the scene is built ten times life size, so a 36 mm board is 0.36 m and the macro camera stands 1.6 m off */
+  const R = CH.stage(TXT, gl, W, { fov: 23, near: 0.02, far: 40, fog: 0, exposure: 1.0 });
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 5, d: 2.2 }), { d: 2.0, radius: 0.45, h: 3.0, env: 0.85, hemi: 0.55, floor: '#6a86ec', wall: '#4467d6', top: '#2b4fb8' }));
+  R.studio.sweep.position.z = 0.1;
+
+  const phys = (name, p) => { const m = new THREE.MeshPhysicalMaterial(p); m.name = name; return m; };
+  const rb = (w, h, d, r, m) => TXT.roundedBox(w, h, d, r, m);
+  const add = (parent, mesh, x, y, z) => { mesh.position.set(x, y, z); mesh.castShadow = true; mesh.receiveShadow = true; parent.add(mesh); return mesh; };
+
+  /* ---- THE BOARD -------------------------------------------------------------------------------------------- */
+  const S = 0.36, T = 0.016, LIFT = 0.032, TOP = LIFT + T;
+  const board = new THREE.Group();
+  /* solder mask: traces under the mask catch the light, gold vias, white silkscreen; a bump map from the same traces */
+  const TS = 2048, tc = document.createElement('canvas'), bc = document.createElement('canvas');
+  tc.width = tc.height = bc.width = bc.height = TS;
+  const tg = tc.getContext('2d'), bg = bc.getContext('2d');
+  tg.fillStyle = '#0e3b2c'; tg.fillRect(0, 0, TS, TS);
+  bg.fillStyle = '#000'; bg.fillRect(0, 0, TS, TS);
+  for (let k = 0; k < 9000; k++) { tg.fillStyle = 'rgba(' + (RG() < 0.5 ? '40,110,80' : '4,24,18') + ',' + (0.05 + RG() * 0.07) + ')'; tg.fillRect(RG() * TS, RG() * TS, 2 + RG() * 4, 2 + RG() * 4); }
+  const u = (m) => (m / S + 0.5) * TS;            /* board metres to texture pixels, x and z */
+  /* traces: 45 degree routed runs, many in parallel buses */
+  const trace = (pts, w) => {
+    [[tg, 'rgba(46,128,90,0.9)'], [bg, '#9a9a9a']].forEach(([g, c]) => { g.strokeStyle = c; g.lineWidth = w; g.lineCap = 'round'; g.lineJoin = 'round';
+      g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(u(p[0]), u(p[1])) : g.moveTo(u(p[0]), u(p[1]))); g.stroke(); });
+  };
+  for (let b = 0; b < 26; b++) {
+    const x0 = (RG() - 0.5) * 0.32, z0 = (RG() - 0.5) * 0.32, n = 3 + Math.floor(RG() * 6), dx = RG() < 0.5 ? 1 : -1, dz = RG() < 0.5 ? 1 : -1;
+    const L1 = 0.03 + RG() * 0.09, L2 = 0.02 + RG() * 0.06, hz = RG() < 0.5;
+    for (let i = 0; i < n; i++) {
+      const o = i * 0.0065;
+      const p0 = hz ? [x0, z0 + o] : [x0 + o, z0];
+      const p1 = hz ? [x0 + dx * L1, z0 + o] : [x0 + o, z0 + dz * L1];
+      const p2 = hz ? [p1[0] + dx * L2, p1[1] + dz * L2] : [p1[0] + dx * L2, p1[1] + dz * L2];
+      const p3 = hz ? [p2[0] + dx * 0.04, p2[1]] : [p2[0], p2[1] + dz * 0.04];
+      trace([p0, p1, p2, p3], 7);
+    }
+  }
+  /* vias */
+  for (let k = 0; k < 160; k++) { const x = u((RG() - 0.5) * 0.33), y = u((RG() - 0.5) * 0.33);
+    tg.fillStyle = '#d9b45e'; tg.beginPath(); tg.arc(x, y, 9, 0, 7); tg.fill(); tg.fillStyle = '#1a1208'; tg.beginPath(); tg.arc(x, y, 4, 0, 7); tg.fill();
+    bg.fillStyle = '#bbb'; bg.beginPath(); bg.arc(x, y, 9, 0, 7); bg.fill(); }
+  /* mounting holes with plated rings */
+  const HOLE = 0.152;
+  [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => { const x = u(sx * HOLE), y = u(sz * HOLE);
+    tg.fillStyle = '#e0bb62'; tg.beginPath(); tg.arc(x, y, 92, 0, 7); tg.fill(); tg.fillStyle = '#0b0a08'; tg.beginPath(); tg.arc(x, y, 56, 0, 7); tg.fill(); });
+  /* silkscreen: outlines round each footprint, a board outline, small tick marks; no letters and no numerals */
+  const silk = (x, z, w, d) => { tg.strokeStyle = 'rgba(244,240,228,0.92)'; tg.lineWidth = 5; tg.strokeRect(u(x - w / 2), u(z - d / 2), w / S * TS, d / S * TS); };
+  tg.strokeStyle = 'rgba(244,240,228,0.85)'; tg.lineWidth = 6; tg.strokeRect(u(-0.168), u(-0.168), 0.336 / S * TS, 0.336 / S * TS);
+
+  /* component placements, in board metres (x right, z toward the camera) */
+  const IMU = [0.035, 0.03];       /* the motion sensor chip */
+  const MCU = [-0.07, -0.045];
+  const GPS_SOCK = [0.157, -0.02];  /* the empty socket the GPS plugs into, on the right edge */
+  silk(IMU[0], IMU[1], 0.07, 0.07); silk(MCU[0], MCU[1], 0.15, 0.15);
+  /* the motion chip's pin one arrow on the silkscreen */
+  tg.fillStyle = 'rgba(244,240,228,0.92)'; tg.beginPath(); tg.arc(u(IMU[0] - 0.03), u(IMU[1] - 0.03), 10, 0, 7); tg.fill();
+  /* gold pad rings round the QFP and the chip, under the parts */
+  const padRow = (cx0, cz0, half, n, pw, pl) => { for (let s = 0; s < 4; s++) for (let i = 0; i < n; i++) { const t = (i - (n - 1) / 2) * (2 * half / n);
+    let x, z, w, d; if (s < 2) { x = cx0 + t; z = cz0 + (s ? 1 : -1) * (half + pl / 2); w = pw; d = pl; } else { z = cz0 + t; x = cx0 + (s === 2 ? 1 : -1) * (half + pl / 2); w = pl; d = pw; }
+    tg.fillStyle = '#e2bd66'; tg.fillRect(u(x - w / 2), u(z - d / 2), w / S * TS, d / S * TS); bg.fillStyle = '#ccc'; bg.fillRect(u(x - w / 2), u(z - d / 2), w / S * TS, d / S * TS); } };
+  padRow(MCU[0], MCU[1], 0.05, 12, 0.004, 0.016);
+  padRow(IMU[0], IMU[1], 0.021, 5, 0.004, 0.008);
+  const maskT = new THREE.CanvasTexture(tc); maskT.colorSpace = THREE.SRGBColorSpace; maskT.anisotropy = 16;
+  const bumpT = new THREE.CanvasTexture(bc); bumpT.anisotropy = 16;
+  const pcbM = phys('pcb-soldermask', { map: maskT, bumpMap: bumpT, bumpScale: 2.0, roughness: 0.34, metalness: 0.05, clearcoat: 0.85, clearcoatRoughness: 0.16 });
+  pcbM.userData.txSurface = 'plastic';
+  const coreM = phys('pcb-fr4-edge', { color: 0xc9b98a, roughness: 0.6 });
+  /* the laminate body, with the mask laid on the top face as its own plate so the edge shows the FR4 */
+  const pcb = rb(S, T, S, 0.012, coreM);
+  add(board, pcb, 0, LIFT + T / 2, 0);
+  const maskPlate = new THREE.Mesh(new THREE.PlaneGeometry(S - 0.01, S - 0.01), pcbM); maskPlate.rotation.x = -Math.PI / 2;
+  maskPlate.position.set(0, TOP + 0.0004, 0); maskPlate.receiveShadow = true; maskPlate.userData.txBevel = false; board.add(maskPlate);
+
+  /* nylon standoffs and nuts at the four holes */
+  const nylon = phys('nylon-standoff', { color: 0xf1ece2, roughness: 0.55, sheen: 0.3 });
+  const brass = phys('brass-screw', { color: 0xd8b25a, metalness: 1, roughness: 0.3 });
+  [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => {
+    add(board, new THREE.Mesh(new THREE.CylinderGeometry(0.019, 0.019, LIFT, 6), nylon), sx * HOLE, LIFT / 2, sz * HOLE);
+    add(board, new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.012, 6), nylon), sx * HOLE, TOP + 0.006, sz * HOLE);
+    add(board, new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.006, 16), brass), sx * HOLE, TOP + 0.015, sz * HOLE);
+  });
+
+  /* the processor: a black QFP body with twelve gull wing pins a side */
+  const epoxy = phys('chip-epoxy-mould', { color: 0x1b1c22, roughness: 0.5, metalness: 0.05, clearcoat: 0.2 });
+  const tin = phys('tin-solder-pins', { color: 0xd7dade, metalness: 1, roughness: 0.22 });
+  const gold = phys('gold-plate', { color: 0xe0b860, metalness: 1, roughness: 0.24 });
+  add(board, rb(0.1, 0.013, 0.1, 0.003, epoxy), MCU[0], TOP + 0.0075, MCU[1]);
+  const dimple = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.0008, 24), phys('chip-dimple', { color: 0x101116, roughness: 0.8 }));
+  add(board, dimple, MCU[0] - 0.036, TOP + 0.0142, MCU[1] - 0.036);
+  for (let s = 0; s < 4; s++) for (let i = 0; i < 12; i++) {
+    const t = (i - 5.5) * (0.1 / 12), pin = rb(0.0034, 0.003, 0.014, 0.0008, tin);
+    const off = 0.057;
+    if (s < 2) { pin.position.set(MCU[0] + t, TOP + 0.003, MCU[1] + (s ? 1 : -1) * off); }
+    else { pin.rotation.y = Math.PI / 2; pin.position.set(MCU[0] + (s === 2 ? 1 : -1) * off, TOP + 0.003, MCU[1] + t); }
+    pin.castShadow = pin.receiveShadow = true; board.add(pin);
+  }
+
+  /* the motion sensor chip: a small QFN with a pin one dot, the thing the method reads */
+  const imu = add(board, rb(0.042, 0.011, 0.042, 0.0025, epoxy), IMU[0], TOP + 0.0065, IMU[1]);
+  for (let s = 0; s < 4; s++) for (let i = 0; i < 5; i++) { const t = (i - 2) * 0.0075, pd = rb(0.0036, 0.0024, 0.006, 0.0006, tin);
+    if (s < 2) pd.position.set(IMU[0] + t, TOP + 0.0012, IMU[1] + (s ? 1 : -1) * 0.0225); else { pd.rotation.y = Math.PI / 2; pd.position.set(IMU[0] + (s === 2 ? 1 : -1) * 0.0225, TOP + 0.0012, IMU[1] + t); }
+    board.add(pd); }
+  const dot = new THREE.Mesh(new THREE.CylinderGeometry(0.0028, 0.0028, 0.0006, 16), phys('chip-mark', { color: 0x8a8c92, roughness: 0.6 }));
+  add(board, dot, IMU[0] - 0.014, TOP + 0.0123, IMU[1] - 0.014);
+
+  /* a pressure sensor can, a crystal and a power regulator */
+  const nickel = phys('nickel-can', { color: 0xc8ccd2, metalness: 1, roughness: 0.3 });
+  add(board, rb(0.03, 0.01, 0.03, 0.003, nickel), 0.095, TOP + 0.006, -0.06);
+  for (let k = 0; k < 2; k++) add(board, new THREE.Mesh(new THREE.CylinderGeometry(0.0022, 0.0022, 0.001, 12), epoxy), 0.091 + k * 0.008, TOP + 0.0112, -0.06);
+  add(board, rb(0.05, 0.012, 0.02, 0.006, nickel), -0.02, TOP + 0.007, 0.115);
+  add(board, rb(0.034, 0.012, 0.03, 0.002, epoxy), -0.12, TOP + 0.007, 0.08);
+  for (let k = 0; k < 3; k++) add(board, rb(0.006, 0.003, 0.01, 0.001, tin), -0.13 + k * 0.01, TOP + 0.0015, 0.1);
+  add(board, rb(0.034, 0.003, 0.012, 0.001, tin), -0.12, TOP + 0.0015, 0.06);
+
+  /* passives: ceramic capacitors in tan with tinned ends, resistors in black, scattered round the chips the way a router lays them */
+  const ceramic = phys('ceramic-capacitor', { color: 0xb89a6a, roughness: 0.55 });
+  const resist = phys('resistor-body', { color: 0x16161a, roughness: 0.6 });
+  const keep = (x, z) => [[MCU, 0.075], [IMU, 0.04], [[0.095, -0.06], 0.026], [[-0.02, 0.115], 0.034], [[-0.12, 0.08], 0.03], [GPS_SOCK, 0.045], [[0, -0.15], 0.035]]
+    .some(([c, r]) => Math.abs(x - c[0]) < r && Math.abs(z - c[1]) < r) || Math.abs(x) > 0.16 || Math.abs(z) > 0.16 ||
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].some(([sx, sz]) => Math.hypot(x - sx * HOLE, z - sz * HOLE) < 0.03);
+  let placed = 0;
+  for (let k = 0; k < 400 && placed < 46; k++) {
+    const x = (RG() - 0.5) * 0.32, z = (RG() - 0.5) * 0.32; if (keep(x, z)) continue;
+    const rot = RG() < 0.5 ? 0 : Math.PI / 2, isR = RG() < 0.35, g = new THREE.Group();
+    g.add(add(new THREE.Group(), rb(0.012, 0.0075, 0.0085, 0.0012, isR ? resist : ceramic), 0, 0, 0).parent);
+    const e1 = rb(0.0042, 0.0082, 0.009, 0.0012, tin), e2 = rb(0.0042, 0.0082, 0.009, 0.0012, tin); e1.position.x = -0.0075; e2.position.x = 0.0075;
+    [e1, e2].forEach(e => { e.castShadow = e.receiveShadow = true; g.add(e); });
+    g.rotation.y = rot; g.position.set(x, TOP + 0.0042, z); board.add(g); placed++;
+  }
+  if (placed < 30) throw new Error('too few passives placed: ' + placed);
+
+  /* connectors: cream housings; three carry a plugged cable off the board's left and back edges, one is the empty GPS socket */
+  const housing = phys('nylon-connector-housing', { color: 0xf3ead6, roughness: 0.48, sheen: 0.25 });
+  const slotM = phys('connector-slot', { color: 0x231d1a, roughness: 0.8 });
+  const socket = (x, z, rotY, n) => { const g = new THREE.Group(), w = 0.012 + n * 0.0075;
+    add(g, rb(w, 0.026, 0.03, 0.003, housing), 0, 0.013, 0);
+    add(g, rb(w - 0.006, 0.016, 0.004, 0.001, slotM), 0, 0.014, 0.0145);
+    for (let i = 0; i < n; i++) add(g, rb(0.0022, 0.0012, 0.006, 0.0004, gold), (i - (n - 1) / 2) * 0.0075, 0.009, 0.013);
+    g.rotation.y = rotY; g.position.set(x, TOP, z); board.add(g); return g; };
+  socket(GPS_SOCK[0], GPS_SOCK[1], Math.PI / 2, 4);            /* faces +x, the GPS side, and stands empty */
+  const wireCols = [0xd8342c, 0x1f1f24, 0xf2c02a, 0x2f6fd8, 0xeeeeee];
+  const plugged = (x, z, rotY, n, out) => { socket(x, z, rotY, n);
+    const dir = new THREE.Vector3(Math.sin(rotY), 0, Math.cos(rotY));
+    const plug = add(board, rb(0.012 + n * 0.0075, 0.02, 0.022, 0.003, housing), x + dir.x * 0.024, TOP + 0.012, z + dir.z * 0.024); plug.rotation.y = rotY;
+    for (let i = 0; i < n; i++) { const side = new THREE.Vector3(dir.z, 0, -dir.x).multiplyScalar((i - (n - 1) / 2) * 0.0075);
+      const p0 = [x + dir.x * 0.035 + side.x, TOP + 0.012, z + dir.z * 0.035 + side.z];
+      const pts = [p0, [p0[0] + dir.x * 0.05, TOP + 0.016, p0[2] + dir.z * 0.05], [out[0] + side.x * 1.4, 0.006, out[1] + side.z * 1.4], [out[0] + side.x * 1.4 + dir.x * 0.3, 0.004, out[1] + side.z * 1.4 + dir.z * 0.3 + 0.08]];
+      const w = TXT.tube(pts, 0.0033, phys('pvc-wire-insulation', { color: wireCols[i % wireCols.length], roughness: 0.42, clearcoat: 0.4 }), { segments: 60, radial: 10 });
+      w.castShadow = w.receiveShadow = true; board.add(w); } };
+  plugged(-0.16 + 0.012, -0.11, -Math.PI / 2, 4, [-0.25, -0.13]);
+  plugged(-0.16 + 0.012, 0.03, -Math.PI / 2, 5, [-0.25, 0.06]);
+  /* a row of header pins near the front edge */
+  add(board, rb(0.09, 0.012, 0.012, 0.002, epoxy), 0.07, TOP + 0.006, 0.15);
+  for (let i = 0; i < 8; i++) add(board, rb(0.003, 0.03, 0.003, 0.0006, gold), 0.07 + (i - 3.5) * 0.0105, TOP + 0.02, 0.15);
+  CH.put(board, true);
+  board.rotation.y = 0.0;
+
+  /* ---- THE THREE ARROWS, machined amber, rising out of the motion chip ------------------------------------- */
+  const amber = phys('anodized-aluminium-amber', { color: CH.ACCENT, metalness: 0.55, roughness: 0.26, clearcoat: 0.9, clearcoatRoughness: 0.12,
+    emissive: CH.ACCENT, emissiveIntensity: 0.22, sheen: 0.2 });
+  amber.userData.txSurface = 'metal';
+  const base = new THREE.Vector3(IMU[0], TOP + 0.012, IMU[1]);
+  const arrow = (pts, rad) => {
+    const curve = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p[0], p[1], p[2])), false, 'catmullrom', 0.4);
+    const shaft = new THREE.Mesh(new THREE.TubeGeometry(curve, 160, rad, 28, false), amber); shaft.castShadow = shaft.receiveShadow = true;
+    const g = new THREE.Group(); g.add(shaft);
+    const end = curve.getPoint(1), tan = curve.getTangent(1).normalize();
+    const HL = rad * 6.0, HR = rad * 2.7;
+    const head = TXT.lathe([[0.0001, 0], [HR, 0], [HR * 0.96, HL * 0.08], [HR * 0.14, HL * 0.96], [0.0001, HL]], amber, { segments: 48 });
+    head.castShadow = head.receiveShadow = true;
+    head.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tan); head.position.copy(end); g.add(head);
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(rad, 24, 12), amber); cap.position.copy(curve.getPoint(0)); g.add(cap);
+    TXT.add(R, g);
+    return { curve, tip: end.clone().addScaledVector(tan, HL), len: curve.getLength() + HL };
+  };
+  const b = base;
+  const A = [];
+  /* screen left, seen from this camera, so the three fan apart in clear space rather than knotting over the chip */
+  const LEFT = new THREE.Vector3(-0.885, 0, 0.466), BACK = new THREE.Vector3(-0.466, 0, -0.885);
+  const off = (v, up, l, k) => [v.x + LEFT.x * l + BACK.x * k, v.y + up, v.z + LEFT.z * l + BACK.z * k];
+  /* how fast: one straight vertical shaft */
+  A.push(arrow([[b.x, b.y, b.z], [b.x, b.y + 0.15, b.z], [b.x, b.y + 0.29, b.z]], 0.0085));
+  /* which way: rises a little, takes one clean rounded elbow and runs level to the left */
+  { const r = 0.03, h = 0.085, pts = [], w0 = off(b, 0, 0.011, 0), wb = new THREE.Vector3(w0[0], w0[1], w0[2]);
+    for (let i = 0; i <= 6; i++) pts.push(off(wb, h * i / 6, 0, 0));
+    for (let i = 1; i <= 8; i++) { const a = (i / 8) * Math.PI / 2; pts.push(off(wb, h + Math.sin(a) * r, r - Math.cos(a) * r, 0)); }
+    for (let i = 1; i <= 6; i++) pts.push(off(wb, h + r, r + 0.045 * i / 6, 0));
+    A.push(arrow(pts, 0.0085)); }
+  /* how long: its own straight shaft leaning up and back to the left, ringed with machined ticks for elapsed time */
+  A.push(arrow([off(b, 0, -0.011, 0), off(b, 0.11, -0.04, 0), off(b, 0.22, -0.07, 0)], 0.0085));
+  { const c = A[2].curve; for (let k = 1; k <= 4; k++) { const t = 0.2 + k * 0.15, p = c.getPoint(t), tn = c.getTangent(t);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0135, 0.0035, 12, 40), amber); ring.position.copy(p);
+      ring.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), tn); ring.castShadow = ring.receiveShadow = true; TXT.add(R, ring); } }
+  if (A.length !== QUANT.length) throw new Error('arrows drawn ' + A.length + ' differ from the ' + QUANT.length + ' quantities');
+
+  /* ---- THE GPS PUCK, a square shouldered patch antenna, unplugged, frosted periwinkle glass, no shadow --------- */
+  const ghost = phys('ghost-frosted-glass', { color: CH.GHOST, metalness: 0, roughness: 0.32, transmission: 0.7, thickness: 0.05, ior: 1.45,
+    transparent: true, opacity: 0.9, clearcoat: 1, clearcoatRoughness: 0.18, emissive: 0xc9d2ff, emissiveIntensity: 0.28, attenuationColor: new THREE.Color(0x7d8fff), attenuationDistance: 0.4 });
+  ghost.userData.txSurface = 'glass';
+  const gps = new THREE.Group();
+  const PW = 0.15;
+  /* the housing: a rounded square body, a raised square radome on top with a soft crown, a cable boss at the back */
+  add(gps, rb(PW, 0.04, PW, 0.016, ghost), 0, 0.02, 0);
+  add(gps, rb(PW * 0.8, 0.022, PW * 0.8, 0.01, ghost), 0, 0.048, 0);
+  const crown = new THREE.Mesh(new THREE.SphereGeometry(PW * 0.42, 40, 16, 0, Math.PI * 2, 0, Math.PI / 2), ghost); crown.scale.y = 0.12; crown.position.y = 0.058; gps.add(crown);
+  const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.013, 0.022, 20), ghost); boss.rotation.z = Math.PI / 2; boss.position.set(-PW / 2 - 0.008, 0.02, 0); gps.add(boss);
+  const PX = 0.36, PZ = 0.07;
+  gps.position.set(PX, 0, PZ); gps.rotation.y = -0.15;
+  /* its cable leaves the puck's side and ends in a plug lying on the sweep, short of the socket */
+  const sockW = new THREE.Vector3(GPS_SOCK[0] + 0.016, 0, GPS_SOCK[1]);
+  const plugAt = new THREE.Vector3(sockW.x + 0.075, 0.011, sockW.z + 0.008);
+  const cable = TXT.tube([[PX - PW / 2 - 0.016, 0.02, PZ + 0.01], [PX - PW / 2 - 0.05, 0.007, PZ + 0.06], [plugAt.x + 0.03, 0.007, PZ + 0.05], [plugAt.x + 0.06, 0.008, plugAt.z + 0.03], [plugAt.x + 0.022, 0.009, plugAt.z + 0.002]], 0.006, ghost, { segments: 80, radial: 14 });
+  gps.add(new THREE.Object3D()); TXT.add(R, cable);
+  const gplug = rb(0.042, 0.02, 0.024, 0.004, ghost); gplug.position.copy(plugAt); gplug.rotation.y = Math.PI / 2 + 0.18; TXT.add(R, gplug);
+  TXT.add(R, gps);
+  [gps, cable, gplug].forEach(o => o.traverse(m => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = false; } }));
+  if (gplug.position.distanceTo(new THREE.Vector3(sockW.x, plugAt.y, sockW.z)) < 0.05) throw new Error('the GPS plug must lie visibly short of its socket');
+
+  /* ---- CAMERA: macro, raked three quarter from the front right ------------------------------------------- */
+  const FROM = [0.80, 1.12, 1.52];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [IMU[0], TOP + 0.12, IMU[1]], 380, 730, 23);
+  TXT.frame(R, { fov: 23, from: FROM, look: LOOK });
+
+  /* THE KEY: apricot, front left and fairly low, so it rakes the board's relief and lays the arrows' shadows across it */
+  CH.KEY_SCALE = 0.95;
+  TXT.deckRig(R, CH.rigSpec(W, 2.4, 4096), Object.assign(CH.rigOpts([0.05, 0, 0.05], { distance: 6, shadowFar: 14, normalBias: 0.002 }), { light: { az: -62, el: 36 } }));
+
+  /* labels at the three tips */
+  CH.pin(THREE, R, 'lab-fast', [A[0].tip.x, A[0].tip.y, A[0].tip.z], 0, -42);
+  CH.pin(THREE, R, 'lab-way', [A[1].tip.x, A[1].tip.y, A[1].tip.z], 30, -54);
+  CH.pin(THREE, R, 'lab-long', [A[2].tip.x, A[2].tip.y, A[2].tip.z], 0, -46);
+  /* each arrow at least 200 px long on the page */
+  A.forEach((a, i) => { const p0 = CH.project(THREE, R, a.curve.getPoint(0).toArray()), p1 = CH.project(THREE, R, a.tip.toArray());
+    let L = 0, prev = p0; for (let k = 1; k <= 40; k++) { const q = CH.project(THREE, R, (k < 40 ? a.curve.getPoint(k / 40) : a.tip).toArray()); L += Math.hypot(q[0] - prev[0], q[1] - prev[1]); prev = q; }
+    if (L < 200) throw new Error('arrow ' + QUANT[i] + ' draws ' + Math.round(L) + ' px, under 200'); });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.42, height: 230 });
+  CH.seat(cx, { a: 0.5, fade: 190 });
+  CH.seat(cx, { sel: '.kick', a: 0.6, fade: 140 });
+  CH.seat(cx, { sel: '.count', a: 0.55, fade: 140 });
+  CH.seat(cx, { sel: '.src', a: 0.5, fade: 110 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

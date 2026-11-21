@@ -1,0 +1,17 @@
+{"lens":"craft","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.7,"why":"Most of round 2's defects landed. S4's void is gone, the wall seam dropped behind the art and the clipped fixture is gone. S6's wash is feathered and the pair sits in a real cut recess. S8's trough is gone and ten equal rods read as ten readings. S7's case of 22 fills the lower right. S2's grain is isotropic. S1, S3 and S5 remain strongest. Held down by S4's drone reading as loose parts with the mast floating and an arm through the right laptop screen, S7's empty top third and outline shadow lines, S8's dead lower third, a bright sliver on S6's recess wall and streak grain on the board, S9's speckled canopies, and S5's which way pill 52 px from the edge."},
+{"name":"deck_coherence","weight":0.12,"score":7.8,"why":"The spine holds across the contact sheet. S1, S3 and S9 bookend in the same terrain and S9's 22 cartridges answer S7's 22 tiles. S7 and S8 sit in a hotter flatter magenta sweep."},
+{"name":"claim_integrity","weight":0.20,"score":7.8,"why":"Every slide numeral traces to the copy's claim ids. S6 draws 42 plus 54 and S9's code asserts FIG.held_out. The accepted at WATCH 2026 wording is gone from S9. S8 and the caption say 97.5 percent is one balanced measure. Every claim rests on the university release."},
+{"name":"story_and_stakes","weight":0.16,"score":7.0,"why":"Who, where and what are clear. The stake is still the release's illustrative ridge. S9's dek ends on the grant and what the project also asks rather than a sharp forward question, which the caption carries."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"The cover earns the swipe, S2 and S3 pay, the turn at S5, S6 to S8 build. S4 interrupts and S9 lands softly in words."},
+{"name":"voice","weight":0.10,"score":7.0,"why":"Spoken lines on the cover, S6 and S5. S4's dek and S9's grant sentence read as paraphrase and drawn to illustrate repeats on five frames."},
+{"name":"variety","weight":0.10,"score":7.5,"why":"A new subject in a bespoke mix with familiar tile grid, rod gauge and v2 palette moves."}],
+"weighted_score":7.51,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Rebuild S4's drone as one connected airframe with the right laptop clear of the arm, and land a sharper forward question in S9's dek.",
+"artwork_weakest_frames":[
+{"slide":4,"problem":"The drone reads as loose parts, the mast floats, an arm passes through the right laptop screen, the table ends against the wall with no contact.","fix":"Parent the arms and mast to the body, slide the right laptop outward, crop the table's far end."},
+{"slide":7,"problem":"Empty flat magenta top third, no visible floor plane, outline shadow lines under the tray.","fix":"Tilt down and dolly in, a lit floor gradient with a soft contact shadow, delete the edge line shadows."},
+{"slide":8,"problem":"Dead pink lower third and a flat field.","fix":"Lower the camera so the rack sits lower and larger with a lit floor below."},
+{"slide":6,"problem":"A bright sliver on the recess's right wall and streak grain on the board.","fix":"Darken the right inner wall and use fine isotropic grain."},
+{"slide":9,"problem":"Speckled canopies and a flat magenta lid interior.","fix":"S1's canopy material and a darker textured foam."},
+{"slide":5,"problem":"The which way pill sits 52 px from the edge.","fix":"Move it 30 px right."}]}

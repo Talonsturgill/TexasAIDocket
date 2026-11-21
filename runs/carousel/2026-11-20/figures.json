@@ -1,0 +1,88 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "flights": {
+  "value": 96,
+  "from": [
+   "c5"
+  ],
+  "basis": "real drone flights in the public dataset"
+ },
+ "normal": {
+  "value": 42,
+  "from": [
+   "c6"
+  ],
+  "basis": "flights flown normally"
+ },
+ "spoofed": {
+  "value": 54,
+  "from": [
+   "c6"
+  ],
+  "basis": "flights flown under controlled spoofing attacks"
+ },
+ "held_out": {
+  "value": 22,
+  "from": [
+   "c8"
+  ],
+  "basis": "whole flights set aside for testing, unseen in training"
+ },
+ "trained": {
+  "value": 74,
+  "from": [
+   "c5",
+   "c8"
+  ],
+  "basis": "flights - held_out, the flights left for training"
+ },
+ "models": {
+  "value": 8,
+  "from": [
+   "c9"
+  ],
+  "basis": "AI models compared"
+ },
+ "readings": {
+  "value": 10,
+  "from": [
+   "c11"
+  ],
+  "basis": "consecutive readings the best model was given"
+ },
+ "score_pct": {
+  "value": 97.5,
+  "from": [
+   "c11"
+  ],
+  "basis": "Chronos's score on one measure balancing caught abnormal stretches against correct alerts, never accuracy"
+ },
+ "grant_about": {
+  "value": 200000,
+  "from": [
+   "c13"
+  ],
+  "basis": "about this many dollars of NSF funding, printed with about, never drawn"
+ },
+ "grant_years": {
+  "value": 2,
+  "from": [
+   "c13"
+  ],
+  "basis": "the grant's length in years"
+ },
+ "team_ug": {
+  "value": 2,
+  "from": [
+   "c23"
+  ],
+  "basis": "undergraduate research assistants on the team"
+ },
+ "team_grad": {
+  "value": 2,
+  "from": [
+   "c23"
+  ],
+  "basis": "graduate research assistants on the team"
+ }
+}

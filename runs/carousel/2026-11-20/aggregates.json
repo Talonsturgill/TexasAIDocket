@@ -1,0 +1,110 @@
+{
+ "date": "2026-11-20",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "two graduate research assistants",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c23",
+   "quote": "two undergraduate and two graduate research assistants"
+  },
+  {
+   "phrase": "96 flights",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 96,
+   "quoted_from": "c5",
+   "quote": "from 96 actual drone flights"
+  },
+  {
+   "phrase": "96 real drone flights",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 96,
+   "quoted_from": "c5",
+   "quote": "from 96 actual drone flights"
+  },
+  {
+   "phrase": "96 real flights",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 96,
+   "quoted_from": "c5",
+   "quote": "from 96 actual drone flights"
+  },
+  {
+   "phrase": "22 flights the models",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 22,
+   "quoted_from": "c8",
+   "quote": "set aside 22 entire flights"
+  },
+  {
+   "phrase": "22 whole flights",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 22,
+   "quoted_from": "c8",
+   "quote": "set aside 22 entire flights"
+  },
+  {
+   "phrase": "Ten readings",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c11",
+   "quote": "Given 10 consecutive readings"
+  },
+  {
+   "phrase": "10 consecutive readings",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c11",
+   "quote": "Given 10 consecutive readings"
+  },
+  {
+   "phrase": "two year",
+   "slide": "slide-09.html",
+   "kind": "span",
+   "value": 2,
+   "quoted_from": "c13",
+   "quote": "a two-year National Science Foundation grant"
+  },
+  {
+   "phrase": "96 real flights",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 96,
+   "quoted_from": "c5",
+   "quote": "from 96 actual drone flights"
+  },
+  {
+   "phrase": "22 flights",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 22,
+   "quoted_from": "c8",
+   "quote": "set aside 22 entire flights"
+  },
+  {
+   "phrase": "10 consecutive readings",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c11",
+   "quote": "Given 10 consecutive readings"
+  },
+  {
+   "phrase": "96 recorded flights",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 96,
+   "quoted_from": "c5",
+   "quote": "from 96 actual drone flights"
+  }
+ ]
+}

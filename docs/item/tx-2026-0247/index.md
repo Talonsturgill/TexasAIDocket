@@ -11,7 +11,7 @@ Texas Tech University said on November 13th, 2026 that its Whitacre College of E
 - Public access: Write to the decider
 - Take part: https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php
 
-- Last checked: 2026-11-17
+- Last checked: 2026-11-20
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-11-14 · Admitted on Texas Tech's announcement of the award. The cluster is funded and not yet built.
 - 2026-11-17 · Texas Tech's award from the state chip fund still stands, and the computing cluster is still to be built.
+- 2026-11-20 · The chip fund's award to Texas Tech still stands as announced.
 
 ## Evidence
 

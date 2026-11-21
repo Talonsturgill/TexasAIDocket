@@ -1,0 +1,259 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-20, frame 1 of 9, THE SEARCH. A spatial scene through txthree.js under the v2people late afternoon sky.
+The camera stands on the rounded brow of a long copper bluestem ridge, eye 1.6 m, a 35 mm equivalent lens shifted so the
+horizon sits under the type. Two searchers stand turned away at the brow beside a white pickup, one pointing left along
+the crest they were sent to sweep. The survey quadcopter (chassis survey_quad) banks right off the crest line, out over
+the drop toward the next valley in plum shade. The ridge and valley are the release's own example, on no real place:
+a displaced heightfield with no ledge, no landmark, no road. No amber on this frame. FIG is empty and nothing is counted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:132px; width:900px">Sent to the ridge.<br>It flies to the next valley.</h1>
+<p class="dek" data-follow="24" style="left:74px; width:660px">A false GPS signal can make a drone think it's somewhere else. In East Texas A&amp;M's own example, a search drone meant to sweep a ridge flies into the next valley. Drawn to illustrate. No real place is shown.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The search", counter: "01 / 09", src: "c18 c1 c14", fit: { min: 64, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.1, far: 6000, fog: 0.0006 });
+
+  /* THE FIGURES. This frame draws no count and no length: the brief gives FIG {} and the art must carry none. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 1 carries no figure, FIG has ' + Object.keys(window.FIG).join(','));
+
+  /* A FRAME TURNED TO THE DECK'S SUN. The sky's glow sits on the chassis light, so the frame's own axes are laid out from it:
+   * f is the view direction, r is screen right, and the sun stands ALPHA degrees right of the view, low and in front. */
+  const ALPHA = 58 * Math.PI / 180, SD = TXT.sunDir();
+  const sh = Math.hypot(SD.x, SD.z), sx = SD.x / sh, sz = SD.z / sh;
+  const f = [sx * Math.cos(ALPHA) + sz * Math.sin(ALPHA), sz * Math.cos(ALPHA) - sx * Math.sin(ALPHA)];
+  const rt = [-f[1], f[0]];
+  const SUN_AZ = Math.atan2(sx, sz) * 180 / Math.PI;
+  const toW = (u, v) => [u * rt[0] + v * f[0], u * rt[1] + v * f[1]];
+  const toL = (x, z) => [x * rt[0] + z * rt[1], x * f[0] + z * f[1]];
+  const yawTo = (du, dv) => { const d = toW(du, dv); return Math.atan2(d[0], d[1]); };   /* a kit model faces +z */
+
+  /* THE LAND, in the frame's own (u across, v away) metres. A long rounded crest along u, its brow a few metres ahead of the
+   * camera, a wide drop into a broad valley, a lower far ridge with a dip in it, and farther swells to the horizon. */
+  const hash = (i, j) => { let h = (i * 374761393 + j * 668265263) >>> 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  const vnoise = (x, y) => { const i = Math.floor(x), j = Math.floor(y), a = x - i, b = y - j, s = a * a * (3 - 2 * a), t = b * b * (3 - 2 * b);
+    return (hash(i, j) * (1 - s) + hash(i + 1, j) * s) * (1 - t) + (hash(i, j + 1) * (1 - s) + hash(i + 1, j + 1) * s) * t; };
+  const fbm = (x, y) => vnoise(x, y) * 0.55 + vnoise(x * 2.1, y * 2.1) * 0.3 + vnoise(x * 4.3, y * 4.3) * 0.15;
+  const sstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  /* the crest runs forward and left, CREST_DEG off the view, so its rounded top carries on into the distance at frame left;
+   * on its right the ground rolls over and falls away concave into the next valley, which a lower far ridge closes, with a
+   * saddle in it at frame right. The camera stands on the top, CAM_N metres back from the edge. */
+  const CREST_DEG = 17, CAM_N = 2.2, D = 55, LAM = 45;
+  const dC = [-Math.sin(CREST_DEG * Math.PI / 180), Math.cos(CREST_DEG * Math.PI / 180)], nC = [dC[1], -dC[0]];
+  const P0 = [CAM_N * nC[0], CAM_N * nC[1]];
+  const tn = (u, v) => [(u - P0[0]) * dC[0] + (v - P0[1]) * dC[1], (u - P0[0]) * nC[0] + (v - P0[1]) * nC[1]];
+  const fromTN = (t, n) => [P0[0] + t * dC[0] + n * nC[0], P0[1] + t * dC[1] + n * nC[1]];
+  const SADDLE_T = 460;
+  const H = (u, v) => {
+    const [t, n] = tn(u, v), w = 3;
+    const sp = Math.max(0, w * Math.log(1 + Math.exp(n / w)) - w * Math.LN2);
+    let h = -0.010 * Math.pow(Math.min(n, 0), 2) - D * (1 - Math.exp(-sp / LAM));          /* the rounded top, then the fall */
+    h -= 0.004 * Math.max(0, t) * sstep(-10, 10, -n + 10) * 0;
+    const dip = 1 - 0.55 * Math.exp(-Math.pow((t - SADDLE_T) / 110, 2));                      /* the saddle */
+    h += 64 * dip * sstep(165, 330, n) * (1 - 0.4 * sstep(430, 660, n));                   /* the far ridge */
+    h += 14 * sstep(1000, 1700, n);                                                         /* far swells */
+    h += (fbm(t / 70, n / 70) - 0.5) * 4 * sstep(20, 80, Math.abs(n));                     /* draws and swells */
+    { const tr = Math.abs(Math.sin(n / 2.6 + 5 * fbm(t / 45, n / 45)));                    /* cattle trails cut into the fall and the far face */
+      h -= 0.55 * (1 - sstep(0.08, 0.3, tr)) * (sstep(8, 25, n) * (1 - sstep(150, 172, n)) + sstep(190, 220, n) * (1 - sstep(380, 420, n))); }
+    const cn = 128 + 9 * Math.sin(t / 34) + 4 * Math.sin(t / 11);                            /* the creek, cut into the floor */
+    h -= 2.6 * Math.exp(-Math.pow((n - cn) / 4.5, 2));
+    h += (fbm(t / 6, n / 6) - 0.5) * 0.18;
+    return h;
+  };
+  const heightAt = (x, z) => { const l = toL(x, z); return H(l[0], l[1]); };
+
+  /* where the people and the pickup stand, in (u, v), so the soil under them is trodden bare */
+  const S1 = fromTN(11.0, -1.0), S2 = fromTN(12.6, 0.6), PK = fromTN(19, -3.9);
+  const TROD = [S1, [PK[0] + 1.5, PK[1]]];
+  /* the terrain mesh: a fan in (u, v) that widens with distance, fine near the camera and coarse at the horizon */
+  const NU = 420, NV = 520, V0 = -40, V1 = 3200;
+  const vs = []; for (let j = 0; j <= NV; j++) { const t = j / NV; vs.push(V0 + (V1 - V0) * Math.pow(t, 2.6)); }
+  const pos = new Float32Array((NU + 1) * (NV + 1) * 3), col = new Float32Array((NU + 1) * (NV + 1) * 3), uv = new Float32Array((NU + 1) * (NV + 1) * 2);
+  const COPPER = new THREE.Color(0x9e6640), BRONZE = new THREE.Color(0x9a6a3c), STRAW = new THREE.Color(0xc9965e), PLUM = new THREE.Color(0x6a3a4a), SAGE = new THREE.Color(0x8a7a52), CLAY = new THREE.Color(0x7a4a3c), DUSK = new THREE.Color(0x3e4472), TRAIL = new THREE.Color(0x3a2a44), cc = new THREE.Color();
+  let k = 0;
+  for (let j = 0; j <= NV; j++) {
+    const v = vs[j], half = 60 + 1.4 * (v - V0);
+    for (let i = 0; i <= NU; i++) {
+      const u = -half + 2 * half * i / NU, w = toW(u, v), y = H(u, v);
+      pos[k * 3] = w[0]; pos[k * 3 + 1] = y; pos[k * 3 + 2] = w[1];
+      uv[k * 2] = u / 6; uv[k * 2 + 1] = v / 6;
+      const n1 = fbm(u / 23 + 9, v / 23), n2 = fbm(u / 4.5, v / 4.5);
+      cc.copy(COPPER).lerp(BRONZE, sstep(0.3, 0.7, n1)).lerp(PLUM, 0.18 * sstep(0.45, 0.8, fbm(u / 1.7, v / 1.7))).lerp(STRAW, 0.35 * sstep(0.55, 0.85, n2));
+      cc.lerp(SAGE, 0.25 * sstep(0.6, 0.9, fbm(u / 90, v / 90)));
+      cc.lerp(PLUM, 0.22 * sstep(0.62, 0.85, fbm(u / 11 + 3, v / 11 + 7)));          /* bare clay where cattle trail and wash */
+      const TT = tn(u, v)[0], NN = tn(u, v)[1];
+      cc.lerp(BRONZE, 0.5 * sstep(0.35, 0.75, fbm(u / 14 + 40, v / 14))).lerp(PLUM, 0.3 * sstep(0.55, 0.8, fbm(u / 5 + 7, v / 5))).lerp(STRAW, 0.25 * sstep(0.6, 0.85, fbm(u / 31, v / 31 + 20)));   /* swales and sun cured patches across the far land */
+      cc.lerp(DUSK, 0.6 * sstep(-16, -46, y) * (1 - sstep(175, 260, NN)));          /* the valley floor in plum shade */
+      cc.lerp(DUSK, 0.5 * sstep(165, 260, NN));                                     /* the far ridge's face, turned from the sun */
+      { const tr = Math.abs(Math.sin(NN / 2.6 + 5 * fbm(TT / 45, NN / 45))); cc.lerp(TRAIL, 0.6 * (1 - sstep(0.08, 0.26, tr)) * sstep(8, 25, NN) * (1 - sstep(150, 180, NN))); }   /* cattle trails along the contours of the fall */
+      cc.lerp(STRAW, 0.22 * sstep(0.55, 0.8, fbm(TT / 18 + 3, NN / 9))).lerp(TRAIL, 0.2 * sstep(0.6, 0.85, fbm(TT / 9, NN / 9 + 5)));   /* sun cured and shaded patches */
+      { const dd = Math.min(...TROD.map(([a, b]) => Math.hypot(u - a, v - b))); cc.lerp(CLAY, 0.75 * (1 - sstep(0.6, 1.8, dd + (fbm(u * 2, v * 2) - 0.5)))); }   /* trodden soil where people stand */
+      col[k * 3] = cc.r; col[k * 3 + 1] = cc.g; col[k * 3 + 2] = cc.b; k++;
+    }
+  }
+  const idx = [];
+  for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) { const a = j * (NU + 1) + i, b = a + 1, c = a + NU + 1, d = c + 1; idx.push(a, b, c, b, d, c); }
+  const tg = new THREE.BufferGeometry();
+  tg.setAttribute('position', new THREE.BufferAttribute(pos, 3)); tg.setAttribute('color', new THREE.BufferAttribute(col, 3)); tg.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  tg.setIndex(idx); tg.computeVertexNormals();
+  /* the windward side of the triangles must face up: flip the winding if the fan came out facing down */
+  { const nrm = tg.attributes.normal; let up = 0; for (let q = 0; q < nrm.count; q += 97) up += nrm.getY(q); if (up < 0) { for (let q = 0; q < idx.length; q += 3) { const t = idx[q + 1]; idx[q + 1] = idx[q + 2]; idx[q + 2] = t; } tg.setIndex(idx); tg.computeVertexNormals(); } }
+  const turfTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    const r = CH.rng(1120); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let n = 0; n < 16000; n++) { const x = r() * w, y = r() * h, l = 2 + r() * 9, a = (r() - 0.5) * 0.9;
+      g.strokeStyle = r() < 0.5 ? 'rgba(255,236,205,' + (0.15 + r() * 0.3).toFixed(2) + ')' : 'rgba(96,52,58,' + (0.10 + r() * 0.22).toFixed(2) + ')';
+      g.lineWidth = 0.8 + r() * 1.4; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(a) * l, y - Math.cos(a) * l); g.stroke(); }
+  }, [1, 1]);
+  const turf = new THREE.MeshStandardMaterial({ name: 'prairie-turf-bluestem', vertexColors: true, map: turfTex, roughness: 0.97, metalness: 0 });
+  turf.userData.txSurface = 'fabric';
+  const land = new THREE.Mesh(tg, turf); land.receiveShadow = true; land.castShadow = true; land.userData.heightAt = heightAt; land.userData.txBevel = false;
+  R.scene.add(land);
+
+  /* lay every instance of a scattered field on the land: each tuft keeps its height above ground and takes the land's */
+  const drape = (obj) => {
+    obj.updateMatrixWorld(true);
+    const m4 = new THREE.Matrix4(), wm = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), s = new THREE.Vector3();
+    obj.traverse((m) => {
+      if (!m.isInstancedMesh) return;
+      for (let n = 0; n < m.count; n++) {
+        m.getMatrixAt(n, m4); wm.multiplyMatrices(m.matrixWorld, m4); m4.decompose(p, q, s);
+        const wp = new THREE.Vector3().setFromMatrixPosition(wm);
+        p.y += heightAt(wp.x, wp.z);   /* the parent stands on y 0, so the lift is the land's height */
+        m4.compose(p, q, s); m.setMatrixAt(n, m4);
+      }
+      m.instanceMatrix.needsUpdate = true; m.frustumCulled = false;
+    });
+    return obj;
+  };
+
+  /* THE CAMERA: on the crest, eye 1.6 m, looking level along f, a 35 mm equivalent (focal 1300 px on the 1350 px frame),
+   * the lens shifted so the horizon sits at y HZ under the dek */
+  const CAM = [0, 0], HZ = 600, F = 1300;
+  const cw = toW(CAM[0], CAM[1]), ceye = H(CAM[0], CAM[1]) + 3.6,   /* the camera pulled up onto the knoll behind them, so the valley floor shows */
+    la = toW(CAM[0], CAM[1] + 50);
+  TXT.frame(R, { from: [cw[0], ceye, cw[1]], look: [la[0], ceye, la[1]] });
+  const FULLH = 2 * Math.max(HZ, 1350 - HZ);
+  R.camera.fov = 2 * Math.atan((FULLH / 2) / F) * 180 / Math.PI; R.camera.aspect = 1080 / FULLH;
+  R.camera.setViewOffset(1080, FULLH, 0, FULLH / 2 - HZ, 1080, 1350); R.camera.updateProjectionMatrix();
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { clouds: 0.22 }));
+
+  /* THE GRASS: fall bluestem tufts over the crest top and down the fall, kept off the trodden soil under the people */
+  const place = (obj, u, v, yaw, lift) => { const w = toW(u, v); obj.position.set(w[0], H(u, v) + (lift || 0), w[1]); if (yaw != null) obj.rotation.y = yaw; TXT.add(R, obj); return obj; };
+  const bb = []; [[-60, -12], [60, -12], [-60, 140], [60, 140]].forEach(([u, v]) => bb.push(toW(u, v)));
+  const area = [Math.min(...bb.map(p => p[0])), Math.min(...bb.map(p => p[1])), Math.max(...bb.map(p => p[0])), Math.max(...bb.map(p => p[1]))];
+  const avoid = TROD.map(([u, v]) => { const w = toW(u, v); return [w[0] - 0.9, w[1] - 0.9, w[0] + 0.9, w[1] + 0.9]; });
+  drape(TXT.scatter(R, { kind: 'grass', count: 42000, area, avoid, seed: 23, scale: [0.28, 0.62], colors: [0xc8743f, 0xb0603a, 0xd69a5a, 0x9a5a3a, 0xc9a060], nearRadius: 9 }));
+
+  const p2x = (t, n) => fromTN(t, n);
+  /* far tufts: fine tooth across the fall and the valley, a pixel or two each */
+  { const fv = []; [[-300, 20], [500, 20], [-300, 700], [500, 700]].forEach(([u, v]) => fv.push(toW(u, v)));
+    const fa = [Math.min(...fv.map(p => p[0])), Math.min(...fv.map(p => p[1])), Math.max(...fv.map(p => p[0])), Math.max(...fv.map(p => p[1]))];
+    drape(TXT.scatter(R, { kind: 'grass', count: 110000, area: fa, seed: 77, near: false, scale: [1.0, 1.9], colors: [0xb4703e, 0x9a5a40, 0xc8925a, 0x7a4a5a, 0x8c6a7a, 0xa87a4a] })); }
+  /* brush on the fall and the far ridge: fewer, real mesquite with their own silhouettes and casts */
+  for (let b = 0; b < 70; b++) {
+    const r = CH.rng(1300 + b), t0 = 40 + r() * 640, n0 = 40 + r() * 330;
+    if ((n0 > 85 && n0 < 175) || Math.hypot(p2x(t0, n0)[0] - 8.6, p2x(t0, n0)[1] - 28) < 12) continue;                      /* the floor belongs to the mottes */
+    const p2 = fromTN(t0, n0), m = K.make('mesquite', { seed: 200 + b, height: 3.5 + r() * 2.5, spread: 4 + r() * 3 });
+    place(m, p2[0], p2[1], r() * 6.28, -0.15); TXT.contact(R, m, { opacity: 0.65 });
+  }
+
+  /* THE SEARCHERS. The left one faces the drop and points left along the crest they were sent to sweep; the right one
+   * has turned the other way, toward the drone going over the edge. */
+  const s1 = K.make('person', { seed: 7, role: 'resident', pose: 'point', toward: 1, build: 'male', hat: 'cowboy', hatColor: 0xe8dcc4, shirt: 0x2f6f78, trousers: 0x3a3f5a, headPitch: -0.05 });
+  place(s1, S1[0], S1[1], yawTo(nC[0] * 0.8 + dC[0] * 0.6, nC[1] * 0.8 + dC[1] * 0.6)); TXT.contact(R, s1, { opacity: 0.6 });
+  const s2 = K.make('person', { seed: 33, role: 'resident', pose: 'stand', headPitch: -0.3, build: 'female', hat: 'cap', hatColor: 0x2b3e66, shirt: 0x3c4f8a, trousers: 0x6a5a4a });
+  place(s2, S2[0], S2[1], yawTo(0.55, 1)); TXT.contact(R, s2, { opacity: 0.6 });
+  { const tuft = K.make('pasture', { seed: 5, width: 2.6, depth: 2.0, height: 0.62, density: 3.2, season: 'fall', flowers: 'none' }); const w = toW(S2[0], S2[1] - 0.6); tuft.position.set(w[0], 0, w[1]); TXT.add(R, tuft); drape(tuft); }   /* bluestem to her knees */
+
+  /* THE PICKUP, parked along the crest top behind them */
+  const pk = K.make('pickup', { seed: 4, color: 0xf3f1ec, trim: 'work' });
+  place(pk, PK[0], PK[1], yawTo(dC[0], dC[1])); TXT.contact(R, pk, { opacity: 0.65 });
+
+  /* THE DRONE, over the drop, banked BANK degrees to the right, nose down, heading for the saddle in the far ridge.
+   * Its status lamp is green: no amber on this frame. */
+  const BANK = 34;
+  const dr = K.make('survey_quad', { props: 'spin', lamp: 0x7dff9c, shell: 0xf4f4f0 });
+  dr.scale.setScalar(2.3);
+  { const u = 3.2, v = 12.5, w = toW(u, v), sd = fromTN(SADDLE_T, 400), DY = H(0, 0) + 3.6 + 18 * 12.6 / 1300; dr.position.set(w[0], DY, w[1]);
+    if (!(H(u, v) < -1)) throw new Error('the drone must be over the drop, land ' + H(u, v).toFixed(1));
+    dr.rotation.order = 'YXZ'; dr.rotation.y = yawTo(sd[0] - u, sd[1] - v); dr.rotation.x = 0.45; dr.rotation.z = -BANK * Math.PI / 180; TXT.add(R, dr);
+    if (H(u, v) > 0.2) throw new Error('the drone is not over the drop'); }
+  if (BANK < 25) throw new Error('the drone must bank at least 25 degrees');
+
+  /* THE VALLEY: post oak mottes standing on the floor, three to six trees each, each tree with its contact shadow */
+  for (let m = 0; m < 26; m++) {
+    const r = CH.rng(700 + m), t0 = 60 + r() * 600, n0 = 95 + r() * 75, kids = 3 + Math.floor(r() * 4);
+    for (let q = 0; q < kids; q++) {
+      const p2 = fromTN(t0 + (r() - 0.5) * 22, n0 + (r() - 0.5) * 18);
+      const tr = K.make(r() < 0.7 ? 'live_oak' : 'cedar_elm', { seed: 60 + m * 7 + q, height: 7 + r() * 4, spread: 7 + r() * 5 });
+      tr.traverse(o => { if (o.isMesh && o.material && o.material.color) { o.material = o.material.clone(); o.material.color.multiplyScalar(0.8); } });
+      place(tr, p2[0], p2[1], r() * 6.28, -0.2); TXT.contact(R, tr, { opacity: 0.7 });
+    }
+  }
+
+  /* THE CREEK: water in the cut, a ribbon that carries the sky */
+  { const pts = [], water = new THREE.MeshStandardMaterial({ name: 'creek-water', color: 0xa8b8ff, roughness: 0.12, metalness: 0.6, emissive: 0x6a74c8, emissiveIntensity: 0.25 });
+    water.userData.txSurface = false;
+    const tri = [], pos2 = [];
+    for (let t = -100; t <= 900; t += 3) { const cn = 128 + 9 * Math.sin(t / 34) + 4 * Math.sin(t / 11);
+      [-1.6, 1.6].forEach(o => { const p2 = fromTN(t, cn + o), w = toW(p2[0], p2[1]); pos2.push(w[0], H(p2[0], p2[1]) + 0.05 + (Math.abs(o) < 2 ? 1.0 : 0), w[1]); }); }
+    for (let i = 0; i + 3 < pos2.length / 3; i += 2) tri.push(i, i + 1, i + 2, i + 1, i + 3, i + 2);
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos2, 3)); g.setIndex(tri); g.computeVertexNormals();
+    const cm = new THREE.Mesh(g, water); cm.receiveShadow = true; cm.userData.txBevel = false; cm.material.side = THREE.DoubleSide; R.scene.add(cm); }
+
+  /* THE PLAN IT WAS GIVEN: a faint frosted periwinkle lawnmower sweep laid along the crest ahead of the searchers, the
+   * deck's ghost glass (CH.GHOST), casting no shadow. The drone has turned off it. */
+  { const ghost = new THREE.MeshPhysicalMaterial({ name: 'ghost-frosted-glass', color: CH.GHOST, roughness: 0.35, transmission: 0.6, thickness: 0.02, ior: 1.45, transparent: true, opacity: 0.5, clearcoat: 1, emissive: CH.GHOST, emissiveIntensity: 0.4, depthWrite: false });
+    ghost.userData.txSurface = false;
+    const legs = [-4.5, -1.5, 1.5], T0 = 16, T1 = 120, path = [];
+    legs.forEach((n, k) => { const a = k % 2 ? T1 : T0, b = k % 2 ? T0 : T1;
+      for (let q = 0; q <= 24; q++) { const t = a + (b - a) * q / 24, p2 = fromTN(t, n), w = toW(p2[0], p2[1]); path.push([w[0], H(p2[0], p2[1]) + 1.7, w[1]]); } });
+    const sweep = TXT.tube(path, 0.13, ghost, { segments: 400 }); if (!sweep) throw new Error('the sweep did not build');
+    sweep.traverse(m => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = false; } }); sweep.castShadow = false; R.scene.add(sweep); }
+
+  /* THE KEY: the late afternoon sun low in front and to the right, so the searchers carry a warm rim and the grass glows */
+  const tw = [(S1[0] + S2[0]) / 2, (S1[1] + S2[1]) / 2].map((c, i) => c) && toW((S1[0] + S2[0]) / 2 + 2, (S1[1] + S2[1]) / 2);
+  const spec = CH.rigSpec(W, 46, 4096); spec.key = Object.assign({}, spec.key, { radius: 2.5 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([tw[0], 0, tw[1]], { distance: 70, shadowFar: 160, normalBias: 0.01 }), { light: { az: SUN_AZ, el: 28 } }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.1, height: 0.25, mottle: 0.12, skip: [s1, s2] });
+
+  /* the drone must read at feed size: at least 60 px across, in open sky to the right of the dek */
+  const rect = CH.rectOf(THREE, R, dr, 0);
+  console.log('DRONE rect ' + rect.map(n => n.toFixed(0)).join(','), 'SUN_AZ', SUN_AZ.toFixed(1));
+  if (rect[2] < 220) throw new Error('the drone spans ' + rect[2].toFixed(0) + ' px, floor 220');
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.42, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.3, fade: 150 });
+  CH.seat(cx, { sel: '.kick', a: 0.3, fade: 140 });
+  CH.seat(cx, { sel: '.count', a: 0.4, fade: 140 });
+  CH.seat(cx, { sel: '.src', a: 0.3, fade: 140 });
+  CH.seat(cx, { sel: '.tx-site', a: 0.5, fade: 140 });
+  TXLOOK.footWash(cx, { a: 0.55, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

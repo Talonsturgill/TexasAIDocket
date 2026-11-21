@@ -1,0 +1,23 @@
+{
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.6, "why": "Most of round 1's repairs landed. S2's ghost sits right of the dek. S4 drops the mannequins for the drone with four open laptops. S8 has a gauge channel and a glass frame over ten rods. S9 stands in S1's ridge. S6's glyphs are bigger and the pair sits in a framed tray. S1, S3 and S5 each work only for their own sentence at 432 px. Held down by a hard wall seam at about y 370 through S4's headline, a clipped ceiling light and a dead violet void between dek and drone, a near black primitive drone; the same wash seam on S6 behind 54 were lied to, glyphs still texture at feed size, a raised rim rather than a recess; S2's streak grain; S9's speckled canopies and an unexplained case; S8's channel reading full. Machine QA warns on S7's bottom third and S5's which way pill."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "The spine holds on all nine and the story runs in order. S1, S3 and S9 bookend in the same terrain. S7 and S8 sit in a hotter magenta sweep."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every slide numeral traces to a claim and S6 draws 42 and 54 exactly. S8 and the caption say 97.5 percent is not a share of attacks caught. S4's headline matches c22. Everything leans on a university release, which the rejected list says honestly."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "Who, where and what are clear. The stake is the release's hypothetical ridge and S9 closes on a grant and a workshop with nothing to watch for."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, S2 pays the cause, S3 the cost, the turn at S5 is real. S4 could move and S9 lands softly."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "The cover and 54 were lied to have voice. S4's dek and S9's grant and venue list read as release paraphrase."},
+    {"name": "variety", "weight": 0.10, "score": 7.5, "why": "A bespoke mix of terrain scenes, studio objects and reliefs with familiar tile grid and gauge moves."}
+  ],
+  "weighted_score": 7.53,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Remove the horizontal wash seam behind the headline on S4 and S6 and fill S4's dead middle by pushing the camera in until the drone and laptops start under the dek.",
+  "artwork_weakest_frames": [
+    {"slide": 4, "problem": "Wall seam at about y 370 through the headline, clipped ceiling light, dead violet void, near black primitive drone.", "fix": "Lower and dolly in so the tabletop starts under the dek, drop the fixture out of frame, one continuous wall, a lit violet grey drone body with a rim light."},
+    {"slide": 6, "problem": "Wash seam at about y 370 behind the headline, glyphs read as texture, the pair in a raised rim.", "fix": "Feather the type wash with no visible edge, crop the grid tighter, cut the pair into a recessed well."},
+    {"slide": 8, "problem": "The channel reads full, so 97.5 against 100 is invisible; pins are untextured primitives.", "fix": "A visible empty stub with an engraved stop line, the pill on it; knurled lit posts."},
+    {"slide": 9, "problem": "Speckled canopies; the case competes with the drone.", "fix": "S1's solid canopies; cut or close the case."},
+    {"slide": 2, "problem": "Streak grain across the upper sky.", "fix": "Half strength, no directional streak."},
+    {"slide": 7, "problem": "Speckle on the glass strip, dead bottom third.", "fix": "Clean glass with one specular edge, the held out tray down to the footer."}
+  ]
+}
