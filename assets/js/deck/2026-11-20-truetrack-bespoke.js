@@ -139,8 +139,8 @@
         var cam = rbox(0.055, 0.048, 0.05, 0.012, dark); cam.position.set(0, -0.045, 0.085); body.add(cam);
         var lensRing = K.cyl(0.018, 0.018, 0.012, metal, 0, -0.045, 0.114, 24, body); lensRing.rotation.x = Math.PI / 2;
         var lens = new THREE.Mesh(new THREE.CircleGeometry(0.014, 24), K.finish.glass(0x0a1020)); lens.position.set(0, -0.045, 0.1205); body.add(lens);
-        /* rear status lamp in the accent */
-        var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.008, 14, 10), new THREE.MeshStandardMaterial({ color: o.lamp || N.ACCENT, emissive: o.lamp || N.ACCENT, emissiveIntensity: 2.6 }));
+        /* rear status lamp, neutral white by default so the accent keeps its one meaning */
+        var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.008, 14, 10), new THREE.MeshStandardMaterial({ color: o.lamp || 0xfff4e0, emissive: o.lamp || 0xfff4e0, emissiveIntensity: 2.2 }));
         lamp.position.set(0, 0.06, -0.112); body.add(lamp);
         g.userData.lamp = lamp; g.userData.body = body; g.userData.camera = cam;
         if (o.ghost) {
