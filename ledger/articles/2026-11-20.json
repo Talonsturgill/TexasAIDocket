@@ -1,0 +1,114 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research",
+ "dek": {
+  "text": "East Texas A&M researchers in Commerce tested AI that flags a drone fed false GPS by reading only its own motion. Every flight they used was a recording.",
+  "claims": [
+   "c3",
+   "c4",
+   "c12"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[GPS spoofing sends false signals that can trick a receiver into reporting the wrong location](c1). [The same trick could send a civilian drone into restricted airspace or set it down somewhere unsafe](c2). [A drone pushed off course could miss a threat it was sent to spot, endanger other aircraft or crash near people on the ground](c20).",
+   "claims": [
+    "c1",
+    "c2",
+    "c20"
+   ]
+  },
+  {
+   "text": "[Researchers at East Texas A&M University tested whether artificial intelligence can spot false location information in a drone's flight records](c3). [The university is in Commerce](c14), [and the work is led by Jinoh Kim, a professor of computer science and information systems](c16).",
+   "claims": [
+    "c3",
+    "c14",
+    "c16"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Reading motion, not GPS",
+   "paragraphs": [
+    {
+     "text": "[The method reads the drone's onboard motion sensors and looks for inconsistencies in how the aircraft appears to move](c4). [Kim said the team refers to no GPS attributes. It looks at how fast the drone moves, in what direction and over how much time](c15).",
+     "claims": [
+      "c4",
+      "c15"
+     ]
+    },
+    {
+     "text": "[The release's own example is a search drone sent to sweep a ridge that a false signal sends into the next valley](c18). It is a hypothetical rather than a Texas incident.",
+     "claims": [
+      "c18"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The flights and the test",
+   "paragraphs": [
+    {
+     "text": "[The team used a public dataset of {{number:c5}} real drone flights](c5). [Of those, {{number:c6}} were normal and {{number:c6:1}} flew under controlled spoofing attacks](c6). [Some attacks fed the drone one false location. Others fed it coordinates that changed over time](c7).",
+     "claims": [
+      "c5",
+      "c6",
+      "c7"
+     ]
+    },
+    {
+     "text": "[The team set aside {{number:c8}} whole flights for testing, so each model was judged on flights it had not seen in training](c8). [Eight AI models were compared](c9), [and a part of the system sorts short stretches of flight data as normal or abnormal](c24).",
+     "claims": [
+      "c8",
+      "c9",
+      "c24"
+     ]
+    },
+    {
+     "text": "[Given {{number:c11}} consecutive readings, a model called Chronos scored {{number:c11:1}}% on a measure that balances how many abnormal stretches it catches against how often its alerts are right](c11). That figure is one score on one measure for one model. It is not a share of attacks caught. [The best performers had already learned to read numerical data collected over time](c10), [which Kim called a surprise](c21). The release reports no score for the other models.",
+     "claims": [
+      "c11",
+      "c10",
+      "c21"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the study can't yet show",
+   "paragraphs": [
+    {
+     "text": "[The study evaluated recorded flights. Running the check during flight is the next step](c12). Nothing in the release shows the check working on a drone in the air.",
+     "claims": [
+      "c12"
+     ]
+    },
+    {
+     "text": "[The broader project has a two year National Science Foundation grant of about {{money:c13}}](c13). [The paper's first author is Iyanuoluwa Alegbeleye, an undergraduate computer science student](c22), [and the team includes two undergraduate and two graduate research assistants](c23). [The study was accepted at WATCH {{number:c3}}, a peer reviewed workshop held beside a computer and communications security conference in The Hague](c3).",
+     "claims": [
+      "c13",
+      "c22",
+      "c23",
+      "c3"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0253",
+   "label": "The East Texas A&M study in the record"
+  },
+  {
+   "id": "tx-2026-0186",
+   "label": "Drone delivery review in Texas metros"
+  }
+ ]
+}
