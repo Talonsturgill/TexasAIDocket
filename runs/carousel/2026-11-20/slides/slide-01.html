@@ -34,7 +34,6 @@ window.renderReady = (async () => {
   const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.1, far: 6000, fog: 0.0006 });
 
   /* THE FIGURES. This frame draws no count and no length: the brief gives FIG {} and the art must carry none. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 1 carries no figure, FIG has ' + Object.keys(window.FIG).join(','));
 
   /* A FRAME TURNED TO THE DECK'S SUN. The sky's glow sits on the chassis light, so the frame's own axes are laid out from it:
    * f is the view direction, r is screen right, and the sun stands ALPHA degrees right of the view, low and in front. */

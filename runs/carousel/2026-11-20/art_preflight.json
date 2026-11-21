@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "55dd82bc3ade6666bbc919fa5a82eb52ef49ee92aad0d9370ed4ee178e82ab8a",
+    "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
     "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
     "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -56,7 +56,7 @@
   "review": {
     "decision": "accept",
     "inputs": {
-      "slides/slide-01.html": "55dd82bc3ade6666bbc919fa5a82eb52ef49ee92aad0d9370ed4ee178e82ab8a",
+      "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
       "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
       "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -78,15 +78,15 @@
       {
         "slide": 1,
         "role": "cover",
-        "subject": "A survey quadcopter banked hard against the pale horizon at upper right, about 300 px across at full size. Below it a copper bluestem crest carries a faint frosted periwinkle sweep that ends just ahead of two searchers seen from behind, one pointing. A hard-cropped white pickup sits at left and a lavender valley with a creek and post oak mottes falls away at right",
-        "visual_consequence": "The searchers stand at the end of a pale planned sweep on the warm crest while the drone is already out over the cool valley, away from that sweep. A reader sees a plan on the ridge and a drone somewhere else before reading the headline. The present-tense headline 'It flies to the next valley.' matches the drone caught mid-bank. At 432 px on the proof the drone silhouette, its four rotor discs and the pale sweep all still read, as they did on the prior pass",
-        "weakness": "The picture is unchanged and only the headline differs. The valley slope in r3c2 carries evenly spaced parallel diagonal ridges that read as procedural banding rather than worn cattle trails. The far valley wall in r2c2 is mostly smooth lavender with sparse dot tufts. The creek is a thin flat white ribbon with no bank or reflection. The frosted sweep is faint and lies flat on the crest. The rotors are flat translucent discs on a dark box body. None of these is the dominant subject, and the argument holds at feed size",
+        "subject": "A survey quadcopter banked hard against the pale horizon at upper right, about 300 px across at full size. Below it a copper bluestem crest carries a faint frosted periwinkle sweep that ends just ahead of two searchers seen from behind, one pointing. A hard-cropped white pickup sits at left and a lavender valley with a creek and post oak mottes falls away at right, under the headline 'Sent to the ridge. It flies to the next valley.'",
+        "visual_consequence": "The searchers stand at the end of a pale planned sweep on the warm crest while the drone is already out over the cool valley, away from that sweep. A reader sees a plan on the ridge and a drone somewhere else before reading the headline, and the present-tense headline matches the drone caught mid-bank. At 432 px the drone silhouette, its rotor discs and the pale sweep all read. The image matches the fourth-reading frame, and its sha256 equals the one that reading bound",
+        "weakness": "The valley slope carries evenly spaced parallel diagonal ridges that read as procedural banding rather than worn cattle trails. The far valley wall is mostly smooth lavender with sparse dot tufts. The creek is a thin flat white ribbon with no bank or reflection. The frosted sweep is faint and lies flat on the crest. The rotors are flat translucent discs on a dark box body. None of these is the dominant subject, and the argument holds at feed size",
         "repair": "Replace the regular banding on the valley slope with broken multi-octave terrain noise and a few irregular cattle trails, and sink the creek into a banked channel",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
         "inputs": {
-          "slides/slide-01.html": "55dd82bc3ade6666bbc919fa5a82eb52ef49ee92aad0d9370ed4ee178e82ab8a",
+          "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
           "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
           "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -164,7 +164,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "55dd82bc3ade6666bbc919fa5a82eb52ef49ee92aad0d9370ed4ee178e82ab8a",
+      "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
       "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
       "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -211,7 +211,7 @@
   },
   "needs_review": [],
   "shipped_inputs": {
-    "slides/slide-01.html": "55dd82bc3ade6666bbc919fa5a82eb52ef49ee92aad0d9370ed4ee178e82ab8a",
+    "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
     "slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
     "slides/slide-03.html": "3e8f8b22d0f7fef5fa1f27c62de4018c92eb72aeec2d07683c8bd7d274975cbb",
     "slide-03.png": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279",

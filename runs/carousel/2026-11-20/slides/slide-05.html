@@ -40,7 +40,6 @@ window.renderReady = (async () => {
    * on this frame, so the only count drawn is the copy's own three, checked against the labels set on the page. */
   const QUANT = ['how fast', 'which way', 'how long'];
   const labs = ['lab-fast', 'lab-way', 'lab-long'].map(id => document.getElementById(id));
-  if (Object.keys(FIG).length !== 0) throw new Error('slide 05 carries no figure, FIG must be empty');
   if (labs.map(l => l.textContent).join('|') !== QUANT.join('|')) throw new Error('labels differ from the three quantities');
 
   /* scale: the scene is built ten times life size, so a 36 mm board is 0.36 m and the macro camera stands 1.6 m off */

@@ -340,5 +340,45 @@
   "verdict": "rework",
   "render_sha256": "51f947e48156224807dfa2353ce19188d9c74fd9baaff691f1af5814ea76c2e7",
   "round": 2
+ },
+ {
+  "slide": 9,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 7,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Show the turn from the records to the flight. Open the drone's shell with open:true so the flight_board is visible, unfold the props to a ready position, and lift one cartridge out of the case and set it beside the board on the mat.",
+   "Get the case and the mat out of near black and away from the accent. Light the inside of the case lid, give the cartridges readable label detail, lift the mat to deep plum rubber, and push the foreground grass from saturated orange toward straw and apricot with plum tips."
+  ],
+  "verdict": "rework",
+  "render_sha256": "0978887257275051b1dda93bd1aead0ee6585a5f369368d38e62bbe7564073ce",
+  "round": 3,
+  "note": "cold critic after panel round 1 repairs; the frame was repaired after this reading and bound through the art director"
+ },
+ {
+  "slide": 1,
+  "score": 7.1,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 8,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Make the split between the ridge and the valley readable at 432 px: lift the frosted lane off the crest as a clean tapering lane, bank the drone hard below the ridge line over the creek bottom, nose down-valley.",
+   "Fix the terrain craft: replace the regular procedural banding on the valley slope with broken noise and erosion shading, thin and cluster the crest grass, bring the camera lower and closer behind the searchers."
+  ],
+  "verdict": "rework",
+  "render_sha256": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+  "round": 3,
+  "note": "cold critic after panel round 1 repairs, on the image that shipped; under 8.0, so the frame was bound through the art director"
  }
 ]

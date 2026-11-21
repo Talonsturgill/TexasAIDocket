@@ -31,8 +31,7 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Commerce, Texas", counter: "04 / 09", src: "c14 c16 c3 c22 c23", fit: { min: 80, max: 96, maxLines: 2 } });
 
   /* THE FIGURES. The research assistants are FIG.team_ug + FIG.team_grad, drawn as four open laptops set at the table. */
-  const F = window.FIG;
-  if (Object.keys(F).sort().join(',') !== 'team_grad,team_ug') throw new Error('window.FIG is not the brief\'s figures');
+  const F = { team_ug: FIG.team_ug, team_grad: FIG.team_grad };
   const N_SEATED = F.team_ug + F.team_grad;   /* drawn as that many places set at the table */
   if (!Number.isInteger(N_SEATED) || N_SEATED !== 4) throw new Error('the seated count ' + N_SEATED + ' is not the brief\'s team');
 

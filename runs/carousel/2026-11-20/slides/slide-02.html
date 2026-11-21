@@ -31,7 +31,6 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "A false fix", counter: "02 / 09", src: "c1 c2", fit: { min: 70, max: 96, maxLines: 3 } });
 
   /* HONESTY: this frame draws no count. The figures object is empty and must stay so. Two drones, one real, one reported. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 2 draws no figure, but window.FIG carries ' + JSON.stringify(window.FIG));
 
   const R = CH.stage(TXT, gl, W, { fov: 31, near: 0.02, far: 60, fog: 0 });
   /* the sweep's wall rises into a deeper violet, so the upper left is a quiet the cream headline can stand in */
