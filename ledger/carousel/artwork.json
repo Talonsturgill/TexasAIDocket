@@ -5250,6 +5250,71 @@
     "hex": "#e4d8c3",
     "note": "Caliche under the wonder tone's cobalt and peach."
    }
+  },
+  {
+   "date": "2026-11-20",
+   "carousel_no": 83,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 people tone, nine slide artists. Outdoor TXT.sky worlds (1, 3, 6, 9), TXT.studio sweeps (2, 5, 7, 8), a TXT.interior lab (4). Spine assets/js/deck/2026-11-20-truetrack-bespoke.js with chassis models survey_quad and flight_board.",
+   "structural_laws": [
+    "DEPTH_FLOOR READS THE SLIDE'S OWN TEXT, so a frame that adds its subject through a chassis helper (CH.put, CH.aim) is not counted as staged; call TXT.add and TXT.frame in the slide itself.",
+    "KIT PEOPLE AT A CLOSE TABLE CAMERA READ AS CARTOON HANDS; show the team by their places set rather than by cropped figures.",
+    "A SWEEP'S HORIZON BAND IS MINIFIED TO A SMOOTH GRADIENT, so panel_ready's middle ground patch fails unless the texel scale is large enough to survive the mipmaps.",
+    "THE REPORTED POSITION IS FROSTED GLASS WITH castShadow FALSE in every frame, so the shadow alone says which drone is real."
+   ],
+   "techniques": [
+    "a bluestem ridge crest at last light with two searchers turned away and a survey drone banking toward the saddle",
+    "a solid survey drone on a brushed resin sweep beside its frosted glass twin that casts no shadow",
+    "an aerial oblique of a frosted lawnmower sweep on the crest with one amber beaded path dropping over the saddle",
+    "a shell-off survey drone on a laminate lab table with four open laptops set and nobody drawn",
+    "a macro flight controller with three machined amber arrows from its motion chip and the GPS puck unplugged in glass",
+    "a caliche clay tablet of 96 raised tracks, pewter and kinked copper, with an enlarged pair in a bevelled well",
+    "22 sealed tiles in a glass case before a tray of 74 engraved training tiles across a glass sill",
+    "a glass bar magnifier over ten nickel studs on a plum ribbon above a rose enamel score bar",
+    "the grounded drone on its launch mat beside an open case of 22 flight log cartridges, back on the ridge"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     46.8,
+     44.7,
+     38.8,
+     33.4,
+     48.7,
+     45.3,
+     48.7,
+     41.7,
+     35.1
+    ],
+    "deck_median_L": 44.7,
+    "max_adjacent_delta": 15.3,
+    "mean_adjacent_delta": 6.14,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#ff9f1c",
+    "name": "people amber",
+    "frames_above_floor": [
+     3,
+     5,
+     8
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0061,
+     0.0,
+     0.0191,
+     0.0,
+     0.0,
+     0.0039,
+     0.0
+    ],
+    "note": "Motion the drone itself measured only."
+   },
+   "ground": {
+    "hex": "#c98a5a",
+    "note": "Copper bluestem and laminate under the people tone's periwinkle and plum."
+   }
   }
  ]
 }

@@ -1,0 +1,199 @@
+<!doctype html>
+<!-- 2026-11-20, frame 6 of 9, 96 REAL FLIGHTS. A spatial scene through txthree.js, outdoors on a cast plum concrete display pad on caliche in
+late apricot light under the people sky. One bent wire loop per recorded flight, each standing on its own cast puck, in rows
+of twelve: FIG.normal in pewter at the back, FIG.spoofed in copper at the front. Every real wire throws a long plum shadow.
+Each copper loop carries a frosted periwinkle glass branch (the false position the attack fed), which hops off the loop or
+slowly peels away from it and casts NO shadow (the deck's SHADOW RULE). Raked three quarter camera, key low from back left.
+Every count is read from window.FIG below and checked. No amber on this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .lab.pew { color:#1d2230; background:linear-gradient(180deg,#f3f5f8,#aab2be); }
+  .lab.cop { color:#2a1206; background:linear-gradient(180deg,#ffbf96,#d26f3c); }
+  .lab.pin { transform:translate(-50%,-100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:132px; width:930px; text-align:left">96 flights. <br>54 were lied to.</h1>
+<p class="dek" data-follow="28" style="left:74px; width:880px; font-size:30px">The team used a public dataset of 96 real drone flights. 42 were normal and 54 flew under controlled spoofing attacks. Some attacks fed the drone one false location and others fed coordinates that changed over time.</p>
+<div class="lab pew" id="l-normal" style="font-size:26px">normal</div>
+<div class="lab cop" id="l-spoofed" style="font-size:26px">spoofed</div>
+<div class="lab plain" id="l-enl" style="font-size:28px">enlarged</div>
+<script>window.FIG = {"flights": 96, "normal": 42, "spoofed": 54, "held_out": 22, "trained": 74, "models": 8, "readings": 10, "score_pct": 97.5, "grant_about": 200000, "grant_years": 2, "team_ug": 2, "team_grad": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "96 real flights", counter: "06 / 09", src: "c5 c6 c7", fit: { min: 90, max: 124, maxLines: 2 } });
+  const FIG = window.FIG;
+
+  /* THE COUNT, from FIG and nowhere else */
+  const PER_ROW = 12;
+  if (FIG.normal + FIG.spoofed !== FIG.flights) throw new Error('FIG normal + spoofed != flights');
+  if (FIG.flights % PER_ROW !== 0) throw new Error('flights do not fill rows of twelve');
+  const ROWS = FIG.flights / PER_ROW;
+
+  const R = CH.stage(TXT, gl, W, { fov: 58, near: 0.05, far: 4000, fog: 0.0055 });
+  const rnd = CH.rng(CH.SEED + 6);
+
+  /* MATERIALS: polished pewter and deep copper, a caliche clay slab with grain, frosted periwinkle glass for the false position */
+  const pewter = K.mat('pewter-cast-metal', { color: 0xa89c88, metalness: 0.6, roughness: 0.3, clearcoat: 0.15, clearcoatRoughness: 0.3, envMapIntensity: 0.22 }, true);
+  const copper = K.mat('copper-cast-metal', { color: 0xf08a50, metalness: 1, roughness: 0.26, clearcoat: 0.3 }, true);
+  const grainTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const rr = CH.rng(7711); g.fillStyle = '#e2b583'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 9000; k++) { const x = rr() * w, y = rr() * h, r = 0.6 + rr() * 2.4, v = rr();
+      g.fillStyle = v < 0.5 ? 'rgba(170,108,70,' + (0.10 + rr() * 0.18) + ')' : 'rgba(255,236,206,' + (0.10 + rr() * 0.2) + ')'; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
+    for (let k = 0; k < 260; k++) { const y = rr() * h; g.strokeStyle = 'rgba(160,98,62,' + (0.04 + rr() * 0.06) + ')'; g.lineWidth = 1 + rr() * 3; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * 0.3, y + rr() * 30 - 15, w * 0.7, y + rr() * 30 - 15, w, y + rr() * 20 - 10); g.stroke(); }
+  }, [3, 3]);
+  const padMat = K.mat('conc-pad-caliche-clay', { color: 0xffffff, map: grainTex, bumpMap: grainTex, bumpScale: 2.2, metalness: 0, roughness: 0.9 }, true);
+  const ghost = new THREE.MeshPhysicalMaterial({ name: 'ghost-frosted-glass', color: CH.GHOST, metalness: 0, roughness: 0.35, transmission: 0.55,
+    thickness: 0.05, ior: 1.45, transparent: true, opacity: 0.92, clearcoat: 1, clearcoatRoughness: 0.2, emissive: CH.GHOST, emissiveIntensity: 0.4 });
+  ghost.userData.txSurface = 'glass';
+  const addMesh = (m, shadow) => { m.castShadow = !!shadow; m.receiveShadow = !!shadow; R.scene.add(m); return m; };
+
+  /* CAMERA FIRST: eye 8 m up, pitched so the horizon sits at y 230 and a band of real sky shows above the far ground */
+  const EYE = 8, VF = 58, Y_HZ = 230, TH = Math.tan(VF * Math.PI / 360);
+  const PITCH = Math.atan((675 - Y_HZ) / 675 * TH);
+  TXT.frame(R, { fov: VF, from: [0, EYE, 0], look: [0, EYE - Math.tan(PITCH) * 20, -20] });
+  const TOP = 0.6;                                       /* the slab's top face */
+  const zAt = (y) => { let lo = -400, hi = -0.5; for (let k = 0; k < 60; k++) { const m = (lo + hi) / 2; (CH.project(THREE, R, [0, TOP, m])[1] < y ? (lo = m) : (hi = m)); } return (lo + hi) / 2; };
+  const xAt = (x, z) => { let lo = 0, hi = 60; for (let k = 0; k < 60; k++) { const m = (lo + hi) / 2; (CH.project(THREE, R, [m, TOP, z])[0] < x ? (lo = m) : (hi = m)); } return (lo + hi) / 2; };
+
+  /* THE GRID, solved on screen: back row just under the dek, front row at y 965, twelve columns 860 px wide at the front */
+  const zBack = zAt(668), zFront = zAt(912), SZ = (zFront - zBack) / (ROWS - 1), SX = 2 * xAt(925, zFront) / PER_ROW;
+  const LG = SX * 0.8, WG = 0.108 * LG / 0.8, HG = WG * 0.95;  /* track length, a thick raised profile lying on the clay */
+  /* THE ENLARGED PAIR, four times the grid scale, at the foot of the frame */
+  const SCALE = 4, LH = LG * SCALE, zHero = zAt(1192) - LG * 4 * 0.3, gapH = LH * 0.12, xHero = LH / 2 + gapH / 2;
+  if (CH.project(THREE, R, [-(xHero + LH / 2), TOP, zHero])[0] < 20) throw new Error('enlarged pair does not fit the width');
+
+  /* the slab: caliche clay with a bevelled rim, under the grid and the pair, its near edge bleeding out of the frame */
+  const slabW = PER_ROW * SX + 7 * SX, z0 = zBack - SZ * 0.9, z1 = 0;
+  /* THE WELL IS CUT INTO THE SLAB: a lower slab to the well's floor, and the top layer laid round the well in four pieces,
+   * so the well is a true recess whose inner walls take the key's shadow */
+  const SW = Math.max(slabW, 2 * (xHero + LH / 2) + 1.2), DEPTH = 0.036 * LG / 0.8 * SCALE * 0.95 * 2.2, FLOOR = TOP - DEPTH;
+  const wellX = xHero + LH / 2 + LH * 0.14, wellBack = zHero - LH * 0.62, wellFront = zHero + LH * 0.3;
+  const slab = TXT.roundedBox(SW, FLOOR, z1 - z0, 0.2, padMat); slab.position.set(0, FLOOR / 2, (z0 + z1) / 2); addMesh(slab, true);
+  [[0, (z0 + wellBack) / 2, SW, wellBack - z0], [0, (wellFront + z1) / 2, SW, z1 - wellFront],
+   [-(SW / 2 + wellX) / 2, (wellBack + wellFront) / 2, SW / 2 - wellX, wellFront - wellBack], [(SW / 2 + wellX) / 2, (wellBack + wellFront) / 2, SW / 2 - wellX, wellFront - wellBack]]
+    .forEach(([x, z, w, d]) => { const pc = new THREE.Mesh(new THREE.BoxGeometry(w + 0.006, DEPTH + 0.004, d + 0.006), padMat); pc.userData.txBevel = false; pc.position.set(x, FLOOR + DEPTH / 2 + 0.002, z); addMesh(pc, true); });
+  const wellFloorMat = K.mat('conc-pad-well-clay', { color: 0xb57a56, metalness: 0, roughness: 0.94 }, true);
+  const floorM = TXT.roundedBox(2 * wellX, 0.006, wellFront - wellBack, 0.003, wellFloorMat); floorM.position.set(0, FLOOR + 0.003, (wellBack + wellFront) / 2); addMesh(floorM, false).receiveShadow = true;
+
+  /* a flight: a low raised path that wanders like a real flight, on short pins, along x */
+  const wander = (seed, n) => { const r = CH.rng(seed), ph = [r() * 6.28, r() * 6.28, r() * 6.28], am = [0.10 + r() * 0.05, 0.05 + r() * 0.03, 0.02];
+    return (u) => am[0] * Math.sin(u * 3.1 + ph[0]) + am[1] * Math.sin(u * 7.3 + ph[1]) + am[2] * Math.sin(u * 15 + ph[2]); };
+  /* kink: a sharp notch in the real copper track at the split, where its glass ghost leaves it */
+  const trackPts = (cx, cz, L, Hh, wf, kink) => { const pts = [];
+    for (let s = 0; s <= 40; s++) { const u = s / 40; let dz = wf(u) * L;
+      if (kink) { const d = (u - 0.5) / 0.06; dz += Math.abs(d) < 1 ? -0.3 * L * (1 - Math.abs(d)) : 0; }
+      pts.push([cx - L / 2 + u * L, TOP + Hh, cz + dz]); }
+    return pts; };
+  const pins = (pts, Hh, r, mat) => [0, 10, 20, 30, 40].forEach((k) => { const p = pts[k]; addMesh(K.cyl(r, r * 1.15, Hh, mat, p[0], TOP, p[2], 14), true);
+    if (k === 0 || k === 40) addMesh(K.cyl(r * 3.2, r * 3.6, Hh * 0.22, mat, p[0], TOP, p[2], 28), true); });
+
+  let nPew = 0, nCop = 0, nGhost = 0; const anchor = {};
+  for (let i = 0; i < FIG.flights; i++) {
+    const r = Math.floor(i / PER_ROW), col = i % PER_ROW, spoofed = i >= FIG.normal, mat = spoofed ? copper : pewter;
+    const cxp = (col - (PER_ROW - 1) / 2) * SX, czp = zBack + r * SZ, wf = wander(9000 + i);
+    const pts = trackPts(cxp, czp, LG, HG, wf, spoofed);
+    addMesh(TXT.tube(pts, WG, mat, { segments: 120, radial: 14 }), true);
+    if (spoofed) {
+      /* the false position, ONE neutral style on every grid track (the claims give no split between the attack kinds):
+       * frosted glass leaving the kink, hovering just over its own track and easing toward the row behind, no shadow */
+      const gp = []; for (let s = 0; s <= 20; s++) { const u = 0.5 + 0.5 * s / 20, base = pts[Math.round(u * 40)];
+        gp.push([base[0], TOP + HG + WG * 2.2 * Math.min(1, (u - 0.5) * 6), base[2] - SZ * 0.24 * (u - 0.5) * 2]); }
+      addMesh(TXT.tube(gp, WG * 0.75, ghost, { segments: 60, radial: 10 }), false); nGhost++; nCop++;
+    } else nPew++;
+    if (!spoofed && r === 0 && col === 3) anchor.normal = [cxp, TOP + HG, czp];
+  }
+  if (nPew !== FIG.normal || nCop !== FIG.spoofed || nPew + nCop !== FIG.flights || nGhost !== FIG.spoofed) throw new Error('drawn tracks disagree with FIG');
+
+  /* THE ENLARGED PAIR: two of the copper tracks at four times scale, one ghost that jumps, one that drifts */
+  /* THE ENLARGED PAIR: two of the copper tracks again at four times scale, a magnified callout and not two more flights.
+   * Polished copper laid low in a channel pressed into the clay, no stilts; the ghosts real frosted glass, no shadow. */
+  const WH = 0.036 * LG / 0.8 * SCALE * 0.95, HH = WH;
+  const copperPol = K.mat('copper-polished-metal', { color: 0xff9a5c, metalness: 0.72, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.3 }, true);
+  const groove = K.mat('conc-pad-groove-clay', { color: 0x9a5a3c, metalness: 0, roughness: 0.95 }, true);
+  const rimClay = K.mat('conc-pad-rim-clay', { color: 0xe9bf8e, metalness: 0, roughness: 0.9 }, true);
+  const glassH = new THREE.MeshPhysicalMaterial({ name: 'ghost-frosted-glass-hero', color: 0xb4c2ff, metalness: 0, roughness: 0.2, transmission: 0.88,
+    thickness: 0.4, ior: 1.46, transparent: true, opacity: 1, clearcoat: 1, clearcoatRoughness: 0.06, attenuationColor: new THREE.Color(0x8fa4ff), attenuationDistance: 0.6,
+    emissive: CH.GHOST, emissiveIntensity: 0.12, specularIntensity: 1 });
+  glassH.userData.txSurface = 'glass';
+  const flat = (pts, r, mat, sy) => { const m = TXT.tube(pts.map(p => [p[0], 0, p[2]]), r, mat, { segments: 240, radial: 16 }); m.scale.y = sy; m.position.y = TOP + 0.002; return m; };
+  const heroes = [[-xHero, 'jump', 4242], [xHero, 'drift', 4343]].map(([hx, kind, seed]) => {
+    const pts = trackPts(hx, zHero, LH, WH * 0.75 - DEPTH, wander(seed), false);
+    { const ch = flat(pts, WH * 1.7, groove, 0.04); ch.position.y = FLOOR + 0.008; addMesh(ch, false).receiveShadow = true; }           /* the pressed channel's floor */
+    addMesh(TXT.tube(pts, WH, copperPol, { segments: 260, radial: 24 }), true);
+    /* both ghosts hover at one height over their own real track and agree with it at first; only their plan differs */
+    const GY = FLOOR + WH * 3.0, OFF = -LH * 0.34, gp = [];
+    const lerp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t, p[2] + (q[2] - p[2]) * t];
+    if (kind === 'jump') {
+      /* ONE SHARP SINGLE STEP: the reported position agrees, then leaps sideways at one instant and runs on parallel */
+      for (let s = 0; s < 22; s++) { const p = pts[s], q = pts[s + 1]; for (let k = 0; k < 4; k++) { const m = lerp(p, q, k / 4); gp.push([m[0], GY, m[2]]); } }
+      const c = pts[22]; for (let k = 0; k <= 8; k++) gp.push([c[0], GY, c[2] + OFF * k / 8]);
+      for (let s = 22; s < 40; s++) { const p = pts[s], q = pts[s + 1]; for (let k = (s === 22 ? 1 : 0); k < 4; k++) { const m = lerp(p, q, k / 4); gp.push([m[0], GY, m[2] + OFF]); } }
+      gp.push([pts[40][0], GY, pts[40][2] + OFF]);
+      addMesh(TXT.tube(gp, WH * 1.0, glassH, { segments: 600, radial: 18, tension: 0 }), false);
+    } else {
+      /* ONE LONG GRADUAL DIVERGENCE: the reported position agrees, then slides away a little more at every reading */
+      for (let s = 0; s <= 40; s++) { const p = pts[s], u = Math.max(0, (s - 6) / 34); gp.push([p[0], GY, p[2] + OFF * Math.pow(u, 1.5)]); }
+      addMesh(TXT.tube(gp, WH * 1.0, glassH, { segments: 400, radial: 18 }), false);
+    }
+    return pts;
+  });
+  /* THE WELL: the pair lies in a bevelled recessed well on the tablet, walled by a raised clay rim whose back and left walls
+   * throw deep shadows across its floor; a raised clay rule sets it apart from the rows, and a thin incised leader runs from
+   * its source track in the bottom row to the well's back rim */
+  const RW = WH * 0.6;
+  if (CH.project(THREE, R, [0, TOP, wellFront + RW / 2])[1] > 1212) throw new Error('the well runs under the footer');
+  const zRule = (zFront + SZ * 0.45 + wellBack - RW) / 2;
+  if (!(zRule > zFront + SZ * 0.25 && zRule < wellBack - RW)) throw new Error('no room for the rule between the rows and the well ' + [zFront, zRule, wellBack]);
+  const rule = TXT.roundedBox(PER_ROW * SX + 1.6 * SX, WG * 0.9, WG * 1.4, WG * 0.4, rimClay); rule.position.set(0, TOP + WG * 0.45, zRule); addMesh(rule, true);
+  const srcCol = 2, srcX = (srcCol - (PER_ROW - 1) / 2) * SX, srcZ = zFront + LG * 0.2, endX = -xHero, endZ = wellBack - RW / 2;
+  const lead = flat([[srcX, 0, srcZ], [(srcX + endX) / 2, 0, (srcZ + endZ) / 2], [endX, 0, endZ]], WG * 0.22, groove, 0.05); lead.position.y = TOP + 0.004; addMesh(lead, false);
+  anchor.enl = [wellX * 0.55, TOP, wellFront - LH * 0.02];
+  anchor.rowN = [-(PER_ROW / 2) * SX + LG * 0.05 - SX * 0.08, TOP + HG, zBack + 1 * SZ];
+  anchor.rowS = [-(PER_ROW / 2) * SX + LG * 0.05 - SX * 0.08, TOP + HG, zBack + 4 * SZ];
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { clouds: 0.18 }));
+  TXT.ground(R, { surface: 'dirt', color: 0xd88a5a, size: 4000, tile: 3, seed: 1120 });
+  TXT.scatter(R, { kind: 'grass', count: 1600, area: [-90, -260, 90, z0 - 3], seed: 61, scale: [0.6, 1.3], colors: [0xc98a4a, 0xb8763e, 0xd9a060] });
+  TXT.scatter(R, { kind: 'rock', count: 1400, area: [-30, z0 - 3, 30, 4], avoid: [[-slabW / 2 - 0.5, z0 - 0.5, slabW / 2 + 0.5, 2]], seed: 62, scale: [0.02, 0.09], colors: [0xd9a072, 0xc98c64, 0xe8b88c] });
+
+  /* THE KEY: low apricot sun from back left, every real track throws a long plum shadow toward the camera's right */
+  const spec = CH.rigSpec(W, 40, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.5, color: 0xffc68a });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, (z0 + z1) / 2], { distance: 60, shadowFar: 140, normalBias: 0.004 }), { light: { az: -128, el: 14 } }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.1, height: 0.05, mottle: 0.12 });
+
+  /* the pills, on one pewter loop and one copper loop */
+  /* the pills: "normal" beside the second pewter row and "spoofed" beside the fifth (copper) row, right edge at the row's
+   * start, seated on the tablet's margin; "enlarged" on the loupe callout */
+  const besideRow = (id, w) => { const q = CH.project(THREE, R, w), el = document.getElementById(id);
+    el.style.left = Math.round(Math.max(80, q[0] - el.offsetWidth - 8)) + 'px'; el.style.top = Math.round(q[1] - el.offsetHeight / 2 - 6) + 'px'; };
+  besideRow('l-normal', anchor.rowN); besideRow('l-spoofed', anchor.rowS);
+  { const q = CH.project(THREE, R, anchor.enl), el = document.getElementById('l-enl'); el.style.left = Math.round(q[0] - el.offsetWidth / 2) + 'px'; el.style.top = Math.round(q[1] - el.offsetHeight / 2) + 'px'; }
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.58, fade: 340 });
+  ['.count', '.kick', '.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.34, fade: 100 }));
+  TXLOOK.footWash(cx, { a: 0.45, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{"lens":"integrity","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.6,"why":"Round 2's repairs mostly landed. Frame 8 has no trough and its pill on the lower rim no longer reads as a share. Frame 9 counts 10 plus 11 plus 1 cartridges, 22, tying to frame 7, whose box runs off the right edge with a floor shadow. Frame 6 draws exactly 42 and 54 with the pair in a recessed well. Frame 4 is still weakest, with the puck stem floating above the body and a loose sphere, the near right laptop lid running through the right arm, and blades clear of their motors. Frame 2's grain covers the upper sky, frame 6 keeps a wash seam behind 54, frame 9's canopies speckle and frame 7's top 40 percent is empty magenta."},
+{"name":"deck_coherence","weight":0.12,"score":7.6,"why":"The spine holds on all nine. Amber means measured motion on 3, 5 and 8 and pale the reported position on 1, 2 and 3. The terrain bookends the deck and 9's count links to 7. Frames 7 and 8 sit in a hotter magenta studio."},
+{"name":"claim_integrity","weight":0.20,"score":7.8,"why":"Every slide and caption numeral traces to figures.json and a claim quote. Round 2's main finding is closed: c3's quote contains accepted for presentation at WATCH 2026 and frame 9 no longer makes the workshop claim. Frame 8 and the caption follow from c11. Every study fact rests on one university release and the WATCH paper was not fetched, frame 8's not accuracy is an inference from c11's wording, and c22's stored quote leaves out the first author's name that the caption carries."},
+{"name":"story_and_stakes","weight":0.16,"score":7.0,"why":"What, who and where are clear and the honest limit carries frame 9 and the caption close. The stake is still the release's hypothetical ridge with no Texas use of drones named."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"The cover earns the swipe, 2 and 3 pay, the turn at 5, 6 to 8 build, 9 closes on a forward question. Frame 4 still breaks the run."},
+{"name":"voice","weight":0.10,"score":7.1,"why":"Spoken lines on 6 and 5. Drawn to illustrate appears on five frames and frames 4 and 9 read as release paraphrase."},
+{"name":"variety","weight":0.10,"score":7.5,"why":"A new subject in a bespoke mix with familiar tile grid, glass rack and v2 palette moves."}],
+"weighted_score":7.474,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Fetch the WATCH 2026 paper and anchor the figures and the Chronos measure to it.",
+"artwork_weakest_frames":[
+{"slide":4,"problem":"The puck stem floats above the body with a loose sphere, the near right laptop lid runs through the right arm, blades hover above their motors.","fix":"Seat the stem, delete the sphere, move the laptop clear, parent the blades to their hubs."},
+{"slide":2,"problem":"Coarse grain across the upper sky behind the type.","fix":"Half strength and kept off the type wash."},
+{"slide":6,"problem":"A wash seam at about y 400 behind 54 were lied to.","fix":"Feather the wash into the terrain with no edge."},
+{"slide":7,"problem":"The top 40 percent is flat empty magenta.","fix":"Raise and dolly in so the tray climbs into the upper right."},
+{"slide":9,"problem":"Speckled canopies.","fix":"Frame 1's solid canopy material."}]}

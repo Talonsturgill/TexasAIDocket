@@ -1,0 +1,294 @@
+<!doctype html>
+<!-- 2026-11-20, frame 9 of 9, the close. BESPOKE. A spatial scene through txthree.js, back on frame 1's copper bluestem crest
+at last light, built the way frame 1 builds it: a displaced heightfield whose rounded top rolls over into a fall cut by cattle
+trails, down to a creek valley in plum shade with oak mottes, and a far ridge whose saddle holds the setting sun. The release's
+own ridge and valley example, on no real place. On the crest top the survey quadcopter sits grounded on a small rubber launch
+mat, props folded and lamps dark, beside an open hard case of sealed flight log cartridges, one for each held out test flight
+(FIG.held_out). Nothing is drawn as having flown. No amber on this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:150px; width:900px; text-align:left">Next, running the check in flight</h1>
+<p class="dek" data-follow="22" style="left:82px; width:916px; font-size:30px">The study used recorded flights. Running the check during flight is a next step. The broader project has a two year National Science Foundation grant of about $200,000. It also asks how a drone might estimate its location when reliable information is unavailable.</p>
+<script>window.FIG = {"held_out": 22};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Next, in flight", counter: "09 / 09", src: "c12 c13", fit: { min: 64, max: 86, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.05, far: 6000, fog: 0.0006 });
+
+  /* THE FRAME'S AXES, in (u across, v away) metres from the camera's foot: world x = u, world z = -v */
+  const toW = (u, v) => [u, -v];
+  const yawTo = (du, dv) => { const d = toW(du, dv); return Math.atan2(d[0], d[1]); };
+  const deg = Math.PI / 180;
+  /* the view looks YAW degrees off v (negative is left); the sun sets SUN_ANG degrees off v, right of the view's centre */
+  const YAW = 10, SUN_ANG = 18;
+  const sunDirUV = [Math.sin(SUN_ANG * deg), Math.cos(SUN_ANG * deg)], sunW = toW(sunDirUV[0], sunDirUV[1]);
+  const SKY_EL = 0.6, KEY_EL = 4.5, SUN_AZ = Math.atan2(sunW[0], sunW[1]) / deg;
+  const sun0 = TXT.sunDir;
+  TXT.sunDir = () => { const a = SUN_AZ * deg, e = SKY_EL * deg; return new THREE.Vector3(Math.sin(a) * Math.cos(e), Math.sin(e), Math.cos(a) * Math.cos(e)).normalize(); };
+
+  /* THE LAND, frame 1's way: a long rounded crest, its brow just right of the camera, a fall cut by cattle trails into a
+   * broad valley with a creek, and a far ridge all round whose crest dips into one saddle exactly where the sun sets. */
+  const hash = (i, j) => { let h = (i * 374761393 + j * 668265263) >>> 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  const vnoise = (x, y) => { const i = Math.floor(x), j = Math.floor(y), a = x - i, b = y - j, s = a * a * (3 - 2 * a), t = b * b * (3 - 2 * b);
+    return (hash(i, j) * (1 - s) + hash(i + 1, j) * s) * (1 - t) + (hash(i, j + 1) * (1 - s) + hash(i + 1, j + 1) * s) * t; };
+  const fbm = (x, y) => vnoise(x, y) * 0.55 + vnoise(x * 2.1, y * 2.1) * 0.3 + vnoise(x * 4.3, y * 4.3) * 0.15;
+  const sstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const CREST_DEG = 17, CAM_N = 2.5, D = 55, LAM = 45, SADDLE_T = 361;
+  const dC = [-Math.sin(CREST_DEG * deg), Math.cos(CREST_DEG * deg)], nC = [dC[1], -dC[0]];
+  const P0 = [CAM_N * nC[0], CAM_N * nC[1]];
+  const tn = (u, v) => [(u - P0[0]) * dC[0] + (v - P0[1]) * dC[1], (u - P0[0]) * nC[0] + (v - P0[1]) * nC[1]];
+  const fromTN = (t, n) => [P0[0] + t * dC[0] + n * nC[0], P0[1] + t * dC[1] + n * nC[1]];
+  const angOf = (u, v) => Math.atan2(u, v) / deg;
+  const H = (u, v) => {
+    const [t, n] = tn(u, v), w = 3;
+    const sp = Math.max(0, w * Math.log(1 + Math.exp(n / w)) - w * Math.LN2);
+    let h = -0.010 * Math.pow(Math.min(n, 0), 2) - D * (1 - Math.exp(-sp / LAM));
+    /* frame 1's far ridge and saddle, exactly: a lower ridge closing the valley with one saddle at SADDLE_T, far swells beyond,
+     * and a broken crest line so the saddle is no clean dip */
+    const dip = 1 - 0.55 * Math.exp(-Math.pow((t - SADDLE_T) / 110, 2));
+    h += 64 * dip * sstep(165, 330, n) * (1 - 0.4 * sstep(430, 660, n));
+    h += 14 * sstep(1000, 1700, n);
+    h += (fbm(t / 38 + 5, n / 38) - 0.5) * 12 * sstep(170, 260, n);
+    h += (fbm(t / 70, n / 70) - 0.5) * 4 * sstep(20, 80, Math.abs(n));
+    { const tr = Math.abs(Math.sin(n / 2.6 + 5 * fbm(t / 45, n / 45)));                    /* cattle trails along the fall */
+      h -= 0.55 * (1 - sstep(0.08, 0.3, tr)) * (sstep(8, 25, n) * (1 - sstep(150, 172, n)) + sstep(190, 220, n) * (1 - sstep(380, 420, n))); }
+    const cn = 128 + 9 * Math.sin(t / 34) + 4 * Math.sin(t / 11);                            /* the creek, cut into the floor */
+    h -= 2.6 * Math.exp(-Math.pow((n - cn) / 4.5, 2));
+    h += (fbm(t / 6, n / 6) - 0.5) * 0.12 * sstep(2, 10, Math.abs(n) + 0.01 * Math.hypot(u, v));
+    return h;
+  };
+  const heightAt = (x, z) => H(x, -z);
+
+  /* the terrain mesh: a fan along the view that widens with distance, fine near the camera and coarse at the horizon */
+  const NU = 440, NV = 560, V0 = -30, V1 = 3200;
+  const cy = Math.cos(YAW * deg), sy = Math.sin(YAW * deg);
+  const rot = (a, b) => [a * cy + b * sy, -a * sy + b * cy];   /* (across, along) the view to (u, v) */
+  const vs = []; for (let j = 0; j <= NV; j++) { const t = j / NV; vs.push(V0 + (V1 - V0) * Math.pow(t, 2.6)); }
+  const pos = new Float32Array((NU + 1) * (NV + 1) * 3), col = new Float32Array((NU + 1) * (NV + 1) * 3), uvA = new Float32Array((NU + 1) * (NV + 1) * 2);
+  const COPPER = new THREE.Color(0x9e6640), BRONZE = new THREE.Color(0x9a6a3c), STRAW = new THREE.Color(0xc9965e), PLUM = new THREE.Color(0x6a3a4a), SAGE = new THREE.Color(0x8a7a52), DUSK = new THREE.Color(0x3e4472), TRAIL = new THREE.Color(0x7a4e44), cc = new THREE.Color();
+  let k = 0;
+  for (let j = 0; j <= NV; j++) {
+    const a = vs[j], half = 40 + 1.4 * (a - V0);
+    for (let i = 0; i <= NU; i++) {
+      const b = -half + 2 * half * i / NU, [u, v] = rot(b, a), w = toW(u, v), y = H(u, v);
+      pos[k * 3] = w[0]; pos[k * 3 + 1] = y; pos[k * 3 + 2] = w[1];
+      uvA[k * 2] = u / 6; uvA[k * 2 + 1] = v / 6;
+      const [TT, NN] = tn(u, v);
+      const n1 = fbm(u / 23 + 9, v / 23), n2 = fbm(u / 4.5, v / 4.5);
+      cc.copy(COPPER).lerp(BRONZE, sstep(0.3, 0.7, n1)).lerp(PLUM, 0.18 * sstep(0.45, 0.8, fbm(u / 1.7, v / 1.7))).lerp(STRAW, 0.35 * sstep(0.55, 0.85, n2));
+      cc.lerp(SAGE, 0.25 * sstep(0.6, 0.9, fbm(u / 90, v / 90)));
+      cc.lerp(BRONZE, 0.5 * sstep(0.35, 0.75, fbm(u / 14 + 40, v / 14))).lerp(STRAW, 0.25 * sstep(0.6, 0.85, fbm(u / 31, v / 31 + 20)));
+      cc.lerp(DUSK, 0.6 * sstep(-16, -46, y));                                            /* the valley floor in plum shade */
+      cc.lerp(DUSK, 0.5 * sstep(165, 260, NN));                                     /* the far ridge's face, turned from the sun */
+      cc.lerp(PLUM, 0.3 * sstep(0.55, 0.8, fbm(u / 5 + 7, v / 5))).lerp(STRAW, 0.22 * sstep(0.55, 0.8, fbm(TT / 18 + 3, NN / 9)));   /* swales and sun cured patches */
+      { const tr = Math.abs(Math.sin(NN / 2.6 + 5 * fbm(TT / 45, NN / 45))); cc.lerp(TRAIL, 0.6 * (1 - sstep(0.08, 0.26, tr)) * (sstep(8, 25, NN) * (1 - sstep(150, 180, NN)) + sstep(190, 220, NN) * (1 - sstep(380, 420, NN)))); }
+      col[k * 3] = cc.r; col[k * 3 + 1] = cc.g; col[k * 3 + 2] = cc.b; k++;
+    }
+  }
+  const idx = [];
+  for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) { const a = j * (NU + 1) + i, b = a + 1, c = a + NU + 1, d = c + 1; idx.push(a, b, c, b, d, c); }
+  const tg = new THREE.BufferGeometry();
+  tg.setAttribute('position', new THREE.BufferAttribute(pos, 3)); tg.setAttribute('color', new THREE.BufferAttribute(col, 3)); tg.setAttribute('uv', new THREE.BufferAttribute(uvA, 2));
+  tg.setIndex(idx); tg.computeVertexNormals();
+  { const nrm = tg.attributes.normal; let up = 0; for (let q = 0; q < nrm.count; q += 97) up += nrm.getY(q);
+    if (up < 0) { for (let q = 0; q < idx.length; q += 3) { const t = idx[q + 1]; idx[q + 1] = idx[q + 2]; idx[q + 2] = t; } tg.setIndex(idx); tg.computeVertexNormals(); } }
+  const turfTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    const r = CH.rng(1120); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let n = 0; n < 16000; n++) { const x = r() * w, y = r() * h, l = 2 + r() * 9, a = (r() - 0.5) * 0.9;
+      g.strokeStyle = r() < 0.5 ? 'rgba(255,236,205,' + (0.15 + r() * 0.3).toFixed(2) + ')' : 'rgba(96,52,58,' + (0.10 + r() * 0.22).toFixed(2) + ')';
+      g.lineWidth = 0.8 + r() * 1.4; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(a) * l, y - Math.cos(a) * l); g.stroke(); }
+  }, [1, 1]);
+  const turf = new THREE.MeshStandardMaterial({ name: 'prairie-turf-bluestem', vertexColors: true, map: turfTex, roughness: 0.97, metalness: 0 });
+  turf.userData.txSurface = 'fabric';
+  const land = new THREE.Mesh(tg, turf); land.receiveShadow = true; land.castShadow = false; land.userData.heightAt = heightAt; land.userData.txBevel = false;
+  R.scene.add(land);
+
+  const drape = (obj) => {
+    obj.updateMatrixWorld(true);
+    const m4 = new THREE.Matrix4(), wm = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), s = new THREE.Vector3();
+    obj.traverse((m) => {
+      if (!m.isInstancedMesh) return;
+      for (let n = 0; n < m.count; n++) {
+        m.getMatrixAt(n, m4); wm.multiplyMatrices(m.matrixWorld, m4); m4.decompose(p, q, s);
+        const wp = new THREE.Vector3().setFromMatrixPosition(wm);
+        p.y += heightAt(wp.x, wp.z); m4.compose(p, q, s); m.setMatrixAt(n, m4);
+      }
+      m.instanceMatrix.needsUpdate = true; m.frustumCulled = false;
+    });
+    return obj;
+  };
+  const place = (obj, u, v, yaw, lift) => { const w = toW(u, v); obj.position.set(w[0], H(u, v) + (lift || 0), w[1]); if (yaw != null) obj.rotation.y = yaw; TXT.add(R, obj); return obj; };
+
+  /* ---- THE CAMERA: on the brow, eye 1.0 m, level, the lens shifted so the horizon sits at HZ under the dek ---- */
+  const HZ = 570, F = 1100, EYE = 0.9;
+  const ceye = H(0, 0) + EYE, la = toW(Math.sin(YAW * deg) * 50, Math.cos(YAW * deg) * 50);
+  TXT.frame(R, { from: [0, ceye, 0], look: [la[0], ceye, la[1]] });
+  const FULLH = 2 * Math.max(HZ, 1350 - HZ);
+  R.camera.fov = 2 * Math.atan((FULLH / 2) / F) / deg; R.camera.aspect = 1080 / FULLH;
+  R.camera.setViewOffset(1080, FULLH, 0, FULLH / 2 - HZ, 1080, 1350); R.camera.updateProjectionMatrix();
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { el: [1, 3], clouds: 0.14, zenith: 0x24359a, horizon: 0xa2acef, haze: 0xffb486, sunDisc: 30, glow: 1.6, horizonGlow: 1.1 }));
+
+  /* ---- THE LAUNCH MAT on the crest top ---- */
+  const DP = [0.53, 2.13];
+  if (!(tn(DP[0], DP[1])[1] < -0.5)) throw new Error('the drone must stand on the crest top');
+  const matTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    g.fillStyle = '#6e3c66'; g.fillRect(0, 0, w, h);
+    const r = CH.rng(9); for (let i = 0; i < 9000; i++) { const v = 60 + r() * 30; g.fillStyle = 'rgba(' + (v + 20) + ',' + (v - 20) + ',' + (v + 10) + ',0.5)'; g.fillRect(r() * w, r() * h, 2, 2); }
+    g.strokeStyle = 'rgba(236,214,226,0.75)'; g.lineWidth = 14; g.beginPath(); g.arc(w / 2, h / 2, w * 0.34, 0, Math.PI * 2); g.stroke();
+    g.lineWidth = 6; g.beginPath(); g.arc(w / 2, h / 2, w * 0.43, 0, Math.PI * 2); g.stroke();
+    g.fillStyle = 'rgba(200,205,215,0.6)'; [-1, 1].forEach((s) => g.fillRect(w / 2 + s * 70 - 14, h / 2 - 110, 28, 220)); g.fillRect(w / 2 - 70, h / 2 - 14, 140, 28);
+  });
+  const matM = new THREE.MeshStandardMaterial({ name: 'launch-mat-rubber', map: matTex, roughness: 0.93, metalness: 0 }); matM.userData.txSurface = 'rubber';
+  const MAT_R = 0.55, MAT_T = 0.012;
+  const mat = new THREE.Mesh(new THREE.CylinderGeometry(MAT_R, MAT_R, MAT_T, 72), [new THREE.MeshStandardMaterial({ name: 'launch-mat-rubber-edge', color: 0x5a3052, roughness: 0.95 }), matM, matM]);
+  mat.castShadow = true; mat.receiveShadow = true;
+  const pegM = K.mat('peg-cast-metal', { color: 0x9da3ad, roughness: 0.35, metalness: 1 }, true);
+  for (let q = 0; q < 6; q++) { const a = q / 6 * Math.PI * 2 + 0.3; const p = TXT.roundedBox(0.03, 0.012, 0.03, 0.004, pegM); p.position.set(Math.cos(a) * (MAT_R - 0.035), MAT_T / 2 + 0.006, Math.sin(a) * (MAT_R - 0.035)); p.castShadow = true; mat.add(p); }
+  const groundY = H(DP[0], DP[1]);
+  { const w = toW(DP[0], DP[1]); mat.position.set(w[0], groundY + MAT_T / 2 + 0.01, w[1]); }
+  TXT.add(R, mat); TXT.contact(R, mat, { opacity: 0.85, y: groundY + 0.004 });
+
+  /* ---- THE DRONE, grounded on the mat: props folded, lamps dark, its body centred on the mat ---- */
+  const quad = K.make('survey_quad', { props: 'still', open: true, legs: true, shell: 0xeef0f2, lamp: 0x2a2228 });
+  quad.traverse((m) => { if (m.isMesh && m.material && m.material.emissive) { m.material = m.material.clone(); m.material.emissiveIntensity = 0; } });
+  { const muted = K.mat('puck-plastic', { color: 0x6a6e78, roughness: 0.55, metalness: 0 }, true);
+    if (quad.userData.gps) quad.userData.gps.material = muted;
+    quad.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'SphereGeometry' && Math.abs(m.scale.y - 0.35) < 1e-6) m.material = muted; }); }
+  if (quad.userData.board) quad.userData.board.scale.setScalar(2.6);
+  quad.rotation.y = yawTo(1, -0.4) + 0.5; quad.position.set(0, 0, 0); quad.updateMatrixWorld(true);
+  { const bp = new THREE.Vector3(); quad.userData.body.getWorldPosition(bp);
+    quad.position.set(mat.position.x - bp.x, groundY + MAT_T + 0.01, mat.position.z - bp.z); }
+  TXT.add(R, quad); TXT.contact(R, quad, { y: groundY + MAT_T + 0.012, opacity: 0.95 });
+
+  /* ---- THE CASE OF SEALED FLIGHT LOG CARTRIDGES: one cartridge for each held out test flight ---- */
+  const N_REC = FIG.held_out;
+  const caseG = new THREE.Group();
+  const shellM = K.mat('case-plastic', { color: 0x46506c, roughness: 0.55, metalness: 0, clearcoat: 0.2 }, true);
+  const foamM = K.mat('case-foam-fabric', { color: 0x7a5a78, roughness: 1, metalness: 0 }, true);
+  const latchM = K.mat('latch-cast-metal', { color: 0xc8ccd2, roughness: 0.3, metalness: 1 }, true);
+  const CW = 0.52, CD = 0.36, CH_ = 0.15;
+  const tub = TXT.roundedBox(CW, CH_, CD, 0.03, shellM); tub.position.y = CH_ / 2; caseG.add(tub);
+  const foam = TXT.roundedBox(CW - 0.04, 0.02, CD - 0.04, 0.008, foamM); foam.position.y = CH_ - 0.005; caseG.add(foam);
+  const lid = new THREE.Group(); lid.position.set(0, CH_, -CD / 2); caseG.add(lid);
+  const lidS = TXT.roundedBox(CW, 0.05, CD, 0.025, shellM); lidS.position.set(0, 0.025, CD / 2); lid.add(lidS);
+  const lidF = TXT.roundedBox(CW - 0.04, 0.012, CD - 0.04, 0.006, foamM); lidF.position.set(0, -0.004, CD / 2); lid.add(lidF);
+  lid.rotation.x = -1.92;
+  [-1, 1].forEach((s) => { const l = TXT.roundedBox(0.05, 0.035, 0.012, 0.005, latchM); l.position.set(s * 0.16, CH_ - 0.02, CD / 2 + 0.004); caseG.add(l); });
+  const handle = TXT.tube([[-0.07, CH_ - 0.035, CD / 2 + 0.005], [-0.06, CH_ - 0.07, CD / 2 + 0.035], [0.06, CH_ - 0.07, CD / 2 + 0.035], [0.07, CH_ - 0.035, CD / 2 + 0.005]], 0.008, shellM); if (handle) caseG.add(handle);
+  /* each cartridge: a dark moulded body, a cream paper label with ruled lines on its face, and a plum sealed lid on top */
+  const labelTex = CH.canvasTex(THREE, 128, 192, (g, w, h) => {
+    g.fillStyle = '#fbf1de'; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#7a3068'; g.fillRect(0, 0, w, 44);
+    g.fillStyle = 'rgba(50,40,64,0.85)'; for (let i = 0; i < 4; i++) g.fillRect(14, 66 + i * 30, w - 28 - (i % 2) * 30, 10);
+    g.strokeStyle = 'rgba(60,50,70,0.4)'; g.lineWidth = 3; g.strokeRect(4, 4, w - 8, h - 8);
+  });
+  const labelM = new THREE.MeshStandardMaterial({ name: 'cartridge-label-paper', map: labelTex, roughness: 0.85, metalness: 0 }); labelM.userData.txSurface = 'fabric';
+  const cartM = K.mat('cartridge-plastic', { color: 0x3a4152, roughness: 0.45, metalness: 0, clearcoat: 0.4 }, true);
+  const capM = K.mat('cartridge-cap-plastic', { color: 0x5e2a52, roughness: 0.4, metalness: 0, clearcoat: 0.5 }, true);
+  const ROWS = 2, PER = Math.ceil(N_REC / ROWS), PITCH = 0.04;
+  let drawn = 0;
+  const makeCart = () => { const rec = new THREE.Group();
+    const bd = TXT.roundedBox(0.03, 0.075, 0.02, 0.005, cartM); bd.position.y = 0.0375; rec.add(bd);
+    const cp = TXT.roundedBox(0.033, 0.014, 0.023, 0.005, capM); cp.position.y = 0.081; rec.add(cp);
+    const lb = new THREE.Mesh(new THREE.PlaneGeometry(0.026, 0.052), labelM); lb.position.set(0, 0.038, 0.0102); rec.add(lb);
+    rec.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return rec; };
+  /* ONE CARTRIDGE IS OUT: its slot, the last of the front row, stands empty, and it waits on the mat beside the flight board */
+  for (let row = 0; row < ROWS; row++) {
+    for (let i = 0; i < PER && drawn < N_REC - 1; i++) {
+      const rec = new THREE.Group();
+      const body = TXT.roundedBox(0.03, 0.075, 0.02, 0.005, cartM); body.position.y = 0.0375; rec.add(body);
+      const cap = TXT.roundedBox(0.033, 0.014, 0.023, 0.005, capM); cap.position.y = 0.081; rec.add(cap);
+      const lab = new THREE.Mesh(new THREE.PlaneGeometry(0.026, 0.052), labelM); lab.position.set(0, 0.038, 0.0102); rec.add(lab);
+      const x = (i - (PER - 1) / 2) * PITCH, z = row === 0 ? 0.075 : -0.065, y = CH_ - 0.03 + (row === 0 ? 0 : 0.035);
+      rec.position.set(x, y, z); rec.rotation.x = -0.1; rec.userData.isRecord = true; caseG.add(rec); drawn++;
+    }
+  }
+  const outCart = makeCart(); outCart.userData.isRecord = true; drawn++;
+  let counted = 0; caseG.traverse((o) => { if (o.userData.isRecord) counted++; }); counted += outCart.userData.isRecord ? 1 : 0;
+  if (counted !== FIG.held_out || drawn !== FIG.held_out) throw new Error('cartridges drawn ' + counted + ' differ from FIG.held_out ' + FIG.held_out);
+  caseG.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  const CP = [-0.23, 2.19];
+  if (!(tn(CP[0], CP[1])[1] < -0.5)) throw new Error('the case must stand on the crest top');
+  place(caseG, CP[0], CP[1], yawTo(-CP[0], -CP[1]) + 0.12, 0.005); TXT.contact(R, caseG, { opacity: 0.9 });
+
+  { const dx = -mat.position.x, dz = -mat.position.z, dl = Math.hypot(dx, dz), ux = dx / dl, uz = dz / dl;
+    const ox = ux * 0.34 - uz * 0.12, oz = uz * 0.34 + ux * 0.12;
+    outCart.scale.setScalar(1.25); outCart.position.set(mat.position.x + ox, groundY + MAT_T + 0.012, mat.position.z + oz);
+    outCart.rotation.y = Math.atan2(ux, uz) - 0.3; TXT.add(R, outCart); TXT.contact(R, outCart, { y: groundY + MAT_T + 0.014, opacity: 0.9 }); }
+  /* ---- THE GRASS: copper bluestem over the crest and down the fall, kept off the mat and the case ---- */
+  const wb = (pts) => { const ws = pts.map(([u, v]) => toW(u, v)); return [Math.min(...ws.map(p => p[0])), Math.min(...ws.map(p => p[1])), Math.max(...ws.map(p => p[0])), Math.max(...ws.map(p => p[1]))]; };
+  const avoid = [wb([[DP[0] - 0.75, DP[1] - 0.75], [DP[0] + 0.75, DP[1] + 0.75]]), wb([[CP[0] - 0.45, CP[1] - 0.45], [CP[0] + 0.45, CP[1] + 0.45]])];
+  drape(TXT.scatter(R, { kind: 'grass', count: 30000, area: wb([[-40, 0.8], [40, 70]]), avoid, seed: 23, scale: [0.16, 0.4], colors: [0xd9b585, 0xe8c99a, 0xc9a07a, 0xb98a72, 0x8e5a72, 0xd0a888], nearRadius: 7 }));
+  drape(TXT.scatter(R, { kind: 'grass', count: 70000, area: wb([[-300, 20], [500, 800]]), seed: 77, near: false, scale: [1.0, 1.9], colors: [0xc49a72, 0xa87a62, 0xd2ae84, 0x7a4a5a, 0x8c6a7a, 0xb08a66] }));
+
+  /* ---- THE VALLEY: oak mottes on the floor along the creek, three to six trees each ---- */
+  for (let m = 0; m < 22; m++) {
+    const r = CH.rng(700 + m), t0 = 30 + r() * 360, n0 = 95 + r() * 75, kids = 3 + Math.floor(r() * 4);
+    for (let q = 0; q < kids; q++) {
+      const p2 = fromTN(t0 + (r() - 0.5) * 22, n0 + (r() - 0.5) * 18);
+      const tr = K.make(r() < 0.7 ? 'live_oak' : 'cedar_elm', { seed: 60 + m * 7 + q, height: 7 + r() * 4, spread: 7 + r() * 5 });
+      place(tr, p2[0], p2[1], r() * 6.28, -0.2);
+    }
+  }
+  for (let m = 0; m < 12; m++) {
+    const r = CH.rng(900 + m), t0 = 40 + r() * 360, n0 = 185 + r() * 70, kids = 3 + Math.floor(r() * 3);
+    for (let q = 0; q < kids; q++) { const p2 = fromTN(t0 + (r() - 0.5) * 26, n0 + (r() - 0.5) * 16);
+      place(K.make('live_oak', { seed: 500 + m * 7 + q, height: 8 + r() * 3, spread: 9 + r() * 5 }), p2[0], p2[1], r() * 6.28, -0.2); }
+  }
+  /* a ground laid well below the terrain, never seen, so the frame stands on TXT.ground as the depth gate reads it */
+  TXT.ground(R, { surface: 'grass', size: 7000, y: -260 });
+  /* THE CREEK: water in the cut, a ribbon that carries the sky */
+  { const water = new THREE.MeshStandardMaterial({ name: 'creek-water', color: 0xa8b8ff, roughness: 0.12, metalness: 0.6, emissive: 0x6a74c8, emissiveIntensity: 0.25 }); water.userData.txSurface = false;
+    const tri = [], pos2 = [];
+    /* the water lies in the cut, one level across, a little above the channel floor and under both banks; it rises from a
+     * spring and ends in a seep on the valley floor, so it never climbs */
+    for (let t = -60; t <= 560; t += 3) { const cn = 128 + 9 * Math.sin(t / 34) + 4 * Math.sin(t / 11), c2 = fromTN(t, cn), lvl = H(c2[0], c2[1]) + 0.7;
+      const wd = 1.6 * sstep(-60, -20, t) * (1 - sstep(500, 560, t)) + 0.05;
+      [-wd, wd].forEach(o => { const p2 = fromTN(t, cn + o), w = toW(p2[0], p2[1]); pos2.push(w[0], lvl, w[1]); }); }
+    for (let i = 0; i + 3 < pos2.length / 3; i += 2) tri.push(i, i + 1, i + 2, i + 1, i + 3, i + 2);
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos2, 3)); g.setIndex(tri); g.computeVertexNormals();
+    const cm = new THREE.Mesh(g, water); cm.receiveShadow = true; cm.userData.txBevel = false; cm.material.side = THREE.DoubleSide; R.scene.add(cm); }
+
+  /* ---- THE KEY: the sun on the saddle, low ahead and right; a warm bounce off the bluestem behind the camera fills the near faces ---- */
+  const tw = toW(DP[0], DP[1]);
+  const spec = CH.rigSpec(W, 10, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.8 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([tw[0], groundY, tw[1]], { distance: 30, shadowFar: 80, normalBias: 0.008 }), { light: { az: SUN_AZ, el: KEY_EL } }));
+  CH.unacne(R, 0.008);
+  { const sp = new THREE.SpotLight(0xffc89a, 9, 9, 0.5, 0.7, 1.5); const cw2 = toW(CP[0], CP[1]); sp.position.set(cw2[0] + 1.6, groundY + 1.6, cw2[1] + 2.2); sp.target.position.set(cw2[0], groundY + 0.15, cw2[1]); sp.castShadow = false; R.scene.add(sp); R.scene.add(sp.target); }
+  { const b = new THREE.DirectionalLight(0xffc9a0, 1.5); b.position.set(tw[0] - 3, groundY + 3, tw[1] + 8); b.target.position.set(tw[0], groundY, tw[1]); b.castShadow = false; R.scene.add(b); R.scene.add(b.target); }
+  TXT.weather(R, { grime: 0.1, height: 0.12, mottle: 0.12, skip: [caseG, quad] });
+
+  const rect = CH.rectOf(THREE, R, quad, 0);
+  console.log('DRONE rect ' + rect.map(n => n.toFixed(0)).join(','), 'SUN_AZ', SUN_AZ.toFixed(1));
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.52, fade: 180 });
+  CH.seat(cx, { sel: '.dek', a: 0.5, fade: 160 });
+  ['.kick', '.count', '.src', '.tx-site'].forEach((sel) => CH.seat(cx, { sel, a: 0.35, fade: 140 }));
+  TXLOOK.footWash(cx, { a: 0.55, height: 230 });
+  TXT.sunDir = sun0;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

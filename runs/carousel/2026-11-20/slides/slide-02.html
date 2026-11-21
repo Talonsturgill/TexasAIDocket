@@ -1,0 +1,217 @@
+<!doctype html>
+<!-- 2026-11-20, frame 2 of 9. A FALSE FIX. ONE MACHINE, TWO PLACES: a survey quadcopter stands large and solid on an apricot
+     studio sweep, four rubber feet pressing plum contact shadows, while its frosted periwinkle glass twin hangs up and to the
+     left in the bright sweep, the position the false signal reports, casting no shadow at all (the deck's SHADOW RULE).
+     No arrow, alarm or tether joins them. The type stands in a column over the violet sweep, upper left. The twin hangs upper right beside it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:172px; width:560px; text-align:left">Its GPS can be told a lie</h1>
+<p class="dek" data-follow="22" style="left:82px; width:500px; font-size:25px; line-height:1.36">GPS spoofing sends false signals that can trick a receiver into reporting the wrong location. It could send a civilian drone into restricted airspace or set it down somewhere unsafe. The pale drone is where the signal says it is, drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "A false fix", counter: "02 / 09", src: "c1 c2", fit: { min: 70, max: 96, maxLines: 3 } });
+
+  /* HONESTY: this frame draws no count. The figures object is empty and must stay so. Two drones, one real, one reported. */
+
+  const R = CH.stage(TXT, gl, W, { fov: 31, near: 0.02, far: 60, fog: 0 });
+  /* the sweep's wall rises into a deeper violet, so the upper left is a quiet the cream headline can stand in */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 5.2, d: 4.4 }), { wall: 0x3a2c94, top: 0x261c6c }));
+  /* THE QUIET FOR THE TYPE IS IN THE SWEEP ITSELF: the wall's upper left is painted down into deep violet, so the cream
+   * headline stands on a dark field the studio owns, not on an overlay. The floor is untouched. */
+  {
+    let sweep = null; R.scene.traverse((m) => { if (m.isMesh && m.userData.txStudio) sweep = m; });
+    if (!sweep) throw new Error('the studio sweep was not found');
+    const pos = sweep.geometry.attributes.position, col = sweep.geometry.attributes.color, deep = new THREE.Color(0x1e1458), plum = new THREE.Color(0x3a1d5c), c = new THREE.Color();
+    const sm = (a, b, v) => { const t = Math.max(0, Math.min(1, (v - a) / (b - a))); return t * t * (3 - 2 * t); };
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+      const back = Math.max(sm(-1.3, -3.5, z), sm(0.2, 1.0, y));
+      /* the type's field at upper left, a deep top band for the kicker and counter, and the front floor falling into plum
+       * under the claim ids and the site line */
+      const k = Math.max(back * sm(1.5, -0.2, x), 0.9 * sm(1.6, 2.7, y));
+      c.setRGB(col.getX(i), col.getY(i), col.getZ(i)).lerp(deep, 0.95 * k);
+      if (y < 0.05) c.lerp(plum, 0.55 * sm(0.9, 2.3, z));
+      col.setXYZ(i, c.r, c.g, c.b);
+    }
+    col.needsUpdate = true;
+    /* A POURED RESIN SWEEP, not a gradient: a seeded grain and mottle in its albedo and roughness, mapped by world position
+     * along the sweep's profile, sized so a texel lands at a few pixels on the far wall and reads as tooth at the floor */
+    const uv = new Float32Array(pos.count * 2);
+    for (let i = 0; i < pos.count; i++) { uv[2 * i] = pos.getX(i) / 2.2; uv[2 * i + 1] = (pos.getY(i) - pos.getZ(i)) / 2.2; }
+    sweep.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    const rnd = CH.rng(20261120 + 2), N = 1024;
+    const grid = (n) => { const a = new Float32Array(n * n); for (let i = 0; i < a.length; i++) a[i] = rnd() * 2 - 1; return a; };
+    const g8 = grid(128), g32 = grid(32), g2 = grid(512);
+    /* poured resin: a fine isotropic tooth two texels across, so the surface reads as grain with no direction */
+    const raw = Array.from({ length: N }, () => rnd() * 2 - 1), rows = raw.map((v, i) => 0.5 * v + 0.25 * raw[(i + 1) % N] + 0.25 * raw[(i + N - 1) % N]);
+    const vn = (g, n, x, y) => { const fx = x * n / N, fy = y * n / N, x0 = Math.floor(fx), y0 = Math.floor(fy), tx = fx - x0, ty = fy - y0;
+      const at = (i, j) => g[((j % n) + n) % n * n + ((i % n) + n) % n]; const sx = tx * tx * (3 - 2 * tx), sy = ty * ty * (3 - 2 * ty);
+      return (at(x0, y0) * (1 - sx) + at(x0 + 1, y0) * sx) * (1 - sy) + (at(x0, y0 + 1) * (1 - sx) + at(x0 + 1, y0 + 1) * sx) * sy; };
+    const alb = document.createElement('canvas'), rgh = document.createElement('canvas'); alb.width = alb.height = rgh.width = rgh.height = N;
+    const ia = alb.getContext('2d').createImageData(N, N), ir = rgh.getContext('2d').createImageData(N, N);
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+      const v = 0.07 * (rnd() * 2 - 1) * 0.9 + 0.13 * vn(g2, 512, x, y) * (0.65 + 0.35 * vn(g32, 32, x, y)) + 0.035 * vn(g8, 128, x, y);
+      const a = Math.max(0, Math.min(255, Math.round(255 * (0.9 + v)))), j = 4 * (y * N + x);
+      ia.data[j] = ia.data[j + 1] = ia.data[j + 2] = a; ia.data[j + 3] = 255;
+      const r = Math.max(0, Math.min(255, Math.round(255 * (0.82 - 1.2 * v)))); ir.data[j] = ir.data[j + 1] = ir.data[j + 2] = r; ir.data[j + 3] = 255;
+    }
+    alb.getContext('2d').putImageData(ia, 0, 0); rgh.getContext('2d').putImageData(ir, 0, 0);
+    const tA = new THREE.CanvasTexture(alb), tR = new THREE.CanvasTexture(rgh);
+    [tA, tR].forEach((t) => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; });
+    tA.colorSpace = THREE.SRGBColorSpace;
+    sweep.material.map = tA; sweep.material.roughnessMap = tR; sweep.material.roughness = 1; sweep.material.name = 'resin-sweep';
+    sweep.material.needsUpdate = true;
+  }
+
+  /* REFINING THE CHASSIS QUAD INSIDE THIS FRAME (the chassis file is untouched): cambered tapered blades, tapered
+   * carbon legs, moulded rubber foot caps in place of the plain slab blades, plain rods and ball feet */
+  const rubber = K.mat('foot-rubber', { color: 0x2a2230, roughness: 0.88, metalness: 0 }, true);
+  rubber.userData.txSurface = 'rubber';
+  const bladeGeo = (() => {
+    const sh = new THREE.Shape(), L = 0.18, root = 0.026, tip = 0.016;
+    sh.moveTo(0, -root / 2); sh.bezierCurveTo(L * 0.45, -root * 0.62, L * 0.85, -tip * 0.55, L - 0.006, -tip * 0.35);
+    sh.quadraticCurveTo(L + 0.002, 0, L - 0.006, tip * 0.45);
+    sh.bezierCurveTo(L * 0.8, tip * 0.75, L * 0.4, root * 0.7, 0, root / 2); sh.lineTo(0, -root / 2);
+    const g = new THREE.ExtrudeGeometry(sh, { depth: 0.0026, bevelEnabled: true, bevelThickness: 0.0007, bevelSize: 0.0007, bevelSegments: 2, curveSegments: 18, steps: 1 });
+    g.rotateX(-Math.PI / 2);            /* chord lies along z, thickness along y */
+    const pos = g.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i), z = pos.getZ(i), t = x / L, ch = root + (tip - root) * t;
+      const camber = 0.0035 * Math.cos(Math.PI * Math.max(-0.5, Math.min(0.5, z / ch)));   /* arched section */
+      const twist = (0.32 - 0.22 * t) * z;                                                     /* washout to the tip */
+      pos.setY(i, pos.getY(i) + camber + twist);
+    }
+    g.translate(-L / 2, 0, 0); g.computeVertexNormals(); return g;
+  })();
+  const refine = (q) => {
+    q.updateMatrixWorld(true);
+    const blades = [], legs = [], feetS = [];
+    q.traverse((m) => {
+      if (!m.isMesh) return;
+      const gp = m.geometry.parameters || {};
+      if (m.geometry.type === 'SphereGeometry' && Math.abs(gp.radius - 0.013) < 1e-6) { feetS.push(m); return; }
+      if (m.geometry.type === 'CylinderGeometry' && Math.abs(gp.radiusTop - 0.008) < 1e-6 && Math.abs(gp.radiusBottom - 0.008) < 1e-6 && gp.height > 0.05) { legs.push(m); return; }
+      m.geometry.computeBoundingBox(); const bb = m.geometry.boundingBox, sz = new THREE.Vector3(); bb.getSize(sz);
+      if (Math.abs(sz.x - 0.18) < 0.004 && sz.y < 0.006 && Math.abs(sz.z - 0.028) < 0.004) blades.push(m);
+    });
+    if (blades.length !== 8) throw new Error('the quad should carry 8 blades, found ' + blades.length);
+    if (legs.length !== 4 || feetS.length !== 4) throw new Error('the quad should stand on 4 legs and 4 feet, found ' + legs.length + ' and ' + feetS.length);
+    blades.forEach((m) => { m.geometry = bladeGeo; });
+    legs.forEach((m) => { const len = m.geometry.parameters.height; m.geometry = new THREE.CylinderGeometry(0.0042, 0.0125, len, 18); });
+    const capGeo = new THREE.LatheGeometry([[0, -0.013], [0.012, -0.013], [0.0165, -0.011], [0.018, -0.006], [0.016, 0.0], [0.011, 0.006], [0.0065, 0.009], [0, 0.009]].map((p) => new THREE.Vector2(p[0], p[1])), 28);
+    /* rubber skids: a short flattened capsule pad under each leg, laid along the leg's outward line, its sole on the floor */
+    const skidGeo = new THREE.CapsuleGeometry(0.009, 0.034, 6, 16);
+    feetS.forEach((f) => {
+      const c = new THREE.Group(); c.position.set(f.position.x, f.position.y - 0.012, f.position.z);
+      const pad = new THREE.Mesh(skidGeo, rubber); pad.rotation.z = Math.PI / 2; pad.scale.set(0.72, 1, 1); pad.position.y = 0.0066;
+      c.rotation.y = -Math.atan2(f.position.z, f.position.x); c.add(pad); f.parent.add(c); f.visible = false; c.userData.foot = true;
+    });
+    /* the two round nose windows read as eyes on the white shell: a vent grille and a seam line instead */
+    const ventM = K.mat('q-vent', { color: 0x1c1a26, roughness: 0.6, metalness: 0.2 }, true);
+    const wins = []; q.traverse((m) => { if (m.isMesh && m.geometry.type === 'CircleGeometry' && Math.abs((m.geometry.parameters || {}).radius - 0.012) < 1e-6) wins.push(m); });
+    if (wins.length !== 2) console.warn('expected 2 nose windows, found ' + wins.length);
+    wins.forEach((w) => { w.visible = false; for (let v = 0; v < 4; v++) { const sl = TXT.roundedBox(0.034, 0.0028, 0.003, 0.0012, ventM); sl.position.set(w.position.x, 0.064 + v * 0.0062, 0.1102); w.parent.add(sl); } });
+    if (wins.length) { const seam = TXT.roundedBox(0.25, 0.0022, 0.003, 0.001, ventM); seam.position.set(0, 0.0905, 0.1062); wins[0].parent.add(seam); }
+    return q;
+  };
+
+  /* THE REAL DRONE: on its feet, solid, every part casting a shadow */
+  const real = refine(K.make('survey_quad', { props: 'still', shell: 0xc8ccd8, lift: 0, lamp: 0xffffff }));
+  real.position.set(0.0, 0, 0.0); real.rotation.y = -0.62;
+  TXT.add(R, real);
+  real.traverse((m) => { if (m.isMesh && !m.visible) m.castShadow = false; });
+  /* CONTACT where it touches: a plum pressed shadow under each rubber foot cap, a soft plum occlusion under the body */
+  real.updateMatrixWorld(true);
+  const caps = []; real.traverse((m) => { if (m.userData.foot) caps.push(m); });
+  if (caps.length !== 4) throw new Error('the real drone should stand on 4 foot caps, found ' + caps.length);
+  const blob = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.45, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })();
+  const shade = (x, z, r, a, col) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(r * 2, r * 2), new THREE.MeshBasicMaterial({ map: blob, color: col, transparent: true, opacity: a, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+    m.material.userData.txSurface = false; m.userData.txBevel = false; m.rotation.x = -Math.PI / 2; m.position.set(x, 0.003, z); m.renderOrder = 1; R.scene.add(m); return m; };
+  caps.forEach((f) => { const w = new THREE.Vector3(); f.getWorldPosition(w); shade(w.x, w.z, 0.05, 0.85, 0x3a1838); });
+  shade(0, -0.02, 0.32, 0.36, 0x4a2a68);
+
+  /* THE REPORTED DRONE: the same aircraft in frosted periwinkle glass, up and to the right, nearer the real one, pitched
+   * and yawed about 25 degrees so its top, arms and blades read at three quarter. No mesh of it casts a shadow. */
+  const ghost = refine(K.make('survey_quad', { ghost: true, props: 'still', lift: 0 }));
+  const DEG = Math.PI / 180;
+  ghost.rotation.set(24 * DEG, -0.62 + 25 * DEG, -10 * DEG, 'YXZ');
+  const gm = new THREE.MeshPhysicalMaterial({ name: 'ghost-frosted-glass', color: 0xc9d2ff, metalness: 0, roughness: 0.16, transmission: 0.82,
+    thickness: 0.06, ior: 1.45, attenuationColor: new THREE.Color(0x8c9dff), attenuationDistance: 0.12, transparent: true, opacity: 0.58,
+    clearcoat: 1, clearcoatRoughness: 0.08, emissive: CH.GHOST, emissiveIntensity: 0.05, specularIntensity: 1, envMapIntensity: 1.3 });
+  gm.userData.txSurface = 'glass';
+  /* a bright Fresnel rim on every glass part, so the frost has an edge against the sweep */
+  const rimMat = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    uniforms: { uCol: { value: new THREE.Color(0xb9c6ff) } },
+    vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix * vec4(position,1.0); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'uniform vec3 uCol; varying vec3 vN; varying vec3 vV; void main(){ float f = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.4); gl_FragColor = vec4(uCol * f * 1.6, f); }' });
+  rimMat.userData.txSurface = false;
+  const glassParts = []; ghost.traverse((m) => { if (m.isMesh && m.visible) glassParts.push(m); });
+  const unshadow = () => ghost.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = false; } });
+  glassParts.forEach((m) => { m.material = gm; const r = new THREE.Mesh(m.geometry, rimMat); r.userData.txBevel = false; r.renderOrder = 3; m.add(r); });
+  TXT.add(R, ghost); unshadow();
+  let shadowed = 0; ghost.traverse((m) => { if (m.isMesh && m.castShadow) shadowed++; });
+  if (shadowed) throw new Error('THE SHADOW RULE: the reported drone casts a shadow from ' + shadowed + ' meshes');
+  let realLit = 0; real.traverse((m) => { if (m.isMesh && m.castShadow) realLit++; });
+  if (!realLit) throw new Error('the real drone must cast a shadow');
+
+  /* CAMERA: CLOSE, low three quarter, 0.6 m above the floor */
+  const AIMED = CH.aim(THREE, R, TXT, [0.3, 0.6, 1.75], [0.0, 0.14, 0.0], 470, 1010, 31);
+  TXT.frame(R, { fov: 31, from: [0.3, 0.6, 1.75], look: AIMED });
+
+  /* PLACE THE TWIN ON THE CAMERA RAY through its seat on screen (upper right, beside the type), at a depth just behind
+   * the real drone, so it hangs in the air with nothing under it */
+  const GSEAT = [790, 500], GZ = -3.0;
+  R.camera.updateMatrixWorld(true);
+  const ndc = new THREE.Vector3(GSEAT[0] / 1080 * 2 - 1, 1 - GSEAT[1] / 1350 * 2, 0.5).unproject(R.camera);
+  const dir = ndc.sub(R.camera.position).normalize(), tRay = (GZ - R.camera.position.z) / dir.z;
+  const P = R.camera.position.clone().add(dir.multiplyScalar(tRay));
+  ghost.position.set(P.x, P.y - 0.20, P.z);           /* the body centre sits about 0.20 m above the group origin */
+  ghost.position.y = Math.max(ghost.position.y, 0.3);   /* clear of the floor whatever the solve gives */
+
+  /* KEY: apricot from front left, low enough to throw the real drone's long plum shadow back and right, toward the bare
+   * floor under the glass twin, where nothing falls */
+  TXT.deckRig(R, CH.rigSpec(W, 3.4, 2048), Object.assign(CH.rigOpts([0.3, 0, -0.4], { distance: 30, shadowFar: 80 }), { light: { az: -42, el: 36 } }));
+  CH.unacne(R, 0.01);
+  R.scene.add(new THREE.HemisphereLight(0x8f86ff, 0x6a4fb0, 1.5));
+
+  const rr = CH.rectOf(THREE, R, real, 0), gr = CH.rectOf(THREE, R, ghost, 0);
+  console.log('real rect', JSON.stringify(rr.map(Math.round)), 'ghost rect', JSON.stringify(gr.map(Math.round)));
+  if (rr[2] < 600) throw new Error('the real drone must span at least 600 px, spans ' + Math.round(rr[2]));
+  if (gr[0] < 64 || gr[0] + gr[2] > 1080 - 64 || gr[1] < 64) console.warn('the glass twin must sit fully inside the frame, rect ' + JSON.stringify(gr.map(Math.round)));
+
+  unshadow();
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  ghost.traverse((m) => { if (m.isMesh && m.castShadow) throw new Error('THE SHADOW RULE: a ghost mesh cast a shadow at snapshot'); });
+  CH.seat(cx, { a: 0.25, fade: 240 });
+  /* soft seats under the furniture, each its own small tint with a wide fade, never an edge */
+  CH.seat(cx, { sel: '.kick', a: 0.3, fade: 120 });
+  CH.seat(cx, { sel: '.count', a: 0.42, fade: 120 });
+  CH.seat(cx, { sel: '.src', a: 0.5, fade: 130 });
+  CH.seat(cx, { sel: '.tx-site', a: 0.5, fade: 130 });
+  TXLOOK.footWash(cx, { a: 0.6, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body></html>

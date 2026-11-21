@@ -1,0 +1,126 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3193,
+        0.8992,
+        0.9926
+      ],
+      "band_ratio": 1.3259
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.7899,
+        0.895,
+        0.8548
+      ],
+      "band_ratio": 1.0093
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4181,
+        0.8992,
+        0.9081
+      ],
+      "band_ratio": 1.2119
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.2773,
+        0.5462,
+        0.7298
+      ],
+      "band_ratio": 1.3837
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "worst-point contrast 4.5 on 'texasaidocket.com' (box mean 5.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: 'which way' at 52,644 240x58 (margin 80px)"
+      ],
+      "bands": [
+        0.4391,
+        0.4601,
+        0.6103
+      ],
+      "band_ratio": 1.2013
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3277,
+        0.8761,
+        0.9154
+      ],
+      "band_ratio": 1.2787
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2626,
+        0.6765,
+        0.4871
+      ],
+      "band_ratio": 1.0235
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2857,
+        0.4013,
+        0.3033
+      ],
+      "band_ratio": 0.9223
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2689,
+        0.7353,
+        0.8493
+      ],
+      "band_ratio": 1.3516
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN"
+}

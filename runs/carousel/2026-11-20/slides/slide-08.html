@@ -1,0 +1,229 @@
+<!doctype html>
+<!-- 2026-11-20, frame 8 of 9, TEN READINGS. A dark plum ribbon of motion readings carries turned nickel studs on an
+     apricot to periwinkle sweep. A clear glass bar magnifier in an amber rim stands in front of it and frames exactly
+     FIG.readings studs at one height, the label on its lower rim. The type sits centred high. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:170px; width:936px; text-align:center">Ten readings, one score</h1>
+<p class="dek" data-follow="22" style="left:90px; width:900px; font-size:28px; line-height:1.36; text-align:center">Given 10 consecutive readings, a model called Chronos scored 97.5% on a measure that balances how many abnormal stretches it catches against how often its alerts are right. That is not a share of attacks caught. The best models had already learned to read numbers over time.</p>
+<div class="lab" id="l-score" style="font-size:24px; padding:6px 18px 7px; background:linear-gradient(180deg,#fff6ec,#ffe2c8); color:#3b1f5e;">one score on one measure, not accuracy</div>
+
+<script>window.FIG = {"readings": 10, "score_pct": 97.5};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Ten readings", counter: "08 / 09", src: "c11 c10 c24", fit: { min: 66, max: 92, maxLines: 1 } });
+
+  /* THE TYPE: centred high, over the periwinkle wall of the sweep, the art below it */
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek'), lab = document.getElementById('l-score');
+  CH.follow();
+  const TYPE_END = dek.getBoundingClientRect().bottom;
+  if (hook.getBoundingClientRect().top < 150 || TYPE_END > 560) throw new Error('the type block leaves its band');
+  if (hook.getBoundingClientRect().left < 64) throw new Error('the type block leaves the safe field');
+
+  /* FIGURES */
+  const NREAD = FIG.readings, SCORE = FIG.score_pct / 100;
+  if (!(NREAD > 0) || !(SCORE > 0 && SCORE <= 1)) throw new Error('figures out of range');
+
+  /* UNITS: metres, so the surface pass sizes its relief truly. The sweep's floor is y = 0. */
+  const P = 0.013;                                 // pin pitch along the ribbon
+  const RIB_W = 0.024, RIB_T = 0.0045, RIB_C = 0.0014, RIB_X0 = -0.40, RIB_X1 = 0.46;
+  const NPIN = Math.floor((RIB_X1 - RIB_X0) / P);
+  const rnd = CH.rng(20261120);
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.004, far: 30, fog: 0 });
+  /* THE SWEEP: a seamless apricot floor curving up into a periwinkle wall, no accent strip so no stray amber reflects */
+  TXT.studio(R, { tone: 'people', w: 2.4, d: 1.4, h: 1.4, radius: 0.42, floor: 0xa85c7e, wall: 0x4a62bc, env: 0.62, hemi: 0.34, accentStrip: 0, softbox: 4 });
+
+  /* MATERIALS */
+  const tex = (w, h, paint, rep) => CH.canvasTex(THREE, w, h, paint, rep);
+  const brushed = tex(1024, 128, (g, w, h) => { g.fillStyle = '#c4c7cf'; g.fillRect(0, 0, w, h); for (let i = 0; i < 1400; i++) { const v = 150 + (rnd() * 90) | 0; g.fillStyle = 'rgba(' + v + ',' + v + ',' + (v + 6) + ',' + (0.12 + rnd() * 0.25).toFixed(2) + ')'; g.fillRect(rnd() * w * 0.2, rnd() * h, w * (0.3 + rnd() * 0.7), 0.7 + rnd() * 0.8); } }, [6, 1]);
+  const mNickel = new THREE.MeshPhysicalMaterial({ color: 0xe6e2da, map: brushed, metalness: 0.9, roughness: 0.32, envMapIntensity: 0.4 });
+  mNickel.name = 'machined-nickel-bar'; mNickel.userData.txSurface = 'brushed';
+  const mPin = new THREE.MeshPhysicalMaterial({ color: 0xdfe4ee, metalness: 1, roughness: 0.14 });
+  mPin.name = 'turned-polished-nickel-pin'; mPin.userData.txSurface = 'brushed';
+  const knurl = tex(256, 64, (g, w, h) => {
+    g.fillStyle = '#d8dce8'; g.fillRect(0, 0, w, h); g.strokeStyle = '#3a3050'; g.lineWidth = 2.2;
+    for (let i = -16; i < 40; i++) { g.beginPath(); g.moveTo(i * 8, 0); g.lineTo(i * 8 + h, h); g.stroke(); g.beginPath(); g.moveTo(i * 8 + h, 0); g.lineTo(i * 8, h); g.stroke(); }
+  }, [3, 1]);
+  const mKnurl = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: knurl, bumpMap: knurl, bumpScale: 0.6, metalness: 1, roughness: 0.38 });
+  mKnurl.name = 'knurled-nickel-collar'; mKnurl.userData.txSurface = false;
+  const mGroove = new THREE.MeshStandardMaterial({ color: 0x2c1f4a, metalness: 0.4, roughness: 0.7 }); mGroove.userData.txSurface = false;
+  const mGlass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.0, transmission: 1, ior: 1.52, thickness: 0.012,
+    transparent: true, specularIntensity: 1, clearcoat: 1, clearcoatRoughness: 0, envMapIntensity: 0.5, attenuationColor: new THREE.Color(0xd8e8ff), attenuationDistance: 0.45 });
+  mGlass.name = 'optical-glass-block';
+  const mAmber = new THREE.MeshPhysicalMaterial({ color: CH.ACCENT, metalness: 0.6, roughness: 0.26, clearcoat: 0.8, clearcoatRoughness: 0.12, emissive: CH.ACCENT, emissiveIntensity: 0.1 });
+  mAmber.name = 'amber-anodized-alu-rim';
+  const mPlum = new THREE.MeshPhysicalMaterial({ color: 0x6a4aa8, metalness: 0.7, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.2 });
+  mPlum.name = 'plum-anodized-alu-milled';
+  const mRail = new THREE.MeshPhysicalMaterial({ color: 0x9a8ad6, map: brushed, metalness: 0.6, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.2, envMapIntensity: 0.6 });
+  mRail.name = 'violet-anodized-alu-channel'; mRail.userData.txSurface = 'brushed';
+  const mBlock = new THREE.MeshPhysicalMaterial({ color: 0x5a3a9a, metalness: 0.7, roughness: 0.28, clearcoat: 0.6, clearcoatRoughness: 0.18 }); mBlock.name = 'plum-anodized-alu-block';
+  const mBar = new THREE.MeshPhysicalMaterial({ color: 0xe0103f, metalness: 0.05, roughness: 0.16, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 0.6 }); mBar.name = 'rose-enamel-paint';
+  const mStub = new THREE.MeshPhysicalMaterial({ color: 0x12081f, metalness: 0.4, roughness: 0.5, envMapIntensity: 0.3 }); mStub.name = 'dark-plum-anodized-alu';
+  const mSocket = new THREE.MeshStandardMaterial({ color: 0x1e1838, roughness: 0.6, metalness: 0.5 }); mSocket.userData.txSurface = false;
+
+  const add = (mesh, parent, shadow = true) => { mesh.castShadow = shadow; mesh.receiveShadow = true; (parent || R.scene).add(mesh); return mesh; };
+  const rbox = (w, h, d, r, mat) => TXT.roundedBox(w, h, d, r, mat);
+  /* a profile in (z, y) extruded along +x from x = 0 to x = L */
+  const extrudeX = (pts, L, mat) => {
+    const sh = new THREE.Shape(); sh.moveTo(pts[0][0], pts[0][1]); pts.slice(1).forEach((p) => sh.lineTo(p[0], p[1])); sh.closePath();
+    const g = new THREE.ExtrudeGeometry(sh, { depth: L, bevelEnabled: false, steps: 1 }); g.rotateY(-Math.PI / 2); g.translate(L, 0, 0);
+    const m = new THREE.Mesh(g, mat); m.userData.txBevel = false; return m;
+  };
+
+  /* THE RIBBON OF READINGS: a dark plum anodized bar with chamfered top edges and bright engraved ticks */
+  const mRib = new THREE.MeshPhysicalMaterial({ color: 0x5a4878, map: brushed, metalness: 0.8, roughness: 0.34, clearcoat: 0.4, clearcoatRoughness: 0.25, envMapIntensity: 0.6 });
+  mRib.name = 'dark-plum-anodized-alu-ribbon'; mRib.userData.txSurface = 'brushed';
+  const mTick = new THREE.MeshStandardMaterial({ color: 0xf0e2c8, metalness: 0.3, roughness: 0.5 }); mTick.userData.txSurface = false;
+  const ribbon = add(extrudeX([[-RIB_W / 2, 0], [RIB_W / 2, 0], [RIB_W / 2, RIB_T - RIB_C], [RIB_W / 2 - RIB_C, RIB_T], [-RIB_W / 2 + RIB_C, RIB_T], [-RIB_W / 2, RIB_T - RIB_C]], RIB_X1 - RIB_X0, mRib));
+  ribbon.position.x = RIB_X0;
+  const pinX = []; for (let i = 0; i < NPIN; i++) pinX.push(RIB_X0 + (i + 0.5) * P);
+  /* THE WINDOW: exactly FIG.readings consecutive studs, near the middle of the ribbon */
+  let K0 = 0, bestD = 1e9; for (let i = 0; i + NREAD <= NPIN; i++) { const c = (pinX[i] + pinX[i + NREAD - 1]) / 2; const d = Math.abs(c - 0.03); if (d < bestD) { bestD = d; K0 = i; } }
+  const WX0 = pinX[K0] - P / 2, WX1 = pinX[K0 + NREAD - 1] + P / 2;
+  const inWin = pinX.filter((x) => x > WX0 && x < WX1).length;
+  if (inWin !== NREAD) throw new Error('the loupe covers ' + inWin + ' pins, the figure says ' + NREAD);
+  const LX = (WX0 + WX1) / 2;
+  /* an illustrative reading over time, never data: tall studs, the ones outside the window shorter and in aged brass */
+  /* the readings are illustrative, so the ten inside the window stand at ONE height and never read as a chart */
+  const STUD_IN = 0.040, STUD_OUT = 0.022;
+  const pinH = pinX.map((x, i) => (i >= K0 && i < K0 + NREAD) ? STUD_IN : STUD_OUT);
+  const gTickL = new THREE.BoxGeometry(0.0006, 0.0003, 0.0046), gTickS = new THREE.BoxGeometry(0.0005, 0.0003, 0.0024);
+  for (let i = 0; i <= NPIN; i++) for (const s of [-1, 1]) {
+    const big = new THREE.Mesh(gTickL, mTick); big.position.set(RIB_X0 + i * P, RIB_T - 0.0001, s * (RIB_W / 2 - RIB_C - 0.0032)); big.userData.txBevel = false; R.scene.add(big);
+    if (i < NPIN) { const sm = new THREE.Mesh(gTickS, mTick); sm.position.set(RIB_X0 + (i + 0.5) * P + (s > 0 ? 0.0034 : -0.0034), RIB_T - 0.0001, s * (RIB_W / 2 - RIB_C - 0.002)); sm.userData.txBevel = false; R.scene.add(sm); }
+  }
+  const mBrassIn = new THREE.MeshPhysicalMaterial({ color: 0xc6d2ff, metalness: 1, roughness: 0.22, envMapIntensity: 0.7 }); mBrassIn.name = 'turned-polished-nickel-stud'; mBrassIn.userData.txSurface = 'brushed';
+  const mBrassOut = new THREE.MeshPhysicalMaterial({ color: 0x4a4458, metalness: 0.9, roughness: 0.48, envMapIntensity: 0.35 }); mBrassOut.name = 'dark-blued-steel-stud'; mBrassOut.userData.txSurface = 'cast';
+  const mKnurlIn = mKnurl.clone(); mKnurlIn.color = new THREE.Color(0xbcc8f0); const mKnurlOut = mKnurl.clone(); mKnurlOut.color = new THREE.Color(0x3e3a4c);
+  mKnurlIn.userData.txSurface = false; mKnurlOut.userData.txSurface = false;
+  const PR = 0.0021, COL_H = 0.003, COL_R = 0.0035;
+  const pinGeo = (h) => {
+    const r = PR, pts = [[0, 0], [r * 2.0, 0], [r * 2.0, 0.0007], [r * 1.5, 0.0011], [r * 1.05, COL_H + 0.0011], [r, COL_H + 0.0016], [r, h - r * 1.0], [r * 0.9, h - r * 0.45], [r * 0.6, h - r * 0.12], [0, h]];
+    return new THREE.LatheGeometry(pts.map((p) => new THREE.Vector2(p[0], p[1])), 32);
+  };
+  const gCollar = new THREE.CylinderGeometry(COL_R, COL_R, COL_H, 40, 1, false);
+  pinX.forEach((x, i) => {
+    const inside = i >= K0 && i < K0 + NREAD;
+    const m = add(new THREE.Mesh(pinGeo(pinH[i]), mBrassIn)); m.position.set(x, RIB_T, 0); m.userData.txBevel = false;
+    const c = add(new THREE.Mesh(gCollar, mKnurlIn)); c.position.set(x, RIB_T + 0.0009 + COL_H / 2, 0); c.userData.txBevel = false;
+  });
+  const maxH = Math.max(...pinH.slice(K0, K0 + NREAD));
+
+  /* THE CAMERA: a slightly raised three quarter, the studs under the type, the rail toward the lens */
+  const ZP = RIB_W / 2 + 0.009;                     // the glass bridge stands just in front of the ribbon
+  const LC = [LX, RIB_T + maxH * 0.55, ZP * 0.5];
+  const FROM = [LX - 0.045, 0.105, 0.385];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, LC, 540, Math.round(TYPE_END + 345), 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+
+  /* THE LOUPE: a thin clear glass bridge in an amber rim, standing on two plum feet in front of the ribbon. Its inner edges
+   * are placed where the camera's rays to the window's boundaries cross its plane, so the frame you look through holds
+   * exactly the FIG.readings studs on screen. */
+  const cam = R.camera.position;
+  const yMid = RIB_T + maxH * 0.5;
+  const onPlane = (x) => { const t = (ZP - cam.z) / (0 - cam.z); return cam.x + (x - cam.x) * t; };
+  const xL = onPlane(WX0), xR = onPlane(WX1), IW = xR - xL;
+  const FRW = 0.0026, FRD = 0.0068, GT = 0.005, Y0 = 0.0075, SAG = 0.0055;
+  const PH = RIB_T + maxH + 0.009 - Y0;           // the pane's clear height, above the tallest stud
+  const loupe = new THREE.Group(); TXT.add(R, loupe);
+  /* the glass: flat at the back, a convex front like a bar magnifier, so the studs behind it stretch and shift */
+  { const prof = [[-GT / 2, 0], [-GT / 2, PH]]; for (let k = 0; k <= 28; k++) { const y = PH * (1 - k / 28), u = (y - PH / 2) / (PH / 2); prof.push([GT / 2 + SAG * (1 - u * u), y]); }
+    const lens = extrudeX(prof, IW + FRW, mGlass); lens.castShadow = false; lens.receiveShadow = true; lens.position.set(xL - FRW / 2, Y0, ZP); loupe.add(lens); }
+  /* the bright bevel glints the key strikes along the lens's crown and its inner edges */
+  { const gm = new THREE.MeshBasicMaterial({ color: 0xfff4e4, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false }); gm.userData.txSurface = false;
+    [xL + 0.0012, xR - 0.0012].forEach((x) => { const v = new THREE.Mesh(new THREE.BoxGeometry(0.0005, PH * 0.9, 0.0005), gm); v.position.set(x, Y0 + PH / 2, ZP + GT / 2 + 0.0003); v.userData.txBevel = false; loupe.add(v); });
+    const top = new THREE.Mesh(new THREE.BoxGeometry(IW * 0.96, 0.0005, 0.0005), gm); top.position.set((xL + xR) / 2, Y0 + PH - 0.0009, ZP + GT / 2 + 0.0004); top.userData.txBevel = false; loupe.add(top); }
+  [[xL - FRW / 2], [xR + FRW / 2]].forEach(([x]) => {
+    add(rbox(FRW, PH + 2 * FRW, FRD, FRW * 0.4, mAmber), loupe).position.set(x, Y0 + PH / 2, ZP);
+    add(rbox(0.009, Y0 - FRW / 2, 0.018, 0.0012, mPlum), loupe).position.set(x, (Y0 - FRW / 2) / 2, ZP);
+  });
+  [Y0 - FRW / 2, Y0 + PH + FRW / 2].forEach((y) => add(rbox(IW + 2 * FRW, FRW, FRD, FRW * 0.4, mAmber), loupe).position.set((xL + xR) / 2, y, ZP));
+  /* HONEST, at this camera: the ten inside studs sit inside the rim's inner edges on screen, the neighbours outside it */
+  { const px = (x, y, z) => CH.project(THREE, R, [x, y, z])[0];
+    [RIB_T + 0.004, yMid, RIB_T + pinH[K0] * 0.95].forEach((y) => {
+      const eL = px(xL, y, ZP), eR = px(xR, y, ZP), eLo = px(xL - FRW, y, ZP), eRo = px(xR + FRW, y, ZP);
+      let n = 0; pinX.forEach((x, i) => { const q = px(x, y, 0); if (q > eL + 3 && q < eR - 3) n++; if ((i === K0 - 1 && q > eLo - 3) || (i === K0 + NREAD && q < eRo + 3)) throw new Error('stud ' + i + ' is not clear outside the rim on screen'); });
+      if (n !== NREAD) throw new Error('the rim frames ' + n + ' studs on screen, the figure says ' + NREAD);
+    }); }
+  /* THE LIGHT: an apricot key from the front left, high enough that every part casts a plum shadow on the sweep */
+  CH.KEY_SCALE = 1.0;
+  const spec = CH.rigSpec(W, 0.9, 4096); spec.key = Object.assign({}, spec.key, { color: 0xffca8c });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([LX, 0, 0.08], { distance: 4, shadowFar: 10, normalBias: 0.0004 }), { light: { az: -56, el: 17 } }));
+  CH.unacne(R, 0.0004);
+  R.scene.traverse((l) => { if (l.isDirectionalLight && l.castShadow) { l.shadow.bias = -0.00002; l.shadow.radius = 2; } });
+
+  /* the score pill sits on the loupe's lower rim, the frame's one label */
+  { const e = CH.project(THREE, R, [(xL + xR) / 2, Y0 - FRW / 2, ZP + FRD / 2]); const lr = lab.getBoundingClientRect();
+    lab.style.left = Math.round(Math.max(72, Math.min(1080 - 72 - lr.width, e[0] - lr.width / 2))) + 'px'; lab.style.top = Math.round(e[1] - 10) + 'px';
+    if (e[1] - 10 + lr.height > 1190) throw new Error('the pill runs into the footer'); }
+
+  /* HONEST: the ribbon spans the frame, the loupe is big enough to read */
+  { const a = CH.project(THREE, R, [RIB_X0, 0, 0]), b = CH.project(THREE, R, [RIB_X1, 0, 0]); if (Math.min(b[0], 1080) - Math.max(a[0], 0) < 900) throw new Error('the ribbon spans under 900 px'); }
+  { const q = CH.rectOf(THREE, R, loupe, 0); if (q[0] < 12 || q[0] + q[2] > 1068) throw new Error('the loupe is cropped: ' + q.map(Math.round)); if (q[2] < 300) throw new Error('the loupe draws ' + Math.round(q[2]) + ' px wide, under 300'); }
+
+  const shot = await TXT.snapshot(R, { stage: false });
+  if (!shot || !shot.ok) throw new Error('the GPU frame came back black');
+  const GW = gl.width, GH = gl.height;
+  const beauty = document.createElement('canvas'); beauty.width = GW; beauty.height = GH; beauty.getContext('2d').drawImage(gl, 0, 0);
+
+  /* THE LENS: a depth pass focused on the loupe; the sky and the far plate soften, the rail stays nearly sharp */
+  const F = R.camera.position.distanceTo(new THREE.Vector3(LC[0], LC[1], LC[2]));
+  const dof = new THREE.ShaderMaterial({ side: THREE.DoubleSide, toneMapped: false, fog: false,
+    uniforms: { uF: { value: F }, uKb: { value: 0.45 }, uKf: { value: 0.22 } },
+    vertexShader: 'varying float vD; void main(){ vec4 p = vec4(position,1.0);\n#ifdef USE_INSTANCING\np = instanceMatrix * p;\n#endif\nvec4 mv = modelViewMatrix * p; vD = -mv.z; gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'uniform float uF,uKb,uKf; varying float vD; void main(){ float c = vD > uF ? (vD-uF)/uF*uKb : (uF-vD)/uF*uKf; c = clamp(c, 0.0, 1.0); gl_FragColor = vec4(vec3(c), 1.0); }' });
+  const keep = { bg: R.scene.background, fog: R.scene.fog, tm: R.renderer.toneMapping };
+  R.scene.background = new THREE.Color(0xffffff); R.scene.fog = null; R.scene.overrideMaterial = dof; R.renderer.toneMapping = THREE.NoToneMapping;
+  R.renderer.render(R.scene, R.camera);
+  const depth = document.createElement('canvas'); depth.width = GW; depth.height = GH; depth.getContext('2d').drawImage(gl, 0, 0);
+  R.scene.background = keep.bg; R.scene.fog = keep.fog; R.scene.overrideMaterial = null; R.renderer.toneMapping = keep.tm;
+  const RADII = [0, 5, 12, 24, 40];
+  const levels = RADII.map((r) => {
+    if (!r) return beauty.getContext('2d').getImageData(0, 0, GW, GH).data;
+    const pd = 3 * r, src = document.createElement('canvas'); src.width = GW + 2 * pd; src.height = GH + 2 * pd; const sg = src.getContext('2d');
+    sg.drawImage(beauty, pd, pd);
+    sg.drawImage(beauty, 0, 0, 1, GH, 0, pd, pd, GH); sg.drawImage(beauty, GW - 1, 0, 1, GH, GW + pd, pd, pd, GH);
+    sg.drawImage(src, 0, pd, GW + 2 * pd, 1, 0, 0, GW + 2 * pd, pd); sg.drawImage(src, 0, GH + pd - 1, GW + 2 * pd, 1, 0, GH + pd, GW + 2 * pd, pd);
+    const c = document.createElement('canvas'); c.width = src.width; c.height = src.height; const g = c.getContext('2d');
+    g.filter = 'blur(' + r + 'px)'; g.drawImage(src, 0, 0); g.filter = 'none';
+    return g.getImageData(pd, pd, GW, GH).data;
+  });
+  const dd = depth.getContext('2d').getImageData(0, 0, GW, GH).data;
+  const outC = document.createElement('canvas'); outC.width = GW; outC.height = GH; const og = outC.getContext('2d'); const out = og.createImageData(GW, GH), od = out.data;
+  const NL = RADII.length - 1;
+  for (let k = 0; k < od.length; k += 4) {
+    const c = dd[k] / 255 * NL, i = Math.min(NL - 1, Math.floor(c)), t = c - i, A = levels[i], B = levels[i + 1];
+    od[k] = A[k] + (B[k] - A[k]) * t; od[k + 1] = A[k + 1] + (B[k + 1] - A[k + 1]) * t; od[k + 2] = A[k + 2] + (B[k + 2] - A[k + 2]) * t; od[k + 3] = 255;
+  }
+  og.putImageData(out, 0, 0);
+
+  const cx = CH.develop(shot, outC);
+  TXLOOK.footWash(cx, { tone: 'people', a: 0.82, height: 270 });
+  CH.seat(cx, { a: 0.42, fade: 300 });
+  CH.seat(cx, { sel: '.kick, .count', a: 0.4, fade: 90 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

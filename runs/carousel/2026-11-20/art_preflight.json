@@ -1,0 +1,241 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
+    "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+    "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "3e8f8b22d0f7fef5fa1f27c62de4018c92eb72aeec2d07683c8bd7d274975cbb",
+    "render/slide-03.png": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279",
+    "slides/slide-09.html": "469c800a4efe0c169e6da1840a3bc5208c3301d6f73be411725ef9c64cee5bd6",
+    "render/slide-09.png": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 46.2,
+      "mid": 0.832,
+      "dark": 0.013,
+      "grey_mid": 0.013,
+      "vivid": 0.784,
+      "median_C": 36.4
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 38.0,
+      "mid": 0.592,
+      "dark": 0.104,
+      "grey_mid": 0.01,
+      "vivid": 0.611,
+      "median_C": 35.2
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 34.4,
+      "mid": 0.631,
+      "dark": 0.045,
+      "grey_mid": 0.01,
+      "vivid": 0.816,
+      "median_C": 38.9
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
+      "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+      "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "3e8f8b22d0f7fef5fa1f27c62de4018c92eb72aeec2d07683c8bd7d274975cbb",
+      "render/slide-03.png": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279",
+      "slides/slide-09.html": "469c800a4efe0c169e6da1840a3bc5208c3301d6f73be411725ef9c64cee5bd6",
+      "render/slide-09.png": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A survey quadcopter banked hard against the pale horizon at upper right, about 300 px across at full size. Below it a copper bluestem crest carries a faint frosted periwinkle sweep that ends just ahead of two searchers seen from behind, one pointing. A hard-cropped white pickup sits at left and a lavender valley with a creek and post oak mottes falls away at right, under the headline 'Sent to the ridge. It flies to the next valley.'",
+        "visual_consequence": "The searchers stand at the end of a pale planned sweep on the warm crest while the drone is already out over the cool valley, away from that sweep. A reader sees a plan on the ridge and a drone somewhere else before reading the headline, and the present-tense headline matches the drone caught mid-bank. At 432 px the drone silhouette, its rotor discs and the pale sweep all read. The image matches the fourth-reading frame, and its sha256 equals the one that reading bound",
+        "weakness": "The valley slope carries evenly spaced parallel diagonal ridges that read as procedural banding rather than worn cattle trails. The far valley wall is mostly smooth lavender with sparse dot tufts. The creek is a thin flat white ribbon with no bank or reflection. The frosted sweep is faint and lies flat on the crest. The rotors are flat translucent discs on a dark box body. None of these is the dominant subject, and the argument holds at feed size",
+        "repair": "Replace the regular banding on the valley slope with broken multi-octave terrain noise and a few irregular cattle trails, and sink the creek into a banked channel",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
+          "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+          "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "Aerial oblique of a copper ridge with a frosted periwinkle serpentine sweep along its crest; a beaded amber tube leaves the sweep at the top turn and drops toward a creek, ending at a small white quadcopter among post oak mottes",
+        "visual_consequence": "Two paths at one scale: the pale pattern covers the ridge and the one amber line peels off into the valley; the amber casts an offset shadow and the frosted loops none",
+        "weakness": "Only the counter seat changed. The far legs of the frosted sweep render salmon pink under the apricot key, close to the amber at native size; the creek is a flat ribbon; mottes are lollipop crowns. Reads clearly at 432 px",
+        "repair": "Cut the warm specular and environment response on the frosted sweep so every loop stays periwinkle",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "3e8f8b22d0f7fef5fa1f27c62de4018c92eb72aeec2d07683c8bd7d274975cbb",
+          "render/slide-03.png": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A survey quadcopter at rest on a plum rubber launch mat with H markings and a ring. Its shell is open with the flight board showing, its four props are unfolded and still, and nothing is lit. Beside it sits an open lavender hard case of 21 labelled cartridges, with a 22nd standing on the mat by the drone's legs. They rest on a straw and apricot bluestem crest at last light above a plum valley, with oak mottes, a far ridge with a saddle and pale cattle trails",
+        "visual_consequence": "The deck returns to frame 1's ridge with the drone grounded, opened up and still, and the held-back records beside it, one taken out. The new closing sentence asks how a drone might estimate its location without reliable information, and that suits a grounded, opened machine with no glow. At 432 px the drone, mat and case fill the middle of the frame and read, and no amber appears",
+        "weakness": "The picture is unchanged from the fourth reading. The dek now runs five lines and ends about 40 px above the far ridge line, legible on the plum seat with a tighter margin. The mat's long cast shadow has ruler-straight edges, the near clay is a blurred smear, the oak crowns carry speckle and the open case lid is a flat panel. The drone, mat, cartridges and case are finished",
+        "repair": "Soften and break up the mat's long cast shadow with contact hardening on displaced soil, and add fine grain detail to the near clay",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "469c800a4efe0c169e6da1840a3bc5208c3301d6f73be411725ef9c64cee5bd6",
+          "render/slide-09.png": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "Two kinds of position. What the drone is told is frosted periwinkle glass and casts no shadow. What its own motion says it flew is one amber line that always casts a shadow. The deck walks from a search ridge, up over the ridge and the next valley, into a Commerce lab and the motion sensor, through the 96 recorded flights, the 22 held back and ten readings under glass, and back to the ridge at last light with the drone at rest.",
+    "build_risk": "Frame 3 must read at feed size as an aerial of one ridge and its neighbouring valley, with a frosted sweep laid untouched along the crest and an amber path leaving it at the turn and dropping into the valley, both wide enough to read against grass, the amber casting a shadow and the glass none, with the horizon in the top third.",
+    "distinct_from_recent": "November 19th was macro sort glass, flies, a tube rack and bales in wonder. November 18th was a survey satellite, stake grids and an air column in explainer. November 17th was a violet scoring machine and card drawer in watch. October 26th drew delivery drones and a dock, October 18th a survey quadcopter over brush. This deck is the people tone, an afternoon on a prairie ridge with searchers, a frosted twin drone, an aerial ridge and valley, a lab, a circuit macro, a clay relief and a brass close, with type in at least six places.",
+    "bespoke_note": "BESPOKE run: no three-frame audition before the build. The review is bound from the slide critics, per BESPOKE.md, with carousel-art-director as fallback for any unbound frame."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
+      "render/slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+      "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "3e8f8b22d0f7fef5fa1f27c62de4018c92eb72aeec2d07683c8bd7d274975cbb",
+      "render/slide-03.png": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279"
+    },
+    "9": {
+      "assets/js/deck/2026-11-20-truetrack-bespoke.js": "fefc5d8c1458548905d1e60532823911e9451ed21e30029885060f3b2c74663c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "469c800a4efe0c169e6da1840a3bc5208c3301d6f73be411725ef9c64cee5bd6",
+      "render/slide-09.png": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "4023e9c55290eb44c25b6e047b358105303b1e19244d353ecd4d833885d9c23f",
+    "slide-01.png": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+    "slides/slide-03.html": "3e8f8b22d0f7fef5fa1f27c62de4018c92eb72aeec2d07683c8bd7d274975cbb",
+    "slide-03.png": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279",
+    "slides/slide-09.html": "469c800a4efe0c169e6da1840a3bc5208c3301d6f73be411725ef9c64cee5bd6",
+    "slide-09.png": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.png",
+      "to_sha256": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+      "from_sha256": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-03.png",
+      "to_sha256": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279",
+      "from_sha256": "6c4fda8621a80f69a4126a7064eb9cd2f94690615c148ca43f8ae5b376b70279",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f",
+      "from_sha256": "c78a25273eda7a414401290b3bfbc2cbd76c25f727ceea75d43f78e375d17b8f",
+      "psnr_db": 999.0
+    }
+  ]
+}

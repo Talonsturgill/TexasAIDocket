@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-20, frame 4 of 9, COMMERCE, TEXAS. A spatial scene through txthree.js inside a TXT.interior
+     computing lab in late afternoon, seen from low over a laminate table. The chassis survey_quad, shell off and
+     unpowered, fills the lower half in the window light from the left, its lid beside it. Four open laptops
+     (FIG.team_ug + FIG.team_grad, asserted in code) are set at the table, two on each side, with nobody drawn. The type sits high over the plum wall. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:168px; width:920px; text-align:left">An undergraduate is first author</h1>
+<p class="dek" data-follow="22" style="left:82px; width:916px; text-align:left; font-size:28px">Researchers at East Texas A&amp;M University in Commerce tested whether AI can spot false location in a drone's flight records. Professor Jinoh Kim leads the team. The paper's first author is an undergraduate. The team has two undergraduate and two graduate research assistants.</p>
+<script>window.FIG = {"team_ug": 2, "team_grad": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-20-truetrack-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Commerce, Texas", counter: "04 / 09", src: "c14 c16 c3 c22 c23", fit: { min: 80, max: 96, maxLines: 2 } });
+
+  /* THE FIGURES. The research assistants are FIG.team_ug + FIG.team_grad, drawn as four open laptops set at the table. */
+  const F = { team_ug: FIG.team_ug, team_grad: FIG.team_grad };
+  const N_SEATED = F.team_ug + F.team_grad;   /* drawn as that many places set at the table */
+  if (!Number.isInteger(N_SEATED) || N_SEATED !== 4) throw new Error('the seated count ' + N_SEATED + ' is not the brief\'s team');
+
+  /* THE TYPE, high over the ceiling and the plum blinds, clear under the kicker and counter */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek'), kb = document.querySelector('.kick').getBoundingClientRect();
+    if (h.getBoundingClientRect().top < kb.bottom + 30) { h.style.top = Math.round(kb.bottom + 34) + 'px'; CH.follow(); }
+    const hb = h.getBoundingClientRect(), db = d.getBoundingClientRect();
+    window.__type04 = { hook: [hb.left, hb.top, hb.right, hb.bottom].map(Math.round), dek: [db.left, db.top, db.right, db.bottom].map(Math.round) };
+    if (db.bottom > 620) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the drone');
+    if (hb.left < 64 || hb.right > 1016 || db.right > 1016) throw new Error('the type leaves the 64 px safe margin'); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 56, near: 0.03, far: 40, fog: 0 });
+
+  const TABLE_X = -0.25;
+  /* THE ROOM: a lab 7.4 m wide, 9 m deep, 3.0 m to a ceiling, lavender plum walls, a ribbon of windows on the left */
+  const ROOM = { w: 5.8, d: 9.0, h: 4.6 };   /* tall, so the ceiling line stays above the frame */
+  TXT.interior(R, { w: ROOM.w, d: ROOM.d, h: ROOM.h, floor: 'concrete', wall: 0x8c6fc4, trim: 0x3b2a6e, window: null, ceiling: true, light: 0.7 });
+  R.room.traverse(m => { if (m.isMesh && m.material) { m.material = m.material.clone(); m.material.name = 'wall-paint'; m.material.userData.txSurface = false; } });
+  /* carpet: plum periwinkle broadloom with a loop tooth */
+  { const tex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(404);
+      g.fillStyle = '#6a4fa8'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 26000; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(40,24,80,0.35)' : 'rgba(170,150,230,0.3)'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r()); } }, [ROOM.w / 0.6, ROOM.d / 0.6]);
+    const m = new THREE.MeshStandardMaterial({ name: 'carpet-loop', map: tex, roughness: 0.97, metalness: 0 }); m.userData.txSurface = 'fabric';
+    const c = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), m); c.rotation.x = -Math.PI / 2; c.position.y = 0.002; c.receiveShadow = true; c.userData.txBevel = false; R.scene.add(c); }
+  /* the ceiling: pale lilac acoustic tile with a grid, and lit panels that run toward the far wall */
+  { const ceilM = new THREE.MeshStandardMaterial({ name: 'acoustic-tile', color: 0x9a7ed0, roughness: 0.95 }); ceilM.userData.txSurface = 'concrete';
+    const c = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), ceilM); c.rotation.x = Math.PI / 2; c.position.y = ROOM.h - 0.005; c.receiveShadow = true; c.userData.txBevel = false; R.scene.add(c);
+    const gridM = new THREE.MeshStandardMaterial({ name: 'ceiling-grid-paint', color: 0xd2c2f2, roughness: 0.8, metalness: 0.0 });
+    for (let x = 99; x < 0; x += 0.6) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.012, ROOM.d), gridM); b.position.set(x, ROOM.h - 0.012, 0); R.scene.add(b); }
+    for (let z = 99; z < 0; z += 0.6) { const b = new THREE.Mesh(new THREE.BoxGeometry(ROOM.w, 0.012, 0.02), gridM); b.position.set(0, ROOM.h - 0.012, z); R.scene.add(b); }
+    const panM = new THREE.MeshStandardMaterial({ name: 'light-panel', color: 0xffffff, emissive: 0xfff1e2, emissiveIntensity: 1.6, roughness: 0.4 }); panM.userData.txSurface = false;
+    [].forEach(x => { for (let z = -1.8; z <= -1.7; z += 1.8) { const p = TXT.roundedBox(0.58, 0.03, 1.18, 0.01, panM); p.position.set(x, ROOM.h - 0.02, z); p.castShadow = false; R.scene.add(p); } }); }
+
+  /* THE WINDOW: the kit ribbon window on the left wall, a clear afternoon outside, blinds a little down */
+  { const win = K.make('classroom_window', { w: 4.6, h: 1.5, sill: 0.82, blinds: 0.55, outside: 1.0, sky: 'clear', unitVent: false, seed: 7 });
+    win.rotation.y = Math.PI / 2; win.position.set(-ROOM.w / 2 + 0.1, 0, -1.4); TXT.add(R, win);
+    /* plum lilac slats, so the band behind the dek holds colour and the glass below them is the light */
+    { const slatM = new THREE.MeshStandardMaterial({ name: 'painted-aluminium-slat', color: 0x8c6cc4, roughness: 0.5, metalness: 0.2 });
+      win.traverse(m => { if (m.isMesh && m.material && /slat/.test(m.material.name || '')) m.material = slatM; });
+      const trimM = new THREE.MeshStandardMaterial({ name: 'painted-casing', color: 0x8466c0, roughness: 0.6 });
+      win.traverse(m => { if (m.isMesh && m.material && !m.material.isMeshBasicMaterial && !m.material.transparent && m.material !== slatM) m.material = trimM; }); }
+    /* late afternoon outside: the campus view warmed toward apricot */
+    { const soft = CH.canvasTex(THREE, 256, 256, (g, w, h) => {
+        /* out of focus late afternoon: a peach sky over a warm gold glow, a soft lilac band of far trees, a gold lawn, no edges */
+        const gr = g.createLinearGradient(0, 0, 0, h);
+        gr.addColorStop(0, '#ffe9d6'); gr.addColorStop(0.42, '#ffd9b4'); gr.addColorStop(0.55, '#e8b6a8'); gr.addColorStop(0.62, '#c9a0b8');
+        gr.addColorStop(0.7, '#e8c48e'); gr.addColorStop(1, '#f0cf8c'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+        g.filter = 'blur(18px)'; const r = CH.rng(77);
+        for (let i = 0; i < 14; i++) { g.fillStyle = 'rgba(176,130,170,0.35)'; g.beginPath(); g.ellipse(r() * w, h * (0.58 + r() * 0.05), 20 + r() * 30, 10 + r() * 8, 0, 0, 7); g.fill(); }
+        g.filter = 'none'; });
+      soft.wrapS = soft.wrapT = THREE.ClampToEdgeWrapping;
+      win.traverse(m => { if (m.isMesh && m.material && m.material.isMeshBasicMaterial && m.material.map) { m.material.map = soft; m.material.color.setScalar(1.25); m.material.needsUpdate = true; } }); } }
+
+  /* THE TABLE: one long veneer table running away from the camera */
+  const TABLE = { x: TABLE_X, z: -0.8, top: 0.74, len: 0, half: 0.6 };
+  const table = K.make('conference_table', { seats: 14, shape: 'rect', wood: 0x8a5232, chairs: false, seed: 4 });
+  table.rotation.y = Math.PI / 2; table.position.set(TABLE.x, 0, TABLE.z); TXT.add(R, table); TXT.contact(R, table);
+  /* a satin oiled veneer, not a lacquer mirror: the window's sheen on a gloss top drew a hard band through the headline */
+  table.traverse(m => { if (m.isMesh && m.material && 'roughness' in m.material) { m.material = m.material.clone(); m.material.roughness = Math.max(0.72, m.material.roughness); if ('clearcoat' in m.material) m.material.clearcoat = 0; } });
+  /* a honey oak laminate top at its true grain scale (about 0.9 m a repeat), laid over the kit veneer */
+  { table.updateMatrixWorld(true); const b0 = new THREE.Box3().setFromObject(table), Lz = b0.max.z - b0.min.z, Wx = b0.max.x - b0.min.x;
+    const lam = CH.canvasTex(THREE, 512, 1024, (g, w, h) => { const r = CH.rng(904);
+      g.fillStyle = '#d29a64'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 220; i++) { const x = r() * w, a = 0.05 + r() * 0.12; g.strokeStyle = r() < 0.5 ? 'rgba(150,84,52,' + a + ')' : 'rgba(240,190,140,' + a + ')'; g.lineWidth = 1 + r() * 3;
+        g.beginPath(); g.moveTo(x, 0); for (let y = 0; y <= h; y += 32) g.lineTo(x + Math.sin(y * 0.006 + i) * 6 + Math.sin(y * 0.02 + i * 3) * 2, y); g.stroke(); }
+      for (let i = 0; i < 9000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(120,60,40,0.06)' : 'rgba(255,220,180,0.06)'; g.fillRect(r() * w, r() * h, 1, 2 + r() * 4); } });
+    lam.wrapS = lam.wrapT = THREE.RepeatWrapping; lam.repeat.set(Math.max(1, Math.round(Wx / 0.6)), Math.round(Lz / 1.2));
+    const lamM = new THREE.MeshStandardMaterial({ name: 'oak-laminate', map: lam, roughness: 0.55, metalness: 0 }); lamM.userData.txSurface = 'wood';
+    const topSlab = TXT.roundedBox(Wx - 0.004, 0.006, Lz - 0.004, 0.002, lamM); topSlab.position.set(TABLE.x, 0.743, TABLE.z); topSlab.receiveShadow = true; topSlab.userData.txBevel = false; R.scene.add(topSlab);
+    TABLE.top = 0.746; }
+  { table.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(table); TABLE.len = bb.max.z - bb.min.z; TABLE.near = bb.max.z; TABLE.far = bb.min.z; TABLE.half = (bb.max.x - bb.min.x) / 2;
+    /* the camera sits at the table, so its near end runs out of frame behind the type: no edge strikes the headline */
+    TABLE.seat0 = TABLE.far + 4.0;
+    /* the drone keeps its place; the table slides 0.8 m toward the camera so its far end drops clear below the dek */
+    TABLE.anchor = TABLE.far; const SLIDE = 0.8;
+    table.position.z += SLIDE; R.scene.traverse(m => { if (m.isMesh && m.material && m.material.name === 'oak-laminate') m.position.z += SLIDE; });
+    TABLE.far += SLIDE; TABLE.near += SLIDE; }
+
+  /* THE DRONE, the hero: the chassis survey_quad, top shell lifted off and set beside it, props folded, unpowered, on
+   * the table between the two nearest students, its flight board open to the window's apricot key */
+  const DRONE = { x: TABLE.x + 0.06, z: TABLE.anchor + 3.6, yaw: 0.62 };
+  const quad = K.make('survey_quad', { props: 'folded', open: true, lamp: 0x30344a });
+  /* with the shell off, the GPS mast and puck drop 25 mm to stand on the tub's top plate rather than float above it */
+  { const body = quad.userData.body; let moved = 0;
+    body.children.forEach(m => { if (Math.abs(m.position.x) < 0.001 && Math.abs(m.position.z + 0.07) < 0.001 && m.position.y > 0.1) { m.position.y -= 0.025; moved++; } });
+    if (moved < 3) throw new Error('the GPS mast was not seated (' + moved + ' parts moved)');
+    /* the tub and fittings in a lit violet grey, not near black */
+    const bodyM = new THREE.MeshPhysicalMaterial({ name: 'moulded-plastic-violet-grey', color: 0x7a6fa6, roughness: 0.42, metalness: 0.08, clearcoat: 0.4, clearcoatRoughness: 0.3 });
+    quad.traverse(m => { if (m.isMesh && m.material && /q-trim|q-dark/.test(m.material.name || '')) m.material = bodyM; }); }
+  quad.rotation.y = DRONE.yaw; quad.position.set(DRONE.x, TABLE.top, DRONE.z); TXT.add(R, quad); TXT.contact(R, quad, { opacity: 0.75, color: 0x3b1f5e });
+  /* the lid: the same moulded top as the chassis drone (0.28 x 0.06 x 0.20, battery hatch, seam, grip), matte, set flat
+   * on the table beside it with its two arm notches at the ends, seated on the laminate with a contact shadow */
+  const SHELL = { x: DRONE.x - 0.4, z: DRONE.z + 0.02, yaw: -0.3 };
+  { const shellM = new THREE.MeshPhysicalMaterial({ name: 'moulded-plastic-shell', color: 0xe8e9f0, roughness: 0.58, metalness: 0.0, clearcoat: 0.15, clearcoatRoughness: 0.5 }); shellM.userData.txSurface = 'plastic';
+    const darkM = new THREE.MeshStandardMaterial({ name: 'moulded-plastic-trim', color: 0x2b2f36, roughness: 0.5 });
+    const g = new THREE.Group(); const top = TXT.roundedBox(0.28, 0.06, 0.20, 0.03, shellM); top.position.y = 0.03; g.add(top);
+    const hatch = TXT.roundedBox(0.17, 0.012, 0.11, 0.008, shellM); hatch.position.set(0, 0.064, -0.02); g.add(hatch);
+    const seam = TXT.roundedBox(0.172, 0.004, 0.112, 0.003, darkM); seam.position.set(0, 0.058, -0.02); g.add(seam);
+    const grip = TXT.roundedBox(0.05, 0.008, 0.02, 0.004, darkM); grip.position.set(0, 0.072, -0.06); g.add(grip);
+    g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    g.rotation.y = SHELL.yaw; g.position.set(SHELL.x, TABLE.top, SHELL.z); TXT.add(R, g); TXT.contact(R, g, { opacity: 0.85, color: 0x3b1f5e });
+    window.__shell04 = g; }
+  /* four loose screws by the lid */
+  { const scM = new THREE.MeshStandardMaterial({ name: 'steel-screw', color: 0xc9ccd6, metalness: 1, roughness: 0.3 });
+    [[0.1, 0.17], [0.14, 0.2], [0.06, 0.22], [0.17, 0.15]].forEach(([dx, dz], k) => { const sc = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.012, 12), scM); sc.rotation.z = Math.PI / 2; sc.rotation.y = k; sc.position.set(SHELL.x + dx, TABLE.top + 0.0035, SHELL.z + dz); sc.castShadow = true; R.scene.add(sc); }); }
+  /* a small screwdriver beside the shell */
+  { const hM = new THREE.MeshPhysicalMaterial({ name: 'plastic-handle', color: 0x4a6ae0, roughness: 0.35, clearcoat: 0.6 }), sM = new THREE.MeshStandardMaterial({ name: 'steel-shaft', color: 0xc8ccd4, metalness: 1, roughness: 0.25 });
+    const g = new THREE.Group(); const h = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.09, 20), hM); h.rotation.z = Math.PI / 2; g.add(h);
+    const sh = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.08, 12), sM); sh.rotation.z = Math.PI / 2; sh.position.x = 0.085; g.add(sh);
+    g.traverse(m => { if (m.isMesh) m.castShadow = true; }); g.rotation.y = 0.9; g.position.set(DRONE.x - 0.12, TABLE.top + 0.012, DRONE.z + 0.38); TXT.add(R, g); }
+  /* the window's last sun falls across the drone and its open board */
+  { const sp = new THREE.SpotLight(0xffc690, 9, 7, 0.26, 0.7, 2); sp.position.set(-ROOM.w / 2 + 0.4, 2.0, DRONE.z - 0.9); sp.target.position.set(DRONE.x, TABLE.top + 0.12, DRONE.z); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; sp.shadow.normalBias = 0.01; R.scene.add(sp); R.scene.add(sp.target); }
+  { const rim = new THREE.SpotLight(0xc4ccff, 12, 5, 0.3, 0.6, 2); rim.position.set(DRONE.x + 1.2, 1.4, DRONE.z - 1.4); rim.target.position.set(DRONE.x, TABLE.top + 0.1, DRONE.z); rim.castShadow = false; R.scene.add(rim); R.scene.add(rim.target);
+    const rim2 = new THREE.SpotLight(0xffb8d8, 4, 5, 0.3, 0.6, 2); rim2.position.set(DRONE.x - 1.4, 1.3, DRONE.z - 1.2); rim2.target.position.set(DRONE.x, TABLE.top + 0.1, DRONE.z); rim2.castShadow = false; R.scene.add(rim2); R.scene.add(rim2.target); }
+  /* the tip of the drone's arm on the right hand side of the table, where one student's hand rests */
+  quad.updateMatrixWorld(true);
+  const armTips = [[1, 1], [1, -1], [-1, 1], [-1, -1]].map(([a, b]) => quad.localToWorld(new THREE.Vector3(a * 0.35 * 0.7071 * 0.62, 0.13 + 0.07, b * 0.35 * 0.7071 * 0.62)));
+  const rightTips = armTips.slice().sort((a, b) => b.x - a.x).slice(0, 2).sort((a, b) => a.z - b.z);
+  const ARM = rightTips[0], ARM2 = rightTips[1];   /* the far and near arm tips on the right */
+
+  /* THE TEAM, AS FOUR PLACES SET AT THE TABLE. No person is drawn: the kit figures read as cartoon hands at this range, so
+   * the research assistants are shown by their four open laptops, two on each side of the drone, chairs pushed back.
+   * The number of places is FIG.team_ug + FIG.team_grad, four, asserted below. */
+  const ED = TABLE.half;   /* the table's half width */
+  const places = [
+    { side: 1, z: DRONE.z + 0.02 }, { side: -1, z: DRONE.z - 0.24 },
+    { side: 1, z: DRONE.z - 0.68 }, { side: -1, z: DRONE.z - 0.62 }
+  ];
+  if (places.length !== N_SEATED) throw new Error('the places set are ' + places.length + ', the team is ' + N_SEATED);
+  const laps = [];
+  places.forEach((c, i) => {
+    const yaw = (c.side > 0 ? -Math.PI / 2 : Math.PI / 2) + (i % 2 ? 0.18 : -0.14);
+    const lap = K.make('laptop', { open: 108, finish: i % 2 ? 'space' : 'silver', screen: ['doc', 'sheet', 'code', 'doc'][i], seed: 80 + i });
+    lap.rotation.y = yaw + Math.PI; lap.position.set(TABLE.x + c.side * (ED - (i === 1 ? 0.12 : 0.16)), TABLE.top, c.z); TXT.add(R, lap); TXT.contact(R, lap);
+    laps.push(lap);
+  });
+  if (laps.length !== N_SEATED) throw new Error('drew ' + laps.length + ' laptops, the team is ' + N_SEATED);
+
+  /* THE CAMERA: 0.55 m over the table top and 1.2 m from the drone, looking down on its open board, so the tabletop
+   * runs right up under the dek and the drone fills the lower half */
+  const db0 = document.querySelector('.dek').getBoundingClientRect();
+  const AIM = [DRONE.x, TABLE.top + 0.1, DRONE.z];
+  /* the nearest dolly at which the whole drone fits between the dek and the claim ids, at least 600 px wide */
+  let FROM = null, AIMED = null, fit = false;
+  for (let d = 1.1; d <= 2.0 && !fit; d += 0.05) {
+    FROM = [DRONE.x - 0.08, TABLE.top + 0.5 * d / 1.15, DRONE.z + d];
+    for (let sy = 980; sy >= 760; sy -= 10) { AIMED = CH.aim(THREE, R, TXT, FROM, AIM, 560, sy, 56); TXT.frame(R, { fov: 56, from: FROM, look: AIMED });
+      const q = CH.rectOf(THREE, R, quad, 0); if (q[1] + q[3] <= 1195 && q[1] >= db0.bottom + 24 && q[2] >= 600) { fit = true; break; } }
+  }
+  window.__cam04 = FROM.map(v => +v.toFixed(3));
+  TXT.frame(R, { fov: 56, from: FROM, look: AIMED });
+  { const r = CH.rectOf(THREE, R, quad, 0); window.__drone04 = r.map(Math.round);
+    if (r[2] < 600) throw new Error('the drone is only ' + Math.round(r[2]) + ' px wide');
+    const db = document.querySelector('.dek').getBoundingClientRect();
+    if (r[1] < db.bottom + 10) throw new Error('the drone runs up into the dek'); }
+  /* THE LIGHT: late afternoon through the left windows, apricot, a plum fill from the room */
+  const spec = CH.rigSpec(W, 12, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0xffcf9a, i: 3.6, radius: 4 });
+  spec.fill = Object.assign({}, spec.fill, { color: 0x8a62d8, i: 1.4 });
+  spec.ambient = Object.assign({}, spec.ambient, { color: 0x8a6ad8, i: 0.7 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.8, TABLE.z], { distance: 14, shadowFar: 40, normalBias: 0.01 }), { light: { az: -105, el: 24 } }));
+  CH.unacne(R, 0.01);
+  const hemi = new THREE.HemisphereLight(0xb8a0ff, 0x7a4f9a, 1.3); R.scene.add(hemi);
+  /* the room's bounce behind the camera: lilac on every back that faces us, so the team never goes to black */
+  { const b = new THREE.DirectionalLight(0xb49cff, 1.5); b.position.set(FROM[0] + 1.5, 2.2, FROM[2] + 4); b.target.position.set(DRONE.x, 0.8, DRONE.z); R.scene.add(b); R.scene.add(b.target); }
+  /* the window's glow into the room, apricot, from the glass toward the table */
+  { const wl = new THREE.RectAreaLight ? null : null; const pl = new THREE.PointLight(0xffc89a, 3.0, 6, 2); pl.position.set(-ROOM.w / 2 + 0.6, 1.5, -1.4); R.scene.add(pl);
+    /* the window's light laid across the back wall behind the team, an apricot wash with no edge */
+    const ws = new THREE.SpotLight(0xffc49a, 14, 12, 0.5, 1.0, 1.5); ws.position.set(-ROOM.w / 2 + 0.3, 2.0, -1.0); ws.target.position.set(0.9, 1.6, -ROOM.d / 2); ws.castShadow = false; R.scene.add(ws); R.scene.add(ws.target); }
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.64, fade: 220 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.72, fade: 90 }));
+  CH.seat(cx, { sel: '.tx-site', a: 0.55, fade: 130 });
+  CH.seat(cx, { sel: '.src', a: 0.6, fade: 130 });
+  TXLOOK.footWash(cx, { a: 0.62, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -234,7 +234,8 @@
         "2026-11-14",
         "2026-11-16",
         "2026-11-17",
-        "2026-11-19"
+        "2026-11-19",
+        "2026-11-20"
       ],
       "contradicted": []
     },
@@ -671,7 +672,8 @@
         "2026-11-12",
         "2026-11-14",
         "2026-11-15",
-        "2026-11-16"
+        "2026-11-16",
+        "2026-11-20"
       ],
       "contradicted": []
     },
@@ -776,7 +778,8 @@
         "2026-11-07",
         "2026-11-08",
         "2026-11-12",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-20"
       ],
       "contradicted": []
     },
@@ -1929,7 +1932,9 @@
       "learned": "2026-11-19",
       "instinct": "Read every templated figure on the built page, not in the source, before the push.",
       "evidence": "No. 82's web edition passed article_check and 1305 reader checks while its money tokens rendered '$3.1 project', '$8.5 facility' and '$105 of', because the token drops the unit; a phone screenshot caught it.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-20"
+      ],
       "contradicted": []
     },
     {
@@ -1937,6 +1942,14 @@
       "learned": "2026-11-19",
       "instinct": "Before charging a binding, compare the review's hash with the file on disk now, not with another review's hash.",
       "evidence": "No. 82's round 3 craft judge charged a hard fail by reading superseded cold critic hashes as newer than the art director's bound ones, and withdrew it when shown the current renders.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "show-people-by-their-places",
+      "learned": "2026-11-20",
+      "instinct": "Show a team by the places it left at the table when kit figures can't hold up at the camera's distance, because a cropped mannequin reads as a render fault.",
+      "evidence": "2026-11-20, frame 4. Seated mannequins were charged in panel round 1, cropped hands read as cartoon fists in round 2, and four open laptops with nobody drawn stopped the people charge in rounds 2 and 3.",
       "confirmed": [],
       "contradicted": []
     }

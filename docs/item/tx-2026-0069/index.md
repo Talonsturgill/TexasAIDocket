@@ -11,7 +11,7 @@ The Texas Comptroller now lists application J0022 among current agreements under
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0022
 
-- Last checked: 2026-11-17
+- Last checked: 2026-11-20
 
 ## Dates
 
@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-11 · The executed JETI agreement between the school district and Energy Forge One is still posted where the district put it.
 - 2026-11-14 · The school district's executed JETI agreement for Energy Forge One remains posted, unchanged from the copy the record cites.
 - 2026-11-17 · The executed JETI agreement for Energy Forge One is still posted by the school district in the form the record quotes.
+- 2026-11-20 · The school district's JETI agreement for the Energy Forge One power plant still reads as approved on the state's application page.
 
 ## Evidence
 
