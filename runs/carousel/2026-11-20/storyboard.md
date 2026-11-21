@@ -29,6 +29,7 @@ CONTINUITY: CAMERA_MOVE, MOTIF_EVOLUTION, VALUE_ARC
 | grass | #c26a3e | copper bluestem in November |
 | clay | #4a2c3a | plum shadowed Blackland clay |
 | glass | #9fb2ff | the reported position, frosted |
+| pewter | #a89c88 | the normal flight tracks on frame 6 |
 | accent | #ff9f1c | motion the drone measured |
 
 ## THE NINE BEATS
