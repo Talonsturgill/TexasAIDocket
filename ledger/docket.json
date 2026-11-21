@@ -299,7 +299,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "The comment window closed on August 11th.",
+     "note": "The ERCOT transmission cost recovery rulemaking stays past its comment window, which closed on August 11th.",
      "checked": true
     }
    ]
@@ -964,9 +964,18 @@
      "source_title": "PUCT Interchange, Docket 59315 filings",
      "source_type": "primary_official",
      "fetched": "2026-11-14"
+    },
+    {
+     "id": "tx-2026-0003-c23",
+     "text": "The commission's docket for the application now lists 5868 filings.",
+     "verbatim_quote": "5868 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+     "source_title": "PUCT Interchange, Docket 59315 filings",
+     "source_type": "primary_official",
+     "fetched": "2026-11-20"
     }
    ],
-   "last_verified": "2026-11-14",
+   "last_verified": "2026-11-20",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
    "history": [
@@ -1116,6 +1125,10 @@
     {
      "date": "2026-11-14",
      "note": "Oncor's 765 kV line across the Panhandle and West Texas stands approved. One more filing has reached the commission's docket since the last check, which now lists 5865."
+    },
+    {
+     "date": "2026-11-20",
+     "note": "Oncor's 765 kV line across the Panhandle and West Texas still stands approved under the commission's final order. The docket keeps taking filings and now lists 5868."
     }
    ]
   },
@@ -4140,7 +4153,7 @@
     }
    ],
    "id": "tx-2026-0028",
-   "last_verified": "2026-11-14",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -4291,6 +4304,10 @@
      "date": "2026-11-14",
      "note": "Hays County's emergency review period for high water use development still reads as adopted in the county's own record.",
      "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "Community Impact's account of the adopted 180 day review period still reads as it did. KUT's report of the same vote is closed to rereading, so that claim stands on its earlier reading."
     }
    ]
   },
@@ -9223,7 +9240,7 @@
     }
    ],
    "id": "tx-2026-0048",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -9411,6 +9428,11 @@
     {
      "date": "2026-11-18",
      "note": "League City's record of the special election order is unchanged, and the comment window the record tracked closed on November 17th.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "League City's comment window on the special election closed on November 17th, and the council's order stands as published.",
      "checked": true
     }
    ],
@@ -9721,7 +9743,7 @@
     }
    ],
    "id": "tx-2026-0050",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -9866,6 +9888,11 @@
     {
      "date": "2026-11-18",
      "note": "Corpus Christi's council record still shows the direction to draft a zoning amendment keeping data centers out of every district.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "Corpus Christi's direction to staff to draft the zoning amendment still reads as the council left it.",
      "checked": true
     }
    ]
@@ -12725,7 +12752,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -12870,6 +12897,11 @@
     {
      "date": "2026-11-18",
      "note": "TCEQ's notice pages still carry the four data center air permit applications, Crusoe's two among them, and none shows a final decision yet.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The data center air permit applications are still posted at the environmental agency, with no decision dated on any of them.",
      "checked": true
     }
    ]
@@ -13502,7 +13534,7 @@
     }
    ],
    "id": "tx-2026-0066",
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -13647,6 +13679,11 @@
      "date": "2026-11-17",
      "note": "A data center in San Angelo is still a conditional use and nothing more, as the zoning text reads.",
      "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "San Angelo's zoning code still treats data centers as a use that needs the city's conditional approval.",
+     "checked": true
     }
    ]
   },
@@ -13747,7 +13784,7 @@
     }
    ],
    "id": "tx-2026-0067",
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -13891,6 +13928,11 @@
     {
      "date": "2026-11-17",
      "note": "The ordinance still requires a data center to report coolant it discharges into the San Angelo sewer.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "San Angelo's reporting rules for data center coolant discharged to the sewer still stand as adopted.",
      "checked": true
     }
    ]
@@ -14237,7 +14279,7 @@
     }
    ],
    "id": "tx-2026-0069",
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -14382,6 +14424,11 @@
     {
      "date": "2026-11-17",
      "note": "The executed JETI agreement for Energy Forge One is still posted by the school district in the form the record quotes.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The school district's JETI agreement for the Energy Forge One power plant still reads as approved on the state's application page.",
      "checked": true
     }
    ]
@@ -16168,9 +16215,18 @@
      "source_title": "PUCT Interchange, Docket 59029 filings",
      "source_type": "primary_official",
      "fetched": "2026-11-14"
+    },
+    {
+     "id": "tx-2026-0076-c21",
+     "text": "The commission's docket for the application now lists 536 filings.",
+     "verbatim_quote": "536 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+     "source_title": "PUCT Interchange, Docket 59029 filings",
+     "source_type": "primary_official",
+     "fetched": "2026-11-20"
     }
    ],
-   "last_verified": "2026-11-14",
+   "last_verified": "2026-11-20",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
    "history": [
@@ -16312,6 +16368,10 @@
     {
      "date": "2026-11-14",
      "note": "Oncor's second West Texas line stands approved. The commission's docket gained one filing and now lists 534."
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The commission's final order approving Oncor's second West Texas line still stands. Two more filings have reached its docket, which now lists 536."
     }
    ]
   },
@@ -22144,7 +22204,7 @@
     }
    ],
    "id": "tx-2026-0102",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-08-27",
@@ -22293,6 +22353,11 @@
     {
      "date": "2026-11-18",
      "note": "UT Southwestern's account of AI grading most clinical exam notes for its medical students still reads as quoted.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "UT Southwestern still describes AI as doing most of the grading on its medical students' written work.",
      "checked": true
     }
    ],
@@ -24317,7 +24382,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The Governor's order pausing state funding for Flock plate reader cameras stands as issued.",
      "checked": true
     }
    ]
@@ -28837,7 +28902,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The University of North Texas still lists its undergraduate artificial intelligence degree.",
      "checked": true
     }
    ],
@@ -29254,7 +29319,7 @@
     }
    ],
    "id": "tx-2026-0137",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-09-09",
@@ -29376,6 +29441,11 @@
     {
      "date": "2026-11-18",
      "note": "The open access copy of the discharge study still reports case managers ahead of the AI tool in the last day before discharge, with no correction posted.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The published comparison still shows case managers ahead of Houston Methodist's discharge model on the last day.",
      "checked": true
     }
    ]
@@ -31352,7 +31422,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "The comment window closed on November 9th.",
+     "note": "The federal survey office's comment window on the household internet questions closed on November 9th.",
      "checked": true
     }
    ]
@@ -31489,7 +31559,7 @@
    "confidence": "high",
    "notes_for_editor": "The attachment heads itself Text of Proposed New and its url sits in the June meeting folder, and the item itself records that changes were recommended since first reading. It is the ONE attachment the second reading and final adoption item publishes, which is what this record says and all it says. The rule as filed with the Texas Register was not fetched, so nothing here claims the artificial intelligence language survived into the filed rule. The item prints both an August 31st committee heading and a September 4th date line and never joins either to either body.",
    "id": "tx-2026-0142",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-09-11",
@@ -31603,6 +31673,11 @@
      "date": "2026-11-18",
      "note": "The State Board of Education's posted item for the required money course still carries the adopted text that names AI tools.",
      "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The State Board of Education's final adoption of the required money course still stands on its own page.",
+     "checked": true
     }
    ]
   },
@@ -31641,7 +31716,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-20",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.\n\n2026-10-03. The minutes were published between September 30th and October 3rd. The title and summary no longer say the amendment text is unpublished, c7 now quotes the link to the minutes, and c8 to c13 quote the minutes themselves.",
    "history": [
@@ -31761,6 +31836,11 @@
     {
      "date": "2026-11-17",
      "note": "El Paso's council action still keeps Flock cameras off city property and still bars a new contract without another vote.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "El Paso's order taking Flock plate reader cameras off city property still reads as the council passed it.",
      "checked": true
     }
    ],
@@ -32338,7 +32418,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0150",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-09-13",
@@ -32457,6 +32537,11 @@
     {
      "date": "2026-11-18",
      "note": "The radiologists' paper on imaging AI and children is still published as cited, with its finding that few tools were built for pediatric use.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The radiologists' published finding on imaging AI still reads as it did in the journal.",
      "checked": true
     }
    ]
@@ -32987,7 +33072,7 @@
     }
    ],
    "id": "tx-2026-0156",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-09-14",
@@ -33094,6 +33179,11 @@
     {
      "date": "2026-11-15",
      "note": "The grid operator's update on the questionnaire to conditionally classified large loads reads as before, notarized attestation included.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "ERCOT's questionnaire to every conditionally classified large load still stands as sent.",
      "checked": true
     }
    ]
@@ -33301,7 +33391,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The developer's account to shareholders of where it sits on the Batch Zero list still reads the same.",
      "checked": true
     }
    ]
@@ -33498,7 +33588,7 @@
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-09-15",
@@ -33599,6 +33689,11 @@
     {
      "date": "2026-11-17",
      "note": "The ERCOT board deck on AI training loads still reads as quoted, and the drafted ramp limit has not been voted on.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "ERCOT's warning to its board that AI training loads can fatigue generators still stands, and the rule change it points to has not moved.",
      "checked": true
     }
    ]
@@ -34663,7 +34758,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The University of North Texas gift and the program it names still stand as announced.",
      "checked": true
     }
    ]
@@ -38380,7 +38475,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The Governor's directive to the environmental agency on data center permits still reads as issued.",
      "checked": true
     }
    ]
@@ -39897,7 +39992,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The commission's wildfire plan blueprint still lists cameras as suggested and not required.",
      "checked": true
     }
    ],
@@ -40690,7 +40785,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The Texas Education Agency still describes a machine as the first scorer of the longer written STAAR answers.",
      "checked": true
     }
    ],
@@ -41058,7 +41153,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "Amazon and Wiwynn's plan to expand the El Paso County plant still reads as announced.",
      "checked": true
     }
    ]
@@ -41269,7 +41364,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The Texas Children's and Baylor finding on the likely genetic cause still reads as published.",
      "checked": true
     }
    ]
@@ -43051,7 +43146,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "ERCOT's pause on energizing new large data centers and crypto mines still stands as announced.",
      "checked": true
     }
    ]
@@ -46937,7 +47032,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "Houston Methodist's account of camera AI in its cardiothoracic operating rooms still reads as published.",
      "checked": true
     }
    ]
@@ -47140,10 +47235,15 @@
      "date": "2026-11-18",
      "note": "Texas A&M's account of language models trained on junk posts skipping reasoning steps is still posted unchanged.",
      "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The Texas A&M finding that junk social media text degrades language models still reads as published.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0223",
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-20"
   },
   {
    "title": "Rice University sets out to hire 40 more AI faculty, for 75 this decade, and to take lab space at The Arc in Houston's Ion District",
@@ -47916,7 +48016,7 @@
     }
    ],
    "id": "tx-2026-0228",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-20",
    "history": [
     {
      "date": "2026-10-23",
@@ -47965,6 +48065,11 @@
     {
      "date": "2026-11-18",
      "note": "UT Southwestern's triage study is still published as cited, with its finding that the models moved some patients who later got worse further down the line.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "UT Southwestern's finding that AI triage models moved some emergency patients still reads as published.",
      "checked": true
     }
    ]
@@ -49015,7 +49120,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "Plano's approval to buy ChatGPT Enterprise still reads as the council passed it.",
      "checked": true
     }
    ]
@@ -49430,7 +49535,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "San Antonio's loose dog count with phone cameras still stands as the city described it.",
      "checked": true
     }
    ]
@@ -49988,7 +50093,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "Permian Resources still tells investors its AI system watches production operations.",
      "checked": true
     }
    ]
@@ -50208,7 +50313,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The Sugar Land optics maker still describes its United States expansion the same way.",
      "checked": true
     }
    ]
@@ -50840,7 +50945,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The Texas A&M AlphaFold screen still reads as published.",
      "checked": true
     }
    ],
@@ -51218,7 +51323,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "The comment window is still open, closing December 9th.",
+     "note": "The Starbase hearing on SpaceX's tax abatement request is still set for December 9th.",
      "checked": true
     }
    ]
@@ -51439,7 +51544,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "The chip fund's award to Texas Tech still stands as announced.",
      "checked": true
     }
    ],
@@ -51576,10 +51681,15 @@
      "date": "2026-11-18",
      "note": "Texas 2036's report still finds AI in most classrooms and a written policy in few districts, and its request to the state is unchanged.",
      "checked": true
+    },
+    {
+     "date": "2026-11-20",
+     "note": "Texas 2036's survey finding on AI in classrooms and written policy still reads as published.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0248",
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-20"
   },
   {
    "title": "UT San Antonio and the VA test whether AI can read signs of mild brain injury in veterans' own stories",
@@ -51857,7 +51967,7 @@
     },
     {
      "date": "2026-11-20",
-     "note": "Checked and unchanged. The decision still stands as decided.",
+     "note": "TACC still describes Horizon as open to early users.",
      "checked": true
     }
    ],
@@ -52026,9 +52136,14 @@
     {
      "date": "2026-11-18",
      "note": "Admitted on UT Dallas's announcement of the published study. The paper is out and the authors call for further research on cost and accuracy."
+    },
+    {
+     "date": "2026-11-20",
+     "note": "The UT Dallas map of air pollutants and cancer prevalence still reads as published.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-20"
   },
   {
    "id": "tx-2026-0252",
