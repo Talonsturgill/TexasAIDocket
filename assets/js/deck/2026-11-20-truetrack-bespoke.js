@@ -7,11 +7,15 @@
  * seated with CH.seat. It mounts the type faces and the furniture (CH.start), and hands a frame the helpers below. There is
  * no drawFrame.
  *
- * THE ACCENT. probe
+ * THE ACCENT. Amber #FF9F1C, the people tone's own accent, means ONE thing: MOTION THE DRONE ITSELF MEASURED,
+ * the honest signal the check reads (how fast, which way, over how much time). The flown path, the three motion arrows, the
+ * edge of the window over ten readings. Never the reported GPS position, which is frosted periwinkle glass and casts no
+ * shadow (the deck's SHADOW RULE), never decoration, never a person.
  *
  * THE MODELS. The kit holds the land, the trees, the people, the vehicles and a fixed wing vtol_drone. The chassis builds
  * what the kit lacks, in the kit's conventions (metres, y up, origin on the ground, front on +z) so Phase 17 can queue the
- * lift: survey_quad (an illustrative survey quadcopter to no maker's design). Every drone drawn is drawn to illustrate.
+ * lift: survey_quad (an illustrative survey quadcopter to no maker's design, with a ghost mode in frosted glass that casts no
+ * shadow, folded props and an open shell) and flight_board (its flight controller with the motion sensor chip). Every drone drawn is drawn to illustrate.
  * Every count a frame draws is read from window.FIG in that frame's own code. The chassis types no figure.
  */
 (function (global) {
@@ -19,19 +23,20 @@
   if (!global.TXDECK) throw new Error("truetrack.js needs txdeck.js loaded first");
 
   TXDECK.declare({
-    world: "truetrack", look: "v2", tone: "explainer", bespoke: true,
+    world: "truetrack", look: "v2", tone: "people", bespoke: true,
     light: { az: -45, el: 35 },
-    sky: { preset: "v2explainer" },
+    sky: { preset: "v2people" },
     ground: "#e4d8c3",
     material: "#e4d8c3",
-    accent: "#e0956a",
-    grade: TXLOOK.grade("explainer")
+    accent: "#ff9f1c",
+    grade: TXLOOK.grade("people")
   });
 
   var N = {};
   N.KEY_SCALE = 1;
-  N.W = 1080; N.H = 1350; N.SEED = 20261120; N.TONE = "explainer"; N.P = TXLOOK.palette("explainer"); N.INK = N.P.ink;
-  N.ACCENT = 0xe0956a;        /* dusk gold: the fly the sort keeps, and nothing else */
+  N.W = 1080; N.H = 1350; N.SEED = 20261120; N.TONE = "people"; N.P = TXLOOK.palette("people"); N.INK = N.P.ink;
+  N.ACCENT = 0xff9f1c;        /* amber: motion the drone itself measured, and nothing else */
+  N.GHOST = 0x9fb2ff;         /* frosted periwinkle glass: the position the false signal reports */
   N.GOLD = N.ACCENT;
   /* a seeded canvas texture, so every surface carries tooth in its albedo and never in its height */
   N.canvasTex = function (THREE, w, h, paint, repeat) {
@@ -65,10 +70,11 @@
      * legs (true), lift (metres the body hovers above origin, 0 sits on its feet), arm (0.35 half diagonal in metres). */
     K.define("survey_quad", {
       size: [0.86, 0.26, 0.86],
-      options: { spin: 0, shell: 0xe9ecef, lamp: null, legs: true, lift: 0, arm: 0.35 },
-      note: "An illustrative survey quadcopter, about 0.70 m motor to motor, moulded shell, carbon arms, gimbal camera, landing legs. Origin on the ground under the body, front on +z. spin 0..1 blurs the props, lift raises it, lamp colours the rear lamp (default the accent).",
+      options: { spin: 0, shell: 0xe9ecef, lamp: null, legs: true, lift: 0, arm: 0.35, ghost: false, props: 'still', open: false },
+      note: "An illustrative survey quadcopter, about 0.70 m motor to motor, moulded shell, carbon arms, gimbal camera, landing legs, GPS puck on a mast. Origin on the ground under the body, front on +z. props 'still' | 'spin' | 'folded'; lift raises it; open:true removes the top shell and shows the flight_board; ghost:true renders the whole aircraft in frosted periwinkle glass that casts NO shadow (the reported position); lamp colours the rear lamp.",
       make: function (o) {
-        o = Object.assign({ spin: 0, shell: 0xe9ecef, lamp: null, legs: true, lift: 0, arm: 0.35 }, o || {});
+        o = Object.assign({ spin: 0, shell: 0xe9ecef, lamp: null, legs: true, lift: 0, arm: 0.35, ghost: false, props: 'still', open: false }, o || {});
+        if (o.props === 'spin') o.spin = 1;
         var g = new THREE.Group(), body = new THREE.Group(); g.add(body);
         var legH = o.legs ? 0.13 : 0.06; body.position.y = legH + o.lift;
         var shell = K.mat("q-shell-" + o.shell, { color: o.shell, roughness: 0.32, metalness: 0.05, clearcoat: 0.8, clearcoatRoughness: 0.18 }, true);
@@ -105,6 +111,9 @@
             var dm = new THREE.MeshPhysicalMaterial({ color: 0x20242a, transparent: true, opacity: 0.22, roughness: 0.4, depthWrite: false, side: THREE.DoubleSide });
             var disc = new THREE.Mesh(new THREE.RingGeometry(0.012, 0.19, 48), dm); disc.rotation.x = -Math.PI / 2; disc.position.set(tip[0], hubY, tip[2]); disc.castShadow = false; body.add(disc);
             var rim = new THREE.Mesh(new THREE.RingGeometry(0.175, 0.19, 64), new THREE.MeshBasicMaterial({ color: 0x3a3f48, transparent: true, opacity: 0.25, depthWrite: false, side: THREE.DoubleSide })); rim.rotation.x = -Math.PI / 2; rim.position.set(tip[0], hubY + 0.001, tip[2]); body.add(rim);
+          } else if (o.props === 'folded') {
+            for (var b2 = 0; b2 < 2; b2++) { var bl = rbox(0.18, 0.004, 0.028, 0.002, dark); var pv = new THREE.Group(); pv.position.set(tip[0], hubY, tip[2]);
+              pv.rotation.y = Math.atan2(-tip[2], tip[0]) + Math.PI + (b2 ? 0.08 : -0.08); bl.position.x = 0.09; pv.add(bl); body.add(pv); }
           } else {
             var ang = k * 0.9 + 0.3;
             for (var b = 0; b < 2; b++) {
@@ -119,7 +128,13 @@
             var foot = new THREE.Mesh(new THREE.SphereGeometry(0.013, 12, 8), rubber); foot.position.set(lx * 1.5, -legH + 0.012, lz * 1.4); body.add(foot);
           }
         });
-        /* gimbal: a yoke, a roll ring and a camera with a lens */
+        /* GPS puck on a short mast at the rear: the receiver spoofing lies to */
+        K.cyl(0.006, 0.006, 0.06, carbon, 0, 0.115, -0.07, 10, body);
+        var puck = K.cyl(0.035, 0.038, 0.016, shell, 0, 0.175, -0.07, 28, body);
+        var dome = new THREE.Mesh(new THREE.SphereGeometry(0.034, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), shell); dome.scale.y = 0.35; dome.position.set(0, 0.19, -0.07); body.add(dome);
+        g.userData.gps = puck;
+        if (o.open) { top.visible = false; hatch.visible = false; seam.visible = false; grip.visible = false;
+          var fb = K.make('flight_board', {}); fb.scale.setScalar(1.6); fb.position.set(0, 0.062, 0.0); body.add(fb); g.userData.board = fb; }
         var yoke = rbox(0.05, 0.03, 0.03, 0.008, trim); yoke.position.set(0, -0.01, 0.075); body.add(yoke);
         var cam = rbox(0.055, 0.048, 0.05, 0.012, dark); cam.position.set(0, -0.045, 0.085); body.add(cam);
         var lensRing = K.cyl(0.018, 0.018, 0.012, metal, 0, -0.045, 0.114, 24, body); lensRing.rotation.x = Math.PI / 2;
@@ -128,6 +143,45 @@
         var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.008, 14, 10), new THREE.MeshStandardMaterial({ color: o.lamp || N.ACCENT, emissive: o.lamp || N.ACCENT, emissiveIntensity: 2.6 }));
         lamp.position.set(0, 0.06, -0.112); body.add(lamp);
         g.userData.lamp = lamp; g.userData.body = body; g.userData.camera = cam;
+        if (o.ghost) {
+          var gm = new THREE.MeshPhysicalMaterial({ name: 'ghost-frosted-glass', color: N.GHOST, metalness: 0, roughness: 0.35, transmission: 0.6, thickness: 0.02, ior: 1.45, transparent: true, opacity: 0.85, clearcoat: 1, clearcoatRoughness: 0.2, emissive: N.GHOST, emissiveIntensity: 0.08 });
+          g.traverse(function (m) { if (m.isMesh) { m.material = gm; m.castShadow = false; m.receiveShadow = false; } });
+          g.userData.ghost = true; return g;
+        }
+        return shadowAll(g);
+      }
+    });
+
+    /* THE FLIGHT CONTROLLER, drawn to no maker's design: a 36 x 36 mm board, green black solder mask, gold pads, a 3 x 3 x 1 mm
+     * motion sensor chip at the centre (userData.imu), a processor, capacitors, header pins and four mounting holes. Origin at
+     * the board's bottom centre, y up. Real size in metres; a macro frame scales its camera, not the model. */
+    K.define("flight_board", {
+      size: [0.036, 0.006, 0.036],
+      options: { seed: 3 },
+      note: "An illustrative 36 mm flight controller board with a motion sensor chip at the centre (userData.imu), processor, passives, header and mounting holes.",
+      make: function (o) {
+        o = o || {}; var g = new THREE.Group(), r = N.rng(o.seed || 3);
+        var maskTex = N.canvasTex(THREE, 512, 512, function (x, w, h) {
+          x.fillStyle = "#123a2c"; x.fillRect(0, 0, w, h);
+          x.strokeStyle = "rgba(60,140,100,0.55)"; x.lineWidth = 3;
+          for (var i = 0; i < 60; i++) { var x0 = r() * w, y0 = r() * h; x.beginPath(); x.moveTo(x0, y0); var hz = r() < 0.5; x.lineTo(hz ? x0 + (r() - 0.5) * 220 : x0, hz ? y0 : y0 + (r() - 0.5) * 220); x.lineTo(x0 + (r() - 0.5) * 60, y0 + (r() - 0.5) * 60); x.stroke(); }
+          x.fillStyle = "#d8b25a"; for (var j = 0; j < 140; j++) { x.fillRect(r() * w, r() * h, 8, 5); }
+          ["#d8b25a"].forEach(function () { [[40, 40], [472, 40], [40, 472], [472, 472]].forEach(function (p) { x.beginPath(); x.arc(p[0], p[1], 26, 0, 7); x.fill(); x.fillStyle = "#0b0d10"; x.beginPath(); x.arc(p[0], p[1], 14, 0, 7); x.fill(); x.fillStyle = "#d8b25a"; }); });
+        });
+        var pcb = K.mat("fb-mask", { color: 0xffffff, map: maskTex, roughness: 0.38, metalness: 0.05, clearcoat: 0.7, clearcoatRoughness: 0.2 }, true);
+        var chipM = K.mat("fb-chip", { color: 0x16171b, roughness: 0.42, metalness: 0.1 });
+        var silver = K.mat("fb-solder", { color: 0xc9ccd2, roughness: 0.22, metalness: 1 });
+        var gold = K.mat("fb-gold", { color: 0xd8b25a, roughness: 0.25, metalness: 1 });
+        var capM = K.mat("fb-cap", { color: 0xa88a5a, roughness: 0.5 });
+        var board = rbox(0.036, 0.0016, 0.036, 0.0015, pcb); board.position.y = 0.0008; g.add(board);
+        var imu = rbox(0.003, 0.001, 0.003, 0.0003, chipM); imu.position.set(0, 0.0021, 0); g.add(imu);
+        var imuPad = rbox(0.0042, 0.0002, 0.0042, 0.0001, gold); imuPad.position.set(0, 0.0017, 0); g.add(imuPad);
+        var mcu = rbox(0.009, 0.0012, 0.009, 0.0004, chipM); mcu.position.set(-0.009, 0.0022, 0.008); g.add(mcu);
+        for (var k = 0; k < 9; k++) { [-1, 1].forEach(function (s) { var pin = rbox(0.0006, 0.0003, 0.0012, 0.0001, silver); pin.position.set(-0.009 + (k - 4) * 0.0009, 0.0018, 0.008 + s * 0.0052); g.add(pin); }); }
+        for (var c = 0; c < 14; c++) { var cap = rbox(0.0016, 0.0008, 0.0008, 0.0002, capM); cap.position.set((r() - 0.5) * 0.028, 0.002, (r() - 0.5) * 0.028); if (Math.abs(cap.position.x) < 0.004 && Math.abs(cap.position.z) < 0.004) cap.position.x += 0.008; g.add(cap); }
+        var hdr = rbox(0.014, 0.0025, 0.0025, 0.0003, chipM); hdr.position.set(0.006, 0.0029, -0.014); g.add(hdr);
+        for (var p = 0; p < 6; p++) { var pn = K.cyl(0.0003, 0.0003, 0.004, gold, 0.0005 + p * 0.0023, 0.0016, -0.014, 6, g); }
+        g.userData.imu = imu;
         return shadowAll(g);
       }
     });
