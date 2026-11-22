@@ -15,7 +15,7 @@ Planned type seat: bottom band over the tailgate.
 - kicker: `Open until November 25th`
 - counter: `09 / 09`
 - headline (verbatim): `The next ask is delivery`
-- dek (verbatim, except the one exception below): `DARPA's open TRIAGE-X topic seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.`
+- dek (verbatim, except the one exception below): `DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.`
 - labels: [] (tone pills from TXLOOK.css, never lime unless the label marks the handoff link itself)
 - claim ids (the `src` furniture): `c19 c20`
 

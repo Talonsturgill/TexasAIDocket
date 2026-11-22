@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "c408221267701243e8543b5a7b596a47e32c169df4144ff614fd922ee381d2c5",
+    "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
     "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
     "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -19,10 +19,10 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-05.html": "5266f9386102ffc764f81c9759accbb406fb5ba59e4bbee42318142e3a03c67b",
+    "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
     "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
-    "slides/slide-09.html": "fee4a2ea208d38fa5de4e4358ee257b646594f9e98c012f62af701243242e5ab",
-    "render/slide-09.png": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f"
+    "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+    "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
   },
   "value_measurements": [
     {
@@ -45,8 +45,8 @@
     },
     {
       "frame": "slide-09.png",
-      "median_L": 36.7,
-      "mid": 0.527,
+      "median_L": 36.8,
+      "mid": 0.525,
       "dark": 0.023,
       "grey_mid": 0.162,
       "vivid": 0.464,
@@ -56,7 +56,7 @@
   "review": {
     "decision": "accept",
     "inputs": {
-      "slides/slide-01.html": "c408221267701243e8543b5a7b596a47e32c169df4144ff614fd922ee381d2c5",
+      "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
       "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
       "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -69,10 +69,10 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-05.html": "5266f9386102ffc764f81c9759accbb406fb5ba59e4bbee42318142e3a03c67b",
+      "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
       "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
-      "slides/slide-09.html": "fee4a2ea208d38fa5de4e4358ee257b646594f9e98c012f62af701243242e5ab",
-      "render/slide-09.png": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f"
+      "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+      "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
     },
     "frames": [
       {
@@ -87,7 +87,7 @@
         "dominant_subject_finished": true,
         "feed_legible": true,
         "inputs": {
-          "slides/slide-01.html": "c408221267701243e8543b5a7b596a47e32c169df4144ff614fd922ee381d2c5",
+          "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
           "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
           "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -137,7 +137,7 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-05.html": "5266f9386102ffc764f81c9759accbb406fb5ba59e4bbee42318142e3a03c67b",
+          "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
           "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864"
         }
       },
@@ -145,10 +145,10 @@
         "slide": 9,
         "role": "close",
         "source": "carousel-art-director",
-        "subject": "An open orange rugged hard case on a blue pickup tailgate at dusk. It has moulded ribs, hinges, latches, a handle and a gridded dark foam insert holding a dome item, a wedge item and a teal tube. The lime link runs from the parked teal rover's mast at left, over the lid, down into one empty round pocket. A row of dark day ticks is set into the lid.",
-        "visual_consequence": "With the headline covered, the machine's lime link ends in the one empty slot of a medical kit. The next job is to fill that slot, and the picture moves from relaying data to delivering something. The handoff accent keeps its single meaning.",
-        "weakness": "The case base has no tight dark contact shadow, an offset dark teal panel sits under it, and the bed reads as translucent glass with glossy rails, so the case looks like it hovers. At 432 px the lid ticks read as a decorative comb. Neither breaks the encoding or the subject.",
-        "repair": "Give the tailgate bed an opaque matte powder-coat steel material with low-gloss rails, and add a tight soft contact shadow hugging the case's footprint in place of the offset square panel.",
+        "subject": "An open orange rugged hard case on a blue pickup tailgate at dusk, its dark gridded foam holding a vial seat, a capsule, a syringe and one empty round pocket, with a parked teal tracked rover at the left edge, mast and lens up, in a dry grass field.",
+        "visual_consequence": "A lime tube leaves the rover's mast, arcs over the open lid and drops into the one empty pocket, so the machine hands its payload to the medic's kit and the empty slot is what is still missing, delivery. Lime is the only saturated green in the frame.",
+        "weakness": "The teal foot wash softens the case's lower ribs over a dark footprint plate, two white specks float over the rover, the strike plates and rails are glossy, the cab behind is a plain blue slab, the lid ticks read as a gauge and the tube bulges slightly over the lid.",
+        "repair": "None required for acceptance. Remove the specks and stop the foot wash above the case's lower ribs if the frame is touched again.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
@@ -164,11 +164,12 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-09.html": "fee4a2ea208d38fa5de4e4358ee257b646594f9e98c012f62af701243242e5ab",
-          "render/slide-09.png": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f"
+          "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+          "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
         }
       }
-    ]
+    ],
+    "note": "Rebound 2026-11-22 after fig_inject made frames 1, 5 and 9 read FIG statically. The renders are byte-identical to the reviewed ones."
   },
   "plan": {
     "hardest_frame": 5,
@@ -178,7 +179,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "c408221267701243e8543b5a7b596a47e32c169df4144ff614fd922ee381d2c5",
+      "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
       "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
       "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -204,7 +205,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-05.html": "5266f9386102ffc764f81c9759accbb406fb5ba59e4bbee42318142e3a03c67b",
+      "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
       "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864"
     },
     "9": {
@@ -219,8 +220,8 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-09.html": "fee4a2ea208d38fa5de4e4358ee257b646594f9e98c012f62af701243242e5ab",
-      "render/slide-09.png": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f"
+      "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+      "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
     }
   },
   "needs_review": [
@@ -228,12 +229,12 @@
     9
   ],
   "shipped_inputs": {
-    "slides/slide-01.html": "c408221267701243e8543b5a7b596a47e32c169df4144ff614fd922ee381d2c5",
+    "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
     "slide-01.webp": "c72a89f412c2728adec8088193bc378bdfa045f2f84a47698f5f2c4e3f0f0350",
-    "slides/slide-05.html": "5266f9386102ffc764f81c9759accbb406fb5ba59e4bbee42318142e3a03c67b",
+    "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
     "slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
-    "slides/slide-09.html": "fee4a2ea208d38fa5de4e4358ee257b646594f9e98c012f62af701243242e5ab",
-    "slide-09.png": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f"
+    "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+    "slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
   },
   "encodings": [
     {
@@ -250,8 +251,8 @@
     },
     {
       "to": "slide-09.png",
-      "to_sha256": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f",
-      "from_sha256": "5b3b9110844f617ec23732aea858917ccef95905b8842879238a6deeed470c4f",
+      "to_sha256": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8",
+      "from_sha256": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8",
       "psnr_db": 999.0
     }
   ]

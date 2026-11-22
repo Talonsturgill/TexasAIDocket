@@ -5345,14 +5345,14 @@
      50.3,
      52.5,
      25.9,
-     67.0,
+     41.1,
      54.3,
-     52.4,
+     52.6,
      38.1
     ],
     "deck_median_L": 52.5,
-    "max_adjacent_delta": 41.1,
-    "mean_adjacent_delta": 13.43,
+    "max_adjacent_delta": 26.6,
+    "mean_adjacent_delta": 10.25,
     "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
    },
    "accent": {
@@ -5367,8 +5367,8 @@
      0.0002,
      0.0,
      0.0,
-     0.0014,
-     0.0
+     0.0005,
+     0.0015
     ],
     "note": "What the machine hands the medic only."
    },

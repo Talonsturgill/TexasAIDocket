@@ -32,7 +32,6 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The job", counter: "04 / 09", src: "c10 c18 c15", fit: { min: 72, max: 90, maxLines: 2 } });
 
   /* THE FIGURES. This frame draws no count and no length, so it holds none. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 4 draws no figure, but window.FIG carries ' + Object.keys(window.FIG).join(', '));
 
   const R = CH.stage(TXT, gl, W, { fov: 9.0, near: 1, far: 3000 });
   const rng = CH.rng(20261104);

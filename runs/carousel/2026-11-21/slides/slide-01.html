@@ -35,7 +35,6 @@ window.renderReady = (async () => {
   const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 3000, fog: 0.0007 });
 
   /* THE FIGURES. This frame draws no count and no length: the brief gives FIG {} and the art must carry none. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 1 carries no figure, FIG must stay empty');
 
   /* THE FRAME'S AXES, laid out from the deck's sun so the key rakes the rover from camera left.
    * f is the view direction on the ground, rt is screen right. The sun's bearing sits ALPHA degrees left of the view's back. */

@@ -14,7 +14,7 @@ Planned type seat: top right over the cool wall.
 ## The copy (fixed)
 - kicker: `Not enough`
 - counter: `08 / 09`
-- headline (verbatim): `Better than every approach. Still not enough.`
+- headline (verbatim): `Human machine teams beat every approach. Still not enough.`
 - dek (verbatim, except the one exception below): `DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023.`
 - labels: [] (tone pills from TXLOOK.css, never lime unless the label marks the handoff link itself)
 - claim ids (the `src` furniture): `c5 c6 c7 c21`

@@ -14,7 +14,7 @@
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook" style="left:80px; top:134px; width:450px; text-align:left">The next ask is delivery</h1>
 <p class="dek" id="dek" style="left:82px; top:1046px; width:880px; font-size:25px; line-height:1.36">DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.</p>
-<script>window.FIG = {"close_after_finals_days": 12, "finals_end_day": 13, "triagex_close_day": 25};</script>
+<script>window.FIG = {"finals_end_day": 13, "triagex_close_day": 25, "close_after_finals_days": 12};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -32,9 +32,8 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Open until November 25th", counter: "09 / 09", src: "c19 c20", fit: { min: 76, max: 104, maxLines: 2 } });
 
   /* HONESTY. The only count drawn is the ring of day ticks on the lid, one per day from the end of the finals to the close. */
-  const F = window.FIG;
-  const DAYS = F.close_after_finals_days;
-  if (F.finals_end_day + DAYS !== F.triagex_close_day) throw new Error('FIG disagrees: finals end ' + F.finals_end_day + ' plus ' + DAYS + ' is not ' + F.triagex_close_day);
+  const DAYS = FIG.close_after_finals_days;
+  if (FIG.finals_end_day + DAYS !== FIG.triagex_close_day) throw new Error('the figures disagree: finals end ' + FIG.finals_end_day + ' plus ' + DAYS + ' is not ' + FIG.triagex_close_day);
   if (!(DAYS > 0 && DAYS < 40)) throw new Error('close_after_finals_days out of range ' + DAYS);
 
   const FOV = 40;
@@ -55,7 +54,7 @@ window.renderReady = (async () => {
   const foamM = K.mat('foam-cell-rubber', { color: 0xffffff, map: foamTex, roughness: 0.97, metalness: 0 }, true);
   const boreM = K.mat('foam-bore-rubber', { color: 0x262c3a, map: foamTex, roughness: 0.98, metalness: 0, side: THREE.BackSide }, true);
   const tickM = K.mat('case-tick-engrave', { color: 0x3a1a0c, roughness: 0.8, metalness: 0 }, true);
-  const limeM = new THREE.MeshStandardMaterial({ name: 'handoff-link', color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 0.85, roughness: 0.4 });
+  const limeM = new THREE.MeshStandardMaterial({ name: 'handoff-link', color: 0x8ad83c, emissive: 0x7acc2c, emissiveIntensity: 0.42, roughness: 0.4 });
   limeM.userData.txSurface = false;
 
   /* ---------- the pickup, its closed tailgate swapped for a dropped one ---------- */
@@ -237,7 +236,7 @@ window.renderReady = (async () => {
     }
     const arcPts = []; for (let k = 0; k <= 40; k++) { const a = -SPAN / 2 - 0.03 + (SPAN + 0.06) * k / 40; arcPts.push([Math.sin(a) * (ARC_R - 0.05), -0.004, ARC_C + Math.cos(a) * (ARC_R - 0.05)]); }
     lid.add(TXT.tube(arcPts, 0.003, tickM2, { segments: 80, radial: 8 }));
-    if (ticks !== DAYS) throw new Error('the lid ring carries ' + ticks + ' ticks, FIG says ' + DAYS);
+    if (ticks !== DAYS) throw new Error('the lid ring carries ' + ticks + ' ticks, the figures say ' + DAYS);
     window.__ticks = ticks;
     /* hinge barrels along the back */
     for (let i = 0; i < 3; i++) { const b = K.cyl(0.011, 0.011, 0.07, latchM, -0.18 + i * 0.18, -0.035, -0.008, 16, hinge); b.rotation.z = Math.PI / 2; b.position.set(-0.18 + i * 0.18, -0.002, -0.008); }
@@ -305,7 +304,7 @@ window.renderReady = (async () => {
   const rpx = CH.project(THREE, R, rp.toArray()), ppx = CH.project(THREE, R, pocketW.toArray());
   const route = [rp.toArray(), onRay(rpx[0] + 70, rpx[1] - 45, dR * 0.55), onRay(250, 452, dP - 0.38), onRay(380, 450, dP - 0.42), onRay(560, 460, dP - 0.36),
     onRay(ppx[0] - 12, ppx[1] - 150, dP - 0.15), [pocketW.x, pocketW.y + 0.03, pocketW.z], [floorW.x, floorW.y, floorW.z]];
-  const link = TXT.tube(route, 0.0065, limeM, { segments: 360, radial: 12, tension: 0.5 });
+  const link = TXT.tube(route, 0.0085, limeM, { segments: 360, radial: 12, tension: 0.5 });
   link.castShadow = false; R.scene.add(link);
   CH.lampGlow(THREE, R, [floorW.x, floorW.y + 0.02, floorW.z], CH.ACCENT, 0.12, 0.25);
   console.log('radio', rp.toArray().map((v) => v.toFixed(2)).join(','), 'radio px', CH.project(THREE, R, rp.toArray()).map(Math.round).join(','));

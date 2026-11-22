@@ -73,11 +73,11 @@
         "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
       ],
       "bands": [
-        0.2269,
-        0.937,
-        0.761
+        0.2185,
+        0.792,
+        0.6949
       ],
-      "band_ratio": 1.1761
+      "band_ratio": 1.2101
     },
     {
       "file": "slide-07.html",
@@ -112,11 +112,11 @@
         "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
       ],
       "bands": [
-        0.6303,
-        0.4139,
+        0.6429,
+        0.4244,
         0.6029
       ],
-      "band_ratio": 1.0933
+      "band_ratio": 1.0789
     }
   ],
   "fails": 0,

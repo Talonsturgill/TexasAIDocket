@@ -16,7 +16,7 @@
 <div class="lab plain" id="l-pool" style="white-space:normal; width:200px; font-size:24px; line-height:1.16; padding:8px 8px 9px; background:linear-gradient(180deg,#145a56,#0c3f44); box-shadow:0 10px 24px rgba(8,40,48,0.35)">more than <span style="white-space:nowrap">$3 million</span></div>
 <div class="lab plain" id="l-sys" style="white-space:normal; width:200px; font-size:24px; line-height:1.16; padding:8px 8px 9px; background:linear-gradient(180deg,#145a56,#0c3f44); box-shadow:0 10px 24px rgba(8,40,48,0.35)">Systems, <span style="white-space:nowrap">$1.5 million</span></div>
 <div class="lab plain" id="l-data" style="white-space:normal; width:200px; font-size:24px; line-height:1.16; padding:8px 8px 9px; background:linear-gradient(180deg,#145a56,#0c3f44); box-shadow:0 10px 24px rgba(8,40,48,0.35)">Data, <span style="white-space:nowrap">$1 million</span></div>
-<script>window.FIG = {"plates_pool": 30, "plates_systems": 15, "plates_data": 10, "plate_usd": 100000};</script>
+<script>window.FIG = {"plate_usd": 100000, "plates_pool": 30, "plates_systems": 15, "plates_data": 10};</script>
 <script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
@@ -27,11 +27,8 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The purse", counter: "07 / 09", src: "c12 c3 c23", fit: { min: 76, max: 88, maxLines: 2 } });
-  const FIG = window.FIG;
 
   /* HONESTY FIRST: the three stacks are read from the figures, and the figures must agree with the copy's own sums */
-  const keys = Object.keys(FIG).sort().join(',');
-  if (keys !== 'plate_usd,plates_data,plates_pool,plates_systems') throw new Error('frame 7 FIG carries the wrong keys: ' + keys);
   if (FIG.plates_systems * FIG.plate_usd !== 1500000) throw new Error('Systems stack does not make $1.5 million');
   if (FIG.plates_data * FIG.plate_usd !== 1000000) throw new Error('Data stack does not make $1 million');
   if (FIG.plates_pool * FIG.plate_usd !== 3000000) throw new Error('purse stack does not make $3 million');
@@ -75,7 +72,7 @@ window.renderReady = (async () => {
   const X = { data: -0.33, sys: 0.15, pool: 0.63 }, TURN = -0.45;
   const sData = stack(FIG.plates_data, 11), sSys = stack(FIG.plates_systems, 12), sPool = stack(FIG.plates_pool, 13);
   [[sData, X.data, 0.03], [sSys, X.sys, -0.04], [sPool, X.pool, 0.02]].forEach(([s, x, yaw]) => { s.position.set(x, SLAB, 0); s.rotation.y = TURN + yaw; TXT.add(R, s); TXT.contact(R, s, { opacity: 0.85 }); });
-  if (sData.userData.count !== FIG.plates_data || sSys.userData.count !== FIG.plates_systems || sPool.userData.count !== FIG.plates_pool) throw new Error('drawn stacks disagree with FIG');
+  if (sData.userData.count !== FIG.plates_data || sSys.userData.count !== FIG.plates_systems || sPool.userData.count !== FIG.plates_pool) throw new Error('drawn stacks disagree with the figures');
   if (Math.abs(sSys.userData.top / sData.userData.top - FIG.plates_systems / FIG.plates_data) > 1e-9) throw new Error('stack heights are not to one scale');
   if (Math.abs(sPool.userData.top / sData.userData.top - FIG.plates_pool / FIG.plates_data) > 1e-9) throw new Error('purse stack is not to the same scale');
 

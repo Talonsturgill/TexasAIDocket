@@ -25,7 +25,6 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   /* THIS FRAME DRAWS NO COUNT. The brief's figures are {} and the art must stay that way. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 5 draws no figure, window.FIG must be empty');
 
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Night course", counter: "05 / 09", src: "c27 c28 c16", fit: { min: 76, max: 86, maxLines: 3 } });

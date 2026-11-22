@@ -14,7 +14,7 @@
 <h1 class="hook" id="hook" style="left:460px; top:150px; width:540px; text-align:right">Human machine teams beat every approach. Still not enough.</h1>
 <p class="dek" id="dek" style="left:590px; top:930px; width:410px; font-size:24px; line-height:1.3">DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023.</p>
 
-<script>window.FIG = {"created_year": 2023, "year": 2026, "years_running": 3};</script>
+<script>window.FIG = {"year": 2026, "created_year": 2023, "years_running": 3};</script>
 <script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
@@ -132,7 +132,7 @@ window.renderReady = (async () => {
   const tablet = new THREE.Group(); tablet.position.copy(tabC); tablet.rotation.set(-0.95, 0, 0.1); med.add(tablet);
   const caseM = new THREE.MeshPhysicalMaterial({ color: 0x2a2f36, roughness: 0.6, metalness: 0.1, clearcoat: 0.2, name: 'rubber-case' });
   tablet.add(TXT.roundedBox(0.3, 0.022, 0.21, 0.012, caseM));
-  const scrM = new THREE.MeshStandardMaterial({ color: 0x0b1a12, emissive: CH.ACCENT, emissiveIntensity: 0.4, roughness: 0.2, name: 'tablet-screen' }); scrM.userData.txSurface = false;
+  const scrM = new THREE.MeshStandardMaterial({ color: 0x8ad83c, emissive: 0x7acc2c, emissiveIntensity: 0.42, roughness: 0.2, name: 'tablet-screen' }); scrM.userData.txSurface = false;
   const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.25, 0.16), scrM); scr.rotation.x = -Math.PI / 2; scr.position.y = 0.0115; scr.userData.txBevel = false; tablet.add(scr);
   /* her kit bag on the floor at her left knee */
   const bagM = new THREE.MeshStandardMaterial({ color: 0x1d2c55, roughness: 0.85, name: 'nylon-fabric' }), reflM = new THREE.MeshStandardMaterial({ color: 0x8c949c, roughness: 0.45, metalness: 0.3, name: 'reflective-tape' });
@@ -184,8 +184,8 @@ window.renderReady = (async () => {
   const rA = new THREE.Vector3(); rover.userData.radio.getWorldPosition(rA);
   const tW = new THREE.Vector3(); scr.getWorldPosition(tW);
   const litHead = new THREE.Vector3(-CL / 2 + 0.3, BASE + SH_H + 0.05, 0).applyMatrix4(litter.matrixWorld);
-  const limeCore = new THREE.MeshStandardMaterial({ color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 2.2, roughness: 0.3, name: 'lime-link' }); limeCore.userData.txSurface = false;
-  const limeHalo = new THREE.MeshBasicMaterial({ color: CH.ACCENT, transparent: true, opacity: 0.18, depthWrite: false, blending: THREE.AdditiveBlending, fog: false }); limeHalo.userData.txSurface = false;
+  const limeCore = new THREE.MeshStandardMaterial({ color: 0x8ad83c, emissive: 0x7acc2c, emissiveIntensity: 0.42, roughness: 0.3, name: 'lime-link' }); limeCore.userData.txSurface = false;
+  const limeHalo = new THREE.MeshBasicMaterial({ color: 0x7acc2c, transparent: true, opacity: 0.3, depthWrite: false, blending: THREE.AdditiveBlending, fog: false }); limeHalo.userData.txSurface = false;
   const tipHot = new THREE.MeshBasicMaterial({ color: 0xf6ffe0, toneMapped: false }); tipHot.userData.txSurface = false;
   const beam = (curve, r) => {
     const core = new THREE.Mesh(new THREE.TubeGeometry(curve, 160, r, 14, false), limeCore); core.userData.txBevel = false; R.scene.add(core);
@@ -193,7 +193,7 @@ window.renderReady = (async () => {
   };
   /* the handoff: radio to tablet, a high arc */
   const hand = new THREE.CubicBezierCurve3(rA.clone(), rA.clone().add(new THREE.Vector3(0, 0.5, 0)).lerp(tW, 0.25), tW.clone().add(new THREE.Vector3(0, 0.45, 0)).lerp(rA, 0.2), tW.clone());
-  beam(hand, 0.009);
+  beam(hand, 0.03);
   CH.lampGlow(THREE, R, [tW.x, tW.y + 0.02, tW.z], CH.ACCENT, 0.2, 0.35);
   CH.lampGlow(THREE, R, [rA.x, rA.y, rA.z], CH.ACCENT, 0.16, 0);
   if (hand.getPoint(1).distanceTo(tW) > 0.001) throw new Error('the handoff beam does not land on the tablet');

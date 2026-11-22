@@ -61,7 +61,7 @@ window.renderReady = (async () => {
     for (let i = 0; i < 2600; i++) { g.fillStyle = 'rgba(0,30,40,' + (0.02 + r() * 0.05) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 2); }
   });
   screenTex.wrapS = screenTex.wrapT = THREE.RepeatWrapping; screenTex.repeat.set(14, 4);
-  const screenMat = new THREE.MeshStandardMaterial({ name: 'windscreen-fabric-polyester', color: 0x14a3a0, map: screenTex, roughness: 0.86, metalness: 0, side: THREE.DoubleSide });
+  const screenMat = new THREE.MeshStandardMaterial({ name: 'windscreen-fabric-polyester', color: 0x0f7f7c, map: screenTex, roughness: 0.86, metalness: 0, side: THREE.DoubleSide });
   screenMat.userData.txSurface = 'fabric';
   { const y0 = 0.07, sw = X1 - X0, sh = FH - y0, nx = 560, ny = 150, geo = new THREE.PlaneGeometry(sw, sh, nx, ny), pa = geo.attributes.position;
     for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i);
@@ -176,7 +176,7 @@ window.renderReady = (async () => {
   console.log('camera', JSON.stringify(best));
   if (best.cost >= 1000) throw new Error('no raked camera keeps the hundred badges clear of the type and the footer (cost ' + Math.round(best.cost) + ')');
   { const q = pj(B101c); if (!(q[0] > 1030 && q[0] < 1110)) throw new Error('the more-than badge is not cut by the right edge, its centre at x ' + Math.round(q[0])); }
-  { const sweep = TXT.studio(R, { tone: 'win', w: 18, d: 12, h: 7, radius: 2.2 }); sweep.rotation.y = (90 - best.rake) * Math.PI / 180; }
+  { const sweep = TXT.studio(R, { tone: 'win', w: 18, d: 12, h: 7, radius: 2.2, floor: 0x0f4d4a, wall: 0x0b3a44, top: 0x0b3a44 }); sweep.rotation.y = (90 - best.rake) * Math.PI / 180; }
 
   /* ---- THE LIGHT: one hard low key from the far end of the run, grazing the screen, so every lanyard and badge throws
    * its shadow across the fabric and onto the next badge along ---------------------------------------------------- */

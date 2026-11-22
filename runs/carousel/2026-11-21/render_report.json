@@ -184,9 +184,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 33450,
+      "render_ms": 32906,
       "ok": true,
-      "load_ms": 176,
+      "load_ms": 181,
       "canvases": [
         {
           "x": 0,
@@ -400,9 +400,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 61986,
+      "render_ms": 57889,
       "ok": true,
-      "load_ms": 174,
+      "load_ms": 165,
       "canvases": [
         {
           "x": 0,
@@ -722,7 +722,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 21602,
+      "render_ms": 20813,
       "ok": true,
       "load_ms": 168,
       "canvases": [
@@ -934,9 +934,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 26335,
+      "render_ms": 26629,
       "ok": true,
-      "load_ms": 182,
+      "load_ms": 174,
       "canvases": [
         {
           "x": 0,
@@ -1152,9 +1152,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 33779,
+      "render_ms": 32856,
       "ok": true,
-      "load_ms": 169,
+      "load_ms": 164,
       "canvases": [
         {
           "x": 0,
@@ -1346,9 +1346,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 17070,
+      "render_ms": 17499,
       "ok": true,
-      "load_ms": 185,
+      "load_ms": 158,
       "canvases": [
         {
           "x": 0,
@@ -1360,8 +1360,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 122.2,
-          "variance": 2212.4
+          "mean": 78.2,
+          "variance": 1744.4
         }
       ],
       "breather": false,
@@ -1702,9 +1702,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 26528,
+      "render_ms": 26149,
       "ok": true,
-      "load_ms": 163,
+      "load_ms": 194,
       "canvases": [
         {
           "x": 0,
@@ -1944,9 +1944,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 33182,
+      "render_ms": 33229,
       "ok": true,
-      "load_ms": 156,
+      "load_ms": 181,
       "canvases": [
         {
           "x": 0,
@@ -1958,8 +1958,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 109.2,
-          "variance": 1945
+          "mean": 110,
+          "variance": 2007.5
         }
       ],
       "breather": false,
@@ -2144,9 +2144,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 29582,
+      "render_ms": 32915,
       "ok": true,
-      "load_ms": 178,
+      "load_ms": 188,
       "canvases": [
         {
           "x": 0,
@@ -2159,7 +2159,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 93.8,
-          "variance": 1826.5
+          "variance": 1800.1
         }
       ],
       "breather": false,

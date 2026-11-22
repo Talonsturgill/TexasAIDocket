@@ -75,7 +75,7 @@ primary_image:
   subject: an illustrative tracked triage rover close and large on broken concrete slabs at Disaster City, its sensor mast turned down toward a role player whose legs lie side on at the left edge, a medic seven metres beyond seen from behind holding a rugged tablet turned away, one lime link arcing from the rover's radio to the tablet
   rect: [0, 430, 1080, 1350]
   bleeds: [left, right, bottom]
-accent: '#a3e635'
+accent: '#d0f000'
 job: "Stop the thumb on the one picture this whole contest was about, a machine that finds and a person who treats."
 claims: [c1, c2, c9]
 numerals: 
@@ -105,7 +105,7 @@ primary_image:
   subject: the whole staged town on a square plot whose side is computed from 52 acres, seen from a raked aerial, a collapsed concrete frame, rubble piles, a derailed rail car on a short track and live oaks along the fence line
   rect: [0, 0, 1080, 1100]
   bleeds: [left, right, top]
-accent: '#a3e635'
+accent: '#d0f000'
 data_in_art: {figure: acres, drives: "the plot's side in metres equals the square root of FIG.acres times 4046.8564224, computed and asserted in the slide's own code, against a scale bar whose label is computed"}
 job: "Make the place physical, a whole town built to fall down on purpose."
 claims: [c11, c1]
@@ -136,7 +136,7 @@ primary_image:
   subject: five model sets on five teal powder coat risers with walnut tops on a butter studio sweep, three in front and two raised behind, a market with a gauze tornado funnel and torn canopy, a rubble mound, a navy night box with one lamp, a smoking two storey block, and an unlabelled fifth set of a collapsed parking deck
   rect: [0, 380, 1080, 1350]
   bleeds: [left, bottom]
-accent: '#a3e635'
+accent: '#d0f000'
 data_in_art: {figure: competitions, drives: "plinth count equals FIG.competitions, asserted in code"}
 job: "Show the range of what the machines were put through, at a glance."
 claims: [c14]
@@ -167,7 +167,7 @@ primary_image:
   subject: a clean section through a concrete rubble pile under a clear sky, sliced slabs, block and bent rebar on the cut face, a role player lying clothed and unhurt in a braced pocket, the triage rover on the pile above leaning its mast toward the pocket, a pale reading cone passing through the concrete and a lime link running from the rover up and out of frame toward a medic
   rect: [0, 330, 1080, 1350]
   bleeds: [left, right, bottom]
-accent: '#a3e635'
+accent: '#d0f000'
 job: "Make the idea click, the machine must find a person it can't reach, read them and tell a human."
 claims: [c10, c18, c15]
 numerals: []
@@ -196,7 +196,7 @@ primary_image:
   subject: the triage rover in silhouette on a dirt lane at night, earth filled barrier units ahead with two helmets just showing at one end, a controlled burst blooming warm orange through drifting smoke far behind, and one lime link running from the rover's mast through the smoke to a medic in cover at frame left
   rect: [0, 300, 1080, 1350]
   bleeds: [left, right, bottom]
-accent: '#a3e635'
+accent: '#d0f000'
 job: "Give the reader the tension of the night course, a machine still working while the people around it duck."
 claims: [c27, c28, c16]
 numerals: []
@@ -220,12 +220,12 @@ type:
 ---
 ```yaml
 slide: 6
-layout: GRID
+layout: FULL_BLEED
 primary_image:
   subject: one hundred laminated credentials on woven lanyards hanging on a temporary chain link fence at the Disaster City staging area, ten rows of ten in four header colours, a rubble pile and the teal triage rover beyond the mesh, one more credential cut by the right edge
   rect: [0, 0, 1080, 1000]
   bleeds: [left, right, top]
-accent: '#a3e635'
+accent: '#d0f000'
 data_in_art: {figure: participants, drives: "badge count equals FIG.participants in a ten by ten grid, with one more cut by the right edge for more than, asserted in code"}
 job: "Make a crowd countable without a face, more than 100 people."
 claims: [c12]
@@ -256,7 +256,7 @@ primary_image:
   subject: three stacks of machined brass plates on a studio sweep at one scale, a stack of thirty rising out of the top of the frame for the purse, a stack of fifteen and a stack of ten for the two winning prizes, the triage rover beside them as the scale reference
   rect: [300, 0, 1080, 1350]
   bleeds: [top, bottom, right]
-accent: '#a3e635'
+accent: '#d0f000'
 data_in_art: {figure: plates_pool, drives: "stack height in plates equals FIG.plates_pool, FIG.plates_systems and FIG.plates_data plates of FIG.plate_usd each, asserted in code"}
 job: "Make the money weigh something, and let a reader compare the two wins by eye."
 claims: [c12, c3, c23]
@@ -288,7 +288,7 @@ primary_image:
   subject: two half assemblies standing on a long aluminium year rail on a studio sweep, a finding head with a lit lens and a triage and evacuation cradle, each sending a lime link that stops short of the other, the rail ticked by year from 2023 to the finals and running off the right edge
   rect: [0, 420, 1080, 1250]
   bleeds: [left, right]
-accent: '#a3e635'
+accent: '#d0f000'
 data_in_art: {figure: years_running, drives: "tick count on the rail is one engraved tick per year from FIG.created_year to FIG.year, FIG.years_running spans at one metres per year, asserted in code"}
 job: "Turn on the director's own line, a winning result that is still not enough."
 claims: [c5, c6, c7, c21]
@@ -319,7 +319,7 @@ primary_image:
   subject: an open rugged hard case on a pickup tailgate in late warm light, its grey foam holding one empty cylindrical pocket for a dose, a lime link running from the parked rover soft at the right edge into the empty pocket, a ring of engraved day ticks on the case lid
   rect: [0, 300, 1080, 1350]
   bleeds: [left, bottom]
-accent: '#a3e635'
+accent: '#d0f000'
 data_in_art: {figure: close_after_finals_days, drives: "engraved day ticks on the lid equal FIG.close_after_finals_days, asserted in code"}
 job: "Close on a door a reader can act on, TRIAGE-X open until November 25th."
 claims: [c19, c20]

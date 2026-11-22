@@ -63,6 +63,14 @@
     "c3",
     "c9"
    ]
+  },
+  {
+   "phrase": "$100,000",
+   "slide": "slide-07.html",
+   "kind": "measure",
+   "value": 100000,
+   "computed_by": "compute.py sets figures.json plate_usd, the drawing unit for one brass plate, and derives plates_data, plates_systems and plates_pool from c3 and c12 by dividing each purse by it",
+   "note": "A drawing rule, not a measurement, and the frame labels it as drawn to illustrate."
   }
  ]
 }
