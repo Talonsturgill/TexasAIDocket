@@ -1,27 +1,34 @@
 {
- "last_pass": "2026-11-18",
+ "last_pass": "2026-11-22",
  "themes": [
   {
-   "theme": "art preflight has no bespoke route (queue art-preflight-has-no-bespoke-route, repeat 2: nos. 78, 80 and 81)",
-   "runs": 3,
-   "rounds": null,
-   "action": "fixed",
-   "what": "scripts/carousel/art_preflight.py --write --critics binds frame 1, the hardest frame and the close from the slide critics' hand-backs, each at verdict ship at or above bespoke.json critic_ship with all six points and the SHA-256 of the render it read, for runs dated after 2026-11-18. Fourteen self-test cases. The routine wording is a prompts/daily_routine.md proposal (UPGRADE_BACKLOG 2026-11-18 item 1)."
-  },
-  {
-   "theme": "a relief can't take the slide's own light or camera (queue relief-bench-locks-camera-and-key: nos. 79 and 81; no. 80 round 3 top ranked defect)",
-   "runs": 3,
-   "rounds": null,
-   "action": "fixed",
-   "what": "BESPOKE.md says a TXBENCH relief owns neither its light nor its camera and routes a raked or rekeyed picture to txthree. The key override is a txbench.js proposal (UPGRADE_BACKLOG 2026-11-18 item 2)."
-  },
-  {
    "theme": "primitive or low-poly model where a kit model belongs",
-   "runs": 6,
-   "rounds": 16,
-   "action": "deferred",
-   "what": "The last shipped round's ranked defects are one-deck story models, a relief and a composition. The recurring model, the kit person, is rendered by no. 81 on frames 2, 5 and 8 while its artists rework them, and kit files are outside art_preflight's binding. Carried a third time; UPGRADE_BACKLOG 2026-11-13 item 4 is the unblocking proposal."
+   "runs": 7,
+   "rounds": 20,
+   "action": "fixed",
+   "what": "The kit person gains pose 'kneel' (assets/js/kit/people.js, a6ac4132), the model no. 84 frame 8 had to fake by hand and every judge charged in all three rounds. Additive, so no existing pose or seed moves. The person's near detail (hands, hair; queue repeat 8) stays open."
+  },
+  {
+   "theme": "bespoke brief stale after panel repair (queue bespoke-brief-stale-after-panel-repair, repeat 2: nos. 78, 83 and 84)",
+   "runs": 3,
+   "rounds": null,
+   "action": "fixed",
+   "what": "panel_ready check_briefs_current refuses a round while a brief's headline or dek differs from copy.json (954a9f9b); BESPOKE.md step 5 says a repair rewrites the brief."
+  },
+  {
+   "theme": "the digest counted flat score layouts as round 0 (found reading this pass's own digest)",
+   "runs": 3,
+   "rounds": null,
+   "action": "fixed",
+   "what": "week_digest reads scores/r<N>-<lens>.json as round N (3feb2718); the primitive model theme's rounds went from 19 to 20 and no. 84 from r0 to r1,2,3."
+  },
+  {
+   "theme": "accent floor forces flat painted props (queue accent-floor-forces-flat-painted-props, repeat 2: nos. 68, 70 and 84)",
+   "runs": 3,
+   "rounds": null,
+   "action": "escalated",
+   "what": "Both proposed fixes widen what layout_check counts as the accent; UPGRADE_BACKLOG 2026-11-22 item 1 asks the owner which shape before a replay corpus is built."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from scripts/carousel/week_digest.py --date 2026-11-18, seven shipped runs. The two fixed themes' run counts are the distinct decks their queue lines and the digest's ranked defects name; rounds not counted for them."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from scripts/carousel/week_digest.py --date 2026-11-21 after its round fix, seven shipped runs. The queue themes' run counts are the distinct decks their queue lines name; rounds not counted for them."
 }
