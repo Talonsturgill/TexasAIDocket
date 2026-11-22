@@ -93,7 +93,7 @@ risks: ["the kit person reads as a mannequin, so the medic stays at 7 m, turned 
 type:
   kicker: "Disaster City"
   hook: "The robot finds. The medic treats."
-  dek: "Autonomous drones and ground robots worked alongside first responders at TEEX's Disaster City in College Station, relaying critical data to human medics. DARPA's Triage Challenge finals ran November 5th to November 13th. Drawn to illustrate."
+  dek: "Autonomous drones and ground robots worked alongside first responders on simulated casualties, relaying critical data to human medics. TEEX staged DARPA's Triage Challenge finals at Disaster City in College Station from November 5th to November 13th. Drawn to illustrate."
   labels: []
 ```
 
@@ -155,7 +155,7 @@ risks: ["a top down tray reading as UI, so the camera stays at eye level"]
 type:
   kicker: "Five courses"
   hook: "Five ways to make it hard"
-  dek: "The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under rubble. Each set is drawn to illustrate."
+  dek: "The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under piles of rubble. Each set is drawn to illustrate."
   labels: []
 ```
 
@@ -184,7 +184,7 @@ risks: ["the reclined kit person deforms, so it is seen from the shoulders up in
 type:
   kicker: "The job"
   hook: "Find them. Read them. Tell a medic."
-  dek: "Systems had to locate casualties, identify signs of injury and send critical data to medical teams. Competitors read vital signs from a distance. Every casualty was a role player with mock injuries. Drawn to illustrate."
+  dek: "Systems had to locate casualties, identify signs of injury and send critical data to medical response teams. Teams built technology to read vital signs from a distance. Moulage artists made hyper realistic mock injuries. Drawn to illustrate."
   labels: []
 ```
 
@@ -212,7 +212,7 @@ acceptance: ["near black is at most 0.25 of the frame", "vivid pixels are at lea
 risks: ["the night goes black, so the sky and fog carry teal and violet"]
 type:
   kicker: "Night course"
-  hook: "It kept searching through the blast"
+  hook: "It searched through the blast"
   dek: "On the Human Machine Teaming night course a robot searched for casualties during a controlled explosion while role players took cover. Each team worked with assigned medics. The course simulated an attack on a forward operating base."
   labels: []
 ```
@@ -307,7 +307,7 @@ risks: ["the split reads as the systems failed, so the dek carries c5, c6 and c7
 type:
   kicker: "Not enough"
   hook: "Better than every approach. Still not enough."
-  dek: "DARPA Director Stephen Winchell said human machine teams outperform every approach. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023."
+  dek: "DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023."
   labels: []
 ```
 
@@ -337,7 +337,7 @@ acceptance: ["the case fills at least 40 percent of the frame", "the lime link e
 risks: ["the pocket reads as a real product, so it stays a plain cylinder and the dek says drawn to illustrate"]
 type:
   kicker: "Open until November 25th"
-  hook: "The next ask is a dose"
-  dek: "DARPA's open TRIAGE-X topic seeks autonomous systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate."
+  hook: "The next ask is delivery"
+  dek: "DARPA's open TRIAGE-X topic seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate."
   labels: []
 ```
