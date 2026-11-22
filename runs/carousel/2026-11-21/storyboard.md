@@ -72,7 +72,7 @@ Tonal arc: morning on 01, high noon aerial on 02, warm window room on 03, clear 
 slide: 1
 layout: FULL_BLEED
 primary_image:
-  subject: an illustrative tracked triage rover close and large on broken concrete slabs at Disaster City, its sensor mast turned left toward a casualty kept off frame, a medic seven metres beyond seen from behind holding a rugged tablet turned away, one lime link arcing from the rover's radio to the tablet
+  subject: an illustrative tracked triage rover close and large on broken concrete slabs at Disaster City, its sensor mast turned down toward a role player whose legs lie side on at the left edge, a medic seven metres beyond seen from behind holding a rugged tablet turned away, one lime link arcing from the rover's radio to the tablet
   rect: [0, 430, 1080, 1350]
   bleeds: [left, right, bottom]
 accent: '#a3e635'
@@ -88,7 +88,7 @@ depth:
 composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). CLOSE, low three quarter at 0.45 m, 2.4 m from the rover, 50 mm equivalent, horizon high behind the slabs.", bands: "Top third, clean win sky above the rover's mast for the type. Middle third, the rover's sensor head and radio panel and the distant medic with the lime link between them. Bottom third, the rover's rubber tracks and road wheels gripping broken concrete slabs with rebar stubs, a near slab occluding one track, all in raking butter light with teal contact shadow.", focal: "the lime link where it lands on the tablet"}
 art: {technique: "physically based outdoor render, TXT.sky v2win, chassis triage_rover and rubble_pile, kit person", why_this_technique: "the story is a handoff, so the cover draws the machine and the medic and the one link between them", palette: "sun bleached concrete, Brazos clay, teal powder coat, butter key, win sky", value_structure: "Frame median L* planned at 55. Lightest is the sky above the mast. Darkest is the teal shade under the slabs."}
 verbatim: []
-acceptance: ["the rover covers at least 40 percent of the frame at 432 px", "its tracks touch the slab with a visible contact shadow", "exactly one lime link runs from the rover to the tablet and lands on it", "the medic is behind the rover, turned away, with no face legible", "no casualty is drawn on this frame", "no numeral on this slide is absent from claims.json", "the rover spans at least 600 px of the frame width at 1080 px"]
+acceptance: ["the rover covers at least 40 percent of the frame at 432 px", "its tracks touch the slab with a visible contact shadow", "exactly one lime link runs from the rover to the tablet and lands on it", "the medic is behind the rover, turned away, with no face legible", "the casualty is a role player seen only from the shins down, side on, with no injury and no face", "no numeral on this slide is absent from claims.json", "the rover spans at least 600 px of the frame width at 1080 px"]
 risks: ["the kit person reads as a mannequin, so the medic stays at 7 m, turned away"]
 type:
   kicker: "Disaster City"
