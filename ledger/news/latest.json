@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-21T20:12:23Z",
+  "checked_at": "2026-11-22T08:19:49Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "6b642e4b9c2682b1f92fcf31ac6f2818ee25c864a5aa93a3ee42105b7ea94e86",
+  "response_sha256": "f28160d98a78497e1f89e061e619b159f5ac78d94faa0b4143d2fb19462c3b33",
   "articles": [
     {
       "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
@@ -40,6 +40,13 @@
       "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
+      "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+      "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+      "first_seen_at": "2026-11-21T21:45:06Z",
+      "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+      "feed": "https://feeds.texastribune.org/feeds/main/"
+    },
+    {
       "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
       "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
       "first_seen_at": "2026-11-18T13:56:28Z",
@@ -55,206 +62,20 @@
     }
   ],
   "selected": {
-    "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
-    "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
-    "first_seen_at": "2026-11-19T21:00:44Z",
-    "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
-    "feed": "https://dallasinnovates.com/feed/",
-    "publisher": "Dallas Innovates",
+    "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+    "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+    "first_seen_at": "2026-11-18T13:56:28Z",
+    "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+    "feed": "https://siliconangle.com/feed/",
+    "publisher": "SiliconANGLE",
     "coverage": 1,
-    "score": 0.255887,
-    "priority": 0
+    "score": 0.073495,
+    "priority": 3
   },
-  "expires_at": "2026-11-26T21:00:44Z",
+  "expires_at": "2026-11-25T13:56:28Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-21T19:23:00Z",
-      "selected": {
-        "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
-        "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
-        "first_seen_at": "2026-11-19T21:00:44Z",
-        "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.255887,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
-          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
-          "first_seen_at": "2026-11-19T21:00:44Z",
-          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.255887,
-          "priority": 0
-        },
-        {
-          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
-          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
-          "first_seen_at": "2026-11-20T16:18:32Z",
-          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.44677,
-          "priority": 1
-        },
-        {
-          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
-          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
-          "first_seen_at": "2026-11-18T13:56:28Z",
-          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.10431,
-          "priority": 3
-        },
-        {
-          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
-          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
-          "first_seen_at": "2026-11-17T18:01:21Z",
-          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.05868,
-          "priority": 3
-        },
-        {
-          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
-          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
-          "first_seen_at": "2026-11-18T14:35:37Z",
-          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.106294,
-          "priority": 4
-        },
-        {
-          "title": "Texas regulators are resuming environmental permits for data centers",
-          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
-          "first_seen_at": "2026-11-17T22:24:27Z",
-          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.066602,
-          "priority": 4
-        },
-        {
-          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
-          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
-          "first_seen_at": "2026-11-17T11:00:00Z",
-          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.047908,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-22T01:23:00Z",
-      "selected": {
-        "title": "Texas regulators are resuming environmental permits for data centers",
-        "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
-        "first_seen_at": "2026-11-17T22:24:27Z",
-        "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.057353,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Texas regulators are resuming environmental permits for data centers",
-          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
-          "first_seen_at": "2026-11-17T22:24:27Z",
-          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.057353,
-          "priority": 4
-        },
-        {
-          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
-          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
-          "first_seen_at": "2026-11-19T21:00:44Z",
-          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.22035,
-          "priority": 0
-        },
-        {
-          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
-          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
-          "first_seen_at": "2026-11-20T16:18:32Z",
-          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.384725,
-          "priority": 1
-        },
-        {
-          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
-          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
-          "first_seen_at": "2026-11-18T13:56:28Z",
-          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.089824,
-          "priority": 3
-        },
-        {
-          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
-          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
-          "first_seen_at": "2026-11-17T18:01:21Z",
-          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.050531,
-          "priority": 3
-        },
-        {
-          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
-          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
-          "first_seen_at": "2026-11-18T14:35:37Z",
-          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.091533,
-          "priority": 4
-        },
-        {
-          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
-          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
-          "first_seen_at": "2026-11-17T11:00:00Z",
-          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.041254,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-22T07:23:00Z",
       "selected": {
@@ -265,7 +86,7 @@
         "feed": "https://siliconangle.com/feed/",
         "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.075532,
+        "score": 0.073495,
         "priority": 3
       },
       "stories": [
@@ -277,8 +98,19 @@
           "feed": "https://siliconangle.com/feed/",
           "publisher": "SiliconANGLE",
           "coverage": 1,
-          "score": 0.075532,
+          "score": 0.073495,
           "priority": 3
+        },
+        {
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.736738,
+          "priority": 0
         },
         {
           "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
@@ -288,7 +120,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.185292,
+          "score": 0.180293,
           "priority": 0
         },
         {
@@ -299,7 +131,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.323514,
+          "score": 0.314786,
           "priority": 1
         },
         {
@@ -310,7 +142,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.042491,
+          "score": 0.041345,
           "priority": 3
         },
         {
@@ -321,7 +153,7 @@
           "feed": "https://www.texasobserver.org/feed/",
           "publisher": "Texas Observer",
           "coverage": 1,
-          "score": 0.076969,
+          "score": 0.074893,
           "priority": 4
         },
         {
@@ -332,7 +164,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.048228,
+          "score": 0.046927,
           "priority": 4
         },
         {
@@ -343,7 +175,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.034691,
+          "score": 0.033755,
           "priority": 4
         }
       ]
@@ -351,27 +183,27 @@
     {
       "starts_at": "2026-11-22T13:23:00Z",
       "selected": {
-        "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
-        "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
-        "first_seen_at": "2026-11-18T14:35:37Z",
-        "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
-        "feed": "https://www.texasobserver.org/feed/",
-        "publisher": "Texas Observer",
+        "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+        "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+        "first_seen_at": "2026-11-21T21:45:06Z",
+        "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.064723,
-        "priority": 4
+        "score": 0.636698,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
-          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
-          "first_seen_at": "2026-11-18T14:35:37Z",
-          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.064723,
-          "priority": 4
+          "score": 0.636698,
+          "priority": 0
         },
         {
           "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
@@ -418,6 +250,17 @@
           "priority": 3
         },
         {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.064723,
+          "priority": 4
+        },
+        {
           "title": "Texas regulators are resuming environmental permits for data centers",
           "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
           "first_seen_at": "2026-11-17T22:24:27Z",
@@ -440,19 +283,217 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-22T19:23:00Z",
+      "selected": {
+        "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+        "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+        "first_seen_at": "2026-11-18T14:35:37Z",
+        "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+        "feed": "https://www.texasobserver.org/feed/",
+        "publisher": "Texas Observer",
+        "coverage": 1,
+        "score": 0.054426,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.054426,
+          "priority": 4
+        },
+        {
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.535397,
+          "priority": 0
+        },
+        {
+          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
+          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
+          "first_seen_at": "2026-11-19T21:00:44Z",
+          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.131021,
+          "priority": 0
+        },
+        {
+          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
+          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
+          "first_seen_at": "2026-11-20T16:18:32Z",
+          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.228759,
+          "priority": 1
+        },
+        {
+          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+          "first_seen_at": "2026-11-18T13:56:28Z",
+          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.05341,
+          "priority": 3
+        },
+        {
+          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
+          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
+          "first_seen_at": "2026-11-17T18:01:21Z",
+          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.030046,
+          "priority": 3
+        },
+        {
+          "title": "Texas regulators are resuming environmental permits for data centers",
+          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
+          "first_seen_at": "2026-11-17T22:24:27Z",
+          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.034102,
+          "priority": 4
+        },
+        {
+          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
+          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
+          "first_seen_at": "2026-11-17T11:00:00Z",
+          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.02453,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-23T01:23:00Z",
+      "selected": {
+        "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
+        "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
+        "first_seen_at": "2026-11-20T16:18:32Z",
+        "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.192362,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
+          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
+          "first_seen_at": "2026-11-20T16:18:32Z",
+          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.192362,
+          "priority": 1
+        },
+        {
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.450213,
+          "priority": 0
+        },
+        {
+          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
+          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
+          "first_seen_at": "2026-11-19T21:00:44Z",
+          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.110175,
+          "priority": 3
+        },
+        {
+          "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+          "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+          "first_seen_at": "2026-11-18T13:56:28Z",
+          "summary": "Universities racing to build AI infrastructure are learning that raw compute changes the pace of science itself, from molecular discovery to materials engineering. AI and high-performance computing are converging, and campus technology leaders are now building like cloud operators. The Texas A&M University System is standing up two major clusters for researchers across its 12 […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.044912,
+          "priority": 3
+        },
+        {
+          "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
+          "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
+          "first_seen_at": "2026-11-17T18:01:21Z",
+          "summary": "Two Austin startups that spun out of Dallas-based de-extinction behemoth Colossal Biosciences are coming together to tackle challenges in designing genetic medicine. Astromech, an AI company developing models to predict changes in living systems, said today it acquired Form Bio, a business that creates models and tools for designing genetic medicines. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.025265,
+          "priority": 3
+        },
+        {
+          "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
+          "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
+          "first_seen_at": "2026-11-18T14:35:37Z",
+          "summary": "Heading into the 2027 legislative session, two issues are almost certain to get marquee billing at the Texas Capitol. One is the speculative rush of hyperscaler data center development all across the state. The other is gambling—what activity that covers, whether it should be legalized and to what extent. Both are polarizing issues with heavyweight […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.045766,
+          "priority": 4
+        },
+        {
+          "title": "Texas regulators are resuming environmental permits for data centers",
+          "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
+          "first_seen_at": "2026-11-17T22:24:27Z",
+          "summary": "Gov. Greg Abbott, who lost his reelection, had ordered the Texas Commission on Environmental Quality to pause permit approvals related to data centers.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.028676,
+          "priority": 4
+        },
+        {
+          "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
+          "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
+          "first_seen_at": "2026-11-17T11:00:00Z",
+          "summary": "The Tribune found 53 local tax agreements across 34 data centers guaranteed a total of 465 jobs. Roughly half of the agreements had no job stipulations.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.020627,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17522064/texas-tech-class-offerings-student-survey",
-      "title": "Texas Tech regents cut some classes on race, gender as options for graduation requirements",
-      "shown_at": "2026-11-15T01:23:00Z"
-    },
-    {
-      "url": "https://dallasinnovates.com/dallas-startup-optimus-os-develops-wearable-tech-to-combat-veterans-health-issues/",
-      "title": "Dallas Startup Optimus OS Develops Wearable Tech to Combat Veterans’ Health Issues",
-      "shown_at": "2026-11-15T07:23:00Z"
-    },
     {
       "url": "https://www.techspot.com/news/114505-anthropic-going-rent-power-ai-data-centers-decided.html",
       "title": "Anthropic was going to rent power for its data centers, then decided to spend $3.4 billion buying the generators",
@@ -582,6 +623,16 @@
       "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
       "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
       "shown_at": "2026-11-21T19:23:00Z"
+    },
+    {
+      "url": "https://feeds.texastribune.org/link/16799/17526584/tceq-environmental-data-center-permits-resume",
+      "title": "Texas regulators are resuming environmental permits for data centers",
+      "shown_at": "2026-11-22T01:23:00Z"
+    },
+    {
+      "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
+      "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
+      "shown_at": "2026-11-22T07:23:00Z"
     }
   ],
   "feeds": [
@@ -593,7 +644,7 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "a28f3e830bba8b52262ff3ceed7118c521cadeee9728c09520d07828093a54e3"
+      "sha256": "5d1140818a4b3e1bb22d5cac2e93724bbc8222eafa40403d8291b469020b48dd"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
@@ -604,13 +655,13 @@
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "3892cf6036df14db48bb2deddd6322cd6feffbe7a43c0c4ce4d2e8ffad1ac7a0"
+      "sha256": "e0c991546ae85acbbc6c4442db8d9b41a0c7c4ea1e8e220179d80b6fc100022b"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1421,
-      "sha256": "8c732e20982e5c89f51784a7cd2300ee2ee9a2bfd2c1ebbd7e2f05a0aaae6082"
+      "sha256": "3a4c1c4203581d8f9e65fe27e405ea67ae160a9e4afe3f770ed066ab5213c71f"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -626,7 +677,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "b2fb488b6e0ff0f9d540741651e3a0065367e440a6d103eda4dd37a3ab9acb69"
+      "sha256": "913bed419e6979abf4223724bef54b2906c83c6b72e13259530db623354e1b5b"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -635,21 +686,15 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "cc388fc960f1652599ea8d3ba285c6d5af2cf99640ef5875bdc112b90f096646"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "ok",
-      "items": 30,
-      "sha256": "962807d6333bcb5fe9fad126cdd367735ca6e1bb2e11c6f4bd9222e3bbf85b9b"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "b7dc9fc5cdfd22f294bd169979757a6b9cd7e807f67e68045325b3b2a019e0d2"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
@@ -667,17 +712,17 @@
       "etag": "\"7dfbf58063d91d029c2eed9fad18ab9f\"",
       "last_modified": "Thu, 19 Nov 2026 21:54:05 GMT",
       "failures": 0,
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "sha256": "119ebf0dc1d91e608c21d549863bef869bd59b6ddcdd2b605a7769d0fe84dce0",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "a28f3e830bba8b52262ff3ceed7118c521cadeee9728c09520d07828093a54e3",
-      "etag": "\"6b01f1c4-acdc\"",
-      "last_modified": "Sat, 21 Nov 2026 19:32:20 GMT"
+      "sha256": "5d1140818a4b3e1bb22d5cac2e93724bbc8222eafa40403d8291b469020b48dd",
+      "etag": "\"6b029895-acf1\"",
+      "last_modified": "Sun, 22 Nov 2026 07:24:05 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
@@ -688,40 +733,40 @@
       "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "3892cf6036df14db48bb2deddd6322cd6feffbe7a43c0c4ce4d2e8ffad1ac7a0",
-      "etag": "\"1795290928\"",
-      "last_modified": "Sat, 21 Nov 2026 19:55:28 GMT"
+      "sha256": "e0c991546ae85acbbc6c4442db8d9b41a0c7c4ea1e8e220179d80b6fc100022b",
+      "etag": "\"1795334103\"",
+      "last_modified": "Sun, 22 Nov 2026 07:55:03 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8c732e20982e5c89f51784a7cd2300ee2ee9a2bfd2c1ebbd7e2f05a0aaae6082"
+      "sha256": "3a4c1c4203581d8f9e65fe27e405ea67ae160a9e4afe3f770ed066ab5213c71f"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"63f240007bee3b92578813b9a8fe9056-gzip\"",
       "last_modified": "Fri, 20 Nov 2026 17:23:42 GMT",
       "failures": 0,
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "sha256": "1742ba21ea2827cb73b4aee703786260d78c20c2274fa5f09faefbb53a913faa",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "ec9193d8740e6aee50cf03e5cafdd1463d58de00014bc027f6d489b6d1f263b0"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b2fb488b6e0ff0f9d540741651e3a0065367e440a6d103eda4dd37a3ab9acb69",
-      "etag": "\"14554548eaa2832d593fcb771635233e\"",
-      "last_modified": "Sat, 21 Nov 2026 19:32:03 GMT"
+      "sha256": "913bed419e6979abf4223724bef54b2906c83c6b72e13259530db623354e1b5b",
+      "etag": "\"ade9e8f874f52ef9be18d3e557e1de0d\"",
+      "last_modified": "Sun, 22 Nov 2026 05:43:53 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -733,29 +778,29 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-11-21T20:12:22Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "cc388fc960f1652599ea8d3ba285c6d5af2cf99640ef5875bdc112b90f096646",
       "etag": "W/\"feb5329df559db32dff05cc5feeb6095\"",
-      "last_modified": "Sat, 21 Nov 2026 18:13:40 GMT"
+      "last_modified": "Sat, 21 Nov 2026 18:13:40 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-22T08:19:47Z",
+      "sha256": "cc388fc960f1652599ea8d3ba285c6d5af2cf99640ef5875bdc112b90f096646",
+      "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "etag": "W/\"cb390803b612a4a9eee4f98a56d9c9c6\"",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-22T08:19:47Z",
       "sha256": "962807d6333bcb5fe9fad126cdd367735ca6e1bb2e11c6f4bd9222e3bbf85b9b",
-      "etag": "W/\"cb390803b612a4a9eee4f98a56d9c9c6\""
+      "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "last_modified": "Sat, 21 Nov 2026 15:44:26 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-22T08:19:47Z",
       "sha256": "b7dc9fc5cdfd22f294bd169979757a6b9cd7e807f67e68045325b3b2a019e0d2",
-      "last_modified": "Sat, 21 Nov 2026 15:44:26 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "504a5bd5fcd89671f28c76cffbfef74813b52c4a8cfe1d2021cd28b7683f72e6"
@@ -764,7 +809,7 @@
       "etag": "W/\"f037cd913e084b77e2525ed1f1b72b01\"",
       "last_modified": "Fri, 20 Nov 2026 11:00:00 GMT",
       "failures": 0,
-      "ok_at": "2026-11-21T20:12:22Z",
+      "ok_at": "2026-11-22T08:19:47Z",
       "sha256": "e4c82f229c3d2254b4150dca02a18149b779274d8fc518b84786eb5cc5f7b7b1",
       "parser_version": 2
     }
