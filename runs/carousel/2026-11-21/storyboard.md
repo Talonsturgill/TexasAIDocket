@@ -36,13 +36,13 @@ CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, EDGE_TEASE
 
 1. DISASTER CITY. Know: Stop the thumb on the one picture this whole contest was about, a machine that finds and a person who treats. c1 c2 c9.
 2. 52 ACRES. Know: Make the place physical, a whole town built to fall down on purpose. c11 c1.
-3. FIVE COURSES. Know: Show the range of what the machines were put through, at a glance. c14 c4.
-4. THE JOB. Know: Make the idea click, the machine must find a person it can't reach, read them and tell a human. c10 c18 c14 c15.
+3. FIVE COURSES. Know: Show the range of what the machines were put through, at a glance. c14.
+4. THE JOB. Know: Make the idea click, the machine must find a person it can't reach, read them and tell a human. c10 c18 c15.
 5. NIGHT COURSE. Know: Give the reader the tension of the night course, a machine still working while the people around it duck. c27 c28 c16.
 6. THE FIELD. Know: Make a crowd countable without a face, more than 100 people. c12.
 7. THE PURSE. Know: Make the money weigh something, and let a reader compare the two wins by eye. c12 c3 c23.
 8. NOT ENOUGH. Know: Turn on the director's own line, a winning result that is still not enough. c5 c6 c7 c21.
-9. OPEN UNTIL NOVEMBER 25TH. Know: Close on a door a reader can act on, TRIAGE-X open until November 25th. c19 c20 c31.
+9. OPEN UNTIL NOVEMBER 25TH. Know: Close on a door a reader can act on, TRIAGE-X open until November 25th. c19 c20.
 
 Showstopper frame: 04
 VALUE CUT: frame 5
@@ -56,10 +56,10 @@ Tonal arc: a bright morning handoff on the rubble, the clear aerial of the whole
 |---|---|---|
 | 01 | CLOSE | triage_rover modelled with track links, road wheels, lens glass and a weathered lower hull on chassis rubble_pile slabs, TXT.sky v2win, kit person at 7 m, contact and weather |
 | 02 | AERIAL | chassis collapsed_structure, rubble_pile x3 and a derailed rail_car on rail_track in a caliche plot at computed size, kit live_oak, orthographic raked camera, TXT.sky v2win |
-| 03 | MEDIUM | five chassis maquette_plinth on a long table in TXT.interior, each with a model scale set, window key, contact under every plinth |
+| 03 | MEDIUM | five rounded teal risers with walnut tops, painted powder coat under a soft studio key with a mint rim, contact shadows on the butter sweep, TXT.studio win, each carrying a model scale set |
 | 04 | WIDE | sectioned chassis rubble_pile with three materials on the cut face, chassis triage_rover with contact on the pile, kit person reclined in a braced pocket, TXT.sky v2win |
 | 05 | WIDE | triage_rover silhouette, chassis barrier_wall units, kit person helmets behind, emissive burst volume and fog in teal and violet |
-| 06 | MEDIUM | one hundred chassis badge cards on lanyards on a perforated pegboard, orthographic, TXT.interior tent canopy light |
+| 06 | MEDIUM | a chain link fence with galvanised posts, woven lanyards and laminated cards under a butter key, contact shadows on clay, TXT.sky v2win, one hundred credentials with the rubble_pile and triage_rover beyond |
 | 07 | MEDIUM | chassis prize_plate stacks, machined brass with chamfers and lathe swirl under a big soft studio key with a teal rim, contact shadows on the butter sweep, TXT.studio win, in stacks of FIG.plates_pool, FIG.plates_systems and FIG.plates_data beside the triage_rover |
 | 08 | CLOSE | chassis data_rail extrusion, brushed aluminium with engraved year ticks under a low left key with a strong rim, contact shadows on the sweep, TXT.studio win with a cooler wall, carrying the triage_rover finding head and a chassis triage_cradle in orange polymer |
 | 09 | CLOSE | chassis hard_case with ribbed shell, latches and a foam insert on a kit pickup tailgate, the triage_rover soft at the edge, kit live_oak, TXT.sky v2win late |
@@ -133,13 +133,13 @@ type:
 slide: 3
 layout: DIAGRAM
 primary_image:
-  subject: five maquette plinths receding down a long briefing table in a lit room, each carrying a small staged set, a torn market canopy in wind, a building with smoke, a dark block with one pinpoint lamp, a rubble mound, and a fifth unnamed lit set
+  subject: five model sets on five teal powder coat risers with walnut tops on a butter studio sweep, three in front and two raised behind, a market with a gauze tornado funnel and torn canopy, a rubble mound, a navy night box with one lamp, a smoking two storey block, and an unlabelled fifth set of a collapsed parking deck
   rect: [0, 380, 1080, 1350]
   bleeds: [left, bottom]
 accent: '#a3e635'
 data_in_art: {figure: competitions, drives: "plinth count equals FIG.competitions, asserted in code"}
 job: "Show the range of what the machines were put through, at a glance."
-claims: [c14, c4]
+claims: [c14]
 numerals: 
 - {value_from: c14}
 depth:
@@ -147,10 +147,10 @@ depth:
   horizon: 0
   cues: [FORM_SHADING, CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, LINEAR_PERSPECTIVE]
   subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). MEDIUM, eye 1.6 m looking down the length of the table, the nearest plinth cropped by the left edge.", bands: "Top third, the warm plaster wall and the window light, the type in a right column. Middle third, the far plinths receding down the walnut table, the smoke building and the lamp lit block. Bottom third, the nearest plinth cropped by the left edge carrying the torn market canopy in wind, its crates and canvas modelled, with a contact shadow on the walnut.", focal: "the nearest maquette, the torn market canopy"}
-art: {technique: "physically based interior render, TXT.interior, chassis maquette_plinth and market_stall at model scale", why_this_technique: "five competitions are five different staged disasters, so each gets its own small set side by side", palette: "warm window light, walnut table, concrete, canvas, smoke grey with teal", value_structure: "Frame median L* planned at 52. Lightest is the window light on the table. Darkest is the dark block maquette."}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). MEDIUM, a studio product shot from 1.55 m, the five risers filling the lower two thirds.", bands: "Top third, the warm plaster wall and the window light, the type in a right column. Middle third, the far plinths receding down the walnut table, the smoke building and the lamp lit block. Bottom third, the nearest plinth cropped by the left edge carrying the torn market canopy in wind, its crates and canvas modelled, with a contact shadow on the walnut.", focal: "the nearest maquette, the torn market canopy"}
+art: {technique: "physically based studio render, TXT.studio win, five rounded risers carrying model scale sets", why_this_technique: "five competitions are five different staged disasters, so each gets its own small set side by side", palette: "warm window light, walnut table, concrete, canvas, smoke grey with teal", value_structure: "Frame median L* planned at 52. Lightest is the window light on the table. Darkest is the dark block maquette."}
 verbatim: []
-acceptance: ["five maquette plinths are present and the nearest plinth owns at least a quarter of the frame height", "the plinth count in code equals FIG.competitions", "four plinths carry pills naming only the claim's four scenes", "the nearest plinth is cropped by the left edge", "each maquette is recognisable at 432 px", "the wall stays under 30 percent of the frame height", "no numeral on this slide is absent from claims.json or figures.json"]
+acceptance: ["five model sets are present on five risers and the sets own at least half the frame height", "the plinth count in code equals FIG.competitions", "four plinths carry pills naming only the claim's four scenes", "each maquette is recognisable at 432 px", "the wall stays under 30 percent of the frame height", "no numeral on this slide is absent from claims.json or figures.json"]
 risks: ["a top down tray reading as UI, so the camera stays at eye level"]
 type:
   kicker: "Five courses"
@@ -169,7 +169,7 @@ primary_image:
   bleeds: [left, right, bottom]
 accent: '#a3e635'
 job: "Make the idea click, the machine must find a person it can't reach, read them and tell a human."
-claims: [c10, c18, c14, c15]
+claims: [c10, c18, c15]
 numerals: []
 depth:
   eye: 1.0
@@ -222,7 +222,7 @@ type:
 slide: 6
 layout: GRID
 primary_image:
-  subject: one hundred laminated badges on woven lanyards hanging from hooks on a perforated board in a tent, ten rows of ten, the hook row continuing past the right edge where one more badge is cut by the frame
+  subject: one hundred laminated credentials on woven lanyards hanging on a temporary chain link fence at the Disaster City staging area, ten rows of ten in four header colours, a rubble pile and the teal triage rover beyond the mesh, one more credential cut by the right edge
   rect: [0, 0, 1080, 1000]
   bleeds: [left, right, top]
 accent: '#a3e635'
@@ -236,10 +236,10 @@ depth:
   horizon: 0
   cues: [FORM_SHADING, CAST_SHADOW, OCCLUSION]
   subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). MEDIUM, an orthographic three quarter onto the board so every badge keeps its size.", bands: "Top third, the upper rows of badges on the perforated board bleeding the top edge. Middle third, the full ten by ten grid with lanyards and cast shadows and the cut badge at the right edge. Bottom third, the lowest badge rows and the board's aluminium rail over a canvas tent floor in butter light, the type over the floor.", focal: "the cut badge at the right edge"}
-art: {technique: "physically based render, orthographic camera, chassis badge and pegboard in a TXT.interior tent", why_this_technique: "a count of people is drawn as one object per person, and the excess leaves the frame", palette: "butter canvas, teal shade, four tone lanyard hues", value_structure: "Frame median L* planned at 60. Lightest is the canvas. Darkest is the board's holes."}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md). MEDIUM, a perspective three quarter along the fence receding left, so the grid stays countable.", bands: "Top third, the upper rows of badges on the perforated board bleeding the top edge. Middle third, the full ten by ten grid with lanyards and cast shadows and the cut badge at the right edge. Bottom third, the lowest badge rows and the board's aluminium rail over a canvas tent floor in butter light, the type over the floor.", focal: "the cut badge at the right edge"}
+art: {technique: "physically based outdoor render, TXT.sky v2win, a chain link fence on concrete feet, chassis rubble_pile and triage_rover beyond", why_this_technique: "a count of people is drawn as one object per person, and the excess leaves the frame", palette: "butter canvas, teal shade, four tone lanyard hues", value_structure: "Frame median L* planned at 60. Lightest is the canvas. Darkest is the board's holes."}
 verbatim: []
-acceptance: ["the badge grid owns at least 60 percent of the frame area", "the full badge count in code equals FIG.participants", "one further badge is cut by the right edge", "the grid reads as ten by ten at 432 px", "every badge casts a shadow on the board", "no numeral on this slide is absent from claims.json or figures.json"]
+acceptance: ["the chain link fence carrying the credentials owns at least 40 percent of the frame area", "the full badge count in code equals FIG.participants", "one further badge is cut by the right edge", "the grid reads as ten by ten at 432 px", "every badge hangs from the fence on its own lanyard", "no numeral on this slide is absent from claims.json or figures.json"]
 risks: ["a hundred badges collapse into texture, so the gutters stay clear"]
 type:
   kicker: "The field"
@@ -322,7 +322,7 @@ primary_image:
 accent: '#a3e635'
 data_in_art: {figure: close_after_finals_days, drives: "engraved day ticks on the lid equal FIG.close_after_finals_days, asserted in code"}
 job: "Close on a door a reader can act on, TRIAGE-X open until November 25th."
-claims: [c19, c20, c31]
+claims: [c19, c20]
 numerals: 
 - {value_from: c20}
 depth:
