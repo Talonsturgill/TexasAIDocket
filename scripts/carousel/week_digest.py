@@ -128,7 +128,12 @@ def cards(run: Path) -> list[dict]:
         if not isinstance(d, dict) or not isinstance(d.get("criteria"), list):
             continue                                   # combined panel files carry a dict
         rel = str(f.relative_to(run / "scores"))
-        m = re.search(r"(?:^|/)r(\d+)/", rel) or re.search(r"round(\d+)", rel)
+        # A FLAT LAYOUT IS A ROUND TOO (weekly pass 2026-11-22). Runs from 2026-11-19 write their cards
+        # as scores/r1-craft.json rather than scores/r1/score-craft.json, and the directory-only pattern
+        # read every one of them as round 0. The week to 2026-11-21 then listed no. 84's three rounds as
+        # one ("2026-11-21 r0" on every theme, "round 0" twice under the ranked defects, nine "last
+        # round" fixes), so a theme the run's repairs never reached counted one round, not three.
+        m = (re.search(r"(?:^|/)r(\d+)(?:/|[-_.])", rel) or re.search(r"round[-_]?(\d+)", rel))
         rnd = int(m.group(1)) if m else (d.get("round") if _num(d.get("round")) else 0)
         lens = d.get("lens") or next((x for x in ("craft", "integrity", "reader") if x in f.name), "?")
         found.append({"round": int(rnd), "lens": str(lens), "card": d, "file": rel})
@@ -361,6 +366,24 @@ def self_test() -> int:
            wd["unranked"])
         ok("a legacy key the corpus carries is still read",
            ranked_defects({"named_defects_ranked": ["1. the hull is a slab"]}) == ["1. the hull is a slab"])
+        # THE FLAT LAYOUT REPLAY (2026-11-22): no. 84's scores/ held r1-craft.json to r3-craft.json, no
+        # card carried a `round`, and every theme it named counted one round.
+        fl = root / "flat-layout"
+        (fl / "2026-11-21" / "scores").mkdir(parents=True)
+        (fl / "2026-11-21" / "score.json").write_text(json.dumps({"weighted_score": 7, "rounds": 3}))
+        for rn in (1, 2, 3):
+            c = card("craft", rn, "the hero is under a tenth of the frame", ["1. a featureless slab of coping"],
+                     fix=f"fix of round {rn}")
+            c.pop("round")
+            (fl / "2026-11-21" / "scores" / f"r{rn}-craft.json").write_text(json.dumps(c))
+            (fl / "2026-11-21" / "scores" / f"r{rn}-score.json").write_text(json.dumps({"criteria": {"x": {}}}))
+        ft, fd = digest(fl, "2026-11-21", 7, "")
+        fth = {t["theme"]: t for t in fd["themes"]}
+        ok("flat r1-craft.json to r3-craft.json count three rounds, not one round 0",
+           fth.get("hero too small to own the frame", {}).get("rounds") == 3 and "r0" not in ft, str(fth))
+        ok("the flat layout's evidence shows its first and last round and only the last round's fix",
+           "**2026-11-21, round 1**" in ft and "**2026-11-21, round 3**" in ft
+           and "fix of round 3" in ft and "fix of round 1" not in ft.split("## Each judge")[1], ft[-900:])
         e, _ = digest(root, "2026-08-01", 7, "")
         ok("an empty week says so rather than failing", "0 shipped run(s)" in e and "none matched" in e)
     live, _ = digest(RUNS, "2026-10-02", 7, "")

@@ -1,0 +1,2174 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The robot finds. The medic treats.",
+          "x": 88,
+          "y": 150,
+          "w": 920,
+          "h": 191,
+          "font_px": 97.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              137,
+              633,
+              120
+            ],
+            [
+              88,
+              233,
+              691,
+              120
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Autonomous drones and ground robots worked alongside first responders on simulated casualties, relaying critical data to human medics. TEEX staged DARPA's Triage Challenge finals at Disaster City in College Station from November 5th to November 13th. Drawn to illustrate.",
+          "x": 88,
+          "y": 363,
+          "w": 912,
+          "h": 144,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              362,
+              910,
+              36
+            ],
+            [
+              88,
+              398,
+              851,
+              36
+            ],
+            [
+              88,
+              434,
+              900,
+              36
+            ],
+            [
+              88,
+              470,
+              705,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Disaster City",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32906,
+      "ok": true,
+      "load_ms": 181,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 126,
+          "variance": 2697.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A town built to fall down",
+          "x": 76,
+          "y": 140,
+          "w": 580,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              128,
+              564,
+              117
+            ],
+            [
+              76,
+              222,
+              357,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Disaster City is a 52 acre mock community with full scale structures that can collapse, rubble piles and a derailed train. The layout here is drawn to illustrate and is not the site plan.",
+          "x": 78,
+          "y": 349,
+          "w": 900,
+          "h": 98,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              78,
+              348,
+              866,
+              33
+            ],
+            [
+              78,
+              381,
+              888,
+              33
+            ],
+            [
+              78,
+              413,
+              264,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "not the site plan",
+          "x": 525,
+          "y": 593,
+          "w": 316,
+          "h": 47,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 63, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              547,
+              599,
+              272,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "52 acres",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c1",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 57889,
+      "ok": true,
+      "load_ms": 165,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 123.2,
+          "variance": 2219.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Five ways to make it hard",
+          "x": 80,
+          "y": 148,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              802,
+              122
+            ],
+            [
+              80,
+              233,
+              195,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under piles of rubble. Each set is drawn to illustrate.",
+          "x": 82,
+          "y": 372,
+          "w": 880,
+          "h": 147,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              864,
+              37
+            ],
+            [
+              82,
+              408,
+              845,
+              37
+            ],
+            [
+              82,
+              444,
+              867,
+              37
+            ],
+            [
+              82,
+              481,
+              268,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "tornado market",
+          "x": 105,
+          "y": 1143,
+          "w": 264,
+          "h": 47,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              125,
+              1149,
+              224,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "rubble",
+          "x": 475,
+          "y": 1143,
+          "w": 136,
+          "h": 47,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              495,
+              1149,
+              96,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "night search",
+          "x": 732,
+          "y": 1143,
+          "w": 232,
+          "h": 47,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              752,
+              1149,
+              192,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "fifth course",
+          "x": 564,
+          "y": 881,
+          "w": 232,
+          "h": 47,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              584,
+              887,
+              192,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "smoke filled buildings",
+          "x": 310,
+          "y": 852,
+          "w": 210,
+          "h": 103,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              375,
+              857,
+              80,
+              34
+            ],
+            [
+              367,
+              886,
+              96,
+              34
+            ],
+            [
+              343,
+              915,
+              144,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Five courses",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c14",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20813,
+      "ok": true,
+      "load_ms": 168,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 121.3,
+          "variance": 2606.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Find them. Read them. Tell a medic.",
+          "x": 72,
+          "y": 120,
+          "w": 900,
+          "h": 175,
+          "font_px": 89.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              108,
+              828,
+              111
+            ],
+            [
+              72,
+              196,
+              455,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Systems had to locate casualties, identify signs of injury and send critical data to medical response teams. Teams built technology to read vital signs from a distance. Moulage artists made hyper realistic mock injuries. Drawn to illustrate.",
+          "x": 74,
+          "y": 315,
+          "w": 620,
+          "h": 257,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              315,
+              614,
+              42
+            ],
+            [
+              74,
+              358,
+              565,
+              42
+            ],
+            [
+              74,
+              401,
+              544,
+              42
+            ],
+            [
+              74,
+              444,
+              533,
+              42
+            ],
+            [
+              74,
+              486,
+              555,
+              42
+            ],
+            [
+              74,
+              529,
+              616,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The job",
+          "x": 80,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c10 c18 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 26629,
+      "ok": true,
+      "load_ms": 174,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 120.3,
+          "variance": 1947.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It searched through the blast",
+          "x": 72,
+          "y": 735,
+          "w": 560,
+          "h": 251,
+          "font_px": 85.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              723,
+              390,
+              106
+            ],
+            [
+              72,
+              807,
+              415,
+              106
+            ],
+            [
+              72,
+              891,
+              171,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On the Human Machine Teaming night course a robot searched for casualties during a controlled explosion while role players took cover. Each team worked with assigned medics. The course simulated an attack on a forward operating base.",
+          "x": 74,
+          "y": 1006,
+          "w": 540,
+          "h": 212,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              1005,
+              469,
+              36
+            ],
+            [
+              74,
+              1041,
+              474,
+              36
+            ],
+            [
+              74,
+              1076,
+              483,
+              36
+            ],
+            [
+              74,
+              1111,
+              519,
+              36
+            ],
+            [
+              74,
+              1147,
+              522,
+              36
+            ],
+            [
+              74,
+              1182,
+              435,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Night course",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c28 c16",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32856,
+      "ok": true,
+      "load_ms": 164,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 75.5,
+          "variance": 1994.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than 100 people competed",
+          "x": 72,
+          "y": 118,
+          "w": 900,
+          "h": 156,
+          "font_px": 79.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              107,
+              734,
+              98
+            ],
+            [
+              72,
+              185,
+              330,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Participants came from the U.S. military, universities, tech companies and startups. Each badge is one participant, drawn to illustrate.",
+          "x": 74,
+          "y": 296,
+          "w": 930,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              296,
+              851,
+              42
+            ],
+            [
+              74,
+              339,
+              913,
+              42
+            ],
+            [
+              74,
+              381,
+              179,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The field",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17499,
+      "ok": true,
+      "load_ms": 158,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 78.2,
+          "variance": 1744.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$1.5 million and $1 million",
+          "x": 76,
+          "y": 138,
+          "w": 620,
+          "h": 172,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              126,
+              569,
+              108
+            ],
+            [
+              76,
+              212,
+              352,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than $3 million in cash prizes was on offer. RoboScout won the Systems competition and $1.5 million. Disruptors won the Data competition and $1 million. One plate stands for $100,000, drawn to illustrate.",
+          "x": 80,
+          "y": 332,
+          "w": 450,
+          "h": 257,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              331,
+              439,
+              37
+            ],
+            [
+              80,
+              367,
+              419,
+              37
+            ],
+            [
+              80,
+              404,
+              384,
+              37
+            ],
+            [
+              80,
+              441,
+              409,
+              37
+            ],
+            [
+              80,
+              477,
+              401,
+              37
+            ],
+            [
+              80,
+              514,
+              422,
+              37
+            ],
+            [
+              80,
+              551,
+              156,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "more than $3 million",
+          "x": 703,
+          "y": 1055,
+          "w": 200,
+          "h": 73,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              734,
+              1061,
+              138,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$3 million",
+          "x": 726,
+          "y": 1089,
+          "w": 154,
+          "h": 31,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              1089,
+              154,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "Systems, $1.5 million",
+          "x": 535,
+          "y": 1129,
+          "w": 200,
+          "h": 73,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              574,
+              1135,
+              123,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$1.5 million",
+          "x": 543,
+          "y": 1163,
+          "w": 184,
+          "h": 31,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              543,
+              1163,
+              184,
+              31
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "Data, $1 million",
+          "x": 366,
+          "y": 1055,
+          "w": 200,
+          "h": 73,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              428,
+              1061,
+              77,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$1 million",
+          "x": 389,
+          "y": 1089,
+          "w": 154,
+          "h": 31,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              389,
+              1089,
+              154,
+              31
+            ]
+          ],
+          "anc": [
+            7
+          ]
+        },
+        {
+          "text": "The purse",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c3 c23",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 26149,
+      "ok": true,
+      "load_ms": 194,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 127.5,
+          "variance": 2429.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Human machine teams beat every approach. Still not enough.",
+          "x": 460,
+          "y": 150,
+          "w": 540,
+          "h": 243,
+          "font_px": 62,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              141,
+              424,
+              77
+            ],
+            [
+              578,
+              202,
+              422,
+              77
+            ],
+            [
+              532,
+              263,
+              468,
+              77
+            ],
+            [
+              794,
+              323,
+              206,
+              77
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023.",
+          "x": 590,
+          "y": 911,
+          "w": 410,
+          "h": 281,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              910,
+              381,
+              33
+            ],
+            [
+              590,
+              941,
+              311,
+              33
+            ],
+            [
+              590,
+              972,
+              385,
+              33
+            ],
+            [
+              590,
+              1004,
+              376,
+              33
+            ],
+            [
+              590,
+              1035,
+              375,
+              33
+            ],
+            [
+              590,
+              1066,
+              339,
+              33
+            ],
+            [
+              590,
+              1097,
+              327,
+              33
+            ],
+            [
+              590,
+              1128,
+              354,
+              33
+            ],
+            [
+              590,
+              1160,
+              207,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Not enough",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c6 c7 c21",
+          "x": 80,
+          "y": 1234,
+          "w": 193,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 33229,
+      "ok": true,
+      "load_ms": 181,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 110,
+          "variance": 2007.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The next ask is delivery",
+          "x": 80,
+          "y": 134,
+          "w": 450,
+          "h": 162,
+          "font_px": 82.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 255, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              123,
+              427,
+              102
+            ],
+            [
+              80,
+              204,
+              339,
+              102
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.",
+          "x": 82,
+          "y": 1046,
+          "w": 880,
+          "h": 136,
+          "font_px": 25,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1045,
+              809,
+              35
+            ],
+            [
+              82,
+              1079,
+              837,
+              35
+            ],
+            [
+              82,
+              1113,
+              852,
+              35
+            ],
+            [
+              82,
+              1147,
+              309,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Open until November 25th",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19 c20",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 246, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32915,
+      "ok": true,
+      "load_ms": 188,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 93.8,
+          "variance": 1800.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

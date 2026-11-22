@@ -11,7 +11,7 @@ Harris County Commissioners Court approved a renewal option with Flock Group, In
 - Public access: Public meeting
 - Take part: https://agenda.harriscountytx.gov/
 
-- Last checked: 2026-11-15
+- Last checked: 2026-11-21
 
 ## Dates
 
@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · Harris County's renewed and amended Flock contract still appears as approved on the court's record.
 - 2026-11-12 · Harris County's agenda record still shows the Flock renewal as approved. Nothing has rescinded it.
 - 2026-11-15 · Harris County's agenda record still shows the Flock renewal approved, with nothing rescinding it.
+- 2026-11-21 · Harris County's renewed Flock contract and the amendment that took it county wide still read as approved in the court's own record.
 
 ## Evidence
 

@@ -1,0 +1,152 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "acres": {
+  "value": 52,
+  "from": [
+   "c11"
+  ],
+  "basis": "acres of Disaster City's mock community"
+ },
+ "participants": {
+  "value": 100,
+  "from": [
+   "c12"
+  ],
+  "basis": "a floor, printed with more than"
+ },
+ "prize_pool_m": {
+  "value": 3.0,
+  "from": [
+   "c12"
+  ],
+  "basis": "millions of dollars in cash prizes, a floor, printed with more than"
+ },
+ "systems_prize_m": {
+  "value": 1.5,
+  "from": [
+   "c3",
+   "c23"
+  ],
+  "basis": "RoboScout's Systems prize and the grand prize, millions of dollars"
+ },
+ "data_prize_m": {
+  "value": 1.0,
+  "from": [
+   "c3"
+  ],
+  "basis": "Disruptors' Data prize, millions of dollars"
+ },
+ "winners_m": {
+  "value": 2.5,
+  "from": [
+   "c3"
+  ],
+  "basis": "systems_prize_m + data_prize_m, never set against the pool"
+ },
+ "competitions": {
+  "value": 5,
+  "from": [
+   "c14"
+  ],
+  "basis": "competitions in the finals"
+ },
+ "finals_start_day": {
+  "value": 5,
+  "from": [
+   "c1"
+  ],
+  "basis": "November day the finals began"
+ },
+ "finals_end_day": {
+  "value": 13,
+  "from": [
+   "c1",
+   "c3"
+  ],
+  "basis": "November day the finals ended"
+ },
+ "finals_days": {
+  "value": 9,
+  "from": [
+   "c1"
+  ],
+  "basis": "inclusive days from the first to the last day of the finals"
+ },
+ "year": {
+  "value": 2026,
+  "from": [
+   "c3"
+  ],
+  "basis": "the finals year"
+ },
+ "created_year": {
+  "value": 2023,
+  "from": [
+   "c21"
+  ],
+  "basis": "the year DARPA created the challenge"
+ },
+ "years_running": {
+  "value": 3,
+  "from": [
+   "c3",
+   "c21"
+  ],
+  "basis": "year - created_year"
+ },
+ "drone_team": {
+  "value": 2,
+  "from": [
+   "c25"
+  ],
+  "basis": "full-time members of team DRONE"
+ },
+ "championship_teams": {
+  "value": 2,
+  "from": [
+   "c23"
+  ],
+  "basis": "teams in the championship round"
+ },
+ "triagex_close_day": {
+  "value": 25,
+  "from": [
+   "c20"
+  ],
+  "basis": "November day the TRIAGE-X topic closes"
+ },
+ "plate_usd": {
+  "value": 100000,
+  "from": [],
+  "basis": "drawing unit, one brass plate stands for this many dollars, a rule not a measurement"
+ },
+ "plates_pool": {
+  "value": 30,
+  "from": [
+   "c12"
+  ],
+  "basis": "prize_pool_m * 1e6 / plate_usd, the floor of the purse in plates, the stack runs off the frame because the pool is more than"
+ },
+ "plates_systems": {
+  "value": 15,
+  "from": [
+   "c3"
+  ],
+  "basis": "systems_prize_m * 1e6 / plate_usd"
+ },
+ "plates_data": {
+  "value": 10,
+  "from": [
+   "c3"
+  ],
+  "basis": "data_prize_m * 1e6 / plate_usd"
+ },
+ "close_after_finals_days": {
+  "value": 12,
+  "from": [
+   "c1",
+   "c20"
+  ],
+  "basis": "triagex_close_day - finals_end_day, days the topic stays open after the finals end"
+ }
+}

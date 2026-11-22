@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.0,
+      "why": "Strong frames: 9 (a rounded orange case fills about half the frame and is lit, with the lime link ending in the empty well), 7 (the plate stacks follow the declared rule, 10 for Data and 15 for Systems by my count, and the pool stack runs off the top edge for 'more than'), and 1 and 5 (a lit rover with contact and rubble, and a real blast plume). Weak frames: 6 is a flat, evenly lit 10 by 10 grid of badge icons on a teal field, with one badge cut by the right edge. It reads as an infographic wall at feed size, with no light direction or depth. On 8 an empty mottled blue wall takes the top half. The medic is a primitive mannequin, the boots splay flat toward the camera and nothing marks him as a medic. 3 is four toy plinths with mono label pills, and the headline promises five courses. 2 is a busy diorama with no focal subject at 432 px. The rover recurs on 1, 4, 5, 7, 8 and 9. It works as a motif, but on 8 and 9 it is a supporting prop rather than a picture made for its sentence. That is a 7 with more than one frame leaning on a default."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.5,
+      "why": "The bespoke spine holds on the contact sheet: one LOOK V2 palette of saturated teal, blue, orange and sand, the same serif headline and mono kicker, the 0N / 09 counter and the texasaidocket.com line on every frame. The lime data link appears on 1, 4, 5, 8 and 9 and always means the relay to a medic or delivery, never money. The story runs in order. Frame 6's flat teal badge wall sits outside the deck's otherwise rendered world, and frame 3's plinths read as a different, toy-like medium."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.0,
+      "why": "Every numeral traces. Caption: 52 (c11), November 5th to 13th (c1), $1.5 million and $1 million (c3), November 25th (c20). Slides: 100 and $3 million (c12), 2023 (c21), and $100,000 is the declared plate rule in figures.json, stated on the frame as 'drawn to illustrate'. All three sources are primary official pages, and the first comment cites what was fetched. The round 1 charge is repaired. Slide 8 now reads 'Human machine teams beat every approach', which matches c5, and a human stands with the rover. TRIAGE-X is called an open SBIR topic, which matches c19. The rejected list is honoured: no 'AI', and nothing about real patients. Three phrasings are looser than their sources without changing what a reader believes. (1) Slide 8 and the caption drop c5's scope, 'in some of the most rigorous, large scale, complex environments', and the headline makes it a bare universal. (2) c6, 'that result was not enough', is the run's reading of the verbatim 'But that's not enough, right?' The caption quotes it verbatim, which is right, but slide 8's body paraphrases the reading. (3) Slide 6 draws exactly 101 badges for a floor of 'more than 100'. Slide 5 rests on photo captions c27 and c28 even though the claims file rejected other photo captions for an unconfirmed tie to the finals. The slide never says finals, but it sits in a finals sequence. No hard fail."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.0,
+      "why": "What happened, where and who ran it are clear: DARPA's finals, staged by TEEX at Disaster City in College Station, November 5th to 13th, with RoboScout and Disruptors winning. The close names a dated action, TRIAGE-X open until November 25th. A Texan still can't act on it from this deck. Neither slide 9 nor the caption says who may answer an SBIR topic (a small business), and the first comment links only the DARPA news page, not the topic. 'Who in Texas answers it by then?' asks the reader a question the deck has not equipped them to answer. Texas's own stake is only the venue. No frame says whether any Texas team competed or where the winners are from, and Brazos County is never named. One stake is stated generally."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover's 'The robot finds. The medic treats.' earns the swipe. Frame 2 pays at once with the place. Frames 3 to 5 build difficulty, 7 gives the purse and 8 is a real turn ('Still not enough'). 9 lands on a dated next ask. Frame 6 (the head count) could be cut or folded into 7 without loss, and 4 and 5 overlap on 'robot plus medic'."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The caption opens well, 'Disaster City was built to collapse.' ... 'even has a derailed train.' The house rules hold: no colons, semicolons, dashes, banned words or first person. Most slide bodies are close paraphrases of TEEX and DARPA release language ('relaying critical data to human medics', 'hyper realistic mock injuries'), so the register leans press release rather than a Texan who knows College Station. 'Who in Texas answers it by then?' is the one regional move, and it is generic."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.0,
+      "why": "Topic, entities and instrument are new. The opening and closing moves are not. Carousel no. 83, one day earlier, was a search drone deck that closed on 'the grounded drone back on the ridge beside its case of 22 cartridges'. This deck is a search robot deck that closes on the rover beside an open orange case on frame 9. No. 82 also closed on 'the unbuilt glass on a cedar bench'. Drones and autonomous search two days running, plus the same 'machine beside its case' close, is a familiar move inside four decks."
+    }
+  ],
+  "weighted_score": 7.21,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Make the close something a Texan can act on: on slide 9 and in the caption, state from a fetched DARPA SBIR page who may answer TRIAGE-X and link that topic page in the first comment, and add a claim on whether any Texas team competed or placed. Then 'Who in Texas answers it by then?' becomes a call a reader can take up rather than a rhetorical question about a venue.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 6,
+      "problem": "A flat, evenly lit 10 by 10 grid of badge icons on a teal field. It has no light direction, no depth and no subject. At feed size it reads as an infographic wall rather than a rendered picture, and it breaks the deck's rendered world.",
+      "fix": "Hang the 101 lanyards on a real check-in rack or table in a lit staging tent. Light it from a low side key so the badges cast shadows on each other. Pull the camera down to badge height, with the front rows large and sharp and the far rows falling off, so the count reads as a crowd in depth rather than a chart."
+    },
+    {
+      "slide": 8,
+      "problem": "An empty mottled blue wall takes the top half. The medic is a primitive mannequin with boots splayed flat toward the camera and no medic marker. The casualty on the board behind is unreadable, so the 'team' the headline claims is not visible as care.",
+      "fix": "Lower the camera to kneeling height and turn the medic three-quarters, with a red cross on the shoulder and hands on the casualty's arm. Put the rover's tablet feed beside the casualty in the same pool of light. Crop the wall so the headline sits on a darkened top band of the room rather than on dead texture."
+    },
+    {
+      "slide": 3,
+      "problem": "Four toy plinths with mono label pills under a headline that promises five courses. The sets read as small game tokens, not courses, and the fifth is missing without explanation.",
+      "fix": "Either add a fifth plinth marked as unnamed in the source, or retitle the frame to the four named sets. Push the camera into one set, the smoke filled building with the others receding behind, so a single lit subject fills half the frame."
+    },
+    {
+      "slide": 2,
+      "problem": "A wide diorama of the mock town with no focal subject. At 432 px it is a scatter of small buildings and the derailed train is lost.",
+      "fix": "Put the derailed train in the foreground at large scale, lit from a low side key, with the collapsed structures behind it, so the '52 acres built to fall down' idea reads through one object that owns the frame."
+    }
+  ]
+}

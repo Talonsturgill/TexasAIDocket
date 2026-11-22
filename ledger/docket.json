@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "gates": [
    "banned words",
    "claims",
@@ -2576,7 +2576,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -2738,6 +2738,11 @@
     {
      "date": "2026-11-18",
      "note": "The Federal Register notice on rewriting the NRC's reactor licensing and siting rules still reads as cited, and its comment window remains closed with no final rule published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The federal notice on reactor licensing and siting still reads as published, and its comment window stays closed.",
      "checked": true
     }
    ]
@@ -3882,11 +3887,11 @@
     {
      "id": "tx-2026-0027-c7",
      "text": "The council approved the amended agreement unanimously after separate consideration.",
-     "verbatim_quote": "Motion was made by Mayor Pro Tem Cmerk to approve the Amended and Restated Tax Abatement Agreement as presented. Motion was seconded by Councilman Redden. Motion carried unanimously.",
+     "verbatim_quote": "Motion was made by Mayor Pro Tem Cmerek to approve the Amended and Restated Tax Abatement Agreement as presented. Motion was seconded by Councilman Redden. Motion carried unanimously.",
      "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5956,plainText=false)",
      "source_title": "Taylor City Council meeting minutes, August 13th, 2026, page 2",
      "source_type": "primary_official",
-     "fetched": "2026-10-09"
+     "fetched": "2026-11-21"
     },
     {
      "id": "tx-2026-0027-c8",
@@ -3931,11 +3936,11 @@
      "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5956,plainText=false)",
      "source_title": "Taylor City Council meeting minutes, August 13th, 2026, page 1",
      "source_type": "primary_official",
-     "fetched": "2026-10-09"
+     "fetched": "2026-11-21"
     }
    ],
    "id": "tx-2026-0027",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-18",
@@ -4089,6 +4094,11 @@
     {
      "date": "2026-11-15",
      "note": "The council packet still records the amended Compal agreement. Read again, its recital names Reinvestment Zone No. 10, and the record now says so.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Taylor's approval of the amended Compal abatement still reads as unanimous in the council's own August minutes. One quotation from those minutes was corrected to the mayor pro tem's name as the minutes spell it.",
      "checked": true
     }
    ]
@@ -5389,7 +5399,7 @@
     }
    ],
    "id": "tx-2026-0033",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -5534,6 +5544,11 @@
     {
      "date": "2026-11-18",
      "note": "El Paso's adopted data center framework still requires a special permit for hyperscale projects, as the city manager's announcement describes it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "El Paso's data center framework still stands as adopted, with the special permit for hyperscale projects in the city's own legislative record.",
      "checked": true
     }
    ]
@@ -6862,7 +6877,7 @@
     }
    ],
    "id": "tx-2026-0039",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -7007,6 +7022,11 @@
     {
      "date": "2026-11-18",
      "note": "UT El Paso is still listed in the first round of CyberAICorps scholarship awards, in the announcement the record cites.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "UT El Paso is still named in the first round of the science foundation's AI cybersecurity scholarship awards, and the program page still describes it.",
      "checked": true
     }
    ]
@@ -8096,7 +8116,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -8259,6 +8279,11 @@
     {
      "date": "2026-11-15",
      "note": "The county's own copy of its resolution asking the Legislature for authority over data centers still reads as adopted.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Angelina County's resolution asking the Legislature for authority over data centers still stands in the court's own minutes.",
      "checked": true
     }
    ],
@@ -9522,7 +9547,7 @@
     }
    ],
    "id": "tx-2026-0049",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -9674,6 +9699,11 @@
     {
      "date": "2026-11-15",
      "note": "Harris County's agenda record still shows the Flock renewal approved, with nothing rescinding it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Harris County's renewed Flock contract and the amendment that took it county wide still read as approved in the court's own record.",
      "checked": true
     }
    ]
@@ -10193,7 +10223,7 @@
     }
    ],
    "id": "tx-2026-0052",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -10338,6 +10368,11 @@
     {
      "date": "2026-11-15",
      "note": "Brazoria County's agenda record still carries its resolution on the conditions it wants for data centers.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Brazoria County's resolution on the conditions it wants on data centers still stands in the court's own record.",
      "checked": true
     }
    ]
@@ -10633,7 +10668,7 @@
     }
    ],
    "id": "tx-2026-0054",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -10778,6 +10813,11 @@
     {
      "date": "2026-11-18",
      "note": "HGACBuy's catalog still lists AI consulting services under contract AI05-26.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The regional purchasing catalog still lists the AI consulting contract, and its terms read as cited.",
      "checked": true
     }
    ]
@@ -11119,7 +11159,7 @@
     }
    ],
    "id": "tx-2026-0056",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -11272,6 +11312,11 @@
      "date": "2026-11-18",
      "note": "The water board's denial of a separate data center demand category still stands in the coverage the record cites, along with the plan it adopted.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The water board's denial of a separate data center demand category still stands in its own July meeting record.",
+     "checked": true
     }
    ]
   },
@@ -11332,7 +11377,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -11486,6 +11531,11 @@
     {
      "date": "2026-11-18",
      "note": "The commission's notice canceling the Carson County meeting on Fermi's air permits is still posted, and its calendar still carries no new date for that meeting.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The commission's notice still shows the Carson County meeting on Fermi's air permits as canceled, with a new date still to be set.",
      "checked": true
     }
    ]
@@ -12212,7 +12262,7 @@
     }
    ],
    "id": "tx-2026-0061",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -12364,6 +12414,11 @@
     {
      "date": "2026-11-15",
      "note": "San Marcos's own record still carries the vote defining data centers in its land development code.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "San Marcos still keeps data centers out of every zone under its code update, as the city's own page describes it.",
      "checked": true
     }
    ]
@@ -13270,7 +13325,7 @@
     }
    ],
    "id": "tx-2026-0065",
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-19",
@@ -13414,6 +13469,11 @@
     {
      "date": "2026-11-17",
      "note": "The adopted ordinance still caps how much water a San Angelo data center may use for cooling.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "San Angelo's ordinance capping cooling water still reads as adopted, and the city's data center page still points to it.",
      "checked": true
     }
    ]
@@ -14750,7 +14810,7 @@
      "fetched": "2026-10-02"
     }
    ],
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent. gov.texas.gov serves no robots.txt.",
    "history": [
@@ -14904,6 +14964,11 @@
     {
      "date": "2026-11-15",
      "note": "The governor's announcement of the Terafab plant in Grimes County still stands. The comptroller's agreement pages could not be read this time.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The comptroller's file on the Terafab application still reads as cited. The governor's announcement of the plant stays closed to this project.",
      "checked": true
     }
    ]
@@ -15221,7 +15286,7 @@
      "fetched": "2026-11-10"
     }
    ],
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-21",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
    "history": [
@@ -15406,6 +15471,11 @@
     {
      "date": "2026-11-17",
      "note": "ERCOT's November 5th update to the commission and its August Batch Zero presentation still read as the record quotes them. The Governor's own directive pages could not be checked again, so their wording rests on the earlier reading.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The utility commission's record of the governor's audit directive still reads as cited, and so do ERCOT's updates to the commission.",
      "checked": true
     }
    ]
@@ -15830,7 +15900,7 @@
      "fetched": "2026-11-13"
     }
    ],
-   "last_verified": "2026-11-17",
+   "last_verified": "2026-11-21",
    "confidence": "high",
    "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The commission's report is a recommendation to the council. The ordinance submits the measures as listed in an exhibit that was not readable, so the record says the commission recommends this section and never that a ballot proposition carries this wording. The proposition letters are not published here for the same reason.",
    "history": [
@@ -16005,6 +16075,11 @@
     {
      "date": "2026-11-17",
      "note": "The council's voting history and the news account of the charter election still read as quoted. The city's attached ordinance text could not be checked again, so it rests on the earlier reading.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Pflugerville's order calling the charter election still reads as passed in the city's own legislative history.",
      "checked": true
     }
    ]
@@ -19949,7 +20024,7 @@
     }
    ],
    "id": "tx-2026-0099",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-26",
@@ -20098,6 +20173,11 @@
     {
      "date": "2026-11-18",
      "note": "Rice's announcement of the Army funded antenna array center is still posted as cited, with AI still listed among its six disciplines.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Rice's account of the Army funded antenna center still reads as published, with AI still one of its disciplines.",
      "checked": true
     }
    ]
@@ -20570,7 +20650,7 @@
     }
    ],
    "id": "tx-2026-0103",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-26",
@@ -20720,6 +20800,11 @@
      "date": "2026-11-18",
      "note": "The Energy Department's list still names the four Texas campuses in its AI for science program, in the roles the record describes.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "All four Texas campuses still hold their roles in the Energy Department's AI for science program, as the department's own account lists them.",
+     "checked": true
     }
    ]
   },
@@ -20792,7 +20877,7 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "confidence": "high",
    "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure.",
    "history": [
@@ -20943,6 +21028,11 @@
     {
      "date": "2026-11-15",
      "note": "Amazon's announcement of its Austin robotics factory is still posted as first published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Amazon's announcement of the Austin robotics factory still reads as published. The governor's release on it stays closed to this project.",
      "checked": true
     }
    ]
@@ -24484,7 +24574,7 @@
     }
    ],
    "id": "tx-2026-0112",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-08-30",
@@ -24622,6 +24712,11 @@
     {
      "date": "2026-11-15",
      "note": "The utility's own page on the approved 765 kV line still reads as cited. The commission's filing could not be read this time.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The commission's approval of the line from Somervell County to Howard County still stands in its own filings.",
      "checked": true
     }
    ]
@@ -27190,7 +27285,7 @@
    ],
    "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list. CORRECTED 2026-09-05, at the third scoring round. The title read 'magnets that avoid imported rare earths' and the summary closed 'while cutting dependence on foreign mineral supply', and NOT ONE of this item's four evidence quotes says either. The one quote about the goal reads 'find entirely new materials while simultaneously balancing these supply constraint concerns', which is what the title and the summary now say. The same reading was struck from the deck's slide 6 at round 1 and from the two carousel ledgers at round 2, and this is where it originated. RE-APPLIED after the upgrade lane reverted this file with a git checkout, having read a same length string edit as a stray whitespace reformat. A scorer reading the PUBLISHED item found that its evidence block says every fact above rests on one of these and that not one of the four quotes contained the word magnet or magnetic, so a reader checking only that page could verify the funder, the term, the figure and the coalition and find nothing establishing the subject. Two quotes already verified in this run's claims file were added, one naming the magnetic materials Rice's group chooses between and one naming the target the work is set against.",
    "id": "tx-2026-0124",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-09-05",
@@ -27318,6 +27413,11 @@
     {
      "date": "2026-11-18",
      "note": "Rice's release on the Energy Department funded magnet search still describes the Houston led team using AI to screen materials.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The Energy Department award for the Houston led magnet search still reads as published by both Rice and the University of Houston.",
      "checked": true
     }
    ]
@@ -27890,6 +27990,11 @@
      "date": "2026-11-12",
      "note": "Frontera's queues closed as scheduled, and the account of the retirement still stands.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Frontera's retirement still stands in the record. TACC's documentation pages stay closed to this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -27897,8 +28002,8 @@
      "docs.tacc.utexas.edu"
     ],
     "boundary": "robots",
-    "checked": "2026-11-14",
-    "note": "docs.tacc.utexas.edu refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08. docs.tacc.utexas.edu now answers 404 for robots.txt, and tacc.utexas.edu's own robots.txt still names ClaudeBot, so the registry keeps the whole domain off limits and nothing was fetched. Re-measured 2026-10-15, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, docs.tacc.utexas.edu answers 404 for robots.txt and the registry keeps tacc.utexas.edu off limits, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-01, docs.tacc.utexas.edu robots.txt no longer names this project and the sources registry keeps the host off limits, so nothing was fetched. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, docs.tacc.utexas.edu stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, docs.tacc.utexas.edu is still excluded by the sources registry, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-07, docs.tacc.utexas.edu is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, docs.tacc.utexas.edu is outside the registry's crawl boundary and was not requested. Nothing was routed around. Re-measured 2026-11-14, docs.tacc.utexas.edu still refuses this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-21",
+    "note": "docs.tacc.utexas.edu refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08. docs.tacc.utexas.edu now answers 404 for robots.txt, and tacc.utexas.edu's own robots.txt still names ClaudeBot, so the registry keeps the whole domain off limits and nothing was fetched. Re-measured 2026-10-15, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, docs.tacc.utexas.edu answers 404 for robots.txt and the registry keeps tacc.utexas.edu off limits, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-01, docs.tacc.utexas.edu robots.txt no longer names this project and the sources registry keeps the host off limits, so nothing was fetched. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, docs.tacc.utexas.edu stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, docs.tacc.utexas.edu is still excluded by the sources registry, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-07, docs.tacc.utexas.edu is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, docs.tacc.utexas.edu is outside the registry's crawl boundary and was not requested. Nothing was routed around. Re-measured 2026-11-14, docs.tacc.utexas.edu still refuses this project in robots.txt. Nothing was routed around. Re-measured 2026-11-21, docs.tacc.utexas.edu still refuses this project's path and fetch_doc's live check refused it before any request. Nothing was routed around."
    }
   },
   {
@@ -28234,7 +28339,7 @@
     }
    ],
    "id": "tx-2026-0129",
-   "last_verified": "2026-11-18",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-09-08",
@@ -28348,6 +28453,11 @@
     {
      "date": "2026-11-18",
      "note": "Austin's resolution still bars the city manager from buying any park camera or drone that depends on AI. The December 9th progress update to the council committee is still due.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Austin's direction barring AI dependent park cameras and drones still reads as adopted in the council's own resolution.",
      "checked": true
     }
    ],
@@ -33953,7 +34063,7 @@
     }
    ],
    "id": "tx-2026-0161",
-   "last_verified": "2026-10-24",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-09-15",
@@ -34078,6 +34188,11 @@
     {
      "date": "2026-11-14",
      "note": "UT Arlington's federally funded AI tutor remains unconfirmed. The university's site did not answer this project.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "UT Arlington's account of its AI tutor and the related work with Fort Worth police reads as published. The university's site answers this project again.",
      "checked": true
     }
    ],
@@ -34214,7 +34329,7 @@
     }
    ],
    "id": "tx-2026-0162",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-09-17",
@@ -34313,6 +34428,11 @@
     {
      "date": "2026-11-15",
      "note": "Memorial Hermann's announcement of AI drafted explanations of test results is still posted as first published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Memorial Hermann's account of AI drafted explanations of test results still reads as published.",
      "checked": true
     }
    ]
@@ -35016,6 +35136,11 @@
      "date": "2026-11-14",
      "note": "The three campus trial of a phone microphone for fetal movement has no newer reading. The federal trials registry still refuses this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The three campus trial has no newer reading. The federal trials registry still refuses this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -35023,8 +35148,8 @@
      "clinicaltrials.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-14",
-    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around. Re-measured 2026-10-08, robots.txt still disallows /api/v2/ to this project. Re-measured 2026-10-15, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, clinicaltrials.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, clinicaltrials.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, clinicaltrials.gov still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, clinicaltrials.gov still refuses this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-21",
+    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around. Re-measured 2026-10-08, robots.txt still disallows /api/v2/ to this project. Re-measured 2026-10-15, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, clinicaltrials.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, clinicaltrials.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, clinicaltrials.gov still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, clinicaltrials.gov still refuses this project in robots.txt. Nothing was routed around. Re-measured 2026-11-21, clinicaltrials.gov robots.txt still disallows /api/v2/ to this project and fetch_doc refused it before any request. Nothing was routed around."
    }
   },
   {
@@ -36094,7 +36219,7 @@
     }
    ],
    "id": "tx-2026-0173",
-   "last_verified": "2026-10-24",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-09-19",
@@ -36210,6 +36335,11 @@
     {
      "date": "2026-11-14",
      "note": "UT Arlington's move from business analytics degrees to AI degrees has no newer reading, because the university's site did not answer.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "UT Arlington's AI degrees still replace its business analytics degrees, as the university's own release describes them. Its site answers this project again.",
      "checked": true
     }
    ],
@@ -37685,7 +37815,7 @@
     }
    ],
    "id": "tx-2026-0179",
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-09-21",
@@ -37778,6 +37908,11 @@
     {
      "date": "2026-11-15",
      "note": "Dallas's own record of the first citations from its brush truck cameras still stands.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Dallas's own council memo on the brush truck cameras still reads as cited, and the reporting on the first citations stands.",
      "checked": true
     }
    ]
@@ -38849,6 +38984,11 @@
      "date": "2026-11-14",
      "note": "The agency's decision on Zipline's draft assessment can't be confirmed again. Its pages still turn away every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The agency's decision on Zipline's draft assessment can't be confirmed this time. Its pages still turn this project away.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -38856,8 +38996,8 @@
      "www.faa.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-14",
-    "note": "www.faa.gov answered 403 on 2026-10-29 to the project's own agent on all of tx-2026-0186's cited pages, and 403 to the routine's WebFetch reader on the review page. Earlier runs read the page through a browser agent string. The routine no longer presents itself as a browser, so no client it has can read the page. Nothing was routed around. Re-measured 2026-11-01, www.faa.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.faa.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.faa.gov answered 403 to the project's agent. Nothing was routed around."
+    "checked": "2026-11-21",
+    "note": "www.faa.gov answered 403 on 2026-10-29 to the project's own agent on all of tx-2026-0186's cited pages, and 403 to the routine's WebFetch reader on the review page. Earlier runs read the page through a browser agent string. The routine no longer presents itself as a browser, so no client it has can read the page. Nothing was routed around. Re-measured 2026-11-01, www.faa.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.faa.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.faa.gov answered 403 to the project's agent. Nothing was routed around. Re-measured 2026-11-21, www.faa.gov answered 403 to the project's agent on the review page and on the draft assessment. Nothing was routed around."
    }
   },
   {
@@ -39344,10 +39484,15 @@
      "date": "2026-11-18",
      "note": "The state's rule that driverless commercial operation needs its own authorization still reads as cited, with no fee and no expiry added.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The state still asks only for an authorization to run driverless vehicles commercially, with no fee and no expiry on it, as the motor vehicle agency's rules read.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0188",
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-21"
   },
   {
    "title": "Justice Department takes comment on a judgment barring a Frisco apartment manager from rent software fed by rivals' data",
@@ -40276,6 +40421,11 @@
      "date": "2026-11-18",
      "note": "Xcel's answer, which counted cameras rather than fire detections, still stands as filed.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Xcel's answer still counts cameras rather than fire detections, and the filing reads as it did.",
+     "checked": true
     }
    ],
    "claims": [
@@ -40371,7 +40521,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-21"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -43366,7 +43516,7 @@
      "id": "tx-2026-0203-c19"
     }
    ],
-   "last_verified": "2026-11-15",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-10-06",
@@ -43442,6 +43592,11 @@
     {
      "date": "2026-11-15",
      "note": "Taylor's posted annexation agreement and its water and setback terms still read as cited.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Taylor's annexation agreement for the data center campus, with its water, setback and noise terms, still reads as approved on the city's own campus page.",
      "checked": true
     }
    ],
@@ -45356,6 +45511,11 @@
      "date": "2026-11-18",
      "note": "Rice's plan to hire AI faculty and build for them in the Ion district still reads as the record quotes it.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Rice's plan to hire AI faculty and build in the Ion District still reads as announced.",
+     "checked": true
     }
    ],
    "claims": [
@@ -45406,7 +45566,7 @@
     }
    ],
    "id": "tx-2026-0215",
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-21"
   },
   {
    "title": "Waymo opens its San Antonio robotaxis to anyone with the app, the airport included, while its flood recall remedy is still listed as under development",
@@ -46220,10 +46380,37 @@
      "source_title": "Texas Animal Health Commission, New World Screwworm",
      "source_type": "primary_official",
      "fetched": "2026-11-16"
+    },
+    {
+     "id": "tx-2026-0218-c38",
+     "text": "The commission now counts 29 Texas counties with a confirmed screwworm detection.",
+     "verbatim_quote": "Total Texas counties with a confirmed NWS detection: 29",
+     "source_url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "source_title": "Texas Animal Health Commission, New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21"
+    },
+    {
+     "id": "tx-2026-0218-c39",
+     "text": "The commission now counts 90 Texas premises confirmed with at least one screwworm detection.",
+     "verbatim_quote": "Total Texas premises confirmed with at least one NWS detection: 90",
+     "source_url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "source_title": "Texas Animal Health Commission, New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21"
+    },
+    {
+     "id": "tx-2026-0218-c40",
+     "text": "The infested zone now reaches parts of Andrews and Duval counties. Hidalgo and Kenedy are in it now. So are Martin and Midland. Uvalde, Webb and Willacy are too.",
+     "verbatim_quote": "There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Andrews, Bandera, Brewster, Brooks, Crockett, Culberson, Dimmit, Duval, Edwards, El Paso, Fisher, Frio, Goliad, Hidalgo, Hudspeth, Irion, Jeff Davis, Jim Hogg, Kenedy, La Salle, Martin, Medina, Midland, Mitchell, Nolan, Pecos, Presidio, Reagan, Reeves, Schleicher, Scurry, Starr, Sutton, Terrell, Uvalde, Val Verde, Webb, Willacy, Zapata, Zavala.",
+     "source_url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "source_title": "Texas Animal Health Commission, New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21"
     }
    ],
    "id": "tx-2026-0218",
-   "last_verified": "2026-11-16",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-10-18",
@@ -46266,6 +46453,10 @@
     {
      "date": "2026-11-16",
      "note": "The commission now counts 77 Texas premises in 25 counties with a confirmed screwworm detection, up from 72 premises in 24 counties. The infested zone has spread into parts of Brooks, Dimmit, Frio, Goliad, La Salle and Zavala counties. The USDA laboratory's account of its AI release models reads as cited."
+    },
+    {
+     "date": "2026-11-21",
+     "note": "The commission now counts 90 Texas premises in 29 counties with a confirmed screwworm detection. That is up from 77 premises in 25 counties. The infested zone now reaches parts of Andrews and Duval counties. Hidalgo and Kenedy are in it now. So are Martin and Midland. Uvalde, Webb and Willacy are too. The USDA laboratory's account of its AI release models reads as cited."
     }
    ]
   },
@@ -47386,10 +47577,15 @@
      "date": "2026-11-18",
      "note": "Rice's later announcement of 40 more AI hires and lab space at The Arc is still posted unchanged.",
      "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "Rice's plan to add AI faculty this decade still reads as announced.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0224",
-   "last_verified": "2026-11-18"
+   "last_verified": "2026-11-21"
   },
   {
    "title": "Lockheed Martin brings Hadrian's 24 machine automated machining cell into its Grand Prairie missile parts plant",
@@ -47830,7 +48026,7 @@
    ],
    "notes_for_editor": "El Paso is outside ERCOT. The release names El Paso and El Paso Water, both in El Paso County. No accuracy result is published.",
    "id": "tx-2026-0227",
-   "last_verified": "2026-11-19",
+   "last_verified": "2026-11-21",
    "history": [
     {
      "date": "2026-10-22",
@@ -47889,6 +48085,11 @@
     {
      "date": "2026-11-19",
      "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-21",
+     "note": "UTEP's account of the satellite flood mapping test with El Paso Water still reads as published. The university's site answers this project again.",
      "checked": true
     }
    ],
@@ -52486,6 +52687,353 @@
     }
    ],
    "id": "tx-2026-0253"
+  },
+  {
+   "title": "DARPA's Triage Challenge finals end at TEEX's Disaster City in College Station, where drones and ground robots triaged staged mass casualties",
+   "summary": "The Texas A&M Engineering Extension Service staged the finals of DARPA's Triage Challenge at Disaster City in College Station from November 5th to November 13th. Autonomous drones and ground robots worked alongside human medics to find simulated casualties, read vital signs from a distance and relay critical data to the medics. The scenes included a tornado hitting a market, smoke and near darkness. RoboScout won the systems competition and $1.5 million. Disruptors won the data competition and $1 million. The casualties were role players with mock injuries made by moulage artists.",
+   "topic": "defense-and-federal",
+   "decider": {
+    "name": "Defense Advanced Research Projects Agency, with the Texas A&M Engineering Extension Service staging the finals",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Brazos"
+    ],
+    "on_ercot": true,
+    "metro": "College Station-Bryan, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-11-13",
+     "kind": "decided",
+     "note": "DARPA names the winners of the Triage Challenge finals at Disaster City"
+    },
+    {
+     "date": "2026-11-25",
+     "kind": "expires",
+     "note": "DARPA's open TRIAGE-X research topic closes"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The challenge is over. DARPA's TRIAGE-X research topic for autonomous triage systems takes proposals until November 25th, 2026.",
+    "url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "TEEX staged the DARPA Triage Challenge at Disaster City in College Station from November 5th to November 13th.",
+     "verbatim_quote": "The scenarios were part of the DARPA Triage Challenge, which the Texas A&M Engineering Extension Service, or TEEX, staged from Thursday, Nov. 5 through Friday, Nov. 13, at Disaster City® in College Station.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c1"
+    },
+    {
+     "text": "Autonomous drones and ground robots worked alongside first responders to triage simulated mass casualty incidents and relayed critical data to human medics.",
+     "verbatim_quote": "Autonomous drones and ground robots raced alongside first responders this week to triage simulated mass casualty incidents, spotting faux-but-lifelike life-threatening injuries and relaying critical data to human medics.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c2"
+    },
+    {
+     "text": "The finals ended on November 13th at Disaster City in College Station. RoboScout won the Systems competition and $1.5 million, and Disruptors won the Data competition and $1 million.",
+     "verbatim_quote": "The DARPA Triage Challenge concluded the Finals event on Nov. 13, 2026, at Disaster City in College Station, Texas. RoboScout won the Systems competition and $1.5 million, while Disruptors won the Data competition and $1 million.",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c3"
+    },
+    {
+     "text": "Competitors used autonomous systems and human machine teams in simulated disasters that included a tornado hitting an open air market, smoke, heavy darkness and complex obstacle lanes.",
+     "verbatim_quote": "Competitors employed autonomous systems and human-machine teams to navigate simulated catastrophic events, including a tornado hitting an open air market, smoke, heavy darkness, and complex obstacle lanes.",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c4"
+    },
+    {
+     "text": "DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem in some of the most rigorous environments.",
+     "verbatim_quote": "We've decisively proven that human-machine teams outperform every approach to the problem in some of the most rigorous, large scale, complex environments that you've ever seen",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c5"
+    },
+    {
+     "text": "Winchell then said that result was not enough.",
+     "verbatim_quote": "But that's not enough, right?",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c6"
+    },
+    {
+     "text": "Winchell said some teams did well at identifying victims and others at triage, lifesaving or evacuation.",
+     "verbatim_quote": "Some of the teams perform really well on the identification of victims. Some of the teams perform really well on the triage and lifesaving or the evacuation pieces.",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c7"
+    },
+    {
+     "text": "The challenge seeks autonomous systems such as drones and robots that can assess injuries quickly, accurately and at scale in mass casualty incidents.",
+     "verbatim_quote": "The DARPA Triage Challenge (DTC) seeks to transform how medical responders triage in mass casualty incidents (MCIs) by developing autonomous systems – such as drones and robots – that can assess injuries quickly, accurately, and at scale.",
+     "source_url": "https://www.darpa.mil/research/challenges/darpa-triage-challenge",
+     "source_title": "DARPA, DARPA Triage Challenge program page",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c8"
+    },
+    {
+     "text": "Competing teams developed algorithms, unmanned aerial vehicles or unmanned ground vehicles designed to work with the human medics who give hands on care in the field.",
+     "verbatim_quote": "Competing teams have developed algorithms, unmanned aerial vehicles (UAVs), and/or unmanned ground vehicles (UGVs) designed to collaborate with the human medics who provide hands-on evaluation and care in the field.",
+     "source_url": "https://www.darpa.mil/research/challenges/darpa-triage-challenge",
+     "source_title": "DARPA, DARPA Triage Challenge program page",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c9"
+    },
+    {
+     "text": "Competitors must show their systems can locate casualties, identify signs of injury and send critical data to medical response teams.",
+     "verbatim_quote": "Through a series of scenarios, competitors must demonstrate that their systems can locate casualties, identify signs of injury, and transmit critical data to medical response teams.",
+     "source_url": "https://www.darpa.mil/research/challenges/darpa-triage-challenge",
+     "source_title": "DARPA, DARPA Triage Challenge program page",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c10"
+    },
+    {
+     "text": "Disaster City is a 52 acre mock community with full scale structures that can collapse, rubble piles and a derailed train.",
+     "verbatim_quote": "runs Disaster City®, a 52-acre mock community with full-scale structures that can collapse, rubble piles, a derailed train and more to simulate realistic disaster response in a simulated and safe environment.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c11"
+    },
+    {
+     "text": "More than 100 participants from the U.S. military, universities, tech companies and startups competed for more than $3 million in cash prizes.",
+     "verbatim_quote": "more than 100 participants from the U.S. military, universities, tech companies and startups competed for over $3 million in cash prizes",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c12"
+    },
+    {
+     "text": "Teams were graded at DARPA's command post, where computing technology checked every mock casualty report against each patient's simulated injuries and vital signs.",
+     "verbatim_quote": "Teams are graded by DARPA’s command post, where state-of-the-art computing technology checks every mock casualty report against each patient’s simulated injuries and vital signs.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c13"
+    },
+    {
+     "text": "The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under rubble.",
+     "verbatim_quote": "Each of the five competitions was unique, including a simulated tornado ripping through a community market, smoke-filled buildings, nighttime searches in near darkness and search and rescue under piles of rubble.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c14"
+    },
+    {
+     "text": "Moulage artists made hyper realistic mock injuries for the challenge.",
+     "verbatim_quote": "Behind the scenes at the DARPA Triage Challenge, skilled moulage artists create hyper-realistic mock injuries.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c15"
+    },
+    {
+     "text": "For the Human Machine Teaming course each team was assigned medics, and teams and medics worked together to rapidly triage casualties.",
+     "verbatim_quote": "Teams are assigned medics they will partner with for the Human-Machine Teaming (HMT) course, in which teams and medics work together to rapidly triage casualties.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c16"
+    },
+    {
+     "text": "Program manager Jeremy Pamplin said the challenge was built to be the most realistic, repeatable and rigorous testbed for assessing medical technologies ever created.",
+     "verbatim_quote": "We did this challenge to be the most realistic, repeatable and rigorous testbed for assessing medical technologies ever created",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c17"
+    },
+    {
+     "text": "Competitors used the technology their teams developed to read vital signs from a distance and work alongside human medics.",
+     "verbatim_quote": "read vital signs from a distance and work alongside human medics for faster",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c18"
+    },
+    {
+     "text": "DARPA has an open SBIR topic, TRIAGE-X, for autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention.",
+     "verbatim_quote": "If you’d like to get involved, DARPA has an open SBIR topic, TRIAGE-X, which seeks to develop and demonstrate capability with autonomous medical triage systems to recognize chemical toxidromes and physically deliver the corresponding antidote or life-saving intervention.",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c19"
+    },
+    {
+     "text": "DARPA says the TRIAGE-X topic is open until November 25th, 2026.",
+     "verbatim_quote": "is open until Nov. 25, 2026.",
+     "source_url": "https://www.darpa.mil/news/2026/triage-finals-winners",
+     "source_title": "DARPA, DARPA Triage Challenge completes Finals event",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c20"
+    },
+    {
+     "text": "DARPA created the Triage Challenge in 2023, according to TEEX.",
+     "verbatim_quote": "DARPA is the Defense Advanced Research Projects Agency and created the DARPA Triage Challenge in 2023.",
+     "source_url": "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/",
+     "source_title": "Texas A&M Engineering Extension Service, TEEX turns Disaster City into a DARPA Triage Challenge proving ground",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0254-c21"
+    }
+   ],
+   "last_verified": "2026-11-21",
+   "history": [
+    {
+     "date": "2026-11-21",
+     "note": "Admitted from DARPA's account of the finals and TEEX's account of staging them. Every casualty in the challenge was simulated."
+    }
+   ],
+   "id": "tx-2026-0254"
+  },
+  {
+   "title": "The comptroller proposes a rule treating cloud computing and AI as hosted services outside the sales tax on data processing",
+   "summary": "The Texas Comptroller proposed amendments to Rule 3.308 on November 18th. They would define a taxable data processing service as processing data a customer supplies and returning the data organized. Internet hosting, cloud computing and artificial intelligence would count as hosted technology services and not be taxed as data processing. It is a proposal and not yet adopted. It is to be published in the Texas Register, which carries the comment instructions.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Texas Comptroller of Public Accounts",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": false
+   },
+   "status": "pending",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-11-18",
+     "kind": "filed",
+     "note": "The comptroller announces the proposed amendments to Rule 3.308"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The proposal is to be published in the Texas Register, which carries the comment instructions. The comptroller's office can be reached through its own site until then.",
+    "url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The comptroller announced proposed rules saying internet hosting, cloud computing and artificial intelligence are hosted technology services and not taxable data processing.",
+     "verbatim_quote": "Texas Comptroller Don Huffines today announced new rules confirming that internet hosting, cloud computing, artificial intelligence, and other hosted technology services are not taxable data processing services.",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c1"
+    },
+    {
+     "text": "The change is a set of proposed amendments to Rule 3.308, which interprets Tax Code 151.0035.",
+     "verbatim_quote": "Proposed amendments to Rule 3.308 return the agency's interpretation of Tax Code 151.0035 to the service the Legislature actually chose to tax.",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c2"
+    },
+    {
+     "text": "The amendments define data processing as processing data a customer supplies and returning it organized, and they say hosted technology services are not taxable.",
+     "verbatim_quote": "The proposed amendments define a data processing service as one in which the provider processes data supplied by the customer and returns it in an organized, usable format, confirm that hosted technology services are not taxable, and require that software sales be allocated so Texas taxes only the portion of the sale or use in Texas.",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c3"
+    },
+    {
+     "text": "The agency's earlier reading taxed hosting and cloud computing as data processing because computers store or handle data.",
+     "verbatim_quote": "The agency's prior interpretation treated internet hosting, cloud computing, and other modern technology offerings as taxable data processing simply because computers store or manipulate data",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c4"
+    },
+    {
+     "text": "The comptroller said the Legislature taxed data processing in 1987 and did not tax artificial intelligence.",
+     "verbatim_quote": "It did not tax artificial intelligence.",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c5"
+    },
+    {
+     "text": "The Legislature's data processing tax dates to 1987.",
+     "verbatim_quote": "The Legislature taxed data processing in 1987,",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c6"
+    },
+    {
+     "text": "The proposed rule is to be published in an upcoming issue of the Texas Register.",
+     "verbatim_quote": "The proposed rule will be published in an upcoming issue of the Texas Register",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c7"
+    },
+    {
+     "text": "The comptroller announced the proposal on November 18th, 2026.",
+     "verbatim_quote": "November 18, 2026",
+     "source_url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
+     "source_title": "Texas Comptroller of Public Accounts, Comptroller Huffines Kills Tax on Cloud Storage and Website Hosting",
+     "source_type": "primary_official",
+     "fetched": "2026-11-21",
+     "id": "tx-2026-0255-c8"
+    }
+   ],
+   "last_verified": "2026-11-21",
+   "history": [
+    {
+     "date": "2026-11-21",
+     "note": "Admitted from the comptroller's November 18th announcement. The rule is proposed and has not been adopted."
+    }
+   ],
+   "id": "tx-2026-0255"
   }
  ]
 }

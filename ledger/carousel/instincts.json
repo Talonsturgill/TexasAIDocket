@@ -673,7 +673,8 @@
         "2026-11-14",
         "2026-11-15",
         "2026-11-16",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-22"
       ],
       "contradicted": []
     },
@@ -1950,6 +1951,16 @@
       "learned": "2026-11-20",
       "instinct": "Show a team by the places it left at the table when kit figures can't hold up at the camera's distance, because a cropped mannequin reads as a render fault.",
       "evidence": "2026-11-20, frame 4. Seated mannequins were charged in panel round 1, cropped hands read as cartoon fists in round 2, and four open laptops with nobody drawn stopped the people charge in rounds 2 and 3.",
+      "confirmed": [
+        "2026-11-22"
+      ],
+      "contradicted": []
+    },
+    {
+      "id": "score-the-repair-before-the-panel",
+      "learned": "2026-11-22",
+      "instinct": "Have a cold slide critic score every panel repair against the frame it replaces before the panel rescores, and keep the old frame when the repair scores lower.",
+      "evidence": "No. 84's round 2 repairs on frames 3, 6 and 8 took the judges' fixes literally, and the art median fell from 7.3 to as low as 6.6 before round 3 recovered part of it.",
       "confirmed": [],
       "contradicted": []
     }

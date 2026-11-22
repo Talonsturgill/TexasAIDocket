@@ -12,7 +12,7 @@ Taylor City Council approved the Amended and Restated Tax Abatement Agreement wi
 - Comment closes: 2026-08-13
 - Take part: https://taylortx.portal.civicclerk.com/event/2010/files/agenda/5956
 
-- Last checked: 2026-11-15
+- Last checked: 2026-11-21
 
 ## Dates
 
@@ -56,6 +56,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · The amended Compal abatement still appears as approved in Taylor's council minutes.
 - 2026-11-12 · Checked against the council's own agenda record. The amended Compal abatement still reads as approved, with nothing reversing it.
 - 2026-11-15 · The council packet still records the amended Compal agreement. Read again, its recital names Reinvestment Zone No. 10, and the record now says so.
+- 2026-11-21 · Taylor's approval of the amended Compal abatement still reads as unanimous in the council's own August minutes. One quotation from those minutes was corrected to the mayor pro tem's name as the minutes spell it.
 
 ## Evidence
 
@@ -69,7 +70,7 @@ Source (primary_official): https://taylortx.api.civicclerk.com/v1/Meetings/GetMe
 
 ### The council approved the amended agreement unanimously after separate consideration.
 
-> Motion was made by Mayor Pro Tem Cmerk to approve the Amended and Restated Tax Abatement Agreement as presented. Motion was seconded by Councilman Redden. Motion carried unanimously.
+> Motion was made by Mayor Pro Tem Cmerek to approve the Amended and Restated Tax Abatement Agreement as presented. Motion was seconded by Councilman Redden. Motion carried unanimously.
 
 Source (primary_official): https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5956,plainText=false)
 

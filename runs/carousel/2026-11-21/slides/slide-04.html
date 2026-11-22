@@ -1,0 +1,365 @@
+<!doctype html>
+<!-- 2026-11-21, frame 4 of 9, THE JOB. A collapse cut clean on one plane and seen through a long lens almost level: Brazos clay
+     below grade, a slab on grade, a CMU wall with its cores, a slab leaning off the wall into a shored lean-to void where a role
+     player sits clothed and unhurt on a fallen block, and pancaked slabs above with the teal triage rover on the top one, its
+     mast tipped down. A pale reading cone passes straight through the concrete to the person (read), and one lime link climbs
+     from the rover's radio out of the frame (tell a medic). No count is drawn, so window.FIG is empty. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:120px; width:900px">Find them. Read them. Tell a medic.</h1>
+<p class="dek" data-follow="20" style="left:74px; width:620px">Systems had to locate casualties, identify signs of injury and send critical data to medical response teams. Teams built technology to read vital signs from a distance. Moulage artists made hyper realistic mock injuries. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The job", counter: "04 / 09", src: "c10 c18 c15", fit: { min: 72, max: 90, maxLines: 2 } });
+
+  /* THE FIGURES. This frame draws no count and no length, so it holds none. */
+
+  const R = CH.stage(TXT, gl, W, { fov: 9.0, near: 1, far: 3000 });
+  const rng = CH.rng(20261104);
+  const PXM = 512;                                  /* texture pixels per metre on every cut face */
+
+  /* ---------- MATERIALS ---------- */
+  const tex = (wm, hm, paint) => {
+    const c = document.createElement('canvas'); c.width = Math.max(64, Math.round(wm * PXM)); c.height = Math.max(32, Math.round(hm * PXM));
+    paint(c.getContext('2d'), c.width, c.height);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+  };
+  const speck = (g, w, h, n, cols, s0, s1, r) => { for (let i = 0; i < n; i++) { g.fillStyle = cols[(r() * cols.length) | 0]; const s = s0 + r() * (s1 - s0); g.beginPath(); g.ellipse(r() * w, r() * h, s, s * (0.55 + r() * 0.45), r() * 3, 0, 7); g.fill(); } };
+  /* a sawn concrete section: a warm matrix, graded aggregate, and the cut rebar as rust dots in two mats */
+  const concCut = (L, th, seed) => tex(L, th, (g, w, h) => {
+    const r = CH.rng(seed);
+    g.fillStyle = '#d3c6ad'; g.fillRect(0, 0, w, h);
+    speck(g, w, h, w * h / 60, ['rgba(160,146,122,0.35)', 'rgba(236,226,206,0.4)', 'rgba(184,170,146,0.3)'], 1, 3, r);
+    speck(g, w, h, w * h / 1600, ['#9c8f7c', '#b9a98e', '#8a7c6c', '#c4b49a', '#a3897a', '#7d7f86'], 4, 15, r);
+    const sp = 0.32 * PXM, rr = 5;
+    [0.05, th - 0.05].forEach((yy) => { if (th < 0.15 && yy > 0.06) return; for (let x = sp * (0.3 + r() * 0.5); x < w; x += sp) {
+      g.fillStyle = 'rgba(120,64,36,0.35)'; g.beginPath(); g.arc(x, h - yy * PXM, rr + 6, 0, 7); g.fill();
+      g.fillStyle = '#7a3a1e'; g.beginPath(); g.arc(x, h - yy * PXM, rr, 0, 7); g.fill();
+      g.fillStyle = '#b8683a'; g.beginPath(); g.arc(x - 2, h - yy * PXM - 2, rr * 0.45, 0, 7); g.fill(); } });
+    g.strokeStyle = 'rgba(90,70,60,0.35)'; g.lineWidth = 2;
+    for (let k = 0; k < 3; k++) { let x = r() * w, y = 0; g.beginPath(); g.moveTo(x, y); while (y < h) { x += (r() - 0.5) * 30; y += 10 + r() * 20; g.lineTo(x, y); } g.stroke(); }
+  });
+  /* the CMU wall cut across its thickness: two face shells, the core void, a mortar bed every 0.2 m */
+  const cmuCut = (wd, ht) => tex(wd, ht, (g, w, h) => {
+    const r = CH.rng(77);
+    g.fillStyle = '#b4ab9d'; g.fillRect(0, 0, w, h);
+    speck(g, w, h, w * h / 70, ['rgba(120,112,100,0.4)', 'rgba(210,204,192,0.4)'], 1, 3, r);
+    const c = 0.2 * PXM, sh = 0.035 * PXM;
+    for (let y = 0; y < h; y += c) {
+      g.fillStyle = '#d9d0bf'; g.fillRect(0, y, w, 0.012 * PXM);
+      const vy = y + 0.012 * PXM + sh * 0.9, vh = c - 0.012 * PXM - sh * 1.8, gr = g.createLinearGradient(0, vy, 0, vy + vh);
+      gr.addColorStop(0, '#0f1e33'); gr.addColorStop(0.4, '#17304a'); gr.addColorStop(1, '#22465a');
+      g.fillStyle = gr; g.fillRect(sh, vy, w - 2 * sh, vh);
+    }
+  });
+  const sideConc = K.mat('conc-slab-weathered', { color: 0xc7bca6, roughness: 0.9, metalness: 0,
+    map: CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(5); g.fillStyle = '#cfc4ae'; g.fillRect(0, 0, w, h); speck(g, w, h, 5000, ['rgba(150,136,112,0.4)', 'rgba(232,224,206,0.4)', 'rgba(110,100,90,0.3)'], 1, 4, r); }, [1, 1]) }, true);
+  const cutMat = (t, name) => { const m = new THREE.MeshStandardMaterial({ map: t, roughness: 0.82, metalness: 0, name }); m.userData.txSurface = 'concrete'; return m; };
+  const wood = K.mat('timber-shoring-wood', { color: 0xd6a466, roughness: 0.72, metalness: 0 }, true);
+  const rebarM = K.mat('rebar-rust-steel', { color: 0x8a4424, roughness: 0.62, metalness: 0.7 }, true);
+
+  /* ---------- A SECTIONED PIECE: a jagged outline in x,y extruded back into -z, its front face lying ON z = 0 ---------- */
+  const pieces = [];
+  function piece(shapePts, depth, cutTex, at, ang, mats) {
+    const sh = new THREE.Shape(shapePts.map((p) => new THREE.Vector2(p[0], p[1])));
+    const geo = new THREE.ExtrudeGeometry(sh, { depth, bevelEnabled: false });
+    const m = new THREE.Mesh(geo, mats || [cutMat(cutTex, 'conc-cut'), sideConc]);
+    m.position.set(at[0], at[1], -depth); m.rotation.z = ang || 0; m.userData.txBevel = false;
+    m.castShadow = m.receiveShadow = true; R.scene.add(m); pieces.push(m); return m;
+  }
+  /* a slab of length L and thickness th, centred, with broken ends; uv on the cut face is (x + L/2) / L */
+  function slab(L, th, depth, centre, ang, seed, o) {
+    o = o || {}; const r = CH.rng(seed), hl = L / 2, pts = [];
+    pts.push([-hl, 0]);
+    if (o.cleanR) pts.push([hl, 0], [hl, th]); else { pts.push([hl - 0.05 - r() * 0.1, 0]); pts.push([hl + r() * 0.06, th * 0.35]); pts.push([hl - r() * 0.08, th * 0.7]); pts.push([hl + 0.04, th]); }
+    if (o.cleanL) pts.push([-hl, th]); else { pts.push([-hl + 0.06 + r() * 0.1, th]); pts.push([-hl - r() * 0.05, th * 0.55]); pts.push([-hl + r() * 0.07, th * 0.2]); }
+    const t = concCut(L + 0.2, th, seed); t.repeat.set(1 / (L + 0.2), 1 / th); t.offset.set((hl + 0.1) / (L + 0.2), 0);
+    const m = piece(pts, depth, t, centre, ang);
+    /* bent rebar stubs out of each broken end, the bars the dots on the face belong to */
+    [-1, 1].forEach((s) => { if ((s < 0 && o.cleanL) || (s > 0 && o.cleanR) || o.noBars) return; for (let k = 0; k < 3; k++) {
+      const z = -0.15 - r() * (depth - 0.4), y0 = 0.05 + (k % 2) * (th - 0.1), x0 = s * (hl - 0.05);
+      const bend = 0.15 + r() * 0.25, dy = (r() - 0.3) * 0.25;
+      const hook = 0.06 + r() * 0.06;
+      const pts3 = [[x0 - s * 0.06, y0, z], [x0 + s * bend * 0.45, y0 + dy * 0.3, z + 0.02], [x0 + s * bend * 0.85, y0 + dy * 0.8, z + 0.03], [x0 + s * bend, y0 + dy - hook, z + 0.05]];
+      const grp = new THREE.Group(); grp.position.copy(m.position).setZ(0); grp.rotation.z = m.rotation.z; R.scene.add(grp);
+      for (let i = 0; i < 3; i++) { K.bar(pts3[i], pts3[i + 1], 0.013, rebarM, 10, grp); const j = new THREE.Mesh(new THREE.SphereGeometry(0.013, 10, 8), rebarM); j.position.set(...pts3[i + 1]); j.castShadow = true; grp.add(j); }
+    } });
+    return m;
+  }
+  /* a broken chunk, an irregular polygon of radius rad, sectioned on the face */
+  function chunk(x, y, rad, depth, seed, block) {
+    const r = CH.rng(seed), n = 6 + ((r() * 3) | 0), pts = [];
+    for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + r() * 0.4, rr = rad * (0.7 + r() * 0.45); pts.push([Math.cos(a) * rr, Math.sin(a) * rr * 0.75]); }
+    const t = block ? cmuCut(rad * 2.4, rad * 2) : concCut(rad * 2.4, rad * 2, seed);
+    t.repeat.set(1 / (rad * 2.4), 1 / (rad * 2)); t.offset.set(0.5, 0.5);
+    return piece(pts, depth, t, [x, y], r() * 0.6 - 0.3);
+  }
+
+  /* ---------- THE GROUND, cut on the same plane ---------- */
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 1600, tile: 5, color: 0xd9b07a, seed: 41 });
+  gnd.position.z = -800;
+  {
+    const t = tex(16, 3, (g, w, h) => {
+      const r = CH.rng(9), m = PXM;
+      const bands = [[0, 0.22, '#7a4a2e'], [0.22, 0.95, '#b85d34'], [0.95, 1.35, '#a24e2e'], [1.35, 1.75, '#e0c9a0'], [1.75, 3, '#9a5634']];
+      bands.forEach(([a, b, c]) => { g.fillStyle = c; g.fillRect(0, a * m, w, (b - a) * m + 2); });
+      /* wavy horizon boundaries so the strata are dirt, not stripes */
+      bands.slice(1).forEach(([a, , c]) => { g.fillStyle = c; g.beginPath(); g.moveTo(0, a * m); for (let x = 0; x <= w; x += 40) g.lineTo(x, a * m + Math.sin(x / 190 + a * 7) * 9 + (r() - 0.5) * 8); g.lineTo(w, a * m + 30); g.lineTo(0, a * m + 30); g.fill(); });
+      speck(g, w, h, 60000, ['rgba(70,36,20,0.25)', 'rgba(220,150,100,0.22)', 'rgba(250,230,200,0.18)'], 1, 4, r);
+      speck(g, w, h, 500, ['rgba(226,206,168,0.6)', 'rgba(205,180,140,0.6)'], 3, 8, r);            /* caliche nodules */
+      g.strokeStyle = 'rgba(60,34,20,0.5)'; g.lineWidth = 2;
+      for (let k = 0; k < 160; k++) { let x = r() * w, y = r() * 0.25 * m; g.beginPath(); g.moveTo(x, y); for (let j = 0; j < 6; j++) { x += (r() - 0.5) * 24; y += 6 + r() * 14; g.lineTo(x, y); } g.stroke(); }
+    });
+    const front = new THREE.MeshStandardMaterial({ map: t, roughness: 0.95, metalness: 0, name: 'clay-cut-dirt' }); front.userData.txSurface = 'dirt';
+    const dark = new THREE.MeshStandardMaterial({ color: 0x8a4a2e, roughness: 1 });
+    const earth = new THREE.Mesh(new THREE.BoxGeometry(16, 3, 8), [dark, dark, dark, dark, front, dark]);
+    earth.position.set(0, -1.503, -4); earth.receiveShadow = true; earth.userData.txBevel = false; R.scene.add(earth);
+  }
+
+  /* ---------- THE COLLAPSE ---------- */
+  const FLOOR = 0.2;
+  slab(7.4, 0.2, 3.2, [0, 0], 0, 11, { noBars: true });                         /* slab on grade, its top at FLOOR */
+  /* the CMU wall: nine courses, cut across its 0.3 m thickness, x -0.05 to 0.25 */
+  const WALLX0 = -0.05, WALLX1 = 0.25, WALLTOP = FLOOR + 9 * 0.2;
+  {
+    const t = cmuCut(WALLX1 - WALLX0, WALLTOP - FLOOR); t.repeat.set(1 / (WALLX1 - WALLX0), 1 / (WALLTOP - FLOOR)); t.offset.set(0, 0);
+    const blockSide = K.mat('cmu-block-concrete', { color: 0xaaa295, roughness: 0.92 }, true);
+    piece([[0, 0], [WALLX1 - WALLX0, 0], [WALLX1 - WALLX0, WALLTOP - FLOOR], [0, WALLTOP - FLOOR]], 2.6, t, [WALLX0, FLOOR], 0,
+      [cutMat(t, 'cmu-cut'), blockSide]);
+  }
+  /* the leaning slab: its underside runs from A on the floor to B on the wall top */
+  const A = [-2.95, FLOOR], B = [WALLX0, WALLTOP], LTH = 0.22;
+  const lang = Math.atan2(B[1] - A[1], B[0] - A[0]), llen = Math.hypot(B[0] - A[0], B[1] - A[1]);
+  const nrm = [-Math.sin(lang), Math.cos(lang)];
+  const under = (x) => A[1] + (x - A[0]) * Math.tan(lang);                       /* the void's roof */
+  {
+    const Lx = llen + 0.55, mid = [(A[0] + B[0]) / 2 + Math.cos(lang) * 0.12, (A[1] + B[1]) / 2 + Math.sin(lang) * 0.12];
+    const c = [mid[0] + nrm[0] * 0, mid[1] + nrm[1] * 0];
+    /* the shape's local origin is the underside centre: rebuild slab so y 0 is the underside */
+    slab(Lx, LTH, 2.8, c, lang, 23, { noBars: true });
+  }
+  /* the upper slab rests on the wall top and tips 5 degrees down to the right */
+  const UANG = -0.087, UX = 1.25, UTH = 0.22;
+  const uUnder = (x) => WALLTOP + (x - 0.1) * Math.tan(UANG);
+  slab(4.6, UTH, 3.0, [UX, uUnder(UX)], UANG, 31);
+  const uTop = (x) => uUnder(x) + UTH / Math.cos(UANG);
+  /* a broken slab leaning off the wall's right side, and the fill between */
+  {
+    const P0 = [WALLX1, 1.25], P1 = [3.4, FLOOR], a = Math.atan2(P1[1] - P0[1], P1[0] - P0[0]);
+    slab(Math.hypot(P1[0] - P0[0], P1[1] - P0[1]) + 0.3, 0.2, 2.7, [(P0[0] + P1[0]) / 2, (P0[1] + P1[1]) / 2], a, 37, { noBars: true });
+  }
+  /* PACKED DEBRIS, the third material on the cut: broken concrete, block and brick in a dark matrix */
+  const fillTex = (wm, hm, seed) => tex(wm, hm, (g, w, h) => {
+    const r = CH.rng(seed); g.fillStyle = '#6e6458'; g.fillRect(0, 0, w, h);
+    speck(g, w, h, w * h / 80, ['rgba(40,36,40,0.4)', 'rgba(150,130,110,0.3)'], 1, 3, r);
+    const cols = ['#cfc3aa', '#bdb3a2', '#a9a092', '#9c7a66', '#c7b79a', '#9e958a', '#d9cdb4', '#b3a796'];
+    for (let i = 0; i < w * h / 2600; i++) { const x = r() * w, y = r() * h, rad = 10 + r() * 46, n = 5 + (r() * 3 | 0);
+      g.fillStyle = 'rgba(30,28,36,0.55)'; g.beginPath(); for (let k = 0; k < n; k++) { const a = k / n * 6.283 + r() * 0.5, q = rad * (0.75 + r() * 0.4) + 4; g.lineTo(x + Math.cos(a) * q, y + Math.sin(a) * q * 0.8); } g.fill();
+      g.fillStyle = cols[(r() * cols.length) | 0]; g.beginPath(); for (let k = 0; k < n; k++) { const a = k / n * 6.283 + r() * 0.5, q = rad * (0.75 + r() * 0.4); g.lineTo(x + Math.cos(a) * q, y + Math.sin(a) * q * 0.8); } g.fill(); }
+  });
+  function fill(pts, depth, seed) {
+    const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), x0 = Math.min(...xs), y0 = Math.min(...ys), wm = Math.max(...xs) - x0, hm = Math.max(...ys) - y0;
+    const t = fillTex(wm, hm, seed); t.repeat.set(1 / wm, 1 / hm); t.offset.set(-x0 / wm, -y0 / hm);
+    const fm = new THREE.MeshStandardMaterial({ map: t, roughness: 0.95, name: 'rubble-fill-concrete' }); fm.userData.txSurface = 'concrete';
+    return piece(pts, depth, t, [0, 0], 0, [fm, sideConc]);
+  }
+  {
+    const P0 = [WALLX1, 1.25], P1 = [3.4, FLOOR], a = Math.atan2(P1[1] - P0[1], P1[0] - P0[0]);
+    const rTop = (x) => P0[1] + (x - P0[0]) * Math.tan(a) + 0.2 / Math.cos(a);
+    fill([[WALLX1, rTop(WALLX1) - 0.01], [3.9, rTop(3.9) - 0.01], [3.9, uUnder(3.9) + 0.01], [WALLX1, uUnder(WALLX1) + 0.01]], 2.5, 61);
+    const lTop = (x) => under(x) + LTH / Math.cos(lang);
+    const xm = -0.39;
+    fill([[-1.12, lTop(-1.12) - 0.02], [xm, lTop(xm) - 0.02], [-1.12, uUnder(-1.12) + 0.01]], 2.4, 62);
+    [[-2.25, 0.13, 71], [-1.75, 0.1, 72, 1], [-1.4, 0.15, 73]].forEach(([x, rad, sd, b]) => chunk(x, lTop(x) + rad * 0.45, rad, 1.4, sd, b));
+    /* the backs of both voids, deep in the pile, so the pocket is a room and not a window */
+    const backM = K.mat('conc-void-back', { color: 0x8a8378, roughness: 0.95 }, true);
+    { const sh = new THREE.Shape([new THREE.Vector2(A[0] + 0.05, FLOOR - 0.01), new THREE.Vector2(WALLX0, FLOOR - 0.01), new THREE.Vector2(WALLX0, under(WALLX0) - 0.02), new THREE.Vector2(A[0] + 0.05, FLOOR + 0.01)]);
+      const ft = fillTex(3.0, 1.9, 63); ft.repeat.set(1 / 3.0, 1 / 1.9); ft.offset.set(-A[0] / 3.0, -FLOOR / 1.9);
+      const fm = new THREE.MeshStandardMaterial({ map: ft, roughness: 0.95, color: 0xb8aca0, name: 'rubble-fill-concrete' }); fm.userData.txSurface = 'concrete';
+      const vb = new THREE.Mesh(new THREE.ExtrudeGeometry(sh, { depth: 0.3, bevelEnabled: false }), [fm, backM]); vb.position.z = -2.75; vb.receiveShadow = true; TXT.add(R, vb); }
+    /* warm bounce off the pocket floor near the opening, falling off toward the back so the pocket has depth */
+    const bounce = new THREE.PointLight(0xffc98a, 2.2, 3.2, 2); bounce.position.set(-1.0, FLOOR + 0.12, -0.15); R.scene.add(bounce);
+    const bounce2 = new THREE.PointLight(0xffd9a0, 0.9, 2.4, 2); bounce2.position.set(-2.0, FLOOR + 0.1, -0.3); R.scene.add(bounce2);
+    const vb2 = TXT.roundedBox(3.6, 1.2, 0.3, 0.02, backM); vb2.position.set(2.0, FLOOR + 0.6, -2.35); TXT.add(R, vb2);
+  }
+  /* rubble lying on the surfaces, uncut, behind the plane */
+  for (let i = 0; i < 26; i++) {
+    const x = -2.6 + rng() * 5.2, z = -0.35 - rng() * 2.4, s = 0.08 + rng() * 0.22;
+    const top = x > -0.2 ? uTop(Math.min(x, 3.4)) : under(x) + LTH / Math.cos(lang);
+    if (x < -2.5) continue;
+    const m = TXT.roundedBox(s * (1 + rng()), s * 0.6, s * (1 + rng()), s * 0.12, rng() < 0.3 ? K.mat('cmu-block-concrete', { color: 0xaaa295, roughness: 0.92 }, true) : sideConc);
+    m.position.set(x, top + s * 0.25, z); m.rotation.set((rng() - 0.5) * 0.5, rng() * 3, (rng() - 0.5) * 0.5); TXT.add(R, m);
+  }
+  /* the heap beyond the cut, so the pile's skyline is rubble and not a slab edge */
+  function mound(cx0, cz0, a, h, c, nSlabs, seed) {
+    const r = CH.rng(seed), geo = new THREE.SphereGeometry(1, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2), pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i), n = 1 + 0.05 * Math.sin(x * 9 + seed) * Math.cos(z * 7) ; pos.setXYZ(i, x * a, y * h * n, z * c); }
+    geo.computeVertexNormals();
+    const dirt = K.mat('rubble-mound-concrete-dust', { color: 0x9a8f86, roughness: 0.97, map: CH.canvasTex(THREE, 512, 512, (g, w, hh) => { const rr = CH.rng(seed); g.fillStyle = '#c4b59c'; g.fillRect(0, 0, w, hh); speck(g, w, hh, 7000, ['rgba(120,104,86,0.5)', 'rgba(226,214,192,0.45)', 'rgba(90,80,74,0.4)', 'rgba(168,110,80,0.3)'], 1, 5, rr); }, [6, 3]) }, true);
+    const mm = new THREE.Mesh(geo, dirt); mm.position.set(cx0, -0.02, cz0); TXT.add(R, mm);
+    const surf = (x, z) => { const u = 1 - ((x - cx0) / a) ** 2 - ((z - cz0) / c) ** 2; return u <= 0 ? 0 : h * Math.sqrt(u); };
+    for (let i = 0; i < nSlabs; i++) {
+      const ang0 = r() * Math.PI * 2, rad = Math.sqrt(r()) * 0.85, x = cx0 + Math.cos(ang0) * rad * a, z = cz0 + Math.sin(ang0) * rad * c;
+      const y = surf(x, z), e = 0.04, gx = (surf(x + e, z) - surf(x - e, z)) / (2 * e), gz = (surf(x, z + e) - surf(x, z - e)) / (2 * e);
+      const nrmv = new THREE.Vector3(-gx, 1, -gz).normalize();
+      const L = 0.4 + r() * 0.9, D = 0.3 + r() * 0.6, th = 0.12 + r() * 0.1;
+      const sl = TXT.roundedBox(L, th, D, 0.02, r() < 0.25 ? K.mat('cmu-block-concrete', { color: 0xaaa295, roughness: 0.92 }, true) : sideConc);
+      const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), nrmv), q2 = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), r() * 3);
+      sl.quaternion.copy(q.multiply(q2)); sl.position.set(x, y + th * 0.25, z); TXT.add(R, sl);
+      if (r() < 0.12 && y < h * 0.6) { const tip = new THREE.Vector3(x + (r() - 0.5) * 0.5, y + 0.1 + r() * 0.12, z + (r() - 0.5) * 0.3); K.bar([x, y + 0.05, z], tip.toArray(), 0.013, rebarM, 8, R.scene); }
+    }
+  }
+  mound(-1.1, -4.6, 3.8, 1.5, 2.0, 20, 5);
+  mound(-4.5, -32, 6, 2.4, 4, 26, 8);
+
+  /* ---------- THE BRACED POCKET: two posts with headers and wedges, a box crib at the low end ---------- */
+  const timber = (w, h, d, x, y, z, rz) => { const m = TXT.roundedBox(w, h, d, 0.008, wood); m.position.set(x, y, z); if (rz) m.rotation.z = rz; TXT.add(R, m); return m; };
+  [[-1.55, -0.55], [-1.55, -1.5]].forEach(([x, z]) => {
+    const top = under(x) - 0.06;
+    timber(0.09, top - FLOOR - 0.05, 0.09, x, FLOOR + 0.05 + (top - FLOOR - 0.05) / 2, z);
+    timber(0.3, 0.04, 0.14, x, FLOOR + 0.02, z);                                      /* sole plate */
+    timber(0.42, 0.06, 0.11, x, under(x) - 0.03 - 0.04, z, lang);                       /* header under the slab */
+  });
+  { const x = -2.25, h = under(x) - FLOOR - 0.02, n = Math.floor(h / 0.09);
+    for (let k = 0; k < n; k++) { const y = FLOOR + 0.045 + k * 0.09; if (k % 2) { [-0.18, 0.18].forEach((dz) => timber(0.44, 0.088, 0.088, x, y, -0.7 + dz)); } else { [-0.16, 0.16].forEach((dx) => timber(0.088, 0.088, 0.5, x + dx, y, -0.7)); } } }
+  /* the void's back: a rubble wall deep in the pocket */
+  for (let i = 0; i < 14; i++) { const s = 0.15 + rng() * 0.25, x = -2.6 + rng() * 2.5, m = TXT.roundedBox(s * 1.5, s, s, s * 0.15, sideConc);
+    if (under(x) - FLOOR < s * 1.2) continue;
+    m.position.set(x, FLOOR + s / 2 - 0.01, -1.0 - rng() * 1.6); m.rotation.y = rng(); TXT.add(R, m); }
+  /* dust and grit on the pocket floor, receding */
+  for (let i = 0; i < 40; i++) { const s = 0.025 + rng() * 0.06, x = -2.7 + rng() * 2.55, m = TXT.roundedBox(s * 1.4, s * 0.6, s, s * 0.2, sideConc);
+    if (Math.abs(x - (WALLX0 - 0.26)) < 0.25 && rng() < 0.8) continue; m.position.set(x, FLOOR + s * 0.28, -0.1 - rng() * 2.4); m.rotation.y = rng() * 3; TXT.add(R, m); }
+
+  /* ---------- THE ROLE PLAYER, clothed and unhurt, sitting on a fallen block against the wall ---------- */
+  const seatBlock = TXT.roundedBox(0.4, 0.4, 0.42, 0.02, K.mat('cmu-block-concrete', { color: 0xaaa295, roughness: 0.92 }, true));
+  const person = K.make('person', { seed: 12, pose: 'sit_read', role: 'resident', hat: 'none', shirt: 0xf1ebe0, trousers: 0x34507e, headPitch: 0.5, build: 'male' });
+  const pg = new THREE.Group(); pg.add(person); pg.rotation.y = -Math.PI / 2; R.scene.add(pg);
+  pg.updateMatrixWorld(true);
+  let pb = new THREE.Box3().setFromObject(pg);
+  pg.position.set(WALLX0 - 0.03 - pb.max.x, FLOOR - pb.min.y, -0.55);
+  pg.updateMatrixWorld(true); pb = new THREE.Box3().setFromObject(pg);
+  TXT.add(R, pg);
+  { /* the block under the hips: the seat height the pose sits at, measured off the hips */
+    const hipY = person.userData.attach && person.userData.attach.seat ? person.userData.attach.seat[1] : 0.46;
+    const sh = Math.max(0.2, Math.min(0.6, hipY));
+    seatBlock.scale.y = sh / 0.4; seatBlock.position.set(WALLX0 - 0.26, FLOOR + sh / 2, -0.55); TXT.add(R, seatBlock);
+  }
+  const headTop = pb.max.y;
+  if (headTop > under(pb.max.x) - 0.04) throw new Error('the role player does not fit under the leaning slab: head ' + headTop.toFixed(2) + ' roof ' + under(pb.max.x).toFixed(2));
+  const chest = new THREE.Vector3(pb.max.x - 0.3, pb.min.y + (pb.max.y - pb.min.y) * 0.62, -0.55);
+
+  /* ---------- THE ROVER on the upper slab, mast tipped down at the pocket ---------- */
+  const RX = 0.98, RS = 1.4;
+  const rov = K.make('triage_rover', { pan: 0, tilt: -0.72, grime: 0.6 });
+  { /* THE RUN GEAR on the side that faces the camera (local +x): lugged belt, toothed sprocket, idler and road wheels with rims and bolts */
+    const lugM = K.mat('tread-rubber', { color: 0x1d1e21, roughness: 0.88, metalness: 0 }, true);
+    const steel = K.mat('cast-steel-wheel', { color: 0x9aa1aa, roughness: 0.38, metalness: 1 }, true);
+    const darkS = K.mat('cast-steel-dark', { color: 0x2a2d33, roughness: 0.5, metalness: 0.6 }, true);
+    const X = 0.37, OUT = 0.37 + 0.066, zc = 0.39, rr = 0.1, straight = 2 * zc, per = 2 * straight + 2 * Math.PI * rr, nL = 56;
+    for (let k = 0; k < nL; k++) {
+      let d = k / nL * per, py, pz, ang;
+      if (d < straight) { pz = -zc + d; py = 2 * rr + 0.008; ang = 0; }
+      else if ((d -= straight) < Math.PI * rr) { const t = d / rr; pz = zc + Math.sin(t) * (rr + 0.008); py = rr + Math.cos(t) * (rr + 0.008); ang = -t; }
+      else if ((d -= Math.PI * rr) < straight) { pz = zc - d; py = -0.008; ang = Math.PI; }
+      else { d -= straight; const t = d / rr; pz = -zc - Math.sin(t) * (rr + 0.008); py = rr - Math.cos(t) * (rr + 0.008); ang = Math.PI - t; }
+      const lug = TXT.roundedBox(0.128, 0.02, 0.024, 0.006, lugM); lug.position.set(X, py, pz); lug.rotation.x = ang; rov.add(lug);
+    }
+    const disc = (r0, th, mat, z, y, seg) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(r0, r0, th, seg || 32), mat); m.rotation.z = Math.PI / 2; m.position.set(OUT + th / 2, y, z); rov.add(m); return m; };
+    /* sprocket at the rear, a toothed ring */
+    disc(0.075, 0.012, darkS, -zc, rr); disc(0.03, 0.02, steel, -zc, rr, 20);
+    for (let t = 0; t < 12; t++) { const a = t / 12 * Math.PI * 2, tooth = TXT.roundedBox(0.014, 0.03, 0.022, 0.004, steel); tooth.position.set(OUT + 0.006, rr + Math.cos(a) * 0.082, -zc + Math.sin(a) * 0.082); tooth.rotation.x = -a; rov.add(tooth); }
+    /* idler at the front, a spoked wheel */
+    disc(0.082, 0.01, steel, zc, rr); disc(0.06, 0.014, darkS, zc, rr);
+    for (let t = 0; t < 5; t++) { const a = t / 5 * Math.PI * 2, sp = TXT.roundedBox(0.012, 0.05, 0.014, 0.004, steel); sp.position.set(OUT + 0.012, rr + Math.cos(a) * 0.03, zc + Math.sin(a) * 0.03); sp.rotation.x = -a; rov.add(sp); }
+    disc(0.02, 0.024, steel, zc, rr, 16);
+    /* four road wheels with a rubber tyre, a steel rim and five bolts */
+    [-0.19, -0.06, 0.07, 0.2].forEach((z) => {
+      disc(0.052, 0.012, lugM, z, 0.06); disc(0.04, 0.014, steel, z, 0.06); disc(0.026, 0.018, darkS, z, 0.06, 24);
+      for (let b = 0; b < 5; b++) { const a = b / 5 * Math.PI * 2, bolt = new THREE.Mesh(new THREE.SphereGeometry(0.0045, 8, 6), steel); bolt.position.set(OUT + 0.017, 0.06 + Math.cos(a) * 0.017, z + Math.sin(a) * 0.017); rov.add(bolt); }
+    });
+    /* return rollers on the top run */
+    [-0.12, 0.12].forEach((z) => { disc(0.024, 0.016, darkS, z, 0.17, 18); });
+    /* wear on the teal coat: chipped edges, scuffs and dust, one canvas laid on every coat surface */
+    const wearT = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => { const r = CH.rng(808); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 260; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '170,200,190' : '120,110,95') + ',' + (0.25 + r() * 0.45) + ')'; g.beginPath(); g.ellipse(r() * w, r() * h, 2 + r() * 9, 1 + r() * 4, r() * 3, 0, 7); g.fill(); }
+      g.strokeStyle = 'rgba(200,225,215,0.35)'; g.lineWidth = 1.5; for (let i = 0; i < 90; i++) { const x = r() * w, y = r() * h; g.beginPath(); g.moveTo(x, y); g.lineTo(x + (r() - 0.5) * 70, y + (r() - 0.5) * 18); g.stroke(); }
+      const gr = g.createLinearGradient(0, h * 0.55, 0, h); gr.addColorStop(0, 'rgba(190,160,120,0)'); gr.addColorStop(1, 'rgba(190,160,120,0.55)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); }, [1, 1]);
+    rov.traverse((m) => { if (m.isMesh && m.material && m.material.color && Math.abs(m.material.color.getHex() - CH.ROVER) < 0x0a0a0a && m.material.color.getHex() === new THREE.Color(CH.ROVER).getHex()) {
+      m.material = m.material.clone(); m.material.map = wearT; m.material.name = 'powder-coat-paint-worn'; m.material.roughness = 0.6; m.material.needsUpdate = true; } });
+  }
+  const rg = new THREE.Group(); rg.add(rov); rov.rotation.y = -Math.PI / 2;
+  rg.scale.setScalar(RS); rg.position.set(RX, uTop(RX) - 0.006, -0.75); rg.rotation.z = UANG; TXT.add(R, rg);
+  { /* THE CONTACT where the tracks press into the slab: a soft navy footprint and a hard dark line under each belt */
+    const ct = CH.canvasTex(THREE, 256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.55, 'rgba(255,255,255,0.7)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const cm = new THREE.MeshBasicMaterial({ color: 0x0e2a3c, alphaMap: ct, transparent: true, opacity: 0.6, depthWrite: false, toneMapped: false }); cm.userData.txSurface = false;
+    const cp = new THREE.Mesh(new THREE.PlaneGeometry(1.75 * RS, 1.25 * RS), cm); cp.rotation.x = -Math.PI / 2; cp.rotation.y = UANG; 
+    const holder = new THREE.Group(); holder.position.set(RX, uTop(RX) + 0.004, -0.75); holder.rotation.z = UANG; holder.add(cp); cp.rotation.set(-Math.PI / 2, 0, 0); R.scene.add(holder);
+    [-1, 1].forEach((sd) => { const line = TXT.roundedBox(1.0 * RS, 0.012, 0.13 * RS, 0.004, new THREE.MeshStandardMaterial({ color: 0x0c1f2c, roughness: 1 })); line.position.set(0, 0.002, sd * 0.37 * RS); holder.add(line); });
+  }
+  R.scene.updateMatrixWorld(true);
+  const lensP = new THREE.Vector3(); rov.userData.lens.getWorldPosition(lensP);
+  const radioP = new THREE.Vector3(); rov.userData.radio.getWorldPosition(radioP);
+
+  /* ---------- READ: a pale cone from the standoff lens through the concrete to the chest ---------- */
+  {
+    const dir = chest.clone().sub(lensP), h = dir.length(); dir.normalize();
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), dir);
+    [[0.22, 0.07], [0.12, 0.09], [0.04, 0.15]].forEach(([rad, op]) => {
+      const geo = new THREE.ConeGeometry(rad, h, 64, 1, true); geo.translate(0, -h / 2, 0);
+      const m = new THREE.MeshBasicMaterial({ color: 0xeefcff, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthTest: false, depthWrite: false, side: THREE.DoubleSide, toneMapped: false, fog: false });
+      m.userData.txSurface = false;
+      const c = new THREE.Mesh(geo, m); c.quaternion.copy(q); c.position.copy(lensP); c.renderOrder = 50; c.userData.txBevel = false; R.scene.add(c);
+    });
+    CH.lampGlow(THREE, R, [chest.x, chest.y, chest.z + 0.2], 0xe6fbff, 0.3, 0);
+    const pl = new THREE.PointLight(0xdff8ff, 0.7, 2.2, 2); pl.position.set(chest.x - 0.35, chest.y + 0.3, -0.1); R.scene.add(pl);
+  }
+
+  /* ---------- TELL: the lime link from the radio up and out of the frame ---------- */
+  {
+    const curve = new THREE.CatmullRomCurve3([radioP.clone(), radioP.clone().add(new THREE.Vector3(0.12, 0.35, 0.15)),
+      new THREE.Vector3(radioP.x + 0.55, radioP.y + 0.95, 0.2), new THREE.Vector3(2.4, 4.55, 0.3), new THREE.Vector3(3.3, 5.0, 0.3)]);
+    const core = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false, fog: false }); core.userData.txSurface = false;
+    const t1 = new THREE.Mesh(new THREE.TubeGeometry(curve, 200, 0.014, 12, false), core); t1.userData.txBevel = false; R.scene.add(t1);
+    const halo = new THREE.MeshBasicMaterial({ color: CH.ACCENT, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, fog: false }); halo.userData.txSurface = false;
+    const t2 = new THREE.Mesh(new THREE.TubeGeometry(curve, 200, 0.04, 12, false), halo); t2.userData.txBevel = false; R.scene.add(t2);
+    CH.lampGlow(THREE, R, [radioP.x, radioP.y, radioP.z + 0.05], CH.ACCENT, 0.3, 0);
+  }
+
+  /* ---------- CAMERA, SKY, LIGHT ---------- */
+  TXT.frame(R, { fov: 9.0, from: [-0.6, 3.24, 40], look: [-0.6, 2.55, 0] });
+  TXT.sky(R, { zenith: 0x0b4fa8, horizon: 0x2f8fdc, haze: 0x86c8ee, horizonGlow: 0.08, glow: 0.4 });
+  TXT.deckRig(R, CH.rigSpec(W, 9, 4096), Object.assign(CH.rigOpts([0, 1, -1], { distance: 30, shadowFar: 80, normalBias: 0.01 }), { light: { az: -38, el: 46 } }));
+  CH.unacne(R, 0.01);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.5, fade: 180 });
+  TXLOOK.footWash(cx, { tone: 'win', a: 0.32, height: 210 });
+  window.__dbg = { lens: lensP.toArray(), chest: chest.toArray(), radio: radioP.toArray(), head: headTop };
+  CH.seat(cx, { sel: '.dek', a: 0.35, fade: 120 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.kick', a: 0.3, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.count', a: 0.35, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

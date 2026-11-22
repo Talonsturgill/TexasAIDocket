@@ -6981,3 +6981,37 @@ now routes that picture to `txthree`.
 ### Carried
 
 Every other open item is carried as it stands. No frontier scan: the brief for this pass names none.
+
+## 2026-11-22, the twenty-third weekly machine pass (run 2026-11-21). One kit pose, one gate, one digest fix, one escalation
+
+Counts are from `scripts/carousel/week_digest.py --date 2026-11-21` after its round fix, seven shipped runs,
+November 15th to 21st. Top theme: primitive or low-poly model where a kit model belongs, 7 runs, 20 rounds.
+`story_and_stakes` was the lowest criterion on 5 of 7 decks (week mean 6.96); `artwork_craft` on 1.
+
+### Shipped in lane
+
+- **The artwork lift, a kneel for the kit person** (`assets/js/kit/people.js`, a6ac4132). No. 84 frame 8 sank a
+  standing kit person to its knees and built shins and boots by hand ("The kit has no kneel", its own
+  comment); all three judges in all three rounds charged the medic, the round 3 craft fix naming "a properly
+  jointed figure ... kneeling". `pose: 'kneel'` is additive: no existing pose or seed moves a pixel, so it
+  stales no accepted review (the reason the last three passes deferred a default change to the person).
+  The near detail of hands and hair (`kit-person-reads-as-mannequin-within-two-metres`, repeat 8, and
+  `kit-people-cartoon-at-table-range`) is still open.
+- **panel_ready refuses a stale bespoke brief** (954a9f9b), queue `bespoke-brief-stale-after-panel-repair`.
+- **week_digest reads flat score layouts** (3feb2718). It had counted no. 84's three rounds as one round 0.
+
+### 1. ESCALATED, for the owner: may a lit accent prop count toward the accent floor? (`scripts/carousel/layout_check.py`)
+
+Queue `accent-floor-forces-flat-painted-props`, repeat 2: no. 68 frames 5, 6 and 8 (every dusk gold prop
+painted flat, charged by all three judges in all three rounds), no. 70 frames 2, 4, 5 and 9 (the ember band
+stretched and painted MeshBasic), no. 84 frames 1, 4, 5, 8 and 9 (thin lime beams measured 0.0000 to 0.0014 of
+a frame against the 0.002 floor). A lit material shades 15 to 30 Lab from the hex, outside the 12 Lab
+window, so runs paint the accent flat to pass. The fix is in lane, and both shapes on the queue line widen
+what the gate counts: a hue and chroma band admits warm surfaces that are not the accent, and a declared
+lit prop is an exemption by declaration. Neither can be shown not to loosen the gate without a replay corpus
+of lit accent props and of false accents (a brass prop beside a gold accent, a warm floor), so this pass did
+not make it. Asked: the owner's ruling on which shape, and the pass after builds the corpus and ships it.
+
+### Carried
+
+Every other open item is carried as it stands. No frontier scan this pass.

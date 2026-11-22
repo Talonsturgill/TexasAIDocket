@@ -1,0 +1,416 @@
+<!doctype html>
+<!-- 2026-11-21, frame 2 of 9, 52 ACRES. A raked aerial over one square plot of caliche and Brazos clay whose side is
+computed from FIG.acres, turned so its near fence slants across the frame, set in Bermuda grass and ringed by live oaks.
+Inside it, drawn to illustrate and not the site plan: a parking frame with its far bays pancaked, three rubble piles, a row
+of shopfronts with a fallen roof, an office block with a sheared corner, and a derailed train jackknifed off its track
+nearest the camera. A painted dimension line in the grass measures the near fence end to end. No lime on this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:140px; width:580px; text-align:left">A town built to fall down</h1>
+<p class="dek" data-follow="22" style="left:78px; width:900px; font-size:24px; line-height:1.36">Disaster City is a 52 acre mock community with full scale structures that can collapse, rubble piles and a derailed train. The layout here is drawn to illustrate and is not the site plan.</p>
+<div class="lab tone" id="labPlan">not the site plan</div>
+<style>
+.lab { font-size:25px; transform:translate(-50%, -50%); }
+.lab.tone { color:#0e3f3c; background:linear-gradient(180deg, #f6f1dc, #e4dcbc); box-shadow:0 10px 26px rgba(10,48,60,0.34), 0 2px 6px rgba(10,48,60,0.3); }
+</style>
+<script>window.FIG = {"acres": 52};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "52 acres", counter: "02 / 09", src: "c11 c1", fit: { min: 84, max: 96, maxLines: 2 } });
+  const FOV = 34;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 2, far: 9000, fog: 0.00012 });
+  TX.reseed(20261102);
+
+  /* ---- THE FIGURE. One acre is 4046.8564224 square metres exactly (the international acre), so a square of FIG.acres has
+   * this side in metres. Everything below is laid out in that square, and the check throws if the drawn plot disagrees. */
+  const M2_PER_ACRE = 4046.8564224;
+  const S = Math.sqrt(FIG.acres * M2_PER_ACRE), HS = S / 2;
+  const YAW = 19.2 * Math.PI / 180;                                 /* the plot is turned so its near fence slants */
+  const rot = (x, z) => [x * Math.cos(YAW) + z * Math.sin(YAW), -x * Math.sin(YAW) + z * Math.cos(YAW)];   /* plot frame to world */
+  const site = new THREE.Group(); site.rotation.y = YAW; R.scene.add(site);
+  const rng = CH.rng(5202);
+
+  const mat = (key, p, phys) => K.mat(key, p, phys);
+  const rbox = (w, h, d, r, m) => { const b = TXT.roundedBox(w, h, d, r, m); b.castShadow = true; b.receiveShadow = true; return b; };
+  const put = (obj, x, y, z, ry, parent) => { obj.position.set(x, y, z); if (ry) obj.rotation.y = ry; (parent || site).add(obj); return obj; };
+
+  /* ---- THE GROUND OUTSIDE: Bermuda grass to the horizon */
+  TXT.ground(R, { surface: 'grass', color: 0x3f7a2c, size: 9000, tile: 4, seed: 1121 });
+  let _mt = null; const plotTexLater = () => _mt || (_mt = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(5); g.fillStyle = '#d8d8d8'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 16; i++) { g.fillStyle = 'rgba(255,255,255,' + (0.1 + r() * 0.15) + ')'; g.fillRect(0, i * 32, w, 16); }
+    for (let i = 0; i < 20000; i++) { const v = 150 + r() * 105 | 0; g.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',0.35)'; g.fillRect(r() * w, r() * h, 2, 2); } }, [4, 4]));
+  /* THE BERMUDA AROUND IT: a mown apron 2.4 km square, stripes square to the near fence, soft patches of greener and
+   * straw grass, worn tracks, so the foreground under the type is turf and not felt; the haze takes it to the horizon. */
+  { const T = CH.canvasTex(THREE, 2048, 2048, (g, w, h) => { const r = CH.rng(4401);
+      g.fillStyle = '#4f8f34'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 340; i++) { const x = r() * w, y = r() * h, rad = 30 + r() * 160, gr = g.createRadialGradient(x, y, 2, x, y, rad);
+        const c = r() < 0.35 ? '196,178,96' : (r() < 0.6 ? '40,104,44' : '120,170,70'); gr.addColorStop(0, 'rgba(' + c + ',' + (0.18 + r() * 0.25) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)'); g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
+      for (let i = 0; i < 160000; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(20,60,24,0.28)' : 'rgba(190,226,120,0.22)'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 3); } });
+    T.repeat.set(8, 8); T.wrapS = T.wrapT = THREE.RepeatWrapping;
+    const gm = mat('grass-bermuda-mown', { color: 0xffffff, map: T, roughness: 0.93 });
+    const apron = new THREE.Mesh(new THREE.PlaneGeometry(2400, 2400), gm); apron.rotation.x = -Math.PI / 2; apron.position.y = 0.03; apron.receiveShadow = true; apron.userData.txBevel = false; site.add(apron); }
+
+  /* broken-up turf near the camera: bunchgrass, scrub and caliche cobble outside the fence so no foreground reads as a flat stripe */
+  TXT.scatter(R, { kind: 'scrub', count: 700, area: [-420, 300, 150, 395], seed: 211, scale: [1.2, 2.6] });
+  TXT.scatter(R, { kind: 'rock', count: 260, area: [-420, 300, 150, 395], seed: 212, scale: [0.8, 1.8] });
+  TXT.scatter(R, { kind: 'scrub', count: 400, area: [-460, -160, -305, 300], seed: 213, scale: [1.2, 2.6] });
+  /* ---- THE PLOT: caliche worked into Brazos clay, tyre tracks, puddle stains. Its own mesh, S by S, in the site frame. */
+  const plotTex = CH.canvasTex(THREE, 2048, 2048, (g, w, h) => {
+    const r = CH.rng(77);
+    g.fillStyle = '#e2bf8a'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, rad = 40 + r() * 220, gr = g.createRadialGradient(x, y, 4, x, y, rad);
+      const c = r() < 0.5 ? '200,110,62' : (r() < 0.6 ? '238,214,168' : '178,120,78'); gr.addColorStop(0, 'rgba(' + c + ',' + (0.18 + r() * 0.3) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)'); g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
+    for (let i = 0; i < 90000; i++) { const v = 150 + Math.floor(r() * 100); g.fillStyle = 'rgba(' + v + ',' + Math.floor(v * 0.82) + ',' + Math.floor(v * 0.6) + ',' + (0.15 + r() * 0.35) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 3); }
+    g.strokeStyle = 'rgba(120,80,52,0.22)'; g.lineWidth = 3;
+    for (let k = 0; k < 40; k++) { g.beginPath(); let x = r() * w, y = r() * h; g.moveTo(x, y); for (let s = 0; s < 8; s++) { x += (r() - 0.5) * 300; y += (r() - 0.5) * 300; g.lineTo(x, y); } g.stroke(); }
+  });
+  const plotMat = mat('caliche-dirt-plot', { color: 0xffffff, map: plotTex, roughness: 0.95, metalness: 0 });
+  const plotGeo = new THREE.PlaneGeometry(S, S, 1, 1); plotGeo.rotateX(-Math.PI / 2);
+  const plot = new THREE.Mesh(plotGeo, plotMat); plot.position.y = 0.06; plot.receiveShadow = true; plot.userData.txBevel = false; site.add(plot);
+  /* THE CHECK: the plot drawn is the plot the figure gives */
+  plot.updateMatrixWorld(true);
+  { const bb = new THREE.Box3().setFromBufferAttribute(plotGeo.attributes.position), side = bb.max.x - bb.min.x, acres = side * (bb.max.z - bb.min.z) / M2_PER_ACRE;
+    if (Math.abs(side - S) > 1e-3 || Math.abs(acres - FIG.acres) > 1e-4)  /* float32 vertices */ throw new Error('plot ' + acres + ' acres differs from FIG.acres ' + FIG.acres); }
+
+  /* ---- ROADS inside the plot: a loop and two cross streets, asphalt with a pale edge */
+  const asphalt = mat('asphalt-road', { color: 0x4d4b50, roughness: 0.82 });
+  const road = (x0, z0, x1, z1, w) => { const L = Math.hypot(x1 - x0, z1 - z0), m = new THREE.Mesh(new THREE.BoxGeometry(L, 0.12, w), asphalt);
+    m.position.set((x0 + x1) / 2, 0.1, (z0 + z1) / 2); m.rotation.y = -Math.atan2(z1 - z0, x1 - x0); m.receiveShadow = true; m.userData.txBevel = false; site.add(m); };
+  const RI = HS - 26;
+  const gravel = mat('gravel-road-caliche', { color: 0xbcae96, roughness: 0.95 });
+  const road2 = (x0, z0, x1, z1, w, m) => { const L = Math.hypot(x1 - x0, z1 - z0), q = new THREE.Mesh(new THREE.BoxGeometry(L, 0.12, w), m);
+    q.position.set((x0 + x1) / 2, 0.1, (z0 + z1) / 2); q.rotation.y = -Math.atan2(z1 - z0, x1 - x0); q.receiveShadow = true; q.userData.txBevel = false; site.add(q); };
+  road2(-RI, -RI, RI, -RI, 6, gravel); road2(-RI, RI, RI, RI, 6, gravel); road2(-RI, -RI, -RI, RI, 6, gravel); road2(RI, -RI, RI, RI, 6, gravel);
+  road(-RI, 40, RI, 40, 6); road(30, -RI, 30, RI, 6);
+
+  /* ---- THE FENCE: galvanised posts every 6 m and a top rail, all four sides */
+  const galv = mat('galv-steel-fence', { color: 0xc9d0d6, roughness: 0.4, metalness: 0.8 });
+  { const pts = []; for (let s = 0; s < 4; s++) for (let t = 0; t < S; t += 6) { const a = -HS + t; const p = [[a, -HS], [HS, a], [-a, HS], [-HS, -a]][s]; pts.push(p); }
+    const pg = new THREE.CylinderGeometry(0.12, 0.12, 2.2, 6); pg.translate(0, 1.1, 0);
+    const im = new THREE.InstancedMesh(pg, galv, pts.length), m4 = new THREE.Matrix4();
+    pts.forEach((p, i) => { m4.makeTranslation(p[0], 0, p[1]); im.setMatrixAt(i, m4); }); im.castShadow = true; im.userData.txBevel = false; site.add(im);
+    [[[-HS, -HS], [HS, -HS]], [[HS, -HS], [HS, HS]], [[HS, HS], [-HS, HS]], [[-HS, HS], [-HS, -HS]]].forEach(([a, b]) => K.bar([a[0], 2.2, a[1]], [b[0], 2.2, b[1]], 0.14, galv, 6, site));
+    /* the mesh itself: a faint screen, so the line reads from the air */
+    const mesh = mat('galv-chainlink-screen', { color: 0xdfe6ea, roughness: 0.5, metalness: 0.6, transparent: true, opacity: 0.35, side: THREE.DoubleSide });
+    mesh.userData.txSurface = false;
+    [[0, -HS, 0], [HS, 0, Math.PI / 2], [0, HS, 0], [-HS, 0, Math.PI / 2]].forEach(([x, z, ry]) => { const p = new THREE.Mesh(new THREE.PlaneGeometry(S, 2.1), mesh); p.position.set(x, 1.05, z); p.rotation.y = ry; p.userData.txBevel = false; site.add(p); });
+  }
+
+  /* ---- CONCRETE */
+  const concTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(9); g.fillStyle = '#d9cfbb'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { const c = 160 + r() * 80 | 0; g.fillStyle = 'rgba(' + c + ',' + (c - 8) + ',' + (c - 24) + ',' + (0.2 + r() * 0.4) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 4, 1 + r() * 4); }
+    for (let i = 0; i < 60; i++) { g.strokeStyle = 'rgba(110,96,80,' + (0.15 + r() * 0.3) + ')'; g.lineWidth = 1; g.beginPath(); let x = r() * w, y = r() * h; g.moveTo(x, y); for (let s = 0; s < 6; s++) { x += (r() - 0.5) * 40; y += (r() - 0.5) * 40; g.lineTo(x, y); } g.stroke(); } }, [3, 3]);
+  const conc = mat('conc-frame-sunbleached', { color: 0xffffff, map: concTex, roughness: 0.86 });
+  const concDark = mat('conc-frame-stained', { color: 0xb9ad98, map: concTex, roughness: 0.9 });
+  const rebar = mat('rust-rebar', { color: 0x8a4a2a, roughness: 0.6, metalness: 0.7 });
+
+  /* ---- THE PARKING FRAME: three decks on a column grid, 6 by 4 bays of 8 m, its two far bays pancaked to the ground and
+   * one deck hanging from the standing part to the dirt, columns snapped, rebar out of the broken edges. */
+  function parkingFrame() {
+    const g = new THREE.Group(), BX = 8, NX = 6, NZ = 4, ST = 3.4, NS = 3, TH = 0.35;
+    const keep = 4;                                               /* bays 0..3 stand; 4 and 5 have fallen */
+    const W0 = NX * BX, D0 = NZ * BX, x0 = -W0 / 2, z0 = -D0 / 2;
+    for (let s = 1; s <= NS; s++) {
+      const y = s * ST;
+      const slab = rbox(keep * BX + 0.6, TH, D0 + 0.6, 0.06, s === NS ? conc : conc); slab.position.set(x0 + keep * BX / 2, y, 0); g.add(slab);
+      /* spandrel beams on the long faces */
+      [-1, 1].forEach(sd => { const b = rbox(keep * BX + 0.6, 0.9, 0.3, 0.05, concDark); b.position.set(x0 + keep * BX / 2, y + 0.5, sd * (D0 / 2 + 0.2)); g.add(b); });
+      /* parking stripes on the top deck */
+      if (s === NS) for (let k = 0; k < 14; k++) { const st = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.02, 5), mat('paint-stripe-white', { color: 0xf4f1e8, roughness: 0.6 })); st.position.set(x0 + 1.5 + k * 2.4, y + TH / 2 + 0.01, -D0 / 2 + 3.2); st.userData.txBevel = false; g.add(st);
+        const st2 = st.clone(); st2.position.z = D0 / 2 - 3.2; g.add(st2); }
+    }
+    for (let i = 0; i <= keep; i++) for (let j = 0; j <= NZ; j++) {
+      const c = rbox(0.6, NS * ST, 0.6, 0.05, conc); c.position.set(x0 + i * BX, NS * ST / 2, z0 + j * BX); g.add(c);
+    }
+    /* the fallen bays: decks stacked flat and cracked, a hanging deck from the third floor edge, snapped column stubs */
+    const fx = x0 + keep * BX, r = CH.rng(31);
+    for (let s = 0; s < NS - 1; s++) for (let pz = 0; pz < 2; pz++) {
+      const sl = rbox(BX * 2 * (0.45 + r() * 0.08), TH, D0 / 2 * (0.9 + r() * 0.1), 0.05, s % 2 ? concDark : conc);
+      sl.position.set(fx + BX * (0.5 + pz) + (r() - 0.5) * 1.5, 0.3 + s * 0.55, (pz ? 1 : -1) * D0 / 4 + (r() - 0.5) * 2);
+      sl.rotation.set((r() - 0.5) * 0.12, (r() - 0.5) * 0.2, (r() - 0.5) * 0.14); g.add(sl);
+    }
+    const hang = rbox(BX * 1.7, TH, D0 + 0.4, 0.06, conc);
+    const ang = Math.atan2(NS * ST - 1.2, BX * 1.7) ;
+    hang.position.set(fx + Math.cos(ang) * BX * 0.85, NS * ST - Math.sin(ang) * BX * 0.85, 0); hang.rotation.z = -ang; g.add(hang);
+    for (let j = 0; j <= NZ; j++) for (let i = keep + 1; i <= NX; i++) { const h = 0.6 + r() * 2.2; const c = rbox(0.6, h, 0.6, 0.05, concDark); c.position.set(x0 + i * BX, h / 2, z0 + j * BX); c.rotation.z = (r() - 0.5) * 0.5; g.add(c); }
+    /* the break line on every standing deck: spalled chunks off the slab edge and rebar ends standing out of it, some bent down */
+    for (let s = 1; s <= NS; s++) { const y = s * ST;
+      for (let z = -D0 / 2; z <= D0 / 2; z += 0.9) {
+        if (r() < 0.55) { const c = rbox(0.4 + r() * 0.6, 0.2 + r() * 0.2, 0.4 + r() * 0.6, 0.04, concDark); c.position.set(fx + 0.2 + r() * 0.3, y - 0.2 - r() * 0.2, z); c.rotation.set(r(), r(), r()); g.add(c); }
+        const L = 0.8 + r() * 1.6, droop = r() < 0.4 ? 0.6 + r() * 1.2 : 0.1 * r();
+        K.bar([fx - 0.2, y, z], [fx + L, y - droop, z + (r() - 0.5) * 0.4], 0.09, rebar, 5, g); } }
+    /* rebar out of every snapped column stub */
+    g.children.slice().forEach(m => { if (m.material === concDark && m.position.x > fx + 1 && m.geometry && m.position.y < 1.8 && Math.abs(m.rotation.z) > 0) {
+      const top = m.position.y * 2; for (let q = 0; q < 4; q++) { const ox = (q % 2 - 0.5) * 0.36, oz = (q > 1 ? 0.18 : -0.18); K.bar([m.position.x + ox, top - 0.1, m.position.z + oz], [m.position.x + ox + (r() - 0.5) * 0.8, top + 0.6 + r() * 0.9, m.position.z + oz + (r() - 0.5) * 0.6], 0.07, rebar, 5, g); } } });
+    /* dust stain fanned out from the fallen bays across the ground */
+    { const dt = CH.canvasTex(THREE, 256, 256, (q, w, h) => { const rr = CH.rng(12); for (let i = 0; i < 40; i++) { const x = w * (0.2 + rr() * 0.6), y = h * (0.2 + rr() * 0.6), rad = 30 + rr() * 90, gr = q.createRadialGradient(x, y, 2, x, y, rad);
+        gr.addColorStop(0, 'rgba(255,255,255,' + (0.25 + rr() * 0.3) + ')'); gr.addColorStop(1, 'rgba(255,255,255,0)'); q.fillStyle = gr; q.fillRect(0, 0, w, h); } });
+      const dm = new THREE.MeshBasicMaterial({ color: 0xe9dfcc, alphaMap: dt, transparent: true, opacity: 0.85, depthWrite: false }); dm.name = 'dust-stain-concrete'; dm.userData.txSurface = false;
+      const dp = new THREE.Mesh(new THREE.PlaneGeometry(34, D0 + 22), dm); dp.rotation.x = -Math.PI / 2; dp.position.set(fx + BX + 3, 0.1, 0); dp.userData.txBevel = false; g.add(dp); }
+    for (let k = 0; k < 60; k++) { const bx = fx + r() * BX * 2, bz = (r() - 0.5) * D0, by = r() * 2.4; K.bar([bx, by, bz], [bx + (r() - 0.5) * 1.6, by + 0.4 + r() * 1.2, bz + (r() - 0.5) * 1.6], 0.06, rebar, 5, g); }
+    for (let k = 0; k < 40; k++) { const b = rbox(0.8 + r() * 2.2, 0.3 + r() * 0.3, 0.8 + r() * 2, 0.06, r() < 0.5 ? conc : concDark);
+      b.position.set(fx + BX * 2 + r() * 6 - 1, 0.3, (r() - 0.5) * (D0 + 6)); b.rotation.set((r() - 0.5) * 0.8, r() * 3, (r() - 0.5) * 0.8); g.add(b); }
+    return g;
+  }
+  const PF = put(parkingFrame(), -148, 0, 40, 0.3 + Math.PI);   /* the pancaked bays face the camera */
+
+  /* ---- THE OFFICE BLOCK: five storeys, ribbon windows, one corner sheared off into a cone of debris */
+  function officeBlock() {
+    const g = new THREE.Group(), w = 22, d = 16, fh = 3.6, n = 5;
+    const glass = mat('glass-ribbon-window', { color: 0x4f78b8, roughness: 0.12, metalness: 0.2, clearcoat: 1 }, true);
+    for (let s = 0; s < n; s++) {
+      const shear = s >= 2 ? (s - 1) * 3.2 : 0;                   /* upper floors lose more of the corner */
+      const ww = w - shear;
+      const band = rbox(ww, fh * 0.55, d, 0.08, conc); band.position.set(-shear / 2, s * fh + fh * 0.27, 0); g.add(band);
+      const win = rbox(ww - 0.4, fh * 0.45, d - 0.4, 0.03, glass); win.position.set(-shear / 2, s * fh + fh * 0.77, 0); g.add(win);
+    }
+    const roof = rbox(w - 4 * 3.2, 0.5, d, 0.08, concDark); roof.position.set(-6.4, n * fh + 0.25, 0); g.add(roof);
+    const r = CH.rng(43);
+    for (let k = 0; k < 50; k++) { const a = r() * Math.PI, rad = Math.sqrt(r()) * 12, b = rbox(0.6 + r() * 2, 0.3 + r() * 0.5, 0.6 + r() * 2, 0.06, r() < 0.6 ? conc : concDark);
+      b.position.set(w / 2 + Math.sin(a) * rad * 0.8 - 2, 0.3 + (1 - rad / 12) * 3 * r(), Math.cos(a) * rad); b.rotation.set(r() * 2, r() * 3, r() * 2); g.add(b); }
+    return g;
+  }
+  put(officeBlock(), 120, 0, 10, 0);
+
+  /* ---- THE SHOPFRONTS: a strip of five, painted fronts, one roof span fallen in */
+  function shopStrip() {
+    const g = new THREE.Group(), n = 5, uw = 9, d = 14, h = 5;
+    const fronts = [0xd96a3a, 0x2f8f9a, 0xe7b84a, 0xc24a4a, 0x6a7fc8];
+    for (let i = 0; i < n; i++) {
+      const x = (i - (n - 1) / 2) * uw;
+      const wall = rbox(uw - 0.3, h, d, 0.08, mat('paint-block-shop-' + i, { color: fronts[i], roughness: 0.75 })); wall.position.set(x, h / 2, 0); g.add(wall);
+      if (i !== 3) { const roof = rbox(uw, 0.4, d + 0.6, 0.06, mat('membrane-roof-pale', { color: 0xe9e4d8, roughness: 0.7 })); roof.position.set(x, h + 0.2, 0); g.add(roof);
+        const unit = rbox(1.6, 1, 1.2, 0.08, galv); unit.position.set(x + 2, h + 0.9, -2); g.add(unit); }
+      else { const roof = rbox(uw, 0.4, d + 0.6, 0.06, mat('membrane-roof-pale', { color: 0xe9e4d8, roughness: 0.7 })); roof.position.set(x, h * 0.45, 0); roof.rotation.x = 0.55; g.add(roof); }
+      const awn = rbox(uw - 0.8, 0.25, 2.2, 0.06, mat('canvas-awning-' + i, { color: i % 2 ? 0xf2efe6 : 0x1f6f78, roughness: 0.85 })); awn.position.set(x, h * 0.62, d / 2 + 1.1); awn.rotation.x = i === 3 ? 0.6 : 0.18; g.add(awn);
+    }
+    return g;
+  }
+  put(shopStrip(), 70, 0, 172, 0);
+
+  /* ---- THREE RUBBLE PILES, the chassis pile scaled up into whole demolition mounds */
+  const piles = [];
+  [[-202, -32, 3, 7.4, 0.3], [40, -60, 7, 4.6, 1.6], [-30, 120, 11, 4.4, 2.4]].forEach(([x, z, seed, k, ry]) => {
+    const p = K.make('rubble_pile', { w: 6, d: 5, h: 2, seed }); p.scale.setScalar(k); put(p, x, 0, z, ry); piles.push(p);
+    const p2 = K.make('rubble_pile', { w: 4, d: 3.5, h: 1.2, seed: seed + 20 }); p2.scale.setScalar(k); put(p2, x + 9, 0, z + 7, ry + 1);
+  });
+  if (piles.length !== 3) throw new Error('rubble piles ' + piles.length);
+
+  /* ---- THE HOUSES: a short street of ranch houses on the far side */
+  [[110, -180, 0], [145, -180, 0], [180, -180, 0], [110, -150, Math.PI], [145, -150, Math.PI], [-60, -185, 0], [-25, -185, 0]].forEach(([x, z, ry], i) => { const hse = K.make('ranch_house', { seed: 30 + i }); put(hse, x, 0, z, ry); });
+
+  /* ---- THE DERAILED TRAIN, nearest the camera: a ballast bed and track across the near half, the track kinked where the
+   * train left it, five cars jackknifed off it, one on its side with its trucks to the sky. */
+  const TR = new THREE.Group(); site.add(TR); TR.position.set(-200, 0, 118); TR.rotation.y = -1.258;   /* local +x runs into the plot, toward the far fence */
+  const ballast = mat('ballast-stone-bed', { color: 0x8c8580, roughness: 0.95 });
+  const tieM = mat('wood-crosstie-creosote', { color: 0x5a4636, roughness: 0.9 });
+  const railM = mat('steel-rail-worn', { color: 0x9a9da4, roughness: 0.35, metalness: 0.9 });
+  const track = (x0, x1, z, bend) => {
+    const pts = []; for (let i = 0; i <= 60; i++) { const t = i / 60, x = x0 + (x1 - x0) * t; pts.push([x, z + (bend ? bend(t) : 0)]); }
+    for (let i = 0; i < pts.length - 1; i++) { const a = pts[i], b = pts[i + 1], L = Math.hypot(b[0] - a[0], b[1] - a[1]), ang = -Math.atan2(b[1] - a[1], b[0] - a[0]);
+      const bed = new THREE.Mesh(new THREE.BoxGeometry(L + 0.2, 0.6, 4.6), ballast); bed.position.set((a[0] + b[0]) / 2, 0.3, (a[1] + b[1]) / 2); bed.rotation.y = ang; bed.receiveShadow = true; bed.castShadow = true; TR.add(bed);
+      for (let k = 0; k < L; k += 0.9) { const t = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.18, 2.6), tieM); const f = k / L; t.position.set(a[0] + (b[0] - a[0]) * f, 0.66, a[1] + (b[1] - a[1]) * f); t.rotation.y = ang; t.receiveShadow = true; t.userData.txBevel = false; TR.add(t); }
+    }
+    [-0.72, 0.72].forEach(off => { const rp = pts.map((p, i) => { const q = pts[Math.min(pts.length - 1, i + 1)], pq = pts[Math.max(0, i - 1)], dx = q[0] - pq[0], dz = q[1] - pq[1], l = Math.hypot(dx, dz); return [p[0] - dz / l * off, 0.82, p[1] + dx / l * off]; });
+      const tb = TXT.tube(rp, 0.09, railM, { segments: 240, radial: 6, tension: 0.2 }); tb.castShadow = true; TR.add(tb); });
+  };
+  track(-85, 75, 0, (t) => t > 0.42 && t < 0.62 ? Math.sin((t - 0.42) / 0.2 * Math.PI) * 3.5 : 0);
+  const steelPaint = (key, c) => mat(key, { color: c, roughness: 0.55, metalness: 0.3, clearcoat: 0.3 }, true);
+  const truckM = mat('cast-steel-truck', { color: 0x3b3a3e, roughness: 0.6, metalness: 0.7 });
+  function trucks(g, L, y) {
+    [-1, 1].forEach(sd => { const tk = new THREE.Group(); tk.position.set(sd * (L / 2 - 2.4), y, 0); g.add(tk);
+      tk.add(rbox(3.0, 0.6, 2.4, 0.08, truckM)); tk.children[0].position.y = 0.55;
+      [-0.9, 0.9].forEach(ax => [-0.75, 0.75].forEach(sz => { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.18, 18), truckM); w.rotation.x = Math.PI / 2; w.position.set(ax, 0.46, sz); w.castShadow = true; tk.add(w); })); });
+  }
+  function tankCar(color) {
+    const g = new THREE.Group(), L = 17, r = 1.55, m = steelPaint('paint-tank-car-' + color.toString(16), color);
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(r, L - 2 * r, 10, 28), m); body.rotation.z = Math.PI / 2; body.position.y = 1.0 + r + 0.4; body.castShadow = true; body.receiveShadow = true; g.add(body);
+    const dome = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.6, 0.6, 18), m); dome.position.set(0, body.position.y + r + 0.2, 0); dome.castShadow = true; g.add(dome);
+    const walk = rbox(2.2, 0.08, 2.2, 0.02, galv); walk.position.set(0, body.position.y + r + 0.05, 0); g.add(walk);
+    [-1, 1].forEach(sd => { const sill = rbox(3.2, 0.4, 2.8, 0.05, truckM); sill.position.set(sd * (L / 2 - 1.6), 1.25, 0); g.add(sill); });
+    trucks(g, L, 0); return g;
+  }
+  function boxCar(color) {
+    const g = new THREE.Group(), L = 16, m = steelPaint('paint-box-car-' + color.toString(16), color);
+    const body = rbox(L, 3.9, 3.1, 0.14, m); body.position.y = 1.2 + 1.95; g.add(body);
+    for (let k = -7; k <= 7; k++) { const rib = rbox(0.12, 3.6, 3.22, 0.03, m); rib.position.set(k * 1.05, body.position.y, 0); g.add(rib); }
+    const roofM = steelPaint('paint-box-roof-' + color.toString(16), new THREE.Color(color).multiplyScalar(0.8).getHex());
+    const roof = rbox(L + 0.1, 0.2, 3.2, 0.1, roofM); roof.position.y = body.position.y + 2.0; g.add(roof);
+    [-1, 1].forEach(sd => { const door = rbox(3.2, 3.3, 0.12, 0.03, steelPaint('paint-box-door', new THREE.Color(color).multiplyScalar(0.85).getHex())); door.position.set(0, body.position.y - 0.1, sd * 1.62); g.add(door); });
+    trucks(g, L, 0); return g;
+  }
+  function hopper(color) {
+    const g = new THREE.Group(), L = 18, m = steelPaint('paint-hopper-' + color.toString(16), color);
+    const body = rbox(L, 3.4, 3.1, 0.12, m); body.position.y = 1.6 + 1.7; g.add(body);
+    for (let k = 0; k < 3; k++) { const bay = new THREE.Mesh(new THREE.ConeGeometry(1.4, 1.4, 4), m); bay.rotation.set(Math.PI, Math.PI / 4, 0); bay.position.set((k - 1) * 5.4, 1.35, 0); bay.castShadow = true; g.add(bay); }
+    for (let k = -8; k <= 8; k += 2) { const rib = rbox(0.14, 3.2, 3.24, 0.03, m); rib.position.set(k, body.position.y, 0); g.add(rib); }
+    trucks(g, L, 0); return g;
+  }
+  /* the consist and where each car came to rest: [car, x, z, yaw, roll] in the track's own frame */
+  const cars = [
+    [hopper(0x3f7d6e), -88, 0, 0.0, 0],
+    [tankCar(0xf0ece2), -66, 0.6, 0.06, 0.04],
+    [boxCar(0xb6462a), -44, 5.5, 0.5, 0],
+    [tankCar(0x24365c), -24, 9.5, -0.7, Math.PI / 2 - 0.08],
+    [boxCar(0xd38a2c), -3, 3.5, 0.35, 0.1],
+    [tankCar(0xf0ece2), 17, -2.5, -0.18, 0.02]
+  ];
+  const contactTex = CH.canvasTex(THREE, 256, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 4, w / 2, h / 2, w / 2);
+    gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.62, 'rgba(255,255,255,0.9)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const contactMat = new THREE.MeshBasicMaterial({ color: 0x0b2a30, alphaMap: contactTex, transparent: true, opacity: 0.72, depthWrite: false });
+  contactMat.name = 'contact-shadow-teal'; contactMat.userData.txSurface = false;
+  cars.forEach(([c, x, z, yaw, roll]) => {
+    const off = Math.abs(z) > 2.3, onSide = roll > 1;
+    const gy = off ? 0.06 : 0.62;                                 /* off the ballast a car stands on the dirt, never in the air */
+    c.position.set(x, onSide ? gy + 1.3 : gy, z); c.rotation.set(roll, yaw, 0, 'YXZ'); TR.add(c);
+    /* a hard contact shadow on the ground under each car, turned with it; a tipped car's lies under its barrel */
+    const L = 18.5, Wd = onSide ? 4.2 : 3.6, sh = new THREE.Mesh(new THREE.PlaneGeometry(L, Wd), contactMat);
+    sh.rotation.set(-Math.PI / 2, 0, yaw); sh.position.set(x + (onSide ? -Math.sin(yaw) * 1.6 : 0), gy + 0.03, z + (onSide ? -Math.cos(yaw) * 1.6 : 0));
+    sh.renderOrder = 1; sh.userData.txBevel = false; TR.add(sh);
+  });
+  /* spilled ballast and torn ties where the cars left the rails */
+  { const r = CH.rng(61); for (let k = 0; k < 70; k++) { const t = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.18, 2.6), tieM); t.position.set(-50 + r() * 50, 0.2, (r() - 0.2) * 16); t.rotation.set(0, r() * 3, (r() - 0.5) * 0.4); t.castShadow = true; t.userData.txBevel = false; TR.add(t); } }
+
+  /* ---- VEHICLES parked on the loop road, for scale */
+  [['pickup', RI, 30, 0, { color: 0xb84a2a }]]   /* the two on the near road sat under the site line in the round 2 framing */.forEach(([n, x, z, ry, o]) => put(K.make(n, o), x, 0.15, z, ry));
+
+  /* ---- THE REST OF THE TOWN: small staged buildings along the streets, some standing, some with a roof dropped in or a
+   * wall out; stacked shipping containers; wrecked cars on the road. Seeded, kept clear of the named sets. */
+  const keepOut = [[-40, 60, 20, 120], [40, -140, 100, -80], [100, -20, 140, 40], [40, 160, 110, 185], [95, -195, 200, -135], [-80, -200, -10, -170], [-135, 155, -85, 205], [-20, 160, 120, 190]];
+  const segD = (x, z, a, b) => { const dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / (dx * dx + dz * dz))); return Math.hypot(x - a[0] - dx * t, z - a[1] - dz * t); };
+  const clear = (x, z, m) => segD(x, z, [-226, 37], [-177, 189]) > 18 + m && !(x > -185 && x < -110 && z > 5 && z < 75) && !(x < -160 && z > -70 && z < 10) && !keepOut.some(([a, b, c, d]) => x > a - m && x < c + m && z > b - m && z < d + m) && Math.abs(x - 30) > 10 && Math.abs(z - 40) > 10 && Math.abs(Math.abs(x) - RI) > 10 && Math.abs(Math.abs(z) - RI) > 10;
+  const grimeTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { const r = CH.rng(77); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 90; i++) { const x = r() * w, L = 30 + r() * 180, gr = g.createLinearGradient(0, 0, 0, L); gr.addColorStop(0, 'rgba(70,60,52,' + (0.18 + r() * 0.25) + ')'); gr.addColorStop(1, 'rgba(70,60,52,0)'); g.fillStyle = gr; g.fillRect(x, 0, 2 + r() * 6, L); }
+    const gb = g.createLinearGradient(0, h * 0.7, 0, h); gb.addColorStop(0, 'rgba(120,96,70,0)'); gb.addColorStop(1, 'rgba(120,96,70,0.35)'); g.fillStyle = gb; g.fillRect(0, 0, w, h); });
+  const sillM = mat('conc-precast-sill', { color: 0xe8e2d4, roughness: 0.8 });
+  { const r = CH.rng(2121), walls = [0xe9dcc0, 0xd7a46a, 0xb9cfd6, 0xe8c48a, 0xc9785a, 0xf0ebe0, 0x8fb3a8], roofs = [0x7a3e30, 0x556070, 0x9a5a3a, 0x3f5a6a];
+    let placed = 0;
+    for (let k = 0; k < 1600 && placed < 84; k++) {
+      const nearHalf = false;   /* the last 28 go to the near half, where the eye lands first */
+      const x = -RI + 14 + r() * (2 * RI - 28), z = nearHalf ? 50 + r() * (RI - 64) : -RI + 14 + r() * (2 * RI - 28), w = 10 + r() * 14, d = 8 + r() * 10, h = 3.2 + r() * (r() < 0.25 ? 9 : 3);
+      if (!clear(x, z, Math.max(w, d) * 0.6)) continue;
+      const b = new THREE.Group(), wm = mat('paint-stucco-wall-' + (k % 7), { color: walls[k % 7], map: grimeTex, roughness: 0.8 }), rm = mat('shingle-roof-' + (k % 4), { color: roofs[k % 4], roughness: 0.85 });
+      const fallen = r() < 0.66;
+      const body = rbox(w, h, d, 0.12, wm); body.position.y = h / 2; b.add(body);
+      for (let f = 1; f * 3.3 < h; f++) [-1, 1].forEach(sd => { const wn = rbox(w * 0.82, 1.1, 0.12, 0.03, mat('glass-window-dark', { color: 0x3e5f8a, roughness: 0.15, metalness: 0.3 })); wn.position.set(0, f * 3.3 - 1.4, sd * (d / 2 + 0.02)); b.add(wn);
+        [-0.66, 0.66].forEach(dy => { const sl = rbox(w * 0.86, 0.2, 0.55, 0.03, sillM); sl.position.set(0, f * 3.3 - 1.4 + dy, sd * (d / 2 + 0.2)); b.add(sl); }); });
+      const roof = rbox(w + 0.8, 0.45, d + 0.8, 0.08, rm);
+      if (fallen) { roof.position.set(0, h * 0.5, 0); roof.rotation.set((r() - 0.5) * 0.7, 0, (r() < 0.5 ? -1 : 1) * (0.3 + r() * 0.3)); body.scale.y = 0.75; body.position.y = h * 0.375;
+        for (let q = 0; q < 34; q++) { const c = rbox(0.8 + r() * 2.6, 0.3 + r() * 0.6, 0.8 + r() * 2.2, 0.06, r() < 0.5 ? conc : wm); const a = r() * 6.28, rr = Math.max(w, d) * (0.35 + r() * 0.5); c.position.set(Math.cos(a) * rr, 0.25, Math.sin(a) * rr); c.rotation.set(r(), r() * 3, r()); b.add(c); } }
+      else { roof.position.y = h + 0.22;
+        [[0, d / 2 + 0.25, w + 0.8, 0.35], [0, -d / 2 - 0.25, w + 0.8, 0.35], [w / 2 + 0.25, 0, 0.35, d + 0.8], [-w / 2 - 0.25, 0, 0.35, d + 0.8]].forEach(([px, pz, pw, pd]) => { const pp = rbox(pw, 0.9, pd, 0.04, wm); pp.position.set(px, h + 0.7, pz); b.add(pp); });
+        for (let u = 0; u < 1 + Math.floor(r() * 3); u++) { const un = rbox(2.2, 1.2, 1.6, 0.1, galv); un.position.set((r() - 0.5) * (w - 4), h + 1.05, (r() - 0.5) * (d - 4)); b.add(un); } }
+      b.add(roof); put(b, x, 0, z, r() < 0.5 ? 0 : Math.PI / 2); placed++;
+    }
+    /* containers, two high */
+    [[60, 120, 0], [60, 128, 0], [60, 124, 2.6]].forEach(([x, z, y], i) => { const c = K.make('shipping_container', { color: [0x2f7f8a, 0xc65a2e, 0x2a4f7a][i], rust: 0.3 }); put(c, x, 0.1 + y, z, Math.PI / 2 + i * 0.05); });
+    /* wrecked cars: on the cross street and by the train, some on their roofs */
+    [[-60, 46, 0.4, 0], [-30, 34, 2.2, Math.PI], [5, 47, 1.1, 0], [-120, 150, 0.7, 0], [-100, 105, 2.8, 0.25], [60, -30, 1.6, 0]].forEach(([x, z, ry, rl], i) => {
+      const c = K.make(i % 2 ? 'sedan' : 'suv', { color: [0xd8d4cc, 0x8a2f2a, 0x2f4f7f, 0xe0b040, 0x5a6a5a, 0xc8c8c8][i] }); c.rotation.set(rl, ry, 0, 'YXZ'); c.position.set(x, rl > 1 ? 1.7 : 0.12, z); site.add(c); });
+  }
+
+  /* ---- THE NEAR CORNER: a crushed shed and three cars shoved into each other, one tipped up against another */
+  { const shed = K.make('rubble_pile', { w: 4, d: 3.5, h: 1.4, seed: 41 }); shed.scale.setScalar(3.2); put(shed, -214, 0, 186, 0.6);
+    const roofM = mat('steel-roof-sheet-rust', { color: 0xa8552e, roughness: 0.6, metalness: 0.5 });
+    const roof = rbox(12, 0.3, 8, 0.05, roofM); roof.position.set(-211, 2.2, 184); roof.rotation.set(0.25, 0.6, 0.42); site.add(roof);
+    [['suv', -212, 160, 0.9, 0, 0, 0x2f5f8f], ['sedan', -208, 165, 2.4, 0.55, 1.4, 0xd8d4cc], ['pickup', -204, 155, 0.3, 0, 0, 0xc0442a]].forEach(([n, x, z, ry, rl, y, c]) => {
+      const v = K.make(n, { color: c }); v.rotation.set(rl, ry, 0, 'YXZ'); v.position.set(x, 0.12 + y, z); site.add(v); }); }
+
+  /* ---- LIVE OAKS at the fence line, on the far two sides and the right side, in clumps with gaps; a few out in the grass */
+  const oakV = [0, 1, 2, 3].map(i => K.make('live_oak', { height: 9 + i * 0.8, spread: 16 + i * 2, seed: 400 + i }));
+  const oaks = [];
+  const plant = (x, z, s) => { const o = oakV[Math.floor(rng() * 4)].clone(); o.scale.setScalar(s); o.position.set(x, 0, z); o.rotation.y = rng() * 6.28; R.scene.add(o); oaks.push(o); };
+  for (let t = -HS; t <= HS; t += 17) {
+    if (rng() < 0.78) { const p = rot(t + (rng() - 0.5) * 6, -HS - 12 - rng() * 6); plant(p[0], p[1], 0.85 + rng() * 0.4); }      /* far fence */
+    if (false) { const p = rot(-HS - 12 - rng() * 6, t + (rng() - 0.5) * 6); plant(p[0], p[1], 0.85 + rng() * 0.4); } else rng();      /* left fence, far half only, so the grass under the type stays quiet */
+    if (rng() < 0.7) { const p = rot(HS + 12 + rng() * 6, t + (rng() - 0.5) * 6); plant(p[0], p[1], 0.85 + rng() * 0.4); }        /* right fence */
+  }
+  for (let k = 0; k < 40; k++) { const p = rot(-HS - 60 - rng() * 400, -HS - 60 - rng() * 600); plant(p[0], p[1], 0.8 + rng() * 0.5); }
+  /* the oak line on the horizon: mottes beyond the far fence, thinning into the haze */
+  for (let k = 0; k < 150; k++) { const p = rot(-HS - 200 + rng() * (S + 600), -HS - 40 - Math.pow(rng(), 0.7) * 900); plant(p[0], p[1], 0.8 + rng() * 0.6); }
+  for (let k = 0; k < 30; k++) { const p = rot(HS + 60 + rng() * 300, -HS + rng() * S); plant(p[0], p[1], 0.8 + rng() * 0.5); }
+
+  /* ---- THE MEASURE: a survey tape staked along the inside of the near left fence, corner to corner, the whole side S. A
+   * lath stake every 30 m holds it a metre off the grass; flagged stakes at both ends. Illustrative width so it reads. */
+  const tapeM = mat('vinyl-survey-tape-yellow', { color: 0xffd23a, roughness: 0.45, emissive: 0x3a2a00, emissiveIntensity: 0.25 });
+  const TX0 = -HS + 4;
+  const dim = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.25, S), tapeM); dim.position.set(TX0, 1.1, 0); dim.castShadow = true; dim.userData.txBevel = false; site.add(dim);
+  /* the tape's graduations: a dark tick every S/40 across it, every fifth one longer; a brass reel on each corner post and a
+   * red end tag on the zero end, no numeral. The ticks are counted from S, so they divide the side exactly. */
+  { const tickM = mat('paint-tape-tick-black', { color: 0x1b1d22, roughness: 0.6 }), NT = 40;
+    for (let k = 0; k <= NT; k++) { const long = k % 5 === 0, tk = new THREE.Mesh(new THREE.BoxGeometry(long ? 1.5 : 0.9, 0.04, 0.32), tickM);
+      tk.position.set(TX0 + (long ? 0.2 : -0.1), 1.245, -HS + k * S / NT); tk.userData.txBevel = false; site.add(tk); }
+    const brass = mat('brass-cast-reel', { color: 0xd9a441, roughness: 0.3, metalness: 1 }), rim = mat('rubber-reel-grip', { color: 0x22262c, roughness: 0.8 });
+    [-HS, HS].forEach((z, i) => { const reel = new THREE.Group();
+      const drum = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 0.7, 36), brass); drum.rotation.z = Math.PI / 2; reel.add(drum);
+      [-0.38, 0.38].forEach(o => { const fl = new THREE.Mesh(new THREE.CylinderGeometry(1.45, 1.45, 0.08, 36), brass); fl.rotation.z = Math.PI / 2; fl.position.x = o; reel.add(fl); });
+      const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.95, 18), rim); hub.rotation.z = Math.PI / 2; reel.add(hub);
+      const crank = rbox(0.12, 0.9, 0.16, 0.03, rim); crank.position.set(0.5, 0.45, 0); reel.add(crank);
+      reel.traverse(m => { if (m.isMesh) m.castShadow = true; }); reel.position.set(TX0, 1.55, z + (i ? 0.9 : -0.9)); site.add(reel);
+      const post = rbox(0.5, 1.4, 0.5, 0.04, mat('wood-lath-stake', { color: 0xe8cf9a, roughness: 0.85 })); post.position.set(TX0, 0.7, z + (i ? 0.9 : -0.9)); site.add(post); });
+    const tag = rbox(1.8, 0.8, 0.12, 0.08, mat('vinyl-end-tag-red', { color: 0xd8342a, roughness: 0.55 })); tag.position.set(TX0 + 1.2, 1.2, HS - 2.2); tag.rotation.y = 0.4; site.add(tag);
+    if (Math.abs((NT * (S / NT)) - S) > 1e-6) throw new Error('tape graduations do not divide the side'); }
+  { const lath0 = mat('wood-lath-stake', { color: 0xe8cf9a, roughness: 0.85 });
+    for (let z = -HS; z <= HS + 0.01; z += S / 15) { const st = rbox(0.5, 1.6, 0.5, 0.04, lath0); st.position.set(TX0, 0.8, z); site.add(st); } }
+  /* lath survey stakes with orange flagging at the four corners */
+  const lath = mat('wood-lath-stake', { color: 0xe8cf9a, roughness: 0.85 }), flag = mat('vinyl-flagging-orange', { color: 0xff6a1a, roughness: 0.6 });
+  [[-HS, -HS], [HS, -HS], [HS, HS], [-HS, HS]].forEach(([x, z]) => { const st = rbox(0.6, 3.2, 0.6, 0.05, lath); st.position.set(x, 1.6, z); site.add(st); const f = rbox(1.6, 0.8, 0.12, 0.03, flag); f.position.set(x + 0.8, 2.9, z); site.add(f); });
+  { const dl = new THREE.Box3().setFromObject(dim).getSize(new THREE.Vector3()); if (Math.abs(dl.z - S) > 0.6) throw new Error('dimension line ' + dl.x + ' m differs from the plot side ' + S); }
+
+  /* ---- CONTACT under every staged set */
+  site.updateMatrixWorld(true);
+  /* sun shadows (PCSS) give every set its contact; no blob planes */
+
+  /* ---- CAMERA: a raked aerial, the plot's near corner low on the right, its far corner up under the kicker */
+  /* placed by a solve in out/2026-11-21/tmp/s02: horizon at y 136, the near corner at (950, 1059), the far corner at y 399 */
+  const FROM = [-120, 55, 400], LOOK = [-150, 0, -160];   /* panel round 2: pushed in so the train and the fallen sets fill the lower two thirds, horizon low enough for the type in the sky */ //   /* solved, then panned 2.5 degrees right and pulled back 15 percent so the far right corner and the whole far fence sit in frame */
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2win, { fogDensity: 0.00042, zenith: 0x1d4fc0, horizon: 0x9cc2f0, haze: 0xb4cfee }));
+  R.scene.fog.density = 0.00042;
+
+  /* ---- THE KEY: a high late morning sun from the left and behind, so every set throws a teal shadow toward the camera */
+  const spec = CH.rigSpec(W, 700, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, 0], { distance: 1500, shadowFar: 3200, normalBias: 0.05 }), { light: { az: -58, el: 27 } }));
+  CH.unacne(R, 0.05);
+  TXT.weather(R, { grime: 0.4, height: 2.5 });
+
+  /* ---- labels and debug */
+  const proj = (p) => CH.project(THREE, R, p);
+  const corners = [[-HS, -HS], [HS, -HS], [HS, HS], [-HS, HS]].map(([x, z]) => { const w = rot(x, z); return proj([w[0], 0, w[1]]).map(Math.round); });
+  const lab = document.getElementById('labPlan'); { const fe = rot(-40, -HS), fq = proj([fe[0], 0, fe[1]]); lab.style.left = Math.round(Math.max(200, Math.min(860, fq[0]))) + 'px'; lab.style.top = Math.round(fq[1] - 44) + 'px'; }
+  window.__dbg = { S, corners, train: proj([TR.position.x, 0, TR.position.z]).map(Math.round) };
+  console.log('DBG ' + JSON.stringify(window.__dbg));
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.5, fade: 240 }); CH.seat(cx, { sel: '.dek', a: 0.62, fade: 120 }); CH.seat(cx, { sel: '#hook', a: 0.35, fade: 120 });
+  { const low = TXLOOK.palette('win').low, g = cx.createLinearGradient(0, 0, 0, 260);   /* one smooth wash across the top for the kicker and counter */
+    for (let k = 0; k <= 6; k++) { const t = k / 6, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, TXLOOK.rgba(low, (0.7 * e).toFixed(4))); }
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 260); }
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.5, fade: 130 }));
+  TXLOOK.footWash(cx, { a: 0.42, height: 230 });
+  CH.seat(cx, { sel: '.kick', a: 0.35, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.count', a: 0.35, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

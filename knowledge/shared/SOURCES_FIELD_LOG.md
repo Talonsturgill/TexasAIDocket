@@ -2692,3 +2692,14 @@ other seven models stay off the deck. Twenty three
 boundaries that had lapsed were **re-measured with the project user agent and refused again**, and their notes were
 re-stamped rather than routed around. Eight earlier boundaries (tx-2026-0044, 0062, 0125, 0161, 0166, 0173, 0186, 0227)
 now answer or allow robots and were left to lapse on their own seven day clock.
+
+## 2026-11-21 (carousel no. 84)
+
+**www.darpa.mil answered** the Triage Challenge finals news page and the program page, and **teex.org answered** the
+account of staging the finals at Disaster City. Every claim on tx-2026-0254 quotes one of the three. **The TRIAGE-X SBIR
+topic page itself was not opened**, so the deck gives the deadline on DARPA's news page citation of it. The TEEX page's
+photo captions were admitted only where a caption names the HMT course. **comptroller.texas.gov answered** the proposed
+Rule 3.308 amendments for tx-2026-0255. **www.uta.edu and www.utep.edu answered again**, so tx-2026-0161, 0173 and 0227
+were re-verified from their own pages. **news.rice.edu answered 406** to the re-verification fetcher again while
+`fetch_doc.py` read the same pages. The boundaries whose seven day clock lapsed today were re-measured with the project
+user agent and refused again: docs.tacc.utexas.edu (robots), clinicaltrials.gov (robots) and www.faa.gov (403).

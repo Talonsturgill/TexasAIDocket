@@ -92,6 +92,12 @@ a page."* The chassis answered "flow together" and lost "custom". This page rest
    the frame ships at its score and the panel decides.
 4. **The deck pass.** The flow critic reads the contact sheet for the story's order and the spine, never
    for sameness. `distinct_check.py` proves the frames differ. The panel scores as before.
+5. **A repair rewrites the brief (weekly pass 2026-11-22).** A brief is the frame's plan of record for
+   every critic after it. When a panel repair changes a frame's headline or dek, rewrite that brief's
+   `headline (verbatim)` and `dek (verbatim)` lines from `copy.json`, and its planned picture and type
+   seat from the repair note, before any critic reads it. `panel_ready.py` refuses a round while a brief's
+   copy lines differ from `copy.json`, because no. 78's critics scored repaired frames down for copy a
+   hard fail had removed on purpose, and nos. 83 and 84 shipped briefs describing pre-repair frames.
 
 ## THE SLIDE BAR, which the artist and the critic both apply
 

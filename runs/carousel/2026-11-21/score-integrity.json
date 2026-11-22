@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.0,
+      "why": "Slides 5, 7 and 9 work as bespoke pictures. Slide 5 has the magenta blast column behind the gabion walls, with the lime link running from the crouched role player to the rover's mast. Slide 7 has three plate stacks at 10 and 15 against a pool stack that runs off the top edge, so the 'more than' reads in the picture. Slide 9's orange case fills more than half the frame on a pickup bed, and the lime link ends in an empty well. Three frames hold the score down. Slide 3 is still a toy diorama of five cubes on a flat yellow sweep, with mono pill labels doing the explaining. Slide 6's fence fills the frame, but the 'people' are thumbnail-sized badges on a flat mint mesh with no person in view, and the subject reads as a fence. Slide 8's medic is a primitive figure from behind with a blocky, un-modelled hand. Slide 1's casualty legs read as a brown lump at the left edge. Every frame is lit and graded, and none falls into grey or black. The type sits on the tone washes and each frame is composed differently."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.8,
+      "why": "The spine holds across all nine on the contact sheet: LOOK V2 win tone, one serif and mono pair, the counter, the site line, and claim ids bottom left. The teal tracked rover recurs on slides 1, 4, 5, 7, 8 and 9. The lime data link means 'robot to medic' every time it appears (slides 1, 4, 5, 8 and 9) and never marks money. Slide 3, a yellow studio diorama, and slide 6, a mint fence with no rover and no link, sit outside the rover world, as one frame of drift too many for an 8."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "why": "Every numeral traces. 52 is c11. Five is c14. More than 100 and more than $3 million are c12. $1.5 million and $1 million are c3 and c23. November 5th, 13th and 25th are c1 and c20. 2023 is c21. $100,000 is the declared plate_usd drawing rule in figures.json. The plate stacks on slide 7 show 10 and 15, which matches plates_data and plates_systems. All sources are primary (TEEX and DARPA), and the first comment lists every page cited. The 'no AI wording' rejection is honoured. Four places where a phrase runs looser than its source: (1) Slide 8's headline, 'Human machine teams beat every approach', states Winchell's claim as fact in display type and drops his scope, 'in some of the most rigorous ... environments'. The body attributes it, the headline does not. (2) Slide 5 rests on c27 and c28, which are TEEX photo captions. claims.json's own rejected list refused 'testing conditions in image captions' whose tie to the finals was unconfirmed. The deck places this blast inside the finals story, and c27 never says it happened at the finals. (3) Slide 6 says 'Each badge is one participant' beside 'more than 100'. By my rough count of the 10 columns the fence carries noticeably more than 101 badges. If so, the drawing implies a count no claim gives. The flow review says 101, and the render should be counted against it. (4) The caption's 'built to collapse' is a step past c11's 'structures that can collapse'. Slide 3's 'fifth course' label is now honest, since c14 names only four. None of these is a fabrication, so none is a hard fail."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.8,
+      "why": "What happened, who and where are all named: DARPA's Triage Challenge finals, staged by TEEX at Disaster City in College Station, November 5th to 13th, with the winners and purses (slides 1, 2 and 7). Slide 8 is a real turn, the director himself saying the result is not enough. Slide 9 gives a concrete next step with a deadline: TRIAGE-X, open until November 25th, four days after the run date. The stake is still general for a Texan. Nothing says who in Texas can bid or how, no Texas team or result is named, the county is never named, and the caption's 'Who in Texas answers it by then?' asks the question without giving the route."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover's two short sentences earn the swipe, and slide 2 pays at once with the town built to fall down. The deck turns on slide 8 and closes on an open deadline. Slides 4 and 6 both explain context and either could move or be cut without loss. Slide 6, the head count, is the most cuttable frame in the deck."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.3,
+      "why": "Clean and on register, and the house rules hold: no colons, no banned words, no first person, no dashes, ordinal dates without a year, and the 'But' sits inside a verbatim quote. 'A town built to fall down' and 'Disaster City was built to collapse' have a voice of their own. The bodies of slides 4, 5 and 8 read close to the release ('Moulage artists made hyper realistic mock injuries', 'DARPA created the challenge in 2023'), which is flat closing copy on the turn frame."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The topic is fresh: no DARPA, TEEX or Triage entry in the 30 day window of topics.json. A deck that happened rather than an absence is welcome. One familiar move is the opening and closing grammar. Deck 83 the day before was a search drone that closed beside its rugged case on a ridge, and this deck closes on a robot beside a rugged orange case. College Station also appeared in deck 72 on November 8th."
+    }
+  ],
+  "weighted_score": 7.4,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Rewrite slide 8's headline so the turn is attributed and keeps its scope ('DARPA's director said the teams won. Then he said it wasn't enough.'), and give slide 9 the route a Texas team actually takes to answer TRIAGE-X by November 25th, so the deck's one actionable stake is something a reader can act on.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 3,
+      "problem": "Five toy cubes on a flat yellow sweep, and the labels do the explaining. No set has a scale cue, and the frame reads as a board-game diorama rather than a course at Disaster City.",
+      "fix": "Drop the plinths and render one course at true scale, such as the night search set with a rover and a crouched role player under a single work light. Give the other four as small lit inset cutouts receding along a single ground plane."
+    },
+    {
+      "slide": 6,
+      "problem": "The subject is a mint mesh fence. The badges that carry the count are thumbnail-sized at feed size, there is no person and no rover, and the flat mint fills most of the frame like a fill colour.",
+      "fix": "Push the camera down the fence line to a low three-quarter so the nearest badges hang large and sharp in the foreground and the run recedes to a vanishing point. Stand one lanyarded participant at the near post for scale, and count the badges to exactly 101 against figures.json."
+    },
+    {
+      "slide": 8,
+      "problem": "The medic is a primitive figure seen from behind, with a blocky unmodelled hand, a flat orange suit and no fabric folds, set in a bare concrete box. The turn frame carries the weakest figure in the deck.",
+      "fix": "Reframe to a low over-the-shoulder shot where the tablet screen and the rover fill the middle and the medic is cropped by the left edge. That hides the hand, the arc lands on the screen, and the stretcher fills the depth."
+    },
+    {
+      "slide": 1,
+      "problem": "The casualty's legs at the left edge read as a brown lump against the rover's tracks at 432 px, so the find the headline names is not legible.",
+      "fix": "Swing the camera about 20 degrees left so the role player's boots and the rover's searchlight cone meet in clear silhouette against the pale rubble, with the medic kept on the right."
+    }
+  ]
+}

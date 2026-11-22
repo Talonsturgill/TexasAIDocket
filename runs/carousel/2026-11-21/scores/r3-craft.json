@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.8,
+      "why": "Bespoke holds: nine different worlds, cameras and scales, and each picture was made for its own sentence (aerial diorama on 2, rubble cutaway on 4, violet blast on 5, prize-plate stacks on 7, open case on 9). Frame 5 passes the LOOK V2 showstopper test: one rover at true scale, a saturated plume, shadows leaning violet and the lime link reading at feed size. Frames 7 and 9 nearly pass. Three frames hold the score under 7. Frame 6 is a fence floating on a flat yellow-to-teal gradient with no ground or world. Its badges are about 40 px tags that turn into confetti at 432 px, and the c12 footer sits on a dark circular blot. Frame 8 has a blocky back-view medic with smeared coverall folds, a flat cyan wall filling the top half, an unexplained grey wedge cut off at the left edge, and body copy on a muddy dark smudge over the floor. Frame 3 is still a toy plinth diorama: the blue-to-yellow sweep goes through a grey-brown mid band behind the body copy (y about 520 to 800), the night-search lid is a large flat blue slab, and the plinths are cut by the footer. Smaller faults: frame 1's casualty reads as a brown lump at the left edge. On frame 5 the rover's left track pod sits apart from the hull. On frame 9 the lime ribbon droops like a noodle into its socket. The rubric's 7 allows one weak frame and this deck has three."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.5,
+      "why": "The spine holds across all nine. LOOK V2 'win' blues and oranges, the serif display face, the mono counter and site line in the same places, and lime used only for the robot-to-medic data link (frames 1, 4, 5, 8, 9). It is never used on money (frame 7 plates are brass). The teal rover recurs on 1, 4, 5, 7, 8 and 9 and does real work as a motif. The story runs in order to a declared turn on frame 8. Frames 3 and 6 sit slightly outside the deck: both are saturated yellow studio sweeps with no rover and no lime, and they read as a different product from the outdoor scenes on either side. The rover's build also changes from frame to frame (long tracked hull on 1, wheeled on 7, raised mast on 5)."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "why": "Every slide and caption numeral (52, 5th, 13th, 100, $1.5M, $1M, $3M, 2023, 25th) traces to c1, c3, c11, c12, c20 or c21 in figures.json. $100,000 is plate_usd, a declared drawing rule. Frame 7's stacks count 10 and 15 plates, matching plates_data and plates_systems, and the pool stack runs off the frame for 'more than'. All sources are primary (TEEX, DARPA news, DARPA program page) and each is in first_comment. Two places are looser than the source. (1) The frame 8 headline 'Human machine teams beat every approach' drops c5's scope 'in some of the most rigorous, large scale, complex environments', and the caption drops it too. (2) Frame 3 gives the unnamed fifth competition a specific scenario (a pancaked deck over a car). The label 'fifth course' and 'Each set is drawn to illustrate' cover it, but it still shows a course no claim describes. Neither is a hard fail."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.5,
+      "why": "The deck says what happened (the DARPA Triage Challenge finals), who ran it (TEEX, DARPA), where (Disaster City, College Station), when (November 5th to 13th), who won (RoboScout, Disruptors) and what a reader can still act on: TRIAGE-X is open until November 25th (frame 9 and the caption). The turn on frame 8 ('still not enough') sets up that ask. The action stops short of usable: first_comment links the DARPA news page and not the SBIR topic itself. No Texas team or Texas stake is named beyond the venue."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover's 'The robot finds. The medic treats.' earns the swipe, and frame 2 pays at once with the town built to fall down. The order runs place, courses, job, night course, field, purse, turn, ask, and the turn on 8 is declared. Frame 6 (a headcount with no consequence) could be cut or moved without loss, and frames 3 and 5 both cover course conditions."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "Clean and on register, with good lines: 'A town built to fall down', 'Disaster City was built to collapse.' and 'Who in Texas answers it by then?'. The body copy leans on TEEX release phrasing ('relaying critical data to human medics', 'hyper realistic mock injuries'), and frame 6's dek reads like a press release."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The palette and the shift to mostly spatial scenes differ from nos. 77 to 82, which were measured reliefs. The subject and the close are familiar: no. 83 the day before was a search drone and ended on 'the grounded drone ... beside its case', and this deck is a search robot ending on a robot beside an open case on frame 9."
+    }
+  ],
+  "weighted_score": 7.246,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Rebuild frames 3, 6 and 8 inside Disaster City instead of on studio sweeps and a flat painted wall: the five sets as real rubble lanes, the badge fence planted on caliche shot low and close so each badge reads at 432 px, and the medic in a rubble lane with a sculpted figure. Those three frames are the whole gap between this deck's art and its strongest frame, 5.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 6,
+      "problem": "A fence floating on a flat yellow-to-teal gradient with no ground or world. Badges are confetti-sized at feed size, and a dark blot sits behind the c12 footer.",
+      "fix": "Plant the fence on Disaster City caliche with rubble and a sky behind, drop the camera to chest height and push in until the nearest badges are about three times larger and run off the right edge, and remove the circular wash behind c12."
+    },
+    {
+      "slide": 8,
+      "problem": "A primitive back-view medic with blocky hands and smeared folds, a flat cyan wall filling the top half as a dead zone, an unexplained grey wedge cut off at the left edge, and body copy on a muddy dark smudge.",
+      "fix": "Swing the camera to a three-quarter front view of the medic so the face profile and tablet read, replace the flat wall with a textured, lit concrete wall carrying one raking shadow, and delete the left-edge wedge."
+    },
+    {
+      "slide": 3,
+      "problem": "Toy plinth diorama on a blue-to-yellow sweep with a grey-brown band behind the body copy, a flat blue slab as the night-search lid, and plinth bases cut by the footer.",
+      "fix": "Light the sweep in one hue family so no grey band forms, replace the slab with a sculpted night lane under a single lamp, and lift the plinths about 120 px so the footer sits on clear sweep."
+    },
+    {
+      "slide": 1,
+      "problem": "The casualty at the left edge reads as an ambiguous brown lump, and the robot's search beam ends on nothing.",
+      "fix": "Re-pose the role player as clearly legible boots and legs on the rubble, lit by the beam so the beam lands on the find."
+    }
+  ]
+}
