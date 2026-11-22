@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
   "the number that is wrong",
   "the correction",
   "the object",
   "the plain question",
-  "the before and after"
+  "the before and after",
+  "the who"
  ],
  "entries": [
   {
@@ -1529,15 +1529,34 @@
    ],
    "critic_note": "B won over A. A was refused for Known and Not known label scaffolding (refused on November 16th and 18th) and for an 11 word first line that reads correctly with any research pilot's nouns. B was taken with three edits, the deck narrating line cut (915 down to about 812 characters), an ambiguous it changed to the drone, and the record so far line replaced by Every flight in the study was a recording (c12).",
    "move_note": "Opens on who wrote the paper, an undergraduate in Commerce, then answers the team's question with the flights, the held back 22 and the one Chronos score. Closes by saying what the study holds, recordings only, and asking whether the check works in the air."
+  },
+  {
+   "date": "2026-11-21",
+   "carousel_no": 84,
+   "opening_move": "the place",
+   "structure": "Pivot",
+   "closing_move": "name what happens next and when",
+   "first_line": "Disaster City was built to collapse.",
+   "words": 135,
+   "commas": 3,
+   "commas_per_100w": 2.22,
+   "chars": 886,
+   "hashtags": [
+    "#DisasterCity",
+    "#CollegeStation",
+    "#TEEX"
+   ],
+   "critic_note": "A won over B. B's first line, TRIAGE-X is open until November 25th., still read correctly with another story's nouns and put no Texas place above the fold, and its Zoom out was really a deadline followed by backstory. A was taken with five fixes: the line narrating the deck cut, #BrazosCounty swapped for #CollegeStation since no claim names the county, c5's to the problem and c7's identifying restored, c19's or a life saving intervention restored, and the close made to point at the November 25th date.",
+   "move_note": "The place opens on Disaster City itself, a town built to collapse, and the director's own not enough turns it."
   }
  ],
  "structures_recent": [
-  "Pivot",
   "Zoom in",
-  "Two columns"
+  "Two columns",
+  "Question and answer"
  ],
  "closing_moves_recent": [
-  "name what happens next and when"
+  "point at the record, plainly, without a call to action"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.3,
+      "why": "Bespoke reading. Each frame has its own world, camera and scale, and the colour is LOOK V2 throughout. Frame 9's orange case on a blue pickup bed is a real showstopper at feed size: one subject, rounded, lit, more than half the frame. Frame 7's plate stacks follow the declared scale (10 plates for Data, 15 for Systems at $100,000 each, the pool stack running off the top because the pool is 'more than'). Frame 5's violet sky with the blast reads at thumb size. Four frames hold the score down. Frame 3 leaves its top-left third as empty sky gradient, sits in an olive-grey mid wash with the tornado set barely visible, and carries four mono labels on dark plates. Frame 6 puts the rover and rubble behind the chain-link mesh, so at 432 px it reads as noise on the left half and the badges carry the frame alone. Frame 1's casualty is a brown blob of boots at the left edge, and the headline plus dek take the top 40 percent, so the rover is mid-sized under the type. Frame 2's town is a small cluster under a large flat field of banded grass, so the subject fills under a third of the frame."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 8.0,
+      "why": "The spine holds on all nine: one serif and one mono, the counter, the site line, and a teal-and-blue grade. The lime link means one thing, the data handoff, on 1, 4, 5, 8 and 9 (the flow review confirms it never touches money). The teal tracked rover appears on 1, 4, 5, 6, 7, 8 and 9, so a reader could describe the deck unprompted as 'the rover's day at Disaster City'. Story runs in order. Frame 3's diorama plinths in a studio sit slightly outside the outdoor world of the rest, and the 7 descriptor allows for one frame like that."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.0,
+      "why": "Every slide numeral traces to a claim or to figures.json: 52 (c11), more than 100 and more than $3 million (c12), $1.5 million and $1 million (c3), November 5th to 13th (c1), 2023 (c21), November 25th (c20). $100,000 is plate_usd, a drawing rule that frame 7 labels as one. All three sources are primary, from TEEX and DARPA. The caveats are kept: 'simulated', 'drawn to illustrate' on every frame, and no frame or caption calls the systems AI. One looser line. Frame 8's headline 'Better than every approach' drops both the subject (human machine teams) and the source's qualifier 'in some of the most rigorous ... environments', so at feed size it reads as if the robots beat everything. The body restores the subject, so it does not reach a stretch."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.3,
+      "why": "A Texan learns what happened (drones and ground robots finding simulated casualties for medics), who (DARPA, staged by TEEX), where (Disaster City, College Station), when, and who won. Frame 9 and the caption name a deadline, November 25th, four days after posting. Three things keep it under 10. The deck never says TRIAGE-X is an SBIR topic, so a reader who wants to act doesn't learn what kind of filing it is (it is in c19). The first comment links only the DARPA news page. No county is named (Brazos). The Texas stake rests on the venue alone, and nothing says whether any Texas team competed or what Disaster City hosting brings the state."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover is a clean two-beat hook. Frame 2 pays with the place at once. The turn is real and is placed at 8 ('Still not enough'), and 9 lands on the open ask with a date. Frames 3 and 6 are inventory beats, the course list and the headcount, and either could move or merge without loss."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.3,
+      "why": "On register and house-clean: no colons, no dashes, ordinal dates, can't-safe, no banned words. 'A town built to fall down' and 'Disaster City was built to collapse' sound like a Texan who knows the place. Frame 7's headline '$1.5 million and $1 million' is a flat label, not a line. Several bodies read as a near copy of the TEEX release ('Moulage artists made hyper realistic mock injuries')."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The subject is a fresh one for the ledger: an emergency-response robotics competition rather than grid, water or data centres. LOOK V2 win tone, a daylight outdoor palette with an orange close, and a rover-as-protagonist structure. The familiar move is the stacked-unit scale on frame 7 (plates) and frame 6 (one badge per person), the measured-count device recent decks lean on. I checked the start of topics.json but did not read the full 30-day window."
+    }
+  ],
+  "weighted_score": 7.56,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Make frame 9 tell a Texan how to act on the November 25th deadline: say it is a DARPA SBIR topic named TRIAGE-X (c19 already supports this), put the topic's own page in the first comment, and on frame 8 restore the subject 'Human machine teams beat every approach' so the turn doesn't read as robots beating everything.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 3,
+      "problem": "The top-left third is dead sky gradient. The sets sit in an olive-grey mid wash with the tornado set nearly invisible, and four mono labels on dark plates carry the reading instead of the models.",
+      "fix": "Drop the camera to plinth height and push in so the four sets fill the frame edge to edge. Cut the empty sky to a band behind the type. Light each set in its own hazard colour (a grey funnel with flying debris, orange-lit smoke, a navy night box) so the labels can shrink to accent pills or go."
+    },
+    {
+      "slide": 6,
+      "problem": "The rover and rubble sit behind the chain-link mesh on the left half, so at 432 px they read as moire noise. The badges alone carry the frame, and they start only at mid frame.",
+      "fix": "Move the rover in front of the fence, or cut it, and crop in so the badge wall fills from the left edge past the right edge. The rows run off both sides and the mesh becomes a sharp texture behind them, not a veil over the subject."
+    },
+    {
+      "slide": 1,
+      "problem": "The casualty is an unreadable brown boot shape at the left edge, the rover sits mid-sized under a type block that takes the top 40 percent, and the find the headline promises isn't visible.",
+      "fix": "Lower and widen the camera so the rover's sensor beam lands visibly on a role player's arm and torso (side on, no face, no injury) in the left foreground. Trim the dek to two lines so the rover rises into the upper half."
+    },
+    {
+      "slide": 2,
+      "problem": "The town is a small cluster under a large flat banded-grass field, so the subject fills under a third of the frame and the grass banding shows.",
+      "fix": "Raise the horizon and push the camera in so the collapsed structures and the derailed train fill the lower two thirds. Break up the grass with a ground texture and scatter to remove the banding."
+    }
+  ]
+}

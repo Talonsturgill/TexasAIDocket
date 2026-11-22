@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.8,
+      "why": "This is a real bespoke deck, because the nine frames differ in world and camera: a low ground view of the rover (1), an aerial of the town (2), plinth dioramas (3), a rubble cutaway (4), a night blast (5), a badge wall (6), plate towers (7), an interior (8) and a case on a truck bed (9). Frames 9, 5 and 2 are the strongest. Frame 9's orange case fills the frame, has rounded edges and is lit against violet. Frame 2's derailed train and collapsed deck read at feed size. Several frames still lean on primitives or a void. In frame 8 the medic is a blocky figure in an orange suit with cylinder legs and block feet, kneeling on nothing, and the wall behind him is mottled noise. In frame 6 about 101 badges hang on wires over a flat teal field with no floor, no depth cue and no person for scale, which is a pattern rather than a picture. Frame 3's sets are toy-scale. A hard dark band runs across the top 130 px, the horizon is a hard seam at about y=970, and the fifth set, top right, has no label. Frame 1's casualty legs are crude block forms in the foreground."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.5,
+      "why": "The spine holds. Every frame shares the LOOK V2 win palette, the serif and mono pairing, the counter and the site line. The lime data arc means the same thing on frames 1, 4, 5, 8 and 9, and the teal rover recurs on 1, 4, 5, 7, 8 and 9, so a reader could describe the motif unprompted. Frames 3 and 6 sit outside it, with no rover and no link, and 6 reads as a separate infographic."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "why": "Every figure traces to figures.json or a claim quote: 52 acres (c11), Nov 5 to 13 (c1), more than 100 (c12), $1.5M, $1M and more than $3M (c3, c12), 2023 (c21), Nov 25 (c20). Plate_usd is declared as a drawing rule. All three sources are primary and the first comment cites them. Three phrasings are looser than their sources. (1) Frame 8's headline states 'Human machine teams beat every approach' as fact, with no attribution and without the source's scoping 'to the problem in some of the most rigorous... environments'. The body attributes it to Winchell, so this is a lean, not a fabrication. (2) The quote behind c18 is a fragment ('read vital signs from a distance and work alongside human medics for faster'). It doesn't itself carry 'teams built technology', which frame 4 prints. (3) 'Built to collapse' and 'A town built to fall down' (caption, frame 2) push past 'structures that can collapse'."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.2,
+      "why": "A Texan learns what happened (DARPA's Triage Challenge finals), who staged it (TEEX), where (Disaster City, College Station), who won (RoboScout, Disruptors) and that the next ask, TRIAGE-X, closes November 25th. That is four days after the run date, so it is a real deadline. The stake for a Texan is still mostly 'it happened here'. No Texas team is named, no county is named, and neither frame 9 nor the caption tells a reader where to answer TRIAGE-X. The caption's 'Who in Texas answers it by then?' raises the action but leaves the reader to find the door alone, apart from the DARPA link in the first comment."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The cover line 'The robot finds. The medic treats.' earns the swipe, and frame 2 pays at once with the place. The turn comes on frame 8 ('Still not enough'), and frame 9 lands on a forward ask with a date. The middle sags. Frames 3, 4 and 5 are three course or task frames in a row. Frame 6 (a headcount) can be cut without loss, and frame 7's purse is a fact rather than a step toward the turn, so the turn arrives at slide 8 with little built toward it."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The voice is clean and on house register, with no colons or dashes and no banned words. The caption opener 'Disaster City was built to collapse.' and the derailed train detail are specific and local. Several lines read like the source press release: 'relaying critical data to human medics' (frame 1), 'Moulage artists made hyper realistic mock injuries' (frame 4), 'Participants came from the U.S. military, universities, tech companies and startups' (frame 6). Frame 8's headline 'Human machine teams beat every approach. Still not enough.' is clunky to read aloud."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "The topic is new inside the window. Nothing in topics.json covers DARPA, TEEX or Disaster City. The move is familiar against the day before. No. 83 (November 20th) was also autonomous drones on a search mission, with an Aggie-system school and a rover/drone cover on a sweep. This deck opens on a rover finding a casualty in rubble, in the same LOOK V2 palette family, so it reads as a near neighbour of the last deck."
+    }
+  ],
+  "weighted_score": 7.13,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Cut frame 6's headcount and spend that slot making the close something a Texan can act on: show what TRIAGE-X asks for and where it is posted (the DARPA page the first comment already cites), and put frame 8's universal back in Winchell's mouth ('DARPA's director says human machine teams beat every approach. He says it is not enough.'), so the turn and the ask carry the deck instead of the purse and the headcount.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 6,
+      "problem": "About 101 badges in a flat grid on wires over a featureless teal field. There is no floor, no depth and no human for scale, so it reads as a wallpaper pattern rather than a lit subject.",
+      "fix": "Hang the badges on a real lanyard rack or check-in table in a lit hangar or tent at Disaster City. Drop the camera to a low three-quarter view so the rows recede to a vanishing point, and put one hand or person reaching for a badge in the foreground for scale."
+    },
+    {
+      "slide": 8,
+      "problem": "The medic is a primitive mannequin with block feet, cylinder legs and a featureless head, kneeling on nothing. The wall behind is mottled noise texture, and the stretcher has no casualty on it.",
+      "fix": "Rebuild the medic with a proper kneeling pose and boots resting on the floor, give the wall a lit concrete or cinderblock material instead of noise, and drop the camera to the medic's shoulder height so the rover and stretcher become the focus."
+    },
+    {
+      "slide": 3,
+      "problem": "A hard dark band crosses the top 130 px, the sky-to-ground horizon is a hard seam behind the plinths, and the fifth set (collapsed deck with car, top right) has no label while the headline promises five.",
+      "fix": "Extend the sky gradient to the top edge so the band goes, soften the horizon into a studio sweep, and label or cut the unlabelled fifth set so the drawn count matches the headline and the four sourced courses."
+    },
+    {
+      "slide": 1,
+      "problem": "The foreground casualty legs are crude block forms that pull focus from the rover at feed size.",
+      "fix": "Crop the casualty to a boot and trouser hem at the left edge, or swap in a moulage dummy with modelled boots, so the rover and the lime arc to the medic stay the one subject."
+    }
+  ]
+}

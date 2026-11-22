@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.6,
+      "why": "Judged as a bespoke deck. Each picture differs in world, camera and scale, and about five are strong. Slide 5 is the showstopper: a magenta to gold blast column behind gabion walls, the lime relay arcing from a crouched role player to the rover's mast, and the type set in the dark sand the composition left for it. Slide 9's orange case on a blue truck bed is bold and round, with the beam dropping into its empty well. Slide 4's cutaway section (rubble strata, a ladder of light, the seated casualty) could only have been made for 'Find them. Read them.' Slide 7's plates count true: 10 for Data, 15 for Systems, and the pool stack runs off the top for 'more than'. Slide 2's aerial town is rich and pushed in. Four frames hold the score down. (1) Slide 8 has a primitive figure. The kneeling medic's boots lie as detached blocks behind the knees, the hair is a solid slab, a second lime arc ends in mid-air at a glowing dot against the wall, and the mottled blue wall reads as a texture fill rather than a room. (2) Slide 6 is a flat, frontal 10 by 10 icon grid of badges plus one at the right edge, on an even teal field. There is no light pool, no depth and no subject. It is a pictogram with shadows, and the quietest frame in the deck. (3) Slide 3 is a toy pedestal diorama. A hard horizontal colour seam runs across the top near y 130 at display size, and a second seam at the horizon near y 970. The fifth set (the collapsed deck crushing a car) has no label while the other four do, and the 'c14' footer crowds the 'tornado market' pill on the pedestal face. (4) Slide 1 is unchanged. Its top 40 percent is type on a wash, the casualty's boots in the foreground are lumpy brown primitives, and the medic who 'treats' is a small figure at the far right. The 7 descriptor allows one weak frame, and this deck has three to four."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.8,
+      "why": "The spine holds on all nine frames: the same serif headline and grotesque body, the mono kicker, counter and site line in the same places, and claim ids bottom left. The lime accent keeps one meaning, the data relay, on 1, 4, 5, 8 and 9, and never touches money (7's plates are brass). The teal tracked rover recurs on 1, 4, 5, 7, 8 and 9 as a genuine object continuity. The story runs in order. Two frames sit outside the family. Slide 6's flat even teal field has none of the lit depth of its neighbours, and slide 8's mottled blue interior wall is a different material language from every other frame. On a bespoke reading a change of world is not a fault, so these count only as a light break in the spine."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.8,
+      "why": "Every sourced numeral traces to a claim or to figures.json: 52 (c11), 100 (c12), $3 million (c12), $1.5 million (c3 and c23), $1 million (c3), November 5th to 13th (c1), 2023 (c21), November 25th (c20). plate_usd 100,000 is a declared drawing rule, and the stacks of 10 and 15 match it. All three sources are primary (TEEX, DARPA news, the DARPA program page), and the first comment cites only those. Two loosenings. First, slide 8's headline 'Human machine teams beat every approach' drops Winchell's qualifier 'in some of the most rigorous, large scale, complex environments' (c5), and the headline itself carries no attribution, although the body does. Second, slide 3 draws a fifth course, a collapsed structure crushing a car, that no claim describes (c14 names four). It is covered by 'Each set is drawn to illustrate'. Also, slide 7 stands the pool beside the two prizes as if it were a third purse, when it contains them. The pills are accurate. No hard fail."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.5,
+      "why": "What happened, who ran it (DARPA, staged by TEEX), where (Disaster City, College Station), when (November 5th to 13th), who won (RoboScout and Disruptors) and a deadline (TRIAGE-X, open until November 25th) are all on the slides. The Texas stake is stated generally. No Texas team, Texas agency outcome or Texas responder consequence appears. The caption's 'Who in Texas answers it by then?' points at a national federal solicitation, so the Texan's next step stays abstract."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover sets up a clean division of labour, and frame 2 pays at once with the place. The deck builds through courses, job, blast, field and purse to a real turn on 8 ('Still not enough') and closes on the next ask with a date. Slide 6 (100 badges) is cuttable without loss, since slide 7's body already carries the field through c12. Slide 3 and slide 5 also overlap: night search is both a pedestal on 3 and the whole of 5."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.3,
+      "why": "The headlines are good and human: 'A town built to fall down', 'Find them. Read them. Tell a medic.', 'It searched through the blast'. The bodies lean on source phrasing ('relaying critical data to human medics', 'send critical data to medical response teams'). 'Drawn to illustrate' recurs on six slides and reads like boilerplate. There is little regional texture beyond place names. The bodies are clean on house rules (no colons, dashes or banned words seen)."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The topic is fresh against the ledger, with no DARPA or Disaster City item inside 30 days. No. 83 (November 20th), though, was also a search robot or drone deck that closed on a case beside the machine. This close (an open case with the rover beside it) repeats that opening and closing family. The studio-sweep move on 3 and 6 is the house default this week. It is a fresh concept with one familiar move."
+    }
+  ],
+  "weighted_score": 7.328,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild slide 8 as the deck's turn it is meant to be: replace the primitive kneeling medic (detached boot blocks, slab hair) with a properly jointed figure in a three-quarter view kneeling at a role player, and let the single lime beam land on the tablet in one continuous arc. Cut the stray second arc and swap the mottled wall for a lit concrete interior. Then give slide 6 a real light and depth (a raked camera down a lit badge wall, foreground badges large and soft) so the deck's two quietest frames stop pulling the art median under 7.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 8,
+      "problem": "The kneeling medic is a primitive model: the boots lie as separate blocks behind the knees, the hair is a solid slab, and the body is a lumpy orange tube seen square from behind. A second lime arc ends in mid-air at a glowing dot on the wall, and the wall is a mottled blue texture fill rather than a lit room.",
+      "fix": "Swap in a jointed figure posed kneeling in three-quarter view with shins on the floor and the face partly visible, delete the second arc so one beam lands on the tablet, and light the room with one warm key from frame left across a concrete wall."
+    },
+    {
+      "slide": 6,
+      "problem": "A flat, frontal, evenly lit 10 by 10 grid of badges on a featureless teal field. It reads as an icon array, with no subject, no light pool, no depth and the least drama in the deck.",
+      "fix": "Rake the camera about 35 degrees down the badge wall so near badges fill the lower right large and soft-focused and far rows recede, with one hard side key throwing lanyard shadows across the wall. Keep the 101st badge cut by the edge."
+    },
+    {
+      "slide": 3,
+      "problem": "A visible hard colour seam crosses the top band near y 130 at display size, and a second seam runs at the horizon near y 970. The fifth set (the collapsed deck on a car) is the only one without a label pill, and the 'c14' footer crowds the 'tornado market' pill on the pedestal face.",
+      "fix": "Extend the studio sweep so it curves continuously from floor to top edge with no band, add the fifth pill or drop that set to a rubble variant c14 supports, and raise the pedestal row about 60 px so the pills clear the footer line."
+    },
+    {
+      "slide": 1,
+      "problem": "The subject sits in the lower half under a type wash that takes the top 40 percent. The casualty's foreground boots are lumpy brown primitives, and the medic who 'treats' is a small figure at the far right edge.",
+      "fix": "Push the camera in and lower it so the rover's mast and the beam fill the upper frame behind the headline. Replace the boot primitives with the jointed casualty legs cropped by the left edge, and bring the medic forward to about a quarter of frame height where the lime arc lands."
+    }
+  ]
+}

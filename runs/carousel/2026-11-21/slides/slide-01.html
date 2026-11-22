@@ -1,0 +1,394 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-21, frame 1 of 9, DISASTER CITY. A spatial scene through txthree.js under the v2win morning sky.
+The camera sits low, eye 0.45 m over broken concrete slabs, about 2.8 m from an illustrative tracked triage rover (chassis
+triage_rover, refined here with modelled link tracks, sponsons, an access plate, a grab rail and a rear payload case) that stands on a
+level slab with its standoff lens turned down onto a role player lying under a propped slab in the left foreground (boots, shins and a hi-vis sleeve only, a simulated casualty, no injury, no face), a faint cool scan cone between them. Ten
+metres beyond, a medic seen from behind holds a rugged tablet turned away, and one lime link, the deck's accent and its
+one meaning, arcs from the rover's radio down onto that tablet. Every machine is drawn to illustrate, to no maker's or
+team's design. No injury, no face, no logo. FIG is empty and nothing is counted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:88px; top:150px; width:920px">The robot finds.<br>The medic treats.</h1>
+<p class="dek" data-follow="22" style="left:88px; width:912px; font-size:26px">Autonomous drones and ground robots worked alongside first responders on simulated casualties, relaying critical data to human medics. TEEX staged DARPA's Triage Challenge finals at Disaster City in College Station from November 5th to November 13th. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Disaster City", counter: "01 / 09", src: "c1 c2 c9", fit: { min: 80, max: 98, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 3000, fog: 0.0007 });
+
+  /* THE FIGURES. This frame draws no count and no length: the brief gives FIG {} and the art must carry none. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 1 carries no figure, FIG must stay empty');
+
+  /* THE FRAME'S AXES, laid out from the deck's sun so the key rakes the rover from camera left.
+   * f is the view direction on the ground, rt is screen right. The sun's bearing sits ALPHA degrees left of the view's back. */
+  const SD = TXT.sunDir(), sh = Math.hypot(SD.x, SD.z), sx = SD.x / sh, sz = SD.z / sh;
+  const ALPHA = 140 * Math.PI / 180;     /* toward-sun rotated to the view direction */
+  const f = [-(sx * Math.cos(ALPHA) - sz * Math.sin(ALPHA)), -(sz * Math.cos(ALPHA) + sx * Math.sin(ALPHA))];
+  const rt = [-f[1], f[0]];
+  const O = [37.3, -21.7];   /* the frame's origin, kept off the world axes so no world space texture seam crosses the picture */
+  const W2 = (u, v) => [O[0] + u * rt[0] + v * f[0], O[1] + u * rt[1] + v * f[1]];          /* frame (u right, v away) to world xz */
+  const yawTo = (du, dv) => { const d = [du * rt[0] + dv * f[0], du * rt[1] + dv * f[1]]; return Math.atan2(d[0], d[1]); };
+  const SUN_AZ = Math.atan2(sx, sz) * 180 / Math.PI;
+
+  /* MATERIALS, named for what they are so the surface pass picks the right tooth */
+  const concTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    const r = CH.rng(4401); g.fillStyle = '#e2c27e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 26; i++) { const x = r() * w, y = r() * h, rad = 20 + r() * 70, gr = g.createRadialGradient(x, y, 0, x, y, rad); gr.addColorStop(0, 'rgba(118,96,74,0.28)'); gr.addColorStop(1, 'rgba(118,96,74,0)'); g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
+    for (let i = 0; i < 2400; i++) { const t = r(); g.fillStyle = t < 0.4 ? 'rgba(84,76,70,0.65)' : t < 0.7 ? 'rgba(150,132,112,0.6)' : 'rgba(250,240,220,0.6)'; g.beginPath(); g.ellipse(r() * w, r() * h, 1 + r() * 3, 0.8 + r() * 2.2, r() * 3, 0, 7); g.fill(); }
+    for (let i = 0; i < 9000; i++) { const c = 150 + r() * 90 | 0; g.fillStyle = `rgba(${c},${c - 8},${c - 26},${(0.15 + r() * 0.35).toFixed(2)})`; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 3); }
+    for (let i = 0; i < 40; i++) { g.strokeStyle = 'rgba(120,104,86,0.35)'; g.lineWidth = 1 + r() * 1.5; g.beginPath(); let x = r() * w, y = r() * h; g.moveTo(x, y); for (let k = 0; k < 6; k++) { x += (r() - 0.5) * 60; y += (r() - 0.5) * 60; g.lineTo(x, y); } g.stroke(); }
+  }, [1, 1]);
+  const conc = new THREE.MeshStandardMaterial({ name: 'conc-slab-broken', color: 0xffffff, map: concTex, roughness: 0.9, metalness: 0 });
+  const concCut = new THREE.MeshStandardMaterial({ name: 'conc-fracture', color: 0xc8b89c, roughness: 0.95, metalness: 0 });
+  const rebar = new THREE.MeshStandardMaterial({ name: 'rebar-rusted-steel', color: 0x9a4e2a, roughness: 0.62, metalness: 0.6 });
+
+  /* THE GROUND, Brazos caliche and grit around the slabs */
+  TXT.ground(R, { surface: 'caliche', size: 900, tile: 5, seed: 1121 });
+
+  /* A BROKEN SLAB: a rounded block with a jagged fractured edge and rebar stubs out of the break */
+  const slab = (u, v, w, d, th, yaw, tiltX, tiltZ, lift, seed, bars) => {
+    const r = CH.rng(seed), grp = new THREE.Group();
+    const m = TXT.roundedBox(w, th, d, 0.006, conc); m.userData.txBevel = false; grp.add(m);
+    /* chipped arrises: angular spalls knocked out of the top edges, sharp, no bevel */
+    for (let k = 0; k < Math.round(w * 5); k++) { const sz = 0.025 + r() * 0.045, sp = new THREE.Mesh(new THREE.DodecahedronGeometry(sz, 0), concCut);
+      const side = r() < 0.6 ? 1 : -1; sp.position.set(-w / 2 + r() * w, th / 2 - sz * 0.3, side * (d / 2 - sz * 0.2)); sp.scale.set(1.4, 0.5, 0.8); sp.rotation.set(r() * 3, r() * 3, r() * 3); sp.userData.txBevel = false; grp.add(sp); }
+    /* the fractured edge: chunks bitten out along one long side */
+    for (let k = 0; k < 5; k++) { const cw = 0.12 + r() * 0.3, ch = TXT.roundedBox(cw, th * (0.6 + r() * 0.5), 0.1 + r() * 0.12, 0.015, concCut);
+      ch.position.set(-w / 2 + (k + 0.5) * w / 5 + (r() - 0.5) * 0.1, (r() - 0.5) * th * 0.2, d / 2 + 0.02); ch.rotation.set((r() - 0.5) * 0.6, (r() - 0.5) * 0.8, (r() - 0.5) * 0.5); grp.add(ch); }
+    for (let k = 0; k < (bars || 0); k++) { const x0 = -w / 2 + 0.1 + r() * (w - 0.2);
+      const bend = (r() - 0.5) * 0.5; grp.add(TXT.tube([[x0, 0, d / 2 - 0.05], [x0, 0.0, d / 2 + 0.1], [x0 + bend * 0.3, 0.03 + r() * 0.05, d / 2 + 0.2], [x0 + bend * 0.6, 0.06 + r() * 0.1, d / 2 + 0.2 + r() * 0.06]], 0.009, rebar, { segments: 24, radial: 7, tension: 0.2 })); }
+    const p = W2(u, v); grp.position.set(p[0], lift + th / 2, p[1]); grp.rotation.order = 'YXZ'; grp.rotation.set(tiltX, yaw, tiltZ);
+    TXT.add(R, grp); return grp;
+  };
+
+  /* THE ROVER'S SLAB: a level broken floor slab it stands on, top at SLAB_T */
+  const SLAB_T = 0.16, RV = [ 0.05, 4.2 ];   /* rover centre, u right and v away from the camera, metres */
+  const base = slab(RV[0] + 0.2, RV[1] + 0.2, 2.6, 2.2, SLAB_T, yawTo(0.3, 1), 0, 0, 0, 11, 4);
+  /* slabs around it: one in front occluding the near track, tilted plates and a broken edge */
+  slab(-2.6, 2.2, 3.4, 2.6, 0.12, yawTo(1, 0.1), 0.03, 0.04, 0.0, 19, 3);
+  slab(0.4, 2.0, 3.0, 2.4, 0.11, yawTo(1, -0.12), -0.02, -0.03, 0.0, 23, 3);
+  slab(3.2, 2.4, 3.2, 2.6, 0.13, yawTo(1, 0.2), 0.05, -0.05, 0.0, 27, 3);   /* the broken floor the camera lies on, one plate across the frame */
+  /* the slab the role player lies under: propped on a block at one end, its fractured edge over the hips */
+  slab(-1.45, 2.85, 1.4, 1.2, 0.16, yawTo(0.2, -1), 0.0, 0.28, 0.22, 31, 6);
+  { const pb = TXT.roundedBox(0.39, 0.19, 0.19, 0.012, new THREE.MeshStandardMaterial({ name: 'conc-block-prop', color: 0xa99f8e, roughness: 0.92 })); const p = W2(-1.75, 3.0); pb.position.set(p[0], 0.21, p[1]); pb.rotation.y = 0.7; TXT.add(R, pb); }
+  /* a sharp fractured slab edge in the near right foreground, rebar standing out of the break toward the lens */
+  slab(0.6, 2.25, 1.9, 0.9, 0.13, yawTo(0, -1), 0.0, -0.09, 0.0, 33, 3);   /* tilted: its crisp front edge leads in from bottom right toward the rover */
+  slab(1.9, 3.6, 1.6, 1.1, 0.16, yawTo(1, -0.2), 0.32, 0.1, 0.1, 41, 3);
+  slab(-2.4, 4.6, 1.8, 1.2, 0.18, yawTo(0.2, 1), 0.1, -0.35, 0.08, 51, 2);
+  slab(0.4, 5.6, 2.0, 1.2, 0.16, yawTo(1, 0.8), -0.12, 0.08, 0.0, 61, 2);
+  slab(3.4, 7.8, 2.2, 1.4, 0.18, yawTo(0.5, 1), 0.06, 0.22, 0.0, 71, 0);
+  slab(-3.5, 8.5, 2.4, 1.3, 0.2, yawTo(1, 0.1), -0.25, -0.15, 0.1, 81, 2);
+  /* concrete block fragments and grit */
+  const blockM = new THREE.MeshStandardMaterial({ name: 'conc-block-cmu', color: 0xb3aa9a, roughness: 0.92 });
+  { const r = CH.rng(909); for (let i = 0; i < 26; i++) { const u = (r() - 0.5) * 7, v = 1.2 + r() * 8; if (Math.abs(u - RV[0]) < 1.4 && Math.abs(v - RV[1]) < 1.3) continue; if (Math.abs(u - 1.7) < 0.7 && Math.abs(v - 10) < 0.8) continue;
+    const b = TXT.roundedBox(0.39, 0.19, 0.19, 0.012, blockM), p = W2(u, v); b.position.set(p[0], 0.09, p[1]); b.rotation.set((r() - 0.5) * 0.4, r() * 3, (r() - 0.5) * 0.3); TXT.add(R, b); } }
+  TXT.scatter(R, { kind: 'rock', count: 4200, area: (() => { const a = W2(-5, 1.2), b = W2(6, 16); return [Math.min(a[0], b[0]) - 4, Math.min(a[1], b[1]) - 4, Math.max(a[0], b[0]) + 4, Math.max(a[1], b[1]) + 4]; })(), seed: 17, scale: [0.012, 0.06], colors: [0xcdbfa6, 0xb9ab92, 0xd8ccb4, 0xa79b86, 0x9a8f80] });
+
+  /* FAR DISASTER CITY: a rubble pile low on the left and a broken concrete frame low on the right, so the sky stays clean */
+  { const pile = K.make('rubble_pile', { w: 12, d: 7, h: 3.2, seed: 5 }); const p = W2(-11, 30); pile.position.set(p[0], 0, p[1]); pile.rotation.y = yawTo(1, 0.3); TXT.add(R, pile); }
+  { const pile = K.make('rubble_pile', { w: 7, d: 5, h: 1.6, seed: 8 }); const p = W2(13, 34); pile.position.set(p[0], 0, p[1]); pile.rotation.y = yawTo(1, -0.2); TXT.add(R, pile); }
+  /* A PANCAKED MOCK BUILDING behind the medic: four floor plates come down onto each other on broken column stubs,
+   * the top plate split and tipped, one plate hanging to the ground, rebar dangling from every broken edge */
+  { const pk = new THREE.Group(), r = CH.rng(5150), bconc = new THREE.MeshStandardMaterial({ name: 'conc-floor-plate-cast', color: 0xb4bcc4, roughness: 0.95 });
+    { const wl = (w, h, x, y) => { const m = TXT.roundedBox(0.32, h, w, 0.03, bconc); m.position.set(-4.9, y + h / 2, x); pk.add(m); };
+      wl(7.4, 0.7, 0, 0); wl(1.4, 1.0, -3.0, 0.7); wl(1.8, 1.0, 0, 0.7); wl(1.4, 1.0, 3.0, 0.7); wl(7.4, 0.5, 0, 1.7); }
+    let y = 0;
+    const voidM = new THREE.MeshStandardMaterial({ name: 'conc-crushed-void', color: 0x34404e, roughness: 1 });
+    for (let k = 0; k < 4; k++) {
+      const gap = k === 0 ? 0.0 : 0.3 + r() * 0.15;
+      [[-4.2, -3], [4.2, -3], [-4.2, 3], [4.2, 3], [0, -3], [0, 3]].forEach(([x, z]) => { if (gap <= 0) return; const c = TXT.roundedBox(0.45, gap, 0.45, 0.02, bconc); c.position.set(x + (r() - 0.5) * 0.3, y + gap / 2, z); c.rotation.z = (r() - 0.5) * 0.2; pk.add(c); });
+      if (gap > 0) { const vd = TXT.roundedBox(8.6 - k * 0.5, gap, 6.6, 0.01, voidM); vd.position.set(0, y + gap / 2, -0.2); pk.add(vd); }
+      y += gap;
+      const pl = TXT.roundedBox(9.5 - k * 0.5, 0.55, 7.4, 0.02, bconc); pl.position.set((r() - 0.5) * 0.6, y + 0.15, 0); pl.rotation.set((r() - 0.5) * 0.05, (r() - 0.5) * 0.06, (r() - 0.5) * 0.06); pk.add(pl);
+      for (let q = 0; q < 3; q++) { const x = -3.0 + q * 3.0; pk.add(TXT.tube([[x, y + 0.1, 3.7], [x + (r() - 0.5) * 0.2, y - 0.2, 3.85], [x + (r() - 0.5) * 0.4, y - 0.5 - r() * 0.4, 3.9]], 0.03, rebar, { segments: 8, radial: 5 })); }
+      y += 0.55;
+    }
+    const t1 = TXT.roundedBox(5, 0.42, 7.2, 0.05, bconc); t1.position.set(-2.6, y + 0.55, 0); t1.rotation.z = 0.2; pk.add(t1);
+    const t2 = TXT.roundedBox(4.4, 0.42, 7.2, 0.05, bconc); t2.position.set(3.4, y - 0.3, 0.2); t2.rotation.z = -0.38; pk.add(t2);
+    const hang = TXT.roundedBox(3.6, 0.4, 6.8, 0.05, bconc); hang.position.set(5.9, 1.0, 0); hang.rotation.z = -0.62; pk.add(hang);
+    const p = W2(10.5, 32); pk.position.set(p[0], 0, p[1]); pk.rotation.y = yawTo(0.15, -1); TXT.add(R, pk); }
+
+  { const fr = new THREE.Group(), cm = new THREE.MeshStandardMaterial({ name: 'conc-frame-cast-far', color: 0xcfc2a8, roughness: 0.9 });
+    [[-4, 0], [0, 0], [4, 0]].forEach(([x, z], i) => { const h = 4 + i * 1.6; const c = TXT.roundedBox(0.45, h, 0.45, 0.03, cm); c.position.set(x, h / 2, z); fr.add(c); });
+    const deck2 = TXT.roundedBox(9, 0.32, 4, 0.04, cm); deck2.position.set(0, 5.6, 0); deck2.rotation.z = 0.2; fr.add(deck2);
+    const p = W2(-24, 85); fr.position.set(p[0], 0, p[1]); fr.rotation.y = yawTo(1, 0.1); TXT.add(R, fr); }
+  /* THE ROVER: the chassis model, refined in this frame. The head pans left toward someone it has found, out of frame. */
+  const rov = K.make('triage_rover', { pan: 0.85, tilt: -0.06, mast: 1, grime: 0.8 });
+  /* THE TRACKS, REBUILT IN THIS FRAME. The chassis belt, its wheels and its dust card are hidden; each side gets a
+   * belt of individual rubber links with moulded grousers wrapping a toothed sprocket (rear) and an idler (front), four
+   * recessed road wheels with rims and hubs, a sponson fender tying it to the hull, and a dense contact under the run. */
+  rov.traverse((m) => { if (!m.isMesh) return; const g = m.geometry && m.geometry.parameters, nm = (m.material && m.material.name) || '';
+    if (/tr-rubber/.test(nm)) m.visible = false;
+    if (g && g.radiusTop != null && Math.abs(m.rotation.z) > 1 && [0.085, 0.05, 0.03, 0.018].some((v) => Math.abs(g.radiusTop - v) < 0.0015)) m.visible = false;
+    if (g && g.width != null && Math.abs(g.width - 0.98) < 0.01 && Math.abs(g.height - 0.2) < 0.01) m.visible = false; });
+  { const linkM = new THREE.MeshStandardMaterial({ name: 'rubber-track-link', color: 0x22252a, roughness: 0.86 });
+    const grM = new THREE.MeshStandardMaterial({ name: 'rubber-track-grouser', color: 0x2c3036, roughness: 0.8 });
+    const tireM = new THREE.MeshStandardMaterial({ name: 'rubber-tire-road-wheel', color: 0x1b1d21, roughness: 0.82 });
+    const dishM = new THREE.MeshStandardMaterial({ name: 'painted-wheel-dish', color: 0x56616b, roughness: 0.48, metalness: 0.35 }); dishM.userData.txSurface = 'paint';
+    const dishIn = new THREE.MeshStandardMaterial({ name: 'painted-wheel-recess', color: 0x3a434c, roughness: 0.6, metalness: 0.3 }); dishIn.userData.txSurface = 'paint';
+    const hubM = new THREE.MeshStandardMaterial({ name: 'painted-hub-steel', color: 0x9aa3ad, roughness: 0.38, metalness: 0.8 }); hubM.userData.txSurface = 'paint';
+    const darkM = new THREE.MeshStandardMaterial({ name: 'rubber-hub-seal', color: 0x0e1012, roughness: 0.7 });
+    const coatF = new THREE.MeshPhysicalMaterial({ name: 'powder-coat-teal-fender', color: CH.ROVER, roughness: 0.5, metalness: 0.15, clearcoat: 0.4, clearcoatRoughness: 0.35 });
+    const CY = 0.105, WR = 0.075, RL = WR + 0.008, ZF = 0.4, ZR = -0.4, W = 0.13;
+    /* a wheel whose axis runs along x: an outer band, faces with a recessed dish, a proud hub with bolts */
+    const wheel = (r, w, band, x, y, z, opts) => { const g = new THREE.Group(); g.position.set(x, y, z);
+      const a = new THREE.Group(); a.rotation.z = Math.PI / 2; g.add(a);
+      const o = new THREE.Mesh(new THREE.CylinderGeometry(r, r, w, 48, 1, true), band); o.userData.txBevel = false; a.add(o);
+      [1, -1].forEach((sd) => {
+        const ring = new THREE.Mesh(new THREE.RingGeometry(r * 0.72, r, 48), band === tireM ? tireM : dishM); ring.rotation.x = -sd * Math.PI / 2; ring.position.y = sd * w / 2; ring.userData.txBevel = false; a.add(ring);
+        const wall = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.72, r * 0.72, 0.014, 40, 1, true), dishIn); wall.material.side = THREE.DoubleSide; wall.position.y = sd * (w / 2 - 0.007); wall.userData.txBevel = false; a.add(wall);
+        const dish = new THREE.Mesh(new THREE.CircleGeometry(r * 0.72, 40), dishIn); dish.rotation.x = -sd * Math.PI / 2; dish.position.y = sd * (w / 2 - 0.014); dish.userData.txBevel = false; a.add(dish);
+        if (opts && opts.holes) for (let k = 0; k < 5; k++) { const h = new THREE.Mesh(new THREE.CircleGeometry(r * 0.12, 18), darkM); const ang = k / 5 * Math.PI * 2; h.rotation.x = -sd * Math.PI / 2; h.position.set(Math.cos(ang) * r * 0.48, sd * (w / 2 - 0.0135), Math.sin(ang) * r * 0.48); h.userData.txBevel = false; a.add(h); }
+        const hub = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.3, r * 0.34, 0.02, 24), hubM); hub.position.y = sd * (w / 2 - 0.004); a.add(hub);
+        const cap = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.12, r * 0.12, 0.012, 16), darkM); cap.position.y = sd * (w / 2 + 0.008); a.add(cap);
+        for (let k = 0; k < 5; k++) { const ang = k / 5 * Math.PI * 2 + 0.3, b = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.01, 6), hubM); b.position.set(Math.cos(ang) * r * 0.21, sd * (w / 2 + 0.008), Math.sin(ang) * r * 0.21); a.add(b); }
+      });
+      if (opts && opts.teeth) for (let k = 0; k < 14; k++) { const ang = k / 14 * Math.PI * 2, t = TXT.roundedBox(w * 0.36, 0.022, 0.02, 0.005, dishM); t.position.set(0, Math.cos(ang) * (r + 0.006), Math.sin(ang) * (r + 0.006)); t.rotation.x = -ang; g.add(t); }
+      return g; };
+    /* the link path: top run rear-ward, the sprocket arc, the lower run forward, the idler arc */
+    const L = 2 * (ZF - ZR) + 2 * Math.PI * RL, N = Math.round(L / 0.041), step = L / N, mats = [];
+    for (let i = 0; i < N; i++) { let d = i * step, th, zc, yc;
+      if (d < ZF - ZR) { th = 0; zc = ZF - d; yc = CY + RL; }
+      else if ((d -= ZF - ZR) < Math.PI * RL) { th = d / RL; zc = ZR - Math.sin(th) * RL; yc = CY + Math.cos(th) * RL; }
+      else if ((d -= Math.PI * RL) < ZF - ZR) { th = Math.PI; zc = ZR + d; yc = CY - RL; }
+      else { d -= ZF - ZR; th = Math.PI + d / RL; zc = ZF - Math.sin(th) * RL; yc = CY + Math.cos(th) * RL; }
+      mats.push([zc, yc, -th]); }
+    const plateG = new THREE.BoxGeometry(W, 0.016, 0.036), grG = new THREE.BoxGeometry(W * 0.92, 0.012, 0.013); grG.translate(0, 0.014, 0);
+    const hornG = new THREE.BoxGeometry(0.018, 0.018, 0.022); hornG.translate(0, -0.016, 0);
+    [-1, 1].forEach((sd) => { const x = sd * 0.37;
+      [[plateG, linkM], [grG, grM], [hornG, linkM]].forEach(([geo, mt]) => { const im = new THREE.InstancedMesh(geo, mt, N), m4 = new THREE.Matrix4(), q = new THREE.Quaternion();
+        mats.forEach(([z, y, al], i) => { q.setFromAxisAngle(new THREE.Vector3(1, 0, 0), al); m4.compose(new THREE.Vector3(x, y, z), q, new THREE.Vector3(1, 1, 1)); im.setMatrixAt(i, m4); });
+        im.castShadow = true; im.receiveShadow = true; im.userData.txBevel = false; rov.add(im); });
+      rov.add(wheel(WR, 0.1, dishM, x, CY, ZR, { teeth: true }));
+      rov.add(wheel(WR, 0.1, dishM, x, CY, ZF, { holes: true }));
+      [-0.24, -0.08, 0.08, 0.24].forEach((z) => rov.add(wheel(0.047, 0.1, tireM, x, CY - RL + 0.008 + 0.047, z)));
+      /* return rollers carry the top run; the sponson fender ties the pod to the hull */
+      [-0.15, 0.15].forEach((z) => rov.add(wheel(0.02, 0.05, tireM, x, CY + RL - 0.008 - 0.02, z)));
+      const fen = TXT.roundedBox(0.17, 0.026, 1.04, 0.01, coatF); fen.position.set(sd * 0.375, 0.236, 0); rov.add(fen);
+      const lip = TXT.roundedBox(0.012, 0.05, 1.0, 0.004, coatF); lip.position.set(sd * 0.455, 0.215, 0); rov.add(lip);
+      const web = TXT.roundedBox(0.03, 0.09, 0.84, 0.008, coatF); web.position.set(sd * 0.295, 0.2, 0); rov.add(web);
+      [-0.35, 0.0, 0.35].forEach((z) => { const br = TXT.roundedBox(0.16, 0.012, 0.025, 0.004, coatF); br.position.set(sd * 0.37, 0.25, z); rov.add(br); });
+    });
+    const val = TXT.roundedBox(0.6, 0.1, 0.05, 0.015, coatF); val.position.set(0, 0.17, 0.455); rov.add(val);
+    /* the dense contact under each lower run */
+    const cm2 = new THREE.MeshBasicMaterial({ name: 'track-contact-core', color: 0x031a1d, transparent: true, opacity: 0.95, depthWrite: false }); cm2.userData.txSurface = false;
+    [-1, 1].forEach((sd) => { const pl = new THREE.Mesh(new THREE.PlaneGeometry(0.15, 0.84), cm2); pl.rotation.x = -Math.PI / 2; pl.position.set(sd * 0.37, 0.005, 0); pl.userData.txBevel = false; pl.castShadow = false; rov.add(pl); }); }
+  /* a bolted access plate on each flank, a tubular grab rail on the deck and a payload case on the rear deck */
+  { const coat = new THREE.MeshPhysicalMaterial({ name: 'powder-coat-teal', color: CH.ROVER, roughness: 0.5, metalness: 0.15, clearcoat: 0.4, clearcoatRoughness: 0.35 });
+    const steel = new THREE.MeshStandardMaterial({ name: 'brushed-steel-bolt', color: 0xc4c9d0, roughness: 0.3, metalness: 1 });
+    const caseM = new THREE.MeshPhysicalMaterial({ name: 'plastic-case-sand', color: 0xd9c9a3, roughness: 0.55, metalness: 0, clearcoat: 0.2 });
+    const dark = new THREE.MeshStandardMaterial({ name: 'rubber-seal', color: 0x15171a, roughness: 0.8 });
+    [-1, 1].forEach((s) => { const pl = TXT.roundedBox(0.012, 0.11, 0.3, 0.004, coat); pl.position.set(s * 0.304, 0.25, 0.1); rov.add(pl);
+      [[-0.045, -0.13], [0.045, -0.13], [-0.045, 0.13], [0.045, 0.13]].forEach(([y, z]) => { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.01, 10), steel); b.rotation.z = Math.PI / 2; b.position.set(s * 0.311, 0.25 + y, 0.1 + z); rov.add(b); }); });
+    const rail = TXT.tube([[-0.2, 0.375, -0.32], [-0.2, 0.44, -0.3], [-0.2, 0.46, -0.2], [-0.2, 0.44, -0.1], [-0.2, 0.375, -0.08]], 0.011, steel, { segments: 30, radial: 10 }); rov.add(rail);
+    const cs = TXT.roundedBox(0.3, 0.13, 0.22, 0.02, caseM); cs.position.set(0.07, 0.44, -0.24); rov.add(cs);
+    const lid = TXT.roundedBox(0.31, 0.012, 0.23, 0.004, dark); lid.position.set(0.07, 0.48, -0.24); rov.add(lid);
+    [-0.08, 0.08].forEach((x) => { const l = TXT.roundedBox(0.03, 0.04, 0.012, 0.004, dark); l.position.set(0.07 + x, 0.46, -0.125); rov.add(l); }); }
+  /* the whip antenna leans back off the radio, so the mast keeps its line under the type */
+  rov.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.parameters && m.geometry.parameters.height > 0.5 && m.geometry.parameters.radiusTop <= 0.005) m.visible = false; });
+  /* a real whip: a threaded base, a spring, a tapered steel whip and a ball tip, on the radio */
+  { const hd = rov.userData.head, bm = new THREE.MeshStandardMaterial({ name: 'cast-antenna-base', color: 0x2a2e34, roughness: 0.45, metalness: 0.6 });
+    const wm = new THREE.MeshStandardMaterial({ name: 'steel-whip-black', color: 0x1c1f24, roughness: 0.35, metalness: 0.8 });
+    const bs = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.014, 0.035, 16), bm); bs.position.set(0.05, 0.078, -0.04); hd.add(bs); rov.userData.antennaBase = bs;
+    const coil = []; for (let i = 0; i <= 60; i++) { const t = i / 60; coil.push([0.05 + Math.cos(t * 6 * Math.PI * 2) * 0.008, 0.096 + t * 0.04, -0.04 + Math.sin(t * 6 * Math.PI * 2) * 0.008]); }
+    hd.add(TXT.tube(coil, 0.0022, bm, { segments: 180, radial: 6 }));
+    const wh = new THREE.Mesh(new THREE.CylinderGeometry(0.0018, 0.0042, 0.3, 10), wm); wh.position.set(0.05, 0.136 + 0.15, -0.04); hd.add(wh);
+    const tip = new THREE.Mesh(new THREE.SphereGeometry(0.006, 12, 8), bm); tip.position.set(0.05, 0.437, -0.04); hd.add(tip); }
+  /* panel seams, bolt lines and cable runs on the hull */
+  { const seam = new THREE.MeshStandardMaterial({ name: 'rubber-seal-seam', color: 0x0c1514, roughness: 0.7 });
+    const bolt = new THREE.MeshStandardMaterial({ name: 'steel-bolt-hex', color: 0xaab1ba, roughness: 0.35, metalness: 1 });
+    const cab = new THREE.MeshStandardMaterial({ name: 'rubber-cable-jacket', color: 0x1a1c20, roughness: 0.6 });
+    const clip = new THREE.MeshStandardMaterial({ name: 'cast-p-clip', color: 0x8d949c, roughness: 0.4, metalness: 0.9 });
+    [-1, 1].forEach((s) => {
+      [-0.3, -0.06, 0.28].forEach((z) => { const v = TXT.roundedBox(0.006, 0.16, 0.005, 0.002, seam); v.position.set(s * 0.301, 0.245, z); rov.add(v); });
+      const hz = TXT.roundedBox(0.006, 0.005, 0.8, 0.002, seam); hz.position.set(s * 0.301, 0.318, 0); rov.add(hz);
+      for (let z = -0.38; z <= 0.38; z += 0.076) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.0065, 0.0065, 0.008, 6), bolt); b.rotation.z = Math.PI / 2; b.position.set(s * 0.304, 0.33, z); rov.add(b); }
+    });
+    rov.add(TXT.tube([[0.04, 0.4, 0.09], [0.12, 0.385, 0.02], [0.16, 0.38, -0.08], [0.15, 0.39, -0.13]], 0.009, cab, { segments: 40, radial: 8 }));
+    rov.add(TXT.tube([[-0.04, 0.4, 0.09], [-0.2, 0.38, 0.12], [-0.3, 0.33, 0.1], [-0.305, 0.3, -0.05], [-0.305, 0.3, -0.35]], 0.007, cab, { segments: 50, radial: 8 }));
+    [0.0, -0.2].forEach((z) => { const c = TXT.roundedBox(0.012, 0.022, 0.02, 0.003, clip); c.position.set(-0.309, 0.3, z); rov.add(c); });
+  }
+  { const gun = new THREE.MeshStandardMaterial({ name: 'cast-wheel-gunmetal', color: 0x6d747d, roughness: 0.42, metalness: 0.9 });
+    rov.traverse((m) => { const g = m.geometry && m.geometry.parameters; if (m.isMesh && g && g.radiusTop != null && (Math.abs(g.radiusTop - 0.085) < 0.002 || Math.abs(g.radiusTop - 0.018) < 0.001) && Math.abs(m.rotation.z) > 1) m.material = gun; }); }
+  rov.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  { const p = W2(RV[0], RV[1]); rov.position.set(p[0], SLAB_T, p[1]); rov.rotation.y = yawTo(-0.95, -0.55); TXT.add(R, rov); TXT.contact(R, rov, { y: SLAB_T + 0.002, opacity: 1.0, dirt: false });
+    const ct = CH.canvasTex(THREE, 64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, 0); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(0.25, 'rgba(0,0,0,1)'); gr.addColorStop(0.75, 'rgba(0,0,0,1)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      g.globalCompositeOperation = 'destination-in'; const gv = g.createLinearGradient(0, 0, 0, h); gv.addColorStop(0, 'rgba(0,0,0,0)'); gv.addColorStop(0.08, 'rgba(0,0,0,1)'); gv.addColorStop(0.92, 'rgba(0,0,0,1)'); gv.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gv; g.fillRect(0, 0, w, h); });
+    const cm = new THREE.MeshBasicMaterial({ name: 'track-contact-shade', color: 0x06282c, alphaMap: ct, transparent: true, opacity: 0.92, depthWrite: false }); cm.userData.txSurface = false;
+    [-1, 1].forEach((sd) => { const pl = new THREE.Mesh(new THREE.PlaneGeometry(0.24, 1.12), cm); pl.rotation.x = -Math.PI / 2; pl.position.set(sd * 0.37, 0.004, 0); pl.userData.txBevel = false; pl.castShadow = false; pl.receiveShadow = false; rov.add(pl); }); }
+
+  /* THE ROLE PLAYER the rover has found, lying face up under the propped slab: only the boots, the shins and one hi-vis
+   * sleeve are in frame. A simulated casualty, no injury drawn, no face in frame. */
+  const CAS = [-0.36, 2.75];
+  const cas = K.make('person', { seed: 41, role: 'worker', pose: 'stand', build: 'male', hat: 'none', vest: true, shirt: 0xff6a13, trousers: 0x3a4a66,
+    headPitch: 0 });
+  /* work boots modelled over the kit's feet: lugged sole, heel block, leather upper, shaft, tongue and laces */
+  { const soleM = new THREE.MeshStandardMaterial({ name: 'rubber-boot-sole', color: 0x1a1b1d, roughness: 0.9 });
+    const lthM = new THREE.MeshStandardMaterial({ name: 'leather-boot-upper', color: 0x6b4a2e, roughness: 0.62 });
+    const laceM = new THREE.MeshStandardMaterial({ name: 'fabric-lace', color: 0xd9c9a8, roughness: 0.9 });
+    const trM = new THREE.MeshStandardMaterial({ name: 'fabric-trouser-fold', color: 0x3a4a66, roughness: 0.9 });
+    [-1, 1].forEach((sd) => { const x = sd * 0.095, b = new THREE.Group(); b.position.set(x, 0, 0);
+      const sole = TXT.roundedBox(0.118, 0.026, 0.3, 0.012, soleM); sole.position.set(0, 0.013, 0.05); b.add(sole);
+      for (let k = 0; k < 6; k++) { const lug = TXT.roundedBox(0.1, 0.006, 0.016, 0.002, soleM); lug.position.set(0, -0.002, -0.07 + k * 0.045); b.add(lug); }
+      const heel = TXT.roundedBox(0.112, 0.03, 0.085, 0.01, soleM); heel.position.set(0, 0.03, -0.055); b.add(heel);
+      const up = TXT.roundedBox(0.112, 0.085, 0.27, 0.035, lthM); up.position.set(0, 0.07, 0.04); b.add(up);
+      const toe = TXT.roundedBox(0.114, 0.05, 0.08, 0.025, lthM); toe.position.set(0, 0.05, 0.16); b.add(toe);
+      const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.062, 0.066, 0.17, 24), lthM); shaft.position.set(0, 0.18, -0.02); b.add(shaft);
+      const collar = new THREE.Mesh(new THREE.TorusGeometry(0.062, 0.01, 8, 24), lthM); collar.rotation.x = Math.PI / 2; collar.position.set(0, 0.265, -0.02); b.add(collar);
+      const tongue = TXT.roundedBox(0.05, 0.14, 0.02, 0.008, lthM); tongue.position.set(0, 0.17, 0.045); tongue.rotation.x = -0.35; b.add(tongue);
+      for (let k = 0; k < 5; k++) { const y = 0.11 + k * 0.03, z = 0.1 - k * 0.012;
+        const l1 = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.07, 6), laceM); l1.rotation.z = Math.PI / 2 + 0.5; l1.rotation.y = 0.0; l1.position.set(0, y, z + 0.008); b.add(l1);
+        const l2 = l1.clone(); l2.rotation.z = Math.PI / 2 - 0.5; b.add(l2);
+        [-1, 1].forEach((e) => { const ey = new THREE.Mesh(new THREE.TorusGeometry(0.005, 0.0016, 6, 10), laceM); ey.position.set(e * 0.03, y, z + 0.002); b.add(ey); }); }
+      cas.add(b);
+      /* trouser folds bunched at the knee and over the boot shaft */
+      [[0.52, 0.062, 0.3], [0.47, 0.066, -0.25], [0.43, 0.06, 0.2]].forEach(([y, z, rz]) => { const f = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 10), trM); f.scale.set(0.062, 0.014, 0.03); f.rotation.z = rz; f.position.set(x, y, z); cas.add(f); });
+    }); }
+  const casG = new THREE.Group(); cas.rotation.x = -Math.PI / 2; casG.add(cas);
+  { const p = W2(CAS[0], CAS[1]); casG.position.set(p[0], 0.12 + 0.13, p[1]); casG.rotation.y = yawTo(1, 0.28); TXT.add(R, casG);
+    const lt = CH.canvasTex(THREE, 128, 64, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 2, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(0.6, 'rgba(0,0,0,0.7)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const lm = new THREE.MeshBasicMaterial({ name: 'leg-contact-shade', color: 0x05242a, alphaMap: lt, transparent: true, opacity: 0.85, depthWrite: false }); lm.userData.txSurface = false;
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.42), lm); sh.rotation.x = -Math.PI / 2; const q = W2(CAS[0] - 0.42, CAS[1] + 0.04); sh.position.set(q[0], 0.123, q[1]); sh.rotation.z = 0; sh.userData.txBevel = false; R.scene.add(sh); }
+  /* the lens turned onto the role player's knees */
+  R.scene.updateMatrixWorld(true);
+  const SCAN = (() => { const q = W2(CAS[0] - 0.3, CAS[1] + 0.03); return new THREE.Vector3(q[0], 0.3, q[1]); })();
+  { const hd = rov.userData.head, mast = hd.parent, M = new THREE.Vector3(); mast.getWorldPosition(M);
+    mast.rotation.y = Math.atan2(SCAN.x - M.x, SCAN.z - M.z) - rov.rotation.y; R.scene.updateMatrixWorld(true);
+    const Hh = new THREE.Vector3(); hd.getWorldPosition(Hh); hd.rotation.x = Math.atan2(Hh.y - SCAN.y, Math.hypot(SCAN.x - Hh.x, SCAN.z - Hh.z)); R.scene.updateMatrixWorld(true); }
+
+  /* THE MEDIC, thirteen metres out, turned away, a rugged tablet held out from the body, reflective stripes, a trauma bag */
+  const MD = [3.35, 15.0];
+  slab(MD[0] + 0.1, MD[1] + 0.05, 1.7, 1.3, 0.14, yawTo(1, 0.1), 0, 0.02, 0, 91, 2);
+  const med0 = K.make('person', { seed: 12, role: 'official', pose: 'stand', build: 'female', hat: 'cap', hatColor: 0x1d2c55, shirt: 0x24407a, trousers: 0x1e2846, vest: false });
+  const MH = med0.userData.height || 1.7;
+  const med = K.make('person', { seed: 12, role: 'official', pose: 'stand', build: 'female', hat: 'cap', hatColor: 0x1d2c55, shirt: 0x24407a, trousers: 0x1e2846, vest: false, headPitch: 0.5,
+    hands: [[-0.06, 0.62 * MH, 0.4], [-0.4, 0.63 * MH, 0.3]] });
+  { const p = W2(MD[0], MD[1]); med.position.set(p[0], 0.14, p[1]); med.rotation.y = yawTo(0.55, 1); TXT.add(R, med); TXT.contact(R, med, { y: 0.142, opacity: 0.9, dirt: false }); }
+  { const tape = new THREE.MeshStandardMaterial({ name: 'reflective-tape-silver', color: 0xeef3f6, roughness: 0.25, metalness: 0.5, emissive: 0x3a4650, emissiveIntensity: 0.6 }); tape.userData.txSurface = false;
+    const ring = (rx, rz, y, x, h) => { const c = new THREE.Mesh(new THREE.CylinderGeometry(rx, rx, h, 28, 1, true), tape); c.scale.z = rz / rx; c.position.set(x, y, 0); c.material.side = THREE.DoubleSide; med.add(c); };
+    ring(0.185, 0.13, 0.7 * MH, 0, 0.04); ring(0.18, 0.125, 0.62 * MH, 0, 0.03);
+    [-1, 1].forEach((sd) => ring(0.072, 0.072, 0.27 * MH, sd * 0.095, 0.035));
+    const bag = new THREE.MeshPhysicalMaterial({ name: 'nylon-fabric-trauma-bag', color: 0xd23a2a, roughness: 0.8, sheen: 0.4 });
+    const bb = TXT.roundedBox(0.3, 0.2, 0.15, 0.04, bag); bb.position.set(0.27, 0.5 * MH, -0.02); bb.rotation.y = -0.25; med.add(bb);
+    const strapM = new THREE.MeshStandardMaterial({ name: 'nylon-fabric-strap', color: 0x1b1d22, roughness: 0.85 });
+    med.add(TXT.tube([[0.25, 0.56 * MH, -0.06], [0.12, 0.66 * MH, -0.15], [-0.05, 0.76 * MH, -0.14], [-0.14, 0.82 * MH, -0.07]], 0.014, strapM, { segments: 30, radial: 6 }));
+    const cross = TXT.roundedBox(0.06, 0.018, 0.005, 0.003, tape); cross.position.set(0.27 + 0.03, 0.5 * MH, -0.1); cross.rotation.y = -0.25; med.add(cross);
+    const cross2 = TXT.roundedBox(0.018, 0.06, 0.005, 0.003, tape); cross2.position.copy(cross.position); cross2.rotation.y = -0.25; med.add(cross2); }
+  /* the tablet: a rugged slate in a rubber bumper, held out in both hands, its screen up to the medic */
+  const tab = new THREE.Group();
+  { const bumper = new THREE.MeshStandardMaterial({ name: 'rubber-bumper-tablet', color: 0x2a2d33, roughness: 0.75 });
+    const back = new THREE.MeshPhysicalMaterial({ name: 'plastic-tablet-back', color: 0x3b4048, roughness: 0.45, clearcoat: 0.3 });
+    const scr = new THREE.MeshStandardMaterial({ name: 'tablet-screen', color: 0x0e1a24, emissive: 0x7fd6e8, emissiveIntensity: 0.9, roughness: 0.15 }); scr.userData.txSurface = false;
+    const b = TXT.roundedBox(0.32, 0.22, 0.032, 0.012, bumper); tab.add(b);
+    const bk = TXT.roundedBox(0.26, 0.17, 0.006, 0.004, back); bk.position.z = -0.017; tab.add(bk);
+    const sc = new THREE.Mesh(new THREE.PlaneGeometry(0.27, 0.18), scr); sc.position.z = 0.0165; tab.add(sc);
+    tab.position.set(-0.24, 0.645 * MH, 0.37); tab.rotation.order = 'YXZ'; tab.rotation.set(-0.85, 0.55, 0); med.add(tab); }
+
+  /* THE CAMERA: eye 0.45 m over the slabs, a 50 mm equivalent, the lens shifted so the horizon sits at HZ under the type */
+  const HZ = 960, FULLH = 2 * Math.max(HZ, 1350 - HZ), FOCAL = 1876;
+  { const c = W2(0, 0), la = W2(0, 50); TXT.frame(R, { from: [c[0], 0.45, c[1]], look: [la[0], 0.45, la[1]] }); }
+  R.camera.fov = 2 * Math.atan((FULLH / 2) / FOCAL) * 180 / Math.PI; R.camera.aspect = 1080 / FULLH;
+  R.camera.setViewOffset(1080, FULLH, 0, FULLH / 2 - HZ, 1080, 1350); R.camera.updateProjectionMatrix();
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2win, { clouds: 0.3, zenith: 0x0b5ec4, horizon: 0x2f94ec, haze: 0x6cbcff }));
+
+  /* THE SCAN: a faint cone in the lens's own cool glass colour, from the standoff lens onto the role player's knees */
+  R.scene.updateMatrixWorld(true);
+  { const L = new THREE.Vector3(); rov.userData.lens.getWorldPosition(L);
+    const d = new THREE.Vector3().subVectors(L, SCAN), len = d.length();
+    const cm = new THREE.MeshBasicMaterial({ name: 'scan-cue-glass', color: 0x9fe8ff, transparent: true, opacity: 0.07, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending }); cm.userData.txSurface = false;
+    const cone = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.17, len, 32, 1, true), cm);
+    cone.position.copy(L).add(SCAN).multiplyScalar(0.5); cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize());
+    cone.castShadow = false; cone.receiveShadow = false; cone.userData.txBevel = false; R.scene.add(cone);
+    const spot = new THREE.Mesh(new THREE.CircleGeometry(0.22, 32), new THREE.MeshBasicMaterial({ name: 'scan-cue-pool', color: 0x9fe8ff, transparent: true, opacity: 0.12, depthWrite: false, blending: THREE.AdditiveBlending }));
+    spot.material.userData.txSurface = false; spot.userData.txBevel = false; spot.position.copy(SCAN); spot.lookAt(L); spot.scale.setScalar(0.6); spot.material.opacity = 0.08; R.scene.add(spot); }
+
+  /* THE HANDOFF: one lime link, from the rover's radio up over the gap and down onto the tablet's back */
+  R.scene.updateMatrixWorld(true);
+  /* the link leaves the antenna base on the radio, at the top of the head, well clear of the standoff lens */
+  /* THE RADIO BOX: a ribbed polymer radio on the deck, on the flank that faces the medic, with its own whip. The link
+   * leaves its lime port, well clear of the standoff lens, so seeing and handing over leave from different parts. */
+  const a = (() => {
+    const cand = [0.2, -0.2].map((x) => { const w = rov.localToWorld(new THREE.Vector3(x, 0.42, 0.04)); return [x, CH.project(THREE, R, [w.x, w.y, w.z])[0]]; });
+    const X = cand[0][1] > cand[1][1] ? cand[0][0] : cand[1][0];
+    const caseM = new THREE.MeshStandardMaterial({ name: 'plastic-radio-case', color: 0x2b3038, roughness: 0.55 });
+    const finM = new THREE.MeshStandardMaterial({ name: 'cast-alu-heatsink', color: 0x7d8690, roughness: 0.45, metalness: 0.8 });
+    const box = TXT.roundedBox(0.12, 0.08, 0.14, 0.012, caseM); box.position.set(X, 0.415, 0.04); rov.add(box);
+    for (let k = 0; k < 5; k++) { const f = TXT.roundedBox(0.004, 0.06, 0.12, 0.002, finM); f.position.set(X - 0.04 + k * 0.02, 0.465, 0.04); rov.add(f); }
+    const knob = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.02, 14), finM); knob.position.set(X - Math.sign(X) * 0.035, 0.465, 0.09); rov.add(knob);
+    const wb = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.012, 0.03, 14), finM); wb.position.set(X + Math.sign(X) * 0.035, 0.47, 0.0); rov.add(wb);
+    const wh = new THREE.Mesh(new THREE.CylinderGeometry(0.0016, 0.0035, 0.26, 8), new THREE.MeshStandardMaterial({ name: 'steel-whip-black', color: 0x1c1f24, roughness: 0.35, metalness: 0.8 })); wh.position.set(X + Math.sign(X) * 0.035, 0.615, 0.0); rov.add(wh);
+    const port = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.012, 20), new THREE.MeshStandardMaterial({ name: 'handoff-port-lime', color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 0.5 })); port.material.userData.txSurface = false;
+    port.rotation.z = Math.PI / 2; port.position.set(X + Math.sign(X) * 0.066, 0.42, 0.04); rov.add(port);
+    rov.updateMatrixWorld(true); return rov.localToWorld(new THREE.Vector3(X + Math.sign(X) * 0.074, 0.42, 0.04)); })();
+  { const L0 = new THREE.Vector3(); rov.userData.lens.getWorldPosition(L0); if (a.distanceTo(L0) < 0.1) throw new Error('the link must leave the radio box, not the lens'); }
+  const b = new THREE.Vector3(); tab.getWorldPosition(b); b.y += 0.06;
+  const lime = new THREE.MeshStandardMaterial({ name: 'handoff-link-lime', color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 0.42, roughness: 0.45 });
+  lime.userData.txSurface = false;
+  const pts = [];
+  for (let i = 0; i <= 40; i++) { const t = i / 40, p = a.clone().lerp(b, t); p.y += Math.sin(Math.PI * t) * 0.85; pts.push([p.x, p.y, p.z]); }
+  const link = TXT.tube(pts, 0.011, lime, { segments: 160, radial: 10 }); link.castShadow = false; link.receiveShadow = false; link.userData.txBevel = false; R.scene.add(link);
+  CH.lampGlow(THREE, R, [b.x, b.y, b.z], CH.ACCENT, 0.26, 0);
+  CH.lampGlow(THREE, R, [a.x, a.y, a.z], CH.ACCENT, 0.12, 0);
+
+  /* THE KEY: the butter morning sun from camera left, raking the rover's flank and the slab faces */
+  const tgt = W2(0.6, 7);
+  const spec = CH.rigSpec(W, 44, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([tgt[0], 0, tgt[1]], { distance: 40, shadowFar: 100, normalBias: 0.01 }), { light: { az: SUN_AZ, el: 26 } }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.2, height: 0.32, mottle: 0.16, skip: [med, link, cas] });
+
+  /* CHECKS: the rover fills the frame, the link lands on the tablet, the medic stays small and turned away */
+  const rr = CH.rectOf(THREE, R, rov, 0), mr = CH.rectOf(THREE, R, med, 0);
+  const pa = CH.project(THREE, R, [a.x, a.y, a.z]), pb = CH.project(THREE, R, [b.x, b.y, b.z]);
+  console.log('ROVER rect ' + rr.map(n => n.toFixed(0)).join(','), 'MEDIC rect ' + mr.map(n => n.toFixed(0)).join(','), 'radio', pa.map(n => n.toFixed(0)).join(','), 'tablet', pb.map(n => n.toFixed(0)).join(','));
+  if (rr[2] < 600) throw new Error('the rover spans ' + rr[2].toFixed(0) + ' px, floor 600');
+  if (mr[3] > 1350 / 5 * 1.6) throw new Error('the medic is too large to stay a figure at distance');
+  if (pb[0] < 0 || pb[0] > 1080 || pb[1] < 0 || pb[1] > 1350) throw new Error('the link lands off frame');
+  { const fwd = new THREE.Vector3(0, 0, 1).applyQuaternion(med.getWorldQuaternion(new THREE.Quaternion())), cv = new THREE.Vector3(f[0], 0, f[1]);
+    if (fwd.dot(cv) < 0.6) throw new Error('the medic must face away from the camera'); }
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* knock the slab arrises out behind the footer lines: the art under the site line and the claim ids is softened, so no
+   * edge strikes through the type (qa: text struck by a drawn rule) */
+  ['#site', '.src'].forEach((sel) => { const el = document.querySelector(sel); if (!el) return; const r = el.getBoundingClientRect();
+    const x = Math.max(0, Math.floor(r.left - 24) * 2), y = Math.max(0, Math.floor(r.top - 18) * 2), w = Math.min(2160 - x, Math.ceil(r.width + 48) * 2), h = Math.min(2700 - y, Math.ceil(r.height + 36) * 2);
+    const tmp = document.createElement('canvas'); tmp.width = w; tmp.height = h; const tc = tmp.getContext('2d'); tc.filter = 'blur(9px)'; tc.drawImage(cx.canvas, x - 0, y - 0, w, h, 0, 0, w, h);
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); const m = cx.createLinearGradient(0, 0, 0, 1); cx.globalAlpha = 1; 
+    const fe = document.createElement('canvas'); fe.width = w; fe.height = h; const fc = fe.getContext('2d'); fc.drawImage(tmp, 0, 0);
+    fc.globalCompositeOperation = 'destination-in'; const gx = fc.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.3, w / 2, h / 2, Math.max(w, h) * 0.6); gx.addColorStop(0, 'rgba(0,0,0,1)'); gx.addColorStop(0.7, 'rgba(0,0,0,1)'); gx.addColorStop(1, 'rgba(0,0,0,0)'); fc.fillStyle = gx; fc.fillRect(0, 0, w, h);
+    cx.drawImage(fe, x, y); cx.restore(); });
+  CH.seat(cx, { sel: '.hook', a: 0.22, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.36, fade: 170 });
+  CH.seat(cx, { sel: '.kick', a: 0.3, fade: 140 });
+  CH.seat(cx, { sel: '.count', a: 0.3, fade: 140 });
+  CH.seat(cx, { sel: '.src', a: 0.45, fade: 140 });
+  CH.seat(cx, { sel: '.tx-site', a: 0.45, fade: 140 });
+  TXLOOK.footWash(cx, { a: 0.5, height: 230 });
+  CH.seat(cx, { sel: '.hook', a: 0.3, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.dek', a: 0.3, fade: 70 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.count', a: 0.3, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

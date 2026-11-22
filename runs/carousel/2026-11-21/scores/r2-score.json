@@ -1,0 +1,200 @@
+{
+ "weighted_score": 7.208,
+ "judges": [
+  7.21,
+  7.328,
+  7.13
+ ],
+ "spread": 0.198,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.6,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    7.8,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.2,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    7.2
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.3,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.21 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.328 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.13 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.21,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.21 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.328,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.328 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.13,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.13 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat, evenly lit 10 by 10 grid of badge icons on a teal field. It has no light direction, no depth and no subject. At feed size it reads as an infographic wall rather than a rendered picture, and it breaks the deck's rendered world.",
+     "fix": "Hang the 101 lanyards on a real check-in rack or table in a lit staging tent. Light it from a low side key so the badges cast shadows on each other. Pull the camera down to badge height, with the front rows large and sharp and the far rows falling off, so the count reads as a crowd in depth rather than a chart."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat, frontal, evenly lit 10 by 10 grid of badges on a featureless teal field. It reads as an icon array, with no subject, no light pool, no depth and the least drama in the deck.",
+     "fix": "Rake the camera about 35 degrees down the badge wall so near badges fill the lower right large and soft-focused and far rows recede, with one hard side key throwing lanyard shadows across the wall. Keep the 101st badge cut by the edge."
+    },
+    {
+     "judge": 3,
+     "problem": "About 101 badges in a flat grid on wires over a featureless teal field. There is no floor, no depth and no human for scale, so it reads as a wallpaper pattern rather than a lit subject.",
+     "fix": "Hang the badges on a real lanyard rack or check-in table in a lit hangar or tent at Disaster City. Drop the camera to a low three-quarter view so the rows recede to a vanishing point, and put one hand or person reaching for a badge in the foreground for scale."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "An empty mottled blue wall takes the top half. The medic is a primitive mannequin with boots splayed flat toward the camera and no medic marker. The casualty on the board behind is unreadable, so the 'team' the headline claims is not visible as care.",
+     "fix": "Lower the camera to kneeling height and turn the medic three-quarters, with a red cross on the shoulder and hands on the casualty's arm. Put the rover's tablet feed beside the casualty in the same pool of light. Crop the wall so the headline sits on a darkened top band of the room rather than on dead texture."
+    },
+    {
+     "judge": 2,
+     "problem": "The kneeling medic is a primitive model: the boots lie as separate blocks behind the knees, the hair is a solid slab, and the body is a lumpy orange tube seen square from behind. A second lime arc ends in mid-air at a glowing dot on the wall, and the wall is a mottled blue texture fill rather than a lit room.",
+     "fix": "Swap in a jointed figure posed kneeling in three-quarter view with shins on the floor and the face partly visible, delete the second arc so one beam lands on the tablet, and light the room with one warm key from frame left across a concrete wall."
+    },
+    {
+     "judge": 3,
+     "problem": "The medic is a primitive mannequin with block feet, cylinder legs and a featureless head, kneeling on nothing. The wall behind is mottled noise texture, and the stretcher has no casualty on it.",
+     "fix": "Rebuild the medic with a proper kneeling pose and boots resting on the floor, give the wall a lit concrete or cinderblock material instead of noise, and drop the camera to the medic's shoulder height so the rover and stretcher become the focus."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Four toy plinths with mono label pills under a headline that promises five courses. The sets read as small game tokens, not courses, and the fifth is missing without explanation.",
+     "fix": "Either add a fifth plinth marked as unnamed in the source, or retitle the frame to the four named sets. Push the camera into one set, the smoke filled building with the others receding behind, so a single lit subject fills half the frame."
+    },
+    {
+     "judge": 2,
+     "problem": "A visible hard colour seam crosses the top band near y 130 at display size, and a second seam runs at the horizon near y 970. The fifth set (the collapsed deck on a car) is the only one without a label pill, and the 'c14' footer crowds the 'tornado market' pill on the pedestal face.",
+     "fix": "Extend the studio sweep so it curves continuously from floor to top edge with no band, add the fifth pill or drop that set to a rubble variant c14 supports, and raise the pedestal row about 60 px so the pills clear the footer line."
+    },
+    {
+     "judge": 3,
+     "problem": "A hard dark band crosses the top 130 px, the sky-to-ground horizon is a hard seam behind the plinths, and the fifth set (collapsed deck with car, top right) has no label while the headline promises five.",
+     "fix": "Extend the sky gradient to the top edge so the band goes, soften the horizon into a studio sweep, and label or cut the unlabelled fifth set so the drawn count matches the headline and the four sourced courses."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The subject sits in the lower half under a type wash that takes the top 40 percent. The casualty's foreground boots are lumpy brown primitives, and the medic who 'treats' is a small figure at the far right edge.",
+     "fix": "Push the camera in and lower it so the rover's mast and the beam fill the upper frame behind the headline. Replace the boot primitives with the jointed casualty legs cropped by the left edge, and bring the medic forward to about a quarter of frame height where the lime arc lands."
+    },
+    {
+     "judge": 3,
+     "problem": "The foreground casualty legs are crude block forms that pull focus from the rover at feed size.",
+     "fix": "Crop the casualty to a boot and trouser hem at the left edge, or swap in a moulage dummy with modelled boots, so the rover and the lime arc to the medic stay the one subject."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A wide diorama of the mock town with no focal subject. At 432 px it is a scatter of small buildings and the derailed train is lost.",
+     "fix": "Put the derailed train in the foreground at large scale, lit from a low side key, with the collapsed structures behind it, so the '52 acres built to fall down' idea reads through one object that owns the frame."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.208 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 6, 8, 3, 1, 2 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

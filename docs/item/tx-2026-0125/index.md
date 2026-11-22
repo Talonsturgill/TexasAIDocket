@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · Frontera's queues remain closed on the earlier reading. The center's own documentation sits outside what this project may read.
 - 2026-11-10 · The center's own account of its September symposium says Frontera was retired in October after more than eight million jobs. Its successor Horizon has begun early operations.
 - 2026-11-12 · Frontera's queues closed as scheduled, and the account of the retirement still stands.
+- 2026-11-21 · Frontera's retirement still stands in the record. TACC's documentation pages stay closed to this project.
 
 ## Evidence
 

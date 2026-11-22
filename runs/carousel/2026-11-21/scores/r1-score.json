@@ -1,0 +1,198 @@
+{
+ "weighted_score": 7.596,
+ "judges": [
+  7.32,
+  7.8,
+  7.56
+ ],
+ "spread": 0.48,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.3,
+   "weight": 0.22,
+   "judges": [
+    7.3,
+    7.3,
+    7.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    8.0,
+    7.3
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.32 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.8 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.56 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.32,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.32 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.8,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.8 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.56,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.56 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A hazy grey-green mid-tone lower half and an empty upper-left sky. The tornado set is cut off at the left edge, label pills sit on the models, and four sets are drawn under 'Five ways'.",
+     "fix": "Bring the camera in and down so the four sets fill the lower two thirds edge to edge under a saturated studio sweep with a hard key. Move the labels onto the set plinths, and change the kicker and headline so they don't promise five drawn sets."
+    },
+    {
+     "judge": 2,
+     "problem": "The bottom 45% sits under a low-chroma olive and pale-yellow haze (the faded grey middle), the top-left 40% is an empty cyan gradient, the labels are grey pills, and the 'tornado market' pill sits on top of the tornado model.",
+     "fix": "Swap the haze for TXT.studio in the win tone with one side key so the teal risers and each set read saturated. Pull the camera in so the sets fill the bottom 60%. Make the labels accent pills that sit beside their models, never over them."
+    },
+    {
+     "judge": 3,
+     "problem": "The top-left third is dead sky gradient. The sets sit in an olive-grey mid wash with the tornado set nearly invisible, and four mono labels on dark plates carry the reading instead of the models.",
+     "fix": "Drop the camera to plinth height and push in so the four sets fill the frame edge to edge. Cut the empty sky to a band behind the type. Light each set in its own hazard colour (a grey funnel with flying debris, orange-lit smoke, a navy night box) so the labels can shrink to accent pills or go."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The chain-link fence covers the whole frame and the robot behind it reads as a washed silhouette, so the badge grid floats with no dominant subject.",
+     "fix": "Shoot the badge wall square-on and closer so it fills more than half the frame. Push the fence to a single soft-focus post at the edge and light the badges with a side key so each casts a contact shadow on the mesh."
+    },
+    {
+     "judge": 2,
+     "problem": "The chain-link mesh in front runs over every badge and over the rover behind it, so the frame reads as texture, not one subject, and the rover is muddled.",
+     "fix": "Move the camera through the fence so the mesh is only a soft, out-of-focus frame along the left edge. Let the badge grid sit sharp as the single subject and drop the rover behind it."
+    },
+    {
+     "judge": 3,
+     "problem": "The rover and rubble sit behind the chain-link mesh on the left half, so at 432 px they read as moire noise. The badges alone carry the frame, and they start only at mid frame.",
+     "fix": "Move the rover in front of the fence, or cut it, and crop in so the badge wall fills from the left edge past the right edge. The rows run off both sides and the mesh becomes a sharp texture behind them, not a veil over the subject."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Two primitive robots on a rail against a tiled wall carry the deck's turn. No human is in the 'human machine team', and the toy forms are the least crafted models in the deck.",
+     "fix": "Model a kneeling medic in the foreground right taking the data beam from the tracked robot, with the camera at medic eye height and a warm key from the left. Drop the rail and the yellow cart."
+    },
+    {
+     "judge": 2,
+     "problem": "The yellow cart's top surface shows orange speckle noise (a render artifact), and the rover's track sprockets are loose primitive teeth.",
+     "fix": "Give the cart top a clean rounded material with no noise texture, and replace the loose sprocket teeth with the same TXT.roundedBox track the rover uses on frames 4 and 5."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "At 432 px the cropped role player in the left foreground reads as an unidentifiable brown lump, and the rover sits in a pale mid-blue band under a type block covering the top 38%, so the cover has no hard light and dark.",
+     "fix": "Lower the camera and push in so the rover hull fills the bottom half against a deeper sky. Either crop the role player out or turn them so a boot and the hi-vis stripe read clearly. Shrink the type block to the headline plus two lines of body."
+    },
+    {
+     "judge": 3,
+     "problem": "The casualty is an unreadable brown boot shape at the left edge, the rover sits mid-sized under a type block that takes the top 40 percent, and the find the headline promises isn't visible.",
+     "fix": "Lower and widen the camera so the rover's sensor beam lands visibly on a role player's arm and torso (side on, no face, no injury) in the left foreground. Trim the dek to two lines so the rover rises into the upper half."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The town is a small cluster under a large flat banded-grass field, so the subject fills under a third of the frame and the grass banding shows.",
+     "fix": "Raise the horizon and push the camera in so the collapsed structures and the derailed train fill the lower two thirds. Break up the grass with a ground texture and scatter to remove the banding."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.596 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 3, 6, 8, 1, 2 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

@@ -244,7 +244,7 @@ risks: ["a hundred badges collapse into texture, so the gutters stay clear"]
 type:
   kicker: "The field"
   hook: "More than 100 people competed"
-  dek: "Participants came from the U.S. military, universities, tech companies and startups. One badge stands for one participant, drawn to illustrate."
+  dek: "Participants came from the U.S. military, universities, tech companies and startups. Each badge is one participant, drawn to illustrate."
   labels: []
 ```
 
@@ -306,7 +306,7 @@ acceptance: ["the finding head and the cradle together span at least 600 px of t
 risks: ["the split reads as the systems failed, so the dek carries c5, c6 and c7 and nothing more"]
 type:
   kicker: "Not enough"
-  hook: "Better than every approach. Still not enough."
+  hook: "Human machine teams beat every approach. Still not enough."
   dek: "DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023."
   labels: []
 ```
@@ -338,6 +338,6 @@ risks: ["the pocket reads as a real product, so it stays a plain cylinder and th
 type:
   kicker: "Open until November 25th"
   hook: "The next ask is delivery"
-  dek: "DARPA's open TRIAGE-X topic seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate."
+  dek: "DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate."
   labels: []
 ```

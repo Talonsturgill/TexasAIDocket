@@ -1,0 +1,201 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-21, frame 6 of 9, THE FIELD (panel round 2 repair). The camera stands inside the fence, nearly square on to a teal windscreen strapped to it, ten tension wires across; one hundred credentials hang on the wires by woven lanyards, ten rows of ten, side lit so each casts a contact shadow on the fabric, and the hundred and first is cut by the right edge. Older notes follow.
+temporary chain link fence stands on the caliche, and one hundred laminated credentials hang on it by their woven lanyards,
+ten rows of ten, draped over the wire at varied lengths. Each header band and lanyard carries exactly one of four colours for
+where its holder came from, as the dek lists them (military, university, tech company, startup), drawn in a seeded random
+order so no share is claimed. The camera stands at a true three quarter on the right so the fence runs away to the left; the
+hundred and first credential hangs nearest, large and lit, cut by the right edge. The teal rover waits on the dirt in front of
+the fence and a rubble pile rises beyond it against the WIN sky, where the type stands. Every badge is counted from window.FIG
+and checked. No face, no name, no logo, no lime. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:118px; width:900px; text-align:left; letter-spacing:0.012em">More than 100 people competed</h1>
+<p class="dek" data-follow="22" style="left:74px; width:930px">Participants came from the U.S. military, universities, tech companies and startups. Each badge is one participant, drawn to illustrate.</p>
+<script>window.FIG = {"participants": 100};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The field", counter: "06 / 09", src: "c12", fit: { min: 64, max: 80, maxLines: 2 } });
+  const hookBox = document.getElementById('hook').getBoundingClientRect(), dekBox = document.querySelector('.dek').getBoundingClientRect();
+  const typeFoot = dekBox.bottom, typeRight = Math.max(hookBox.right, dekBox.right);
+
+  /* ---- THE FIGURE ------------------------------------------------------------------------------------------- */
+  const N = FIG.participants;
+  if (!Number.isInteger(N) || N < 1) throw new Error('participants is not a whole count');
+  const COLS = 10, ROWS = Math.round(N / COLS);
+  if (COLS * ROWS !== N) throw new Error('the grid ' + COLS + ' x ' + ROWS + ' does not hold FIG.participants = ' + N);
+
+  const FOV = 36;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 400, fog: 0.002, exposure: 0.8 });
+  const P = CH.P;
+
+  /* ---- THE GRID'S PLACES on the fence (columns run along x, rows down y) ---------------------------------------- */
+  const CP = 0.40, RP = 0.104, CX0 = -3.0, RY0 = 1.86;   /* columns spread along the run, so the rows of badges themselves recede */
+  const at = (c, r) => [CX0 + c * CP, RY0 - r * RP];
+
+  /* ---- THE FENCE: a long temporary fence run, a teal windscreen strapped tight, standing on weighted feet ------- */
+  const FH = 2.0, POST_GAP = 6 * CP, xNear = at(COLS, 0)[0] + CP / 2,   /* every post falls between two columns */
+        xFar = xNear - 3 * POST_GAP;
+  const X0 = xFar, X1 = xNear;
+  const galv = K.mat('galv-steel-post', { color: 0xc3cad0, roughness: 0.38, metalness: 0.9 }, true);
+  const screenTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    const r = CH.rng(77);
+    for (let i = 0; i < 2600; i++) { g.fillStyle = 'rgba(0,30,40,' + (0.02 + r() * 0.05) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 2); }
+  });
+  screenTex.wrapS = screenTex.wrapT = THREE.RepeatWrapping; screenTex.repeat.set(14, 4);
+  const screenMat = new THREE.MeshStandardMaterial({ name: 'windscreen-fabric-polyester', color: 0x14a3a0, map: screenTex, roughness: 0.86, metalness: 0, side: THREE.DoubleSide });
+  screenMat.userData.txSurface = 'fabric';
+  { const y0 = 0.07, sw = X1 - X0, sh = FH - y0, nx = 560, ny = 150, geo = new THREE.PlaneGeometry(sw, sh, nx, ny), pa = geo.attributes.position;
+    for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i);
+      const between = Math.abs(Math.sin(((y + sh / 2) - 0.0) / 0.11 * Math.PI));
+      pa.setZ(i, -0.012 - 0.006 * between * (0.6 + 0.4 * Math.sin(x * 9.0)) - 0.004 * Math.sin(x * 3.1 + y * 1.7)); }
+    geo.computeVertexNormals();
+    const sc = new THREE.Mesh(geo, screenMat); sc.position.set((X0 + X1) / 2, y0 + sh / 2, 0); sc.receiveShadow = true; sc.castShadow = false; sc.userData.txBevel = false; R.scene.add(sc); }
+  /* posts, top and bottom rails, and a weighted foot with a sandbag at every post */
+  const concMat = K.mat('conc-fence-block', { color: 0xb3a99a, roughness: 0.92, metalness: 0 }, true);
+  const bagMat = K.mat('canvas-sandbag-fabric', { color: 0xc9a46a, roughness: 0.95, metalness: 0 }, true);
+  const POSTS = []; for (let x = xNear; x >= xFar - 1e-6; x -= POST_GAP) POSTS.push(x);
+  POSTS.forEach((x, i) => {
+    const post = K.cyl(0.024, 0.024, FH + 0.08, galv, x, 0.1, 0.012, 18); post.castShadow = post.receiveShadow = true; R.scene.add(post);
+    const ft = TXT.roundedBox(0.2, 0.12, 0.64, 0.035, concMat); ft.position.set(x, 0.06, 0.012); ft.castShadow = ft.receiveShadow = true; R.scene.add(ft); TXT.contact(R, ft);
+    const bag = TXT.roundedBox(0.24, 0.1, 0.4, 0.045, bagMat); bag.position.set(x + 0.01, 0.165, 0.16); bag.rotation.y = 0.12 * (i % 2 ? 1 : -1); bag.castShadow = bag.receiveShadow = true; R.scene.add(bag);
+  });
+  [FH + 0.03, 0.08].forEach(y => { const t = TXT.tube([[X0, y, 0.012], [X1, y, 0.012]], 0.017, galv, { segments: 2, radial: 14 }); t.castShadow = t.receiveShadow = true; R.scene.add(t); });
+  /* ---- ONE CREDENTIAL, in exactly four colours for where its holder came from ------------------------------------
+   * The kinds are the dek's four. Each badge's kind is drawn from a seeded random order, so no share is claimed. */
+  const KINDS = [
+    { name: 'military',   c: '#1d4ed8' },
+    { name: 'university', c: '#7c3aed' },
+    { name: 'tech',       c: '#ea580c' },
+    { name: 'startup',    c: '#f5b324' }
+  ];
+  if (KINDS.length !== 4) throw new Error('the dek names four kinds of participant');
+  const rnd = CH.rng(CH.SEED + 61);
+  const CARD_W = 0.086, CARD_H = 0.054, PO_W = 0.094, PO_H = 0.062;
+  const cardTex = (k, v) => CH.canvasTex(THREE, 512, 324, (g, w, h) => {
+    const r = CH.rng(400 + v * 7 + k);
+    g.fillStyle = '#f2f0e8'; g.fillRect(0, 0, w, h);
+    const hb = h * 0.42; g.fillStyle = KINDS[k].c; g.fillRect(0, 0, w, hb);
+    g.fillStyle = 'rgba(255,255,255,0.88)'; g.fillRect(w * 0.08, hb * 0.42, w * (0.24 + r() * 0.14), hb * 0.2);
+    g.fillStyle = 'rgba(30,30,40,0.35)'; g.fillRect(w * 0.42, h * 0.05, w * 0.16, h * 0.035);
+    g.fillStyle = '#1b2233'; g.fillRect(w * 0.08, hb + h * 0.13, w * (0.42 + r() * 0.3), h * 0.1);
+    g.fillStyle = '#8a93a6'; g.fillRect(w * 0.08, hb + h * 0.3, w * (0.26 + r() * 0.24), h * 0.06);
+    let x = w * 0.62; g.fillStyle = '#1b2233';
+    while (x < w * 0.92) { const t = 1 + Math.floor(r() * 4); g.fillRect(x, h * 0.8, t, h * 0.12); x += t + 1 + Math.floor(r() * 4); }
+  });
+  const CARDS = KINDS.map((_, k) => [0, 1, 2].map(v => { const m = new THREE.MeshStandardMaterial({ name: 'badge-card-print', map: cardTex(k, v), roughness: 0.62, metalness: 0 }); m.userData.txSurface = false; return m; }));
+  const pouchMat = new THREE.MeshPhysicalMaterial({ name: 'pvc-badge-pouch-plastic', color: 0xffffff, roughness: 0.04, metalness: 0, transparent: true, opacity: 0.14,
+    clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1, envMapIntensity: 2.2, depthWrite: false });
+  pouchMat.userData.txSurface = 'glass';
+  const pouchGeo = TXT.roundedBox(PO_W, PO_H, 0.0018, 0.0008, pouchMat).geometry;
+  const cardGeo = new THREE.PlaneGeometry(CARD_W, CARD_H);
+  const weave = CH.canvasTex(THREE, 64, 256, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let j = 0; j < h; j += 4) { g.fillStyle = 'rgba(40,30,20,0.24)'; g.fillRect(0, j, w, 1.5); }
+    for (let i = 0; i < w; i += 6) { g.fillStyle = 'rgba(40,30,20,0.08)'; g.fillRect(i, 0, 1, h); }
+    g.fillStyle = 'rgba(0,0,0,0.28)'; g.fillRect(0, 0, w * 0.08, h); g.fillRect(w * 0.92, 0, w * 0.08, h); }, [1, 6]);
+  const STRAPS = KINDS.map(k => { const m = new THREE.MeshStandardMaterial({ name: 'lanyard-webbing-strap', color: new THREE.Color(k.c), map: weave, roughness: 0.82, metalness: 0, side: THREE.DoubleSide }); m.userData.txSurface = 'fabric'; return m; });
+  const clipMat = K.mat('nickel-clip-steel', { color: 0xb8c0c8, roughness: 0.3, metalness: 1 }, true);
+  const SW = 0.016;
+  const ribbon = (pts, mat, parent) => {
+    const cv = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p))), n = 18, pos = [], idx = [], uv = [];
+    for (let i = 0; i <= n; i++) { const t = i / n, p = cv.getPoint(t), tg = cv.getTangent(t), s = new THREE.Vector3().crossVectors(tg, new THREE.Vector3(0, 0, 1)).normalize().multiplyScalar(SW / 2);
+      pos.push(p.x - s.x, p.y - s.y, p.z - s.z, p.x + s.x, p.y + s.y, p.z + s.z); uv.push(0, t * 3, 1, t * 3);
+      if (i < n) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); } }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
+    const m = new THREE.Mesh(g, mat); m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; parent.add(m); return m;
+  };
+  const tally = [0, 0, 0, 0];
+  /* one credential: the lanyard goes over a fence wire, both legs drape and sag to a swivel clip, the card hangs on the mesh */
+  const credential = (x, y, o) => {
+    o = o || {};
+    const k = Math.floor(rnd() * 4), v = Math.floor(rnd() * 3); tally[k]++;
+    const g = new THREE.Group(); R.scene.add(g);
+    const drop = 0.03, spread = 0.013 + rnd() * 0.004;   /* one even drop: ten clean rows */
+    const sway = (rnd() - 0.5) * 0.05, twist = 0.62 + (rnd() - 0.5) * 0.3;   /* each card has swung on its lanyard to face the raked camera, as hung badges do */
+    const cx0 = x + sway * 0.05, clipY = y - drop, z0 = 0.045;   /* hung proud of the mesh, in front of every wire */
+    /* the loop over the wire, behind and back to the front */
+    { const f = new THREE.Mesh(new THREE.TorusGeometry(0.007, 0.0016, 6, 16, Math.PI), STRAPS[k]); f.position.set(x, y - 0.002, 0.003); f.scale.set(1, 0.8, 2.2); f.castShadow = true; g.add(f); }
+    ribbon([[x - 0.007, y - 0.002, z0 * 0.4], [x - spread, y - drop * 0.5, z0], [cx0 - 0.005, clipY + 0.006, z0]], STRAPS[k], g);
+    ribbon([[x + 0.007, y - 0.002, z0 * 0.4], [x + spread * 0.9, y - drop * 0.55, z0 + 0.002], [cx0 + 0.005, clipY + 0.006, z0 + 0.0015]], STRAPS[k], g);
+    { const cr = TXT.roundedBox(0.012, 0.008, 0.005, 0.0018, clipMat); cr.position.set(cx0, clipY + 0.002, z0 + 0.001); cr.castShadow = true; g.add(cr);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.003, 0.001, 8, 18), clipMat); ring.position.set(cx0, clipY - 0.005, z0 + 0.001); ring.castShadow = true; g.add(ring); }
+    const b = new THREE.Group(); b.position.set(cx0, clipY - 0.008, z0 + 0.002); g.add(b);
+    b.rotation.set(0.08, twist, sway);
+    const po = new THREE.Mesh(pouchGeo, pouchMat); po.position.y = -PO_H / 2; po.userData.txBevel = false; b.add(po);
+    const card = new THREE.Mesh(cardGeo, CARDS[k][v]); card.position.set(0, -PO_H / 2 - 0.002, 0.0002); card.castShadow = true; card.receiveShadow = true; b.add(card);
+    const back = new THREE.Mesh(cardGeo, CARDS[k][v]); back.rotation.y = Math.PI; back.position.set(0, -PO_H / 2 - 0.002, -0.0002); back.castShadow = true; b.add(back);
+    return g;
+  };
+
+  /* ---- THE GRID ON THE FENCE -------------------------------------------------------------------------------------- */
+  for (let r = 0; r < ROWS; r++) { const y = RY0 - r * RP; const w = TXT.tube([[X0, y, 0.004], [X1, y, 0.004]], 0.0028, galv, { segments: 2, radial: 10 }); w.castShadow = w.receiveShadow = true; R.scene.add(w); }
+  let hung = 0;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) { const [x, y] = at(c, r); credential(x, y); hung++; }
+  if (hung !== N) throw new Error('the fence carries ' + hung + ' badges and FIG.participants is ' + N);
+  if (tally.reduce((a, b) => a + b, 0) !== N || tally.some(t => t === 0)) throw new Error('the four kinds do not account for every badge');
+  const MORE = 1, MROW = Math.floor(ROWS / 2) - 1;
+  { const [x, y] = at(COLS, MROW); credential(x, y); }
+
+
+  /* ---- THE CAMERA: raked about 35 degrees along the fence from its near end, so the near badges are large at the
+   * right edge and the far columns and the fence run recede toward a vanishing point off the left ------------------- */
+  const pj = (p) => CH.project(THREE, R, p);
+  const B101c = [at(COLS, MROW)[0], at(COLS, MROW)[1] - 0.07, 0.045];
+  let best = null;
+  for (const rake of [30, 35, 40]) { const ra = rake * Math.PI / 180, bx = Math.cos(ra), bz = Math.sin(ra);
+    for (let hE = 2.15; hE <= 2.76; hE += 0.15) for (let d = 0.6; d <= 4.6; d += 0.06) for (let sy = 560; sy <= 980; sy += 30) {
+      const from = [B101c[0] + bx * d, hE, B101c[2] + bz * d];
+      const look = CH.aim(THREE, R, TXT, from, B101c, 1072, sy, FOV); TXT.frame(R, { fov: FOV, from, look });
+      let bad = 0;
+      for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) { const [x, y] = at(c, r);
+        for (const q of [[x - 0.05, y + 0.012, 0.03], [x + 0.05, y - 0.1, 0.05], [x - 0.05, y - 0.1, 0.05], [x + 0.05, y + 0.012, 0.03]]) {
+          const s2 = pj(q); if (s2[1] < typeFoot + 30 || s2[1] > 1215 || s2[0] < 24 || s2[0] > 1062) { bad++; } } }
+      for (let x = xFar; x <= xNear; x += 0.25) { const s2 = pj([x, FH + 0.12, 0.012]); if (s2[0] > -40 && s2[0] < typeRight + 30 && s2[1] < typeFoot + 30) bad++; }
+      const cost = bad * 1000 + d * 100 + Math.abs(rake - 35) * 3;
+      if (!best || cost < best.cost) best = { cost, from, look, d, sy, hE, rake };
+    } }
+  TXT.frame(R, { fov: FOV, from: best.from, look: best.look });
+  console.log('camera', JSON.stringify(best));
+  if (best.cost >= 1000) throw new Error('no raked camera keeps the hundred badges clear of the type and the footer (cost ' + Math.round(best.cost) + ')');
+  { const q = pj(B101c); if (!(q[0] > 1030 && q[0] < 1110)) throw new Error('the more-than badge is not cut by the right edge, its centre at x ' + Math.round(q[0])); }
+  { const sweep = TXT.studio(R, { tone: 'win', w: 18, d: 12, h: 7, radius: 2.2 }); sweep.rotation.y = (90 - best.rake) * Math.PI / 180; }
+
+  /* ---- THE LIGHT: one hard low key from the far end of the run, grazing the screen, so every lanyard and badge throws
+   * its shadow across the fabric and onto the next badge along ---------------------------------------------------- */
+  TXT.deckRig(R, CH.rigSpec(W, 3.2, 4096), Object.assign(CH.rigOpts([0.0, 1.3, 0], { distance: 12, shadowFar: 30, normalBias: 0.002 }), { light: { az: -64, el: 20 } }));
+  CH.unacne(R, 0.002);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+
+  /* ---- THE TYPE AND THE FURNITURE ------------------------------------------------------------------------------ */
+  CH.seat(cx, { box: { x: hookBox.left - 20, y: hookBox.top - 60, w: typeRight - hookBox.left + 40, h: typeFoot - hookBox.top + 80 }, a: 0.72, fade: 240 });
+  { const r = document.querySelector('.kick').getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.5, fade: 34 }); }
+  { const r = document.querySelector('.count').getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.5, fade: 34 }); }
+  TXLOOK.footWash(cx, { a: 0.3, height: 150 });
+  { const r = document.getElementById('site').getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.5, fade: 40 }); }
+  { const r = document.querySelector('.src').getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.7, fade: 40 }); }
+  TXDECK.finish(cx);
+  if (MORE !== 1) throw new Error('more than is drawn as one cut badge');
+  return true;
+})();
+</script>
+</body>
+</html>

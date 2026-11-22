@@ -1,0 +1,237 @@
+<!doctype html>
+<!-- 2026-11-21, frame 8 of 9, NOT ENOUGH, panel round 2. Inside a gutted concrete room at Disaster City a kneeling medic,
+     seen from behind at her own eye height, takes the lime data beam from the teal tracked rover on a rugged tablet, the one lime link. An empty orange evacuation litter waits further back in the same light, the next
+     need: the team works, and it is still not enough. Round 3 repair. Warm key through the window on the left. Drawn to illustrate, to no maker's or
+     team's design, no likeness. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:460px; top:150px; width:540px; text-align:right">Human machine teams beat every approach. Still not enough.</h1>
+<p class="dek" id="dek" style="left:590px; top:930px; width:410px; font-size:24px; line-height:1.3">DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023.</p>
+
+<script>window.FIG = {"created_year": 2023, "year": 2026, "years_running": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Not enough", counter: "08 / 09", src: "c5 c6 c7 c21", fit: { min: 62, max: 88, maxLines: 3 } });
+
+  /* THE TYPE: the headline top right over the quiet upper wall, the dek in a column on the lit floor right of the medic */
+  const hook = document.getElementById('hook'), dek = document.getElementById('dek');
+  dek.style.top = Math.round(1192 - dek.getBoundingClientRect().height) + 'px';
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (hb.right > 1001 || hb.left < 64 || hb.top < 140 || hb.bottom > 540) throw new Error('the headline leaves the safe field');
+  if (db.bottom > 1200 || db.right > 1016) throw new Error('the dek runs into the footer at ' + Math.round(db.bottom));
+
+  /* THE FIGURES: the frame draws no count. The dek's own year is the copy's, and the figures must agree with each other */
+  if (FIG.year - FIG.created_year !== FIG.years_running) throw new Error('the years running disagree: ' + (FIG.year - FIG.created_year) + ' vs ' + FIG.years_running);
+
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 60, fog: 0 });
+  /* THE ROOM: a gutted concrete bay, painted blue long ago, a warm window on the left wall */
+  const RW_ = 9, RD = 9, RH_ = 4.0;
+  const room = TXT.interior(R, { w: RW_, d: RD, h: RH_, floor: 'caliche', wall: 0x1c64a8, window: 'left', windowW: 2.6, windowH: 1.9, windowColor: 0xffd9a0, windowI: 2.6, ceiling: false, light: 0.6 });
+  TXT.studio(R, CH.studioOpts({ w: 6, d: 5 }));
+  R.scene.remove(R.studio.sweep); R.room = room;
+  R.scene.background = new THREE.Color(0x0f4f8a);
+  R.scene.traverse((m) => { if (m.isMesh && m.userData.txSurface === 'concrete') { m.material.color = new THREE.Color(0xb8642e); } });
+  const rnd = CH.rng(20261108);
+  const tex = (w, h, paint, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  /* painted poured concrete: mottle, form tie holes in a loose grid, water stains running down, a few cracks. No block courses */
+  /* painted poured concrete, smooth: a faint fine grain, soft board-form lifts and a few form tie holes. No mottle */
+  const concTex = tex(1024, 1024, (g, w, h) => {
+    g.fillStyle = '#2366a8'; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 128) { const gr = g.createLinearGradient(0, y, 0, y + 128); gr.addColorStop(0, 'rgba(150,200,245,0.035)'); gr.addColorStop(0.92, 'rgba(10,40,80,0.0)'); gr.addColorStop(1, 'rgba(10,40,80,0.06)'); g.fillStyle = gr; g.fillRect(0, y, w, 128); }
+    for (let i = 0; i < 9000; i++) { g.fillStyle = rnd() < 0.5 ? 'rgba(10,40,80,0.035)' : 'rgba(160,210,250,0.025)'; g.fillRect(rnd() * w, rnd() * h, 1, 1); }
+    for (let x = 256; x < w; x += 512) for (let y = 192; y < h; y += 512) { g.fillStyle = 'rgba(8,30,60,0.35)'; g.beginPath(); g.arc(x, y, 4, 0, 7); g.fill(); }
+  }, [1, 1]);
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xffffff, map: concTex, roughness: 0.92, metalness: 0, vertexColors: true, name: 'painted-concrete' }); wallMat.userData.txSurface = 'paint';
+  room.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === new THREE.Color(0x1c64a8).getHex()) {
+    K.uvBox(m.geometry, 1.6); m.updateMatrixWorld(true);
+    const pos = m.geometry.attributes.position, col = new Float32Array(pos.count * 3), v = new THREE.Vector3();
+    for (let i = 0; i < pos.count; i++) { v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld); const t = Math.min(1, Math.max(0, (v.y - 0.9) / 2.6)); const k = 1 - 0.55 * t * t * (3 - 2 * t); col[i * 3] = k * (1 - 0.12 * t); col[i * 3 + 1] = k * (1 - 0.08 * t); col[i * 3 + 2] = k; }
+    m.geometry.setAttribute('color', new THREE.BufferAttribute(col, 3)); m.material = wallMat; m.receiveShadow = true; } });
+
+  /* MATERIALS */
+  const brushTex = tex(1024, 64, (g, w, h) => { g.fillStyle = '#c4cbd3'; g.fillRect(0, 0, w, h); for (let i = 0; i < 1600; i++) { const y = rnd() * h, v = 175 + (rnd() * 70 | 0); g.fillStyle = 'rgba(' + v + ',' + (v + 6) + ',' + (v + 12) + ',0.35)'; g.fillRect(0, y, w, 0.6 + rnd()); } }, [6, 1]);
+  const alu = new THREE.MeshPhysicalMaterial({ color: 0xb4bcc5, map: brushTex, metalness: 0.82, roughness: 0.4, clearcoat: 0.1, envMapIntensity: 0.55, name: 'brushed-alu' });
+  const tieMat = new THREE.MeshPhysicalMaterial({ color: 0xf6f2e8, metalness: 1, roughness: 0.24, clearcoat: 0.8, clearcoatRoughness: 0.08, envMapIntensity: 1.2, name: 'polished-steel' });
+  const engr = new THREE.MeshStandardMaterial({ color: 0x14202c, metalness: 0.4, roughness: 0.6, name: 'engraved-fill' });
+  const castAlu = new THREE.MeshStandardMaterial({ color: 0x9aa3ad, metalness: 0.9, roughness: 0.48, name: 'cast-alu' });
+  const steel = new THREE.MeshStandardMaterial({ color: 0x6f7780, metalness: 1, roughness: 0.35, name: 'zinc-steel' });
+  const orange = new THREE.MeshPhysicalMaterial({ color: 0xf26a1b, roughness: 0.42, metalness: 0, clearcoat: 0.55, clearcoatRoughness: 0.3, sheen: 0.2, name: 'orange-polymer' });
+  const orangeDk = new THREE.MeshPhysicalMaterial({ color: 0xc44e12, roughness: 0.5, metalness: 0, clearcoat: 0.3, name: 'orange-polymer-dark' });
+  const strap = new THREE.MeshStandardMaterial({ color: 0x1b2430, roughness: 0.85, name: 'nylon-webbing' });
+  const rubber = new THREE.MeshStandardMaterial({ color: 0x1d1f22, roughness: 0.85, name: 'rubber' });
+  const blanket = new THREE.MeshStandardMaterial({ color: 0x3f6f9a, roughness: 0.95, name: 'wool-fabric' });
+  const trim = new THREE.MeshPhysicalMaterial({ color: 0x23272d, roughness: 0.5, metalness: 0.35, clearcoat: 0.2, name: 'trim-plastic' });
+
+
+  /* the room's wreckage: a rubble heap in the back left corner and a broken floor slab leaning on the back wall */
+  { const pile = K.make('rubble_pile', { w: 3.2, d: 2.4, h: 1.25, seed: 3 }); pile.position.set(-2.7, 0, -3.25); pile.rotation.y = 0.3; TXT.add(R, pile); TXT.contact(R, pile, { opacity: 0.5 }); }
+  const slabM = new THREE.MeshStandardMaterial({ color: 0xb9a68c, roughness: 0.95, name: 'conc-slab' });
+  /* (the leaning slab of round 1 is gone: it read as a board the second beam landed on) */
+
+  /* THE PLACES, in metres: x right, z toward the camera */
+  const MED = new THREE.Vector3(-1.2, 0, 1.6), ROV = new THREE.Vector3(0.8, 0, -0.6), LIT = new THREE.Vector3(1.75, 0, -2.75);
+
+  /* THE FINDER: the teal rover, its own rounded rubber belts kept whole, turned to face the medic */
+  const rover = K.make('triage_rover', { pan: 0, tilt: 0.12, grime: 0.25, lamp: 0xfff4e0 });
+  { const coat = new THREE.MeshPhysicalMaterial({ name: 'powder-coat-teal', color: 0x0e4656, roughness: 0.55, metalness: 0.15, clearcoat: 0.3, clearcoatRoughness: 0.4 });
+    rover.traverse((m) => { if (m.isMesh && m.material && /^tr-coat/.test(m.material.name || '')) m.material = coat; }); }
+  rover.traverse((m) => { if (m.isMesh && m.material && m.material.name === 'tr-alu') m.material = new THREE.MeshPhysicalMaterial({ color: 0x8f98a3, metalness: 1, roughness: 0.4, name: 'anodized-alu' }); });
+  rover.traverse((m) => { if (m.isMesh && m.material && m.material.name === 'tr-rubber') { m.material.name = 'rubber-track'; m.material.userData.txSurface = 'rubber'; } });
+  /* both hull sides: panel seams, bolt heads and a worn band along the skirt */
+  { const seamM = new THREE.MeshStandardMaterial({ color: 0x072624, roughness: 0.7, name: 'paint-seam' }), boltM = new THREE.MeshStandardMaterial({ color: 0x9aa2ab, metalness: 1, roughness: 0.35, name: 'zinc-bolt' });
+    const bandM = new THREE.MeshStandardMaterial({ color: 0x0a3532, roughness: 0.85, name: 'worn-paint' });
+    [-1, 1].forEach((sd) => { const SX = sd * 0.302;
+      [-0.18, 0.16].forEach((z) => { const sm = TXT.roundedBox(0.004, 0.17, 0.005, 0.0015, seamM); sm.position.set(SX, 0.245, z); rover.add(sm); });
+      const hz = TXT.roundedBox(0.004, 0.005, 0.8, 0.0015, seamM); hz.position.set(SX, 0.305, 0); rover.add(hz);
+      const band = TXT.roundedBox(0.005, 0.045, 0.84, 0.004, bandM); band.position.set(SX + sd * 0.001, 0.165, 0); rover.add(band);
+      [[-0.38, 0.32], [-0.2, 0.32], [0.14, 0.32], [0.38, 0.32], [-0.38, 0.19], [-0.2, 0.19], [0.14, 0.19], [0.38, 0.19]].forEach(([z, y]) => { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.008, 6), boltM); b.rotation.z = Math.PI / 2; b.position.set(SX + sd * 0.004, y, z); rover.add(b); }); }); }
+  rover.rotation.y = Math.atan2(MED.x - ROV.x, MED.z - ROV.z) - 0.35; if (rover.userData.lamp) rover.userData.lamp.visible = false;
+  rover.position.copy(ROV); TXT.add(R, rover);
+
+  /* THE MEDIC: a kit person in a tall kneel, back to the camera, a rugged tablet held up in both hands. The kit has no
+     kneel, so the standing figure is sunk to its knees and the shins and boots are built lying back along the floor */
+  const H_MED = 1.7;
+  const grips = [[0.11, 1.3, 0.33], [-0.17, 1.33, 0.3]];
+  const medic = K.make('person', { seed: 23, role: 'official', pose: 'stand', build: 'male', height: H_MED, hat: 'cap', hatColor: 0x1d2c55, shirt: 0x9e2a22, trousers: 0x1e2846, vest: false, headPitch: 0.55, hands: grips });
+  medic.traverse((m) => { if (m.isMesh && m.material && /p-hair/.test(m.material.name || '')) { m.material = m.material.clone(); m.material.color = new THREE.Color(0x231812); } });
+  const A = medic.userData.attach; if (!A) throw new Error('the kit person published no attach points');
+  const KNEE = A.hip[1] * 0.5;
+  const med = new THREE.Group(); medic.position.y = -KNEE; med.add(medic);
+  const twill = new THREE.MeshStandardMaterial({ color: 0x1e2846, roughness: 0.9, name: 'cotton-twill' });
+  const leather = new THREE.MeshPhysicalMaterial({ color: 0x2a1d16, roughness: 0.55, clearcoat: 0.25, name: 'boot-leather' });
+  const sole = new THREE.MeshStandardMaterial({ color: 0x18191b, roughness: 0.9, name: 'rubber-sole' });
+  const hipX = Math.abs(A.hip[0]) > 0.02 ? Math.abs(A.hip[0]) : 0.09;
+  /* the knees only: the shins fold under her, hidden behind her bag from this camera */
+  [1, -1].forEach((sd) => { const kneeCap = new THREE.Mesh(new THREE.SphereGeometry(0.068, 20, 14), twill); kneeCap.position.set(sd * 0.095, 0.06, 0.0); med.add(kneeCap); });
+  /* the medic mark: a white patch with a red cross on her upper back, seated on the cloth by a ray */
+  { medic.updateMatrixWorld(true); med.updateMatrixWorld(true);
+    const ray = new THREE.Raycaster(new THREE.Vector3(0, A.hip[1] - KNEE + 0.4, -1.5), new THREE.Vector3(0, 0, 1));
+    const hits = ray.intersectObject(medic, true); if (!hits.length) throw new Error('no back surface for the medic patch');
+    const hp = hits[0].point, nrm = hits[0].face.normal.clone().transformDirection(hits[0].object.matrixWorld);
+    const whiteM = new THREE.MeshStandardMaterial({ color: 0xf4f1ea, roughness: 0.8, name: 'patch-fabric' });
+    const redM = new THREE.MeshStandardMaterial({ color: 0xd8262a, roughness: 0.7, name: 'patch-fabric-red' });
+    const patch = new THREE.Group(); patch.add(TXT.roundedBox(0.13, 0.13, 0.006, 0.02, whiteM));
+    const c1 = TXT.roundedBox(0.09, 0.028, 0.004, 0.004, redM); c1.position.z = 0.004; patch.add(c1);
+    const c2 = TXT.roundedBox(0.028, 0.09, 0.004, 0.004, redM); c2.position.z = 0.004; patch.add(c2);
+    patch.position.copy(hp).addScaledVector(nrm, 0.004); patch.lookAt(hp.clone().add(nrm)); med.add(patch); }
+  /* the tablet: a rugged case between the two grips, its screen tipped up toward her */
+  const tabC = new THREE.Vector3((grips[0][0] + grips[1][0]) / 2, (grips[0][1] + grips[1][1]) / 2 - KNEE + 0.02, (grips[0][2] + grips[1][2]) / 2 + 0.02);
+  const tablet = new THREE.Group(); tablet.position.copy(tabC); tablet.rotation.set(-0.95, 0, 0.1); med.add(tablet);
+  const caseM = new THREE.MeshPhysicalMaterial({ color: 0x2a2f36, roughness: 0.6, metalness: 0.1, clearcoat: 0.2, name: 'rubber-case' });
+  tablet.add(TXT.roundedBox(0.3, 0.022, 0.21, 0.012, caseM));
+  const scrM = new THREE.MeshStandardMaterial({ color: 0x0b1a12, emissive: CH.ACCENT, emissiveIntensity: 0.4, roughness: 0.2, name: 'tablet-screen' }); scrM.userData.txSurface = false;
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.25, 0.16), scrM); scr.rotation.x = -Math.PI / 2; scr.position.y = 0.0115; scr.userData.txBevel = false; tablet.add(scr);
+  /* her kit bag on the floor at her left knee */
+  const bagM = new THREE.MeshStandardMaterial({ color: 0x1d2c55, roughness: 0.85, name: 'nylon-fabric' }), reflM = new THREE.MeshStandardMaterial({ color: 0x8c949c, roughness: 0.45, metalness: 0.3, name: 'reflective-tape' });
+  /* her medic bag on the floor behind her knees, between her and the camera: it hides the folded shins */
+  { const bg = new THREE.Group(); bg.position.set(0.02, 0, -0.36); bg.rotation.y = 0.5; bg.scale.setScalar(0.82); med.add(bg);
+    const bag = TXT.roundedBox(0.58, 0.34, 0.32, 0.09, bagM); bag.position.y = 0.17; bg.add(bag);
+    const tape = TXT.roundedBox(0.585, 0.035, 0.325, 0.014, reflM); tape.position.y = 0.21; bg.add(tape);
+    const pw = new THREE.MeshStandardMaterial({ color: 0xf4f1ea, roughness: 0.8, name: 'patch-fabric-bag' }), pr = new THREE.MeshStandardMaterial({ color: 0xd8262a, roughness: 0.7, name: 'patch-fabric-bag-red' });
+    const pt = TXT.roundedBox(0.15, 0.006, 0.15, 0.02, pw); pt.position.set(0, 0.343, 0); bg.add(pt);
+    const a1 = TXT.roundedBox(0.105, 0.005, 0.032, 0.004, pr); a1.position.set(0, 0.347, 0); bg.add(a1);
+    const a2 = TXT.roundedBox(0.032, 0.005, 0.105, 0.004, pr); a2.position.set(0, 0.347, 0); bg.add(a2);
+    K.bar([-0.16, 0.345, 0], [-0.16, 0.42, 0], 0.012, strap, 8, bg); K.bar([0.16, 0.345, 0], [0.16, 0.42, 0], 0.012, strap, 8, bg); K.bar([-0.16, 0.42, 0], [0.16, 0.42, 0], 0.012, strap, 8, bg); }
+  med.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  med.rotation.y = Math.atan2(ROV.x - MED.x, ROV.z - MED.z); med.position.copy(MED); TXT.add(R, med);
+
+  /* THE SECOND NEED: an empty orange evacuation litter on the floor further back, waiting */
+  const litter = new THREE.Group();
+  const CL = 1.9, CW = 0.6;
+  const rrect = (hx, hz, rc) => { const sh = new THREE.Shape(); sh.moveTo(-hx + rc, -hz); sh.lineTo(hx - rc, -hz); sh.quadraticCurveTo(hx, -hz, hx, -hz + rc); sh.lineTo(hx, hz - rc); sh.quadraticCurveTo(hx, hz, hx - rc, hz); sh.lineTo(-hx + rc, hz); sh.quadraticCurveTo(-hx, hz, -hx, hz - rc); sh.lineTo(-hx, -hz + rc); sh.quadraticCurveTo(-hx, -hz, -hx + rc, -hz); return sh; };
+  [orange, orangeDk].forEach((m) => { m.userData.txSurface = 'plastic'; });
+  const SH_H = 0.13, BASE = 0.03;
+  [-0.7, 0.7].forEach((x) => { const sk = TXT.roundedBox(0.12, BASE, CW - 0.08, 0.01, orangeDk); sk.position.set(x, BASE / 2, 0); litter.add(sk); });
+  const shellG = new THREE.ExtrudeGeometry(rrect(CL / 2 - 0.03, CW / 2 - 0.03, 0.2), { depth: SH_H - 0.04, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.03, bevelSegments: 5, curveSegments: 10 });
+  shellG.rotateX(-Math.PI / 2); shellG.translate(0, 0.02 + BASE, 0);
+  const shell = new THREE.Mesh(shellG, orange); shell.userData.txBevel = false; litter.add(shell);
+  const bedM = new THREE.MeshPhysicalMaterial({ color: 0xe0601a, roughness: 0.55, clearcoat: 0.25, name: 'orange-polymer-bed' }); bedM.userData.txSurface = 'plastic';
+  const bedG = new THREE.ExtrudeGeometry(rrect(CL / 2 - 0.1, CW / 2 - 0.09, 0.15), { depth: 0.006, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.01, bevelSegments: 3, curveSegments: 10 });
+  bedG.rotateX(-Math.PI / 2); const bed = new THREE.Mesh(bedG, bedM); bed.position.y = BASE + SH_H + 0.002; bed.userData.txBevel = false; litter.add(bed);
+  const headRest = TXT.roundedBox(0.22, 0.03, 0.34, 0.014, bedM); headRest.position.set(-CL / 2 + 0.22, BASE + SH_H + 0.02, 0); litter.add(headRest);
+  const lipM = new THREE.MeshPhysicalMaterial({ color: 0xf26a1b, roughness: 0.45, clearcoat: 0.4, clearcoatRoughness: 0.35, name: 'orange-polymer-lip' }); lipM.userData.txSurface = 'plastic';
+  { const pts = rrect(CL / 2 - 0.01, CW / 2 - 0.01, 0.2).getSpacedPoints(160).map((p) => new THREE.Vector3(p.x, 0, p.y)); pts.pop();
+    const lip = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 320, 0.024, 14, true), lipM); lip.position.y = BASE + SH_H + 0.014; lip.userData.txBevel = false; litter.add(lip); }
+  const recM = new THREE.MeshStandardMaterial({ color: 0x3a1606, roughness: 0.8, name: 'orange-polymer-shadow' });
+  [-1, 1].forEach((sd) => [-0.58, 0, 0.58].forEach((x) => {
+    const rec = TXT.roundedBox(0.2, 0.055, 0.012, 0.012, recM); rec.position.set(x, BASE + SH_H * 0.55, sd * (CW / 2 + 0.002)); litter.add(rec);
+    const grip = TXT.roundedBox(0.22, 0.022, 0.03, 0.01, orange); grip.position.set(x, BASE + SH_H * 0.55 + 0.04, sd * (CW / 2 + 0.008)); litter.add(grip); }));
+  const webM = new THREE.MeshStandardMaterial({ color: 0x8b939c, roughness: 0.9, name: 'nylon-webbing-grey' });
+  [-0.23, 0.46].forEach((x) => {
+    const st = TXT.roundedBox(0.05, 0.006, CW - 0.1, 0.002, webM); st.position.set(x, BASE + SH_H + 0.03, 0); litter.add(st);
+    const buckle = TXT.roundedBox(0.075, 0.014, 0.06, 0.005, steel); buckle.position.set(x, BASE + SH_H + 0.038, -0.06); litter.add(buckle); });
+  /* a folded grey blanket at its foot, so it reads as ready and empty */
+  { const bl = TXT.roundedBox(0.36, 0.07, 0.42, 0.03, blanket); bl.position.set(CL / 2 - 0.3, BASE + SH_H + 0.05, 0); litter.add(bl); }
+  litter.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  litter.rotation.y = 0.15; litter.position.copy(LIT); TXT.add(R, litter);
+
+  /* THE BEAM, the one accent. One leaves the rover's radio and lands on the medic's tablet: the handoff. The other
+     leaves the same radio for the litter and stops well short of it: still not enough */
+  rover.updateMatrixWorld(true); med.updateMatrixWorld(true); litter.updateMatrixWorld(true);
+  const rA = new THREE.Vector3(); rover.userData.radio.getWorldPosition(rA);
+  const tW = new THREE.Vector3(); scr.getWorldPosition(tW);
+  const litHead = new THREE.Vector3(-CL / 2 + 0.3, BASE + SH_H + 0.05, 0).applyMatrix4(litter.matrixWorld);
+  const limeCore = new THREE.MeshStandardMaterial({ color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 2.2, roughness: 0.3, name: 'lime-link' }); limeCore.userData.txSurface = false;
+  const limeHalo = new THREE.MeshBasicMaterial({ color: CH.ACCENT, transparent: true, opacity: 0.18, depthWrite: false, blending: THREE.AdditiveBlending, fog: false }); limeHalo.userData.txSurface = false;
+  const tipHot = new THREE.MeshBasicMaterial({ color: 0xf6ffe0, toneMapped: false }); tipHot.userData.txSurface = false;
+  const beam = (curve, r) => {
+    const core = new THREE.Mesh(new THREE.TubeGeometry(curve, 160, r, 14, false), limeCore); core.userData.txBevel = false; R.scene.add(core);
+    const halo = new THREE.Mesh(new THREE.TubeGeometry(curve, 160, r * 2.8, 14, false), limeHalo); halo.userData.txBevel = false; R.scene.add(halo);
+  };
+  /* the handoff: radio to tablet, a high arc */
+  const hand = new THREE.CubicBezierCurve3(rA.clone(), rA.clone().add(new THREE.Vector3(0, 0.5, 0)).lerp(tW, 0.25), tW.clone().add(new THREE.Vector3(0, 0.45, 0)).lerp(rA, 0.2), tW.clone());
+  beam(hand, 0.009);
+  CH.lampGlow(THREE, R, [tW.x, tW.y + 0.02, tW.z], CH.ACCENT, 0.2, 0.35);
+  CH.lampGlow(THREE, R, [rA.x, rA.y, rA.z], CH.ACCENT, 0.16, 0);
+  if (hand.getPoint(1).distanceTo(tW) > 0.001) throw new Error('the handoff beam does not land on the tablet');
+
+  TXT.contact(R, rover); TXT.contact(R, litter); TXT.contact(R, med, { opacity: 0.6 });
+
+  /* THE CAMERA: behind the medic and to her left, at her kneeling eye height, the rover beyond her */
+  const eyeW = new THREE.Vector3(...A.eye).add(new THREE.Vector3(0, -KNEE, 0)).applyMatrix4(med.matrixWorld);
+  const FROM = [-2.6, eyeW.y + 1.05, 6.5];
+  CH.aim(THREE, R, TXT, FROM, [rA.x, rA.y, rA.z], 690, 610, 30);
+  /* checks: no face over a fifth of the frame, the medic's head clear of the headline, the rover clear of the dek */
+  { const hTop = eyeW.clone().add(new THREE.Vector3(0, 0.14, 0)), hBot = eyeW.clone().add(new THREE.Vector3(0, -0.13, 0));
+    const a = CH.project(THREE, R, hTop.toArray()), b = CH.project(THREE, R, hBot.toArray());
+    if (Math.abs(b[1] - a[1]) > 1350 / 5) throw new Error('the medic\'s head is ' + Math.round(Math.abs(b[1] - a[1])) + ' px, over a fifth of the frame');
+    window.__s8 = { head: [a, b], radio: CH.project(THREE, R, rA.toArray()), tab: CH.project(THREE, R, tW.toArray()), lit: CH.project(THREE, R, litHead.toArray()) }; }
+
+  /* THE LIGHT: a warm butter key low from the left, as if through the window, teal fill, mint rim behind */
+  CH.KEY_SCALE = 2.3;
+  const spec = CH.rigSpec(W, 10, 4096);
+  spec.ambient = Object.assign({}, spec.ambient, { i: spec.ambient.i * 0.4 }); spec.fill = Object.assign({}, spec.fill, { i: spec.fill.i * 0.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.5, 0], { distance: 14, shadowFar: 40, normalBias: 0.01 }), { light: { az: -62, el: 24 } }));
+  CH.unacne(R, 0.008);
+  R.scene.environmentIntensity = 0.32;
+  R.scene.traverse((l) => { if (l.isHemisphereLight) l.intensity *= 0.4; });
+  CH.flood(THREE, R, [-4.0, 2.4, 0.2], [0.6, 0.8, -1.2], { color: 0xffd9a0, i: 30, reach: 12, angle: 0.6, penumbra: 0.95 });
+  CH.flood(THREE, R, [-3.8, 3.4, 2.2], [-2.2, 1.6, -4.5], { color: 0xffd39a, i: 42, reach: 12, angle: 0.5, penumbra: 0.95 });
+  TXT.weather(R, { grime: 0.2, height: 0.3, mottle: 0.12 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { tone: 'win', a: 0.42, height: 230 });
+  CH.seat(cx, { sel: '.hook', a: 0.56, fade: 170 });
+  CH.seat(cx, { sel: '.dek', a: 0.8, fade: 150 });
+  CH.seat(cx, { sel: '.src', a: 0.6, fade: 46 });
+  CH.seat(cx, { sel: '#site', a: 0.6, fade: 46 });
+  CH.seat(cx, { sel: '.kick', a: 0.5, fade: 46 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

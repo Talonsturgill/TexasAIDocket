@@ -1,0 +1,338 @@
+<!doctype html>
+<!-- 2026-11-21, frame 9 of 9, the close. THE EMPTY POCKET. An open orange hard case stands on a dropped pickup tailgate in long
+     late light. Its foam is cut for one cylindrical dose and the pocket is empty. A lime link rises from the radio of the triage
+     rover parked at the right edge and ends inside that empty pocket: the data already reaches the medic, the dose does not.
+     A ring of engraved day ticks on the lid counts FIG.close_after_finals_days. The type sits low, in the truck's own shadow
+     under the tailgate. Every machine and the case are drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:134px; width:450px; text-align:left">The next ask is delivery</h1>
+<p class="dek" id="dek" style="left:82px; top:1046px; width:880px; font-size:25px; line-height:1.36">DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.</p>
+<script>window.FIG = {"close_after_finals_days": 12, "finals_end_day": 13, "triagex_close_day": 25};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Open until November 25th", counter: "09 / 09", src: "c19 c20", fit: { min: 76, max: 104, maxLines: 2 } });
+
+  /* HONESTY. The only count drawn is the ring of day ticks on the lid, one per day from the end of the finals to the close. */
+  const F = window.FIG;
+  const DAYS = F.close_after_finals_days;
+  if (F.finals_end_day + DAYS !== F.triagex_close_day) throw new Error('FIG disagrees: finals end ' + F.finals_end_day + ' plus ' + DAYS + ' is not ' + F.triagex_close_day);
+  if (!(DAYS > 0 && DAYS < 40)) throw new Error('close_after_finals_days out of range ' + DAYS);
+
+  const FOV = 40;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.02, far: 3000, fog: 0.0007 });
+  const rnd = CH.rng(20261121 + 9);
+
+  /* ---------- materials ---------- */
+  const tex = (w, h, paint, rep) => CH.canvasTex(THREE, w, h, paint, rep);
+  const shellM = K.mat('case-shell-poly', { color: 0xe8641e, roughness: 0.58, metalness: 0, clearcoat: 0.08, clearcoatRoughness: 0.6, envMapIntensity: 0.6 }, true);
+  const shellIn = K.mat('case-inner-poly', { color: 0xc9541a, roughness: 0.62, metalness: 0 }, true);
+  const gasket = K.mat('case-gasket-rubber', { color: 0x1d2230, roughness: 0.8 }, true);
+  const latchM = K.mat('case-latch-poly', { color: 0x2b2a33, roughness: 0.55, metalness: 0.05, clearcoat: 0.1 }, true);
+  const pinM = K.mat('case-pin-steel', { color: 0xc4c9cf, roughness: 0.3, metalness: 1 }, true);
+  const foamTex = tex(512, 512, (x, w, h) => {
+    const r = CH.rng(77); x.fillStyle = '#323a4c'; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 26000; i++) { const v = 30 + r() * 40 | 0; x.fillStyle = 'rgba(' + v + ',' + (v + 6) + ',' + (v + 20) + ',' + (0.25 + r() * 0.4) + ')'; x.fillRect(r() * w, r() * h, 1.5, 1.5); }
+  }, [3, 3]);
+  const foamM = K.mat('foam-cell-rubber', { color: 0xffffff, map: foamTex, roughness: 0.97, metalness: 0 }, true);
+  const boreM = K.mat('foam-bore-rubber', { color: 0x262c3a, map: foamTex, roughness: 0.98, metalness: 0, side: THREE.BackSide }, true);
+  const tickM = K.mat('case-tick-engrave', { color: 0x3a1a0c, roughness: 0.8, metalness: 0 }, true);
+  const limeM = new THREE.MeshStandardMaterial({ name: 'handoff-link', color: CH.ACCENT, emissive: CH.ACCENT, emissiveIntensity: 0.85, roughness: 0.4 });
+  limeM.userData.txSurface = false;
+
+  /* ---------- the pickup, its closed tailgate swapped for a dropped one ---------- */
+  const truck = K.make('pickup', { seed: 4, color: 0x2650c4, metallic: 1, trim: 'work' });
+  const L = 5.89, zr = -L / 2, xi = 2.03 / 2 - 0.13;
+  /* the kit merges the truck by material, so the closed tailgate is cut out of the merged meshes triangle by triangle:
+   * every face whose centroid lies in the gate's slot between the bed walls is dropped */
+  let hidden = 0;
+  truck.updateMatrixWorld(true);
+  const inGate = (x, y, z) => Math.abs(x) < xi - 0.004 && z > zr - 0.035 && z < zr + 0.085 && y > 0.66 && y < 1.375;
+  truck.traverse((m) => {
+    if (!m.isMesh) return;
+    const g0 = m.geometry.index ? m.geometry.toNonIndexed() : m.geometry, p = g0.attributes.position, mw = m.matrixWorld, v = new THREE.Vector3();
+    const keep = []; let drop = 0;
+    for (let f = 0; f < p.count; f += 3) {
+      let cx = 0, cy = 0, cz = 0;
+      for (let k = 0; k < 3; k++) { v.fromBufferAttribute(p, f + k).applyMatrix4(mw); cx += v.x / 3; cy += v.y / 3; cz += v.z / 3; }
+      if (inGate(cx, cy, cz)) drop++; else keep.push(f);
+    }
+    if (!drop) return;
+    const ng = new THREE.BufferGeometry();
+    for (const name of Object.keys(g0.attributes)) {
+      const at = g0.attributes[name], n = at.itemSize, arr = new at.array.constructor(keep.length * 3 * n);
+      keep.forEach((f, i) => { for (let k = 0; k < 3 * n; k++) arr[i * 3 * n + k] = at.array[f * n + k]; });
+      ng.setAttribute(name, new THREE.BufferAttribute(arr, n, at.normalized));
+    }
+    m.geometry = ng; hidden += drop;
+  });
+  if (hidden < 40) throw new Error('expected to cut the closed tailgate out, dropped ' + hidden + ' faces');
+  truck.rotation.y = Math.PI; truck.position.set(0, 0, zr);   /* the rear now faces +z and sits on z = 0 */
+  TXT.add(R, truck); TXT.contact(R, truck);
+  const paint = (() => { let p = null; truck.traverse((m) => { if (!p && m.isMesh && m.material && /paint/.test(m.material.name || '')) p = m.material; }); return p; })() ||
+    K.mat('tailgate-body-paint', { color: 0x1f3f9a, roughness: 0.3, metalness: 0.6, clearcoat: 1 }, true);
+
+  const GATE_D = 0.62, GATE_W = xi * 2 - 0.02, GATE_T = 0.055, GATE_Y = 0.645;
+  const gate = new THREE.Group(); TXT.add(R, gate);
+  {
+    /* SPRAY-IN LINER on the gate's up face and edges: matte, speckled, worn paler on the ridges */
+    const linerTex = tex(512, 512, (x, w, h) => { const r = CH.rng(515); x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 42000; i++) { const v = 150 + r() * 105 | 0; x.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',' + (0.35 + r() * 0.5) + ')'; x.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+      for (let i = 0; i < 40; i++) { const cx0 = r() * w, cy0 = r() * h, rr = 10 + r() * 40, g = x.createRadialGradient(cx0, cy0, 0, cx0, cy0, rr); g.addColorStop(0, 'rgba(230,236,255,0.35)'); g.addColorStop(1, 'rgba(230,236,255,0)'); x.fillStyle = g; x.fillRect(cx0 - rr, cy0 - rr, rr * 2, rr * 2); } }, [3, 2]);
+    const linerM = K.mat('gate-liner-rubber', { color: 0x2b47a6, map: linerTex, bumpMap: linerTex, bumpScale: 0.6, roughness: 0.9, metalness: 0 }, true);
+    const ridgeM = K.mat('mat-ridge-rubber', { color: 0x4a5f8c, roughness: 0.55, metalness: 0 }, true);
+    const panel = TXT.roundedBox(GATE_W, GATE_T, GATE_D, 0.02, linerM); panel.position.set(0, GATE_Y - GATE_T / 2, GATE_D / 2 + 0.01); gate.add(panel);
+    /* the inner skin, now facing up: a stamped panel with two raised ribs and a worn sill, dents and scuffs in its paint */
+    const skinTex = tex(1024, 512, (x, w, h) => {
+      const r = CH.rng(9); x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 90; i++) { x.strokeStyle = 'rgba(40,40,60,' + (0.08 + r() * 0.2) + ')'; x.lineWidth = 0.6 + r() * 1.4; const x0 = r() * w, y0 = r() * h; x.beginPath(); x.moveTo(x0, y0); x.lineTo(x0 + (r() - 0.5) * 120, y0 + (r() - 0.5) * 20); x.stroke(); }
+      for (let i = 0; i < 18; i++) { const g = x.createRadialGradient(r() * w, r() * h, 0, r() * w, r() * h, 30 + r() * 40); }
+      for (let i = 0; i < 26; i++) { const cx0 = r() * w, cy0 = r() * h, rr = 8 + r() * 30, g = x.createRadialGradient(cx0, cy0, 0, cx0, cy0, rr); g.addColorStop(0, 'rgba(150,140,130,0.35)'); g.addColorStop(1, 'rgba(150,140,130,0)'); x.fillStyle = g; x.fillRect(cx0 - rr, cy0 - rr, rr * 2, rr * 2); }
+    });
+    const skinM = K.mat('tailgate-inner-paint', { color: 0x1f3f9a, map: skinTex, roughness: 0.42, metalness: 0.45, clearcoat: 0.6, clearcoatRoughness: 0.35 }, true);
+    const skin = TXT.roundedBox(GATE_W - 0.12, 0.012, GATE_D - 0.12, 0.006, linerM); skin.position.set(0, GATE_Y + 0.002, GATE_D / 2 + 0.01); gate.add(skin);
+    /* a ribbed rubber bed mat runs out of the bed onto the gate, its ribs along the truck */
+    const matM = K.mat('bed-mat-rubber', { color: 0x1c2430, roughness: 0.86, metalness: 0 }, true);
+    const mat = TXT.roundedBox(GATE_W - 0.26, 0.008, GATE_D - 0.1, 0.004, matM); mat.position.set(0.02, GATE_Y + 0.012, GATE_D / 2 - 0.02); gate.add(mat);
+    for (let i = 0; i < 13; i++) { const rb = TXT.roundedBox(0.016, 0.008, GATE_D - 0.12, 0.004, ridgeM); rb.position.set(-GATE_W / 2 + 0.17 + i * (GATE_W - 0.3) / 12, GATE_Y + 0.018, GATE_D / 2 - 0.02); gate.add(rb); }
+    const bedMat = TXT.roundedBox(xi * 2 - 0.04, 0.008, 1.6, 0.004, matM); bedMat.position.set(0, 0.636, -0.82); gate.add(bedMat);
+    /* the gate's latch: a chrome striker and a black latch cup at each outer corner, and the hinge cups at the sill */
+    [-1, 1].forEach((s) => {
+      const cup = TXT.roundedBox(0.05, 0.045, 0.07, 0.01, matM); cup.position.set(s * (GATE_W / 2 - 0.025), GATE_Y - 0.03, GATE_D - 0.03); gate.add(cup);
+      const st = TXT.roundedBox(0.03, 0.02, 0.022, 0.006, K.finish.chrome()); st.position.set(s * (GATE_W / 2 + 0.01), GATE_Y - 0.025, GATE_D - 0.04); gate.add(st);
+      const hc = TXT.roundedBox(0.07, 0.05, 0.05, 0.012, matM); hc.position.set(s * (GATE_W / 2 - 0.04), GATE_Y - 0.04, 0.02); gate.add(hc);
+    });
+    /* the bed rail caps: black textured caps along both bed walls with stake pockets */
+    [].forEach((s) => {   /* no added caps: at this camera any cap on either wall drew a dark line through the headline, the kit's own trim stays */
+      const cap = TXT.roundedBox(0.13, 0.03, 1.72, 0.012, matM); cap.position.set(s * (xi + 0.06), 1.385, -0.86); gate.add(cap);
+      for (let k = 0; k < 2; k++) { const sp = TXT.roundedBox(0.05, 0.006, 0.07, 0.004, K.mat('stake-hole-rubber', { color: 0x080b12, roughness: 0.9 }, true)); sp.position.set(s * (xi + 0.06), 1.401, -0.25 - k * 1.2); gate.add(sp); }
+    });
+    [-1, 1].forEach((s) => { const rib = TXT.roundedBox(GATE_W - 0.2, 0.012, 0.04, 0.006, linerM); rib.position.set(0, GATE_Y + 0.006, GATE_D / 2 + 0.01 + s * 0.16); gate.add(rib); });
+    /* hinge knuckles at the bed sill and the latch strikers at the gate's outer corners */
+    [-1, 1].forEach((s) => {
+      const k = K.cyl(0.018, 0.018, 0.06, pinM, s * (GATE_W / 2 - 0.05), GATE_Y - 0.03 - 0.03, 0.02, 16, gate); k.rotation.z = Math.PI / 2;
+      const strk = TXT.roundedBox(0.04, 0.03, 0.05, 0.008, K.finish.chrome()); strk.position.set(s * (GATE_W / 2 - 0.01), GATE_Y - 0.02, GATE_D - 0.03); gate.add(strk);
+      /* the support cable, from the bed wall's top to the gate's corner, sagging very slightly (the near one is out of frame) */
+      return;   /* both cables left out: the near one read as a stray rod into the rover */
+      const a = [s * (xi + 0.03), 1.22, -0.06], b = [s * (GATE_W / 2 - 0.02), GATE_Y - 0.01, GATE_D - 0.04];
+      gate.add(TXT.tube([a, [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - 0.015, (a[2] + b[2]) / 2], b], 0.004, K.mat('gate-cable-steel', { color: 0x9aa0a8, roughness: 0.35, metalness: 1 }, true), { segments: 40, radial: 8 }));
+    });
+  }
+  gate.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+
+  /* ---------- the hard case ---------- */
+  const CW = 0.56, CD = 0.42, CH_ = 0.2, LH = 0.075;
+  const kase = new THREE.Group();
+  const base = new THREE.Group(); kase.add(base);
+  /* the tub: a rounded shell, a lip with the gasket, moulded vertical ribs on the front and sides, corner bumpers */
+  /* the tub is solid up to under the foam, then an open rim of four walls rises round the foam, so the foam is seen */
+  const TUB_H = 0.1;
+  const tub = TXT.roundedBox(CW, TUB_H, CD, 0.03, shellM); tub.position.y = TUB_H / 2; base.add(tub);
+  const WT = 0.016;
+  [[CW + 0.012, CD / 2 - WT / 2 + 0.006, 'x'], [CW + 0.012, -(CD / 2 - WT / 2 + 0.006), 'x'], [CD + 0.012, CW / 2 - WT / 2 + 0.006, 'z'], [CD + 0.012, -(CW / 2 - WT / 2 + 0.006), 'z']].forEach(([len, off, ax]) => {
+    const w = TXT.roundedBox(ax === 'x' ? len : WT + 0.008, CH_ - TUB_H + 0.01, ax === 'x' ? WT + 0.008 : len, 0.007, shellM);
+    w.position.set(ax === 'x' ? 0 : off, (CH_ + TUB_H - 0.01) / 2, ax === 'x' ? off : 0); base.add(w);
+    const g = TXT.roundedBox(ax === 'x' ? len - 0.03 : 0.007, 0.004, ax === 'x' ? 0.007 : len - 0.03, 0.002, gasket);
+    g.position.set(ax === 'x' ? 0 : off, CH_ + 0.001, ax === 'x' ? off : 0); base.add(g);
+  });
+  for (let i = 0; i < 9; i++) { const x = -CW / 2 + 0.06 + i * (CW - 0.12) / 8; if (Math.abs(x) < 0.05) continue; const rb = TXT.roundedBox(0.016, CH_ - 0.07, 0.012, 0.005, shellM); rb.position.set(x, CH_ / 2 - 0.012, CD / 2 + 0.004); base.add(rb); }
+  [-1, 1].forEach((s) => { for (let i = 0; i < 5; i++) { const z = -CD / 2 + 0.07 + i * (CD - 0.14) / 4; const rb = TXT.roundedBox(0.012, CH_ - 0.07, 0.016, 0.005, shellM); rb.position.set(s * (CW / 2 + 0.004), CH_ / 2 - 0.012, z); base.add(rb); } });
+  [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([sx, sz]) => { const ft = TXT.roundedBox(0.05, 0.012, 0.05, 0.005, gasket); ft.position.set(sx * (CW / 2 - 0.04), 0.004, sz * (CD / 2 - 0.04)); base.add(ft); });
+  /* two latches on the front, each a moulded lever on a steel pin with a keeper on the lid */
+  const latches = [];
+  [-1, 1].forEach((s) => {
+    const lx = s * 0.15;
+    const lev = TXT.roundedBox(0.075, 0.07, 0.022, 0.01, latchM); lev.position.set(lx, CH_ - 0.035, CD / 2 + 0.02); lev.rotation.x = 0.35; base.add(lev);
+    const pin = K.cyl(0.005, 0.005, 0.085, pinM, lx, CH_ - 0.07, CD / 2 + 0.016, 10, base); pin.rotation.z = Math.PI / 2; pin.position.set(lx, CH_ - 0.068, CD / 2 + 0.016);
+    const grip = TXT.roundedBox(0.05, 0.012, 0.012, 0.004, latchM); grip.position.set(lx, CH_ + 0.0, CD / 2 + 0.044); base.add(grip);
+    latches.push(lev);
+  });
+  /* the carry handle, folded down on the front between the latches */
+  const hdl = TXT.roundedBox(0.13, 0.022, 0.026, 0.01, latchM); hdl.position.set(0, CH_ - 0.07, CD / 2 + 0.026); base.add(hdl);
+  [-1, 1].forEach((s) => { const lug = TXT.roundedBox(0.02, 0.04, 0.02, 0.006, shellM); lug.position.set(s * 0.075, CH_ - 0.06, CD / 2 + 0.012); base.add(lug); });
+
+  /* THE FOAM: pick and pluck foam, its top a few cm under the rim, a grid of plucked cubes scored in it. Three filled
+   * cut outs (an unbranded autoinjector, a sensor puck, a rolled tourniquet) and ONE empty cylindrical pocket, the dose */
+  const FOAM_TOP = CH_ - 0.028, FOAM_D = 0.07, POCKET_R = 0.045, POCKET_AT = [0.13, 0.02];
+  const POCKET_DEPTH = FOAM_D;
+  {
+    const cell = 0.0125, gridTex = tex(512, 512, (x, w, h) => {
+      const r = CH.rng(77); x.fillStyle = '#3a4458'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 30000; i++) { const v = 40 + r() * 40 | 0; x.fillStyle = 'rgba(' + v + ',' + (v + 8) + ',' + (v + 26) + ',' + (0.2 + r() * 0.4) + ')'; x.fillRect(r() * w, r() * h, 1.5, 1.5); }
+      x.strokeStyle = 'rgba(12,16,28,0.85)'; x.lineWidth = 3; const n = 16;
+      for (let k = 0; k <= n; k++) { const p = k * w / n; x.beginPath(); x.moveTo(p, 0); x.lineTo(p, h); x.stroke(); x.beginPath(); x.moveTo(0, p); x.lineTo(w, p); x.stroke(); }
+    });
+    gridTex.wrapS = gridTex.wrapT = THREE.RepeatWrapping; gridTex.repeat.set(1 / (cell * 16), 1 / (cell * 16));
+    const pluckM = K.mat('foam-pluck-rubber', { color: 0xffffff, map: gridTex, roughness: 0.97, metalness: 0 }, true);
+    pluckM.userData.txSurface = 'rubber';
+    const w = CW - 0.036, d = CD - 0.036, rr = 0.016;
+    const sh = new THREE.Shape();
+    sh.moveTo(-w / 2 + rr, -d / 2); sh.lineTo(w / 2 - rr, -d / 2); sh.quadraticCurveTo(w / 2, -d / 2, w / 2, -d / 2 + rr); sh.lineTo(w / 2, d / 2 - rr);
+    sh.quadraticCurveTo(w / 2, d / 2, w / 2 - rr, d / 2); sh.lineTo(-w / 2 + rr, d / 2); sh.quadraticCurveTo(-w / 2, d / 2, -w / 2, d / 2 - rr); sh.lineTo(-w / 2, -d / 2 + rr); sh.quadraticCurveTo(-w / 2, -d / 2, -w / 2 + rr, -d / 2);
+    /* shape y is world -z after the rotation below, so a cut at case (x, z) is drawn at (x, -z) */
+    const rect = (cx0, cz0, hw, hd, r0) => { const p = new THREE.Path(), y0 = -cz0; p.moveTo(cx0 - hw + r0, y0 - hd); p.lineTo(cx0 - hw + r0, y0 - hd);
+      p.absarc(cx0 - hw + r0, y0 - hd + r0, r0, -Math.PI / 2, -Math.PI, true); p.lineTo(cx0 - hw, y0 + hd - r0); p.absarc(cx0 - hw + r0, y0 + hd - r0, r0, Math.PI, Math.PI / 2, true);
+      p.lineTo(cx0 + hw - r0, y0 + hd); p.absarc(cx0 + hw - r0, y0 + hd - r0, r0, Math.PI / 2, 0, true); p.lineTo(cx0 + hw, y0 - hd + r0); p.absarc(cx0 + hw - r0, y0 - hd + r0, r0, 0, -Math.PI / 2, true); return p; };
+    const CUTS = { injector: [-0.06, 0.06, 0.095, 0.022], puck: [-0.17, -0.09, 0.045, 0.045], roll: [0.0, -0.095, 0.04, 0.045] };
+    Object.values(CUTS).forEach(([x0, z0, hw, hd]) => sh.holes.push(rect(x0, z0, hw, hd, 0.012)));
+    const hole = new THREE.Path(); hole.absarc(POCKET_AT[0], -POCKET_AT[1], POCKET_R, 0, Math.PI * 2, true); sh.holes.push(hole);
+    const g = new THREE.ExtrudeGeometry(sh, { depth: FOAM_D - 0.006, bevelEnabled: true, bevelThickness: 0.004, bevelSize: 0.003, bevelSegments: 3, curveSegments: 40 });
+    g.rotateX(-Math.PI / 2);
+    const slab = new THREE.Mesh(g, pluckM); slab.position.y = FOAM_TOP - FOAM_D + 0.002; slab.userData.txBevel = false; base.add(slab);
+    const floorM = K.mat('foam-floor-rubber', { color: 0x161b28, roughness: 1 }, true);
+    const fl = TXT.roundedBox(w, 0.004, d, 0.002, floorM); fl.position.y = FOAM_TOP - FOAM_D + 0.002; base.add(fl);
+    /* the filled cut outs: plain shapes in moulded plastic and webbing, no label, no name, no symbol */
+    const penM = K.mat('pen-body-plastic', { color: 0xf2f5f7, roughness: 0.35, clearcoat: 0.5 }, true);
+    const capM = K.mat('pen-cap-plastic', { color: 0x1e8a8a, roughness: 0.45 }, true);
+    const [ix, iz] = CUTS.injector;
+    const pen = new THREE.Mesh(new THREE.CapsuleGeometry(0.014, 0.12, 8, 20), penM); pen.rotation.z = Math.PI / 2; pen.position.set(ix + 0.01, FOAM_TOP - 0.01, iz); base.add(pen);
+    const pcap = new THREE.Mesh(new THREE.CapsuleGeometry(0.0155, 0.04, 8, 20), capM); pcap.rotation.z = Math.PI / 2; pcap.position.set(ix - 0.06, FOAM_TOP - 0.009, iz); base.add(pcap);
+    const [px, pz] = CUTS.puck;
+    const puck = K.cyl(0.036, 0.038, 0.022, K.mat('puck-shell-plastic', { color: 0xdfe6ea, roughness: 0.42, clearcoat: 0.4 }, true), px, FOAM_TOP - 0.018, pz, 40, base);
+    const dome = new THREE.Mesh(new THREE.SphereGeometry(0.018, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), K.finish.glass(0x1a3a48)); dome.scale.y = 0.45; dome.position.set(px, FOAM_TOP + 0.004, pz); base.add(dome);
+    const [rx, rz] = CUTS.roll;
+    const roll = K.cyl(0.034, 0.034, 0.075, K.mat('tourniquet-webbing-fabric', { color: 0xc89a5a, roughness: 0.85 }, true), rx, FOAM_TOP - 0.068, rz, 40, base);
+    roll.rotation.x = Math.PI / 2; roll.position.set(rx, FOAM_TOP - 0.024, rz);
+    const buckle = TXT.roundedBox(0.03, 0.012, 0.03, 0.004, K.mat('buckle-cast', { color: 0x9aa2ad, roughness: 0.35, metalness: 1 }, true)); buckle.position.set(rx, FOAM_TOP + 0.012, rz); base.add(buckle);
+    /* the empty pocket's own floor sits deep and dark, the link's glow at the bottom */
+    const pf = new THREE.Mesh(new THREE.CircleGeometry(POCKET_R, 48), floorM); pf.rotation.x = -Math.PI / 2; pf.position.set(POCKET_AT[0], FOAM_TOP - FOAM_D + 0.005, POCKET_AT[1]); base.add(pf);
+    window.__cuts = { filled: Object.keys(CUTS).length, empty: 1 };
+  }
+  /* the lid: hinged on the back edge and standing open past vertical, its inner face toward the camera */
+  const LID_OPEN = 1.86;
+  const hinge = new THREE.Group(); hinge.position.set(0, CH_ + 0.004, -CD / 2); base.add(hinge);
+  const lid = new THREE.Group(); hinge.add(lid); hinge.rotation.x = -LID_OPEN;
+  {
+    const sh = TXT.roundedBox(CW, LH, CD, 0.03, shellM); sh.position.set(0, LH / 2, CD / 2); lid.add(sh);
+    const lp = TXT.roundedBox(CW + 0.012, 0.02, CD + 0.012, 0.01, shellM); lp.position.set(0, 0.012, CD / 2); lid.add(lp);
+    /* inner face: a recessed moulded panel (seen from the camera as the lid stands open) */
+    const inner = TXT.roundedBox(CW - 0.05, 0.004, CD - 0.05, 0.002, shellIn); inner.position.set(0, -0.0005, CD / 2); lid.add(inner);
+    /* THE ARC OF DAY TICKS, moulded proud of the lid's inner face in the shell's own orange: one rib per day, DAYS of them,
+     * read from FIG, along a shallow arc near the lid's top edge so the low key rakes them and each casts a short shadow */
+    const tickM2 = K.mat('case-tick-inset-poly', { color: 0x2a0f06, roughness: 0.75 }, true);
+    const ARC_R = 0.42, ARC_C = CD - 0.05 - ARC_R, SPAN = 0.62;
+    let ticks = 0;
+    for (let i = 0; i < DAYS; i++) {
+      const a = -SPAN / 2 + SPAN * i / (DAYS - 1);
+      const t = TXT.roundedBox(0.013, 0.008, 0.05, 0.003, tickM2);
+      t.position.set(Math.sin(a) * (ARC_R - 0.02), -0.006, ARC_C + Math.cos(a) * (ARC_R - 0.02)); t.rotation.y = a; lid.add(t); ticks++;
+    }
+    const arcPts = []; for (let k = 0; k <= 40; k++) { const a = -SPAN / 2 - 0.03 + (SPAN + 0.06) * k / 40; arcPts.push([Math.sin(a) * (ARC_R - 0.05), -0.004, ARC_C + Math.cos(a) * (ARC_R - 0.05)]); }
+    lid.add(TXT.tube(arcPts, 0.003, tickM2, { segments: 80, radial: 8 }));
+    if (ticks !== DAYS) throw new Error('the lid ring carries ' + ticks + ' ticks, FIG says ' + DAYS);
+    window.__ticks = ticks;
+    /* hinge barrels along the back */
+    for (let i = 0; i < 3; i++) { const b = K.cyl(0.011, 0.011, 0.07, latchM, -0.18 + i * 0.18, -0.035, -0.008, 16, hinge); b.rotation.z = Math.PI / 2; b.position.set(-0.18 + i * 0.18, -0.002, -0.008); }
+  }
+  kase.position.set(-0.18, GATE_Y + 0.012, 0.32); kase.rotation.y = Math.PI / 2 - 0.32;
+  TXT.add(R, kase);
+  /* contact: a soft navy occlusion pressed under the case on the tailgate paint */
+  {
+    const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(64, 64, 10, 64, 64, 64); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.6, 'rgba(255,255,255,0.6)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(CW + 0.16, CD + 0.14), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), color: 0x0b4a4e, transparent: true, opacity: 0.8, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+    m.material.userData.txSurface = false; m.userData.txBevel = false; m.rotation.x = -Math.PI / 2; m.rotation.z = kase.rotation.y;
+    m.position.set(kase.position.x, GATE_Y + 0.0095, kase.position.z); m.renderOrder = 1; R.scene.add(m);
+    /* a tight dark teal contact right under the feet and ribs */
+    const m2 = new THREE.Mesh(new THREE.PlaneGeometry(CW + 0.035, CD + 0.03), new THREE.MeshBasicMaterial({ map: m.material.map, color: 0x041e22, transparent: true, opacity: 0.95, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3 }));
+    m2.material.userData.txSurface = false; m2.userData.txBevel = false; m2.rotation.x = -Math.PI / 2; m2.rotation.z = kase.rotation.y;
+    m2.position.set(kase.position.x, GATE_Y + 0.0105, kase.position.z); m2.renderOrder = 2; R.scene.add(m2);
+  }
+  /* OCCLUSION SKIRT: a teal falloff wrapped round the bottom 6 cm of the case, so the base darkens where it meets the gate */
+  {
+    const c = document.createElement('canvas'); c.width = 4; c.height = 128; const g = c.getContext('2d');
+    /* an alpha map is read from the GREEN channel, so the falloff is drawn grey on black: clear at the top, dark at the foot */
+    const gr = g.createLinearGradient(0, 0, 0, 128); gr.addColorStop(0, 'rgb(0,0,0)'); gr.addColorStop(0.5, 'rgb(70,70,70)'); gr.addColorStop(1, 'rgb(205,205,205)');
+    g.fillStyle = gr; g.fillRect(0, 0, 4, 128);
+    const am = new THREE.MeshBasicMaterial({ color: 0x06262a, alphaMap: new THREE.CanvasTexture(c), transparent: true, depthWrite: false });
+    am.userData.txSurface = false;
+    const none = new THREE.MeshBasicMaterial({ visible: false });
+    const sk = new THREE.Mesh(new THREE.BoxGeometry(CW + 0.03, 0.06, CD + 0.03), [am, am, none, none, am, am]);
+    sk.userData.txBevel = false; sk.position.y = 0.03; sk.renderOrder = 3; sk.castShadow = false; base.add(sk);
+    sk.userData.noShadow = true;
+  }
+  kase.traverse((m) => { if (m.isMesh && !m.userData.noShadow) { m.castShadow = true; m.receiveShadow = true; } });
+
+  /* ---------- the ground, the oaks, the sky ---------- */
+  TXT.ground(R, { surface: 'caliche', color: 0xd9b07a, size: 3000, tile: 4, seed: 1121 });
+  for (const [x, z, h, s] of [[6, -30, 8, 10]]) {
+    const t = K.make('live_oak', { seed: 40 + x, height: h, spread: s }); t.position.set(x, 0, z); TXT.add(R, t);
+  }
+
+  /* ---------- the rover, parked at the right edge ---------- */
+  const rover = K.make('triage_rover', { pan: 0.55, tilt: 0.12, grime: 0.5 });
+  /* the rover parked on the caliche beside the truck, its head turned to the case */
+  rover.position.set(-4.05, 0, -0.25); rover.rotation.y = 0.75;
+  TXT.add(R, rover); TXT.contact(R, rover);
+
+  /* ---------- the camera ---------- */
+  const FROM = [1.35, 1.25, 1.2];
+  const pocketW = new THREE.Vector3(POCKET_AT[0], FOAM_TOP, POCKET_AT[1]); base.updateMatrixWorld(true); kase.updateMatrixWorld(true); base.localToWorld(pocketW);
+  CH.aim(THREE, R, TXT, FROM, [pocketW.x, pocketW.y, pocketW.z], 700, 760, FOV);
+
+  TXT.scatter(R, { kind: 'grass', count: 14000, area: [-70, -80, -1.2, 40], avoid: [[-1.4, -7, 1.4, 1.4], [-4.7, -0.9, -3.4, 0.4]], seed: 31, scale: [0.18, 0.45], colors: [0xc8a050, 0xb08a40, 0xd8b868, 0x9a8a40] });
+
+  /* ---------- the lime link: rover radio up and over the tailgate, down into the empty pocket ---------- */
+  rover.updateMatrixWorld(true);
+  const rp = new THREE.Vector3(); rover.userData.radio.getWorldPosition(rp);
+  const floorW = new THREE.Vector3(POCKET_AT[0], FOAM_TOP - POCKET_DEPTH + 0.01, POCKET_AT[1]); base.localToWorld(floorW);
+  /* the link runs LOW: out of the radio, level through the quiet under the headline and across the lid's face below its
+   * tick arc, then down into the empty pocket. Its route is set on screen and placed along camera rays, every point in
+   * front of the lid, so it never crosses the type. */
+  R.camera.updateMatrixWorld(true);
+  const onRay = (sx, sy, dist) => { const v = new THREE.Vector3(sx / 1080 * 2 - 1, 1 - sy / 1350 * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize().multiplyScalar(dist).add(R.camera.position); return [v.x, v.y, v.z]; };
+  const camD = (p) => R.camera.position.distanceTo(new THREE.Vector3(p[0], p[1], p[2]));
+  const dR = camD(rp.toArray()), dP = camD(pocketW.toArray());
+  const rpx = CH.project(THREE, R, rp.toArray()), ppx = CH.project(THREE, R, pocketW.toArray());
+  const route = [rp.toArray(), onRay(rpx[0] + 70, rpx[1] - 45, dR * 0.55), onRay(250, 452, dP - 0.38), onRay(380, 450, dP - 0.42), onRay(560, 460, dP - 0.36),
+    onRay(ppx[0] - 12, ppx[1] - 150, dP - 0.15), [pocketW.x, pocketW.y + 0.03, pocketW.z], [floorW.x, floorW.y, floorW.z]];
+  const link = TXT.tube(route, 0.0065, limeM, { segments: 360, radial: 12, tension: 0.5 });
+  link.castShadow = false; R.scene.add(link);
+  CH.lampGlow(THREE, R, [floorW.x, floorW.y + 0.02, floorW.z], CH.ACCENT, 0.12, 0.25);
+  console.log('radio', rp.toArray().map((v) => v.toFixed(2)).join(','), 'radio px', CH.project(THREE, R, rp.toArray()).map(Math.round).join(','));
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2win, { clouds: 0.3, zenith: 0x1848d0, horizon: 0xffb877, haze: 0xffbf84, span: 0.12, horizonGlow: 0.45, glow: 1.1, sun: 0xffd890, fogDensity: 0.0007 }));
+  const spec = CH.rigSpec(W, 6, 2048);
+  spec.key = Object.assign({}, spec.key, { color: 0xffd894, i: 4.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.6, 0.2], { distance: 30, shadowFar: 80, normalBias: 0.006 }), { light: { az: 38, el: 15 } }));
+  CH.unacne(R, 0.006);
+  TXT.weather(R, { grime: 0.12, height: 0.3, mottle: 0.1, skip: [link] });
+
+  const kr = CH.rectOf(THREE, R, kase, 0);
+  console.log('case rect', JSON.stringify(kr.map(Math.round)));
+  if (kr[2] * kr[3] < 0.25 * 1080 * 1350) console.warn('case under a quarter of the frame');
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.4, fade: 240 });
+  CH.seat(cx, { sel: '.dek', a: 0.62, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.3, fade: 120 });
+  CH.seat(cx, { sel: '.kick', a: 0.5, fade: 170 });
+  CH.seat(cx, { sel: '.count', a: 0.3, fade: 120 });
+  CH.seat(cx, { sel: '.tx-site', a: 0.5, fade: 130 });
+  CH.seat(cx, { sel: '.src', a: 0.4, fade: 130 });
+  TXLOOK.footWash(cx, { a: 0.6, height: 240 });
+  CH.seat(cx, { sel: '.hook', a: 0.32, fade: 60, tone: 'watch' });   /* contrast floor in the sky's own violet, panel_ready 4.5 */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body></html>
