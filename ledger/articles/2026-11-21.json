@@ -1,0 +1,108 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Defense and federal",
+ "dek": {
+  "text": "Drones and ground robots triaged simulated casualties beside human medics at Disaster City in College Station. DARPA's director called the result not enough.",
+  "claims": [
+   "c2",
+   "c1",
+   "c6"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[TEEX staged the finals of DARPA's Triage Challenge at Disaster City in College Station from November 5th to November 13th](c1). [Disaster City is a {{number:c11}} acre mock community with full scale structures that can collapse, rubble piles and a derailed train](c11).",
+   "claims": [
+    "c1",
+    "c11"
+   ]
+  },
+  {
+   "text": "[Autonomous drones and ground robots worked alongside first responders there, triaging simulated mass casualty incidents and relaying critical data to human medics](c2). [The challenge seeks autonomous systems such as drones and robots that can assess injuries quickly, accurately and at scale](c8).",
+   "claims": [
+    "c2",
+    "c8"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the machines had to do",
+   "paragraphs": [
+    {
+     "text": "[Competitors had to show their systems could locate casualties, identify signs of injury and send critical data to medical response teams](c10). [Teams built technology to read vital signs from a distance and work alongside human medics](c18). [The program page says teams developed algorithms, aerial drones and ground vehicles meant to work with the medics who give hands on care](c9). No source in hand calls these systems artificial intelligence.",
+     "claims": [
+      "c10",
+      "c18",
+      "c9"
+     ]
+    },
+    {
+     "text": "[The {{number:c14}} competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under rubble](c14). [On the Human Machine Teaming night course a robot searched for casualties during a controlled explosion while role players took cover](c27). [That course simulated an attack on a forward operating base](c28), [and each team worked with assigned medics on it](c16).",
+     "claims": [
+      "c14",
+      "c27",
+      "c28",
+      "c16"
+     ]
+    },
+    {
+     "text": "[Moulage artists made hyper realistic mock injuries](c15), [and actors playing civilians moved through nearly a dozen timed preparation stations](c29). [DARPA's command post checked every mock casualty report against each patient's simulated injuries and vital signs](c13).",
+     "claims": [
+      "c15",
+      "c29",
+      "c13"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who won",
+   "paragraphs": [
+    {
+     "text": "[More than {{number:c12}} participants from the military, universities, tech companies and startups competed for more than {{money:c12}} in cash prizes](c12). [RoboScout won the Systems competition and Disruptors won the Data competition](c3), at the prize amounts DARPA lists in its account of the finals. [A self funded two person team from Hawaii, called DRONE, placed second in the first trials](c24).",
+     "claims": [
+      "c12",
+      "c3",
+      "c24"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Why the director said it is not enough",
+   "paragraphs": [
+    {
+     "text": "[DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem](c5). [He then said that result was not enough](c6). [He said some teams did well at identifying victims and others at triage, lifesaving or evacuation](c7). No source in hand gives lives saved, accuracy or rankings beyond the winners.",
+     "claims": [
+      "c5",
+      "c6",
+      "c7"
+     ]
+    },
+    {
+     "text": "[DARPA has an open research topic, TRIAGE-X, for autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention](c19). [It is open until November 25th, 2026](c20). Every casualty in the finals was simulated, and nothing in the sources shows any of these systems used in a real emergency.",
+     "claims": [
+      "c19",
+      "c20"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0254",
+   "label": "The Triage Challenge finals in the record"
+  },
+  {
+   "id": "tx-2026-0186",
+   "label": "Drone delivery review in Texas metros"
+  }
+ ]
+}
