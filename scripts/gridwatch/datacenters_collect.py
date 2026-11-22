@@ -51,7 +51,7 @@ UA = "Mozilla/5.0 (X11; Linux x86_64) TexasAIDocket/1.0 (+https://texasaidocket.
 ROW = re.compile(r"<tr[^>]*>(.*?)</tr>", re.S | re.I)
 CELL = re.compile(r"<t[dh][^>]*>(.*?)</t[dh]>", re.S | re.I)
 TAG = re.compile(r"<[^>]+>")
-DATE = re.compile(r"^(\d{2})/(\d{2})/(\d{4})$")
+DATE = re.compile(r"^\d{1,2}/\d{1,2}/\d{4}$")
 
 # A registry that suddenly holds three rows is a parse that broke, not an industry that left.
 # The floor is deliberately far below the 149 read in August 2026: it exists to catch a
@@ -90,6 +90,32 @@ def _names(cell: str) -> list[str]:
     return [t] if t else []
 
 
+def _operator_names(cell: str) -> list[str]:
+    """The filed operator names, without a literal field label.
+
+    One live Cedarvale row carries ``Operator: Ionic Digital Mining LLC`` inside the
+    already-labelled Operator Name column. ``Operator:`` is presentation furniture, not part
+    of the filer's legal identity. Remove only that exact leading label and preserve every
+    remaining source character; do not normalise, infer or merge the party name here.
+    """
+    out = []
+    for name in _names(cell):
+        if name.startswith("Operator:"):
+            name = name[len("Operator:"):].lstrip()
+        if name:
+            out.append(name)
+    return out
+
+
+def _effective_date(value: str) -> str | None:
+    """Return one filed M/D/YYYY date as ISO, rejecting impossible calendar dates."""
+    if not DATE.fullmatch(value):
+        return None
+    try:
+        return _dt.datetime.strptime(value, "%m/%d/%Y").date().isoformat()
+    except ValueError:
+        return None
+
 def parse(page: str) -> dict:
     """Every registered facility, or an explanation of what did not match.
 
@@ -116,23 +142,29 @@ def parse(page: str) -> dict:
         return {"verified": False, "note": f"header is missing {', '.join(missing)}"}
 
     out = []
+    invalid_dates = []
     for r in rows:
         cells = [_text(c) for c in CELL.findall(r)]
         if len(cells) <= idx["Effective Date"]:
             continue
         eff = cells[idx["Effective Date"]]
-        m = DATE.match(eff)
-        if not m:
+        effective = _effective_date(eff)
+        if effective is None:
+            if DATE.fullmatch(eff):
+                invalid_dates.append(f"{cells[idx['Data Center']]} ({eff})")
             continue                       # header row, or a row that carries no date
-        mm, dd, yyyy = m.groups()
         raw = CELL.findall(r)
         out.append({
             "name": cells[idx["Data Center"]],
-            "effective": f"{yyyy}-{mm}-{dd}",
+            "effective": effective,
             "owners": _names(raw[idx["Owner Name"]]),
             "occupants": _names(raw[idx["Occupant Name"]]),
-            "operators": _names(raw[idx["Operator Name"]]),
+            "operators": _operator_names(raw[idx["Operator Name"]]),
         })
+
+    if invalid_dates:
+        return {"verified": False,
+                "note": "invalid effective date: " + ", ".join(invalid_dates)}
 
     lo, hi = PLAUSIBLE_ROWS
     if not lo <= len(out) <= hi:
@@ -325,6 +357,48 @@ def self_test() -> int:
           not any(" LLCBeta" in o["name"] or "LLC Beta" in o["name"]
                   for o in s4["operators"]), str(s4["operators"]))
 
+    # The November 20th registry introduced one-digit months and days. These are the four
+    # rows the former two-digit regex silently dropped from the otherwise verified roster.
+    filed_rows = """
+<tr><th scope="row">Comanche AIDC</th><td>11/5/2026</td><td>InnoMatrix Comanche AIDC LLC</td>
+<td>DC071777-OW1</td><td>Comanche Cloud LLC</td><td>DC071777-OC1</td>
+<td>InnoMatrix Comanche AIDC LLC</td><td>DC071777-OP1</td><td></td></tr>
+<tr><th scope="row">Cedarvale MAF-2 Data Center Barstow, TX</th><td>11/6/2026</td>
+<td>Ionic Digital Cedarvale LLC</td><td>LD421338-OW1</td><td>Ionic Digital Mining LLC</td>
+<td>LD421338-OC1</td><td>Operator: Ionic Digital Mining LLC</td><td>LD421338-OP1</td>
+<td></td></tr>
+<tr><th scope="row">Scurry County Data Center Building 2</th><td>7/31/2026</td>
+<td>SDC Building 2, LLC</td><td>LD958243-OW1</td><td>Scurry County DC, LLC</td>
+<td>LD958243-OC1</td><td>Scurry County DC, LLC</td><td>LD958243-OP1</td><td></td></tr>
+<tr><th scope="row">Thelma Data Center</th><td>8/11/2026</td><td>Homebound Group LLC</td>
+<td>LD721172-OW1</td><td>Google LLC</td><td>LD721172-OC1</td>
+<td><ul><li>Google LLC</li><li>Design, LLC</li></ul></td>
+<td><ul><li>LD721172-OP2</li><li>LD721172-OP1</li></ul></td><td></td></tr>
+"""
+    filed = parse(_page().replace("</table>", filed_rows + "</table>"))
+    filed_by_name = {f["name"]: f for f in filed.get("facilities", [])}
+    expected_dates = {
+        "Comanche AIDC": "2026-11-05",
+        "Cedarvale MAF-2 Data Center Barstow, TX": "2026-11-06",
+        "Scurry County Data Center Building 2": "2026-07-31",
+        "Thelma Data Center": "2026-08-11",
+    }
+    check("one-digit filed dates are parsed as real calendar dates",
+          all(filed_by_name.get(name, {}).get("effective") == date
+              for name, date in expected_dates.items()), str(filed_by_name))
+    check("the Cedarvale field label is not treated as legal identity",
+          filed_by_name["Cedarvale MAF-2 Data Center Barstow, TX"]["operators"]
+          == ["Ionic Digital Mining LLC"],
+          str(filed_by_name["Cedarvale MAF-2 Data Center Barstow, TX"]["operators"]))
+    check("Thelma keeps its two separately filed operators",
+          filed_by_name["Thelma Data Center"]["operators"]
+          == ["Google LLC", "Design, LLC"],
+          str(filed_by_name["Thelma Data Center"]["operators"]))
+    impossible = _page().replace("01/10/2020", "02/30/2026", 1)
+    bad_date = parse(impossible)
+    check("an impossible calendar date refuses the roster",
+          bad_date.get("verified") is False
+          and "invalid effective date" in bad_date.get("note", ""), str(bad_date))
     print("\ndatacenters self-test " + ("clean" if not failures else f"{failures} FAILED"))
     return 1 if failures else 0
 
