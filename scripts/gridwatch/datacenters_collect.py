@@ -116,6 +116,7 @@ def _effective_date(value: str) -> str | None:
     except ValueError:
         return None
 
+
 def parse(page: str) -> dict:
     """Every registered facility, or an explanation of what did not match.
 
@@ -399,6 +400,7 @@ def self_test() -> int:
     check("an impossible calendar date refuses the roster",
           bad_date.get("verified") is False
           and "invalid effective date" in bad_date.get("note", ""), str(bad_date))
+
     print("\ndatacenters self-test " + ("clean" if not failures else f"{failures} FAILED"))
     return 1 if failures else 0
 
