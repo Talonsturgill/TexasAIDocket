@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Read against the bespoke slide bar, every picture was made for its own sentence and differs from its neighbours. Three frames would hold in a magazine. Frame 4 is the bold one: a red Asclepius-stamped book with a brushed-steel rocker switch, a deep navy cast shadow on blue board, and type set in the quiet the shadow leaves. Frame 2 is a working measured relief, two pegboards of 5x8 = 40 stethoscopes each with cast shadows on the oak. Frame 3 is a built interior with an observation window, ceiling cameras and a boom mic, and its headline sits on the indigo floor the camera left for it. Frame 8 is better than round 1, with head rolls and paper lengths of about 235 to 470 px, close to 38/81, under a warm sweep. Its tables are still boxy, though, and the year pills sit on the cabinet faces. Frame 1 is a clean mirrored cutaway, but the figures are small kit mannequins and the cutaway fills only about 48% of the height under a pink void. Three frames still lean on defaults. Frame 9 has two laptops hovering above a flat blue sweep on an offset shadow, a binder with no table or ground, and the dek on a dark plate. Frame 6 is mostly haze: the 'accepting' slip is an unreadable blur under the type wash (crop r2c1), its pill points at nothing, and the brass tabs are cropped off the left edge. Frame 5 has a big foreground slab whose orange and blue faces streak and band at 100% (crop r3c1), a dead mass filling the bottom fifth. Frame 7's coat now has folds, but the bench casts a flat shadow block at upper left, and the labels read diagnose, synthesize, ask from top to bottom, the reverse of the process order."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds. One serif and one mono face, the same counter, site line and claim-id corner, a blue tone family, and the 1-2-3 brass dot tabs carrying the question run across frames 5 to 7. Story order runs cleanly from setup (1 to 4) through the three questions (5 to 7) and context (8) to the close (9). Faults: the cover's pink-lilac sky and frame 8's peach sweep sit at the palette's edge. The accent drifts too. The pen tip on frame 6 glows cyan, and so do teal stethoscopes on frame 2, so cyan is not only the tool."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral on slides and caption traces to claims.json (80 in c2, 81% and 38% in c15, October 20th in c1, Forty as half of c2). All sources are primary IC² pages. The AMA figures appear only on S8 and in the caption, labelled 'as cited in the release'. The caption says 'The release reports no findings', S6 says 'Neither slip is a result', and S5 says the rail 'stands at zero', so no outcome or better group is implied. The 'later this month' launch is rendered as future tense. The AMA survey itself was never fetched, which keeps this off a 10, but it is correctly framed as the release's citation."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and how are clear: 80 clinicians, Claude against UpToDate with its AI off, paid actors, Kang's three questions. The stake is general. S9 says results 'could shape the curriculum', but no city or campus is named, there is no timeline and no date for results, and nothing tells a reader they can act."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, and S2 pays it off with the counted cohort. The turn at S5 into three numbered questions is a real change of gear. S4 largely repeats the cover body's UpToDate sentence and could merge into S1 or S2 without loss. The close is the least drawn frame and lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "Clean and in house style, with no colons or em dashes. It stays close to the release's wording, though, and 'Drawn to illustrate' closes eight of the nine bodies as boilerplate. Texas specificity is thin: Dell Med is the only local anchor. The caption's closing question to Texas medical schools is the one line that sounds like a person."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A fresh concept that mixes a dollhouse cutaway, two reliefs, an interior and still lifes. The blue studio sweep is familiar, and so is the receding instrument running to a cyan laptop on frames 5 and 7."
+  }
+ ],
+ "weighted_score": 7.49,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 9 as the deck's showstopper: set the open binder and the two closed laptops on a real desk with tight contact shadows from one key, push in until they fill well over half the frame, and seat the dek in quiet the composition leaves rather than on a dark plate, because the close is now the least drawn frame and the last thing a reader sees.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The laptops hover above a flat blue sweep on an offset shadow, the binder stands in a void with no ground, and the dek sits on a dark plate at the bottom.",
+   "fix": "Put the binder and laptops on a limestone or oak desk lit by the key, with contact shadows tight under each foot and edge, and push the camera in about 25% so the still life fills over half the frame."
+  },
+  {
+   "slide": 6,
+   "problem": "The 'accepting' slip is an unreadable blur under the type wash, so its pill labels nothing. The brass tabs are cropped at the left edge and the pen tip glows cyan, outside the accent's meaning.",
+   "fix": "Bring both slips into one focal plane side by side at about 30 degrees, with the 'accepting' slip sharp and clean and the pills on each, pull the tabs fully into frame, and make the pen tip satin metal instead of cyan."
+  },
+  {
+   "slide": 5,
+   "problem": "The foreground slab's orange and blue faces streak and band at 100% (crop r3c1), a dead heavy mass across the bottom fifth.",
+   "fix": "Lower the camera and crop so the rail's near end leaves the frame at the knurled carriage, delete the stacked slab faces, and let the limestone desk with its contact shadow carry the bottom third."
+  },
+  {
+   "slide": 7,
+   "problem": "The bench casts a flat shadow block at upper left. The labels read diagnose, synthesize, ask from top to bottom, the reverse of the process order, and the clinician's hair edge is still jagged.",
+   "fix": "Soften the key shadow with PCSS contact hardening, reverse the tray order so 'ask' sits farthest from the clinician and the reading order matches the process, and clean the hair alpha."
+  },
+  {
+   "slide": 8,
+   "problem": "The cabinets are plain boxes and the year pills sit on them rather than on the sweep. The paper ends barely curl.",
+   "fix": "Add kick bases and drawer pulls, give each sheet a visible curl with its own shadow, and set the 2023 and 2026 pills on the sweep in front of each table."
+  }
+ ]
+}

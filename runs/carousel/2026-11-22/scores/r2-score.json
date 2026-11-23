@@ -1,0 +1,216 @@
+{
+ "weighted_score": 7.494,
+ "judges": [
+  7.52,
+  7.49,
+  7.35
+ ],
+ "spread": 0.17,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.2,
+   "weight": 0.22,
+   "judges": [
+    7.5,
+    7.2,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 6.9,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.9,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.52 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.49 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.35 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.52,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.52 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.49,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.49 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.35,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.35 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 'accepting' slip has blurred into a white smear behind its pill, so one of the two behaviours the question names can't be read at 432 px.",
+     "fix": "Pull the accepting slip into the same focal plane beside the interrogating one, clean and unmarked, at equal size and light, so the pair reads as a matched choice. Drop the depth-of-field blur."
+    },
+    {
+     "judge": 2,
+     "problem": "The 'accepting' slip is an unreadable blur under the type wash, so its pill labels nothing. The brass tabs are cropped at the left edge and the pen tip glows cyan, outside the accent's meaning.",
+     "fix": "Bring both slips into one focal plane side by side at about 30 degrees, with the 'accepting' slip sharp and clean and the pills on each, pull the tabs fully into frame, and make the pen tip satin metal instead of cyan."
+    },
+    {
+     "judge": 3,
+     "problem": "A page and pen under a haze band. The 'accepting' pill floats over the haze attached to nothing, and three dotted tiles bottom left are unexplained, so the question has no picture.",
+     "fix": "Lower the camera and push in on two matched slips filling 80 percent of the width, pin 'accepting' and 'interrogating' each to its own slip, and delete the dotted tiles and the haze band."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Two closed laptops hang over a flat blue field with a detached offset shadow, and the binder sits on the same featureless field, so the close has no world, no contact and no focal pull at feed size.",
+     "fix": "Put the binder on a lit limestone or oak desk inside TXT.studio with contact shadows under the laptops and binder. Push the camera low three-quarter so the open rubric fills half the frame and the laptops' cyan sleep lights sit sharp behind it."
+    },
+    {
+     "judge": 2,
+     "problem": "The laptops hover above a flat blue sweep on an offset shadow, the binder stands in a void with no ground, and the dek sits on a dark plate at the bottom.",
+     "fix": "Put the binder and laptops on a limestone or oak desk lit by the key, with contact shadows tight under each foot and edge, and push the camera in about 25% so the still life fills over half the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "The two laptops hover above the binder with no contact shadow and read as floating.",
+     "fix": "Set the laptop stack down on the desk plane beside the binder with a hard contact shadow, or cut it and let the binder fill the frame."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The cropped slab in the lower left, mixed blue fins and brass stripes, competes with the rail and reads as clutter off the edge.",
+     "fix": "Crop or re-angle so the rail's zero carriage owns the foreground on a single clean slab material, and let the rail run off the bottom edge toward the lens."
+    },
+    {
+     "judge": 2,
+     "problem": "The foreground slab's orange and blue faces streak and band at 100% (crop r3c1), a dead heavy mass across the bottom fifth.",
+     "fix": "Lower the camera and crop so the rail's near end leaves the frame at the knurled carriage, delete the stacked slab faces, and let the limestone desk with its contact shadow carry the bottom third."
+    },
+    {
+     "judge": 3,
+     "problem": "The rail recedes toward a laptop, but nothing reads as speed or as a click, and the domino tiles on the right are unexplained, so 'stands at zero' is invisible at feed size.",
+     "fix": "Replace the tiles with one large dial or tick counter at the rail's near end, visibly at zero, and crop so the rail and laptop span the frame edge to edge."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A distant isometric dollhouse with mannequin-like figures and a thin glass divider. The shared glass wall, the planned focal point, does not read as an object at feed size.",
+     "fix": "Lower the camera and push in toward the glass wall at near eye height so it has visible thickness and a key highlight. Crop the figures at the shoulder and keep both cyan cart screens in frame."
+    },
+    {
+     "judge": 3,
+     "problem": "A raked dollhouse with mannequin figures under a four line dek on a wash. The glass divider is thin, and both pills are cyan.",
+     "fix": "Crop to a close shot of the two matched cart screens across a modelled glass pane, rooms bleeding off both edges. Cut the dek to two lines and recolour the UpToDate pill to the neutral pill colour."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The cabinets are plain boxes and the year pills sit on them rather than on the sweep. The paper ends barely curl.",
+     "fix": "Add kick bases and drawer pulls, give each sheet a visible curl with its own shadow, and set the 2023 and 2026 pills on the sweep in front of each table."
+    },
+    {
+     "judge": 3,
+     "problem": "A peach and violet sweep outside the deck's blue. The 38 versus 81 encoding, the length of paper on two exam tables, barely reads at 432 px.",
+     "fix": "Move the sweep into the deck's blue and lengthen the paper runs, with the 2026 roll trailing to the floor, so the 81 against 38 ratio is plainly visible."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The bench casts a flat shadow block at upper left. The labels read diagnose, synthesize, ask from top to bottom, the reverse of the process order, and the clinician's hair edge is still jagged.",
+     "fix": "Soften the key shadow with PCSS contact hardening, reverse the tray order so 'ask' sits farthest from the clinician and the reading order matches the process, and clean the hair alpha."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.494 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 6, 9, 5, 1, 8, 7 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

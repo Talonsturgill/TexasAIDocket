@@ -11,7 +11,7 @@ Amarillo City Council voted five to nothing on first reading to authorize a wate
 - Public access: Public meeting
 - Take part: https://www.amarillo.gov/fermi-project/
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · Amarillo's water sale to Fermi America still runs for the term the council authorized.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "I re-read the frame 5 repair at render/slide-05.png and critic432/thumb-05.png, and the HTML at slides/slide-05.html lines 184 to 186. No other frame changed. Each picture was made for its own sentence, and the frames change world and camera: diorama, pegboard count, exam room, still life, desk rail, slips, bench, exam tables, binder. Frame 4 is magazine grade. One red book fills half the frame, a switch is set in it, it throws a violet cast shadow, and the type sits on the blue wash. Frame 9's repair holds: the binder fills the frame and the laptop stack sits on the plane. On frame 5 the plate now carries an engraved navy wedge. At 432 px it reads as an index pointer at the parked carriage, not as a value. The three pip tabs at right still mean nothing to a feed reader, and the plate's face is a flat texture with no relief. Frame 6 still puts the slips in a thin strip under a sand haze band, with three unexplained pip tiles. The cover (thumb-01) is unchanged: a raked dollhouse with mannequin figures under a four line dek, and the glass divider is a rod. At 432 px frame 8's 2023 and 2026 paper runs barely differ. Strong overall, held to 7 by frames 1, 6 and 8."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The spine holds across all nine: one serif headline face, mono kicker, counter and claim ids, navy pills, the blue explainer sweep, and the story in order (split, cohort, encounter, control, three questions, context, close). The tab device now runs through 5, 6 and 7, with the lit tab advancing. The accent's one meaning (cyan is the tool) is still broken where a reader looks first. On thumb-01 the 'UpToDate, AI off' pill is the same cyan as the 'Claude' pill. Cyan stethoscopes are mixed through both halves on thumb-02. The rocker on the AI-off book on thumb-04 is lit cyan. Frame 8's peach and violet sweep sits a little outside the deck's blue."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "The round 3 hard fail is cleared. No fillText call remains in slide-05.html. The plate is a wedge drawn with moveTo and lineTo (lines 185 to 186). The rendered frame carries no numeral beyond the counter and the claim id. The new dek, 'The release reports no timings', is accurate to c9. That claim is a question, not a finding, and the dek is synced in copy.json S5. Every DOM string maps to a claim quote. 80 comes from c2. 'Forty' is FIG.half (clinicians // 2). 81%, 38%, 2026 and 2023 come from c15 and are attributed on S8 in the dek and in the pill 'AMA survey, as cited in the release'. October 20th comes from c1. Both sources are primary. No frame implies a result or a better group: the halves are drawn identically, S6 says 'Neither slip is a result', S9 attributes 'could' to the release (c17), and the caption says 'The release reports no findings'. It falls short of 10 for two reasons. 'Already in the clinic' rests on a national survey the release cites second hand (c15 confidence medium). The future tense 'will meet' rests on an October 'launches later this month' line, and no status was confirmed after that."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "By frame 4 a Texan knows the setup: 80 clinicians, Claude against UpToDate with its AI off, and paid actors. They also know who is behind it, the IC² Institute and Dell Med, named on S2. The where never goes past 'Dell Med'. Austin is never named. There is no start date and no results date (claims.json rejects study dates). The only action is S9's 'Watch for the results' and the caption's closing question, so the stake for patients and Texas medical schools is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Half of them will get Claude' earns the swipe. The turn at 5 into Kang's three numbered questions is clear, and 5 to 7 run as a set. The S4 dek restates the S1 dek almost word for word ('rely on UpToDate ... with its AI capability disabled'), so 1, 2 and 4 all restate the split and one could go. The close, a binder and a 'could', lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, calm, with no hype and no doom. The caption's closing question is a good one, and S5's new 'The release reports no timings' is plain and honest. Nearly every dek still ends on a defensive 'drawn to illustrate' variant (S1, S2, S3, S4, S5, S6, S7, S9), which reads as a machine covering itself. The only Texas texture is the institution names and the limestone desk."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A fresh subject, medical education, and a change of medium on most frames: diorama, pegboard count, character scene, still life, reliefs. The explainer blue sweep and a headline over a raked 3D model on the cover are moves recent decks have used."
+  }
+ ],
+ "weighted_score": 7.35,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild the cover as a low, close shot of the two matched cart screens across a modelled glass pane, with the 'UpToDate, AI off' pill in neutral navy and the AI-off rocker on slide 4 unlit, so the first frame stops the thumb and cyan means only the tool.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "The cover is unchanged across rounds. It is a raked dollhouse with mannequin figures under a four line dek, the glass divider is a thin rod, and the AI-off pill is the tool's cyan.",
+   "fix": "Push the camera in to a low, close shot of the two matched cart screens across a modelled glass pane, with both rooms running off the frame edges. Cut the dek to two lines and give the 'UpToDate, AI off' pill the neutral navy."
+  },
+  {
+   "slide": 6,
+   "problem": "The slips sit in a thin strip under a sand haze band, and the three pip tiles are unexplained at feed size, so the question still reads as two papers far away.",
+   "fix": "Lower and push the camera so the two slips fill about 80 percent of the width and run off the bottom edge. Remove the haze band and shrink the tab row to one edge."
+  },
+  {
+   "slide": 8,
+   "problem": "The 2023 and 2026 exam tables barely differ at 432 px, and the peach and violet sweep sits outside the deck's blue.",
+   "fix": "Move the sweep into the deck's blue and run the 2026 paper off the table end to the floor at its 81 to 38 length, so the difference reads at a glance."
+  },
+  {
+   "slide": 5,
+   "problem": "The wedge plate is a flat texture with no relief, and the three pip tabs at right still read as dominoes rather than as the question counter.",
+   "fix": "Cut the plate and crop so the rail runs off the near edge into the cyan laptop, with the tab row moved to the frame edge and labelled by its lit tab alone."
+  }
+ ]
+}

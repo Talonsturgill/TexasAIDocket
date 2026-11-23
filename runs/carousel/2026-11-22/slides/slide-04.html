@@ -1,0 +1,185 @@
+<!doctype html>
+<!-- 2026-11-22, frame 4 of 9, AI OFF (c5). BESPOKE. A TXBENCH material relief in plan under the chassis key: a thick coral
+     clothbound medical reference volume on a cerulean painted desk, gilt Staff of Asclepius and gilt rules on its board, and a
+     brushed steel rocker plate screwed into its lower cover with the rocker thrown, its proud end the deck's one cyan. The
+     encyclopedia is whole and within reach; one capability built into it is switched off. Drawn to illustrate: no product, no
+     logo, no text on the book, plate or switch. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:846px; width:640px; text-align:left">The other half, AI off</h1>
+<p class="dek" data-follow="22" style="left:82px; width:880px">The other half will rely on UpToDate, a web based medical encyclopedia, with its AI capability disabled. Book and switch drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  /* HONEST. The brief gives no figure and the art draws no count or length that stands for one. */
+
+  const cx = await CH.bootFlat({ kicker: "The comparison", counter: "04 / 09", src: "c5", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 4);
+  const L = TXLOOK.lin, F = (x, y, n) => TX.fbm2(x, y, { octaves: n || 3 });
+  const hsh = (a, b, k) => { const v = Math.sin(a * 127.1 + b * 311.7 + k * 74.7) * 43758.5453; return v - Math.floor(v); };
+
+  /* THE BOOK, in its own frame (u across, v down), turned TH clockwise. True proportions of a 22 x 28.5 cm, 5 cm thick
+   * reference volume at about 2.55 px per mm. */
+  const BC = [630, 466], TH = 7 * Math.PI / 180, BW = 534, BH = 692, T = 128, cs = Math.cos(TH), sn = Math.sin(TH);
+  const toB = (X, Y) => { const dx = X - BC[0], dy = Y - BC[1]; return [dx * cs + dy * sn, -dx * sn + dy * cs]; };
+  const toS = (u, v) => [BC[0] + u * cs - v * sn, BC[1] + u * sn + v * cs];
+  const sdRect = (u, v, hw, hh, r) => { const qx = Math.abs(u) - (hw - r), qy = Math.abs(v) - (hh - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; };
+  const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+
+  /* the switch plate, a standard single gang plate proportion, screwed to the lower board */
+  const PC = [6, 110], PW = 124, PH = 198, PT = T + 11;            /* plate centre, half sizes, top height */
+  const OW = 54, OH = 104, RW = 48, RH = 98;                          /* the rocker opening and the rocker, half sizes */
+  const LP = [86, -74];                                              /* the pilot lamp on the plate, plate coordinates */
+  const RISE = 38;                                                   /* the proud end stands this far above its pivot */
+  const SCREWS = [[PC[0], PC[1] - 154, 0.6], [PC[0], PC[1] + 154, 2.1]];
+
+  /* the Staff of Asclepius, gilt and debossed: a staff, and a snake wound round it */
+  const SU = 14, SV0 = -298, SV1 = -150;
+  function staff(u, v) {
+    if (v < SV0 - 10 || v > SV1 + 6) return false;
+    if (Math.abs(u - SU) < 4.2 && v > SV0 && v < SV1) return true;
+    if (Math.hypot(u - SU, v - SV0) < 7) return true;
+    const t = (v - (SV0 + 26)) / (SV1 - 14 - (SV0 + 26));
+    if (t >= -0.06 && t <= 1) { const amp = 19 * (1 - 0.35 * Math.max(0, t)), su = SU + amp * Math.sin(t * Math.PI * 2 * 2.25 + 0.4);
+      const slope = amp * Math.PI * 2 * 2.25 / ((SV1 - 14) - (SV0 + 26)) * Math.cos(t * Math.PI * 2 * 2.25 + 0.4);
+      if (Math.abs(u - su) / Math.sqrt(1 + slope * slope) < 4.6 - 1.6 * Math.max(0, t)) return true; }
+    const hu = SU + 19 * Math.sin(-0.06 * Math.PI * 2 * 2.25 + 0.4) + 3, hv = SV0 + 26 - 0.06 * 160;
+    return Math.hypot((u - hu) / 9, (v - hv) / 6) < 1;
+  }
+
+  /* the ribbon marker: woven silk falling out of the page block at the fore edge, draping to the desk and running off the
+   * frame on the lit side, above the book's own shadow */
+  const RV = -300;
+  function ribbon(u, v) {
+    const u0 = BW / 2 - 4; if (u < u0 || u > u0 + 260) return null;
+    const s = (u - u0) / 220, vc = RV - 24 * s - 16 * s * s, half = 13;
+    const d = Math.abs(v - vc) / Math.sqrt(1 + Math.pow((24 + 32 * s) / 220, 2));
+    if (d > half) return null;
+    return [s, (v - vc) / half];
+  }
+  /* the rocker: a dished two face paddle on a pivot at its middle, thrown. The pressed end sinks under the bezel and leaves a
+   * wide dark gap; the proud end climbs to about 6 mm over the plate and its lip overhangs the bezel. */
+  const RT0 = -OH + 14, RT1 = OH + 4;
+  const rockT = (pv) => (pv - RT0) / (RT1 - RT0);
+  function rockerH(pu, pv) {
+    const rs = sdRect(pu, pv - (RT0 + RT1) / 2, RW, (RT1 - RT0) / 2, 8); if (rs >= 0) return null;
+    const t = rockT(pv), rd = -rs, x2 = Math.pow(pu / RW, 2);
+    let rh = t < 0.5 ? PT - 20 + 14 * (t / 0.5) : PT - 6 + 21 * Math.pow((t - 0.5) / 0.5, 1.8);
+    if (t < 0.5) rh -= 2.6 * Math.sin(Math.PI * t / 0.5) * (1 - x2);    /* the thumb dish in the pressed face */
+    rh -= 2.2 * x2;                                                       /* crowned across */
+    rh -= 3.0 * (1 - Math.sqrt(Math.max(0, 1 - Math.pow(Math.max(0, 3.0 - rd) / 3.0, 2))));
+    if (Math.abs(t - 0.55) < 0.006) rh -= 0.7;                            /* the parting line of the two shot moulding */
+    return [rh, t > 0.55 ? 7 : 6];
+  }
+
+  let lastX = NaN, lastY = NaN, lastG = null;
+  function geo(X, Y) {
+    if (X === lastX && Y === lastY) return lastG; lastX = X; lastY = Y;
+    const [u, v] = toB(X, Y);
+    const sd = sdRect(u, v, BW / 2, BH / 2, 9);
+    if (sd < 0) {
+      const dIn = -sd, du = u + BW / 2;                                 /* depth inside the outline; distance from the spine side */
+      /* the board: rounded edges on head, tail and fore edge, a rolled spine, and the joint groove beside it */
+      let h = T - 5 + Math.sqrt(Math.max(0, 25 - Math.pow(Math.max(0, 5 - dIn), 2)));
+      if (du < 30) h = Math.min(h, T * 0.52 + (T * 0.48 - 2) * Math.sqrt(Math.max(0, 1 - Math.pow(1 - du / 30, 2))));
+      if (du >= 30 && du < 46) h -= 5.5 * Math.sin((du - 30) / 16 * Math.PI);
+      const warp = 1.4 * F(u / 260, v / 260, 2);
+      h += warp + 0.22 * Math.sin(u * 1.9) * Math.sin(v * 1.9) + 0.25 * F(u / 3, v / 3, 2);
+      let m = 1;
+      /* the rubbed corners and edges, where the cloth wears through to the board */
+      const cornerD = Math.min(Math.hypot(u - BW / 2, v - BH / 2), Math.hypot(u - BW / 2, v + BH / 2), Math.hypot(du, v - BH / 2), Math.hypot(du, v + BH / 2));
+      if ((cornerD < 30 && dIn < 10 + 9 * F(u / 7, v / 7, 2)) || (dIn < 2.2 + 1.6 * F(u / 9, v / 9, 2) && du > 30)) m = 2;
+      /* the gilt rules: a double frame inset from the board's edges, debossed */
+      const fu = u + 8, fr = sdRect(fu, v, BW / 2 - 8 - 30, BH / 2 - 30, 4), fr2 = sdRect(fu, v, BW / 2 - 8 - 41, BH / 2 - 41, 3);
+      if (du > 46 && (Math.abs(fr) < 1.9 || Math.abs(fr2) < 1.0)) { h -= 1.3; m = 3; }
+      if (staff(u, v)) { h -= 1.6; m = 3; }
+      /* the plate */
+      const pu = u - PC[0], pv = v - PC[1], ps = sdRect(pu, pv, PW, PH, 15);
+      if (ps < 0) {
+        const pd = -ps; h = T + 2 + (PT - T - 2) * Math.sqrt(Math.max(0, 1 - Math.pow(Math.max(0, 7 - pd) / 7, 2)));
+        h += 0.12 * F(pu / 0.9, pv / 70, 2);
+        m = 4;
+        for (const [sx, sy, ang] of SCREWS) {
+          const d = Math.hypot(u - sx, v - sy);
+          if (d < 17) {
+            if (d > 14) return (lastG = [PT - 1.4, 5]);
+            const a = Math.cos(ang) * (u - sx) + Math.sin(ang) * (v - sy);
+            if (Math.abs(a) < 1.9 && d < 12.4) return (lastG = [PT + 0.6, 10]);
+            return (lastG = [PT + 3.6 * Math.sqrt(1 - Math.pow(d / 14, 2)) - 0.4, 5]);
+          }
+        }
+        /* the pilot lamp, unlit: a dark smoked glass dome in a chrome ring beside the rocker */
+        const ld = Math.hypot(pu - LP[0], pv - LP[1]);
+        if (ld < 15) { if (ld > 10.5) return (lastG = [PT + 2.4 * Math.sin((ld - 10.5) / 4.5 * Math.PI) + 0.6, 5]);
+          return (lastG = [PT + 1.2 + 4.6 * Math.sqrt(1 - Math.pow(ld / 10.5, 2)), 11]); }
+        const rk = rockerH(pu, pv); if (rk) return (lastG = rk);
+        const os = sdRect(pu, pv, OW, OH, 9);
+        if (os < 0) return (lastG = [PT - 28, 10]);                       /* the dark well the pressed end dips into */
+        /* a raised bezel round the opening */
+        if (os < 5) return (lastG = [h + 1.6 * Math.sin(os / 5 * Math.PI), 4]);
+      }
+      return (lastG = [h, m]);
+    }
+    const rb = ribbon(u, v);
+    if (rb !== null) { const [rs_, rn] = rb, drop = 1 - smooth(0.0, 0.3, rs_);
+      return (lastG = [2.2 + 62 * drop * drop + 1.1 * Math.sqrt(Math.max(0, 1 - rn * rn)) + 0.25 * Math.sin(u * 2.6) * Math.sin(v * 2.6), 8]); }
+    /* the desk: painted boards running across the frame, paint over grain, seams between boards */
+    const seamY = ((Y - 118) % 300 + 300) % 300, bd = Math.floor((Y - 118) / 300);
+    let dh = 0.32 * F(X / 720 + bd * 7.3, Y / 48, 2) + 0.26 * F(X / 2.6, Y / 2.6, 2) + 0.18 * F(X / 90 + bd, Y / 14, 2) + 0.6 * smooth(0, 1, Math.min(seamY, 300 - seamY) / 40);
+    if (seamY < 6) dh -= 3.2 * Math.sin(seamY / 6 * Math.PI);
+    return (lastG = [dh, 0]);
+  }
+
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const DESK = L('#2a7fd6'), CLOTH = L('#d9472c'), WORN = L('#f0b38c'), GILT = L('#f2bf55'), STEEL = L('#b9c6d8'),
+    SCREW = L('#9fb0c8'), WHITE = L('#eef5fc'), CYAN = L(CH.P.accent), RIB = L('#ffae12'), GAP = L(CH.P.shade);
+  const sc3 = (c, k) => [c[0] * k, c[1] * k, c[2] * k];
+  const albedo = (X, Y, m) => {
+    if (m === 0) { const b = Math.floor((Y - 118) / 300), g = F(X / 720 + b * 7.3, Y / 48, 2), k = 0.9 + 0.045 * g + 0.035 * F(X / 34, Y / 34, 2) + 0.1 * (hsh(b, 1, 3) - 0.5);
+      return [DESK[0] * k * (1 + 0.12 * (hsh(b, 2, 5) - 0.5)), DESK[1] * k, DESK[2] * k]; }
+    const [u, v] = toB(X, Y);
+    if (m === 1) { const n = F(u / 1.4, v / 1.4, 1), big = F(u / 120, v / 120, 2); return sc3(CLOTH, 0.94 + 0.05 * n + 0.06 * big); }
+    if (m === 2) return sc3(WORN, 0.85 + 0.15 * F(u / 2, v / 2, 1));
+    if (m === 3) return sc3(GILT, 0.9 + 0.12 * F(u / 3, v / 3, 1));
+    if (m === 4) {   /* brushed steel: streaks along the long axis and one soft sheen band from the key */
+      const pu = u - PC[0], pv = v - PC[1], br = F(pu / 0.8, pv / 90, 2), band = Math.exp(-Math.pow((pu * 0.8 - pv * 0.42 + 30) / 34, 2));
+      const k = 0.78 + 0.1 * br + 0.42 * band; return [STEEL[0] * k, STEEL[1] * k, STEEL[2] * k * 1.02]; }
+    if (m === 5) return SCREW;
+    if (m === 6 || m === 7) {   /* gloss polymer, with the specular streak the key lays along the bend of the proud face */
+      const t = rockT(v - PC[1]), streak = Math.exp(-Math.pow((t - 0.66) / 0.035, 2)) * (1 - 0.7 * Math.pow((u - PC[0]) / RW, 2));
+      if (m === 7) { const c = sc3(CYAN, 0.6 + 0.04 * F(u / 2, v / 2, 1)); return c; }   /* the proud end: dead matte cyan, no glow, no gloss */
+      const base = sc3(WHITE, 0.8); return [base[0] + 0.9 * streak, base[1] + 0.9 * streak, base[2] + 0.85 * streak]; }
+    if (m === 11) return L('#4a1826', 0.9);   /* the unlit lamp lens, smoked red glass */
+    if (m === 8) { const w = 0.86 + 0.08 * Math.sin(u * 2.6) * Math.sin(v * 2.6) + 0.06 * Math.sin(v * 0.7); return sc3(RIB, w); }
+    return GAP;
+  };
+
+  TXBENCH.relief(cx, { ...TXLOOK.reliefLight(), x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 0: [0.12, 14], 1: [0.06, 8], 2: [0.04, 6], 3: [1.1, 46], 4: [0.9, 36], 5: [0.9, 40], 6: [0.8, 70], 7: [0.05, 6], 11: [1.6, 110], 8: [0.55, 28], 10: [0, 1] },
+    ambient: 0.36, diffuse: 1.25, ao: 0.9, shadow: 0.86, softness: 7, castLength: 260, dither: true, visBlur: 2, visSharp: [4, 6, 7, 10] });
+
+  CH.seat(cx, { a: 0.4, fade: 170 });
+  TXLOOK.footWash(cx, { a: 0.42, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

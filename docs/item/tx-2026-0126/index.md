@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs posted notice that 
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-12 · The committee's posted notice of the hearing on data center cooling water still stands as published.
 - 2026-11-15 · The Senate committee's notice of its hearing on data center cooling water still stands as posted.
 - 2026-11-19 · The Senate committee's meeting listing for the hearing on data center cooling water still reads as cited. The posted notice sits on a path this project does not fetch.
+- 2026-11-22 · The Senate Water, Agriculture and Rural Affairs page still lists the September 1st and 2nd hearings with minutes and witness lists posted. It shows no later meeting on data center water.
 
 ## Evidence
 

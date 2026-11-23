@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.4,
+   "why": "Each picture is drawn for its own sentence, and the frames differ in world, camera and medium. Frame 2 is a true measured relief. I counted 5x8 stethoscopes on each pegboard, 80 in all, matching its dek. Frame 4 (the red bookcloth book with a steel rocker plate) and frame 8 are the strongest. In slide-08.html each sheet is FIG pct x 0.02 m on a top checked at 100 x 0.02 m. Frame 3's encounter room reads at feed size. Four frames hold the score down. Frame 1 is still a distant dollhouse with mannequin figures, and its glass divider reads as a thin rod. Frame 6 puts its two slips in a thin band under a haze. Frame 4's own machine QA warns its bottom third is dead (59% craft density). Frame 9's laptop pair sits on a flat blue field with only soft occlusion. On the repaired frame 5 the brass plate now carries a dark engraved wedge. It is honest, but at 432 px it is still the loudest object in the lower half, and it reads more like a dark pennant or an exclamation mark than an index at the zero ridge. The cropped blue and brass slab in the lower left still competes with the rail."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "The spine holds on all nine frames: LOOK V2 explainer cerulean with indigo shadows, one serif for headlines, mono kickers, the NN / 09 counter, the claim-id footer and the site line. The story runs in order: split, cohort, actor, AI off, questions one to three, context, close. The accent's one meaning slips where it costs most. On frame 1 the 'UpToDate, AI off' room's cart monitor glows the same cyan as the Claude room's, and its pill is the same cyan as the 'Claude' pill. Frame 4's 'off' rocker also shows cyan in its window. So the tool's colour appears on the arm that does not have the tool, against the brief's 'cyan means only the tool'. Frames 5 and 7 both use a receding instrument toward a cyan laptop."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "The round 3 hard fail is repaired, and I checked the files myself. slide-05.html lines 184 to 186 now draw an unlabelled wedge by path, with no fillText. The re-rendered render/slide-05.png shows no glyph on the plate. The new dek, 'The release reports no timings. The rail is drawn to illustrate.', is a true sourced absence (the claims.json rejected list says no source confirms data) and matches copy.json S5 exactly. Every other numeral traces. 80 is c2. The caption's 'Forty' is figures.half (80 // 2). 81, 38, 2026 and 2023 are c15, labelled 'AMA survey, as cited in the release' on frame 8 and in the caption. October 20th is c1. Frame 2's 80 stethoscopes and frame 8's paper lengths are computed from FIG and checked in code. Frame 6 says 'Neither slip is a result' and the caption says 'The release reports no findings', so no frame implies an outcome or a better group. What keeps it off 10: Kang's and Dao's names live in the claim text, not the quoted words. Frame 9's headline 'Results could shape the curriculum' is a little stronger than c17's 'refine their approach'. The deck keeps the release's future tense ('will meet') a month after the stated launch, and never says the study's status is unconfirmed. The AMA figures come second-hand through the release, which the deck discloses. One thing I could not confirm: render/machine_qa.json is unchanged per the coordinator, so it does not yet cover the re-rendered frame 5."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A reader learns the what (80 clinicians split between Claude and UpToDate with its AI disabled), the who (IC² Institute and Dell Medical School, with Kang, Dao and Vice Dean Korndorffer named) and the how (paid actors, live encounters, rubrics and post-encounter interviews). Austin and Travis County appear nowhere. Frame 9's 'Watch for the results' gives no date and no venue, and it never states the sourced absence that the project page gives no study dates. The caption's closing question is the only stake aimed at Texas."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover's 'Half of them will get Claude' earns the swipe. Frame 2 pays at once with the countable 80. The deck turns at frame 5 into the three questions, carried by the Question one, two and three kickers and the 1, 2, 3 pip tabs. Frame 4's dek repeats the cover's UpToDate sentence almost word for word (c5 on both), so frame 4 could fold into frame 1. The close is a still life rather than a landing."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean on house rules: no colons, no dashes, no banned words, and correct ordinals ('October 20th', no year in the post). The new frame 5 dek is plain and honest. The slide copy otherwise stays close to the release's wording ('with its AI capability disabled', 'synthesize information and arrive at a diagnosis'), and no line sounds like a Texan who knows Austin's medical school. The caption's last question is the one line with a Texas angle."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "New topic and a new opening move (a cutaway of two matched rooms). The techniques range from the pegboard relief and the book-and-switch relief to spatial rooms and the exam-table figure. The explainer cerulean is the familiar move, and the storyboard's tone history shows explainer repeating inside six decks."
+  }
+ ],
+ "weighted_score": 7.27,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Take cyan off the AI-off arm, meaning the UpToDate cart screen and pill on frame 1 and the rocker window on frame 4, so the accent means only the tool. Then rebuild frame 1 at eye height on the glass divider, so the cover's split reads at feed size as two matched rooms where only one glows.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "A distant isometric dollhouse with mannequin figures. The glass divider, the planned focal point, reads as a thin rod. The AI-off room's monitor and pill wear the tool's cyan.",
+   "fix": "Drop the camera to near eye height and push in on the glass divider so it shows thickness and a key highlight. Light only the Claude cart screen cyan, and turn the UpToDate screen and its pill white on indigo."
+  },
+  {
+   "slide": 6,
+   "problem": "The two slips sit in a thin horizontal band under a hazy upper half, so the pair the question names fills well under half the frame at 432 px.",
+   "fix": "Lower and tilt the camera toward the desk so the two slips fill the middle half of the frame at equal size and focus. Move the three pip tabs to run off the bottom edge."
+  },
+  {
+   "slide": 5,
+   "problem": "The plate's large dark wedge is the loudest shape in the lower half and reads as a pennant or an exclamation mark. The cropped blue and brass slab in the lower left competes with the rail.",
+   "fix": "Shrink the plate to a low index tab level with the zero ridge, or remove it, and let the lit carriage carry the zero. Re-aim so the rail runs off the bottom edge with no cropped slab beside it."
+  },
+  {
+   "slide": 9,
+   "problem": "The closed laptop pair floats on a flat blue field with only soft occlusion, and the dek wash greys the binder's lower edge, so the close has less world than the open.",
+   "fix": "Seat the binder and laptops on a lit desk surface inside TXT.studio with hard contact shadows. Pull the camera low three-quarter so the open rubric page fills half the frame and the dek sits in quiet space above it."
+  }
+ ]
+}

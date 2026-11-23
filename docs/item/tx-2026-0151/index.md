@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://europepmc.org/article/MED/42716711
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-15 · The MRI study still reports lower discrimination in its outside cohort. Europe PMC carries the abstract and the MD Anderson and UT Medical Branch affiliations.
 - 2026-11-15 · The study's abstract still reports the radiomics score's modest standalone accuracy and still advises cautious, exploratory use.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

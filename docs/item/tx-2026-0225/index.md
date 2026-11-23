@@ -11,7 +11,7 @@ Lockheed Martin announced on October 14th, 2026 that it is investing $300 millio
 - Public access: Write to the decider
 - Take part: https://news.lockheedmartin.com/2026-10-14-Lockheed-Martin-Expands-Advanced-Munitions-Manufacturing-in-Texas,-Driving-Thousands-of-New-American-Jobs
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · Lockheed Martin's account of the automated machining cell for its Grand Prairie munitions work reads as it did on October 14th.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

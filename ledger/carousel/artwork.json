@@ -5376,6 +5376,72 @@
     "hex": "#d9c7a4",
     "note": "Sun bleached concrete, caliche and Brazos clay under the win tone's blue sky and teal shade."
    }
+  },
+  {
+   "date": "2026-11-22",
+   "carousel_no": 85,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 explainer tone, nine slide artists. TXT.studio sweeps throughout, a cut away exam room pair (1), a corridor wall (2), a doorway encounter (3), a relief wall plate (4), three studio benches for the questions (5, 6, 7), exam table lengths (8) and a still life of an open binder (9). Spine assets/js/deck/2026-11-22-fairtest-bespoke.js with chassis models exam_table, stethoscope, timing_rail, handoff_tray, output_slip and paper_roll.",
+   "structural_laws": [
+    "K.MAKE CENTRES A MODEL'S FOOTPRINT, so a chassis model that records an end point or places parts from its own origin lands offset; the spine must read positions back from the built group, never from the build arguments.",
+    "A CONTRAST SEAT OVER A LIGHT STUDIO BENCH MUDDIES THE BENCH TO GREY VIOLET; keep each seat to its own line box with a tight fade.",
+    "THE KIT PERSON'S COAT IGNORES A SLIDE'S MATERIAL SWAP, so a white coat under a strong key blows out; lower the key on the figure.",
+    "A CLOSER CAMERA ON A MIRRORED PAIR CROPS ONE HALF FIRST; test both halves in frame in code before the render."
+   ],
+   "techniques": [
+    "two mirrored cut away limestone exam rooms with one cyan screen",
+    "a corridor wall of chassis stethoscopes in a counted grid",
+    "a doorway encounter with a seated actor on an exam table",
+    "a book and a switched off toggle in relief on a wall plate",
+    "a timing rail with a cyan carriage at rest",
+    "two paper slips on pitted limestone with a graphite pen across one",
+    "three handoff trays on a limestone bench with every shuttle parked on the clinician's side",
+    "two lengths of exam table paper drawn to the survey's shares",
+    "an open binder with an empty rubric grid and two shut laptops"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     61.3,
+     67.6,
+     32.4,
+     40.2,
+     59.9,
+     63.2,
+     64.4,
+     44.5,
+     52.0
+    ],
+    "deck_median_L": 59.9,
+    "max_adjacent_delta": 35.2,
+    "mean_adjacent_delta": 12.61,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#22d3ee",
+    "name": "explainer cyan",
+    "frames_above_floor": [
+     1,
+     2,
+     5,
+     7
+    ],
+    "share": [
+     0.0061,
+     0.0049,
+     0.0,
+     0.0,
+     0.0061,
+     0.0,
+     0.0059,
+     0.0,
+     0.0
+    ],
+    "note": "The AI tool within reach only."
+   },
+   "ground": {
+    "hex": "#e8dcc4",
+    "note": "Cream limestone and caliche under the explainer tone's cerulean sweep and indigo shade."
+   }
   }
  ]
 }

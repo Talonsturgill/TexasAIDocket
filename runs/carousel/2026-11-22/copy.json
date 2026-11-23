@@ -1,0 +1,225 @@
+{
+ "date": "2026-11-22",
+ "carousel_no": 85,
+ "document_title": "The IC² Institute and Dell Med's AI Learning Lab splits 80 clinicians between Claude and UpToDate with its AI switched off",
+ "_note": "Caption carried verbatim from caption_winner.txt. Slide strings polished from storyboard.md, each held to its claim quotes in claims.json. Every numeral is in claims.json or figures.json. No slide implies a result or a better group. The AMA figures sit only on S8, attributed to the release (c15).",
+ "caption": "Forty clinicians will get Claude. Forty will get UpToDate with its AI switched off.\n\nThe split belongs to the AI Learning Lab, announced October 20th by the IC² Institute and Dell Medical School. Its 80 clinicians are faculty, residents and students. Each will meet a paid actor playing a patient.\n\nResearcher Sookja Kang asks how fast clinicians click on their AI tool, whether they accept its output or interrogate it, and how much reasoning gets handed off. The release reports no findings.\n\nWhat the release does cite is a 2026 American Medical Association survey, with 81% of doctors using AI against 38% in 2023. Vice Dean of Education James Korndorffer says AI is going to be used and should be.\n\nWhich of Kang's questions should a Texas medical school see answered before AI enters its curriculum?\n\n#DellMed #ClinicalReasoning #MedicalEducation",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "AI Learning Lab",
+   "headline": "Half of them will get Claude",
+   "claims": [
+    "c4",
+    "c5",
+    "c2",
+    "c6"
+   ],
+   "cite": "c4 c5 c2 c6",
+   "body": "80 Dell Med clinicians will meet paid actors presenting a medical issue. Half will have Claude to help diagnose. The other half will rely on UpToDate with its AI capability disabled. Rooms drawn to illustrate.",
+   "labels": [
+    "Claude",
+    "UpToDate, AI off"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Half of them will get Claude",
+    "80 Dell Med clinicians will meet paid actors presenting a medical issue. Half will have Claude to help diagnose. The other half will rely on UpToDate with its AI capability disabled. Rooms drawn to illustrate.",
+    "AI Learning Lab",
+    "Claude",
+    "UpToDate, AI off",
+    "01 / 09",
+    "c4 c5 c2 c6"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The cohort",
+   "headline": "80 clinicians, two halves",
+   "claims": [
+    "c2",
+    "c3",
+    "c18",
+    "c1"
+   ],
+   "cite": "c2 c3 c18 c1",
+   "body": "A mix of faculty, residents and students at Dell Med. The IC² Institute and Dell Medical School announced the joint lab on October 20th. One stethoscope stands for one clinician, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "80 clinicians, two halves",
+    "A mix of faculty, residents and students at Dell Med. The IC² Institute and Dell Medical School announced the joint lab on October 20th. One stethoscope stands for one clinician, drawn to illustrate.",
+    "The cohort",
+    "02 / 09",
+    "c2 c3 c18 c1"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Live encounter",
+   "headline": "The patient is an actor",
+   "claims": [
+    "c6",
+    "c12",
+    "c13"
+   ],
+   "cite": "c6 c12 c13",
+   "body": "Paid actors will present a medical issue, live rather than on a written page. Researcher Tu-Quyen Dao says a large part of solving a real case is talking with the patient to gather information. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The patient is an actor",
+    "Paid actors will present a medical issue, live rather than on a written page. Researcher Tu-Quyen Dao says a large part of solving a real case is talking with the patient to gather information. Drawn to illustrate.",
+    "Live encounter",
+    "03 / 09",
+    "c6 c12 c13"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The comparison",
+   "headline": "The other half, AI off",
+   "claims": [
+    "c5"
+   ],
+   "cite": "c5",
+   "body": "The other half will rely on UpToDate, a web based medical encyclopedia, with its AI capability disabled. Book and switch drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The other half, AI off",
+    "The other half will rely on UpToDate, a web based medical encyclopedia, with its AI capability disabled. Book and switch drawn to illustrate.",
+    "The comparison",
+    "04 / 09",
+    "c5"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Question one",
+   "headline": "How fast do they click?",
+   "claims": [
+    "c9"
+   ],
+   "cite": "c9",
+   "body": "Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The release reports no timings. The rail is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "How fast do they click?",
+    "Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The release reports no timings. The rail is drawn to illustrate.",
+    "Question one",
+    "05 / 09",
+    "c9"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Question two",
+   "headline": "Accept the answer, or interrogate it?",
+   "claims": [
+    "c10"
+   ],
+   "cite": "c10",
+   "body": "Kang asks whether clinicians are passively accepting AI output or actively interrogating it. Neither slip is a result. Both are drawn to illustrate.",
+   "labels": [
+    "accepting",
+    "interrogating"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Accept the answer, or interrogate it?",
+    "Kang asks whether clinicians are passively accepting AI output or actively interrogating it. Neither slip is a result. Both are drawn to illustrate.",
+    "Question two",
+    "accepting",
+    "interrogating",
+    "06 / 09",
+    "c10"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Question three",
+   "headline": "How much reasoning gets handed off?",
+   "claims": [
+    "c11",
+    "c7"
+   ],
+   "cite": "c11 c7",
+   "body": "Each clinician will ask questions, synthesize information and arrive at a diagnosis. Kang asks how much reasoning work gets handed off to the AI tool as the diagnosis evolves. Trays drawn to illustrate.",
+   "labels": [
+    "ask",
+    "synthesize",
+    "diagnose"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "How much reasoning gets handed off?",
+    "Each clinician will ask questions, synthesize information and arrive at a diagnosis. Kang asks how much reasoning work gets handed off to the AI tool as the diagnosis evolves. Trays drawn to illustrate.",
+    "Question three",
+    "ask",
+    "synthesize",
+    "diagnose",
+    "07 / 09",
+    "c11 c7"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The context",
+   "headline": "Already in the clinic",
+   "claims": [
+    "c15",
+    "c14"
+   ],
+   "cite": "c15 c14",
+   "body": "The release cites a 2026 American Medical Association survey finding 81% of doctors use AI in practice, against 38% reported in 2023. Dell Med's Vice Dean of Education James Korndorffer says AI is going to be used and should be.",
+   "labels": [
+    "2023",
+    "2026",
+    "AMA survey, as cited in the release"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Already in the clinic",
+    "The release cites a 2026 American Medical Association survey finding 81% of doctors use AI in practice, against 38% reported in 2023. Dell Med's Vice Dean of Education James Korndorffer says AI is going to be used and should be.",
+    "The context",
+    "2023",
+    "2026",
+    "AMA survey, as cited in the release",
+    "08 / 09",
+    "c15 c14"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What to watch",
+   "headline": "Results could shape the curriculum",
+   "claims": [
+    "c16",
+    "c17",
+    "c8"
+   ],
+   "cite": "c16 c17 c8",
+   "body": "Researchers will compare both groups with rubrics, observation and post encounter interviews. Watch for the results. The release says they could help schools decide how and when AI enters the curriculum. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Results could shape the curriculum",
+    "Researchers will compare both groups with rubrics, observation and post encounter interviews. Watch for the results. The release says they could help schools decide how and when AI enters the curriculum. Drawn to illustrate.",
+    "What to watch",
+    "09 / 09",
+    "c16 c17 c8"
+   ]
+  }
+ }
+}

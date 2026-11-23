@@ -2703,3 +2703,13 @@ Rule 3.308 amendments for tx-2026-0255. **www.uta.edu and www.utep.edu answered 
 were re-verified from their own pages. **news.rice.edu answered 406** to the re-verification fetcher again while
 `fetch_doc.py` read the same pages. The boundaries whose seven day clock lapsed today were re-measured with the project
 user agent and refused again: docs.tacc.utexas.edu (robots), clinicaltrials.gov (robots) and www.faa.gov (403).
+
+## 2026-11-22 (carousel no. 85)
+
+**ic2.utexas.edu answered** the AI Learning Lab release and its project page, and every claim on tx-2026-0257 quotes one of
+the two. **news.utexas.edu answered** the Horizon early user story for tx-2026-0256, and UT's page names Round Rock but no
+county. **The PUCT calendar feed rolled its listings forward**, so seven claims on tx-2026-0024 were brought to the December
+and January listings rather than read as removed. **Fort Worth's page answered 403** for tx-2026-0062 and the item was left
+unstamped. **The Senate committee page did not carry one archived claim** for tx-2026-0077, so that item was left unstamped
+as well. Twenty six items waited behind crawl boundaries measured on November 20th and 21st, still inside their seven day
+window.

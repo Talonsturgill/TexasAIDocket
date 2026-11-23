@@ -1,0 +1,105 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health and education",
+ "dek": {
+  "text": "Dell Med's AI Learning Lab splits 80 clinicians between Claude and UpToDate with its AI switched off, then watches how each group reasons.",
+  "claims": [
+   "c2",
+   "c4",
+   "c5"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The IC² Institute and Dell Medical School announced the AI Learning Lab on {{date:c1}}](c1). [The announcement said it would launch later that month with {{number:c2}} Dell Med clinicians](c2). [They are a mix of faculty, residents and students, and they meet patients in simulated encounters](c3).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[Half of the clinicians have Claude to help diagnose the patient](c4). [The other half rely on UpToDate, a web based medical encyclopedia, with its AI capability disabled](c5). The study is built around that one difference.",
+   "claims": [
+    "c4",
+    "c5"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "A live patient, played by an actor",
+   "paragraphs": [
+    {
+     "text": "[The patients are paid actors presenting a medical issue](c6). [Each clinician meets the patient, asks questions, synthesizes information and arrives at a diagnosis](c7). [The lab uses a live encounter rather than a written case on a page](c12). [Researcher Tu-Quyen Dao says a large part of solving a real case is interacting with the patient to gather information](c13).",
+     "claims": [
+      "c6",
+      "c7",
+      "c12",
+      "c13"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the researchers are watching",
+   "paragraphs": [
+    {
+     "text": "[Researchers will observe and compare the clinical reasoning of both groups and analyze AI use across experience levels](c8). [They plan to use measurements and rubrics, observation and an analysis of post encounter interviews](c16).",
+     "claims": [
+      "c8",
+      "c16"
+     ]
+    },
+    {
+     "text": "Researcher Sookja Kang names the questions. [How quickly do participants click on their AI tool](c9)? [Do they passively accept AI output or actively interrogate it](c10)? [How much reasoning work gets handed off to the AI tool as the diagnosis evolves](c11)? [The project page lists a taxonomy of the ways clinicians engage with large language models among its aims](c19). [Another aim is naming new clinician skills that grow out of reasoning alongside AI](c20).",
+     "claims": [
+      "c9",
+      "c10",
+      "c11",
+      "c19",
+      "c20"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Why a medical school is asking now",
+   "paragraphs": [
+    {
+     "text": "[The release cites a {{number:c15}} American Medical Association survey in which {{number:c15:1}}% of doctors use AI in practice, against {{number:c15:2}}% reported in {{number:c15:3}}](c15). That figure is the release's citation and not a finding of the lab. [Dell Med's Vice Dean of Education James Korndorffer says AI is going to be used and should be](c14).",
+     "claims": [
+      "c15",
+      "c14"
+     ]
+    },
+    {
+     "text": "[The release says results could help Dell Med and other schools decide how and when AI enters the curriculum](c17). Neither the announcement nor the project page reports any result or gives a date for one, so the record can't yet say how either group reasoned.",
+     "claims": [
+      "c17",
+      "c18"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0257",
+   "label": "The AI Learning Lab in the record"
+  },
+  {
+   "id": "tx-2026-0201",
+   "label": "UT REAL Health AI pilot projects"
+  },
+  {
+   "id": "tx-2026-0228",
+   "label": "UT Southwestern on AI triage models"
+  }
+ ]
+}
