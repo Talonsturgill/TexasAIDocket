@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-22-the-satellite-points",
+      "date": "2026-11-22",
+      "title": "The satellite points",
+      "caption": "Arlington tested satellites and an algorithm to point its leak crews at likely water main leaks. A city crew still confirms and repairs each one.",
+      "video": "/runs/2026-11-22/dispatch.mp4",
+      "poster": "/runs/2026-11-22/poster.png",
+      "video_mobile": "/runs/2026-11-22/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-22/poster-540.jpg",
+      "county": "Tarrant",
+      "beat": "city-water"
+    },
+    {
       "id": "2026-11-21-the-camera-sees-the-curb",
       "date": "2026-11-21",
       "title": "The camera sees the curb",
