@@ -21211,5 +21211,197 @@
    }
   ],
   "id": "tx-2026-0255"
+ },
+ {
+  "title": "TACC opens Horizon, a 4,000 GPU academic supercomputer in Round Rock, to its first researchers",
+  "summary": "The Texas Advanced Computing Center at UT Austin opened Horizon to early users. It is the centerpiece of the National Science Foundation's Leadership-Class Computing Facility and runs in a new liquid cooled data center in Round Rock. Its first phase is 4,000 GPUs, and it ranks No. 24 on the November 2026 TOP500 list at 132 petaflops. CPU servers are to be added in early 2027. Researchers reach it through allocations rather than by buying time on a private cloud.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas Advanced Computing Center, The University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Williamson"
+   ],
+   "on_ercot": true,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-17",
+    "kind": "decided",
+    "note": "UT Austin announces Horizon is open to early users"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "Horizon is a research system. Researchers apply for time through the national allocation process TACC runs for the NSF facility.",
+   "url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Horizon has opened to early users with a 4,000 GPU system.",
+    "verbatim_quote": "Horizon, which has now opened to early users, gives the nation’s leading researchers first access to its 4,000 graphic processing unit (GPU) system",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c1"
+   },
+   {
+    "text": "Horizon ranks No. 24 on the November 2026 TOP500 list at 132 petaflops.",
+    "verbatim_quote": "Horizon ranks No. 24 on the November 2026 TOP500 list of the world’s most powerful supercomputers, delivering 132 petaflops",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c2"
+   },
+   {
+    "text": "Its performance is to climb when CPU capacity is installed in early 2027.",
+    "verbatim_quote": "Horizon’s performance will climb further when its CPU capacity is installed in early 2027.",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c3"
+   },
+   {
+    "text": "It runs in a new 20 megawatt liquid cooled data center in Round Rock.",
+    "verbatim_quote": "Powered by a new 20 megawatt data center with advanced liquid cooling in Round Rock, Texas.",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c4"
+   },
+   {
+    "text": "With Horizon, TACC holds nearly 5,500 GPUs.",
+    "verbatim_quote": "With the addition of Horizon, TACC has amassed nearly 5,500 GPUs, the highest concentration of computing power at any university in the United States.",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c5"
+   },
+   {
+    "text": "UT Austin says Horizon is 10 times faster at simulation than Frontera.",
+    "verbatim_quote": "10x improvement in simulation speed over Frontera, the former No. 1 academic supercomputer in the United States",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c6"
+   },
+   {
+    "text": "UT Austin's research vice president names a Hill Country flash flood and grid stress tests as the kind of question it is built for.",
+    "verbatim_quote": "tracing how a flash flood will move through a Hill Country watershed, stress-testing the power grid before the next winter storm",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c7"
+   },
+   {
+    "text": "Its storage is 400 petabytes of solid state.",
+    "verbatim_quote": "400PB",
+    "source_url": "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/",
+    "source_title": "UT News, Horizon Opens to Early Users: America’s Most Powerful Academic Supercomputer Begins Serving Science",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0256-c8"
+   }
+  ],
+  "id": "tx-2026-0256",
+  "last_verified": "2026-11-22",
+  "history": [
+   {
+    "date": "2026-11-22",
+    "note": "Admitted from UT Austin's November 17th announcement. Horizon is open to early users, and its CPU servers are due in early 2027."
+   }
+  ]
+ },
+ {
+  "title": "Dell Med and UT's IC² Institute put 80 clinicians through simulated patient visits, half of them with Claude, to see how AI changes clinical reasoning",
+  "summary": "The IC² Institute and Dell Medical School at UT Austin launched an AI Learning Lab in October. Eighty Dell Med clinicians meet actors playing patients and reach a diagnosis. They are a mix of faculty, residents and students. Half have Claude to help. The other half use UpToDate with its AI turned off. Researchers watch how each group reasons and how fast clinicians reach for the AI. They also ask whether clinicians question its output. No results are published yet.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "Dell Medical School and IC² Institute, The University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "on_ercot": true,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-20",
+    "kind": "decided",
+    "note": "The IC² Institute announces the AI Learning Lab"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The study runs inside Dell Medical School. The IC² Institute publishes its news and findings on its own site.",
+   "url": "https://ic2.utexas.edu/news/ic%c2%b2-institute-dell-med-launch-ai-learning-lab-to-examine-ais-impact-on-clinical-reasoning-and-inform-medical-education/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Eighty Dell Med clinicians meet patients in simulated encounters.",
+    "verbatim_quote": "80 Dell Med clinicians — a mix of faculty, residents, and students — will meet with patients in simulated encounters.",
+    "source_url": "https://ic2.utexas.edu/news/ic%c2%b2-institute-dell-med-launch-ai-learning-lab-to-examine-ais-impact-on-clinical-reasoning-and-inform-medical-education/",
+    "source_title": "IC² Institute, IC² Institute, Dell Med Launch AI Learning Lab to Examine AI’s Impact on Clinical Reasoning and Inform Medical Education",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0257-c1"
+   },
+   {
+    "text": "Half the clinicians have Claude and half rely on UpToDate with its AI disabled.",
+    "verbatim_quote": "Half of the clinicians will have Claude at their fingertips to assist with diagnosing the patient; the other half will be reliant on UpToDate, a web-based medical encyclopedia — with AI capability disabled.",
+    "source_url": "https://ic2.utexas.edu/news/ic%c2%b2-institute-dell-med-launch-ai-learning-lab-to-examine-ais-impact-on-clinical-reasoning-and-inform-medical-education/",
+    "source_title": "IC² Institute, IC² Institute, Dell Med Launch AI Learning Lab to Examine AI’s Impact on Clinical Reasoning and Inform Medical Education",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0257-c2"
+   },
+   {
+    "text": "The patients are paid actors presenting a medical issue.",
+    "verbatim_quote": "The patients (paid actors) will present with a medical issue",
+    "source_url": "https://ic2.utexas.edu/news/ic%c2%b2-institute-dell-med-launch-ai-learning-lab-to-examine-ais-impact-on-clinical-reasoning-and-inform-medical-education/",
+    "source_title": "IC² Institute, IC² Institute, Dell Med Launch AI Learning Lab to Examine AI’s Impact on Clinical Reasoning and Inform Medical Education",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0257-c3"
+   },
+   {
+    "text": "A researcher asks whether clinicians passively accept AI output or interrogate it.",
+    "verbatim_quote": "Are they passively accepting AI output or actively interrogating it?",
+    "source_url": "https://ic2.utexas.edu/news/ic%c2%b2-institute-dell-med-launch-ai-learning-lab-to-examine-ais-impact-on-clinical-reasoning-and-inform-medical-education/",
+    "source_title": "IC² Institute, IC² Institute, Dell Med Launch AI Learning Lab to Examine AI’s Impact on Clinical Reasoning and Inform Medical Education",
+    "source_type": "primary_official",
+    "fetched": "2026-11-22",
+    "id": "tx-2026-0257-c4"
+   }
+  ],
+  "id": "tx-2026-0257",
+  "last_verified": "2026-11-22",
+  "history": [
+   {
+    "date": "2026-11-22",
+    "note": "Admitted from the IC² Institute's October 20th announcement. The lab has launched and no results are published yet."
+   }
+  ]
  }
 ]
