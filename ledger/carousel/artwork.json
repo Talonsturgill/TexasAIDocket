@@ -5185,6 +5185,263 @@
     "hex": "#e4d8c3",
     "note": "Caliche and limestone grounds under the explainer tone's cerulean sky."
    }
+  },
+  {
+   "date": "2026-11-19",
+   "carousel_no": 82,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 wonder tone, nine slide artists. TXT.studio sweeps (1, 2, 3, 7), TXT.interior lab (4), outdoor TXT.sky worlds (5, 8, 9), a TXBENCH relief (6). Spine assets/js/deck/2026-11-19-sortglass-bespoke.js with chassis models blowfly, beetle, sort_glass, cell_block, stone_plinth, dead_end_jar, bucket_trap and smartphone.",
+   "structural_laws": [
+    "FIG_INJECT FILLS A FRAME WITH EVERY FIGURE WHEN ITS CODE READS window.FIG DYNAMICALLY, so a 'FIG must be empty' check written with Object.keys throws at the full render; a no-figure frame must read no FIG name at all.",
+    "THE CHASSIS CELL_BLOCK'S WELLS ARE SOLID DISCS, so a fly placed in one is buried; frame 2 built its own bored block.",
+    "A WARM HONEY KEY TURNS CLEAR GLASS AND A GOLD BAND PEACH, so the gold accent stops reading as one thing; keep glass cool tinted and seat the gold against cobalt.",
+    "A BRIGHT HORIZON BAND IN A WINDOW OR SKY BEHIND A DEK LINE IS REFUSED BY QA AS A STRIKETHROUGH; place the type over flat wall or deep sky."
+   ],
+   "techniques": [
+    "a macro fly astride a clear glass funnel lip with the fork and a gold keep band seen through the glass",
+    "a raked machined block of four glass topped cells, the wild female shut under the one gold rim",
+    "a borosilicate Y on a caliche pedestal keeping one fly behind a gold band and freeing three and a beetle",
+    "a stepped stand of 100 tubes of mixed catch in a cobalt lab with a sorter at a lamp",
+    "a weathered bucket trap on a mesquite limb taking in a stream of 80 flies",
+    "a caliche relief of South Texas with a fan of resin release swaths from Edinburg led back to Kerrville",
+    "forty stoneware boxes on a periwinkle sweep, the two-door box pulled forward from its slot",
+    "a blue hour pipe fence of 19 posts ending at a braced post beside a caliche road",
+    "the unbuilt sort glass on a cedar bench beside a phone with a gold report pill"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     23.3,
+     46.8,
+     42.4,
+     36.7,
+     36.5,
+     45.7,
+     37.8,
+     35.5,
+     55.8
+    ],
+    "deck_median_L": 37.8,
+    "max_adjacent_delta": 23.5,
+    "mean_adjacent_delta": 9.19,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#e0956a",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     2,
+     4,
+     6
+    ],
+    "share": [
+     0.0007,
+     0.0129,
+     0.0005,
+     0.0048,
+     0.0011,
+     0.0092,
+     0.0,
+     0.0,
+     0.0006
+    ],
+    "note": "The fly the sort keeps only."
+   },
+   "ground": {
+    "hex": "#e4d8c3",
+    "note": "Caliche under the wonder tone's cobalt and peach."
+   }
+  },
+  {
+   "date": "2026-11-20",
+   "carousel_no": 83,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 people tone, nine slide artists. Outdoor TXT.sky worlds (1, 3, 6, 9), TXT.studio sweeps (2, 5, 7, 8), a TXT.interior lab (4). Spine assets/js/deck/2026-11-20-truetrack-bespoke.js with chassis models survey_quad and flight_board.",
+   "structural_laws": [
+    "DEPTH_FLOOR READS THE SLIDE'S OWN TEXT, so a frame that adds its subject through a chassis helper (CH.put, CH.aim) is not counted as staged; call TXT.add and TXT.frame in the slide itself.",
+    "KIT PEOPLE AT A CLOSE TABLE CAMERA READ AS CARTOON HANDS; show the team by their places set rather than by cropped figures.",
+    "A SWEEP'S HORIZON BAND IS MINIFIED TO A SMOOTH GRADIENT, so panel_ready's middle ground patch fails unless the texel scale is large enough to survive the mipmaps.",
+    "THE REPORTED POSITION IS FROSTED GLASS WITH castShadow FALSE in every frame, so the shadow alone says which drone is real."
+   ],
+   "techniques": [
+    "a bluestem ridge crest at last light with two searchers turned away and a survey drone banking toward the saddle",
+    "a solid survey drone on a brushed resin sweep beside its frosted glass twin that casts no shadow",
+    "an aerial oblique of a frosted lawnmower sweep on the crest with one amber beaded path dropping over the saddle",
+    "a shell-off survey drone on a laminate lab table with four open laptops set and nobody drawn",
+    "a macro flight controller with three machined amber arrows from its motion chip and the GPS puck unplugged in glass",
+    "a caliche clay tablet of 96 raised tracks, pewter and kinked copper, with an enlarged pair in a bevelled well",
+    "22 sealed tiles in a glass case before a tray of 74 engraved training tiles across a glass sill",
+    "a glass bar magnifier over ten nickel studs on a plum ribbon above a rose enamel score bar",
+    "the grounded drone on its launch mat beside an open case of 22 flight log cartridges, back on the ridge"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     46.8,
+     44.7,
+     38.8,
+     33.4,
+     48.7,
+     45.3,
+     48.7,
+     41.7,
+     35.1
+    ],
+    "deck_median_L": 44.7,
+    "max_adjacent_delta": 15.3,
+    "mean_adjacent_delta": 6.14,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#ff9f1c",
+    "name": "people amber",
+    "frames_above_floor": [
+     3,
+     5,
+     8
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0061,
+     0.0,
+     0.0191,
+     0.0,
+     0.0,
+     0.0039,
+     0.0
+    ],
+    "note": "Motion the drone itself measured only."
+   },
+   "ground": {
+    "hex": "#c98a5a",
+    "note": "Copper bluestem and laminate under the people tone's periwinkle and plum."
+   }
+  },
+  {
+   "date": "2026-11-21",
+   "carousel_no": 84,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 win tone, nine slide artists. Outdoor TXT.sky worlds (1, 2, 4, 7, 9), a night world built on the win shade (5), TXT.studio sweeps (3, 6), a TXT.interior concrete room (8). Spine assets/js/deck/2026-11-21-handoff-bespoke.js with chassis models triage_rover, rubble_pile, survey_quad and flight_board.",
+   "structural_laws": [
+    "K.CYL TAKES THE CYLINDER'S BOTTOM Y, NOT ITS CENTRE, so a chassis model placing wheels or a mast by centre floats every cylinder by half its height; the spine wraps it in a centre helper.",
+    "A STRONGER TYPE SEAT IN THE TONE'S TEAL OVER A WARM OR VIOLET SKY TURNS IT SLATE OLIVE; seat in the sky's own hue and keep the fade tight.",
+    "A BUTTER KEY AND THE WIN GRADE PUSH A DARK TEAL HULL TO EMERALD; blue shift the coat under a strong key so the hero reads one colour across frames.",
+    "A LOW CAMERA UNDER A TYPE BAND MAKES RAILS AND TRIM STRIKE THE DEK; place the dek from the lowest projected rail."
+   ],
+   "techniques": [
+    "a tracked rover close and low on fractured concrete with a lime link to a medic's tablet",
+    "a raked aerial of a staged town on a plot sized from 52 acres with a survey tape",
+    "five model courses on teal studio risers",
+    "an orthographic section through rubble with a braced pocket and a reading cone",
+    "a night course lit by a controlled burst behind earth filled blast walls",
+    "one hundred credentials on a raked temporary fence run in a studio",
+    "three machined brass stacks at one scale beside the rover",
+    "a kneeling kit medic with a cross patch taking the rover's lime beam on a tablet beside an empty litter",
+    "an open hard case with one empty dose pocket on a pickup tailgate"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     54.5,
+     56.7,
+     50.3,
+     52.5,
+     25.9,
+     41.1,
+     54.3,
+     52.6,
+     38.1
+    ],
+    "deck_median_L": 52.5,
+    "max_adjacent_delta": 26.6,
+    "mean_adjacent_delta": 10.25,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#a3e635",
+    "name": "win lime",
+    "frames_above_floor": [],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0002,
+     0.0002,
+     0.0,
+     0.0,
+     0.0005,
+     0.0015
+    ],
+    "note": "What the machine hands the medic only."
+   },
+   "ground": {
+    "hex": "#d9c7a4",
+    "note": "Sun bleached concrete, caliche and Brazos clay under the win tone's blue sky and teal shade."
+   }
+  },
+  {
+   "date": "2026-11-22",
+   "carousel_no": 85,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 explainer tone, nine slide artists. TXT.studio sweeps throughout, a cut away exam room pair (1), a corridor wall (2), a doorway encounter (3), a relief wall plate (4), three studio benches for the questions (5, 6, 7), exam table lengths (8) and a still life of an open binder (9). Spine assets/js/deck/2026-11-22-fairtest-bespoke.js with chassis models exam_table, stethoscope, timing_rail, handoff_tray, output_slip and paper_roll.",
+   "structural_laws": [
+    "K.MAKE CENTRES A MODEL'S FOOTPRINT, so a chassis model that records an end point or places parts from its own origin lands offset; the spine must read positions back from the built group, never from the build arguments.",
+    "A CONTRAST SEAT OVER A LIGHT STUDIO BENCH MUDDIES THE BENCH TO GREY VIOLET; keep each seat to its own line box with a tight fade.",
+    "THE KIT PERSON'S COAT IGNORES A SLIDE'S MATERIAL SWAP, so a white coat under a strong key blows out; lower the key on the figure.",
+    "A CLOSER CAMERA ON A MIRRORED PAIR CROPS ONE HALF FIRST; test both halves in frame in code before the render."
+   ],
+   "techniques": [
+    "two mirrored cut away limestone exam rooms with one cyan screen",
+    "a corridor wall of chassis stethoscopes in a counted grid",
+    "a doorway encounter with a seated actor on an exam table",
+    "a book and a switched off toggle in relief on a wall plate",
+    "a timing rail with a cyan carriage at rest",
+    "two paper slips on pitted limestone with a graphite pen across one",
+    "three handoff trays on a limestone bench with every shuttle parked on the clinician's side",
+    "two lengths of exam table paper drawn to the survey's shares",
+    "an open binder with an empty rubric grid and two shut laptops"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     61.3,
+     67.6,
+     32.4,
+     40.2,
+     59.9,
+     63.2,
+     64.4,
+     44.5,
+     52.0
+    ],
+    "deck_median_L": 59.9,
+    "max_adjacent_delta": 35.2,
+    "mean_adjacent_delta": 12.61,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#22d3ee",
+    "name": "explainer cyan",
+    "frames_above_floor": [
+     1,
+     2,
+     5,
+     7
+    ],
+    "share": [
+     0.0061,
+     0.0049,
+     0.0,
+     0.0,
+     0.0061,
+     0.0,
+     0.0059,
+     0.0,
+     0.0
+    ],
+    "note": "The AI tool within reach only."
+   },
+   "ground": {
+    "hex": "#e8dcc4",
+    "note": "Cream limestone and caliche under the explainer tone's cerulean sweep and indigo shade."
+   }
   }
  ]
 }

@@ -11,7 +11,7 @@ An agenda item asked the Denton City Council to approve a resolution on a morato
 - Public access: Public meeting
 - Take part: https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -51,6 +51,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · Denton's data center moratorium resolution and its hearing schedule are still the latest the city has posted.
 - 2026-11-13 · Denton has posted nothing newer than its moratorium resolution and the hearing schedule it would set.
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-19 · Checked again. Denton's moratorium resolution is still where the council left it, with no hearing schedule adopted since.
+- 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

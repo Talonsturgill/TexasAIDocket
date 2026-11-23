@@ -1050,6 +1050,68 @@ def check_thirty_days(base: Path, date: str) -> list[str]:
     return dd.frames_on_told_items(copy, claims, ledger, ref)
 
 
+BRIEF_HEAD_RE = re.compile(r"^- headline[^:`\n]*:\s*`([^`]*)`", re.M)
+BRIEF_DEK_RE = re.compile(r"^- dek[^`\n]*?:\s*`([^`]*)`", re.M)
+
+
+def _sentences(text: str) -> list[str]:
+    return [x.strip() for x in re.split(r"(?<=[.!?])\s+", (text or "").strip()) if x.strip()]
+
+
+def check_briefs_current(base: Path) -> list[str]:
+    """EVERY BESPOKE BRIEF CARRIES THE COPY THE FRAME NOW SETS (weekly pass 2026-11-22).
+
+    A bespoke run writes one brief per frame at Phase 11, and the slide critic and the flow review
+    read it as the frame's plan. A panel repair then rewrites a frame's headline or dek in
+    copy.json and nothing rewrote the brief. Queue item bespoke-brief-stale-after-panel-repair, at
+    repeat 2: no. 78's round 3 critics scored repaired frames 4 and 8 DOWN for copy that round 1's
+    integrity hard fail had removed on purpose; no. 83's briefs for frames 4 and 9 still held round
+    1's copy; no. 84's frames 8 and 9 shipped with briefs holding pre-repair copy. Measured over the
+    shipped bespoke runs of 2026-11-16 to 2026-11-21: five of six carry at least one brief whose
+    headline or dek is not the copy that shipped.
+
+    So before every round the brief's `headline (verbatim)` and `dek (verbatim)` lines must equal
+    copy.json. A dek sentence carrying "illustrat" is the brief's one exception (the artist
+    rewrites the sentence that describes the picture), so it is left out on both sides. A run with
+    no briefs directory is not bespoke and has nothing to compare; a brief with no copy lines is
+    SAID, because a check that cannot read the brief has not passed it. The repair is to rewrite
+    the brief's copy lines from copy.json and the repair note, never to edit copy.json to match.
+    """
+    bd, cp = base / "briefs", base / "copy.json"
+    if not bd.is_dir() or not cp.exists():
+        return []
+    try:
+        slides = json.loads(cp.read_text(encoding="utf-8")).get("slides") or {}
+    except (OSError, ValueError, AttributeError) as exc:
+        return [f"CANNOT RUN: copy.json unreadable ({exc})"]
+    problems = []
+    for key, sl in sorted(slides.items(), key=lambda kv: (kv[1] or {}).get("n", 0) if isinstance(kv[1], dict) else 0):
+        if not isinstance(sl, dict) or not isinstance(sl.get("n"), int):
+            continue
+        f = bd / f"slide-{sl['n']:02d}.md"
+        if not f.exists():
+            continue
+        text = f.read_text(encoding="utf-8", errors="replace")
+        h, d = BRIEF_HEAD_RE.search(text), BRIEF_DEK_RE.search(text)
+        name = f"briefs/{f.name}"
+        if not h or not d:
+            problems.append(f"{name}: no `headline (verbatim)` or `dek (verbatim)` line to compare, "
+                            f"so whether it carries the frame's copy CANNOT be read")
+            continue
+        if h.group(1).strip() != str(sl.get("headline") or "").strip():
+            problems.append(f"{name}: the brief's headline {h.group(1).strip()!r} is not the frame's "
+                            f"{str(sl.get('headline') or '').strip()!r} in copy.json. Rewrite the brief's "
+                            f"copy lines from copy.json before any critic reads it")
+        keep = lambda t: [x for x in _sentences(t) if "illustrat" not in x.lower()]
+        bs, cs = keep(d.group(1)), keep(str(sl.get("body") or ""))
+        if bs != cs:
+            only = [x for x in cs if x not in bs][:1] or [x for x in bs if x not in cs][:1]
+            problems.append(f"{name}: the brief's dek is not the frame's dek in copy.json (first "
+                            f"difference {only[0][:120] if only else 'in sentence order'!r}). Rewrite "
+                            f"the brief's copy lines from copy.json before any critic reads it")
+    return problems
+
+
 def check_art_preflight(base: Path, assets: Path | None = None) -> list[str]:
     """New decks reach scoring only while their three-frame review is current."""
     import art_preflight
@@ -1084,6 +1146,7 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None,
          check_report_complete(base, report)),
         ("every frame was rendered after its last edit", current),
         ("the three-frame art review matches the current compositions", check_art_preflight(base, assets)),
+        ("every bespoke brief carries the copy its frame sets now", check_briefs_current(base)),
         ("machine QA measured the frames that are here now", qa_problems),
         (f"every line clears the rubric's {floor} contrast floor", contrast),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
@@ -1818,6 +1881,38 @@ def self_test() -> int:
         (_b41 / "claims.json").unlink()
         ok("...and a copy with no claims file beside it is a check that CANNOT RUN",
            any("CANNOT RUN" in p for p in check_thirty_days(_b41, "2026-10-03")))
+
+    # THE STALE BRIEF REPLAY (weekly pass 2026-11-22). Carousel no. 84 as shipped: copy.json carries
+    # round 2's repaired frame 8 headline and frame 9 dek, and both briefs still carry Phase 11's copy.
+    with _tf.TemporaryDirectory() as _t:
+        _b84 = Path(_t)
+        _r84 = REPO_ROOT / "runs" / "carousel" / "2026-11-21"
+        (_b84 / "briefs").mkdir()
+        (_b84 / "copy.json").write_text((_r84 / "copy.json").read_text(encoding="utf-8"), encoding="utf-8")
+        for _n in (1, 8, 9):
+            (_b84 / "briefs" / f"slide-{_n:02d}.md").write_text(
+                (_r84 / "briefs" / f"slide-{_n:02d}.md").read_text(encoding="utf-8"), encoding="utf-8")
+        _st = check_briefs_current(_b84)
+        ok("no. 84's frame 8 brief, still on its pre-repair headline, is CAUGHT before the panel",
+           any("slide-08.md" in p and "headline" in p for p in _st), str(_st))
+        ok("...and frame 9's brief, still on its pre-repair dek, is CAUGHT", any("slide-09.md" in p and "dek" in p for p in _st), str(_st))
+        ok("...and frame 1's brief, which carries the copy that shipped, is not",
+           not any("slide-01.md" in p for p in _st), str(_st))
+        _b8 = (_b84 / "briefs" / "slide-08.md")
+        _cp8 = json.loads((_b84 / "copy.json").read_text(encoding="utf-8"))["slides"]["S8"]
+        _t8 = re.sub(r"^(- headline[^`\n]*`)[^`]*`", lambda m: m.group(1) + _cp8["headline"] + "`",
+                     _b8.read_text(encoding="utf-8"), flags=re.M)
+        _t8 = re.sub(r"^(- dek[^`\n]*?`)[^`]*`", lambda m: m.group(1) + _cp8["body"] + "`", _t8, flags=re.M)
+        _b8.write_text(_t8, encoding="utf-8")
+        ok("...and frame 8's brief, rewritten from copy.json, clears",
+           not any("slide-08.md" in p for p in check_briefs_current(_b84)), str(check_briefs_current(_b84)))
+        _b8.write_text("# a brief with no copy lines\n", encoding="utf-8")
+        ok("...and a brief whose copy lines can't be read is SAID, never passed",
+           any("slide-08.md" in p and "CANNOT" in p for p in check_briefs_current(_b84)))
+        (_b84 / "briefs" / "slide-08.md").unlink(); (_b84 / "briefs" / "slide-09.md").unlink()
+        (_b84 / "briefs" / "slide-01.md").unlink(); (_b84 / "briefs").rmdir()
+        ok("...and a run with no briefs directory, not bespoke, has nothing to compare",
+           not check_briefs_current(_b84))
 
     with _tf.TemporaryDirectory() as _t:
         ok("new daily decks require a current three-frame art review before scoring",

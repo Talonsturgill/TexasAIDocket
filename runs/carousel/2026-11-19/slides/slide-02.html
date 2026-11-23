@@ -1,0 +1,293 @@
+<!doctype html>
+<!-- slide 02, WILD OR STERILE, 2026-11-19 (bespoke). A machined block of FIG.cells glass topped cells laid out as the decision
+     itself: wild in the front row, sterile behind, female on the left, male on the right. One fly model in every cell, because no
+     claim says how they differ, and only the wild female's lid is shut, on the deck's one dusk gold rim. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .lab { transform: translate(-50%, -50%); font-size: 27px; white-space: normal; width: 150px; line-height: 1.12; padding: 9px 14px 10px; }
+  .lab.plain { background: rgba(30, 38, 104, 0.5); }
+  .lab.gold { color: #2a1206; background: linear-gradient(180deg, #f0b07e, #e0956a); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:90px; top:128px; width:900px; text-align:center">Wild or sterile, female or male. The trap must tell them apart.</h1>
+<p class="dek" data-follow="-50" style="left:80px; width:920px; text-align:center">It has to tell wild flies from sterile ones and females from males. Wild females lay their eggs in open wounds, and an untreated infestation can kill. Each kind is the same fly, drawn to illustrate.</p>
+<div class="lab gold" id="l0">wild female</div>
+<div class="lab plain" id="l1">wild male</div>
+<div class="lab plain" id="l2">sterile female</div>
+<div class="lab plain" id="l3">sterile male</div>
+<script>window.FIG = {"cells": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Wild or sterile", counter: "02 / 09", src: "c4 c3 c5", fit: { min: 60, max: 78, maxLines: 3 } });
+  // the dek sits under the measured hook, whatever line count the fit chose
+  { const rr = document.getElementById('hook').getBoundingClientRect(); document.querySelector('.dek').style.top = Math.round(rr.bottom + 22) + 'px'; }
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.005, far: 20, fog: 0 });
+  const sweep = TXT.studio(R, { tone: CH.TONE, w: 2.6, d: 1.3, h: 1.0, radius: 0.05, env: 0.95, hemi: 0.6 });
+  sweep.position.z = 0.53;   // the floor runs under the camera; the cobalt wall rises just behind the block, so the type sits on the wall
+
+  /* THE COUNT. Every cell, lid, fly and label below is read from FIG.cells, laid as a square (two rows by two columns:
+   * the rows are wild and sterile, the columns female and male). */
+  const n = FIG.cells, side = Math.round(Math.sqrt(n));
+  if (side * side !== n || side !== 2) throw new Error("slide 02 draws a 2 x 2 decision, FIG.cells is " + n);
+  const KINDS = ["wild female", "wild male", "sterile female", "sterile male"];
+
+  /* THE BLOCK, built here rather than from the chassis cell_block, because that model's wells are solid discs a fly can't
+   * sit inside. One extruded slab with real bored cells and rounded corners, bead blasted on top, brushed on the walls. */
+  const BW = 0.18, BH = 0.045, CR = 0.027, pitch = BW / side, depth = 0.021;
+  const shape = new THREE.Shape(), hw = BW / 2, rc = 0.014;
+  shape.moveTo(-hw + rc, -hw); shape.lineTo(hw - rc, -hw); shape.quadraticCurveTo(hw, -hw, hw, -hw + rc);
+  shape.lineTo(hw, hw - rc); shape.quadraticCurveTo(hw, hw, hw - rc, hw); shape.lineTo(-hw + rc, hw);
+  shape.quadraticCurveTo(-hw, hw, -hw, hw - rc); shape.lineTo(-hw, -hw + rc); shape.quadraticCurveTo(-hw, -hw, -hw + rc, -hw);
+  const centres = [];
+  for (let i = 0; i < n; i++) {
+    const col = i % side, row = Math.floor(i / side);           // row 0 = front (wild), col 0 = left (female)
+    const x = -hw + pitch * (col + 0.5), z = hw - pitch * (row + 0.5);
+    centres.push([x, z]);
+    const hole = new THREE.Path(); hole.absarc(x, -z, CR, 0, Math.PI * 2, true); shape.holes.push(hole);
+  }
+  const bev = 0.003;
+  const geo = new THREE.ExtrudeGeometry(shape, { depth: BH - 2 * bev, bevelEnabled: true, bevelThickness: bev, bevelSize: bev, bevelSegments: 4, curveSegments: 64 });
+  geo.rotateX(-Math.PI / 2); geo.translate(0, bev, 0);
+  /* cool aluminium only: a low metalness and a lavender albedo, so the sides never mirror the apricot sweep into the accent's colour */
+  const alTop = K.mat("blasted-alu-top", { color: 0xd4d6ec, metalness: 0.55, roughness: 0.55, envMapIntensity: 0.7 }, true);
+  const alSide = K.mat("brushed-alu-side", { color: 0x9fa3d6, metalness: 0.3, roughness: 0.5, envMapIntensity: 0.45 }, true);
+  alTop.userData.txSurface = 'cast'; alSide.userData.txSurface = 'brushed';
+  const block = new THREE.Mesh(geo, [alTop, alSide]); block.castShadow = true; block.receiveShadow = true; block.userData.txBevel = false;
+  const blockG = new THREE.Group(); blockG.add(block);
+  // rubber feet so the block stands, not floats
+  const rub = K.mat("rubber-foot", { color: 0x2a2440, roughness: 0.8 });
+  [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => { const f = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.003, 32), rub); f.position.set(a * (hw - 0.018), -0.0015, b * (hw - 0.018)); blockG.add(f); });
+  blockG.position.y = 0.003;
+
+  const floorY = BH - depth;
+  // the wild female's cell floor is raised a little so her silhouette clears the near rim under the shut lid
+  const keepFloorY = floorY;
+  const paper = K.mat("cell-ceramic-floor-warm", { color: 0xffdcae, roughness: 0.7 });
+  const paperCool = K.mat("cell-ceramic-floor-cool", { color: 0xc4c9ee, roughness: 0.7 });
+  const glass = CH.glassMat(K), gold = CH.goldMat(K, 0.38);
+  const ringAl = K.mat("brushed-alu-ring", { color: 0xe2e6ee, metalness: 0.95, roughness: 0.26 }, true);
+  /* THE FLY, built for this macro frame (one model for all four, because no claim says how they look different).
+   * Generic body, no species colouring: a bronze cuticle, fine short setae laid back along the body, jointed legs with
+   * tarsi that rest on the surface, veined wings folded over the abdomen. Metres, head on +z, tarsi at y 0. */
+  const MM = 0.001;
+  const cuticle = K.mat("fly-cuticle", { color: 0xdcbc84, map: CH.bodyTex(THREE), metalness: 0.55, roughness: 0.34, clearcoat: 1, clearcoatRoughness: 0.14, iridescence: 0.45, iridescenceIOR: 1.4 }, true);
+  const legM = K.mat("fly-leg-chitin", { color: 0x2b2118, metalness: 0.25, roughness: 0.42, clearcoat: 0.6 }, true);
+  const setaM = K.mat("fly-setae-hair", { color: 0x1c1610, roughness: 0.5 });
+  const eyeM = K.mat("fly-eye-facets", { color: 0xd08a70, map: CH.eyeTex(THREE), roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.05 }, true);
+  const faceM = K.mat("fly-face-gena", { color: 0xb59468, roughness: 0.5, metalness: 0.2 }, true);
+  const wingTex = CH.wingTex(THREE);
+  const wingM = new THREE.MeshPhysicalMaterial({ map: wingTex, color: 0xfff1dc, transparent: true, opacity: 0.78, depthWrite: false, side: THREE.DoubleSide, roughness: 0.12, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.05, iridescence: 0.9, iridescenceIOR: 1.33, specularIntensity: 1 });
+  wingM.userData.txSurface = false;
+  const wingGeo = (() => {
+    const L = 6.4 * MM, Wd = 2.5 * MM, sh = new THREE.Shape();
+    sh.moveTo(0, 0); sh.bezierCurveTo(L * 0.25, Wd * 0.62, L * 0.8, Wd * 0.62, L, Wd * 0.12);
+    sh.bezierCurveTo(L * 1.02, -Wd * 0.1, L * 0.7, -Wd * 0.42, L * 0.35, -Wd * 0.36); sh.bezierCurveTo(L * 0.15, -Wd * 0.3, L * 0.04, -Wd * 0.12, 0, 0);
+    const g = new THREE.ShapeGeometry(sh, 32), p = g.attributes.position, uv = [];
+    for (let k = 0; k < p.count; k++) uv.push(p.getX(k) / L, 0.5 + p.getY(k) / Wd * 0.75);
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); return g;
+  })();
+  const contactM = new THREE.MeshBasicMaterial({ color: 0x1b1450, transparent: true, opacity: 0.6, depthWrite: false, map: CH.canvasTex(THREE, 64, 64, (x, w, h) => { const g = x.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.45, 'rgba(255,255,255,0.5)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, w, h); }) }); contactM.userData.txSurface = false;
+  const setaGeo = new THREE.ConeGeometry(0.035 * MM, 1, 5); setaGeo.translate(0, 0.5, 0);
+  function makeFly(seed, opt) {
+    opt = opt || {};
+    const g = new THREE.Group(), rnd = CH.rng(seed);
+    const ell = (r, c, mat, rx) => { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 32), mat); m.scale.set(r[0] * MM, r[1] * MM, r[2] * MM); m.position.set(c[0] * MM, c[1] * MM, c[2] * MM); if (rx) m.rotation.x = rx; g.add(m); return m; };
+    const TH = { r: [1.5, 1.32, 1.8], c: [0, 2.75, 0.3] }, AB = { r: [1.62, 1.2, 2.25], c: [0, 2.35, -2.75] }, HD = { r: [1.42, 1.25, 0.85], c: [0, 2.85, 2.35] };
+    ell(TH.r, TH.c, cuticle); ell([0.85, 0.42, 0.6], [0, 3.55, -1.25], cuticle); ell(AB.r, AB.c, cuticle, -0.1);
+    ell(HD.r, HD.c, faceM);
+    [-1, 1].forEach((sx) => { const e = ell([0.82, 1.05, 0.72], [sx * 0.74, 3.0, 2.55], eyeM); e.rotation.y = sx * 0.42; });
+    ell([0.5, 0.35, 0.3], [0, 2.3, 3.05], faceM);
+    // setae: fine, short, laid back along the dorsum, never a comb
+    const list = [], up = new THREE.Vector3(0, 1, 0), mtx = new THREE.Matrix4(), q = new THREE.Quaternion();
+    const sow = (E, count, len) => { for (let k = 0; k < count; k++) {
+      const th = rnd() * Math.PI * 2, ph = Math.acos(1 - rnd() * 1.25);           // upper cap and flanks
+      const nx = Math.sin(ph) * Math.cos(th), ny = Math.cos(ph), nz = Math.sin(ph) * Math.sin(th);
+      const p = new THREE.Vector3(E.c[0] + nx * E.r[0], E.c[1] + ny * E.r[1], E.c[2] + nz * E.r[2]).multiplyScalar(MM);
+      const n = new THREE.Vector3(nx / E.r[0], ny / E.r[1], nz / E.r[2]).normalize();
+      const d = n.clone().multiplyScalar(0.55).add(new THREE.Vector3(0, 0.1, -1).multiplyScalar(0.75)).normalize();
+      q.setFromUnitVectors(up, d); const l = len * (0.55 + rnd() * 0.6) * MM;
+      list.push(mtx.clone().compose(p, q, new THREE.Vector3(1, l, 1)));
+    } };
+    sow(TH, 520, 0.42); sow(AB, 460, 0.32); sow(HD, 90, 0.26);
+    const im = new THREE.InstancedMesh(setaGeo, setaM, list.length); list.forEach((m, k) => im.setMatrixAt(k, m)); im.castShadow = true; g.add(im);
+    // legs: coxa, femur, tibia, then a four segment tarsus curving down to a pad on the surface
+    const joint = (p, r) => { const s = new THREE.Mesh(new THREE.SphereGeometry(r * MM, 16, 12), legM); s.position.set(p[0] * MM, p[1] * MM, p[2] * MM); g.add(s); };
+    const seg = (a, b, r) => K.bar(a.map((v) => v * MM), b.map((v) => v * MM), r * MM, legM, 10, g);
+    [[1.1, 1.3, 2.6], [0.3, 0.2, 0.6], [-0.5, -1.3, -2.9]].forEach(([zh, zk, zf], li) => {
+      [-1, 1].forEach((sx) => {
+        const kh = opt.low ? 2.35 : 3.05, hip = [sx * 0.75, 1.75, zh], knee = [sx * 2.45, kh, zh + (zk - zh) * 0.7], ank = [sx * 3.35, 0.6, zf * 0.8];
+        const t1 = [sx * 3.6, 0.28, zf * 0.88], t2 = [sx * 3.8, 0.1, zf * 0.94], foot = [sx * 4.0, 0.05, zf * 0.98];
+        seg(hip, knee, li === 2 ? 0.2 : 0.18); joint(knee, 0.17); seg(knee, ank, 0.12); joint(ank, 0.11);
+        seg(ank, t1, 0.085); joint(t1, 0.08); seg(t1, t2, 0.075); joint(t2, 0.07); seg(t2, foot, 0.065);
+        const pad = new THREE.Mesh(new THREE.SphereGeometry(0.11 * MM, 12, 8), legM); pad.scale.y = 0.5; pad.position.set(foot[0] * MM, 0.055 * MM, foot[2] * MM); g.add(pad);
+        if (opt.contact) { const cs = new THREE.Mesh(new THREE.CircleGeometry(0.55 * MM, 20), contactM); cs.rotation.x = -Math.PI / 2; cs.position.set(foot[0] * MM, 0.03 * MM, foot[2] * MM); cs.renderOrder = 3; g.add(cs); }
+      });
+    });
+    // wings folded back over the abdomen in a shallow V, lifted at the trailing edge to catch the key
+    [-1, 1].forEach((sx) => {
+      const piv = new THREE.Group(); piv.position.set(sx * 0.65 * MM, 3.95 * MM, 0.75 * MM);
+      const w = new THREE.Mesh(wingGeo, wingM); w.rotation.x = -Math.PI / 2; if (sx > 0) w.scale.y = -1; w.renderOrder = 2;
+      piv.add(w); piv.rotation.y = Math.PI / 2 - sx * 0.3; piv.rotation.z = sx * 0.14; piv.rotation.x = 0.08; g.add(piv);
+    });
+    g.traverse((m) => { if (m.isMesh) { m.castShadow = m.material !== wingM && m.material !== contactM; m.receiveShadow = true; } });
+    return g;
+  }
+
+  /* THE LIDS. The wild female's is shut on the gold rim. The two back lids hinge at the back; the front right lid hinges
+   * on its outer side so it opens away from the cell behind it. Each open lid carries its own cell's fly. */
+  // the shut lid is clear, not transmissive, so the wild female reads through it at feed size
+  const clearLid = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.1, roughness: 0.02, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 0.5, depthWrite: false });
+  clearLid.userData.txSurface = false;
+  let lids = 0, shut = 0; const hinges = [];
+  centres.forEach(([x, z], i) => {
+    const fl = new THREE.Mesh(new THREE.CircleGeometry(CR - 0.0003, 64), i === 0 ? paper : paperCool); fl.rotation.x = -Math.PI / 2; fl.position.set(x, i === 0 ? keepFloorY : floorY, z); fl.receiveShadow = true; blockG.add(fl);
+    const isKeep = i === 0;                                        // the wild female, the one fly the sort keeps
+    const ringM = isKeep ? gold : ringAl;
+    const seat = new THREE.Mesh(new THREE.TorusGeometry(CR + 0.0012, 0.0016, 16, 72), ringM); seat.rotation.x = Math.PI / 2; seat.position.set(x, BH + 0.0006, z); blockG.add(seat);
+    const sideHinge = i === 1, d = CR + 0.004;
+    const hp = sideHinge ? [x + d, BH + 0.0028, z] : [x, BH + 0.0028, z - d];
+    const kn = new THREE.Mesh(new THREE.CylinderGeometry(0.0028, 0.0028, 0.016, 24), ringAl);
+    if (sideHinge) kn.rotation.x = Math.PI / 2; else kn.rotation.z = Math.PI / 2;
+    kn.position.set(hp[0], hp[1], hp[2]); blockG.add(kn);
+    const hinge = new THREE.Group(); hinge.position.set(hp[0], hp[1], hp[2]); blockG.add(hinge);
+    const lc = sideHinge ? [-d, 0, 0] : [0, 0, d];
+    const lid = new THREE.Mesh(new THREE.CylinderGeometry(CR + 0.002, CR + 0.002, 0.0024, 72), isKeep ? clearLid : glass); lid.position.set(lc[0], lc[1], lc[2]); hinge.add(lid);
+    const lr = new THREE.Mesh(new THREE.TorusGeometry(CR + 0.002, 0.0014, 12, 72), ringM); lr.rotation.x = Math.PI / 2; lr.position.set(lc[0], lc[1], lc[2]); hinge.add(lr);
+    lid.castShadow = false;
+    if (isKeep) shut++; else if (sideHinge) hinge.rotation.z = -1.72; else hinge.rotation.x = -3.14;
+    hinges.push({ hinge, lc });
+    lids++;
+  });
+  if (lids !== n || shut !== 1) throw new Error("slide 02 lids " + lids + " shut " + shut + " against FIG.cells " + n);
+  TXT.add(R, blockG);
+  /* REFLECTIONS. The block reflects a cool studio of its own (lavender dome, a bright strip over the key side), so it reads
+   * as brushed and blasted aluminium with a lit chamfer and never mirrors the apricot sweep into the accent's colour. The
+   * flies reflect a warm honey softbox at front left and a cool rim strip behind right, so eyes, setae and wings separate. */
+  const envOf = (top, mid, low, panels) => {
+    const sc = new THREE.Scene();
+    sc.add(new THREE.Mesh(new THREE.SphereGeometry(10, 48, 24), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { a: { value: new THREE.Color(top) }, b: { value: new THREE.Color(mid) }, c: { value: new THREE.Color(low) } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 a,b,c; varying vec3 vP; void main(){ float y = vP.y; vec3 col = y > 0.0 ? mix(b, a, smoothstep(0.0, 0.8, y)) : mix(b, c, smoothstep(0.0, -0.5, y)); gl_FragColor = vec4(col, 1.0); }' })));
+    panels.forEach(([pw, ph, col, k2, pos]) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), new THREE.MeshBasicMaterial({ color: new THREE.Color(col).multiplyScalar(k2), side: THREE.DoubleSide })); m.position.set(pos[0], pos[1], pos[2]); m.lookAt(0, 0, 0); sc.add(m); });
+    const pm = new THREE.PMREMGenerator(R.renderer), t = pm.fromScene(sc, 0.03).texture; pm.dispose(); return t;
+  };
+  const metalEnv = envOf(0xffffff, 0xb8bde8, 0x6a70b8, [[8, 1.2, 0xffffff, 6, [-4, 6, -3]], [10, 0.8, 0xe8ecff, 3, [0, 4, 6]], [0.8, 6, 0x9cc4ff, 2.5, [6, 2, -2]]]);
+  [alTop, alSide, ringAl].forEach((m) => { m.envMap = metalEnv; m.envMapIntensity = 0.62; });
+  alTop.metalness = 0.85; alTop.roughness = 0.4; alTop.color.set(0xb4b8e6);
+  alSide.metalness = 0.9; alSide.roughness = 0.28; alSide.color.set(0xd0d3ea);
+  const flyEnv = envOf(0x8a9ae0, 0x6a74c0, 0x3a3f80, [[7, 5, 0xffd9a0, 9, [-5, 4, 5]], [0.7, 7, 0x9cc4ff, 6, [5, 2, -5]], [7, 0.6, 0xbcd4ff, 3, [0, 6, -4]]]);
+  [cuticle, legM, eyeM, faceM, wingM, setaM].forEach((m) => { m.envMap = flyEnv; m.envMapIntensity = 1.3; });
+  const coolEnv = envOf(0x9aa8f0, 0x6a78d0, 0x343c90, [[7, 5, 0xc8d4ff, 5, [-5, 4, 5]], [0.7, 7, 0x9cc4ff, 6, [5, 2, -5]], [7, 0.6, 0xbcd4ff, 3, [0, 6, -4]]]);
+  const coolOf = new Map();
+  const coolFly = (g) => g.traverse((m) => { if (!m.isMesh) return; let c = coolOf.get(m.material); if (!c) { c = m.material.clone(); c.envMap = coolEnv; c.envMapIntensity = 1.0; coolOf.set(m.material, c); } m.material = c; });
+  // a soft contact shadow under the block, and nothing else on the floor
+  { const t = CH.canvasTex(THREE, 256, 256, (x, w, h) => { x.filter = 'blur(18px)'; x.fillStyle = 'rgba(255,255,255,0.9)'; x.beginPath(); x.roundRect(40, 40, w - 80, h - 80, 30); x.fill(); });
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(BW * 1.14, BW * 1.14), new THREE.MeshBasicMaterial({ color: 0x2a2470, map: t, transparent: true, opacity: 0.38, depthWrite: false }));
+    sh.material.userData.txSurface = false; sh.rotation.x = -Math.PI / 2; sh.position.set(0.008, 0.0006, 0.01); sh.renderOrder = 1; /* dropped: it read as a dark blob behind the block */ }
+  // a cool rim from behind right, no shadow, so the flies' outlines and wing edges lift off the tray
+  { const rim = new THREE.DirectionalLight(0x9cc4ff, 0.4); rim.position.set(0.4, 0.5, -0.6); R.scene.add(rim); }
+
+  /* THE FLIES, one per cell: the wild female on her cell floor under the shut gold lid, each other fly standing on the
+   * open lid of its own cell (on the face turned to the camera). The front right lid hinges on its outer side and
+   * stands nearly upright, so its fly is never over the cell behind it. */
+  const S = 4.6, flies = [], yaw = [1.3, 2.3, -2.0, 0.9];
+  centres.forEach(([x, z], i) => {
+    const f = makeFly(20 + i * 7, { low: false, contact: true }); f.scale.setScalar(S); f.userData.cell = i;
+    // every fly stands on the floor of its own well, body centred in the bore
+    f.rotation.y = yaw[i]; f.position.set(x + Math.sin(yaw[i]) * 0.0035, floorY + 0.0002, z + Math.cos(yaw[i]) * 0.0035); blockG.add(f);
+    if (i > 0) coolFly(f);
+    flies.push(f);
+  });
+  // her own small honey kicker, aimed into the shut cell, so body, eyes and wings read at feed size
+  { const [x0, z0] = centres[0], sp = new THREE.SpotLight(0xffd9a0, 0.34, 0.5, 0.26, 0.5, 2);
+    sp.position.set(x0 - 0.012, blockG.position.y + BH + 0.09, z0 + 0.06); sp.target.position.set(x0, blockG.position.y + keepFloorY, z0); sp.castShadow = false;
+    R.scene.add(sp); R.scene.add(sp.target); }
+  if (flies.length !== n || new Set(flies.map((f) => f.userData.cell)).size !== n) throw new Error("slide 02 draws " + flies.length + " flies, one per cell, against FIG.cells " + n);
+
+  TXT.deckRig(R, CH.rigSpec(W, 0.3, 4096), Object.assign(CH.rigOpts([0, 0.03, 0], { distance: 2.5, shadowFar: 6, normalBias: 0.001 }), { light: { az: -140, el: 52 } }));
+  CH.unacne(R, 0.001);
+  TXT.frame(R, { fov: 30, from: [-0.108, 0.553, 0.426], look: [0.018, 0.028, -0.105] });
+
+  /* THE PILLS, each just outside its own cell with a short leader to the rim, never over a fly, a cell or another pill.
+   * The wild row hangs on the block's front face under its cells. The sterile row is placed by search around its own
+   * cell: sterile female prefers its left, sterile male prefers above and to the right. */
+  const labs = KINDS.map((k, i) => { const el = document.getElementById('l' + i); if (!el || el.textContent !== k) throw new Error("label " + i + " is not " + k); return el; });
+  if (labs.length !== n) throw new Error("labels " + labs.length + " against FIG.cells " + n);
+  const by = blockG.position.y;
+  R.scene.updateMatrixWorld(true);
+  const flyRects = flies.map((f) => CH.rectOf(THREE, R, f, -6));
+  const lidRects = hinges.filter((h, k) => k > 0).map((h) => CH.rectOf(THREE, R, h.hinge, 6));
+  const rimPts = centres.map(([x, z]) => { const a = []; for (let k = 0; k < 32; k++) { const t = k / 32 * Math.PI * 2, wp = [x + Math.cos(t) * (CR + 0.003), by + BH, z + Math.sin(t) * (CR + 0.003)]; a.push({ wp, sp: CH.project(THREE, R, wp) }); } return a; });
+  const cellRects = rimPts.map((a) => { const xs = a.map((p) => p.sp[0]), ys = a.map((p) => p.sp[1]); return [Math.min(...xs), Math.min(...ys), Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)]; });
+  const dekR = (() => { const a = document.getElementById('hook').getBoundingClientRect(), b = document.querySelector('.dek').getBoundingClientRect(); return [Math.min(a.left, b.left), a.top, Math.max(a.right, b.right) - Math.min(a.left, b.left), b.bottom - a.top + 14]; })();
+  const ov = (a, b) => { const ox = Math.min(a[0] + a[2], b[0] + b[2]) - Math.max(a[0], b[0]), oy = Math.min(a[1] + a[3], b[1] + b[3]) - Math.max(a[1], b[1]); return ox > 0 && oy > 0 ? ox * oy : 0; };
+  const placed = [];
+  const leaderTo = (i, pc, w, h) => {
+    // the leader runs to the fly's own thorax, stopping just short of the body so it never strikes through her
+    const fw = new THREE.Vector3(0, 2.75 * MM, 0.3 * MM); flies[i].localToWorld(fw); const wp = [fw.x, fw.y, fw.z], tp = CH.project(THREE, R, wp);
+    const dx = tp[0] - pc[0], dy = tp[1] - pc[1], s = Math.min(Math.abs((w / 2 + 3) / (dx || 1e-6)), Math.abs((h / 2 + 3) / (dy || 1e-6)));
+    const from = [pc[0] + dx * s, pc[1] + dy * s];
+    CH.leader(THREE, R, from, wp, KINDS[i]);
+    const fr = flyRects[i], short = Math.min(fr[2], fr[3]) * 0.22, L = Math.hypot(tp[0] - from[0], tp[1] - from[1]);
+    if (L <= short + 10) throw new Error("pill " + KINDS[i] + " sits on its fly");
+    const end = [tp[0] - (tp[0] - from[0]) / L * short, tp[1] - (tp[1] - from[1]) / L * short];
+    const lines = document.querySelectorAll('svg polyline'), pl = lines[lines.length - 1];
+    pl.setAttribute('points', from[0] + ',' + from[1] + ' ' + end[0] + ',' + end[1]);
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); dot.setAttribute('cx', end[0]); dot.setAttribute('cy', end[1]); dot.setAttribute('r', 5); dot.setAttribute('fill', CH.P.ink); pl.parentNode.appendChild(dot);
+  };
+  [0, 1, 2, 3].forEach((i) => {
+    const [x, z] = centres[i], el = labs[i], r = el.getBoundingClientRect(), w = r.width, h = r.height;
+    let pc;
+    const cr = cellRects[i], c = [cr[0] + cr[2] / 2, cr[1] + cr[3] / 2], rx = cr[2] / 2, ry = cr[3] / 2;
+    const pref = i === 0 ? [180, 165, 195, 150, 210, 135, 225, 120] : i === 1 ? [180, 200, 160, 220, 140, 90, 240] : i === 2 ? [180, 195, 165, 210, 150, 225, 240, 270] : [0, 345, 15, 330, 30, 315, 300, 270];
+    let best = null;
+    pref.forEach((deg, rank) => [10, 18, 28, 42, 60].forEach((gap) => {
+      const a = deg * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+      const t = 1 / Math.sqrt((ca / rx) ** 2 + (sa / ry) ** 2), ext = Math.abs(ca) * w / 2 + Math.abs(sa) * h / 2;
+      const p = [c[0] + ca * (t + gap + ext), c[1] + sa * (t + gap + ext)], b = [p[0] - w / 2, p[1] - h / 2, w, h];
+      let sc = rank * 300 + gap * 4;
+      flyRects.forEach((fr) => sc += ov(b, fr) * 6); cellRects.forEach((cr2) => sc += ov(b, cr2) * 4); lidRects.forEach((lr) => sc += ov(b, lr) * 4);
+      placed.forEach((pb) => sc += ov(b, [pb[0] - 10, pb[1] - 10, pb[2] + 20, pb[3] + 20]) * 10);
+      sc += ov(b, dekR) * 10;
+      if (b[0] < 80 || b[0] + w > 1000 || b[1] < 80 || b[1] + h > 1186) sc += 1e6;
+      if (!best || sc < best[0]) best = [sc, p];
+    }));
+    pc = best[1];
+    if (best[0] >= 1e6) console.warn("pill " + KINDS[i] + " could not stay inside the safe zone");
+    const b = [pc[0] - w / 2, pc[1] - h / 2, w, h];
+    flyRects.forEach((fr, k) => { if (ov(b, fr) > 0) console.warn("pill " + KINDS[i] + " touches fly " + k + " by " + Math.round(ov(b, fr)) + " px2"); });
+    placed.push(b);
+    el.style.left = Math.round(pc[0]) + "px"; el.style.top = Math.round(pc[1]) + "px";
+    leaderTo(i, pc, w, h);
+  });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  // the type sits on the sky itself: one soft full width wash from the top edge, no plate, no halo behind the counter
+  TXLOOK.typeWash(cx, { tone: CH.TONE, a: 0.5, pad: 10, fade: 160 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.7, height: 280 });
+  CH.seat(cx, { sel: '.src', a: 0.45, fade: 220 }); CH.seat(cx, { sel: '.tx-site', a: 0.5, fade: 220 }); CH.seat(cx, { sel: '.dek', a: 0.3, fade: 140 }); ['#l1','#l2','#l3','#l4'].forEach(s => { const e = document.querySelector(s); if (e && e.classList.contains('plain')) CH.seat(cx, { sel: s, a: 0.3, fade: 40 }); });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

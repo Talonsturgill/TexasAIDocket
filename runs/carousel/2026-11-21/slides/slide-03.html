@@ -1,0 +1,335 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-21, frame 3 of 9, FIVE COURSES (rebuild round, a new concept). A product shot through txthree.js in
+     TXT.studio (win tone): five model sets on five teal powder coat risers with walnut tops, three in front and two raised
+     behind on the left, on a butter sweep under a big soft key. A market with a gauze tornado funnel and a torn canopy, a
+     rubble mound with a broken wall and rebar, a navy felt night box with gabled houses and one pinpoint lamp, a two storey
+     block letting out cotton smoke, and a fifth set, pilled "fifth course" because c14 does not name it, of a pancaked parking deck over a model car. The riser
+     count is FIG.competitions, asserted in code. The type sits in a right column over the blue sweep wall; a low camera
+     drops the risers out of the bottom and the sets fill the lower half. Every set is drawn to illustrate, to no team's or organiser's design. No accent on this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .lab.set { font-size:25px; padding:8px 20px 9px; white-space:nowrap; text-align:center; transform:translate(-50%,-50%); color:#fbfff0; text-shadow:none; border-radius:28px;
+    box-shadow:0 8px 22px rgba(11,58,68,0.42), 0 2px 5px rgba(11,58,68,0.3), inset 0 1px 0 rgba(255,255,255,0.22); }
+  .lab.set.hz-market { background:linear-gradient(180deg,#4a5b82,#34436a); }
+  .lab.set.hz-smoke  { background:linear-gradient(180deg,#c94a12,#a8380b); }
+  .lab.set.hz-night  { background:linear-gradient(180deg,#2c3a9a,#1e2a78); }
+  .lab.set.hz-rubble { background:linear-gradient(180deg,#8a5524,#6e421a); }
+  .lab.set.hz-deck   { background:linear-gradient(180deg,#3d5566,#2a3f4e); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:148px; width:900px; text-align:left">Five ways to make it hard</h1>
+<p class="dek" style="left:82px; top:340px; width:880px; text-align:left; font-size:27px; line-height:1.36">The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under piles of rubble. Each set is drawn to illustrate.</p>
+<div class="lab set hz-market" id="lab-market">tornado market</div>
+<div class="lab set hz-rubble" id="lab-rubble">rubble</div>
+<div class="lab set hz-night" id="lab-night">night search</div>
+<div class="lab set hz-deck" id="lab-deck">fifth course</div>
+<div class="lab set hz-smoke" id="lab-smoke" style="white-space:normal; width:210px; line-height:1.15">smoke filled buildings</div>
+<script>window.FIG = {"competitions": 5};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Five courses", counter: "03 / 09", src: "c14", fit: { min: 76, max: 100, maxLines: 2 } });
+
+  /* THE FIGURE. One plinth per competition. */
+  const N_SETS = FIG.competitions;
+  if (!Number.isInteger(N_SETS) || N_SETS !== 5) throw new Error('FIG.competitions is ' + N_SETS + ', the brief says 5');
+
+  /* THE TYPE: one line of hook across the top of the sweep wall, the dek under its glyphs, measured from the text */
+  { const hk = document.getElementById('hook'), rg = document.createRange(); rg.selectNodeContents(hk);
+    const rects = Array.from(rg.getClientRects()).filter(r => r.width > 5);
+    const bottom = Math.max.apply(null, rects.map(r => r.bottom));
+    document.querySelector('.dek').style.top = Math.round(bottom + 22) + 'px';
+    const hb = hk.getBoundingClientRect(), db = document.querySelector('.dek').getBoundingClientRect();
+    window.__type03 = { hook: [hb.left, hb.top, hb.right, bottom].map(Math.round), dek: [db.left, db.top, db.right, db.bottom].map(Math.round) };
+    if (hb.right > 1016 || db.right > 1016 || hb.left < 64) throw new Error('the type leaves the safe margin');
+    if (db.bottom > 600) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the sets'); }
+
+  const FOV = 42;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 60, fog: 0 });
+  /* THE STUDIO: a butter sweep in the win tone, no accent strip, the frame's room */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 4, d: 1.0 }), { tone: 'win', radius: 0.7, h: 2.7, accentStrip: 0, floor: 0xffb02e, wall: 0x0c4f9a, top: 0x0c4f9a, hemi: 0.45, env: 0.8 }));
+  R.scene.background = new THREE.Color(0x0c4f9a);   /* the sweep wall (h 2.7) runs past the top edge, where the camera's top ray meets it near 1.4 m, and turns through a wide 0.7 m arc, so neither a wall top nor a horizon crease shows */
+  const BOARD = 0.42, PL = 0.46;
+
+  /* ---------- shared model making ---------- */
+  const shadowAll = (g) => { g.traverse(m => { if (m.isMesh) { m.castShadow = !m.userData.noCast; m.receiveShadow = !m.userData.noRecv; } }); return g; };
+  const M = (name, p, cls) => { const m = new THREE.MeshPhysicalMaterial(Object.assign({ name, roughness: 0.7, metalness: 0 }, p)); if (cls !== undefined) m.userData.txSurface = cls; return m; };
+  const rb = (w, h, d, r, mat, x, y, z, parent) => { const b = TXT.roundedBox(w, h, d, r, mat); b.position.set(x, y + h / 2, z); parent.add(b); return b; };
+  const stripes = (a, b, n) => CH.canvasTex(THREE, 128, 128, (g, w, h) => { for (let i = 0; i < n; i++) { g.fillStyle = i % 2 ? b : a; g.fillRect(i * w / n, 0, w / n + 1, h); } const r = CH.rng(n * 7); for (let i = 0; i < 1400; i++) { g.fillStyle = 'rgba(0,0,0,' + (r() * 0.07) + ')'; g.fillRect(r() * w, r() * h, 1, 1); } });
+  const lumpy = (r0, seed, mat) => { const geo = new THREE.SphereGeometry(r0, 40, 28); const p = geo.attributes.position, rr = CH.rng(seed), v = new THREE.Vector3();
+    const ph = [rr() * 6, rr() * 6, rr() * 6];
+    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); const n = v.clone().normalize(); const k = 1 + 0.12 * Math.sin(n.x * 5 + ph[0]) * Math.sin(n.y * 4 + ph[1]) + 0.1 * Math.sin(n.z * 7 + ph[2]) + 0.03 * Math.sin(n.x * 13 + n.y * 11); v.copy(n.multiplyScalar(r0 * k)); p.setXYZ(i, v.x, v.y, v.z); }
+    geo.computeVertexNormals(); const m = new THREE.Mesh(geo, mat); m.userData.txBevel = false; return m; };
+  /* a sagging sheet of canvas, w x d, sagging `sag` at its middle, optionally torn along one edge */
+  const sheet = (w, d, sag, mat, tear) => { const geo = new THREE.PlaneGeometry(w, d, 20, 14); geo.rotateX(-Math.PI / 2); const p = geo.attributes.position, rr = CH.rng(Math.round(w * 1000));
+    for (let i = 0; i < p.count; i++) { const x = p.getX(i) / (w / 2), z = p.getZ(i) / (d / 2); let y = -sag * (1 - x * x) * (1 - z * z) + 0.0012 * Math.sin(x * 9 + z * 5);
+      if (tear && z > 0.25) { y += (z - 0.25) * 0.02 * (1 + Math.sin(x * 12)); p.setZ(i, p.getZ(i) - (z - 0.25) * 0.012 * (rr() * 1.5)); }
+      p.setY(i, y); }
+    geo.computeVertexNormals(); const m = new THREE.Mesh(geo, mat); m.userData.txBevel = false; return m; };
+  const gable = (w, d, rh, mat) => { const sh = new THREE.Shape(); sh.moveTo(-w / 2 - 0.004, 0); sh.lineTo(w / 2 + 0.004, 0); sh.lineTo(0, rh); sh.closePath();
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: d + 0.008, bevelEnabled: true, bevelThickness: 0.0015, bevelSize: 0.0015, bevelSegments: 2 }); geo.translate(0, 0, -(d + 0.008) / 2); const m = new THREE.Mesh(geo, mat); m.userData.txBevel = false; return m; };
+  /* a window with a pale frame, a muntin cross and a dark pane, facing +z */
+  const windowAt = (parent, x, y, z, w, h, frameM, glassM, rotY) => { const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = rotY || 0; parent.add(g);
+    rb(w + 0.006, h + 0.006, 0.003, 0.0012, frameM, 0, -0.003, 0, g); rb(w, h, 0.004, 0.0008, glassM, 0, 0, 0.0005, g);
+    rb(0.0018, h, 0.005, 0.0006, frameM, 0, 0, 0.001, g); rb(w, 0.0018, 0.005, 0.0006, frameM, 0, h / 2 - 0.0009, 0.001, g);
+    rb(w + 0.01, 0.003, 0.008, 0.001, frameM, 0, -0.006, 0.002, g); return g; };
+
+  const riserM = M('teal-powder-coat-riser', { color: 0x168a80, roughness: 0.42, metalness: 0.15, clearcoat: 0.5, clearcoatRoughness: 0.35 }, 'paint');
+  const capM = M('walnut-cap', { color: 0x7a3a16, roughness: 0.42, clearcoat: 0.5 }, 'wood');
+  const footM = M('painted-base-band', { color: 0x0b3a44, roughness: 0.5 }, 'paint');
+
+  /* ---------- 1. the tornado market ---------- */
+  const marketSet = () => {
+    const g = new THREE.Group(), y0 = 0.012;
+    rb(BOARD, 0.012, BOARD, 0.004, M('caliche-board', { color: 0xe0955a, roughness: 0.95 }, 'concrete'), 0, 0, 0, g);
+    const postM = M('steel-post', { color: 0xdfe4ea, metalness: 0.8, roughness: 0.35 }, 'metal');
+    const counterM = M('painted-ply-counter', { color: 0xf3d48a, roughness: 0.6 }, 'paint');
+    const crateM = M('crate-slat-wood', { color: 0xc98a4a, roughness: 0.75 }, 'wood');
+    const fruit = [0xe2402c, 0xf59e0b, 0x7cc04a, 0xf2d03a];
+    const cols = [['#e8553d', '#f7eedc'], ['#1f9e8f', '#f7eedc'], ['#f2b632', '#fff6dc'], ['#3a7fd0', '#f7eedc']];
+    const stalls = [[-0.11, 0.1, 0.1], [0.06, 0.13, -0.08], [-0.12, -0.08, 0.25], [0.1, -0.06, 1.3]];
+    stalls.forEach(([x, z, yaw], i) => {
+      const s = new THREE.Group(); s.position.set(x, y0, z); s.rotation.y = yaw; g.add(s);
+      const W2 = 0.09, D2 = 0.07, H2 = 0.055;
+      [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => { const p = new THREE.Mesh(new THREE.CylinderGeometry(0.0018, 0.0018, H2 + (b < 0 ? 0.008 : 0), 8), postM); p.position.set(a * W2 / 2, (H2 + (b < 0 ? 0.008 : 0)) / 2, b * D2 / 2); s.add(p); });
+      rb(W2 * 0.9, 0.026, 0.026, 0.003, counterM, 0, 0, D2 / 2 - 0.018, s);
+      /* slatted crates on the counter, heaped with fruit */
+      for (let k = 0; k < 3; k++) { const cx = -0.028 + k * 0.028; rb(0.022, 0.01, 0.018, 0.0015, crateM, cx, 0.026, D2 / 2 - 0.018, s);
+        const fr = new THREE.MeshPhysicalMaterial({ name: 'fruit-skin', color: fruit[(i + k) % 4], roughness: 0.35, clearcoat: 0.6 }); fr.userData.txSurface = 'plastic';
+        for (let q = 0; q < 6; q++) { const b = new THREE.Mesh(new THREE.SphereGeometry(0.0042, 10, 8), fr); b.position.set(cx - 0.006 + (q % 3) * 0.006, 0.0385 + (q > 2 ? 0.003 : 0), D2 / 2 - 0.022 + (q > 2 ? 0.007 : 0)); b.userData.txBevel = false; s.add(b); } }
+      if (i === 3) return;   /* the torn one is drawn flying */
+      const cm = M('striped-canvas-' + i, { map: stripes(cols[i][0], cols[i][1], 8), roughness: 0.85, side: THREE.DoubleSide, sheen: 0.4 }, 'fabric');
+      const c = sheet(W2 + 0.014, D2 + 0.012, 0.005, cm, false); c.position.y = H2 + 0.006; c.rotation.x = -0.12; s.add(c);
+      const v = sheet(W2 + 0.014, 0.012, 0.0, cm); v.rotation.x = Math.PI / 2; v.position.set(0, H2, D2 / 2 + 0.008); s.add(v);
+    });
+    /* the torn canopy, ripped off its posts and lifting into the funnel */
+    { const cm = M('striped-canvas-torn', { map: stripes(cols[3][0], cols[3][1], 8), roughness: 0.85, side: THREE.DoubleSide }, 'fabric');
+      const sh = new THREE.Shape(); sh.moveTo(-0.05, -0.035); sh.lineTo(0.042, -0.04); sh.lineTo(0.03, -0.01); sh.lineTo(0.05, 0.004); sh.lineTo(0.026, 0.017); sh.lineTo(0.038, 0.038); sh.lineTo(-0.018, 0.03); sh.lineTo(-0.03, 0.01); sh.lineTo(-0.054, 0.017); sh.closePath();
+      const geo = new THREE.ShapeGeometry(sh, 8); const p = geo.attributes.position; for (let i = 0; i < p.count; i++) p.setZ(i, 0.01 * Math.sin(p.getX(i) * 60) + 0.008 * Math.cos(p.getY(i) * 50)); geo.computeVertexNormals();
+      const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, p.getX(i) * 9 + 0.5, p.getY(i) * 9 + 0.5);
+      const t = new THREE.Mesh(geo, cm); t.position.set(0.05, 0.15, -0.02); t.rotation.set(0.9, 0.5, -0.7); t.userData.txBevel = false; g.add(t);
+      const st = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.014, 8, 1), cm); const sp = st.geometry.attributes.position; for (let i = 0; i < sp.count; i++) sp.setZ(i, 0.008 * Math.sin(sp.getX(i) * 90)); st.geometry.computeVertexNormals();
+      st.position.set(0.12, y0 + 0.062, -0.06); st.rotation.set(0.2, 1.4, 0.3); g.add(st); }
+    /* the funnel, kept to its own market: a gauze cone, spiral bands and a dust skirt */
+    const FX = -0.08, FZ = -0.02, FH = 0.3, rad = (t) => 0.008 + 0.092 * Math.pow(t, 1.6);
+    { const prof = []; for (let i = 0; i <= 30; i++) { const t = i / 30; prof.push(new THREE.Vector2(rad(t), t * FH)); }
+      const gauze = new THREE.MeshPhysicalMaterial({ name: 'gauze-funnel', color: 0x7f8ea6, roughness: 0.9, transparent: true, opacity: 0.82, side: THREE.DoubleSide, depthWrite: false }); gauze.userData.txSurface = false;
+      const cone = new THREE.Mesh(new THREE.LatheGeometry(prof, 48), gauze); cone.position.set(FX, y0, FZ); cone.userData.txBevel = false; cone.userData.noCast = true; g.add(cone);
+      const band = new THREE.MeshPhysicalMaterial({ name: 'gauze-band', color: 0xc6d0de, roughness: 0.8, transparent: true, opacity: 0.85, depthWrite: false }); band.userData.txSurface = false;
+      for (let k = 0; k < 6; k++) { const pts = []; for (let i = 0; i <= 100; i++) { const t = i / 100, a = k * Math.PI / 3 + t * 5 * Math.PI; pts.push(new THREE.Vector3(FX + Math.cos(a) * rad(t) * 1.05, y0 + t * FH, FZ + Math.sin(a) * rad(t) * 1.05)); }
+        const tb = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 200, 0.0022, 6), band); tb.userData.txBevel = false; tb.userData.noCast = true; g.add(tb); }
+      const dust = new THREE.MeshPhysicalMaterial({ name: 'dust-skirt', color: 0xe6cfa2, roughness: 1, transparent: true, opacity: 0.55, depthWrite: false }); dust.userData.txSurface = false;
+      [0.04, 0.058].forEach((r0, i) => { const d = lumpy(r0, 40 + i, dust); d.scale.set(1, 0.35, 1); d.position.set(FX, y0 + 0.008, FZ); d.userData.noCast = true; g.add(d); });
+      const rr = CH.rng(55); const debM = [crateM, M('debris-board', { color: 0xe8553d, roughness: 0.7 }, 'paint'), M('debris-sheet', { color: 0xf3d48a, roughness: 0.7 }, 'paint')];
+      for (let i = 0; i < 34; i++) { const t = 0.12 + rr() * 0.82, a = rr() * 6.28, r0 = rad(t) * (1.12 + rr() * 0.25);
+        const b = rb(0.005 + rr() * 0.008, 0.003 + rr() * 0.004, 0.005 + rr() * 0.007, 0.001, debM[i % 3], FX + Math.cos(a) * r0, y0 + t * FH, FZ + Math.sin(a) * r0, g); b.rotation.set(rr() * 3, rr() * 3, rr() * 3); }
+      for (let i = 0; i < 7; i++) { const b = rb(0.016, 0.01, 0.013, 0.0015, debM[i % 3], -0.16 + rr() * 0.32, y0, -0.16 + rr() * 0.32, g); b.rotation.y = rr() * 3; b.rotation.z = (rr() - 0.5) * 0.6; } }
+    return shadowAll(g);
+  };
+
+  /* ---------- 2. the rubble mound ---------- */
+  const rubbleSet = () => {
+    const g = new THREE.Group();
+    rb(BOARD, 0.012, BOARD, 0.004, M('dust-board', { color: 0xc98f52, roughness: 0.95 }, 'concrete'), 0, 0, 0, g);
+    const pile = K.make('rubble_pile', { w: 3.2, d: 2.8, h: 1.2, seed: 7 }); pile.scale.setScalar(0.105); pile.position.set(0, 0.012, 0); g.add(pile);
+    pile.traverse(m => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.lerp(new THREE.Color(0xd8894a), 0.32); } });
+    const conc = M('cast-concrete-stub', { color: 0xc9bfae, roughness: 0.9 }, 'concrete'), rebar = M('rebar-rust', { color: 0x8a4a2a, metalness: 0.6, roughness: 0.6 }, 'metal');
+    const s1 = rb(0.11, 0.06, 0.016, 0.002, conc, -0.06, 0.012, -0.15, g); s1.rotation.set(0, 0.25, 0.06);
+    for (let k = 0; k < 4; k++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.0012, 0.0012, 0.03, 6), rebar); b.position.set(-0.1 + k * 0.025, 0.012 + 0.07 + (k % 2) * 0.004, -0.148); b.rotation.z = (k - 1.5) * 0.2; g.add(b); }
+    return shadowAll(g);
+  };
+
+  /* ---------- 3. the night search box ---------- */
+  const nightSet = () => {
+    const g = new THREE.Group(), HH = 0.18, y0 = 0.012, B = BOARD;
+    const felt = M('navy-felt-hood', { color: 0x1d2468, roughness: 1, sheen: 0.5, sheenColor: 0x5a64c8 }, 'fabric');
+    rb(B, 0.012, B, 0.004, M('night-board', { color: 0x262c70, roughness: 0.9 }, 'concrete'), 0, 0, 0, g);
+    rb(B, HH, 0.012, 0.005, felt, 0, y0, -B / 2 + 0.006, g); rb(0.012, HH, B, 0.005, felt, -B / 2 + 0.006, y0, 0, g); rb(0.012, HH, B, 0.005, felt, B / 2 - 0.006, y0, 0, g);
+    rb(B + 0.01, 0.014, B + 0.01, 0.006, felt, 0, y0 + HH, 0, g);
+    /* the open front's trim, a walnut proscenium */
+    rb(B + 0.012, 0.016, 0.014, 0.004, capM, 0, y0 + HH - 0.004, B / 2 - 0.004, g);
+    const road = M('night-road', { color: 0x3a3a6e, roughness: 0.85 }, 'concrete'); rb(B - 0.03, 0.002, 0.06, 0.001, road, 0, y0, 0.08, g);
+    const wall = M('violet-house-paint', { color: 0x5348a8, roughness: 0.75 }, 'paint'), roof = M('indigo-roof', { color: 0x2c2670, roughness: 0.6 }, 'paint');
+    const frameM = M('night-trim', { color: 0x8a82d0, roughness: 0.6 }, 'paint'), glassM = M('dark-pane', { color: 0x141a3a, roughness: 0.15, clearcoat: 1 }, 'glass');
+    [[-0.11, -0.06, 0.08, 0.06, 0.07], [0.0, -0.1, 0.07, 0.07, 0.06], [0.11, -0.05, 0.08, 0.05, 0.07]].forEach(([x, z, w, h, d]) => {
+      rb(w, h, d, 0.002, wall, x, y0, z, g); const gb = gable(w, d, 0.03, roof); gb.position.set(x, y0 + h, z); g.add(gb);
+      windowAt(g, x - w * 0.22, y0 + h * 0.5, z + d / 2 + 0.002, 0.014, 0.016, frameM, glassM); windowAt(g, x + w * 0.22, y0 + h * 0.5, z + d / 2 + 0.002, 0.014, 0.016, frameM, glassM); });
+    /* a picket fence along the road */
+    for (let k = 0; k < 11; k++) rb(0.003, 0.016, 0.003, 0.001, frameM, -0.15 + k * 0.03, y0, 0.03, g);
+    rb(0.31, 0.003, 0.003, 0.001, frameM, 0, y0 + 0.01, 0.03, g);
+    /* the one lamp: a street lamp on a thin post, its bulb the frame's single pinpoint */
+    const lampM = M('lamp-post', { color: 0x3a3f58, metalness: 0.6, roughness: 0.4 }, 'metal');
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.0018, 0.0026, 0.1, 10), lampM); pole.position.set(0.05, y0 + 0.05, 0.12); g.add(pole);
+    const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.0013, 0.0013, 0.026, 8), lampM); arm.rotation.z = Math.PI / 2; arm.position.set(0.061, y0 + 0.1, 0.12); g.add(arm);
+    const head = new THREE.Mesh(new THREE.ConeGeometry(0.007, 0.007, 14, 1, true), lampM); head.position.set(0.073, y0 + 0.097, 0.12); g.add(head);
+    const bulbM = new THREE.MeshStandardMaterial({ name: 'lamp-bulb', color: 0xfff4cf, emissive: 0xfff0c0, emissiveIntensity: 9 }); bulbM.userData.txSurface = false;
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.0042, 14, 10), bulbM); bulb.position.set(0.073, y0 + 0.093, 0.12); bulb.userData.noCast = true; g.add(bulb);
+    g.userData.bulb = bulb;
+    return shadowAll(g);
+  };
+
+  /* ---------- 4. the fifth set, pilled "fifth course" (c14 names only four): a pancaked parking deck over a model car ---------- */
+  const deckSet = () => {
+    const g = new THREE.Group(), y0 = 0.012;
+    rb(BOARD, 0.012, BOARD, 0.004, M('asphalt-board', { color: 0x4a4f5a, roughness: 0.9 }, 'concrete'), 0, 0, 0, g);
+    const conc = M('cast-concrete-deck', { color: 0xd7cdb9, roughness: 0.88 }, 'concrete'), stripe = M('bay-paint', { color: 0xf5e7a8, roughness: 0.6 }, 'paint');
+    for (let k = 0; k < 5; k++) rb(0.004, 0.0015, 0.08, 0.0005, stripe, -0.15 + k * 0.075, y0, 0.12, g);
+    /* the standing columns at the back, the fallen ones at the front */
+    [-0.15, 0, 0.15].forEach(x => rb(0.022, 0.15, 0.022, 0.003, conc, x, y0, -0.12, g));
+    [[-0.12, 0.07, 1.2], [0.1, 0.09, 1.6]].forEach(([x, z, r]) => { const c = rb(0.022, 0.1, 0.022, 0.003, conc, x, y0, z, g); c.rotation.z = r; c.position.y = y0 + 0.013; });
+    /* the upper deck, slid off its back columns and come down at the front */
+    const slabM = M('cast-concrete-slab', { color: 0xb9ab95, roughness: 0.85 }, 'concrete');
+    const slab = new THREE.Group(); slab.position.set(0.02, y0 + 0.07, -0.02); slab.rotation.set(0.12, 0.05, 0.36); g.add(slab);
+    rb(0.34, 0.02, 0.28, 0.004, slabM, 0, -0.01, 0, slab);
+    for (let k = 0; k < 5; k++) rb(0.004, 0.002, 0.1, 0.0006, stripe, -0.13 + k * 0.065, 0.01, -0.06, slab);
+    rb(0.34, 0.03, 0.01, 0.002, slabM, 0, 0.01, -0.135, slab);   /* the deck's back parapet, still on it */
+    rb(0.015, 0.04, 0.015, 0.002, M('deck-lamp-post', { color: 0x3a3f58, metalness: 0.6, roughness: 0.4 }, 'metal'), 0.12, 0.01, -0.09, slab);
+    
+    /* a model car caught under the low edge */
+    const car = new THREE.Group(); car.position.set(0.05, y0, 0.11); car.rotation.y = 0.3; g.add(car);
+    const paint = M('car-paint-blue', { color: 0x2f7fe0, roughness: 0.3, clearcoat: 1 }, 'paint'), tyre = M('rubber-tyre-5', { color: 0x22252b, roughness: 0.8 }, 'rubber'), gl5 = M('car-glass', { color: 0x203048, roughness: 0.1, clearcoat: 1 }, 'glass');
+    rb(0.09, 0.022, 0.042, 0.008, paint, 0, 0.006, 0, car); rb(0.05, 0.016, 0.038, 0.006, gl5, -0.005, 0.026, 0, car);
+    [[-0.03, 1], [0.03, 1], [-0.03, -1], [0.03, -1]].forEach(([x, s]) => { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.007, 14), tyre); w.rotation.x = Math.PI / 2; w.position.set(x, 0.009, s * 0.021); car.add(w); });
+    const rr = CH.rng(81); for (let i = 0; i < 14; i++) { const b = rb(0.008 + rr() * 0.014, 0.005 + rr() * 0.006, 0.008 + rr() * 0.012, 0.001, conc, -0.17 + rr() * 0.34, y0, 0.02 + rr() * 0.17, g); b.rotation.set(rr(), rr() * 3, rr()); }
+    return shadowAll(g);
+  };
+
+  /* ---------- 5. the smoke filled building ---------- */
+  const smokeSet = () => {
+    const g = new THREE.Group(), y0 = 0.012, BW = 0.22, BH = 0.15, BD = 0.16, bx = -0.02, bz = -0.04;
+    rb(BOARD, 0.012, BOARD, 0.004, M('concrete-board', { color: 0x4a4560, roughness: 0.9 }, 'concrete'), 0, 0, 0, g);
+    const stucco = M('stucco-paint', { color: 0xf0c27a, roughness: 0.85 }, 'paint'), trim = M('trim-paint', { color: 0x0f4d4a, roughness: 0.5 }, 'paint');
+    const frameM = M('window-frame-paint', { color: 0xfff3dc, roughness: 0.5 }, 'paint'), glassM = M('window-fire-glass', { color: 0x3a1a0a, roughness: 0.2, clearcoat: 1, emissive: 0xff6a12, emissiveIntensity: 2.2 }, 'glass');
+    { const fl = new THREE.PointLight(0xff7a24, 0.35, 0.45, 2); fl.position.set(bx, y0 + 0.2, bz + BD / 2 + 0.08); g.add(fl); }
+    rb(BW, BH, BD, 0.004, stucco, bx, y0, bz, g);
+    rb(BW + 0.008, 0.006, BD + 0.008, 0.002, trim, bx, y0, bz, g);                     /* plinth course */
+    rb(BW + 0.006, 0.005, BD + 0.006, 0.002, trim, bx, y0 + BH * 0.5, bz, g);         /* floor band */
+    /* the parapet: four low walls with a coping, so the roof is a roof */
+    [[0, BD / 2 - 0.004, BW, 0.008], [0, -BD / 2 + 0.004, BW, 0.008]].forEach(([x, z, w, d]) => { rb(w + 0.004, 0.016, d, 0.002, stucco, bx + x, y0 + BH, bz + z, g); rb(w + 0.01, 0.004, d + 0.006, 0.0015, trim, bx + x, y0 + BH + 0.016, bz + z, g); });
+    [[BW / 2 - 0.004], [-BW / 2 + 0.004]].forEach(([x]) => { rb(0.008, 0.016, BD, 0.002, stucco, bx + x, y0 + BH, bz, g); rb(0.014, 0.004, BD + 0.006, 0.0015, trim, bx + x, y0 + BH + 0.016, bz, g); });
+    rb(BW - 0.016, 0.003, BD - 0.016, 0.001, M('roof-membrane', { color: 0x5f6a74, roughness: 0.8 }, 'rubber'), bx, y0 + BH, bz, g);
+    rb(0.04, 0.022, 0.03, 0.003, M('rooftop-unit', { color: 0xc9d0d8, roughness: 0.4, metalness: 0.6 }, 'metal'), bx + 0.05, y0 + BH + 0.003, bz - 0.03, g);
+    for (let f = 0; f < 2; f++) { for (let i = 0; i < 4; i++) windowAt(g, bx - BW / 2 + 0.035 + i * 0.05, y0 + 0.022 + f * 0.072, bz + BD / 2 + 0.002, 0.026, 0.036, frameM, glassM);
+      for (let i = 0; i < 3; i++) windowAt(g, bx + BW / 2 + 0.002, y0 + 0.022 + f * 0.072, bz - BD / 2 + 0.035 + i * 0.045, 0.026, 0.036, frameM, glassM, Math.PI / 2); }
+    rb(0.032, 0.052, 0.005, 0.002, trim, bx + 0.075, y0, bz + BD / 2, g);                /* the door */
+    rb(0.046, 0.004, 0.02, 0.0015, trim, bx + 0.075, y0 + 0.056, bz + BD / 2 + 0.008, g); /* its canopy */
+    /* cotton smoke from an upper window and the roof, rising and leaning with the room's draught */
+    const smokeM = new THREE.MeshPhysicalMaterial({ name: 'cotton-smoke', color: 0x8f8a96, roughness: 1, sheen: 0.6, sheenColor: 0xffb070, emissive: 0xff5a14, emissiveIntensity: 0.18 }); smokeM.userData.txSurface = false;
+    const smokeD = new THREE.MeshPhysicalMaterial({ name: 'cotton-smoke-dark', color: 0x5a5560, roughness: 1, sheen: 0.4, sheenColor: 0xff8a40, emissive: 0xff4a10, emissiveIntensity: 0.1 }); smokeD.userData.txSurface = false;
+    const rr = CH.rng(212);
+    const plume = (x, y, z, n, s0, rise) => { for (let i = 0; i < n; i++) { const t = i / (n - 1); const r0 = s0 * (0.8 + t * 2.4) * (0.85 + rr() * 0.3);
+      const p = lumpy(r0, 300 + i + Math.round(x * 1000), i % 3 === 0 ? smokeD : smokeM); p.userData.noRecv = true; p.position.set(x + t * t * 0.08 + (rr() - 0.5) * 0.015, y + t * rise, z - t * 0.02 + (rr() - 0.5) * 0.015); g.add(p); } };
+    plume(bx - 0.03, y0 + BH + 0.04, bz, 9, 0.018, 0.22);
+    plume(bx - BW / 2 + 0.085, y0 + 0.11, bz + BD / 2 + 0.012, 4, 0.011, 0.07);
+    /* a model engine at the kerb */
+    const red = M('fire-red-paint', { color: 0xd8322a, roughness: 0.35, clearcoat: 0.8 }, 'paint'), tyre = M('rubber-tyre', { color: 0x22252b, roughness: 0.8 }, 'rubber');
+    rb(0.09, 0.03, 0.034, 0.005, red, -0.06, y0 + 0.007, 0.15, g); rb(0.03, 0.026, 0.032, 0.005, red, 0.002, y0 + 0.007, 0.15, g);
+    rb(0.08, 0.004, 0.02, 0.0015, M('ladder-alu', { color: 0xdfe4ea, metalness: 0.8, roughness: 0.35 }, 'metal'), -0.06, y0 + 0.037, 0.15, g);
+    [-0.085, -0.04, 0.002].forEach(x => [-1, 1].forEach(s => { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.0078, 0.0078, 0.007, 14), tyre); w.rotation.x = Math.PI / 2; w.position.set(x, y0 + 0.008, 0.15 + s * 0.017); g.add(w); }));
+    return shadowAll(g);
+  };
+
+
+  /* ---------- THE FIVE RISERS: three in front, two raised behind in the gaps ---------- */
+  const SETS = [
+    { make: marketSet, lab: 'lab-market', at: [-0.5, 0.34], h: 0.27, yaw: 0.08 },
+    { make: rubbleSet, lab: 'lab-rubble', at: [0.0, 0.38], h: 0.27, yaw: 0.0 },
+    { make: nightSet, lab: 'lab-night', at: [0.5, 0.34], h: 0.27, yaw: -0.08 },
+    { make: smokeSet, lab: 'lab-smoke', at: [-0.25, -0.26], h: 0.52, yaw: 0.06 },
+    { make: deckSet, lab: 'lab-deck', at: [0.27, -0.26], h: 0.52, yaw: -0.06 }
+  ];
+  if (SETS.length !== N_SETS) throw new Error('drew ' + SETS.length + ' sets, FIG.competitions is ' + N_SETS);
+  const named = SETS.filter(s => s.lab).length, labs = document.querySelectorAll('.lab.set').length;
+  if (named !== N_SETS || labs !== N_SETS) throw new Error('the five scenes and their pills disagree: ' + named + ' / ' + labs);
+  const built = [];
+  SETS.forEach((s) => {
+    const h = s.h, base = new THREE.Group(); base.position.set(s.at[0], 0, s.at[1]); base.rotation.y = s.yaw;
+    const foot = TXT.roundedBox(PL + 0.008, 0.016, PL + 0.008, 0.006, footM); foot.position.y = 0.008; base.add(foot);
+    const body = TXT.roundedBox(PL, h - 0.034, PL, 0.014, riserM); body.position.y = 0.016 + (h - 0.034) / 2; base.add(body);
+    const cap = TXT.roundedBox(PL + 0.014, 0.02, PL + 0.014, 0.007, capM); cap.position.y = h - 0.01; base.add(cap);
+    /* a recessed panel on each of the riser's four faces, with a walnut reveal, so no face is a flat slab */
+    if (h > 0.12) { const panM = M('teal-powder-coat-panel', { color: 0x0f6f68, roughness: 0.5, metalness: 0.1, clearcoat: 0.3 }, 'paint');
+      for (let k = 0; k < 4; k++) { const f = new THREE.Group(); f.rotation.y = k * Math.PI / 2; base.add(f);
+        const pn = TXT.roundedBox(PL - 0.07, h - 0.12, 0.006, 0.006, panM); pn.position.set(0, 0.016 + (h - 0.034) / 2, PL / 2 + 0.001); f.add(pn);
+        const rv = TXT.roundedBox(PL - 0.05, 0.008, 0.008, 0.003, capM); rv.position.set(0, h - 0.05, PL / 2 + 0.002); f.add(rv); } }
+    const set = s.make(); set.position.y = h; base.add(set);
+    shadowAll(base); TXT.add(R, base); TXT.contact(R, base, { opacity: 0.85, color: 0x0f4d4a });
+    built.push({ s, base, set, h });
+  });
+  if (built.length !== N_SETS) throw new Error('built ' + built.length + ' sets');
+
+  /* the night box's lamp: a small point light inside the hood, so its pool lands on the board */
+  { const nb = built.find(b => b.s.make === nightSet); nb.set.updateMatrixWorld(true); const bp = nb.set.userData.bulb.getWorldPosition(new THREE.Vector3());
+    const pl = new THREE.PointLight(0xffe6b0, 0.5, 0.4, 2); pl.position.copy(bp).add(new THREE.Vector3(0, -0.004, 0)); R.scene.add(pl);
+    CH.lampGlow(THREE, R, [bp.x, bp.y, bp.z], 0xfff0c8, 0.07, 0); }
+
+  /* THE CAMERA: in and down, a 17 degree look down the five risers, fitted so the sets run edge to edge under the type */
+  const dekB = document.querySelector('.dek').getBoundingClientRect().bottom;
+  const EL = 17 * Math.PI / 180, TOP = dekB + 34;
+  let dist = 2.6, look = [0, 0.35, 0];
+  const union = (objs) => { const r = objs.map(o => CH.rectOf(THREE, R, o, 0)); const x0 = Math.min(...r.map(q => q[0])), y0 = Math.min(...r.map(q => q[1])), x1 = Math.max(...r.map(q => q[0] + q[2])), y1 = Math.max(...r.map(q => q[1] + q[3])); return { x0, y0, x1, y1 }; };
+  for (let it = 0; it < 40; it++) {
+    TXT.frame(R, { fov: FOV, from: [look[0], look[1] + Math.sin(EL) * dist, look[2] + Math.cos(EL) * dist], look });
+    const U = union(built.map(b => b.base)), pxw = dist * 2 * Math.tan(FOV * Math.PI / 360) / 1350;
+    dist *= Math.pow((U.x1 - U.x0) / 1004, 0.8);
+    look[0] += ((U.x0 + U.x1) / 2 - 540) * pxw;
+    look[1] += (TOP - U.y0) * pxw;
+  }
+  TXT.frame(R, { fov: FOV, from: [look[0], look[1] + Math.sin(EL) * dist, look[2] + Math.cos(EL) * dist], look });
+  { const r = built.map(b => CH.rectOf(THREE, R, b.set, 0)); window.__rects03 = r.map(q => q.map(Math.round));
+    r.forEach((q, i) => { if (q[0] < 40 || q[0] + q[2] > 1040 || q[1] < dekB || q[1] + q[3] > 1330) throw new Error("set " + (i + 1) + " is not whole in the frame " + JSON.stringify(window.__rects03) + ' dist ' + dist.toFixed(3)); }); }
+
+  /* THE LIGHT: a big soft butter key high from the front left, a teal fill, a mint rim behind */
+  const spec = CH.rigSpec(W, 4, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0xfff0c0, i: 4.2, radius: 1.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.3, 0], { distance: 10, shadowFar: 30, normalBias: 0.01 }), { light: { az: -68, el: 34 } }));
+  CH.unacne(R, 0.008);
+  { const b = new THREE.DirectionalLight(0xb8ffe6, 0.9); b.position.set(2.5, 2.5, -4); b.target.position.set(0, 0.3, 0); R.scene.add(b); R.scene.add(b.target); }
+
+  /* THE PILLS: each on the front face of its own riser, under its set, never over the model */
+  R.camera.updateMatrixWorld(true);
+  const pins = {};
+  built.forEach(({ s, base, h }) => { if (!s.lab) return; base.updateMatrixWorld(true);
+    const local = new THREE.Vector3(0, s.h > 0.4 ? h - 0.075 : h * 0.62, PL / 2 + 0.01);
+    const w = base.localToWorld(local); pins[s.lab] = CH.project(THREE, R, [w.x, w.y, w.z]); });
+  window.__pins03 = pins;
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  Object.keys(pins).forEach(id => { const el = document.getElementById(id), q = pins[id]; const r0 = el.getBoundingClientRect();
+    const x = Math.max(72 + r0.width / 2, Math.min(1008 - r0.width / 2, q[0])); el.style.left = Math.round(x) + 'px'; el.style.top = Math.round(Math.min(1166, q[1])) + 'px'; });
+  { const src = document.querySelector('.src'), site = document.getElementById('site'); const fy = Math.min(src ? src.getBoundingClientRect().top : 1e4, site.getBoundingClientRect().top);
+    document.querySelectorAll('.lab.set').forEach(e => { if (e.getBoundingClientRect().bottom > fy - 14) throw new Error(e.id + ' crowds the footer line at ' + Math.round(fy)); }); }
+  { const rs = Array.from(document.querySelectorAll('.lab.set')).map(e => e.getBoundingClientRect());
+    const tr = ['.hook', '.dek'].map(s => document.querySelector(s).getBoundingClientRect());
+    const hit = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+    for (let i = 0; i < rs.length; i++) { tr.forEach(t => { if (hit(rs[i], t)) throw new Error('a pill runs into the type'); });
+      for (let j = i + 1; j < rs.length; j++) if (hit(rs[i], rs[j])) throw new Error('two pills overlap'); } }
+  CH.seat(cx, { a: 0.3, fade: 160 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 80 }));
+  CH.seat(cx, { sel: '.tx-site', a: 0.5, fade: 90 });
+  CH.seat(cx, { sel: '.src', a: 0.55, fade: 90 });
+  TXLOOK.footWash(cx, { a: 0.3, height: 120 });
+  CH.seat(cx, { sel: '.dek', a: 0.42, fade: 110 });   /* contrast floor, panel_ready 4.5 */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

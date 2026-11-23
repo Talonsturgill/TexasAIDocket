@@ -1,0 +1,434 @@
+<!doctype html>
+<!-- 2026-11-19, frame 1 of 9, the cover. AT THE DOOR. A macro render through txthree.js in TXT.studio wonder: one generic
+bronze fly, built in this frame at macro detail and drawn to illustrate, grips the fat fire polished lip of a clear glass
+mouth at its own eye level. Below the lip, seen through the glass, the throat splits in two and only the keep branch carries
+a band of dusk gold. No camera, flap or circuit; no size is claimed for the fly or the glass. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:144px; width:560px; text-align:left">One fly at the door. Which one stays?</h1>
+<p class="dek" data-follow="26" style="left:74px; width:500px; font-size:29px">Screwworm was declared eliminated from the US in 1966. More than 120 animal cases were confirmed as of November 12th, most of them in Texas. A trap planned at UT Arlington would decide fly by fly. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  /* THE FIGURES. This frame draws no count, length or share, so FIG must be empty, and it draws exactly one fly. */
+  /* fig_inject writes this frame's FIG line as {} because no FIG name is read here. */
+  const FLIES_DRAWN = 1;
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "At the door", counter: "01 / 09", src: "c2 c4 c1", fit: { min: 78, max: 94, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 24, near: 0.004, far: 5, fog: 0 });
+  const mm = 0.001, V = (x, y, z) => new THREE.Vector3(x, y, z), rng = CH.rng(20261119);
+  const flat = (m) => { m.userData.txSurface = false; return m; };
+
+  /* ---------------- THE GLASS MOUTH ---------------- */
+  /* RT is the height of the bead's top, where the fly stands; RB is the bead itself, a thin fire polished rim */
+  const RM = 5.6 * mm, RT = 0.62 * mm, RB = 0.17 * mm, BYC = RT - RB, BORE = 1.25 * mm;
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.03, transmission: 0.95, ior: 1.47, thickness: 0.0002, specularColor: new THREE.Color(0xffffff),
+    attenuationColor: new THREE.Color(0xf4f8ff), attenuationDistance: 0.2, clearcoat: 1, clearcoatRoughness: 0.02, specularIntensity: 1,
+    envMapIntensity: 1.2, side: THREE.DoubleSide, transparent: true });
+  glass.name = 'mouth-glass';
+  const G = new THREE.Group(); G.name = 'sort-mouth';
+  /* the thin fire polished bead of the lip, its top at y = RT */
+  const lip = new THREE.Mesh(new THREE.TorusGeometry(RM, RB, 32, 256), glass); lip.rotation.x = Math.PI / 2; lip.position.y = BYC; G.add(lip);
+  /* the horn's own glass: it keeps its edges but does not mirror the softbox across the mouth, so the open cone reads
+   * through the mouth narrowing into the collar instead of as a sealed disc */
+  /* a thin clear wall: nearly invisible face on, brightening toward its silhouettes as real thin glass does */
+  const hornGlass = flat(new THREE.ShaderMaterial({ transparent: true, depthWrite: false, side: THREE.DoubleSide,
+    vertexShader: "varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix * vec4(position,1.0); vV = mv.xyz; vN = normalMatrix * normal; gl_Position = projectionMatrix * mv; }",
+    fragmentShader: "varying vec3 vN; varying vec3 vV; void main(){ float c = abs(dot(normalize(vN), normalize(-vV))); float f = pow(1.0 - c, 2.6); vec3 col = mix(vec3(0.52, 0.62, 1.0), vec3(0.96, 0.97, 1.0), f); gl_FragColor = vec4(col, 0.035 + 0.62 * f); }" }));
+  hornGlass.name = 'horn-glass';
+  /* the horn: from just inside the bead down to the throat, steep near the throat */
+  const THROAT = -3.7 * mm, FORK = -5.1 * mm;
+  const hp = []; for (let i = 0; i <= 48; i++) { const u = i / 48; hp.push(new THREE.Vector2(BORE + (RM - RB * 0.5 - BORE) * Math.pow(1 - u, 1.05), BYC + (THROAT - BYC) * u)); }
+  hp.reverse(); G.add(new THREE.Mesh(new THREE.LatheGeometry(hp, 160), hornGlass));
+  /* the outer skirt below the bead, so the lip reads as a thick rolled rim */
+  const sp = []; for (let i = 0; i <= 24; i++) { const u = i / 24; sp.push(new THREE.Vector2(RM + RT * 0.55 - u * 0.6 * mm * u, -RT * 0.6 - u * 1.6 * mm)); }
+  /* (no skirt: the funnel's own wall carries the eye down from the bead into the stem) */
+  const tube = (a, b, r) => { const v = b.clone().sub(a), L = v.length(); const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, L, 64, 1, true), glass);
+    m.position.copy(a).add(b).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(V(0, 1, 0), v.normalize()); G.add(m); return m; };
+  tube(V(0, THROAT + 0.2 * mm, 0), V(0, FORK, 0), BORE);
+  const knot = new THREE.Mesh(new THREE.SphereGeometry(BORE * 1.12, 48, 32), glass); knot.position.set(0, FORK, 0); G.add(knot);
+  /* the two branches recede: the Y plane is turned so KEEP runs down and back to the left, RELEASE down and back to the right */
+  const A35 = 42 * Math.PI / 180, BL = 8.5 * mm, back = -0.55;
+  const dirK = V(-Math.sin(A35), -Math.cos(A35), back).normalize(), dirR = V(Math.sin(A35), -Math.cos(A35), back).normalize();
+  const fork = V(0, FORK, 0), keepEnd = fork.clone().addScaledVector(dirK, BL), relEnd = fork.clone().addScaledVector(dirR, BL);
+  tube(fork, keepEnd, BORE); tube(fork, relEnd, BORE);
+  /* each branch finishes OPEN: a fire polished rim at its mouth, one way in and two ways out */
+  [[keepEnd, dirK], [relEnd, dirR]].forEach(([e, d]) => { const rim = new THREE.Mesh(new THREE.TorusGeometry(BORE, 0.16 * mm, 20, 96), glass);
+    rim.position.copy(e); rim.quaternion.setFromUnitVectors(V(0, 0, 1), d); G.add(rim); });
+  /* THE ACCENT, the only dusk gold on the frame: one band round the keep branch just past the fork */
+  const gold = new THREE.MeshPhysicalMaterial({ color: 0xe0956a, emissive: 0xe0956a, emissiveIntensity: 0.42, metalness: 0.0, roughness: 0.36, clearcoat: 0.8 });
+  gold.name = 'keep-band-paint';
+  const band = new THREE.Mesh(new THREE.TorusGeometry(BORE * 1.04, 0.4 * mm, 20, 96), gold);
+  band.position.copy(fork.clone().addScaledVector(dirK, 4.6 * mm)); band.quaternion.setFromUnitVectors(V(0, 0, 1), dirK); G.add(band);
+  const band2 = new THREE.Mesh(new THREE.CylinderGeometry(BORE * 1.01, BORE * 1.01, 2.2 * mm, 96, 1, true), gold);
+  band2.position.copy(band.position); band2.quaternion.setFromUnitVectors(V(0, 1, 0), dirK); G.add(band2);
+  G.traverse(m => { if (m.isMesh) { m.userData.txBevel = false; m.castShadow = false; m.receiveShadow = (m === lip); } });   /* only the bead takes the fly's shadow */
+  R.scene.add(G);
+
+  /* THE STUDIO: the floor stands exactly at the lowest point of the two branch rims, so the glass RESTS on its two open ends */
+  const RIM_T = 0.16 * mm, rimLow = (e, d) => e.y - (BORE + RIM_T) * Math.sqrt(1 - d.y * d.y);
+  const FLOOR_Y = Math.min(rimLow(keepEnd, dirK), rimLow(relEnd, dirR));
+  const sweep = TXT.studio(R, { tone: CH.TONE, w: 0.4, d: 0.05, h: 0.2, radius: 0.03, y: FLOOR_Y, env: 0.95, hemi: 0.6, softbox: 3.6, accentStrip: 0, wall: 0x1a6cff, top: 0x0c36c0, floor: 0x4a5ef0 });
+  /* the sweep holds its own colour, so the warm key can't turn the cobalt wall to lilac behind the fly; the key's falloff is
+   * baked into it instead: a soft pool on the floor under the glass, the cove catching the key as it turns, the wall
+   * settling darker as it climbs */
+  sweep.material = flat(new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide, color: 0xb4b4b4 })); sweep.material.name = 'studio-sweep';
+  { const P = sweep.geometry.attributes.position, C = sweep.geometry.attributes.color, RAD = 0.03, zB = -0.025;
+    for (let i = 0; i < P.count; i++) { const x = P.getX(i), y = P.getY(i) - FLOOR_Y, z = P.getZ(i); let k;
+      if (y < 1e-6) { const r2 = (x * x) / (0.03 * 0.03) + ((z + 0.004) * (z + 0.004)) / (0.022 * 0.022); k = 0.86 + 0.3 * Math.exp(-r2) - 0.1 * Math.min(1, Math.max(0, (zB * 0.4 - z) / 0.02)); }
+      else if (y < RAD) { const t = y / RAD; k = 0.74 + 0.36 * Math.sin(Math.PI * Math.pow(t, 0.8)) + 0.02 * t; }
+      else { const t = Math.min(1, (y - RAD) / 0.08); k = 0.76 - 0.24 * t * t; }
+      k *= 1 - 0.18 * Math.min(1, (x * x) / (0.06 * 0.06));
+      C.setXYZ(i, C.getX(i) * k, C.getY(i) * k, C.getZ(i) * k); }
+    C.needsUpdate = true; }
+
+  /* ---------------- THE FLY, generic, drawn to illustrate, built here at macro detail ---------------- */
+  /* where it stands: astride the bead on the FAR side of the mouth, a little right, its head over the opening, peering in
+   * toward the camera, so the door lies open in front of it */
+  const TH = 124 * Math.PI / 180;
+  const perch = V(RM * Math.sin(TH), RT, RM * Math.cos(TH));
+  const fly = new THREE.Group(); fly.name = 'fly';
+  fly.position.copy(perch);
+  const heading = V(-Math.sin(TH), 0, -Math.cos(TH)).applyAxisAngle(V(0, 1, 0), 0.0);
+  fly.rotation.y = Math.atan2(heading.x, heading.z);
+  fly.updateMatrixWorld(true);
+
+  /* textures */
+  const tex = (w, h, paint, o) => { const t = CH.canvasTex(THREE, w, h, paint); if (o && o.linear) t.colorSpace = THREE.NoColorSpace; return t; };
+  const thoraxTex = tex(1024, 512, (x, w, h) => {
+    const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#3e5a34'); g.addColorStop(0.5, '#6a6a30'); g.addColorStop(1, '#2c3a26');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+    const r = CH.rng(5); for (let i = 0; i < 9000; i++) { x.fillStyle = 'rgba(' + (r() < 0.5 ? '10,20,12,' : '190,170,90,') + (0.05 + r() * 0.12).toFixed(3) + ')'; x.beginPath(); x.arc(r() * w, r() * h, 0.8 + r() * 2.2, 0, 7); x.fill(); }
+    x.fillStyle = 'rgba(14,26,24,0.32)'; [0.42, 0.5, 0.58].forEach(u => x.fillRect(0, h * u - 6, w, 12));   /* faint dorsal stripes, generic */
+  });
+  const bumpTex = tex(512, 512, (x, w, h) => { x.fillStyle = '#808080'; x.fillRect(0, 0, w, h); const r = CH.rng(9);
+    for (let i = 0; i < 7000; i++) { const v = r() < 0.5 ? 40 : 200; x.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',0.35)'; x.beginPath(); x.arc(r() * w, r() * h, 0.7 + r() * 1.8, 0, 7); x.fill(); } }, { linear: true });
+  bumpTex.wrapS = bumpTex.wrapT = THREE.RepeatWrapping; bumpTex.repeat.set(3, 3);
+  const abdTex = tex(512, 1024, (x, w, h) => {
+    x.fillStyle = '#4a6a3a'; x.fillRect(0, 0, w, h);
+    for (let k = 0; k < 5; k++) { const y0 = h * (0.12 + k * 0.17); const g = x.createLinearGradient(0, y0, 0, y0 + h * 0.17);
+      g.addColorStop(0, '#5f7a3c'); g.addColorStop(0.7, '#3a5a46'); g.addColorStop(0.92, '#1c2a24'); g.addColorStop(1, '#5f7a3c'); x.fillStyle = g; x.fillRect(0, y0, w, h * 0.17); }
+    const r = CH.rng(6); for (let i = 0; i < 6000; i++) { x.fillStyle = 'rgba(' + (r() < 0.5 ? '8,16,12,' : '200,190,110,') + (0.04 + r() * 0.1).toFixed(3) + ')'; x.fillRect(r() * w, r() * h, 1.5, 1.5); }
+  });
+  /* compound eye: hex facets as a normal map, each facet a small dome */
+  const FAC = 15;
+  const eyeN = (() => { const c = document.createElement('canvas'); c.width = 1024; c.height = 1024; const x = c.getContext('2d'); const im = x.createImageData(1024, 1024);
+    const sx = FAC, sy = FAC * Math.sqrt(3) / 2;
+    for (let py = 0; py < 1024; py++) for (let px = 0; px < 1024; px++) {
+      const row = Math.round(py / sy), off = (row % 2) ? sx / 2 : 0; let col = Math.round((px - off) / sx);
+      let bx = col * sx + off, by = row * sy, best = 1e9, dx = 0, dy = 0;
+      for (let rr = row - 1; rr <= row + 1; rr++) { const o2 = (rr % 2 + 2) % 2 ? sx / 2 : 0; for (let cc = Math.round((px - o2) / sx) - 1; cc <= Math.round((px - o2) / sx) + 1; cc++) {
+        const ex = px - (cc * sx + o2), ey = py - rr * sy, d = ex * ex + ey * ey; if (d < best) { best = d; dx = ex; dy = ey; } } }
+      const nx = dx / (FAC * 0.55), ny = dy / (FAC * 0.55), q = Math.min(0.95, nx * nx + ny * ny), nz = Math.sqrt(1 - q);
+      const i = (py * 1024 + px) * 4; im.data[i] = 128 + nx * 110; im.data[i + 1] = 128 - ny * 110; im.data[i + 2] = 128 + nz * 127; im.data[i + 3] = 255;
+    }
+    x.putImageData(im, 0, 0); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.NoColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 1); return t; })();
+  const eyeCol = tex(512, 512, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#6e2416'); g.addColorStop(0.5, '#8e3420'); g.addColorStop(1, '#4e180e');
+    x.fillStyle = g; x.fillRect(0, 0, w, h); const r = CH.rng(4); for (let i = 0; i < 1500; i++) { x.fillStyle = 'rgba(40,8,4,' + (r() * 0.25).toFixed(2) + ')'; x.fillRect(r() * w, r() * h, 3, 3); } });
+  /* the wing: a faintly smoky membrane with the venation of a resting calyptrate fly, generic */
+  const wingTex = tex(1536, 640, (x, w, h) => {
+    x.clearRect(0, 0, w, h);
+    const outline = () => { x.beginPath(); x.moveTo(0.02 * w, 0.5 * h); x.bezierCurveTo(0.2 * w, 0.18 * h, 0.7 * w, 0.06 * h, 0.95 * w, 0.32 * h);
+      x.bezierCurveTo(1.0 * w, 0.42 * h, 0.99 * w, 0.62 * h, 0.9 * w, 0.74 * h); x.bezierCurveTo(0.7 * w, 0.96 * h, 0.3 * w, 0.98 * h, 0.12 * w, 0.78 * h);
+      x.bezierCurveTo(0.06 * w, 0.7 * h, 0.03 * w, 0.6 * h, 0.02 * w, 0.5 * h); x.closePath(); };
+    outline(); const g = x.createLinearGradient(0, 0, w, 0); g.addColorStop(0, 'rgba(110,100,85,0.6)'); g.addColorStop(0.35, 'rgba(205,212,225,0.34)'); g.addColorStop(1, 'rgba(230,236,245,0.26)');
+    x.fillStyle = g; x.fill();
+    x.save(); outline(); x.clip();
+    const vein = (pts, lw, a) => { x.strokeStyle = 'rgba(52,40,30,' + a + ')'; x.lineWidth = lw; x.lineCap = 'round'; x.beginPath(); x.moveTo(pts[0] * w, pts[1] * h);
+      for (let i = 2; i < pts.length; i += 4) x.quadraticCurveTo(pts[i] * w, pts[i + 1] * h, pts[i + 2] * w, pts[i + 3] * h); x.stroke(); };
+    vein([0.02, 0.5, 0.3, 0.2, 0.6, 0.16, 0.8, 0.14, 0.95, 0.32], 9, 0.95);      /* costa */
+    vein([0.03, 0.5, 0.2, 0.32, 0.4, 0.24], 6, 0.9);                              /* R1 */
+    vein([0.04, 0.52, 0.4, 0.34, 0.86, 0.24], 5, 0.85);                           /* R2+3 */
+    vein([0.05, 0.53, 0.45, 0.42, 0.96, 0.42], 5, 0.85);                          /* R4+5 */
+    vein([0.06, 0.56, 0.42, 0.56, 0.62, 0.6, 0.72, 0.62, 0.74, 0.52, 0.76, 0.42, 0.93, 0.36], 5, 0.85); /* M1 with its bend */
+    vein([0.08, 0.6, 0.35, 0.72, 0.5, 0.78], 4.5, 0.8);                            /* CuA */
+    vein([0.1, 0.62, 0.18, 0.76, 0.22, 0.86], 4, 0.7);                             /* anal */
+    vein([0.3, 0.36, 0.31, 0.44, 0.32, 0.53], 3.5, 0.8); vein([0.5, 0.55, 0.52, 0.66, 0.53, 0.76], 3.5, 0.8);   /* cross veins */
+    x.restore();
+    outline(); x.strokeStyle = 'rgba(52,40,30,0.7)'; x.lineWidth = 3; x.stroke();
+  });
+
+  const mat = {
+    thorax: new THREE.MeshPhysicalMaterial({ map: thoraxTex, bumpMap: bumpTex, bumpScale: 1.2, metalness: 0.62, roughness: 0.26, clearcoat: 1, clearcoatRoughness: 0.08,
+      iridescence: 0.85, iridescenceIOR: 1.55, iridescenceThicknessRange: [320, 720] }),
+    abd: new THREE.MeshPhysicalMaterial({ map: abdTex, bumpMap: bumpTex, bumpScale: 0.9, metalness: 0.66, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.06,
+      iridescence: 0.9, iridescenceIOR: 1.6, iridescenceThicknessRange: [300, 760] }),
+    eye: new THREE.MeshPhysicalMaterial({ map: eyeCol, normalMap: eyeN, normalScale: new THREE.Vector2(1.6, 1.6), roughness: 0.3, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.12, sheen: 0.4, sheenColor: new THREE.Color(0xffb080) }),
+    face: new THREE.MeshPhysicalMaterial({ color: 0x4a3020, roughness: 0.5, metalness: 0.3, sheen: 0.55, sheenColor: new THREE.Color(0xc89a62), sheenRoughness: 0.5, bumpMap: bumpTex, bumpScale: 1.0 }),
+    dark: new THREE.MeshPhysicalMaterial({ color: 0x2a1e14, roughness: 0.58, metalness: 0.12, clearcoat: 0.25, clearcoatRoughness: 0.45, bumpMap: bumpTex, bumpScale: 1.5 }),
+    hair: new THREE.MeshStandardMaterial({ color: 0x1c140e, roughness: 0.42, metalness: 0.1 }),
+    wing: new THREE.MeshPhysicalMaterial({ map: wingTex, transparent: true, side: THREE.DoubleSide, depthWrite: false, roughness: 0.08, metalness: 0,
+      iridescence: 1.0, iridescenceIOR: 1.35, iridescenceThicknessRange: [180, 620], clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1 }),
+    calyp: new THREE.MeshPhysicalMaterial({ color: 0xf4ecd8, roughness: 0.5, transmission: 0.3, thickness: 0.0002 }),
+    shadow: null
+  };
+  Object.values(mat).forEach(m => m && flat(m));
+
+  const S = mm, Y0 = 3.0 * S;   /* body centre height above the perch */
+  const ell = (geo, rx, ry, rz, m, x, y, z, parent) => { const e = new THREE.Mesh(geo, m); e.scale.set(rx, ry, rz); e.position.set(x, y, z); (parent || fly).add(e); return e; };
+  const sph = new THREE.SphereGeometry(1, 64, 48), sphZ = new THREE.SphereGeometry(1, 64, 48); sphZ.rotateX(Math.PI / 2);
+  /* thorax, scutellum, abdomen */
+  const thorax = ell(sph, 1.6 * S, 1.4 * S, 1.95 * S, mat.thorax, 0, Y0 + 0.25 * S, 0.5 * S);
+  ell(sph, 1.0 * S, 0.55 * S, 0.75 * S, mat.thorax, 0, Y0 + 1.15 * S, -1.25 * S);
+  const abd = ell(sphZ, 1.6 * S, 1.15 * S, 2.2 * S, mat.abd, 0, Y0 - 0.25 * S, -2.85 * S); abd.rotation.x = -0.1;
+  /* head: a broad face plate, two great eyes, antennae, a short proboscis */
+  const HZ = 2.85 * S;
+  ell(sph, 0.95 * S, 1.2 * S, 0.7 * S, mat.face, 0, Y0 - 0.1 * S, HZ + 0.35 * S);
+  [-1, 1].forEach(sx => { const e = ell(sph, 1.02 * S, 1.36 * S, 0.88 * S, mat.eye, sx * 0.84 * S, Y0 + 0.28 * S, HZ + 0.2 * S); e.rotation.y = sx * 0.42; e.rotation.z = -sx * 0.08; });
+  ell(sph, 0.42 * S, 0.3 * S, 0.3 * S, mat.dark, 0, Y0 + 1.45 * S, HZ - 0.05 * S);   /* ocellar bump */
+  /* the frontal vitta, a dark stripe down the frons between the eyes, and the darker facial grooves either side */
+  ell(sph, 0.22 * S, 0.7 * S, 0.2 * S, mat.dark, 0, Y0 + 0.75 * S, HZ + 0.72 * S).rotation.x = -0.35;
+  [-1, 1].forEach(sx => ell(sph, 0.16 * S, 0.62 * S, 0.14 * S, mat.dark, sx * 0.36 * S, Y0 - 0.1 * S, HZ + 0.92 * S));
+  const bar = (a, b, r0, r1, m, parent, seg, fl) => { const v = b.clone().sub(a), L = v.length(); const gm = new THREE.CylinderGeometry(r1, r0, L, seg || 10); if (fl) gm.scale(1, 1, fl); const c = new THREE.Mesh(gm, m);
+    c.position.copy(a).add(b).multiplyScalar(0.5); c.quaternion.setFromUnitVectors(V(0, 1, 0), v.normalize()); (parent || fly).add(c); return c; };
+  /* antennae: scape, pedicel and a long flattened flagellum hanging in the facial groove, each with a feathered arista */
+  const labMat = flat(new THREE.MeshPhysicalMaterial({ color: 0x4e2e18, roughness: 0.55, metalness: 0.1, sheen: 0.2, sheenColor: new THREE.Color(0xb08050) }));
+  const antMat = flat(new THREE.MeshPhysicalMaterial({ color: 0x5e3418, roughness: 0.5, metalness: 0.15, sheen: 0.4, sheenColor: new THREE.Color(0xc08a50) }));
+  const tinyBar = (p0, p1, r, m) => bar(p0, p1, r, r * 0.25, m, null, 4);
+  [-1, 1].forEach(sx => {
+    const a0 = V(sx * 0.2 * S, Y0 + 0.5 * S, HZ + 0.98 * S), a1 = V(sx * 0.24 * S, Y0 + 0.36 * S, HZ + 1.1 * S),
+          a2 = V(sx * 0.27 * S, Y0 + 0.12 * S, HZ + 1.15 * S), a3 = V(sx * 0.3 * S, Y0 - 0.55 * S, HZ + 1.1 * S);
+    bar(a0, a1, 0.075 * S, 0.07 * S, antMat, null, 10); bar(a1, a2, 0.085 * S, 0.08 * S, antMat, null, 10);
+    bar(a2, a3, 0.1 * S, 0.075 * S, antMat, null, 12, 0.55);
+    [a1, a2].forEach(p => { const jn = new THREE.Mesh(new THREE.SphereGeometry(0.08 * S, 14, 10), antMat); jn.position.copy(p); fly.add(jn); });
+    const r0 = a2.clone().lerp(a3, 0.2), r1 = V(sx * 0.8 * S, Y0 + 0.02 * S, HZ + 1.75 * S);
+    bar(r0, r1, 0.02 * S, 0.006 * S, mat.dark, null, 5);
+    const ax = r1.clone().sub(r0), side = ax.clone().cross(V(0, 1, 0)).normalize();
+    for (let k = 1; k <= 11; k++) { const t = 0.15 + k * 0.065, p0 = r0.clone().addScaledVector(ax, t), L = (0.16 - k * 0.009) * S;
+      [-1, 1].forEach(cs => tinyBar(p0, p0.clone().addScaledVector(side, cs * L).addScaledVector(V(0, 1, 0), cs * L * 0.4).addScaledVector(ax.clone().normalize(), L * 0.5), 0.008 * S, mat.dark)); }
+    /* frontal and vertical bristles over the eyes */
+    for (let k = 0; k < 5; k++) { const p0 = V(sx * (0.12 + k * 0.05) * S, Y0 + (0.7 + k * 0.12) * S, HZ + (0.85 - k * 0.08) * S);
+      bar(p0, p0.clone().add(V(sx * 0.12 * S, 0.5 * S, 0.32 * S)), 0.026 * S, 0.005 * S, mat.hair, null, 5); }
+    [0, 1].forEach(k => { const p0 = V(sx * (0.55 + k * 0.2) * S, Y0 + 1.42 * S, HZ - (0.1 + k * 0.15) * S);
+      bar(p0, p0.clone().add(V(sx * 0.2 * S, 0.62 * S, -0.25 * S)), 0.03 * S, 0.006 * S, mat.hair, null, 5); });
+    /* the labellum, folded under the face: two soft lobes */
+    const lb = ell(sph, 0.2 * S, 0.11 * S, 0.27 * S, labMat, sx * 0.13 * S, Y0 - 1.08 * S, HZ + 0.52 * S); lb.rotation.set(0.5, sx * 0.25, sx * 0.2);
+  });
+  ell(sph, 0.24 * S, 0.2 * S, 0.24 * S, labMat, 0, Y0 - 0.86 * S, HZ + 0.42 * S);   /* the folded rostrum the lobes hang from */
+  /* wings at rest, folded back over the abdomen in a shallow V, with the calypters at their roots */
+  [-1, 1].forEach(sx => {
+    const piv = new THREE.Group(); piv.position.set(sx * 0.8 * S, Y0 + 1.42 * S, 0.5 * S); fly.add(piv);
+    const wg = new THREE.Mesh(new THREE.PlaneGeometry(7.6 * S, 3.2 * S), mat.wing); wg.position.set(3.7 * S, 0, 0); wg.rotation.x = -Math.PI / 2;
+    if (sx < 0) wg.scale.y = -1;
+    piv.add(wg); piv.rotation.y = sx > 0 ? (Math.PI / 2 - 0.36) : (Math.PI / 2 + 0.36); piv.rotation.z = 0.16;
+    ell(sph, 0.5 * S, 0.18 * S, 0.42 * S, mat.calyp, sx * 1.0 * S, Y0 + 0.55 * S, -0.8 * S);
+    ell(sph, 0.12 * S, 0.12 * S, 0.12 * S, mat.face, sx * 1.15 * S, Y0 + 0.4 * S, -1.2 * S);   /* haltere knob */
+  });
+  fly.updateMatrixWorld(true);
+
+  /* BRISTLES: long macrochaetae in rows over the thorax and on the abdomen's segment margins, a fine coat everywhere */
+  const cone = new THREE.ConeGeometry(1, 1, 5, 1); cone.translate(0, 0.5, 0);
+  const hairs = [];
+  const sow = (mesh, n, len, wid, filt, tilt) => {
+    mesh.updateMatrix(); const M = mesh.matrix, NM = new THREE.Matrix3().getNormalMatrix(M);
+    for (let i = 0; i < n; i++) {
+      const u = rng() * 2 - 1, th = rng() * Math.PI * 2, s = Math.sqrt(1 - u * u), p = V(s * Math.cos(th), u, s * Math.sin(th));
+      if (filt && !filt(p)) continue;
+      const wp = p.clone().applyMatrix4(M), nrm = p.clone().applyMatrix3(NM).normalize();
+      const dir = nrm.clone().multiplyScalar(1).add(V(0, 0, -tilt)).normalize();
+      const L = len * (0.7 + rng() * 0.6);
+      hairs.push({ p: wp, d: dir, L, w: wid });
+    }
+  };
+  sow(thorax, 900, 0.32 * S, 0.018 * S, p => p.y > -0.2, 0.9);
+  sow(thorax, 46, 1.05 * S, 0.045 * S, p => p.y > 0.25 && Math.abs(p.x) > 0.12, 1.1);
+  sow(abd, 700, 0.3 * S, 0.016 * S, p => p.y > -0.3, 1.2);
+  sow(abd, 36, 0.85 * S, 0.04 * S, p => p.y > 0.0 && (Math.abs(p.z - 0.85) < 0.06 || p.z < -0.75), 1.4);
+  const im = new THREE.InstancedMesh(cone, mat.hair, hairs.length), Mx = new THREE.Matrix4(), q = new THREE.Quaternion();
+  hairs.forEach((h, i) => { q.setFromUnitVectors(V(0, 1, 0), h.d); Mx.compose(h.p, q, V(h.w, h.L, h.w)); im.setMatrixAt(i, Mx); });
+  im.instanceMatrix.needsUpdate = true; fly.add(im);
+
+  /* LEGS: hips on the body, feet placed on the bead's surface in world space, two bone reach with the knee up and out */
+  const toLocal = (w) => fly.worldToLocal(w.clone());
+  const onBead = (wp) => {   /* the nearest point of the lip's top half to wp, plus its outward normal */
+    const rho = Math.hypot(wp.x, wp.z), ux = wp.x / rho, uz = wp.z / rho, d = rho - RM, h = Math.max(0.42 * RB, wp.y - BYC);
+    const a = Math.min(Math.PI / 2 + 0.55, Math.max(Math.PI / 2 - 0.55, Math.atan2(h, d))), n = V(Math.cos(a) * ux, Math.sin(a), Math.cos(a) * uz);
+    return { p: V((RM + RB * Math.cos(a)) * ux, BYC + RB * Math.sin(a), (RM + RB * Math.cos(a)) * uz), n };
+  };
+  /* each leg: a coxa seated under the thorax, a tapered femur and tibia meeting at a knee raised up and out, a five
+   * segment tarsus laid along the glass, two claws pressed into it and a pale pad. Every foot stands ON the bead: its
+   * target is chosen near the body and projected onto the lip, and the femur and tibia lengthen to reach rather than
+   * leave a gap, so no segment floats. */
+  const LEGS = [
+    { cox: [0.42, -1.05, 1.15], foot: [1.55, 2.3], L: [2.3, 2.3, 1.7], fwd: 0.6 },
+    { cox: [0.55, -1.15, 0.35], foot: [2.5, 0.3], L: [2.5, 2.5, 1.8], fwd: 0.0 },
+    { cox: [0.5, -1.1, -0.35], foot: [1.75, -1.55], L: [2.7, 2.6, 1.8], fwd: -0.5 }
+  ];
+  const feet = [], legHairs = [];
+  const joint = (p, r) => { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 18, 14), mat.dark); m.position.copy(p); fly.add(m); return m; };
+  const hairRow = (a0, a1, n, len, w, side) => { const ax = a1.clone().sub(a0).normalize();
+    for (let k = 0; k < n; k++) { const t = (k + 0.5) / n, p0 = a0.clone().lerp(a1, t); const d = side.clone().addScaledVector(ax, 0.9).normalize();
+      legHairs.push({ p: p0, d, L: len * (0.75 + rng() * 0.5), w }); } };
+  LEGS.forEach((lg) => [-1, 1].forEach(sx => {
+    /* the coxa hangs from the thorax's underside and points down and out */
+    const c0 = V(sx * lg.cox[0] * S * 0.6, Y0 + (lg.cox[1] + 0.35) * S, lg.cox[2] * S);
+    const hip = V(sx * (lg.cox[0] + 0.35) * S, Y0 + (lg.cox[1] - 0.35) * S, (lg.cox[2] + lg.fwd * 0.25) * S);
+    bar(c0, hip, 0.26 * S, 0.21 * S, mat.dark, null, 14); joint(hip, 0.2 * S);
+    /* the foot, on the bead */
+    const ftW = fly.localToWorld(V(sx * lg.foot[0] * S, 0.2 * S, lg.foot[1] * S));
+    const sb = onBead(ftW), foot = toLocal(sb.p.clone().addScaledVector(sb.n, 0.05 * S));
+    const nL = toLocal(sb.p.clone().add(sb.n)).sub(toLocal(sb.p)).normalize();
+    const out = foot.clone().sub(hip); out.y = 0; out.normalize();
+    const down = V(0, -1, 0);
+    const tdir = out.clone().addScaledVector(nL, -out.dot(nL)).add(down.clone().addScaledVector(nL, -down.dot(nL)).multiplyScalar(0.5)).normalize();
+    const LT = lg.L[2] * S, ankle = foot.clone().addScaledVector(tdir, -LT).addScaledVector(nL, 0.32 * S);
+    const D = ankle.clone().sub(hip), d = D.length(), Dn = D.clone().normalize();
+    let Lf = lg.L[0] * S, Lt = lg.L[1] * S; const need = d / (Lf + Lt);
+    if (need > 0.9) { Lf *= need / 0.9; Lt *= need / 0.9; }   /* reach, never a gap */
+    const a = (Lf * Lf - Lt * Lt + d * d) / (2 * d), hh = Math.sqrt(Math.max(0, Lf * Lf - a * a));
+    const pole = V(sx * 0.75, 1.0, lg.fwd * 0.6).normalize(); const pp = pole.addScaledVector(Dn, -pole.dot(Dn)).normalize();
+    const knee = hip.clone().addScaledVector(Dn, a).addScaledVector(pp, hh);
+    /* tapered femur with a slight swell, tapered tibia, their joints */
+    const fm = knee.clone().sub(hip);
+    bar(hip, hip.clone().addScaledVector(fm, 0.55), 0.15 * S, 0.21 * S, mat.dark, null, 16, 0.62);
+    bar(hip.clone().addScaledVector(fm, 0.55), knee, 0.21 * S, 0.1 * S, mat.dark, null, 16, 0.62);
+    joint(knee, 0.1 * S);
+    { const tm = knee.clone().lerp(ankle, 0.5).addScaledVector(pp, 0.09 * S); bar(knee, tm, 0.095 * S, 0.09 * S, mat.dark, null, 12, 0.75); bar(tm, ankle, 0.09 * S, 0.075 * S, mat.dark, null, 12, 0.75); joint(tm, 0.088 * S); } joint(ankle, 0.075 * S);
+    /* bristles: a ventral row on the femur, two rows on the tibia, apical spurs */
+    const outSide = V(sx, 0, 0), upSide = V(0, 1, 0);
+    hairRow(hip, knee, 10, 0.42 * S, 0.028 * S, outSide.clone().addScaledVector(upSide, -0.6).normalize());
+    hairRow(hip, knee, 7, 0.3 * S, 0.022 * S, upSide.clone().addScaledVector(outSide, 0.4).normalize());
+    /* a fine coat all round the femur and tibia, so neither reads as a bare tube */
+    { const ax1 = knee.clone().sub(hip).normalize(), ax2 = ankle.clone().sub(knee).normalize();
+      [[hip, knee, ax1, 34, 0.22], [knee, ankle, ax2, 26, 0.18]].forEach(([p0, p1, ax, n, len]) => {
+        const u = ax.clone().cross(V(0.3, 1, 0.2)).normalize(), w = ax.clone().cross(u).normalize();
+        for (let k = 0; k < n; k++) { const t = 0.08 + 0.86 * rng(), th = rng() * Math.PI * 2, rr = (0.17 - 0.07 * t) * S;
+          const dirr = u.clone().multiplyScalar(Math.cos(th)).addScaledVector(w, Math.sin(th));
+          legHairs.push({ p: p0.clone().lerp(p1, t).addScaledVector(dirr, rr * 0.8), d: dirr.clone().addScaledVector(ax, 1.3).normalize(), L: len * S * (0.6 + rng() * 0.6), w: 0.012 * S }); } }); }
+    hairRow(knee, ankle, 9, 0.38 * S, 0.022 * S, outSide.clone().addScaledVector(upSide, 0.3).normalize());
+    hairRow(knee, ankle, 7, 0.3 * S, 0.02 * S, outSide.clone().multiplyScalar(-1).addScaledVector(upSide, 0.3).normalize());
+    [-1, 1].forEach(cs => legHairs.push({ p: ankle.clone(), d: ankle.clone().sub(knee).normalize().add(V(cs * 0.3, -0.2, 0)).normalize(), L: 0.32 * S, w: 0.03 * S }));
+    /* the tarsus: five segments, each shorter and finer, curving from the ankle onto the glass */
+    const segs = [0.34, 0.2, 0.17, 0.14, 0.15]; let prev = ankle.clone(), acc = 0;
+    segs.forEach((f, k) => { acc += f; const t = acc; const nx = ankle.clone().lerp(foot, t).addScaledVector(nL, 0.12 * S * Math.sin(Math.PI * t) * (1 - t));
+      const r0 = (0.075 - k * 0.008) * S; bar(prev, nx, r0, r0 * 0.85, mat.dark, null, 10); joint(nx, r0 * 0.95);
+      hairRow(prev, nx, 2, 0.16 * S, 0.012 * S, nL.clone().addScaledVector(V(sx, 0, 0), 0.5).normalize()); prev = nx; });
+    /* paired claws hooked down into the glass, the pad flat on it */
+    const lat = tdir.clone().cross(nL).normalize();
+    [-1, 1].forEach(cs => { const tip = foot.clone().addScaledVector(tdir, 0.26 * S).addScaledVector(lat, cs * 0.13 * S).addScaledVector(nL, -0.045 * S);
+      const mid = foot.clone().addScaledVector(tdir, 0.16 * S).addScaledVector(lat, cs * 0.09 * S).addScaledVector(nL, 0.05 * S);
+      bar(foot, mid, 0.045 * S, 0.035 * S, mat.dark, null, 6); bar(mid, tip, 0.035 * S, 0.008 * S, mat.dark, null, 6); });
+    const pad = new THREE.Mesh(sph, mat.face); pad.scale.set(0.15 * S, 0.035 * S, 0.12 * S); pad.position.copy(foot).addScaledVector(nL, -0.02 * S).addScaledVector(tdir, 0.1 * S);
+    pad.quaternion.setFromUnitVectors(V(0, 1, 0), nL); fly.add(pad);
+    feet.push({ p: fly.localToWorld(foot.clone().addScaledVector(tdir, 0.08 * S)).addScaledVector(sb.n, -0.05 * S), n: sb.n });
+  }));
+  { const hm = new THREE.InstancedMesh(cone, mat.hair, legHairs.length), M2 = new THREE.Matrix4(), q2 = new THREE.Quaternion();
+    legHairs.forEach((h, i) => { q2.setFromUnitVectors(V(0, 1, 0), h.d); M2.compose(h.p, q2, V(h.w, h.L, h.w)); hm.setMatrixAt(i, M2); });
+    hm.instanceMatrix.needsUpdate = true; fly.add(hm); }
+  if (feet.length !== 6) throw new Error('a fly stands on six feet, drew ' + feet.length);
+
+  fly.traverse(m => { if (m.isMesh || m.isInstancedMesh) { m.userData.txBevel = false; m.userData.txSurface = false; m.castShadow = true; m.receiveShadow = true; } });
+  R.scene.add(fly);
+  let nFly = 0; R.scene.traverse(o => { if (o.name === 'fly') nFly++; });
+  if (nFly !== FLIES_DRAWN) throw new Error('frame 1 draws one fly at the door, drew ' + nFly);
+
+  /* CONTACT: a soft violet print under each claw on the glass, and a long soft one under the body along the bead */
+  const blobTex = (() => { const N = 256, d = new Uint16Array(N * N * 4); for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) { const r = Math.min(1, Math.hypot((i + 0.5) / N * 2 - 1, (j + 0.5) / N * 2 - 1)), t = 1 - r;
+    const v = THREE.DataUtils.toHalfFloat(t * t * (3 - 2 * t)), k = (j * N + i) * 4; d[k] = d[k + 1] = d[k + 2] = d[k + 3] = v; }
+    const t = new THREE.DataTexture(d, N, N, THREE.RGBAFormat, THREE.HalfFloatType); t.colorSpace = THREE.NoColorSpace; t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true; t.needsUpdate = true; return t; })();
+  const shadowMat = flat(new THREE.MeshBasicMaterial({ color: 0x24206a, alphaMap: blobTex, transparent: true, opacity: 0.45, depthWrite: false }));
+  shadowMat.name = 'contact-shade';
+  feet.forEach(f => { const s = new THREE.Mesh(new THREE.PlaneGeometry(0.55 * S, 0.55 * S), shadowMat); s.position.copy(f.p).addScaledVector(f.n, 0.03 * S);
+    s.quaternion.setFromUnitVectors(V(0, 0, 1), f.n); s.userData.txBevel = false; R.scene.add(s); });
+  const bodyShade = new THREE.Mesh(new THREE.PlaneGeometry(9 * S, 3.4 * S), flat(new THREE.MeshBasicMaterial({ color: 0x24206a, alphaMap: blobTex, transparent: true, opacity: 0.32, depthWrite: false })));
+  /* (the body print is left out: the plane overhung the bead into empty air; the bead now takes the fly's real cast shadow) */
+
+  /* ---------------- THE FLOOR SHADE ---------------- */
+  /* no plinth: the glass hangs over the sweep, and the floor carries soft violet shades under the mouth and under each open
+   * branch end, drawn from a smooth mipmapped falloff so no edge steps or stamps */
+  /* the falloff is a half float texture computed per texel, so its tail carries no 8 bit alpha steps to ring */
+  const radialTex = (N, fall) => { const d = new Uint16Array(N * N * 4);
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) { const rx = (i + 0.5) / N * 2 - 1, ry = (j + 0.5) / N * 2 - 1, r = Math.min(1, Math.hypot(rx, ry));
+      const v = THREE.DataUtils.toHalfFloat(fall(r)), k = (j * N + i) * 4; d[k] = d[k + 1] = d[k + 2] = d[k + 3] = v; }
+    const t = new THREE.DataTexture(d, N, N, THREE.RGBAFormat, THREE.HalfFloatType); t.colorSpace = THREE.NoColorSpace;
+    t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true; t.anisotropy = 8; t.needsUpdate = true; return t; };
+  const sstep = (e0, e1, x) => { const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const softTex = radialTex(1024, r => Math.pow(1 - sstep(0, 1, r), 2.2) * (1 - sstep(0.85, 1, r)));
+  const shade = (cxz, sx, sz, op, rot) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(sx, sz), flat(new THREE.MeshBasicMaterial({ color: 0x2a1f8a, alphaMap: softTex, transparent: true, opacity: op, depthWrite: false })));
+    m.material.name = 'floor-shade'; m.position.set(cxz[0], FLOOR_Y + 0.02 * mm, cxz[1]); m.rotation.x = -Math.PI / 2; m.rotation.z = rot || 0; m.userData.txBevel = false; R.scene.add(m); return m; };
+  /* the key comes from az -38 el 40, so the shades fall a little right and back of what casts them */
+  const lean = (p) => { const dy = p.y - FLOOR_Y; return [p.x + dy * 0.3, p.z - dy * 0.35]; };
+  /* a broad faint shade the whole glass throws, then under each rim a soft pool and a tight dark kiss where it touches */
+  shade(lean(V(0, -6 * mm, -2 * mm)), 16 * mm, 9 * mm, 0.1);
+  [[keepEnd, dirK], [relEnd, dirR]].forEach(([e, d]) => {
+    const h = V(d.x, 0, d.z).normalize();
+    const low = e.clone().add(V(0, -1, 0).addScaledVector(d, d.y).normalize().multiplyScalar(BORE + RIM_T)); low.y = FLOOR_Y;
+    const rot = -Math.atan2(h.z, h.x);
+    shade([e.x, e.z], 5.2 * mm, 3.4 * mm, 0.42, rot);
+    shade([low.x, low.z], 3.2 * mm, 1.2 * mm, 0.95, rot + Math.PI / 2);
+  });
+  [[keepEnd, dirK], [relEnd, dirR]].forEach(([e, d]) => { if (Math.abs(rimLow(e, d) - FLOOR_Y) > 0.3 * mm) throw new Error('both branch rims must rest on the floor'); });
+
+  /* ---------------- CAMERA AND KEY ---------------- */
+  /* a 100 mm macro: level with the fly's eye, a touch above, the key on the camera's side so the fly is never a silhouette */
+  const eyeW = fly.localToWorld(V(0.5 * S, Y0 + 0.3 * S, HZ));
+  const EL = 17 * Math.PI / 180, DIST = 0.08;
+  const FROM = [-0.006, RT + DIST * Math.sin(EL), DIST * Math.cos(EL)];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, RT, 0], 650, 810, 24);
+  TXT.frame(R, { fov: 24, from: FROM, look: LOOK });
+
+  const spec = CH.rigSpec(W, 0.03, 4096); spec.key = Object.assign({}, spec.key, { radius: 0.5 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([perch.x, perch.y, perch.z], { distance: 0.4, shadowFar: 1.2, normalBias: 0.00005 }), { light: { az: -38, el: 40 } }));
+  CH.unacne(R, 0.00005);
+  R.scene.traverse(l => { if (l.isDirectionalLight && l.castShadow) { l.shadow.bias = -0.00002; l.shadow.camera.near = 0.01; l.shadow.camera.updateProjectionMatrix(); } });
+
+  /* THE GLASS'S OWN WORLD: the studio's environment has a peach horizon that every grazing glass edge picked up, so the
+   * glass reflects a cool cobalt dome with two white softboxes instead, and dusk gold is left to the keep band alone */
+  {
+    const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 64, 32), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { top: { value: new THREE.Color(0x1a3ec8) }, hz: { value: new THREE.Color(0x3c6cf0) }, low: { value: new THREE.Color(0x1c4ad8) } },
+      vertexShader: "varying vec3 v; void main(){ v = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
+      fragmentShader: "uniform vec3 top,hz,low; varying vec3 v; void main(){ float y = v.y; vec3 c = y > 0.0 ? mix(hz, top, smoothstep(0.0, 0.7, y)) : mix(hz, low, smoothstep(0.0, 0.4, -y)); float rim = (1.0 - smoothstep(-0.6, 0.05, v.z)) * (1.0 - smoothstep(0.0, 0.32, abs(y - 0.06))); c = mix(c, vec3(3.2, 1.7, 0.9), rim); gl_FragColor = vec4(c, 1.0); }" })));
+    [[-0.6, 0.55, 0.6, 3.2, 5, 5.5], [0.8, 0.3, -0.4, 1.2, 7, 3.0]].forEach(([dx, dy, dz, w, h, k]) => {
+      const pnl = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: 0xf2f6ff, side: THREE.DoubleSide }));
+      pnl.material.color.multiplyScalar(k); const d = V(dx, dy, dz).normalize().multiplyScalar(12); pnl.position.copy(d); pnl.lookAt(0, 0, 0); env.add(pnl); });
+    const pm = new THREE.PMREMGenerator(R.renderer), etex = pm.fromScene(env, 0.0).texture; pm.dispose();
+    glass.envMap = etex; glass.envMapIntensity = 0.55; glass.needsUpdate = true;
+  }
+  R.scene.traverse(m => { if (m.material && !m.material.isShaderMaterial) { m.material.dithering = true; m.material.needsUpdate = true; } });   /* dither in the shader, before 8 bit, so no smooth falloff contours */
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* THE SEATS, COMPOSITED IN FLOAT. Each seat and the foot wash is drawn at full strength onto its own layer, so its mask
+   * carries all 255 levels, then laid over the art in float at its own strength with a triangular +-1.5/255 dither. Drawn
+   * straight onto the art at a quarter strength, the blurred seat stepped one level at a time into visible rings. */
+  {
+    const cv = cx.canvas, Wp = cv.width, Hp = cv.height, id = cx.getImageData(0, 0, Wp, Hp), dd = id.data, F = new Float32Array(dd.length);
+    for (let i = 0; i < dd.length; i++) F[i] = dd[i];
+    const layer = (draw, a) => {
+      const oc = document.createElement('canvas'); oc.width = Wp; oc.height = Hp; const ox = oc.getContext('2d'); ox.setTransform(cx.getTransform());
+      draw(ox); const m = ox.getImageData(0, 0, Wp, Hp).data;
+      for (let i = 0; i < m.length; i += 4) { const al = m[i + 3]; if (!al) continue; const k = a * al / 255;
+        F[i] += (m[i] - F[i]) * k; F[i + 1] += (m[i + 1] - F[i + 1]) * k; F[i + 2] += (m[i + 2] - F[i + 2]) * k; } };
+    layer(ox => CH.seat(ox, { a: 1, fade: 260 }), 0.5);
+    ['.count', '.tx-site'].forEach(sel => layer(ox => CH.seat(ox, { sel, a: 1, fade: 140 }), 0.24));
+    layer(ox => CH.seat(ox, { sel: '.src', a: 1, fade: 180 }), 0.5);
+    layer(ox => TXLOOK.footWash(ox, { tone: CH.TONE, a: 1, height: 220 }), 0.45);
+    let st = 0x9e3779b9 >>> 0; const rnd = () => { st ^= st << 13; st >>>= 0; st ^= st >>> 17; st ^= st << 5; st >>>= 0; return st / 4294967296; };
+    for (let i = 0; i < dd.length; i += 4) { const n = (rnd() + rnd() - 1) * 1.5;
+      dd[i] = F[i] + n + 0.5 * (rnd() - 0.5); dd[i + 1] = F[i + 1] + n; dd[i + 2] = F[i + 2] + n + 0.5 * (rnd() - 0.5); }
+    cx.putImageData(id, 0, 0);
+  }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

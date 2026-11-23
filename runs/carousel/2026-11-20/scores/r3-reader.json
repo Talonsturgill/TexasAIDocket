@@ -1,0 +1,17 @@
+{"lens":"reader","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.5,"why":"S8's trough is gone and the frame is a glass rack with an amber rim over ten rods with the pill on the rail. S4 shows four laptops. S2's grain is no longer a streak. S1, S3 and S5 read at 432 px. Still charged: S4's drone reads exploded with arms and mast apart from the body, a laptop lid crossing an arm and a wall seam behind the table. S7 is an isometric tray on a flat magenta field with an empty upper band. S9's canopies speckle and the case means little to a reader. S8's lower third is empty pink. S6's tabletop shows scanline texture and its spoofed pill is orange against red glyphs. S2's grain is still heavy."},
+{"name":"deck_coherence","weight":0.12,"score":7.6,"why":"The spine holds on all nine. S9's ridge answers S1. S7 and S8 sit in a hotter magenta sweep."},
+{"name":"claim_integrity","weight":0.20,"score":7.8,"why":"Every numeral traces to a claim quote and S6 draws 42 and 54. Round 2's WATCH 2026 wording is gone from S9. S8 and the caption say 97.5 percent is one balanced measure. Every fact rests on the university release."},
+{"name":"story_and_stakes","weight":0.16,"score":7.0,"why":"What, who, where, method, data, result and limit, and what comes next. S9 now ends on a forward question, the grant sentence still in the middle. The stake is still the release's hypothetical ridge with no Texas operator named."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"The cover hook works, S2 and S3 pay, the turn at S5 is real, S6 to S8 build the test. S4 still breaks the run. S9 lands on an open question."},
+{"name":"voice","weight":0.10,"score":7.2,"why":"Spoken lines on the cover, S6 and S5, a good caption opening. S4's dek and S9's grant sentence read as release paraphrase and drawn to illustrate appears on five frames."},
+{"name":"variety","weight":0.10,"score":7.5,"why":"A new subject with a bespoke mix, familiar tile grid, rod rack and v2 palette moves."}],
+"weighted_score":7.462,"hard_fails":[],"ship":true,
+"ship_note":"No hard fail. 7.462 is under the 7.7 rung but this is round 3, the round cap, so the deck ships with the shortfall named.",
+"one_sentence_fix":"Rebuild S4 with the drone fully assembled and the left laptop clear of the arm against one continuous wall.",
+"artwork_weakest_frames":[
+{"slide":4,"problem":"The drone reads exploded, a laptop lid crosses an arm, a wall seam behind the table.","fix":"Attach the arms and seat the mast, move the laptop back, one continuous wall."},
+{"slide":7,"problem":"Isometric tray on a flat magenta field with an empty upper band and no floor contact.","fix":"Camera down and in, a lit surface with a contact shadow, the headline into the freed upper left."},
+{"slide":9,"problem":"Speckled canopies and an undecoded case and cartridge.","fix":"S1's canopy material, cut the case so the drone stands alone."},
+{"slide":8,"problem":"Empty pink lower third.","fix":"Lower the camera and scale the rack up about 25 percent."},
+{"slide":6,"problem":"Scanline texture on the tabletop, spoofed pill orange against red glyphs.","fix":"A clean matte table and the pill in the glyphs' red."}]}

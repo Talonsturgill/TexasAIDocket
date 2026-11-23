@@ -1,0 +1,384 @@
+[
+ {
+  "slide": 1,
+  "score": 5.4,
+  "points": {
+   "only_this_sentence": 4,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 7
+  },
+  "fixes": [
+   "Model the terrain the headline names. The camera stands on a real rounded crest that rolls away below, with the near slope falling off at the bottom edge. Beyond the crest a clear saddle drops into a second valley in plum shade, and that valley has a floor, post oak mottes standing on it with contact shadows, and a far ridge rising behind it. Put the drone over the drop into that valley, tilted at least 25 degrees and heading down into it.",
+   "Make the two directions the story. The searcher's pointing arm and gaze go along the crest the drone was sent to sweep, and the drone goes the other way, over the saddle. Lower the camera's view of the grass so the foreground stops taking the lower half of the frame, and pull the people forward so their boots stand on visible soil with plum contact shadows. Give the pointing hand a real finger pose or hide it."
+  ],
+  "verdict": "rebuild",
+  "render_sha256": "5fac76b8cd7d8632bffb3485dc3e781187bee9a095dd6daa64380e5455f1cb05",
+  "round": 1
+ },
+ {
+  "slide": 2,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 5,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Make the twin unmistakably the false position, not just a second drone further back. Pitch and yaw the twin about 25 degrees so a cold reader sees its top, arms and props at three quarter. Its props render as hairlines and the right one runs as a stray line into the headline plate. Give the glass real frosted transmission (about 0.8 with thickness, a bright rim and Fresnel edge). Move it fully inside the frame and drop it lower and nearer the real drone, so the empty floor under it, with no shadow, sits right beside the real drone's long plum shadow.",
+   "Seat the type in quiet the picture makes, not on a dark blob. The plum wash behind the headline and dek reads as a soft-edged plate covering the brightest part of the sweep. Open the upper right to bright sweep, run the headline across the top band with a much lighter CH.seat, or recompose so the twin sits upper right and the type upper left over plain sweep. Take the real drone's legs, ball feet and slab props past primitive."
+  ],
+  "verdict": "rework",
+  "render_sha256": "8ab2591be4421c4c5bdd8ac6d4fbe85ce4ae6d315ce96ed1180571b880952547",
+  "round": 1
+ },
+ {
+  "slide": 3,
+  "score": 7.0,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Move the point where the amber path leaves the plan out from under the dek into the open middle (around y 650 to 750). Start the amber riding inside the frosted sweep for one or two passes so it is plainly the same route, then peel off at a lit turn and drop over a modelled saddle. Push the terrain displacement so the ridge crest stands up against a valley floor sunk in plum shade.",
+   "Make the ground Texas and get rid of the primitives: copper and tan grass albedo with variation, real post oak mottes with trunks and canopies, a creek line on the valley floor. Make the drone read at feed size, and let a band of real periwinkle sky show above the far ridge instead of a purple haze wall."
+  ],
+  "verdict": "rework",
+  "render_sha256": "cb4833b7e0660409896144a813fb696dec5fd5c76393eab82069f8337973dbda",
+  "round": 1
+ },
+ {
+  "slide": 4,
+  "score": 6.3,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 9,
+   "honest": 6
+  },
+  "fixes": [
+   "Fix the people and chairs: three torsos push through mesh chair backs; move each figure forward or make the backrest an opaque shell. Less mannequin: fabric folds, real fingers on keyboards, varied posture (one leaning toward the drone, one turned toward the professor).",
+   "Make the drone the hero: pull it about 0.6 m toward camera on the near table, at least 300 px wide, shell set off beside it, flight_board catching the window key, plum contact shadow, a student's hand on an arm. Repaint the monitor's amber chart bars periwinkle or cyan. Replace the flat billboard window view with soft depth or lower the blinds halfway."
+  ],
+  "verdict": "rework",
+  "render_sha256": "b841ee78a4837580948f53b90606d4b5af4451bd9fe503fbe122b4b28106a54e",
+  "round": 1
+ },
+ {
+  "slide": 5,
+  "score": 7.6,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 8,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "fixes": [
+   "Untangle the three arrows: root all three at the chip and fan them apart in clear space, a straight vertical how fast, a clean elbow which way, and how long as its own straight shaft with machined tick rings. Seat each pill just past its own tip, clear of the dek.",
+   "Make the GPS puck read as a GPS unit, unplugged, filling the dead lower right: bring the whole puck under the dek at about a fifth of the frame width, a square shouldered patch antenna puck in CH.GHOST frosted periwinkle with castShadow false, its plug a visible hand's width from an empty socket on the board edge."
+  ],
+  "verdict": "rework",
+  "render_sha256": "9dc513dbb49f2d344a3a7281e40a7b8e39aa5332a968948247cf15318cbdd2a2",
+  "round": 1
+ },
+ {
+  "slide": 6,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Build the missing hero. Bleed the bottom fifth of the tablet off the frame and press in an enlarged pair of copper tracks about four times the scale of the grid: one real track with a sharp single jump next to its shadowless glass ghost sitting off to one side, and one with a slow drift with its glass ghost peeling away along a curve. Give each copper track a deep cast shadow so the eye lands there before it scans the grid. Shrink the 96-unit grid to make room.",
+   "Turn the props into flight tracks on clay. Replace the keyhole loops with low raised paths that wander across the surface the way a real flight path does (pewter smooth, each copper one with a visible step or kink where its ghost splits off). Lower the ghosts so they hover just over their own track instead of overlapping the row in front. Re-surface the slab as a warm caliche clay tablet with pressed grain and a bevelled rim instead of flat purple, keeping the plum shadow colour."
+  ],
+  "verdict": "rework",
+  "render_sha256": "d3be261b937e0e2678e86546f9874c6ae52a2bdc8fda5be4d97d46bd81cd14ec",
+  "round": 1
+ },
+ {
+  "slide": 7,
+  "score": 7.2,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 6,
+   "crafted": 7,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "Draw the separation as one physical arrangement, not two objects placed on an empty floor. Put the open maple tray and the sealed glass case on the same raised surface with the planned glass sill or step between them, and pull the pair closer and larger so the sill sits at the centre as the focal point. The lower left and upper right quarters are empty orange.",
+   "Lift the whole pair about 100 to 120 design px and keep the plum type wash below the case's plinth. Give the 74 training tiles more value separation from the peach floor, and give the magenta seal strap real material (thickness, bevel, contact shadow)."
+  ],
+  "verdict": "rework",
+  "render_sha256": "e4e12bb66dcc30c220a3c34103afe2b7b20da2e8b8ff6ed1bbe721b382e7d3ee",
+  "round": 1
+ },
+ {
+  "slide": 8,
+  "score": 5.6,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 6,
+   "composed": 6,
+   "crafted": 4,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Rebuild the materials so nothing is left as a primitive: the ribbon as machined metal with chamfer and engraved ticks, turned pins with knurled collars instead of pink capsules, the loupe as a thick machined glass block with polished bevels and refraction and the amber only on its rim, on milled feet casting plum shadows. Replace the smeared violet floor with a clean seamless apricot to periwinkle sweep.",
+   "Make the bar read as a score against its rail: one machined channel with a visible darker unfilled stub butting the right block with a clear step, one hue, no stacked rods underneath (the pale rods look like more bars). Lift the rail assembly off the footer and push it toward camera; set the pill ON the rail face."
+  ],
+  "verdict": "rework",
+  "render_sha256": "a302ff8aa3dd2cd7a98cc3247746203257c6c605c8c91fb07109605c494bb844",
+  "round": 1
+ },
+ {
+  "slide": 9,
+  "score": 5.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 6,
+   "composed": 6,
+   "crafted": 4,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Put the searcher on the tailgate: he floats beside the gate with no shadow because the code calls CH.put(person, false). Seat him on the liner, hands on the gate edge, castShadow on so a plum shadow falls on gate and ground; clean twill trousers; a less mannequin pose.",
+   "Make the grounded drone the focus instead of the truck. Dolly in and drop the camera about 0.3 m so the drone and the open case fill the middle third at 300 px or more; folded arms clearly folded; visible contact shadow on the liner. Crop the pickup to the gate, a tail light and one tyre, and take its paint down to dusty oxblood so the apricot light on the drone is the brightest thing."
+  ],
+  "verdict": "rework",
+  "render_sha256": "3874a512f5b6cbe8ababaa972d0c3da0ee2805634bc915e63b9da50cf75c5866",
+  "round": 1
+ },
+ {
+  "slide": 1,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Make the next valley a separate place the drone drops into: a clear saddle below the crest, a valley floor in plum shade with mottes, a far ridge behind; drone below the crest line, nose down, descending; bluestem foreground no more than the bottom fifth.",
+   "Finish the people and far slope: the woman's shins are translucent with a seam at the knee, make them solid on visible soil with a contact shadow; extended index finger on the man; replace the pebble-like dome blobs with fewer shrubs with real silhouettes."
+  ],
+  "verdict": "rework",
+  "render_sha256": "9028eef6aa2e32c2e82e4bdf8a59dcb9588aa290a15a3b39922e9c6530168d09",
+  "round": 2
+ },
+ {
+  "slide": 2,
+  "score": 6.6,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 5,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Take the plum plate off the type: a much lighter CH.seat with no visible blob edge, or deepen the sweep key falloff so the darker field comes from the light.",
+   "Make the twin glass not lilac plastic: real transmission and a periwinkle Fresnel rim; pull it 5 percent left so the prop clears the edge; swap the two dark round holes on the real shell for vents or a seam; taper the legs, rubber skid feet."
+  ],
+  "verdict": "rework",
+  "render_sha256": "8866f65192deffab043a0817410a71f448921ef7e12f3b0558fca7ff85035354",
+  "round": 2
+ },
+ {
+  "slide": 3,
+  "score": 8.0,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the post oak mottes less like toy lollipops.",
+   "Open a clear band of periwinkle sky above the far ridge; make the drone read at 432 px."
+  ],
+  "verdict": "ship",
+  "render_sha256": "af184625c3907f279084dbe08738402bb0d118078598a403d854428d1183388b",
+  "round": 2
+ },
+ {
+  "slide": 4,
+  "score": 6.7,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 9,
+   "honest": 8
+  },
+  "fixes": [
+   "Finish the people at the right: the cyan woman reaching hand fuses with the seated student hand; give her one clear pose with daylight between hands; turn the professor to the drone or monitor.",
+   "Clean the background and table: remove the blurred tree band through the blinds, give the yellow panes depth, remove the plum shadow nothing casts beside the headline, make the shell read as a moulded shell, rim-light the drone body."
+  ],
+  "verdict": "rework",
+  "render_sha256": "5a6d00662a6ed0996fd4f6639d42caeffbf789149cf1f301ef19fd3592745316",
+  "round": 2
+ },
+ {
+  "slide": 5,
+  "score": 8.2,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 8,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "fixes": [
+   "Make unplugged literal: an empty white socket on the board edge with the plug a hand's width from it.",
+   "Pull the which way arrowhead out of the wire harness over clear sweep."
+  ],
+  "verdict": "ship",
+  "render_sha256": "30d4a8d695f0a7d023ccadee84b38b424cdafe7893e511edfee424fdbcb94094",
+  "round": 2
+ },
+ {
+  "slide": 6,
+  "score": 7.3,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 7
+  },
+  "fixes": [
+   "Make the enlarged pair read as a magnified copy: a groove dividing it off, an incised leader from a row 8 copper track to a ring around the pair; move the spoofed pill beside the copper rows.",
+   "Re-surface the hero pair as polished copper seated in a pressed channel (no stilts), ghosts as real frosted periwinkle glass."
+  ],
+  "verdict": "rework",
+  "render_sha256": "01c2e8abc8aa56a59c3f3eac1698e62ba0fd6570f1bfb370871ec74103f3da6f",
+  "round": 2
+ },
+ {
+  "slide": 7,
+  "score": 8.1,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Clean up the end of the training tray: six empty slots read as moire or missing tiles; size the tray to hold exactly 74 or make those slots a plain recessed well.",
+   "Make the glass sill the hinge of the picture: real thickness, a bevelled edge with a bright specular line and a plum contact shadow on both levels."
+  ],
+  "verdict": "ship",
+  "render_sha256": "2c9d04b60190d011d3efc050e05204888a3d645024d3afa9c441cf107248a857",
+  "round": 2
+ },
+ {
+  "slide": 8,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the loupe read as glass: clear thick polished block with real transmission and refraction so the ten pins show magnified through it, no pink tint, amber only on the rim.",
+   "Make the bar read as near full: deeper rose fill, a clearly darker recessed plum stub at the right end with an engraved stop line, darker end blocks; chamfer and brush the ribbon so it reads as nickel."
+  ],
+  "verdict": "rework",
+  "render_sha256": "45ce5a1aa60a10b9d8db5bdd53d0331cc6684af6773327d6abcf8d0225736ede",
+  "round": 2
+ },
+ {
+  "slide": 9,
+  "score": 6.3,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Fix the double tailgate: the hide filter missed the closed gate panel, handle and plate; remove them so the bed shows through, re-seat the slab on its hinge with its cables.",
+   "Dolly in about 30 percent and drop the eye 0.3 m so the drone fills the middle third (about 650 px native); crop the truck to gate, tail light and tyre, cab out of the sky; fold the arms visibly; mute the record tabs so the apricot rim on the drone is the brightest."
+  ],
+  "verdict": "rework",
+  "render_sha256": "51f947e48156224807dfa2353ce19188d9c74fd9baaff691f1af5814ea76c2e7",
+  "round": 2
+ },
+ {
+  "slide": 9,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 7,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Show the turn from the records to the flight. Open the drone's shell with open:true so the flight_board is visible, unfold the props to a ready position, and lift one cartridge out of the case and set it beside the board on the mat.",
+   "Get the case and the mat out of near black and away from the accent. Light the inside of the case lid, give the cartridges readable label detail, lift the mat to deep plum rubber, and push the foreground grass from saturated orange toward straw and apricot with plum tips."
+  ],
+  "verdict": "rework",
+  "render_sha256": "0978887257275051b1dda93bd1aead0ee6585a5f369368d38e62bbe7564073ce",
+  "round": 3,
+  "note": "cold critic after panel round 1 repairs; the frame was repaired after this reading and bound through the art director"
+ },
+ {
+  "slide": 1,
+  "score": 7.1,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 8,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Make the split between the ridge and the valley readable at 432 px: lift the frosted lane off the crest as a clean tapering lane, bank the drone hard below the ridge line over the creek bottom, nose down-valley.",
+   "Fix the terrain craft: replace the regular procedural banding on the valley slope with broken noise and erosion shading, thin and cluster the crest grass, bring the camera lower and closer behind the searchers."
+  ],
+  "verdict": "rework",
+  "render_sha256": "ba9a493ed29dedabd0d4761cbc548658673deb140e1bd119800805af013cae9a",
+  "round": 3,
+  "note": "cold critic after panel round 1 repairs, on the image that shipped; under 8.0, so the frame was bound through the art director"
+ }
+]

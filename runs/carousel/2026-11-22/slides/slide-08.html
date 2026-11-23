@@ -1,0 +1,243 @@
+<!doctype html>
+<!-- 2026-11-22, frame 8 of 9. ALREADY IN THE CLINIC (rebuild from concept 2). Two padded exam tables stand side by side in a
+     bright studio, each vinyl top exactly 100 points long (2.0 m at 0.02 m a point). On each, crepe exam paper has been pulled from the roll at the head down the vinyl: on the
+     back table FIG.ama_2026_pct x 0.02 m, nearly to the foot; on the front table FIG.ama_2023_pct x 0.02 m, stopping short, so
+     the bare indigo vinyl shows how much is still uncovered. Perforations every ten points, the free ends curled. Both papers
+     one white, no accent: the survey is the release's citation, not the study's tool. Type high, over the deep cerulean wall.
+     Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:168px; width:920px">Already in the clinic</h1>
+<p class="dek" data-follow="16" style="left:82px; width:900px; font-size:27px">The release cites a 2026 American Medical Association survey finding 81% of doctors use AI in practice, against 38% reported in 2023. Dell Med's Vice Dean of Education James Korndorffer says AI is going to be used and should be.</p>
+<div class="lab plain" id="lab-2023">2023</div>
+<div class="lab plain" id="lab-2026">2026</div>
+<div class="lab plain" id="lab-src" style="font-size:24px">AMA survey, as cited in the release</div>
+<script>window.FIG = {"ama_2026_pct": 81, "ama_2023_pct": 38};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The context", counter: "08 / 09", src: "c15 c14", fit: { min: 80, max: 96, maxLines: 2 } });
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  if (hook.getBoundingClientRect().top < 150) throw new Error('the headline crowds the kicker');
+
+  /* THE FIGURE. Each sheet's length along the table, from the head edge to its curled end, is its share times 0.02 m. */
+  const M_PER_PT = 0.02, TICK_PTS = 10;
+  if (!Number.isFinite(FIG.ama_2026_pct) || FIG.ama_2026_pct <= 0 || FIG.ama_2026_pct > 100) throw new Error('ama_2026_pct is not a share'); if (!Number.isFinite(FIG.ama_2023_pct) || FIG.ama_2023_pct <= 0 || FIG.ama_2023_pct > 100) throw new Error('ama_2023_pct is not a share');
+  const L26 = FIG.ama_2026_pct * M_PER_PT, L23 = FIG.ama_2023_pct * M_PER_PT, TICK = TICK_PTS * M_PER_PT;
+
+  CH.KEY_SCALE = 0.9;
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 60, fog: 0 });
+  const sweep = TXT.studio(R, Object.assign(CH.studioOpts({ w: 10, d: 4.6 }), { radius: 1.3, floor: 0xff9a55, wall: 0x1d58c8, top: 0x123d8f, hemi: 0.55, softbox: 4.4 }));
+  sweep.rotation.y = Math.PI / 2; sweep.position.set(1.9, 0, 0);   /* square to the lens, the wall about 1.7 m behind the heads */
+
+  /* THE TABLES, built here at the figure's own scale: the vinyl top is exactly 100 points long, 100 x 0.02 = 2.0 m from the
+   * head edge to the foot edge, so a sheet of N points covers N percent of it. Head at -x, foot (and the step) at +x. */
+  const PW = 0.53, SEAT = 0.70, TOP_LEN = 100 * M_PER_PT, HEAD = -TOP_LEN / 2, FOOT = TOP_LEN / 2, TD = 0.70, PAD = 0.08;
+  const lac = K.mat('enamel-base', { color: 0xd3dcf6, roughness: 0.32, metalness: 0.04, clearcoat: 0.8, clearcoatRoughness: 0.18 }, true);
+  const seamM = K.mat('paint-seam', { color: 0x8390d6, roughness: 0.7 });
+  const plinthM = K.mat('rubber-plinth', { color: 0x231f63, roughness: 0.75 });
+  const pullM = K.mat('stainless-pullbar', { color: 0xeef2f6, metalness: 1, roughness: 0.18 });
+  const chrome = K.mat('chrome-bar', { color: 0xf2f5f8, metalness: 1, roughness: 0.08 });
+  const treadM = K.mat('rubber-tread', { color: 0x4b5296, roughness: 0.85 });
+  const vinyl = new THREE.MeshPhysicalMaterial({ color: 0x3f4fb4, roughness: 0.4, metalness: 0, clearcoat: 0.45, clearcoatRoughness: 0.28, sheen: 0.7, sheenColor: new THREE.Color(0xa8b6ff), sheenRoughness: 0.45 });
+  vinyl.userData.txSurface = false;
+  const stitchM = new THREE.MeshStandardMaterial({ color: 0xb9c4ff, roughness: 0.6 }); stitchM.userData.txSurface = false;
+  const table = (z) => {
+    const g = new THREE.Group(), BW = TOP_LEN - 0.22, BD = 0.64, Y0 = 0.085, BH = SEAT - PAD - Y0;
+    /* base: plinth, bevelled cabinet, stainless rim */
+    const pl = TXT.roundedBox(BW - 0.12, Y0, BD - 0.1, 0.012, plinthM); pl.position.set(0, Y0 / 2, z); g.add(pl);
+    const cab = TXT.roundedBox(BW, BH, BD, 0.03, lac); cab.position.set(0, Y0 + BH / 2, z); g.add(cab);
+    const rim = TXT.roundedBox(BW + 0.02, 0.018, BD + 0.02, 0.007, pullM); rim.position.set(0, Y0 + BH - 0.006, z); g.add(rim);
+    [1, -1].forEach((sd) => {
+      const fz = z + sd * (BD / 2 + 0.0015);
+      const s1 = new THREE.Mesh(new THREE.BoxGeometry(BW - 0.08, 0.006, 0.004), seamM); s1.position.set(0, Y0 + BH * 0.5, fz); g.add(s1);
+      [-BW / 6, BW / 6].forEach((vx) => { const v = new THREE.Mesh(new THREE.BoxGeometry(0.006, BH - 0.07, 0.004), seamM); v.position.set(vx, Y0 + BH / 2, fz); g.add(v); });
+      [-BW / 3, 0, BW / 3].forEach((px) => [Y0 + BH * 0.75, Y0 + BH * 0.25].forEach((py) => {
+        K.bar([px - 0.1, py, fz + sd * 0.028], [px + 0.1, py, fz + sd * 0.028], 0.008, pullM, 16, g);
+        [-0.08, 0.08].forEach((dx) => K.bar([px + dx, py, fz], [px + dx, py, fz + sd * 0.028], 0.005, pullM, 12, g)); }));
+    });
+    const fx = BW / 2 + 0.0015;
+    [Y0 + 0.03, Y0 + BH - 0.03].forEach((y) => { const h = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.006, BD - 0.08), seamM); h.position.set(fx, y, z); g.add(h); });
+    [z - BD / 2 + 0.04, z + BD / 2 - 0.04].forEach((zz) => { const vv = new THREE.Mesh(new THREE.BoxGeometry(0.004, BH - 0.06, 0.006), seamM); vv.position.set(fx, Y0 + BH / 2, zz); g.add(vv); });
+    K.bar([fx + 0.028, Y0 + BH - 0.09, z - 0.13], [fx + 0.028, Y0 + BH - 0.09, z + 0.13], 0.008, pullM, 16, g);
+    [-0.11, 0.11].forEach((dz) => K.bar([fx, Y0 + BH - 0.09, z + dz], [fx + 0.028, Y0 + BH - 0.09, z + dz], 0.005, pullM, 12, g));
+    const step = TXT.roundedBox(0.34, 0.03, 0.46, 0.008, pullM); step.position.set(fx + 0.17, 0.27, z); g.add(step);
+    for (let k = 0; k < 9; k++) { const rib = TXT.roundedBox(0.012, 0.006, 0.42, 0.002, treadM); rib.position.set(fx + 0.04 + k * 0.032, 0.288, z); g.add(rib); }
+    [z - 0.2, z + 0.2].forEach((zz) => K.bar([fx, 0.27, zz], [fx + 0.06, 0.27, zz], 0.008, pullM, 12, g));
+    /* the vinyl top: a head pad and a seat pad, a 6 mm seam between them, together exactly TOP_LEN */
+    const HP = 0.62, GAPS = 0.006, SP = TOP_LEN - HP - GAPS;
+    const hp = TXT.roundedBox(HP, PAD, TD, 0.028, vinyl); hp.position.set(HEAD + HP / 2, SEAT - PAD / 2, z); g.add(hp);
+    const sp = TXT.roundedBox(SP, PAD, TD, 0.028, vinyl); sp.position.set(FOOT - SP / 2, SEAT - PAD / 2, z); g.add(sp);
+    hp.userData.txBevel = false; sp.userData.txBevel = false; g.userData.pads = [hp, sp];
+    /* stitching: a lighter thread 12 mm a stitch, 3 cm in from every edge of both pads */
+    const runs = [];
+    [[HEAD, HEAD + HP], [FOOT - SP, FOOT]].forEach(([x0, x1]) => {
+      [z - TD / 2 + 0.03, z + TD / 2 - 0.03].forEach((zz) => { for (let x = x0 + 0.03; x < x1 - 0.03; x += 0.012) runs.push([x, zz, 0]); });
+      [x0 + 0.03, x1 - 0.03].forEach((xx) => { for (let zz = z - TD / 2 + 0.03; zz < z + TD / 2 - 0.03; zz += 0.012) runs.push([xx, zz, 1]); });
+    });
+    const st = new THREE.InstancedMesh(new THREE.BoxGeometry(0.007, 0.0016, 0.0018), stitchM, runs.length), M4 = new THREE.Matrix4(), Q = new THREE.Quaternion(), V = new THREE.Vector3(), S1 = new THREE.Vector3(1, 1, 1);
+    runs.forEach(([x, zz, turn], i) => { Q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), turn ? Math.PI / 2 : 0); M4.compose(V.set(x, SEAT + 0.0004, zz), Q, S1); st.setMatrixAt(i, M4); });
+    st.userData.txBevel = false; g.add(st);
+    g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    TXT.add(R, g); TXT.contact(R, g, { opacity: 1.35 });
+    /* THE SCALE, CHECKED: the top measured from its own pads is 100 points long */
+    const bb = new THREE.Box3().setFromObject(hp).union(new THREE.Box3().setFromObject(sp));
+    if (Math.abs((bb.max.x - bb.min.x) - 2.0) > 1e-3 || Math.abs(bb.min.x - HEAD) > 1e-6) throw new Error('the table top measures ' + (bb.max.x - bb.min.x) + ' m, not 100 x 0.02 = 2.0 m');
+    if (Math.abs(bb.max.y - SEAT) > 1e-6) throw new Error('the vinyl top is not at the paper height');
+    return g;
+  };
+  const tables = [[-0.5, 'b'], [0.5, 'f']].map(([z, k]) => ({ t: table(z), z, k }));
+
+  /* PAPER, made as paper: a matte warm white with crepe crinkle as colour and bump, the perforations printed where they fall */
+  const paperTex = (len, seed) => {
+    const S = 1000, w = Math.round(len * S), h = Math.round(PW * S), rr = CH.rng(seed);
+    const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d');
+    g.fillStyle = '#fbf7ee'; g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += 1.5 + rr() * 2.5) { g.fillStyle = 'rgba(120,112,150,' + (0.04 + rr() * 0.08).toFixed(3) + ')'; g.fillRect(x, 0, 0.9 + rr() * 0.8, h); }
+    for (let i = 0; i < 26; i++) { const x0 = rr() * w, y0 = rr() * h; g.strokeStyle = 'rgba(90,86,140,' + (0.06 + rr() * 0.08).toFixed(3) + ')'; g.lineWidth = 1 + rr() * 1.5; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + (rr() - 0.5) * 160, y0 + (rr() - 0.5) * 220); g.stroke(); }
+    let n = 0;
+    for (let k = 1; k * TICK < len - 1e-6; k++) { const x = k * TICK * S; for (let y = 10; y < h - 10; y += 22) { g.fillStyle = 'rgba(60,64,160,0.8)'; g.fillRect(x - 2.5, y, 5, 13); } n++; }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    return { t, n };
+  };
+  const paperMat = (tex) => { const m = new THREE.MeshStandardMaterial({ color: 0xffffff, map: tex, bumpMap: tex, bumpScale: 0.9, roughness: 0.97, metalness: 0, envMapIntensity: 0.35, side: THREE.DoubleSide }); m.userData.txSurface = false; return m; };
+
+  /* one sheet: a flat run with a slight crinkle and lifted long edges, then a curl at the free end on radius RC */
+  const RC = 0.02, ARC = RC * Math.PI * 1.15;   /* the free end rolls up and back, standing about 40 mm proud */
+  const sheet = (len, z, seed) => {
+    const flat = len - ARC, NX = Math.ceil(len / 0.008), NZ = 28, pos = [], uv = [], idx = [], rr = CH.rng(seed + 1);
+    const creases = Array.from({ length: 5 }, () => [rr() * flat, (rr() - 0.5) * 0.8, 0.0012 + rr() * 0.0016])
+      .concat(Array.from({ length: 6 }, () => [flat - 0.14 * rr(), (rr() - 0.5) * 1.6, 0.002 + rr() * 0.0022]));   /* the free end crinkled where it was pulled */
+    let along = 0, prev = null;
+    for (let i = 0; i <= NX; i++) {
+      const s = i / NX * len; let x, y;
+      if (s <= flat) { x = s; y = 0; }
+      else { const a = (s - flat) / RC; x = flat + RC * Math.sin(a); y = RC - RC * Math.cos(a); }
+      if (prev) along += Math.hypot(x - prev[0], y - prev[1]); prev = [x, y];
+      for (let j = 0; j <= NZ; j++) {
+        const v = j / NZ, zz = (v - 0.5) * PW, edge = Math.pow(Math.abs(v - 0.5) * 2, 6) * 0.004;
+        let cr = 0; if (s <= flat) creases.forEach(([cx0, sl, amp]) => { const d = (x - cx0) - sl * zz; cr += amp * Math.exp(-d * d / 0.0004); });
+        pos.push(HEAD + x, SEAT + 0.0012 + y + edge + cr, z + zz); uv.push(s / len, v);
+      }
+    }
+    for (let i = 0; i < NX; i++) for (let j = 0; j < NZ; j++) { const a = i * (NZ + 1) + j, b = a + NZ + 1; idx.push(a, b, a + 1, a + 1, b, b + 1); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
+    const P = paperTex(len, seed), m = new THREE.Mesh(g, paperMat(P.t)); m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m);
+    return { along, flat, perfs: P.n, end: HEAD + flat + RC };
+  };
+
+  /* the roll at each head: wound paper with ring-marked ends on a cardboard core, on a steel dowel in two brackets, the sheet
+   * wrapping from the top of the roll over the head edge of the table */
+  const ringTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d'), rr = CH.rng(77);
+    g.fillStyle = '#f6f1e6'; g.fillRect(0, 0, 256, 256); for (let r = 40; r < 128; r += 1.6 + rr() * 1.4) { g.strokeStyle = 'rgba(130,120,150,' + (0.12 + rr() * 0.22).toFixed(3) + ')'; g.lineWidth = 0.8; g.beginPath(); g.arc(128, 128, r, 0, Math.PI * 2); g.stroke(); }
+    g.fillStyle = '#b58a5c'; g.beginPath(); g.arc(128, 128, 40, 0, Math.PI * 2); g.fill(); g.fillStyle = '#3b2c6e'; g.beginPath(); g.arc(128, 128, 22, 0, Math.PI * 2); g.fill();
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const steel = K.mat('stainless-bracket', { color: 0xe3e8ee, metalness: 0.95, roughness: 0.25 });
+  const roll = (z) => {
+    const g = new THREE.Group(), RR = 0.055, RX = HEAD - 0.075, RY = SEAT + 0.065;
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(RR, RR, PW, 48, 1, true), paperMat(paperTex(0.36, 31).t)); body.rotation.x = Math.PI / 2; body.position.set(RX, RY, z); body.userData.txBevel = false; g.add(body);
+    [-1, 1].forEach((sd) => { const cap = new THREE.Mesh(new THREE.CircleGeometry(RR, 48), new THREE.MeshStandardMaterial({ map: ringTex, roughness: 0.95, envMapIntensity: 0.3 })); cap.material.userData.txSurface = false;
+      cap.position.set(RX, RY, z + sd * PW / 2); cap.rotation.y = sd > 0 ? 0 : Math.PI; g.add(cap);
+      /* a chrome upright from the head of the base to the axle, with a round boss */
+      const zz = z + sd * (PW / 2 + 0.025);
+      K.bar([HEAD + 0.12, SEAT - 0.09, zz], [RX, SEAT - 0.09, zz], 0.009, chrome, 16, g);
+      K.bar([RX, SEAT - 0.09, zz], [RX, RY, zz], 0.009, chrome, 16, g);
+      const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.016, 32), chrome); boss.rotation.x = Math.PI / 2; boss.position.set(RX, RY, zz); g.add(boss); });
+    K.bar([RX, RY, z - PW / 2 - 0.03], [RX, RY, z + PW / 2 + 0.03], 0.006, chrome, 12, g);
+    /* the chrome dispenser bar: a tear bar across the front of the roll, just over the paper where it leaves for the table */
+    K.bar([HEAD - 0.012, SEAT + 0.022, z - PW / 2 - 0.03], [HEAD - 0.012, SEAT + 0.022, z + PW / 2 + 0.03], 0.008, chrome, 16, g);
+    [-1, 1].forEach((sd) => K.bar([HEAD - 0.012, SEAT + 0.022, z + sd * (PW / 2 + 0.03)], [RX, RY, z + sd * (PW / 2 + 0.03)], 0.006, chrome, 12, g));
+    /* the paper leaving the roll's underside, under the bar, onto the head edge */
+    const wrap = []; for (let i = 0; i <= 14; i++) { const tt = i / 14, a = Math.PI * (1.5 - 0.0) ; wrap.push(i === 0 ? [RX, RY - RR] : [RX + tt * (HEAD - RX), RY - RR + tt * (SEAT + 0.0012 - (RY - RR)) - Math.sin(tt * Math.PI) * 0.004]); }
+    const wpos = [], wuv = [], widx = [];
+    wrap.forEach((q, i) => { wpos.push(q[0], q[1], z - PW / 2, q[0], q[1], z + PW / 2); wuv.push(i / 14 * 0.05, 0, i / 14 * 0.05, 1); if (i) { const a = 2 * (i - 1); widx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); } });
+    const wg = new THREE.BufferGeometry(); wg.setAttribute('position', new THREE.Float32BufferAttribute(wpos, 3)); wg.setAttribute('uv', new THREE.Float32BufferAttribute(wuv, 2)); wg.setIndex(widx); wg.computeVertexNormals();
+    g.add(new THREE.Mesh(wg, paperMat(paperTex(0.36, 31).t)));
+    g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    TXT.add(R, g);
+  };
+  /* an indigo shadow pooled on the vinyl just past each curl, the curl's own cast in the low key */
+  const curlShadow = (x, z) => {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 64; const g = c.getContext('2d');
+    const gr = g.createLinearGradient(0, 0, 256, 0); gr.addColorStop(0, 'rgba(34,24,110,0.75)'); gr.addColorStop(0.35, 'rgba(34,24,110,0.4)'); gr.addColorStop(1, 'rgba(34,24,110,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 256, 64); const e = g.createLinearGradient(0, 0, 0, 64); 
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(0.11, PW + 0.02), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+    m.rotation.x = -Math.PI / 2; m.position.set(x + 0.04, SEAT + 0.0006, z); R.scene.add(m);
+  };
+
+  const s26 = sheet(L26, tables[0].z, 26), s23 = sheet(L23, tables[1].z, 23);
+  roll(tables[0].z); roll(tables[1].z);
+  curlShadow(HEAD + s26.flat, tables[0].z); curlShadow(HEAD + s23.flat, tables[1].z);
+  /* THE FIGURE, CHECKED, from the geometry actually built */
+  if (Math.abs(s26.along - L26) > 1e-3) throw new Error('the 2026 sheet runs ' + s26.along + ' m, not ' + FIG.ama_2026_pct + ' x 0.02');
+  if (Math.abs(s23.along - L23) > 1e-3) throw new Error('the 2023 sheet runs ' + s23.along + ' m, not ' + FIG.ama_2023_pct + ' x 0.02');
+  if (s26.perfs !== Math.ceil(FIG.ama_2026_pct / TICK_PTS) - 1 || s23.perfs !== Math.ceil(FIG.ama_2023_pct / TICK_PTS) - 1) throw new Error('perforations disagree with the figures: ' + s26.perfs + ', ' + s23.perfs);
+  if (s26.end > FOOT - 0.01) throw new Error('the 2026 sheet runs off the table');
+  if (Math.abs(L26 / TOP_LEN - FIG.ama_2026_pct / 100) > 1e-9 || Math.abs(L23 / TOP_LEN - FIG.ama_2023_pct / 100) > 1e-9) throw new Error('a sheet does not cover its share of the table');
+
+
+  /* CAMERA: high, behind the foot ends, the two tables running away up the frame side by side like two lanes, the heads and
+   * their rolls under the type, so both sheets start level and the long one comes almost to the viewer */
+  /* fitted, not guessed: start about 20 percent in and step back only as far as it takes for the head rolls to clear the
+   * citation pill and the foot steps to clear the footer */
+  const A = [HEAD, SEAT, 0.0], pillLow = (() => { const src = document.getElementById('lab-src'); src.style.left = '80px'; src.style.top = Math.round(dek.getBoundingClientRect().bottom + 20) + 'px'; return src.getBoundingClientRect().bottom; })();
+  const fxS = (TOP_LEN - 0.22) / 2 + 0.34, heads = [], feet = [];
+  tables.forEach(({ z }) => { [-0.3, 0.3].forEach((dz) => { heads.push([HEAD - 0.075, SEAT + 0.13, z + dz]); feet.push([fxS, 0.255, z + dz * 0.75]); }); });
+  let FROM, fitK = 0.8;
+  for (; fitK <= 1.3; fitK += 0.02) {
+    FROM = [5.5, 3.5, 0.45].map((v, i) => A[i] + (v - A[i]) * fitK);
+    let sy = 540;
+    for (let it = 0; it < 4; it++) { TXT.frame(R, { fov: 30, from: FROM, look: CH.aim(THREE, R, TXT, FROM, A, 540, sy, 30) });
+      const top = Math.min.apply(null, heads.map((p) => CH.project(THREE, R, p)[1])); sy += (pillLow + 22) - top; }
+    TXT.frame(R, { fov: 30, from: FROM, look: CH.aim(THREE, R, TXT, FROM, A, 540, sy, 30) });
+    const low = Math.max.apply(null, feet.map((p) => CH.project(THREE, R, p)[1]));
+    if (low <= 1212) break;
+  }
+  console.warn('camera fit k=' + fitK.toFixed(2));
+  const spec = CH.rigSpec(W, 7, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.5, 0], { distance: 12, shadowFar: 30, normalBias: 0.01 }), { light: { az: -40, el: 22 } }));   /* a low raking key, so the crepe and the curls cast */
+  { const fill = new THREE.DirectionalLight(0xa98cff, 1.6); fill.position.set(2, 3, 6); R.scene.add(fill);            /* a violet fill from the lens side lifts the floor shadows off brown */
+    const bounce = new THREE.HemisphereLight(0xffd2b0, 0xff9a62, 0.35); R.scene.add(bounce); }
+  TXT.weather(R, { grime: 0.02, height: 0.1, mottle: 0 });
+
+  /* the type must sit on the wall, above every table */
+  { let topArt = 1e9; tables.forEach(({ t }) => { t.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(t);
+      [bb.min.x, bb.max.x].forEach((x) => [bb.min.z, bb.max.z].forEach((z) => { topArt = Math.min(topArt, CH.project(THREE, R, [x, bb.max.y, z])[1]); })); });
+    const src = document.getElementById('lab-src'); src.style.left = '80px'; src.style.top = Math.round(dek.getBoundingClientRect().bottom + 20) + 'px';
+    const low = src.getBoundingClientRect().bottom; if (low > topArt - 8) console.warn('type block reaches the tables: ' + Math.round(low) + ' vs ' + Math.round(topArt)); }
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* the year on each table's foot-end door */
+  [['lab-2026', 0], ['lab-2023', 1]].forEach(([id, i]) => { const el = document.getElementById(id), r = el.getBoundingClientRect();
+    CH.pin(THREE, R, id, [(TOP_LEN - 0.22) / 2 + 0.002, 0.36, tables[i].z], -r.width / 2, -r.height / 2);   /* on the plain lacquer of each foot-end door, clear of every edge */
+    const b = el.getBoundingClientRect(); el.style.left = Math.round(Math.min(Math.max(b.left, 80), 1000 - b.width)) + 'px'; el.style.top = Math.round(Math.min(b.top, 1140)) + 'px'; });
+
+  /* the wall behind the type deepened toward the tone's cerulean */
+  { const P = CH.P, y1 = dek.getBoundingClientRect().bottom + 160, g = cx.createLinearGradient(0, 0, 0, y1); g.addColorStop(0, TXLOOK.rgba(P.skyTop, 0.75)); g.addColorStop(0.6, TXLOOK.rgba(P.skyTop, 0.45)); g.addColorStop(1, TXLOOK.rgba(P.skyTop, 0)); cx.fillStyle = g; cx.fillRect(0, 0, 1080, y1); }
+  CH.seat(cx, { a: 0.4, fade: 170 });
+  TXLOOK.footWash(cx, { a: 0.62, height: 230 });   /* knocks the floor's shadow edges down behind the claim ids and site line */
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.src', a: 0.35, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

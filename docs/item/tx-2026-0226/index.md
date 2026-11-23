@@ -9,7 +9,7 @@ Texas Comptroller Don Huffines announced a ban on October 13th, 2026. State gran
 - Public access: Write to the decider
 - Take part: https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -28,6 +28,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The Comptroller's bar on state grant money for Flock cameras and other plate readers still stands.
 - 2026-11-13 · State grant money still can't buy or renew Flock cameras or other plate readers under the Comptroller's rule.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-19 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

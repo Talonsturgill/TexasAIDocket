@@ -1,0 +1,21 @@
+{
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.5, "why": "Round 1 repairs mostly landed. S9 is now a real close with S1's ridge behind it and 21 plus 1 cartridges echoing S7's 22. S6 is legible at feed size with 42 flat and 54 kinked glyphs and the enlarged pair in a recessed well. S2's ghost clears the dek. S8's lower bar reads as a gauge filled nearly to its stop. S4 holds the score down: three laptops and a monitor read, not four, a dark primitive drone with a puck on a mast, a lid edge across a drone arm, a clipped ceiling light and a wall seam behind the headline. S7 is still an isometric tray on a flat magenta field with a thin bottom third. S2's grain streaks were not halved. S5's which way pill sits 52 px from the edge."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "The spine holds on every frame. S9's ridge answers S1. S7 and S8 sit in flat magenta studio sweeps a step removed from the landscape frames."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces to the claims file and S6's glyph counts match. The cover frames the valley as the university's own example and S4's headline matches c22. S8 and the caption say 97.5 percent is one balanced measure. Every study fact rests on the university's release and the WATCH paper was never fetched."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 6.7, "why": "A reader learns what was tested, by whom and where, the method and the honest limit. The stake is still the release's hypothetical valley, no Texas use of drones is named, and S9's copy ends on the grant and workshop list."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, S2 pays at once, S3 shows the consequence, the turn at S5, evidence across S6 to S8. S4 breaks the run from problem to method. The close lands on its picture and fades in its copy."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "96 flights. 54 were lied to. and It never asks the GPS sound spoken. S9's dek reads like a press release. The Texas content is the town name only."},
+    {"name": "variety", "weight": 0.10, "score": 7.5, "why": "New subject for the record, landscape scenes mixed with reliefs, a familiar violet to amber v2 palette."}
+  ],
+  "weighted_score": 7.322,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rewrite S9's dek and the caption close to name what a Texas reader should watch for instead of the grant and workshop list, and ground the S1 to S3 stake in a named Texas drone use the release supports.",
+  "artwork_weakest_frames": [
+    {"slide": 4, "problem": "Three laptops and a monitor read, not four; dark primitive drone with a puck on a mast; a lid edge cuts a drone arm; clipped ceiling light; wall seam behind the headline.", "fix": "Four laptops in a ring at table height around the drone, clear the lid from the arm, seat the puck on the body, crop the clipped light, a continuous wall behind the type."},
+    {"slide": 7, "problem": "Isometric tray on a flat magenta field, lower right empty, an unexplained red strap on the held back box.", "fix": "Pull the camera down and in so the box of 22 fills the lower right and bleeds off; delete the strap or make it a lid seal."},
+    {"slide": 8, "problem": "The upper frame still reads as orange tinted plastic over ten identical rods and competes with the gauge.", "fix": "Make the rods a clear glass rack with amber only on the rim, push it back and up, let the gauge fill the lower half."},
+    {"slide": 2, "problem": "Horizontal streak grain reads as scanlines behind the dek.", "fix": "Halve the grain and make it isotropic."}
+  ]
+}

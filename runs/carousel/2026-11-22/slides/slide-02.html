@@ -1,0 +1,234 @@
+<!doctype html>
+<!-- 2026-11-22, frame 2 of 9. EIGHTY. THE STAFF ROOM WALL: two white oak pegboard panels on a cerulean painted wall, a strip
+     of bare wall between them, and on steel J hooks eighty stethoscopes hang, forty on each panel, each coil standing off the
+     oak and throwing an indigo shadow down it under a raking morning key from the upper left. The tubing colours are seeded
+     across both panels and never mark a group. No people, no faces. The headline is centred on the cerulean wall over the
+     seam, so the seam runs down from the type into the field. Drawn to illustrate, never a real Dell Med room. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:130px; width:936px; text-align:left">80 clinicians, two halves</h1>
+<p class="dek" data-follow="14" style="left:74px; width:934px; text-align:left; font-size:28px">A mix of faculty, residents and students at Dell Med. The IC² Institute and Dell Medical School announced the joint lab on October 20th. One stethoscope stands for one clinician, drawn to illustrate.</p>
+<script>window.FIG = {"clinicians": 80, "half": 40};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The cohort", counter: "02 / 09", src: "c2 c3 c18 c1", fit: { min: 70, max: 96, maxLines: 1 } });
+
+  /* HONESTY. The count drawn is FIG.clinicians, in two banks of FIG.half, and the code below throws on any mismatch. */
+  if (FIG.clinicians !== 2 * FIG.half) throw new Error('two halves must sum to the cohort: ' + FIG.clinicians + ' and ' + FIG.half);
+  const COLS = 5, ROWS = FIG.half / COLS;
+  if (!Number.isInteger(ROWS)) throw new Error('a bank of ' + FIG.half + ' does not fill ' + COLS + ' columns');
+
+  const FOV = 30; const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 60, fog: 0.0 });
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 4, d: 4 }), { tone: 'explainer' }));
+
+  /* ---- the world, in metres. The wall is z = 0 facing +z; the pegboard holes sit on a 25.4 mm grid. ---- */
+  const PITCH = 0.0254, UX = 8 * PITCH, UY = 8 * PITCH;      /* one stethoscope every 8 holes each way */
+  const STAND = 0.018, THICK = 0.0064, BOARD_Z = STAND + THICK;
+  const HC = 43, HR = 70, PW = HC * PITCH, PH = HR * PITCH;    /* each panel 43 by 70 holes */
+  const SEAM = 0.075;                                         /* half the strip of bare wall between the panels */
+  const TOP = 2.3, CEIL = 5.2;   /* the ceiling stands well above the frame */                                           /* the top edge of both panels */
+  const HOLE_IN = 5, HOLE_TOP = 2;                            /* the first hook column (from the seam edge) and row (from the top), in holes */
+
+  const rnd = CH.rng(20261122 + 2);
+
+  /* the wall: cerulean painted plaster */
+  const plaster = (base, seed) => CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(seed); g.fillStyle = base; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 1600; i++) { const x = r() * w, y = r() * h, rad = 6 + r() * 60; g.fillStyle = (r() < 0.5 ? 'rgba(255,255,255,' : 'rgba(20,30,90,') + (0.004 + r() * 0.01).toFixed(3) + ')'; g.beginPath(); g.arc(x, y, rad, 0, 7); g.fill(); }
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(10,20,70,' + (r() * 0.07).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.4, 1.4); }
+  }, [4, 3]);
+  const wallMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: plaster('#2a86dc', 5), bumpMap: plaster('#808080', 6), bumpScale: 1.2, roughness: 0.86, sheen: 0.15 }); wallMat.name = 'plaster-wall-paint';
+  const wall = new THREE.Mesh(new THREE.PlaneGeometry(20, CEIL + 2), wallMat); wall.position.set(0, (CEIL - 2) / 2, 0); wall.receiveShadow = true; R.scene.add(wall);
+  /* the ceiling, a pale lavender plaster, and an oak crown moulding where it meets the wall */
+  const ceilMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: plaster('#e4e8ff', 7), roughness: 0.9 }); ceilMat.name = 'plaster-ceiling-paint';
+  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(10, 8), ceilMat); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, CEIL, 4); ceil.receiveShadow = true; R.scene.add(ceil);
+  const crownMat = new THREE.MeshPhysicalMaterial({ color: 0xf2efe8, roughness: 0.5, clearcoat: 0.3 }); crownMat.name = 'crown-moulding-paint';
+  [[0.07, 0.03, -0.035], [0.035, 0.06, -0.085]].forEach(([dz, h, y]) => { const c = TXT.roundedBox(10, h, dz, 0.01, crownMat); c.position.set(0, CEIL + y + h / 2 - 0.0, dz / 2); c.castShadow = true; c.receiveShadow = true; R.scene.add(c); });
+
+  /* the oak face: grain running vertically, a 25.4 mm hole grid, the holes dark and recessed in the bump */
+  const TW = 1408, TH = Math.round(TW * PH / PW), pxp = TW / HC;
+  const paintOak = (g, w, h, bump) => {
+    const r = CH.rng(bump ? 11 : 11);
+    g.fillStyle = bump ? '#9a9a9a' : '#dc9f62'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 520; i++) {
+      const x = r() * w, ww = 1 + r() * 7, a = 0.03 + r() * 0.08, dark = r() < 0.6;
+      g.fillStyle = bump ? (dark ? 'rgba(60,60,60,' + a + ')' : 'rgba(200,200,200,' + a + ')') : (dark ? 'rgba(150,84,40,' + a + ')' : 'rgba(255,214,160,' + a + ')');
+      let y = 0; g.beginPath(); g.moveTo(x, 0);
+      for (y = 0; y <= h; y += 60) g.lineTo(x + Math.sin(y * 0.004 + i) * 6 + (r() - 0.5) * 2, y);
+      g.lineTo(x + ww, h); for (y = h; y >= 0; y -= 60) g.lineTo(x + ww + Math.sin(y * 0.004 + i) * 6, y); g.fill();
+    }
+    /* medullary flecks, the white oak's own figure */
+    for (let i = 0; i < 900; i++) { g.fillStyle = bump ? 'rgba(180,180,180,0.18)' : 'rgba(255,226,180,0.22)'; g.fillRect(r() * w, r() * h, 2 + r() * 10, 1 + r() * 1.5); }
+    for (let i = 0; i < 4000; i++) { g.fillStyle = 'rgba(90,50,30,' + (r() * 0.06).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.5, 1.5); }
+    for (let cx0 = 0; cx0 < HC; cx0++) for (let cy0 = 0; cy0 < HR; cy0++) {
+      const x = (cx0 + 0.5) * pxp, y = (cy0 + 0.5) * pxp;
+      if (!bump) { g.fillStyle = 'rgba(255,230,190,0.5)'; g.beginPath(); g.arc(x - 0.8, y - 0.8, pxp * 0.16, 0, 7); g.fill(); }
+      g.fillStyle = bump ? '#101010' : '#3a2350'; g.beginPath(); g.arc(x, y, pxp * 0.125, 0, 7); g.fill();
+    }
+  };
+  const oakMap = CH.canvasTex(THREE, TW, TH, (g, w, h) => paintOak(g, w, h, false));
+  const oakBumpC = document.createElement('canvas'); oakBumpC.width = TW; oakBumpC.height = TH; paintOak(oakBumpC.getContext('2d'), TW, TH, true);
+  const oakBump = new THREE.CanvasTexture(oakBumpC); oakBump.anisotropy = 8;
+  const oakFace = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: oakMap, bumpMap: oakBump, bumpScale: 2.2, roughness: 0.6, clearcoat: 0.25, clearcoatRoughness: 0.45 });
+  oakFace.name = 'oak-pegboard-face'; oakFace.userData.txSurface = false;
+  const oakEdge = new THREE.MeshPhysicalMaterial({ color: 0xd59a5e, roughness: 0.55, clearcoat: 0.2 }); oakEdge.name = 'oak-edge';
+
+  /* materials of the stethoscope and the hook */
+  const chrome = new THREE.MeshPhysicalMaterial({ color: 0xa8b2c4, metalness: 1, roughness: 0.24 }); chrome.name = 'chrome-binaural';
+  const steel = new THREE.MeshPhysicalMaterial({ color: 0xb9c2cf, metalness: 1, roughness: 0.16, clearcoat: 0.6 }); steel.name = 'polished-steel-chestpiece';
+  const hookMat = new THREE.MeshPhysicalMaterial({ color: 0xc9d0d8, metalness: 0.95, roughness: 0.3 }); hookMat.name = 'galv-steel-hook';
+  const diaphragm = new THREE.MeshPhysicalMaterial({ color: 0x34477e, roughness: 0.28, clearcoat: 0.9 }); diaphragm.name = 'diaphragm-plastic';
+  const tipMat = new THREE.MeshPhysicalMaterial({ color: 0xb8bfd0, roughness: 0.55 }); tipMat.name = 'ear-tip-rubber';
+  /* four tone colours for the tubing, twenty of each, shuffled across BOTH panels so no colour marks a group */
+  const TUBES = [0x10a7b0, 0x4c3fd0, 0x2f8fe8, 0x9a3fb0];
+  const tubeMats = TUBES.map((c, i) => { const m = new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.06, specularIntensity: 1 }); m.name = 'pvc-tubing-' + i; return m; });
+  const order = []; for (let i = 0; i < FIG.clinicians; i++) order.push(i % TUBES.length);
+  for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = order[i]; order[i] = order[j]; order[j] = t; }
+
+  const tube = (pts, rad, mat, parent, seg) => {
+    const c = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p[0], p[1], p[2])));
+    const m = new THREE.Mesh(new THREE.TubeGeometry(c, seg || 64, rad, 10, false), mat); parent.add(m); return m;
+  };
+
+  /* ONE STETHOSCOPE, hung by its coil on a J hook. Origin at the hook's hole on the board's face. The tubing is wound two
+   * turns into a teardrop loop that rests over the hook and lies back against the oak at its foot; the chrome binaurals and
+   * the chest piece are tucked inside the loop. */
+  const R0 = 0.084, TR = 0.0068;
+  const makeScope = (colour) => {
+    const g = new THREE.Group(), T = tubeMats[colour];
+    /* the hook: out of the hole, a bend, and a short upturn at the tip */
+    tube([[0, 0, -0.006], [0, 0, 0.045], [0, 0.003, 0.068], [0, 0.026, 0.078]], 0.0036, hookMat, g, 20);
+    const pinTip = new THREE.Mesh(new THREE.SphereGeometry(0.0038, 12, 10), hookMat); pinTip.position.set(0, 0.026, 0.078); g.add(pinTip);
+    const washer = new THREE.Mesh(new THREE.TorusGeometry(0.0062, 0.0022, 8, 20), hookMat); washer.position.z = 0.0015; g.add(washer);
+    /* the coil */
+    const r0 = R0 * (0.96 + rnd() * 0.08), topY = 0.0036 + TR, zTop = 0.05, zBack = TR + 0.001;
+    const pts = [], N = 120, turns = 2;
+    for (let i = 0; i <= N; i++) {
+      const t = i / N, a = Math.PI + t * turns * Math.PI * 2;
+      const rr = r0 * (1 - 0.1 * t + 0.02 * Math.sin(a * 3 + colour));
+      const x = rr * Math.sin(a) * (0.9 - 0.12 * Math.cos(a));
+      const y = topY - rr * (1 - Math.cos(a));
+      const z = zBack + (zTop - zBack) * (1 + Math.cos(a)) / 2 + 0.006 * t * turns;
+      pts.push([x, y, z]);
+    }
+    tube(pts, TR, T, g, 260);
+    const s = pts[0], e = pts[pts.length - 1], cy = topY - r0;
+    /* the binaurals: a chrome U standing up over the hook, the ear tubes either side of it and the tips above the loop,
+     * the Y that says stethoscope at feed size */
+    const side = rnd() < 0.5 ? -1 : 1, bin = new THREE.Group(); bin.position.set(0, 0, 0.058); bin.rotation.z = side * (0.04 + rnd() * 0.1); g.add(bin);
+    const jY = -0.062;
+    [-1, 1].forEach(k => {
+      const tip = [k * 0.031, 0.02, -0.004];
+      tube([[0, jY, 0], [k * 0.014, jY + 0.03, 0.001], [k * 0.027, tip[1] - 0.02, 0.002], tip], 0.0042, chrome, bin, 24);
+      const et = new THREE.Mesh(new THREE.SphereGeometry(0.0075, 14, 10), tipMat); et.scale.set(1, 1.3, 1); et.position.set(tip[0], tip[1] + 0.004, tip[2]); bin.add(et);
+    });
+    /* no spring bar: drawn, it closed the U into a wedge that read as a pie */
+    /* the stem from the coil's end up into the binaural joint */
+    bin.updateMatrix(); const J = new THREE.Vector3(0, jY, 0).applyMatrix4(bin.matrix);
+    tube([e, [(e[0] * 0.6 + J.x * 0.4), (e[1] * 0.5 + J.y * 0.5), 0.034], [J.x, J.y, J.z]], TR * 0.9, T, g, 40);
+    /* the chest piece, resting on the foot of the loop on the far side, half outside the rim, its polished face to the key */
+    const cpx = side * r0 * 0.78, cpy = cy - r0 * 0.62;
+    const cp = new THREE.Group(); cp.position.set(cpx, cpy, 0.03); cp.rotation.x = -0.3; cp.rotation.y = side * 0.3; g.add(cp);
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.023, 0.025, 0.014, 40), steel); body.rotation.x = Math.PI / 2; cp.add(body);
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.0236, 0.0032, 12, 40), chrome); rim.position.z = 0.0072; cp.add(rim);
+    const dia = new THREE.Mesh(new THREE.CircleGeometry(0.0205, 40), diaphragm); dia.position.z = 0.0073; cp.add(dia);
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.005, 0.026, 12), chrome); stem.rotation.z = side * 0.9; stem.position.set(-side * 0.02, 0.014, -0.002); cp.add(stem);
+    tube([s, [s[0] - side * 0.004, s[1] + 0.006, s[2] + 0.008], [cpx - side * 0.034, cpy + 0.026, 0.03]], TR * 0.85, T, g, 24);
+    g.rotation.z = (rnd() - 0.5) * 0.08;
+    g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return g;
+  };
+
+  /* the two panels and their banks */
+  const banks = [[], []];
+  const colourCount = [[0, 0, 0, 0], [0, 0, 0, 0]];
+  let n = 0, fieldBottom = 1e9;
+  [-1, 1].forEach((sd, b) => {
+    const inner = sd * SEAM, cx = inner + sd * PW / 2, cyP = TOP - PH / 2;
+    const edge = TXT.roundedBox(PW, PH, THICK, 0.0025, oakEdge); edge.position.set(cx, cyP, STAND + THICK / 2); edge.castShadow = true; edge.receiveShadow = true; R.scene.add(edge);
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(PW - 0.004, PH - 0.004), oakFace); face.position.set(cx, cyP, BOARD_Z + 0.0004); face.receiveShadow = true;
+    if (sd < 0) { face.scale.x = -1; face.material.side = THREE.DoubleSide; }   /* mirror the left panel so its hole grid counts from the seam */
+    R.scene.add(face);
+    /* the furring strips the panel stands off the wall on */
+    [cx - PW / 2 + 0.04, cx + PW / 2 - 0.04].forEach(x => { const st = TXT.roundedBox(0.04, PH - 0.06, STAND, 0.003, oakEdge); st.position.set(x, cyP, STAND / 2); R.scene.add(st); });
+    for (let row = 0; row < ROWS; row++) for (let col = 0; col < COLS; col++) {
+      const hx = inner + sd * (HOLE_IN + col * 8 + 0.5) * PITCH, hy = TOP - (HOLE_TOP + row * 8 + 0.5) * PITCH;
+      const c = order[n++]; colourCount[b][c]++;
+      const s = makeScope(c); s.position.set(hx, hy, BOARD_Z); R.scene.add(s); banks[b].push(s);
+      fieldBottom = Math.min(fieldBottom, hy - 2 * R0);
+    }
+    /* moulded oak rails cap the panel top and foot: a flat fillet and a rounded nosing, so the board ends in an edge with a shadow */
+    [[TOP, 1], [TOP - PH, -1]].forEach(([y, up]) => {
+      const fil = TXT.roundedBox(PW + 0.03, 0.055, 0.03, 0.006, oakEdge); fil.position.set(cx, y + up * 0.012, BOARD_Z + 0.012); R.scene.add(fil);
+      const nose = TXT.roundedBox(PW + 0.05, 0.026, 0.05, 0.011, oakEdge); nose.position.set(cx, y + up * 0.044, BOARD_Z + 0.02); R.scene.add(nose);
+      [fil, nose].forEach(m => { m.castShadow = true; m.receiveShadow = true; });
+    });
+  });
+  if (banks[0].length !== FIG.half || banks[1].length !== FIG.half || banks[0].length + banks[1].length !== FIG.clinicians)
+    throw new Error('drew ' + banks[0].length + ' + ' + banks[1].length + ' stethoscopes, figures say ' + FIG.half + ' + ' + FIG.half + ' = ' + FIG.clinicians);
+  TUBES.forEach((_, c) => { if (colourCount[0][c] === 0 || colourCount[1][c] === 0) throw new Error('tube colour ' + c + ' is confined to one bank and would read as a group'); });
+
+  /* ---- the camera: a three quarter rake, about 32 degrees along the wall from the right, a little below the field's middle,
+   * so the near bank comes up large, the far bank recedes toward the type, and every hook shows its bend ---- */
+  const rowTop = TOP - (HOLE_TOP + 0.5) * PITCH + 0.03, xOut = SEAM + (HOLE_IN + 32.5) * PITCH + R0;
+  const pts = [];
+  [-1, 1].forEach(sd => { [sd * xOut, sd * (SEAM + (HOLE_IN + 0.5) * PITCH - R0)].forEach(x => { pts.push([x, rowTop, BOARD_Z + 0.06], [x, fieldBottom, BOARD_Z]); }); });
+  pts.push([SEAM + PW, TOP + 0.06, BOARD_Z + 0.04]);
+  /* THE SEARCH: rake, eye height and distance chosen so the eighty fill the frame, the near bank rises to the top right,
+   * and the far bank's top edge drops below the type block, which is where this picture leaves its quiet */
+  const typeBottom = document.querySelector('.dek').getBoundingClientRect().bottom, typeRight = Math.max(document.getElementById('hook').getBoundingClientRect().right, document.querySelector('.dek').getBoundingClientRect().right);
+  const T = [0.2, (rowTop + fieldBottom) / 2, BOARD_Z];
+  const farTops = [[-SEAM - PW, TOP + 0.07, BOARD_Z + 0.04], [-SEAM, TOP + 0.07, BOARD_Z + 0.04], [SEAM, TOP + 0.07, BOARD_Z + 0.04], [SEAM + PW, TOP + 0.07, BOARD_Z + 0.04]];
+  const nearTop = [SEAM + PW, TOP + 0.07, BOARD_Z + 0.04];
+  const bbox = () => { const q = pts.map(p => CH.project(THREE, R, p)); return { x0: Math.min(...q.map(a => a[0])), x1: Math.max(...q.map(a => a[0])), y0: Math.min(...q.map(a => a[1])), y1: Math.max(...q.map(a => a[1])) }; };
+  const place = (yaw, pitch, d) => {
+    const Y = yaw * Math.PI / 180, P = pitch * Math.PI / 180;
+    const from = [T[0] + Math.sin(Y) * Math.cos(P) * d, T[1] + Math.sin(P) * d, T[2] + Math.cos(Y) * Math.cos(P) * d];
+    let look = T.slice(); TXT.frame(R, { fov: FOV, from: from, look: look });
+    for (let i = 0; i < 4; i++) { const b = bbox(), qT = CH.project(THREE, R, T); look = CH.aim(THREE, R, TXT, from, T, qT[0] + (1008 - b.x1), qT[1] + (1148 - b.y1), FOV);   /* the units end at 1148 so the foot rail clears the site line */ }
+    const b = bbox(), nt = CH.project(THREE, R, nearTop);
+    /* the near column must come up about 1.4 times the far one, the type must clear every rail by a full line, the field may
+     * recede from the left edge but no further than x 170 */
+    const hOf = x => { const a = CH.project(THREE, R, [x, rowTop, BOARD_Z]), c = CH.project(THREE, R, [x, fieldBottom, BOARD_Z]); return Math.abs(c[1] - a[1]); };
+    const ratio = hOf(xOut) / hOf(-xOut);
+    let v = 20 * Math.max(0, b.x0 - 100) + 4 * Math.max(0, 64 - b.x0) + 300 * Math.max(0, 1.2 - ratio);
+    farTops.forEach(p => { const q = CH.project(THREE, R, p); v += 10 * Math.max(0, typeBottom + 52 - q[1]); });
+    return { from, look, v, w: b.x1 - b.x0 };
+  };
+  let best = null;
+  for (const yaw of [30, 33, 36, 39, 42]) for (const pitch of [-7, -5, -3]) for (let d = 2.2; d <= 7.01; d += 0.15) {
+    const c = place(yaw, pitch, d); c.yaw = yaw; c.pitch = pitch; c.d = d;
+    if (!best || (c.v < best.v - 1) || (Math.abs(c.v - best.v) <= 1 && c.w > best.w)) best = c;
+  }
+  TXT.frame(R, { fov: FOV, from: best.from, look: best.look });
+  { const b = bbox(); if (b.x0 < 50 || b.x1 > 1020 || b.y1 > 1210) throw new Error('the eighty do not all sit inside the frame: ' + JSON.stringify(b)); }
+  document.body.dataset.fit = JSON.stringify(best);
+
+  /* ---- the key: a raking morning light from the upper left, so every coil throws its shadow down and right on the oak ---- */
+  CH.KEY_SCALE = 1.45; const spec = CH.rigSpec(W, 3.4, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, T[1], 0], { distance: 12, shadowFar: 30, normalBias: 0.004 }), { light: { az: -52, el: 38 } }));
+  TXT.weather(R, { grime: 0.03, height: 0.05, mottle: 0.05 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.38, fade: 200 }); CH.seat(cx, { sel: '.kick, .count', a: 0.4, fade: 120 });
+  TXLOOK.footWash(cx, { a: 0.7, height: 240 });
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.dek', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.src', a: 0.35, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

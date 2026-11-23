@@ -1,0 +1,112 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "project_millions": {
+  "value": 3.1,
+  "from": [
+   "c1"
+  ],
+  "basis": "UTA's USDA funded project, in millions of dollars"
+ },
+ "cases_floor": {
+  "value": 120,
+  "from": [
+   "c2"
+  ],
+  "basis": "more than this many confirmed animal cases as of November 12th, most in Texas"
+ },
+ "year_eliminated": {
+  "value": 1966,
+  "from": [
+   "c2"
+  ],
+  "basis": "the year screwworm was declared eliminated from the US"
+ },
+ "projects": {
+  "value": 40,
+  "from": [
+   "c11"
+  ],
+  "basis": "projects selected nationwide, drawn one unit per project"
+ },
+ "program_millions": {
+  "value": 105,
+  "from": [
+   "c11"
+  ],
+  "basis": "roughly this many millions of USDA funding across the projects"
+ },
+ "traps_floor": {
+  "value": 100,
+  "from": [
+   "c24"
+  ],
+  "basis": "more than this many screwworm specific traps monitored since July 2025, drawn one unit per trap"
+ },
+ "flies_week_millions": {
+  "value": 80,
+  "from": [
+   "c22"
+  ],
+  "basis": "more than this many millions of sterile flies a week from Edinburg, drawn one fly per million"
+ },
+ "facility_millions": {
+  "value": 8.5,
+  "from": [
+   "c22"
+  ],
+  "basis": "the Edinburg dispersal facility's cost in millions"
+ },
+ "distinctions": {
+  "value": 2,
+  "from": [
+   "c4"
+  ],
+  "basis": "wild from sterile, and females from males"
+ },
+ "cells": {
+  "value": 4,
+  "from": [
+   "c4"
+  ],
+  "basis": "2 x 2 combinations of the two distinctions"
+ },
+ "end_year": {
+  "value": 2028,
+  "from": [
+   "c12"
+  ],
+  "basis": "the project runs through June of this year"
+ },
+ "pin_km": {
+  "value": 423,
+  "from": [
+   "c19",
+   "c21"
+  ],
+  "basis": "great circle km between the gazetteer centroids of Kerr County (Kerrville, c19) and Hidalgo County (Edinburg, c21), rounded to whole km, used ONLY to set pin spacing on the relief and never printed"
+ },
+ "pins": {
+  "value": {
+   "Kerrville": [
+    -99.35008,
+    30.06134
+   ],
+   "Edinburg": [
+    -98.18037,
+    26.39669
+   ]
+  },
+  "from": [
+   "c19",
+   "c21"
+  ],
+  "basis": "pin positions at the gazetteer centroids of the counties holding the two places the claims name"
+ },
+ "months_to_end": {
+  "value": 19,
+  "from": [
+   "c12"
+  ],
+  "basis": "calendar months from December 2026 through June 2028 inclusive, one fence post per month"
+ }
+}

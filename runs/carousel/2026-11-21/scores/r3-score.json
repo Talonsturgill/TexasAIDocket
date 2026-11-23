@@ -1,0 +1,169 @@
+{
+ "weighted_score": 7.356,
+ "judges": [
+  7.4,
+  7.246,
+  7.358
+ ],
+ "spread": 0.154,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.8,
+   "weight": 0.12,
+   "judges": [
+    7.8,
+    7.5,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    7.5,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.8,
+    7.5,
+    7.2
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.4
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.0,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Five toy cubes on a flat yellow sweep, and the labels do the explaining. No set has a scale cue, and the frame reads as a board-game diorama rather than a course at Disaster City.",
+     "fix": "Drop the plinths and render one course at true scale, such as the night search set with a rover and a crouched role player under a single work light. Give the other four as small lit inset cutouts receding along a single ground plane."
+    },
+    {
+     "judge": 2,
+     "problem": "Toy plinth diorama on a blue-to-yellow sweep with a grey-brown band behind the body copy, a flat blue slab as the night-search lid, and plinth bases cut by the footer.",
+     "fix": "Light the sweep in one hue family so no grey band forms, replace the slab with a sculpted night lane under a single lamp, and lift the plinths about 120 px so the footer sits on clear sweep."
+    },
+    {
+     "judge": 3,
+     "problem": "Five toy dioramas on teal plinths in a yellow void with no ground, contact or light pool. The 'fifth course' plinth carries an invented collapsed-slab-on-car scene, and the type did not move to the right column the flow review says it did.",
+     "fix": "Set the five sets on one dusty Disaster City ground slab under a single low key with contact shadows. Render the fifth plinth as a covered, unlit set marked 'not named', and re-render so the type actually sits in the right column the repair claimed."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The subject is a mint mesh fence. The badges that carry the count are thumbnail-sized at feed size, there is no person and no rover, and the flat mint fills most of the frame like a fill colour.",
+     "fix": "Push the camera down the fence line to a low three-quarter so the nearest badges hang large and sharp in the foreground and the run recedes to a vanishing point. Stand one lanyarded participant at the near post for scale, and count the badges to exactly 101 against figures.json."
+    },
+    {
+     "judge": 2,
+     "problem": "A fence floating on a flat yellow-to-teal gradient with no ground or world. Badges are confetti-sized at feed size, and a dark blot sits behind the c12 footer.",
+     "fix": "Plant the fence on Disaster City caliche with rubble and a sky behind, drop the camera to chest height and push in until the nearest badges are about three times larger and run off the right edge, and remove the circular wash behind c12."
+    },
+    {
+     "judge": 3,
+     "problem": "The badges read as confetti at 432 px on a mid-tone teal mesh over a flat, unlit yellow floor, so there is no focal point and the 101st-badge edge tease does not register.",
+     "fix": "Move the camera to one fence panel at badge height so a single front badge, lit with a rim, fills a fifth of the frame and the rest recede out of focus. Light the floor with a key pool and cast shadows so the fence stands in a world."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The medic is a primitive figure seen from behind, with a blocky unmodelled hand, a flat orange suit and no fabric folds, set in a bare concrete box. The turn frame carries the weakest figure in the deck.",
+     "fix": "Reframe to a low over-the-shoulder shot where the tablet screen and the rover fill the middle and the medic is cropped by the left edge. That hides the hand, the arc lands on the screen, and the stretcher fills the depth."
+    },
+    {
+     "judge": 2,
+     "problem": "A primitive back-view medic with blocky hands and smeared folds, a flat cyan wall filling the top half as a dead zone, an unexplained grey wedge cut off at the left edge, and body copy on a muddy dark smudge.",
+     "fix": "Swing the camera to a three-quarter front view of the medic so the face profile and tablet read, replace the flat wall with a textured, lit concrete wall carrying one raking shadow, and delete the left-edge wedge."
+    },
+    {
+     "judge": 3,
+     "problem": "The medic is a primitive figure (block hands, an unresolved head under the cap), and the upper-left third of the frame is an empty flat blue wall the type leaves unused, so the turn frame's art reads as a placeholder room.",
+     "fix": "Drop the camera to the medic's shoulder height and push in until the medic and rover fill the lower two thirds. Crop the wall to a strip behind the right-aligned headline, and replace the figure with the frame 1 medic model at true scale with articulated hands on the tablet."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The casualty's legs at the left edge read as a brown lump against the rover's tracks at 432 px, so the find the headline names is not legible.",
+     "fix": "Swing the camera about 20 degrees left so the role player's boots and the rover's searchlight cone meet in clear silhouette against the pale rubble, with the medic kept on the right."
+    },
+    {
+     "judge": 2,
+     "problem": "The casualty at the left edge reads as an ambiguous brown lump, and the robot's search beam ends on nothing.",
+     "fix": "Re-pose the role player as clearly legible boots and legs on the rubble, lit by the beam so the beam lands on the find."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.356, 0.644 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.0 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

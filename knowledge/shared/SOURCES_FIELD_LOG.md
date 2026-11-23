@@ -2673,3 +2673,43 @@ and **the EBI REST endpoint timed out**, and Crossref's record for the DOI carri
 answered and carries the quotes. **news.rice.edu answered 406 to the re-verification fetcher** while `fetch_doc.py`
 read the same page, so that item's stamp rests on the fetch_doc read. The TCEQ commission calendar cited on tx-2026-0057
 no longer lists the agenda item, so the item was left unstamped rather than reading the listing's absence as a change.
+
+## 2026-11-19 (carousel no. 82)
+
+**www.uta.edu answered** the November 12th news release on the USDA screwworm smart trap, its robots.txt allows `/news`,
+and all fifteen claims on tx-2026-0252 quote it. The release cites the USDA case dashboard for the count of more than 120
+confirmed cases and **the dashboard itself was not opened**, so the deck gives the figure on the university's citation of
+it. **www.ars.usda.gov and www.aphis.usda.gov answered** the screwworm program pages that carry the release models, the
+Edinburg facility and the weekly release volume. **The PUCT rolling calendar answers only when redirects are followed**,
+and the re-verification counted 215 sources unreachable, the same set as the prior runs, all left unstamped.
+
+## 2026-11-20 (carousel no. 83)
+
+**www.etamu.edu answered** the November 16th news release on the GPS spoofing study, and every claim on tx-2026-0253
+quotes it. **watch-miniconf.github.io answered** the WATCH 2026 programme and **arxiv.org answered** the Chronos paper,
+one claim each. **The study's own paper and the public flight dataset were not opened**, so the dataset's name and the
+other seven models stay off the deck. Twenty three
+boundaries that had lapsed were **re-measured with the project user agent and refused again**, and their notes were
+re-stamped rather than routed around. Eight earlier boundaries (tx-2026-0044, 0062, 0125, 0161, 0166, 0173, 0186, 0227)
+now answer or allow robots and were left to lapse on their own seven day clock.
+
+## 2026-11-21 (carousel no. 84)
+
+**www.darpa.mil answered** the Triage Challenge finals news page and the program page, and **teex.org answered** the
+account of staging the finals at Disaster City. Every claim on tx-2026-0254 quotes one of the three. **The TRIAGE-X SBIR
+topic page itself was not opened**, so the deck gives the deadline on DARPA's news page citation of it. The TEEX page's
+photo captions were admitted only where a caption names the HMT course. **comptroller.texas.gov answered** the proposed
+Rule 3.308 amendments for tx-2026-0255. **www.uta.edu and www.utep.edu answered again**, so tx-2026-0161, 0173 and 0227
+were re-verified from their own pages. **news.rice.edu answered 406** to the re-verification fetcher again while
+`fetch_doc.py` read the same pages. The boundaries whose seven day clock lapsed today were re-measured with the project
+user agent and refused again: docs.tacc.utexas.edu (robots), clinicaltrials.gov (robots) and www.faa.gov (403).
+
+## 2026-11-22 (carousel no. 85)
+
+**ic2.utexas.edu answered** the AI Learning Lab release and its project page, and every claim on tx-2026-0257 quotes one of
+the two. **news.utexas.edu answered** the Horizon early user story for tx-2026-0256, and UT's page names Round Rock but no
+county. **The PUCT calendar feed rolled its listings forward**, so seven claims on tx-2026-0024 were brought to the December
+and January listings rather than read as removed. **Fort Worth's page answered 403** for tx-2026-0062 and the item was left
+unstamped. **The Senate committee page did not carry one archived claim** for tx-2026-0077, so that item was left unstamped
+as well. Twenty six items waited behind crawl boundaries measured on November 20th and 21st, still inside their seven day
+window.

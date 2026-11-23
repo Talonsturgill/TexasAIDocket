@@ -1,0 +1,67 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.3,
+      "why": "On the bespoke reading the frames really do differ. Slide 2 is an aerial site model with the derailed train, slide 4 a rubble cutaway with a casualty under the slab, slide 5 a night blast plume in saturated magenta, slide 7 plate stacks at a declared scale (I counted 10 Data and 15 Systems plates, and the pool stack runs off the top as a floor should), slide 9 an open orange case. Slides 4, 5, 7 and 9 pass the LOOK V2 test: one rounded lit subject, vivid tone colour, contact shadows. Three frames hold the score down. Slide 3 has a grey-green haze over its lower half, a large empty sky at upper left, the tornado set cut off at the left edge, label pills sitting on the art, and only four sets drawn under the headline 'Five ways'. On slide 6 a chain-link fence covers the frame and the robot behind it is washed out, so the badges float in front of rubble with no subject in charge. Slide 8 reads as two toy primitives on a rail against a tiled wall, the weakest picture for the deck's turn."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 8.0,
+      "why": "The spine holds across all nine. Same serif headline and mono kicker, counter and site line, the teal tone wash behind the type, one blue and sand palette. The green tracked robot and its glowing data beam recur on slides 1, 4, 5, 7, 8 and 9 and work as a motif that changes state. The story runs in order: place, courses, job, night course, field, purse, quote turn, deadline. Slide 3's hazy tabletop diorama sits slightly outside the deck's lit 3D register."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.0,
+      "why": "Every numeral traces. 52 (c11), November 5th to 13th (c1, c3), 100 (c12), $3 million (c12), $1.5 million and $1 million (c3, c23), 2023 (c21), November 25th (c20), five (c14). '$100,000' on slide 7 is figures.json plate_usd, a declared drawing rule with from [] and labelled 'drawn to illustrate', which is the same practice as earlier decks' unit scales, so I don't count it a hard fail. No surface calls the systems AI, and every casualty is called simulated, mock or role players. Three phrasings run looser than their sources. (1) The slide 8 headline 'Better than every approach. Still not enough.' drops Winchell's subject. c5 says HUMAN MACHINE TEAMS outperform every approach, but the art shows two robots linked with no human, so headline plus picture tell a reader the machines beat every approach. Only the body copy corrects it. (2) Slide 3 says 'Five ways', but c14 names four and four sets are drawn. (3) The slide 5 headline 'It searched through the blast' stretches c27's 'erupts ... as a robot searches'. One lead for the record. The claims file rejects 'finals testing conditions in image captions' as not tied to the finals, then admits c27 and c28, both photo captions, for slide 5. They are defensible because the TEEX article is about the finals and c16 places the HMT course there, but the run's own rule and its usage disagree. Process note: copy.json registers labels: [] on every slide, yet slides 2, 3 and 7 render label pills, and slide 7's carry numerals ('$1 million', '$1.5 million', 'more than $3 million'). They trace, but they were not registered as strings."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.5,
+      "why": "Clear what happened (DARPA finals at TEEX's Disaster City), where (College Station), who won and what (RoboScout $1.5 million, Disruptors $1 million). There is a dated ask: TRIAGE-X is open until November 25th, slide 9 and the caption. The Texas stake is stated generally. 'Who in Texas answers it by then?' points at an SBIR topic with no Texas tie, and nothing in the deck says what a Texan responder or county gains. No county is named."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover headline 'The robot finds. The medic treats.' earns the swipe. Slide 2 pays with the place. The turn at slide 8 (Winchell's 'not enough') is real and slide 9 lands on a deadline. Slides 6 and 7 are both scale frames in a row, and slide 6 could be cut without loss."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The caption opener 'Disaster City was built to collapse.' and the slide 2 headline 'A town built to fall down' are on register. The slide bodies read as source paraphrase, close to a press release (slide 4: 'Systems had to locate casualties, identify signs of injury and send critical data to medical response teams'), and 'drawn to illustrate' appears on seven of nine bodies. No house rule breaks found. There are no colons, semicolons or dashes, and the 'But' is inside a verbatim quote."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "No topic repeats inside the window (no DARPA, TEEX or Disaster City entry in topics.json since 2026-10-22). One move is familiar. No. 83 on November 20th was also a drone and robotics story and closed on 'the grounded drone ... beside its case', and slide 9 here closes on a robot beside an open case. The structure and the studio blue sweep also follow recent decks."
+    }
+  ],
+  "weighted_score": 7.32,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild slide 8 so the headline and the picture carry Winchell's actual subject: put a human medic beside the robot in the frame and make the headline name the team (for example 'Medic and machine beat every approach. Still not enough.'), so no reader leaves believing the robots alone outperformed everything.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 8,
+      "problem": "Two primitive robots on a rail against a tiled wall carry the deck's turn. No human is in the 'human machine team', and the toy forms are the least crafted models in the deck.",
+      "fix": "Model a kneeling medic in the foreground right taking the data beam from the tracked robot, with the camera at medic eye height and a warm key from the left. Drop the rail and the yellow cart."
+    },
+    {
+      "slide": 3,
+      "problem": "A hazy grey-green mid-tone lower half and an empty upper-left sky. The tornado set is cut off at the left edge, label pills sit on the models, and four sets are drawn under 'Five ways'.",
+      "fix": "Bring the camera in and down so the four sets fill the lower two thirds edge to edge under a saturated studio sweep with a hard key. Move the labels onto the set plinths, and change the kicker and headline so they don't promise five drawn sets."
+    },
+    {
+      "slide": 6,
+      "problem": "The chain-link fence covers the whole frame and the robot behind it reads as a washed silhouette, so the badge grid floats with no dominant subject.",
+      "fix": "Shoot the badge wall square-on and closer so it fills more than half the frame. Push the fence to a single soft-focus post at the edge and light the badges with a side key so each casts a contact shadow on the mesh."
+    }
+  ]
+}

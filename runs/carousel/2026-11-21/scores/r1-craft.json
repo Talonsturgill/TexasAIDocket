@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.3,
+      "why": "Bespoke reading. Each frame was clearly made for its own sentence and differs from its neighbours in world, camera and scale. Strong frames: 5 (night course, violet sky, magenta to white blast column backlighting the gabion walls, lime link to a crouched role player, rover filling the right half on warm sand, type on the dark sand); 4 (rubble cutaway, the sensor beam lighting the seated role player through the slab gap, crafted to the bottom edge with a soil band); 7 (brass plate stacks at the declared $100,000 a plate: 10 plates for $1 million, 15 for $1.5 million, the pool stack running off the top of the frame because the pool is 'more than', matching figures.json plates_data, plates_systems and plates_pool); 9 (saturated orange case filling the frame on a blue truck bed, lime line ending in the empty antidote well). Weak frames: 3 is the faded grey middle the LOOK V2 test rejects. The bottom 45% sits under an olive and pale-yellow haze with low chroma. The top-left 40% is an empty cyan gradient. The labels are grey pills, not accent pills, and the 'tornado market' pill sits on top of the tornado model it names. Frame 1's cover: the cropped role player in the left foreground reads as a brown lump at 432 px, and the rover sits in a pale mid-blue band below a type block that takes the top 38%. Frame 6: the chain-link mesh runs over every badge and over the rover behind it, so at feed size there is no single silhouette, only texture. Frame 8: the yellow cart's top shows orange speckle noise (a render artifact), and the rover's track sprockets are loose primitive teeth. Frame 2: the lower half is uniform striped green lawn. It works as a type field but the grass banding is visible. Above 7 because six frames would pass in a serious feature. Not 8, because frame 3 fails the LOOK V2 test and frames 1 and 6 lack a single subject at feed size."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 8.0,
+      "why": "Bespoke reading. The spine holds on all nine: the same serif headline face, mono kicker and counter, the 'texasaidocket.com' line and claim ids in the same corners, and teal type washes. The lime data link means 'the robot reports' on 1, 4, 5, 8 and 9 and is never used on money, so the accent keeps one meaning. The teal tracked rover recurs on 1, 4, 5, 6, 7, 8 and 9 as a changing motif. The world changes from 2's green aerial to 5's violet night to 8's tiled room, which a bespoke deck allows. The story runs in order. Frame 3's olive haze sits slightly outside the palette. Frame 2's saturated lawn green appears nowhere else."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.5,
+      "why": "Every numeral traces: 52 (c11), November 5th and 13th (c1), 100 and $3 million (c12), $1.5 and $1 million (c3, c23), 2023 (c21), November 25th (c20), and $100,000 is figures.json plate_usd, labelled a drawing rule on slide 7. All sources are primary (TEEX and DARPA), and the first comment lists exactly the three fetched pages. 'AI' appears on no surface, and every casualty is called simulated or mock. Three phrasings are looser than their sources without misleading anyone. Slide 5's 'It searched through the blast' against c27's 'during a controlled explosion'. Slide 8 and the caption drop Winchell's 'in some of the most rigorous, large scale, complex environments'. The caption's 'Disaster City was built to collapse' against c11's 'structures that can collapse'."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 8.0,
+      "why": "A Texan learns what happened (the finals, the winners, the prizes), who (DARPA, with TEEX as host), where (Disaster City, College Station) and when. The one action, the TRIAGE-X topic open until November 25th, is named on slide 9 and in the caption, four days after the post. The county is never named. The stake for an ordinary Texan stays general because the only action is an SBIR bid that few readers can make. The caption's 'Who in Texas answers it by then?' helps."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The cover's 'The robot finds. The medic treats.' earns the swipe. Frame 2 pays at once with the place. The turn on 8, 'Better than every approach. Still not enough.', is drawn as a broken link with a gap between the two glowing ends, and it is the real change in understanding. The close on 9 lands on a deadline. Frame 6 (the headcount) could be cut or merged into 7 without loss, and frames 3 and 4 both explain the task before the drama on 5."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "Headlines have a voice: 'A town built to fall down', 'Find them. Read them. Tell a medic.', 'The next ask is delivery'. The body copy mostly paraphrases the TEEX release closely ('worked alongside first responders on simulated casualties, relaying critical data to human medics'), and 'Drawn to illustrate' recurs on six frames. No first person, no banned words, no colons in the slide strings, and the 'But' in the caption is inside a verbatim quote."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The subject (a disaster-training site and robots) and the win tone differ from the semiconductor and data-center topics that recur in the topic ledger. The plate-stack scale on 7 and the cutaway on 4 are fresh moves. The recurring rover-and-lime-link device and the pill labels are familiar from recent LOOK V2 decks. I did not compare against the last four decks in the artwork ledger, so this is not 10."
+    }
+  ],
+  "weighted_score": 7.8,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild frame 3 as a lit studio sweep in the win tone's saturated colours: drop the olive haze, pull the camera in until the four sets fill the bottom 60%, light each set from one key so its own colour reads, and make the labels accent pills placed beside (not on top of) the model each one names. It is the one frame that fails LOOK V2 outright and it holds down both the art median and coherence.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 3,
+      "problem": "The bottom 45% sits under a low-chroma olive and pale-yellow haze (the faded grey middle), the top-left 40% is an empty cyan gradient, the labels are grey pills, and the 'tornado market' pill sits on top of the tornado model.",
+      "fix": "Swap the haze for TXT.studio in the win tone with one side key so the teal risers and each set read saturated. Pull the camera in so the sets fill the bottom 60%. Make the labels accent pills that sit beside their models, never over them."
+    },
+    {
+      "slide": 1,
+      "problem": "At 432 px the cropped role player in the left foreground reads as an unidentifiable brown lump, and the rover sits in a pale mid-blue band under a type block covering the top 38%, so the cover has no hard light and dark.",
+      "fix": "Lower the camera and push in so the rover hull fills the bottom half against a deeper sky. Either crop the role player out or turn them so a boot and the hi-vis stripe read clearly. Shrink the type block to the headline plus two lines of body."
+    },
+    {
+      "slide": 6,
+      "problem": "The chain-link mesh in front runs over every badge and over the rover behind it, so the frame reads as texture, not one subject, and the rover is muddled.",
+      "fix": "Move the camera through the fence so the mesh is only a soft, out-of-focus frame along the left edge. Let the badge grid sit sharp as the single subject and drop the rover behind it."
+    },
+    {
+      "slide": 8,
+      "problem": "The yellow cart's top surface shows orange speckle noise (a render artifact), and the rover's track sprockets are loose primitive teeth.",
+      "fix": "Give the cart top a clean rounded material with no noise texture, and replace the loose sprocket teeth with the same TXT.roundedBox track the rover uses on frames 4 and 5."
+    }
+  ]
+}

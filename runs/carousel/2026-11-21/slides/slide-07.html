@@ -1,0 +1,198 @@
+<!doctype html>
+<!-- 2026-11-21, frame 7 of 9. THE PURSE ON THE PAD. Three stacks of machined brass plates stand on a sun bleached concrete pad
+     at Disaster City under the clean win sky, seen from plate height: the stack for the purse runs out of the top of the frame,
+     the stacks for the two winning prizes stand beside it at one scale, and the teal rover is parked beside the shortest as the
+     yardstick. One plate stands for FIG.plate_usd. Every stack height is read from window.FIG and checked. No lime on money. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:138px; width:620px">$1.5 million and $1 million</h1>
+<p class="dek" data-follow="22" style="left:80px; width:450px; font-size:27px; line-height:1.36">More than $3 million in cash prizes was on offer. RoboScout won the Systems competition and $1.5 million. Disruptors won the Data competition and $1 million. One plate stands for $100,000, drawn to illustrate.</p>
+<div class="lab plain" id="l-pool" style="white-space:normal; width:200px; font-size:24px; line-height:1.16; padding:8px 8px 9px; background:linear-gradient(180deg,#145a56,#0c3f44); box-shadow:0 10px 24px rgba(8,40,48,0.35)">more than <span style="white-space:nowrap">$3 million</span></div>
+<div class="lab plain" id="l-sys" style="white-space:normal; width:200px; font-size:24px; line-height:1.16; padding:8px 8px 9px; background:linear-gradient(180deg,#145a56,#0c3f44); box-shadow:0 10px 24px rgba(8,40,48,0.35)">Systems, <span style="white-space:nowrap">$1.5 million</span></div>
+<div class="lab plain" id="l-data" style="white-space:normal; width:200px; font-size:24px; line-height:1.16; padding:8px 8px 9px; background:linear-gradient(180deg,#145a56,#0c3f44); box-shadow:0 10px 24px rgba(8,40,48,0.35)">Data, <span style="white-space:nowrap">$1 million</span></div>
+<script>window.FIG = {"plate_usd": 100000, "plates_pool": 30, "plates_systems": 15, "plates_data": 10};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-21-handoff-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The purse", counter: "07 / 09", src: "c12 c3 c23", fit: { min: 76, max: 88, maxLines: 2 } });
+
+  /* HONESTY FIRST: the three stacks are read from the figures, and the figures must agree with the copy's own sums */
+  if (FIG.plates_systems * FIG.plate_usd !== 1500000) throw new Error('Systems stack does not make $1.5 million');
+  if (FIG.plates_data * FIG.plate_usd !== 1000000) throw new Error('Data stack does not make $1 million');
+  if (FIG.plates_pool * FIG.plate_usd !== 3000000) throw new Error('purse stack does not make $3 million');
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 4000, fog: 0.0016 });
+  const SLAB = 0.1;            /* the pad's thickness: everything stands on y = SLAB */
+
+  /* THE BRASS: machined plate stock. A warm metallic albedo with a fine brushed grain in the map, an anisotropic sheen along
+   * the grain, and a stamped blank mark on each plate's two visible faces */
+  const grain = CH.canvasTex(THREE, 1024, 256, (g, w, h) => {
+    g.fillStyle = '#f2f2f2'; g.fillRect(0, 0, w, h); const r = CH.rng(907);
+    for (let i = 0; i < 1600; i++) { const y = r() * h, a = 0.03 + r() * 0.09, c = r() < 0.5 ? '255,250,235' : '120,96,60';
+      g.fillStyle = 'rgba(' + c + ',' + a.toFixed(3) + ')'; g.fillRect(0, y, w, 0.6 + r() * 1.4); }
+  });
+  const brass = new THREE.MeshPhysicalMaterial({ name: 'brass-machined', color: 0xbf9a62, map: grain, metalness: 1, roughness: 0.27, anisotropy: 0.85, anisotropyRotation: 0, clearcoat: 0.15, clearcoatRoughness: 0.35, envMapIntensity: 1.1 });
+  brass.userData.txSurface = 'brushed';
+  const brassStamp = new THREE.MeshPhysicalMaterial({ name: 'brass-cast-stamp', color: 0x8c7246, metalness: 0.95, roughness: 0.62, envMapIntensity: 0.75 });
+  brassStamp.userData.txSurface = 'cast';
+
+  /* ONE PLATE, at true size: 320 x 105 x 220 mm, a deep chamfer that leaves a groove between plates, a stamped blank mark */
+  const PW = 0.32, PT = 0.105, PD = 0.22, SEAM = 0.004;
+  const plate = (rng) => {
+    const g = new THREE.Group();
+    const b = TXT.roundedBox(PW, PT - SEAM, PD, 0.014, brass); b.position.y = (PT - SEAM) / 2 + SEAM / 2; b.castShadow = b.receiveShadow = true; g.add(b);
+    const m1 = TXT.roundedBox(0.06, 0.022, 0.0016, 0.003, brassStamp); m1.position.set(-0.08, PT / 2, PD / 2 - 0.0002); g.add(m1);
+    const m2 = TXT.roundedBox(0.0016, 0.022, 0.05, 0.003, brassStamp); m2.position.set(PW / 2 - 0.0002, PT / 2, 0.03); g.add(m2);
+    g.position.x = (rng() - 0.5) * 0.022; g.position.z = (rng() - 0.5) * 0.018; g.rotation.y = (rng() - 0.5) * 0.09;
+    g.userData.plate = true;
+    return g;
+  };
+  const stack = (n, seed) => {
+    const s = new THREE.Group(), rng = CH.rng(seed);
+    for (let i = 0; i < n; i++) { const p = plate(rng); p.position.y += i * PT; s.add(p); }
+    let c = 0; s.children.forEach(ch => { if (ch.userData.plate) c++; });
+    if (c !== n) throw new Error('stack built ' + c + ' plates, expected ' + n);
+    s.userData.count = c; s.userData.top = n * PT;
+    return s;
+  };
+
+  /* THE THREE STACKS, at one depth so their heights compare exactly, each turned so a lit face and a side face show */
+  const X = { data: -0.33, sys: 0.15, pool: 0.63 }, TURN = -0.45;
+  const sData = stack(FIG.plates_data, 11), sSys = stack(FIG.plates_systems, 12), sPool = stack(FIG.plates_pool, 13);
+  [[sData, X.data, 0.03], [sSys, X.sys, -0.04], [sPool, X.pool, 0.02]].forEach(([s, x, yaw]) => { s.position.set(x, SLAB, 0); s.rotation.y = TURN + yaw; TXT.add(R, s); TXT.contact(R, s, { opacity: 0.85 }); });
+  if (sData.userData.count !== FIG.plates_data || sSys.userData.count !== FIG.plates_systems || sPool.userData.count !== FIG.plates_pool) throw new Error('drawn stacks disagree with the figures');
+  if (Math.abs(sSys.userData.top / sData.userData.top - FIG.plates_systems / FIG.plates_data) > 1e-9) throw new Error('stack heights are not to one scale');
+  if (Math.abs(sPool.userData.top / sData.userData.top - FIG.plates_pool / FIG.plates_data) > 1e-9) throw new Error('purse stack is not to the same scale');
+
+  /* THE ROVER, fully in frame beside the Data stack at the same depth, nose to the camera, its head turned to the brass */
+  const rov = K.make('triage_rover', { pan: -0.6, tilt: -0.05, mast: 1, grime: 0.45 });
+  rov.traverse(o => { if (o.isMesh && o.material && /tr-alu/.test(o.material.name || '')) { o.material = o.material.clone(); o.material.color.set(0x7d8590); o.material.roughness = 0.38; } });
+  /* the whip is left off this rover: this frame carries no link, and a mast line through the dek reads as a stray rule */
+  { rov.updateMatrixWorld(true); let whip = null, top = -1; rov.traverse(o => { if (!o.isMesh || !o.geometry) return; const b = new THREE.Box3().setFromObject(o), sz = b.getSize(new THREE.Vector3());
+      if (sz.x < 0.02 && sz.z < 0.02 && sz.y > 0.1 && b.max.y > top) { top = b.max.y; whip = o; } }); if (whip) whip.visible = false; }
+  rov.position.set(-1.0, SLAB, 0); rov.rotation.y = 0; TXT.add(R, rov); TXT.contact(R, rov, { opacity: 0.85 });
+
+  /* THE PAD: cast concrete with aggregate, cure mottle, a rust stain and the rover's rubber scuffs, saw cut joints */
+  const padTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    g.fillStyle = '#f4f0e6'; g.fillRect(0, 0, w, h); const r = CH.rng(2111);
+    for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, rr = 30 + r() * 140, gr = g.createRadialGradient(x, y, 0, x, y, rr);
+      const c = r() < 0.5 ? '200,184,150' : '255,250,238'; gr.addColorStop(0, 'rgba(' + c + ',' + (0.12 + r() * 0.12).toFixed(3) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)'); g.fillStyle = gr; g.fillRect(x - rr, y - rr, rr * 2, rr * 2); }
+    for (let i = 0; i < 9000; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(130,112,86,' + (0.2 + r() * 0.3).toFixed(3) + ')' : 'rgba(255,255,250,' + (0.3 + r() * 0.3).toFixed(3) + ')'; const z = 1 + r() * 2.6; g.fillRect(r() * w, r() * h, z, z); }
+    /* worn traffic: broad scuffed grit patches */
+    for (let i = 0; i < 70; i++) { const x = r() * w, y = r() * h, rr = 20 + r() * 70, gr = g.createRadialGradient(x, y, 0, x, y, rr); gr.addColorStop(0, 'rgba(150,128,96,' + (0.1 + r() * 0.12).toFixed(3) + ')'); gr.addColorStop(1, 'rgba(150,128,96,0)'); g.fillStyle = gr; g.fillRect(x - rr, y - rr, rr * 2, rr * 2); }
+  }, [14, 8]);
+  const conc = new THREE.MeshStandardMaterial({ name: 'conc-pad', color: 0xf2d8a4, map: padTex, roughness: 0.9 });
+  const pad = TXT.roundedBox(26, SLAB, 15, 0.02, conc); pad.position.set(0, SLAB / 2, 0.8); pad.receiveShadow = true; pad.castShadow = true; TXT.add(R, pad);
+  const joint = new THREE.MeshStandardMaterial({ name: 'conc-joint', color: 0x7f7462, roughness: 0.95 });
+  const flat = (w, d, mat, x, z, ry) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), mat); m.rotation.x = -Math.PI / 2; m.rotation.z = ry || 0; m.position.set(x, SLAB + 0.0009, z); m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m); return m; };
+  const scuff = new THREE.MeshStandardMaterial({ name: 'rubber-scuff', color: 0x4a4a4a, roughness: 0.95, transparent: true, opacity: 0.16, depthWrite: false });
+  /* THE TREAD MARKS: the rover drove in from the camera side and swung up beside the Data stack. Each track leaves a row of
+   * short cleat prints along a gentle curve, fading as the tread sheds its dust */
+  [-0.33, 0.33].forEach((off) => {
+    for (let k = 0; k < 46; k++) {
+      const t = k / 45, z = 0.45 + t * 4.6, x = -1.0 + off + 0.55 * t * t;
+      const ang = Math.atan2(0.55 * 2 * t, 4.6);
+      const m = flat(0.1, 0.035, scuff, x, z, -ang); m.material = scuff.clone(); m.material.opacity = 0.2 * (1 - t * 0.6);
+    }
+  });
+  const rust = new THREE.MeshStandardMaterial({ name: 'conc-stain', color: 0xb8742e, roughness: 0.95, transparent: true, opacity: 0.16, depthWrite: false });
+
+  /* DISASTER CITY, beside and behind: a lit live oak standing on the caliche at the right and a rubble pile at the left */
+  const oak = K.make('live_oak', { height: 6, spread: 10 }); oak.position.set(9.5, 0, -44); oak.rotation.y = 1.2; TXT.add(R, oak); TXT.contact(R, oak, { opacity: 0.6 });
+  const p1 = K.make('rubble_pile', { w: 12, d: 7, h: 3.2, seed: 5 }); p1.position.set(-30, 0, -95); p1.rotation.y = 0.4; TXT.add(R, p1); TXT.contact(R, p1, { opacity: 0.5 });
+
+  /* THE CAMERA: a metre up, level, the bases on one line above the pad and the purse cut by the top */
+  const FROM = [-0.12, 1.0, 7.4];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [-0.12, SLAB, 0], 540, 1030, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  const topPool = CH.project(THREE, R, [X.pool, SLAB + sPool.userData.top, 0]);
+  if (topPool[1] > -20) throw new Error('the purse stack must run out of the top of the frame, its top projects at ' + topPool[1].toFixed(0));
+  const poolRight = CH.rectOf(THREE, R, sPool, 0); if (poolRight[0] + poolRight[2] > 875) throw new Error('the purse stack reaches the counter, right edge ' + (poolRight[0] + poolRight[2]).toFixed(0));
+  const rovR = CH.rectOf(THREE, R, rov, 0); if (rovR[0] < 40) throw new Error('the rover is cut by the left edge at ' + rovR[0].toFixed(0));
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2win, { clouds: 0.14, zenith: 0x0b4fa6, horizon: 0x9adcf8, span: 0.3, horizonGlow: 0.3 }));
+  TXT.ground(R, { surface: 'caliche', color: 0xe9c27a, size: 3000, tile: 3, seed: 1121 });
+  TXT.scatter(R, { kind: 'grass', count: 1400, area: [-120, -260, 120, -45], avoid: [[6, -52, 13, -36]], seed: 7, scale: [0.4, 0.8] });
+  /* BUNCHGRASS, modelled: each clump a fan of tapered blades, ochre over green, seated on the caliche with a soft contact */
+  {
+    const bladeG = new THREE.ConeGeometry(0.011, 1, 4, 1, true); bladeG.translate(0, 0.5, 0);
+    const mats = [0xb39a4e, 0x9a9a48, 0xc8b06a, 0x7f8a3e].map(c => { const m = new THREE.MeshStandardMaterial({ name: 'grass-blade', color: c, roughness: 0.8, side: THREE.DoubleSide }); return m; });
+    const gr = CH.rng(441);
+    const spots = [];
+    for (let i = 0; i < 60; i++) { const z = -5 - gr() * 34, x = (gr() - 0.5) * (8 + (-z) * 1.3); if (x > 5 && x < 14 && z < -30) continue; spots.push([x, z]); }
+    spots.forEach(([x, z]) => {
+      const c = new THREE.Group(), n = 16 + Math.floor(gr() * 12), hh = 0.3 + gr() * 0.35;
+      for (let b = 0; b < n; b++) {
+        const m = new THREE.Mesh(bladeG, mats[Math.floor(gr() * mats.length)]); const a = gr() * Math.PI * 2, lean = 0.15 + gr() * 0.55;
+        m.scale.set(1, hh * (0.6 + gr() * 0.5), 1); m.rotation.set(Math.cos(a) * lean, 0, Math.sin(a) * lean); m.position.set(Math.cos(a) * 0.03, 0, Math.sin(a) * 0.03);
+        m.castShadow = true; m.userData.txBevel = false; c.add(m);
+      }
+      c.position.set(x, 0, z); TXT.add(R, c); TXT.contact(R, c, { opacity: 0.45 });
+    });
+  }
+
+  /* THE KEY: low butter sun from the left and a touch behind, so each stack's turned face is lit, its side falls to the
+   * teal fill, the mint rim catches the far edges and every stack throws a long shadow across the pad to the right */
+  const spec = CH.rigSpec(W, 14, 4096); spec.key = Object.assign({}, spec.key, { radius: 2.2 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.6, 0.6, 0.6], { distance: 30, shadowFar: 70, normalBias: 0.008 }), { light: { az: -108, el: 27 } }));
+  CH.unacne(R, 0.008);
+  TXT.weather(R, { grime: 0.12, height: 0.12, mottle: 0.12, skip: [sData, sSys, sPool, pad] });
+
+  /* THE BRASS'S OWN WORLD: what a polished plate on a sunny pad sees, a warm cream sky, a butter horizon band and the
+   * sunlit caliche below, so the metal stays brass from foot to crown and never mirrors the blue into olive */
+  {
+    const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 64, 32), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+      uniforms: { top: { value: new THREE.Color(0xb9d8e8) }, hz: { value: new THREE.Color(0xf6ecd8) }, low: { value: new THREE.Color(0xe0b878) }, deep: { value: new THREE.Color(0x2f6a64) } },
+      vertexShader: "varying vec3 v; void main(){ v = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
+      fragmentShader: "uniform vec3 top,hz,low,deep; varying vec3 v; void main(){ float y = v.y; vec3 c = y > 0.0 ? mix(hz, top, smoothstep(0.05, 0.9, y)) : mix(mix(hz, low, smoothstep(0.0, 0.1, -y)), deep, smoothstep(0.15, 0.8, -y)); gl_FragColor = vec4(c, 1.0); }" })));
+    [[-0.75, 0.5, 6, 3.4], [0.9, 0.9, 1.0, 0.8], [-1.6, 0.25, 6, 4.0]].forEach(([az, w, hgt, k]) => {
+      const pnl = new THREE.Mesh(new THREE.PlaneGeometry(w, hgt), new THREE.MeshBasicMaterial({ color: 0xfff6e0, side: THREE.DoubleSide }));
+      pnl.material.color.multiplyScalar(k); pnl.position.set(Math.sin(az) * 12, 1, Math.cos(az) * 12); pnl.lookAt(0, 0, 0); env.add(pnl);
+    });
+    { const top = new THREE.Mesh(new THREE.PlaneGeometry(6, 2.2), new THREE.MeshBasicMaterial({ color: 0xfff4dc, side: THREE.DoubleSide })); top.material.color.multiplyScalar(2.6); top.position.set(-2, 11, 2); top.lookAt(0, 0, 0); env.add(top); }
+    const pm = new THREE.PMREMGenerator(R.renderer), tex = pm.fromScene(env, 0.0).texture; pm.dispose();
+    [brass, brassStamp].forEach(m => { m.envMap = tex; m.envMapIntensity = 1.0; m.needsUpdate = true; });
+  }
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+
+  /* THE PILLS, on the pad in front of each stack, so the plates stay clear to count */
+  const pin = (id, x, dy) => {
+    const el = document.getElementById(id), q = CH.project(THREE, R, [x, SLAB, 0.2]);
+    const r = el.getBoundingClientRect(); let left = q[0] - r.width / 2;
+    left = Math.max(80, Math.min(left, 1080 - 80 - r.width));
+    el.style.left = Math.round(left) + 'px'; el.style.top = Math.round(q[1] + 16 + (dy || 0)) + 'px';
+  };
+  /* the middle pill steps down a row, so three pills wider than the stack pitch never touch */
+  pin('l-data', X.data); pin('l-sys', X.sys, 74); pin('l-pool', X.pool);
+  { const ids = ['l-data', 'l-sys', 'l-pool'].map(i => document.getElementById(i).getBoundingClientRect());
+    const hit = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+    if (hit(ids[0], ids[1]) || hit(ids[1], ids[2]) || hit(ids[0], ids[2])) throw new Error('pills overlap'); }
+
+  { const h = document.getElementById('hook').getBoundingClientRect(), d = document.querySelector('.dek').getBoundingClientRect();
+    CH.seat(cx, { box: { x: 70, y: h.top, w: Math.max(h.width, d.width) - 20, h: d.bottom - h.top }, a: 0.42, fade: 220 }); }
+  CH.seat(cx, { sel: '.kick', a: 0.25, fade: 140 });
+  CH.seat(cx, { sel: '.count', a: 0.35, fade: 120 });
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.42, fade: 130 }));
+  TXLOOK.footWash(cx, { a: 0.5, height: 180 });
+  CH.seat(cx, { sel: '.dek', a: 0.42, fade: 120 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.src', a: 0.3, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  CH.seat(cx, { sel: '.tx-site', a: 0.2, fade: 80 });   /* contrast floor, panel_ready 4.5 */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+The first author is an undergraduate.
+
+Iyanuoluwa Alegbeleye studies computer science at East Texas A&M in Commerce. Professor Jinoh Kim leads the team. Their question was whether AI can spot false location in a drone's flight records.
+
+Their approach never asks the GPS. It reads the drone's own motion sensors for how fast the drone moves, which way and over how much time. The team used 96 real flights, 54 of them under controlled spoofing attacks. The models were judged on 22 flights they had never seen. Given 10 consecutive readings, a model called Chronos scored 97.5% on one balanced measure. That is a single score, not a share of attacks caught.
+
+Every flight in the study was a recording. Can the same check catch a false fix while the drone is still in the air?
+
+#EastTexasAM #CommerceTexas #GPSSpoofing

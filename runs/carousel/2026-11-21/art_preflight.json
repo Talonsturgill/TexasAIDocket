@@ -1,0 +1,259 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
+    "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
+    "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
+    "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
+    "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+    "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 53.9,
+      "mid": 0.614,
+      "dark": 0.03,
+      "grey_mid": 0.105,
+      "vivid": 0.201,
+      "median_C": 24.6
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 25.6,
+      "mid": 0.32,
+      "dark": 0.165,
+      "grey_mid": 0.097,
+      "vivid": 0.403,
+      "median_C": 15.3
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 36.8,
+      "mid": 0.525,
+      "dark": 0.023,
+      "grey_mid": 0.162,
+      "vivid": 0.464,
+      "median_C": 26.3
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
+      "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
+      "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
+      "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
+      "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+      "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "source": "carousel-art-director",
+        "subject": "A teal tracked triage rover drawn close and large on pale broken concrete. Its mast head sends a cyan scan cone out to the left, and a lime arc from its radio box lands on the rugged tablet held by a medic in blue coveralls, seen from behind against stacked slabs with a red first-aid bag.",
+        "visual_consequence": "With no words, the machine senses and the person receives. The single lime arc is the only accent line in the frame and runs from the rover's radio into the tablet in the medic's hands. At 432 px the rover, the arc and the standing medic read as separate shapes, and the headline sits in clean sky above the mast.",
+        "weakness": "The foreground casualty's boot soles at lower left read at native size as smooth brown capsules, a kit mannequin part. The scan cone ends on the yellow building fragment rather than the casualty. The mast head is a stack of black boxes, and the bottom fifth is soft smeared concrete.",
+        "repair": "Take the casualty's boots out of frame or hide them behind a rubble slab, then aim the scan cone down toward that off-frame point at the left edge.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
+          "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
+          "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "source": "carousel-slide-critic",
+        "critic": {
+          "slide": 5,
+          "score": 8.1,
+          "points": {
+            "only_this_sentence": 8,
+            "one_idea": 8,
+            "composed": 8,
+            "crafted": 8,
+            "unlike_neighbours": 7,
+            "honest": 7
+          },
+          "fixes": [
+            "Seat the near track pod in the hull with a sponson and shared contact shadow.",
+            "Medic helmet hard brim and butter rim; pull the lime spill off the barrier behind the medic."
+          ],
+          "verdict": "ship",
+          "round": 3
+        },
+        "render_sha256": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
+        "inputs": {
+          "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
+          "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "source": "carousel-art-director",
+        "subject": "An open orange rugged hard case on a blue pickup tailgate at dusk, its dark gridded foam holding a vial seat, a capsule, a syringe and one empty round pocket, with a parked teal tracked rover at the left edge, mast and lens up, in a dry grass field.",
+        "visual_consequence": "A lime tube leaves the rover's mast, arcs over the open lid and drops into the one empty pocket, so the machine hands its payload to the medic's kit and the empty slot is what is still missing, delivery. Lime is the only saturated green in the frame.",
+        "weakness": "The teal foot wash softens the case's lower ribs over a dark footprint plate, two white specks float over the rover, the strike plates and rails are glossy, the cab behind is a plain blue slab, the lid ticks read as a gauge and the tube bulges slightly over the lid.",
+        "repair": "None required for acceptance. Remove the specks and stop the foot wash above the case's lower ribs if the frame is touched again.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+          "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
+        }
+      }
+    ],
+    "note": "Rebound 2026-11-22 after fig_inject made frames 1, 5 and 9 read FIG statically. The renders are byte-identical to the reviewed ones."
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "One lime link shows what an autonomous machine hands a human medic, working on the rubble, crossing smoke at night, split between two halves and open toward a dose, with every more than figure drawn to its floor and run off the frame.",
+    "build_risk": "Frame 5 is a night frame in a win deck, so it must stay teal and violet and never black while a burst blooms and the link crosses smoke. A new tracked rover model must read as built hardware, not a box.",
+    "distinct_from_recent": "Nov 20 drew a survey quad on a ridge, a frosted twin, a clay tablet and a loupe. Nov 19 drew sort glass, flies and a tube rack. Nov 18 drew a survey satellite and stake grids. None drew a ground robot, a night scene lit by a burst, brass stacks or a sectioned rubble pile."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
+      "render/slide-01.png": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
+      "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
+      "render/slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864"
+    },
+    "9": {
+      "assets/js/deck/2026-11-21-handoff-bespoke.js": "d27a010089808db89ff64701e1d41c97ede91c72854260340b93a6ae0ad6cbf2",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+      "render/slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
+    }
+  },
+  "needs_review": [
+    1,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "3aa2e6ab2fbc3506cad4e1beb5d4b734b858498e86c83db6dd59003e4b6234d9",
+    "slide-01.webp": "c72a89f412c2728adec8088193bc378bdfa045f2f84a47698f5f2c4e3f0f0350",
+    "slides/slide-05.html": "ca9b1ccf12aaa4538b03871e54acd20cbd56042e4199e51b0d20528945cfa3ce",
+    "slide-05.png": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
+    "slides/slide-09.html": "303b4aff2daf8a640dbdbe2fd93da395fce072c00795aa9f2379fdf3a634fea0",
+    "slide-09.png": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "c72a89f412c2728adec8088193bc378bdfa045f2f84a47698f5f2c4e3f0f0350",
+      "from_sha256": "1d835ba78169af0be9558e953edd85809fe3059650a4b0cf2e30e5fc5ff34f3c",
+      "psnr_db": 40.316
+    },
+    {
+      "to": "slide-05.png",
+      "to_sha256": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
+      "from_sha256": "69db9c77e0302e26f8baa8eea1b25322666f571e771e966ed679d55492e9f864",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8",
+      "from_sha256": "0cb12509779acccd46db0ea5ce16670d85ecdea9a7135c7542431787b4b792d8",
+      "psnr_db": 999.0
+    }
+  ]
+}

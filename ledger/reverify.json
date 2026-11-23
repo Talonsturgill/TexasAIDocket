@@ -1,14 +1,14 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-11-18",
+    "generated": "2026-11-22",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
     "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:12:49 GMT",
-      "hash": "25f2c3020b12ccd755272fddcf136e6c844b2a01b7475e220937616b1569baf4",
+      "last_modified": "Mon, 23 Nov 2026 05:09:58 GMT",
+      "hash": "9e29a61eca426b6aeb5e1d81d684a47c016ec91032cd3a4499188d7511cd53ac",
       "proven": [
         "tx-2026-0167-c1",
         "tx-2026-0167-c2",
@@ -28,7 +28,7 @@
     "https://abc7amarillo.com/news/local/worlds-largest-ai-data-center-big-topic-amarillo-city-council-meeting-fermi-america-impact-water-envornment-public-comment-water-supply-ogallala-aquifer": {
       "etag": null,
       "last_modified": null,
-      "hash": "225c29994644814544ce54cd3d6ba8b6498597f6913b7fa756055d710a07e8f9",
+      "hash": "cfcdd541d03c5b74463d3003114720c82f8e39164823677aaa8d442e4cf3516f",
       "proven": [
         "tx-2026-0047-c1",
         "tx-2026-0047-c2",
@@ -39,15 +39,15 @@
     "https://about.fb.com/news/2025/10/metas-new-ai-optimized-data-center-el-paso/": {
       "etag": null,
       "last_modified": null,
-      "hash": "1a216e7bbdd62dc06a725442034b60dfed8d394f1df1e5cd4c57f21a5c985b5f",
+      "hash": "251484a1d42a978bb52ea1f37518c324b5d500f20eb285b6cd1738b70ab5eb62",
       "proven": [
         "tx-2026-0193-c18"
       ]
     },
     "https://advancing.utsystem.edu/board-of-regents/meetings/board-meeting-2026-05-20": {
-      "etag": "W/\"1794613627-gzip\"",
-      "last_modified": "Fri, 13 Nov 2026 23:47:07 GMT",
-      "hash": "a5b35728842649220fb9982f894ba84892c742bbf2d33566be7ad6c993926ced",
+      "etag": "W/\"1795200591-gzip\"",
+      "last_modified": "Fri, 20 Nov 2026 18:49:51 GMT",
+      "hash": "e0b3127703257acc7a6e67aa277dc24901a61d073b9c3050782aad763f54858b",
       "proven": [
         "tx-2026-0040-c5"
       ]
@@ -99,7 +99,7 @@
     "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName": {
       "etag": null,
       "last_modified": null,
-      "hash": "b32e7e115be9786e96dc0d47272fd0c5740208782ddae8d077b3f3d141c3b6e3",
+      "hash": "1edf5bcf526601b100d9855f509474247981e28660a29c26f3e54883eaf9908f",
       "proven": [
         "tx-2026-0163-c1",
         "tx-2026-0163-c2",
@@ -114,7 +114,7 @@
     "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode": {
       "etag": null,
       "last_modified": null,
-      "hash": "1a2f39b5d165732df6152a9e970adc105de3d5f236a3dafe53d02ce4e38af83f",
+      "hash": "0d35a644c2abf2423a2ec8a5a1bc85093ff3fa5f0dfaa26271d169773150011e",
       "proven": [
         "tx-2026-0085-c1",
         "tx-2026-0085-c2",
@@ -171,7 +171,7 @@
     "https://api.nsf.gov/services/v1/awards/2535195.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "b32e7e115be9786e96dc0d47272fd0c5740208782ddae8d077b3f3d141c3b6e3",
+      "hash": "1edf5bcf526601b100d9855f509474247981e28660a29c26f3e54883eaf9908f",
       "proven": [
         "tx-2026-0104-c1",
         "tx-2026-0104-c2",
@@ -186,7 +186,7 @@
     "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText": {
       "etag": null,
       "last_modified": null,
-      "hash": "222c32c3ed6ec34956948f884eb33c29fd7725076de8064ec110d596f517367b",
+      "hash": "5e4d8c75f120433aa90df01778e6724febdce2b51641cfa5b3b54ed47a1de41c",
       "proven": [
         "tx-2026-0081-c1",
         "tx-2026-0081-c2",
@@ -197,7 +197,7 @@
     "https://api.nsf.gov/services/v1/awards/2537075.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText,piFirstName,piLastName,awardeeCity": {
       "etag": null,
       "last_modified": null,
-      "hash": "a7ca0cb4cf2e3205a2053010372a49e042bc98af40dc6a94cbcc9d2583da1623",
+      "hash": "6d4323def3f8d975f3df0fac7fd9fa96ac97b195c1839a80e7503b94f5f3ed88",
       "proven": [
         "tx-2026-0199-c1",
         "tx-2026-0199-c10",
@@ -215,7 +215,7 @@
     "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText": {
       "etag": null,
       "last_modified": null,
-      "hash": "a56f3486bc7f59da398dc13dc1ae08a056061a69acc1468f49e9d80147a34a51",
+      "hash": "a1009d8b2ddc95355e3015649e0224216624c4ac08829833efb1bad84c2c323f",
       "proven": [
         "tx-2026-0080-c1",
         "tx-2026-0080-c2",
@@ -226,7 +226,7 @@
     "https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText": {
       "etag": null,
       "last_modified": null,
-      "hash": "1a2f39b5d165732df6152a9e970adc105de3d5f236a3dafe53d02ce4e38af83f",
+      "hash": "0d35a644c2abf2423a2ec8a5a1bc85093ff3fa5f0dfaa26271d169773150011e",
       "proven": [
         "tx-2026-0098-c1",
         "tx-2026-0098-c2",
@@ -265,7 +265,7 @@
     "https://api.nsf.gov/services/v1/awards/2619079.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "d1ee89c4d57dedcc527c927e2aa673462d2fcc098ee8b3bee6c68d9300597129",
+      "hash": "6b29044a8045dbc9b4f486afc3bfec4ba385c584fe68c9969c25101b8d094ddb",
       "proven": [
         "tx-2026-0092-c1",
         "tx-2026-0092-c2",
@@ -278,7 +278,7 @@
     "https://api.nsf.gov/services/v1/awards/2619080.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "0031bb7b29598c964856d035b6b77ffedd012ea0e552be11e01fc683caa4c64c",
+      "hash": "d219c02c044ae522652cb67fd5dde46a34d5356a41c9d3c08c771fd2971a1b81",
       "proven": [
         "tx-2026-0092-c5",
         "tx-2026-0092-c8"
@@ -311,8 +311,8 @@
     },
     "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:06 GMT",
-      "hash": "f36519ae6a5a6483cda2c2896f1aa24b705c7008abd9a95bd36133881acb28a4",
+      "last_modified": "Mon, 23 Nov 2026 05:10:15 GMT",
+      "hash": "ceef8f74d830b7085408f752c33d9e7c3a6b11c135c4977ef0cbcf30c390978e",
       "proven": [
         "tx-2026-0190-c1",
         "tx-2026-0190-c2",
@@ -434,7 +434,7 @@
     "https://cbsaustin.com/news/local/taylor-city-council-greenlights-data-center-after-months-of-debate": {
       "etag": null,
       "last_modified": null,
-      "hash": "02439558464bed77b65ac80177acbb6de59b122e291d010c05fe4897e82700e3",
+      "hash": "2b7fe8bc5f59eaadb1c3766649c97a286595472ed9cc9ed9e85a20690ce369cb",
       "proven": [
         "tx-2026-0203-c19"
       ]
@@ -446,9 +446,9 @@
       "proven": []
     },
     "https://city-of-temple.prowly.com/467476-upcoming-meeting-notice": {
-      "etag": "W/\"8d17300e3a21ac531bc8b632bf97d879\"",
+      "etag": "W/\"7491cbd073ad545509eb376d3ee53759\"",
       "last_modified": null,
-      "hash": "8d17300e3a21ac531bc8b632bf97d8796745e167193a7cfbf7d5bd88fc66ff57",
+      "hash": "7491cbd073ad545509eb376d3ee537596286cad4785ee11340f15b5960a343d9",
       "proven": [
         "tx-2026-0026-c1",
         "tx-2026-0026-c2",
@@ -474,40 +474,40 @@
     },
     "https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 05:09:02 GMT",
-      "hash": "e98a75f0d2c8686bcd2d22fed55cb85af3e6ec0e1940a89fdc7a4ea2b2137407",
+      "last_modified": "Sat, 21 Nov 2026 05:08:55 GMT",
+      "hash": "b29f1f6e6c94abc1091b7062262dfb6b8a494eca8a65217d8b112d463273d16d",
       "proven": [
         "tx-2026-0028-c1"
       ]
     },
     "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-to-bring-new-way-of-learning-to-bastrop-children/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:09 GMT",
-      "hash": "ed59c476aa1a1930ceff533d386e759818898052cdd1a702633e114d236677ee",
+      "last_modified": "Mon, 23 Nov 2026 05:10:18 GMT",
+      "hash": "11ab947177e2b0cfb798ee17916f7cb6c316ca7b4a9ff86e97611a727abe5abc",
       "proven": [
         "tx-2026-0200-c30"
       ]
     },
     "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-will-not-open-in-bastrop-after-tea-veto/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:09 GMT",
-      "hash": "4850fda976d675691898452ef95968a4f5abd683f518ec4edb0a4595294bc065",
+      "last_modified": "Mon, 23 Nov 2026 05:10:19 GMT",
+      "hash": "a65ba34eb30a014df2163949a8b4caa64cf7c3a4ce66d27927a30f2e2378f443",
       "proven": [
         "tx-2026-0200-c29"
       ]
     },
     "https://communityimpact.com/central-austin/texas-legislature/texas-includes-minimal-data-center-info-in-state-water-plan-citing-limited-data/": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 05:09:02 GMT",
-      "hash": "8a9a93f31cc7e9133fd3b939389f989074e22b936bc7973addbf5049eefb2eb5",
+      "last_modified": "Sun, 22 Nov 2026 05:08:44 GMT",
+      "hash": "422265e22f7475bcc9a858d5ba8d992aa8637ff0f065ec7774e4daf00547c519",
       "proven": [
         "tx-2026-0056-c3"
       ]
     },
     "https://communityimpact.com/denton/government/denton-holds-final-hearing-first-reading-of-proposed-data-center-moratorium/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:09 GMT",
-      "hash": "165187564e637ea04cef53ef46766729cd320395c9fee37e6b977e684e1962e1",
+      "last_modified": "Mon, 23 Nov 2026 05:10:19 GMT",
+      "hash": "c7090566a0f5fa2e882b66071a184345e101d6cc131a10f832877ea951517964",
       "proven": [
         "tx-2026-0087-c3",
         "tx-2026-0087-c4"
@@ -515,24 +515,24 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 05:09:02 GMT",
-      "hash": "3f92824182330f7220e094e02608be2b45663810193b7b40b53c5be9cb73a967",
+      "last_modified": "Mon, 23 Nov 2026 05:10:19 GMT",
+      "hash": "999da18a3162ec2a028967eb62facbfb1342b28fde2aa8142e0c02be4de0d7b7",
       "proven": [
         "tx-2026-0062-c1"
       ]
     },
     "https://communityimpact.com/northwest-austin/development/ut-board-of-regents-approves-first-phase-of-the-ut-dell-medical-center/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:09 GMT",
-      "hash": "ff3f965058785b428bbf3f6fe200ece4f8e0a22e09a699bdb93c4f1c498c1d98",
+      "last_modified": "Mon, 23 Nov 2026 05:10:19 GMT",
+      "hash": "446ccf2c61e5587afb5d8ddc734f25956b43e0cec408f407b1b3e24f3a9aed6a",
       "proven": [
         "tx-2026-0095-c5"
       ]
     },
     "https://communityimpact.com/pflugerville-hutto/election/in-early-voting-pflugerville-voters-support-all-but-4-city-charter-amendments/": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 05:14:55 GMT",
-      "hash": "1a40feedc10744625e722c5f8c3a35daba395579b939cc0214c3a4570e613ad5",
+      "last_modified": "Sun, 22 Nov 2026 05:08:44 GMT",
+      "hash": "aecac36607a9edb3c82d43ee5fd6fa125a1c824798ad409e3b1984cc91106363",
       "proven": [
         "tx-2026-0075-c6",
         "tx-2026-0075-c7"
@@ -540,8 +540,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 05:09:02 GMT",
-      "hash": "2244e9ac4c4cc36b78c33783f51b07d718ed814106842d6be62af51cf4d25f1d",
+      "last_modified": "Mon, 23 Nov 2026 05:10:20 GMT",
+      "hash": "1c10637f790dc96867461556fce15366860bcec76ce061f5e70ad61b957694de",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -589,7 +589,7 @@
     "https://corporate.exxonmobil.com/locations/united-states/permian-basin": {
       "etag": null,
       "last_modified": null,
-      "hash": "2ed5ae4b8e8dd3caf5c9b3416894b0ab993475bc9069b54c33363025b5cf6790",
+      "hash": "6fc8b408bd1356d998b8adeedbd8935a4ded6ee1099751282d9314884dd01236",
       "proven": [
         "tx-2026-0242-c14",
         "tx-2026-0242-c15"
@@ -598,7 +598,7 @@
     "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian": {
       "etag": null,
       "last_modified": null,
-      "hash": "2f196fe72c0dab484a48e195a5ff0d8c7c094781cd3afaf01ffcdc9dcd568bff",
+      "hash": "be61015b3a232c6a6a23a2290a4f8f504fbe7c91144ac0e025269c6bb1012811",
       "proven": [
         "tx-2026-0240-c13",
         "tx-2026-0240-c14",
@@ -629,8 +629,8 @@
     },
     "https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/": {
       "etag": null,
-      "last_modified": "Fri, 13 Nov 2026 22:14:46 GMT",
-      "hash": "f4c33c41d82ad49459a98868a89e5d20a5bc1991c366ce2a790311b29d71d65e",
+      "last_modified": "Sat, 21 Nov 2026 05:08:59 GMT",
+      "hash": "66349f67301877a21ec3dd276c7111fc3232b6223aa4cf2ecff3995364eefea7",
       "proven": [
         "tx-2026-0179-c24",
         "tx-2026-0179-c25",
@@ -643,7 +643,7 @@
     "https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32": {
       "etag": null,
       "last_modified": null,
-      "hash": "11777a93672afa4f8479ad1ae621ce8c10d322816f409229e3482eecfd09e3db",
+      "hash": "1f9e1b0348fbc827e1c01795f89f27e865ae47fe2c4ccae913fea453ca9fba3e",
       "proven": [
         "tx-2026-0087-c1"
       ]
@@ -651,7 +651,7 @@
     "https://denton-tx.legistar.com/MeetingDetail.aspx?ID=1356104&GUID=2C80918D-F58E-4522-A845-6B78CAC3DB44": {
       "etag": null,
       "last_modified": null,
-      "hash": "255c33a8a64daab8dfc9d7f79bccf1c3dfeec06196f4ca15636aa93f237cd37d",
+      "hash": "8097c5b1aacb6e82ffa4afbc3ec5693e84cce617a4956ee7af5d269a3b821d3d",
       "proven": [
         "tx-2026-0087-c2"
       ]
@@ -707,8 +707,8 @@
     },
     "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 05:09:05 GMT",
-      "hash": "738b876c83f86a58724c86a30484ef31e67073a73558a501367d34a2c0403bbe",
+      "last_modified": "Mon, 23 Nov 2026 05:10:26 GMT",
+      "hash": "bcfe6079aead6a1981a580e5e8064f45faf5f2c03001a9f14a49addaf86814f2",
       "proven": [
         "tx-2026-0186-c18",
         "tx-2026-0232-c13"
@@ -716,8 +716,8 @@
     },
     "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:17 GMT",
-      "hash": "c413e771a674c597a88d42d5610fbcaa93ed6eca1a5c0d3f13fe9555e84d1971",
+      "last_modified": "Mon, 23 Nov 2026 05:10:26 GMT",
+      "hash": "a53407fc4760608bc2afe43c38d3c1ba9b7f2c91377a13e40291cd9d8810437b",
       "proven": [
         "tx-2026-0132-c1",
         "tx-2026-0132-c2",
@@ -727,7 +727,7 @@
     "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=": {
       "etag": null,
       "last_modified": null,
-      "hash": "fc567cda04eee83bafbf18eaf096a825fd37c7829f62e031b782b1648e228317",
+      "hash": "7434b1a010302e09e36eb0f3f89b38786f8333186e4dc44be0e32dafd8fcf343",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
@@ -749,7 +749,7 @@
     "https://engineering.unt.edu/cse/undergraduate/bsai.html": {
       "etag": null,
       "last_modified": null,
-      "hash": "985c8dcee42359c79de072b8450d50695966a5f0e943a238b6f44b7989149bc3",
+      "hash": "47e6c5b73efa8ed1dc5122b83382053125c51986165a05d3cd289fcb9f01cab4",
       "proven": [
         "tx-2026-0133-c1"
       ]
@@ -786,7 +786,7 @@
     "https://finviz.com/news/390988/merlin-demonstrates-autonomous-flight-capabilities-at-texas-department-of-transportation-project-nexus-eipp-kickoff-event": {
       "etag": null,
       "last_modified": null,
-      "hash": "6fb1266baf145a630b2c6e826ed1cb36abc270dc4296eb6ccf8da214d42e9f80",
+      "hash": "b3943e7933d34e26e435ceb94b165ec687102ff61e71695bc71d7dc46c12a4d4",
       "proven": [
         "tx-2026-0205-c10",
         "tx-2026-0205-c8",
@@ -875,7 +875,7 @@
     "https://grist.org/energy/chevron-wants-a-school-district-tax-break-for-a-data-center-power-plant/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5beecd2a4f53ae13a9e775fe2da2dbe5ca0ba54699185f59d780999ce60ffb60",
+      "hash": "e192e362705d5ae2889bfb0bc35b1585f370f611b7130a249fedf6ba1c6f7863",
       "proven": [
         "tx-2026-0069-c4",
         "tx-2026-0069-c6"
@@ -892,8 +892,8 @@
     },
     "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:21 GMT",
-      "hash": "61fe8876d83c137061e357706938b49a7e74433c42c61892ef6bee3aeeab104e",
+      "last_modified": "Mon, 23 Nov 2026 05:10:29 GMT",
+      "hash": "acdf6e7bc921cd71e9f7f7b3428a8ea8330b7d9412af803322e68f345d4ec26a",
       "proven": [
         "tx-2026-0212-c1",
         "tx-2026-0212-c10",
@@ -1040,7 +1040,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending": {
       "etag": null,
       "last_modified": null,
-      "hash": "1dff0478bc74b4c6ec14146bff2d2377a9d100b72f47c111c2f61894969945d7",
+      "hash": "bb1535f3ec3bbff64ecdfb8a28f011b8a616b8cee42e28eed90022e268700280",
       "proven": [
         "tx-2026-0001-c1",
         "tx-2026-0001-c2",
@@ -1095,7 +1095,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending": {
       "etag": null,
       "last_modified": null,
-      "hash": "6f26b3e5d21d57bf4072f80c1d6912f02256b727a173d8bdedb71d6c00f87379",
+      "hash": "3eca3adf53b3e0e8c4ca5940c27915eb4afa0667b23abf544d41d3cca795e5bc",
       "proven": [
         "tx-2026-0076-c1",
         "tx-2026-0076-c12",
@@ -1109,7 +1109,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59076&ItemMatch=Equal&DocumentType=ALL&SortBy=ItemNumber&SortOrder=Descending": {
       "etag": null,
       "last_modified": null,
-      "hash": "60a9712af2b0850456c731f62da232bd3010906093b824ed5349099f1758ebdf",
+      "hash": "39f0226482ee7994b1aa8e61f66bb36b2a59f667b8f4e8276a856c32815cd081",
       "proven": [
         "tx-2026-0193-c16"
       ]
@@ -1133,7 +1133,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending": {
       "etag": null,
       "last_modified": null,
-      "hash": "7ceb4dbc44c75b36ac602194398f196d5d6cadcd7cfbda9afee2814acea37d7e",
+      "hash": "f07d297ad54bc92457f989e1b751479d93fe2818f2767f21ceeb0c6656d7176a",
       "proven": [
         "tx-2026-0003-c1",
         "tx-2026-0003-c19",
@@ -1147,7 +1147,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending": {
       "etag": null,
       "last_modified": null,
-      "hash": "eedbc05e74b2917d6b6673ddc856f05ca6c51fe9a55a9aa2edfd88d909ad94b0",
+      "hash": "b10cdf46a6828d9936a70983ece5887dc47c6a401b77ed825933b61ee82ec2c6",
       "proven": []
     },
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending": {
@@ -1172,7 +1172,7 @@
     "https://ir.aurora.tech/news-events/press-releases/detail/152/aurora-outlines-2030-vision-to-scale-to-30000-driverless-trucks-at-analyst-and-investor-day": {
       "etag": null,
       "last_modified": null,
-      "hash": "762cd45322e13c24c7c23b71f6dfdb1753aaf550ee6620fdcc86bc3d1448cc5b",
+      "hash": "d484458d645988a2114f70e753a0d708e84cd6c1546af88942b9f04abb6b933d",
       "proven": [
         "tx-2026-0239-c14"
       ]
@@ -1180,7 +1180,7 @@
     "https://kodiak.ai/news/autonomy-readiness-96-driverless-long-haul-launch": {
       "etag": null,
       "last_modified": null,
-      "hash": "583950bed2cd2a78d64a5bf74057ecfd8c8d5bd003b021b5b385882051c9bbb9",
+      "hash": "303bb5a0302a20e281570fb0dbb69bd9f2cf46d7eeafa1a9e3e3e49747d40db3",
       "proven": [
         "tx-2026-0198-c17"
       ]
@@ -1188,7 +1188,7 @@
     "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93": {
       "etag": null,
       "last_modified": null,
-      "hash": "3a7716104e6c2befea24f760d0483b4647178154edb44b4f1adcc9124aa5b8f9",
+      "hash": "71736184c25d1aeaa6803b68f151dd62d3f23ed72924c59040aa20f2c14fd09d",
       "proven": [
         "tx-2026-0198-c14",
         "tx-2026-0198-c15"
@@ -1197,7 +1197,7 @@
     "https://kodiak.ai/news/ikea-driverless-launch-partner": {
       "etag": null,
       "last_modified": null,
-      "hash": "075b92c0907652b1074f0a9f46f1754cdc75166580a35a8a9b8e9164a6ea727f",
+      "hash": "0eed4f4443f7ee5cce1f2cfa165c929bf4a5fe8934916f7d2b665e43b936df4e",
       "proven": [
         "tx-2026-0198-c10",
         "tx-2026-0198-c11",
@@ -1208,7 +1208,7 @@
     "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo": {
       "etag": null,
       "last_modified": null,
-      "hash": "21671a40c6d557d237d9c52d665a1db0244d1d767d818e0090eae82d78d69d1c",
+      "hash": "1a8880f50f2722ccf66af36562a035d5adf7d1f59d41e6cd2d6df59e33a9e64a",
       "proven": [
         "tx-2026-0209-c1",
         "tx-2026-0209-c2",
@@ -1219,7 +1219,7 @@
     "https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane": {
       "etag": null,
       "last_modified": null,
-      "hash": "07aef8929f8fac634e264d7b8e2ee76e584984aa99a5b67974c12c3ad7c5a6b6",
+      "hash": "39218cd3fcfef2841a0220e8b1c4c4b430283d58093170dceef66b74a059a056",
       "proven": [
         "tx-2026-0198-c1",
         "tx-2026-0198-c16",
@@ -1236,13 +1236,13 @@
     "https://kvia.com/news/2026/07/29/utep-to-receive-nearly-2-million-to-improve-cybersecurity-and-ai-training-senator-john-cornyn/": {
       "etag": null,
       "last_modified": null,
-      "hash": "279a750551c0cc153f7efb32417d5e75a106ffc8dc3de0e9c069940ef5c7484c",
+      "hash": "46ba9ad80003bcd23e729fb33f015f0e26661422cb8cd1a9cf61b50630e30a7c",
       "proven": []
     },
     "https://kvia.com/news/2026/09/28/city-council-authorizes-ongoing-negotiations-to-protect-ratepayers-from-meta-data-center-energy-facility/": {
       "etag": null,
       "last_modified": null,
-      "hash": "bda1ebf579cbd972d997f31fa902b2deea867ed078c27d2b2d5f9eda74fdb754",
+      "hash": "25cf5b7f74532dd0227f58df98a8b18a9ccef8c671ef909dbbb12726099f454a",
       "proven": [
         "tx-2026-0193-c17"
       ]
@@ -1250,7 +1250,7 @@
     "https://kvia.com/news/business-technology/2026/07/20/el-paso-city-council-approves-data-center-policy-framework/": {
       "etag": null,
       "last_modified": null,
-      "hash": "d81b13784cd352976f6f5f0fb66ccdb0e6313a3d230b825de21de64fa19458f1",
+      "hash": "248da43f9cc6b8d250ec87eaafda7c605dc4416dee00ee64fb8d0857ea7fa672",
       "proven": []
     },
     "https://labs.utsouthwestern.edu/jamieson-lab/publications": {
@@ -1307,8 +1307,8 @@
     },
     "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/": {
       "etag": null,
-      "last_modified": "Sun, 15 Nov 2026 19:36:22 GMT",
-      "hash": "6642ae55793ea45916031fb1a806e2a5198005c672129b91eb1d5d388cfc66a3",
+      "last_modified": "Sun, 22 Nov 2026 21:33:35 GMT",
+      "hash": "036635c0057f8b8fe349e1c99022a668caa6a9f3cd57ac33a9d4e3bf4de91199",
       "proven": [
         "tx-2026-0160-c1",
         "tx-2026-0160-c2",
@@ -1317,16 +1317,16 @@
     },
     "https://news.engineering.tamu.edu/news/2026/08/03/texas-am-to-build-first-national-self-driving-laboratory-for-metals-open-to-researchers-nationwide/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:09:29 GMT",
-      "hash": "7f485ee18fe1d1fd45070041e6bbcecaacf2e16713634f5638fd1db517c60a6d",
+      "last_modified": "Mon, 23 Nov 2026 05:10:41 GMT",
+      "hash": "97ff0ffb4d00ec99c0492eae23622d6b107d6b81b33207e9603103d2f9c70fbf",
       "proven": [
         "tx-2026-0086-c5"
       ]
     },
     "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:35 GMT",
-      "hash": "19bcf21c23af5bb778e3421936b36780f8edd5a05067785dce594ad668c25aa5",
+      "last_modified": "Mon, 23 Nov 2026 05:10:42 GMT",
+      "hash": "dba0b85c5f2a41ef45f9769e6f9faf6f5fa6461fccb076a808d6a7e5cc5f6d79",
       "proven": [
         "tx-2026-0122-c1",
         "tx-2026-0122-c2",
@@ -1351,8 +1351,8 @@
     },
     "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:35 GMT",
-      "hash": "2e099c8b27a42a4bc659a352ff58e163b2e0145485bee130b2dc0bb9a72e3ac5",
+      "last_modified": "Mon, 23 Nov 2026 05:10:42 GMT",
+      "hash": "3c46dba747278d601f7593642dad8faf14374d3cbb9d1085ecb99d9076f1587a",
       "proven": [
         "tx-2026-0229-c1",
         "tx-2026-0229-c2",
@@ -1363,8 +1363,8 @@
     },
     "https://news.lockheedmartin.com/2026-10-14-Lockheed-Martin-Expands-Advanced-Munitions-Manufacturing-in-Texas,-Driving-Thousands-of-New-American-Jobs": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 01:16:31 GMT",
-      "hash": "80853541c6f58afa77881b24930a0399c2db9488cb140bceb16957d41c299c47",
+      "last_modified": "Mon, 23 Nov 2026 03:37:41 GMT",
+      "hash": "9bb31e6e6300b7a3d3e08d40c3bd44f0f07279f5326f261944ae9c0cae70ebf4",
       "proven": [
         "tx-2026-0225-c1",
         "tx-2026-0225-c10",
@@ -1382,7 +1382,7 @@
     "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/": {
       "etag": null,
       "last_modified": null,
-      "hash": "38ce6dff90bce36c356f91e7227561e5bf3856bc53ba50fd25cb4cbe5fc77318",
+      "hash": "8babe34e6e7bb8f99bdab79f850c68610fe7d64e626d15d48ac394e2c84cef9f",
       "proven": [
         "tx-2026-0119-c4",
         "tx-2026-0119-c5",
@@ -1427,7 +1427,7 @@
     "https://news.utexas.edu/2026/02/19/ut-launches-new-school-of-computing-uniting-computer-and-data-science-statistics-information-disciplines/": {
       "etag": null,
       "last_modified": null,
-      "hash": "56344c99a34ac7db6ba15a82f6a6aee592f3fac9f8084572160a260065ccf7fa",
+      "hash": "3cfadde946ab1242a3ca8810272469f0b5f9fd07df545b68affa8d6a6c147a10",
       "proven": [
         "tx-2026-0031-c1",
         "tx-2026-0031-c2",
@@ -1438,7 +1438,7 @@
     "https://news.utexas.edu/2026/04/21/michael-and-susan-dell-surpass-1-billion-in-giving-to-ut-austin/": {
       "etag": null,
       "last_modified": null,
-      "hash": "3a313fe48436a821b1ceb02091288fb81f7f9660aa1c0a0bf70404c1054251ab",
+      "hash": "0c6d0e698b1cbf492dd47e1fbf0303cb3a38ce620389680ef3395c8afaf9be7a",
       "proven": [
         "tx-2026-0095-c4"
       ]
@@ -1454,7 +1454,7 @@
     "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/": {
       "etag": null,
       "last_modified": null,
-      "hash": "bac324f20d0eb3002ae75ba8176d81e36eba7e616c3d5a840b54ee41559158f6",
+      "hash": "1c5aa39894df3bc703b22e9c983bc81f9b587fc679202b8d1c0fe48d0ff98a7c",
       "proven": [
         "tx-2026-0100-c1",
         "tx-2026-0100-c2"
@@ -1463,7 +1463,7 @@
     "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/": {
       "etag": null,
       "last_modified": null,
-      "hash": "1cad28eb0446bdadc3b356e4c1ef9cb8273c5cea6c248d7cede55b8aebe05c20",
+      "hash": "931cf8551c6fdabe6800757a44c5205454d636578b85b3f1d4761c7af033d66f",
       "proven": [
         "tx-2026-0104-c10",
         "tx-2026-0104-c11",
@@ -1478,7 +1478,7 @@
     "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/": {
       "etag": null,
       "last_modified": null,
-      "hash": "4229aa778f8cde6c3abe2023deb43892c3037aacd823c37d8aba766ad17c0da0",
+      "hash": "e4352fd9abc6652e43ea87d1adc4b448f83c69a6619ce0ddc3be3df083dc5921",
       "proven": [
         "tx-2026-0123-c1",
         "tx-2026-0123-c2",
@@ -1489,7 +1489,7 @@
     "https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/": {
       "etag": null,
       "last_modified": null,
-      "hash": "110209fda59aedf44cd32dd9712a301a5aed1dab3da3a84aad389a7ef4024c95",
+      "hash": "bb0dc203d99382a58ea811a59accaf6375f2e851d5570b37107cfdd80f6d26cf",
       "proven": [
         "tx-2026-0221-c1",
         "tx-2026-0221-c2",
@@ -1500,7 +1500,7 @@
     "https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5e29ec4ee833d4153c94b23545e043b6ecb3518d1d76a9a4a4d0e59e33a9c26f",
+      "hash": "3820fb294d236e1f6c4f35ab97a740d085ea2c787b6b4fed8282e747b27426e8",
       "proven": [
         "tx-2026-0231-c1",
         "tx-2026-0231-c2",
@@ -1508,10 +1508,43 @@
         "tx-2026-0231-c4"
       ]
     },
+    "https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "49c43ef87e75ad11de1bcbc11f8ffdf8ef23aef5eefe82713c4e5b823e1db4a5",
+      "proven": [
+        "tx-2026-0250-c1",
+        "tx-2026-0250-c2",
+        "tx-2026-0250-c3",
+        "tx-2026-0250-c4",
+        "tx-2026-0250-c5",
+        "tx-2026-0250-c6"
+      ]
+    },
+    "https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/": {
+      "etag": null,
+      "last_modified": "Mon, 23 Nov 2026 05:10:47 GMT",
+      "hash": "486a94ccdf784b1f78d62978cb7ba2a90bc741ca777b443953064be92275b197",
+      "proven": [
+        "tx-2026-0249-c1",
+        "tx-2026-0249-c10",
+        "tx-2026-0249-c11",
+        "tx-2026-0249-c12",
+        "tx-2026-0249-c13",
+        "tx-2026-0249-c2",
+        "tx-2026-0249-c3",
+        "tx-2026-0249-c4",
+        "tx-2026-0249-c5",
+        "tx-2026-0249-c6",
+        "tx-2026-0249-c7",
+        "tx-2026-0249-c8",
+        "tx-2026-0249-c9"
+      ]
+    },
     "https://news.utsa.edu/2026/05/ut-system-investments-of-over-470-million-accelerate-ut-san-antonios-rise-as-a-world-class-research-university/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:41 GMT",
-      "hash": "888108a71739fa0d13f83052f1f5dc340d718849d055a31fb0accefdf3dec9c7",
+      "last_modified": "Mon, 23 Nov 2026 05:10:51 GMT",
+      "hash": "07c45d12597655757c041657fb81e30c1315df30102498928f2c627f90f1cf1a",
       "proven": [
         "tx-2026-0040-c1",
         "tx-2026-0040-c2",
@@ -1521,8 +1554,8 @@
     },
     "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:41 GMT",
-      "hash": "59c9ce3adec68e3fe082ff7f5be1466314d2bd3c91e648a6f90558d6b857803e",
+      "last_modified": "Mon, 23 Nov 2026 05:10:52 GMT",
+      "hash": "563a34457962382cdc72b57c648d4eb96a47550fdeddfa15fa821ad4b0433c9a",
       "proven": [
         "tx-2026-0213-c1",
         "tx-2026-0213-c2",
@@ -1534,8 +1567,8 @@
     },
     "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:47 GMT",
-      "hash": "f77b9e1720c5340344a81d4296a4eb087e5abbd97bdb7cbdc33f64eb068686ac",
+      "last_modified": "Mon, 23 Nov 2026 05:10:52 GMT",
+      "hash": "489c70bdf235123c84178a7040c974cb5e5a48be4a60943ad3b4d6e42e7ba751",
       "proven": [
         "tx-2026-0141-c1",
         "tx-2026-0141-c10",
@@ -1552,7 +1585,7 @@
     "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/": {
       "etag": null,
       "last_modified": null,
-      "hash": "d9f28aca82dbf5a1badcb201da6514967262ee3b43a8b9966fb67331cde5e7c1",
+      "hash": "784ceed7720065fa2c946e7a1eb24b7bfd7cc6c770895b9688b60e1ab654a637",
       "proven": [
         "tx-2026-0222-c1",
         "tx-2026-0222-c10",
@@ -1597,7 +1630,7 @@
     "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "f022e7cfdc05bf02ef4f3585cada7b4199d2e90b1f1d21c9ce61e5fa86306143",
+      "hash": "5036ead4986f534727a5124feab434ad954aac8ca7cbd164ca93fc42218cab23",
       "proven": [
         "tx-2026-0084-c1",
         "tx-2026-0084-c2"
@@ -1606,7 +1639,7 @@
     "https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/": {
       "etag": null,
       "last_modified": null,
-      "hash": "bbcbc04b46a657418b7c9cc9bc6a95c6b0d7a1656415c12aeabcdf2318cf5115",
+      "hash": "ab349e1d18426f1eb7646babf206a4e3f9d651af248244ee853315b530b2e5cd",
       "proven": [
         "tx-2026-0117-c1",
         "tx-2026-0117-c2",
@@ -1679,12 +1712,14 @@
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "5a1d100c8488527033eeee204f73d9b21a0d6ba4526ff1265878c6f4fbffc19d",
+      "hash": "08b96e6fecdcdfb100a9b0a47f6ab1b5e03c4436c4e0490b686ab9ebb50d4c9e",
       "proven": [
         "tx-2026-0002-c12",
         "tx-2026-0002-c4",
         "tx-2026-0024-c1",
         "tx-2026-0024-c10",
+        "tx-2026-0024-c11",
+        "tx-2026-0024-c12",
         "tx-2026-0024-c2",
         "tx-2026-0024-c3",
         "tx-2026-0024-c4",
@@ -1704,16 +1739,16 @@
     },
     "https://reason.org/testimony/preparing-the-texas-workforce-for-artificial-intelligence/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 01:28:21 GMT",
-      "hash": "7d790ae5716b6e7495834eb83acd98f8c1cc1c469a7ced9e1cb969122abb90ce",
+      "last_modified": "Mon, 23 Nov 2026 05:07:10 GMT",
+      "hash": "cf0f8b8ffc666b0a8172a567d7a4e6728820c0903d2a700bf64f7fc85f845455",
       "proven": [
         "tx-2026-0109-c9"
       ]
     },
     "https://registrar.utexas.edu/calendars/26-27": {
-      "etag": "W/\"1794549037\"",
-      "last_modified": "Fri, 13 Nov 2026 05:50:37 GMT",
-      "hash": "fe87f0684dfc37ed8be674973db3591e39f943fa942cc88fd32622afc775bff7",
+      "etag": "W/\"1795326439\"",
+      "last_modified": "Sun, 22 Nov 2026 05:47:19 GMT",
+      "hash": "13492eee254fb450611328ba9cda73eca5e9ad744f278150e39353dd3a71a26a",
       "proven": [
         "tx-2026-0117-c5"
       ]
@@ -1727,7 +1762,7 @@
     "https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium": {
       "etag": null,
       "last_modified": null,
-      "hash": "b6bfa4eab8b9ac288b400fc40482d369c066cbc1c50baab389fbeb9c551ee370",
+      "hash": "f1fad2cf6141a7ce8c37929de8d24f2c8d708734d1a13b073d11f05fa453f8d4",
       "proven": [
         "tx-2026-0070-c1",
         "tx-2026-0070-c2"
@@ -1789,8 +1824,8 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Sun, 15 Nov 2026 12:00:00 GMT",
-      "hash": "31bb56af9fb039a7936fda18e6c3162e52868e6a06aeed22eb5e65e071e0cb29",
+      "last_modified": "Sun, 22 Nov 2026 12:00:00 GMT",
+      "hash": "0f3d952f02a5d556bcc4d2d177cb75ba2b968cd3a797b9023dd8f172244660cf",
       "proven": [
         "tx-2026-0109-c1",
         "tx-2026-0109-c2",
@@ -1800,8 +1835,8 @@
     },
     "https://senate.texas.gov/cmte.php?c=640": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 12:00:00 GMT",
-      "hash": "606c293af4b94d33fc98b9fbb157d522eaa1c4013f5ef0022bab7f0f7395943f",
+      "last_modified": "Sun, 22 Nov 2026 12:00:00 GMT",
+      "hash": "0cf71135a37fd795fd4aebf106ab5983605bb6f3b3266bfe7ff9499d15570822",
       "proven": [
         "tx-2026-0077-c10",
         "tx-2026-0077-c11"
@@ -1809,8 +1844,8 @@
     },
     "https://senate.texas.gov/cmte.php?c=700": {
       "etag": null,
-      "last_modified": "Sun, 15 Nov 2026 12:00:00 GMT",
-      "hash": "04085d748fd7c92020fe1ef510fe27197f0e79d93ffa7f2a17871c02a7b33948",
+      "last_modified": "Sun, 22 Nov 2026 12:00:00 GMT",
+      "hash": "2006201519b91baf2eed54861cbdbdab802dfb0cca78876b694f7f07f1aedc98",
       "proven": [
         "tx-2026-0096-c1",
         "tx-2026-0096-c2",
@@ -1820,7 +1855,7 @@
     "https://senate.texas.gov/videoplayer.php?vid=22662&lang=en": {
       "etag": null,
       "last_modified": null,
-      "hash": "1f3db918d21f068f32c625e720679bb240e9dd65d4d32048862d9a55d571ccd2",
+      "hash": "549e8a561887e8757d55752e6fa67d9c882ab87b124f3c88a9cffa6a99501c7e",
       "proven": [
         "tx-2026-0096-c8"
       ]
@@ -1839,8 +1874,8 @@
     },
     "https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:13:57 GMT",
-      "hash": "7d9b8893ae1ee29557e438f2016da58db88429315784cc59fdcc6eb03da53b4b",
+      "last_modified": "Mon, 23 Nov 2026 05:11:02 GMT",
+      "hash": "d8daf73cc5a459cb4b0111e55b6c2d2180bcb5d3d7c2e3cd5f0d107de0a3dd30",
       "proven": [
         "tx-2026-0212-c15"
       ]
@@ -1866,7 +1901,7 @@
     "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/": {
       "etag": null,
       "last_modified": null,
-      "hash": "63f5578a7f1cb145f695057a1a2a88a0adcb18ae6bab19aa88943a715851ab00",
+      "hash": "ffcc17339029b2e3c2c4c8602ddfb4deda1b938823c93619c512d4208f3085ca",
       "proven": [
         "tx-2026-0243-c1",
         "tx-2026-0243-c2",
@@ -1880,7 +1915,7 @@
     "https://stories.xcelenergy.com/stories/Powering-through--Xcel-Energy-s-commitment-to-a-resilient-Texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "13261302e51a1b1d07037f819fc3d2d233b21fab291f21cadffb04703a01c9e7",
+      "hash": "89f139a22c87d3923748da124fcc2a8a7fea18cde8c30729a59201e9e9c5d985",
       "proven": [
         "tx-2026-0191-c14"
       ]
@@ -1888,7 +1923,7 @@
     "https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/": {
       "etag": null,
       "last_modified": null,
-      "hash": "6cfd0208358a9e7ec55dffbb6776e6839839cd784b9cef60056094251b547016",
+      "hash": "e980d970f1d927db0e6f8624c30ede95b90c6ba789335bd5c1eadfa8cc0cecd2",
       "proven": [
         "tx-2026-0207-c1",
         "tx-2026-0207-c2",
@@ -1977,6 +2012,24 @@
       "hash": "27bc4e7300b19c5f7fb301367b9fc074827f71c7e7b0b480695101c74ae3b0d4",
       "proven": []
     },
+    "https://teex.org/news/teex-turns-disaster-city-into-a-darpa-triage-challenge-proving-ground-for-the-future-of-lifesaving-technology/": {
+      "etag": null,
+      "last_modified": "Mon, 23 Nov 2026 05:11:07 GMT",
+      "hash": "82d56164d5aadb61e07dfeb1ef501432698a5117730b8f9ef58cdbbfb5b6efd5",
+      "proven": [
+        "tx-2026-0254-c1",
+        "tx-2026-0254-c11",
+        "tx-2026-0254-c12",
+        "tx-2026-0254-c13",
+        "tx-2026-0254-c14",
+        "tx-2026-0254-c15",
+        "tx-2026-0254-c16",
+        "tx-2026-0254-c17",
+        "tx-2026-0254-c18",
+        "tx-2026-0254-c2",
+        "tx-2026-0254-c21"
+      ]
+    },
     "https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/": {
       "etag": null,
       "last_modified": "Thu, 19 Nov 2026 05:09:32 GMT",
@@ -1997,7 +2050,7 @@
     "https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2": {
       "etag": null,
       "last_modified": null,
-      "hash": "851f1f7a96a4948bd8da07b22192d490ff91861e03392934d7a7743d7e8bcac6",
+      "hash": "ce1692de10ff70a09119dbf4201fd05326be8b38f3ee70ea50ac1d91b4e0462e",
       "proven": [
         "tx-2026-0105-c1",
         "tx-2026-0105-c2",
@@ -2006,8 +2059,8 @@
     },
     "https://texasscorecard.com/local/killeen-planning-zoning-votes-data-center-down/": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 13:53:21 GMT",
-      "hash": "cf0bdd1ead0387b5331cdb2243177d717556dc739a1d0299852008a6aac89854",
+      "last_modified": "Mon, 23 Nov 2026 05:11:08 GMT",
+      "hash": "0f78f5e6febf15d7e90f503c11b05d2f7c6fc558f09391d90ff744a05ab0647c",
       "proven": [
         "tx-2026-0032-c2",
         "tx-2026-0032-c3",
@@ -2017,7 +2070,7 @@
     "https://top500.org/system/180452/": {
       "etag": null,
       "last_modified": null,
-      "hash": "116023e433f3ef8b1e6d76165aa77f725160a773e6dfad25ea4e7ca1169d6ca4",
+      "hash": "61fd12237135cd82ad6121913801a4d9655c835f2bc80b7127c13b6928f788ce",
       "proven": [
         "tx-2026-0119-c1",
         "tx-2026-0119-c2",
@@ -2027,7 +2080,7 @@
     "https://vision.tamus.edu/": {
       "etag": null,
       "last_modified": null,
-      "hash": "74087ff77f4a9608dea408eb46981e2bce9234cf67051acfddd8e05801581390",
+      "hash": "20de55cd63774211356f154eeca714d626c14d8abd0f48f14e2539293414a34b",
       "proven": [
         "tx-2026-0119-c11"
       ]
@@ -2035,7 +2088,7 @@
     "https://vision.tamus.edu/testing/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5c3fef4f1c775c4e05f52671fec63573303a1006fa0f51da1959ab9a73f3104a",
+      "hash": "086a42e8102f4f04afd6e98f943d46b899832d6093538ee1a53300ad79c2a351",
       "proven": [
         "tx-2026-0119-c12"
       ]
@@ -2043,7 +2096,7 @@
     "https://vision.tamus.edu/usecases/": {
       "etag": null,
       "last_modified": null,
-      "hash": "2d72dec4902f0915179ad79a7376c7611f0645d859e55f9c116616af26d1b21f",
+      "hash": "3538a8a6347406b42fd7f69a71a604664222c63bccba75b811a234c17347e60a",
       "proven": [
         "tx-2026-0119-c13"
       ]
@@ -2051,7 +2104,7 @@
     "https://waymo.com/blog/2026/02/dallas-houston-san-antonio-orlando/": {
       "etag": null,
       "last_modified": null,
-      "hash": "1fa7365862ca6e4560c798afc0a3696ae11c9d7f925916683579344546731881",
+      "hash": "01400ddb4ce00bb80cc872ddb8d0b221578398d797f1ed2baeaa8285c0afbfdc",
       "proven": [
         "tx-2026-0216-c3",
         "tx-2026-0216-c4"
@@ -2060,7 +2113,7 @@
     "https://waymo.com/blog/shorts/sat-sd-tpa/": {
       "etag": null,
       "last_modified": null,
-      "hash": "a6c7b08b5d1fb4e3336b4bc3ad378379a4aa2cea1a1dc4fdf823d6ac053f22e5",
+      "hash": "cb5a90ed8ef0259d9b3638da9067e2feeb0376a1e75f7263595f9492c0026b3b",
       "proven": [
         "tx-2026-0216-c1",
         "tx-2026-0216-c2"
@@ -2068,8 +2121,8 @@
     },
     "https://web.risd.org/home/september-2026-board-meeting/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 00:02:58 GMT",
-      "hash": "f88128a8c18dffc6238abeb4c8a5252212388753afd955f91f479f33b38fc170",
+      "last_modified": "Sun, 22 Nov 2026 20:32:15 GMT",
+      "hash": "6ecea9f07dcf163dd3344ef5acab248bca716565088cf597bda3112b9db334ef",
       "proven": [
         "tx-2026-0177-c1",
         "tx-2026-0177-c2",
@@ -2114,7 +2167,7 @@
     "https://webapi.legistar.com/v1/brazoriacountytx/matters?$filter=substringof(%27Data%20Center%27,MatterTitle)%20or%20substringof(%27Abatement%27,MatterTitle)&$orderby=MatterIntroDate%20desc&$top=40": {
       "etag": null,
       "last_modified": null,
-      "hash": "3befda80738f4171efba9423fdae45b5c6ee9e07f7ce4e0870b1033ff2b69b8d",
+      "hash": "0afc3a8ebe0e5811909094f3e6ced47ac522f577acc5e49d09555084c28db255",
       "proven": [
         "tx-2026-0051-c3"
       ]
@@ -2396,7 +2449,7 @@
     "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "d56c92d4fa80926e2456e8c9384064ea7e8a4c8d5ffebcfa7e68474fe1ed47a1",
+      "hash": "871f25ed36edc6d57fce58061da220c1394e9e5180ab0f9683fb99a79e50d3c5",
       "proven": [
         "tx-2026-0146-c1",
         "tx-2026-0146-c2",
@@ -2405,9 +2458,9 @@
       ]
     },
     "https://www.abridge.com/press-release/ut-health-enterprise-wide": {
-      "etag": null,
-      "last_modified": "Fri, 13 Nov 2026 21:06:27 GMT",
-      "hash": "c75463065f34488ecfe2169c68adc43c275b39933e668318d9fba790aee9b044",
+      "etag": "\"137j2uycuph20t7\"",
+      "last_modified": null,
+      "hash": "37cbec5c3892c4e53ee7621e99da388b0390ad65a4a9ac40c9861fbcaf0ab2e7",
       "proven": [
         "tx-2026-0210-c1",
         "tx-2026-0210-c2",
@@ -2416,9 +2469,9 @@
       ]
     },
     "https://www.aect.net/southwest-power-pool-spp": {
-      "etag": "W/\"b26f304f8faa36b62c2f883079d20cae--gzip\"",
+      "etag": "W/\"f175124339d1394e1cc8dc8f544d9843--gzip\"",
       "last_modified": null,
-      "hash": "4600e9577113b6df8bcbe599cc9a22c047d09a25b9759ce4130526a80bbe272a",
+      "hash": "4a433885753345ce361a2befb168311da1d1b5eb1c8b2f1d4d3b9997f6401458",
       "proven": [
         "tx-2026-0046-c6",
         "tx-2026-0047-c7"
@@ -2427,7 +2480,7 @@
     "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output": {
       "etag": null,
       "last_modified": null,
-      "hash": "2c9b67598758e3f796ca859cfaa446dfc4485d77f8851bed6d1f1694893b86a5",
+      "hash": "ef07b7118b4a0e5d985ff6f79a97f0d59210c566b5b101745868985660cdf827",
       "proven": [
         "tx-2026-0242-c16",
         "tx-2026-0242-c17",
@@ -2447,7 +2500,7 @@
     "https://www.amarillo.gov/fermi-project/": {
       "etag": null,
       "last_modified": null,
-      "hash": "ff2af106db3ea6e07baf73167150afafe53557a4921525cce49d351709bfa8e9",
+      "hash": "d08e0678f95c9abb69ab312fb630c4e6476606d3f15de27fb0a7dc613ffb0e8d",
       "proven": [
         "tx-2026-0047-c3",
         "tx-2026-0047-c4"
@@ -2462,7 +2515,7 @@
     "https://www.aphis.usda.gov/animals/animal-health/livestock-and-poultry-disease/usda-continues-lead-aggressive-national-nws": {
       "etag": null,
       "last_modified": null,
-      "hash": "bfa9be89c9cd6b86b4dea26d81cb263a73de0f6d75f82c6703f48b2150d9b7a9",
+      "hash": "179dfa5261ccce586917e5e1bcdbbf8c21c521094180d5e20f75a99bff37e845",
       "proven": [
         "tx-2026-0218-c12"
       ]
@@ -2470,7 +2523,7 @@
     "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm": {
       "etag": null,
       "last_modified": null,
-      "hash": "d46ea93aeaf7c06e08e072844381d5fb51472cdec850ae95c754373a85a90ad5",
+      "hash": "5fe64a4458631905bd92fc3958ca08da0b0593888591504d7ed36aa947f852ac",
       "proven": [
         "tx-2026-0218-c1",
         "tx-2026-0218-c16",
@@ -2482,41 +2535,41 @@
     },
     "https://www.austincc.edu/about-acc": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:14:42 GMT",
-      "hash": "c6373154ca22f2919fd09a0872b273073d9f6c9c6dacdee3bc802387c6b13c76",
+      "last_modified": "Mon, 23 Nov 2026 05:11:25 GMT",
+      "hash": "331cf63283bfdaa6f93e6efa0d32bc2caac762c9a684ec90e56b0f816ee874b5",
       "proven": [
         "tx-2026-0212-c16"
       ]
     },
     "https://www.austintexas.gov/council/2026/20260205-reg": {
-      "etag": "W/\"1794806083-gzip\"",
-      "last_modified": "Mon, 16 Nov 2026 05:14:43 GMT",
-      "hash": "e60f8347c7eac788999b0e9e6d198501b2609d19ba9f1878c17ac7935e64010a",
+      "etag": "W/\"1795410686-gzip\"",
+      "last_modified": "Mon, 23 Nov 2026 05:11:26 GMT",
+      "hash": "e87b710aa74c7b1c2406d18f8ac69beac26bd4d3aeca21d2041138381733746c",
       "proven": [
         "tx-2026-0030-c3"
       ]
     },
     "https://www.austintexas.gov/council/2026/20260423-reg": {
-      "etag": "W/\"1794806084-gzip\"",
-      "last_modified": "Mon, 16 Nov 2026 05:14:44 GMT",
-      "hash": "c53d7a01e66f2d6de1ba8cd058eeaa4c8bf07fb2b3ead84be850a054ebe85847",
+      "etag": "W/\"1795410687-gzip\"",
+      "last_modified": "Mon, 23 Nov 2026 05:11:27 GMT",
+      "hash": "e9b15cff0d3f537a34d0ef3a958284e31b9f2af5b41469aee47b894788330fd3",
       "proven": [
         "tx-2026-0030-c1",
         "tx-2026-0030-c2"
       ]
     },
     "https://www.austintexas.gov/council/2026/20260812-reg": {
-      "etag": "\"1795064857-gzip\"",
-      "last_modified": "Thu, 19 Nov 2026 05:07:37 GMT",
-      "hash": "f28b04cbcc0e295e3045c28711c60a07957eb53a11d8aff493cf1bff8324c20e",
+      "etag": "W/\"1795324170-gzip\"",
+      "last_modified": "Sun, 22 Nov 2026 05:09:30 GMT",
+      "hash": "996a7f932bd3b9375c7a90d85caee3356f2bcc47d34db69e6f67a6e2f6f2b6e3",
       "proven": [
         "tx-2026-0129-c7"
       ]
     },
     "https://www.austintexas.gov/council/2026/20260827-reg": {
-      "etag": "W/\"1794806085-gzip\"",
-      "last_modified": "Mon, 16 Nov 2026 05:14:45 GMT",
-      "hash": "f7d5ee390a55725563d49bf988589d1b282b192fe2d203b610fe35970c36e2e5",
+      "etag": "W/\"1795410688-gzip\"",
+      "last_modified": "Mon, 23 Nov 2026 05:11:28 GMT",
+      "hash": "0b7d09719ef8419142cc1d65eacc770f2b176b92961554cd90f585c3dab4fc6a",
       "proven": [
         "tx-2026-0106-c1",
         "tx-2026-0106-c2",
@@ -2534,9 +2587,9 @@
       ]
     },
     "https://www.blancogroundwatertx.gov/2026-04-16-district-meeting": {
-      "etag": "W/\"c66d75c188e44e91d4f08e2ab2eb7423\"",
+      "etag": "W/\"477917e27fed91b2695f2c5701231d6c\"",
       "last_modified": null,
-      "hash": "c66d75c188e44e91d4f08e2ab2eb7423e4b2dea902b99542bf1beba49294df7d",
+      "hash": "477917e27fed91b2695f2c5701231d6c43a1816c4811831b4fb38888406fed40",
       "proven": [
         "tx-2026-0060-c1",
         "tx-2026-0060-c2"
@@ -2564,8 +2617,8 @@
     },
     "https://www.cbsnews.com/texas/news/texas-gov-greg-abbott-pause-new-data-center-permits-sept-21-2026/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:14:48 GMT",
-      "hash": "570a51a28318bd812a5bf06b7dad64237b29cb278e8c216e5152872b10eab480",
+      "last_modified": "Sat, 21 Nov 2026 05:09:44 GMT",
+      "hash": "7b235613c2def219b5a1e5d6bb20367274635db3eb6bd1dd53557687538d8477",
       "proven": [
         "tx-2026-0182-c3"
       ]
@@ -2602,6 +2655,30 @@
         "tx-2026-0127-c7"
       ]
     },
+    "https://www.darpa.mil/news/2026/triage-finals-winners": {
+      "etag": "\"3a4723df7e1b900dfd8c8a83daf66d6a\"",
+      "last_modified": "Mon, 23 Nov 2026 04:04:02 GMT",
+      "hash": "5971ed35783f062ab47391448c5cfc60649bf54244f4281131f51bceac709a35",
+      "proven": [
+        "tx-2026-0254-c19",
+        "tx-2026-0254-c20",
+        "tx-2026-0254-c3",
+        "tx-2026-0254-c4",
+        "tx-2026-0254-c5",
+        "tx-2026-0254-c6",
+        "tx-2026-0254-c7"
+      ]
+    },
+    "https://www.darpa.mil/research/challenges/darpa-triage-challenge": {
+      "etag": "\"332127d334127dee09e34a3cf23507cb\"",
+      "last_modified": "Mon, 23 Nov 2026 04:04:07 GMT",
+      "hash": "2e71e9a96b6df4ae27d286bc9bad4f70b61c857af07a8c1cb44c674ce867d2e9",
+      "proven": [
+        "tx-2026-0254-c10",
+        "tx-2026-0254-c8",
+        "tx-2026-0254-c9"
+      ]
+    },
     "https://www.darwingov.com/": {
       "etag": null,
       "last_modified": "Mon, 09 Nov 2026 13:27:50 GMT",
@@ -2614,7 +2691,7 @@
     "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core": {
       "etag": null,
       "last_modified": null,
-      "hash": "f742c5e32f8dd9208a53ad2cce3d0332341e5a752222536fe97d31adf231da56",
+      "hash": "5effb99763e426eb8a5014da01c14ac7b85212b09e3edf470e780970c3b7b809",
       "proven": [
         "tx-2026-0244-c10",
         "tx-2026-0244-c11"
@@ -2638,7 +2715,7 @@
     "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42716711%20AND%20SRC:MED&resultType=core&format=json": {
       "etag": null,
       "last_modified": null,
-      "hash": "84a40d9d748689bf63cc24435b58fe156c77a5a215afe66476674a2e3fb59407",
+      "hash": "1404846d216e525b9fe4f9167036a2ed441c264a2d0556689467b97785a752f9",
       "proven": [
         "tx-2026-0148-c1",
         "tx-2026-0148-c2",
@@ -2650,9 +2727,9 @@
       ]
     },
     "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic": {
-      "etag": "W/\"1794805957:dtagent10345260810170330GX4H\"",
-      "last_modified": "Mon, 16 Nov 2026 05:12:36 GMT",
-      "hash": "c19ffe79ddc1faf910a76b67950aa1a5a5488023a660b34c30a32121729603db",
+      "etag": "W/\"1795410694:dtagent10347260902154543GjRA\"",
+      "last_modified": "Mon, 23 Nov 2026 05:11:33 GMT",
+      "hash": "35e724e334bb784bc9f65860ab249b1693ba51f7760eb1346018fc3de62cf018",
       "proven": [
         "tx-2026-0148-c1",
         "tx-2026-0148-c2"
@@ -2691,7 +2768,7 @@
     "https://www.ercot.com/mktrules/issues/NOGRR289": {
       "etag": null,
       "last_modified": null,
-      "hash": "9d0c65c91e5ee972c0ab8cb226955c6dd44a7ace3e436e9a4c979ebc088fe7ed",
+      "hash": "b8eae156020494a6d33c8e032893fbc1907c6730653d04ef52f55ba3ee29c6db",
       "proven": [
         "tx-2026-0114-c1",
         "tx-2026-0114-c2"
@@ -2700,7 +2777,7 @@
     "https://www.ercot.com/mktrules/issues/PGRR144": {
       "etag": null,
       "last_modified": null,
-      "hash": "d152dd22d823caae50237615868e3907f85b824c70e85285d9bfdf1521e06184",
+      "hash": "f23773ce7e18149840bcbac2b73ec2260c715663653dcecbf3b07d77c80ecbc1",
       "proven": [
         "tx-2026-0159-c11",
         "tx-2026-0159-c12",
@@ -2713,7 +2790,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04": {
       "etag": null,
       "last_modified": null,
-      "hash": "ff1c8db4da838e1d18f0115d8711ad4cf8ba7ee255635b30d72359f8b46fb92a",
+      "hash": "97ca20fa08bab4baf9caca5b0c627a8839a328d6fbcad237d49ff07135a4c9c1",
       "proven": [
         "tx-2026-0149-c1",
         "tx-2026-0149-c2"
@@ -2722,7 +2799,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01": {
       "etag": null,
       "last_modified": null,
-      "hash": "8e8becbde77da02e93274bda29fb6c6f7ffcf6105c0e2368543d8a5956ac41d0",
+      "hash": "e7e67b3bd85dfd7836f6444dc89e0be72787fce47125f2c7a5fa6e5602f3337b",
       "proven": [
         "tx-2026-0139-c1",
         "tx-2026-0139-c2",
@@ -2733,7 +2810,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01": {
       "etag": null,
       "last_modified": null,
-      "hash": "f40a70e015a5bfbe94392d941727c6f3636c08df95ec3eae649dbaa8a68cedcc",
+      "hash": "14dc27dd877d53d2d6500928a7165332c827539d2f89c4d615688411c4632ace",
       "proven": [
         "tx-2026-0143-c1",
         "tx-2026-0143-c2"
@@ -2742,7 +2819,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01": {
       "etag": null,
       "last_modified": null,
-      "hash": "609b5e1be5c2a43a98cdf63ca73084073dd40794e52e04038a26656ba225127b",
+      "hash": "af03c88b77e371bda3ffd773b02485d4492a56ca4e69b06785c7012c2b98a14f",
       "proven": [
         "tx-2026-0172-c1",
         "tx-2026-0172-c10",
@@ -2759,7 +2836,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-13928.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "fce66016543765bed75531e76bf39f18fbc0a60ce2ae20f33f912e033784a2d5",
+      "hash": "42215bcd8b0d604a5f425ac6cf162fa346406f19496e82330c50b862df68d511",
       "proven": [
         "tx-2026-0016-c2"
       ]
@@ -2767,7 +2844,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-14341.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "ac58c1c2412b5de221eb0ea5fb9f1911b9c10c7150ffb10f360ee0d3dba5c475",
+      "hash": "72c6f70ad411eb648112cad199c86f771e405084989c21545beb1c5649a142f0",
       "proven": [
         "tx-2026-0015-c2",
         "tx-2026-0015-c9"
@@ -2776,7 +2853,7 @@
     "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions": {
       "etag": null,
       "last_modified": null,
-      "hash": "1d1bfcb1407d0009d35461fbde3114b85653a0ddb6f7d13e59212765fcc46c6d",
+      "hash": "17adc2d3199852153e57e40df33116feaf72a66ae445a55f9f7b35b87e46daea",
       "proven": []
     },
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
@@ -2807,7 +2884,7 @@
     "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers": {
       "etag": null,
       "last_modified": null,
-      "hash": "815ebf56c120576a7e4875a87c73cdb0a1809405e1b0ace4714d2084aeb19111",
+      "hash": "d8705fba7fd50559c159945b04cc24d98c0b874ed51cc557b3b0afa5d9f8373c",
       "proven": [
         "tx-2026-0062-c3",
         "tx-2026-0062-c4",
@@ -2825,9 +2902,9 @@
       "proven": []
     },
     "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations": {
-      "etag": "\"280e5-iL3Ous5z5PcROWm6eU08G6utrWg\"",
+      "etag": "\"28393-p5u8O1+FFLhqk7oxKHBbju0+wGk\"",
       "last_modified": null,
-      "hash": "223fedf7a959d69646544c8edce7e18938e0cb4c28504accf0e07e68e9cfe60e",
+      "hash": "174eaa10dafeb36e2d2ddbea348669f955ffec19ffd0b5feaff510a19a672789",
       "proven": [
         "tx-2026-0179-c10",
         "tx-2026-0179-c11",
@@ -2836,8 +2913,8 @@
     },
     "https://www.galaxy.com/data-centers": {
       "etag": null,
-      "last_modified": "Tue, 17 Nov 2026 21:56:51 GMT",
-      "hash": "9c120e4320c34767a0bece2076d20f19bb068ec50d46cca307365dad38b2c76a",
+      "last_modified": "Fri, 20 Nov 2026 16:17:29 GMT",
+      "hash": "fe2a8a674c5e80f981dca7b37cbc8f140096d5408e8fdbf76522c060abec2408",
       "proven": [
         "tx-2026-0157-c7"
       ]
@@ -2905,7 +2982,7 @@
     "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras": {
       "etag": null,
       "last_modified": null,
-      "hash": "e713a98f58d4fe94131352193ffdcb43a724c0ae795a144aeb0aec240e57ba2c",
+      "hash": "5cf59b76a153d83b17872b8c51373c9ad8a973731a6247925353f9483c16f1a9",
       "proven": [
         "tx-2026-0179-c15",
         "tx-2026-0179-c16",
@@ -2921,7 +2998,7 @@
     "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards": {
       "etag": null,
       "last_modified": null,
-      "hash": "15e5333dcf5672d9b8f3769030c5983d7df7bf39462d604eca13866370b35066",
+      "hash": "88479b24146d3c930f5107d900d09134f0ef4804a1bc72656358cdcd753cce50",
       "proven": [
         "tx-2026-0037-c1",
         "tx-2026-0037-c2",
@@ -2930,9 +3007,9 @@
       ]
     },
     "https://www.hadrian.co/": {
-      "etag": "\"1f717b09a36e4133bd4e06e46436dd16\"",
+      "etag": "\"wlpojfvp7p1mr4\"",
       "last_modified": null,
-      "hash": "3d9a0ea57ea04f010914dd6315535ad731c85b3a1529ee599417efd9dc469938",
+      "hash": "cb9376f75439f03f98631bc1480d8bb5b27e5c509bbd6acdc7ac22c54b40e991",
       "proven": [
         "tx-2026-0225-c12"
       ]
@@ -2950,7 +3027,7 @@
     "https://www.hgacbuy.org/products-and-services/view-contract?contractid=3147": {
       "etag": null,
       "last_modified": null,
-      "hash": "ccf509de778bcb22b53fd35f9d84d9ade08d0a053014ae83317377f5de07793b",
+      "hash": "29a89bb926969ccca5892bd29ba0fb8a85949294829324111a200df15a5c52c9",
       "proven": [
         "tx-2026-0054-c1",
         "tx-2026-0054-c2"
@@ -2959,7 +3036,7 @@
     "https://www.hgacbuy.org/products-and-services/view-product?productid=44520": {
       "etag": null,
       "last_modified": null,
-      "hash": "c0ea779979d8a6592e9085f3bc55c94c01d21e9236f47866ca52c1b76ed5b5c8",
+      "hash": "017f42f418079fc6ad33e784f50966d47eae9bbed30c41134907a3cc5dbb7edc",
       "proven": []
     },
     "https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf": {
@@ -2971,7 +3048,7 @@
     "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/": {
       "etag": null,
       "last_modified": null,
-      "hash": "d4f13219d1be2b3e181bf67781968aa6e2dd3dcdc87725c97e2779f3af8875b5",
+      "hash": "c03d2d390d171c4cfb3b6544862c2b83add8042e86037b2c3fb6fb94f4ba4880",
       "proven": [
         "tx-2026-0222-c22",
         "tx-2026-0222-c23",
@@ -2983,7 +3060,7 @@
     "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/": {
       "etag": null,
       "last_modified": null,
-      "hash": "332000be83f79dd973a67bef837b2a05538d27f0b6a05cd7e5515c81005ddf21",
+      "hash": "a67edf93923519ba20fec8e22edcd69d98d019743b729f6797d00d9704cc8874",
       "proven": [
         "tx-2026-0101-c1",
         "tx-2026-0101-c2"
@@ -3063,7 +3140,7 @@
     "https://www.krgv.com/news/no-screwworm-cases-found-after-usda-conducts-2-000-drone-flights-over-texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "cb955b5fce700b103814bd4633a768c5db04d4938cc2faad5be1835ec6ce43c7",
+      "hash": "a3d4ba16b59206b830cd62bd24e3bcb29f77840aa778196faf6d782cfdddacb2",
       "proven": [
         "tx-2026-0218-c5",
         "tx-2026-0218-c6",
@@ -3229,9 +3306,9 @@
       ]
     },
     "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial": {
-      "etag": "\"1794796092\"",
-      "last_modified": "Mon, 16 Nov 2026 02:28:12 GMT",
-      "hash": "f40cc525d8169336b20dc6991d40194f917cd2f78aa0fb190ad100924c18f3b6",
+      "etag": "\"1795410583\"",
+      "last_modified": "Mon, 23 Nov 2026 05:09:43 GMT",
+      "hash": "98d0d5560e6340c62b505f6063d00b1de750dcfc6362f45460ff2138a6f98e60",
       "proven": [
         "tx-2026-0121-c1",
         "tx-2026-0121-c2",
@@ -3241,18 +3318,18 @@
       ]
     },
     "https://www.nsf.gov/news/nsf-announces-first-awards-advance-ai-cybersecurity": {
-      "etag": "\"1795047725\"",
-      "last_modified": "Thu, 19 Nov 2026 00:22:05 GMT",
-      "hash": "211b897656d8a89cd583bb88d76da2fa5aa5258e2f21692aa5b795446abb56c9",
+      "etag": "\"1795320373\"",
+      "last_modified": "Sun, 22 Nov 2026 04:06:13 GMT",
+      "hash": "a7695027ba60cb9521ec91e2ef591d970727c3ca898866ad42df4881ca20c34e",
       "proven": [
         "tx-2026-0039-c1",
         "tx-2026-0039-c2"
       ]
     },
     "https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment": {
-      "etag": "\"1794806109\"",
-      "last_modified": "Mon, 16 Nov 2026 05:15:09 GMT",
-      "hash": "abc8d064398a2d25577e4a7c6a1e58f3d6c7fce79e2278acd70e7ae2dcb5fde9",
+      "etag": "\"1795383634\"",
+      "last_modified": "Sun, 22 Nov 2026 21:40:34 GMT",
+      "hash": "ab3946e24c6cd3a9633494e1fb33a6cacbe241d04629c68c1f917a33835cb037",
       "proven": [
         "tx-2026-0090-c7"
       ]
@@ -3296,9 +3373,9 @@
       ]
     },
     "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html": {
-      "etag": "W/\"26417e8c7051d3ee6216761ee3239783\"",
-      "last_modified": "Sat, 07 Nov 2026 00:41:35 GMT",
-      "hash": "26417e8c7051d3ee6216761ee3239783cd6642932c71561765b7d75a5e7baa4f",
+      "etag": null,
+      "last_modified": "Wed, 18 Nov 2026 12:14:11 GMT",
+      "hash": "e1174e5ebbc8192a1fd8d10fea73f63e41ff9cac3f33206e6a34c7c0c56cbe3f",
       "proven": [
         "tx-2026-0204-c1",
         "tx-2026-0204-c10",
@@ -3315,7 +3392,7 @@
     "https://www.puc.texas.gov/industry/electric/system-resiliency-plans/": {
       "etag": null,
       "last_modified": null,
-      "hash": "a4ccdb5eba6e6e57e2adb946770ba73b8f29b38626aeebb4fdbfc93d2f7c627b",
+      "hash": "dd3758defd36a278f7a46fe7af130d790c7264b1bc815c9b40adc4214179094e",
       "proven": [
         "tx-2026-0191-c15",
         "tx-2026-0192-c9"
@@ -3332,8 +3409,8 @@
     },
     "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:15:12 GMT",
-      "hash": "c14ae97dd0c9c9ede8168552e846fb2ac05a9e3443bf457484ee274b57d73f5e",
+      "last_modified": "Mon, 23 Nov 2026 05:11:58 GMT",
+      "hash": "c20d0497944cb5434c7c93d2a1a94ddcaded68a13f2f39aed070abd947e1fd86",
       "proven": [
         "tx-2026-0232-c1",
         "tx-2026-0232-c2",
@@ -3348,7 +3425,7 @@
     "https://www.sa.gov/Directory/Departments/ACS/About/Statistics": {
       "etag": null,
       "last_modified": null,
-      "hash": "1b613cc4b0f96087e5dfa18ece32a86ef164524aba0c20f7df5880301e00ebbb",
+      "hash": "740a3e1b7a9f399a6e793218d15b9d55e54b890e9a74a4f04912e9cdf959c530",
       "proven": [
         "tx-2026-0236-c20"
       ]
@@ -3356,7 +3433,7 @@
     "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers": {
       "etag": null,
       "last_modified": null,
-      "hash": "67360fe2852794141e4e9fcedaf468be1beff7e2436989e860ee8d63f89be1d0",
+      "hash": "0066dbd6adef83d1c0664caf66865b2c0a36baa4cb2c332f530f0ef03b907a2b",
       "proven": [
         "tx-2026-0220-c1",
         "tx-2026-0220-c2",
@@ -3367,7 +3444,7 @@
     "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers": {
       "etag": null,
       "last_modified": null,
-      "hash": "f8d6a6a60d65de9e2fdde1da2e76c2679fea7b3997cf6fc8afffdd002fca5c5a",
+      "hash": "eaa54b721d295e831279d3a045ff900c3c65847302917d030a276d951b8dacb4",
       "proven": [
         "tx-2026-0238-c1",
         "tx-2026-0238-c2",
@@ -3377,7 +3454,7 @@
     "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study": {
       "etag": null,
       "last_modified": null,
-      "hash": "901b3c66485e74f6b8cc3c78284c75a0482ff8cf8d6ae13ed71370e18ba8ef2d",
+      "hash": "3b22e42ad3d16ec0d6a3c81722c3c0986589b4247373c19a4e010c496a149960",
       "proven": [
         "tx-2026-0236-c13",
         "tx-2026-0236-c14",
@@ -3390,8 +3467,8 @@
     },
     "https://www.sanangelo.gov/803/Data-Center-Information": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 05:16:58 GMT",
-      "hash": "6450505f98eefd42da7d07524fa3f7fdac9f840ed09d3181bbde8e24e87cc03c",
+      "last_modified": "Sun, 22 Nov 2026 05:10:20 GMT",
+      "hash": "87b11574665343f6963e619f93028ab13854645c0de8b8125eccd6f4c5c03e51",
       "proven": [
         "tx-2026-0065-c7",
         "tx-2026-0066-c7",
@@ -3400,26 +3477,26 @@
     },
     "https://www.sanangelo.gov/DocumentCenter/View/2255": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 05:16:59 GMT",
+      "last_modified": "Sat, 21 Nov 2026 05:14:15 GMT",
       "hash": "6021e5b9a16dafbec93fb08232c1ca4c6b70e677ca3b9196e8a0bcbb9b4196ce",
       "proven": []
     },
     "https://www.sanangelo.gov/DocumentCenter/View/2315": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 05:17:00 GMT",
+      "last_modified": "Sun, 22 Nov 2026 05:10:20 GMT",
       "hash": "30cdb201bcd61cbecfefedf179c6bf5df1121d51609322c295c607da1bbbf3bb",
       "proven": []
     },
     "https://www.sanangelo.gov/DocumentCenter/View/2316": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 05:17:01 GMT",
+      "last_modified": "Sat, 21 Nov 2026 05:14:16 GMT",
       "hash": "28e79be8f90c2a52a423b6192051447f88a3197bb91ceec13833eabddb5cb818",
       "proven": []
     },
     "https://www.sanmarcostx.gov/2859/Code-Updates": {
       "etag": null,
       "last_modified": null,
-      "hash": "d43da2446544b967e078f511283c2bc600cfe7252c8503f208ff93ad74f44e78",
+      "hash": "8396cddf23dfffffa38242b55be17de0d12d78b0e6aa1a0d34a46cf33f83e7bf",
       "proven": [
         "tx-2026-0061-c3"
       ]
@@ -3513,7 +3590,7 @@
     "https://www.solunacomputing.com/news/soluna-applied-digital-chronoscale/": {
       "etag": null,
       "last_modified": null,
-      "hash": "147f8a4eebf030ef4dc712ef01ba5fcc1e26916d093bbe032ed662702ba7fff6",
+      "hash": "3d7baf40e022a7bef85c2cb9a6e15ee682daf294cae0d48a8eab34354e5a4bf2",
       "proven": [
         "tx-2026-0233-c1",
         "tx-2026-0233-c2",
@@ -3528,7 +3605,7 @@
     "https://www.solunacomputing.com/news/soluna-secures-conditional-base-load-position-for-project-dorothys-100-mw-in-ercot-batch-zero/": {
       "etag": null,
       "last_modified": null,
-      "hash": "80a12f3cf4c6820e074fd9159ba99933f7ea7e2a92ecd20f797577558c03f0e5",
+      "hash": "83e7421152ec9d9d9208c56abcba20e6d597db1e3c58e193f6681585a7aceb88",
       "proven": [
         "tx-2026-0233-c10",
         "tx-2026-0233-c11",
@@ -3537,9 +3614,9 @@
       ]
     },
     "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio": {
-      "etag": "W/\"1794963160-gzip\"",
-      "last_modified": "Wed, 18 Nov 2026 00:52:40 GMT",
-      "hash": "e04a06efdbf3b6bed163649e0bcd44e6bba1608a296be17e937746cb0c9ed70c",
+      "etag": "W/\"1795229677-gzip\"",
+      "last_modified": "Sat, 21 Nov 2026 02:54:37 GMT",
+      "hash": "18dc3a82a042931e167dd415c89c242e52137a649c094d0d06b44f640ea8926a",
       "proven": [
         "tx-2026-0236-c1",
         "tx-2026-0236-c10",
@@ -3558,7 +3635,7 @@
     "https://www.tahc.texas.gov/emergency/nws.html": {
       "etag": null,
       "last_modified": null,
-      "hash": "474696aafbeab70cb7d78eacb906d0841b9b3d9f6297c7a8258d68d5b55b4dec",
+      "hash": "b1a4c516f98c841f0b1b29695e5837b39e8279a6288c52514e4ca8e886961029",
       "proven": [
         "tx-2026-0218-c10",
         "tx-2026-0218-c13",
@@ -3573,7 +3650,7 @@
     "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5bb25e964315a8e2eb293de14339d4de1ecfd53124c26d08cbf1eb44e1fb74b8",
+      "hash": "0305b30e491e2ad8422b55ad057afaef92acec1e7f5f58d11113b131702b89ae",
       "proven": [
         "tx-2026-0119-c8"
       ]
@@ -3581,7 +3658,7 @@
     "https://www.taylortx.gov/1416/Taylor-Technology-Campus": {
       "etag": null,
       "last_modified": null,
-      "hash": "0ad95ed2413049aa069a855f1601085934bc3b64d43c3fc9f0c854ed6883f914",
+      "hash": "c0c02b56947ce02d24933e35d5b3da094b1e09d193a263cc7b3b318df2c28fe4",
       "proven": [
         "tx-2026-0203-c10",
         "tx-2026-0203-c11",
@@ -3700,7 +3777,7 @@
     "https://www.templetx.gov/datacenters": {
       "etag": null,
       "last_modified": null,
-      "hash": "6b8cf07b41c4616592c37d69449d67ccea5c971836ef1479f04a4bc0a655405f",
+      "hash": "311d96053acb2fb33626c3a000e27e037892a6a44802714bee2919bf9589813b",
       "proven": [
         "tx-2026-0026-c4",
         "tx-2026-0026-c5"
@@ -3723,9 +3800,9 @@
       ]
     },
     "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for": {
-      "etag": "\"1794956699-gzip\"",
-      "last_modified": "Tue, 17 Nov 2026 23:04:59 GMT",
-      "hash": "2e8c4864b3fa9b121fadd521326d3609a236e81d158774c715a1ecfe64142a68",
+      "etag": "\"1795237865-gzip\"",
+      "last_modified": "Sat, 21 Nov 2026 05:11:05 GMT",
+      "hash": "5be53d442896348f04f5f589eef4909ce9393f39d0aaf5fbe3fa25522f14629f",
       "proven": [
         "tx-2026-0195-c1",
         "tx-2026-0195-c2",
@@ -3746,16 +3823,16 @@
     },
     "https://www.texastribune.org/2026/05/21/texas-oil-companies-use-ai-for-wastewater/": {
       "etag": null,
-      "last_modified": "Tue, 17 Nov 2026 04:26:04 GMT",
-      "hash": "1fe866d7915564f7b50527751116a1eeece0631d2c8c15b74eac7981a27915fa",
+      "last_modified": "Sat, 21 Nov 2026 05:11:07 GMT",
+      "hash": "293f1da51af01860d5e8a3dba4acb9cc4379c5803eed0bd561fdeba43df10dab",
       "proven": [
         "tx-2026-0240-c18"
       ]
     },
     "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 01:06:32 GMT",
-      "hash": "cebf73bc7241a3ba3d85a51aa672488b7562f36132d3abe54b5b2da17334ae45",
+      "last_modified": "Fri, 20 Nov 2026 05:13:15 GMT",
+      "hash": "0f5bd6bf2a5a3d818367f0eba033d0ca0e162095bf4266c2b115c79ca39069ad",
       "proven": [
         "tx-2026-0204-c11",
         "tx-2026-0204-c12",
@@ -3766,8 +3843,8 @@
     },
     "https://www.texastribune.org/2026/08/28/texas-flock-cameras-auto-insurance-fee-mvcpa-grants/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 02:01:02 GMT",
-      "hash": "a6221b824cfd6591d0443d0e9abe5e7c4f51d7275dcd8886f3e8208787f095a9",
+      "last_modified": "Fri, 20 Nov 2026 04:23:00 GMT",
+      "hash": "ece6762bf4ec8673cd075e59b5401fd45400a4c727aed2bfc5b8800f8ea97453",
       "proven": [
         "tx-2026-0111-c3",
         "tx-2026-0111-c4",
@@ -3777,8 +3854,8 @@
     },
     "https://www.texastribune.org/2026/08/28/texas-greg-abbott-flock-cameras-order-state-money/": {
       "etag": null,
-      "last_modified": "Sun, 15 Nov 2026 23:06:52 GMT",
-      "hash": "4b4e575cb3992e4d4f821caa3213e219657f0779c43ead2a245c4d27c7f8f65b",
+      "last_modified": "Thu, 19 Nov 2026 21:50:24 GMT",
+      "hash": "2cc2a8961c9ed52095206587c1086bb9982de6b46523858f47d5323eb8bae68e",
       "proven": [
         "tx-2026-0111-c1",
         "tx-2026-0111-c2"
@@ -3786,16 +3863,16 @@
     },
     "https://www.texastribune.org/2026/08/28/transmission-lines-texas-energy/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 12:00:41 GMT",
-      "hash": "6234f2e2bc333fdacdd92201a5f5769f95853764967f983e4bd356a90c96f8b3",
+      "last_modified": "Sat, 21 Nov 2026 05:14:32 GMT",
+      "hash": "9a905c173994247bd394f792674af3f6ef5a57f82fad77fbd8408787f623516b",
       "proven": [
         "tx-2026-0112-c5"
       ]
     },
     "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/": {
       "etag": null,
-      "last_modified": "Tue, 17 Nov 2026 04:15:38 GMT",
-      "hash": "07b553c5508aac16d5bfed0cbf35578dda1064859bed453d5d4621cf2a772062",
+      "last_modified": "Sat, 21 Nov 2026 01:15:44 GMT",
+      "hash": "a270b4661aaa562bc66cc5ced9f095d4fdbca27e2d6c32ba20b80026987d2eaa",
       "proven": [
         "tx-2026-0246-c14",
         "tx-2026-0246-c15",
@@ -3804,8 +3881,8 @@
     },
     "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 02:01:03 GMT",
-      "hash": "17f9100515149f31642a4f6bab5e2b41241e4e2f5c918831c8f67986b5e419ab",
+      "last_modified": "Sat, 21 Nov 2026 05:11:08 GMT",
+      "hash": "7a6949ff73ee27418530e77ef4664c4b6e98c125881b69574467fbe157985ca1",
       "proven": [
         "tx-2026-0194-c11",
         "tx-2026-0194-c12",
@@ -3816,16 +3893,16 @@
     },
     "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/": {
       "etag": null,
-      "last_modified": "Sun, 15 Nov 2026 23:09:57 GMT",
-      "hash": "ce54256fd22041c0c6d7294717264c454c894c69822b1012908e6ca560f1eb17",
+      "last_modified": "Sat, 21 Nov 2026 05:11:09 GMT",
+      "hash": "053cbb2f6befa88dde5f2a153a87d5d2c567803f4d8b41cbfcb833daf9ffaa19",
       "proven": [
         "tx-2026-0182-c2"
       ]
     },
     "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/": {
       "etag": null,
-      "last_modified": "Tue, 17 Nov 2026 04:00:44 GMT",
-      "hash": "e54c6d3a740b3f548eaa1d74687cc39b19dc944e794fbea3c85a85fd73b90ee0",
+      "last_modified": "Sat, 21 Nov 2026 05:11:10 GMT",
+      "hash": "087a924bc8ad442f9665d849589aca9b9dd9597fed49358dd27eafbb6033c394",
       "proven": [
         "tx-2026-0191-c10",
         "tx-2026-0191-c11",
@@ -3836,8 +3913,8 @@
     },
     "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 01:56:32 GMT",
-      "hash": "51244ca0b69c806eeff4af67047cd0640ebada658e953a37a482525a52dff25c",
+      "last_modified": "Fri, 20 Nov 2026 01:33:36 GMT",
+      "hash": "c9332caa68000638f960f9e6b53edadd2477eddba797944bdf9549d52ab7e1d0",
       "proven": [
         "tx-2026-0200-c1",
         "tx-2026-0200-c10",
@@ -3872,10 +3949,23 @@
         "tx-2026-0200-c9"
       ]
     },
+    "https://www.texastribune.org/2026/10/07/staar-scores-computer-grading-texas-schools/": {
+      "etag": null,
+      "last_modified": "Sat, 21 Nov 2026 05:11:10 GMT",
+      "hash": "4e9e4df3073953cb57c5920400932ea4f0f8837db27c0351eab9b2b2c8ad05ac",
+      "proven": [
+        "tx-2026-0194-c16",
+        "tx-2026-0194-c17",
+        "tx-2026-0194-c18",
+        "tx-2026-0194-c19",
+        "tx-2026-0194-c20",
+        "tx-2026-0194-c21"
+      ]
+    },
     "https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/": {
       "etag": null,
-      "last_modified": "Wed, 18 Nov 2026 05:10:48 GMT",
-      "hash": "e7f41c45e51a2af622afc0fe8ca130f994be20395b8e82663d725b7835ff1287",
+      "last_modified": "Sat, 21 Nov 2026 05:14:32 GMT",
+      "hash": "cc396b6fc73ad867fad1d441ac4e45bad036c2432cc9028c7534385210016a98",
       "proven": [
         "tx-2026-0171-c8",
         "tx-2026-0171-c9"
@@ -3883,8 +3973,8 @@
     },
     "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 03:34:23 GMT",
-      "hash": "cc2503119a82ff941eaca9a671a3a602301a387538a6985826663dc9c73c07d5",
+      "last_modified": "Sun, 22 Nov 2026 18:36:44 GMT",
+      "hash": "e2c6b977bb9d1b6f997cf6f84f43df1302000d6b13cc8a9fae8ed2ab3034e8c6",
       "proven": [
         "tx-2026-0128-c5",
         "tx-2026-0246-c10",
@@ -3895,10 +3985,21 @@
         "tx-2026-0246-c9"
       ]
     },
+    "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/": {
+      "etag": null,
+      "last_modified": "Fri, 20 Nov 2026 03:40:28 GMT",
+      "hash": "b49d82666856db73efef774b9b2c6db6d6dc4290a8e696c864dc0bb489f8b566",
+      "proven": [
+        "tx-2026-0182-c15",
+        "tx-2026-0182-c16",
+        "tx-2026-0182-c17",
+        "tx-2026-0182-c18"
+      ]
+    },
     "https://www.texome.org/": {
-      "etag": "W/\"08ec6e45bf85ad28d42920aba8e5b06d\"",
+      "etag": "W/\"18eaa6ee4c925ab3735a7c9a5625f368\"",
       "last_modified": null,
-      "hash": "2b637d5a0eeba217c42402474951cf9a2185c6a44c902bd0b8a3f0bf0ce2ed92",
+      "hash": "d704b49e00f03dddafb799ec45a2746be1e8570eaed55c7be06f2deec05a9974",
       "proven": [
         "tx-2026-0195-c10"
       ]
@@ -3906,7 +4007,7 @@
     "https://www.tpr.org/economy-and-labor/2026-05-10/waymo-set-to-return-to-san-antonio-after-flood-incidents-paused-service": {
       "etag": null,
       "last_modified": null,
-      "hash": "b3cec89110afe7bb26a626b106f8f2627d85d32b95f388311ff20ee6e0b93366",
+      "hash": "70c18ea5f5117dbc01ad5e719f2b03534f89af184e3563fa14052f62301d51ef",
       "proven": [
         "tx-2026-0216-c13",
         "tx-2026-0216-c14"
@@ -3915,7 +4016,7 @@
     "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center": {
       "etag": null,
       "last_modified": null,
-      "hash": "fe5bf893115cbbfcf13f5d7a9577be48fb8c25edb19ccbe6e9fc8743b81491e2",
+      "hash": "592ccbe23374b6a2d925517b1333a31570db1ebb3620f8d513727a400d48b326",
       "proven": [
         "tx-2026-0238-c4",
         "tx-2026-0238-c5",
@@ -3925,7 +4026,7 @@
     "https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio": {
       "etag": null,
       "last_modified": null,
-      "hash": "bca55ba193b9a010538217c184a8b86f9e3a17374b13e8a5bee13c0f41e9f5cb",
+      "hash": "6beccf9ec8f67506c010b0a257c84ac79db8339aa7cf3e06cc9e76d7a6dad9fe",
       "proven": [
         "tx-2026-0216-c10",
         "tx-2026-0216-c11",
@@ -3936,7 +4037,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "bcb6c45a175071c48d3fc993cea64bd6442a5ece6e2f06c27748a030d20e2900",
+      "hash": "bb69ff32f930fbbfef4a6be3e08a5376159b504001ae5494bf0aa1d26f89360f",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",
@@ -3946,7 +4047,7 @@
     "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/": {
       "etag": null,
       "last_modified": null,
-      "hash": "644263c742e30c2892ddd2b92f76f1b943928bca468bc2c327b4c086794c9da0",
+      "hash": "eef75853fbbf08e68f0f7da0dc916038bf2a4578f7c733486a04525c9e2e0d8b",
       "proven": [
         "tx-2026-0182-c1",
         "tx-2026-0182-c4",
@@ -3956,7 +4057,7 @@
     "https://www.trwd.com/resource/data-center-water-request/": {
       "etag": null,
       "last_modified": null,
-      "hash": "9a26cad5e917a248a8d225997ddf3b7a497f5a81bfcdbaa2fd14ef1517571234",
+      "hash": "18f085c4ad28e3bb8bc7d5c704c14ec5d3640b7d46ea119c65c83e6168f4c1bf",
       "proven": [
         "tx-2026-0059-c1",
         "tx-2026-0059-c2",
@@ -4006,7 +4107,7 @@
     "https://www.twdb.texas.gov/board/2026/07/board/index.asp": {
       "etag": null,
       "last_modified": null,
-      "hash": "05ebd30f1541430d72fb13344ca74477c7ceeb2f2aa6e9497357bde3face81cd",
+      "hash": "74b9e8fe76d49e9fd84eb9d893b2fcd15bb1e3dee6aeca7afa4bfd6ed0a9ccd8",
       "proven": [
         "tx-2026-0056-c1",
         "tx-2026-0056-c2"
@@ -4032,8 +4133,8 @@
     },
     "https://www.txdmv.gov/AVprogram": {
       "etag": null,
-      "last_modified": "Thu, 19 Nov 2026 05:11:55 GMT",
-      "hash": "8b27ab55f3abfe3f6e9f327f28ae1659da92cf46c3447b741c8224532a25d302",
+      "last_modified": "Sun, 22 Nov 2026 04:44:40 GMT",
+      "hash": "f217a067ebf55b3ceca2aed26dddf66cc2370511715bb4bd1ca22d6168072aeb",
       "proven": [
         "tx-2026-0188-c1",
         "tx-2026-0188-c2",
@@ -4046,8 +4147,8 @@
     },
     "https://www.txdmv.gov/about-us/MVCPA": {
       "etag": null,
-      "last_modified": "Mon, 16 Nov 2026 05:15:32 GMT",
-      "hash": "b6374bdeaca8f33929fbac0fa3731bd87cbe41829fb32225957ae20c3e7050b4",
+      "last_modified": "Sat, 21 Nov 2026 05:11:18 GMT",
+      "hash": "88d51cb40a8676e684c02cb6ba6ec157c7c11bb95f3747b4d97613d95d002c2a",
       "proven": [
         "tx-2026-0111-c7"
       ]
@@ -4065,9 +4166,9 @@
       "proven": []
     },
     "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html": {
-      "etag": "\"272ab-660582dda87c9\"",
-      "last_modified": "Sun, 15 Nov 2026 22:28:22 GMT",
-      "hash": "da5e81cbd3e1817435d68fcec519a179fbb5b8fd03d95080b3e8fd6acc5eea81",
+      "etag": "\"272ac-660e074737aa7\"",
+      "last_modified": "Sun, 22 Nov 2026 17:03:22 GMT",
+      "hash": "a08e2c9da2bc6754fb3328df26198a10422ee0e4aa9da54c0cd451745a5817b7",
       "proven": [
         "tx-2026-0205-c1",
         "tx-2026-0205-c2",
@@ -4089,7 +4190,7 @@
     "https://www.uta.edu/news/news-releases/2026/07/22/uta-selected-for-land-mark-doe-ai-initiative": {
       "etag": null,
       "last_modified": null,
-      "hash": "ee5c01f4cb8575d8a65129acb74746186050b7f1cab520570119a94c94e226d5",
+      "hash": "63f4e3fc97615e68e58ad66499e49ddbdd07768a097b494b2192c610f2c10c58",
       "proven": [
         "tx-2026-0103-c2"
       ]
@@ -4115,10 +4216,32 @@
         "tx-2026-0173-c3"
       ]
     },
+    "https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "abb2a26ed502610ce694441978ccd3404e13c71a42c5c6b7e643799eda2cf7bf",
+      "proven": [
+        "tx-2026-0252-c1",
+        "tx-2026-0252-c10",
+        "tx-2026-0252-c11",
+        "tx-2026-0252-c12",
+        "tx-2026-0252-c13",
+        "tx-2026-0252-c14",
+        "tx-2026-0252-c15",
+        "tx-2026-0252-c2",
+        "tx-2026-0252-c3",
+        "tx-2026-0252-c4",
+        "tx-2026-0252-c5",
+        "tx-2026-0252-c6",
+        "tx-2026-0252-c7",
+        "tx-2026-0252-c8",
+        "tx-2026-0252-c9"
+      ]
+    },
     "https://www.utep.edu/cs/opportunities/sfs_program.html": {
       "etag": null,
       "last_modified": null,
-      "hash": "18c4d94bcd769cf61a6d225049d4c263fa06390c43e6e20cb745cbe583c8037d",
+      "hash": "385d5a3555c998c8eff394ac1fdcf5a206083b72b7ab781303587eab646b9849",
       "proven": [
         "tx-2026-0039-c3"
       ]
@@ -4141,7 +4264,7 @@
     "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives": {
       "etag": null,
       "last_modified": null,
-      "hash": "d22440e82cefea8381661f08739bca8f820dbf1f7c81b11ada49bfd6294b8bbc",
+      "hash": "cdb0c47d493836a2e7db5899693b945e94fb95d99b2c7adb58cadb310a904a63",
       "proven": [
         "tx-2026-0082-c1",
         "tx-2026-0082-c2",
@@ -4151,7 +4274,7 @@
     "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows": {
       "etag": null,
       "last_modified": null,
-      "hash": "8a045ebd6da103f27c65bc1ca1aa9a75db264963802db375c8ef45da721b6946",
+      "hash": "a6c9dd04222bbdaacd83eb82d9717954c9eb491ce944fd89edcf8e9654a1e7c4",
       "proven": [
         "tx-2026-0208-c1",
         "tx-2026-0208-c2",
@@ -4187,9 +4310,9 @@
       ]
     },
     "https://www.utsystem.edu/board-of-regents/meetings/board-meeting-2026-08-12": {
-      "etag": "W/\"1794613808-gzip\"",
-      "last_modified": "Fri, 13 Nov 2026 23:50:08 GMT",
-      "hash": "6aa36a259200a9cdb75dbcff8f324d3c9b3cb5e3ecac8f3c70be9a5f233aea6e",
+      "etag": "W/\"1795204045-gzip\"",
+      "last_modified": "Fri, 20 Nov 2026 19:47:25 GMT",
+      "hash": "7276bbe4a0b5498e56783d016f0fefb45afd196a145578a73ce3e24a7668e14f",
       "proven": [
         "tx-2026-0094-c9"
       ]
@@ -4201,18 +4324,18 @@
       "proven": []
     },
     "https://www.utsystem.edu/sites/ut-real-health-ai": {
-      "etag": "W/\"1794605247-gzip\"",
-      "last_modified": "Fri, 13 Nov 2026 21:27:27 GMT",
-      "hash": "234ea3f9eab59007daf9893d05b184480f4710530191e62a7392793dcf9c024f",
+      "etag": "W/\"1795187177-gzip\"",
+      "last_modified": "Fri, 20 Nov 2026 15:06:17 GMT",
+      "hash": "fe718f8f452812405b59aeac3b452fe3b69561eab5c029c2ea0f5cf0d10353f3",
       "proven": [
         "tx-2026-0201-c14",
         "tx-2026-0201-c2"
       ]
     },
     "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i": {
-      "etag": "W/\"1794542070-gzip\"",
-      "last_modified": "Fri, 13 Nov 2026 03:54:30 GMT",
-      "hash": "486d9ff7427c4901075691b9957980524fa4353429e5752f6579f45972df5b26",
+      "etag": "W/\"1795117347-gzip\"",
+      "last_modified": "Thu, 19 Nov 2026 19:42:27 GMT",
+      "hash": "ec92c7489208886695831cdb0f9e4efe16fe73a3991162b4acf10f8da3bce566",
       "proven": [
         "tx-2026-0201-c1",
         "tx-2026-0201-c10",
@@ -4229,10 +4352,18 @@
         "tx-2026-0201-c9"
       ]
     },
+    "https://www.va.gov/south-texas-health-care/locations/audie-l-murphy-memorial-veterans-hospital/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "4eb1fc23017bda5eeb48eb0794c707841f7cf6e46f3df02b86d355e0c4e5a1b9",
+      "proven": [
+        "tx-2026-0249-c14"
+      ]
+    },
     "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html": {
-      "etag": "\"26832-6605b46e18561-gzip\"",
-      "last_modified": "Mon, 16 Nov 2026 02:10:07 GMT",
-      "hash": "ed5cd0a8aea50ebc2702ef96d9748b866a6575f8ed95c37a88668a8346904c00",
+      "etag": "\"269ff-660e6bde0450d-gzip\"",
+      "last_modified": "Mon, 23 Nov 2026 00:33:24 GMT",
+      "hash": "761c04e875d033c390585c2a88512a1a20737f60538662107fe1cb24bbd04679",
       "proven": [
         "tx-2026-0206-c1",
         "tx-2026-0206-c2",
@@ -4255,8 +4386,8 @@
     },
     "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas": {
       "etag": null,
-      "last_modified": "Fri, 13 Nov 2026 08:34:26 GMT",
-      "hash": "5520d042d6eb7fbf64b16acd82f35e6fe94c6caaa6f2691c3b211576c332295b",
+      "last_modified": "Fri, 20 Nov 2026 02:56:28 GMT",
+      "hash": "9affd89f34e24b9a8b4619f9077252f43e5056123b6847c24c4a019a81d68ef7",
       "proven": [
         "tx-2026-0146-c5",
         "tx-2026-0146-c6"
@@ -4273,12 +4404,20 @@
     "https://www.zipline.com/about/zipline-safety-fact-sheet": {
       "etag": null,
       "last_modified": null,
-      "hash": "ee247588ec23b0d9b7da9c109f8ff3e728350a5876b4e1887240a1cca043fe1d",
+      "hash": "62eefa0f4f93762d0bed51789a7b1ab95dcf0f253b00f1ad4c6590d9c2ec99c8",
       "proven": [
         "tx-2026-0232-c10",
         "tx-2026-0232-c11",
         "tx-2026-0232-c12",
         "tx-2026-0232-c9"
+      ]
+    },
+    "https://www2.census.gov/geo/docs/maps-data/data/rel2020/zcta520/tab20_zcta520_county20_natl.txt": {
+      "etag": null,
+      "last_modified": "Thu, 09 Dec 2021 16:27:40 GMT",
+      "hash": "3ed41278d637dc249e0323306f68be8a6c234e3090f4de88ef328dee71aeaaaf",
+      "proven": [
+        "tx-2026-0249-c15"
       ]
     },
     "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt": {

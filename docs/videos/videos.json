@@ -2,6 +2,30 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-21-the-camera-sees-the-curb",
+      "date": "2026-11-21",
+      "title": "The camera sees the curb",
+      "caption": "Dallas put AI cameras on 50 bulky trash trucks. The film follows one photo through blurring, a blight score and an analyst's desk to show where a person still decides.",
+      "video": "/runs/2026-11-21/dispatch.mp4",
+      "poster": "/runs/2026-11-21/poster.png",
+      "video_mobile": "/runs/2026-11-21/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-21/poster-540.jpg",
+      "county": "Dallas",
+      "beat": "city-services"
+    },
+    {
+      "id": "2026-11-19-the-call-comes-first",
+      "date": "2026-11-19",
+      "title": "The call comes first",
+      "caption": "In a small Texas ER with no trauma surgeon on call, deciding to transfer a badly hurt patient takes 15 to 30 minutes. A UT Health San Antonio led team is building an AI tool to prompt that call sooner.",
+      "video": "/runs/2026-11-19/dispatch.mp4",
+      "poster": "/runs/2026-11-19/poster.png",
+      "video_mobile": "/runs/2026-11-19/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-19/poster-540.jpg",
+      "county": "Frio",
+      "beat": "clinic"
+    },
+    {
       "id": "2026-11-18-the-bag-is-already-here",
       "date": "2026-11-18",
       "title": "The bag is already here",
@@ -12,18 +36,6 @@
       "poster_thumb": "/runs/2026-11-18/poster-540.jpg",
       "county": "Harris",
       "beat": "science-machines"
-    },
-    {
-      "id": "2026-11-17-out-of-the-red-zone",
-      "date": "2026-11-17",
-      "title": "Out of the red zone",
-      "caption": "On ExxonMobil's automated rigs in Midland, three robot arms now move and connect drill pipe on the rig floor while the crew runs them from a small office on the rig.",
-      "video": "/runs/2026-11-17/dispatch.mp4",
-      "poster": "/runs/2026-11-17/poster.png",
-      "video_mobile": "/runs/2026-11-17/dispatch-720.mp4",
-      "poster_thumb": "/runs/2026-11-17/poster-540.jpg",
-      "county": "Midland",
-      "beat": "oilfield"
     },
     {
       "id": "2026-11-16-the-eighth-watcher",

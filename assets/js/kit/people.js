@@ -1415,7 +1415,7 @@ export function install(K, THREE, TXT) {
     options: { seed: 1, role: 'resident', pose: 'stand', toward: 1, height: null, build: 'auto',
                hat: 'auto', hatColor: null, shade: false, vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full',
                headPitch: null, hands: null },
-    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read|sit_drive (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. sit_drive sits upright at the wheel with the head level, eyes on the road, and both hands closed on the rim at ten and two of a nominal wheel ahead of the chest. headPitch, any pose: the pitch of the head from LEVEL in radians, positive looks down, whatever the torso does (0 is a level gaze; sit_read bakes about 0.52 down). hands, any pose: [left, right] grip points in the frame of the person (left is +x), each [x, y, z] or null; a hand closes on that point by two bone reach, and a point out of reach is reached toward. With sit_drive or hands the origin is kept (feet on y 0, hips on z 0, the midline on x 0) and userData.attach publishes hip, seat (the measured underside of the trousers below the hips, where a cushion meets them), eye and hands (each grip, the point reached, and short, metres it fell short). semi_cab_interior publishes attach.rim, its own ten and two, so a driver takes hands: A.rim.map((p) => [p[0] - x, p[1] - y, p[2] - z]) for a person at x, y, z. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
+    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read|sit_drive|kneel (kneel puts one knee on the ground, the leg on the `toward` side forward with its foot flat, the trunk leaning in and the forearms reaching forward and down to a casualty or the ground, the hips at about 0.5 m; read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. sit_drive sits upright at the wheel with the head level, eyes on the road, and both hands closed on the rim at ten and two of a nominal wheel ahead of the chest. headPitch, any pose: the pitch of the head from LEVEL in radians, positive looks down, whatever the torso does (0 is a level gaze; sit_read bakes about 0.52 down). hands, any pose: [left, right] grip points in the frame of the person (left is +x), each [x, y, z] or null; a hand closes on that point by two bone reach, and a point out of reach is reached toward. With sit_drive or hands the origin is kept (feet on y 0, hips on z 0, the midline on x 0) and userData.attach publishes hip, seat (the measured underside of the trousers below the hips, where a cushion meets them), eye and hands (each grip, the point reached, and short, metres it fell short). semi_cab_interior publishes attach.rim, its own ten and two, so a driver takes hands: A.rim.map((p) => [p[0] - x, p[1] - y, p[2] - z]) for a person at x, y, z. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
     make(o, r) {
       LOW = o.detail === 'low';
       try { return makePerson(o, r); } finally { LOW = false; }
@@ -1537,6 +1537,22 @@ export function install(K, THREE, TXT) {
         leg[s] = { t: n3(s * 0.07, 0.04, 1), c: n3(s * 0.02, -0.94, 0.34) };
         arm[s] = { u: n3(s * 0.1, -0.6, 0.8), f: n3(-s * 0.1, 0.1, 1), hand: 'grip', grip: null };
       }
+    }
+    if (pose === 'kneel') {
+      // A KNEEL, ONE KNEE DOWN (weekly pass 2026-11-22). The kit had no kneel, so no. 84's frame 8 sank a
+      // standing person to its knees and built the shins and boots by hand lying back along the floor, and
+      // all three judges in all three rounds read "a primitive medic", "boots splayed as blocks", the round 3
+      // craft judge's fix "a properly jointed figure ... kneeling at a role player". So the skeleton kneels:
+      // the lead leg (toward, +x by default) has its thigh forward and its shin plumb to a flat foot, the
+      // other thigh falls plumb to a knee on the ground and its shin lies back, rising a little to the ankle,
+      // so the boot's toes tuck under it (the shoe pitch below finds the ground). The ankle lift then sets
+      // the hips at about a shin's height. The trunk leans in, the head looks down and forward, and both
+      // forearms reach forward and down to work at the ground or a casualty; `hands` places them exactly.
+      const lead = tw;
+      leg[lead] = { t: n3(lead * 0.1, 0.07, 1), c: n3(lead * 0.02, -1, 0.02) };
+      leg[-lead] = { t: n3(-lead * 0.03, -1, -0.1), c: n3(-lead * 0.02, 0.45, -1) };
+      torsoLean = 0.14; headPitch = 0.38;
+      for (const s of [1, -1]) arm[s] = { u: n3(s * 0.12, -1, 0.5), f: n3(-s * 0.12, -0.55, 1), hand: 'relax' };
     }
     // A HAND ON A NAMED POINT, any pose (weekly pass 2026-11-12; kit-person-full-length asked for it as a
     // grip on a chain on no. 54). The point is in the person's own frame, left (+x) first.
@@ -2215,7 +2231,7 @@ export function install(K, THREE, TXT) {
           if (Math.abs(ty) < err) { err = Math.abs(ty); best = a; }
         }
         pitch = best;
-      } else if (L.t.z > 0.2) pitch = -0.12;
+      } else if (L.t.z > 0.2 && pose !== 'kneel') pitch = -0.12;   // a kneel's planted foot stays flat
       foot.position.set(L.ankle.x, L.ankle.y, L.ankle.z);
       sh.position.y = -ankleH;
       foot.rotation.x = pitch; foot.rotation.y = s * 0.08;

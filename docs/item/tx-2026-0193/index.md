@@ -11,7 +11,7 @@ El Paso Electric asked the Public Utility Commission of Texas to amend its certi
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59076&ItemMatch=Equal&DocumentType=ALL&SortBy=ItemNumber&SortOrder=Descending
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -39,6 +39,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The judges' recommendation on El Paso Electric's gas plant for Meta is still awaiting the commission.
 - 2026-11-13 · The commission has not ruled on the judges' terms for El Paso Electric's gas plant for Meta.
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-19 · Checked again. The judges' condition on El Paso Electric's gas plant for Meta still awaits a commission vote.
+- 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

@@ -4079,4 +4079,49 @@
   "frontier scan": "None: prompts/machine_weekly.md names none"
  }
 }
+,"2026-11-22 weekly": {
+ "date": "2026-11-22",
+ "run": "2026-11-21",
+ "upgrades": [
+  {
+   "what": "Kit person gains pose 'kneel': one knee on the ground, the toward-side leg forward with a flat foot, the back boot's toes tucked by the existing shoe pitch, trunk leaning in, forearms forward and down",
+   "why": "Top digest theme, primitive or low-poly model where a kit model belongs, 7 runs of 7, 20 rounds. No. 84 frame 8's comment says 'The kit has no kneel', so it sank a standing person and built shins and boots by hand; every judge in all three rounds charged the medic ('boots splayed as blocks'), round 3 craft fix 'a properly jointed figure ... kneeling'. Queue kit-people-cartoon-at-table-range carries the no. 84 evidence.",
+   "files": [
+    "assets/js/kit/people.js"
+   ],
+   "verification": "python3 out/2026-11-21/tmp/machine/kneel_proof.py && python3 .claude/skills/carousel-engine/render.py --slides-dir out/2026-11-21/tmp/machine/kneel/slides --out-dir out/2026-11-21/tmp/machine/kneel/render && python3 examples/kit/sizes.py --out out/2026-11-21/tmp/machine/sizes  The proof renders four pages with no JS error (render.py exits 1 on one): seed 23 standing beside the same seed kneeling, a worker kneeling toward -1 side on, a resident kneeling from behind. Read at full size: the back knee rests on the ground, the back boot stands toes down behind it, the front foot is flat, the hips sit at about a shin's height. sizes.py: 145 of 145 models declare the size they build. The block draws no seeded random number and runs only for pose 'kneel', so every existing pose and seed builds as before.",
+   "revert": "a6ac4132",
+   "how_i_would_know_this_was_wrong": "A deck kneels the person and a judge still names its legs as blocks or its back foot as floating or through the ground, or a seed's back knee hovers visibly above the ground at full size; or any non-kneel person changes pixels between this commit and its parent."
+  },
+  {
+   "what": "panel_ready refuses a round while a bespoke brief's headline or dek differs from copy.json (check_briefs_current)",
+   "why": "Queue bespoke-brief-stale-after-panel-repair at repeat 2 (nos. 78, 83, 84). Measured over the shipped bespoke runs 2026-11-16 to 2026-11-21: five of six carry at least one brief whose headline or dek is not the copy that shipped, including no. 79's frame 7 (the very repair of its round 1 hard fail) and no. 84's frames 8 and 9.",
+   "files": [
+    "scripts/carousel/panel_ready.py",
+    "knowledge/carousel/BESPOKE.md"
+   ],
+   "verification": "python3 scripts/carousel/panel_ready.py --self-test  Six new cases replay no. 84 as shipped: frame 8's pre-repair headline and frame 9's pre-repair dek are CAUGHT, frame 1 (current) is not, frame 8 rewritten from copy.json clears, a brief with no copy lines is SAID as CANNOT, and a run with no briefs directory has nothing to compare. Run against out/2026-11-21 it names briefs/slide-08.md and slide-09.md, the two frames round 2 repaired.",
+   "revert": "954a9f9b",
+   "how_i_would_know_this_was_wrong": "A run is held at panel_ready on a brief whose difference from copy.json is only the artist's legitimate rewrite of a picture-describing sentence that carries no 'illustrat' (then the exception needs naming in data, never a wider match), or critics still score repaired frames against stale plans with the check green (then the planned picture and type seat need the same check)."
+  },
+  {
+   "what": "week_digest reads flat scores/r<N>-<lens>.json layouts as their rounds",
+   "why": "Runs from 2026-11-19 write flat score files and the directory-only pattern read them as round 0: the digest for this pass listed no. 84's three rounds as one ('2026-11-21 r0' on every theme, round 0 twice under the ranked defects, nine 'last round' fixes), so a theme the run's repairs never reached counted one round instead of three.",
+   "files": [
+    "scripts/carousel/week_digest.py"
+   ],
+   "verification": "python3 scripts/carousel/week_digest.py --self-test  Two new cases replay a flat three-round run with no card-level round: three rounds counted, no r0, first and last rounds 1 and 3, only round 3's fix listed. With the old pattern both cases FAIL (run on a copy, exit 1). Regenerated for 2026-11-21: primitive model theme 7 runs 20 rounds, 2026-11-21 r1,2,3.",
+   "revert": "3feb2718",
+   "how_i_would_know_this_was_wrong": "A score file whose name merely starts with r and a digit but is not a round (for example a reviewer's file) is counted as a round; the digest's round counts for a run exceed score.json's rounds."
+  }
+ ],
+ "proposals_out_of_lane": [],
+ "escalated": [
+  {
+   "what": "accent-floor-forces-flat-painted-props (repeat 2)",
+   "owner": "owner ruling, in lane once ruled",
+   "why": "Both proposed fixes widen what layout_check counts as the accent; UPGRADE_BACKLOG 2026-11-22 item 1."
+  }
+ ]
+}
 }

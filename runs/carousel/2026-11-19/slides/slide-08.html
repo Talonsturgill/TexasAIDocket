@@ -1,0 +1,175 @@
+<!doctype html>
+<!-- 2026-11-19, frame 8 of 9, THE ROAD TO 2028. A spatial scene through txthree.js under the WONDER sky at low sun: a pale
+caliche ranch road bends away to the right toward the horizon, and beside it runs a white painted oilfield pipe fence of
+exactly FIG.months_to_end domed posts, the last one standing where the fence stops and the road runs on. Every post lays a
+long violet shadow across the road. Eye on the road's left verge, crouched so the near posts rise above the horizon.
+One post stands for one month, drawn to illustrate. No dusk gold on this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:384px; top:136px; width:616px; text-align:left">The work runs to June 2028</h1>
+<p class="dek" data-follow="26" style="left:386px; width:612px; text-align:left">Fieldwork will take place in Texas, other states and affected regions of Mexico. By the end, UT Arlington aims to hand APHIS a field tested system. One post stands for one month, drawn to illustrate.</p>
+<script>window.FIG = {"months_to_end": 19};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The road to 2028", counter: "08 / 09", src: "c12 c15", fit: { min: 78, max: 92, maxLines: 3 } });
+  const FOV = 46;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 6000, fog: 0.0019 });
+
+  /* THE ROAD. kit caliche_road runs along local z and bows sideways by curve. Its centre line is the kit's own formula
+   * (less the kit's half metre wobble): with curve negative and the camera at t = 0.5, the road leaves the camera dead
+   * ahead and bends steadily right as it runs away, so the fence on its outer side is seen more and more side on and the
+   * far posts stay apart. */
+  const RL = 320, RC = -1.8, RW = 4.2, RV = 2.6;
+  const road = K.make('caliche_road', { length: RL, width: RW, curve: RC, verge: RV, centerGrass: true, ground: 0x9a7a8e, seed: 8 });
+  const PX = -RC * RL / 8;            /* puts the road centre at x 0 where t = 0.5, the camera's station */
+  road.position.set(PX, 0, 0); TXT.add(R, road);
+  const cx0 = (t) => RC * RL * 0.25 * (1 - Math.pow(2 * t - 1, 2)) - RC * RL * 0.125 + PX;
+  const centre = (zAhead) => { const t = 0.5 + zAhead / RL; return [cx0(t), -zAhead]; };   /* world [x, z] of the road centre zAhead metres on */
+
+  /* THE FENCE, read from FIG. One white painted oilfield pipe post per month, on the road's left verge, every POST_SP metres
+   * of arc, starting a few metres ahead of the camera. Pipe posts 4.5 in with domed caps and two 2 7/8 in rails welded to
+   * their road side faces, the kit's pipe_rail_fence dimensions, laid along the curve. */
+  const PH_STD = 1.72, N = FIG.months_to_end, POST_SP = 3.5, OFF = RW / 2 + 1.0, S0 = 11, PH = 1.72, PH_END = 2.9, PR = 0.057;
+  const path = [];   /* the fence line: sampled finely, with cumulative arc length */
+  for (let z = -2, s = 0, prev = null; z <= 160; z += 0.25) {
+    const a = centre(z), b = centre(z + 0.25), tx = b[0] - a[0], tz = b[1] - a[1], tl = Math.hypot(tx, tz);
+    const nx = tz / tl, nz = -tx / tl;          /* the left normal of travel (travel is toward -z, so left is -x) */
+    const p = [a[0] + nx * OFF, a[1] + nz * OFF];
+    if (prev) s += Math.hypot(p[0] - prev[0], p[1] - prev[1]);
+    path.push({ p, s, n: [nx, nz] }); prev = p;
+  }
+  const atArc = (s) => { for (let i = 1; i < path.length; i++) if (path[i].s >= s) { const A = path[i - 1], B = path[i], k = (s - A.s) / (B.s - A.s); return { p: [A.p[0] + (B.p[0] - A.p[0]) * k, A.p[1] + (B.p[1] - A.p[1]) * k], n: A.n }; } throw new Error('fence ran off its path at ' + s); };
+
+  const paint = new THREE.MeshStandardMaterial({ name: 'galv-steel-pipe', color: 0xaab2b6, roughness: 0.36, metalness: 0.88 });
+  paint.userData.txSurface = 'metal';   /* hot dip galvanised pipe: spangled, cool where it takes the sky, warm on the key side */
+  const rng = CH.rng(808);
+  const posts = [], fence = new THREE.Group();
+  for (let i = 0; i < N; i++) {
+    const q = atArc(S0 + i * POST_SP), g = new THREE.Group(), last = i === N - 1, PH = last ? PH_END : PH_STD;
+    const shaft = new THREE.Mesh(new THREE.CylinderGeometry(PR, PR * 1.02, PH, 20), paint); shaft.position.y = PH / 2; g.add(shaft);
+    const dome = new THREE.Mesh(new THREE.SphereGeometry(PR * 1.08, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), paint); dome.position.y = PH; g.add(dome);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(PR * 1.04, 0.006, 6, 20), paint); lip.rotation.x = Math.PI / 2; lip.position.y = PH; g.add(lip);
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(PR * 2.2, PR * 2.8, 0.09, 24), new THREE.MeshStandardMaterial({ name: 'conc-footing', color: 0xcfc2ae, roughness: 0.95 }));
+    collar.position.y = 0.03; g.add(collar);   /* the poured footing each post is set in */
+    g.position.set(q.p[0], 0, q.p[1]);
+    g.rotation.z = (rng() - 0.5) * 0.02; g.rotation.x = (rng() - 0.5) * 0.02;
+    if (last) {   /* the END POST: taller, with a wider collar, braced back to its neighbour, where the rails stop */
+      const c2 = new THREE.Mesh(new THREE.CylinderGeometry(PR * 3.6, PR * 4.2, 0.12, 28), collar.material); c2.position.y = 0.04; g.add(c2);
+    }
+    g.userData.monthPost = true; g.userData.n = q.n;
+    posts.push(g); fence.add(g);
+  }
+  /* the rails, welded to the posts' field side faces, running exactly from the first post to the last and no further */
+  [1.22, 0.66].forEach((h) => {   /* rails set low so every domed cap stands clear above the top rail and can be counted */
+    const pts = [];
+    const sEnd = S0 + (N - 1) * POST_SP, put = (s) => { const q = atArc(s); pts.push([q.p[0] + q.n[0] * (PR + 0.037), h, q.p[1] + q.n[1] * (PR + 0.037)]); };
+    for (let s = S0; s < sEnd; s += 0.5) put(s);
+    put(sEnd);   /* the rail ends exactly at the end post */
+    const m = TXT.tube(pts, 0.0365, paint); m.castShadow = true; m.receiveShadow = true; fence.add(m);
+  });
+  /* the end post's H brace: a horizontal pipe to post 18 and a diagonal from its foot, the way a fence end is braced */
+  {
+    const a = posts[N - 1].position, b = posts[N - 2].position, off = (PR + 0.037);
+    const n = posts[N - 1].userData.n;
+    fence.add(TXT.tube([[a.x, 1.6, a.z], [b.x, 1.6, b.z]], 0.034, paint));
+    fence.add(TXT.tube([[a.x, 0.12, a.z], [b.x, 1.55, b.z]], 0.026, paint));
+  }
+  fence.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  TXT.add(R, fence);
+  posts.forEach(p => TXT.contact(R, p, { opacity: 0.7 }));
+  /* THE FIGURE CHECK: the drawing has exactly FIG.months_to_end posts */
+  let drawn = 0; R.scene.traverse(o => { if (o.userData && o.userData.monthPost) drawn++; });
+  if (drawn !== FIG.months_to_end || posts.length !== FIG.months_to_end) throw new Error('fence has ' + drawn + ' posts, FIG.months_to_end is ' + FIG.months_to_end);
+
+  /* MESQUITE at mid distance and on the horizon, kept low so the sky over the type is clean */
+  const lastP = atArc(S0 + (N - 1) * POST_SP).p;
+  [[-6.5, 46, 5.4, 9, 1], [-30, 120, 5, 8, 5], [-60, 230, 6, 10, 6]].forEach(([x, za, h, sp, seed]) => {
+    const t = K.make('mesquite', { height: h, spread: sp, seed }); t.position.set(x, 0, -za); t.rotation.y = seed * 1.3;
+    t.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } }); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 });
+  });
+
+  /* THE CAMERA: a worm's eye, 0.55 m off the left wheel track, looking down the road and the post line. Every post
+   * rises past the horizon, which sits low, and the road runs out under the lens. */
+  /* at post height, three metres back along the fence from post 1 and a step toward the road, so the near post stands
+   * full height down the left of the frame and the line runs diagonally to the braced end post */
+  const EYE = 0.9, YAW = 6 * Math.PI / 180, camQ = atArc(S0 - 3.0);
+  const FROM = [camQ.p[0] - camQ.n[0] * 0.8, EYE, camQ.p[1] - camQ.n[1] * 0.8];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [FROM[0] + 1200 * Math.sin(YAW), EYE, FROM[2] - 1200 * Math.cos(YAW)], 540, 845, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: LOOK });
+  /* THE COUNT IS ALL IN FRAME: every post's foot and cap project inside the picture, clear of the edges */
+  posts.forEach((g, i) => { const top = g.position.y + (i === N - 1 ? PH_END : PH_STD);
+    [[g.position.x, 0, g.position.z], [g.position.x, top, g.position.z]].forEach((w) => { const q = CH.project(THREE, R, w);
+      if (q[0] < 24 || q[0] > 1056 || q[1] < 0 || q[1] > 1350) throw new Error('post ' + (i + 1) + ' falls outside the frame at ' + q.map(Math.round)); }); });
+
+  /* THE VERGE AT THE CAMERA'S FEET: the kit road strews tufts and berm stones its whole length, and the ones within a few
+   * metres of a crouched camera fill the bottom of the frame as blades and big pale lumps. Those are taken out, and every
+   * stone is scaled to gravel. */
+  {
+    const m4 = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+    road.updateMatrixWorld(true);
+    road.traverse((im) => {
+      if (!im.isInstancedMesh) return;
+      const stone = im.geometry && im.geometry.type === 'IcosahedronGeometry';
+      for (let i = 0; i < im.count; i++) {
+        im.getMatrixAt(i, m4); m4.decompose(p, q, sc);
+        const w = p.clone().applyMatrix4(road.matrixWorld), d = Math.hypot(w.x - FROM[0], w.z - FROM[2]);
+        if (!stone && d < 9) sc.set(0, 0, 0); else if (stone && d < 3) sc.set(0, 0, 0); else if (stone) sc.multiplyScalar(0.32);
+        m4.compose(p, q, sc); im.setMatrixAt(i, m4);
+      }
+      im.instanceMatrix.needsUpdate = true;
+    });
+  }
+
+  /* BLUE HOUR: the sun just under the far edge, a deep cobalt dome, a rose and peach seam on the horizon. No honey ground. */
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2wonder, { zenith: 0x1a2c9c, horizon: 0x6c86ec, haze: 0xff9e8e, ground: 0x9a7aa8, sun: 0xffa890, sunDisc: 0, glow: 1.0, clouds: 0, exposure: 1.0 }));
+  R.scene.environmentIntensity = 0.9;
+  TXT.ground(R, { surface: 'dirt', color: 0xa27c8e, size: 4000, tile: 2.2, seed: 1908 });
+  const avoid = [[-6, -4, 3, 4]]; for (let z = -6; z < 140; z += 6) { const a = centre(z), b = centre(z + 6); avoid.push([Math.min(a[0], b[0]) - RW / 2 - 0.4, Math.min(a[1], b[1]), Math.max(a[0], b[0]) + RW / 2 + 0.4, Math.max(a[1], b[1])]); }
+  TXT.scatter(R, { kind: 'rock', count: 2600, area: [-14, -40, 8, 2], avoid, seed: 81, scale: [0.003, 0.014], colors: [0xa08888, 0x94807e, 0xb09a92] });
+  /* nothing stands behind the end post: the sight line past it is kept bare to the horizon */
+  const behind = []; for (let k = 1; k <= 6; k++) { const t0 = 1 + (k - 1) * 0.6, t1 = 1 + k * 0.6;
+    const xa = FROM[0] + (lastP[0] - FROM[0]) * t0, xb = FROM[0] + (lastP[0] - FROM[0]) * t1, za = (lastP[1]) * t0, zb = lastP[1] * t1;
+    behind.push([Math.min(xa, xb) - 4 * t1, Math.min(za, zb), Math.max(xa, xb) + 4 * t1, Math.max(za, zb)]); }
+  TXT.scatter(R, { kind: 'grass', count: 900, area: [-80, -260, 90, -30], avoid: avoid.concat(behind), seed: 83, scale: [0.4, 0.8], colors: [0x9a8a7a, 0xa8967e, 0x8a7a88] });
+  /* fine caliche gravel strewn on the road bed itself */
+  TXT.scatter(R, { kind: 'rock', count: 4200, area: [-3, -30, 5, -1], seed: 84, scale: [0.008, 0.03], colors: [0xf2e8d6, 0xe0d2bc, 0xcbbca4] });
+  road.traverse(o => { if (o.isMesh && o.userData.txGround && o.material && o.material.vertexColors) { o.material.color.setHex(0xf0e0c6); o.material.roughness = 0.97; o.material.userData.txSurface = 'concrete'; } });
+
+  /* THE KEY: low honey sun from the left and a little behind, so every post's lit face is warm and its shadow runs right
+   * across the road */
+  const spec = CH.rigSpec(W, 60, 4096); spec.key = Object.assign({}, spec.key, { color: 0xffa868, radius: 0.5, i: spec.key.i * 2.6 });
+  spec.ambient = Object.assign({}, spec.ambient, { color: 0x6a74e8, i: spec.ambient.i * 1.2 }); spec.fill = Object.assign({}, spec.fill, { i: spec.fill.i * 1.1 });
+  spec.rim = Object.assign({}, spec.rim, { color: 0x9cc4ff, i: 2.6, pos: [40, 6, -50] });   /* the cool rim on the posts' far side */
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([4, 0, -30], { distance: 120, shadowFar: 260, normalBias: 0.01 }), { light: { az: -100, el: 5 } }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.12, height: 0.25, mottle: 0.12 });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.42, fade: 240 });
+  ['.count', '.kick'].forEach(sel => CH.seat(cx, { sel, a: 0.24, fade: 150 }));
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.62, height: 260 });
+  ['.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.62, fade: 170 }));   /* the rail casts on the road run under the site line, so its seat is fuller */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

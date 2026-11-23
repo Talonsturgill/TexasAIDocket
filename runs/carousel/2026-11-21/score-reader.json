@@ -1,0 +1,67 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.0,
+      "why": "Bespoke reading holds. The nine are different pictures: a rover in rubble (1), an aerial of the mock town (2), plinth dioramas (3), a cutaway rubble relief (4), a night blast (5), a badge fence (6), plate stacks (7), a walled yard (8) and an open case on a truck bed (9). Frames 5 and 9 pass the v2 showstopper test. Each has one vivid subject, saturated colour and a lit lime link. Three frames hold the score down. Frame 8's medic is a primitive figure with blocky hands and an oddly read head, and the upper-left third of that frame is a flat blue wall the type never uses. Frame 3 is still toy dioramas on teal plinths in a yellow void, the 'slab in a void' the descriptor names. The flow review says frame 3's type 'moved to a right column', but the render shows the deck still sets it full width top left, so the rework claim does not match the pixels. Frame 6 fills the frame, but at feed size the badges are confetti on a mid-tone teal mesh over a flat yellow floor with no light pool. Frame 1's casualty legs read as an unresolved brown lump at lower left."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.8,
+      "why": "The spine is intact. LOOK V2 win palette, one serif and mono pair, counter and site line on all nine. Lime appears only as the robot's data link on 1, 4, 5, 8 and 9 and never on money, so the accent keeps one meaning. The teal tracked rover recurs on 1, 4, 5, 7, 8 and 9, recoloured on 8 to match, and works as a continuity device. The story runs in order. Frames 3 and 6 sit slightly outside the deck: they are the only two yellow-sweep studio frames and the only two with no rover or link, so the filmstrip blinks at 3 and 6."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.8,
+      "why": "Every claim is primary: TEEX and two DARPA pages. Every numeral traces. 52 (c11), 100 and $3 million (c12), $1.5 and $1 million (c3), 2023 (c21), November 5th, 13th and 25th (c1, c20), and $100,000 as the declared plate_usd drawing rule in figures.json. machine_qa reports 0 fails. Three phrasings are looser than their sources. (a) Frame 8's headline 'Human machine teams beat every approach' is unattributed in the headline and drops the source's 'in some of the most rigorous, large scale, complex environments' qualifier (c5). The body attributes it. (b) Frame 3 labels an unnamed 'fifth course' and draws it as a collapsed slab over a car, a scenario no claim describes. 'Each set is drawn to illustrate' covers the drawing, not the invented content. (c) Frame 5 rests on photo captions c27 and c28, while claims.json rejects 'finals testing conditions in image captions' as not tied to the finals. c16 ties the HMT course to the challenge, but the two decisions do not obviously agree. None of these changes what a reader believes about the event, so none is a hard fail."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.2,
+      "why": "A Texan learns what happened (the DARPA Triage Challenge finals), who ran it (TEEX staging DARPA's challenge), where (Disaster City, College Station, 52 acres), who won what (RoboScout $1.5 million, Disruptors $1 million) and one dated action (TRIAGE-X open until November 25th on frame 9 and in the caption). The Texas stake is general. Texas is the venue and nothing else. No Texas team, Texas responder agency or Brazos County use of the work is named. The only action fits an SBIR bidder, yet neither the first comment nor frame 9 links the topic itself. The caption's 'Who in Texas answers it by then?' asks the question the deck never equips a reader to answer."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.4,
+      "why": "The cover earns the swipe with a two-beat headline, 'The robot finds. The medic treats.', over the rover and medic. Frame 2 pays at once ('A town built to fall down'). The turn is real and declared on frame 8 ('Still not enough'), and frame 9 answers it ('The next ask is delivery') with a deadline, so the close lands. The middle sags. Frame 6 ('More than 100 people competed') is a headcount that could be cut without loss. Frames 3 and 5 both enumerate course conditions, so the night course reads as a second pass at frame 3."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.3,
+      "why": "Strong lines: 'A town built to fall down', 'Find them. Read them. Tell a medic.', and the caption opener 'Disaster City was built to collapse.' The register is honest about limits without doom, carried by Winchell's own 'not enough'. Frame 6's headline and frame 7's '$1.5 million and $1 million' are flat label lines. Regional texture stops at TEEX and College Station. Nothing reads as written by someone from the Brazos Valley rather than about it."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "topics.json shows no DARPA, TEEX or Disaster City entry inside 30 days, so there is no repeat. The concept is fresh: an event recap with prizes is new in the window. One familiar move: no. 83 the day before was also field robotics in a search setting (a search drone on a ridge, ending on a grounded machine beside its case), and this deck ends on a case beside a rover. The cover again opens on a rendered machine under a serif headline."
+    }
+  ],
+  "weighted_score": 7.358,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Replace frame 6's cuttable headcount with the Texas stake: who in Texas can bid TRIAGE-X before November 25th and where the topic lives, linked in the first comment, so the caption's closing question has an answer a Texan can act on.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 8,
+      "problem": "The medic is a primitive figure (block hands, an unresolved head under the cap), and the upper-left third of the frame is an empty flat blue wall the type leaves unused, so the turn frame's art reads as a placeholder room.",
+      "fix": "Drop the camera to the medic's shoulder height and push in until the medic and rover fill the lower two thirds. Crop the wall to a strip behind the right-aligned headline, and replace the figure with the frame 1 medic model at true scale with articulated hands on the tablet."
+    },
+    {
+      "slide": 3,
+      "problem": "Five toy dioramas on teal plinths in a yellow void with no ground, contact or light pool. The 'fifth course' plinth carries an invented collapsed-slab-on-car scene, and the type did not move to the right column the flow review says it did.",
+      "fix": "Set the five sets on one dusty Disaster City ground slab under a single low key with contact shadows. Render the fifth plinth as a covered, unlit set marked 'not named', and re-render so the type actually sits in the right column the repair claimed."
+    },
+    {
+      "slide": 6,
+      "problem": "The badges read as confetti at 432 px on a mid-tone teal mesh over a flat, unlit yellow floor, so there is no focal point and the 101st-badge edge tease does not register.",
+      "fix": "Move the camera to one fence panel at badge height so a single front badge, lit with a rim, fills a fifth of the frame and the rest recede out of focus. Light the floor with a key pool and cast shadows so the fence stands in a world."
+    }
+  ]
+}

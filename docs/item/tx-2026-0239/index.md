@@ -14,7 +14,7 @@ Aurora Innovation filed its third quarter letter with the SEC on October 28th, 2
 - Public access: Write to the decider
 - Take part: https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -29,6 +29,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · Aurora's plan to run driverless trucks straight to customer sites still reads as its letter put it.
 - 2026-11-13 · Aurora's third quarter letter still says its driverless trucks begin running straight to customer sites through security checkpoints this month. It also says the build of trucks is behind its earlier plan.
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-19 · Checked again. Aurora's plan to run driverless trucks straight to customer sites still stands as told to shareholders.
+- 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

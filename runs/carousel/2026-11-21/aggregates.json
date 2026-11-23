@@ -1,0 +1,76 @@
+{
+ "date": "2026-11-21",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "November 5th to November 13th",
+   "slide": "slide-01.html",
+   "kind": "span",
+   "value": 5,
+   "quoted_from": "c1",
+   "quote": "staged from Thursday, Nov. 5 through Friday, Nov. 13",
+   "note": "The source's own dates, reset into house style, which writes a range as X to Y and takes the ordinal. The declared value is the first date the source wrote. No duration is asserted anywhere in the deck."
+  },
+  {
+   "phrase": "November 5th to November 13th",
+   "slide": "caption.txt",
+   "kind": "span",
+   "value": 5,
+   "quoted_from": "c1",
+   "quote": "staged from Thursday, Nov. 5 through Friday, Nov. 13",
+   "note": "The source's own dates, reset into house style, which writes a range as X to Y and takes the ordinal. The declared value is the first date the source wrote. No duration is asserted anywhere in the deck."
+  },
+  {
+   "phrase": "52 acres",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 52,
+   "quoted_from": "c11",
+   "quote": "a 52-acre mock community"
+  },
+  {
+   "phrase": "Five ways",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c14",
+   "quote": "Each of the five competitions"
+  },
+  {
+   "phrase": "five competitions",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c14",
+   "quote": "Each of the five competitions"
+  },
+  {
+   "phrase": "Five courses",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c14",
+   "quote": "Each of the five competitions"
+  },
+  {
+   "phrase": "three official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "len(set(c['url'] for c in claims.json claims cited in the first comment))",
+   "from_claims": [
+    "c1",
+    "c3",
+    "c9"
+   ]
+  },
+  {
+   "phrase": "$100,000",
+   "slide": "slide-07.html",
+   "kind": "measure",
+   "value": 100000,
+   "computed_by": "compute.py sets figures.json plate_usd, the drawing unit for one brass plate, and derives plates_data, plates_systems and plates_pool from c3 and c12 by dividing each purse by it",
+   "note": "A drawing rule, not a measurement, and the frame labels it as drawn to illustrate."
+  }
+ ]
+}

@@ -15,7 +15,7 @@ The Justice Department filed a proposed final judgment on September 4th, 2026 ag
 - Comment closes: 2026-11-17
 - Take part: https://www.federalregister.gov/documents/2026/09/18/2026-19100/united-states-of-america-et-al-v-realpage-inc-et-al-proposed-final-judgment-and-competitive-impact
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -48,6 +48,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The Justice Department is still taking comment on the Frisco judgment. Its window closes November 17th.
 - 2026-11-15 · The comment window is still open, closing November 17th.
 - 2026-11-16 · Comments on the Pinnacle judgment are still being taken. The window closes November 17th.
+- 2026-11-19 · The comment window closed on November 17th.
+- 2026-11-22 · The comment window closed on November 17th.
 
 ## Evidence
 

@@ -1,0 +1,255 @@
+<!doctype html>
+<!-- 2026-11-22, frame 1 of 9, the cover, THE SPLIT. A spatial scene through txthree.js on the explainer studio sweep: two
+mirrored simulation rooms built as an architect's cutaway model, ceilings off and side walls raked down toward the viewer,
+sharing one glass wall. Each room holds a padded exam table with a seated actor, a clinician on a task chair seen from behind
+and a clinical cart whose screen glows the deck's cyan and shows nothing. The two rooms are built at equal width from
+FIG.half and FIG.clinicians. Rooms drawn to illustrate; never Dell Med's building, no product interface. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .lab { font-size:30px; padding:8px 24px 9px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:82px; top:136px; width:920px; text-align:left">Half of them will get Claude</h1>
+<p class="dek" data-follow="22" style="left:84px; width:916px">80 Dell Med clinicians will meet paid actors presenting a medical issue. Half will have Claude to help diagnose. The other half will rely on UpToDate with its AI capability disabled. Rooms drawn to illustrate.</p>
+<div class="lab" id="labA">Claude</div>
+<div class="lab" id="labB">UpToDate, AI off</div>
+<script>window.FIG = {"clinicians": 80, "half": 40};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "AI Learning Lab", counter: "01 / 09", src: "c4 c5 c2 c6", fit: { min: 72, max: 96, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, fog: 0, exposure: 0.82 });
+  /* the sweep turns up into its cerulean wall just behind the model, so the type stands on blue */
+  const sweep = TXT.studio(R, Object.assign(CH.studioOpts(), { w: 34, d: 26, h: 16, radius: 3.2, env: 1.0, hemi: 0.75, wall: 0x1747a8, top: 0x0a2260, floor: 0xffb672 }));
+  sweep.position.z = 13 - 2.3;
+
+  /* ---- THE FIGURE. Two arms of FIG.half from FIG.clinicians, so the two rooms are built at equal width from them. ---- */
+  if (FIG.half * 2 !== FIG.clinicians) throw new Error('FIG.half * 2 = ' + FIG.half * 2 + ' differs from FIG.clinicians ' + FIG.clinicians);
+  const SUITE = 7.2;                                   /* the inside width of the two rooms together, metres */
+  const arms = [FIG.half, FIG.clinicians - FIG.half];  /* the Claude arm (left), the UpToDate arm (right) */
+  const roomW = arms.map(n => SUITE * n / FIG.clinicians);
+  if (Math.abs(roomW[0] - roomW[1]) > 1e-9) throw new Error('the two rooms differ in width: ' + roomW.join(' vs '));
+  if (Math.abs(roomW[0] + roomW[1] - SUITE) > 1e-9) throw new Error('the rooms do not fill the suite');
+  const RW = roomW[0], D = 3.4, T = 0.16, HB = 3.25, HF = 0.24, SLAB = 0.22, FL = SLAB + 0.012;
+  const zB = -D / 2, zF = D / 2;
+
+  /* ---- MATERIALS ---- */
+  const limeTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {      /* coursed Austin limestone, 0.3 m courses, 0.6 m blocks */
+    const r = CH.rng(311); g.fillStyle = '#efe6d2'; g.fillRect(0, 0, w, h);
+    const rows = 8, cols = 4, bh = h / rows, bw = w / cols;
+    for (let j = 0; j < rows; j++) for (let i = -1; i < cols + 1; i++) {
+      const x = i * bw + (j % 2 ? bw / 2 : 0), y = j * bh, k = 0.94 + r() * 0.08;
+      g.fillStyle = 'rgb(' + Math.round(239 * k) + ',' + Math.round(229 * k) + ',' + Math.round(208 * k) + ')'; g.fillRect(x + 3, y + 3, bw - 6, bh - 6);
+      for (let f = 0; f < 60; f++) { g.fillStyle = 'rgba(176,150,112,' + (r() * 0.12).toFixed(3) + ')'; g.beginPath(); g.arc(x + r() * bw, y + r() * bh, 1 + r() * 3.5, 0, 7); g.fill(); }
+    }
+    g.strokeStyle = 'rgba(160,138,104,0.55)'; g.lineWidth = 3;
+    for (let j = 0; j <= rows; j++) { g.beginPath(); g.moveTo(0, j * bh); g.lineTo(w, j * bh); g.stroke(); }
+    for (let j = 0; j < rows; j++) for (let i = 0; i <= cols; i++) { const x = i * bw + (j % 2 ? bw / 2 : 0); g.beginPath(); g.moveTo(x, j * bh); g.lineTo(x, (j + 1) * bh); g.stroke(); }
+  });
+  limeTex.wrapS = limeTex.wrapT = THREE.RepeatWrapping;
+  const limestone = new THREE.MeshPhysicalMaterial({ name: 'limestone-wall', color: 0xf3dcb8, map: limeTex, bumpMap: limeTex, bumpScale: 2.2, roughness: 0.82, sheen: 0.15 });
+  const caliche = new THREE.MeshPhysicalMaterial({ name: 'caliche-cut', color: 0xd8b98c, roughness: 0.95 });
+  /* the plinth is cut caliche: thin strata in warm creams and ochres, a harder white cap band, pitted */
+  const strataTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(907); let y = 0;
+    const tones = ['#e2bf8a', '#c99a5e', '#efd6a8', '#b98450', '#d9ae74', '#a8723f', '#ecd0a0'];
+    while (y < h) { const t = 10 + r() * 46; g.fillStyle = tones[Math.floor(r() * tones.length)]; g.fillRect(0, y, w, t + 1);
+      for (let i = 0; i < 40; i++) { g.fillStyle = 'rgba(120,84,48,' + (r() * 0.14).toFixed(3) + ')'; g.fillRect(r() * w, y + r() * t, 4 + r() * 60, 1 + r() * 2); }
+      y += t; }
+    for (let i = 0; i < 900; i++) { g.fillStyle = 'rgba(90,64,40,' + (r() * 0.25).toFixed(3) + ')'; g.beginPath(); g.arc(r() * w, r() * h, 0.8 + r() * 2.4, 0, 7); g.fill(); }
+  });
+  strataTex.wrapS = strataTex.wrapT = THREE.RepeatWrapping;
+  const slabMat = new THREE.MeshPhysicalMaterial({ name: 'caliche-slab', color: 0xf4dcc0, map: strataTex, bumpMap: strataTex, bumpScale: 3, roughness: 0.92 });
+  /* sheet vinyl: periwinkle with a faint chip, heat welded seams every 1.2 m */
+  const vinylTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(515); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 5000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(70,80,170,' + (r() * 0.12).toFixed(3) + ')' : 'rgba(255,255,255,' + (r() * 0.3).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 2); }
+    g.fillStyle = 'rgba(52,60,140,0.55)'; g.fillRect(0, 0, w, 5); g.fillStyle = 'rgba(255,255,255,0.35)'; g.fillRect(0, 6, w, 2);
+  });
+  vinylTex.wrapS = vinylTex.wrapT = THREE.RepeatWrapping;
+  const floorMat = new THREE.MeshPhysicalMaterial({ name: 'vinyl-floor', color: 0x8f9ff0, map: vinylTex, roughness: 0.32, clearcoat: 0.8, clearcoatRoughness: 0.18 });
+  const doorMat = new THREE.MeshPhysicalMaterial({ name: 'door-paint', color: 0x3b4bb8, roughness: 0.4, clearcoat: 0.5 });
+  const alu = new THREE.MeshPhysicalMaterial({ name: 'brushed-aluminium', color: 0xdfe6ee, metalness: 0.9, roughness: 0.3 });
+  const glass = new THREE.MeshPhysicalMaterial({ name: 'glass-pane', color: 0xc6e6ff, metalness: 0, roughness: 0.06, transparent: true, opacity: 0.32, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 1.6, side: THREE.DoubleSide, depthWrite: false });
+  glass.userData.txSurface = false;
+  const boxUV = (geo, m) => { K.uvBox(geo, m || 2.4); return geo; };
+
+  /* a wall slab from a profile in its own plane, extruded `t`: faces limestone, every cut edge caliche */
+  const wallFrom = (pts, t, holes) => {
+    const s = new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1])));
+    (holes || []).forEach(hp => s.holes.push(new THREE.Path(hp.map(p => new THREE.Vector2(p[0], p[1])))));
+    const geo = new THREE.ExtrudeGeometry(s, { depth: t, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 2, curveSegments: 4 });
+    boxUV(geo, 2.4);
+    return new THREE.Mesh(geo, [limestone, caliche]);
+  };
+  const add = (m, contact) => { TXT.add(R, m); if (contact) TXT.contact(R, m, Object.assign({ y: FL }, contact === true ? {} : contact)); return m; };
+
+  /* ---- THE MODEL: one slab, two floors, three raked walls and one glass wall ---- */
+  const X0 = -RW - T, X1 = RW + T;
+  const slab = new THREE.Mesh(boxUV(TXT.roundedBox(X1 - X0 + 0.24, SLAB, D + 2 * T + 0.24, 0.03), 1.6), slabMat);
+  slab.position.set(0, SLAB / 2, (T - T) / 2); add(slab, false); TXT.contact(R, slab, { y: 0 });
+  [-1, 1].forEach(s => {
+    const f = new THREE.Mesh(boxUV(new THREE.BoxGeometry(RW, 0.012, D), 1.2), floorMat); f.position.set(s * RW / 2, SLAB + 0.006, 0); add(f, false);
+  });
+  /* the side walls, raked from HB at the back to HF at the front */
+  const sideProf = [[zB - T, 0], [zF, 0], [zF, HF], [zB - T, HB]];
+  [-1, 1].forEach(s => {
+    const w = wallFrom(sideProf.map(p => [-p[0], p[1]]), T);   /* profile in (−z, y), extruded along +x after the turn */
+    w.rotation.y = Math.PI / 2; w.position.set(s < 0 ? X0 : RW, SLAB, 0); add(w, false);
+  });
+  /* the back wall with a doorway in each room */
+  const DW = 0.95, DH = 2.12, doorX = RW - 0.95;
+  const back = wallFrom([[X0, 0], [X1, 0], [X1, HB], [X0, HB]], T,
+    [-1, 1].map(s => { const c = s * doorX; return [[c - DW / 2, 0.02], [c + DW / 2, 0.02], [c + DW / 2, DH], [c - DW / 2, DH]]; }));
+  back.position.set(0, SLAB, zB - T); add(back, false);
+  [-1, 1].forEach(s => {   /* a painted door hung in the doorway, closed, with a steel lever and a kick plate */
+    const c = s * doorX, door = new THREE.Mesh(TXT.roundedBox(DW - 0.04, DH - 0.03, 0.045, 0.012), doorMat);
+    door.position.set(c, SLAB + (DH - 0.03) / 2 + 0.01, zB - T / 2); add(door, false);
+    const frameM = new THREE.MeshPhysicalMaterial({ name: 'door-frame-paint', color: 0xf6f1e6, roughness: 0.35, clearcoat: 0.4 });
+    [[c - DW / 2 - 0.03, DH / 2, 0.06, DH + 0.06], [c + DW / 2 + 0.03, DH / 2, 0.06, DH + 0.06], [c, DH + 0.03, DW + 0.12, 0.06]].forEach(f => {
+      const m = new THREE.Mesh(TXT.roundedBox(f[2], f[3], 0.03, 0.01), frameM); m.position.set(f[0], SLAB + f[1], zB + 0.012); add(m, false); });
+    [[1.38], [0.5]].forEach(pp => {   /* two recessed panels, each a darker field inside a raised moulding */
+      const hgt = pp[0] > 1 ? 0.9 : 0.62, y = pp[0] > 1 ? 1.48 : 0.62;
+      const mould = new THREE.Mesh(TXT.roundedBox(DW - 0.22, hgt, 0.014, 0.006), new THREE.MeshPhysicalMaterial({ name: 'door-moulding-paint', color: 0x5363d4, roughness: 0.35, clearcoat: 0.5 }));
+      mould.position.set(c, SLAB + y, zB - T / 2 + 0.026); add(mould, false);
+      const field = new THREE.Mesh(TXT.roundedBox(DW - 0.32, hgt - 0.1, 0.01, 0.004), new THREE.MeshPhysicalMaterial({ name: 'door-panel-paint', color: 0x2f3da6, roughness: 0.4, clearcoat: 0.5 }));
+      field.position.set(c, SLAB + y, zB - T / 2 + 0.031); add(field, false);
+    });
+    const rose = new THREE.Mesh(TXT.roundedBox(0.06, 0.16, 0.012, 0.005), alu); rose.position.set(c - s * (DW / 2 - 0.1), SLAB + 1.02, zB - T / 2 + 0.03); add(rose, false);
+    const lever = new THREE.Mesh(TXT.roundedBox(0.15, 0.026, 0.026, 0.011), alu); lever.position.set(c - s * (DW / 2 - 0.16), SLAB + 1.04, zB - T / 2 + 0.07); add(lever, false);
+    const kick = new THREE.Mesh(TXT.roundedBox(DW - 0.1, 0.22, 0.008, 0.003), alu); kick.position.set(c, SLAB + 0.13, zB - T / 2 + 0.028); add(kick, false);
+  });
+  /* the front curbs, cut low so the rooms read open to the eye */
+  [-1, 1].forEach(s => {
+    const w = wallFrom([[0, 0], [RW + T, 0], [RW + T, HF], [0, HF]], T); w.position.set(s < 0 ? -(RW + T) : 0, SLAB, zF); add(w, false);
+  });
+  /* THE SEAM: the shared glass partition at x = 0, a 12 mm pane the full height of the rooms from its aluminium sill to an
+   * aluminium head rail that runs back into the rear wall. Its edge catches the key; one diagonal glint crosses the camera face. */
+  const SILL = 0.07, GT = 0.012, GLOW_Z = -0.2;
+  {
+    const sill = new THREE.Mesh(TXT.roundedBox(0.09, SILL, D + T, 0.01), alu); sill.position.set(0, SLAB + SILL / 2, -T / 2); add(sill, false);
+    const paneFace = new THREE.MeshPhysicalMaterial({ name: 'glass-pane', color: 0xd6eeff, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.2, clearcoat: 1,
+      clearcoatRoughness: 0.03, envMapIntensity: 2.0, side: THREE.DoubleSide, depthWrite: false });
+    const paneEdge = new THREE.MeshPhysicalMaterial({ name: 'glass-edge', color: 0xd8f7f0, roughness: 0.08, clearcoat: 1, emissive: 0xf2fdff, emissiveIntensity: 0.75 });
+    paneFace.userData.txSurface = false; paneEdge.userData.txSurface = false;
+    const top = HB - SILL - 0.05;
+    const gp = new THREE.Shape([[zB, 0], [zF, 0], [zF, top], [zB, top]].map(p => new THREE.Vector2(-p[0], p[1])));
+    const pane = new THREE.Mesh(new THREE.ExtrudeGeometry(gp, { depth: GT, bevelEnabled: false }), [paneFace, paneEdge]);
+    pane.rotation.y = Math.PI / 2; pane.position.set(-GT / 2, SLAB + SILL, 0);
+    TXT.add(R, pane, { cast: false }); pane.renderOrder = 3;
+    /* the head rail, a flat aluminium channel level at the top of the pane, from the front post into the rear wall */
+    const rail = new THREE.Mesh(TXT.roundedBox(0.07, 0.06, D + T + 0.04, 0.012), alu); rail.position.set(0, SLAB + HB - 0.02, -T / 2 + 0.02); add(rail, false);
+    const post = new THREE.Mesh(TXT.roundedBox(0.06, HB, 0.06, 0.012), alu); post.position.set(0, SLAB + HB / 2, zF + 0.01); add(post, false);
+    /* one diagonal glint on the camera face */
+    const st = CH.canvasTex(THREE, 256, 64, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.5, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const sm = new THREE.MeshBasicMaterial({ map: st, transparent: true, opacity: 0.32, depthWrite: false, side: THREE.DoubleSide, fog: false });
+    const q = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.16), sm); q.rotation.set(0, Math.PI / 2, 0); q.rotateZ(0.7);
+    q.position.set(GT / 2 + 0.003, SLAB + 1.55, 0.75); q.renderOrder = 4; q.userData.txSurface = false; R.scene.add(q);
+  }
+
+  /* ---- THE ROOMS' CONTENTS, built for the left room and mirrored for the right ---- */
+  const rc = new THREE.Raycaster(), down = new THREE.Vector3(0, -1, 0);
+  const seatTopOf = (obj, x, z) => { obj.updateMatrixWorld(true); rc.set(new THREE.Vector3(x, 3, z), down); const h = rc.intersectObject(obj, true); if (!h.length) throw new Error('no seat under the probe'); return h[0].point.y; };
+  const yaw = (dx, dz) => Math.atan2(dx, dz);
+  /* place a model at a left-room pose (x, y, z, ry), or its mirror for the right room */
+  const place = (m, s, x, y, z, ry) => { m.position.set(s * x, y, z); m.rotation.y = s * ry; if (s > 0) m.scale.x = -1; return m; };
+  const screens = [];
+  const tx = -(RW - 0.75), tz = -0.5;
+  const actorAt = [tx + 0.35 - 0.14, tz + 0.3], clinAt = [-1.32, 0.42], cartAt = [-0.42, GLOW_Z];
+  const actors = [], tables = [];
+  [-1, 1].forEach((s, arm) => {
+    /* the exam table along the outer wall, head to the back wall, step to the front */
+    const tbl = K.make('exam_table', { back: 34, vinyl: CH.VINYL, cabinet: CH.OAK });
+    place(tbl, s, tx, FL, tz, -Math.PI / 2); add(tbl, true); tables.push(tbl);
+    const seatY = FL + tbl.userData.seat;
+
+    /* the actor, seated on the inner edge of the pad, hands on its edge, facing the clinician side of the room.
+     * Two different people in the two rooms: the case is the same design, never the same person. */
+    const mkActor = (sy) => K.make('person', { pose: 'sit_read', seed: arm ? 23 : 11, hat: 'none', shirt: arm ? 0x6a7fd0 : 0x5b6fc4, trousers: 0x2b3256, headPitch: 0.2,
+      hands: [[0.2, sy + 0.01, 0.02], [-0.2, sy + 0.01, 0.02]] });
+    let actor = mkActor(0.46); const aSeat = actor.userData.attach.seat[1]; actor = mkActor(aSeat);
+    place(actor, s, actorAt[0], seatY - actor.userData.attach.seat[1], actorAt[1], yaw(1, 0.35)); add(actor, false); actors.push(actor);
+    { /* the paper takes the actor's weight: a soft crease shadow pressed under the hips */
+      const pr = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.36), new THREE.MeshBasicMaterial({ map: CH.glowTex(THREE), color: 0x2a1e78, transparent: true, opacity: 0.42, depthWrite: false }));
+      pr.rotation.x = -Math.PI / 2; pr.position.set(s * (actorAt[0] - 0.1), seatY + 0.004, actorAt[1]); pr.userData.txSurface = false; R.scene.add(pr); }
+
+    /* the clinician on a task chair, back three quarters to the camera, turned to the actor */
+    const face = yaw(actorAt[0] - clinAt[0], actorAt[1] - clinAt[1]);
+    const chair = K.make('office_chair', { style: 'task', color: arm ? 0x2f3a7a : 0x2f3a7a });
+    place(chair, s, clinAt[0], FL, clinAt[1], face); add(chair, true);
+    const cSeat = seatTopOf(chair, s * clinAt[0], clinAt[1]);
+    const mkClin = (sy) => K.make('person', { pose: 'sit_read', seed: arm ? 8 : 5, hat: 'none', shirt: 0xf3f6fb, trousers: arm ? 0x3a4a8c : 0x34407e, headPitch: 0.12,
+      hands: [[0.13, sy + 0.13, 0.3], [-0.13, sy + 0.13, 0.3]] });
+    let clin = mkClin(0.46); clin = mkClin(clin.userData.attach.seat[1]);
+    const back = 0.04;   /* hips a hand's width behind the seat's centre, against the backrest */
+    place(clin, s, clinAt[0] - Math.sin(face) * back, cSeat - clin.userData.attach.seat[1] - 0.014, clinAt[1] - Math.cos(face) * back, face); add(clin, false);
+
+    /* the cart, screen turned to the clinician, glowing the one tool colour and showing nothing */
+    const cart = K.make('workstation_cart', { screen: 'blank', lit: true, height: 1.0, trayOut: 0.08 });
+    place(cart, s, cartAt[0], FL, cartAt[1], yaw(clinAt[0] - cartAt[0], clinAt[1] - cartAt[1])); add(cart, true);
+    cart.traverse(o => { if (o.isMesh && o.userData.screen) { o.material = CH.toolMat(K); o.material.userData.txSurface = false; o.receiveShadow = false; o.castShadow = false; o.position.z += 0.004; screens.push(o); } });
+  });
+  { /* the two screens stand mirrored about the glass */
+    const p0 = new THREE.Vector3(), p1 = new THREE.Vector3(); screens[0].getWorldPosition(p0); screens[1].getWorldPosition(p1);
+    if (Math.abs(p0.y - p1.y) > 1e-6 || Math.abs(Math.abs(p0.x) - Math.abs(p1.x)) > 1e-6 || Math.abs(p0.z - p1.z) > 1e-6) throw new Error('the two screens are not mirrored about the glass'); }
+  if (screens.length !== 2) throw new Error('expected one glowing screen per room, found ' + screens.length);
+  if (screens[0].material !== screens[1].material) throw new Error('the two tool screens must share one glow');
+
+  /* ---- CAMERA AND LIGHT ---- */
+  /* BOTH HALVES WHOLE: each actor's head and every corner of each exam table must project inside the frame. The camera starts
+   * close and steps back along its own line of sight until they do; it throws if no step frames both rooms. */
+  const solidBox = (o) => { const bb = new THREE.Box3(); o.updateMatrixWorld(true);
+    o.traverse(m => { if (m.isMesh && !(m.material && m.material.transparent)) bb.expandByObject(m); }); return bb; };
+  const inFrame = (q) => q[0] >= 0 && q[0] <= CH.W && q[1] >= 0 && q[1] <= CH.H;
+  const framedWhole = () => {
+    for (const t of tables) { const bb = solidBox(t);
+      for (const x of [bb.min.x, bb.max.x]) for (const y of [bb.min.y, bb.max.y]) for (const z of [bb.min.z, bb.max.z]) if (!inFrame(CH.project(THREE, R, [x, y, z]))) return false; }
+    for (const a of actors) { const bb = solidBox(a), c = new THREE.Vector3(); bb.getCenter(c); if (!inFrame(CH.project(THREE, R, [c.x, bb.max.y + 0.03, c.z]))) return false; }
+    return true; };
+  const base = [1.1, 5.7, 13.0], tgt = [0, 0.9, -0.2];
+  let from = null;
+  for (let k = 0; k <= 40; k++) {
+    const d = [base[0] - tgt[0], base[1] - tgt[1], base[2] - tgt[2]], f = 1 + k * 0.02;
+    from = [tgt[0] + d[0] * f, tgt[1] + d[1] * f, tgt[2] + d[2] * f];
+    TXT.frame(R, { fov: 30, from, look: tgt });
+    CH.aim(THREE, R, TXT, from, [0, 0, zF + T + 0.12], 540, 1240, 30);
+    if (framedWhole()) break;
+    if (k === 40) throw new Error('no camera step frames both tables and both actors whole');
+  }
+  CH.KEY_SCALE = 0.8; const spec = CH.rigSpec(W, 12, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.6, 0], { distance: 16, shadowFar: 40, normalBias: 0.012 }), { light: { az: -35, el: 52 } }));
+  TXT.weather(R, { grime: 0.04, height: 0.12, mottle: 0.05 });
+
+  /* the two pills over the two rooms' back walls, the same style and size */
+  CH.pin(THREE, R, 'labA', [-1.15, SLAB + HF, zF + T / 2], 0, 0);
+  CH.pin(THREE, R, 'labB', [1.15, SLAB + HF, zF + T / 2], 0, 0);
+  ['labA', 'labB'].forEach(id => { const el = document.getElementById(id); el.style.transform = 'translate(-50%, -78%)';
+    const b = el.getBoundingClientRect(); if (b.left < 80 || b.right > 1000 || b.bottom > 1240) throw new Error('pill ' + id + ' leaves the safe area: ' + JSON.stringify(b)); });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.55, fade: 110 });
+  TXLOOK.footWash(cx, { a: 0.62, height: 230 });
+  const dk = document.querySelector('.dek').getBoundingClientRect();
+  if (dk.bottom > 470) throw new Error('the dek runs into the model: bottom ' + dk.bottom);
+  /* the seat ends above the wall: the top of the back wall and the glass cap project below the dek and its wash */
+  const wallTop = Math.min(CH.project(THREE, R, [-RW, SLAB + HB, zB - T])[1], CH.project(THREE, R, [0, SLAB + HB, zB])[1], CH.project(THREE, R, [RW, SLAB + HB, zB - T])[1]);
+  if (wallTop < dk.bottom + 85) throw new Error('the back wall top at ' + Math.round(wallTop) + ' sits under the dek wash ending near ' + Math.round(dk.bottom + 85));
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.tx-site', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.dek', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.kick', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.count', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.src', a: 0.35, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

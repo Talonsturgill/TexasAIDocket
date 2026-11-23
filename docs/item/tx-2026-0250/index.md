@@ -11,7 +11,7 @@ The Texas Advanced Computing Center at UT Austin has opened its Horizon supercom
 - Public access: Write to the decider
 - Take part: https://news.utexas.edu/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/
 
-- Last checked: 2026-11-17
+- Last checked: 2026-11-20
 
 ## Dates
 
@@ -22,6 +22,7 @@ The Texas Advanced Computing Center at UT Austin has opened its Horizon supercom
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-17 · Admitted on UT Austin's announcement that Horizon is open to early users. The release names no first projects yet.
+- 2026-11-20 · TACC still describes Horizon as open to early users.
 
 ## Evidence
 

@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-11-18",
+ "read": "2026-11-22",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "056c8c22bb8dbf80",
+ "digest": "2ca5efff4f452c97",
  "facilities": [
   {
    "name": "NADC",
@@ -2444,6 +2444,73 @@
    ],
    "operators": [
     "Ionic Digital Spraberry LLC"
+   ]
+  },
+  {
+   "name": "Beacon Point 2 Data Center",
+   "effective": "2026-11-09",
+   "owners": [
+    "Beacon Point DC 2 LLC",
+    "TX Energy Dev, LLC",
+    "Beacon Point Commercial Property Owners' Association"
+   ],
+   "occupants": [
+    "Beacon Point DC 2 LLC"
+   ],
+   "operators": [
+    "Beacon Point DC 2 LLC"
+   ]
+  },
+  {
+   "name": "Jewett Data Solutions",
+   "effective": "2026-11-10",
+   "owners": [
+    "Jewett Data Solutions LLC"
+   ],
+   "occupants": [
+    "Jewett Data Solutions LLC"
+   ],
+   "operators": [
+    "Jewett Data Solutions LLC"
+   ]
+  },
+  {
+   "name": "Starbase Super Compute Facility",
+   "effective": "2026-11-16",
+   "owners": [
+    "Space Exploration Technologies Corp."
+   ],
+   "occupants": [
+    "Space Exploration Technologies Corp."
+   ],
+   "operators": [
+    "Space Exploration Technologies Corp."
+   ]
+  },
+  {
+   "name": "TX4",
+   "effective": "2026-11-16",
+   "owners": [
+    "Vantage Data Centers TX41, LLC"
+   ],
+   "occupants": [
+    "Vantage Data Centers TX41, LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX41, LLC"
+   ]
+  },
+  {
+   "name": "TX5",
+   "effective": "2026-11-16",
+   "owners": [
+    "Vantage Data Centers TX51, LLC"
+   ],
+   "occupants": [
+    "Vantage Data Centers TX51, LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX51, LLC"
    ]
   }
  ]

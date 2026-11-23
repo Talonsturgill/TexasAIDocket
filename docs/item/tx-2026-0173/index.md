@@ -11,7 +11,7 @@ The University of Texas at Arlington College of Business announced on September 
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business
 
-- Last checked: 2026-10-24
+- Last checked: 2026-11-21
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · UT Arlington's move from business analytics degrees to AI degrees has no newer reading. The university's site does not serve this project.
 - 2026-11-08 · UT Arlington's shift from business analytics degrees to AI degrees has no newer reading. The university's site did not serve this project.
 - 2026-11-14 · UT Arlington's move from business analytics degrees to AI degrees has no newer reading, because the university's site did not answer.
+- 2026-11-21 · UT Arlington's AI degrees still replace its business analytics degrees, as the university's own release describes them. Its site answers this project again.
 
 ## Evidence
 

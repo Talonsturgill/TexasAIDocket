@@ -1,0 +1,203 @@
+{
+ "weighted_score": 7.47,
+ "judges": [
+  7.54,
+  7.378,
+  7.47
+ ],
+ "spread": 0.162,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.2,
+   "weight": 0.22,
+   "judges": [
+    7.4,
+    6.9,
+    7.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.8,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.6,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.3,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.3,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Crawling flies read as ants, bucket reads as a paint pail.",
+     "fix": "Airborne arc only, visible funnel entry and lure cup."
+    },
+    {
+     "judge": 2,
+     "problem": "Chevron foliage, crawling flies, the bucket reads as a pail.",
+     "fix": "Modelled leaflets, flies in flight past a funnel mouth, one wild fly among them."
+    },
+    {
+     "judge": 3,
+     "problem": "The turn frame doesn't show its idea; ants on the handle, a blue vial.",
+     "fix": "Funnel mouth with caught flies and one wild fly among them; flies in flight; delete the vial."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Glass reads as plumbing, screen two blobs, grass tiles.",
+     "fix": "Upright Y at its height, real hide texture, depth of field."
+    },
+    {
+     "judge": 2,
+     "problem": "Reprises frame 3's glass, cutout oak, repeated grass cards, dek on a wash.",
+     "fix": "Phone as hero in a producer's hand at a stock tank, modelled oak."
+    },
+    {
+     "judge": 3,
+     "problem": "Still life without a subject; empty keep bulb, slab phone, repeated grass.",
+     "fix": "Seat a wild female in the keep bulb; phone faces the glass; lower camera."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grid under half the frame in a void.",
+     "fix": "Lower and push the camera, rim light on the lifted box."
+    },
+    {
+     "judge": 2,
+     "problem": "Boxes cover a third of a flat floor.",
+     "fix": "Lower and push the camera, key light pool, sweep edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive boxes on a flat floor.",
+     "fix": "Lid seams, glaze, gold door on the lifted box, lower camera."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Flat walls and a glow behind the cite.",
+     "fix": "Remove the glow, bounce gradient on the walls."
+    },
+    {
+     "judge": 3,
+     "problem": "Generic vial grid, bycatch tiny.",
+     "fix": "Readable mixed bycatch in the front row, forceps and a petri dish."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "No subject, thin fence, savanna tree, posts too thin to count.",
+     "fix": "Post height camera, dominant countable row, a low mesquite."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Dek's last line meets the top lid ring, slab under the footer.",
+     "fix": "Lower and shrink the tray."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Featureless cobalt, no fly shadow on the rim.",
+     "fix": "Readable sweep, fly shadow on the bead, widen 3 to 4 percent."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.47, 0.53 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.2 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

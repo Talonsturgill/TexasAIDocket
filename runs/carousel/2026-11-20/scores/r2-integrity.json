@@ -1,0 +1,22 @@
+{
+  "lens": "integrity", "round": 2,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.4, "why": "Most round 1 repairs landed. Frame 4's mannequins are gone and a drone owns the table, but the GPS mast floats above the body, the left laptop screen runs through a drone arm, a ceiling slab is clipped at the top and a loose rod crosses the lower right. Frame 9's hero is larger, the far terrain carries ridge lines and its 21 plus 1 cartridges tie to frame 7. Frame 8's loupe is a clear frame with an amber rim but the red trough still pulls the eye. Frame 6 counts correctly and the pair sits in a recessed well. Frame 2's ghost clears the dek but streak grain runs across the sky."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "The spine holds across the contact sheet. Frames 7 and 8 sit in a warmer flatter magenta field. The ridge returns on frame 9 and closes the loop."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every slide numeral traces to figures.json and the claim quotes. Round 1's copy fixes landed. All slide claims rest on one university release and the WATCH paper was not fetched. Frame 9's accepted at the WATCH 2026 workshop rests on c3, whose verbatim quote does not contain accepted or WATCH 2026. Frame 8's gauge filled almost to its stop reads as a share at feed size. None is a fabrication."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 6.8, "why": "What, who and where are clear. The stake is the release's hypothetical ridge and frame 9 closes on a grant and a workshop with nothing to watch for."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover hook works, frame 2 pays at once, the turn at frame 5 is real, frames 6 to 8 build the test. Frame 3 restates frame 1 and frame 4 interrupts the run."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Strong lines, but drawn to illustrate is the deck's most common phrase and frame 9 reads like a press release."},
+    {"name": "variety", "weight": 0.10, "score": 7.5, "why": "A fresh concept for the docket with familiar ridge and relief moves."}
+  ],
+  "weighted_score": 7.316,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Source frame 9's accepted at WATCH 2026 to a verbatim quote that contains it, and keep frame 8's gauge from reading as a share.",
+  "artwork_weakest_frames": [
+    {"slide": 4, "problem": "The mast floats above the body, the left laptop screen pierces a drone arm, a ceiling slab is clipped at the top, a stray rod crosses the lower right.", "fix": "Seat the mast, move the left laptop back so it clears the arm, delete the slab and the rod."},
+    {"slide": 8, "problem": "The trough filled almost to its stop reads as a percent gauge and competes with the ten readings.", "fix": "Cut the trough or set the pill on the glass frame's rail and let the rods fill the lower half."},
+    {"slide": 2, "problem": "Streak grain across the upper sky.", "fix": "Halve it and remove the horizontal streak."},
+    {"slide": 7, "problem": "A flat magenta field with no floor contact.", "fix": "A lit studio surface with a soft contact shadow, the field toward violet."}
+  ]
+}

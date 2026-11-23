@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.4,
+   "why": "Bespoke and v2; 2, 3, 4, 6 strong; 8 no subject, 9 plumbing glass and blob screen, 5 ants and a paint pail, 7 small grid in a void."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Spine holds, gold keeps one meaning, glass motif on 1, 3, 9; middle reads as separate scenes."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces to primary sources; sterile female cell is an inference against c23; c24 under c7's headline; caption looser than indiscriminately."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, why and when clear; rancher stake general, no action."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe; solution before problem softens the turn; 6 and 7 movable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "House rules met; drawn to illustrate and stands-for template repeat; flat caption close."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New topic and motif; third university release deck in four days; fork close to no. 80."
+  }
+ ],
+ "weighted_score": 7.54,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Draw only the distinctions the source names on frame 2 and separate c24 from c7 on frame 4.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "No subject, thin fence, savanna tree, posts too thin to count.",
+   "fix": "Post height camera, dominant countable row, a low mesquite."
+  },
+  {
+   "slide": 9,
+   "problem": "Glass reads as plumbing, screen two blobs, grass tiles.",
+   "fix": "Upright Y at its height, real hide texture, depth of field."
+  },
+  {
+   "slide": 5,
+   "problem": "Crawling flies read as ants, bucket reads as a paint pail.",
+   "fix": "Airborne arc only, visible funnel entry and lure cup."
+  },
+  {
+   "slide": 7,
+   "problem": "Grid under half the frame in a void.",
+   "fix": "Lower and push the camera, rim light on the lifted box."
+  }
+ ]
+}

@@ -11,7 +11,7 @@ The San Antonio Medical Foundation gave a $200,000 grant to a one year pilot. Re
 - Public access: Closed
 - Take part: https://news.uthscsa.edu/collaborative-ai-project-seeks-to-improve-care-for-veterans-with-mild-brain-injuries/
 
-- Last checked: 2026-11-16
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -22,6 +22,8 @@ The San Antonio Medical Foundation gave a $200,000 grant to a one year pilot. Re
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-16 · Admitted on UT Health San Antonio's announcement of the pilot. The study has begun and reports no findings yet.
+- 2026-11-19 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

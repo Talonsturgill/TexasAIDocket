@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-22",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "80 Dell Med clinicians",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 80,
+   "quoted_from": "c2",
+   "quote": "When the AI Learning Lab launches later this month, 80 Dell Med clinicians"
+  },
+  {
+   "phrase": "80 clinicians",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 80,
+   "quoted_from": "c2",
+   "quote": "When the AI Learning Lab launches later this month, 80 Dell Med clinicians"
+  },
+  {
+   "phrase": "two halves",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 2,
+   "note": "The two arms named by c4 and c5, half with Claude and the other half with UpToDate. Two is the number of arms, not a computed share.",
+   "computed_by": "counting the arms in claims.json c4 (half of the clinicians have Claude) and c5 (the other half rely on UpToDate), two arms, the same split compute.py writes as figures.json half"
+  },
+  {
+   "phrase": "Forty clinicians",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 40,
+   "computed_by": "compute.py dividing figures.json clinicians (80, read from c2's quote) by 2 into figures.json half, asserting half times 2 equals clinicians",
+   "note": "FIG.half, clinicians // 2 from c2's 80, because c4 says half have Claude and c5 says the other half use UpToDate. compute.py asserts half times 2 equals clinicians."
+  },
+  {
+   "phrase": "80 clinicians",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 80,
+   "quoted_from": "c2",
+   "quote": "When the AI Learning Lab launches later this month, 80 Dell Med clinicians"
+  },
+  {
+   "phrase": "80 clinicians",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 80,
+   "quoted_from": "c2",
+   "quote": "When the AI Learning Lab launches later this month, 80 Dell Med clinicians"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "note": "The first comment lists two source pages, the release (c1 to c17) and the project page (c18), counted from claims.json's distinct urls.",
+   "computed_by": "counting the distinct official document urls in claims.json that the first comment prints: the IC² Institute news release (c1 to c17) and the IC² Institute project page (c18)"
+  }
+ ]
+}

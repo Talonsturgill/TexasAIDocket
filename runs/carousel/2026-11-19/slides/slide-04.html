@@ -1,0 +1,286 @@
+<!doctype html>
+<!-- 2026-11-19, frame 4 of 9, TODAY, BY HAND. A violet stepped stand of five microcentrifuge racks holds one milky tube per
+     monitored trap, FIG.traps_floor in all, each tube holding its own kept mix of small beetles, moth wing flakes and loose
+     legs over a dark catch mass. The stand is raked three quarter on an apricot resin bench under a warm lamp pool, where an
+     open dish, a tipped tube and its spill wait with forceps resting over the dish. The bench runs on into a cobalt lab to a
+     dusk window that stops left of the type. Every count is read from window.FIG. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:300px; top:150px; width:700px; text-align:right">Today's traps catch everything</h1>
+<p class="dek" data-follow="20" style="left:330px; width:670px; font-size:26px; text-align:right">Today's screwworm traps catch insects indiscriminately and need extensive sorting by hand. USDA has monitored more than 100 screwworm specific traps since July 2025. One tube stands for one trap, drawn to illustrate.</p>
+<script>window.FIG = {"traps_floor": 100};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Today, by hand", counter: "04 / 09", src: "c7 c24", fit: { min: 80, max: 94, maxLines: 2 } });
+
+  /* THE FIGURE. One tube per monitored trap: FIG.traps_floor tubes in racks of COLS, one rack per step of the stand. */
+  const N = FIG.traps_floor, COLS = 20, ROWS = N / COLS;
+  if (!Number.isInteger(ROWS) || ROWS < 1) throw new Error('the stand cannot seat ' + N + ' tubes in racks of ' + COLS);
+
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.01, far: 40, fog: 0 });
+
+  /* THE ROOM: a long lab with cobalt painted walls, the bench running from the camera to the far wall, where an evening
+   * window fills the wall left of the type and the paint stays quiet behind it */
+  const ROOM = { w: 7.4, d: 19.0, h: 4.2 }, BACKZ = -ROOM.d / 2 + 0.1;
+  TXT.interior(R, { w: ROOM.w, d: ROOM.d, h: ROOM.h, floor: 'concrete', wall: 0x2f45b8, trim: 0x2a2470, window: null, ceiling: true, light: 0.6 });
+  /* a poured violet resin floor over the concrete, so no pale floor runs behind the dek */
+  { const ft = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(66); g.fillStyle = '#34308a'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 20000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(20,16,70,0.25)' : 'rgba(110,100,200,0.12)'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); } }, [ROOM.w / 1.5, ROOM.d / 1.5]);
+    const fm = new THREE.MeshPhysicalMaterial({ name: 'poured-resin-floor', map: ft, roughness: 0.45, clearcoat: 0.5, clearcoatRoughness: 0.3 });
+    const fl = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), fm); fl.rotation.x = -Math.PI / 2; fl.position.y = 0.003; fl.receiveShadow = true; fl.userData.txBevel = false; R.scene.add(fl); }
+
+  /* THE BENCH: a long cobalt epoxy resin top on violet cabinets, from just behind the camera to the window wall */
+  const TOP = 0.9, BW = 1.1, BZ0 = 0.9, BZ1 = BACKZ + 0.05, BL = BZ0 - BZ1, BCZ = (BZ0 + BZ1) / 2;
+  { const epoxyTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => { const r = CH.rng(77); g.fillStyle = '#2a3a96'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 9000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(20,26,90,0.18)' : 'rgba(80,100,200,0.12)'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 2); }
+      for (let i = 0; i < 40; i++) { g.strokeStyle = 'rgba(120,140,230,0.06)'; g.lineWidth = 1; g.beginPath(); const x = r() * w, y = r() * h; g.moveTo(x, y); g.lineTo(x + (r() - 0.5) * 200, y + (r() - 0.5) * 60); g.stroke(); } }, [2, 8]);
+    const epoxy = new THREE.MeshPhysicalMaterial({ name: 'epoxy-resin-benchtop', color: 0xffffff, map: epoxyTex, roughness: 0.32, metalness: 0, clearcoat: 0.8, clearcoatRoughness: 0.2 });
+    const top = TXT.roundedBox(BW, 0.032, BL, 0.008, epoxy); top.position.set(0, TOP - 0.016, BCZ); top.castShadow = true; top.receiveShadow = true; R.scene.add(top);
+    const cab = new THREE.MeshPhysicalMaterial({ name: 'painted-steel-cabinet', color: 0x4a3aa0, roughness: 0.45, metalness: 0.2, clearcoat: 0.3 });
+    const body = TXT.roundedBox(BW - 0.08, TOP - 0.13, BL - 0.1, 0.01, cab); body.position.set(0, (TOP - 0.13) / 2 + 0.1, BCZ); body.receiveShadow = true; R.scene.add(body);
+    const kick = TXT.roundedBox(BW - 0.14, 0.1, BL - 0.16, 0.005, new THREE.MeshStandardMaterial({ name: 'rubber-toe-kick', color: 0x1e1850, roughness: 0.8 })); kick.position.set(0, 0.05, BCZ); R.scene.add(kick);
+    /* door seams and pulls down both long sides */
+    const pull = new THREE.MeshPhysicalMaterial({ name: 'brushed-steel-pull', color: 0xd8d6e8, metalness: 1, roughness: 0.3 });
+    for (let z = BZ0 - 0.35; z > BZ1 + 0.2; z -= 0.6) [-1, 1].forEach(s => {
+      const p = TXT.roundedBox(0.012, 0.012, 0.12, 0.004, pull); p.position.set(s * (BW / 2 - 0.035), TOP - 0.2, z); R.scene.add(p);
+      const seam = new THREE.Mesh(new THREE.BoxGeometry(0.002, TOP - 0.2, 0.004), new THREE.MeshStandardMaterial({ color: 0x241a60, roughness: 0.8 })); seam.position.set(s * (BW / 2 - 0.039), (TOP - 0.13) / 2 + 0.1, z - 0.3); R.scene.add(seam); });
+  }
+
+  /* THE STAND: ROWS violet racks of COLS on a stepped riser of moulded polypropylene, each step higher and further back so
+   * every tube shows, each step's front edge a rounded nosing that carries the key's specular */
+  const VIOLET = 0x5a44c8, PITCH = 0.0128, RISE = 0.024, DEP = PITCH + 0.018 + 0.002, RW = COLS * PITCH + 0.018 + 0.006;
+  const stand = new THREE.Group(); let seated = 0; const wells = [];
+  { const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(31); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 26000; i++) { const v = 200 + Math.floor(r() * 55); g.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; g.fillRect(r() * w, r() * h, 2, 2); } }, [6, 2]);
+    const riserM = new THREE.MeshPhysicalMaterial({ name: 'moulded-polypropylene-riser', color: VIOLET, roughness: 0.42, roughnessMap: tooth, clearcoat: 0.55, clearcoatRoughness: 0.28, sheen: 0.3, sheenColor: new THREE.Color(0xb8a8ff) });
+    riserM.userData.txSurface = 'plastic';
+    /* the bevelled lip on every tier: the same moulding, a touch lighter and glossier, so each step edge carries a specular line */
+    const lipM = riserM.clone(); lipM.name = 'moulded-polypropylene-lip'; lipM.color = new THREE.Color(0x7a64e8); lipM.roughness = 0.28; lipM.clearcoat = 0.9; lipM.clearcoatRoughness = 0.12;
+    window.__racks = [];
+    for (let r = 0; r < ROWS; r++) {
+      if (r > 0) { const st = TXT.roundedBox(RW, r * RISE, DEP, 0.006, riserM); st.position.set(0, r * RISE / 2, -r * DEP); st.castShadow = true; st.receiveShadow = true; stand.add(st);
+        const nose = new THREE.Mesh(new THREE.CylinderGeometry(0.0038, 0.0038, RW - 0.006, 28), lipM); nose.rotation.z = Math.PI / 2; nose.position.set(0, r * RISE - 0.0034, -r * DEP + DEP / 2 - 0.0030); stand.add(nose); }
+      const rack = K.make('microcentrifuge_rack', { cols: COLS, rows: 1, count: COLS, pitch: PITCH, color: VIOLET, fill: 0, jitter: 0.25, seed: 11 + r });
+      rack.position.set(0, r * RISE, -r * DEP); stand.add(rack); window.__racks.push(rack);
+      rack.traverse(m => {
+        /* thinner milk, so each tube's catch reads through its wall */
+        if (m.isInstancedMesh && m.material && m.material.transparent && Math.abs(m.material.opacity - 0.6) < 1e-6) m.material.opacity = 0.2;
+        /* the moulded body: satin polypropylene with a clear coat, so the drilled deck and its chamfers catch the key */
+        if (m.isMesh && !m.isInstancedMesh && m.material && m.material.color && m.material.color.getHex() === VIOLET) { m.material.roughness = 0.4; m.material.clearcoat = 0.55; m.material.clearcoatRoughness = 0.28; }
+      });
+      seated += rack.userData.count;
+      for (let i = 0; i < COLS; i++) { const w0 = rack.userData.well(i, 0); wells.push([w0[0], r * RISE, w0[2] - r * DEP, r]); }
+    }
+  }
+  if (seated !== N || wells.length !== N) throw new Error('the stand seats ' + seated + ' tubes, the figure is ' + N);
+
+  /* THE CATCH: every tube kept whole. A dark packed mass in each, and in the front row, nearest the reader, the mix a trap
+   * keeps made legible: a small beetle in one of three shells and a dusty moth wing scale on top of the mass. Drawn to
+   * illustrate, no species and no size claimed. */
+  const FRONT = wells.filter(w => w[3] === 0);
+  if (FRONT.length !== COLS) throw new Error('the front row holds ' + FRONT.length + ' tubes, not ' + COLS);
+
+  /* SMALL INSECTS, drawn to illustrate, no species and no size claimed: a beetle is an elytra ellipsoid in a dark sheened
+   * shell, a head and six legs; a moth wing is a pale scaled flake; loose legs and antennae are fine dark rods */
+  const shellMats = [new THREE.MeshPhysicalMaterial({ name: 'beetle-shell-black', color: 0x16121e, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.05, iridescence: 0.7, iridescenceIOR: 1.5 }),
+    new THREE.MeshPhysicalMaterial({ name: 'beetle-shell-green', color: 0x1f8a50, metalness: 0.55, roughness: 0.2, clearcoat: 1, iridescence: 0.5 }),
+    new THREE.MeshPhysicalMaterial({ name: 'beetle-shell-rust', color: 0x9a3418, metalness: 0.4, roughness: 0.25, clearcoat: 1 })];
+  shellMats.forEach(m => m.userData.txSurface = false);
+  const darkM = new THREE.MeshStandardMaterial({ name: 'insect-leg', color: 0x0e0a08, roughness: 0.5 }); darkM.userData.txSurface = false;
+  const wingTex2 = CH.canvasTex(THREE, 128, 128, (g, w, h) => { g.clearRect(0, 0, w, h);
+    g.fillStyle = '#d8c69e'; g.beginPath(); g.moveTo(4, 64); g.quadraticCurveTo(60, 2, 124, 20); g.quadraticCurveTo(110, 90, 4, 64); g.fill();
+    g.fillStyle = 'rgba(96,70,44,0.8)'; g.beginPath(); g.ellipse(84, 40, 12, 7, -0.3, 0, 6.3); g.fill();
+    g.strokeStyle = 'rgba(90,66,44,0.7)'; g.lineWidth = 3; g.beginPath(); g.moveTo(8, 64); g.quadraticCurveTo(70, 48, 118, 24); g.stroke();
+    const r = CH.rng(8); for (let i = 0; i < 300; i++) { g.fillStyle = 'rgba(255,244,220,' + (r() * 0.3).toFixed(2) + ')'; g.fillRect(r() * w, r() * h, 2, 2); } });
+  const wingMat = new THREE.MeshStandardMaterial({ name: 'moth-wing-flake', map: wingTex2, transparent: true, alphaTest: 0.3, side: THREE.DoubleSide, roughness: 0.8 }); wingMat.userData.txSurface = false;
+  function makeBugs(parent, spots) {
+    const sph = new THREE.SphereGeometry(1, 18, 12), rod = new THREE.CylinderGeometry(1, 1, 1, 5), pl = new THREE.PlaneGeometry(1, 1);
+    const L = { shell: [[], [], []], head: [], leg: [], wing: [] }, Y = new THREE.Vector3(0, 1, 0);
+    const m4 = (p, q, sc) => new THREE.Matrix4().compose(p, q, sc);
+    const bar = (a, b, r) => { const d = new THREE.Vector3().subVectors(b, a), len = d.length(); L.leg.push(m4(a.clone().add(b).multiplyScalar(0.5), new THREE.Quaternion().setFromUnitVectors(Y, d.normalize()), new THREE.Vector3(r, len, r))); };
+    let tubes = 0, beetles = 0, wings = 0;
+    spots.forEach((sp) => { const rr = CH.rng(sp.seed), n = sp.n || (rr() < 0.45 ? 2 : 1), jit = sp.tube ? 0.0016 : (sp.spread || 0.02);
+      for (let b = 0; b < n; b++) {
+        const k = sp.k != null ? sp.k : 1, yaw = rr() * 6.283, tilt = sp.tube ? (rr() - 0.5) * 1.4 : 0, q = new THREE.Quaternion().setFromEuler(new THREE.Euler(tilt, yaw, sp.tube ? (rr() - 0.5) * 0.8 : 0));
+        const c = new THREE.Vector3(sp.x + (rr() - 0.5) * jit, sp.y + b * 0.0022 * k + (sp.tube ? rr() * 0.0015 : 0), sp.z + (rr() - 0.5) * jit);
+        const s0 = (0.85 + rr() * 0.35) * k;
+        L.shell[Math.floor(rr() * 3)].push(m4(c.clone().add(new THREE.Vector3(0, 0.001 * s0, 0).applyQuaternion(q)), q, new THREE.Vector3(0.0015 * s0, 0.001 * s0, 0.0023 * s0)));
+        L.head.push(m4(c.clone().add(new THREE.Vector3(0, 0.0009 * s0, 0.0025 * s0).applyQuaternion(q)), q, new THREE.Vector3(0.0008 * s0, 0.0006 * s0, 0.0006 * s0)));
+        [-0.0012, 0, 0.0012].forEach(zz => [-1, 1].forEach(sx => { const a = new THREE.Vector3(sx * 0.0012 * s0, 0.0006 * s0, zz * s0).applyQuaternion(q).add(c), e = new THREE.Vector3(sx * 0.0026 * s0, 0.0, (zz + 0.0006 * Math.sign(zz || 1)) * s0).applyQuaternion(q).add(c); bar(a, e, 0.00018 * s0); }));
+        [-1, 1].forEach(sx => { const a = new THREE.Vector3(sx * 0.0004 * s0, 0.0011 * s0, 0.003 * s0).applyQuaternion(q).add(c), e = new THREE.Vector3(sx * 0.0016 * s0, 0.0018 * s0, 0.0052 * s0).applyQuaternion(q).add(c); bar(a, e, 0.00012 * s0); });
+        beetles++; }
+      if (rr() < (sp.tube ? 0.7 : 1)) { const k = sp.k != null ? sp.k : 1, q = new THREE.Quaternion().setFromEuler(new THREE.Euler(sp.tube ? -1.0 + rr() * 0.8 : -Math.PI / 2, rr() * 6.283, (rr() - 0.5) * (sp.tube ? 1 : 0.2)));
+        L.wing.push(m4(new THREE.Vector3(sp.x + (rr() - 0.5) * jit, sp.y + (sp.tube ? 0.0045 + rr() * 0.003 : 0.0004), sp.z + (rr() - 0.5) * jit), q, new THREE.Vector3(0.0062 * k, 0.0062 * k, 1))); wings++; }
+      for (let j = 0; j < (sp.tube ? 2 + Math.floor(rr() * 2) : 4); j++) { const k = sp.k != null ? sp.k : 1, a = new THREE.Vector3(sp.x + (rr() - 0.5) * jit * 1.4, sp.y + rr() * (sp.tube ? 0.005 : 0.0006), sp.z + (rr() - 0.5) * jit * 1.4);
+        const d = new THREE.Vector3(rr() - 0.5, sp.tube ? rr() - 0.3 : 0.05, rr() - 0.5).normalize().multiplyScalar((0.003 + rr() * 0.002) * k); bar(a, a.clone().add(d), 0.00014 * k); }
+      if (sp.tube) tubes++; });
+    const put = (geo, mat, list) => { if (!list.length) return; const im = new THREE.InstancedMesh(geo, mat, list.length); list.forEach((m, i) => im.setMatrixAt(i, m)); im.instanceMatrix.needsUpdate = true; im.castShadow = !spots[0].tube; im.receiveShadow = true; im.frustumCulled = false; im.userData.txBevel = false; parent.add(im); };
+    L.shell.forEach((l, i) => put(sph, shellMats[i], l)); put(sph, darkM, L.head); put(rod, darkM, L.leg); put(pl, wingMat, L.wing);
+    return { tubes, beetles, wings };
+  }
+  { const lump = new THREE.IcosahedronGeometry(1, 1); { const p = lump.attributes.position, v = new THREE.Vector3(), rr = CH.rng(5);
+      for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); v.multiplyScalar(0.8 + rr() * 0.35); p.setXYZ(i, v.x, v.y, v.z); } lump.computeVertexNormals(); }
+    const catchM = new THREE.MeshPhysicalMaterial({ name: 'catch-specimen', color: 0x140d08, roughness: 0.5, metalness: 0.15, clearcoat: 0.7, clearcoatRoughness: 0.15 });
+    catchM.userData.txSurface = false;
+    const per = 11, im = new THREE.InstancedMesh(lump, catchM, N * per), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), rr = CH.rng(909);
+    let k = 0;
+    wells.forEach((w) => { const topY = 0.0185 + rr() * 0.0035;
+      for (let j = 0; j < per; j++) { const t = j / (per - 1), y = 0.012 + t * (topY - 0.012), rad = Math.min(0.0034, 0.0012 + y * 0.14);
+        const a = rr() * 6.283, d = rr() * (rad - 0.0014);
+        e.set(rr() * 3, rr() * 3, rr() * 3); q.setFromEuler(e);
+        const sc = 0.0013 + rr() * 0.0008;
+        m4.compose(new THREE.Vector3(w[0] + Math.cos(a) * d, 0.0025 + w[1] + y, w[2] + Math.sin(a) * d), q, new THREE.Vector3(sc * 1.5, sc, sc));
+        im.setMatrixAt(k++, m4); } });
+    im.instanceMatrix.needsUpdate = true; im.castShadow = false; im.receiveShadow = true; im.renderOrder = 0; stand.add(im);
+    if (k !== N * per) throw new Error('catch drawn in ' + k / per + ' tubes, not ' + N);
+    /* THE BYCATCH IN EVERY TUBE: one or two small dark beetles with a sheen, often a pale moth wing flake, and loose legs and
+     * antennae, varied per tube, all instanced. bug() also serves the spill on the bench below. */
+    window.__bugs = makeBugs(stand, wells.map((w, i) => ({ x: w[0], y: 0.0025 + w[1] + 0.0205, z: w[2], seed: 1000 + i, tube: true, k: 1.35 })));
+    if (window.__bugs.tubes !== N) throw new Error('bycatch drawn in ' + window.__bugs.tubes + ' tubes, not ' + N);
+  }
+
+  const SX = 0.02, SZ = 0.0, YAW = -0.36;
+  stand.position.set(SX, TOP, SZ); stand.rotation.y = YAW; TXT.add(R, stand);
+  TXT.contact(R, stand, { opacity: 0.8 });
+  /* a soft contact under every tier's rack, where its foot meets the step below */
+  { const ao = CH.canvasTex(THREE, 8, 64, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(14,8,48,0.95)'); gr.addColorStop(0.5, 'rgba(14,8,48,0.45)'); gr.addColorStop(1, 'rgba(14,8,48,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const aoM = new THREE.MeshBasicMaterial({ map: ao, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }); aoM.userData.txSurface = false;
+    /* under each tier's lip, down the face of the riser to the rack below; and on each step top, a soft dark band along the
+     * foot of the riser behind */
+    for (let r = 1; r < ROWS; r++) {
+      const f = new THREE.Mesh(new THREE.PlaneGeometry(RW - 0.004, 0.006), aoM); f.position.set(0, r * RISE - 0.0068, -r * DEP + DEP / 2 + 0.0004); f.userData.txBevel = false; stand.add(f);
+      const t = new THREE.Mesh(new THREE.PlaneGeometry(RW - 0.004, 0.008), aoM); t.rotation.x = -Math.PI / 2; t.rotation.z = Math.PI; t.position.set(0, (r - 1) * RISE + 0.0004, -r * DEP + DEP / 2 + 0.004); t.userData.txBevel = false; stand.add(t); } }
+
+  /* THE CAMERA: low over the near bench, the whole stand raked three quarter, fitted so its 20 by 5 grid fills 960 px of
+   * the width with every tube inside the frame, the bench running away left of the type */
+  const pts = [];
+  stand.updateMatrixWorld(true);
+  for (let r = 0; r < ROWS; r++) for (const sx of [-1, 1]) for (const sz of [-1, 1]) for (const hy of [0, 0.046]) {
+    const v = stand.localToWorld(new THREE.Vector3(sx * RW / 2, r * RISE + hy, -r * DEP + sz * DEP / 2)); pts.push([v.x, v.y, v.z]); }
+  const span = () => { let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; pts.forEach(p => { const q = CH.project(THREE, R, p); x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); }); return { x0, x1, y0, y1 }; };
+  const AIM = [SX, TOP + 0.055, SZ - 0.05], DIR = new THREE.Vector3(-0.08, 0.18, 0.55).normalize();
+  let FROM = null, sx = 540, sy = 905, sp = null;
+  for (let pass = 0; pass < 3; pass++) {
+    for (let d = 0.45; d < 1.6; d += 0.005) {
+      FROM = [AIM[0] + DIR.x * d, AIM[1] + DIR.y * d, AIM[2] + DIR.z * d];
+      const look = CH.aim(THREE, R, TXT, FROM, AIM, sx, sy, 44); TXT.frame(R, { fov: 44, from: FROM, look });
+      sp = span(); if (sp.x1 - sp.x0 <= 1020) break;
+    }
+    sx += 540 - (sp.x0 + sp.x1) / 2; sy += 900 - (sp.y0 + sp.y1) / 2;
+  }
+  window.__span = { x0: Math.round(sp.x0), x1: Math.round(sp.x1), y0: Math.round(sp.y0), y1: Math.round(sp.y1), from: FROM.map(v => +v.toFixed(3)) };
+  if (sp.x1 - sp.x0 < 900) throw new Error('the stand spans ' + Math.round(sp.x1 - sp.x0) + ' px, under 900');
+  if (sp.x0 < 20 || sp.x1 > 1060) throw new Error('the stand leaves the frame: ' + JSON.stringify(window.__span));
+
+  /* where a screen point lands on a plane z = Z */
+  const onWall = (sxp, syp, Z) => { R.camera.updateMatrixWorld(true); const o = R.camera.position.clone();
+    const v = new THREE.Vector3(sxp / 540 - 1, 1 - syp / 675, 0.5).unproject(R.camera).sub(o).normalize(); const t = (Z - o.z) / v.z; return o.add(v.multiplyScalar(t)); };
+
+  /* THE EVENING WINDOW: steel framed glass from the left wall to just left of the type, cobalt above a peach horizon with a
+   * far tree line, so the dusk sits behind the sorter and never behind a word */
+  const WZ = BACKZ + 0.006, typeLeft = Math.min(document.getElementById('hook').getBoundingClientRect().left, document.querySelector('.dek').getBoundingClientRect().left);
+  const WX1 = onWall(typeLeft - 60, 500, WZ).x, WX0 = -ROOM.w / 2 + 0.25, WIN = { w: WX1 - WX0, cx: (WX0 + WX1) / 2, y0: 0.06, y1: 3.95 };
+  if (WIN.w < 1.2) throw new Error('the window is only ' + WIN.w.toFixed(2) + ' m wide');
+  { const sky = CH.canvasTex(THREE, 1200, 1000, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, 0, h);
+      [[0, '#1a3596'], [0.5, '#4170da'], [0.62, '#9a8ad0'], [0.69, '#ffb070'], [0.715, '#ff9e62'], [0.72, '#5a3c9a'], [1, '#22286e']].forEach(([o, c]) => gr.addColorStop(o, c));
+      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      const r = CH.rng(404);
+      for (let i = 0; i < 60000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,40,0.03)'; g.fillRect(r() * w, r() * h, 2, 2); }
+      [[0.722, '#7a5aa8', 14], [0.74, '#4e3a8a', 20]].forEach(([base, col, tall]) => {
+        g.fillStyle = col; g.beginPath(); g.moveTo(0, h);
+        for (let x = 0; x <= w; x += 6) { const n = Math.sin(x * 0.013 + base * 9) * 0.5 + Math.sin(x * 0.047) * 0.3 + r() * 0.4; g.lineTo(x, h * base - tall * n); }
+        g.lineTo(w, h); g.closePath(); g.fill(); });
+      for (let i = 0; i < 18; i++) { g.fillStyle = 'rgba(230,236,255,' + (0.3 + r() * 0.5).toFixed(2) + ')'; g.fillRect(r() * w, r() * h * 0.3, 2, 2); }
+    });
+    const pm = new THREE.MeshBasicMaterial({ map: sky, toneMapped: true }); pm.color.setScalar(1.05); pm.userData.txSurface = false;
+    const pane = new THREE.Mesh(new THREE.PlaneGeometry(WIN.w, WIN.y1 - WIN.y0), pm); pane.position.set(WIN.cx, (WIN.y0 + WIN.y1) / 2, WZ); pane.userData.txBevel = false; R.scene.add(pane);
+    const frameM = new THREE.MeshPhysicalMaterial({ name: 'painted-steel-window-frame', color: 0x2a2270, metalness: 0.4, roughness: 0.4, clearcoat: 0.4 });
+    const bar = (w, h, d, x, y, z) => { const b = TXT.roundedBox(w, h, d, Math.min(0.012, w / 2.2, h / 2.2), frameM); b.position.set(x, y, z); b.castShadow = false; b.receiveShadow = true; R.scene.add(b); return b; };
+    const F = 0.07, FD = 0.08, cy = (WIN.y0 + WIN.y1) / 2;
+    bar(F, WIN.y1 - WIN.y0 + 2 * F, FD, WX0 - F / 2, cy, WZ + FD / 2); bar(F, WIN.y1 - WIN.y0 + 2 * F, FD, WX1 + F / 2, cy, WZ + FD / 2);
+    const bays = Math.max(2, Math.round(WIN.w / 1.2));
+    for (let i = 1; i < bays; i++) bar(0.04, WIN.y1 - WIN.y0, 0.05, WX0 + i * WIN.w / bays, cy, WZ + 0.03);
+    window.__win = { x0: +WX0.toFixed(2), x1: +WX1.toFixed(2), bays };
+  }
+
+  /* BESIDE THE STAND: the dead end jar with its kept catch and stacks of dishes waiting, set on the bench by where they land
+   * on screen, so each stands whole in the frame left of the stand and below the type */
+  const onBench = (sxp, syp) => { R.camera.updateMatrixWorld(true); const o = R.camera.position.clone();
+    const v = new THREE.Vector3(sxp / 540 - 1, 1 - syp / 675, 0.5).unproject(R.camera).sub(o).normalize(); const t = (TOP - o.y) / v.y; const q = o.add(v.multiplyScalar(t));
+    return [Math.max(-BW / 2 + 0.07, Math.min(BW / 2 - 0.07, q.x)), TOP, q.z]; };
+  { const J = onBench(110, 640); const jar = K.make('dead_end_jar', { flies: 9, seed: 4 }); jar.position.set(J[0], TOP, J[2]); TXT.add(R, jar); TXT.contact(R, jar);
+    const qj = CH.project(THREE, R, [J[0] - 0.045, TOP, J[2]]); window.__jar = { at: J.map(v => +v.toFixed(3)), left: Math.round(qj[0]) };
+    if (qj[0] < 12) console.error('the dead end jar reaches ' + Math.round(qj[0]) + ' px');
+    [[250, 600, 4, 1]].forEach(([sxp, syp, n, sd]) => { const P = onBench(sxp, syp);
+      if (Math.hypot(P[0] - J[0], P[2] - J[2]) < 0.1) return;
+      const d = K.make('petri_dish', { stack: n, colonies: 30, seed: sd }); d.position.set(P[0], TOP, P[2]); d.rotation.y = sd; TXT.add(R, d); TXT.contact(R, d); }); }
+
+  /* THE NEAR SORTING TRAY: in the left corner of the near bench, an open dish with a tube tipped beside it, its catch
+   * spilled across the dish and the bench, and fine forceps resting with their tips over the dish */
+  { const D = onBench(108, 770);
+    const nd = K.make('petri_dish', { open: true, colonies: 0, agar: 0xeadfc6, lidAt: [-0.02, 0, -0.105], marker: false, seed: 21 }); nd.position.set(D[0], TOP, D[2]); TXT.add(R, nd); TXT.contact(R, nd);
+    const tb = K.make('microcentrifuge_tube', { open: true }); tb.rotation.set(0, 0, Math.PI / 2 - 0.12); tb.rotation.order = 'YXZ'; tb.rotation.y = 0.9;
+    tb.rotation.y = 2.2; tb.position.set(D[0] + 0.03, TOP + 0.0055, D[2] - 0.075); TXT.add(R, tb); TXT.contact(R, tb, { opacity: 0.6 });
+    window.__spill = makeBugs(R.scene, [{ x: D[0] + 0.01, y: TOP + 0.0065, z: D[2] + 0.005, seed: 51, n: 3, spread: 0.05, k: 1.4 }, { x: D[0] + 0.035, y: TOP + 0.001, z: D[2] - 0.05, seed: 52, n: 2, spread: 0.03, k: 1.4 }]);
+    const steel = new THREE.MeshPhysicalMaterial({ name: 'stainless-forceps', color: 0xeeecf6, metalness: 1, roughness: 0.18 });
+    const hinge = new THREE.Vector3(D[0] - 0.075, TOP + 0.004, D[2] + 0.07), tipA = new THREE.Vector3(D[0] + 0.004, TOP + 0.013, D[2] - 0.002), tipB = new THREE.Vector3(D[0] + 0.009, TOP + 0.013, D[2] + 0.002);
+    [[hinge, tipA, 0.0021], [hinge.clone().add(new THREE.Vector3(0.002, 0, 0.004)), tipB, 0.0021]].forEach(([a, b, r]) => { const d = new THREE.Vector3().subVectors(b, a), len = d.length();
+      const g = new THREE.CylinderGeometry(r * 0.35, r, len, 10); const m = new THREE.Mesh(g, steel); m.position.copy(a).add(b).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); m.castShadow = true; R.scene.add(m); });
+    const knuckle = new THREE.Mesh(new THREE.SphereGeometry(0.003, 14, 10), steel); knuckle.position.copy(hinge); knuckle.castShadow = true; R.scene.add(knuckle);
+    window.__tray = { at: D.map(v => +v.toFixed(3)) }; }
+
+  /* THE WARM HALF OF THE ROOM: the near bench top in apricot resin up to where it would pass behind the dek, the left wall
+   * apricot, and a warm lamp pool over the sorting tray. The far bench and the wall behind the type stay cobalt. */
+  { const dekB = document.querySelector('.dek').getBoundingClientRect().bottom;
+    let zc = -0.6; for (let z = -0.6; z > -6; z -= 0.02) { const q = CH.project(THREE, R, [0, TOP, z]); if (q[1] < dekB + 34) break; zc = z; }
+    const apricot = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => { const r = CH.rng(78); g.fillStyle = '#e99a7c'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 9000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(170,80,70,0.12)' : 'rgba(255,220,190,0.12)'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 2); } }, [2, 3]);
+    const am = new THREE.MeshPhysicalMaterial({ name: 'epoxy-resin-benchtop-apricot', map: apricot, roughness: 0.34, clearcoat: 0.8, clearcoatRoughness: 0.2 });
+    const L = BZ0 - zc, slab = TXT.roundedBox(BW + 0.002, 0.002, L, 0.0009, am); slab.position.set(0, TOP - 0.0005, (BZ0 + zc) / 2); slab.receiveShadow = true; R.scene.add(slab);
+    window.__warm = { zc: +zc.toFixed(2) };
+    if (R.room) R.room.children.forEach(m => { if (m.isMesh && m.position.x < -ROOM.w / 2 + 0.3 && m.geometry) { m.material = m.material.clone(); m.material.color.set(0xe8957a); } });
+    const T = window.__tray.at, pool = new THREE.SpotLight(0xffb878, 12, 3.2, 0.4, 0.8, 2);
+    pool.position.set(T[0] + 0.05, TOP + 0.85, T[2] + 0.6); pool.target.position.set(T[0] + 0.08, TOP, T[2] - 0.02);
+    pool.castShadow = true; pool.shadow.mapSize.set(2048, 2048); pool.shadow.bias = -0.0003; pool.shadow.normalBias = 0.003; pool.shadow.camera.near = 0.2; pool.shadow.camera.far = 3;
+    R.scene.add(pool); R.scene.add(pool.target); }
+
+  /* THE LIGHT: a honey lab key from high front left, the window's cobalt as the rim from behind */
+  const spec = CH.rigSpec(W, 3, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0xffd9a0, i: 3.0, radius: 2 });
+  spec.rim = Object.assign({}, spec.rim, { color: 0x8fb4ff, i: 1.6 });
+  spec.fill = Object.assign({}, spec.fill, { color: 0x6a62e0, i: 0.8 });
+  spec.ambient = Object.assign({}, spec.ambient, { color: 0x7a70d8, i: 0.7 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, TOP, -0.2], { distance: 6, shadowFar: 16, normalBias: 0.004 }), { light: { az: -38, el: 48 } }));
+  CH.unacne(R, 0.004);
+  const hemi = new THREE.HemisphereLight(0x9ab0ff, 0xe89a78, 0.9); R.scene.add(hemi);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+
+  CH.seat(cx, { a: 0.55, fade: 150 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.4, height: 200 });
+  CH.seat(cx, { sel: '.src', a: 0.5, fade: 80 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

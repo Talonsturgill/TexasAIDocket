@@ -2822,6 +2822,155 @@
     "public health",
     "remote sensing"
    ]
+  },
+  {
+   "date": "2026-11-19",
+   "carousel_no": 82,
+   "docket_item": "tx-2026-0252",
+   "related_items": [
+    "tx-2026-0218"
+   ],
+   "instrument": "UT Arlington's November 12th, 2026 news release on its USDA funded screwworm smart trap project, with USDA ARS and APHIS screwworm pages for context, fetched November 19th, 2026.",
+   "topic": "UT Arlington coordinates a $3.1 million USDA funded project against New World screwworm, which has reemerged with more than 120 confirmed animal cases, most in Texas. Its AI smart trap is meant to tell wild flies from sterile ones and females from males, keep the wild females and release sterile flies and other insects, where today's traps catch everything and are sorted by hand. The trap isn't built; a prototype is expected next spring and the project runs through June 2028.",
+   "angle": "A door with a choice behind it. A fly at a clear glass funnel's mouth, an aluminium block with a well for each kind of fly and the wild female's well rimmed in gold, a glass Y that keeps the wild fly and frees the rest, a stepped rack of tubes for the monitored traps in a lab, a bucket trap on mesquite with the program's own flies streaming past, a resin relief of release swaths from Edinburg led back to Kerrville, stoneware boxes in rows with the lifted box showing its doors, a fence of posts by month to June 2028 at blue hour, and the unbuilt glass on a cedar bench beside a phone framing a calf's hide.",
+   "angle_note": "Every frame is drawn to illustrate. The trap is never drawn as a field device, with no camera, flap, circuit, accuracy or catch count. No fly size is claimed, so no fly stands beside an object that measures it. The 80 million a week and the 100 traps never share a frame. Gold means the fly the sort keeps only.",
+   "entities": [
+    "UT Arlington",
+    "USDA",
+    "APHIS",
+    "USDA Agricultural Research Service",
+    "Knipling-Bushland Livestock Insects Research Laboratory"
+   ],
+   "places": [
+    "Texas",
+    "Kerrville",
+    "Edinburg"
+   ],
+   "what_was_refused": "fly size and appearance, irradiation method and trap mechanism (no primary page states them), the USDA dashboard's own figures (not opened), the Panama sterile fly supply (kept off so no frame sets two flows against each other), and an aircraft or release plume (no claim says aircraft).",
+   "keywords": [
+    "screwworm",
+    "smart trap",
+    "sterile flies",
+    "livestock",
+    "USDA",
+    "APHIS",
+    "UT Arlington",
+    "AI"
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "carousel_no": 83,
+   "docket_item": "tx-2026-0253",
+   "related_items": [
+    "tx-2026-0186"
+   ],
+   "instrument": "East Texas A&M University's November 16th, 2026 news release on its GPS spoofing study accepted at WATCH 2026, with NSF Award 2502117 and the WATCH 2026 programme for context, fetched November 20th, 2026.",
+   "topic": "East Texas A&M researchers in Commerce tested whether AI can spot false location in a drone's flight records from its own motion sensors, with no GPS readings. On a public dataset of 96 recorded flights, 42 normal and 54 spoofed, with 22 whole flights held back for testing, they compared several models, and a pretrained model called Chronos scored 97.5 percent on 10 consecutive readings. The paper's first author is an undergraduate. Running the check during flight is a next step.",
+   "angle": "A search drone sent to sweep a ridge flies into the next valley. The cover on a bluestem ridge, the real drone and its frosted glass twin on a studio sweep, an aerial of the sweep it was given and the amber path it flew, the shell-off drone on a lab table with the team's places set, the flight controller with amber arrows and the GPS puck unplugged, a clay tablet of 96 tracks with an enlarged pair, the 22 sealed tiles before the 74 training tiles, a glass loupe over nickel studs with the score on its rim, and the grounded drone back on the ridge beside its case of 22 cartridges.",
+   "angle_note": "Every frame is drawn to illustrate and shows no real place. The reported position is always frosted periwinkle glass that casts no shadow. Amber means motion the drone itself measured only. The score is never drawn as an accuracy and the check is never shown flying live.",
+   "entities": [
+    "East Texas A&M University",
+    "National Science Foundation",
+    "WATCH 2026",
+    "ACM CCS",
+    "Chronos"
+   ],
+   "places": [
+    "Texas",
+    "Commerce"
+   ],
+   "what_was_refused": "the dataset's name and the other seven models (not on a primary page fetched), any live flight or real search, a face for any team member, a map of a real ridge, and any claim that the method works in the air.",
+   "keywords": [
+    "GPS spoofing",
+    "drones",
+    "motion sensors",
+    "Chronos",
+    "East Texas A&M",
+    "Commerce",
+    "NSF",
+    "AI"
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "carousel_no": 84,
+   "docket_item": "tx-2026-0254",
+   "related_items": [
+    "tx-2026-0186"
+   ],
+   "instrument": "DARPA's account of the Triage Challenge finals, DARPA's Triage Challenge program page and TEEX's account of staging the finals at Disaster City, fetched November 21st, 2026.",
+   "topic": "TEEX staged the finals of DARPA's Triage Challenge at Disaster City in College Station from November 5th to November 13th, a 52 acre mock community with structures that can collapse, rubble piles and a derailed train. Autonomous drones and ground robots worked alongside first responders on simulated casualties and relayed critical data to human medics. RoboScout won the Systems competition and $1.5 million and Disruptors the Data competition and $1 million, out of more than $3 million. DARPA's director said human machine teams outperform every approach, then that it is not enough. TRIAGE-X is open until November 25th.",
+   "angle": "The handoff. A lime link carries what the machine hands the medic. A tracked rover on rubble with a medic and tablet beyond, the whole staged town on a plot sized from 52 acres, model courses on studio risers, a section through rubble with a role player in a braced pocket, the night course lit by a controlled burst, credentials on a raked fence run, brass stacks at a shared scale, a kneeling medic taking the lime beam from the rover in a concrete room, and an open dose case with an empty pocket.",
+   "angle_note": "Every frame is drawn to illustrate, to no team's design, and shows no real place layout. No surface calls the systems AI, because no source does. Every casualty is a simulated role player with no injury and no face. Lime means what the machine hands the medic only, never money, which is brass. More than figures are drawn to their floor and run off the frame.",
+   "entities": [
+    "DARPA",
+    "TEEX",
+    "Texas A&M Engineering Extension Service",
+    "RoboScout",
+    "Disruptors",
+    "DRONE",
+    "Stephen Winchell",
+    "Jeremy Pamplin"
+   ],
+   "places": [
+    "Texas",
+    "College Station",
+    "Disaster City",
+    "Brazos County"
+   ],
+   "what_was_refused": "the word AI (no source uses it), any statement that no real patient was involved (no source says it), the runner up and component prizes (table cells only), the real Disaster City site plan, and any team's actual hardware.",
+   "keywords": [
+    "triage",
+    "autonomous",
+    "drones",
+    "ground robots",
+    "Disaster City",
+    "TEEX",
+    "DARPA",
+    "medics",
+    "TRIAGE-X"
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "carousel_no": 85,
+   "docket_item": "tx-2026-0257",
+   "related_items": [
+    "tx-2026-0201",
+    "tx-2026-0228"
+   ],
+   "instrument": "The IC² Institute's October 20th release on the AI Learning Lab and the IC² Institute's AI Learning Lab project page, fetched November 22nd, 2026.",
+   "topic": "The IC² Institute and Dell Medical School announced the AI Learning Lab on October 20th. Its 80 Dell Med clinicians, faculty, residents and students, meet paid actors in simulated encounters. Half get Claude and half rely on UpToDate with its AI capability switched off. Researcher Sookja Kang asks how fast clinicians reach for their AI tool, whether they accept its output or interrogate it, and how much reasoning gets handed off as a diagnosis evolves. The release reports no findings and cites a 2026 American Medical Association survey with 81% of doctors using AI against 38% in 2023.",
+   "angle": "The fair test. Matched exam rooms where only the tool differs, a wall of stethoscopes counted to the cohort, a live actor rather than a page, a book and a switch for the AI that is off, and Kang's questions built as instruments at rest: a timing rail, paired slips on limestone and handoff trays. Exam paper lengths carry the survey, and an empty rubric in an open binder closes on the curriculum.",
+   "angle_note": "No frame implies a result or a better group, because the release reports none. Cyan means only the tool within reach. The survey figures are the release's citation, drawn as the release states them. The book, switch and slips are drawn to illustrate, to no vendor's design.",
+   "entities": [
+    "IC² Institute",
+    "Dell Medical School",
+    "AI Learning Lab",
+    "Claude",
+    "UpToDate",
+    "Sookja Kang",
+    "Tu-Quyen Dao",
+    "James Korndorffer",
+    "American Medical Association"
+   ],
+   "places": [
+    "Texas",
+    "Austin",
+    "Travis County"
+   ],
+   "what_was_refused": "any study dates, the team roster, the project page's Executive Vice Dean title, any claim that the study has data, and any frame suggesting which group reasons better.",
+   "keywords": [
+    "clinical reasoning",
+    "medical education",
+    "simulated encounters",
+    "Claude",
+    "UpToDate",
+    "Dell Med",
+    "IC2 Institute",
+    "AI Learning Lab"
+   ]
   }
  ]
 }

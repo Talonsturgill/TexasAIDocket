@@ -1,0 +1,222 @@
+<!doctype html>
+<!-- 2026-11-22, frame 6 of 9, QUESTION TWO (c10). Panel round 2 repair. Two identical portrait printed slips lie side by
+side in one focal plane on a honed limestone slab, cream clouding to honey and pitted, under the same raking key. The left is
+clean and unmarked. The right is the same slip worked over in brass brown ink, with a satin graphite pen, chrome clip and
+satin steel tip, lying across its marks and casting over them. Each slip carries its own navy pill on its top margin.
+FIG.questions cast brass tabs with domed pips, 1 to n, sit in a row under the pair, the second polished. No cyan anywhere.
+The type sits in deep cerulean over the out of focus back of the slab. Nothing is legible and neither slip is a result.
+Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>/* the deck's navy non-accent pill, held at full navy so its text clears 4.5 on white paper */ #l-acc, #l-int { background: rgba(15,31,92,0.92) !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:140px; top:150px; width:800px; text-align:center">Accept the answer, or interrogate it?</h1>
+<p class="dek" data-follow="20" style="left:160px; width:760px; text-align:center">Kang asks whether clinicians are passively accepting AI output or actively interrogating it. Neither slip is a result. Both are drawn to illustrate.</p>
+<div class="lab plain" id="l-acc" style="font-size:26px">accepting</div>
+<div class="lab plain" id="l-int" style="font-size:26px">interrogating</div>
+<script>window.FIG = {"questions": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Question two", counter: "06 / 09", src: "c10", fit: { min: 70, max: 92, maxLines: 2 } });
+
+  const typeTop = document.getElementById('hook').getBoundingClientRect().top;
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 60, fog: 0 });
+  TXT.studio(R, { tone: CH.TONE, w: 9, d: 9, h: 4, radius: 1, floor: '#2c3fa8', env: 0.75, hemi: 0.35, softbox: 6.5 });
+  const P = CH.P;
+
+  /* ---- THE FIGURE: FIG.questions brass tabs, the second lit ------------------------------------------------- */
+  if (!Number.isInteger(FIG.questions) || FIG.questions < 2) throw new Error('FIG.questions is not a count of at least two');
+  const LIT = 1;   /* zero based: question two */
+
+  /* ---- THE SLAB: a honed limestone slab, cream clouding to honey, pitted, 1.5 m wide and 3 m deep so it runs out past
+   * the top of the frame, 90 mm thick, its near lip chipped. One pit list draws the colour and the bump, so every pit is
+   * a real hollow under its own stain. ------------------------------------------------------------------------------ */
+  const SLAB_FRONT = 0.5, SLAB_D = 3.0, SLAB_T = 0.09, H = SLAB_T;
+  const TS = 2048, pr = CH.rng(5150), pits = [];
+  for (let i = 0; i < 650; i++) pits.push([pr() * TS, pr() * TS, 1.5 + Math.pow(pr(), 3) * 9, 0.45 + pr() * 0.55, pr() * Math.PI]);
+  const shells = []; for (let i = 0; i < 160; i++) shells.push([pr() * TS, pr() * TS, 6 + pr() * 18, pr() * Math.PI * 2]);
+  const stoneTex = CH.canvasTex(THREE, TS, TS, (g, w, h) => {
+    g.fillStyle = '#ecd0a0'; g.fillRect(0, 0, w, h); const r = CH.rng(5152);
+    for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, rad = 90 + r() * 420, gr = g.createRadialGradient(x, y, 0, x, y, rad), c = r() < 0.55 ? '206,146,78' : '250,232,196';
+      gr.addColorStop(0, 'rgba(' + c + ',' + (0.14 + r() * 0.26) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)'); g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
+    for (const [x, y, l, a] of shells) { g.strokeStyle = 'rgba(176,120,66,0.35)'; g.lineWidth = 2; g.beginPath(); g.arc(x, y, l, a, a + 2.2); g.stroke(); g.strokeStyle = 'rgba(255,244,222,0.4)'; g.beginPath(); g.arc(x + 1.5, y + 1.5, l, a, a + 2.2); g.stroke(); }
+    for (const [x, y, rad, sq, a] of pits) { g.save(); g.translate(x, y); g.rotate(a); g.scale(1, sq); const gr = g.createRadialGradient(0, 0, 0, 0, 0, rad * 1.4); gr.addColorStop(0, 'rgba(128,84,46,0.6)'); gr.addColorStop(0.6, 'rgba(160,112,64,0.3)'); gr.addColorStop(1, 'rgba(160,112,64,0)');
+      g.fillStyle = gr; g.beginPath(); g.arc(0, 0, rad * 1.4, 0, Math.PI * 2); g.fill(); g.restore(); }
+  }, [3, 6]);
+  const stoneBump = CH.canvasTex(THREE, TS, TS, (g, w, h) => {
+    g.fillStyle = '#9a9a9a'; g.fillRect(0, 0, w, h); const r = CH.rng(5153);
+    for (let i = 0; i < 120; i++) { const x = r() * w, y = r() * h, rad = 120 + r() * 400, gr = g.createRadialGradient(x, y, 0, x, y, rad), v = r() < 0.5 ? '120,120,120' : '170,170,170'; gr.addColorStop(0, 'rgba(' + v + ',0.35)'); gr.addColorStop(1, 'rgba(' + v + ',0)'); g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
+    for (const [x, y, rad, sq, a] of pits) { g.save(); g.translate(x, y); g.rotate(a); g.scale(1, sq); const gr = g.createRadialGradient(0, 0, 0, 0, 0, rad); gr.addColorStop(0, 'rgba(10,10,10,1)'); gr.addColorStop(0.7, 'rgba(40,40,40,0.8)'); gr.addColorStop(1, 'rgba(154,154,154,0)'); g.fillStyle = gr; g.beginPath(); g.arc(0, 0, rad, 0, Math.PI * 2); g.fill(); g.restore(); }
+  }, [3, 6]);
+  const stone = new THREE.MeshPhysicalMaterial({ name: 'limestone-conc-slab', color: 0xffffff, map: stoneTex, roughness: 0.78, bumpMap: stoneBump, bumpScale: 0.0025, sheen: 0.15, sheenColor: new THREE.Color(0xffd6a0) });
+  stone.userData.txSurface = 'concrete';
+  const faceTex = stoneTex.clone(); faceTex.repeat.set(3, 0.18); faceTex.needsUpdate = true;
+  const faceBump = stoneBump.clone(); faceBump.repeat.set(3, 0.18); faceBump.needsUpdate = true;
+  const stoneFace = stone.clone(); stoneFace.name = 'limestone-conc-face'; stoneFace.map = faceTex; stoneFace.bumpMap = faceBump; stoneFace.userData.txSurface = 'concrete';
+  { const geo = new THREE.BoxGeometry(1.5, SLAB_T, SLAB_D, 300, 8, 300), pos = geo.attributes.position, r = CH.rng(4040);
+    /* the lip: a chip profile along x, mostly a worn arris with sharp shelled notches where a corner broke away */
+    const N = 600, chip = []; let v = 0;
+    for (let i = 0; i <= N; i++) { v = Math.max(v * 0.86, r() < 0.05 ? 0.006 + r() * 0.016 : 0); chip.push(v); }
+    const chipAt = (x) => { const t = (x + 0.75) / 1.5 * N, i = Math.max(0, Math.min(N - 1, Math.floor(t))); return chip[i] + (chip[i + 1] - chip[i]) * (t - i); };
+    const zf = SLAB_D / 2, yt = SLAB_T / 2;
+    for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i), c = chipAt(x) + 0.0025;
+      const back = zf - z, down = yt - y;
+      if (back <= c + 1e-6 && down <= c + 1e-6) { const k = 1 - Math.max(back, down) / c; const n = 0.75 + 0.5 * r(); pos.setY(i, y - k * c * 0.8 * n); pos.setZ(i, z - k * c * 0.85 * n); }
+      if (Math.abs(z - zf) < 1e-6 && y < yt - 0.003) pos.setZ(i, z - r() * 0.0018); }
+    geo.computeVertexNormals();
+    const slab = new THREE.Mesh(geo, [stone, stone, stone, stone, stoneFace, stone]); slab.position.set(0, SLAB_T / 2, SLAB_FRONT - SLAB_D / 2); slab.castShadow = slab.receiveShadow = true; slab.userData.txBevel = false; R.scene.add(slab); }
+
+  /* ---- THE SLIPS: one printed output, twice. Same seed, same size, same paper ------------------------------- */
+  /* portrait slips, 140 x 216 mm, so the matched pair stands tall enough to fill the lower half */
+  const SW = 0.14, SD = 0.216;
+  function slipTex(marks) {
+    return CH.canvasTex(THREE, 840, 1296, (g, w, h) => {
+      g.fillStyle = '#fbf6ea'; g.fillRect(0, 0, w, h);
+      const r = CH.rng(2211);   /* the same seed for both: one answer, printed once and drawn twice */
+      for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(130,112,86,' + (r() * 0.06).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 1.4); }
+      /* a clean top margin of 240 px carries the slip's pill; the header starts under it */
+      g.fillStyle = 'rgba(52,58,120,0.78)'; g.fillRect(60, 270, 300, 22); g.fillStyle = 'rgba(52,58,120,0.35)'; g.fillRect(60, 306, 200, 12);
+      g.fillStyle = 'rgba(52,58,120,0.22)'; g.fillRect(60, 340, w - 120, 3);
+      const rows = []; let y = 380;
+      for (let L = 0; L < 20; L++) {
+        let x = 60; const end = w - 60 - (L === 6 || L === 13 || L === 19 ? 300 : r() * 50);
+        while (x < end) { const ww = 22 + r() * 70; g.fillStyle = 'rgba(58,62,98,0.62)'; g.fillRect(x, y, Math.min(ww, end - x), 11); x += ww + 13 + r() * 8; }
+        rows.push(y); y += (L === 6 || L === 13) ? 60 : 38;
+      }
+      if (marks) {
+        /* the reader's pen: underlines, a margin bracket, a ring, a query mark and an arrow, in brass brown ink */
+        g.strokeStyle = '#7a4410'; g.fillStyle = '#7a4410'; g.lineCap = 'round'; g.lineJoin = 'round'; const rr = CH.rng(77);
+        const wob = (pts, lw) => { g.lineWidth = lw; g.beginPath(); pts.forEach((p, i) => { const x = p[0] + (rr() - 0.5) * 3, y = p[1] + (rr() - 0.5) * 3; i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke(); };
+        const line = (x0, x1, y, lw) => { const pts = []; for (let x = x0; x <= x1; x += 22) pts.push([x, y + Math.sin(x * 0.03) * 2]); wob(pts, lw); };
+        line(70, 520, rows[1] + 20, 10); line(220, 720, rows[4] + 20, 10); line(80, 460, rows[9] + 20, 10); line(300, 760, rows[15] + 20, 10);
+        wob([[w - 44, rows[0] - 6], [w - 30, rows[0]], [w - 30, rows[4] + 10], [w - 44, rows[4] + 18]], 10);
+        { const cx0 = 470, cy0 = rows[11] + 5, pts = []; for (let a = 0; a <= Math.PI * 2.15; a += 0.16) pts.push([cx0 + Math.cos(a) * 170, cy0 + Math.sin(a) * 34]); wob(pts, 9); }
+        wob([[640, rows[11] + 5], [740, rows[11] - 60], [790, rows[11] - 64]], 8);
+        { const qx = w - 40, qy = rows[16] - 30; g.lineWidth = 10; g.beginPath(); g.arc(qx, qy, 18, Math.PI * 1.05, Math.PI * 2.45); g.quadraticCurveTo(qx, qy + 22, qx - 1, qy + 34); g.stroke(); g.beginPath(); g.arc(qx - 1, qy + 52, 6, 0, Math.PI * 2); g.fill(); }
+        wob([[76, rows[17] + 4], [52, rows[17] + 4], [52, rows[19] + 18], [76, rows[19] + 18]], 9);
+      }
+    });
+  }
+  const paperBump = CH.canvasTex(THREE, 512, 512, (g, w, h) => { g.fillStyle = '#808080'; g.fillRect(0, 0, w, h); const r = CH.rng(31); for (let i = 0; i < 14000; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '60,60,60' : '200,200,200') + ',' + (r() * 0.25) + ')'; g.fillRect(r() * w, r() * h, 1.5, 1.5); } }, [2, 2]);
+  function slip(marks) {
+    const geo = new THREE.PlaneGeometry(SW, SD, 32, 48), pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), y = pos.getY(i); pos.setZ(i, 0.0045 * Math.pow(Math.abs(x) / (SW / 2), 3) + 0.0035 * Math.pow(Math.max(0, -y) / (SD / 2), 2.2)); }
+    geo.computeVertexNormals();
+    const mat = new THREE.MeshPhysicalMaterial({ name: 'paper-slip', color: 0xffffff, map: slipTex(marks), roughness: 0.88, bumpMap: paperBump, bumpScale: 0.0004, sheen: 0.25, sheenColor: new THREE.Color(0xffffff), side: THREE.DoubleSide });
+    const m = new THREE.Mesh(geo, mat); m.rotation.x = -Math.PI / 2; m.castShadow = true; m.receiveShadow = true;
+    m.position.y = 0.0009;
+    /* a soft indigo contact shadow under the sheet, pushed away from the key */
+    const sh = CH.canvasTex(THREE, 256, 192, (g, w, h) => { g.fillStyle = '#000'; g.fillRect(0, 0, w, h); for (let k = 0; k < 20; k++) { const ix = 2 + k * 0.6, iy = 2 + k * 0.55; g.fillStyle = 'rgba(255,255,255,0.09)'; g.fillRect(ix, iy, w - 2 * ix, h - 2 * iy); } });
+    const shm = new THREE.MeshBasicMaterial({ name: 'contact-shadow', color: 0x241a6e, alphaMap: sh, transparent: true, opacity: 0.55, depthWrite: false }); shm.userData.txSurface = false;
+    const shp = new THREE.Mesh(new THREE.PlaneGeometry(SW * 1.07, SD * 1.11), shm); shp.rotation.x = -Math.PI / 2; shp.position.set(0.004, 0.0003, -0.002); shp.userData.txBevel = false;
+    const g = new THREE.Group(); g.add(shp); g.add(m); return g;
+  }
+  const GAP = 0.03, SZ = 0.0;
+  const sL = slip(false), sR = slip(true);
+  /* the interrogated slip is the near plane, the accepted one a step behind it and to the left */
+  sL.position.set(-(SW + GAP) / 2, H, SZ); sL.rotation.y = 0.0;
+  sR.position.set((SW + GAP) / 2, H, SZ); sR.rotation.y = -0.05;
+  R.scene.add(sL); R.scene.add(sR);
+  if (sL.children[0].geometry.parameters.width !== sR.children[0].geometry.parameters.width) throw new Error('the two slips differ in size');
+
+  /* ---- THE PEN: a satin graphite barrel, chrome clip and band, a satin steel tip, lying across the right slip's corner ---- */
+  { const pen = new THREE.Group();
+    const lac = new THREE.MeshPhysicalMaterial({ name: 'graphite-paint-pen', color: 0x3b3e4c, roughness: 0.4, metalness: 0.0, clearcoat: 0.35, clearcoatRoughness: 0.45 });
+    const chrome = new THREE.MeshStandardMaterial({ name: 'chrome-metal', color: 0xf2f5ff, metalness: 1, roughness: 0.12 });
+    const tip = new THREE.MeshStandardMaterial({ name: 'satin-steel-metal-tip', color: 0xd4d9e2, metalness: 1, roughness: 0.34 });
+    const prof = (pts) => pts.map((p) => new THREE.Vector2(p[0], p[1]));
+    /* along +y in the lathe, laid down afterwards: tip at y=0, cap end at 0.142 */
+    const body = new THREE.Mesh(new THREE.LatheGeometry(prof([[0, 0.012], [0.0016, 0.013], [0.0042, 0.026], [0.0050, 0.032], [0.0052, 0.084], [0.0054, 0.136], [0.0050, 0.140], [0.003, 0.1425], [0, 0.1428]]), 48), lac);
+    const nib = new THREE.Mesh(new THREE.LatheGeometry(prof([[0, 0], [0.0006, 0.0008], [0.0012, 0.004], [0.0017, 0.0125], [0, 0.0125]]), 32), tip);
+    const band = new THREE.Mesh(new THREE.CylinderGeometry(0.00545, 0.00545, 0.0045, 48), chrome); band.position.y = 0.088;
+    const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.0046, 0.0052, 0.003, 48), chrome); grip.position.y = 0.029;
+    const clip = TXT.roundedBox(0.0026, 0.046, 0.0016, 0.0007, chrome); clip.position.set(0, 0.112, 0.0062);
+    const clipFoot = new THREE.Mesh(new THREE.SphereGeometry(0.0018, 16, 12), chrome); clipFoot.position.set(0, 0.091, 0.0068);
+    [body, nib, band, grip, clip, clipFoot].forEach((m) => { m.castShadow = true; m.receiveShadow = true; pen.add(m); });
+    /* laid flat on its side, clip up, pointing back and to the left across the corner */
+    /* laid on its side: lathe axis +y turned to +x, the clip rolled up, then headed so the body runs off the corner */
+    pen.rotation.z = -Math.PI / 2; const roll = new THREE.Group(); roll.rotation.x = -Math.PI / 2; roll.add(pen);
+    const lay = new THREE.Group(); lay.add(roll); lay.rotation.y = -0.95;
+    const tipAt = new THREE.Vector3(-0.02, 0, 0.0).applyAxisAngle(new THREE.Vector3(0, 1, 0), sR.rotation.y).add(sR.position);
+    lay.position.set(tipAt.x, H + 0.0012 + 0.0054, tipAt.z); R.scene.add(lay); }
+
+  /* ---- THE QUESTION TABS: FIG.questions separate cast brass tabs at the slips' foot, pips 1 to n as on frame 5, each
+   * with its own soft indigo contact shadow, the second polished and catching a warm glint. No rod. ----------------- */
+  const brassDull = new THREE.MeshPhysicalMaterial({ name: 'brass-cast-metal-patina', color: 0xe0ac5e, metalness: 0.6, roughness: 0.5, clearcoat: 0.2, envMapIntensity: 0.15 });
+  const brassLit = new THREE.MeshPhysicalMaterial({ name: 'brass-polished-metal', color: 0xffc457, metalness: 1, roughness: 0.2, emissive: 0xff8c10, emissiveIntensity: 0.22, clearcoat: 1, clearcoatRoughness: 0.05 });
+  const padTex = CH.canvasTex(THREE, 128, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 6, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.55, 'rgba(255,255,255,0.6)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const TZ = SZ + SD / 2 + 0.032, TP = 0.058;
+  const tabs = [];
+  for (let i = 0; i < FIG.questions; i++) {
+    const t = new THREE.Group(), m = i === LIT ? brassLit : brassDull;
+    const plate = TXT.roundedBox(0.05, 0.004, 0.034, 0.0014, m, { segments: 4 }); plate.position.y = 0.002; t.add(plate);
+    for (let q = 0; q <= i; q++) { const pip = new THREE.Mesh(new THREE.SphereGeometry(0.0034, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), m); pip.position.set((q - i / 2) * 0.012, 0.004, 0.003); t.add(pip); }
+    const hole = new THREE.Mesh(new THREE.TorusGeometry(0.0028, 0.0009, 8, 24), m); hole.rotation.x = Math.PI / 2; hole.position.set(0, 0.0042, -0.01); t.add(hole);
+    const shm = new THREE.MeshBasicMaterial({ name: 'contact-pad', map: padTex, color: 0x241a6e, transparent: true, opacity: 0.55, depthWrite: false }); shm.userData.txSurface = false;
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(0.075, 0.056), shm); sh.rotation.x = -Math.PI / 2; sh.position.set(0.004, 0.0003, -0.002); sh.userData.txBevel = false; t.add(sh);
+    t.traverse((o) => { if (o.isMesh && o !== sh) { o.castShadow = true; o.receiveShadow = true; } });
+    t.position.set(-0.235 + (i - (FIG.questions - 1) / 2) * TP, H, TZ); t.rotation.y = -0.1;
+    t.userData.lit = i === LIT; t.userData.pips = i + 1; R.scene.add(t); tabs.push(t);
+  }
+  if (tabs.length !== FIG.questions) throw new Error('drew ' + tabs.length + ' question tabs, FIG.questions is ' + FIG.questions);
+  if (tabs.filter((t) => t.userData.lit).length !== 1 || !tabs[1].userData.lit) throw new Error('the lit tab is not the second');
+  tabs.forEach((t, i) => { if (t.userData.pips !== i + 1) throw new Error('tab ' + (i + 1) + ' carries the wrong pip count'); });
+
+  /* ---- CAMERA AND LIGHT -------------------------------------------------------------------------------------- */
+  const FROM = [0.0, H + 0.6, SZ + 0.62];
+  CH.aim(THREE, R, TXT, FROM, [0, H, SZ + 0.015], 540, 830, 32);
+  /* the sweep takes no shadow: the desk's own shadow on the far floor read as a block behind the type */
+  R.studio.sweep.receiveShadow = false;
+  /* the tabs sit in a row centred under the pair; each is checked to land fully in frame and above the footer */
+  tabs.forEach((t, i) => { t.position.set((i - (FIG.questions - 1) / 2) * TP, H, TZ); t.rotation.y = 0; t.scale.setScalar(0.85);
+    for (const [dx, dz] of [[-0.024, -0.016], [0.024, -0.016], [-0.024, 0.016], [0.024, 0.016]]) { const q = CH.project(THREE, R, [t.position.x + dx, H, t.position.z + dz]);
+      if (q[0] < 70 || q[0] > 1010 || q[1] < 200 || q[1] > 1190) throw new Error('question tab ' + (i + 1) + ' is not fully in frame at ' + q.map(Math.round)); } });
+  CH.KEY_SCALE = 1.3; const spec = CH.rigSpec(W, 1.1, 4096); spec.key.radius = 4;
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, H, 0], { distance: 6, shadowFar: 14, normalBias: 0.003 }), { light: { az: -60, el: 18 } }));
+  TXT.weather(R, { grime: 0.03, height: 0.05, mottle: 0.05 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+
+  /* ---- LABELS: one pill over each slip, the same pill, the same size --------------------------------------------- */
+  const pj = (p) => CH.project(THREE, R, p);
+  const place = (id, p) => { const el = document.getElementById(id), r = el.getBoundingClientRect(), q = pj(p); el.style.left = Math.round(q[0] - r.width / 2) + 'px'; el.style.top = Math.round(q[1] - r.height - 14) + 'px'; return q; };
+  /* each pill pinned to its own slip's top margin, over the printed header, the same pill on both */
+  const pin = (id, sl) => { const el = document.getElementById(id), r = el.getBoundingClientRect(), p = new THREE.Vector3(0, 0, -SD / 2 + 0.019).applyAxisAngle(new THREE.Vector3(0, 1, 0), sl.rotation.y).add(sl.position), q = pj([p.x, H, p.z]);
+    el.style.left = Math.round(q[0] - r.width / 2) + 'px'; el.style.top = Math.round(q[1] - r.height / 2) + 'px'; };
+  pin('l-acc', sL); pin('l-int', sR);
+
+  /* THE BACK OF THE SLAB, out of focus and going into the indigo shade the key doesn't reach: a depth blur that grows
+   * toward the top, then one edgeless full width gradient in the tone's deep cerulean. The type sits in that quiet. */
+  { const slipTop = Math.min(pj([sL.position.x, H, -SD / 2])[1], pj([sR.position.x, H, -SD / 2])[1]);
+    const D = 2, src = document.getElementById('art');
+    for (const [rad, y1] of [[2.5, slipTop - 40], [5, slipTop - 150], [10, slipTop - 320]]) {
+      const tmp = document.createElement('canvas'); tmp.width = 2160; tmp.height = 2700; const k = tmp.getContext('2d');
+      k.filter = 'blur(' + rad * D + 'px)'; k.drawImage(src, 0, 0); k.filter = 'none';
+      k.globalCompositeOperation = 'destination-in'; const m = k.createLinearGradient(0, 0, 0, y1 * D); m.addColorStop(0, 'rgba(0,0,0,1)'); m.addColorStop(0.7, 'rgba(0,0,0,1)'); m.addColorStop(1, 'rgba(0,0,0,0)');
+      k.fillStyle = m; k.fillRect(0, 0, 2160, 2700);
+      cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(tmp, 0, 0); cx.restore(); }
+    const dekB = document.querySelector('.dek').getBoundingClientRect().bottom, yEnd = Math.max(dekB + 80, slipTop - 24);
+    const g = cx.createLinearGradient(0, 0, 0, yEnd);
+    g.addColorStop(0, 'rgba(14,30,120,0.92)'); g.addColorStop(dekB / yEnd * 0.6, 'rgba(22,58,176,0.84)'); g.addColorStop(dekB / yEnd, 'rgba(30,86,206,0.66)'); g.addColorStop(1, 'rgba(36,110,220,0)');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, yEnd); }
+  TXLOOK.footWash(cx, { a: 0.62, height: 230 });
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.tx-site', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.dek', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.src', a: 0.35, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

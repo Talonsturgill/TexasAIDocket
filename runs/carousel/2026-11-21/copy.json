@@ -1,0 +1,202 @@
+{
+ "date": "2026-11-21",
+ "carousel_no": 84,
+ "document_title": "DARPA's Triage Challenge finals at TEEX's Disaster City in College Station tested drones and ground robots that find simulated casualties for human medics",
+ "_note": "Caption carried verbatim from caption_winner.txt. Slide strings polished from storyboard.md, each held to its claim quotes in claims.json. The only figure not in a claim quote is plate_usd from figures.json, a drawing rule.",
+ "caption": "Disaster City was built to collapse.\n\nTEEX's 52 acre mock community in College Station even has a derailed train. From November 5th to November 13th it hosted DARPA's Triage Challenge finals. Drones and ground robots worked beside first responders, relaying data on simulated casualties to human medics. RoboScout won the Systems competition and $1.5 million. Disruptors won the Data competition and $1 million.\n\nDARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said, \"But that's not enough, right?\" Some teams did well identifying victims. Others did well at triage or evacuation.\n\nDARPA's SBIR topic TRIAGE-X seeks systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. Who in Texas answers it by then?\n\n#DisasterCity #CollegeStation #TEEX",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Disaster City",
+   "headline": "The robot finds. The medic treats.",
+   "claims": [
+    "c1",
+    "c2",
+    "c9"
+   ],
+   "cite": "c1 c2 c9",
+   "body": "Autonomous drones and ground robots worked alongside first responders on simulated casualties, relaying critical data to human medics. TEEX staged DARPA's Triage Challenge finals at Disaster City in College Station from November 5th to November 13th. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The robot finds. The medic treats.",
+    "Autonomous drones and ground robots worked alongside first responders on simulated casualties, relaying critical data to human medics. TEEX staged DARPA's Triage Challenge finals at Disaster City in College Station from November 5th to November 13th. Drawn to illustrate.",
+    "Disaster City",
+    "01 / 09",
+    "c1 c2 c9"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "52 acres",
+   "headline": "A town built to fall down",
+   "claims": [
+    "c11",
+    "c1"
+   ],
+   "cite": "c11 c1",
+   "body": "Disaster City is a 52 acre mock community with full scale structures that can collapse, rubble piles and a derailed train. The layout here is drawn to illustrate and is not the site plan.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A town built to fall down",
+    "Disaster City is a 52 acre mock community with full scale structures that can collapse, rubble piles and a derailed train. The layout here is drawn to illustrate and is not the site plan.",
+    "52 acres",
+    "02 / 09",
+    "c11 c1"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Five courses",
+   "headline": "Five ways to make it hard",
+   "claims": [
+    "c14"
+   ],
+   "cite": "c14",
+   "body": "The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under piles of rubble. Each set is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Five ways to make it hard",
+    "The five competitions included a simulated tornado ripping through a community market, smoke filled buildings, nighttime searches in near darkness and search and rescue under piles of rubble. Each set is drawn to illustrate.",
+    "Five courses",
+    "03 / 09",
+    "c14"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The job",
+   "headline": "Find them. Read them. Tell a medic.",
+   "claims": [
+    "c10",
+    "c18",
+    "c15"
+   ],
+   "cite": "c10 c18 c15",
+   "body": "Systems had to locate casualties, identify signs of injury and send critical data to medical response teams. Teams built technology to read vital signs from a distance. Moulage artists made hyper realistic mock injuries. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Find them. Read them. Tell a medic.",
+    "Systems had to locate casualties, identify signs of injury and send critical data to medical response teams. Teams built technology to read vital signs from a distance. Moulage artists made hyper realistic mock injuries. Drawn to illustrate.",
+    "The job",
+    "04 / 09",
+    "c10 c18 c15"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Night course",
+   "headline": "It searched through the blast",
+   "claims": [
+    "c27",
+    "c28",
+    "c16"
+   ],
+   "cite": "c27 c28 c16",
+   "body": "On the Human Machine Teaming night course a robot searched for casualties during a controlled explosion while role players took cover. Each team worked with assigned medics. The course simulated an attack on a forward operating base.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It searched through the blast",
+    "On the Human Machine Teaming night course a robot searched for casualties during a controlled explosion while role players took cover. Each team worked with assigned medics. The course simulated an attack on a forward operating base.",
+    "Night course",
+    "05 / 09",
+    "c27 c28 c16"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The field",
+   "headline": "More than 100 people competed",
+   "claims": [
+    "c12"
+   ],
+   "cite": "c12",
+   "body": "Participants came from the U.S. military, universities, tech companies and startups. Each badge is one participant, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "More than 100 people competed",
+    "Participants came from the U.S. military, universities, tech companies and startups. Each badge is one participant, drawn to illustrate.",
+    "The field",
+    "06 / 09",
+    "c12"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The purse",
+   "headline": "$1.5 million and $1 million",
+   "claims": [
+    "c12",
+    "c3",
+    "c23"
+   ],
+   "cite": "c12 c3 c23",
+   "body": "More than $3 million in cash prizes was on offer. RoboScout won the Systems competition and $1.5 million. Disruptors won the Data competition and $1 million. One plate stands for $100,000, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "$1.5 million and $1 million",
+    "More than $3 million in cash prizes was on offer. RoboScout won the Systems competition and $1.5 million. Disruptors won the Data competition and $1 million. One plate stands for $100,000, drawn to illustrate.",
+    "The purse",
+    "07 / 09",
+    "c12 c3 c23"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Not enough",
+   "headline": "Human machine teams beat every approach. Still not enough.",
+   "claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c21"
+   ],
+   "cite": "c5 c6 c7 c21",
+   "body": "DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Human machine teams beat every approach. Still not enough.",
+    "DARPA Director Stephen Winchell said human machine teams outperform every approach to the problem. Then he said that result was not enough. Some teams did well at identifying victims and others at triage, lifesaving or evacuation. DARPA created the challenge in 2023.",
+    "Not enough",
+    "08 / 09",
+    "c5 c6 c7 c21"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Open until November 25th",
+   "headline": "The next ask is delivery",
+   "claims": [
+    "c19",
+    "c20"
+   ],
+   "cite": "c19 c20",
+   "body": "DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The next ask is delivery",
+    "DARPA's open SBIR topic TRIAGE-X seeks autonomous medical triage systems that recognize chemical toxidromes and physically deliver the antidote or a life saving intervention. It is open until November 25th. The case is drawn to illustrate.",
+    "Open until November 25th",
+    "09 / 09",
+    "c19 c20"
+   ]
+  }
+ }
+}

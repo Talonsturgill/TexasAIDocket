@@ -1,0 +1,239 @@
+<!doctype html>
+<!-- 2026-11-19, frame 3 of 9, THE SORT (showstopper). A clear borosilicate Y on a tall honed caliche pedestal, seen level
+     with its fork against a cobalt sweep. One fly paused at the fork, one held in the capped keep chamber behind its dusk
+     gold band, three flies and a beetle leaving the open release branch into a honey pool of light. The decision drawn as
+     a shape, never the device. The type stands in the quiet cobalt column left of the stem. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:176px; width:470px; text-align:left">Keep the wild ones. Free the rest.</h1>
+<p class="dek" data-follow="30" style="left:78px; width:420px; font-size:30px; line-height:1.36">The trap is meant to keep wild flies and especially wild females. Sterile flies and other insects would go free. It isn't built yet. Drawn to illustrate the decision, not the device.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-19-sortglass-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The sort", counter: "03 / 09", src: "c9 c4 c6", fit: { min: 78, max: 98, maxLines: 4 } });
+
+  /* THE FIGURES. None is drawn on this frame. The counts below are the story's own shape (one kept, three freed, one
+   * other insect), illustrative, and no figure from figures.json is drawn. */
+  /* fig_inject writes this frame's FIG line as {} because no FIG name is read here. */
+  const KEPT = 1, FREED = 3, OTHER = 1;
+
+  /* a 50 mm equivalent on a 4:5 portrait crop: 24 x 30 mm of a full frame, so the vertical field is 2 atan(15 / 50) */
+  const FOV = 2 * Math.atan(15 / 50) * 180 / Math.PI;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.02, far: 30, fog: 0 });
+  const P = CH.P;
+
+  /* ---------------- THE STUDIO: a cobalt sweep close behind, so every glass edge has cobalt behind it ---------------- */
+  TXT.studio(R, { tone: CH.TONE, w: 5, d: 1.4, h: 2.6, radius: 0.35, floor: 0x4652c4, wall: 0x3a5fd0, top: 0x1f3fa8, env: 0.85, hemi: 0.55, softbox: 3.2 });
+
+  /* ---------------- THE PEDESTAL: honed caliche, tall, so the camera at the fork sees the glass against the wall ------- */
+  const PH = 0.56, PR = 0.3;
+  const ped = K.make('stone_plinth', { r: PR, h: PH });
+  ped.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); m.material.name = 'conc-caliche-honed'; m.material.roughness = 0.55; m.material.color = new THREE.Color(0xcdbca2); } });
+  TXT.add(R, ped);
+  /* dust on the honed top, finer toward the worn edge */
+  {
+    const rng = CH.rng(3303), dust = new THREE.MeshStandardMaterial({ color: 0xe2d2b4, roughness: 0.95 }), list = [];
+    const geo = new THREE.SphereGeometry(1, 6, 4);
+    for (let i = 0; i < 900; i++) { const a = rng() * Math.PI * 2, rr = PR * Math.sqrt(0.35 + 0.65 * rng()) * 0.99, s = 0.0003 + rng() * 0.0006;
+      const m = new THREE.Mesh(geo, dust); m.scale.set(s, s * 0.4, s); m.position.set(Math.cos(a) * rr, PH + s * 0.2, Math.sin(a) * rr); m.receiveShadow = true; list.push(m); }
+    list.forEach((m) => TXT.add(R, m));
+  }
+
+  /* ---------------- THE GLASS: the chassis sort_glass, 0.42 m tall, foot on the pedestal ---------------- */
+  const GH = 0.42, gs = GH / 0.30;
+  const sg = K.make('sort_glass', { height: GH, band: true });
+  sg.position.set(0, PH, 0);
+  TXT.add(R, sg);
+  /* the glass carries a faint warm cast of its own, and its rods and foot keep a hard machined edge */
+  sg.traverse((m) => { if (m.isMesh && m.material && m.material.transmission) { m.material.userData.txSurface = 'glass'; m.material.color = new THREE.Color(0xffffff); m.material.transmission = 1; m.material.roughness = 0.015; m.material.envMapIntensity = 0.9; m.material.attenuationColor = new THREE.Color(0xd6e4ff); m.material.attenuationDistance = 0.5; m.material.thickness = 0.009; m.material.ior = 1.47; } });
+  /* the chassis stands the Y on a bare steel dowel and a disc and seats the keep bulb on a steel collar: those are hidden here and
+   * replaced below by a borosilicate stand, so every part of the study is glass on stone */
+  sg.traverse((m) => { if (m.isMesh && m.material && !m.material.transmission && m.material.metalness >= 0.85) m.visible = false; });
+  /* the band in dusk gold rather than a glowing orange: little emission, a metal that reflects the cobalt room */
+  sg.traverse((m) => { if (m.isMesh && m.material && m.material.emissive && m.material.emissive.getHex() === 0xe0956a) { m.material = m.material.clone(); m.material.emissiveIntensity = 0.03; m.material.metalness = 0.6; m.material.roughness = 0.26; m.material.envMapIntensity = 1.25; m.material.name = 'band-gold-metal'; } });
+  const U = sg.userData, at = (p) => [p[0], p[1] + PH, p[2]];
+  const fork = at(U.fork), keep = at(U.keep), rel = at(U.release), mouth = at(U.mouth);
+  const a35 = 35 * Math.PI / 180, dRel = new THREE.Vector3(Math.sin(a35), -Math.cos(a35), 0), nRel = new THREE.Vector3(Math.cos(a35), Math.sin(a35), 0);
+  const bore = 0.010 * gs;
+
+  /* ---------------- THE BOROSILICATE STAND ---------------- */
+  const solid = N_solid();
+  function N_solid() { let g0 = null; sg.traverse((m) => { if (!g0 && m.isMesh && m.material && m.material.transmission) g0 = m.material; });
+    const m = g0.clone(); m.thickness = 0.03; m.attenuationColor = new THREE.Color(0xc9dcff); m.attenuationDistance = 0.18; m.userData.txSurface = 'glass'; return m; }
+  /* THE RELEASE BRANCH, rebuilt in this frame: the chassis branch runs down at the stone, so it is hidden and replaced by a
+   * glass J that dips to rest on the plinth and turns UP and out, its open mouth to the cobalt sky. The Y now stands on two
+   * glass feet (the keep bulb's ring and the J's bend) with no pin through the fork. */
+  sg.traverse((m) => { if (m.isMesh && m.position.x > 0.004) m.visible = false; });
+  let glassMat = null; sg.traverse((m) => { if (!glassMat && m.isMesh && m.material && m.material.transmission) glassMat = m.material; });
+  const rOut = bore + 0.0018 * gs;
+  const jPts = [[0, U.fork[1]], [0.03, 0.15], [0.052, 0.07], [0.07, 0.026], [0.088, rOut + 0.0012], [0.108, 0.03], [0.12, 0.07], [0.128, 0.112]].map((q) => new THREE.Vector3(q[0], PH + q[1], 0));
+  const jCurve = new THREE.CatmullRomCurve3(jPts, false, 'centripetal');
+  const jTube = new THREE.Mesh(new THREE.TubeGeometry(jCurve, 160, rOut, 48, false), glassMat); R.scene.add(jTube);
+  const E = jPts[jPts.length - 1].clone(), dOut = jCurve.getTangent(1).normalize();
+  {
+    const rp = []; for (let j = 0; j <= 16; j++) { const u = j / 16; rp.push(new THREE.Vector2(rOut + 0.012 * u * u, u * 0.026)); }
+    const fl = new THREE.Mesh(new THREE.LatheGeometry(rp, 64), glassMat); fl.position.copy(E); fl.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dOut); R.scene.add(fl);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(rOut + 0.012, 0.0026, 16, 72), solid); lip.position.copy(E).addScaledVector(dOut, 0.026);
+    lip.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dOut); R.scene.add(lip);
+  }
+  const MOUTH = E.clone().addScaledVector(dOut, 0.026);
+  const bendX = 0.088;
+  /* the keep bulb and the J's bend each rest in a small glass ring foot on the stone */
+  { const kr = new THREE.Mesh(new THREE.TorusGeometry(0.014 * gs, 0.0032, 20, 64), solid); kr.rotation.x = Math.PI / 2; kr.position.set(keep[0], PH + 0.0032, 0); R.scene.add(kr);
+    const jr = new THREE.Mesh(new THREE.TorusGeometry(0.011, 0.003, 20, 64), solid); jr.rotation.x = Math.PI / 2; jr.position.set(bendX, PH + 0.003, 0); R.scene.add(jr); }
+  /* a frosted glass frit inside the keep bulb at the band's height, the floor she stands on */
+  const fritY = keep[1] + 0.003, bulbR = 0.026 * gs;
+  { const fr = new THREE.Mesh(new THREE.CylinderGeometry(bulbR * 0.985, bulbR * 0.985, 0.003, 64), new THREE.MeshPhysicalMaterial({ color: 0xeef2ff, roughness: 0.55, transmission: 0.55, thickness: 0.003, ior: 1.47 }));
+    fr.material.name = 'glass-frit'; fr.material.userData.txSurface = 'glass'; fr.position.set(keep[0], fritY - 0.0015, 0); fr.scale.set(0.99, 1, 0.99); fr.receiveShadow = true; R.scene.add(fr); }
+  /* soft violet contact shadows and a warm caustic where the glass meets the stone, painted as decals on the honed top */
+  const decal = (x, z, rx, rz, stops, additive) => {
+    const t = CH.canvasTex(THREE, 256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); stops.forEach((st) => gr.addColorStop(st[0], st[1])); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(rx * 2, rz * 2), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, blending: additive ? THREE.AdditiveBlending : THREE.NormalBlending, polygonOffset: true, polygonOffsetFactor: -2 }));
+    m.material.userData.txSurface = false; m.userData.txBevel = false; m.rotation.x = -Math.PI / 2; m.position.set(x, PH + 0.0004, z); R.scene.add(m); return m; };
+  const VIO = (a) => "rgba(52,36,128," + a + ")";
+  decal(bendX, 0.0, 0.03, 0.03, [[0, VIO(0.6)], [0.55, VIO(0.35)], [1, VIO(0)]]);
+  decal(bendX - 0.03, 0.012, 0.08, 0.05, [[0, VIO(0.18)], [1, VIO(0)]]);
+  decal(keep[0], 0, 0.034, 0.034, [[0, VIO(0.6)], [0.55, VIO(0.35)], [1, VIO(0)]]);
+  decal(keep[0] - 0.02, 0.01, 0.07, 0.05, [[0, VIO(0.18)], [1, VIO(0)]]);
+  /* the caustic falls on the far side of the glass from the key, warm and bright */
+  decal(bendX - 0.035, 0.022, 0.03, 0.016, [[0, "rgba(255,200,130,0.32)"], [0.5, "rgba(255,170,100,0.12)"], [1, "rgba(255,160,90,0)"]], true);
+
+  /* ---------------- THE CAMERA: about 0.97 m from the fork, level with it, a low three quarter from the keep side ------ */
+  const az = -30 * Math.PI / 180, DIST = 1.04;
+  const from = [fork[0] + DIST * Math.sin(az), fork[1] + 0.01, fork[2] + DIST * Math.cos(az)];
+  CH.aim(THREE, R, TXT, from, fork, 705, 590, FOV);
+  /* a world point on the ray through design pixel (sx, sy): `dist` metres from the eye, or where it meets the plane z = zPlane */
+  const rayAt = (sx, sy, dist, zPlane) => { R.camera.updateMatrixWorld(true);
+    const o = R.camera.position.clone(), d = new THREE.Vector3(sx / CH.W * 2 - 1, 1 - sy / CH.H * 2, 0.5).unproject(R.camera).sub(o).normalize();
+    const t = zPlane != null ? (zPlane - o.z) / d.z : dist; return o.addScaledVector(d, t); };
+
+  /* ---------------- THE INSECTS ---------------- */
+  const FS = 2.3;
+  const CAM_AZ = -30 * Math.PI / 180;
+  const C = new THREE.Vector3(Math.sin(CAM_AZ), 0, Math.cos(CAM_AZ));          // toward the camera
+  const RT = new THREE.Vector3(Math.cos(CAM_AZ), 0, -Math.sin(CAM_AZ));        // the camera's right
+  const orient = (obj, head, up) => { const z = head.clone().normalize(), y = up.clone().normalize(); const x = new THREE.Vector3().crossVectors(y, z).normalize(); y.crossVectors(z, x);
+    obj.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z)); };
+  /* wings that read at feed size: a smoky iridescent membrane with dark veins, and maroon eyes rather than a red bead */
+  const wingTex = CH.canvasTex(THREE, 512, 256, (x, w, h) => {
+    x.clearRect(0, 0, w, h);
+    const g = x.createLinearGradient(0, 0, w, 0); g.addColorStop(0, "rgba(120,140,170,0.62)"); g.addColorStop(0.6, "rgba(190,210,235,0.42)"); g.addColorStop(1, "rgba(230,215,240,0.3)");
+    x.fillStyle = g; x.beginPath(); x.ellipse(w * 0.5, h * 0.5, w * 0.49, h * 0.42, 0, 0, Math.PI * 2); x.fill();
+    x.strokeStyle = "rgba(30,24,22,0.95)"; x.lineWidth = 5;
+    [[0.04, 0.5, 0.97, 0.36], [0.04, 0.5, 0.95, 0.5], [0.04, 0.52, 0.9, 0.68], [0.1, 0.55, 0.7, 0.82], [0.2, 0.42, 0.85, 0.2]].forEach((v) => {
+      x.beginPath(); x.moveTo(v[0] * w, v[1] * h); x.quadraticCurveTo(w * 0.5, (v[1] + v[3]) * 0.5 * h, v[2] * w, v[3] * h); x.stroke(); });
+    x.lineWidth = 4; x.strokeStyle = "rgba(30,24,22,0.8)"; x.beginPath(); x.ellipse(w * 0.5, h * 0.5, w * 0.49, h * 0.42, 0, 0, Math.PI * 2); x.stroke();
+  });
+  const dressFly = (f) => {
+    /* a stout blowfly body: the thorax and abdomen run together with no waist, so it never reads as an ant */
+    let bodyMat = null; f.traverse((m) => { if (m.isMesh && m.material && m.material.iridescence > 0.5 && m.material.metalness > 0.6) bodyMat = m.material; });
+    if (bodyMat) { const S = 0.001, br = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 20), bodyMat); br.scale.set(1.75 * S, 1.5 * S, 2.0 * S); br.position.set(0, 2.6 * S, -1.3 * S); br.castShadow = true; f.add(br);
+      const ab = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 20), bodyMat); ab.scale.set(1.85 * S, 1.45 * S, 2.0 * S); ab.position.set(0, 2.45 * S, -3.0 * S); ab.castShadow = true; f.add(ab); }
+    f.traverse((m) => {
+      if (!m.isMesh || !m.material) return;
+      if (m.material.transparent && m.material.depthWrite === false && m.material.map) { m.material = m.material.clone(); m.material.map = wingTex; m.material.iridescence = 0.9; m.material.userData.txSurface = false; }
+      else if (m.material.name === 'bf-eye' || (m.material.map && m.material.map.image && m.material.map.image.width === 256 && m.material.clearcoat === 1 && m.material.roughness < 0.2)) { m.material = m.material.clone(); m.material.color = new THREE.Color(0x8c4a40); }
+    });
+    return f;
+  };
+  /* one at the fork, on the side wall of the bore in profile, head down toward the choice */
+  {
+    const f = dressFly(K.make('blowfly', { seed: 5, flying: 0, spread: 0.3 })); f.scale.setScalar(2.6);
+    orient(f, new THREE.Vector3(0, -1, 0), RT);
+    f.position.set(fork[0], fork[1] + 0.03, fork[2]).addScaledVector(RT, -(bore - 0.0008)); TXT.add(R, f);
+  }
+  /* the kept one, standing on the floor of the keep chamber, in profile */
+  const kept = [];
+  for (let i = 0; i < KEPT; i++) {
+    /* THE HERO: the kept wild female, upright on the frit at the band's height, facing the camera, cobalt behind her */
+    const f = dressFly(K.make('blowfly', { seed: 9, flying: 0, spread: 0.55 })); f.scale.setScalar(4.6);
+    orient(f, C.clone().multiplyScalar(0.55).addScaledVector(RT, -0.85), new THREE.Vector3(0, 1, 0));
+    f.position.set(keep[0], fritY, keep[2]).addScaledVector(C, -0.004); TXT.add(R, f); kept.push(f);
+    /* her rim: a cool light just behind her inside the band, so her outline and wings lift off the gold */
+    const ctr = new THREE.Vector3(keep[0], fritY + 0.014, keep[2]);
+    const rim = new THREE.PointLight(0xbcd6ff, 0.45, 0.06, 2); rim.position.copy(ctr).addScaledVector(C, -0.03).add(new THREE.Vector3(0, 0.012, 0)); R.scene.add(rim);
+  }
+  /* the freed ones: leaving the flare, lifting up and right into the honey light, in three quarter profile */
+  /* [screen x, screen y, metres from the eye, wing lift]: near the flare, then climbing and receding into the honey light */
+  /* one arc rising out of the mouth: a quadratic from the mouth, pulled along its opening, climbing into the honey light */
+  const A0 = MOUTH.clone(), A1 = MOUTH.clone().addScaledVector(dOut, 0.14).add(new THREE.Vector3(0.07, 0, 0.02)), A2 = MOUTH.clone().add(new THREE.Vector3(-0.03, 0.36, -0.12));
+  const arc = (t) => A0.clone().multiplyScalar((1 - t) * (1 - t)).addScaledVector(A1, 2 * t * (1 - t)).addScaledVector(A2, t * t);
+  const freedAt = [[0.16, 0.8], [0.5, 0.9], [0.86, 1.0]];
+  if (freedAt.length !== FREED) throw new Error("the freed flies drawn differ from FREED");
+  const freed = freedAt.map((q, i) => {
+    const f = dressFly(K.make('blowfly', { seed: 21 + i, flying: q[1], spread: 0.5 })); f.scale.setScalar(3.2);
+    f.position.copy(arc(q[0]));
+    const head = arc(Math.min(1, q[0] + 0.05)).sub(arc(q[0])).normalize();
+    const up = new THREE.Vector3().crossVectors(C, head).normalize().multiplyScalar(0.6).addScaledVector(C, 0.8).add(new THREE.Vector3(0, 0.3, 0));
+    orient(f, head, up);
+    TXT.add(R, f); return f;
+  });
+  /* the other insect: a beetle walking out over the lip of the open flare */
+  const others = [];
+  for (let i = 0; i < OTHER; i++) {
+    const b = K.make('beetle', { seed: 2 }); b.scale.setScalar(3.0);
+    /* an iridescent green bronze shell, so dusk gold stays the only warm accent */
+    b.traverse((m) => { if (m.isMesh && m.material && m.material.clearcoat > 0.5) { m.material = new THREE.MeshPhysicalMaterial({ color: 0x2c6a4e, metalness: 0.65, roughness: 0.24, clearcoat: 1, clearcoatRoughness: 0.08, iridescence: 1, iridescenceIOR: 1.6, iridescenceThicknessRange: [250, 600] }); m.material.name = 'beetle-shell-cast'; } });
+    const side = new THREE.Vector3().crossVectors(dOut, new THREE.Vector3(0, 0, 1)).normalize();   // the mouth's outer side, to the right
+    orient(b, dOut, side);
+    const p = MOUTH.clone().addScaledVector(dOut, -0.004).addScaledVector(side, rOut + 0.012 + 0.0026);
+    b.position.copy(p); TXT.add(R, b); others.push(b);
+  }
+  if (kept.length !== KEPT || freed.length !== FREED || others.length !== OTHER) throw new Error("insect counts drawn differ from the story's shape");
+
+  /* ---------------- THE LIGHT ---------------- */
+  const LIGHT = { az: 105, el: 32 };
+  TXT.deckRig(R, CH.rigSpec(W, 0.9, 4096), Object.assign(CH.rigOpts([0, PH + 0.15, 0], { distance: 4, shadowFar: 10, normalBias: 0.004 }), { light: LIGHT }));
+  /* the honey pool on the wall where the freed flies go: a soft warm spot on the key's side, high and right */
+  {
+    const gt = CH.canvasTex(THREE, 512, 512, (x, w, h) => { const g = x.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2);
+      for (let k = 0; k <= 12; k++) { const t = k / 12, e = Math.pow(1 - t, 1.3); g.addColorStop(t, "rgba(" + Math.round(255 - 5 * t) + "," + Math.round(186 - 46 * t) + "," + Math.round(104 + 10 * t) + "," + (0.8 * e).toFixed(3) + ")"); } x.fillStyle = g; x.fillRect(0, 0, w, h); });
+    const pool = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.7), new THREE.MeshBasicMaterial({ map: gt, transparent: true, depthWrite: false, fog: false, toneMapped: true }));
+    pool.material.userData.txSurface = false; pool.userData.txBevel = false;
+    pool.position.copy(rayAt(910, 470, null, -1.03)); R.scene.add(pool);
+    /* and the light it stands for, so the freed flies and the release glass take a warm edge from the same side */
+    const warm = new THREE.PointLight(0xffb070, 1.2, 3, 2); warm.position.set(0.5, PH + 0.55, -0.45); R.scene.add(warm);
+  }
+
+
+  /* the dek stays clear of the glass: no point of the keep branch or bulb may fall inside the dek's box */
+  { const dk = document.querySelector('.dek').getBoundingClientRect(); const pts = [];
+    for (let t = 0; t <= 1.001; t += 0.05) pts.push([fork[0] + (keep[0] - fork[0]) * t, fork[1] + (keep[1] - fork[1]) * t, 0]);
+    for (let a = 0; a < 6.283; a += 0.4) pts.push([keep[0] + Math.cos(a) * 0.0364, keep[1] + Math.sin(a) * 0.045, 0]);
+    pts.forEach((q) => { const sc = CH.project(THREE, R, q); if (sc[0] > dk.left - 12 && sc[0] < dk.right + 12 && sc[1] > dk.top && sc[1] < dk.bottom + 12) throw new Error("the glass runs under the dek at " + sc.map(Math.round)); }); }
+  /* acceptance: the glass spans at least 900 px of the 1350 px frame height */
+  const top = CH.project(THREE, R, [mouth[0], mouth[1] + 0.004, 0]), foot = CH.project(THREE, R, [0, PH, 0]);
+  const span = foot[1] - top[1];
+  if (span < 900) throw new Error("the glass spans " + span.toFixed(0) + " px, under 900");
+  window.__glassSpan = span;
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.4, fade: 170 });
+  CH.seat(cx, { sel: '.kick, .count', a: 0.3, fade: 120 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.66, height: 300 });
+  CH.seat(cx, { sel: '#site, .src', a: 0.34, fade: 110 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
