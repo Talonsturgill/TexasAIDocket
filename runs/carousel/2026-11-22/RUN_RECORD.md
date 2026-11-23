@@ -1,6 +1,6 @@
 # Run record, November 22nd, 2026 (carousel no. 85)
 
-@@SCORE_LINE@@
+**Shipped at the round 3 cap with a panel median of 7.50** (integrity 7.27, craft 7.53, reader 7.35). No hard fail stands. The art median is 7.3, under the 8.5 craft floor, which stands down at the cap.
 
 **The run finished on November 23rd (UTC).** It is dated by its branch and its run directory, as every run is.
 
@@ -39,7 +39,19 @@
 
 ## Slide artists and critics, by round
 
-@@CRITIC_TABLE@@
+| frame | critic round 1 | critic round 2 | critic round 3 | critic round 4 |
+|---|---|---|---|---|
+| 1 | 6.6 rework | 7.3 rework | 7.4 rework | 7.8 rework |
+| 2 | 6.6 rework | 7.6 rework | 7.9 rework |  |
+| 3 | 5.5 rebuild | 7.0 rework | 7.3 rework |  |
+| 4 | 7.8 rework | 8.0 ship |  |  |
+| 5 | 6.8 rework | 7.8 rework | 7.4 rework | 7.7 rework |
+| 6 | 5.8 rework | 6.9 rework |  | 7.2 rework |
+| 7 | 6.4 rework | 6.9 rework |  | 7.4 rework |
+| 8 | 6.3 rework | 6.8 rework | 6.9 rework | 6.8 rework |
+| 9 | 6.8 rework | 6.6 rework | 7.4 rework | 7.3 rework |
+
+After the critic rounds, the panel repairs went to frames 1, 4, 5, 6, 7, 8 and 9 after round 1, and to 5, 6 and 9 after round 2, each logged in `artist_handbacks.md`. The art director reviewed frames 1, 7 and 9 four more times after round 1 and accepted the last reading.
 
 ## Flow critic, art director and the repair pass
 
@@ -47,7 +59,10 @@ See `flow_and_art_review.md`. The flow critic predicted art at 7.0 and named cya
 
 ## Panel
 
-@@PANEL@@
+- **Round 1**, median 7.39 against the 8.0 rung (integrity 7.16, craft 7.4, reader 7.41). Keep editing. Every frame but 3 was repaired.
+- **Round 2**, median 7.49 against the 7.7 rung (integrity 7.52, craft 7.49, reader 7.35). Keep editing. Frames 6, 9 and 5 were repaired, and frame 9 went back to the art director twice before it was accepted.
+- **Round 3, the cap.** Integrity and reader hard-failed frame 5. A repair had painted an engraved 0 into a canvas texture, a numeral tracing to no claim or figure, and no gate saw it because the numeral gates read the DOM. The glyph was replaced by an unlabelled index wedge, and the dek's "stands at zero" by "The release reports no timings." Both judges re-read the frame and cleared it. Final cards were integrity 7.27, craft 7.53, reader 7.35, **median 7.50, shipped at the cap**, with the shortfall named below. The cards that carried the hard fail are kept in `scores/r3-hardfail/` in out/ and are not archived.
+- **Shortfall.** The art median is 7.3 against the craft floor of 8.5, which stands down at the cap. The judges' standing charges are kit figures reading as mannequins on frames 1 and 7, cyan on the AI off arm (frame 1's UpToDate pill and screen, frame 4's rocker, frame 2's teal coils), "drawn to illustrate" closing eight deks, no Austin or Travis County named, and a soft close on frame 9.
 
 ## Deviations, stated
 
@@ -57,16 +72,60 @@ See `flow_and_art_review.md`. The flow critic predicted art at 7.0 and named cya
 - **Frame 6's last render** dropped an inline pill background that `deck_chassis` read as a plate, after its recheck critic had read it. The art did not change.
 - **Artist render caps were exceeded** on several frames, chiefly frame 8 (18 renders in its first pass), much of it lost to a chassis bug: `K.make` centres a model's footprint, so the chassis `paper_roll` and `exam_table` land offset and `paper_roll.userData.end` is wrong.
 
+- **A hard fail at the cap was repaired, not shipped.** Round 3's integrity and reader judges hard-failed a typed 0 painted into frame 5's art by the round 2 repair. The glyph and the dek's "stands at zero" were replaced, and the two judges re-issued their cards on the repaired frame. The craft judge's card was not re-requested, because it charged no hard fail and frame 5 lost an object rather than gained one.
+- **Two judges' fixes were not made.** Taking cyan off frame 1's UpToDate pill and screen would have re-opened an audition frame the art director had accepted, at the cap. It is queued as a repeat of `accent-meaning-drifts-across-bespoke-frames`.
+
 ## Retro
 
-@@RETRO@@
+- **Queued, not fixed** (the weekly pass is not due; the last pass was November 22nd). Two new lines went to `MACHINE_QUEUE.md`. `canvas-glyph-numeral-escapes-numeral-gates` covers a digit painted by fillText into a texture, which every gate missed and two judges hard-failed. `drawn-to-illustrate-boilerplate-on-every-dek` covers the disclosure phrase closing eight of nine deks. Three open lines took a repeat: `kmake-centres-footprint` (the chassis paper_roll and exam_table), `kit-person-reads-as-mannequin-within-two-metres` (frames 1 and 7, plus a coat whose material swap never applied) and `accent-meaning-drifts-across-bespoke-frames` (cyan on the AI off arm).
+- **Instinct added.** `no-glyph-in-a-texture` starts at 0.50.
+- **Field log.** ic2.utexas.edu and news.utexas.edu answered. The PUCT feed rolled its listings forward, Fort Worth answered 403, and one Senate archive claim was missing from the committee page.
+- **Arsenal** rebuilt and current.
 
 ## Prompt audit
 
-@@PROMPT_AUDIT@@
+**Interim reading (Phase 17), and Phase 19 takes the one that counts.** `prompt_audit.py` exited 1. It measured 2068 tool calls and 67 with a permission decision over its threshold, from 1.0 s to 32.4 s, almost all of them `Agent` and `SendMessage` calls with a few `Bash` calls among them. The no-stall hook was armed at 05:03:54 UTC and judged the session unattended from its first call (host `CLAUDE_CODE_SESSION_ATTENDED=0`). It refused nothing and logged no dialog waiting. This record does not explain what the 1 to 32 second decisions were. It states that they were measured, that none ran into minutes, and that the run never stopped.
 
 ## Timing
 
-@@TIMING@@
+Measured by `studio_clock.py --report`, minutes from wake.
+
+```
+{
+  "elapsed_minutes_from_wake": {
+    "wake": 0.0,
+    "record_done": 12.17,
+    "audition_done": 37.68,
+    "art_done": 108.38,
+    "review_done": 129.32,
+    "panel_done": 230.28,
+    "package_done": 258.48
+  }
+}
+```
 
 ## Gate status
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 20 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 2 warn(s) |
+| aggregates     | PASS   | 5 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.33 MB, vector |
+| score          | WARN   | 7.502 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 42 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 81 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 32,370 chars planned |
+| caption        | PASS   | 139 words |
+| craft floor    | PASS   | 9 frame(s), median 2785, floor 501 |
+| plan vs render | WARN   | 0 of 62 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body NO / deadline yes / next step NO |
+| absences       | WARN   | 2 of 4 scoped to a named document, 2 unscoped |
+| numerals       | PASS   | 8 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
