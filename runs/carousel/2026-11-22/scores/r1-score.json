@@ -1,0 +1,223 @@
+{
+ "weighted_score": 7.39,
+ "judges": [
+  7.16,
+  7.4,
+  7.41
+ ],
+ "spread": 0.25,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.16 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.4 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.41 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.16,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.16 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.4,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.4 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.41,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.41 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The slips and tiles sit small in a thin sand strip under haze.",
+     "fix": "Low three quarter view on the interrogating slip filling half the frame, the accepting slip a soft second plane, remove the dot tiles."
+    },
+    {
+     "judge": 2,
+     "problem": "Slips in a thin strip under haze, sand, a toy pen.",
+     "fix": "Camera at about 25 degrees pushed in on a chipped limestone lip, a satin pen with a tight contact shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "Two small slips in a thin strip of sand between haze and footer; pen reads cyan blue.",
+     "fix": "Low rake and push in so the slips span 80 percent of the width; recolour the pen indigo."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A distant isometric dollhouse with mannequin people, a thin rod divider and a flat floor.",
+     "fix": "Push in to the glass at eye height with the workstations facing across it, glass with thickness and reflection, figures cropped at the shoulder."
+    },
+    {
+     "judge": 2,
+     "problem": "A stray cyan shard beside the glass, mannequins, flat floors, the cutaway under half the frame.",
+     "fix": "Delete the shard or make it a real reflection of both monitors; lower and enlarge the cutaway to meet the footer."
+    },
+    {
+     "judge": 3,
+     "problem": "Thin glass focal, mannequin figures at dollhouse scale, a four line dek on a wash.",
+     "fix": "Crop in on the two cart screens across a modelled glass pane, rooms bleeding off the edges, two line dek."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Cabinets least modelled, a muddy lower third, the table is not a 100 point scale so the sheets misstate their share.",
+     "fix": "Set the table top to exactly 100 x 0.02 m or print a 100 mark, crop tighter on the tops, warm the floor."
+    },
+    {
+     "judge": 2,
+     "problem": "Boxy tables with lumpy vinyl noise, no visible roll or curl, pills on the vinyl, a dead peach lower band.",
+     "fix": "Chrome dispenser bar and roll at each head, a curled free end with its own shadow, a stitched vinyl seam, pills on the sweep, camera in about 20 percent."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Clipped white coat, jagged hair alpha, the chair cutting the body, c11 c7 over the chair, a flat bench shadow block.",
+     "fix": "Lower the key on the coat with fold normals, fix the hair and chair intersection, swing the camera so the figure clears the claim id corner."
+    },
+    {
+     "judge": 3,
+     "problem": "Trays read as ending at the bench edge; pills loose on the bench.",
+     "fix": "Run each track to a cyan pan at the laptop's side and seat each pill against its tray."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Laptops hover on an offset shadow and the binder sits in a halo, under half the frame.",
+     "fix": "Set both on a desk with tight contact shadows from one key and push in until they fill half the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "Laptops float on an offset halo; sleep lights merge.",
+     "fix": "Set the stack down with a hard contact shadow and separate the lights."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A stretched slab face, loose tiles, a small laptop.",
+     "fix": "Rail off the left edge toward the lens, the zero carriage sharp in the foreground, retexture the slab, remove the tiles."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The lit cyan rocker end reads as on at feed size.",
+     "fix": "Make the proud end a dead matte cyan or move the cyan to a small unlit AI pilot lamp."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.39 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 6, 1, 8, 7, 9, 5, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

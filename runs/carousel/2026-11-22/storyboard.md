@@ -211,7 +211,7 @@ risks: ["the laptop a sliver at fov 30, so the camera may rise to 0.16 m"]
 type:
   kicker: "Question one"
   hook: "How fast do they click?"
-  dek: "Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The rail is drawn to illustrate and stands at zero."
+  dek: "Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The release reports no timings. The rail is drawn to illustrate."
   labels: []
 ```
 

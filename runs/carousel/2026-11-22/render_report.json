@@ -897,7 +897,7 @@
           "anc": []
         },
         {
-          "text": "Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The rail is drawn to illustrate and stands at zero.",
+          "text": "Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The release reports no timings. The rail is drawn to illustrate.",
           "x": 82,
           "y": 426,
           "w": 500,
@@ -924,13 +924,13 @@
             [
               82,
               503,
-              495,
+              480,
               38
             ],
             [
               82,
               542,
-              196,
+              381,
               38
             ]
           ],
@@ -1004,21 +1004,15 @@
         }
       ],
       "body_overflow": false,
-      "canvas_text": [
-        {
-          "text": "0",
-          "fn": "fillText",
-          "font": "bold 400px Fraunces"
-        }
-      ],
+      "canvas_text": [],
       "svg_plates": [],
       "rules": [],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 20499,
+      "render_ms": 21314,
       "ok": true,
-      "load_ms": 180,
+      "load_ms": 178,
       "canvases": [
         {
           "x": 0,
@@ -1030,8 +1024,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 143.2,
-          "variance": 2803.1
+          "mean": 143.4,
+          "variance": 2784.6
         }
       ],
       "breather": false,

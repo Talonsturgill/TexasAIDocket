@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Read at 432 px from critic432/thumb-01 to thumb-09. Each frame was clearly made for its own sentence, and the frames differ in world and camera: rooms, a pegboard, an exam room, a book, a rail, a page, a bench, exam tables and a binder. Frame 4 is magazine grade, with one bold red book filling half the frame, a switch in it, a hard violet cast shadow and type on the blue wash. Frame 2's count reads as two pegboards of 5x8 stethoscopes, so 40 and 40 match FIG.half. Frame 7 now reads as a hand-off: three trays move toward a cyan laptop and the pills sit by their trays. The score is held down by four frames. Frame 6 is a page and pen under a haze band, the 'accepting' pill floats over the haze attached to nothing, and three dotted tiles bottom left are unexplained. On frame 5 the rail recedes toward a laptop, but a reader can't tell what 'stands at zero' looks like, and the domino tiles on the right mean nothing. The cover is still a raked dollhouse with mannequin figures under a four line dek on a wash. On frame 9 the two laptops still hover above the binder with no contact."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The spine holds: one serif headline face, mono kicker and counter, pills, a blue to violet palette and the explainer register throughout. The story runs in order: split, cohort, encounter, control, three questions, context, close. The accent's one meaning is broken in visible places. On slide 1 the 'UpToDate, AI off' pill is the same cyan as the 'Claude' pill, so cyan marks both the tool and its absence. Cyan stethoscopes are mixed through both halves on slide 2, and the lit cyan rocker on slide 4 sits on the AI-off book. Frame 8's peach and violet sweep sits outside the deck's blue."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide string in copy.json maps to a claim quote. 80 is from c2. 'Forty' in the caption is FIG.half, computed as clinicians // 2. 81%, 38%, 2026 and 2023 are from c15 and are attributed to the release on S8, both in the dek and in the 'AMA survey, as cited in the release' pill, and in the caption. October 20th is from c1. No frame or caption line implies a finding or a better group: the halves are drawn identically on 1 and 2, S6 says 'Neither slip is a result', the caption says 'The release reports no findings', and S9 attributes 'could shape' to the release (c17). Both sources are primary. It falls short of 10 because S8's headline 'Already in the clinic' is a deck assertion resting on a national survey the release cites second hand (c15 carries confidence 'medium'). The future tense 'will meet' also rests on an October 'launches later this month' line with no status confirmed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "By frame 4 a reader knows what happened, who decided it (the IC² Institute and Dell Med, named on S2) and what is compared. Austin is never named, so a Texan outside medicine gets no place. There is no start date and no results date. The only next step is S9's 'Watch for the results' and the caption's question, so the stake for patients and Texas medical schools is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Half of them will get Claude' earns a swipe, the turn at 5 into Kang's three questions is clear, and 5 to 7 run as a numbered set. S4's dek restates S1's dek almost word for word ('rely on UpToDate ... with its AI capability disabled'), so frames 1, 2 and 4 all restate the split and one could go. The close is soft: a binder and 'could'."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, on register and free of hype or doom, and the closing question in the caption is a good one. 'Drawn to illustrate' or a variant ends nearly every dek (S1 'Rooms drawn to illustrate', S4 'Book and switch drawn to illustrate', S7 'Trays drawn to illustrate'), which reads as a machine covering itself. Deks run four lines on 1 and 8. There is no Texas texture beyond the institution names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A fresh subject, medical education, and a medium change on most frames: a diorama, a pegboard count, a character scene, a still life and reliefs. The explainer blue sweep and the cover move of a headline over a raked 3D model recur from recent decks."
+  }
+ ],
+ "weighted_score": 7.35,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 5 and 6 so a feed reader can see what each question measures: a stopwatch or click counter at zero beside the tool on 5, and on 6 two full-width slips filling the frame with each pill pinned to its slip. Recolour slide 1's 'UpToDate, AI off' pill off cyan so cyan means only the tool.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A page and pen under a haze band. The 'accepting' pill floats over the haze attached to nothing, and three dotted tiles bottom left are unexplained, so the question has no picture.",
+   "fix": "Lower the camera and push in on two matched slips filling 80 percent of the width, pin 'accepting' and 'interrogating' each to its own slip, and delete the dotted tiles and the haze band."
+  },
+  {
+   "slide": 5,
+   "problem": "The rail recedes toward a laptop, but nothing reads as speed or as a click, and the domino tiles on the right are unexplained, so 'stands at zero' is invisible at feed size.",
+   "fix": "Replace the tiles with one large dial or tick counter at the rail's near end, visibly at zero, and crop so the rail and laptop span the frame edge to edge."
+  },
+  {
+   "slide": 1,
+   "problem": "A raked dollhouse with mannequin figures under a four line dek on a wash. The glass divider is thin, and both pills are cyan.",
+   "fix": "Crop to a close shot of the two matched cart screens across a modelled glass pane, rooms bleeding off both edges. Cut the dek to two lines and recolour the UpToDate pill to the neutral pill colour."
+  },
+  {
+   "slide": 9,
+   "problem": "The two laptops hover above the binder with no contact shadow and read as floating.",
+   "fix": "Set the laptop stack down on the desk plane beside the binder with a hard contact shadow, or cut it and let the binder fill the frame."
+  },
+  {
+   "slide": 8,
+   "problem": "A peach and violet sweep outside the deck's blue. The 38 versus 81 encoding, the length of paper on two exam tables, barely reads at 432 px.",
+   "fix": "Move the sweep into the deck's blue and lengthen the paper runs, with the 2026 roll trailing to the floor, so the 81 against 38 ratio is plainly visible."
+  }
+ ]
+}

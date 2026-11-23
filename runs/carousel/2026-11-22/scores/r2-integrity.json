@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Each picture is made for its own sentence, and the frames differ in world, camera and medium. Frame 2 is a measured relief that holds up: I counted 5x8 stethoscopes on each board, 80 in total. Frame 4 (a red bookcloth book with a brushed steel rocker plate, cast indigo shadow, worn corners) and frame 8 (exam paper pulled to 81 and 38 points on a table top that the code checks at exactly 100 x 0.02 m) are both strong. Frame 3's encounter room, with observers behind the glass, works at feed size. The weaker frames hold the score down. Frame 9 has two closed laptops hanging over a flat blue field with a detached offset shadow, and the binder bleeds off the left edge on the same flat field, so it fails the stand-in-a-world test. On frame 6 the 'accepting' slip has blurred into a white smear behind its pill, so one of the two things the question names can't be read at 432 px. On frame 5 the lower left is a cropped slab of mixed blue and brass stripes that competes with the rail. The cover still reads as a distant dollhouse with mannequin figures, though the art director accepted it."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds. Every frame uses LOOK V2 explainer cerulean with indigo shadows, the same serif headlines, mono kickers, counter and claim-id footer, and the story runs in order: split, cohort, actor, AI off, three questions, context, close. Cyan means the tool on frames 1 (paired cart screens and pills), 4 (the rocker), 5 (the laptop), 7 (the tool-side trays) and 9 (the sleep lights). The accent's one meaning slips twice. Frame 2's tubing includes cyan and teal coils, and frame 6 puts a cyan glow on the clinician's pen tip, which is a person's instrument and not the tool."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces. 80 comes from c2. The caption's 'Forty' is figures.half (80 // 2 from c2, c4 and c5). 81, 38, 2026 and 2023 come from c15, October 20th from c1. Slide-08.html computes both sheet lengths from FIG and throws if the geometry disagrees. The round 1 defects are closed: the table is 100 points and the cover and caption now say 'will'. Nothing on any slide implies a result or a better group. Frame 5 says the rail 'stands at zero', frame 6 says 'Neither slip is a result', and the caption says 'The release reports no findings.' The AMA figures are labelled 'as cited in the release' on frame 8 and in the caption. Three small leans remain. (1) The AMA numbers come through a press release, not the AMA survey itself, which is disclosed. (2) Frame 9's headline 'Results could shape the curriculum' is a little stronger than c17's 'refine their approach to how and when they incorporate AI'. (3) The deck keeps the release's future tense ('will meet') a month after the October launch date, and nothing says the study's status is unconfirmed. Kang's attribution for c9 to c11 sits in the claim text, not the quoted words. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A reader learns what (a two-arm split of 80 clinicians, Claude against UpToDate with its AI off), who (IC² Institute and Dell Medical School, with the named researchers Kang and Dao and Vice Dean Korndorffer) and how (paid actors, live encounters). Where stops at Dell Med: Austin and Travis County appear nowhere in the copy, though the docket item is Travis County. Frame 9's 'Watch for the results' gives no date, no venue and nothing to do. It also never says the project page publishes no study dates, which is a sourced absence it could state. The caption's closing question is the only stake aimed at Texas."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover headline 'Half of them will get Claude' earns the swipe, frame 2 pays with the countable 80, and the deck turns at frame 5 into Kang's three questions, carried by the 'Question one/two/three' kickers and the 1, 2, 3 dot tiles. Frame 4's dek repeats the cover's UpToDate sentence almost word for word (c5 on both), so frame 4 could fold into frame 1 with little loss. The close is a quiet still life rather than a landing."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and within house rules: no colons, no em dashes, 'can't' style, no banned words, ordinals correct. The prose stays close to the release ('with its AI capability disabled', 'synthesize information and arrive at a diagnosis'), and nothing on the slides reads as written by a Texan who knows Austin's medical school scene. The caption's last question is the one line with a Texas angle."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "New topic, new opening move (a cutaway of two matched rooms), and bespoke techniques that range from the pegboard relief and the book-and-switch relief to spatial rooms and the exam-table figure. The explainer cerulean is the familiar move. The storyboard records the tone rotation (the last six were win, people, wonder, explainer, watch, people), so explainer repeats within six decks."
+  }
+ ],
+ "weighted_score": 7.52,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 9 as a close a Texan can act on: seat the binder and laptops on a lit, grounded surface instead of a flat blue field, and rewrite the dek to name Austin and Dell Med and to say plainly that the project page publishes no study dates, so 'watch for the results' becomes a stated, sourced unknown instead of a still life.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Two closed laptops hang over a flat blue field with a detached offset shadow, and the binder sits on the same featureless field, so the close has no world, no contact and no focal pull at feed size.",
+   "fix": "Put the binder on a lit limestone or oak desk inside TXT.studio with contact shadows under the laptops and binder. Push the camera low three-quarter so the open rubric fills half the frame and the laptops' cyan sleep lights sit sharp behind it."
+  },
+  {
+   "slide": 6,
+   "problem": "The 'accepting' slip has blurred into a white smear behind its pill, so one of the two behaviours the question names can't be read at 432 px.",
+   "fix": "Pull the accepting slip into the same focal plane beside the interrogating one, clean and unmarked, at equal size and light, so the pair reads as a matched choice. Drop the depth-of-field blur."
+  },
+  {
+   "slide": 5,
+   "problem": "The cropped slab in the lower left, mixed blue fins and brass stripes, competes with the rail and reads as clutter off the edge.",
+   "fix": "Crop or re-angle so the rail's zero carriage owns the foreground on a single clean slab material, and let the rail run off the bottom edge toward the lens."
+  },
+  {
+   "slide": 1,
+   "problem": "A distant isometric dollhouse with mannequin-like figures and a thin glass divider. The shared glass wall, the planned focal point, does not read as an object at feed size.",
+   "fix": "Lower the camera and push in toward the glass wall at near eye height so it has visible thickness and a key highlight. Crop the figures at the shoulder and keep both cyan cart screens in frame."
+  }
+ ]
+}

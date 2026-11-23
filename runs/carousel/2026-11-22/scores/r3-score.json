@@ -1,0 +1,186 @@
+{
+ "weighted_score": 7.502,
+ "judges": [
+  7.27,
+  7.53,
+  7.35
+ ],
+ "spread": 0.26,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.3,
+   "weight": 0.22,
+   "judges": [
+    7.4,
+    7.3,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.3,
+   "weight": 0.12,
+   "judges": [
+    7.3,
+    7.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A distant isometric dollhouse with mannequin figures. The glass divider, the planned focal point, reads as a thin rod. The AI-off room's monitor and pill wear the tool's cyan.",
+     "fix": "Drop the camera to near eye height and push in on the glass divider so it shows thickness and a key highlight. Light only the Claude cart screen cyan, and turn the UpToDate screen and its pill white on indigo."
+    },
+    {
+     "judge": 2,
+     "problem": "The cutaway fills under half the frame, with a pink void between the type plate and the scene, and the kit figures are small.",
+     "fix": "Push the camera in until the cutaway's walls run off both side edges and its top meets the type wash, removing the pink band."
+    },
+    {
+     "judge": 3,
+     "problem": "The cover is unchanged across rounds. It is a raked dollhouse with mannequin figures under a four line dek, the glass divider is a thin rod, and the AI-off pill is the tool's cyan.",
+     "fix": "Push the camera in to a low, close shot of the two matched cart screens across a modelled glass pane, with both rooms running off the frame edges. Cut the dek to two lines and give the 'UpToDate, AI off' pill the neutral navy."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The plate's large dark wedge is the loudest shape in the lower half and reads as a pennant or an exclamation mark. The cropped blue and brass slab in the lower left competes with the rail.",
+     "fix": "Shrink the plate to a low index tab level with the zero ridge, or remove it, and let the lit carriage carry the zero. Re-aim so the rail runs off the bottom edge with no cropped slab beside it."
+    },
+    {
+     "judge": 2,
+     "problem": "The stacked foreground slab at bottom left is a dead heavy mass with stretched, banded teal and brown texture (crop r3c1).",
+     "fix": "Delete the slab stack and lower the camera so the rail's near end leaves frame at the knurled carriage, with the limestone desk and its contact shadow carrying the bottom third."
+    },
+    {
+     "judge": 3,
+     "problem": "The wedge plate is a flat texture with no relief, and the three pip tabs at right still read as dominoes rather than as the question counter.",
+     "fix": "Cut the plate and crop so the rail runs off the near edge into the cyan laptop, with the tab row moved to the frame edge and labelled by its lit tab alone."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The closed laptop pair floats on a flat blue field with only soft occlusion, and the dek wash greys the binder's lower edge, so the close has less world than the open.",
+     "fix": "Seat the binder and laptops on a lit desk surface inside TXT.studio with hard contact shadows. Pull the camera low three-quarter so the open rubric page fills half the frame and the dek sits in quiet space above it."
+    },
+    {
+     "judge": 2,
+     "problem": "The binder sits in a blurred drop-shadow halo on flat blue with no readable ground plane. The two laptops hover with no contact edge, the pen's shadow is an offset blur (crops r2c1, r2c2), and the dek sits on a dark wash plate.",
+     "fix": "Put the binder and laptops on a lit oak desk plane that is clearly separate from the sweep, replace the halo with PCSS contact shadows under every edge and foot, and push the camera in about 25 percent."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The two slips sit in a thin horizontal band under a hazy upper half, so the pair the question names fills well under half the frame at 432 px.",
+     "fix": "Lower and tilt the camera toward the desk so the two slips fill the middle half of the frame at equal size and focus. Move the three pip tabs to run off the bottom edge."
+    },
+    {
+     "judge": 3,
+     "problem": "The slips sit in a thin strip under a sand haze band, and the three pip tiles are unexplained at feed size, so the question still reads as two papers far away.",
+     "fix": "Lower and push the camera so the two slips fill about 80 percent of the width and run off the bottom edge. Remove the haze band and shrink the tab row to one edge."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A flat blue shadow block fills the upper left, and the clinician's lower body smears into blur at the bottom edge.",
+     "fix": "Soften the key with contact-hardening shadows so the bench's shadow reads as a cast rather than a block, and reframe up so the seated figure ends in focus above the footer."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The 2023 and 2026 exam tables barely differ at 432 px, and the peach and violet sweep sits outside the deck's blue.",
+     "fix": "Move the sweep into the deck's blue and run the 2026 paper off the table end to the floor at its 81 to 38 length, so the difference reads at a glance."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.502, 0.498 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.3 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

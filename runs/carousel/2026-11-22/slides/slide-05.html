@@ -12,7 +12,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook" style="left:80px; top:150px; width:900px; text-align:left">How fast do they click?</h1>
-<p class="dek" data-follow="26" style="left:82px; width:500px; font-size:28px">Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The rail is drawn to illustrate and stands at zero.</p>
+<p class="dek" data-follow="26" style="left:82px; width:500px; font-size:28px">Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The release reports no timings. The rail is drawn to illustrate.</p>
 
 <script>window.FIG = {"questions": 3};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -175,15 +175,15 @@ window.renderReady = (async () => {
   addBox(0.006, 0.03, 0.002, 0.0008, brassHi, X0, RAIL.h * 0.44, RAIL.w / 2 + 0.001);
   ridges.forEach((x, i) => { if (i) addBox(0.0022, i % 5 === 0 ? 0.014 : 0.008, 0.0012, 0.0005, brassDull, x, RAIL.h * 0.62, RAIL.w / 2 + 0.0006); });
   /* THE ZERO PLATE: a small machined brass block standing on the desk beside the rail at the zero line, its face turned to
-   * the reader with a deep engraved 0, so "stands at zero" is read, not inferred */
+   * the reader with a deep engraved index wedge at the zero line */
   { const PW = 0.034, PH = 0.046, PT = 0.008, pz = RAIL.w / 2 + 0.006 + PW / 2, px = X0 + PT / 2 + 0.001;
     const blk = chamfer(PW - 0.003, PH - 0.003, PT - 0.003, 0.0015, brassE); blk.rotation.y = -Math.PI / 2; blk.position.set(px, PH / 2, pz); rail.add(blk);
     const zc = document.createElement('canvas'); zc.width = 340; zc.height = 460; const zg = zc.getContext('2d');
     zg.fillStyle = '#d9d9d9'; zg.fillRect(0, 0, 340, 460);
     for (let i = 0; i < 500; i++) { zg.fillStyle = 'rgba(' + (RG() < 0.5 ? '255,255,255' : '130,130,130') + ',' + (0.05 + RG() * 0.1) + ')'; zg.fillRect(0, RG() * 460, 340, 1 + RG()); }
-    zg.font = '700 400px Fraunces'; zg.textAlign = 'center'; zg.textBaseline = 'middle';
-    zg.fillStyle = 'rgba(255,255,255,0.7)'; zg.fillText('0', 174, 252);     /* the lit lower lip of the cut */
-    zg.fillStyle = '#1b1760'; zg.fillText('0', 170, 246);                   /* the cut, filled deep indigo */
+    /* an unlabelled engraved index wedge, no glyph: no numeral is drawn into the art (round 3 hard fail) */
+    zg.fillStyle = 'rgba(255,255,255,0.7)'; zg.beginPath(); zg.moveTo(124, 86); zg.lineTo(224, 86); zg.lineTo(174, 440); zg.closePath(); zg.fill();
+    zg.fillStyle = '#1b1760'; zg.beginPath(); zg.moveTo(120, 80); zg.lineTo(220, 80); zg.lineTo(170, 434); zg.closePath(); zg.fill();
     zg.fillStyle = '#1b1760'; zg.fillRect(0, 444, 340, 8);                  /* the zero line along its foot */
     const zt = new THREE.CanvasTexture(zc); zt.colorSpace = THREE.SRGBColorSpace; zt.anisotropy = 8;
     const zm = new THREE.MeshPhysicalMaterial({ map: zt, color: 0xe8b85a, metalness: 0.85, roughness: 0.32, clearcoat: 0.4, name: 'engraved-brass-zero' }); zm.userData.txSurface = false;

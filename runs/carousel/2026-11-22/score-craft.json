@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3,
+   "why": "Judged against the bespoke slide bar. Each picture was made for its own sentence, and the camera, scale and medium change from frame to frame. Frame 4 is the best frame in the deck: a red book stamped with an Asclepius, a brushed steel rocker plate with a measured 4 to 6 mm relief, a deep navy cast shadow on blue painted board, and the headline set in the quiet that shadow leaves. Frame 3 is a built interior with an observation window, reflected silhouettes, ceiling cameras and a boom mic, and its headline sits on the indigo floor. Frame 2 is a measured relief that works: 5x8 = 40 stethoscopes on each board with cast shadows. Frame 6 is clearly repaired since round 2. Both slips are now sharp in one plane with their pills on them, the brass tabs are fully in frame and the pen is satin navy rather than cyan. Frame 8's paper lengths, about 235 and 470 px, follow 38/81. Three frames still hold the score down. Frame 9 was accepted again, but at 100 percent (crops r2c1 and r2c2) it still has no readable ground. The binder sits in a soft dark drop-shadow halo on flat blue, the two closed laptops hover with no contact edge, the pen's shadow is a blurred offset, and the dek sits on a dark wash plate. That is the rubric's 'objects floating in a flat gradient' on the close. Frame 5's foreground slab is still in the frame. Crop r3c1 shows a streaked teal, brown and blue stack, a heavy dead mass across the bottom fifth with stretched texture banding on its top face. Frame 7 still carries a flat blue shadow block at upper left, and the clinician's lower body dissolves into blur at the bottom edge. Frame 1 is a clean mirrored cutaway, but its kit figures are small, the scene fills under half the height, and there is a pink void between the type plate and the scene."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds across all nine frames: one serif headline face, one mono face for the kicker, counter and claim corner, the same site line, a blue tone family, accent pills, and the 1-2-3 brass dot tabs carrying the questions through frames 5 to 7. The story runs in order: setup (1 to 4), three questions (5 to 7), context (8), close (9). Faults. Teal and cyan stethoscopes on frame 2 still put the accent hue on something that is not the tool. The cover's pink-lilac sky and frame 8's peach sweep sit at the edge of the palette. On frame 1 the cyan pill sits on both arms, Claude and UpToDate with AI off. That is defensible because both are tools, but it blurs the accent's one meaning."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide and caption numeral is in figures.json: 80 (c2), Forty and half (40, c2/c4/c5), 81% and 38% (c15), 2023 and 2026 (c15), October 20th (c1). Both sources are primary IC² pages. The AMA figures appear only on S8 and in the caption, and both carry 'as cited in the release'. No outcome or better group is implied. The caption says 'The release reports no findings', S6 says 'Neither slip is a result', and S5 says the rail 'stands at zero'. The painted 0 tile on S5 is illustrative and explained in the dek, not a data numeral. The AMA survey itself was not fetched, which keeps this off a 10, but it is framed correctly as the release's citation."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and how are clear: 80 Dell Med clinicians, Claude against UpToDate with its AI off, paid actors, and Kang's three questions. The stake is stated generally. S9's 'could shape the curriculum' names no results date and no point where a Texan can act, and Austin is never named as the place."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe and S2 pays at once with the counted cohort. S5 to S7 is a real change of gear into numbered questions. S4 largely repeats the cover dek's UpToDate sentence and could merge without loss. The close is the least resolved picture in the deck, so the deck ends softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on house style, with no colons, dashes or banned words. It stays close to the release's phrasing, and 'Drawn to illustrate' closes eight of the nine deks as boilerplate. The caption's closing question to Texas medical schools is the line that sounds like a person."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A fresh mix: a dollhouse cutaway, two reliefs, a built interior and studio still lifes. The blue studio sweep is a familiar move, and so is the instrument running back to a cyan laptop on frames 5 and 7."
+  }
+ ],
+ "weighted_score": 7.53,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 9, the close, as a grounded still life: a visible oak or limestone desk plane under one key, tight contact shadows under the binder edge, each laptop foot and the pen, camera pushed in about 25 percent so the subject fills well over half the frame, and the dek seated in quiet the desk leaves rather than on a dark wash plate.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The binder sits in a blurred drop-shadow halo on flat blue with no readable ground plane. The two laptops hover with no contact edge, the pen's shadow is an offset blur (crops r2c1, r2c2), and the dek sits on a dark wash plate.",
+   "fix": "Put the binder and laptops on a lit oak desk plane that is clearly separate from the sweep, replace the halo with PCSS contact shadows under every edge and foot, and push the camera in about 25 percent."
+  },
+  {
+   "slide": 5,
+   "problem": "The stacked foreground slab at bottom left is a dead heavy mass with stretched, banded teal and brown texture (crop r3c1).",
+   "fix": "Delete the slab stack and lower the camera so the rail's near end leaves frame at the knurled carriage, with the limestone desk and its contact shadow carrying the bottom third."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat blue shadow block fills the upper left, and the clinician's lower body smears into blur at the bottom edge.",
+   "fix": "Soften the key with contact-hardening shadows so the bench's shadow reads as a cast rather than a block, and reframe up so the seated figure ends in focus above the footer."
+  },
+  {
+   "slide": 1,
+   "problem": "The cutaway fills under half the frame, with a pink void between the type plate and the scene, and the kit figures are small.",
+   "fix": "Push the camera in until the cutaway's walls run off both side edges and its top meets the type wash, removing the pink band."
+  }
+ ]
+}
