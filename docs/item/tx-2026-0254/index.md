@@ -11,7 +11,7 @@ The Texas A&M Engineering Extension Service staged the finals of DARPA's Triage 
 - Public access: Write to the decider
 - Take part: https://www.darpa.mil/news/2026/triage-finals-winners
 
-- Last checked: 2026-11-21
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -23,6 +23,7 @@ The Texas A&M Engineering Extension Service staged the finals of DARPA's Triage 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-21 · Admitted from DARPA's account of the finals and TEEX's account of staging them. Every casualty in the challenge was simulated.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

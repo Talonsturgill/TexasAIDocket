@@ -11,7 +11,7 @@ Waymo opened its San Antonio robotaxi service to anyone with the app on October 
 - Public access: Write to the decider
 - Take part: https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · Anyone with the app can still ride Waymo in San Antonio, the airport included.
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

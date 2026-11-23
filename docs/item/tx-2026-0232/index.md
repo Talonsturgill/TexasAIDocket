@@ -11,7 +11,7 @@ The City of Round Rock tells residents that drone delivery hubs are not specific
 - Public access: Write to the decider
 - Take part: https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · Round Rock still says its zoning code has nothing for drone delivery hubs.
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-19 · Checked again. Round Rock still says its zoning does not cover drone delivery hubs while Zipline flies from outside city limits.
+- 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

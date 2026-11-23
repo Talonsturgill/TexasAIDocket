@@ -9,7 +9,7 @@ UT Arlington is coordinating a $3.1 million project funded by the U.S. Departmen
 - Public access: Closed
 - Take part: https://www.uta.edu/news/news-releases/2026/11/12/uta-leads-fight-against-screw-worm
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -20,6 +20,7 @@ UT Arlington is coordinating a $3.1 million project funded by the U.S. Departmen
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-19 · Admitted from UT Arlington's November 12th announcement. The trap is still in development, and its lead researcher expects a prototype next spring.
+- 2026-11-22 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

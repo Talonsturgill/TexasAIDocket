@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality's executive director finished tech
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-napd-english.pdf
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-22
 
 ## Dates
 
@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · Crusoe's Abilene gas plant permit has gone no further than TCEQ's preliminary decision.
 - 2026-11-16 · Checked and unchanged. Still open, with no dated movement.
 - 2026-11-19 · Checked again. The preliminary decision on Crusoe's Abilene gas plant still stands, with no final permit action posted.
+- 2026-11-22 · Checked and unchanged. Still open, with no dated movement.
 
 ## Evidence
 
