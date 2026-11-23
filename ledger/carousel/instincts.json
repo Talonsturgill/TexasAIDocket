@@ -1963,6 +1963,14 @@
       "evidence": "No. 84's round 2 repairs on frames 3, 6 and 8 took the judges' fixes literally, and the art median fell from 7.3 to as low as 6.6 before round 3 recovered part of it.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "no-glyph-in-a-texture",
+      "learned": "2026-11-23",
+      "instinct": "Never draw a digit into a canvas texture or a model; let the dek's word carry a drawn state, because the numeral gates read only the DOM.",
+      "evidence": "2026-11-22 no. 85 frame 5, an engraved 0 painted by fillText passed every gate and two round 3 judges hard-failed it",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
