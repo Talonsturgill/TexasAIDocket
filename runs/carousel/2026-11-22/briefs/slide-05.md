@@ -15,7 +15,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 - kicker: `Question one`
 - counter: `05 / 09`
 - headline (verbatim): `How fast do they click?`
-- dek (verbatim, except the one exception below): `Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The rail is drawn to illustrate and stands at zero.`
+- dek (verbatim, except the one exception below): `Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The release reports no timings. The rail is drawn to illustrate.`
 - labels: [] (tone pills from TXLOOK.css)
 - claim ids (the `src` furniture): `c9`
 
