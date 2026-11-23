@@ -1,0 +1,322 @@
+<!doctype html>
+<!-- 2026-11-22, frame 3 of 9, THE ACTOR (critic rebuild). A simulation room seen from its doorway: an actor in a patient gown,
+     a blank role badge clipped to it, perches on the foot of a tangerine exam table, shoulders turned to a clinician on a rolling stool
+     who sits three quarters away from the reader, leaning in with one hand raised mid sentence. Behind them a one way mirror with two
+     observers in silhouette in a dim booth, two wall cameras with lit tallies and a hung boom mic say the encounter is staged and live.
+     A single page lies face down, one corner curled up, on the oak desk set back at right beside the clinician. Violet sheet vinyl with welded seams. Drawn to
+     illustrate: no real room, no likeness, no legible text. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:96px; top:880px; width:660px; text-align:left; letter-spacing:0.02em">The patient is an actor</h1>
+<p class="dek" id="dek" data-follow="22" style="left:98px; width:530px; font-size:24px; line-height:1.34">Paid actors will present a medical issue, live rather than on a written page. Researcher Tu-Quyen Dao says a large part of solving a real case is talking with the patient to gather information. Drawn to illustrate.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Live encounter", counter: "03 / 09", src: "c6 c12 c13", fit: { min: 84, max: 108, maxLines: 2 } });
+
+  /* THE TYPE: bottom left, over the cobalt floor in the doorway's shade. The dek's foot sits on 1180 so the footer stays clear */
+  const hook = document.getElementById('hook'), dek = document.getElementById('dek');
+  { const hh = hook.getBoundingClientRect().height, dh = dek.getBoundingClientRect().height;
+    const top = Math.round(1182 - dh - 22 - hh); hook.style.top = top + 'px'; CH.follow(); }
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (hb.left < 64 || hb.right > 1016 || hb.top < 140) throw new Error('the headline leaves the safe field');
+  if (db.bottom > 1196 || db.right > 1016) throw new Error('the dek runs into the footer at ' + Math.round(db.bottom));
+
+  /* THE FIGURES: this frame draws no count, so FIG must stay empty */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 3 draws no figure, but FIG carries ' + Object.keys(window.FIG).join(','));
+
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.03, far: 80, fog: 0 });
+  const rnd = CH.rng(20261103);
+  const tex = (w, h, paint, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  const rb = (w, h, d, r, m) => { const b = TXT.roundedBox(w, h, d, r, m); b.castShadow = true; b.receiveShadow = true; return b; };
+
+  /* THE ROOM, in metres: x right, z toward the doorway. Back wall at z = -RD/2, the doorway in the front wall at z = +RD/2 */
+  const RW = 5.2, RD = 5.6, RH = 3.1, BACK = -RD / 2, FRONT = RD / 2;
+  const WALL = 0x5aa2ea;
+  const room = TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: WALL, trim: 0xf2f5fb, window: null, ceiling: true, light: 0.6 });
+  TXT.studio(R, CH.studioOpts({ w: 6, d: 6 }));
+  R.scene.remove(R.studio.sweep); R.room = room;
+  R.scene.background = new THREE.Color(0x2a7fd6);
+
+  /* the floor: a violet sheet vinyl laid in 1.6 m widths, its welded seams running away from the doorway toward the mirror */
+  const vinylTex = tex(1024, 1024, (g, w, h) => {
+    g.fillStyle = '#3b2aa8'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 26000; i++) { const v = rnd(); g.fillStyle = v < 0.5 ? 'rgba(30,18,110,0.10)' : v < 0.85 ? 'rgba(150,130,255,0.08)' : 'rgba(255,255,255,0.09)'; const s = 1 + rnd() * 2.2; g.fillRect(rnd() * w, rnd() * h, s, s); }
+  }, [6, 6]);
+  let floorN = 0;
+  R.scene.traverse((m) => { if (m.isMesh && m.userData.txSurface === 'concrete' && m.userData.txGround) { floorN++;
+    m.material = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: vinylTex, roughness: 0.66, name: 'vinyl-floor' }); m.userData.txSurface = 'plastic'; m.userData.txWear = false; } });
+  if (floorN !== 1) throw new Error('expected one floor, found ' + floorN);
+  { const seamM = new THREE.MeshStandardMaterial({ color: 0x6a5ae0, roughness: 0.5, name: 'vinyl-weld-rod' }); seamM.userData.txSurface = false;
+    [-1.3, 0.3, 1.9].forEach((x) => { const sm = new THREE.Mesh(new THREE.PlaneGeometry(0.012, RD), seamM); sm.rotation.x = -Math.PI / 2; sm.position.set(x, 0.0015, 0); sm.receiveShadow = true; sm.userData.txBevel = false; R.scene.add(sm); }); }
+
+  /* the back wall is a ONE WAY MIRROR: dark glass in a black anodised frame, an observation booth dim behind it */
+  const wallMat = new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.9, name: 'wall-paint' }); wallMat.userData.txSurface = 'paint';
+  room.children.slice().forEach((c) => { if (c.isMesh && Math.abs(c.position.z - BACK) < 0.01) room.remove(c); });
+  room.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === new THREE.Color(WALL).getHex()) m.material = wallMat; });
+  const WX0 = -0.75, WX1 = 1.25, WY0 = 0.9, WY1 = 2.72, WT = 0.18;
+  const backG = new THREE.Group(); R.scene.add(backG);
+  const wallPiece = (x0, x1, y0, y1) => { const b = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, y1 - y0, WT), wallMat); b.position.set((x0 + x1) / 2, (y0 + y1) / 2, BACK); b.castShadow = true; b.receiveShadow = true; b.userData.txBevel = false; backG.add(b); };
+  wallPiece(-RW / 2 - 3, WX0, -0.01, RH + 3); wallPiece(WX1, RW / 2 + 3, -0.01, RH + 3);
+  wallPiece(WX0, WX1, -0.01, WY0); wallPiece(WX0, WX1, WY1, RH + 3);
+  const alu = new THREE.MeshPhysicalMaterial({ color: 0xe9eef5, metalness: 0.75, roughness: 0.3, clearcoat: 0.4, name: 'anodised-alu' });
+  const blackAlu = new THREE.MeshPhysicalMaterial({ color: 0x23263a, metalness: 0.8, roughness: 0.35, clearcoat: 0.3, name: 'black-anodised-alu' });
+  { const fr = 0.07, wcx = (WX0 + WX1) / 2, ww = WX1 - WX0, wh = WY1 - WY0;
+    const top = rb(ww + fr, fr, 0.08, 0.01, blackAlu); top.position.set(wcx, WY1, BACK + 0.1); backG.add(top);
+    const bot = rb(ww + fr, fr, 0.12, 0.01, blackAlu); bot.position.set(wcx, WY0, BACK + 0.11); backG.add(bot);
+    [WX0, WX1].forEach((x) => { const sd = rb(fr, wh + fr, 0.08, 0.01, blackAlu); sd.position.set(x, (WY0 + WY1) / 2, BACK + 0.1); backG.add(sd); });
+    const mid = rb(0.03, wh, 0.05, 0.006, blackAlu); mid.position.set(wcx, (WY0 + WY1) / 2, BACK + 0.09); backG.add(mid);
+    const gm = new THREE.MeshPhysicalMaterial({ color: 0x1c2a66, metalness: 0.85, roughness: 0.05, clearcoat: 1, clearcoatRoughness: 0.03, transparent: true, opacity: 0.74, envMapIntensity: 1.7, name: 'mirror-glass' }); gm.userData.txSurface = false;
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(ww, wh), gm); glass.position.set(wcx, (WY0 + WY1) / 2, BACK + 0.07); glass.castShadow = true; glass.userData.txBevel = false; backG.add(glass);
+    /* a soft diagonal sheen on the glass, so it reads as a mirror and not a hole */
+    const sheen = tex(512, 512, (g, w, h) => { g.clearRect(0, 0, w, h); const gr = g.createLinearGradient(0, h, w, 0); gr.addColorStop(0.3, 'rgba(255,255,255,0)'); gr.addColorStop(0.42, 'rgba(210,225,255,0.20)'); gr.addColorStop(0.47, 'rgba(210,225,255,0.06)'); gr.addColorStop(0.55, 'rgba(210,225,255,0.14)'); gr.addColorStop(0.62, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const shm = new THREE.MeshBasicMaterial({ map: sheen, transparent: true, depthWrite: false, name: 'mirror-sheen' }); shm.userData.txSurface = false;
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(ww, wh), shm); sh.position.set(wcx, (WY0 + WY1) / 2, BACK + 0.075); sh.userData.txBevel = false; backG.add(sh); }
+  /* THE OBSERVATION BOOTH behind the glass: a dark room, a counter with two dim screens, two observers in silhouette */
+  { const bw = new THREE.MeshStandardMaterial({ color: 0x1a1d4a, roughness: 0.9, name: 'booth-paint' }); bw.userData.txSurface = 'paint';
+    const BZ0 = BACK - WT / 2, BZ1 = BACK - 2.6;
+    const bb = new THREE.Mesh(new THREE.BoxGeometry(4, 3, 0.1), bw); bb.position.set(0.25, 1.5, BZ1); backG.add(bb);
+    [-1.6, 2.1].forEach((x) => { const sw = new THREE.Mesh(new THREE.BoxGeometry(0.1, 3, 2.6), bw); sw.position.set(x, 1.5, (BZ0 + BZ1) / 2); backG.add(sw); });
+    const bf = new THREE.Mesh(new THREE.BoxGeometry(4, 0.05, 2.6), bw); bf.position.set(0.25, -0.02, (BZ0 + BZ1) / 2); backG.add(bf);
+    const bc = new THREE.Mesh(new THREE.BoxGeometry(4, 0.1, 2.6), bw); bc.position.set(0.25, 2.95, (BZ0 + BZ1) / 2); backG.add(bc);
+    const cnt = rb(2.4, 0.05, 0.6, 0.01, new THREE.MeshStandardMaterial({ color: 0x2a2850, roughness: 0.6, name: 'booth-laminate' })); cnt.position.set(0.25, 0.95, BZ0 - 0.4); backG.add(cnt);
+    const scrM = new THREE.MeshBasicMaterial({ color: 0x8fa8ff, name: 'booth-screen-glow' }); scrM.color.multiplyScalar(0.55); scrM.userData.txSurface = false;
+    [-0.2, 0.75].forEach((x) => { const sc = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.3), scrM); sc.position.set(x, 1.2, BZ0 - 0.55); sc.rotation.y = Math.PI; backG.add(sc);
+      const bk = rb(0.52, 0.32, 0.03, 0.01, blackAlu); bk.position.set(x, 1.2, BZ0 - 0.57); backG.add(bk); });
+    /* a dim lavender wash on the booth's back wall, so the observers stand dark against it */
+    const wash = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 1.6), new THREE.MeshBasicMaterial({ color: 0x6a5cc8, name: 'booth-wash' })); wash.material.userData.txSurface = false; wash.material.color.multiplyScalar(0.95);
+    wash.position.set(0.25, 1.5, BZ1 + 0.06); backG.add(wash);
+    [[0.05, 7, 'male'], [0.95, 19, 'female']].forEach(([x, sd, bld]) => { const ob = K.make('person', { seed: sd, pose: 'stand', build: bld, hat: 'none', vest: false });
+      ob.traverse((m) => { if (m.isMesh && m.material) { m.material = m.material.clone(); if (m.material.color) m.material.color.multiplyScalar(0.09); if (m.material.emissive) m.material.emissive.setScalar(0); if (m.material.map) m.material.map = null; } });
+      ob.position.set(x, 0, BZ0 - 1.25); ob.rotation.y = x < 0.5 ? 1.35 : -1.2; backG.add(ob); }); }
+  /* two wall cameras on short arms, lenses on the table, a red tally lit on each: the encounter is being recorded */
+  const recCam = (x, y, aimAt) => { const g = new THREE.Group(); g.position.set(x, y, BACK + WT / 2);
+    const body = new THREE.MeshPhysicalMaterial({ color: 0xf2f4f8, roughness: 0.35, clearcoat: 0.5, name: 'camera-abs' });
+    const plate = rb(0.12, 0.16, 0.02, 0.008, body); plate.position.z = 0.01; g.add(plate);
+    const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.22, 16), alu); arm.rotation.x = Math.PI / 2; arm.position.z = 0.12; g.add(arm);
+    const head = new THREE.Group(); head.position.z = 0.24; g.add(head);
+    head.add(rb(0.11, 0.1, 0.26, 0.03, body));
+    const hood = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.04, 0.06, 28, 1, true), blackAlu); hood.rotation.x = Math.PI / 2; hood.position.z = 0.15; hood.material.side = THREE.DoubleSide; head.add(hood);
+    const lens = new THREE.Mesh(new THREE.CircleGeometry(0.036, 28), new THREE.MeshPhysicalMaterial({ color: 0x0c1030, metalness: 0.5, roughness: 0.05, clearcoat: 1, name: 'lens-glass' })); lens.position.z = 0.14; head.add(lens);
+    const tally = new THREE.Mesh(new THREE.SphereGeometry(0.009, 12, 10), new THREE.MeshBasicMaterial({ color: 0xff3b3b, name: 'tally-led' })); tally.material.userData.txSurface = false; tally.position.set(0.035, 0.05, 0.1); head.add(tally);
+    R.scene.add(g); g.updateMatrixWorld(true); const hp = new THREE.Vector3(); head.getWorldPosition(hp); head.lookAt(aimAt); head.rotation.order = 'YXZ';
+    g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+
+  /* the front wall with the doorway: only the left jamb and the header are ever in frame, painted deep indigo */
+  const DX0 = -0.5, DX1 = 0.55, DH = 2.32, FT = 0.16;
+  const jambPaint = new THREE.MeshPhysicalMaterial({ color: 0x2c2f86, roughness: 0.5, clearcoat: 0.3, clearcoatRoughness: 0.4, name: 'door-paint' }); jambPaint.userData.txSurface = 'paint';
+  const hallPaint = new THREE.MeshStandardMaterial({ color: 0x3b4bb8, roughness: 0.88, name: 'hall-paint' }); hallPaint.userData.txSurface = 'paint';
+  { const lw = rb(RW / 2 + DX0 + 0.4, RH, FT, 0.01, hallPaint); lw.position.set((-RW / 2 - 0.4 + DX0) / 2, RH / 2, FRONT); R.scene.add(lw);
+    const hd = rb(DX1 - DX0 + 0.4, RH - DH, FT, 0.01, hallPaint); hd.position.set((DX0 + DX1) / 2, DH + (RH - DH) / 2, FRONT); R.scene.add(hd);
+    /* the casing: a 70 mm moulded trim on the hall face and a jamb lining the opening's thickness */
+    const cas = rb(0.075, DH + 0.04, 0.03, 0.008, jambPaint); cas.position.set(DX0 - 0.03, (DH + 0.04) / 2, FRONT + FT / 2 + 0.015); R.scene.add(cas);
+    const lin = rb(0.02, DH, FT + 0.01, 0.004, jambPaint); lin.position.set(DX0 + 0.01, DH / 2, FRONT); R.scene.add(lin);
+    const stop = rb(0.016, DH, 0.04, 0.004, jambPaint); stop.position.set(DX0 + 0.028, DH / 2, FRONT - 0.03); R.scene.add(stop);
+    const hcas = rb(DX1 - DX0 + 0.15, 0.075, 0.03, 0.008, jambPaint); hcas.position.set((DX0 + DX1) / 2, DH + 0.037, FRONT + FT / 2 + 0.015); R.scene.add(hcas);
+    /* a brushed steel strike plate and two hinge knuckles on the jamb */
+    const steelB = new THREE.MeshStandardMaterial({ color: 0xc9ced6, metalness: 1, roughness: 0.32, name: 'brushed-steel' });
+    [0.25, 1.05, 1.95].forEach((y) => { const hg = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.1, 16), steelB); hg.position.set(DX0 + 0.025, y, FRONT - 0.06); hg.castShadow = true; R.scene.add(hg); });
+    const thr = rb(DX1 - DX0, 0.012, FT + 0.06, 0.004, steelB); thr.position.set((DX0 + DX1) / 2, 0.006, FRONT); R.scene.add(thr); }
+
+  /* a white oak crash rail round the room at 0.9 m, on brushed steel brackets: hospital walls take carts */
+  { const oak = new THREE.MeshPhysicalMaterial({ color: 0xd9a46a, roughness: 0.45, clearcoat: 0.5, clearcoatRoughness: 0.3, name: 'oak-rail' });
+    const segs = [[-RW / 2 + 0.05, BACK + 0.12, WX0 - 0.05, BACK + 0.12], [WX1 + 0.05, BACK + 0.12, RW / 2 - 0.05, BACK + 0.12], [RW / 2 - 0.06, BACK + 0.15, RW / 2 - 0.06, FRONT - 0.2]];
+    segs.forEach(([x0, z0, x1, z1]) => { const L = Math.hypot(x1 - x0, z1 - z0); const r1 = rb(L, 0.13, 0.03, 0.012, oak); r1.position.set((x0 + x1) / 2, 0.92, (z0 + z1) / 2); r1.rotation.y = -Math.atan2(z1 - z0, x1 - x0); R.scene.add(r1); }); }
+
+  /* THE PLACES */
+  const TBL = new THREE.Vector3(-0.85, 0, -1.35);
+
+  /* THE EXAM TABLE: the chassis table in tangerine vinyl, drawers to the doorway, raised back at the head (left), no step */
+  const table = K.make('exam_table', { vinyl: 0xf0782e, back: 42, cabinet: 0xf3f6fb, step: false });
+  table.position.copy(TBL); TXT.add(R, table); TXT.contact(R, table, { opacity: 0.55 });
+  { for (let i = 0; i < 5; i++) { const cr = new THREE.Mesh(new THREE.BoxGeometry(0.002, 0.0015, 0.5), new THREE.MeshStandardMaterial({ color: 0xd8dce8, roughness: 0.9, name: 'paper-crease' })); cr.position.set(TBL.x + 0.25 + i * 0.12 + rnd() * 0.04, 0.7 + 0.0035, TBL.z); cr.rotation.y = (rnd() - 0.5) * 0.4; R.scene.add(cr); } }
+
+  /* THE ACTOR: perched on the table's foot end, shoulders square to the clinician, hands on the paper either side */
+  const SEAT = table.userData.seat;
+  const actorHands = [[0.26, 0.47, 0.02], [-0.12, 0.53, 0.37]];
+  const actor = K.make('person', { seed: 31, pose: 'sit_read', build: 'female', shirt: 0x7cc4e4, trousers: 0x23306e, headPitch: 0.2, hands: actorHands, hat: 'none', vest: false });
+  const AA = actor.userData.attach; if (!AA) throw new Error('the actor published no attach points');
+  const ACT = new THREE.Vector3(TBL.x + 0.74, SEAT - AA.seat[1], TBL.z + 0.08);
+  const CLN = new THREE.Vector3(0.82, 0, -0.66);
+  actor.position.copy(ACT); actor.rotation.y = Math.atan2(CLN.x - ACT.x, CLN.z - ACT.z) + 0.1; TXT.add(R, actor);
+  if (Math.abs(ACT.y + AA.seat[1] - SEAT) > 0.002) throw new Error('the actor floats off the table');
+  const gownTex = tex(256, 256, (g, w, h) => { g.fillStyle = '#86c8e8'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(32,64,150,0.55)';
+    for (let y = 0; y < h; y += 32) for (let x = (y / 32 % 2) * 16; x < w; x += 32) { g.beginPath(); g.moveTo(x, y - 5); g.lineTo(x + 5, y); g.lineTo(x, y + 5); g.lineTo(x - 5, y); g.fill(); } }, [6, 6]);
+  actor.traverse((m) => { if (m.isMesh && m.material && /p-cloth/.test(m.material.name || '') && m.material.color && Math.abs(m.material.color.getHex() - 0x7cc4e4) < 0x080808) {
+    m.material = m.material.clone(); m.material.map = gownTex; m.material.color = new THREE.Color(0xffffff); m.material.name = 'cotton-gown'; } });
+  /* where she sits the paper gives: an indigo contact shadow under her and creases running out from it */
+  const softTex = tex(256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(40,28,120,0.85)'); gr.addColorStop(0.5, 'rgba(40,28,120,0.45)'); gr.addColorStop(1, 'rgba(40,28,120,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const softShadow = (x, y, z, sx, sz, ry, a) => { const m = new THREE.MeshBasicMaterial({ map: softTex, transparent: true, opacity: a, depthWrite: false, name: 'contact-shadow' }); m.userData.txSurface = false;
+    const q = new THREE.Mesh(new THREE.PlaneGeometry(sx, sz), m); q.rotation.x = -Math.PI / 2; q.rotation.z = ry || 0; q.position.set(x, y, z); q.userData.txBevel = false; q.renderOrder = 2; R.scene.add(q); return q; };
+  softShadow(ACT.x, SEAT + 0.0045, ACT.z, 0.5, 0.42, -actor.rotation.y, 0.8);
+  { const crM = new THREE.MeshStandardMaterial({ color: 0xb8bde0, roughness: 0.9, name: 'paper-crease-deep' });
+    for (let i = 0; i < 9; i++) { const a = i / 9 * Math.PI * 2 + rnd() * 0.3, r0 = 0.17, L = 0.08 + rnd() * 0.12;
+      const cr = new THREE.Mesh(new THREE.BoxGeometry(L, 0.0012, 0.003), crM); cr.position.set(ACT.x + Math.cos(a) * (r0 + L / 2), SEAT + 0.004, ACT.z + Math.sin(a) * (r0 + L / 2)); cr.rotation.y = -a; cr.userData.txBevel = false;
+      if (Math.abs(cr.position.z - TBL.z) < 0.26 && cr.position.x < TBL.x + 1.15) R.scene.add(cr); } }
+  /* the ROLE BADGE: a blank white card with a tangerine header band, clipped to the gown on the actor's right chest. No text */
+  { actor.updateMatrixWorld(true);
+    const o = new THREE.Vector3(-0.09, AA.hip[1] + 0.34, 0.9).applyMatrix4(actor.matrixWorld), tgt = new THREE.Vector3(-0.09, AA.hip[1] + 0.34, 0).applyMatrix4(actor.matrixWorld);
+    const hits = new THREE.Raycaster(o, tgt.clone().sub(o).normalize()).intersectObject(actor, true); if (!hits.length) throw new Error('no gown surface for the role badge');
+    const hp = hits[0].point, nrm = hits[0].face.normal.clone().transformDirection(hits[0].object.matrixWorld).normalize();
+    const cardM = new THREE.MeshStandardMaterial({ color: 0xfbfbf8, roughness: 0.4, name: 'pvc-card' }), bandM = new THREE.MeshStandardMaterial({ color: 0xf0782e, roughness: 0.4, name: 'pvc-card-band' });
+    const steelC = new THREE.MeshStandardMaterial({ color: 0xd6dbe2, metalness: 1, roughness: 0.25, name: 'steel-clip' });
+    const badge = new THREE.Group(); badge.add(rb(0.07, 0.1, 0.004, 0.006, cardM)); const band = rb(0.07, 0.025, 0.002, 0.004, bandM); band.position.set(0, 0.034, 0.003); badge.add(band);
+    const clipB = rb(0.016, 0.03, 0.006, 0.002, steelC); clipB.position.set(0, 0.06, 0.002); badge.add(clipB);
+    badge.position.copy(hp).addScaledVector(nrm, 0.006); badge.lookAt(hp.clone().add(nrm)); R.scene.add(badge); }
+
+  /* THE CLINICIAN: on a rolling stool across the table's foot, three quarters away from the doorway, leaning in, one hand up mid sentence */
+  const clinHands = [[0.14, 0.52, 0.37], [-0.2, 0.98, 0.32]];
+  const clin = K.make('person', { seed: 12, pose: 'sit_read', build: 'male', shirt: 0xe9eef6, trousers: 0x1f2c66, headPitch: -0.08, hands: clinHands, hat: 'none', vest: false });
+  const CA = clin.userData.attach; if (!CA) throw new Error('the clinician published no attach points');
+  const STOOL_SEAT = 0.56;
+  clin.position.set(CLN.x, STOOL_SEAT - CA.seat[1], CLN.z);
+  const toAct = Math.atan2(ACT.x - CLN.x, ACT.z - CLN.z); clin.rotation.y = toAct; TXT.add(R, clin);
+  { const st = new THREE.Group(); st.position.set(CLN.x, 0, CLN.z);
+    const vin = new THREE.MeshPhysicalMaterial({ color: 0x1f2a6e, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.3, name: 'stool-vinyl' });
+    const chrome = new THREE.MeshPhysicalMaterial({ color: 0xeef2f8, metalness: 1, roughness: 0.14, name: 'chrome' });
+    const blk = new THREE.MeshStandardMaterial({ color: 0x1b1d26, roughness: 0.6, name: 'nylon-black' });
+    const cush = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.19, 0.07, 48), vin); cush.position.y = STOOL_SEAT - 0.035; st.add(cush);
+    const pan = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.02, 32), blk); pan.position.y = STOOL_SEAT - 0.08; st.add(pan);
+    const lift = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, STOOL_SEAT - 0.2, 20), chrome); lift.position.y = 0.1 + (STOOL_SEAT - 0.2) / 2; st.add(lift);
+    const sleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.034, 0.034, 0.18, 20), blk); sleeve.position.y = 0.17; st.add(sleeve);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.01, 10, 48), chrome); ring.rotation.x = Math.PI / 2; ring.position.y = 0.3; st.add(ring);
+    for (let i = 0; i < 5; i++) { const a = i / 5 * Math.PI * 2 + 0.3, ex = Math.cos(a) * 0.29, ez = Math.sin(a) * 0.29;
+      K.bar([0, 0.09, 0], [ex, 0.07, ez], 0.016, chrome, 10, st); K.bar([Math.cos(a) * 0.2, 0.3, Math.sin(a) * 0.2], [0, 0.3, 0], 0.006, chrome, 6, st);
+      const cw = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.026, 18), blk); cw.rotation.z = Math.PI / 2; cw.rotation.y = a; cw.position.set(ex, 0.03, ez); st.add(cw); }
+    st.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    TXT.add(R, st); TXT.contact(R, st, { opacity: 0.5 }); }
+  softShadow(CLN.x, STOOL_SEAT + 0.002, CLN.z, 0.44, 0.44, 0, 0.75);
+
+  /* THE BOOM MIC: hung from the ceiling on its cable, a foam windscreened shotgun mic pointed down between them */
+  { const MIC = new THREE.Vector3((ACT.x + CLN.x) / 2 - 0.1, 2.12, (ACT.z + CLN.z) / 2 - 0.15);
+    const cab = new THREE.MeshStandardMaterial({ color: 0x1b1d2a, roughness: 0.6, name: 'mic-cable' });
+    const foam = new THREE.MeshStandardMaterial({ color: 0x9aa0b4, roughness: 1, name: 'foam-windscreen' }); foam.userData.txSurface = 'fabric';
+    K.bar([MIC.x, RH, MIC.z], [MIC.x, MIC.y + 0.06, MIC.z], 0.004, cab, 6, R.scene);
+    const mic = new THREE.Group(); mic.position.copy(MIC); R.scene.add(mic);
+    const mount = new THREE.Mesh(new THREE.TorusGeometry(0.035, 0.005, 8, 24), blackAlu); mount.rotation.y = Math.PI / 2; mic.add(mount);
+    const ws = new THREE.Mesh(new THREE.CapsuleGeometry(0.024, 0.2, 8, 20), foam); ws.rotation.z = Math.PI / 2; mic.add(ws);
+    const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.06, 16), blackAlu); tail.rotation.z = Math.PI / 2; tail.position.x = -0.15; mic.add(tail);
+    mic.lookAt(new THREE.Vector3(ACT.x, 1.25, ACT.z)); mic.rotateY(-Math.PI / 2);
+    mic.traverse((m) => { if (m.isMesh) m.castShadow = true; }); }
+  recCam(-1.45, 2.0, new THREE.Vector3(TBL.x + 0.6, 0.9, TBL.z));
+  recCam(1.95, 2.0, new THREE.Vector3(TBL.x + 0.9, 0.9, TBL.z + 0.4));
+
+  /* THE ROOM'S KIT: a privacy curtain bunched on its track at the head end, a wall diagnostic set, a sanitizer, a soft troffer */
+  { const cur = new THREE.MeshPhysicalMaterial({ color: 0x6d5fd8, roughness: 0.85, sheen: 0.5, sheenColor: 0xb8b0ff, side: THREE.DoubleSide, name: 'curtain-fabric' });
+    const CW = 0.9, CH2 = 2.15, n = 60, geo = new THREE.PlaneGeometry(CW, CH2, n, 8), pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), y = pos.getY(i), t = (y + CH2 / 2) / CH2; pos.setZ(i, Math.sin(x / CW * Math.PI * 14) * (0.05 + 0.02 * (1 - t))); pos.setX(i, x * (0.75 + 0.25 * (1 - t))); }
+    geo.computeVertexNormals(); const cm = new THREE.Mesh(geo, cur); cm.position.set(-RW / 2 + 0.1, 2.85 - CH2 / 2 - 0.05, -0.6); cm.rotation.y = Math.PI / 2; cm.castShadow = true; cm.receiveShadow = true; cm.userData.txBevel = false; R.scene.add(cm);
+    const track = rb(0.03, 0.03, 3.6, 0.008, alu); track.position.set(-RW / 2 + 0.1, 2.88, -0.9); R.scene.add(track); }
+  { const pnl = new THREE.Group(); pnl.position.set(-1.9, 1.45, BACK + 0.1);
+    const body = new THREE.MeshPhysicalMaterial({ color: 0xf2f4f8, roughness: 0.35, clearcoat: 0.5, name: 'abs-plastic' });
+    const grip = new THREE.MeshStandardMaterial({ color: 0x1d2246, roughness: 0.55, name: 'handle-plastic' });
+    const coil = new THREE.MeshStandardMaterial({ color: 0x20253f, roughness: 0.5, name: 'coil-cord' });
+    pnl.add(rb(0.52, 0.2, 0.06, 0.02, body));
+    [-0.14, 0.14].forEach((x) => { const h = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.016, 0.16, 18), grip); h.position.set(x, -0.02, 0.06); h.castShadow = true; pnl.add(h);
+      const head = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.02, 0.05, 16), grip); head.position.set(x, 0.08, 0.06); pnl.add(head);
+      const pts = []; for (let k = 0; k <= 80; k++) { const t = k / 80, a = t * Math.PI * 2 * 9; pts.push(new THREE.Vector3(x + Math.cos(a) * 0.012, -0.1 - t * 0.32, 0.06 + Math.sin(a) * 0.012)); }
+      const cc = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 400, 0.0035, 6), coil); cc.castShadow = true; pnl.add(cc); });
+    R.scene.add(pnl);
+    const san = new THREE.Group(); san.position.set(1.7, 1.3, BACK + 0.08); san.add(rb(0.13, 0.24, 0.1, 0.03, body)); const nz = rb(0.05, 0.03, 0.06, 0.01, grip); nz.position.set(0, -0.1, 0.05); san.add(nz); R.scene.add(san);
+    const trof = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.6), new THREE.MeshBasicMaterial({ color: 0xf4fbff, name: 'troffer-lens' })); trof.material.userData.txSurface = false; trof.material.color.multiplyScalar(1.4);
+    trof.rotation.x = Math.PI / 2; trof.position.set(0.1, RH - 0.005, -0.4); R.scene.add(trof); }
+
+  /* THE PAGE: one printed sheet face down and untouched on the oak desk by the doorway, its print only a ghost through the paper */
+  const DESK = new THREE.Vector3(1.1, 0, 0.95);
+  const desk = K.make('desk', { w: 0.95, d: 0.55, wood: 0xc8935a, pedestal: 'right' });
+  { const oakTex = tex(1024, 512, (g, w, h) => { g.fillStyle = '#8e5a33'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 520; i++) { const y = rnd() * h, a = 0.04 + rnd() * 0.1; g.strokeStyle = 'rgba(' + (120 + rnd() * 40 | 0) + ',' + (70 + rnd() * 30 | 0) + ',30,' + a.toFixed(3) + ')'; g.lineWidth = 0.6 + rnd() * 1.6;
+        g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + Math.sin(x / 140 + i) * 2.5); g.stroke(); }
+      for (let i = 0; i < 260; i++) { g.fillStyle = 'rgba(255,230,180,0.10)'; g.fillRect(rnd() * w, rnd() * h, 8 + rnd() * 18, 1.5); } }, [1, 1]);
+    desk.traverse((m) => { if (m.isMesh && m.material && /veneer/.test(m.material.name || '')) { const om = m.material; m.material = new THREE.MeshPhysicalMaterial({ map: oakTex, color: 0xffffff, roughness: 0.42, clearcoat: 0.55, clearcoatRoughness: 0.25, name: 'white-oak' }); if (om.map) { oakTex.wrapS = oakTex.wrapT = THREE.RepeatWrapping; } } }); }
+  desk.position.copy(DESK); desk.rotation.y = -0.35; TXT.add(R, desk);
+  const pageBack = tex(512, 660, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 3000; i++) { g.fillStyle = 'rgba(120,110,90,' + (rnd() * 0.05).toFixed(3) + ')'; g.fillRect(rnd() * w, rnd() * h, 1.3, 1.3); }
+    g.save(); g.translate(w, 0); g.scale(-1, 1);
+    for (let L = 0; L < 26; L++) { const y = 60 + L * 21; let x = 50; const end = w - 50 - (L % 7 === 6 ? 200 : rnd() * 40); while (x < end) { const ww = 14 + rnd() * 44; g.fillStyle = 'rgba(80,84,110,0.06)'; g.fillRect(x, y, Math.min(ww, end - x), 6); x += ww + 9; } }
+    g.restore(); });
+  let pageW;
+  { const pg = new THREE.PlaneGeometry(0.216, 0.279, 20, 20), pp = pg.attributes.position;
+    for (let i = 0; i < pp.count; i++) { const x = pp.getX(i), y = pp.getY(i); const d = Math.hypot(x + 0.108, y + 0.1395) / 0.16, t = Math.max(0, 1 - d); pp.setZ(i, 0.0012 + 0.095 * t * t * t); }
+    pg.computeVertexNormals();
+    const pm = new THREE.MeshStandardMaterial({ map: pageBack, roughness: 0.9, side: THREE.FrontSide, name: 'paper-page' });
+    /* the printed side, seen only under the lifted corner: greeked lines that never read */
+    const pmB = new THREE.MeshStandardMaterial({ map: CH.paperTex(THREE, 11, 12, false), roughness: 0.9, side: THREE.BackSide, name: 'paper-page-print' });
+    const page = new THREE.Mesh(pg, pm); page.rotation.x = -Math.PI / 2; page.rotation.z = 0.15; page.castShadow = true; page.receiveShadow = true; page.userData.txBevel = false;
+    page.position.set(-0.14, 0.762, 0.03); desk.add(page); const pageU = new THREE.Mesh(pg, pmB); pageU.userData.txBevel = false; page.add(pageU); desk.updateMatrixWorld(true); pageW = new THREE.Vector3(); page.getWorldPosition(pageW); }
+  /* a capped pen lying apart from it, and the clinician's coiled stethoscope by the desk's back edge: nothing on the page */
+  { const penM = new THREE.MeshPhysicalMaterial({ color: 0x1d2a7a, roughness: 0.3, clearcoat: 0.8, name: 'pen-plastic' });
+    const pen = new THREE.Mesh(new THREE.CylinderGeometry(0.0055, 0.0055, 0.14, 16), penM); pen.rotation.z = Math.PI / 2; pen.rotation.y = 1.1; pen.position.set(0.14, 0.762 + 0.0055, 0.14); pen.castShadow = true; desk.add(pen);
+    const clip = rb(0.03, 0.003, 0.004, 0.001, new THREE.MeshStandardMaterial({ color: 0xd8dde6, metalness: 1, roughness: 0.3, name: 'steel-clip' })); clip.position.set(0.14, 0.762 + 0.012, 0.14); clip.rotation.y = 1.1 - Math.PI / 2; desk.add(clip);
+  }
+
+  /* THE CAMERA: standing in the doorway, a step back, eye height, the actor and clinician in the window's light */
+  const actHead = new THREE.Vector3(...AA.eye).applyMatrix4(actor.matrixWorld);
+  actor.updateMatrixWorld(true);
+  const FROM = [-0.16, 2.0, FRONT + 1.3];
+  CH.aim(THREE, R, TXT, FROM, [actHead.x, actHead.y, actHead.z], 470, 330, 44);
+
+  /* the desk goes back and right, beside the clinician: its front feet stop above the headline (y 780), the page at x 975 */
+  { const P0 = new THREE.Vector3(-0.14, 0.762, 0.03);
+    desk.rotation.y = -0.55;
+    const pg = () => { desk.updateMatrixWorld(true); return CH.project(THREE, R, P0.clone().applyMatrix4(desk.matrixWorld).toArray()); };
+    const foot = () => { desk.updateMatrixWorld(true); return Math.max(...[[-0.475, 0, 0.275], [0.475, 0, 0.275]].map((q) => CH.project(THREE, R, new THREE.Vector3(...q).applyMatrix4(desk.matrixWorld).toArray())[1])); };
+    const clearStool = () => { desk.updateMatrixWorld(true); const bx = new THREE.Box3().setFromObject(desk); return !(bx.min.x < CLN.x + 0.36 && bx.max.z > CLN.z - 0.36 && bx.min.z < CLN.z + 0.36); };
+    for (let k = 0; k < 5; k++) {
+      for (let it = 0; it < 60 && foot() > 780; it++) desk.position.z -= 0.03;
+      for (let it = 0; it < 12; it++) { const a = pg()[0]; desk.position.x += 0.01; const b = pg()[0]; desk.position.x -= 0.01; const d = (b - a) / 0.01; if (Math.abs(d) < 1) break; desk.position.x += (960 - a) / d; if (Math.abs(960 - a) < 1) break; }
+      for (let it = 0; it < 40 && !clearStool(); it++) desk.position.x += 0.02; }
+    if (foot() > 790) throw new Error('the desk still reaches the type band at ' + Math.round(foot()));
+    desk.updateMatrixWorld(true); pageW = P0.clone().applyMatrix4(desk.matrixWorld); TXT.contact(R, desk, { opacity: 0.5 });
+   }
+  /* checks: faces small, the page in frame, the table wide enough */
+  { const e1 = new THREE.Vector3(...CA.eye).applyMatrix4(clin.matrixWorld);
+    const fa = CH.project(THREE, R, [e1.x, e1.y + 0.12, e1.z]), fb = CH.project(THREE, R, [e1.x, e1.y - 0.13, e1.z]);
+    const fh = Math.abs(fb[1] - fa[1]); if (fh * fh * 0.8 / (1080 * 1350) > 0.02) throw new Error('the clinician face is over 2 percent of the frame');
+    { const e2 = new THREE.Vector3(...AA.eye).applyMatrix4(actor.matrixWorld); const ga = CH.project(THREE, R, [e2.x, e2.y + 0.12, e2.z]), gb = CH.project(THREE, R, [e2.x, e2.y - 0.13, e2.z]); const gh = Math.abs(gb[1] - ga[1]); if (gh * gh * 0.8 / (1080 * 1350) > 0.02) throw new Error('the actor face is over 2 percent of the frame'); }
+    const pgp = CH.project(THREE, R, pageW.toArray()); if (pgp[0] < 600 || pgp[0] > 1040 || pgp[1] < 300 || pgp[1] > 1150) throw new Error('the page is out of frame at ' + pgp.map(Math.round));
+    const t0 = CH.project(THREE, R, [TBL.x - 0.95, 0.7, TBL.z + 0.35]), t1 = CH.project(THREE, R, [TBL.x + 0.95, 0.7, TBL.z + 0.35]);
+    window.__s3 = { face: fh, page: pgp, table: [t0, t1] }; }
+
+  /* THE LIGHT: a near white key high from the doorway's right, the room's own ceiling light, indigo in every shadow */
+  CH.KEY_SCALE = 1.25;
+  const spec = CH.rigSpec(W, 12, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.4, 0.6, -0.6], { distance: 16, shadowFar: 40, normalBias: 0.01 }), { light: { az: 62, el: 54 } }));
+  CH.unacne(R, 0.008);
+  R.scene.environmentIntensity = 0.55;
+  /* the room's own bounce: an indigo fill from the doorway side so the faces toward the reader sit in colour, never black */
+  { const f = new THREE.DirectionalLight(0x8a90ff, 0.55); f.position.set(-1, 2.2, 6); R.scene.add(f); }
+  TXT.weather(R, { grime: 0.04, height: 0.1, mottle: 0.05 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { a: 0.42, height: 210 });
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.5, fade: 170 });
+  CH.seat(cx, { sel: '.hook', a: 0.55, fade: 120 });
+  CH.seat(cx, { sel: '.dek', a: 0.8, fade: 110 });
+  /* knock out the lit floor and the desk corner behind the end of the headline's first line, so nothing runs through it */
+  { const l1 = hook.getBoundingClientRect(); CH.seat(cx, { box: { x: l1.left + 420, y: l1.top + 40, w: l1.width - 400, h: 120 }, a: 0.7, fade: 90 }); }
+  CH.seat(cx, { sel: '.kick', a: 0.6, fade: 60 });
+  CH.seat(cx, { sel: '.count', a: 0.5, fade: 60 });
+  CH.seat(cx, { sel: '#site', a: 0.92, fade: 80 });
+  CH.seat(cx, { sel: '#site', a: 0.6, fade: 40 });
+  CH.seat(cx, { sel: '.src', a: 0.45, fade: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!doctype html>
+<!-- 2026-11-22, frame 5 of 9. QUESTION ONE. A worm's eye eleven centimetres above a warm limestone desk, down an anodised
+     indigo timing rail whose brass graduations tighten as they recede toward a laptop whose screen glows plain cyan (the tool
+     within reach). The knurled brass carriage is parked hard against the near zero stop. Three brass question tabs lie at the
+     rail's foot, the first lit. Nothing is timed. Type across the quiet blue sweep at the top. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:150px; width:900px; text-align:left">How fast do they click?</h1>
+<p class="dek" data-follow="26" style="left:82px; width:500px; font-size:28px">Researcher Sookja Kang asks how quickly the clinicians click on their AI tool. The rail is drawn to illustrate and stands at zero.</p>
+
+<script>window.FIG = {"questions": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Question one", counter: "05 / 09", src: "c9", fit: { min: 96, max: 128, maxLines: 2 } });
+
+  /* THE FIGURE. One brass tab per question the study asks, the first lit. Read from window.FIG, never typed. */
+  const NQ = FIG.questions;
+  if (!Number.isInteger(NQ) || NQ < 1) throw new Error('FIG.questions is not a whole count: ' + NQ);
+
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.01, far: 40, fog: 0 });
+  const P = CH.P;
+  /* the desk top is y = 0; the sweep stands a desk's height below, so its wall rises behind the far edge */
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 4.2, d: 3.2 }), { y: -0.74, wall: '#2a7fd6', top: '#173f9c', env: 1.0, hemi: 0.85 }));
+  const RG = CH.rng(CH.SEED + 505);
+  const shadowAll = (g) => { g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+
+  /* ---- THE LIMESTONE DESK. Warm Texas cream limestone, fossil flecks, pores, a worn darker lip at the far edge ---- */
+  const SL = { w: 1.9, d: 2.05, t: 0.045, zNear: 0.0 };
+  const LIP = 0.03;                                   /* the worn front lip, built piece by piece */
+  const slabZ = SL.zNear - LIP - (SL.d - LIP) / 2, zFar = SL.zNear - SL.d;
+  const limeTex = CH.canvasTex(THREE, 2048, 2048, (g, w, h) => {
+    g.fillStyle = '#d99b62'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) {   /* slow mottle */
+      const x = RG() * w, y = RG() * h, r = 60 + RG() * 260, gr = g.createRadialGradient(x, y, 0, x, y, r);
+      const c = RG() < 0.5 ? '200,140,84' : '246,212,160';
+      gr.addColorStop(0, 'rgba(' + c + ',' + (0.12 + RG() * 0.16) + ')'); gr.addColorStop(1, 'rgba(' + c + ',0)');
+      g.fillStyle = gr; g.fillRect(x - r, y - r, 2 * r, 2 * r);
+    }
+    /* bedding: faint wavy bands across the stone, the way sawn Texas limestone shows its layers */
+    for (let i = 0; i < 46; i++) {
+      const y0 = RG() * h, amp = 6 + RG() * 22, ph = RG() * 6, lw = 2 + RG() * 10;
+      g.strokeStyle = 'rgba(' + (RG() < 0.6 ? '176,116,66' : '250,222,176') + ',' + (0.08 + RG() * 0.12) + ')'; g.lineWidth = lw;
+      g.beginPath(); for (let x = 0; x <= w; x += 16) { const y = y0 + Math.sin(x / (180 + i * 7) + ph) * amp; x ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke();
+    }
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(' + (RG() < 0.6 ? '140,96,58' : '255,236,200') + ',' + (0.12 + RG() * 0.25) + ')'; const s = 0.8 + RG() * 2.4; g.fillRect(RG() * w, RG() * h, s, s); }
+    for (let i = 0; i < 220; i++) {   /* fossil shell fragments, small curved flecks */
+      const x = RG() * w, y = RG() * h, r = 4 + RG() * 14; g.strokeStyle = 'rgba(150,104,62,' + (0.3 + RG() * 0.3) + ')'; g.lineWidth = 1.5 + RG() * 2;
+      g.beginPath(); g.arc(x, y, r, RG() * 6, RG() * 6 + 1.5 + RG() * 2); g.stroke();
+    }
+    for (let i = 0; i < 900; i++) { g.fillStyle = 'rgba(110,70,44,' + (0.25 + RG() * 0.3) + ')'; g.beginPath(); g.arc(RG() * w, RG() * h, 0.8 + RG() * 2.6, 0, 6.283); g.fill(); }
+  });
+  const limeMat = new THREE.MeshPhysicalMaterial({ map: limeTex, color: 0xf0d2ae, roughness: 0.8, metalness: 0, clearcoat: 0.08, clearcoatRoughness: 0.6, name: 'limestone-slab' });
+  limeMat.userData.txSurface = 'concrete';
+  const slab = TXT.roundedBox(SL.w, SL.t, SL.d - LIP, 0.01, limeMat, { segments: 4 });
+  slab.position.set(0, -SL.t / 2, slabZ); slab.receiveShadow = true; slab.castShadow = true; R.scene.add(slab);
+  /* THE WEATHERED FRONT EDGE: the lip is laid as short worn pieces, each a little lower and set back by its own wear,
+   * rounded by years of hands, the stone darker and stained where it has been knocked and rubbed */
+  const lipTex = CH.canvasTex(THREE, 4096, 512, (g, w, h) => {
+    g.fillStyle = '#e2b47e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 40; i++) { const y = RG() * h; g.fillStyle = 'rgba(' + (RG() < 0.5 ? '196,146,98' : '250,226,190') + ',' + (0.06 + RG() * 0.1) + ')'; g.fillRect(0, y, w, 1 + RG() * 6); }
+    for (let i = 0; i < 160; i++) { const x = RG() * w, y = RG() * h, r = 30 + RG() * 120, gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, 'rgba(' + (RG() < 0.5 ? '210,160,108' : '252,232,198') + ',0.16)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x - r, y - r, 2 * r, 2 * r); }
+    /* fine fossil pitting: thousands of pin holes, each a dark pit with a lit lower rim */
+    for (let i = 0; i < 26000; i++) { const x = RG() * w, y = RG() * h, r = 0.8 + RG() * RG() * 3.2;
+      g.fillStyle = 'rgba(120,80,48,' + (0.35 + RG() * 0.35) + ')'; g.beginPath(); g.ellipse(x, y, r * 1.3, r, 0, 0, 6.283); g.fill();
+      if (r > 1.2) { g.fillStyle = 'rgba(255,240,214,0.5)'; g.fillRect(x - r * 0.6, y + r * 0.8, r * 1.2, 0.8); } }
+    for (let i = 0; i < 260; i++) { const x = RG() * w, y = RG() * h, r = 3 + RG() * 8; g.strokeStyle = 'rgba(160,112,70,' + (0.35 + RG() * 0.3) + ')'; g.lineWidth = 1 + RG() * 1.2;
+      g.beginPath(); g.arc(x, y, r, RG() * 6, RG() * 6 + 1.6 + RG() * 2); g.stroke(); }
+    for (let i = 0; i < 30000; i++) { g.fillStyle = 'rgba(' + (RG() < 0.5 ? '255,244,224' : '170,120,80') + ',' + (0.08 + RG() * 0.14) + ')'; g.fillRect(RG() * w, RG() * h, 1, 1); }
+    /* the rounded arris, rubbed smooth and a touch darker, with a few soft shallow chips */
+    const tg = g.createLinearGradient(0, 0, 0, 90); tg.addColorStop(0, 'rgba(170,112,70,0.35)'); tg.addColorStop(1, 'rgba(170,112,70,0)'); g.fillStyle = tg; g.fillRect(0, 0, w, 90);
+    for (let i = 0; i < 22; i++) { const x = RG() * w, cw = 14 + RG() * 40, ch = 8 + RG() * 22, gr = g.createRadialGradient(x, 0, 0, x, 0, Math.max(cw, ch));
+      gr.addColorStop(0, 'rgba(176,120,76,0.45)'); gr.addColorStop(1, 'rgba(176,120,76,0)'); g.fillStyle = gr; g.beginPath(); g.ellipse(x, 0, cw, ch, 0, 0, Math.PI); g.fill(); }
+  });
+  const lipMat = new THREE.MeshPhysicalMaterial({ color: 0xe6b884, roughness: 0.86, envMapIntensity: 0.5, name: 'limestone-worn-edge' }); lipMat.userData.txSurface = false;
+  /* the front face itself: a flat plane on the lip with the stone mapped one to one (the texture is 1.9 m by 0.2375 m) */
+  { const FH = SL.t - 0.009, ft = lipTex.clone(); ft.wrapS = ft.wrapT = THREE.RepeatWrapping; ft.repeat.set(3, 3 * FH / (SL.w * 512 / 4096)); ft.needsUpdate = true;
+    const fm = new THREE.MeshStandardMaterial({ map: ft, color: 0xffdcae, roughness: 0.9, envMapIntensity: 0.3, name: 'limestone-front-face' }); fm.userData.txSurface = false;
+    const fp = new THREE.Mesh(new THREE.PlaneGeometry(SL.w, FH), fm); fp.position.set(0, -SL.t / 2, SL.zNear + 0.0004); fp.receiveShadow = true; R.scene.add(fp); }
+  { const lip = TXT.roundedBox(SL.w, SL.t, LIP, 0.0045, lipMat, { segments: 4 }); lip.position.set(0, -SL.t / 2, SL.zNear - LIP / 2); lip.receiveShadow = true; lip.castShadow = true; R.scene.add(lip); }
+  /* the indigo shade under the rail's end and the tabs carried over the arris and down the face */
+  { const c = document.createElement('canvas'); c.width = 512; c.height = 128; const g = c.getContext('2d');
+    for (let y = 0; y < 128; y++) for (let x = 0; x < 512; x += 4) { const u = (x - 256) / 256, v = y / 128, a = Math.max(0, 1 - u * u) * (1 - v) * (1 - v) * 0.62; g.fillStyle = 'rgba(42,30,120,' + a.toFixed(3) + ')'; g.fillRect(x, y, 4, 1); }
+    const t = new THREE.CanvasTexture(c); const m = new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, name: 'face-shade' }); m.userData.txSurface = false;
+    const pl = new THREE.Mesh(new THREE.PlaneGeometry(0.42, SL.t * 0.8), m); pl.position.set(0.05, -SL.t * 0.42, SL.zNear + 0.0009); R.scene.add(pl); }
+  /* the desk under the stone, painted deep indigo, set back under the lip */
+  const deskPaint = new THREE.MeshPhysicalMaterial({ color: 0x2c2a8a, roughness: 0.5, clearcoat: 0.3, name: 'painted-desk' });
+  const apron = TXT.roundedBox(SL.w - 0.06, 0.6, SL.d - 0.1, 0.012, deskPaint); apron.position.set(0, -SL.t - 0.3, slabZ - 0.02); R.scene.add(apron);
+  /* an indigo contact pad under a part, so every foot sits in its own soft dark */
+  const padTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(64, 64, 8, 64, 64, 64); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.55, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })();
+  const pad = (w, d, x, z, ry, a) => { const m = new THREE.MeshBasicMaterial({ map: padTex, color: 0x2a1e78, transparent: true, opacity: a || 0.55, depthWrite: false, name: 'contact-pad' });
+    m.userData.txSurface = false; const pl = new THREE.Mesh(new THREE.PlaneGeometry(w, d), m); pl.rotation.x = -Math.PI / 2; pl.rotation.z = ry || 0; pl.position.set(x, 0.0007, z); R.scene.add(pl); return pl; };
+
+  /* ---- THE TIMING RAIL, refined in this frame: anodised indigo extrusion, T slot, brass graduations ----
+   * built along +x from the zero stop, then turned so +x runs away from the camera (-z) */
+  const RAIL = { L: 1.34, h: 0.042, w: 0.086, x: 0.0, z0: -0.056 };
+  const rail = new THREE.Group();
+  const anod = new THREE.MeshPhysicalMaterial({ color: 0x2f3fc0, metalness: 0.7, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.25, name: 'anodised-aluminium' });
+  anod.userData.txSurface = 'metal';
+  const slotM = new THREE.MeshStandardMaterial({ color: 0x14185a, roughness: 0.55, metalness: 0.4, name: 'anodised-slot' });
+  /* machined brass: fine turning streaks, the corners rubbed brighter where fingers wear them */
+  const brushTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#d8d8d8'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 1400; i++) { g.fillStyle = 'rgba(' + (RG() < 0.5 ? '255,255,255' : '120,120,120') + ',' + (0.05 + RG() * 0.12) + ')'; g.fillRect(0, RG() * h, w, 0.6 + RG() * 1.4); }
+    [[0, 0], [w, 0], [0, h], [w, h]].forEach(([x, y]) => { const gr = g.createRadialGradient(x, y, 0, x, y, w * 0.32); gr.addColorStop(0, 'rgba(255,255,255,0.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  });
+  const brass = new THREE.MeshPhysicalMaterial({ color: 0xd8a848, map: brushTex, metalness: 1, roughness: 0.26, clearcoat: 0.3, name: 'machined-brass' });
+  const brassDull = new THREE.MeshPhysicalMaterial({ color: 0x86602a, map: brushTex, metalness: 1, roughness: 0.55, name: 'cast-brass-patina' });
+  const chamfer = (w, h, t, c, m) => { const sh = new THREE.Shape(); sh.moveTo(-w / 2, -h / 2); sh.lineTo(w / 2, -h / 2); sh.lineTo(w / 2, h / 2); sh.lineTo(-w / 2, h / 2); sh.closePath();
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: t, bevelEnabled: true, bevelThickness: c, bevelSize: c, bevelSegments: 1, curveSegments: 4 }); geo.translate(0, 0, -t / 2);
+    const mesh = new THREE.Mesh(geo, m); mesh.userData.txBevel = false; return mesh; };
+  const brassHi = new THREE.MeshPhysicalMaterial({ color: 0xffd36a, metalness: 1, roughness: 0.1, clearcoat: 1, emissive: 0xffb02a, emissiveIntensity: 0.6, name: 'polished-brass-zero' });
+  const brushRep = brushTex.clone(); brushRep.wrapS = brushRep.wrapT = THREE.RepeatWrapping; brushRep.repeat.set(14, 14); brushRep.needsUpdate = true;
+  const brassE = brass.clone(); brassE.map = brushRep; brassE.name = 'machined-brass-e';
+  const brassDullE = brassDull.clone(); brassDullE.map = brushRep; brassDullE.name = 'cast-brass-patina-e';
+  /* the end caps: brushed anodised aluminium, a small chamfer on every edge to catch the key */
+  const capAnod = new THREE.MeshPhysicalMaterial({ color: 0x3446c8, map: brushRep, metalness: 0.75, roughness: 0.3, clearcoat: 0.4, clearcoatRoughness: 0.2, name: 'brushed-anodised-cap' }); capAnod.userData.txSurface = false;
+  const addBox = (w, h, d, r, m, x, y, z, parent) => { const b = TXT.roundedBox(w, h, d, r, m, { segments: 3 }); b.position.set(x, y, z); (parent || rail).add(b); return b; };
+  /* the extrusion: a body with two raised lips either side of a dark centre slot. It runs on past the zero toward the lens
+   * (XN), so the near end leaves the frame and nothing stacks up in the foreground */
+  const XN = -0.26, RL = RAIL.L - XN, RC = (RAIL.L + XN) / 2;
+  addBox(RL, RAIL.h * 0.78, RAIL.w, 0.006, anod, RC, RAIL.h * 0.39, 0);
+  addBox(RL, RAIL.h * 0.3, RAIL.w * 0.34, 0.004, anod, RC, RAIL.h * 0.78, RAIL.w * 0.33);
+  addBox(RL, RAIL.h * 0.3, RAIL.w * 0.34, 0.004, anod, RC, RAIL.h * 0.78, -RAIL.w * 0.33);
+  addBox(RL - 0.01, 0.004, RAIL.w * 0.3, 0.0015, slotM, RC, RAIL.h * 0.78 - 0.002, 0);
+  [-1, 1].forEach((s) => addBox(RL - 0.004, 0.003, 0.004, 0.0012, slotM, RC, RAIL.h * 0.45, s * RAIL.w / 2));
+  /* graduations: brass ridges on both lips, the pitch tightening as the rail runs away, no numerals on the ridges */
+  const CAR = { L: 0.05, h: 0.014 };
+  const stopInner = 0.0155;                 /* the zero stop's inner face */
+  const X0 = stopInner + CAR.L + 0.006;     /* the zero ridge, at the parked slider's leading edge */
+  const ridges = [];
+  let gx = X0, pitch = 0.07;
+  while (gx < RAIL.L - 0.035) { ridges.push(gx); gx += pitch; pitch = Math.max(0.0075, pitch * 0.89); }
+  ridges.forEach((x, i) => {
+    const zero = i === 0, major = i % 5 === 0, len = zero ? 0.034 : major ? 0.026 : 0.016, hh = zero ? 0.0075 : 0.0028;
+    [-1, 1].forEach((s) => addBox(zero ? 0.005 : 0.0032, hh, len, 0.0016, zero ? brassHi : brass, x, RAIL.h * 0.93 + hh / 2 - 0.0002, s * (RAIL.w / 2 - len / 2 - 0.002)));
+  });
+  /* the far end stop, chamfered brushed anodised aluminium */
+  { const blk = chamfer(RAIL.w + 0.016 - 0.005, 0.05 - 0.005, 0.024 - 0.005, 0.0025, capAnod); blk.rotation.y = Math.PI / 2; blk.position.set(RAIL.L + 0.012, 0.025, 0); rail.add(blk); }
+  /* the zero stop: a low anodised collar clamped on the rail behind the slider, faced with a brass plate */
+  { const cl = chamfer(RAIL.w + 0.004 - 0.003, 0.008 - 0.003, 0.03 - 0.003, 0.0015, capAnod); cl.rotation.y = Math.PI / 2; cl.position.set(stopInner - 0.004 - 0.015, RAIL.h * 0.93 + 0.004, 0); rail.add(cl);
+    addBox(0.004, CAR.h, RAIL.w + 0.004, 0.0012, brassDull, stopInner - 0.002, RAIL.h * 0.93 + CAR.h / 2, 0); }
+  /* THE SLIDER: one clean machined brass block on the rail, parked hard against the zero stop, a bevelled needle at its
+   * leading edge dropping onto the zero mark */
+  const car = new THREE.Group(); car.position.set(stopInner + CAR.L / 2, RAIL.h * 0.93, 0); rail.add(car);
+  { const body = chamfer(RAIL.w + 0.008 - 0.003, CAR.h - 0.003, CAR.L - 0.003, 0.0015, brassE); body.rotation.y = Math.PI / 2; body.position.set(0, CAR.h / 2, 0); car.add(body); }
+  for (let k = 0; k < 0; k++) {   /* (knurl band removed: one clean brass block) */
+    const x = -CAR.L / 2 + 0.012 + k * (CAR.L - 0.024) / 10;
+    const tg = new THREE.Mesh(new THREE.BoxGeometry(0.0012, 0.0007, (RAIL.w + 0.008) * 0.7), brassDull); tg.position.set(x, CAR.h + 0.0001, 0); car.add(tg);
+  }
+  { const tri = new THREE.Shape(), tipX = X0 - (stopInner + CAR.L / 2);
+    tri.moveTo(CAR.L / 2 - 0.014, CAR.h * 0.92); tri.lineTo(CAR.L / 2 - 0.002, CAR.h * 0.92); tri.lineTo(tipX + 0.0012, -0.0055); tri.lineTo(tipX - 0.0012, -0.0055); tri.closePath();
+    const ng = new THREE.ExtrudeGeometry(tri, { depth: 0.0022, bevelEnabled: true, bevelThickness: 0.0008, bevelSize: 0.0007, bevelSegments: 2 });
+    const needle = new THREE.Mesh(ng, brassHi); needle.userData.txBevel = false; needle.position.set(0, 0, (RAIL.w + 0.008) / 2 + 0.0012); car.add(needle); }
+  addBox(0.006, 0.03, 0.002, 0.0008, brassHi, X0, RAIL.h * 0.44, RAIL.w / 2 + 0.001);
+  ridges.forEach((x, i) => { if (i) addBox(0.0022, i % 5 === 0 ? 0.014 : 0.008, 0.0012, 0.0005, brassDull, x, RAIL.h * 0.62, RAIL.w / 2 + 0.0006); });
+  /* THE ZERO PLATE: a small machined brass block standing on the desk beside the rail at the zero line, its face turned to
+   * the reader with a deep engraved 0, so "stands at zero" is read, not inferred */
+  { const PW = 0.034, PH = 0.046, PT = 0.008, pz = RAIL.w / 2 + 0.006 + PW / 2, px = X0 + PT / 2 + 0.001;
+    const blk = chamfer(PW - 0.003, PH - 0.003, PT - 0.003, 0.0015, brassE); blk.rotation.y = -Math.PI / 2; blk.position.set(px, PH / 2, pz); rail.add(blk);
+    const zc = document.createElement('canvas'); zc.width = 340; zc.height = 460; const zg = zc.getContext('2d');
+    zg.fillStyle = '#d9d9d9'; zg.fillRect(0, 0, 340, 460);
+    for (let i = 0; i < 500; i++) { zg.fillStyle = 'rgba(' + (RG() < 0.5 ? '255,255,255' : '130,130,130') + ',' + (0.05 + RG() * 0.1) + ')'; zg.fillRect(0, RG() * 460, 340, 1 + RG()); }
+    zg.font = '700 400px Fraunces'; zg.textAlign = 'center'; zg.textBaseline = 'middle';
+    zg.fillStyle = 'rgba(255,255,255,0.7)'; zg.fillText('0', 174, 252);     /* the lit lower lip of the cut */
+    zg.fillStyle = '#1b1760'; zg.fillText('0', 170, 246);                   /* the cut, filled deep indigo */
+    zg.fillStyle = '#1b1760'; zg.fillRect(0, 444, 340, 8);                  /* the zero line along its foot */
+    const zt = new THREE.CanvasTexture(zc); zt.colorSpace = THREE.SRGBColorSpace; zt.anisotropy = 8;
+    const zm = new THREE.MeshPhysicalMaterial({ map: zt, color: 0xe8b85a, metalness: 0.85, roughness: 0.32, clearcoat: 0.4, name: 'engraved-brass-zero' }); zm.userData.txSurface = false;
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(PW - 0.004, PH - 0.004), zm); face.rotation.y = -Math.PI / 2; face.position.set(px - PT / 2 - 0.0016, PH / 2, pz); rail.add(face);
+  }
+  rail.rotation.y = Math.PI / 2; rail.position.set(RAIL.x, 0, RAIL.z0);
+  shadowAll(rail); R.scene.add(rail);
+  pad(0.16, RAIL.L + 0.1, RAIL.x, RAIL.z0 - RAIL.L / 2, 0, 0.5);
+  pad(0.05, 0.03, RAIL.x + RAIL.w / 2 + 0.023, RAIL.z0 - X0 - 0.005, 0, 0.5);   /* under the zero plate */
+  /* check, in world space: the carriage's near face touches the zero stop's inner face */
+  rail.updateMatrixWorld(true);
+  { const cb = new THREE.Box3().setFromObject(car); const stopZ = RAIL.z0 - stopInner;   /* +x -> -z */
+    if (Math.abs(cb.max.z - stopZ) > 0.0015) throw new Error('the carriage is not parked at the zero stop: ' + cb.max.z.toFixed(4) + ' vs ' + stopZ.toFixed(4)); }
+
+  /* ---- THE TOOL WITHIN REACH: a laptop at the rail's far end, its screen plain cyan, no picture on it ---- */
+  const lap = K.make('laptop', { open: 106, finish: 'silver', screen: 'doc' });
+  let screens = 0;
+  lap.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'PlaneGeometry' && m.geometry.parameters.width > 0.2) { m.material = CH.toolMat(K); m.material.userData.txSurface = false; screens++; } });
+  if (screens !== 1) throw new Error('expected one laptop screen to light, found ' + screens);
+  const LAP = { x: 0.06, z: RAIL.z0 - RAIL.L - 0.2 };
+  lap.position.set(LAP.x, 0, LAP.z); lap.rotation.y = -0.12;
+  shadowAll(lap); TXT.add(R, lap); pad(0.42, 0.34, LAP.x, LAP.z, 0.12, 0.5);
+  /* the glow stays the deck's one tool glow; only the sky's reflection is taken off the glass in this frame so the cyan reads */
+  { const tm = CH.toolMat(K); tm.envMapIntensity = 0.08; tm.roughness = 0.6; }
+  const lapScreen = [LAP.x, 0.13, LAP.z - 0.08];
+  CH.lampGlow(THREE, R, [LAP.x, 0.12, LAP.z - 0.22], 0x22d3ee, 1.0, 0);
+  const spill = new THREE.PointLight(0x22d3ee, 0.9, 0.9, 2); spill.position.set(LAP.x - 0.02, 0.1, RAIL.z0 - RAIL.L - 0.09); R.scene.add(spill);
+
+  /* ---- THE QUESTION TABS, at the rail's foot: FIG.questions brass tabs, pips 1 to n, the first lit ---- */
+  const tabLit = new THREE.MeshPhysicalMaterial({ color: 0xffa82e, map: brushRep, metalness: 1, roughness: 0.34, emissive: 0xff8c10, emissiveIntensity: 0.4, clearcoat: 0.7, name: 'polished-brass' });
+  const tabs = [];
+  for (let i = 0; i < NQ; i++) {
+    const t = new THREE.Group(), m = i === 0 ? tabLit : brassDullE;
+    const plate = chamfer(0.05, 0.034, 0.004, 0.0012, m); plate.rotation.x = -Math.PI / 2; plate.position.y = 0.0032; t.add(plate);
+    for (let p = 0; p <= i; p++) { const pip = new THREE.Mesh(new THREE.SphereGeometry(0.0034, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), m);
+      pip.position.set((p - i / 2) * 0.012, 0.0064, 0.003); t.add(pip); }
+    /* a notch hole at the back, where it would hang on a hook */
+    t.position.set(RAIL.x + 0.1, 0, RAIL.z0 - 0.23 - i * 0.056); t.rotation.y = 0;
+    shadowAll(t); TXT.add(R, t); pad(0.075, 0.055, t.position.x, t.position.z, t.rotation.y, 0.45); tabs.push(t);
+  }
+  if (tabs.length !== NQ) throw new Error('drew ' + tabs.length + ' question tabs, FIG.questions is ' + NQ);
+  const litCount = tabs.filter((t) => t.children[0].material === tabLit).length;
+  if (litCount !== 1 || tabs[0].children[0].material !== tabLit) throw new Error('exactly the first question tab must be lit');
+  CH.lampGlow(THREE, R, [tabs[0].position.x, 0.01, tabs[0].position.z], 0xffd27a, 0.09, 0);
+  { const warm = new THREE.PointLight(0xffc060, 0.25, 0.25, 2); warm.position.set(tabs[0].position.x, 0.05, tabs[0].position.z + 0.02); R.scene.add(warm); }
+
+  /* ---- CAMERA: eleven centimetres above the desk, right over the zero end of the rail, looking down it to the laptop ---- */
+  const FOV = 40, from = [0.10, 0.12, SL.zNear + 0.2];
+  const look = CH.aim(THREE, R, TXT, from, lapScreen, 770, 560, FOV);
+  TXT.frame(R, { fov: FOV, from, look });
+
+  /* ---- LIGHT: the key from the left and a little in front, raking across the ridges ---- */
+  const spec = CH.rigSpec(W, 1.8, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, -0.6], { distance: 6, shadowFar: 14, normalBias: 0.004 }), { light: { az: 35, el: 40 } }));
+  TXT.weather(R, { grime: 0.04, height: 0.03, mottle: 0.05 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.42, fade: 140 });
+  CH.seat(cx, { sel: '.dek', a: 0.55, fade: 150 });
+  TXLOOK.footWash(cx, { a: 0.7, height: 240 });
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.hook', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.dek', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.kick', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.count', a: 0.35, fade: 90 });
+  /* contrast pass 2 */ CH.seat(cx, { sel: '.tx-site', a: 0.5, fade: 60 }); CH.seat(cx, { sel: '.count', a: 0.3, fade: 60 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

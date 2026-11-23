@@ -1,0 +1,245 @@
+<!doctype html>
+<!-- 2026-11-22, frame 9 of 9, the close. BESPOKE, rebuild from concept 2. The curriculum as an object: a course binder lies
+     open in the explainer studio, a rubric page with every cell empty on the left, the course outline on the right with its
+     tab dividers, the last tab blank, a capped pen across it. Behind it two identical closed laptops lie stacked, one cyan
+     sleep light each in the one tool material. Nothing filled in, nothing decided. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:100px; top:140px; width:880px; text-align:center">Results could shape the curriculum</h1>
+<p class="dek" id="dek" style="left:110px; top:1080px; width:860px; text-align:center; font-size:27px; line-height:1.36">Researchers will compare both groups with rubrics, observation and post encounter interviews. Watch for the results. The release says they could help schools decide how and when AI enters the curriculum. Drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  /* THE FIGURES. This frame draws no count, length or share: window.FIG is empty and must stay so. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 9 draws no figure, but window.FIG carries ' + JSON.stringify(window.FIG));
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What to watch", counter: "09 / 09", src: "c16 c17 c8", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 60, fog: 0.0 });
+  const sweep = TXT.studio(R, Object.assign(CH.studioOpts({ w: 3.6, d: 3.0 }), { floor: '#2c56c8', wall: '#2766cc', env: 1.0, hemi: 0.6, softbox: 6.0 }));
+
+  const rb = (w, h, d, r, m, x, y, z, parent) => { const b = TXT.roundedBox(w, h, d, r, m, { segments: 4 }); b.position.set(x, y, z); b.castShadow = true; b.receiveShadow = true; (parent || R.scene).add(b); return b; };
+  const binder = new THREE.Group(); R.scene.add(binder);
+
+  /* ---- materials ---- */
+  const cloth = CH.canvasTex(THREE, 512, 512, (g, w, h) => {      // a bookcloth weave for the covers
+    g.fillStyle = '#808080'; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 4) { g.fillStyle = 'rgba(255,255,255,0.3)'; g.fillRect(0, y, w, 2); }
+    for (let x = 0; x < w; x += 4) { g.fillStyle = 'rgba(0,0,0,0.3)'; g.fillRect(x, 0, 2, h); }
+  }, [2.2, 2.2]);
+  const weave = CH.canvasTex(THREE, 512, 512, (g, w, h) => { g.fillStyle = '#ff8a3e'; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 4) { g.fillStyle = 'rgba(255,214,170,0.22)'; g.fillRect(0, y, w, 2); }
+    for (let x = 0; x < w; x += 4) { g.fillStyle = 'rgba(150,50,10,0.18)'; g.fillRect(x, 0, 2, h); } }, [2.2, 2.2]);
+  const coverMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: weave, roughness: 0.66, bumpMap: cloth, bumpScale: 2.4, sheen: 0.5, sheenColor: new THREE.Color(0xffc29a), name: 'bookcloth-cover' });
+  coverMat.userData.txSurface = 'fabric';
+  const liningMat = new THREE.MeshStandardMaterial({ color: 0xffe9cf, roughness: 0.8, name: 'paper-lining' }); liningMat.userData.txSurface = 'paper';
+  const chrome = new THREE.MeshStandardMaterial({ color: 0xf0ede6, metalness: 1, roughness: 0.24, name: 'chrome-ring-steel' });
+  const edgeTex = CH.canvasTex(THREE, 64, 256, (g, w, h) => { g.fillStyle = '#f6f1e6'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 2) { g.fillStyle = 'rgba(150,135,110,' + (0.18 + ((y * 7) % 5) * 0.03) + ')'; g.fillRect(0, y, w, 1); } });
+  const pageEdge = new THREE.MeshStandardMaterial({ color: 0xf2e6d0, roughness: 0.92, name: 'paper-block-edge' }); pageEdge.userData.txSurface = 'paper';
+
+  /* the rubric page, every cell empty: a grid of criteria rows with greeked labels in the first column only */
+  const rubricTex = CH.canvasTex(THREE, 1024, 1130, (g, w, h) => {
+    const r = CH.rng(311); g.fillStyle = '#fbf8f1'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 5000; i++) { g.fillStyle = 'rgba(120,110,90,' + (r() * 0.05).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.5, 1.5); }
+    g.fillStyle = 'rgba(46,52,120,0.85)'; g.fillRect(90, 80, 360, 22); g.fillStyle = 'rgba(46,52,120,0.45)'; g.fillRect(90, 120, 220, 12);
+    const x0 = 90, x1 = w - 90, y0 = 190, rows = 7, cols = 4, rh = (h - 280 - y0) / rows, c0 = 300, cw = (x1 - x0 - c0) / cols;
+    g.fillStyle = 'rgba(90,98,230,0.16)'; g.fillRect(x0, y0, x1 - x0, rh * 0.6);
+    g.strokeStyle = 'rgba(46,52,120,0.75)'; g.lineWidth = 3;
+    g.strokeRect(x0, y0, x1 - x0, rh * 0.6 + rows * rh);
+    for (let i = 0; i <= rows; i++) { const y = y0 + rh * 0.6 + i * rh; g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y); g.stroke(); }
+    for (let j = 0; j <= cols; j++) { const x = x0 + c0 + j * cw; g.beginPath(); g.moveTo(x, y0); g.lineTo(x, y0 + rh * 0.6 + rows * rh); g.stroke(); }
+    for (let j = 0; j < cols; j++) { g.fillStyle = 'rgba(46,52,120,0.6)'; g.fillRect(x0 + c0 + j * cw + 30, y0 + rh * 0.22, cw * 0.5, 10); }
+    for (let i = 0; i < rows; i++) { let x = x0 + 20; const y = y0 + rh * 0.6 + i * rh + rh * 0.42; const end = x0 + c0 - 30 - r() * 60;
+      while (x < end) { const ww = 20 + r() * 50; g.fillStyle = 'rgba(60,64,92,0.5)'; g.fillRect(x, y, Math.min(ww, end - x), 9); x += ww + 10; } }
+  });
+  const outlineTex = CH.canvasTex(THREE, 1024, 1130, (g, w, h) => {
+    const r = CH.rng(733); g.fillStyle = '#fbf8f1'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 5000; i++) { g.fillStyle = 'rgba(120,110,90,' + (r() * 0.05).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.5, 1.5); }
+    [210, 520, 830].forEach((x) => { g.fillStyle = '#e4dccb'; g.beginPath(); g.arc(70, x, 18, 0, Math.PI * 2); g.fill(); });
+    g.fillStyle = 'rgba(46,52,120,0.85)'; g.fillRect(150, 80, 420, 24);
+    let y = 170;
+    for (let s = 0; s < 6; s++) {
+      g.fillStyle = 'rgba(255,122,46,0.9)'; g.fillRect(150, y, 34, 14);
+      g.fillStyle = 'rgba(46,52,120,0.7)'; g.fillRect(200, y, 180 + r() * 160, 14); y += 40;
+      for (let L = 0; L < 3; L++) { let x = 200; const end = w - 110 - r() * 220; while (x < end) { const ww = 18 + r() * 50; g.fillStyle = 'rgba(60,64,92,0.38)'; g.fillRect(x, y, Math.min(ww, end - x), 8); x += ww + 9; } y += 26; }
+      y += 22;
+    }
+  });
+  const pageMat = (t, n) => { const m = new THREE.MeshStandardMaterial({ map: t, color: 0xf4efe6, roughness: 0.86, name: n }); m.userData.txSurface = 'paper'; return m; };
+
+  /* ---- THE BINDER, open flat: two bookcloth boards 0.31 x 0.33 m either side of a 0.05 m spine ---- */
+  const CW = 0.31, CD = 0.33, CT = 0.005, SP = 0.05;
+  [-1, 1].forEach((s) => {
+    rb(CW, CT, CD, 0.0022, coverMat, s * (SP / 2 + CW / 2), CT / 2, 0, binder);
+    rb(CW - 0.012, 0.0008, CD - 0.012, 0.0004, liningMat, s * (SP / 2 + CW / 2), CT + 0.0004, 0, binder);
+  });
+  rb(SP + 0.004, CT * 0.8, CD, 0.002, coverMat, 0, CT * 0.4, 0, binder);
+  /* the ring mechanism: a chrome plate on the spine, three D rings */
+  rb(0.03, 0.007, 0.27, 0.003, new THREE.MeshStandardMaterial({ color: 0xc9c4ba, metalness: 0.6, roughness: 0.5, envMapIntensity: 0.5, name: 'nickel-ring-plate' }), 0, CT + 0.0035, 0, binder);
+  const ringZ = [-0.095, 0, 0.095];
+  ringZ.forEach((z) => {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.026, 0.0028, 14, 40, Math.PI), chrome);
+    ring.position.set(0, CT + 0.007, z); ring.castShadow = true; binder.add(ring);
+    [-1, 1].forEach((s) => { const rv = new THREE.Mesh(new THREE.CylinderGeometry(0.0035, 0.0035, 0.002, 16), chrome); rv.position.set(s * 0.009, CT + 0.0075, z + (z === 0 ? 0.04 : 0.03)); binder.add(rv); });
+  });
+  /* the right side: the course in a page block with tab dividers; the left side: the rubric, one sheet resting on a few */
+  const PW = 0.28, PD = 0.297, BLK = 0.022, py = CT + 0.0008;
+  const blockR = new THREE.Group(); blockR.position.set(SP / 2 + 0.012 + PW / 2, py, 0); binder.add(blockR);
+  rb(PW, BLK, PD, 0.0015, pageEdge, 0, BLK / 2, 0, blockR);
+  const topR = new THREE.Mesh(new THREE.PlaneGeometry(PW - 0.002, PD - 0.002), pageMat(outlineTex, 'paper-outline-page')); topR.rotation.x = -Math.PI / 2; topR.position.y = BLK + 0.0006; topR.receiveShadow = true; blockR.add(topR);
+  /* the dividers: five tabs proud of the fore edge, staggered down the page; four carry a label strip, the LAST is blank */
+  const TABS = [0xffb648, 0xff6f61, 0xb7a3ff, 0x7fd18b, 0xfbf8f1], tabZ = [-0.118, -0.062, -0.006, 0.05, 0.106];
+  const labelTex = CH.canvasTex(THREE, 128, 64, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(30,34,80,0.8)'; g.fillRect(18, 26, 80, 12); });
+  TABS.forEach((c, i) => {
+    const y = BLK * (0.18 + i * 0.17);
+    const tm = new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.2, name: 'pp-divider-tab' });
+    const tab = rb(0.03, 0.0016, 0.05, 0.0006, tm, PW / 2 + 0.013, y, tabZ[i], blockR);
+    rb(PW, 0.0012, PD, 0.0004, tm, 0, y, 0, blockR).scale.set(0.999, 1, 0.999);
+    if (i < TABS.length - 1) { const lab = new THREE.Mesh(new THREE.PlaneGeometry(0.02, 0.012), new THREE.MeshStandardMaterial({ map: labelTex, roughness: 0.6, name: 'tab-label' })); lab.rotation.x = -Math.PI / 2; lab.position.set(PW / 2 + 0.016, y + 0.0009, tabZ[i]); blockR.add(lab); }
+  });
+  if (TABS.length !== tabZ.length) throw new Error('every divider needs a tab position');
+  const blockL = new THREE.Group(); blockL.position.set(-(SP / 2 + 0.012 + PW / 2), py, 0); binder.add(blockL);
+  rb(PW, 0.004, PD, 0.001, pageEdge, 0, 0.002, 0, blockL);
+  /* the rubric sheet, lifting gently off the rings toward the left */
+  const sheetG = new THREE.PlaneGeometry(PW, PD, 24, 1); const sp = sheetG.attributes.position;
+  for (let i = 0; i < sp.count; i++) { const x = sp.getX(i), t = (x + PW / 2) / PW; sp.setZ(i, 0.0045 + 0.006 * Math.pow(t, 3)); }
+  sheetG.computeVertexNormals();
+  const rubric = new THREE.Mesh(sheetG, pageMat(rubricTex, 'paper-rubric-page')); rubric.rotation.x = -Math.PI / 2; rubric.castShadow = true; rubric.receiveShadow = true; blockL.add(rubric);
+
+  /* the capped pen across the outline: an indigo lacquer barrel, chrome clip and band */
+  const pen = new THREE.Group();
+  const prof = [[0, 0], [0.0012, 0.0005], [0.0035, 0.008], [0.0048, 0.016], [0.0052, 0.03], [0.0052, 0.098], [0.0056, 0.1], [0.0056, 0.142], [0.0044, 0.147], [0, 0.148]];
+  const lacq = new THREE.MeshPhysicalMaterial({ color: 0x2b2a8f, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.05, name: 'lacquer-pen-barrel' });
+  const barrel = new THREE.Mesh(new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1])), 40), lacq); barrel.castShadow = true; pen.add(barrel);
+  const band = new THREE.Mesh(new THREE.CylinderGeometry(0.0058, 0.0058, 0.004, 40), chrome); band.position.y = 0.1; pen.add(band);
+  rb(0.002, 0.045, 0.0035, 0.0009, chrome, 0, 0.12, 0.0062, pen);
+  pen.rotation.set(0, 0.5, Math.PI / 2); pen.rotation.order = 'YZX';
+  pen.position.set(SP / 2 + 0.012 + PW / 2 + 0.07, py + BLK + 0.0062, 0.04); binder.add(pen);
+
+  /* ---- THE DESK: a white oak top 1.5 x 1.05 m, 40 mm thick, standing on the sweep; its front edge is in frame ---- */
+  const TOP = 0;   /* the binder and the laptops stand on the seamless sweep itself */
+  const oakTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(5150); g.fillStyle = '#d98a42'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 420; i++) { const y = r() * h, a = 0.06 + r() * 0.14; g.strokeStyle = r() < 0.5 ? 'rgba(140,82,36,' + a + ')' : 'rgba(255,226,180,' + a + ')'; g.lineWidth = 1 + r() * 3;
+      g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 64) g.lineTo(x, y + Math.sin(x / 180 + i) * 6 + (r() - 0.5) * 3); g.stroke(); }
+    for (let k = 1; k < 4; k++) { g.fillStyle = 'rgba(110,62,26,0.35)'; g.fillRect(0, k * h / 4, w, 2); }
+  }, [2.0, 1.4]);
+  const oak = new THREE.MeshStandardMaterial({ map: oakTex, color: 0xffffff, roughness: 0.4, name: 'honey-oak-desk-top' }); oak.userData.txSurface = 'wood';
+  const tightContact = (w, d, x, y, z, ry, op) => {
+    const t = CH.canvasTex(THREE, 256, 192, (g, cw, ch) => { g.filter = 'blur(5px)'; g.fillStyle = '#000'; g.beginPath(); g.roundRect(12, 12, cw - 24, ch - 24, 8); g.fill(); });
+    const m = new THREE.MeshBasicMaterial({ map: t, color: 0x0a0c2a, transparent: true, opacity: op, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, name: 'contact-shadow' }); m.userData.txSurface = false;
+    const pl = new THREE.Mesh(new THREE.PlaneGeometry(w, d), m); pl.rotation.x = -Math.PI / 2; pl.rotation.z = ry; pl.position.set(x, y, z); pl.renderOrder = 1; pl.castShadow = false; R.scene.add(pl); return pl;
+  };
+  binder.position.set(-0.04, TOP, 0.06); binder.rotation.y = 0.03;
+  /* OCCLUSION, not a hard cast: the sweep takes no shadow map (the key's thin-object casts came out as hard royal blue
+   * blocks), and each object instead sits in a soft indigo occlusion, darkest along the contact line and fading out over
+   * `f` metres past every edge, plus one wide soft cast leaning away from the key (az -40: toward +x, -z). */
+  sweep.receiveShadow = false;
+  const aoPlane = (w, d, x, z, ry, f, core, cast) => {
+    const PX = 900, cw = Math.round((w + 2 * f + 0.08) * PX), ch = Math.round((d + 2 * f + 0.08) * PX);
+    const t = CH.canvasTex(THREE, cw, ch, (g, W2, H2) => {
+      const ox = (0.04 + f) * PX, oy = (0.04 + f) * PX;
+      g.save(); g.filter = 'blur(' + Math.round(f * PX * 1.4) + 'px)'; g.fillStyle = 'rgba(0,0,0,' + cast + ')';
+      g.beginPath(); g.roundRect(ox + 0.022 * PX, oy - 0.026 * PX, w * PX, d * PX, 10); g.fill(); g.restore();
+      g.save(); g.filter = 'blur(' + Math.round(f * PX * 0.6) + 'px)'; g.fillStyle = 'rgba(0,0,0,' + core + ')';
+      g.beginPath(); g.roundRect(ox - 0.002 * PX, oy - 0.002 * PX, (w + 0.004) * PX, (d + 0.004) * PX, 6); g.fill(); g.restore();
+    });
+    const m = new THREE.MeshBasicMaterial({ map: t, color: 0x120d44, transparent: true, opacity: 1, toneMapped: false, fog: false, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, name: 'indigo-occlusion' });
+    m.userData.txSurface = false;
+    const pl = new THREE.Mesh(new THREE.PlaneGeometry(cw / PX, ch / PX), m); pl.rotation.x = -Math.PI / 2; pl.rotation.z = ry;
+    pl.position.set(x, TOP + 0.0012, z); pl.renderOrder = 1; pl.castShadow = false; R.scene.add(pl); return pl;
+  };
+  aoPlane(2 * CW + SP + 0.004, CD, -0.04, 0.06, 0.03, 0.045, 1.0, 0.7);
+  /* the pen's own contact: a narrow feathered shadow under the barrel, offset a few mm away from the key */
+  { const penDir = new THREE.Vector3(-Math.cos(0.5), 0, Math.sin(0.5)), pc = pen.position.clone().addScaledVector(penDir, 0.074);
+    const t = CH.canvasTex(THREE, 512, 64, (g, w, h) => { g.filter = 'blur(6px)'; g.fillStyle = '#000'; g.beginPath(); g.roundRect(20, 18, w - 40, h - 36, 12); g.fill(); });
+    const m = new THREE.MeshBasicMaterial({ map: t, color: 0x141a40, transparent: true, opacity: 0.7, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3, name: 'pen-contact-shadow' }); m.userData.txSurface = false;
+    const ps = new THREE.Mesh(new THREE.PlaneGeometry(0.16, 0.02), m); ps.rotation.x = -Math.PI / 2; ps.rotation.z = 0.5;
+    ps.position.set(pc.x + 0.004, py + BLK + 0.0011, pc.z - 0.004); ps.renderOrder = 2; ps.castShadow = false; binder.add(ps); }
+
+  /* ---- THE PAIR: two identical closed laptops, stacked behind the binder, one sleep light each in the one tool material ---- */
+  const toolMat = CH.toolMat(K), laps = [];
+  [0, 1].forEach((i) => {
+    const lap = K.make('laptop', { open: 0, screen: 'off', finish: 'silver' });
+    lap.position.set(0.02 + i * 0.05, TOP + i * 0.0142, -0.27 - i * 0.01); lap.rotation.y = -0.05 + i * 0.035;
+    const satin = new THREE.MeshPhysicalMaterial({ color: 0xc9cde0, metalness: 0.55, roughness: 0.46, clearcoat: 0.2, clearcoatRoughness: 0.4, name: 'bead-blasted-aluminium' });
+    let sw = 0; lap.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xc4c7ca) { m.material = satin; sw++; } });
+    if (!sw) throw new Error('laptop shell material not found');
+    TXT.add(R, lap);
+    const led = TXT.roundedBox(0.03, 0.0034, 0.002, 0.0012, toolMat); led.position.set(0, 0.0064, 0.1112); led.userData.txBevel = false; lap.add(led);
+    laps.push({ lap, led });
+  });
+  /* a tight contact shadow directly under the bottom laptop's feet: a 4 mm feathered rounded rect just past its footprint, no halo */
+  const ctex = CH.canvasTex(THREE, 256, 192, (g, w, h) => { g.filter = 'blur(6px)'; g.fillStyle = 'rgba(0,0,0,1)'; g.beginPath(); g.roundRect(14, 14, w - 28, h - 28, 10); g.fill(); });
+  const cm = new THREE.MeshBasicMaterial({ map: ctex, color: 0x070a24, transparent: true, opacity: 0.95, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, name: 'contact-shadow' });
+  cm.userData.txSurface = false;
+  aoPlane(0.312, 0.221, laps[0].lap.position.x, laps[0].lap.position.z, laps[0].lap.rotation.y, 0.035, 1.0, 0.75);
+  /* each lid: a dark seam between lid and base along the front and sides, and a rear hinge barrel proud of the back edge */
+  const seamMat = new THREE.MeshStandardMaterial({ color: 0x15161c, roughness: 0.5, name: 'rubber-lid-seam' });
+  const hingeMat = new THREE.MeshStandardMaterial({ color: 0x2c2e36, metalness: 0.6, roughness: 0.35, name: 'cast-hinge-barrel' });
+  laps.forEach(({ lap }) => {
+    const at = (m, x, y, z) => { m.position.set(x, y, z); lap.add(m); return m; };
+    at(TXT.roundedBox(0.306, 0.0012, 0.0016, 0.0005, seamMat), 0, 0.0128, 0.1103);
+    [-1, 1].forEach((sx) => at(TXT.roundedBox(0.0016, 0.0012, 0.2, 0.0005, seamMat), sx * 0.1555, 0.0128, 0));
+    const hb = new THREE.Mesh(new THREE.CylinderGeometry(0.0042, 0.0042, 0.23, 24), hingeMat); hb.rotation.z = Math.PI / 2; hb.position.set(0, 0.0105, -0.1135); hb.castShadow = true; lap.add(hb);
+    [[-0.13, -0.09], [0.13, -0.09], [-0.13, 0.09], [0.13, 0.09]].forEach(([fx, fz]) => { const ft = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.0075, 0.0022, 20), seamMat); ft.position.set(fx, 0.0004, fz); lap.add(ft); });
+  });
+  if (laps.length !== 2 || laps[0].led.material !== laps[1].led.material) throw new Error('the two sleep lights must share the one tool material');
+  if (CH.TOOL_GLOW.intensity !== toolMat.emissiveIntensity) throw new Error('the sleep light is not at CH.TOOL_GLOW intensity');
+
+  /* ---- CAMERA: a raked three quarter from the reader's side, the binder centred, the studio floor quiet above and below ---- */
+  /* the bottom laptop's feet are on the sweep: its lowest point within 2 mm of the floor, or the frame refuses to render */
+  { const bb = new THREE.Box3().setFromObject(laps[0].lap); if (Math.abs(bb.min.y - TOP) > 0.002) throw new Error('bottom laptop floats ' + (bb.min.y - TOP).toFixed(4) + ' m off the sweep'); }
+  /* FIT: push the camera in as far as the binder and the stack allow, with the binder wholly inside the frame,
+   * clear of the headline above and the dek wash below */
+  const TGT = [0.0, TOP + 0.01, -0.07], OFF = [0.1, 1.28, 0.88];
+  let k = 0.5, fit = null;
+  for (let it = 0; it < 90; it++) {
+    const from = [TGT[0] + OFF[0] * k, TGT[1] + OFF[1] * k, TGT[2] + OFF[2] * k];
+    let sx = 540, sy = 707, x0, x1, y0, y1;
+    for (let c = 0; c < 4; c++) {     // centre the pair's box in the window the type leaves (x 26 to 1054, y 350 to 1064)
+      CH.aim(THREE, R, TXT, from, TGT, sx, sy, 34);
+      const b = CH.rectOf(THREE, R, binder, 0), l = CH.rectOf(THREE, R, laps[1].lap, 0);
+      x0 = Math.min(b[0], l[0]); x1 = Math.max(b[0] + b[2], l[0] + l[2]); y0 = Math.min(b[1], l[1]); y1 = Math.max(b[1] + b[3], l[1] + l[3]);
+      sx += 540 - (x0 + x1) / 2; sy += 707 - (y0 + y1) / 2;
+    }
+    if (x0 >= 26 && x1 <= 1054 && y0 >= 350 && y1 <= 1064) { fit = { k, x0, x1, y0, y1 }; break; }
+    k *= 1.015;
+  }
+  if (!fit) throw new Error('could not fit the binder and the stack inside the frame');
+  window.__fit09 = fit;
+
+  /* ---- LIGHT: the window key from high front left, tight shadow camera for crisp contact ---- */
+  const spec = CH.rigSpec(W, 0.9, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, -0.1], { distance: 6, shadowFar: 14, normalBias: 0.004 }), { light: { az: -40, el: 58 } }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.02, height: 0.02, mottle: 0.04 });
+
+  const glows = laps.map(({ led }) => { led.updateMatrixWorld(true); const p = new THREE.Vector3(); led.getWorldPosition(p);
+    return CH.lampGlow(THREE, R, [p.x, p.y, p.z + 0.012], CH.TOOL_GLOW.color, 0.016, 0); });
+  { const a = new THREE.Vector3(), b = new THREE.Vector3(); laps[0].led.getWorldPosition(a); laps[1].led.getWorldPosition(b); if (a.distanceTo(b) < 0.04) throw new Error('the two sleep lights would merge'); }
+  if (glows[0].material.opacity !== glows[1].material.opacity || glows[0].scale.x !== glows[1].scale.x) throw new Error('the two sleep glows differ');
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.36, fade: 110 });
+  CH.seat(cx, { sel: '.dek', a: 0.62, fade: 80 });
+  TXLOOK.footWash(cx, { tone: 'explainer', a: 0.45, height: 170 });
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.kick', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.count', a: 0.35, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "clinicians": {
+  "value": 80,
+  "from": [
+   "c2"
+  ],
+  "basis": "Dell Med clinicians in the lab"
+ },
+ "half": {
+  "value": 40,
+  "from": [
+   "c2",
+   "c4",
+   "c5"
+  ],
+  "basis": "clinicians // 2, the size of each arm"
+ },
+ "ama_2026_pct": {
+  "value": 81,
+  "from": [
+   "c15"
+  ],
+  "basis": "percent of doctors using AI in practice, the release citing a 2026 AMA survey"
+ },
+ "ama_2023_pct": {
+  "value": 38,
+  "from": [
+   "c15"
+  ],
+  "basis": "percent reported in 2023, the release citing the AMA"
+ },
+ "ama_year": {
+  "value": 2026,
+  "from": [
+   "c15"
+  ],
+  "basis": "the survey year"
+ },
+ "ama_base_year": {
+  "value": 2023,
+  "from": [
+   "c15"
+  ],
+  "basis": "the earlier year the release compares with"
+ },
+ "announced_month": {
+  "value": "October",
+  "from": [
+   "c1"
+  ],
+  "basis": "month of the announcement"
+ },
+ "announced_day": {
+  "value": 20,
+  "from": [
+   "c1"
+  ],
+  "basis": "day of the announcement"
+ },
+ "announced_year": {
+  "value": 2026,
+  "from": [
+   "c1"
+  ],
+  "basis": "year of the announcement"
+ },
+ "questions": {
+  "value": 3,
+  "from": [
+   "c9",
+   "c10",
+   "c11"
+  ],
+  "basis": "count of the researcher's quoted questions"
+ }
+}

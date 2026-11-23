@@ -1,0 +1,239 @@
+<!doctype html>
+<!-- 2026-11-22, frame 7 of 9, QUESTION THREE (c11 c7). BESPOKE. A long limestone bench climbs diagonally away from a clinician
+     seated with their back to us at station one. Three brass handoff trays cross the bench at three stations, ask, synthesize and
+     diagnose; every shuttle pan is parked on the clinician's edge holding its card, every far pan on the tool's edge is empty,
+     and a laptop glows cyan at the far end of the bench. The headline sits in the quiet cerulean sweep top right; three brass
+     question tabs stand on the bench's near end, the third lit. Drawn to illustrate; no real room, no interface, no result. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:496px; top:170px; width:504px">How much reasoning gets handed off?</h1>
+<p class="dek" data-follow="22" style="left:548px; width:452px; font-size:27px">Each clinician will ask questions, synthesize information and arrive at a diagnosis. Kang asks how much reasoning work gets handed off to the AI tool as the diagnosis evolves. Trays drawn to illustrate.</p>
+<div class="lab plain" id="lab0">ask</div>
+<div class="lab plain" id="lab1">synthesize</div>
+<div class="lab plain" id="lab2">diagnose</div>
+
+<script>window.FIG = {"questions": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-22-fairtest-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Question three", counter: "07 / 09", src: "c11 c7", fit: { min: 70, max: 80, maxLines: 3 } });
+
+  /* HONEST. The brief's figure is FIG.questions. The brass question tabs are built FROM it, the third lit; the stations are
+   * c7's three acts (ask, synthesize, diagnose), one handoff tray each. Both are checked against what is drawn below. */
+  const FIG = window.FIG;
+  if (Object.keys(FIG).join() !== 'questions' || FIG.questions !== 3) throw new Error('frame 7 expects FIG {questions:3}, got ' + JSON.stringify(FIG));
+  const ACTS = ['ask', 'synthesize', 'diagnose'];
+  const NQ = FIG.questions, LIT = 3;
+  if (LIT > NQ) throw new Error('the lit tab is past the last question tab');
+
+  const R = CH.stage(TXT, gl, W, { fov: 24, near: 0.05, far: 60, fog: 0.0001 });
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 26, d: 14 }), { h: 14, radius: 2.2, floor: '#4c97ea', wall: '#2f86dc' }));
+  const rnd = CH.rng(CH.SEED + 7);
+
+  /* ---- MATERIALS ---- */
+  const limeTex = CH.canvasTex(THREE, 1024, 512, (g, w, h) => {
+    g.fillStyle = '#efe3c8'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) { const x = rnd() * w, y = rnd() * h, r = 20 + rnd() * 90; const gr = g.createRadialGradient(x, y, 0, x, y, r);
+      const warm = rnd() < 0.5; gr.addColorStop(0, warm ? 'rgba(214,180,128,0.16)' : 'rgba(255,250,236,0.18)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x - r, y - r, 2 * r, 2 * r); }
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(' + (rnd() < 0.5 ? '150,120,80' : '255,255,248') + ',' + (rnd() * 0.22).toFixed(3) + ')'; const s = 0.8 + rnd() * 1.6; g.fillRect(rnd() * w, rnd() * h, s, s); }
+    /* fossil fragments: small shell arcs, the Austin chalk's own tooth */
+    for (let i = 0; i < 70; i++) { const x = rnd() * w, y = rnd() * h, r = 3 + rnd() * 7; g.strokeStyle = 'rgba(160,128,86,' + (0.18 + rnd() * 0.2).toFixed(2) + ')'; g.lineWidth = 1.2;
+      g.beginPath(); g.arc(x, y, r, rnd() * 6, rnd() * 6 + 2.4); g.stroke(); }
+  });
+  const LIME = K.mat('ft-limestone-bench', { color: 0xffffff, map: limeTex, roughness: 0.78, metalness: 0, clearcoat: 0.08, clearcoatRoughness: 0.6 }, true);
+  LIME.userData.txSurface = 'concrete';
+  const FRAME = K.mat('ft-indigo-powdercoat', { color: 0x3340a8, roughness: 0.42, metalness: 0.55, clearcoat: 0.4 }, true);
+  const BRASS = K.mat('ft-brass', { color: CH.BRASS, metalness: 1, roughness: 0.28 });
+  const BRASS_LIT = K.mat('ft-brass-lit', { color: 0xe8c262, metalness: 0.6, roughness: 0.22, emissive: 0xff9a1a, emissiveIntensity: 0.55 }, true);
+  const FELT = K.mat('ft-rubber-foot', { color: 0x1d2152, roughness: 0.85 });
+
+  const shadowAll = (o) => { o.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return o; };
+  /* ---- THE BENCH: a 0.07 m limestone slab, 3.0 x 0.85 m, top at 0.75 m, on indigo powder coat trestles ---- */
+  const BL = 3.6, BD = 0.85, TOP = 0.75, SLAB = 0.07;
+  const bench = new THREE.Group();
+  K.box(BL, SLAB, BD, LIME, 0, TOP - SLAB, 0, 0.012, bench);
+  for (const x of [-BL / 2 + 0.28, BL / 2 - 0.28]) {
+    K.box(0.06, TOP - SLAB - 0.04, 0.06, FRAME, x, 0.04, BD / 2 - 0.12, 0.01, bench);
+    K.box(0.06, TOP - SLAB - 0.04, 0.06, FRAME, x, 0.04, -BD / 2 + 0.12, 0.01, bench);
+    K.box(0.07, 0.04, BD - 0.1, FRAME, x, 0.0, 0, 0.012, bench);                 /* the foot rail */
+    K.box(0.07, 0.04, BD - 0.14, FRAME, x, TOP - SLAB - 0.045, 0, 0.012, bench);  /* the slab bearer */
+    for (const z of [BD / 2 - 0.08, -BD / 2 + 0.08]) K.box(0.08, 0.008, 0.05, FELT, x, -0.004, z, 0.003, bench);
+  }
+  K.box(BL - 0.62, 0.05, 0.035, FRAME, 0, TOP - SLAB - 0.12, -BD / 2 + 0.12, 0.01, bench);   /* the back stretcher */
+  bench.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  TXT.add(R, bench); TXT.contact(R, bench, { opacity: 0.55 });
+
+  /* ---- THE THREE STATIONS, one handoff tray each, every shuttle parked on the clinician's side (+z) ---- */
+  const TS = 1.8, SX = [1.2, 0.05, -1.1];          /* station one nearest the camera, station three toward the laptop */
+  if (SX.length !== ACTS.length) throw new Error('stations and acts differ');
+  const PAN = K.mat('ft-brushed-brass-pan', { color: 0xe0b45e, metalness: 0.82, roughness: 0.36, clearcoat: 0.25 }, true);
+  const TOOL = CH.toolMat(K);                       /* the tool's one glow: the laptop screen and every receiving rim share it */
+  const CARD = K.mat('ft-card-stock', { color: 0xfbf7ec, roughness: 0.88, sheen: 0.2 }, true);
+  /* a bevelled brass pan, 0.12 m square in tray units: a floor, four rolled walls and a rounded lip; `rim` lays a glow strip on the lip */
+  const makePan = (parent, z, rim) => {
+    const p = new THREE.Group(); p.position.set(0, 0.014, z); parent.add(p);
+    K.box(0.12, 0.004, 0.12, PAN, 0, 0, 0, 0.0018, p);
+    for (const q of [0.0565, -0.0565]) { K.box(0.12, 0.018, 0.007, PAN, 0, 0.002, q, 0.0032, p); K.box(0.007, 0.018, 0.12, PAN, q, 0.002, 0, 0.0032, p); }
+    if (rim) for (const q of [0.0565, -0.0565]) { K.box(0.124, 0.0042, 0.0075, rim, 0, 0.0196, q, 0.002, p); K.box(0.0075, 0.0042, 0.124, rim, q, 0.0196, 0, 0.002, p); }
+    p.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return p;
+  };
+  const trays = SX.map((x, i) => {
+    const t = K.make('handoff_tray', { at: 0, filled: false, seed: i });
+    t.scale.setScalar(TS); t.position.set(x, TOP, -0.02); TXT.add(R, t);
+    /* a brass end stop on the clinician's end of each track, and a rubber bumper on the tool's end */
+    K.box(0.07, 0.022, 0.012, PAN, 0, 0, 0.2, 0.004, t); K.box(0.07, 0.022, 0.012, FELT, 0, 0, -0.2, 0.004, t);
+    /* the chassis shuttle pan is replaced by the bevelled one, on the same shuttle, so the shuttle's position still decides */
+    const sp = t.userData.shuttle; sp.children.slice().forEach((c) => { c.visible = false; });
+    const near = makePan(sp, 0, null); near.position.y = 0;
+    /* the reasoning still held: card stock under one curled printed slip, in the near pan */
+    const stack = new THREE.Group(); stack.position.set(0, 0.004, 0); near.add(stack);
+    for (let k = 0; k < 3; k++) { const c = K.box(0.096, 0.0024, 0.076, CARD, (rnd() - 0.5) * 0.006, k * 0.0026, (rnd() - 0.5) * 0.006, 0.0009, stack); c.rotation.y = (rnd() - 0.5) * 0.14; c.castShadow = true; c.receiveShadow = true; }
+    const slip = K.make('output_slip', { seed: 20 + i, curl: 0.012 }); slip.scale.setScalar(0.43); slip.position.set(0.002, 3 * 0.0026 + 0.0004, 0.002); slip.rotation.y = (rnd() - 0.5) * 0.1; stack.add(slip);
+    /* the receiving pan on the tool's side: empty, its lip rimmed in the tool's glow */
+    t.userData.near = near; t.userData.stack = stack; t.userData.far = makePan(t, -0.13, TOOL);
+    TXT.contact(R, t, { opacity: 0.32 });
+    return t;
+  });
+  /* THE INVARIANT this frame draws: every shuttle on the clinician's side holding its cards, every receiving pan empty */
+  trays.forEach((t, i) => {
+    if (!(t.userData.shuttle.position.z > 0.1)) throw new Error('station ' + ACTS[i] + ': shuttle is not on the clinician side');
+    if (t.userData.stack.children.length !== 4) throw new Error('station ' + ACTS[i] + ': the near pan should hold its cards and slip');
+    if (t.userData.far.children.length !== 9) throw new Error('station ' + ACTS[i] + ': the receiving pan is not empty (' + t.userData.far.children.length + ')');
+  });
+  if (trays.length !== ACTS.length) throw new Error('tray count ' + trays.length + ' differs from the three acts');
+  /* THE TOOL'S SIDE: one long receiving channel along the bench's far edge. All three empty pans open into it, both its lips are lit in
+   * the tool's one glow (CH.toolMat), and it runs to the laptop's foot, so every rail ends at the tool */
+  const AN = K.mat('ft-anod', { color: CH.INDIGO_AL, metalness: 0.85, roughness: 0.34 });
+  const farZ = -0.02 - 0.13 * TS, ZC = -0.388, LAPX = -BL / 2 + 0.29, chX0 = SX[0] + 0.18, chX1 = LAPX + 0.1;
+  { const ch = new THREE.Group();
+    K.box(chX0 - chX1, 0.006, 0.07, AN, 0, 0, 0, 0.002, ch);                                  /* the trough floor */
+    for (const dz of [0.032, -0.032]) { K.box(chX0 - chX1, 0.016, 0.008, AN, 0, 0.004, dz, 0.003, ch); K.box(chX0 - chX1, 0.004, 0.009, TOOL, 0, 0.02, dz, 0.0015, ch); }
+    K.box(0.008, 0.02, 0.07, AN, (chX0 - chX1) / 2, 0, 0, 0.003, ch);                         /* the closed end past station one */
+    ch.position.set((chX0 + chX1) / 2, TOP, ZC); shadowAll(ch); TXT.add(R, ch); }
+  trays.forEach((t, i) => { const fp = t.userData.far.getWorldPosition(new THREE.Vector3()); if (Math.abs(fp.z - ZC) > 0.16 || fp.x > chX0 || fp.x < chX1) throw new Error('station ' + ACTS[i] + ': the receiving pan does not open into the tool channel'); });
+
+  /* ---- THE QUESTION TABS: FIG.questions separate cast brass tabs on the bench's near end, the third lit with a warm glint.
+   *      Each carries its question's count in domed pips (q + 1), read from FIG, never a typed numeral; each has its own contact ---- */
+  const PIPM = K.mat('ft-cast-brass-pip', { color: 0xf2cf7a, metalness: 0.9, roughness: 0.22 });
+  let plates = 0; const tabList = [];
+  for (let q = 0; q < NQ; q++) {
+    const z = -0.12 + ((NQ - 1) / 2 - q) * 0.17;   /* read left to right from the camera, the third on the right */
+    const mat = (q + 1 === LIT) ? BRASS_LIT : PAN;
+    const tab = new THREE.Group(); tab.position.set(BL / 2 - 0.14, TOP, z); tab.rotation.y = 0.12;
+    K.box(0.11, 0.024, 0.13, PAN, 0, 0, 0, 0.009, tab);                                         /* its own cast foot */
+    const plate = new THREE.Group(); plate.position.set(0, 0.024, 0); plate.rotation.z = -0.1; tab.add(plate);
+    K.box(0.02, 0.17, 0.12, mat, 0, 0, 0, 0.008, plate); plates++;
+    for (let k = 0; k <= q; k++) { const pip = new THREE.Mesh(new THREE.SphereGeometry(0.012, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), (q + 1 === LIT) ? BRASS_LIT : PIPM);
+      pip.rotation.z = -Math.PI / 2; pip.position.set(0.0095, 0.13 - k * 0.036, 0); plate.add(pip); }
+    shadowAll(tab); TXT.add(R, tab); TXT.contact(R, tab, { opacity: 0.4 }); tabList.push(tab);
+  }
+  if (plates !== NQ || tabList.length !== NQ) throw new Error('tabs drawn ' + plates + ' differ from FIG.questions ' + NQ);
+  /* the warm glint on the lit tab, a small warm point light at its face */
+  { const g = new THREE.PointLight(0xffb040, 0.5, 0.6, 2); const lp = tabList[LIT - 1].position; g.position.set(lp.x + 0.12, TOP + 0.14, lp.z); R.scene.add(g); }
+
+  /* ---- THE CLINICIAN at station one, on a mesh chair, back to us, both hands resting on the parked shuttle ---- */
+  /* a backless lab stool, built here at true size: a padded round seat on a chrome gas column, a foot ring and a five arm cast
+   * base on twin wheel casters. No backrest, so nothing crosses the clinician's back and the claim id corner stays clear. */
+  const CZ = BD / 2 + 0.36, PX = SX[0] + 0.05, SEAT = 0.52;
+  const chair = new THREE.Group();
+  { const CHR = K.finish.chrome(), BASE = K.mat('ft-stool-cast-base', { color: 0x1e2350, roughness: 0.45, metalness: 0.6, clearcoat: 0.3 }, true);
+    const VIN = K.mat('ft-stool-vinyl', { color: 0x3a49b0, roughness: 0.5, clearcoat: 0.5, clearcoatRoughness: 0.35, sheen: 0.2 }, true);
+    const RUB = K.finish.rubber();
+    const seat = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.185, 0.07, 48), VIN); seat.position.y = SEAT - 0.035; chair.add(seat);
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.188, 0.012, 12, 48), VIN); rim.rotation.x = Math.PI / 2; rim.position.y = SEAT - 0.012; chair.add(rim);
+    const pan = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.03, 32), BASE); pan.position.y = SEAT - 0.085; chair.add(pan);
+    K.cyl(0.026, 0.026, SEAT - 0.2, CHR, 0, 0.11, 0, 24, chair);
+    K.cyl(0.04, 0.04, 0.16, BASE, 0, 0.08, 0, 24, chair);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.009, 10, 48), CHR); ring.rotation.x = Math.PI / 2; ring.position.y = 0.27; chair.add(ring);
+    for (let k = 0; k < 5; k++) { const a = k / 5 * Math.PI * 2 + 0.3, cx0 = Math.cos(a), sz0 = Math.sin(a);
+      K.bar([cx0 * 0.03, 0.27, sz0 * 0.03], [cx0 * 0.2, 0.27, sz0 * 0.2], 0.006, CHR, 8, chair);                       /* ring spokes */
+      K.bar([0, 0.1, 0], [cx0 * 0.28, 0.065, sz0 * 0.28], 0.016, BASE, 10, chair);                                      /* base arm */
+      const caster = new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.026, 0.03, 20), RUB); caster.rotation.z = Math.PI / 2; caster.rotation.y = -a; caster.position.set(cx0 * 0.28, 0.026, sz0 * 0.28); chair.add(caster); }
+    shadowAll(chair); }
+  chair.position.set(PX, 0, CZ); TXT.add(R, chair); const chairMarks = [].concat(TXT.contact(R, chair, { opacity: 0.5 }) || []);
+  chair.updateMatrixWorld(true);
+  const ray = new THREE.Raycaster(new THREE.Vector3(PX, 2, CZ), new THREE.Vector3(0, -1, 0));
+  const hit = ray.intersectObject(chair, true)[0]; if (!hit) throw new Error('no stool seat under the ray');
+  const seatTop = hit.point.y;
+  /* the near pan's two side lips in world space, turned into the person's frame (rotated half a turn about y at PX, CZ) */
+  const person = K.make('person', { pose: 'sit_read', seed: 11, shirt: 0xf3f1ea, trousers: 0x2c3576, build: 'male', hat: 'none', headPitch: 0.35,   /* short hair, so no long strand curtain at feed size */
+    hands: [[0.11, seatTop + 0.14, 0.26], [-0.11, seatTop + 0.14, 0.26]] });   /* hands in the lap, under the bench's edge */
+  const A = person.userData.attach; if (!A || !A.seat) throw new Error('person publishes no seat attach');
+    person.rotation.y = Math.PI; person.position.set(PX, seatTop - A.seat[1] + 0.004, CZ + A.seat[2]);
+  /* the coat: a matte cotton white a step under paper, so its folds model under the key instead of clipping */
+  /* the coat: the kit caps a white cloth's albedo, so the coat is found as the person's palest neutral cloth and taken a step down,
+   * matte and with no sheen, so its folds model under the key and the lap stops picking up the sweep's blue */
+  person.traverse((m) => { if (!m.isMesh || !m.material || !m.material.color || !/^p-(cloth|shirt)/.test(m.material.name || '')) return;
+    const c = m.material.color, L = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b; if (L < 0.4 || Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b) > 0.08) return;
+    m.material = m.material.clone(); m.material.color.multiplyScalar(0.74); m.material.roughness = 0.97; if ('sheen' in m.material) m.material.sheen = 0; m.material.envMapIntensity = 0.55; m.material.specularIntensity = 0.35; });
+  TXT.add(R, person);
+
+  /* ---- THE TOOL: a laptop at the far end, its screen one flat cyan glow showing nothing ---- */
+  const lap = K.make('laptop', { open: 104, screen: 'off', finish: 'space' });
+  lap.rotation.y = Math.PI / 2; lap.position.set(LAPX, TOP, -0.27);   /* on the far edge, at the channel's end, its screen facing down the stations */ TXT.add(R, lap);
+  let bez = null; lap.traverse((m) => { if (m.isMesh && !bez && m.material && /bezel/.test(m.material.name || '')) bez = m; });
+  if (!bez) lap.traverse((m) => { if (m.isMesh && !bez && m.material && m.material.roughness === 0.15) bez = m; });
+  if (!bez) throw new Error('laptop bezel not found');
+  const glow = new THREE.Mesh(new THREE.PlaneGeometry(0.296, 0.185), TOOL);
+  glow.position.set(0, 0.004 + 0.012 + 0.185 / 2, 0.0012); bez.parent.add(glow);
+  const pl = new THREE.PointLight(CH.TOOL_GLOW.color, 0.6, 1.4, 2); lap.updateMatrixWorld(true);
+  const gp = glow.getWorldPosition(new THREE.Vector3()); pl.position.set(gp.x + 0.2, TOP + 0.04, ZC + 0.05); R.scene.add(pl);
+
+  /* ---- CAMERA: high three quarter from behind the chair, long lens ---- */
+  TXT.frame(R, { fov: 26, from: [5.7, 3.7, 2.1], look: [-0.95, 0.47, -0.55] });
+  /* THE HEAD CLEARS EVERY PARKED STACK. Project the clinician's head and each near pan; while the head overlaps one, slide the clinician
+   * and stool back from the bench and a touch toward the near end (down on screen), then hold the claim id corner clear of the stool. */
+  const projBox = (box) => { let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; for (let k = 0; k < 8; k++) { const q = CH.project(THREE, R, [k & 1 ? box.max.x : box.min.x, k & 2 ? box.max.y : box.min.y, k & 4 ? box.max.z : box.min.z]); x0 = Math.min(x0, q[0]); y0 = Math.min(y0, q[1]); x1 = Math.max(x1, q[0]); y1 = Math.max(y1, q[1]); } return { x0, y0, x1, y1 }; };
+  const hits = (a, b, pad) => a.x0 < b.x1 + pad && a.x1 > b.x0 - pad && a.y0 < b.y1 + pad && a.y1 > b.y0 - pad;
+  const headBox = () => { person.updateMatrixWorld(true); const e = person.localToWorld(new THREE.Vector3(A.eye[0], A.eye[1], A.eye[2] - 0.07)); return new THREE.Box3(new THREE.Vector3(e.x - 0.1, e.y - 0.13, e.z - 0.1), new THREE.Vector3(e.x + 0.1, e.y + 0.12, e.z + 0.1)); };
+  const nearBoxes = () => trays.map((t) => { t.updateMatrixWorld(true); return projBox(new THREE.Box3().setFromObject(t.userData.near)); });
+  let steps = 0;
+  while (nearBoxes().some((nb) => hits(projBox(headBox()), nb, 10)) && steps < 14) { const dx = 0.03, dz = 0.008; person.position.z += dz; chair.position.z += dz; person.position.x += dx; chair.position.x += dx; chairMarks.forEach((m) => { if (m && m.position) { m.position.z += dz; m.position.x += dx; } }); steps++; }
+  const hb = projBox(headBox()); nearBoxes().forEach((nb, i) => { if (hits(hb, nb, 6)) throw new Error('the clinician\'s head overlaps the near pan at station ' + ACTS[i]); });
+  { chair.updateMatrixWorld(true);
+    /* the stool's true outline on screen, from its own vertices rather than its bounding box, whose corners project wider than the stool */
+    let sb = { x0: 1e9, y0: 1e9, x1: -1e9, y1: -1e9 }; const v = new THREE.Vector3();
+    chair.traverse((m) => { if (!m.isMesh || !m.visible) return; const P = m.geometry.attributes.position; for (let k = 0; k < P.count; k += 3) { v.fromBufferAttribute(P, k).applyMatrix4(m.matrixWorld); const q = CH.project(THREE, R, [v.x, v.y, v.z]); if (q[1] > CH.H || q[0] < 0) continue; sb.x0 = Math.min(sb.x0, q[0]); sb.y0 = Math.min(sb.y0, q[1]); sb.x1 = Math.max(sb.x1, q[0]); sb.y1 = Math.max(sb.y1, q[1]); } });
+    const src = document.querySelector('.src');
+    if (src) { const r = src.getBoundingClientRect(); if (hits(sb, { x0: r.left, y0: r.top, x1: r.right, y1: r.bottom }, 8)) throw new Error('the stool runs into the claim id corner: stool ' + [sb.x0, sb.y0, sb.x1, sb.y1].map(Math.round).join(',')); } }
+
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), Object.assign(CH.rigOpts([0, 0.5, 0], { distance: 12, shadowFar: 30, normalBias: 0.006 }), { light: { az: 120, el: 40 } }));
+  TXT.weather(R, { grime: 0.04, height: 0.08, mottle: 0.05 });
+
+  /* labels pinned beyond each station's far pan, on the sweep above the bench's far edge */
+  trays.forEach((t, i) => { t.updateMatrixWorld(true); const p = t.position;
+    const el = document.getElementById('lab' + i);
+    if (i === 0) {   /* 'ask' sits on the bench just above its near tray, beside the clinician */
+      const np = t.userData.near.getWorldPosition(new THREE.Vector3()), q = CH.project(THREE, R, [np.x, np.y, np.z]);
+      el.style.left = Math.round(q[0] - el.offsetWidth / 2) + 'px'; el.style.top = Math.round(q[1] - el.offsetHeight - 34) + 'px'; return; }
+    const off = [[0, 0], [0.33, -0.1], [0.33, 0.2]][i]; const q = CH.project(THREE, R, [p.x + off[0], TOP, p.z + off[1]]);
+    el.style.left = Math.min(1000 - el.offsetWidth, Math.round(q[0] - el.offsetWidth / 2)) + 'px'; el.style.top = Math.round(q[1] - el.offsetHeight / 2) + 'px'; });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.44, fade: 150 });
+  { const dk = document.querySelector('.dek').getBoundingClientRect(); CH.seat(cx, { box: { x: dk.left, y: dk.top, w: dk.width, h: dk.height }, a: 0.5, fade: 90 }); }
+  { const kk = document.querySelector('.kick'); if (kk) { const b = kk.getBoundingClientRect(); CH.seat(cx, { box: { x: b.left, y: b.top, w: b.width, h: b.height }, a: 0.5, fade: 80 }); } }
+  /* the site line sits across the bench's cast shadow edge: seat it in the tone's deep hue so the shadow edge does not run through it */
+  { const sr = document.querySelector('.src'); if (sr) { const b = sr.getBoundingClientRect(); CH.seat(cx, { box: { x: b.left - 10, y: b.top - 4, w: b.width + 20, h: b.height + 8 }, a: 0.78, fade: 60 }); } }
+  { const b = document.getElementById('site').getBoundingClientRect(); CH.seat(cx, { box: { x: b.left - 10, y: b.top - 4, w: b.width + 20, h: b.height + 8 }, a: 0.72, fade: 70 }); }
+  TXLOOK.footWash(cx, { a: 0.55, height: 200 });
+  /* contrast pass 1 */ CH.seat(cx, { sel: '.hook', a: 0.32, fade: 28 }); ['#lab0','#lab1','#lab2'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 14 })); CH.seat(cx, { sel: '.kick', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.count', a: 0.35, fade: 90 }); CH.seat(cx, { sel: '.count', a: 0.45, fade: 70 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
