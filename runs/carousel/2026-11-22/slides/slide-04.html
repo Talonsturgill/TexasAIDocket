@@ -27,7 +27,6 @@
 <script>
 window.renderReady = (async () => {
   /* HONEST. The brief gives no figure and the art draws no count or length that stands for one. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 4 draws no figure, so window.FIG must be empty');
 
   const cx = await CH.bootFlat({ kicker: "The comparison", counter: "04 / 09", src: "c5", fit: { min: 80, max: 100, maxLines: 2 } });
   cx.scale(2, 2);

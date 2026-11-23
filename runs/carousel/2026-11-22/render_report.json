@@ -222,9 +222,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 34395,
+      "render_ms": 34335,
       "ok": true,
-      "load_ms": 203,
+      "load_ms": 247,
       "canvases": [
         {
           "x": 0,
@@ -410,9 +410,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 22201,
+      "render_ms": 23343,
       "ok": true,
-      "load_ms": 179,
+      "load_ms": 173,
       "canvases": [
         {
           "x": 0,
@@ -616,9 +616,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 33266,
+      "render_ms": 36092,
       "ok": true,
-      "load_ms": 182,
+      "load_ms": 181,
       "canvases": [
         {
           "x": 0,
@@ -646,7 +646,7 @@
       "file": "slide-04.html",
       "png": "slide-04.png",
       "console_errors": [
-        "TXBENCH: RELIEF {\"height_range\":156.6410024803059,\"materials\":11,\"cast_fraction\":0.9339101508916323,\"area\":1,\"render_ms\":16882.60000000149}"
+        "TXBENCH: RELIEF {\"height_range\":156.6410024803059,\"materials\":11,\"cast_fraction\":0.9339101508916323,\"area\":1,\"render_ms\":17493.5}"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -810,9 +810,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 21294,
+      "render_ms": 22141,
       "ok": true,
-      "load_ms": 111,
+      "load_ms": 106,
       "canvases": [
         {
           "x": 0,
@@ -1010,9 +1010,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 21314,
+      "render_ms": 21230,
       "ok": true,
-      "load_ms": 178,
+      "load_ms": 173,
       "canvases": [
         {
           "x": 0,
@@ -1024,8 +1024,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 143.4,
-          "variance": 2784.6
+          "mean": 141.4,
+          "variance": 2580.3
         }
       ],
       "breather": false,
@@ -1248,9 +1248,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 20472,
+      "render_ms": 20132,
       "ok": true,
-      "load_ms": 185,
+      "load_ms": 174,
       "canvases": [
         {
           "x": 0,
@@ -1532,9 +1532,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 25676,
+      "render_ms": 23817,
       "ok": true,
-      "load_ms": 186,
+      "load_ms": 182,
       "canvases": [
         {
           "x": 0,
@@ -1546,8 +1546,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 146.9,
-          "variance": 2578
+          "mean": 146.3,
+          "variance": 2540.4
         }
       ],
       "breather": false,
@@ -1792,9 +1792,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 16045,
+      "render_ms": 15807,
       "ok": true,
-      "load_ms": 175,
+      "load_ms": 167,
       "canvases": [
         {
           "x": 0,
@@ -1992,9 +1992,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 21276,
+      "render_ms": 18714,
       "ok": true,
-      "load_ms": 203,
+      "load_ms": 177,
       "canvases": [
         {
           "x": 0,

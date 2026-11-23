@@ -75,6 +75,13 @@ See `flow_and_art_review.md`. The flow critic predicted art at 7.0 and named cya
 - **A hard fail at the cap was repaired, not shipped.** Round 3's integrity and reader judges hard-failed a typed 0 painted into frame 5's art by the round 2 repair. The glyph and the dek's "stands at zero" were replaced, and the two judges re-issued their cards on the repaired frame. The craft judge's card was not re-requested, because it charged no hard fail and frame 5 lost an object rather than gained one.
 - **Two judges' fixes were not made.** Taking cyan off frame 1's UpToDate pill and screen would have re-opened an audition frame the art director had accepted, at the cap. It is queued as a repeat of `accent-meaning-drifts-across-bespoke-frames`.
 
+## After the PR opened, CI's shipped_check refused four things, all repaired
+- **FIG lines.** Five slides read `window.FIG` dynamically, through `Object.keys` or an alias, so `fig_inject --check` couldn't read them. Their assertion code now reads `FIG.name` statically, and frame 8's line dropped two figures it never read. All seven re-rendered frames were byte-identical before the glow change below.
+- **The accent.** `#22d3ee` measured on only frames 1 and 2, because tone mapping pushed the tool's cyan toward white. On frames 5 and 7 the `ft-tool` material now skips tone mapping and emits pure `#22d3ee`, so the accent measures on frames 1, 2, 5 and 7. This changed frame 5's and 7's pixels after round 3 had scored them. The change makes the tool read as the deck's one cyan and touches nothing else. The art director re-read frame 7.
+- **Value cut.** Frame 3's drop to 31.5 L* (measurements.json) is the turn into the live encounter, and the storyboard now declares it.
+- **Slide 2's layout** was declared GRID, but at thumb scale its 80 stethoscopes read as two banks rather than separable units. It is now FIGURE_SCALE, a count drawn to scale, which is what it is.
+- **Topic prose** carried number words the run never computed, and they are gone from the ledger entry.
+
 ## Retro
 
 - **Queued, not fixed** (the weekly pass is not due; the last pass was November 22nd). Two new lines went to `MACHINE_QUEUE.md`. `canvas-glyph-numeral-escapes-numeral-gates` covers a digit painted by fillText into a texture, which every gate missed and two judges hard-failed. `drawn-to-illustrate-boilerplate-on-every-dek` covers the disclosure phrase closing eight of nine deks. Three open lines took a repeat: `kmake-centres-footprint` (the chassis paper_roll and exam_table), `kit-person-reads-as-mannequin-within-two-metres` (frames 1 and 7, plus a coat whose material swap never applied) and `accent-meaning-drifts-across-bespoke-frames` (cyan on the AI off arm).
@@ -115,14 +122,14 @@ Measured by `studio_clock.py --report`, minutes from wake.
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
 | aggregates     | PASS   | 5 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 7.33 MB, vector |
-| score          | WARN   | 7.502 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| assembly       | PASS   | 9 slide(s), 7.34 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 42 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 81 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
-| dossiers       | PASS   | 32,370 chars planned |
+| dossiers       | PASS   | 32,545 chars planned |
 | caption        | PASS   | 139 words |
-| craft floor    | PASS   | 9 frame(s), median 2785, floor 501 |
+| craft floor    | PASS   | 9 frame(s), median 2664, floor 479 |
 | plan vs render | WARN   | 0 of 62 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body NO / deadline yes / next step NO |
 | absences       | WARN   | 2 of 4 scoped to a named document, 2 unscoped |

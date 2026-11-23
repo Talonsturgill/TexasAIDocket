@@ -31,7 +31,7 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Question one", counter: "05 / 09", src: "c9", fit: { min: 96, max: 128, maxLines: 2 } });
 
-  /* THE FIGURE. One brass tab per question the study asks, the first lit. Read from window.FIG, never typed. */
+  /* THE FIGURE. One brass tab per question the study asks, the first lit. Read from FIG.questions, never typed. */
   const NQ = FIG.questions;
   if (!Number.isInteger(NQ) || NQ < 1) throw new Error('FIG.questions is not a whole count: ' + NQ);
 
@@ -240,6 +240,8 @@ window.renderReady = (async () => {
   TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, -0.6], { distance: 6, shadowFar: 14, normalBias: 0.004 }), { light: { az: 35, el: 40 } }));
   TXT.weather(R, { grime: 0.04, height: 0.03, mottle: 0.05 });
 
+  /* the tool's glow renders at the accent's own hue: its material skips tone mapping, so cyan reads as the deck's one accent */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.name === 'ft-tool') { m.material.toneMapped = false; m.material.emissiveIntensity = 1.0; m.material.color.setHex(0x000000); m.material.needsUpdate = true; } });
   const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
   CH.seat(cx, { sel: '.hook', a: 0.42, fade: 140 });
   CH.seat(cx, { sel: '.dek', a: 0.55, fade: 150 });

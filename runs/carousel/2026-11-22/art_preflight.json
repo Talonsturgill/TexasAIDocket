@@ -19,9 +19,9 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-07.html": "48e9d507403c21875df43d958f623bfa9a992ff989374fd0269c2bde32555070",
-    "render/slide-07.png": "71f492b2b1335109d658e93a4b800471e7e6c5b5d006b468d18202b9cb1f6122",
-    "slides/slide-09.html": "ee87bb03eadcecc1c1d54a141b6a76f0bd852c8dc93af6359664e2d4277f9b41",
+    "slides/slide-07.html": "0f7d1b845fa0d8b5a9907eb623dcff5bd87058ef6e9483d11e418033dd6821ba",
+    "render/slide-07.png": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a",
+    "slides/slide-09.html": "4429323a03c19dea7d97297895e6bd9b656e235c7da4f4347a6946a08ff9c022",
     "render/slide-09.png": "d861023a4fc63d2fa5315e0ade87c291bef2891eef8baa580d91e04d82ccc888"
   },
   "value_measurements": [
@@ -36,12 +36,12 @@
     },
     {
       "frame": "slide-07.png",
-      "median_L": 65.6,
+      "median_L": 65.5,
       "mid": 0.464,
       "dark": 0.003,
       "grey_mid": 0.024,
-      "vivid": 0.762,
-      "median_C": 36.8
+      "vivid": 0.771,
+      "median_C": 37.3
     },
     {
       "frame": "slide-09.png",
@@ -69,9 +69,9 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-07.html": "48e9d507403c21875df43d958f623bfa9a992ff989374fd0269c2bde32555070",
-      "render/slide-07.png": "71f492b2b1335109d658e93a4b800471e7e6c5b5d006b468d18202b9cb1f6122",
-      "slides/slide-09.html": "ee87bb03eadcecc1c1d54a141b6a76f0bd852c8dc93af6359664e2d4277f9b41",
+      "slides/slide-07.html": "0f7d1b845fa0d8b5a9907eb623dcff5bd87058ef6e9483d11e418033dd6821ba",
+      "render/slide-07.png": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a",
+      "slides/slide-09.html": "4429323a03c19dea7d97297895e6bd9b656e235c7da4f4347a6946a08ff9c022",
       "render/slide-09.png": "d861023a4fc63d2fa5315e0ade87c291bef2891eef8baa580d91e04d82ccc888"
     },
     "frames": [
@@ -79,7 +79,7 @@
         "slide": 1,
         "role": "cover",
         "subject": "A raked cutaway of two mirrored limestone exam rooms that share one glass wall. Each room is whole: a blue door, an exam table with a seated actor, a white-coated clinician on a mesh chair and a cart with a cyan screen. The two carts face each other across the glass.",
-        "visual_consequence": "Without the headline, it reads as two matched rooms with the same table, actor, clinician and cart in the same mirrored places, split by one glass pane that casts a diagonal shadow on the back wall. The two cyan screens glow at equal intensity. It is a fair two-arm setup with one difference, named by the two pills. Unchanged since my accepted reading (same digests).",
+        "visual_consequence": "Without the headline, it reads as two matched rooms with the same table, actor, clinician and cart in the same mirrored places, split by one glass pane that casts a diagonal shadow on the back wall. The two cyan screens glow at equal intensity. It is a fair two-arm setup with one difference, named by the two pills. Source and render digests are unchanged since my accepted reading.",
         "weakness": "Minor. A plain pink sky band of about 150 px sits between the dek wash and the wall top. A narrow saturated cobalt strip runs along the very top edge of the frame. The kit faces are simple at native size but aren't visible at feed size.",
         "repair": "None required. At polish, either soften the cobalt strip along the top edge into the wash or remove it.",
         "encoding_reads": true,
@@ -104,10 +104,10 @@
       {
         "slide": 7,
         "role": "evidence",
-        "subject": "A diagonal limestone bench with three handoff trays. Each has indigo rails, a brass pan holding paper on the clinician's side and an empty cyan-rimmed pan on the tool's side beside a cyan channel that leads to a glowing laptop. A short-haired clinician in a white coat sits from behind on a blue stool, and three brass tabs stand at the foot with the third lit.",
-        "visual_consequence": "Without the headline, three identical stations hold paper on the person's side and nothing yet on the tool's side. It reads as a handoff not yet made, three times, and that holds at 432 px. The clinician's head clears station two's near pan. Unchanged since my accepted reading (same digests).",
-        "weakness": "Minor and secondary. A faint translucent pale-blue patch shows at the coat's lap, the hairline has small notches at the ear, and the headline seat reads as a defined plate on the pale sky. None of these affects the encoding or shows at feed size.",
-        "repair": "None required. At polish, make the lap area opaque and smooth the hairline at the ear.",
+        "subject": "A diagonal limestone bench with three handoff trays. Each has indigo rails, a brass pan holding paper on the clinician's side and an empty pan on the tool's side, now rimmed in true cyan beside a cyan channel lip that leads to a laptop with a solid cyan screen. A short-haired clinician in a white coat sits from behind on a blue stool, and three brass tabs stand at the foot with the third lit.",
+        "visual_consequence": "Without the headline, three identical stations hold paper on the person's side and nothing yet on the tool's side. It reads as a handoff not yet made, three times. The accent change makes this clearer. The laptop screen, the three far-pan rims and the channel lip are now one saturated cyan (slide-07-r2c1, slide-07-r2c2, slide-07-r3c2), so the tool's side of every tray reads as belonging to the tool at a glance, and it holds at 432 px. The three rims match each other in intensity. Nothing else moved: the bench, trays, clinician, tabs, pills and type seats are identical to my accepted reading.",
+        "weakness": "Minor. Because the cyan skips tone mapping, the rims and the channel lip are flat, unshaded neon lines with no highlight or shading on their bevels (slide-07-r3c2, the tray-three rim; slide-07-r2c1, the station-one rim). They read as graphic outlines on modelled brass rather than lit metal. The laptop screen is a flat cyan field with a hot spot at its base. The earlier secondary notes stand: a translucent patch at the coat's lap and notches in the hairline at the ear.",
+        "repair": "None required. At polish, keep the emissive cyan but add a faint view-dependent darkening on the rims' outer bevel so they read as lit material while keeping the measured accent.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
@@ -123,17 +123,17 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-07.html": "48e9d507403c21875df43d958f623bfa9a992ff989374fd0269c2bde32555070",
-          "render/slide-07.png": "71f492b2b1335109d658e93a4b800471e7e6c5b5d006b468d18202b9cb1f6122"
+          "slides/slide-07.html": "0f7d1b845fa0d8b5a9907eb623dcff5bd87058ef6e9483d11e418033dd6821ba",
+          "render/slide-07.png": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a"
         }
       },
       {
         "slide": 9,
         "role": "close",
         "subject": "A larger open course binder in tangerine bookcloth on a cobalt sweep. It has an empty rubric grid, a greeked outline, chrome three-ring hardware, five pastel tabs and a blue pen. Two closed satin laptops are stacked up and to the right, each with a cyan sleep light.",
-        "visual_consequence": "Without the headline, an empty rubric and two shut laptops read as a curriculum not yet decided. My last revise landed. The hard royal-blue offset blocks are gone. The binder now rests on the sweep: a soft indigo occlusion is darkest right at its cover edge and fades outward, deepest along the near and left edges (slide-09-r2c1, cover edge from tile x about 210 to 400; slide-09-r3c1, near edge at tile y about 40 to 160). The laptop stack has the same soft indigo contact under its near and right edges (slide-09-r2c2, tile y about 300 to 360). The tabs now sit in that same soft shade instead of on hard blue blocks. The group fills about half the frame and the empty upper-left band has closed. The binder is fully inside the frame, the page edges are plain paper, and the pen keeps its shadow.",
-        "weakness": "Minor. The occlusion was built as a large rectangular soft plane, and its straight outer boundaries faintly show on the sweep. One soft straight edge runs diagonally across the upper left (slide-09-r2c1, from tile x 0, y about 100 to x 1080, y about 190), and a near-vertical lighter step sits right of the tabs (slide-09-r2c2, tile x about 730 to 770, y 280 to 900). They read as a faint panel rather than a seam or a muddy band, and they are barely visible at 432 px. The halo also wraps every side of the binder almost evenly, so the lean away from the key is weak.",
-        "repair": "None required for the audition. At polish, give the occlusion quad a radial or distance-based falloff that reaches zero well inside its boundary, so no straight edge shows. Weight it slightly more toward the side away from the key.",
+        "visual_consequence": "Without the headline, an empty rubric and two shut laptops read as a curriculum not yet decided. The binder and the laptop stack rest on the sweep in soft indigo contact shade, and the group fills about half the frame. The render digest (d861023a...) is identical to the image I accepted last pass. Only the slide source changed, in its assertion code, so the picture I judged is the picture bound here.",
+        "weakness": "Minor and carried over. The occlusion plane's straight outer boundaries faintly show on the sweep, as a diagonal soft edge in the upper left and a vertical lighter step right of the tabs. The halo wraps the binder almost evenly, so it leans only weakly away from the key.",
+        "repair": "None required. At polish, give the occlusion quad a falloff that reaches zero inside its boundary, weighted toward the side away from the key.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
@@ -149,12 +149,12 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-09.html": "ee87bb03eadcecc1c1d54a141b6a76f0bd852c8dc93af6359664e2d4277f9b41",
+          "slides/slide-09.html": "4429323a03c19dea7d97297895e6bd9b656e235c7da4f4347a6946a08ff9c022",
           "render/slide-09.png": "d861023a4fc63d2fa5315e0ade87c291bef2891eef8baa580d91e04d82ccc888"
         }
       }
     ],
-    "reviewer_note": "Decision is accept. Frame 9's binder and laptops now rest on the sweep with soft indigo contact shadows. The only thing left is a faint rectangular edge to that shadow, which is a polish item. For frame 9 I opened the new render, its 432 px copy and all six crops listed in /home/user/TexasAIDocket/out/2026-11-22/tmp/critic_brief_179.txt. I did not reopen the contact sheet this pass. Frames 1 and 7 keep my accepted readings because their digests match. I could only read files, so I didn't recompute any hash. Every digest above is copied exactly from the current /home/user/TexasAIDocket/out/2026-11-22/art_preflight.json."
+    "reviewer_note": "Decision is accept. Frame 7's new pure-cyan rims, channel and screen make the tool's side of each tray read more clearly, and nothing else in the frame moved. For frame 7 I opened the new render, its 432 px copy and all six crops. Frame 1's source and render are unchanged since my accepted reading. Frame 9's render is byte-identical to the one I accepted and only its source changed, so I didn't reopen its image. I could only read files, so I didn't recompute any hash. Every digest above is copied exactly from the current /home/user/TexasAIDocket/out/2026-11-22/art_preflight.json."
   },
   "plan": {
     "hardest_frame": 7,
@@ -190,8 +190,8 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-07.html": "48e9d507403c21875df43d958f623bfa9a992ff989374fd0269c2bde32555070",
-      "render/slide-07.png": "71f492b2b1335109d658e93a4b800471e7e6c5b5d006b468d18202b9cb1f6122"
+      "slides/slide-07.html": "0f7d1b845fa0d8b5a9907eb623dcff5bd87058ef6e9483d11e418033dd6821ba",
+      "render/slide-07.png": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a"
     },
     "9": {
       "assets/js/deck/2026-11-22-fairtest-bespoke.js": "ceeef94b8bd3b9f8c9b851deab27d5fd8d2d19adfad915757816d7dfe5510e82",
@@ -205,19 +205,20 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-09.html": "ee87bb03eadcecc1c1d54a141b6a76f0bd852c8dc93af6359664e2d4277f9b41",
+      "slides/slide-09.html": "4429323a03c19dea7d97297895e6bd9b656e235c7da4f4347a6946a08ff9c022",
       "render/slide-09.png": "d861023a4fc63d2fa5315e0ade87c291bef2891eef8baa580d91e04d82ccc888"
     }
   },
   "needs_review": [
+    7,
     9
   ],
   "shipped_inputs": {
     "slides/slide-01.html": "90bf104b7ab14f919f571f52779378f8628783a9183977863f87c4ed9b71ef90",
     "slide-01.webp": "353908e1360de74d5aa54e5dc278af0accc2d2d1737aa5cba38660a4ddf322e3",
-    "slides/slide-07.html": "48e9d507403c21875df43d958f623bfa9a992ff989374fd0269c2bde32555070",
-    "slide-07.webp": "e0ae44e6744c40172c0fb11cbf3570c6d20ee4bec81e44f36609d58e681c23d8",
-    "slides/slide-09.html": "ee87bb03eadcecc1c1d54a141b6a76f0bd852c8dc93af6359664e2d4277f9b41",
+    "slides/slide-07.html": "0f7d1b845fa0d8b5a9907eb623dcff5bd87058ef6e9483d11e418033dd6821ba",
+    "slide-07.png": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a",
+    "slides/slide-09.html": "4429323a03c19dea7d97297895e6bd9b656e235c7da4f4347a6946a08ff9c022",
     "slide-09.webp": "033c9338d263658809581146ad3a0bd49c932827e59a6201861bfab931358723"
   },
   "encodings": [
@@ -228,10 +229,10 @@
       "psnr_db": 40.118
     },
     {
-      "to": "slide-07.webp",
-      "to_sha256": "e0ae44e6744c40172c0fb11cbf3570c6d20ee4bec81e44f36609d58e681c23d8",
-      "from_sha256": "71f492b2b1335109d658e93a4b800471e7e6c5b5d006b468d18202b9cb1f6122",
-      "psnr_db": 40.178
+      "to": "slide-07.png",
+      "to_sha256": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a",
+      "from_sha256": "526881565990103af8832c0138b9f897af66e75d67b954ebd97844adb3bc717a",
+      "psnr_db": 999.0
     },
     {
       "to": "slide-09.webp",

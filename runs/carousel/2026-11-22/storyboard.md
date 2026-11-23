@@ -45,6 +45,7 @@ CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE
 9. NEXT, THE CURRICULUM. Know: how it is measured, and what the results could change. c16 c17 c8.
 
 Showstopper frame: 01
+VALUE CUT: frame 3. The deck turns from the set up rooms and the counted cohort to the live encounter in its dim observation room, and the drop in value is that turn.
 Tonal arc: a bright studio morning on the cut away rooms, cool interior light down the corridor wall, warm spill through a doorway, a crisp relief on the wall plate, three studio desks under a clean key, the coolest and most even studio for the cited survey, and a warm studio still life of the open binder at the close.
 
 ## CRAFT PLAN
@@ -98,7 +99,7 @@ type:
 ---
 ```yaml
 slide: 2
-layout: GRID
+layout: FIGURE_SCALE
 primary_image:
   subject: a white oak pegboard wall holding 80 coiled stethoscopes on steel hooks in two banks of 40 with a gap between them, tubing in four tone colours seeded and never encoding a group, each with a polished chest piece
   rect: [0, 360, 1080, 990]

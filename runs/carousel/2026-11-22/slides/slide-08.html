@@ -18,7 +18,7 @@
 <div class="lab plain" id="lab-2023">2023</div>
 <div class="lab plain" id="lab-2026">2026</div>
 <div class="lab plain" id="lab-src" style="font-size:24px">AMA survey, as cited in the release</div>
-<script>window.FIG = {"ama_2026_pct": 81, "ama_2023_pct": 38, "ama_year": 2026, "ama_base_year": 2023};</script>
+<script>window.FIG = {"ama_2026_pct": 81, "ama_2023_pct": 38};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -39,7 +39,7 @@ window.renderReady = (async () => {
 
   /* THE FIGURE. Each sheet's length along the table, from the head edge to its curled end, is its share times 0.02 m. */
   const M_PER_PT = 0.02, TICK_PTS = 10;
-  ['ama_2026_pct', 'ama_2023_pct'].forEach((k) => { if (!Number.isFinite(FIG[k]) || FIG[k] <= 0 || FIG[k] > 100) throw new Error(k + ' is not a share'); });
+  if (!Number.isFinite(FIG.ama_2026_pct) || FIG.ama_2026_pct <= 0 || FIG.ama_2026_pct > 100) throw new Error('ama_2026_pct is not a share'); if (!Number.isFinite(FIG.ama_2023_pct) || FIG.ama_2023_pct <= 0 || FIG.ama_2023_pct > 100) throw new Error('ama_2023_pct is not a share');
   const L26 = FIG.ama_2026_pct * M_PER_PT, L23 = FIG.ama_2023_pct * M_PER_PT, TICK = TICK_PTS * M_PER_PT;
 
   CH.KEY_SCALE = 0.9;

@@ -36,8 +36,6 @@ window.renderReady = (async () => {
   if (hb.left < 64 || hb.right > 1016 || hb.top < 140) throw new Error('the headline leaves the safe field');
   if (db.bottom > 1196 || db.right > 1016) throw new Error('the dek runs into the footer at ' + Math.round(db.bottom));
 
-  /* THE FIGURES: this frame draws no count, so FIG must stay empty */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 3 draws no figure, but FIG carries ' + Object.keys(window.FIG).join(','));
 
   const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.03, far: 80, fog: 0 });
   const rnd = CH.rng(20261103);

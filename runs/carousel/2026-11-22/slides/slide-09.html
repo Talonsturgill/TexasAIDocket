@@ -22,8 +22,6 @@ import * as THREE from '@@ASSETS@@/js/three.module.min.js';
 import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
-  /* THE FIGURES. This frame draws no count, length or share: window.FIG is empty and must stay so. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 9 draws no figure, but window.FIG carries ' + JSON.stringify(window.FIG));
 
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What to watch", counter: "09 / 09", src: "c16 c17 c8", fit: { min: 70, max: 92, maxLines: 2 } });

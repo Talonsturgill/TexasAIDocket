@@ -32,8 +32,7 @@ window.renderReady = (async () => {
 
   /* HONEST. The brief's figure is FIG.questions. The brass question tabs are built FROM it, the third lit; the stations are
    * c7's three acts (ask, synthesize, diagnose), one handoff tray each. Both are checked against what is drawn below. */
-  const FIG = window.FIG;
-  if (Object.keys(FIG).join() !== 'questions' || FIG.questions !== 3) throw new Error('frame 7 expects FIG {questions:3}, got ' + JSON.stringify(FIG));
+  if (FIG.questions !== 3) throw new Error('frame 7 expects three questions, got ' + FIG.questions);
   const ACTS = ['ask', 'synthesize', 'diagnose'];
   const NQ = FIG.questions, LIT = 3;
   if (LIT > NQ) throw new Error('the lit tab is past the last question tab');
@@ -126,7 +125,7 @@ window.renderReady = (async () => {
   trays.forEach((t, i) => { const fp = t.userData.far.getWorldPosition(new THREE.Vector3()); if (Math.abs(fp.z - ZC) > 0.16 || fp.x > chX0 || fp.x < chX1) throw new Error('station ' + ACTS[i] + ': the receiving pan does not open into the tool channel'); });
 
   /* ---- THE QUESTION TABS: FIG.questions separate cast brass tabs on the bench's near end, the third lit with a warm glint.
-   *      Each carries its question's count in domed pips (q + 1), read from FIG, never a typed numeral; each has its own contact ---- */
+   *      Each carries its question's count in domed pips (q + 1), read from FIG.questions, never a typed numeral; each has its own contact ---- */
   const PIPM = K.mat('ft-cast-brass-pip', { color: 0xf2cf7a, metalness: 0.9, roughness: 0.22 });
   let plates = 0; const tabList = [];
   for (let q = 0; q < NQ; q++) {
@@ -222,6 +221,8 @@ window.renderReady = (async () => {
     const off = [[0, 0], [0.33, -0.1], [0.33, 0.2]][i]; const q = CH.project(THREE, R, [p.x + off[0], TOP, p.z + off[1]]);
     el.style.left = Math.min(1000 - el.offsetWidth, Math.round(q[0] - el.offsetWidth / 2)) + 'px'; el.style.top = Math.round(q[1] - el.offsetHeight / 2) + 'px'; });
 
+  /* the tool's glow renders at the accent's own hue: its material skips tone mapping, so cyan reads as the deck's one accent */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.name === 'ft-tool') { m.material.toneMapped = false; m.material.emissiveIntensity = 1.0; m.material.color.setHex(0x000000); m.material.needsUpdate = true; } });
   const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
   CH.seat(cx, { a: 0.44, fade: 150 });
   { const dk = document.querySelector('.dek').getBoundingClientRect(); CH.seat(cx, { box: { x: dk.left, y: dk.top, w: dk.width, h: dk.height }, a: 0.5, fade: 90 }); }

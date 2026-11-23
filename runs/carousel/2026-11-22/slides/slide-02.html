@@ -27,10 +27,9 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The cohort", counter: "02 / 09", src: "c2 c3 c18 c1", fit: { min: 70, max: 96, maxLines: 1 } });
 
   /* HONESTY. The count drawn is FIG.clinicians, in two banks of FIG.half, and the code below throws on any mismatch. */
-  const F = window.FIG;
-  if (F.clinicians !== 2 * F.half) throw new Error('two halves must sum to the cohort: ' + JSON.stringify(F));
-  const COLS = 5, ROWS = F.half / COLS;
-  if (!Number.isInteger(ROWS)) throw new Error('a bank of ' + F.half + ' does not fill ' + COLS + ' columns');
+  if (FIG.clinicians !== 2 * FIG.half) throw new Error('two halves must sum to the cohort: ' + FIG.clinicians + ' and ' + FIG.half);
+  const COLS = 5, ROWS = FIG.half / COLS;
+  if (!Number.isInteger(ROWS)) throw new Error('a bank of ' + FIG.half + ' does not fill ' + COLS + ' columns');
 
   const FOV = 30; const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 60, fog: 0.0 });
   TXT.studio(R, Object.assign(CH.studioOpts({ w: 4, d: 4 }), { tone: 'explainer' }));
@@ -96,7 +95,7 @@ window.renderReady = (async () => {
   /* four tone colours for the tubing, twenty of each, shuffled across BOTH panels so no colour marks a group */
   const TUBES = [0x10a7b0, 0x4c3fd0, 0x2f8fe8, 0x9a3fb0];
   const tubeMats = TUBES.map((c, i) => { const m = new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.06, specularIntensity: 1 }); m.name = 'pvc-tubing-' + i; return m; });
-  const order = []; for (let i = 0; i < F.clinicians; i++) order.push(i % TUBES.length);
+  const order = []; for (let i = 0; i < FIG.clinicians; i++) order.push(i % TUBES.length);
   for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = order[i]; order[i] = order[j]; order[j] = t; }
 
   const tube = (pts, rad, mat, parent, seg) => {
@@ -178,8 +177,8 @@ window.renderReady = (async () => {
       [fil, nose].forEach(m => { m.castShadow = true; m.receiveShadow = true; });
     });
   });
-  if (banks[0].length !== F.half || banks[1].length !== F.half || banks[0].length + banks[1].length !== F.clinicians)
-    throw new Error('drew ' + banks[0].length + ' + ' + banks[1].length + ' stethoscopes, figures say ' + F.half + ' + ' + F.half + ' = ' + F.clinicians);
+  if (banks[0].length !== FIG.half || banks[1].length !== FIG.half || banks[0].length + banks[1].length !== FIG.clinicians)
+    throw new Error('drew ' + banks[0].length + ' + ' + banks[1].length + ' stethoscopes, figures say ' + FIG.half + ' + ' + FIG.half + ' = ' + FIG.clinicians);
   TUBES.forEach((_, c) => { if (colourCount[0][c] === 0 || colourCount[1][c] === 0) throw new Error('tube colour ' + c + ' is confined to one bank and would read as a group'); });
 
   /* ---- the camera: a three quarter rake, about 32 degrees along the wall from the right, a little below the field's middle,
