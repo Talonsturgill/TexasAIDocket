@@ -129,3 +129,7 @@ Measured by `studio_clock.py --report`, minutes from wake.
 | numerals       | PASS   | 8 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
+
+
+## A decider collision, fixed in the record
+CI's `deciders.py` failed on the PR. tx-2026-0257's decider, "Dell Medical School and IC² Institute, The University of Texas at Austin", ends with the exact name of "The University of Texas at Austin". Declaring the pair distinct in `config/decider_groups.json` is a `human` lane write, and the session's permission layer refused that commit. The run did not route around the refusal. It set the decider to the project page's own words, "IC² Institute and Dell Medical School" (c18), which collides with nothing. A maintainer may still add a `distinct` entry and restore the university suffix.
