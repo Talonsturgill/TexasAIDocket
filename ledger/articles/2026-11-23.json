@@ -1,0 +1,101 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Data centers",
+ "dek": {
+  "text": "Riot Platforms has leased its whole Corsicana bitcoin mining campus to a frontier AI lab, with every block of capacity still a target date.",
+  "claims": [
+   "c1",
+   "c6"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Riot Platforms signed a {{number:c1}}-year powered land lease with a frontier AI lab for its whole Corsicana campus, covering {{number:c1:1}} MW of critical IT capacity on a contiguous {{number:c1:2}}-acre parcel](c1). [The campus is in Navarro County](c4). [Riot's quarterly filing names the tenant as Anthropic PBC and dates the signing {{date:c2}}](c2). [The lease became binding on {{date:c3}}, after Riot's board approved it and third-party consultants approved the technical specifications](c3).",
+   "claims": [
+    "c1",
+    "c4",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[Riot says the site is equipped today for up to about {{number:c5}} MW of bitcoin mining capacity](c5). [It began operating in April 2024](c25). Nothing in either filing says mining at Corsicana will stop.",
+   "claims": [
+    "c5",
+    "c25"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Who brings what to the pads",
+   "paragraphs": [
+    {
+     "text": "[Under the lease Riot delivers the land, the power infrastructure and the powered pads, and keeps owning and maintaining the high and medium voltage gear that serves them](c10). [The tenant procures, installs, owns and operates the modular compute on those pads and bears substantially all operating costs, with power passing through](c11). [Riot says rent is owed on the full capacity whether or not the tenant uses it](c12).",
+     "claims": [
+      "c10",
+      "c11",
+      "c12"
+     ]
+    },
+    {
+     "text": "[Riot says the existing capacity at Corsicana is already interconnected and energized, and that ERCOT studied and approved the planned expansion under its earlier large load process, outside the Batch Zero study](c21).",
+     "claims": [
+      "c21"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A schedule of forty blocks",
+   "paragraphs": [
+    {
+     "text": "[Riot Corsicana expects to deliver the capacity in three phases made of {{number:c9}} blocks, handed over block by block](c9). [Phase 1 covers {{number:c6:3}} MW and its first block is targeted for {{date:c6}}](c6). [Phase 2's first block is targeted for {{date:c7}}](c7). [Phase 3's first block and full phase are both targeted for {{date:c8}}](c8).",
+     "claims": [
+      "c9",
+      "c6",
+      "c7",
+      "c8"
+     ]
+    },
+    {
+     "text": "[The tenant holds two options to extend the term by five years each](c14). These are targets in a company filing. The filings give no energization date for the new capacity, and they don't say what the tenant will run there.",
+     "claims": [
+      "c14"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who may slow the load",
+   "paragraphs": [
+    {
+     "text": "[Riot Corsicana may not curtail the tenant's load or enroll the premises in voluntary demand response without the tenant's consent, except when the utility or grid operator orders it](c13). [Riot also says Corsicana sits in an ERCOT IROL group, where its consumption could be capped as other loads in the group draw more](c22).",
+     "claims": [
+      "c13",
+      "c22"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0258",
+   "label": "Riot's Corsicana lease in the record"
+  },
+  {
+   "id": "tx-2026-0202",
+   "label": "ERCOT's pause on energizing new large loads"
+  },
+  {
+   "id": "tx-2026-0157",
+   "label": "Galaxy on what Batch Zero did to its projects"
+  }
+ ]
+}
