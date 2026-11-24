@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-11-22",
+ "read": "2026-11-24",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "2ca5efff4f452c97",
+ "digest": "33c53e9d8b1caa93",
  "facilities": [
   {
    "name": "NADC",
@@ -1222,10 +1222,11 @@
     "Rowan Cinco LLC"
    ],
    "occupants": [
-    "Design LLC"
+    "Crux Cinco Tenant, LLC"
    ],
    "operators": [
-    "Google LLC"
+    "Google LLC",
+    "Design, LLC"
    ]
   },
   {
@@ -2475,6 +2476,30 @@
    ]
   },
   {
+   "name": "MAFA Data Center",
+   "effective": "2026-11-16",
+   "owners": [],
+   "occupants": [
+    "Eagle MAFA Holdings, LLC"
+   ],
+   "operators": [
+    "Eagle MAFA Holdings, LLC"
+   ]
+  },
+  {
+   "name": "Project Sunrise",
+   "effective": "2026-11-16",
+   "owners": [
+    "Stonewall DC Owner 1 LLC"
+   ],
+   "occupants": [
+    "Stonewall DC Owner 1 LLC"
+   ],
+   "operators": [
+    "Stonewall DC Owner 1 LLC"
+   ]
+  },
+  {
    "name": "Starbase Super Compute Facility",
    "effective": "2026-11-16",
    "owners": [
@@ -2511,6 +2536,19 @@
    ],
    "operators": [
     "Vantage Data Centers TX51, LLC"
+   ]
+  },
+  {
+   "name": "Quest Data Center",
+   "effective": "2026-11-17",
+   "owners": [
+    "Google, LLC"
+   ],
+   "occupants": [
+    "Design, LLC"
+   ],
+   "operators": [
+    "Google LLC"
    ]
   }
  ]
