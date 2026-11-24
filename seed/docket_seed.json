@@ -21403,5 +21403,123 @@
     "note": "Admitted from the IC² Institute's October 20th announcement. The lab has launched and no results are published yet."
    }
   ]
+ },
+ {
+  "id": "tx-2026-0258",
+  "title": "Riot Platforms leases its whole Corsicana bitcoin mining campus in Navarro County to an AI lab for 15 years",
+  "summary": "Riot Platforms signed a 15-year powered land lease for the entire Corsicana campus, which it built for bitcoin mining. The lease covers 910 MW of critical IT capacity on a 332-acre parcel. Riot's quarterly filing names the tenant as Anthropic. Riot delivers the land, the power infrastructure and the powered pads, and the tenant brings and runs the computers. The capacity arrives in three phases from September 2027 to July 2028, and rent is owed on all of it whether or not it is used. Riot wrote off equipment it had bought to expand mining at the site.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Riot Platforms",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Navarro"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-28",
+    "kind": "decided",
+    "note": "Riot's subsidiary signs the Corsicana lease"
+   },
+   {
+    "date": "2026-11-04",
+    "kind": "filed",
+    "note": "Third quarter results and Form 10-Q filed with the SEC"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "There is no public process. The lease is a private contract that Riot disclosed in its SEC filings, and questions go to the company.",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001167419/000110465926122368/riot-ex99d1.htm",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Riot signed a 15-year powered land lease for the whole of its Corsicana campus, covering 910 MW of critical IT capacity on a 332-acre parcel.",
+    "verbatim_quote": "Riot has signed a 15-year triple-net powered land lease with a leading Frontier AI Lab for the entirety of the Company's Corsicana campus, covering 910 MW of critical IT capacity on a contiguous 332-acre parcel.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001167419/000110465926122368/riot-ex99d1.htm",
+    "source_title": "Riot Platforms, third quarter 2026 results, Exhibit 99.1 to Form 8-K",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c1"
+   },
+   {
+    "text": "The capacity is delivered in three phases, the first in September 2027 and the last in July 2028.",
+    "verbatim_quote": "400 MW in September 2027, 200 MW in January 2028 and 310 MW in July 2028",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001167419/000110465926122368/riot-ex99d1.htm",
+    "source_title": "Riot Platforms, third quarter 2026 results, Exhibit 99.1 to Form 8-K",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c2"
+   },
+   {
+    "text": "Riot delivers the land, the power infrastructure and the powered pads, and the tenant installs, owns and runs the computers.",
+    "verbatim_quote": "Riot delivers the land, the power infrastructure, and the powered pads, while continuing to own and maintain the high- and medium-voltage infrastructure that will serve them. The tenant will procure, install, own, and operate the modular compute deployment on the powered pads",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001167419/000110465926122368/riot-ex99d1.htm",
+    "source_title": "Riot Platforms, third quarter 2026 results, Exhibit 99.1 to Form 8-K",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c3"
+   },
+   {
+    "text": "The tenant pays rent on the full capacity whether or not it uses it.",
+    "verbatim_quote": "Rent is payable on the full 910 MW irrespective of utilization.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001167419/000110465926122368/riot-ex99d1.htm",
+    "source_title": "Riot Platforms, third quarter 2026 results, Exhibit 99.1 to Form 8-K",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c4"
+   },
+   {
+    "text": "Riot's quarterly filing names the tenant as Anthropic and dates the lease October 28th.",
+    "verbatim_quote": "On October 28, 2026, Riot Corsicana, LLC (“Riot Corsicana”), a wholly owned subsidiary of the Company, entered into a long-term powered land lease agreement (the “Corsicana Lease”) with Anthropic PBC (the “Frontier AI Lab”) to provide critical IT load capacity at the Company’s Corsicana Facility.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1167419/000110465926122417/riot-20260930x10q.htm",
+    "source_title": "Riot Platforms, Form 10-Q for the quarter ended September 30, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c5"
+   },
+   {
+    "text": "The Corsicana Facility is in Navarro County and was built for bitcoin mining.",
+    "verbatim_quote": "The Company provides mission-critical power and infrastructure for Bitcoin Mining at its facilities in Rockdale, Texas (the “Rockdale Facility”), Navarro County, Texas (the “Corsicana Facility”)",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1167419/000110465926122417/riot-20260930x10q.htm",
+    "source_title": "Riot Platforms, Form 10-Q for the quarter ended September 30, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c6"
+   },
+   {
+    "text": "Riot wrote off equipment bought for a bitcoin mining expansion at Corsicana after deciding to build for data centers instead.",
+    "verbatim_quote": "Certain long-lead items previously included in Construction in progress related to the planned expansion of the Corsicana Facility for bitcoin mining purposes were deemed to be impaired as a result of the Company’s decision to expand the Corsicana Facility for data center application purposes instead.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1167419/000110465926122417/riot-20260930x10q.htm",
+    "source_title": "Riot Platforms, Form 10-Q for the quarter ended September 30, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c7"
+   },
+   {
+    "text": "Riot's chief executive calls it the largest lease in the company's history.",
+    "verbatim_quote": "Today, we are excited to announce the largest lease in Riot’s history",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001167419/000110465926122368/riot-ex99d1.htm",
+    "source_title": "Riot Platforms, third quarter 2026 results, Exhibit 99.1 to Form 8-K",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-23",
+    "id": "tx-2026-0258-c8"
+   }
+  ],
+  "last_verified": "2026-11-23",
+  "history": [
+   {
+    "date": "2026-11-23",
+    "note": "Admitted from Riot's third quarter release and its quarterly filing. The lease is signed, and the first phase of power is due in September 2027."
+   }
+  ]
  }
 ]
