@@ -1,6 +1,6 @@
 # PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery, comment deadline reached
 
-The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and adding a new Section 25.252, and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. The project index now stands at 70 filings. The commission next considers the proposal at an open meeting before adopting a final rule.
+The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and adding a new Section 25.252, and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. Oncor filed an analysis of the residential rate impacts on November 19th, and commission staff filed a memo with proposed redline rule language on November 24th. The project index now stands at 72 filings. The commission next considers the proposal at an open meeting before adopting a final rule.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -10,7 +10,7 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · The comment window closed on August 11th.
 - 2026-11-16 · The comment window closed on August 11th.
 - 2026-11-20 · The ERCOT transmission cost recovery rulemaking stays past its comment window, which closed on August 11th.
+- 2026-11-24 · Two filings moved the rulemaking. Oncor filed its analysis of what the proposal would do to residential rates on November 19th. Commission staff filed a memo with proposed redline rule language on November 24th, the next step before an open meeting takes up a final rule.
 
 ## Evidence
 
@@ -68,7 +69,7 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the project.
 
-> 70 filing(s).
+> 72 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
@@ -111,6 +112,18 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### Data center and digital infrastructure companies filed comments in the rulemaking.
 
 > Rowan Digital Infrastructure Comments in Response to Propo
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+
+### Oncor filed an analysis of what the commission's proposal would do to residential rates on November 19th, 2026.
+
+> ONCOR ELECTRIC DELIVERY COMPANY LLC'S ANALYSIS OF RESIDENTIAL RATE IMPACTS FROM THE IMPLEMENTATION OF THE COMMISSION'S PROPOSAL FOR PUBLICATION IN THE DOCKET NO. 58000
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+
+### Commission staff filed a memo with proposed redline rule language on November 24th, 2026.
+
+> Staff Memo with Proposed Redline Rule Language
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

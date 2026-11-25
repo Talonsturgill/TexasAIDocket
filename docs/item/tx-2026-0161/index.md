@@ -11,7 +11,7 @@ The University of Texas at Arlington published an account on September 10th, 202
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
-- Last checked: 2026-11-21
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · UT Arlington's federally funded AI tutor stands unconfirmed for another day. The university's site did not serve this project.
 - 2026-11-14 · UT Arlington's federally funded AI tutor remains unconfirmed. The university's site did not answer this project.
 - 2026-11-21 · UT Arlington's account of its AI tutor and the related work with Fort Worth police reads as published. The university's site answers this project again.
+- 2026-11-24 · UT Arlington's page on the AI tutor and its work with Fort Worth police is unchanged.
 
 ## Evidence
 

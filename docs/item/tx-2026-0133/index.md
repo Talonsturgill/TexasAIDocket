@@ -11,7 +11,7 @@ The University of North Texas lists a Bachelor of Science in Artificial Intellig
 - Public access: Write to the decider
 - Take part: https://engineering.unt.edu/cse/undergraduate/bsai.html
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -52,6 +52,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The university's own engineering pages answer again, and they still list the undergraduate degree in artificial intelligence.
 - 2026-11-17 · The University of North Texas still lists its undergraduate degree in artificial intelligence on its engineering pages.
 - 2026-11-20 · The University of North Texas still lists its undergraduate artificial intelligence degree.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

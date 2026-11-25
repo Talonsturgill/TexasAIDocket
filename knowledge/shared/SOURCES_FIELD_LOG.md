@@ -2713,3 +2713,16 @@ and January listings rather than read as removed. **Fort Worth's page answered 4
 unstamped. **The Senate committee page did not carry one archived claim** for tx-2026-0077, so that item was left unstamped
 as well. Twenty six items waited behind crawl boundaries measured on November 20th and 21st, still inside their seven day
 window.
+
+## 2026-11-24 (carousel no. 86)
+
+**stories.tamu.edu answered** the November 24th CLARKE release and **clarke.crasar.org answered** the project page, and
+every claim on tx-2026-0258 quotes one of the two. The AAAI paper the release links sits behind a bot wall and was not
+read. **Texas Tech's CITEI page answered** for tx-2026-0259. **ERCOT's Batch Zero verification update PDF answered 403**
+to the fetcher, so that lead is held. **Brazos County, Williamson County, Leander, Brownsville, Lubbock, GlobeNewswire,
+DHS, the FAA and ERCOT's mktrules pages answered 403** to re-verification fetches, and the items resting on them were left
+unstamped. The crawl boundary refused gov.texas.gov, capitol.texas.gov, lrl.texas.gov, public.destinyhosted.com,
+clinicaltrials.gov, dir.texas.gov, docs.tacc.utexas.edu and several TV station sites, and nothing was routed around.
+**Wiwynn's El Paso page dropped its "Updated on" stamp** and now shows September 10, 2026 alone, so the date claim on
+tx-2026-0146 was re-quoted. **The PUCT Project 58000 filing list grew to 72 filings** with Oncor's November 19th rate
+impact analysis and a November 24th staff redline memo.

@@ -9,7 +9,7 @@ Texas 2036 is a nonprofit policy group. On November 10th, 2026 it published a pr
 - Public access: Write to the decider
 - Take part: https://texas2036.org/news-analysis/whos-in-control-of-ai-in-texas-schools/
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-15 · Admitted on Texas 2036's preview of its report. It recommends statewide guidance, and nothing in the record shows the state acting on it.
 - 2026-11-18 · Texas 2036's report still finds AI in most classrooms and a written policy in few districts, and its request to the state is unchanged.
 - 2026-11-20 · Texas 2036's survey finding on AI in classrooms and written policy still reads as published.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

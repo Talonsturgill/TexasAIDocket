@@ -11,7 +11,7 @@ Texas A&M AgriLife Research reported on November 5th, 2026 on work in the Texas 
 - Public access: Write to the decider
 - Take part: https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The Texas A&M mitochondrial protein screen remains published and open to search.
 - 2026-11-17 · The Texas A&M screen of mitochondrial protein pairs is still published and still searchable.
 - 2026-11-20 · The Texas A&M AlphaFold screen still reads as published.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
