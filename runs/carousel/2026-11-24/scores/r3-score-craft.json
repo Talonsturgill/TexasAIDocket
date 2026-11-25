@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.4,
+   "why": "Round 2 defects, checked frame by frame. Three of four landed fully or partly. S6 landed: the pole and wire are out of the headline and sit top right, clear of the type, and the operator's pointing hand now reaches the glowing map that fills the lower half. The figure is still a smooth mannequin seen from behind, and the dek's line 'designed to' runs onto the cab window edge. S4 landed: the limb tapers and forks with bark texture and breaks through the shingles to a tarp and exposed decking, which is the strongest detail in the deck. A small white sphere vent beside the tarp still reads as a ball. S7 landed partly: the route now curves clearly around the crown, the roofs are filled and legible, and the root plate is modelled. That plate reads as a smooth orange blob with spikes, not torn soil, and the fallen crown merges into the trees behind it at feed size. The bottom third is still empty wet asphalt with a cropped, reflective truck, so the detail sits at the far end of the frame. S9 did not land: the route now stops short of the lot as the brief says, but the starred tower is still small at upper left, the detail is spread evenly across a suburb that repeats S1, and the dek block covers the middle third. Strong frames: S3's relief of 2,000 rims, S5's rack of plates (the probe shows height 37.7, 14 materials, cast fraction 0.79), S8's helmet wall lit by a window, and S1 and S2 as vivid worlds. Shadows lean violet and navy and there is little grey middle. Two frames still lean on a default (S7, S9), so this sits just above 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "The spine holds on all nine: one look v2 violet and navy grade, the same serif headline and mono kicker and counter, the same footer and site line. The gold route is a motif that changes state across S1, S3, S4, S7 and S9, and the story runs in order from the clock to the stitched map, then the judged roof, the training, the review, the road and the adopters. The hot saturated blue interiors on S5 and S8 sit outside the dusk exteriors. On S9 the route is a short stub, so the motif ends weakly."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides and in the caption traces to a claim: 18 to 24 (c2), 2,000 and 7 (c16), 21,000 and 10 (c3), 265 (c25), 125, 63 and 14 (c8), 2024 (c10). Both sources are primary. The 7 minutes is conditioned 'Given a finished orthomosaic'. The Florida adoption is attributed to Texas A&M on S9, in the caption and in the title (c9). The absence is scoped to the release and the project site. Despite the change note, S6 does not quote c26 in full: it drops 'or data' and reads 'No wireless transmission of imagery is needed'. That is narrower than the source and still true, so it is not a fail. The invented colours, plates and street each carry 'drawn to illustrate'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "What, who (Texas A&M, Manzini), how (stitch, then judge, then review, then route) and who adopted it (Florida's FL-UAS1, attributed) are all clear. The Texas stake is the absence of any named Texas user, and the action is a general 'Watch county emergency offices for the first'. No body, county or deadline a Texan can act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "The cover earns the swipe, S2 pays at once with the old clock, and S3 to S4 is a clean step from map to roof. S6 and S7 could swap without loss. The close's picture is still the softest frame in the deck, so the landing rests on its copy."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "House style is clean: no colons, no dashes, ordinal dates, no banned words. Kickers like 'The old clock' and 'The road out' have character. The deks stay close to the release, and S6's dek reads as a list of four flat specification sentences."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The media change across the deck: aerial suburb, roadside, relief, close roof, studio rack, tailgate, street, interior. S9 returns to S1's aerial suburb, deliberately but visibly."
+  }
+ ],
+ "weighted_score": 7.57,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild S9 at street level with the starred water tower filling the left half and the gold route running up the street to stop visibly short of a Texas county office, so the close is the deck's strongest picture rather than a repeat of the cover's suburb.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Repeats S1's aerial suburb with detail spread evenly. The tower is small at upper left, the route is a short stub at the left edge, and the dek covers the middle third.",
+   "fix": "Drop the camera to street level so the tower fills the left half, and run the route from the foreground up the street to end at a lot in front of it. Seat the dek in the sky above the tower."
+  },
+  {
+   "slide": 7,
+   "problem": "The root plate is a smooth orange blob with spikes, the fallen crown merges into the trees behind, and the bottom third is empty reflective asphalt with a cropped truck.",
+   "fix": "Raise the camera and crop out the foreground asphalt so the trunk lies across the middle third. Model the root plate as a dark torn soil disc with root strands and a crater, and give the fallen crown a lighter rim so it separates from the canopy behind."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a smooth mannequin seen from behind, and the dek's line 'designed to' runs onto the cab window edge.",
+   "fix": "Reframe over the shoulder so a modelled hand with fingers points at the map in close foreground. Pull the dek's measure in so it ends left of the cab."
+  },
+  {
+   "slide": 4,
+   "problem": "A white sphere vent beside the tarp still reads as a chrome ball.",
+   "fix": "Replace it with a ribbed turbine vent with a flashing base, matching the mushroom vents on the far roof."
+  }
+ ]
+}

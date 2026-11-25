@@ -1,0 +1,292 @@
+<!doctype html>
+<!-- 2026-11-24, frame 5 of 9, WHAT IT LEARNED. A long violet powder coated cradle of anodised plates leans like file cards along an
+     indigo epoxy lab bench and runs out of the left edge, each plate's face a sliver of drawn aerial neighbourhood. One plate stands pulled
+     halfway out of its slot into the window light, its face a drawn Gulf Coast block under brown floodwater. One plate per orthomosaic,
+     the count read from window.FIG. Drawn to illustrate: no real place, no likeness, no legible text. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top: 184px; width:560px; text-align:left">Taught partly on Harvey</h1>
+<p class="dek" id="dek" data-follow="22" style="left:74px; width:500px; font-size:24px; line-height:1.36">The models learned from drone imagery of more than 21,000 damaged homes in 10 major disasters, Hurricane Harvey and Hurricane Ian among them. One plate stands for one of the dataset's 265 orthomosaics, drawn to illustrate.</p>
+
+<script>window.FIG = {"orthomosaics": 265};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-24-roofread-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What it learned", counter: "05 / 09", src: "c3 c4 c17 c25", fit: { min: 84, max: 112, maxLines: 2 } });
+
+  /* THE TYPE: top left over the cobalt block wall, a column beside the held plate */
+  CH.follow();
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (hb.left < 64 || hb.right > 1016 || hb.top < 150) throw new Error('the headline leaves the safe field');
+  if (db.bottom > 700) throw new Error('the dek runs too far down the wall at ' + Math.round(db.bottom));
+
+  const N = FIG.orthomosaics;
+  if (!Number.isInteger(N) || N <= 0) throw new Error('FIG.orthomosaics is not a count');
+
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.02, far: 60, fog: 0 });
+  const rnd = CH.rng(20261105);
+  const tex = (w, h, paint, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  const rb = (w, h, d, r, m) => { const b = TXT.roundedBox(w, h, d, r, m); b.castShadow = true; b.receiveShadow = true; return b; };
+
+  /* THE ROOM: cobalt block walls, a concrete floor nobody sees, the studio's coloured light for the metal to reflect */
+  const WALL = 0x3c63cf;
+  const room = TXT.interior(R, { w: 9, d: 6, h: 3.2, floor: 'concrete', wall: WALL, trim: 0x2a2f86, window: null, ceiling: false, light: 0.6 });
+  TXT.studio(R, CH.studioOpts({ w: 8, d: 6 }));
+  R.scene.remove(R.studio.sweep); R.room = room;
+  R.scene.background = new THREE.Color(0x2c4fb8);
+  const BACK = -3 + 0.1;
+  const wallMat = new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.9, name: 'block-wall-paint' }); wallMat.userData.txSurface = 'paint';
+  room.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === new THREE.Color(WALL).getHex()) m.material = wallMat; });
+  /* painted block coursing on the back wall: 400 by 200 mm units, joints in a darker cobalt */
+  { const bt = tex(1024, 1024, (g, w, h) => { g.fillStyle = '#3c63cf'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 9000; i++) { g.fillStyle = rnd() < 0.5 ? 'rgba(20,30,110,0.06)' : 'rgba(200,215,255,0.05)'; g.fillRect(rnd() * w, rnd() * h, 2, 2); }
+      g.fillStyle = 'rgba(22,30,100,0.09)'; for (let r = 0; r < 8; r++) { g.fillRect(0, r * 128, w, 5); const off = r % 2 ? 128 : 0; for (let c = 0; c < 5; c++) g.fillRect(off + c * 256, r * 128, 5, 128); } }, [9 / 1.6, 3.2 / 0.8]);
+    const bm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: bt, roughness: 0.88, name: 'block-wall-paint' }); bm.userData.txSurface = 'paint';
+    const bw = new THREE.Mesh(new THREE.PlaneGeometry(9, 3.2), bm); bw.position.set(0, 1.6, -0.62); bw.receiveShadow = true; bw.userData.txBevel = false; R.scene.add(bw);
+    /* the wall's falloff: the window light dies upward into deep violet navy, so the wall has depth rather than one flat field */
+    const ft = tex(8, 512, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(26,18,96,0.78)'); gr.addColorStop(0.45, 'rgba(34,24,120,0.42)'); gr.addColorStop(0.8, 'rgba(40,30,130,0.08)'); gr.addColorStop(1, 'rgba(40,30,130,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const fm = new THREE.MeshBasicMaterial({ map: ft, transparent: true, depthWrite: false, name: 'wall-falloff' }); fm.userData.txSurface = false;
+    const fw = new THREE.Mesh(new THREE.PlaneGeometry(9, 2.3), fm); fw.position.set(0, 0.9 + 0.25 + 1.15, -0.615); fw.userData.txBevel = false; R.scene.add(fw); }
+
+  /* THE BENCH: an indigo epoxy resin top 25 mm thick on a tangerine steel frame, a resin backsplash, a raceway with outlets */
+  const BY = 0.9, BD = 1.55, BZ = -0.62 + BD / 2;
+  const resinTex = tex(1024, 1024, (g, w, h) => { g.fillStyle = '#2a248a'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 30000; i++) { const v = rnd(); g.fillStyle = v < 0.5 ? 'rgba(16,12,70,0.16)' : v < 0.9 ? 'rgba(120,110,240,0.10)' : 'rgba(255,255,255,0.10)'; const z = 1 + rnd() * 2; g.fillRect(rnd() * w, rnd() * h, z, z); }
+    for (let i = 0; i < 40; i++) { g.strokeStyle = 'rgba(150,140,255,0.08)'; g.lineWidth = 1; g.beginPath(); const x = rnd() * w, y = rnd() * h; g.moveTo(x, y); g.lineTo(x + (rnd() - 0.5) * 160, y + (rnd() - 0.5) * 40); g.stroke(); } }, [6, 1.2]);
+  const resin = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: resinTex, roughness: 0.55, clearcoat: 0.25, clearcoatRoughness: 0.55, name: 'epoxy-resin-top' });
+  resin.userData.txSurface = 'plastic';
+  const top = rb(8.6, 0.025, BD, 0.006, resin); top.position.set(-1.6, BY - 0.0125, BZ); R.scene.add(top);
+  const splash = rb(8.6, 0.10, 0.02, 0.005, resin); splash.position.set(-1.6, BY + 0.05, -0.61); R.scene.add(splash);
+  const powder = new THREE.MeshPhysicalMaterial({ color: 0x4e3cb4, roughness: 0.45, clearcoat: 0.3, clearcoatRoughness: 0.4, name: 'powder-coat-steel' });
+  powder.userData.txSurface = 'paint';
+  { const apron = rb(8.6, 0.09, 0.03, 0.006, powder); apron.position.set(-1.6, BY - 0.07, BZ + BD / 2 - 0.03); R.scene.add(apron);
+    [1.2, -0.6, -2.4].forEach((x) => { const leg = rb(0.05, BY - 0.12, 0.05, 0.008, powder); leg.position.set(x, (BY - 0.12) / 2, BZ + BD / 2 - 0.06); R.scene.add(leg); });
+    const steel = new THREE.MeshStandardMaterial({ color: 0xd8dde8, metalness: 1, roughness: 0.3, name: 'brushed-steel' });
+    const race = rb(8.6, 0.07, 0.05, 0.008, new THREE.MeshPhysicalMaterial({ color: 0xe9ecf6, roughness: 0.4, clearcoat: 0.4, name: 'raceway-paint' })); race.position.set(-1.6, 1.22, -0.595); R.scene.add(race);
+    [0.9, -0.9, -2.7].forEach((x) => { const pl = rb(0.07, 0.11, 0.008, 0.004, steel); pl.position.set(x, 1.22, -0.566); R.scene.add(pl); }); }
+
+  /* THE PLATES: an atlas of drawn aerial blocks, some of them under floodwater. Never a real place. */
+  const CELLS = 6, CP = 256;
+  const paintBlock = (g, ox, oy, s, rr, flood) => {
+    g.save(); g.beginPath(); g.rect(ox, oy, s, s); g.clip();
+    g.fillStyle = '#4c8a3c'; g.fillRect(ox, oy, s, s);
+    for (let i = 0; i < 260; i++) { g.fillStyle = `rgba(${40 + rr() * 50 | 0},${95 + rr() * 60 | 0},${35 + rr() * 30 | 0},0.4)`; g.fillRect(ox + rr() * s, oy + rr() * s, s * 0.03, s * 0.03); }
+    const yy = oy + s * (0.35 + rr() * 0.3), yy2 = yy + (rr() - 0.5) * s * 0.3;
+    g.strokeStyle = '#ece3cf'; g.lineWidth = s * 0.07; g.beginPath(); g.moveTo(ox - 10, yy); g.bezierCurveTo(ox + s * 0.35, yy - s * 0.1, ox + s * 0.65, yy2 + s * 0.1, ox + s + 10, yy2); g.stroke();
+    const xx = ox + s * (0.3 + rr() * 0.4); g.beginPath(); g.moveTo(xx, oy - 10); g.bezierCurveTo(xx + s * 0.05, oy + s * 0.4, xx - s * 0.06, oy + s * 0.6, xx + s * 0.02, oy + s + 10); g.stroke();
+    const roofs = ['#3b3a3f', '#5a4a44', '#6e5a4c', '#4a4f58', '#7a6a5e', '#c79a62', '#8a5a3c'];
+    const houses = [];
+    for (let k = 0; k < 22; k++) { const x = ox + rr() * s, y = oy + rr() * s; if (Math.abs(y - yy) < s * 0.07 || Math.abs(x - xx) < s * 0.07) continue; houses.push([x, y, (rr() - 0.5) * 0.3, rr() < 0.12 ? '#2f6fd6' : roofs[Math.floor(rr() * roofs.length)]]); }
+    if (flood > 0) {
+      /* brown floodwater over the low side of the block, its edge ragged, a sheen of sky on it */
+      g.fillStyle = 'rgba(92,96,50,0.9)'; g.beginPath(); g.moveTo(ox - 5, oy + s + 5);
+      for (let t = 0; t <= 24; t++) { const x = ox + s * t / 24; g.lineTo(x, oy + s * (1 - flood) + Math.sin(t * 1.3 + rr() * 2) * s * 0.05 + (rr() - 0.5) * s * 0.03); }
+      g.lineTo(ox + s + 5, oy + s + 5); g.closePath(); g.fill();
+      for (let i = 0; i < 26; i++) { g.fillStyle = rr() < 0.5 ? 'rgba(190,215,240,0.22)' : 'rgba(140,120,70,0.35)'; g.fillRect(ox + rr() * s, oy + s * (1 - flood * rr() * 0.95), s * (0.08 + rr() * 0.22), s * 0.008); }
+    }
+    houses.forEach(([x, y, a, c]) => { g.save(); g.translate(x, y); g.rotate(a); g.fillStyle = 'rgba(20,24,60,0.35)'; g.fillRect(-s * 0.06, -s * 0.035, s * 0.135, s * 0.09);
+      g.fillStyle = c; g.fillRect(-s * 0.07, -s * 0.05, s * 0.135, s * 0.09); g.fillStyle = 'rgba(255,255,255,0.18)'; g.fillRect(-s * 0.07, -s * 0.05, s * 0.135, s * 0.012); g.fillStyle = 'rgba(0,0,0,0.12)'; g.fillRect(-s * 0.0025, -s * 0.05, s * 0.005, s * 0.09); g.restore(); });
+    for (let t = 0; t < 14; t++) { const x = ox + rr() * s, y = oy + rr() * s, rad = s * (0.02 + rr() * 0.025);
+      for (let q = 0; q < 7; q++) { const a = rr() * 6.3, d = rr() * rad; g.fillStyle = q < 4 ? 'rgba(28,70,32,0.9)' : 'rgba(70,128,58,0.75)'; g.beginPath(); g.arc(x + Math.cos(a) * d, y + Math.sin(a) * d, rad * (0.45 + rr() * 0.3), 0, 7); g.fill(); } }
+    g.restore();
+  };
+  const atlas = tex(CELLS * CP, CELLS * CP, (g) => { const ar = CH.rng(77); for (let j = 0; j < CELLS; j++) for (let i = 0; i < CELLS; i++) paintBlock(g, i * CP, j * CP, CP, ar, ar() < 0.35 ? 0.3 + ar() * 0.4 : 0); });
+  const faceMat = new THREE.MeshPhysicalMaterial({ color: 0x9098d0, map: atlas, roughness: 0.62, clearcoat: 0.12, clearcoatRoughness: 0.4, envMapIntensity: 0.45, name: 'printed-ortho-face' }); faceMat.userData.txSurface = false;
+  const PW = 0.36, PT = 0.005, FW = PW * 0.985;
+  const faceGeos = [];
+  for (let c = 0; c < CELLS * CELLS; c++) { const gg = new THREE.PlaneGeometry(FW, FW); const uv = gg.attributes.uv, i = c % CELLS, j = Math.floor(c / CELLS);
+    for (let k = 0; k < uv.count; k++) uv.setXY(k, (i + uv.getX(k)) / CELLS, 1 - (j + 1 - uv.getY(k)) / CELLS); faceGeos.push(gg); }
+  const anod = [0xe6e9f4, 0xd9def0, 0xeef0f8, 0xcfd6ee].map((c, i) => { const m = new THREE.MeshPhysicalMaterial({ color: c, metalness: 0.9, roughness: 0.22 + i * 0.04, clearcoat: 0.3, name: 'anodised-aluminium-plate' }); m.userData.txSurface = 'brushed-metal'; return m; });
+  const edgeMat = new THREE.MeshPhysicalMaterial({ color: 0xfff1dc, metalness: 1, roughness: 0.08, clearcoat: 1, emissive: 0x3a2a18, name: 'polished-aluminium-chamfer' }); edgeMat.userData.txSurface = false;
+  const edgeGeo = new THREE.BoxGeometry(PT * 1.1, 0.0022, PW * 0.985);
+  const plateBody = TXT.roundedBox(PT, PW, PW, 0.0018, anod[0]);
+  const makePlate = (cell, matI) => {
+    const g = new THREE.Group();
+    const b = new THREE.Mesh(plateBody.geometry, anod[matI % anod.length]); b.castShadow = true; b.receiveShadow = true; b.userData.txBevel = false; g.add(b);
+    const ed = new THREE.Mesh(edgeGeo, edgeMat); ed.position.y = PW / 2 - 0.0004; ed.userData.txBevel = false; g.add(ed);
+    const f = new THREE.Mesh(faceGeos[cell % faceGeos.length], faceMat); f.rotation.y = Math.PI / 2; f.position.x = PT / 2 + 0.0004; f.receiveShadow = true; f.userData.txBevel = false; g.add(f);
+    const f2 = new THREE.Mesh(faceGeos[(cell + 7) % faceGeos.length], faceMat); f2.rotation.y = -Math.PI / 2; f2.position.x = -PT / 2 - 0.0004; f2.receiveShadow = true; f2.userData.txBevel = false; g.add(f2);
+    return g;
+  };
+
+  /* THE CRADLE: one plate per orthomosaic, leaning 16 degrees like file cards, one slot left empty for the plate in the hand */
+  const PITCH = 0.016, LEAN = 0.3, LIFT = 23, NOTCH = 0.016;
+  const L = N * PITCH + 0.12 + NOTCH, X1 = 0.62, X0 = X1 - L, RZ = -0.3;
+  const rack = new THREE.Group(); R.scene.add(rack);
+  { const base = rb(L, 0.022, PW + 0.05, 0.005, powder); base.position.set(X0 + L / 2, BY + 0.011 + 0.008, RZ); rack.add(base);
+    [-1, 1].forEach((s) => { const rail = rb(L, 0.05, 0.016, 0.005, powder); rail.position.set(X0 + L / 2, BY + 0.045, RZ + s * (PW / 2 + 0.03)); rack.add(rail); });
+    const endP = rb(0.02, 0.3, PW + 0.08, 0.03, powder); endP.position.set(X1 + 0.008, BY + 0.15, RZ); rack.add(endP);
+    const endQ = rb(0.018, 0.2, PW + 0.08, 0.006, powder); endQ.position.set(X0 - 0.006, BY + 0.1, RZ); rack.add(endQ);
+    const rubber = new THREE.MeshStandardMaterial({ color: 0x23204a, roughness: 0.9, name: 'rubber-foot' });
+    const stemM = new THREE.MeshStandardMaterial({ color: 0xd9dde8, metalness: 1, roughness: 0.3, name: 'zinc-plated-steel' });
+    for (let x = X0 + 0.08; x < X1; x += 0.45) [-1, 1].forEach((s) => {
+      const pad = new THREE.Mesh(new THREE.CylinderGeometry(0.019, 0.022, 0.009, 24), rubber); pad.position.set(x, BY - 0.0155, RZ + s * (PW / 2 - 0.005)); pad.castShadow = true; pad.receiveShadow = true; rack.add(pad);
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.014, 16), stemM); stem.position.set(x, BY - 0.005, RZ + s * (PW / 2 - 0.005)); stem.castShadow = true; rack.add(stem);
+      const nut = new THREE.Mesh(new THREE.CylinderGeometry(0.0095, 0.0095, 0.005, 6), stemM); nut.position.set(x, BY + 0.0035, RZ + s * (PW / 2 - 0.005)); nut.castShadow = true; rack.add(nut); }); }
+  rack.position.y = 0.02;
+  let drawn = 0, liftSlot = null;
+  for (let i = 0; i < N; i++) {
+    const x = X1 - 0.06 - i * PITCH - (i > LIFT ? NOTCH : 0);
+    if (i === LIFT) { liftSlot = x; continue; }
+    const p = makePlate(Math.floor(rnd() * 999), i);
+    p.rotation.z = LEAN + (rnd() - 0.5) * 0.03;
+    p.position.set(x - Math.sin(LEAN) * PW / 2, BY + 0.03 + Math.cos(LEAN) * PW / 2, RZ + (rnd() - 0.5) * 0.004);
+    rack.add(p); drawn++;
+  }
+  /* THE LIFTED PLATE: the flooded block, held up in the window light */
+  const floodTex = tex(1024, 1024, (g) => { paintBlock(g, 0, 0, 1024, CH.rng(1708), 0.58); });
+  const floodMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: floodTex, roughness: 0.48, clearcoat: 0.45, clearcoatRoughness: 0.12, emissive: 0xffffff, emissiveMap: floodTex, emissiveIntensity: 0.22, name: 'printed-ortho-face' }); floodMat.userData.txSurface = false;
+  const held = new THREE.Group();
+  { const b = rb(PT, PW, PW, 0.0018, anod[2]); b.userData.txBevel = false; held.add(b);
+    const f = new THREE.Mesh(new THREE.PlaneGeometry(FW, FW), floodMat); f.rotation.y = Math.PI / 2; f.position.x = PT / 2 + 0.0005; f.userData.txBevel = false; held.add(f); }
+  R.scene.add(held); drawn++;
+  if (drawn !== N) throw new Error('drew ' + drawn + ' plates for ' + N + ' orthomosaics');
+  if (liftSlot == null) throw new Error('no empty slot for the lifted plate');
+
+  /* THE CAMERA: front right of the rack's near end, above the bench, looking back along it to the left */
+  const FROM = [1.25, 2.12, 1.75];
+  const slotTop = liftSlot - Math.sin(LEAN) * PW * 0.5;
+  const HELD = new THREE.Vector3(slotTop, 0.02 + BY + 0.03 + Math.cos(LEAN) * PW + PW / 2 + 0.03, RZ + 0.03);
+  HELD.y -= PW * 0.42;
+  /* THE PULLED PLATE stands in its own slot, slid up its lean by a hand's height, resting against its neighbour's face */
+  const RAISE = 0.25;
+  held.rotation.set(0, 0, LEAN);
+  held.position.set(liftSlot - Math.sin(LEAN) * (PW / 2 + RAISE), 0.02 + BY + 0.03 + Math.cos(LEAN) * (PW / 2 + RAISE), RZ);
+  { const ed = new THREE.Mesh(edgeGeo, edgeMat); ed.position.y = PW / 2 - 0.0004; ed.userData.txBevel = false; held.add(ed); }
+  held.children.forEach((m) => { if (m.material === floodMat) m.rotation.z = Math.PI; });
+  /* the slot's empty depth at its foot: a dark violet notch between the two plates either side */
+  { const nm = new THREE.MeshStandardMaterial({ color: 0x140c48, roughness: 0.9, name: 'slot-shadow' }); nm.userData.txSurface = false;
+    const notch = new THREE.Mesh(new THREE.BoxGeometry(PITCH + NOTCH - PT, 0.05, PW * 0.9), nm); notch.position.set(liftSlot - 0.004, 0.02 + BY + 0.045, RZ); notch.userData.txBevel = false; notch.receiveShadow = true; R.scene.add(notch); }
+  window.__heldRaise = RAISE;
+  /* REPAIR: the camera comes in to bench height on the pulled plate, about 30 degrees off its face, so the rack recedes out of the left edge behind it */
+  held.updateMatrixWorld(true);
+  const HC = held.localToWorld(new THREE.Vector3(0, 0, 0));
+  const CAMF = [HC.x + 1.0, HC.y + 0.14, HC.z + 0.78];
+  CH.aim(THREE, R, TXT, CAMF, HC.toArray(), 792, 772, 40);
+
+  /* THE HAND: a blue nitrile glove closed on the plate's right edge, thumb on the printed face, fingers behind, a white lab coat
+     cuff and sleeve running out of the right edge. Built in the plate's own frame so it stays on the edge wherever the plate goes. */
+  held.updateMatrixWorld(true);
+  const sR = CH.project(THREE, R, held.localToWorld(new THREE.Vector3(0, 0, PW / 2)).toArray())[0] > CH.project(THREE, R, held.localToWorld(new THREE.Vector3(0, 0, -PW / 2)).toArray())[0] ? 1 : -1;
+  const nitrile = new THREE.MeshPhysicalMaterial({ color: 0x3f5ae6, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.35, sheen: 0.6, sheenColor: new THREE.Color(0x9fb0ff), name: 'nitrile-glove' });
+  nitrile.userData.txSurface = 'rubber';
+  const coat = new THREE.MeshPhysicalMaterial({ color: 0xf4f2fb, roughness: 0.8, sheen: 0.5, sheenColor: new THREE.Color(0xdfe4ff), name: 'cotton-lab-coat' });
+  coat.userData.txSurface = 'fabric';
+  const hand = new THREE.Group(); held.add(hand);
+  /* SHOWRUNNER, final round: the critics read every built hand as a robotic claw, which in this story implies the machine acting alone.
+     No hand is shown. The plate stands pulled halfway up out of its own slot instead. */
+  hand.visible = false;
+  { const E = PW / 2, TOP = PW / 2, z = (v) => sR * v, ZC = z(E - 0.075);
+    nitrile.color.set(0x5a46d0); nitrile.clearcoat = 0.12; nitrile.roughness = 0.55; nitrile.sheen = 0.6; nitrile.sheenColor = new THREE.Color(0xc2b4ff);
+    /* a smooth tapered limb from a to b in the plate's frame, round at both ends, never a jointed part */
+    const seg = (a, b, r0, r1, flat) => { const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b), d = B.clone().sub(A), len = d.length();
+      const g = new THREE.Group(); const c = new THREE.Mesh(new THREE.CylinderGeometry(r1, r0, len, 24, 1, true), nitrile); c.position.y = len / 2; g.add(c);
+      const s0 = new THREE.Mesh(new THREE.SphereGeometry(r0, 20, 14), nitrile); g.add(s0); const s1 = new THREE.Mesh(new THREE.SphereGeometry(r1, 20, 14), nitrile); s1.position.y = len; g.add(s1);
+      if (flat) g.children.forEach((m) => m.scale.set(1, 1, flat));
+      g.position.copy(A); g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; } }); hand.add(g); return g; };
+    const blob = (p, sc) => { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 20), nitrile); m.scale.set(...sc); m.position.set(...p); m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; hand.add(m); return m; };
+    /* the back of the hand over the top edge, palm down onto it */
+    blob([-0.006, TOP + 0.028, ZC + z(0.016)], [0.032, 0.032, 0.056]);
+    /* four fingers over the edge and down the back face, each with a knuckle on the edge and two bends */
+    [[-0.032, 0.9], [-0.011, 1.0], [0.01, 0.97], [0.03, 0.8]].forEach(([dz, k]) => {
+      const zz = ZC + z(dz), xb = -PT / 2 - 0.0095;
+      const kn = [-0.008, TOP + 0.012, zz], m1 = [xb, TOP - 0.006, zz], m2 = [xb, TOP - 0.034 * k, zz + z(0.002)], tp = [xb + 0.001, TOP - 0.056 * k, zz + z(0.003)];
+      seg([-0.006, TOP + 0.03, zz - z(0.004) + z(0.012)], kn, 0.0112, 0.0106); seg(kn, m1, 0.0106, 0.0098); seg(m1, m2, 0.0098, 0.0089); seg(m2, tp, 0.0089, 0.0078);
+    });
+    /* the thumb on the printed face, laid flat and angled down and in, from a soft mound on the near side of the edge */
+    blob([PT / 2 + 0.008, TOP + 0.004, ZC + z(0.044)], [0.014, 0.024, 0.02]);
+    const a0 = [PT / 2 + 0.0105, TOP - 0.004, ZC + z(0.042)], a1 = [PT / 2 + 0.0095, TOP - 0.03, ZC + z(0.03)], a2 = [PT / 2 + 0.0088, TOP - 0.05, ZC + z(0.02)];
+    seg(a0, a1, 0.0128, 0.0118, 0.8); seg(a1, a2, 0.0118, 0.0102, 0.8);
+    /* the wrist rising out right, a smooth cuff, and the lab coat sleeve in soft folds leaving the frame */
+    const W0 = [-0.008, TOP + 0.038, ZC + z(0.056)], DIR = new THREE.Vector3(-0.04, 0.32, sR * 0.95).normalize();
+    const W1 = new THREE.Vector3(...W0).add(DIR.clone().multiplyScalar(0.09));
+    seg(W0, W1.toArray(), 0.03, 0.029);
+    const cp = []; for (let i = 0; i <= 12; i++) { const t = i / 12; cp.push(new THREE.Vector2(0.031 + 0.004 * Math.sin(t * Math.PI), t * 0.03)); }
+    const cuffM = new THREE.Mesh(new THREE.LatheGeometry(cp, 36), nitrile); cuffM.castShadow = true; cuffM.userData.txBevel = false;
+    const cg = new THREE.Group(); cg.position.copy(W1); cg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), DIR); cg.add(cuffM); hand.add(cg);
+    const prof = []; for (let i = 0; i <= 48; i++) { const t = i / 48; prof.push(new THREE.Vector2(0.045 + 0.016 * t + 0.0035 * Math.sin(t * 34) * (0.4 + t), t * 0.9)); }
+    const slv = new THREE.Mesh(new THREE.LatheGeometry(prof, 44), coat); slv.castShadow = true; slv.receiveShadow = true; slv.userData.txBevel = false;
+    const sg = new THREE.Group(); sg.position.copy(W1.clone().add(DIR.clone().multiplyScalar(0.022))); sg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), DIR); sg.add(slv); hand.add(sg);
+    const hemR = new THREE.Mesh(new THREE.TorusGeometry(0.046, 0.006, 12, 36), coat); hemR.position.copy(sg.position); hemR.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), DIR); hemR.castShadow = true; hand.add(hemR);
+  }
+
+  /* THE BENCH POOL: the window's warm light lying across the empty front of the bench, and a hard contact under the cradle */
+  { const raycast = (sx, sy) => { const rc = new THREE.Raycaster(); rc.setFromCamera(new THREE.Vector2(sx / 540 - 1, 1 - sy / 675), R.camera); const t = (BY - rc.ray.origin.y) / rc.ray.direction.y; return rc.ray.origin.clone().add(rc.ray.direction.clone().multiplyScalar(t)); };
+    const P = raycast(330, 1090);
+    const sp = new THREE.SpotLight(0xffc27a, 26, 7, 0.36, 0.7, 1.0); sp.position.set(P.x - 1.6, BY + 2.0, P.z + 1.2); sp.target.position.copy(P); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0005; sp.shadow.radius = 4;
+    R.scene.add(sp); R.scene.add(sp.target);
+    const cs = TXT.contact(R, rack, { opacity: 0.9, layers: [{ spread: 0.008, opacity: 0.75 }, { spread: 0.1, opacity: 0.35 }] }); (cs || []).forEach((m) => m.material.color.set(0x2a1470)); }
+
+  /* THE LIGHT: a warm window low at front left, its frame and mullions cast across the bench and wall */
+  const LAZ = 18, LEL = 22;  /* REPAIR: a raking key from front right, grazing the plate faces and catching every top edge */
+  const spec = CH.rigSpec(W, 3.2, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([-0.4, 1.0, -0.2], { distance: 9, shadowFar: 20, normalBias: 0.004 }), { light: { az: LAZ, el: LEL } }));
+  CH.unacne(R, 0.004);
+  { const a = LAZ * Math.PI / 180, e = LEL * Math.PI / 180, dir = new THREE.Vector3(Math.sin(a) * Math.cos(e), Math.sin(e), Math.cos(a) * Math.cos(e));
+    const C = new THREE.Vector3(-0.4, 1.0, -0.2).add(dir.clone().multiplyScalar(3.2));
+    const occ = new THREE.Group(); const om = new THREE.MeshBasicMaterial({ color: 0x000000, colorWrite: false, name: 'window-occluder' }); om.userData.txSurface = false;
+    const piece = (x, y, w, h) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.05), om); m.position.set(x, y, 0); m.castShadow = true; m.userData.txBevel = false; occ.add(m); };
+    /* REPAIR: the window opening is placed by search, so its lit patch on the wall stays clear of the dek box
+       while the pulled plate's four corners stay in the light */
+    occ.position.copy(C); occ.lookAt(C.clone().add(dir)); occ.updateMatrixWorld(true);
+    const WH = 1.6, plateCorners = [[0, PW / 2, PW / 2], [0, PW / 2, -PW / 2], [0, -PW / 2, PW / 2], [0, -PW / 2, -PW / 2]].map((q) => held.localToWorld(new THREE.Vector3(...q)));
+    const litBy = (P, ox, oy, ww) => { const t = C.clone().sub(P).dot(dir); const L = occ.worldToLocal(P.clone().add(dir.clone().multiplyScalar(t))); return Math.abs(L.x - ox) < ww / 2 - 0.08 && Math.abs(L.y - oy) < WH / 2 - 0.08; };
+    const db = dek.getBoundingClientRect(), BOX = [db.left - 40, db.top - 30, db.right + 50, db.bottom + 40];
+    const wallHits = (ox, oy, ww) => { for (let i = 0; i <= 16; i++) for (let j = 0; j <= 16; j++) { const Q = occ.localToWorld(new THREE.Vector3(ox + (i / 16 - 0.5) * ww, oy + (j / 16 - 0.5) * WH, 0)); const k = (Q.z + 0.62) / dir.z; const q = CH.project(THREE, R, Q.clone().sub(dir.clone().multiplyScalar(k)).toArray()); if (q[0] > BOX[0] && q[0] < BOX[2] && q[1] > BOX[1] && q[1] < BOX[3]) return true; } return false; };
+    let best = null;
+    for (const ww of [2.6, 2.2, 1.8, 3.2]) { for (let ox = -3; ox <= 3.001; ox += 0.05) for (let oy = -1.5; oy <= 1.501; oy += 0.1) {
+      if (wallHits(ox, oy, ww)) continue; if (!plateCorners.every((P) => litBy(P, ox, oy, ww))) continue;
+      const cost = Math.abs(ox) + Math.abs(oy); if (!best || cost < best.cost) best = { ox, oy, ww, cost }; } if (best) break; }
+    if (!best) throw new Error('no window placement keeps the lit patch off the dek and the pulled plate lit');
+    window.__win = best;
+    const WW = best.ww, OX = best.ox, OY = best.oy, pc = (x, y, w, h) => piece(OX + x, OY + y, w, h);
+    pc(-WW / 2 - 3, 0, 6, 12); pc(WW / 2 + 3, 0, 6, 12); pc(0, WH / 2 + 3, WW, 6); pc(0, -WH / 2 - 3, WW, 6);
+    pc(0, 0, 0.06, WH); pc(-WW / 4, 0, 0.04, WH); pc(WW / 4, 0, 0.04, WH); pc(0, 0.2, WW, 0.05);
+    R.scene.add(occ); }
+  R.scene.environmentIntensity = 0.7;
+  { const f = new THREE.DirectionalLight(0x8a90ff, 0.6); f.position.set(2, 2.5, 5); R.scene.add(f); }
+
+  /* checks: the rack spans the frame, the held plate is big, no face in frame */
+  { const a = CH.project(THREE, R, [X0, BY + 0.2, RZ]), b = CH.project(THREE, R, [X1, BY + 0.2, RZ]);
+    const span = Math.min(1080, Math.max(a[0], b[0])) - Math.max(0, Math.min(a[0], b[0]));
+    if (span < 0.7 * 1080) throw new Error('the rack spans only ' + Math.round(span) + ' px');
+    const r0 = CH.rectOf(THREE, R, held, 0); if (r0[2] < 200) throw new Error('the held plate is only ' + Math.round(r0[2]) + ' px wide');
+    if (false) { const ep = CH.project(THREE, R, window.__techEye.toArray()); if (ep[0] > 0 && ep[0] < 1080 && ep[1] > 0 && ep[1] < 1350) throw new Error('the technician face is in frame at ' + ep.map(Math.round)); }
+    window.__s5 = { span, held: r0 }; }
+
+  TXT.weather(R, { grime: 0.03, height: 0.1, mottle: 0.04 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* REPAIR: the block coursing is knocked out behind the dek, a feathered soft focus of the wall itself, so no mortar joint strikes a line */
+  { const d = dek.getBoundingClientRect(), P = 36, F = 30, S = 2, cv = cx.canvas;
+    const x = (d.left - P) * S, y = (d.top - P) * S, w = (d.width + 2 * P) * S, h = (d.height + 2 * P) * S;
+    const soft = document.createElement('canvas'); soft.width = cv.width; soft.height = cv.height; const sg = soft.getContext('2d');
+    sg.filter = 'blur(14px)'; sg.drawImage(cv, 0, 0); sg.filter = 'none';
+    const mk = document.createElement('canvas'); mk.width = cv.width; mk.height = cv.height; const mg = mk.getContext('2d');
+    mg.filter = 'blur(' + F * S + 'px)'; mg.fillStyle = '#fff'; mg.fillRect(x, y, w, h); mg.filter = 'none';
+    sg.globalCompositeOperation = 'destination-in'; sg.drawImage(mk, 0, 0);
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(soft, 0, 0); cx.restore(); }
+  TXLOOK.footWash(cx, { tone: 'wonder', a: 0.4, height: 200 });
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.3, fade: 240 });
+  CH.seat(cx, { sel: '.dek', a: 0.62, fade: 200 });
+  CH.seat(cx, { sel: '.kick', a: 0.4, fade: 60 });
+  CH.seat(cx, { sel: '.count', a: 0.4, fade: 60 });
+  CH.seat(cx, { sel: '#site', a: 0.6, fade: 70 });
+  CH.seat(cx, { sel: '.src', a: 0.45, fade: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

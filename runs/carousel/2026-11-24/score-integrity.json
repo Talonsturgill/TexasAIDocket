@@ -1,0 +1,67 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Bespoke reading. Each frame has its own world, camera and medium: aerial suburb (1), shoulder view down a farm road (2), top-down orthomosaic relief (3, machine_qa reports height_range 37.7, 14 materials, cast_fraction 0.79), struck roof (4), plate rack (5), tailgate operator (6), flooded street with fallen tree (7), helmet wall (8), water-tower town (9). Frame 9 now shows the gold route as true gold running along the street and stopping in open asphalt at about x 640, short of every lot. Frames 1, 4 and 7 also show gold rather than lemon. Frames 7, 5 and 4 still hold the score down. On frame 7 the root plate is a glossy orange boulder with pale horn-like spikes, so it reads as a rock with antlers and not as roots and soil. The dek wash also covers about the top 35 percent of frame 7. On frame 5 the rack is a comb of thin slats under a flat cobalt wall. Frame 4 sits under a seat wash, and machine_qa warns that a drawn rule crosses the dek glyph band at 78,464 and could not be measured. Machine QA has 0 fails and 15 warnings."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.7,
+   "why": "The spine holds on all nine frames in the contact sheet: the violet and navy LOOK V2 grade, one headline serif, mono kickers, the NN / 09 counter, the claim-id footer and the site line. The gold route now reads as one hue on frames 1, 4, 7 and 9. Frame 9's aerial suburb echoes frame 1, so the deck closes on its opening. Two things still compete with the accent's single meaning: the orange hi-vis vests on frames 6 and 7 and frame 7's orange root mass. Frame 5's cobalt interior is the one frame that sits off the outdoor ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Round 3's integrity defects are repaired. (a) copy.json's caption field now matches caption.txt character for character, so the 'verbatim' note is true. (b) document_title.txt reads 'Texas A&M says Florida's state drone team made its CLARKE disaster damage reader standard procedure', so Texas A&M is now the subject of 'says'. (c) On frame 9 the route stays on the street and stops in open asphalt, with 'Street drawn to illustrate' in the dek. Every numeral traces to a claim. In the caption, 18 and 24 come from c2, 21,000 and 10 from c3, and 125, 63 and 14 from c8. On the slides, 2,000 and 7 come from c16 and c22, 265 from c25 and 2024 from c10, and figures.json computes each from a claim quote. Both sources are primary_official and listed in first_comment.txt with their claim ids. The absence ('The November 24th release and the project site name no Texas agency or county among its users') is scoped exactly as the rejected-finding entry records it. One looseness remains. The cover headline 'Every roof, read in minutes' is a universal that drops c16's condition of a finished orthomosaic. Frame 3 states that condition, so it doesn't change what a reader ends up believing. One minor point: frame 7's 'Filled roofs show assessments after review' is not visibly true in the picture, because every roof is filled the same blue."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.6,
+   "why": "A reader learns what CLARKE does, who built it (Texas A&M, with Tom Manzini named), how it works (stitch, per-building rating, road model, operator review), where it was deployed (Florida and Pennsylvania in 2024) and who has trained on it. The scoped absence of any Texas user is the honest Texas stake. No Texas county, body or decision appears anywhere. The shortened close on frame 9, 'Watch for the first.', is now weaker than round 3's 'Watch county emergency offices for the first'. It names no office, person or date, and it leaves 'the first' for the reader to work out."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover earns the swipe, and frame 2's '18 to 24 hours, the old way' pays off at once. Frames 3, 4, 6 and 7 walk the pipeline, and frame 9 turns home to Texas's absence. Frame 5 (training on Harvey) still interrupts the process between judging (4) and review (6), and it could move with no loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The doubled opener is gone. caption.txt line 1 reads 'Texas A&M says Florida's state drone team made its tool standard procedure.', and the repeated second line was removed. House rules check clean. There are no colons, semicolons or dashes and none of the banned words. 'November 24th' carries no year, there is no first person, no sentence opens with And or But, and the caption ends on a real question ('How many of those 63 agencies are in Texas?'). The headlines are plain. Some source jargon is never translated: 'georectified orthomosaic' on frame 3 and 'GeoJSON and KML map files' on frame 6. Frame 9's 'its users' has two subjects (the release and the project site) and a singular pronoun."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The techniques are new: orthomosaic relief, plate rack and helmet wall. The ledger, as checked in round 3, still makes this the third drone deck in five days (no. 83 on GPS spoofing, November 20th, and no. 84 on DARPA drones at TEEX Disaster City, November 21st). It is also the second Texas A&M disaster-response deck in four days. The aerial-suburb cover with a glowing route is a familiar opening move. Nothing falls inside the 30-day topic window."
+  }
+ ],
+ "weighted_score": 7.29,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Restore a concrete action to the frame 9 close by naming the office a reader can watch or ask, such as Texas A&M's own extension service or the Texas Division of Emergency Management, but only if a fetched claim supports it. Replace the vague 'Watch for the first.' so the deck's one Texas stake becomes something a reader can act on.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The uprooted root plate is a glossy orange boulder with pale horn-like spikes. It reads as a rock with antlers rather than roots and soil, it fights the gold route for the accent, and the dek wash covers the upper third.",
+   "fix": "Remodel the root plate as a flat, dark brown soil disc with radiating thin root tubes, torn out of a crater in the parkway. Keep the trunk lying across the lane the gold route bends around, and tighten the dek wash to a band behind the type only."
+  },
+  {
+   "slide": 5,
+   "problem": "The 265 plates read as a comb of thin white slats across the bottom half, under a flat cobalt wall that takes the top.",
+   "fix": "Lower the camera to bench height on the pulled plate so it fills the middle third, put a raking key along the plate edges, and let the rack recede out of the left edge behind it."
+  },
+  {
+   "slide": 4,
+   "problem": "A seat wash over the top 40 percent flattens the street and sky behind the roof, and machine_qa flags a drawn rule crossing the dek's glyph band at 78,464 that it could not measure.",
+   "fix": "Drop the camera to a lower oblique so lawn and sky give the type real quiet without a wash, and move the violet gutter line clear of the dek's line boxes."
+  }
+ ]
+}

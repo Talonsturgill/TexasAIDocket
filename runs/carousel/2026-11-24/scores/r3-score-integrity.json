@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Bespoke reading. Each picture still belongs to its own sentence, and the frames differ in world, camera and medium: an aerial suburb, a shoulder view down a farm road, a top-down orthomosaic relief (machine_qa logs height_range 37.7, 14 materials, cast_fraction 0.79), a struck roof, a plate rack, a tailgate, a flooded street, a helmet wall and a water-tower town. Two of round 2's four named frames landed. Frame 4 now has a barked, tapering trunk with a leaf crown breaking over the ridge, a tarp, exposed decking and shingles scattered on the lawn. Frame 6's operator now presses a finger on one building on the map, and the laptop screen is lit. Two did not land. Frame 7's root plate is now an orange blob with pale spikes and reads as a rock with antlers rather than roots and soil. The heavy dek wash still covers the top third. On frame 5 the pulled plate's drawn neighborhood now reads, but the rack is still a comb of thin slats filling the bottom half under a flat cobalt wall. Frame 4 still sits under a seat wash covering the top 40 percent. Machine QA shows 0 fails and 15 warnings, including frame 4's drawn rule across the dek's glyph band that could not be measured."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "The spine holds on all nine frames: the LOOK V2 violet and navy grade, one headline serif, mono kickers, the NN / 09 counter, the claim-id footer and the site line. Gold is the route on frames 1, 4, 7 and 9, and frame 9 closes by echoing frame 1's aerial suburb. The story runs claim, old clock, stitch, judge, training, review, roads, reach, close. Two things sit outside. Frame 6's orange hi-vis vest and frame 7's orange root mass sit near the route gold, which muddies the accent's single meaning. Frame 5's cobalt interior is the one frame off the outdoor ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Round 2's named defects, checked one by one. (1) The S9 headline 'Texas A&M says Florida's team uses it' is attributed. Landed. (2) S6 now reads 'No wireless transmission of imagery is needed to generate an assessment', which matches c26. Landed. (3) On frame 9 the gold route now stops on the street at the left edge, short of any lot, and the dek says 'Street drawn to illustrate'. Landed. (4) The caption opener is attributed in caption.txt, but see voice. Every numeral traces: 18 and 24 to c2, 2,000 and 7 to c16, 21,000 and 10 to c3, 265 to c25, 125, 63 and 14 to c8, and 2024 to c10. Both sources are primary_official and are listed in first_comment.txt with their claim ids. The 30-day window (October 25th to November 23rd in topics.json) holds no CLARKE, CRASAR or drone damage-assessment topic. New integrity defects found this round. (a) copy.json's caption field still opens 'Florida's drone team adopted Texas A&M's tool.', which is the unattributed round 2 wording, and its _note claims the caption is 'carried verbatim from caption.txt'. That is false: the two disagree, and any surface built from copy.json carries the old claim. (b) document_title.txt reads 'Texas A&M's CLARKE reads disaster damage ... and says Florida's state drone team made it standard procedure'. The grammatical subject of 'says' is CLARKE, not Texas A&M, so the attribution is attached to the tool. (c) The cover 'Every roof, read in minutes' is still a universal that drops c16's finished-orthomosaic condition, though frame 3 states it. None of these is an untraced numeral, an unfetched source or an unverified fact, so none is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.7,
+   "why": "A reader learns what CLARKE does, who built it (Texas A&M, Tom Manzini named), how it works (stitch, per-building rating, road model, operator review), where it ran (Florida and Pennsylvania in 2024) and who has trained on it (125 responders from 63 agencies). The scoped absence of any Texas user is stated on S9 and in the caption, which is honest. No Texas county, city or body that decided anything appears on any slide. The close 'Watch county emergency offices for the first' names no office, no person and no date a reader could act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover earns the swipe, and frame 2's '18 to 24 hours, the old way' pays at once. Frames 3, 4, 6 and 7 walk the pipeline, and frame 9 turns home to Texas's absence. Frame 5 (training on Harvey) still breaks the process run between judging (4) and review (6), and could move before 3 or after 7 with no loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "The post's opening line in caption.txt, the one line every feed reader sees, reads 'Texas A&M says Texas A&M says Florida's team uses its tool.' The doubled clause is a broken splice left by the attribution repair. Line 2 then repeats it: 'It says Florida's state drone remote sensing team now uses CLARKE...'. House rules are otherwise clean: no colons, semicolons or dashes, no banned words, 'November 24th' with no year, and no first person. Headlines stay plain ('The road out', 'A person checks every map'). Some source jargon goes untranslated: 'georectified orthomosaic' on S3 and 'GeoJSON and KML map files' on S6."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The techniques are new for this deck: orthomosaic relief, plate rack and helmet wall. It is still the third drone deck in five days (no. 83 GPS spoofing on November 20th, no. 84 DARPA drones at TEEX Disaster City on November 21st). It is also the second Texas A&M disaster-response deck in four days. The aerial-suburb cover with a glowing route is a familiar opening move."
+  }
+ ],
+ "weighted_score": 7.17,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Before anything posts, repair the caption opener in caption.txt to a single clause ('Texas A&M says Florida's state drone team now uses its tool as standard procedure.') and delete the repeating line 2. Regenerate copy.json's caption from caption.txt so the unattributed 'Florida's drone team adopted Texas A&M's tool.' and the false 'verbatim' note are gone. Recast document_title.txt so Texas A&M, not CLARKE, is the subject of 'says'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The uprooted root plate is an orange blob with pale spikes that reads as a rock with antlers, so the obstruction the frame is about doesn't read. The dek wash still covers the upper third.",
+   "fix": "Model the root plate as a flat disc of dark soil with radiating brown root tubes, torn from a crater in the parkway, and the trunk lying across the lane the gold route bends around. Narrow the dek wash to a band behind the type only."
+  },
+  {
+   "slide": 5,
+   "problem": "The 265 plates read as a comb of thin slats across the bottom half, and the cobalt block wall is a flat field taking the top.",
+   "fix": "Lower the camera to bench height on the pulled plate so it fills the middle third under a raking key along the plate edges, and let the rack recede out of the left edge behind it."
+  },
+  {
+   "slide": 4,
+   "problem": "The seat wash over the top 40 percent flattens the street and sky behind the roof, and machine_qa flags a drawn rule crossing the dek's glyph band that it could not measure.",
+   "fix": "Drop the camera to a lower oblique so lawn and sky give the type real quiet without a wash, and move the violet gutter line clear of the dek's line boxes."
+  },
+  {
+   "slide": 6,
+   "problem": "The empty sand field on the left takes about a third of the frame, and the operator is still a smooth mannequin with no fabric or hand detail.",
+   "fix": "Crop in from the left so the operator and tailgate fill the lower two thirds, and add folds to the vest and shirt plus a defined hand on the map."
+  }
+ ]
+}

@@ -1,0 +1,254 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "ae4fd09dc7bf0ccdbe3cddf0be62bfce99071b4062f62883ba8d20acdbe968da",
+    "render/slide-01.png": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+    "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "ab1b533c8f67e3d444ad02c0fdc3da649a783c7c803e5f76c5fefb4c187b9efc",
+    "render/slide-03.png": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+    "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+    "slides/slide-09.html": "f7e67ae99fa9002963be6173c8cac25da00f7b8887a8eff551ed4f7995a6d5d9",
+    "render/slide-09.png": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 39.1,
+      "mid": 0.664,
+      "dark": 0.032,
+      "grey_mid": 0.071,
+      "vivid": 0.595,
+      "median_C": 34.8
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 32.7,
+      "mid": 0.548,
+      "dark": 0.004,
+      "grey_mid": 0.175,
+      "vivid": 0.517,
+      "median_C": 30.9
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 34.8,
+      "mid": 0.526,
+      "dark": 0.087,
+      "grey_mid": 0.046,
+      "vivid": 0.585,
+      "median_C": 37.3
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "ae4fd09dc7bf0ccdbe3cddf0be62bfce99071b4062f62883ba8d20acdbe968da",
+      "render/slide-01.png": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+      "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "ab1b533c8f67e3d444ad02c0fdc3da649a783c7c803e5f76c5fefb4c187b9efc",
+      "render/slide-03.png": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "slides/slide-09.html": "f7e67ae99fa9002963be6173c8cac25da00f7b8887a8eff551ed4f7995a6d5d9",
+      "render/slide-09.png": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "An evening aerial over a Gulf Coast subdivision. Three big near roofs are cut by the bottom edge, the centre one stripped to tan decking with a blue sandbagged tarp. Every roof carries a hollow cool rim. A live oak lies uprooted across the street, root plate showing, and one gold tube route bends around its crown and leaves the right edge.",
+        "visual_consequence": "A storm-hit street where every roof has been outlined, and one gold line that swerves around the fallen tree and carries on out of frame. With the glow lowered the tube renders as saturated gold rather than pale lemon and stays the brightest, warmest thing in the frame, one continuous way through at 432 px.",
+        "weakness": "A thin lime-white seam along the tube's underside where it crosses the curb, and a few debris planks pass through the tube. Both about 2 px at feed size.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "source": "carousel-art-director",
+        "inputs": {
+          "slides/slide-01.html": "ae4fd09dc7bf0ccdbe3cddf0be62bfce99071b4062f62883ba8d20acdbe968da",
+          "render/slide-01.png": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+          "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "source": "carousel-slide-critic",
+        "critic": {
+          "slide": 3,
+          "score": 8.0,
+          "points": {
+            "only_this_sentence": 8,
+            "one_idea": 8,
+            "composed": 8,
+            "crafted": 7,
+            "unlike_neighbours": 7,
+            "honest": 9
+          },
+          "fixes": [
+            "Sink the silver last plate flush into a stepped notch, top level with the plane, not covering rims.",
+            "Calm the plane at feed size: lower contrast of roofs inside rims, separate the three rim steps, soft honey falloff from the seam."
+          ],
+          "verdict": "ship",
+          "round": 2
+        },
+        "render_sha256": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+        "inputs": {
+          "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "ab1b533c8f67e3d444ad02c0fdc3da649a783c7c803e5f76c5fefb4c187b9efc",
+          "render/slide-03.png": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Frame 1's camera over an undamaged Texas street, ranch houses with no rims, a star water tower upper left, live oaks and crape myrtles, and a gold route that enters at the left edge, runs along the near lane and stops in open asphalt.",
+        "visual_consequence": "A calm, intact Texas street and the same gold line from the cover arriving along the road and stopping before it reaches any home. It passes the first driveway mouth without turning in and ends short of the street oak and every later lot. Not here yet reads without the dek.",
+        "weakness": "The route is straight with a flat end, close at a glance to a lane stripe or light bar. Its first pixels sit behind the edge oak.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "source": "carousel-art-director",
+        "inputs": {
+          "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "f7e67ae99fa9002963be6173c8cac25da00f7b8887a8eff551ed4f7995a6d5d9",
+          "render/slide-09.png": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08"
+        }
+      }
+    ],
+    "note": "art director 2026-11-24: frames 1 and 9 re-reviewed after the route glow was lowered so the accent renders as its declared gold"
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "One drawn Gulf Coast neighbourhood goes through every state the tool puts it through, loose drone frames, one stitched map aligned to footprints, every roof judged in a cool ramp, a person's check that turns hollow rims filled, and a gold route out, then frame 1's camera turns home over undamaged Texas ground.",
+    "build_risk": "Frame 3 must read as many pictures becoming one map in a plan relief, with 2,000 footprint rims, without reading as a waffle chart at feed size, and the relief locks its camera and key to the chassis. Frame 1 must carry 2,000 roofs as a texture gradient behind three big modelled near roofs without becoming a distant dollhouse.",
+    "distinct_from_recent": "Nov 22 drew cutaway exam rooms, a stethoscope wall and studio benches. Nov 21 drew a tracked rover on rubble in a staged disaster town. Nov 20 drew a survey quad on a ridge. None drew an aerial subdivision with judged roofs, a stitched relief of drone frames, a plate archive, a helmet wall or a route around a fallen oak."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "ae4fd09dc7bf0ccdbe3cddf0be62bfce99071b4062f62883ba8d20acdbe968da",
+      "render/slide-01.png": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+      "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "ab1b533c8f67e3d444ad02c0fdc3da649a783c7c803e5f76c5fefb4c187b9efc",
+      "render/slide-03.png": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+    },
+    "9": {
+      "assets/js/deck/2026-11-24-roofread-bespoke.js": "6c0a28921784cb50688986e51595953b7447e59b2d3e2d09c07c1c7d8f7b0018",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "f7e67ae99fa9002963be6173c8cac25da00f7b8887a8eff551ed4f7995a6d5d9",
+      "render/slide-09.png": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "ae4fd09dc7bf0ccdbe3cddf0be62bfce99071b4062f62883ba8d20acdbe968da",
+    "slide-01.png": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+    "slides/slide-03.html": "ab1b533c8f67e3d444ad02c0fdc3da649a783c7c803e5f76c5fefb4c187b9efc",
+    "slide-03.png": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+    "slides/slide-09.html": "f7e67ae99fa9002963be6173c8cac25da00f7b8887a8eff551ed4f7995a6d5d9",
+    "slide-09.png": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.png",
+      "to_sha256": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+      "from_sha256": "e6fc585f8c58fe6b046dcf7e3b209adf85ae1fdbf59814a001943e0772c35ddb",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-03.png",
+      "to_sha256": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+      "from_sha256": "eb6d57913a445e84f72148ff7ca6491e0d6a1a3ad993caa413563f400d752443",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08",
+      "from_sha256": "ea55b24c31ebf49cf246fbb8a182c6d41239b68d51a0d65bdcc226d08d334e08",
+      "psnr_db": 999.0
+    }
+  ]
+}

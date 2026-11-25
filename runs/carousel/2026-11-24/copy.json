@@ -1,0 +1,205 @@
+{
+ "date": "2026-11-24",
+ "carousel_no": 86,
+ "document_title": "Texas A&M says Florida's state drone team made its CLARKE disaster damage reader standard procedure",
+ "_note": "Caption carried verbatim from caption.txt. Slide strings polished from storyboard.md and held to the claim quotes in claims.json. Every numeral is in claims.json or figures.json. Drawn to illustrate appears only on S1, S4 and S7. S9's absence is scoped to the November 24th release and the project site, as the fact check recorded it.",
+ "caption": "Texas A&M says Florida's state drone team made its tool standard procedure.\n\nCLARKE rates the damage to each building in a color coded view. A road model flags damaged roads so crews can route around them. A trained operator reviews every assessment before it reaches decision makers.\n\nTom Manzini of the development team says CLARKE turns drone imagery into damage assessments in minutes instead of 18 to 24 hours.\n\nTexas A&M says the models learned from more than 21,000 damaged homes in 10 major disasters, Hurricane Harvey among them. It says 125 responders from 63 agencies in 14 states and Puerto Rico have trained on CLARKE. The November 24th release and the project site name no Texas agency or county among its users.\n\nHow many of those 63 agencies are in Texas?\n\n#TexasAM #CLARKE #HurricaneHarvey\n",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "After the storm",
+   "headline": "Every roof, read in minutes",
+   "claims": [
+    "c24",
+    "c1",
+    "c16"
+   ],
+   "cite": "c24 c1 c16",
+   "body": "Texas A&M's CLARKE reads drone imagery after a disaster and returns a detailed damage assessment within minutes. Neighborhood and colors drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Every roof, read in minutes",
+    "Texas A&M's CLARKE reads drone imagery after a disaster and returns a detailed damage assessment within minutes. Neighborhood and colors drawn to illustrate.",
+    "After the storm",
+    "01 / 09",
+    "c24 c1 c16"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The old clock",
+   "headline": "18 to 24 hours, the old way",
+   "claims": [
+    "c2",
+    "c15"
+   ],
+   "cite": "c2 c15",
+   "body": "Tom Manzini of the development team says CLARKE turns drone imagery into damage assessments in minutes instead of 18 to 24 hours. Gathering damage information can take days, particularly in rural areas. Roadside marker posts count off the hours.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "18 to 24 hours, the old way",
+    "Tom Manzini of the development team says CLARKE turns drone imagery into damage assessments in minutes instead of 18 to 24 hours. Gathering damage information can take days, particularly in rural areas. Roadside marker posts count off the hours.",
+    "The old clock",
+    "02 / 09",
+    "c2 c15"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Stitched first",
+   "headline": "Many pictures, one map",
+   "claims": [
+    "c23",
+    "c16",
+    "c22"
+   ],
+   "cite": "c23 c16 c22",
+   "body": "The drone images are stitched into one georectified orthomosaic and aligned to building and road footprints. Given a finished orthomosaic, the project site says CLARKE assesses roughly 2,000 buildings in about 7 minutes.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Many pictures, one map",
+    "The drone images are stitched into one georectified orthomosaic and aligned to building and road footprints. Given a finished orthomosaic, the project site says CLARKE assesses roughly 2,000 buildings in about 7 minutes.",
+    "Stitched first",
+    "03 / 09",
+    "c23 c16 c22"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Structure by structure",
+   "headline": "Then every roof is judged",
+   "claims": [
+    "c5",
+    "c6"
+   ],
+   "cite": "c5 c6",
+   "body": "The Building Damage Assessment rates the damage to each individual building and gives responders a color coded view, structure by structure. Colors drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Then every roof is judged",
+    "The Building Damage Assessment rates the damage to each individual building and gives responders a color coded view, structure by structure. Colors drawn to illustrate.",
+    "Structure by structure",
+    "04 / 09",
+    "c5 c6"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "What it learned",
+   "headline": "Taught partly on Harvey",
+   "claims": [
+    "c3",
+    "c4",
+    "c17",
+    "c25"
+   ],
+   "cite": "c3 c4 c17 c25",
+   "body": "The models learned from drone imagery of more than 21,000 damaged homes in 10 major disasters, Hurricane Harvey and Hurricane Ian among them. One plate stands for one of the dataset's 265 orthomosaics, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Taught partly on Harvey",
+    "The models learned from drone imagery of more than 21,000 damaged homes in 10 major disasters, Hurricane Harvey and Hurricane Ian among them. One plate stands for one of the dataset's 265 orthomosaics, drawn to illustrate.",
+    "What it learned",
+    "05 / 09",
+    "c3 c4 c17 c25"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Reviewed",
+   "headline": "A person checks every map",
+   "claims": [
+    "c19",
+    "c20",
+    "c26",
+    "c18"
+   ],
+   "cite": "c19 c20 c26 c18",
+   "body": "A trained operator reviews every assessment before it reaches decision makers. CLARKE's models are designed to run entirely in the field. No wireless transmission of imagery is needed to generate an assessment. Its results come out as GeoJSON and KML map files.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A person checks every map",
+    "A trained operator reviews every assessment before it reaches decision makers. CLARKE's models are designed to run entirely in the field. No wireless transmission of imagery is needed to generate an assessment. Its results come out as GeoJSON and KML map files.",
+    "Reviewed",
+    "06 / 09",
+    "c19 c20 c26 c18"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Road by road",
+   "headline": "The road out",
+   "claims": [
+    "c21",
+    "c7",
+    "c19"
+   ],
+   "cite": "c21 c7 c19",
+   "body": "A road model identifies road damage and obstructions. Crews can then find routes around damaged roads and other obstacles. Filled roofs show assessments after review, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The road out",
+    "A road model identifies road damage and obstructions. Crews can then find routes around damaged roads and other obstacles. Filled roofs show assessments after review, drawn to illustrate.",
+    "Road by road",
+    "07 / 09",
+    "c21 c7 c19"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Who has trained",
+   "headline": "125 responders, 63 agencies",
+   "claims": [
+    "c8"
+   ],
+   "cite": "c8",
+   "body": "Texas A&M says 125 emergency responders from 63 agencies in 14 states and Puerto Rico have trained on CLARKE. One helmet stands for one responder.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "125 responders, 63 agencies",
+    "Texas A&M says 125 emergency responders from 63 agencies in 14 states and Puerto Rico have trained on CLARKE. One helmet stands for one responder.",
+    "Who has trained",
+    "08 / 09",
+    "c8"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Built in Texas",
+   "headline": "Texas A&M says Florida's team uses it",
+   "claims": [
+    "c24",
+    "c9",
+    "c10"
+   ],
+   "cite": "c24 c9 c10",
+   "body": "Texas A&M says Florida's state drone team now uses CLARKE as standard operating procedure. It was deployed in Florida and Pennsylvania in the 2024 hurricane season. The November 24th release and the project site name no Texas agency or county among its users. Street drawn to illustrate. Watch for the first.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Texas A&M says Florida's team uses it",
+    "Texas A&M says Florida's state drone team now uses CLARKE as standard operating procedure. It was deployed in Florida and Pennsylvania in the 2024 hurricane season. The November 24th release and the project site name no Texas agency or county among its users. Street drawn to illustrate. Watch for the first.",
+    "Built in Texas",
+    "09 / 09",
+    "c24 c9 c10"
+   ]
+  }
+ }
+}

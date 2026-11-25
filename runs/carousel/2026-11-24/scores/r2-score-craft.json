@@ -1,0 +1,73 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Vivid deck, navy and violet shadows, every frame a rendered world; 3 best, 8 strong, 2 a real roadside world, 5 fixed since the claw-like hand. Held down by 7 (blob root plate, dead wet asphalt with an aliased truck reflection, route barely bends), 6 (mannequin with mitten hands, pole and wire crossing the headline), 4 (straight untapered limb, a chrome sphere still on the roof), 9 (detail spread evenly, small tower, short tube at one driveway)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Spine holds on all nine; the gold route changes state frame to frame; the cool rim means assessed on 1 and 4. Faults: hot blue interiors on 5 and 8; the rim device disappears after 4; the filled roofs on 7 not legible."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral carries claim ids; the 7 minutes attributed and conditioned; the absence scoped; drawn to illustrate covers the invented colours and plates."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "What, who, how and who adopted are clear; the Texas stake is the absence and the action only 'Watch for the first'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "Cover earns the swipe, S2 pays, S3 to S4 clean; S6 and S7 could swap; S5 and S8 both trained beats; the close's picture is the softest."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "House style clean; kickers have character; deks stay close to the release; the caption's closing question sounds like a person."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Media change across the deck; frames 1 and 9 share one world by design."
+  }
+ ],
+ "weighted_score": 7.51,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 7 around its obstruction with a modelled root plate and crater, a clear curve around the crown tip, and the camera lifted off the dead wet asphalt.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Featureless root plate, empty wet asphalt with an aliased reflection, the route barely bends, filled roofs not legible.",
+   "fix": "Raise and push the camera so the oak lies across the middle third, a torn soil disc with roots and crater, curve the route around the crown tip, crop the reflective foreground."
+  },
+  {
+   "slide": 6,
+   "problem": "Mannequin operator with mitten hands; the pole and wire cut through the headline.",
+   "fix": "Move the pole and wire out of the type field and reframe over the shoulder so the map and one pointing hand fill the lower half."
+  },
+  {
+   "slide": 9,
+   "problem": "Repeats frame 1's suburb with evenly spread detail; the tower small; the route short.",
+   "fix": "Street level with the starred tower filling the left half and the route running up the street to its base."
+  },
+  {
+   "slide": 4,
+   "problem": "Straight untapered limb with leaf tufts; a chrome sphere on the roof.",
+   "fix": "A tapering forked limb with bark and a pale break; the sphere as a turbine vent."
+  }
+ ],
+ "_note": "Craft-lens judge, panel round 2, whys condensed. The judge could not find the round 1 card (it is at out/2026-11-24/scores/r1-score-craft.json) and judged repairs against the slide critics' round 3 fixes instead."
+}

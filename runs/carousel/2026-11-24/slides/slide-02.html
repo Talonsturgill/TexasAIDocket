@@ -1,0 +1,352 @@
+<!doctype html>
+<!-- REWORK ROUND 1: a low camera on the shoulder looks down the post line, marker 1 at the tarped house's drive, the
+caliche band from marker 18 to the last marker in the foreground. The notes below describe round 0 where they differ. -->
+<!-- 2026-11-24, frame 2 of 9, THE OLD CLOCK. BESPOKE. A spatial scene through txthree.js: a rural chip seal farm road
+seen on a long lens from a low rise, running diagonally away from the near left to the far right, ruled off by
+FIG.hours_high white roadside marker posts at one even spacing (one post stands for one hour, drawn to illustrate). The
+stretch from marker FIG.hours_low to the last marker stands on a low peach caliche shoulder band, never the gold. A tarped
+brick ranch house sits far back at the start, a responder in a vest stands by the first post, and a utility pole leans
+over the road with its line down across the near verge. The near verge drops into a ditch in cool violet shade, where the
+type sits. No real place. No accent on this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:858px; width:720px; text-align:left">18 to 24 hours, the old way</h1>
+<p class="dek" data-follow="18" style="left:82px; width:900px; font-size:26.5px">Tom Manzini of the development team says CLARKE turns drone imagery into damage assessments in minutes instead of 18 to 24 hours. Gathering damage information can take days, particularly in rural areas. Roadside marker posts count off the hours.</p>
+<script>window.FIG = {"hours_low": 18, "hours_high": 24, "hours_low_minutes": 1080, "homes": 21000, "disasters": 10, "orthomosaics": 265, "building_views": 122502, "polygons": 21716, "buildings": 2000, "minutes": 7, "responders": 125, "agencies": 63, "states": 14, "season_year": 2024};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-24-roofread-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The old clock", counter: "02 / 09", src: "c2 c15", fit: { min: 80, max: 98, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 20, near: 0.5, far: 6000, fog: 0.0011 });
+  const deg = Math.PI / 180;
+
+  /* ---- THE FIGURES. One post per hour, the peach band from marker hours_low to the last. ---- */
+  const N_POSTS = FIG.hours_high, BAND_FROM = FIG.hours_low;   /* 1-based marker numbers */
+  if (!(N_POSTS === 24 && BAND_FROM === 18)) throw new Error('slide 2 figures changed: ' + JSON.stringify(FIG));
+
+  /* ---- THE CAMERA: low on the shoulder, eye EYE m, level, a long lens of focal F px, the horizon shifted to HZ ---- */
+  const F = 3000, HZ = 500, EYE = 2.4;
+  const FULLH = 2 * Math.max(HZ, 1350 - HZ);
+  R.camera.position.set(0, EYE, 0); R.camera.lookAt(0, EYE, -100);
+  R.camera.fov = 2 * Math.atan((FULLH / 2) / F) / deg; R.camera.aspect = 1080 / FULLH;
+  R.camera.setViewOffset(1080, FULLH, 0, FULLH / 2 - HZ, 1080, 1350); R.camera.updateProjectionMatrix();
+  /* the ground point under a screen pixel (sx, sy), for laying out the ruler on the picture */
+  const groundAt = (sx, sy) => { const d = EYE * F / (sy - HZ); return [(sx - 540) * d / F, -d]; };
+
+  /* THE RULER, looked down from its near end: marker 1 far off at the house's drive under (330, 598), the last marker
+   * close by the camera under (968, 836). One even stride between them. */
+  const A = groundAt(330, 598), B = groundAt(968, 836);
+  const L = Math.hypot(B[0] - A[0], B[1] - A[1]), u = [(B[0] - A[0]) / L, (B[1] - A[1]) / L];
+  let n = [-u[1], u[0]]; if (n[0] * -A[0] + n[1] * -A[1] < 0) n = [-n[0], -n[1]];   /* n points to the camera side */
+  const S = L / (N_POSTS - 1);                                                       /* one even stride */
+  const along = (t, s) => [A[0] + u[0] * t + n[0] * s, A[1] + u[1] * t + n[1] * s];   /* t along the road from marker 1, s toward camera */
+  const tsOf = (x, z) => { const dx = x - A[0], dz = z - A[1]; return [dx * u[0] + dz * u[1], dx * n[0] + dz * n[1]]; };
+  const ROAD_C = -5.0, ROAD_HALF = 3.3, SHOULDER = 1.4;
+  const tAt = (m) => (m - 1) * S;                         /* marker m (1-based) stands at t = (m - 1) S */
+  const bandT0 = tAt(BAND_FROM) - 0.9, bandT1 = tAt(N_POSTS) + 1.2;
+  const BAND_S0 = ROAD_C + ROAD_HALF, BAND_S1 = 1.9;   /* from the road's edge out past the posts */
+
+  /* ---- THE LAND: flat prairie, a raised road bed, a ditch on each side, the near one deep and in shade ---- */
+  const hash = (i, j) => { let h = (i * 374761393 + j * 668265263) >>> 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  const vnoise = (x, y) => { const i = Math.floor(x), j = Math.floor(y), a = x - i, b = y - j, s = a * a * (3 - 2 * a), t = b * b * (3 - 2 * b);
+    return (hash(i, j) * (1 - s) + hash(i + 1, j) * s) * (1 - t) + (hash(i, j + 1) * (1 - s) + hash(i + 1, j + 1) * s) * t; };
+  const fbm = (x, y) => vnoise(x, y) * 0.55 + vnoise(x * 2.1, y * 2.1) * 0.3 + vnoise(x * 4.3, y * 4.3) * 0.15;
+  const sstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const BED = 0.4;
+  const H = (x, z) => {
+    const [t, s] = tsOf(x, z), r = s - ROAD_C;
+    let h = BED * (1 - sstep(ROAD_HALF + SHOULDER + 1.2, ROAD_HALF + SHOULDER + 3.6, Math.abs(r)));
+    h -= 0.8 * Math.exp(-Math.pow((s - 4.4) / 1.6, 2));                       /* the near ditch */
+    h -= 0.6 * Math.exp(-Math.pow((r + ROAD_HALF + SHOULDER + 3.4) / 1.5, 2));  /* the far ditch */
+    h += (fbm(x / 7, z / 7) - 0.5) * 0.3 * sstep(8, 14, Math.abs(r));
+    h += (fbm(x / 60, z / 60) - 0.5) * 2.0 * sstep(40, 120, Math.abs(r));      /* far swells */
+    return h;
+  };
+  const NU = 380, NV = 440, V0 = 3, V1 = 3000;
+  const vs = []; for (let j = 0; j <= NV; j++) { const q = j / NV; vs.push(V0 + (V1 - V0) * Math.pow(q, 2.6)); }
+  const pos = new Float32Array((NU + 1) * (NV + 1) * 3), col = new Float32Array((NU + 1) * (NV + 1) * 3), uvA = new Float32Array((NU + 1) * (NV + 1) * 2);
+  const GREEN = new THREE.Color(0x5e8a34), OLIVE = new THREE.Color(0x8a9440), GOLD = new THREE.Color(0xc9a24e), RUST = new THREE.Color(0xa86a3a),
+        SHADE = new THREE.Color(0x3c3f9a), BARE = new THREE.Color(0x9a6a48), FAR = new THREE.Color(0x8f9a6a), cc = new THREE.Color();
+  let k = 0;
+  for (let j = 0; j <= NV; j++) {
+    const d = vs[j], half = 6 + 0.62 * d;
+    for (let i = 0; i <= NU; i++) {
+      const x = -half + 2 * half * i / NU, z = -d, y = H(x, z);
+      pos[k * 3] = x; pos[k * 3 + 1] = y; pos[k * 3 + 2] = z; uvA[k * 2] = x / 5; uvA[k * 2 + 1] = z / 5;
+      const [t, s] = tsOf(x, z), r = s - ROAD_C;
+      cc.copy(GREEN).lerp(OLIVE, sstep(0.3, 0.7, fbm(x / 14, z / 14))).lerp(GOLD, 0.55 * sstep(0.5, 0.8, fbm(x / 5 + 3, z / 5)));
+      cc.lerp(RUST, 0.3 * sstep(0.6, 0.85, fbm(x / 30 + 9, z / 30)));
+      cc.lerp(BARE, 0.5 * sstep(ROAD_HALF + SHOULDER + 0.2, ROAD_HALF + SHOULDER + 1.4, Math.abs(r)) * (1 - sstep(ROAD_HALF + SHOULDER + 1.6, ROAD_HALF + SHOULDER + 2.6, Math.abs(r))));
+      cc.lerp(SHADE, 0.5 * sstep(0.1, -0.6, y) * sstep(-1, 6, s));                 /* the near ditch keeps its violet */
+      cc.lerp(FAR, 0.35 * sstep(200, 900, d));
+      col[k * 3] = cc.r; col[k * 3 + 1] = cc.g; col[k * 3 + 2] = cc.b; k++;
+    }
+  }
+  const idx = [];
+  for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) { const a = j * (NU + 1) + i, b = a + 1, c = a + NU + 1, e = c + 1; idx.push(a, c, b, b, c, e); }
+  const tg = new THREE.BufferGeometry();
+  tg.setAttribute('position', new THREE.BufferAttribute(pos, 3)); tg.setAttribute('color', new THREE.BufferAttribute(col, 3)); tg.setAttribute('uv', new THREE.BufferAttribute(uvA, 2));
+  tg.setIndex(idx); tg.computeVertexNormals();
+  const flipUp = (g, I) => { const nr = g.attributes.normal; let up = 0; for (let q = 0; q < nr.count; q += 7) up += nr.getY(q);
+    if (up < 0) { for (let q = 0; q < I.length; q += 3) { const tt = I[q + 1]; I[q + 1] = I[q + 2]; I[q + 2] = tt; } g.setIndex(I); g.computeVertexNormals(); } };
+  flipUp(tg, idx);
+  const turfTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    const r = CH.rng(224); g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let q = 0; q < 15000; q++) { const x = r() * w, y = r() * h, l = 2 + r() * 10, a = (r() - 0.5) * 0.8;
+      g.strokeStyle = r() < 0.5 ? 'rgba(255,240,200,' + (0.15 + r() * 0.3).toFixed(2) + ')' : 'rgba(70,60,110,' + (0.1 + r() * 0.22).toFixed(2) + ')';
+      g.lineWidth = 0.8 + r() * 1.4; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(a) * l, y - Math.cos(a) * l); g.stroke(); }
+  }, [1, 1]);
+  const turf = new THREE.MeshStandardMaterial({ name: 'prairie-turf', vertexColors: true, map: turfTex, roughness: 0.96, metalness: 0 });
+  turf.userData.txSurface = 'fabric';
+  const land = new THREE.Mesh(tg, turf); land.receiveShadow = true; land.userData.txBevel = false; land.userData.heightAt = H;
+  R.scene.add(land);
+
+  /* ---- THE ROAD: a chip seal ribbon with white edge lines and a yellow centre line, on its bed ---- */
+  const chipTex = CH.canvasTex(THREE, 1024, 256, (g, w, h) => {
+    const r = CH.rng(77); g.fillStyle = '#6a5a56'; g.fillRect(0, 0, w, h);
+    for (let q = 0; q < 26000; q++) { const v = r(); g.fillStyle = v < 0.33 ? 'rgba(150,128,112,0.55)' : v < 0.66 ? 'rgba(52,44,58,0.5)' : 'rgba(196,170,140,0.35)'; const s = 1 + r() * 3; g.fillRect(r() * w, r() * h, s, s); }
+    for (let q = 0; q < 40; q++) { g.fillStyle = 'rgba(40,34,48,0.18)'; g.fillRect(r() * w, h * (0.25 + r() * 0.1), 40 + r() * 120, 10 + r() * 8); g.fillRect(r() * w, h * (0.65 + r() * 0.1), 40 + r() * 120, 10 + r() * 8); }
+    g.fillStyle = 'rgba(244,240,228,0.92)'; g.fillRect(0, h * 0.06, w, h * 0.025); g.fillRect(0, h * 0.915, w, h * 0.025);
+    g.fillStyle = 'rgba(240,190,60,0.9)'; g.fillRect(0, h * 0.488, w, h * 0.024);
+  }, [1, 1]);
+  chipTex.wrapS = chipTex.wrapT = THREE.RepeatWrapping;
+  const chip = new THREE.MeshStandardMaterial({ name: 'chip-seal-asphalt', map: chipTex, roughness: 0.92, metalness: 0 });
+  chip.userData.txSurface = 'concrete';
+  const ribbon = (t0, t1, s0, s1, yf, mat, segs, cs, uvT) => {
+    cs = cs || 1; uvT = uvT || 10; const g = new THREE.BufferGeometry(), P = [], U = [], I = [];
+    for (let q = 0; q <= segs; q++) { const t = t0 + (t1 - t0) * q / segs;
+      for (let e = 0; e <= cs; e++) { const sv = s0 + (s1 - s0) * e / cs, p = along(t, sv);
+        const y = typeof yf === 'function' ? yf(t, sv, p) : (yf == null ? H(p[0], p[1]) + 0.03 : yf);
+        P.push(p[0], y, p[1]); U.push(t / uvT, e / cs); } }
+    for (let q = 0; q < segs; q++) for (let e = 0; e < cs; e++) { const a = q * (cs + 1) + e, b = a + cs + 1; I.push(a, a + 1, b, a + 1, b + 1, b); }
+    g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2)); g.setIndex(I); g.computeVertexNormals();
+    flipUp(g, I);
+    const m = new THREE.Mesh(g, mat); m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m); return m;
+  };
+  ribbon(-600, 200, ROAD_C + ROAD_HALF, ROAD_C - ROAD_HALF, BED + 0.02, chip, 500, 1, 40);
+  const gravelTex = CH.canvasTex(THREE, 512, 128, (g, w, h) => { const r = CH.rng(31); g.fillStyle = '#b8a48a'; g.fillRect(0, 0, w, h);
+    for (let q = 0; q < 9000; q++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(232,220,196,0.6)' : 'rgba(110,92,84,0.45)'; const s = 1 + r() * 3; g.fillRect(r() * w, r() * h, s, s); } }, [1, 1]);
+  gravelTex.wrapS = gravelTex.wrapT = THREE.RepeatWrapping;
+  const gravel = new THREE.MeshStandardMaterial({ name: 'gravel-shoulder-caliche', map: gravelTex, roughness: 0.97 }); gravel.userData.txSurface = 'concrete';
+  /* the near shoulder stops where the caliche band begins */
+  ribbon(-600, bandT0, ROAD_C + ROAD_HALF + SHOULDER, ROAD_C + ROAD_HALF, BED + 0.015, gravel, 300, 1, 12);
+  ribbon(-600, 200, ROAD_C - ROAD_HALF, ROAD_C - ROAD_HALF - SHOULDER, BED + 0.015, gravel, 300, 1, 12);
+
+  /* ---- THE CALICHE BAND, marker BAND_FROM to the last marker: a crushed stone shoulder pad seated into the verge,
+   * with a raised edge, two tyre ruts and warm peach stone catching the key ---- */
+  const peachTex = CH.canvasTex(THREE, 1024, 512, (g, w, h) => { const r = CH.rng(18); g.fillStyle = '#f4a650'; g.fillRect(0, 0, w, h);
+    for (let q = 0; q < 26000; q++) { const v = r(), x = r() * w, y = r() * h, s = 1.5 + r() * 5;
+      g.fillStyle = v < 0.25 ? 'rgba(255,230,180,0.85)' : v < 0.5 ? 'rgba(250,200,120,0.8)' : v < 0.72 ? 'rgba(206,140,76,0.6)' : v < 0.9 ? 'rgba(120,70,70,0.45)' : 'rgba(255,244,226,0.9)';
+      g.beginPath(); g.ellipse(x, y, s, s * (0.6 + r() * 0.4), r() * 3, 0, Math.PI * 2); g.fill(); } }, [1, 1]);
+  peachTex.wrapS = peachTex.wrapT = THREE.RepeatWrapping;
+  const peach = new THREE.MeshStandardMaterial({ name: 'caliche-crushed-stone-peach', map: peachTex, bumpMap: peachTex, bumpScale: 2.2, roughness: 0.88, emissive: 0x7a4a10, emissiveIntensity: 0.3 });
+  peach.userData.txSurface = 'concrete';
+  const RUTS = [-1.05, 0.55];
+  const bandY = (t, sv, p) => {
+    const base = Math.max(H(p[0], p[1]), BED * 0.85);
+    const eS = Math.min(sv - BAND_S0, BAND_S1 - sv), eT = Math.min(t - bandT0, bandT1 - t), e = Math.min(eS, eT);
+    let y = base + (e < 0.05 ? -0.06 : e < 0.22 ? 0.13 * sstep(0.05, 0.18, e) : 0.13 - 0.03 * sstep(0.22, 0.45, e));   /* the raised edge */
+    RUTS.forEach((rs) => { y -= 0.075 * Math.exp(-Math.pow((sv - rs) / 0.17, 2)) * sstep(0.2, 1.2, eT); });              /* tyre ruts */
+    y += (fbm(p[0] * 3, p[1] * 3) - 0.5) * 0.03;
+    return y;
+  };
+  ribbon(bandT0, bandT1, BAND_S0, BAND_S1, bandY, peach, 120, 70, 2.2);
+  /* the two tyre ruts, packed darker into the crushed stone */
+  { const rutM = new THREE.MeshStandardMaterial({ name: 'caliche-packed-rut', color: 0xc07a44, roughness: 0.72, emissive: 0x4a2408, emissiveIntensity: 0.2 }); rutM.userData.txSurface = 'concrete';
+    RUTS.forEach((rs) => ribbon(bandT0 + 0.6, bandT1 - 0.6, rs - 0.15, rs + 0.15, (t, sv, p) => bandY(t, sv, p) + 0.006, rutM, 120, 4, 2.2)); }
+  { const marks = []; for (let m = 1; m <= N_POSTS; m++) if (tAt(m) >= bandT0 && tAt(m) <= bandT1) marks.push(m);
+    if (marks[0] !== BAND_FROM || marks[marks.length - 1] !== N_POSTS) throw new Error('band does not start at marker ' + BAND_FROM + ': ' + marks.join(',')); }
+  /* loose stone spilled off the band's edge into the verge */
+  { const stone = new THREE.MeshStandardMaterial({ name: 'caliche-stone-chips', color: 0xe0a46a, roughness: 0.9 }); stone.userData.txSurface = false;
+    const sg = new THREE.IcosahedronGeometry(0.018, 0), im = new THREE.InstancedMesh(sg, stone, 500), M = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler();
+    for (let i = 0; i < 500; i++) { const t = bandT0 + hash(i, 1) * (bandT1 - bandT0), sv = BAND_S1 + Math.pow(hash(i, 2), 2) * 1.2 * (hash(i, 5) < 0.85 ? 1 : -0.2), p = along(t, sv), sc = 0.5 + hash(i, 3) * 1.4;
+      e.set(hash(i, 4) * 3, hash(i, 6) * 3, 0); q.setFromEuler(e); M.compose(new THREE.Vector3(p[0], Math.max(H(p[0], p[1]), BED * 0.8) + 0.02, p[1]), q, new THREE.Vector3(sc, sc * 0.6, sc)); im.setMatrixAt(i, M); }
+    im.castShadow = true; im.receiveShadow = true; R.scene.add(im); }
+
+  /* ---- THE MARKER POSTS: white HDPE delineators, a silver reflector sheet and a domed cap, set in a soil collar ---- */
+  const postG = new THREE.Group();
+  const hdpe = new THREE.MeshPhysicalMaterial({ name: 'hdpe-plastic-post', color: 0xf6f3ee, roughness: 0.38, clearcoat: 0.35, clearcoatRoughness: 0.4 });
+  hdpe.userData.txSurface = 'plastic';
+  const refl = new THREE.MeshStandardMaterial({ name: 'retroreflective-band', color: 0xfff0d8, metalness: 0.75, roughness: 0.14, emissive: 0xffc070, emissiveIntensity: 0.7 });
+  refl.userData.txSurface = false;
+  const collarM = new THREE.MeshStandardMaterial({ name: 'gumbo-clay-dirt', color: 0x7a5038, roughness: 0.96 });
+  const postGeo = TXT.roundedBox(0.12, 1.25, 0.065, 0.028);
+  const ribGeo = new THREE.BoxGeometry(0.012, 0.9, 0.004);
+  const ribM = new THREE.MeshStandardMaterial({ name: 'hdpe-rib-plastic', color: 0xc9c8d6, roughness: 0.5 });
+  const reflGeo = TXT.roundedBox(0.128, 0.16, 0.073, 0.03);
+  for (let m = 1; m <= N_POSTS; m++) {
+    const p = along(tAt(m), 0.15), y0 = Math.max(H(p[0], p[1]), BED * 0.8);
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(postGeo, hdpe); body.position.y = 0.6; g.add(body);
+    const rib = new THREE.Mesh(ribGeo, ribM); rib.position.set(0, 0.5, 0.034); g.add(rib);
+    const sh = new THREE.Mesh(reflGeo, refl); sh.position.set(0, 1.07, 0); g.add(sh);
+    const tip = new THREE.Mesh(new THREE.SphereGeometry(0.062, 18, 8, 0, Math.PI * 2, 0, Math.PI / 2), hdpe); tip.scale.set(1, 0.4, 0.55); tip.position.y = 1.225; g.add(tip);
+    const collar = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), collarM); collar.scale.set(1, 0.32, 0.8); collar.position.y = 0.0; g.add(collar);
+    g.position.set(p[0], y0 - 0.02, p[1]);
+    g.rotation.y = Math.atan2(-p[0], -p[1]) + (hash(m, 3) - 0.5) * 0.14; g.rotation.z = (hash(m, 7) - 0.5) * 0.04;
+    g.userData.marker = m; postG.add(g);
+  }
+  TXT.add(R, postG);
+  postG.children.forEach((g) => TXT.contact(R, g, { opacity: 0.85 }));
+  if (postG.children.length !== FIG.hours_high) throw new Error('posts ' + postG.children.length + ' != ' + FIG.hours_high);
+
+  /* ---- THE TARPED RANCH HOUSE at the end of the post line, its drive meeting the road at marker 1 ---- */
+  const house = K.make('ranch_house', { seed: 6, material: 'brick', garage: 'right', chimney: true });
+  const hp = groundAt(250, 546);
+  house.position.set(hp[0], H(hp[0], hp[1]), hp[1]); const hFace = [-hp[0], -hp[1]]; { const l = Math.hypot(hFace[0], hFace[1]); hFace[0] /= l; hFace[1] /= l; } house.rotation.y = Math.atan2(hFace[0], hFace[1]) - 0.25;
+  TXT.add(R, house); TXT.contact(R, house, { opacity: 0.85 });
+  /* the drive, caliche, from the road at marker 1 to the garage */
+  { const d0 = along(tAt(1) - 3, ROAD_C - ROAD_HALF - SHOULDER), d1 = [hp[0] + n[0] * 9 + n[1] * 7, hp[1] + n[1] * 9 - n[0] * 7];
+    const g = new THREE.BufferGeometry(), P = [], I = [], U = [], NS = 40, dv = [d1[0] - d0[0], d1[1] - d0[1]], dl = Math.hypot(dv[0], dv[1]), px = [-dv[1] / dl, dv[0] / dl];
+    for (let i = 0; i <= NS; i++) { const f = i / NS, c = [d0[0] + dv[0] * f, d0[1] + dv[1] * f];
+      [-1.7, 1.7].forEach((o, e) => { const x = c[0] + px[0] * o, z = c[1] + px[1] * o; P.push(x, Math.max(H(x, z), i === 0 ? BED : -9) + 0.04, z); U.push(f * 8, e); }); }
+    for (let i = 0; i < NS; i++) { const a = i * 2; I.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+    g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2)); g.setIndex(I); g.computeVertexNormals(); flipUp(g, I);
+    const m = new THREE.Mesh(g, gravel); m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m); }
+  /* THE TARP AS CLOTH: a weathered cobalt poly tarp draped over the ridge onto the front slope by raycasting the roof,
+   * nailed down under wood battens that run up the slope, sagging between them, its folds going navy, sandbags along
+   * the eave and one corner lifted by the wind */
+  { house.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(house), rc = new THREE.Raycaster(), NX = 48, NZ = 28, BAT = 8;
+    const toCam = new THREE.Vector3(Math.sin(house.rotation.y), 0, Math.cos(house.rotation.y)).normalize(), side = new THREE.Vector3(-toCam.z, 0, toCam.x);
+    const c0 = house.position.clone().addScaledVector(side, -3.0).addScaledVector(toCam, -1.8);
+    const P = [], C = [], I = [], grid = [], roofY = [];
+    const cobalt = new THREE.Color(0x4a5a80), navy = new THREE.Color(0x1e2652), sun = new THREE.Color(0x76829e), cc = new THREE.Color();
+    for (let j = 0; j <= NZ; j++) for (let i = 0; i <= NX; i++) {
+      const o = c0.clone().addScaledVector(side, (i / NX - 0.5) * 8.0).addScaledVector(toCam, (j / NZ) * 7.6);
+      rc.set(new THREE.Vector3(o.x, bb.max.y + 5, o.z), new THREE.Vector3(0, -1, 0));
+      const hit = rc.intersectObject(house, true)[0]; const y = hit ? hit.point.y : bb.max.y - 2;
+      const ph = (i % BAT) / BAT, sagK = Math.pow(Math.sin(Math.PI * ph), 2);                       /* sag between battens */
+      const lift = 1.1 * Math.pow(Math.max(0, (i / NX - 0.72) / 0.28), 2) * Math.pow(j / NZ, 2.2);    /* the wind-caught corner */
+      const fold = 0.03 * Math.sin(i * 0.9 + j * 1.3) + 0.02 * Math.sin(j * 2.1 - i * 0.4);
+      const yy = y + 0.1 - 0.09 * sagK * (1 - lift) + fold + lift;
+      const v = new THREE.Vector3(o.x, yy, o.z); P.push(v.x, v.y, v.z); grid.push(v); roofY.push(y);
+      cc.copy(cobalt).lerp(navy, 0.55 * sagK * (1 - Math.min(1, lift * 2)) + 0.25 * Math.max(0, -fold / 0.05)).lerp(sun, 0.25 * (1 - sagK) * (1 - lift));
+      if (lift > 0.05) cc.lerp(navy, 0.35);                                                           /* the lifted underside */
+      C.push(cc.r, cc.g, cc.b);
+    }
+    for (let j = 0; j < NZ; j++) for (let i = 0; i < NX; i++) { const a = j * (NX + 1) + i; I.push(a, a + NX + 1, a + 1, a + 1, a + NX + 1, a + NX + 2); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(C, 3)); g.setIndex(I); g.computeVertexNormals(); flipUp(g, I);
+    const tarp = new THREE.MeshPhysicalMaterial({ name: 'poly-tarp-fabric', color: 0xffffff, vertexColors: true, roughness: 0.62, clearcoat: 0.15, clearcoatRoughness: 0.6, sheen: 0.4, sheenColor: new THREE.Color(0x8aa0e0), side: THREE.DoubleSide });
+    tarp.userData.txSurface = 'fabric';
+    const tm = new THREE.Mesh(g, tarp); tm.castShadow = true; tm.receiveShadow = true; tm.userData.txBevel = false; R.scene.add(tm);
+    const at = (i, j) => grid[j * (NX + 1) + i];
+    /* wood battens nailed through the tarp, up the slope and over the ridge */
+    const lath = new THREE.MeshStandardMaterial({ name: 'pine-batten-wood', color: 0xc8a06a, roughness: 0.8 }); lath.userData.txSurface = 'wood';
+    for (let i = 0; i <= NX - 8; i += BAT) { const pts = []; for (let j = 0; j <= NZ; j += 2) { const v = at(i, j).clone(); v.y += 0.03; pts.push(v); }
+      const c = new THREE.CatmullRomCurve3(pts), m = new THREE.Mesh(new THREE.TubeGeometry(c, 40, 0.045, 4, false), lath); m.castShadow = true; m.userData.txBevel = false; R.scene.add(m); }
+    /* burlap sandbags along the eave and up the free side */
+    const burlap = new THREE.MeshStandardMaterial({ name: 'burlap-sandbag-fabric', color: 0xc8a46e, roughness: 0.95 }); burlap.userData.txSurface = 'fabric';
+    const bagGeo = TXT.roundedBox(0.66, 0.2, 0.4, 0.09);
+    [[2, NZ], [7, NZ], [12, NZ], [17, NZ], [22, NZ], [27, NZ], [32, NZ], [0, 18], [0, 9], [36, 4], [30, 0]].forEach(([i, j]) => {
+      const v = at(i, j), b = new THREE.Mesh(bagGeo, burlap); b.position.set(v.x, v.y + 0.08, v.z); b.rotation.y = Math.atan2(side.x, side.z) + (hash(i, j) - 0.5) * 0.5; b.rotation.z = (hash(j, i) - 0.5) * 0.2; b.castShadow = true; R.scene.add(b); }); }
+  /* oaks round the house, their leaf masses clustered */
+  [[-22, 12, 4, 1.0], [19, 16, 21, 0.85], [-4, 26, 33, 1.15]].forEach(([dx, dz, sd, sc]) => {
+    const o = K.make('live_oak', { seed: sd }); const sideV = [-n[1], n[0]];
+    const x = hp[0] + sideV[0] * dx - n[0] * dz, z = hp[1] + sideV[1] * dx - n[1] * dz; o.position.set(x, H(x, z), z); o.scale.set(sc * 1.1, sc, sc * 1.1); o.rotation.y = sd; TXT.add(R, o); TXT.contact(R, o, { opacity: 0.6 }); });
+  [[700, 520, 7, 1.1], [760, 512, 8, 0.8], [905, 516, 9, 1.0], [1040, 522, 12, 1.25]].forEach(([sx, sy, sd, sc]) => {
+    const p = groundAt(sx, sy); const o = K.make('live_oak', { seed: sd }); o.position.set(p[0], H(p[0], p[1]), p[1]); o.scale.set(sc * 1.15, sc, sc * 1.15); TXT.add(R, o); });
+  { const pk = K.make('pickup', { seed: 3, color: 0xe9ecef }); const p = [hp[0] + n[0] * 11 + n[1] * 9, hp[1] + n[1] * 11 - n[0] * 9]; pk.position.set(p[0], H(p[0], p[1]), p[1]); pk.rotation.y = Math.atan2(n[0], n[1]) + 0.3; TXT.add(R, pk); TXT.contact(R, pk, { opacity: 0.9 }); }
+
+  /* ---- THE RESPONDER at the house end of the line, three quarters away, by marker 2 ---- */
+  const person = K.make('person', { seed: 11, role: 'worker', pose: 'stand', vest: true, hat: 'hard', hatColor: 0xf4f1ea });
+  person.traverse(m => { if (m.isMesh && m.material && /hivis/.test(m.material.name || '')) { m.material = m.material.clone(); m.material.color.set(0xff6a1a); } });   /* showrunner: orange vest, gold means only the route */
+  { const p = along(tAt(3), 1.4); person.position.set(p[0], Math.max(H(p[0], p[1]), 0), p[1]); person.rotation.y = Math.atan2(-u[0], -u[1]) + 0.5; }
+  TXT.add(R, person); TXT.contact(R, person, { opacity: 0.9 });
+
+  /* ---- THE POLES: one standing by the house, one leaning toward the road with its line down ---- */
+  const poleUp = K.make('utility_pole', { seed: 2, height: 10.7, insulators: 'porcelain', transformer: true });
+  const poleLean = K.make('utility_pole', { seed: 5, height: 10.7, insulators: 'porcelain' });
+  const pu = along(tAt(1) - 26, ROAD_C - ROAD_HALF - SHOULDER - 3), pl = along(tAt(9), ROAD_C - ROAD_HALF - SHOULDER - 3);
+  poleUp.position.set(pu[0], H(pu[0], pu[1]), pu[1]); poleUp.rotation.y = Math.atan2(u[0], u[1]) + Math.PI / 2;
+  poleLean.position.set(pl[0], H(pl[0], pl[1]) - 0.3, pl[1]); poleLean.rotation.y = Math.atan2(u[0], u[1]) + Math.PI / 2;
+  TXT.add(R, poleUp); TXT.add(R, poleLean); TXT.contact(R, poleUp, { opacity: 0.8 });
+  { poleLean.rotateOnWorldAxis(new THREE.Vector3(u[0], 0, u[1]).normalize(), 17 * deg);
+    poleLean.rotateOnWorldAxis(new THREE.Vector3(n[0], 0, n[1]).normalize(), -7 * deg); }
+  { const clay = new THREE.MeshStandardMaterial({ name: 'gumbo-clay-dirt', color: CH.GUMBO, roughness: 0.95 });
+    const heap = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12), clay); heap.scale.set(1.5, 0.4, 1.1); heap.position.set(pl[0], H(pl[0], pl[1]), pl[1]); TXT.add(R, heap); }
+  R.scene.updateMatrixWorld(true);
+  const wireMat = new THREE.MeshStandardMaterial({ name: 'aluminium-conductor-cast-metal', color: 0x2e2f48, metalness: 0.6, roughness: 0.45 });
+  const tube = (pts, r) => { const c = new THREE.CatmullRomCurve3(pts); const m = new THREE.Mesh(new THREE.TubeGeometry(c, 200, r, 6, false), wireMat); m.castShadow = true; m.userData.txBevel = false; R.scene.add(m); return m; };
+  const att = (pole, i) => { const a = (pole.userData.attach || [])[i]; const v = a ? new THREE.Vector3(a.x, a.y, a.z) : new THREE.Vector3(0, 10.4, 0); return pole.localToWorld(v); };
+  const sag = (p0, p1, drop, nseg) => { const out = []; for (let q = 0; q <= nseg; q++) { const t = q / nseg; const v = p0.clone().lerp(p1, t); v.y -= drop * 4 * t * (1 - t); out.push(v); } return out; };
+  const nAtt = Math.max(1, (poleUp.userData.attach || []).length);
+  for (let i = 0; i < Math.min(nAtt, 4); i++) tube(sag(att(poleUp, i), att(poleLean, i), 2.4 + i * 0.15, 40), 0.03);
+  /* the downed line: off the leaning pole's arm, across the road, lying along the near verge between the posts */
+  { const p0 = att(poleLean, 0), mid = along(tAt(11), ROAD_C), gnd = along(tAt(12.5), 1.4), end = along(tAt(15), 2.6), end2 = along(tAt(16.5), 2.2);
+    const gy = (q) => Math.max(H(q[0], q[1]), BED * 0.8) + 0.04;
+    tube([p0, new THREE.Vector3(mid[0], BED + 2.4, mid[1]), new THREE.Vector3(mid[0] + (gnd[0] - mid[0]) * 0.55, BED + 0.5, mid[1] + (gnd[1] - mid[1]) * 0.55),
+          new THREE.Vector3(gnd[0], gy(gnd), gnd[1]), new THREE.Vector3(end[0], gy(end), end[1]), new THREE.Vector3(end2[0], gy(end2), end2[1])], 0.035); }
+
+  /* ---- STORM DEBRIS along the near verge: torn shingle tabs, broken oak limbs with leaves, a downed small oak ---- */
+  { const shM = [0x3b3a3f, 0x5a4a44, 0x4a4f58].map((c, i) => { const m = new THREE.MeshStandardMaterial({ name: 'asphalt-shingle-' + i, color: c, roughness: 0.9 }); m.userData.txSurface = 'concrete'; return m; });
+    const tab = TXT.roundedBox(0.34, 0.012, 0.22, 0.004);
+    for (let i = 0; i < 70; i++) { const t = tAt(4) + hash(i, 11) * (tAt(23) - tAt(4)), sv = 0.6 + hash(i, 12) * 4.0, p = along(t, sv);
+      const m = new THREE.Mesh(tab, shM[i % 3]); m.position.set(p[0], H(p[0], p[1]) + 0.03, p[1]); m.rotation.set((hash(i, 13) - 0.5) * 0.5, hash(i, 14) * 6, (hash(i, 15) - 0.5) * 0.5); m.castShadow = true; m.receiveShadow = true; R.scene.add(m); }
+    const bark = new THREE.MeshStandardMaterial({ name: 'oak-bark-wood', color: 0x6a5040, roughness: 0.92 }); bark.userData.txSurface = 'wood';
+    const leaf = new THREE.MeshStandardMaterial({ name: 'oak-leaf-cluster', color: 0x4f7a34, roughness: 0.8 });
+    const limb = (t, sv, len, yaw, seed) => { const p = along(t, sv), g = new THREE.Group();
+      const main = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.07, len, 8), bark); main.rotation.z = Math.PI / 2; main.position.y = 0.06; g.add(main);
+      for (let b = 0; b < 4; b++) { const bl = len * (0.25 + hash(seed, b) * 0.25), br = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.03, bl, 6), bark);
+        const bx = -len / 2 + len * (0.3 + b * 0.17), ang = (b % 2 ? 1 : -1) * (0.5 + hash(seed, b + 9) * 0.4);
+        br.position.set(bx + Math.cos(ang) * bl / 2, 0.07, Math.sin(ang) * bl / 2); br.rotation.set(0, -ang, Math.PI / 2); g.add(br);
+      }
+      g.position.set(p[0], H(p[0], p[1]), p[1]); g.rotation.y = yaw; TXT.add(R, g); return g; };
+    limb(tAt(21.4), 2.7, 2.6, 0.7, 3); limb(tAt(17.2), 3.6, 2.0, -0.4, 5); limb(tAt(13.5), 3.2, 2.4, 1.6, 7); limb(tAt(9), 2.8, 2.2, 0.2, 9); limb(tAt(22.8), 4.4, 1.6, 2.4, 11);
+    const fallen = K.make('downed_oak', {}); const fp = along(tAt(6), 6.5); fallen.scale.setScalar(0.42); fallen.position.set(fp[0], H(fp[0], fp[1]), fp[1]); fallen.rotation.y = Math.atan2(u[0], u[1]) + 0.3; TXT.add(R, fallen); TXT.contact(R, fallen, { opacity: 0.7 }); }
+
+  /* ---- THE GRASS on the verges, draped on the land ---- */
+  const drape = (obj) => { obj.updateMatrixWorld(true);
+    const m4 = new THREE.Matrix4(), wm = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), s = new THREE.Vector3();
+    obj.traverse((m) => { if (!m.isInstancedMesh) return;
+      for (let i = 0; i < m.count; i++) { m.getMatrixAt(i, m4); wm.multiplyMatrices(m.matrixWorld, m4); m4.decompose(p, q, s);
+        const wp = new THREE.Vector3().setFromMatrixPosition(wm); const [tt, ss] = tsOf(wp.x, wp.z);
+        if (Math.abs(ss - ROAD_C) < ROAD_HALF + SHOULDER + 0.3 || (tt > bandT0 - 0.2 && tt < bandT1 + 0.2 && ss > BAND_S0 - 0.3 && ss < BAND_S1 + 0.1)) s.multiplyScalar(0.0001);
+        p.y += H(wp.x, wp.z); m4.compose(p, q, s); m.setMatrixAt(i, m4); }
+      m.instanceMatrix.needsUpdate = true; m.frustumCulled = false; }); return obj; };
+  const g1 = TXT.scatter(R, { kind: 'grass', count: 16000, area: [-30, -110, 40, -22], seed: 2411, scale: [0.4, 0.95], colors: [0x7f9a3a, 0xa8a24a, 0xc7a24c, 0x6b8a3a, 0xb88a48], variants: 6 });
+  if (g1) drape(g1);
+  const g2 = TXT.scatter(R, { kind: 'grass', count: 16000, area: [-12, -26, 18, -4], seed: 977, scale: [0.3, 0.7], colors: [0x6f8f34, 0x9a9a44, 0xb98f46, 0x5e7f36, 0x8a6a8a], variants: 6 });
+  if (g2) drape(g2);
+
+  /* ---- THE SKY: a working morning in the wonder palette, the honey sun low behind the camera's right shoulder ---- */
+  const SUN = { az: 100, el: 18 };
+  TXT.sunDir = () => { const a = SUN.az * deg, e = SUN.el * deg; return new THREE.Vector3(Math.sin(a) * Math.cos(e), Math.sin(e), Math.cos(a) * Math.cos(e)).normalize(); };
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2wonder, { el: [12, 18], zenith: 0x1a3aa8, horizon: 0x8ea8ff, haze: 0xffbf98, clouds: 0.22, sunDisc: 0, glow: 0.9, horizonGlow: 0.6, span: 0.09 }));
+
+  /* ---- THE KEY ---- */
+  const spec = CH.rigSpec(W, 60, 4096); spec.key = Object.assign({}, spec.key, { i: spec.key.i * 2.0 });
+  const mid = along(tAt(14), -3);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([mid[0], 0, mid[1]], { distance: 220, shadowFar: 500, normalBias: 0.01 }), { light: SUN }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.12, height: 0.25, mottle: 0.12, skip: [postG] });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.seat(cx, { a: 0.5, fade: 170 });
+  CH.seat(cx, { sel: '.dek', a: 0.45, fade: 150 });
+    /* the zenith deepens in the tone's own low hue under the kicker and counter, a smooth sky gradient rather than a seat blob */
+  { const zg = cx.createLinearGradient(0, 0, 0, 300); zg.addColorStop(0, 'rgba(' + CH.lowRGB() + ',0.5)'); zg.addColorStop(0.55, 'rgba(' + CH.lowRGB() + ',0.28)'); zg.addColorStop(1, 'rgba(' + CH.lowRGB() + ',0)'); cx.fillStyle = zg; cx.fillRect(0, 0, 1080, 300); }
+  TXLOOK.footWash(cx, { a: 0.5, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

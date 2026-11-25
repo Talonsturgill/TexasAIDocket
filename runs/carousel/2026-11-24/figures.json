@@ -1,0 +1,102 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "hours_low": {
+  "value": 18,
+  "from": [
+   "c2"
+  ],
+  "basis": "low end of the developers' 18 to 24 hour comparison"
+ },
+ "hours_high": {
+  "value": 24,
+  "from": [
+   "c2"
+  ],
+  "basis": "high end of that comparison"
+ },
+ "hours_low_minutes": {
+  "value": 1080,
+  "from": [
+   "c2"
+  ],
+  "basis": "hours_low * 60, drawn only as a length on a time scale"
+ },
+ "homes": {
+  "value": 21000,
+  "from": [
+   "c3"
+  ],
+  "basis": "more than this many damaged homes in the training imagery, a floor"
+ },
+ "disasters": {
+  "value": 10,
+  "from": [
+   "c3"
+  ],
+  "basis": "major disasters in the training imagery"
+ },
+ "orthomosaics": {
+  "value": 265,
+  "from": [
+   "c25"
+  ],
+  "basis": "orthomosaics in the CRASAR-U-DROIDs dataset"
+ },
+ "building_views": {
+  "value": 122502,
+  "from": [
+   "c25"
+  ],
+  "basis": "building views in the dataset"
+ },
+ "polygons": {
+  "value": 21716,
+  "from": [
+   "c25"
+  ],
+  "basis": "building polygons in the dataset"
+ },
+ "buildings": {
+  "value": 2000,
+  "from": [
+   "c16"
+  ],
+  "basis": "roughly this many buildings per finished orthomosaic"
+ },
+ "minutes": {
+  "value": 7,
+  "from": [
+   "c16",
+   "c22"
+  ],
+  "basis": "about this many minutes per finished orthomosaic"
+ },
+ "responders": {
+  "value": 125,
+  "from": [
+   "c8"
+  ],
+  "basis": "emergency responders trained"
+ },
+ "agencies": {
+  "value": 63,
+  "from": [
+   "c8"
+  ],
+  "basis": "agencies those responders come from"
+ },
+ "states": {
+  "value": 14,
+  "from": [
+   "c8"
+  ],
+  "basis": "states, plus Puerto Rico"
+ },
+ "season_year": {
+  "value": 2024,
+  "from": [
+   "c10"
+  ],
+  "basis": "the hurricane season of the Florida and Pennsylvania deployments"
+ }
+}

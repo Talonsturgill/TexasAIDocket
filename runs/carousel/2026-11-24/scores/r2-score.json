@@ -1,0 +1,184 @@
+{
+ "weighted_score": 7.278,
+ "judges": [
+  7.21,
+  7.51,
+  7.28
+ ],
+ "spread": 0.3,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.2,
+   "weight": 0.22,
+   "judges": [
+    7.4,
+    7.2,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.6,
+   "weight": 0.12,
+   "judges": [
+    7.6,
+    7.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.7,
+   "weight": 0.16,
+   "judges": [
+    6.7,
+    7.3,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.4,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.3,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The uprooted root ball is a brown blob with no readable roots, so the obstruction the frame is about doesn't read. The dek wash covers the upper third.",
+     "fix": "Model the root plate with radiating root tubes and clinging soil, plus a trunk lying across the lane the route bends around. Drop the dek wash to a narrow band so the sky shows above it."
+    },
+    {
+     "judge": 2,
+     "problem": "Featureless root plate, empty wet asphalt with an aliased reflection, the route barely bends, filled roofs not legible.",
+     "fix": "Raise and push the camera so the oak lies across the middle third, a torn soil disc with roots and crater, curve the route around the crown tip, crop the reflective foreground."
+    },
+    {
+     "judge": 3,
+     "problem": "The downed oak's root plate is a flat brown blob that reads as a rock or fungus at 432 px. The dek's 'filled roofs show assessments after review' has no filled roof the eye can find, so the frame does not draw its own caption.",
+     "fix": "Model the root plate as a torn gumbo-clay disc with root strands and a cast shadow into the puddle. Pull the camera up a few metres so two or three roofs beyond the junction show solid filled cerulean plates, with the gold route turning past them."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The trunk is a straight untapered cylinder with a small leaf tuft, lying flat on the roof, and the seat wash over the top 40 percent flattens the street.",
+     "fix": "Swap in a barked, tapering limb with a crown mass breaking over the ridge and a hard contact shadow. Lower the camera to an oblique so the lawn gives the type quiet without a wash."
+    },
+    {
+     "judge": 2,
+     "problem": "Straight untapered limb with leaf tufts; a chrome sphere on the roof.",
+     "fix": "A tapering forked limb with bark and a pale break; the sphere as a turbine vent."
+    },
+    {
+     "judge": 3,
+     "problem": "The trunk ends in a sawn log at the gutter and the leaf tufts float on the shingles. The one assessment rim reads as a pale blue gutter, not a judgement, so 'color coded view, structure by structure' is invisible.",
+     "fix": "Run the trunk off the frame edge with its crown crushed into the ridge, not floating tufts. Pull back enough to show three neighbouring roofs, each wearing a hollow rim in a different step of the ice, cerulean and cobalt-violet ramp, so the code reads as a code."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The operator is a stiff mannequin with open palms hovering over the map. The laptop is a dark slab, and the empty sand on the left takes a third of the frame.",
+     "fix": "Pose one hand pressing a finger on a building on the map and the other on the laptop trackpad with the screen lit. Crop in from the left so the operator and tailgate fill the lower two thirds."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin operator with mitten hands; the pole and wire cut through the headline.",
+     "fix": "Move the pole and wire out of the type field and reframe over the shoulder so the map and one pointing hand fill the lower half."
+    },
+    {
+     "judge": 3,
+     "problem": "The operator is a mannequin figure with a dark laptop screen, and the leaning utility pole cuts straight through the headline words 'person' and 'every'.",
+     "fix": "Move the pole out of the headline zone, frame right behind the truck, and push the camera over the operator's shoulder so the map board fills the lower half. Light the laptop screen so it casts onto the operator's hands and face, and hide most of the figure's face."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 265 plates read as a comb of thin slats. The pulled plate's face is unreadable at 432 px, and the cobalt block wall is a flat field taking the top half.",
+     "fix": "Push the camera in and lower it to bench height on the pulled plate, so its drawn floodwater block fills the middle third with a raking key along the plate edges. Let the rack recede out of the left edge behind it."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Repeats frame 1's suburb with evenly spread detail; the tower small; the route short.",
+     "fix": "Street level with the starred tower filling the left half and the route running up the street to its base."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The cover is a clean but toy-like CG subdivision, and the focal stripped roof and tarp sit under the footer claim ids at the bottom edge, so the frame's subject competes with the chrome.",
+     "fix": "Lift the camera target so the stripped roof, tarp and fallen oak sit in the lower-middle third, above the footer. Add wind-thrown debris and wet sheen on the street so the 'after the storm' reads before the headline does."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.278 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 7, 4, 6, 5, 9, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

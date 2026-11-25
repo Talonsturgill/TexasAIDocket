@@ -1,0 +1,78 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Colour right and each picture commissioned for its sentence; strongest frames 3, 2, 1 and 8 at 7.5 to 8. Held down by 6 (mannequin operator from behind, red seam at the vest hem, black slab laptop, feet cropped, half the frame an empty pink plane), 7 (blob root plate, centre-foreground curb bar, route under the worker's feet), 4 (thin limb, chrome spheres on the roof, empty lower lawn, near-solid navy wash behind the type), 5 (no hand, plate stands proud, flat decal faces, rack merges into stripes), 9 (straight route ending mid street, broad violet wash under the dek). Three frames lean on kit figures and primitives."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "Spine holds on all nine, gold means the way through on 1, 4, 7, 9 only, the motif evolves hollow to filled, frame 9 bookends frame 1. Faults: amber helmets on 8 near the accent, electric ultramarine on 5 and 8, the filled state on 7 too small at feed size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral maps to a cited claim, scopes kept, absence scoped to the two documents, illustrative devices labelled. One headline looser than its source: 'Florida made it procedure' where the claim is Florida's state drone remote sensing team; the dek restores the scope."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.2,
+   "why": "A Texan learns what CLARKE does, who built it, the speed claim, the human review and who has trained; no Texas body or decision point named, Brazos County never appears; closer to a capability profile than a decision with a deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, S2 pays at once, S6 is a real turn, S9 turns home; S3 and S4 both re-explain every roof; S5 could move after S8."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Clean on house rules; Texas specificity lives in the art; deks paraphrase the release closely; the close and caption question sound like a person."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Tone rotates and techniques are fresh against Nov 22; the storm-damaged neighbourhood world sits close to Nov 21's staged town."
+  }
+ ],
+ "weighted_score": 7.38,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 6 as the close over-the-shoulder shot: the tailgate map a quarter of the frame, an index finger turning one hollow rim filled, the laptop spilling cool light, boots planted on rutted caliche, the empty ground and the figure's back cropped out.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Mannequin operator from behind, red seam artifact, black slab laptop, feet cropped, half the frame empty pink plane; the review act is a few pixels.",
+   "fix": "Camera low three-quarters over the right shoulder so the map fills about a quarter with the finger on one rim turning filled; crop the empty ground and lower body."
+  },
+  {
+   "slide": 7,
+   "problem": "Route runs under the worker's feet and never bends around the obstruction; blob root plate; a curb bar dominates the bottom centre.",
+   "fix": "Delete the curb bar and lay the ribbon from the bumper in one clear right curve around the canopy tip and out the right edge, arm along it."
+  },
+  {
+   "slide": 4,
+   "problem": "Thin stick limb, two chrome spheres on the roof, empty lower left lawn, near-solid navy wash over the top 40 percent.",
+   "fix": "Thick tapering limb with a pale break across the ridge, spheres as turbine vents, camera dropped and pushed about 15 percent."
+  },
+  {
+   "slide": 5,
+   "problem": "No lift; the plate stands proud of the rack with a flat decal face; 265 plates merge into a striped band.",
+   "fix": "Raise the plate clear of a visibly empty slot with a shadow; bevelled bright top edges with navy gaps."
+  },
+  {
+   "slide": 9,
+   "problem": "Straight glowing route ending mid street; dek over a broad violet wash.",
+   "fix": "Gentle S bend flat on the asphalt with warm spill, taper to a thread, tighten the dek seat."
+  }
+ ],
+ "_note": "Report card of the craft-lens judge, panel round 1, transcribed with each why condensed. The judge also flagged art_preflight.json's needs_review [9]; that field is the regeneration's list and the record's accepted review was bound afterwards (art_preflight.py --date exit 0, panel_ready exit 0)."
+}

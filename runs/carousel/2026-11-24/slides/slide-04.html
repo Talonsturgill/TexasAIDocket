@@ -1,0 +1,393 @@
+<!doctype html>
+<!-- 2026-11-24, frame 4 of 9, ROOF BY ROOF. A low drone oblique over a back yard: one brick ranch's back slope torn to OSB
+     decking with nail rows and ragged courses, a blue tarp with sandbags, a barked live oak limb running in off the frame edge
+     with its crown crushed over the ridge, a hollow rim in a different CH.RAMP step round each of three roofs, and the gold
+     route on the street beyond. No figure is drawn (window.FIG is empty). Colors drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:146px; width:820px">Then every roof is judged</h1>
+<p class="dek" data-follow="22" style="left:78px; width:880px; font-size:30px">The Building Damage Assessment rates the damage to each individual building and gives responders a color coded view, structure by structure. Colors drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-24-roofread-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Structure by structure", counter: "04 / 09", src: "c5 c6",
+    fit: { min: 84, max: 120, maxLines: 2 } });
+
+  /* THE FIGURES. This frame draws no count: window.FIG must stay empty. Every roof in view wears one rim (checked below). */
+
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.1, far: 9000, fog: 0.0085 });
+  R.renderer.localClippingEnabled = true;
+  const rng = CH.rng(4404);
+
+  /* ---------- THE HOUSE. One brick ranch, front on +z toward the street, its back slope toward the camera ---------- */
+  const house = K.make('ranch_house', { seed: 11, material: 'brick', color: '#a0583c', roof: '#5e4a44', trim: 0xefece4, garage: 'right', chimney: false, gable: false });
+  TXT.add(R, house); house.updateMatrixWorld(true);
+  /* the kit's turbine vents are flat shaded: give them smooth spun metal */
+  /* the kit's turbine vane caps are flat shaded lathes that read as chrome balls: find them, hide them, and stand a modelled
+   * ribbed turbine vent in matte galvanised steel on each one's own spot */
+  const vaneSpots = [];
+  house.traverse((m) => { if (!m.isMesh || Array.isArray(m.material) || !m.material.flatShading) return;
+    const ps = m.geometry.attributes.position, sums = {};
+    for (let k = 0; k < ps.count; k++) { const key = ps.getX(k) < 0 ? 'a' : 'b'; const S = sums[key] = sums[key] || [0, 0, 0, 0, 1e9]; S[0] += ps.getX(k); S[1] += ps.getZ(k); S[2]++; S[4] = Math.min(S[4], ps.getY(k)); }
+    Object.values(sums).forEach((S) => vaneSpots.push([S[0] / S[2], S[4], S[1] / S[2]])); m.visible = false; });
+  { const prof = [[0.0, 0.0], [0.17, 0.0], [0.2, 0.05], [0.21, 0.12], [0.19, 0.2], [0.13, 0.27], [0.05, 0.3], [0.0, 0.305]].map((q) => new THREE.Vector2(q[0], q[1]));
+    const vg = new THREE.LatheGeometry(prof, 72), vp = vg.attributes.position;
+    for (let k = 0; k < vp.count; k++) { const x = vp.getX(k), z = vp.getZ(k), y = vp.getY(k), a = Math.atan2(z, x), rib = 1 + 0.07 * Math.max(0, Math.sin(a * 18 + y * 9)) * Math.min(1, y / 0.06) * (1 - Math.min(1, y / 0.3));
+      vp.setX(k, x * rib); vp.setZ(k, z * rib); }
+    vg.computeVertexNormals();
+    const galv = K.mat('galv-steel-turbine-matte', { color: 0xa9aeb4, metalness: 0.55, roughness: 0.58 });
+    const neckM = K.mat('galv-steel-turbine-neck', { color: 0x8e949a, metalness: 0.5, roughness: 0.6 });
+    vaneSpots.forEach(([x, y, z]) => { const v = new THREE.Mesh(vg, galv); v.position.set(x, y, z); v.castShadow = true; v.userData.txBevel = false; R.scene.add(v);
+      const band = new THREE.Mesh(new THREE.TorusGeometry(0.205, 0.012, 8, 48), neckM); band.rotation.x = Math.PI / 2; band.position.set(x, y + 0.13, z); R.scene.add(band); }); }
+  const HS = house.userData.size;                    /* [W, H, D] measured by K.make */
+  const hb = new THREE.Box3().setFromObject(house);
+
+  /* the roof surface, read by casting down onto the house rather than restating the kit's seeded pitch */
+  const ray = new THREE.Raycaster();
+  const roofY = (x, z) => { ray.set(new THREE.Vector3(x, 30, z), new THREE.Vector3(0, -1, 0)); const h = ray.intersectObject(house, true); return h.length ? h[0].point.y : null; };
+  const zEave = hb.min.z + 0.25;                       /* just inside the back gutter */
+  const zA = zEave + 1.0, zB2 = zEave + 2.6, xS = -5.0;
+  const yA = roofY(xS, zA), yB = roofY(xS, zB2);
+  if (yA == null || yB == null) throw new Error('could not find the back slope');
+  const pitch = (yB - yA) / (zB2 - zA);
+  if (!(pitch > 0.3 && pitch < 0.7)) throw new Error('unexpected roof pitch ' + pitch.toFixed(3));
+  const ang = Math.atan(pitch);
+  const slopeLen = (hb.max.y - yA) / Math.sin(ang);
+  /* a frame on the back slope: local x along the eave, local z up the slope, local y off the roof */
+  const onSlope = (x, z, lift) => { const g = new THREE.Group(); const y = roofY(x, z); g.position.set(x, y + (lift || 0), z); g.rotation.x = -ang; return g; };
+
+  /* ---------- THE DAMAGE. OSB decking in torn course rows, ragged shingle edges, felt remnants, nail rows ---------- */
+  const deckTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    /* one tile = 2.44 m: an OSB sheet's strand flakes, sheet seams, rafter nail lines and shingle nail holes */
+    const r = CH.rng(77); g.fillStyle = '#c99a5e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) {
+      const x = r() * w, y = r() * h, L = 14 + r() * 46, T = 3 + r() * 7, a = (r() - 0.5) * 1.2 + (r() < 0.5 ? 0 : Math.PI / 2);
+      const t = r(); g.fillStyle = t < 0.35 ? 'rgba(150,98,48,' + (0.25 + r() * 0.3) + ')' : t < 0.75 ? 'rgba(232,196,130,' + (0.25 + r() * 0.35) + ')' : 'rgba(178,124,66,' + (0.3 + r() * 0.3) + ')';
+      g.save(); g.translate(x, y); g.rotate(a); g.fillRect(-L / 2, -T / 2, L, T); g.restore();
+    }
+    const px = w / 2.44;                               /* pixels per metre */
+    g.strokeStyle = 'rgba(70,42,20,0.75)'; g.lineWidth = 3;
+    [0, 1.22].forEach((m) => { g.beginPath(); g.moveTo(m * px + 1, 0); g.lineTo(m * px + 1, h); g.stroke(); });
+    g.beginPath(); g.moveTo(0, 1); g.lineTo(w, 1); g.stroke();
+    /* rafter nail lines every 0.61 m, nails every 15 cm */
+    for (let m = 0.305; m < 2.44; m += 0.61) for (let y = 8; y < h; y += 0.15 * px) {
+      g.fillStyle = 'rgba(40,40,52,0.9)'; g.beginPath(); g.arc(m * px + (r() - 0.5) * 3, y, 3.4, 0, 7); g.fill();
+      g.fillStyle = 'rgba(220,226,236,0.85)'; g.beginPath(); g.arc(m * px - 0.8, y - 0.8, 1.6, 0, 7); g.fill(); }
+    /* the torn shingles' own nail holes: four per tab width, one row per 143 mm course */
+    for (let y = 0.11 * px; y < h; y += 0.143 * px) for (let x = 10; x < w; x += 0.228 * px) {
+      if (r() < 0.25) continue; g.fillStyle = 'rgba(30,30,40,0.8)'; g.fillRect(x + (r() - 0.5) * 6, y + (r() - 0.5) * 3, 4, 4); }
+    /* old water stain tide lines */
+    for (let k = 0; k < 5; k++) { const cx0 = r() * w, cy0 = r() * h, rad = 40 + r() * 90; const gr = g.createRadialGradient(cx0, cy0, rad * 0.6, cx0, cy0, rad);
+      gr.addColorStop(0, 'rgba(120,80,40,0)'); gr.addColorStop(0.85, 'rgba(110,70,36,0.22)'); gr.addColorStop(1, 'rgba(110,70,36,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); }
+  }, null);
+  deckTex.wrapS = deckTex.wrapT = THREE.RepeatWrapping;
+  const deckBump = deckTex.clone(); deckBump.colorSpace = THREE.NoColorSpace; deckBump.needsUpdate = true;
+  const osb = K.mat('osb-wood-decking', { color: 0xffffff, map: deckTex, bumpMap: deckBump, bumpScale: 1.2, roughness: 0.86 });
+  const shingleTex = CH.canvasTex(THREE, 512, 256, (g, w, h) => {
+    const r = CH.rng(5); g.fillStyle = '#5e4a44'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(30,28,36,0.5)' : v < 0.85 ? 'rgba(120,112,118,0.45)' : 'rgba(150,110,80,0.4)'; g.fillRect(r() * w, r() * h, 2, 2); }
+    g.fillStyle = 'rgba(20,18,26,0.85)'; for (let x = 0; x < w; x += w / 3) g.fillRect(x, h * 0.42, 5, h);   /* tab slots */
+    g.fillStyle = 'rgba(16,14,20,0.55)'; g.fillRect(0, h * 0.38, w, 7);                                   /* the sealant strip */
+  }, null);
+  const shingleBump = shingleTex.clone(); shingleBump.colorSpace = THREE.NoColorSpace; shingleBump.needsUpdate = true;
+  const shg = K.mat('asphalt-shingle-strip', { color: 0xffffff, map: shingleTex, bumpMap: shingleBump, bumpScale: 2.0, roughness: 0.93 });
+  const felt = K.mat('felt-underlayment-paper', { color: 0x2c2a34, roughness: 0.7 });
+
+  /* ONE SHINGLE TAB, modelled: a 6 mm slab 0.31 m deep whose upper edge sits at local z 0 and whose free lower edge (+z) and torn
+   * end (+x or -x by the sign of `twist`) curl up off the deck, so a low key throws a real shadow line under every edge */
+  const TAB_D = 0.31;
+  const tabGeo = (len, curl, twist) => {
+    const g = new THREE.BoxGeometry(len, 0.006, TAB_D, 14, 1, 8); g.translate(0, 0.003, TAB_D / 2);
+    const p = g.attributes.position;
+    for (let k = 0; k < p.count; k++) { const x = p.getX(k), z = p.getZ(k), u = z / TAB_D, e = (x / len + 0.5);
+      const end = twist > 0 ? e : 1 - e;
+      p.setY(k, p.getY(k) + curl * u * u + Math.abs(twist) * end * end * u); }
+    g.computeVertexNormals(); return g;
+  };
+  const E = 0.143, ROWS = 19, PATCH_U = -6.4;                 /* course exposure, rows torn, patch centre along the eave */
+  const patchZ = zEave + 0.75;                                /* first torn row, measured along plan z */
+  const dmg = onSlope(PATCH_U, patchZ, 0.012); R.scene.add(dmg);
+  const span = [];
+  for (let i = 0; i < ROWS; i++) {
+    const t = i / (ROWS - 1), env = Math.sin(Math.PI * (0.08 + 0.84 * t));
+    const half = 0.35 + 1.55 * Math.pow(env, 0.7);
+    const a = -half + (rng() - 0.5) * 0.8 + Math.sin(i * 0.9) * 0.22, b = half + (rng() - 0.5) * 0.8 + Math.sin(i * 1.3 + 1) * 0.26;
+    span.push([a, b]);
+    const v0 = i * E;
+    const strip = new THREE.Mesh(new THREE.PlaneGeometry(b - a, E), osb);
+    strip.rotation.x = -Math.PI / 2; strip.position.set((a + b) / 2, 0, -(v0 + E / 2)); /* local -z is up the slope after the flip below */
+    const uv = strip.geometry.attributes.uv;
+    for (let k = 0; k < uv.count; k++) uv.setXY(k, ((a + b) / 2 + (uv.getX(k) - 0.5) * (b - a) + PATCH_U + 10) / 2.44, (v0 + uv.getY(k) * E) / 2.44);
+    strip.receiveShadow = true; dmg.add(strip);
+    /* the torn ends: a modelled shingle tab at each end of the row, 6 mm thick, its free edge curled, some lifted by the wind */
+    [[a, -1], [b, 1]].forEach(([x, s]) => {
+      const len = 0.3 + rng() * 0.45, lift = rng() < 0.5 ? 0.2 + rng() * 0.45 : 0.02 * rng();
+      const piece = new THREE.Mesh(tabGeo(len, 0.04 + rng() * 0.1, s * (0.03 + rng() * 0.08)), shg);
+      const pivot = new THREE.Group(); pivot.position.set(x + s * len / 2, 0.004, -(v0 + TAB_D)); pivot.add(piece);
+      piece.rotation.x = lift; pivot.rotation.y = (rng() - 0.5) * 0.12;
+      piece.castShadow = true; piece.receiveShadow = true; piece.userData.txBevel = false; dmg.add(pivot);
+      if (rng() < 0.45) { const f = new THREE.Mesh(new THREE.PlaneGeometry(0.06 + rng() * 0.12, E * 0.9), felt); f.rotation.x = -Math.PI / 2;
+        f.position.set(x - s * 0.04, 0.003, -(v0 + E / 2)); f.receiveShadow = true; dmg.add(f); }
+    });
+  }
+  /* the intact course above the hole: a full strip whose torn lower edge overhangs the decking and casts a fine line */
+  [[-1, span[ROWS - 1]], [0, span[0]]].forEach(([end, sp]) => {
+    const v = end ? ROWS * E : 0; const w = sp[1] - sp[0] + 1.2;
+    for (let k = 0; k < Math.ceil(w / 0.9); k++) {
+      const p = K.box(0.92, 0.011, E * 1.1, shg, sp[0] - 0.6 + k * 0.9 + 0.45, 0.002, -(v + (end ? E * 0.45 : -E * 0.1)), 0.003);
+      p.rotation.y = (rng() - 0.5) * 0.06; p.rotation.x = end ? 0.03 : -0.02; p.castShadow = true; dmg.add(p);
+    }
+  });
+  dmg.rotation.order = 'YXZ'; dmg.rotation.y = Math.PI; dmg.rotation.x = ang;   /* local -z runs up the back slope toward the ridge */
+  dmg.position.set(PATCH_U, roofY(PATCH_U, patchZ) + 0.012, patchZ);
+
+  /* loose tabs blown down the slope and onto the lawn under the eave */
+  const tabs = new THREE.Group();
+  for (let k = 0; k < 9; k++) {
+    const x = PATCH_U - 3 + rng() * 6, z = zEave + 0.15 + rng() * 0.5; const y = roofY(x, z);
+    if (y == null) continue; const p = new THREE.Mesh(tabGeo(0.33 + rng() * 0.3, 0.05 + rng() * 0.08, (rng() - 0.5) * 0.12), shg); p.position.set(x, y + 0.01, z); p.rotation.set(-ang + (rng() - 0.5) * 0.15, rng() * 6.28, 0, 'YXZ'); p.userData.txBevel = false; tabs.add(p);
+  }
+  for (let k = 0; k < 40; k++) {
+    const x = PATCH_U - 6 + rng() * 12, z = hb.min.z - 0.4 - rng() * 4.5; const p = new THREE.Mesh(tabGeo(0.3 + rng() * 0.32, 0.04 + rng() * 0.1, (rng() - 0.5) * 0.14), shg); p.position.set(x, 0.01, z); p.rotation.set(0, rng() * 6.28, 0); p.userData.txBevel = false; tabs.add(p);
+  }
+  for (let k = 0; k < 22; k++) {
+    const a2 = rng() * Math.PI * 2, x = PATCH_U + Math.cos(a2) * (1.9 + rng() * 0.9), z = patchZ + 1.3 + Math.sin(a2) * (1.3 + rng() * 0.6), y = roofY(x, z);
+    if (y == null) continue; const p = new THREE.Mesh(tabGeo(0.3 + rng() * 0.35, 0.05 + rng() * 0.12, (rng() - 0.5) * 0.18), shg);
+    p.position.set(x, y + 0.012, z); p.rotation.set(-ang, rng() * 6.28, 0, 'XYZ'); p.userData.txBevel = false; tabs.add(p);
+  }
+  TXT.add(R, tabs);
+
+  /* ---------- THE TARP. A blue poly tarp over the upper right of the hole, creased, hemmed, grommeted, sandbagged ---------- */
+  const TW = 3.0, TD = 2.4;
+  const tarpG = new THREE.PlaneGeometry(TW, TD, 60, 48), tp = tarpG.attributes.position;
+  for (let k = 0; k < tp.count; k++) { const x = tp.getX(k), y = tp.getY(k);
+    const crease = 0.035 * Math.abs(Math.sin(x * 2.1 + 0.4)) + 0.025 * Math.abs(Math.sin(y * 2.6 + x * 0.3)) + 0.012 * Math.sin(x * 9 + y * 7);
+    const sag = 0.05 * Math.exp(-((x - 0.3) * (x - 0.3) + (y + 0.2) * (y + 0.2)) * 0.8);
+    tp.setZ(k, crease + sag); }
+  tarpG.computeVertexNormals();
+  const tarpTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(9); g.fillStyle = '#2f6fd6'; g.fillRect(0, 0, w, h);
+    g.strokeStyle = 'rgba(20,60,150,0.25)'; g.lineWidth = 1; for (let i = 0; i < w; i += 4) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i, h); g.stroke(); g.beginPath(); g.moveTo(0, i); g.lineTo(w, i); g.stroke(); }
+    for (let i = 0; i < 1400; i++) { g.fillStyle = 'rgba(255,255,255,' + (r() * 0.08) + ')'; g.fillRect(r() * w, r() * h, 3, 3); } }, [2, 2]);
+  const tarpM = K.mat('poly-tarp-plastic', { color: 0xffffff, map: tarpTex, roughness: 0.42, clearcoat: 0.45, clearcoatRoughness: 0.35, sheen: 0.4, sheenColor: 0x9cc2ff, side: THREE.DoubleSide }, true);
+  const tarp = new THREE.Mesh(tarpG, tarpM); tarp.castShadow = true; tarp.receiveShadow = true;
+  const tarpHold = new THREE.Group(); tarpHold.add(tarp); tarp.rotation.x = -Math.PI / 2;
+  const hem = K.mat('poly-tarp-hem-rope', { color: 0x2a5fc0, roughness: 0.5 });
+  const brass = K.mat('brass-grommet-metal', { color: 0xc9a24a, metalness: 1, roughness: 0.3 });
+  const edge = [[-TW / 2, -TD / 2], [TW / 2, -TD / 2], [TW / 2, TD / 2], [-TW / 2, TD / 2], [-TW / 2, -TD / 2]];
+  for (let s = 0; s < 4; s++) { const A = edge[s], B = edge[s + 1];
+    K.bar([A[0], 0.02, -A[1]], [B[0], 0.02, -B[1]], 0.014, hem, 8, tarpHold);
+    const n = Math.round(Math.hypot(B[0] - A[0], B[1] - A[1]) / 0.6);
+    for (let q = 0; q < n; q++) { const t = (q + 0.5) / n; const gm = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.007, 8, 16), brass); gm.rotation.x = Math.PI / 2;
+      gm.position.set(A[0] + (B[0] - A[0]) * t, 0.03, -(A[1] + (B[1] - A[1]) * t)); tarpHold.add(gm); } }
+  /* sandbags: woven polypropylene, lumpy, folded neck tucked under */
+  const bagM = K.mat('sandbag-woven-fabric', { color: 0xa98f5c, roughness: 0.96 });
+  const bagGeo = new THREE.SphereGeometry(1, 40, 24); { const bp = bagGeo.attributes.position;
+    const sp = (v) => Math.sign(v) * Math.pow(Math.abs(v), 0.35);       /* a superellipsoid: a filled sack, square cornered, soft */
+    for (let k = 0; k < bp.count; k++) { const x = bp.getX(k), y = bp.getY(k), z = bp.getZ(k); const n = 1 + 0.035 * Math.sin(x * 9 + z * 7) + 0.03 * Math.sin(z * 11 - x * 5);
+      bp.setXYZ(k, sp(x) * 0.3 * n, Math.max(sp(y), -0.5) * 0.075 * n * (1 - 0.35 * x * x), sp(z) * 0.17 * n); } bagGeo.computeVertexNormals(); }
+  const bagScale = new THREE.Box3().setFromBufferAttribute(bagGeo.attributes.position).getSize(new THREE.Vector3());
+  if (bagScale.x > 0.7 || bagScale.y > 0.2) throw new Error('a sandbag is not sandbag sized: ' + bagScale.toArray().map((v) => v.toFixed(2)));
+  [[-TW / 2 + 0.15, TD / 2 - 0.2, 0.4], [TW / 2 - 0.25, TD / 2 - 0.15, -0.3], [-TW / 2 + 0.25, -TD / 2 + 0.2, 0.9], [TW / 2 - 0.2, -TD / 2 + 0.25, 0.1], [0.2, -TD / 2 + 0.12, 1.6]].forEach(([x, y, ry]) => {
+    const b = new THREE.Mesh(bagGeo, bagM); b.userData.txBevel = false; b.position.set(x, 0.06, -y); b.rotation.y = ry; b.castShadow = true; b.receiveShadow = true; tarpHold.add(b);
+    const neck = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.14, 10), bagM); neck.rotation.set(0, ry, Math.PI / 2); neck.position.set(x + Math.cos(ry) * 0.36, 0.04, -y - Math.sin(ry) * 0.36); neck.castShadow = true; neck.userData.txBevel = false; tarpHold.add(neck);
+  });
+  const tU = PATCH_U + 1.75, tZ = patchZ + 1.85;
+  tarpHold.rotation.order = 'YXZ'; tarpHold.rotation.y = 0.12; tarpHold.rotation.x = ang;
+  /* the tarp lies in the back slope's plane: rotate its XZ plane up by the pitch about the eave line */
+  tarpHold.rotation.set(0, 0, 0); { const qS = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -ang); const qY = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), 0.1);
+    tarpHold.quaternion.copy(qS).multiply(qY); }
+  tarpHold.position.set(tU, roofY(tU, tZ) + 0.03, tZ);
+  TXT.add(R, tarpHold);
+
+  /* ---------- THE CAMERA, framed first so the limb can be sent off the frame edge by measurement. A low drone oblique from
+   * behind the back yard: the damaged back slope fills the middle, two neighbours recede beyond it, the sky is the type's field ---------- */
+  TXT.frame(R, { fov: 50, from: [-24.0, 13.0, -20.0], look: [26.9, 1.34, 11.8] });
+  R.camera.rotateZ(0.03); R.camera.updateMatrixWorld(true); R.camera.updateProjectionMatrix();
+  const ndc = (v) => v.clone().project(R.camera);
+
+  /* ---------- THE LIMB. One live oak limb, barked and tapering, still on its tree beyond the bottom left of the frame: it drops
+   * onto the back slope beside the hole, runs up it and its crown is crushed over the ridge ---------- */
+  const barkT = CH.canvasTex(THREE, 1024, 256, (g, w, h) => { const r = CH.rng(61); g.fillStyle = '#8e735e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2600; i++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(62,46,36,0.4)' : 'rgba(196,176,150,0.3)'; g.fillRect(r() * w, r() * h, 3 + r() * 10, 2 + r() * 3); }
+    g.lineCap = 'round';
+    for (let k = 0; k < 70; k++) { let x = r() * w, y = r() * h; const L = 120 + r() * 420; g.strokeStyle = 'rgba(34,24,20,' + (0.6 + r() * 0.35) + ')'; g.lineWidth = 3 + r() * 5;
+      g.beginPath(); g.moveTo(x, y); for (let dd = 0; dd < L; dd += 12) { x += 12; y += (r() - 0.5) * 8; g.lineTo(x, y); } g.stroke();
+      g.strokeStyle = 'rgba(210,190,165,0.28)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(x - L, y + 5); g.lineTo(x, y + 5); g.stroke(); }
+    for (let k = 0; k < 14; k++) { const x = r() * w, y = r() * h; g.fillStyle = 'rgba(150,160,120,0.35)'; g.beginPath(); g.ellipse(x, y, 20 + r() * 40, 6 + r() * 10, 0, 0, 7); g.fill(); } /* lichen */
+  }, null);
+  barkT.wrapS = barkT.wrapT = THREE.RepeatWrapping; barkT.repeat.set(7, 2);
+  const barkB = barkT.clone(); barkB.colorSpace = THREE.NoColorSpace; barkB.needsUpdate = true;
+  const bark = K.mat('oak-bark-limb', { color: 0xffffff, map: barkT, bumpMap: barkB, bumpScale: 4, roughness: 0.95 });
+  const leafM = K.mat('live-oak-leaf', { color: 0xffffff, roughness: 0.42, side: THREE.DoubleSide }, true);
+  const taperTube = (pts, r0, r1, seg, ex) => {
+    const c = new THREE.CatmullRomCurve3(pts.map((q) => new THREE.Vector3(q[0], q[1], q[2])), false, 'centripetal');
+    const g = new THREE.TubeGeometry(c, seg, 1, 16, false), pos = g.attributes.position, P = new THREE.Vector3(), V = new THREE.Vector3();
+    for (let i = 0; i <= seg; i++) { c.getPointAt(i / seg, P); const tt = i / seg, r = (r1 + (r0 - r1) * Math.pow(1 - tt, ex || 1.25)) * (1 + 0.07 * Math.sin(tt * 41) * Math.sin(tt * 13 + 1));
+      for (let j = 0; j <= 16; j++) { const k = i * 17 + j; V.fromBufferAttribute(pos, k).sub(P); const ang2 = Math.atan2(V.y, V.x); V.multiplyScalar(r * (1 + 0.05 * Math.sin(ang2 * 5 + tt * 20))).add(P); pos.setXYZ(k, V.x, V.y, V.z); } }
+    g.computeVertexNormals(); return { g, c };
+  };
+  /* the ridge, found by walking up the roof */
+  const RX = PATCH_U + 4.2; let ridgeZ = zEave, ridgeY = -1;
+  for (let z = zEave; z < hb.max.z; z += 0.05) { const y = roofY(RX, z); if (y != null && y > ridgeY) { ridgeY = y; ridgeZ = z; } }
+  const surf = (x, z, r) => { const y = roofY(x, z); return (y == null ? 0 : y) + r * 0.9 + 0.02; };
+  const LR0 = 0.46, LR1 = 0.1;
+  const Cn = [PATCH_U + 3.3, zEave + 0.55];                     /* where it first strikes the back slope, just above the gutter */
+  const Kr = [RX, ridgeZ], K2 = [RX + 1.2, ridgeZ + 2.2];      /* over the ridge and onto the front slope */
+  /* the butt: walk back from the strike point toward the camera's lower left until it is off the frame, then a metre more */
+  const camRight = new THREE.Vector3().setFromMatrixColumn(R.camera.matrixWorld, 0).setY(0).normalize();
+  const toCam = new THREE.Vector3().subVectors(R.camera.position, new THREE.Vector3(Cn[0], 0, Cn[1])).setY(0).normalize();
+  const dir = camRight.clone().multiplyScalar(-1).add(toCam.clone().multiplyScalar(1.1)).normalize();
+  const Cy = surf(Cn[0], Cn[1], LR0 * 0.8);
+  let Lb = 4; const butt = (L) => new THREE.Vector3(Cn[0] + dir.x * L, Cy + Math.min(3.2, 0.3 * L), Cn[1] + dir.z * L);
+  while (Lb < 40) { const q = ndc(butt(Lb)); if (q.x < -1.05 || q.y < -1.05) break; Lb += 0.5; }
+  Lb += 1.5;
+  const Bp = butt(Lb);
+  { const q = ndc(Bp); if (!(q.x < -1 || q.y < -1)) throw new Error('the limb must run off the frame edge, its butt projects at ' + q.x.toFixed(2) + ',' + q.y.toFixed(2)); }
+  const lpts = [];
+  for (let i = 0; i <= 6; i++) { const t = i / 6, P = Bp.clone().lerp(new THREE.Vector3(Cn[0], Cy, Cn[1]), t); P.y -= Math.sin(Math.PI * t) * 0.35 * Lb * 0.08; lpts.push(P.toArray()); }
+  for (let i = 1; i <= 8; i++) { const t = i / 8, x = Cn[0] + (Kr[0] - Cn[0]) * t + Math.sin(t * 5) * 0.25, z = Cn[1] + (Kr[1] - Cn[1]) * t; const r = LR0 + (0.2 - LR0) * t; lpts.push([x, surf(x, z, r), z]); }
+  for (let i = 1; i <= 3; i++) { const t = i / 3, x = Kr[0] + (K2[0] - Kr[0]) * t, z = Kr[1] + (K2[1] - Kr[1]) * t; lpts.push([x, surf(x, z, 0.14) + 0.05, z]); }
+  const main = taperTube(lpts, LR0, LR1, 220, 0.9);
+  const limbG = new THREE.Group();
+  const limbMesh = new THREE.Mesh(main.g, bark); limbMesh.castShadow = true; limbMesh.receiveShadow = true; limbMesh.userData.txBevel = false; limbG.add(limbMesh);
+  { const g0 = main.g; let r0 = 1e9, r1 = 0; const P = new THREE.Vector3(), V = new THREE.Vector3();
+    main.c.getPointAt(0.02, P); V.fromBufferAttribute(g0.attributes.position, Math.round(0.02 * 220) * 17); r0 = V.distanceTo(P);
+    main.c.getPointAt(0.97, P); V.fromBufferAttribute(g0.attributes.position, Math.round(0.97 * 220) * 17); r1 = V.distanceTo(P);
+    if (!(r0 > r1 * 2.5)) throw new Error('the limb must taper: butt ' + r0.toFixed(2) + ' tip ' + r1.toFixed(2)); }
+  /* where the limb leaves the air and lies on the roof, as a curve parameter */
+  let tRoof = 0; for (let i = 0; i <= 200; i++) { const P = main.c.getPointAt(i / 200); const y = roofY(P.x, P.z); if (y != null && P.y - y < LR0 * 1.25) { tRoof = i / 200; break; } }
+  /* the crown: forks off the limb's roof run, each lying crushed on the shingles, forking again, every tip in a dense leaf mass */
+  const clumps = [];
+  const fork = (A, T, L, r, depth, side) => {
+    const Sd = new THREE.Vector3(-T.z, 0, T.x).normalize().multiplyScalar(side);
+    const D = T.clone().multiplyScalar(0.7).add(Sd.multiplyScalar(0.75)).setY(0).normalize();
+    const B = A.clone().add(D.clone().multiplyScalar(L)); B.y = surf(B.x, B.z, r * 0.5) + 0.06;
+    const M = A.clone().lerp(B, 0.5); M.y = Math.max(surf(M.x, M.z, r), (A.y + B.y) / 2) + 0.05 + 0.12 * L / 2;
+    const tw = taperTube([A.toArray(), M.toArray(), B.toArray()], r, r * 0.35, 24, 1);
+    const tm = new THREE.Mesh(tw.g, bark); tm.castShadow = true; tm.receiveShadow = true; tm.userData.txBevel = false; limbG.add(tm);
+    clumps.push([B, 0.7 + 0.25 * L / 2]);
+    if (depth > 0) [0.55, 0.85].forEach((u, k) => fork(tw.c.getPointAt(u), tw.c.getTangentAt(u), L * 0.55, r * 0.45, depth - 1, k ? side : -side));
+  };
+  [[0.5, 1, 2.2], [0.6, -1, 2.6], [0.7, 1, 2.6], [0.8, -1, 2.4], [0.88, 1, 2.2], [0.95, -1, 1.8], [0.99, 1, 1.6]].forEach(([u, side, L], k) => {
+    const tt = tRoof + (1 - tRoof) * u; fork(main.c.getPointAt(tt), main.c.getTangentAt(tt), L, 0.1, k < 4 ? 2 : 1, side); });
+  for (let q = 0; q < 8; q++) clumps.push([main.c.getPointAt(tRoof + (1 - tRoof) * (0.72 + q * 0.04)), 0.8 + 0.4 * rng()]);
+  const perClump = 800, NLEAF = clumps.length * perClump;
+  const leafGeo = new THREE.ShapeGeometry(new THREE.Shape().absellipse(0, 0, 0.07, 0.032, 0, Math.PI * 2, false, 0), 6);
+  const leaves = new THREE.InstancedMesh(leafGeo, leafM, NLEAF), LM = new THREE.Matrix4(), LQ = new THREE.Quaternion(), LS = new THREE.Vector3(), LP = new THREE.Vector3(), LEu = new THREE.Euler(), lcol = new THREE.Color();
+  let li = 0;
+  clumps.forEach(([C0, rad0]) => { const base = surf(C0.x, C0.z, 0); for (let q = 0; q < perClump; q++) {
+    const u = rng(), v = rng(), w = rng(), rad = rad0 * Math.cbrt(u), th = v * Math.PI * 2, ph = Math.acos(2 * w - 1);
+    const x = C0.x + rad * Math.sin(ph) * Math.cos(th), z = C0.z + rad * Math.sin(ph) * Math.sin(th);
+    const floor = surf(x, z, 0) + 0.03; let y = base + 0.35 * rad0 + rad * Math.cos(ph) * 0.7;
+    if (y < floor) y = floor + rng() * 0.05;                          /* crushed flat against the shingles */
+    LP.set(x, y, z); LEu.set(rng() * 6.28, rng() * 6.28, rng() * 6.28); LQ.setFromEuler(LEu); const sc = 0.75 + rng() * 0.6; LS.set(sc, sc, sc);
+    LM.compose(LP, LQ, LS); leaves.setMatrixAt(li, LM);
+    const hi = (y - floor) / (rad0 * 1.2); lcol.setHSL(0.24 + rng() * 0.07, 0.5 + rng() * 0.2, 0.14 + 0.16 * Math.min(1, hi) + rng() * 0.06); leaves.setColorAt(li, lcol); li++; } });
+  if (li !== NLEAF) throw new Error('leaf count');
+  leaves.instanceMatrix.needsUpdate = true; leaves.castShadow = true; leaves.receiveShadow = true; leaves.userData.txBevel = false; limbG.add(leaves);
+  TXT.add(R, limbG);
+  /* hard contact on the roof: a dark draped band under the limb's whole roof run and a pool under every leaf mass */
+  { const cTex = CH.canvasTex(THREE, 128, 8, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, 0); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.3, 'rgba(255,255,255,0.85)'); gr.addColorStop(0.5, 'rgba(255,255,255,1)'); gr.addColorStop(0.7, 'rgba(255,255,255,0.85)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const cM = new THREE.MeshBasicMaterial({ color: 0x140a26, map: cTex, transparent: true, opacity: 0.8, depthWrite: false }); cM.userData.txSurface = false;
+    const N2 = 120, vs = [], uvs = [], ids = [];
+    for (let i = 0; i <= N2; i++) { const t = tRoof + (1 - tRoof) * i / N2, P = main.c.getPointAt(t), T = main.c.getTangentAt(t), S = new THREE.Vector3(-T.z, 0, T.x).normalize(), wv = (LR1 + (LR0 - LR1) * Math.pow(1 - t, 0.9)) * 1.6;
+      [-1, 1].forEach((sd) => { const x = P.x + S.x * wv * sd, z = P.z + S.z * wv * sd, y = roofY(x, z); vs.push(x, (y == null ? P.y : y) + 0.02, z); uvs.push(sd < 0 ? 0 : 1, i / N2); }); }
+    for (let i = 0; i < N2; i++) { const a2 = i * 2; ids.push(a2, a2 + 1, a2 + 2, a2 + 1, a2 + 3, a2 + 2); }
+    const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(vs, 3)); gg.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2)); gg.setIndex(ids);
+    const band = new THREE.Mesh(gg, cM); band.userData.txBevel = false; band.renderOrder = 2; R.scene.add(band);
+    const pTex = CH.canvasTex(THREE, 128, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(255,255,255,0.9)'); gr.addColorStop(0.6, 'rgba(255,255,255,0.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const pM = new THREE.MeshBasicMaterial({ color: 0x140a26, map: pTex, transparent: true, opacity: 0.6, depthWrite: false }); pM.userData.txSurface = false;
+    clumps.forEach(([C0, rad0]) => { const pg = new THREE.PlaneGeometry(rad0 * 2.6, rad0 * 2.6, 8, 8); pg.rotateX(-Math.PI / 2); const pp = pg.attributes.position;
+      for (let k = 0; k < pp.count; k++) { const x = pp.getX(k) + C0.x, z = pp.getZ(k) + C0.z, y = roofY(x, z); pp.setXYZ(k, x, (y == null ? -50 : y) + 0.018, z); }
+      const pool = new THREE.Mesh(pg, pM); pool.userData.txBevel = false; pool.renderOrder = 2; R.scene.add(pool); }); }
+
+  /* ---------- THE NEIGHBOURS, so the code reads as a code: two more brick ranches beyond the hero along the block ---------- */
+  const nbrs = [[22.5, 0.6, 31, '#8f4f3a', '#4c4f5a'], [45, 1.2, 47, '#b0745a', '#6a5a50']].map(([x, z, sd, col, roof]) => {
+    const h = K.make('ranch_house', { seed: sd, material: 'brick', color: col, roof, garage: 'left', chimney: false }); h.position.set(x, 0, z); TXT.add(R, h); TXT.contact(R, h); h.updateMatrixWorld(true); return h; });
+
+  /* ---------- THE RIMS. The judgement itself: one hollow bevelled strip round each building in view, just outside its drip line,
+   * each in a different step of the colour code. Every roof in the frame wears one; colour alone, no legend ---------- */
+  const RIM_W = 0.6, RIM_H = 0.18, RIM_R = 0.8, RIM_OUT = 0.75;
+  const rr2 = (sx0, sz0, sx1, sz1, r) => { const s2 = new THREE.Shape(); s2.moveTo(sx0 + r, sz0); s2.lineTo(sx1 - r, sz0); s2.quadraticCurveTo(sx1, sz0, sx1, sz0 + r);
+    s2.lineTo(sx1, sz1 - r); s2.quadraticCurveTo(sx1, sz1, sx1 - r, sz1); s2.lineTo(sx0 + r, sz1); s2.quadraticCurveTo(sx0, sz1, sx0, sz1 - r); s2.lineTo(sx0, sz0 + r); s2.quadraticCurveTo(sx0, sz0, sx0 + r, sz0); return s2; };
+  const makeRim = (bx, step, y) => {
+    const x0 = bx.min.x - RIM_OUT, x1 = bx.max.x + RIM_OUT, z0 = bx.min.z - RIM_OUT, z1 = bx.max.z + RIM_OUT;
+    const ring = rr2(x0, z0, x1, z1, RIM_R + RIM_W), hole = rr2(x0 + RIM_W, z0 + RIM_W, x1 - RIM_W, z1 - RIM_W, RIM_R);
+    ring.holes.push(new THREE.Path(hole.getPoints(48).reverse()));
+    const g = new THREE.ExtrudeGeometry(ring, { depth: RIM_H - 0.04, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.04, bevelSegments: 4, curveSegments: 24 });
+    g.rotateX(Math.PI / 2); g.translate(0, y + RIM_H, 0);
+    const C = CH.RAMP[step], m = new THREE.MeshPhysicalMaterial({ color: C, emissive: C, emissiveIntensity: step === 0 ? 0.3 : 0.85, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.12 });
+    m.userData.txSurface = false;
+    const rim = new THREE.Mesh(g, m); rim.castShadow = false; rim.userData.txBevel = false; rim.userData.rim = step; R.scene.add(rim); return [x0, z0, x1, z1];
+  };
+  const eaveOf = (h) => { const bx = new THREE.Box3().setFromObject(h); ray.set(new THREE.Vector3((bx.min.x + bx.max.x) / 2, 30, bx.min.z + 0.3), new THREE.Vector3(0, -1, 0)); const hit = ray.intersectObject(h, true); return [bx, hit.length ? hit[0].point.y : 3.0]; };
+  const RIM_Y = roofY(PATCH_U, zEave) - 0.22;
+  const heroRim = makeRim(hb, 2, RIM_Y);
+  nbrs.forEach((h, k) => { const [bx, ey] = eaveOf(h); makeRim(bx, k === 0 ? 1 : 0, ey - 0.22); });
+  const judged = 1 + nbrs.length, steps = new Set(); let rims = 0;
+  R.scene.traverse((m) => { if (m.userData && m.userData.rim != null) { rims++; steps.add(m.userData.rim); } });
+  if (rims !== judged || steps.size !== judged) throw new Error('every roof in view wears one rim in its own step: ' + judged + ' roofs, ' + rims + ' rims, ' + steps.size + ' steps');
+  /* the hero rim's light on its brick: small cool lamps just inside the strip, no shadows */
+  { const [x0, z0, x1, z1] = heroRim; const lampsAt = [];
+    for (let t = 0.1; t < 1; t += 0.2) { lampsAt.push([x0 + (x1 - x0) * t, z0 + RIM_W / 2]); }
+    for (let t = 0.25; t < 1; t += 0.5) { lampsAt.push([x0 + RIM_W / 2, z0 + (z1 - z0) * t]); lampsAt.push([x1 - RIM_W / 2, z0 + (z1 - z0) * t]); }
+    lampsAt.forEach(([x, z]) => { const pl = new THREE.PointLight(CH.RAMP[2], 5.0, 3.6, 2); pl.position.set(x, RIM_Y - 0.1, z); R.scene.add(pl); }); }
+
+  const zFront = hb.max.z, roadZ = zFront + 9.5;
+  /* the street runs a few degrees off the house's own line, as Gulf Coast subdivision streets bow, so its kerbs cross the frame on a slant */
+  const SY = 0.12, pr = (x, z) => [x * Math.cos(SY) + (z - roadZ) * Math.sin(SY), roadZ - x * Math.sin(SY) + (z - roadZ) * Math.cos(SY)];
+  const road = K.make('road', { length: 160, lanes: 2, sidewalk: true, parkway: 1.4 }); road.position.set(0, 0, roadZ); road.rotation.y = SY; TXT.add(R, road);
+  road.traverse(m => { if (m.isMesh && m.material && /roadyel/.test(m.material.name || '')) { m.material = m.material.clone(); m.material.color.set(0xeeeeea); } });   /* showrunner: white centre line, gold means only the route */
+  const drive = K.box(5.2, 0.05, roadZ - 5 - zFront, K.mat('conc-pad-drive', { color: 0xcfc6b6, roughness: 0.9 }), hb.max.x - 4.2, 0, (zFront + roadZ - 5) / 2 + 0.3, 0.02);
+  TXT.add(R, drive);
+  /* the way through: a short gold run down the far lane, curving round a downed limb in the near lane */
+  const route = CH.route(THREE, K, [[-44, 0.05, roadZ - 1.6], [-30, 0.05, roadZ - 1.4], [-21, 0.05, roadZ + 1.7], [-6, 0.05, roadZ + 1.9], [4, 0.05, roadZ + 1.7], [22, 0.05, roadZ + 1.8], [44, 0.05, roadZ - 1.5], [70, 0.05, roadZ - 1.6]].map((q) => { const r2 = pr(q[0], q[2]); return [r2[0], q[1], r2[1]]; }), { r: 0.8, lift: 0.5, glow: 0.2 });
+  route.castShadow = true; route.userData.txBevel = false; R.scene.add(route);
+  /* its soft glow on the asphalt: an additive ribbon under the tube, brightest on its line */
+  { const c = route.geometry.parameters.path, N2 = 160, wv = 1.5, vs = [], uvs = [], ids = [];
+    for (let i = 0; i <= N2; i++) { const P = c.getPointAt(i / N2), T = c.getTangentAt(i / N2), S = new THREE.Vector3(-T.z, 0, T.x).normalize();
+      [-1, 1].forEach((sd) => { vs.push(P.x + S.x * wv * sd, 0.075, P.z + S.z * wv * sd); uvs.push(sd < 0 ? 0 : 1, i / N2); }); }
+    for (let i = 0; i < N2; i++) { const a2 = i * 2; ids.push(a2, a2 + 1, a2 + 2, a2 + 1, a2 + 3, a2 + 2); }
+    const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(vs, 3)); gg.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2)); gg.setIndex(ids);
+    const gt = CH.canvasTex(THREE, 128, 8, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, 0); gr.addColorStop(0, 'rgba(255,204,0,0)'); gr.addColorStop(0.5, 'rgba(255,214,60,1)'); gr.addColorStop(1, 'rgba(255,204,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const glow = new THREE.Mesh(gg, new THREE.MeshBasicMaterial({ map: gt, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
+    glow.userData.txSurface = false; glow.material.userData.txSurface = false; glow.userData.txBevel = false; glow.userData.accent = true; R.scene.add(glow); }
+  /* far side of the street: open lawn and live oaks only, so no roof stands in view unjudged */
+  [[14, roadZ + 22, 9, 14, 3], [40, roadZ + 26, 10, 16, 5], [66, roadZ + 20, 8, 13, 8], [-8, roadZ + 30, 9, 15, 9]].forEach(([x, z, hh, sp, sd]) => { const t = K.make('live_oak', { seed: sd, height: hh, spread: sp }); const q = pr(x, z); t.position.set(q[0], 0, q[1]); TXT.add(R, t); TXT.contact(R, t); });
+  [[-14.2, 0], [11.3, 0], [33.8, 0]].forEach(([x]) => { const f = K.make('privacy_fence', { length: 9, weathered: 0.4 }); f.rotation.y = Math.PI / 2; f.position.set(x, 0, hb.min.z - 4.5); TXT.add(R, f); TXT.contact(R, f); });
+  TXT.contact(R, house);
+  TXT.sky(R, W);
+  TXT.ground(R, { surface: 'lawn', size: 7000 });
+  TXT.scatter(R, { kind: 'grass', count: 2600, area: [-30, hb.min.z - 16, 70, roadZ - 6], avoid: [[hb.min.x - 0.3, hb.min.z - 0.3, hb.max.x + 0.3, hb.max.z + 0.3], [hb.max.x - 7, zFront, hb.max.x - 1.5, roadZ]].concat(nbrs.map((h) => { const bx = new THREE.Box3().setFromObject(h); return [bx.min.x - 0.3, bx.min.z - 0.3, bx.max.x + 0.3, bx.max.z + 0.3]; })), seed: 7 });
+  CH.KEY_SCALE = 1.8;
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), Object.assign(CH.rigOpts([12, 3, 2], { distance: 90, shadowFar: 260, normalBias: 0.01 }), { light: { az: -108, el: 17 } }));
+  CH.unacne(R, 0.01);
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.45, fade: 150 }); CH.seat(cx, { sel: '.dek', a: 0.45, fade: 110 }); CH.seat(cx, { sel: '.kick', a: 0.5, fade: 90 }); CH.seat(cx, { sel: '.count', a: 0.55, fade: 90 });
+  TXLOOK.footWash(cx, { tone: 'wonder', a: 0.55, height: 220 });
+  CH.seat(cx, { sel: '.tx-site, .src', a: 0.8, fade: 70 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

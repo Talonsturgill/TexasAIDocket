@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "The round 3 changes show up but are small. On S1, S4, S7 and S9 the route now reads as a warmer gold with less bloom. On S1 it threads the street past the fallen oak and the tarped roof sits in a violet assessment outline, so the cover reads well at feed size. S9's route now runs along the street and stops in open asphalt at about x 640 of 1600. That is clearer than round 3's stub. The S9 picture is otherwise unchanged. The starred water tower is still small at upper left, about a sixth of the frame. The dek block still covers rows 560 to 990, the middle third, and the rest is an even aerial suburb that repeats S1's camera and houses. So the close is still the deck's softest picture. S7 is unchanged. The root plate is still a smooth orange blob with white spikes, not torn soil. The fallen crown blends into the tree line behind it. The bottom 40 percent is empty reflective asphalt and a cropped white truck, so the detail sits in a band across the middle. Strong frames hold up. S3 is a measured relief (height 37.7, 14 materials, cast fraction 0.79, 2,000 rims). S4's forked limb through the shingles to a tarp is the best detail in the deck. S5's plate rack and S8's helmet wall are lit interiors. S2 is a vivid roadside world. Shadows lean violet and navy and there is little grey middle. Two frames still lean on a default (S9 and S7) and S6's operator is still a smooth mannequin, so this sits just above 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.9,
+   "why": "The spine holds on all nine frames: the look v2 violet and navy grade, the serif headline, the mono kicker and counter, the claim line bottom left and texasaidocket.com bottom right. The gold route now changes state as a motif. It threads the cover's street on S1, crosses the relief on S3, runs over the roof on S4, curves around the fallen tree on S7, and runs along the street and stops on S9, so the motif now ends instead of fading out. The story runs in order. The saturated electric blue interiors on S5 and S8 sit slightly outside the dusk exteriors."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides and in the caption traces to a claim. 18 to 24 is c2, 2,000 and 7 are c16, 21,000 and 10 are c3, 265 is c25, 125, 63 and 14 are c8, and 2024 is c10. Both sources are primary and both are listed in first_comment.txt with their claim ids. The 7 minutes is conditioned 'Given a finished orthomosaic'. The Florida adoption is attributed to Texas A&M on S9 and in the caption and the title. The absence is scoped to the November 24th release and the project site. 'Drawn to illustrate' appears on S1, S4, S5, S7 and S9. S6 still narrows c26 by dropping 'or data'. That is still true and changes nothing a reader would believe."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "What CLARKE is, who built it (Texas A&M, with Manzini quoted) and how it works (stitch, judge, review, route) are all clear, and the adopter is named (Florida's state drone team, attributed). The Texas stake is that no Texas agency or county is named as a user. The only action offered is 'Watch for the first' on S9 and a question in the caption. No Texas county, body or deadline is named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "The cover earns the swipe and S2 pays at once with the old clock. S3 to S4 steps cleanly from the map to one roof. S6 and S7 could swap without loss. The shorter S9 dek helps a little, but the close still lands on its copy rather than its picture."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "House style is clean in the caption, the title and the slides: no colons, no dashes, ordinal dates without the year, no banned words, no first person. The repair holds. The caption opens with 'Texas A&M says Florida's state drone team made its tool standard procedure.' and the title reads '...made its CLARKE disaster damage reader standard procedure'. They are no longer the same line, but the title and the first caption line still say nearly the same thing one under the other. S6's dek is still four flat specification sentences."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The settings change across the deck: an aerial suburb, a roadside, a relief, a close roof, a studio rack, a tailgate, a street and an interior. S9 goes back to S1's aerial suburb, deliberately, but the repeat is visible."
+  }
+ ],
+ "weighted_score": 7.59,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild S9 at street level with the starred water tower filling the left half and the gold route running up the street to stop visibly short of a Texas county office, with the dek in the sky above the tower, so the close is the deck's strongest picture rather than a repeat of the cover's suburb.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Still repeats S1's aerial suburb with detail spread evenly. The tower is small at upper left, the dek covers the middle third, and the new route stop sits in a small strip at left with nothing at its end.",
+   "fix": "Drop the camera to street level so the tower fills the left half, and run the route from the foreground up the street to end at a lot in front of the tower. Seat the dek in the sky above it."
+  },
+  {
+   "slide": 7,
+   "problem": "The root plate is a smooth orange blob with spikes and the fallen crown merges into the canopy behind. The bottom 40 percent is empty reflective asphalt with a cropped truck.",
+   "fix": "Raise the camera and crop out the foreground asphalt so the trunk lies across the middle third. Model the root plate as a dark torn soil disc with root strands and a crater, and give the crown a lighter rim."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a smooth mannequin seen from behind, and the dek's line 'designed to' runs onto the cab window edge.",
+   "fix": "Reframe over the shoulder so a modelled hand with fingers points at the map in the close foreground, and pull the dek's measure in so it ends left of the cab."
+  },
+  {
+   "slide": 4,
+   "problem": "A white sphere vent beside the tarp still reads as a chrome ball.",
+   "fix": "Replace it with a ribbed turbine vent on a flashing base, matching the mushroom vents on the far roof."
+  }
+ ]
+}

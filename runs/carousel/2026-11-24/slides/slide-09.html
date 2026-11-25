@@ -1,0 +1,233 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css"></head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:284px; top:118px; width:716px; text-align:right; letter-spacing:0.014em">Texas A&M says Florida's team uses it</h1>
+<p class="dek" data-follow="22" style="left:246px; width:754px; text-align:right; letter-spacing:0.006em">Texas A&amp;M says Florida's state drone team now uses CLARKE as standard operating procedure. It was deployed in Florida and Pennsylvania in the 2024 hurricane season. The November 24th release and the project site name no Texas agency or county among its users. Street drawn to illustrate. Watch for the first.</p>
+<script>window.FIG = {"buildings": 2000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-24-roofread-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+
+/* CAMERA (copied exactly from frame 1, out/2026-11-24/slides/slide-01.html). Neighbourhood coordinates: streets run along
+ * x, the camera looks down +z, screen right is -x. YAW_FROM_SUN turns the whole neighbourhood against the sun's bearing. */
+const CAM_POS = [0, 30, -63], CAM_TARGET = [0, 0, 84], CAM_FOV = 50, YAW_FROM_SUN = 105;
+const KEY = { az: -55, el: 20 };
+
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Built in Texas", counter: "09 / 09", src: "c24 c9 c10", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: CAM_FOV, near: 0.5, far: 6000 });
+
+  /* the neighbourhood's bearing in the world, as frame 1 sets it */
+  const f = CH.bearing(TXT, YAW_FROM_SUN), YAW = Math.atan2(f[0], f[1]), cy = Math.cos(YAW), sy = Math.sin(YAW);
+  const wp = (x, y, z) => [x * cy + z * sy, y, -x * sy + z * cy];
+  const place = (obj, x, z, ry, y) => { const p = wp(x, y == null ? obj.position.y : y, z); obj.position.set(p[0], p[1], p[2]); obj.rotation.y = (ry || 0) + YAW; return obj; };
+  const from = wp(...CAM_POS), look = wp(...CAM_TARGET);
+  TXT.frame(R, { fov: CAM_FOV, from, look });
+  R.camera.updateMatrixWorld(true);
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2wonder, { clouds: 0.2, fogDensity: 0.0031 }));
+  TXT.ground(R, { surface: 'lawn', color: 0x548f36, size: 4000, tile: 3, seed: 924 });
+
+  /* ---- THE FIGURE. The same tile as frame 1: CH.lots(FIG.buildings, CH.SEED), every lot one roof, none damaged, no rims ---- */
+  const lots = CH.lots(FIG.buildings, CH.SEED);
+  if (lots.length !== FIG.buildings) throw new Error('lots ' + lots.length + ' differ from FIG.buildings ' + FIG.buildings);
+  lots.forEach(L => { L.damaged = false; L.tarp = false; });
+  const v = new THREE.Vector3();
+  const scr = (x, y, z) => { const p = wp(x, y, z); v.set(p[0], p[1], p[2]).project(R.camera); return v; };
+  const dist = (L) => Math.hypot(L.x - CAM_POS[0], L.z - CAM_POS[2]);
+  const inView = (L, m) => { const a = scr(L.x, 3, L.z); return a.z < 1 && Math.abs(a.x) < 1 + m && a.y > -1 - m && a.y < 1 + m; };
+  const KIT = new Set(), FAR_TREES = [], MID_TREES = [];
+  lots.forEach((L, i) => { if (dist(L) < 175 && inView(L, 0.35)) KIT.add(i); else if (L.tree && dist(L) < 900 && inView(L, 0.1)) (dist(L) < 330 ? MID_TREES : FAR_TREES).push(L); });
+  if (KIT.size > 48) throw new Error('kit houses ' + KIT.size);
+
+  const carpet = CH.carpet(THREE, K, lots, { skip: (L, i) => KIT.has(i), wallH: 2.9, roofH: 2.2 });
+  carpet.rotation.y = YAW; R.scene.add(carpet);
+  /* walls in limestone tones, roofs coursed like shingle in world space, so the far carpet reads as a street of houses */
+  const shTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => {
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); const r = CH.rng(77);
+    for (let y = 0; y < h; y += 16) { g.fillStyle = 'rgba(40,36,70,0.30)'; g.fillRect(0, y, w, 3);
+      for (let x = (y / 16) % 2 ? 0 : 16; x < w; x += 32) { g.fillStyle = 'rgba(40,36,70,0.2)'; g.fillRect(x, y, 2, 16); } }
+    for (let i = 0; i < 1400; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '255,255,255' : '30,30,60') + ',' + (r() * 0.12).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 2, 2); }
+  }, [1, 1]);
+  carpet.traverse(m => { if (!m.isInstancedMesh || !m.material) return;
+    const n = m.material.name || '';
+    if (/rr-wall/.test(n)) { m.material = m.material.clone(); m.material.color.set(0xe6d4ae); m.material.name = 'limestone-wall'; }
+    if (/rr-brick/.test(n)) { m.material = m.material.clone(); m.material.color.set(0xd6bf94); m.material.name = 'limestone-wall-b'; }
+    if (/rr-roof-\d/.test(n)) {
+      const mat = m.material.clone(); mat.name = n + '-asphalt-shingle';
+      mat.onBeforeCompile = (sh) => {
+        sh.uniforms.uSh = { value: shTex };
+        sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vWp;')
+          .replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvWp = (modelMatrix * instanceMatrix * vec4(transformed,1.0)).xyz;');
+        sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform sampler2D uSh; varying vec3 vWp;')
+          .replace('#include <color_fragment>', '#include <color_fragment>\ndiffuseColor.rgb *= texture2D(uSh, vec2(vWp.x * 0.22, vWp.y * 1.6 + vWp.z * 0.22)).rgb;');
+      };
+      m.material = mat; } });
+
+  /* ---- the streets: asphalt, concrete curb, a caliche verge ---- */
+  const asph = K.mat('asphalt-street', { color: 0x4a4866, roughness: 0.92 }, true);
+  const curbM = K.mat('conc-curb', { color: 0xeadfca, roughness: 0.85 }, true);
+  const verge = K.mat('caliche-verge', { color: 0xead2a6, roughness: 0.97 }, true);
+  const ribbon = (line, half, y, mat) => {
+    const pos = [], idx = [], uv = []; let acc = 0;
+    line.forEach((p, i) => { const a = line[Math.max(0, i - 1)], b = line[Math.min(line.length - 1, i + 1)];
+      const dx = b[0] - a[0], dz = b[1] - a[1], n = Math.hypot(dx, dz) || 1, nx = -dz / n, nz = dx / n;
+      if (i) acc += Math.hypot(p[0] - line[i - 1][0], p[1] - line[i - 1][1]);
+      pos.push(...wp(p[0] + nx * half[0], y, p[1] + nz * half[0]), ...wp(p[0] + nx * half[1], y, p[1] + nz * half[1])); uv.push(acc / 6, 0, acc / 6, 1);
+      if (i) { const k = i * 2; idx.push(k - 2, k - 1, k, k - 1, k + 1, k); } });
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
+    if (g.attributes.normal.getY(0) < 0) { idx.reverse(); g.setIndex(idx); g.computeVertexNormals(); }
+    const m = new THREE.Mesh(g, mat); m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m); return m;
+  };
+  const dense = (line) => { const out = []; for (let i = 0; i < line.length - 1; i++) for (let k = 0; k < 4; k++) { const t = k / 4; out.push([line[i][0] + (line[i + 1][0] - line[i][0]) * t, line[i][1] + (line[i + 1][1] - line[i][1]) * t]); } out.push(line[line.length - 1]); return out; };
+  lots.streets.forEach(s => { const d = dense(s);
+    ribbon(d, [-4.2, 4.2], 0.035, asph); ribbon(d, [-4.55, -4.2], 0.12, curbM); ribbon(d, [4.2, 4.55], 0.12, curbM);
+    ribbon(d, [-6.2, -4.55], 0.06, verge); ribbon(d, [4.55, 6.2], 0.06, verge); });
+
+  /* ---- the near lots: limestone ranch houses with whole roofs, live oaks, drives, mailboxes ---- */
+  const LIMES = ['#e4d2ac', '#d9c49a', '#ecdbb8', '#dcc59c'];
+  const ROOFS = ['#4f5a76', '#665a6c', '#465670', '#6f5e54', '#58687c'];
+  let kitCount = 0, k = 0; const GARAGES = [];
+  const local = (L, lx, lz) => { const c = Math.cos(L.ry), sn = Math.sin(L.ry); return [L.x + lx * c + lz * sn, L.z - lx * sn + lz * c]; };
+  const put = (obj, L, lx, lz, lry, contact) => { const q = local(L, lx, lz); place(obj, q[0], q[1], L.ry + (lry || 0)); TXT.add(R, obj); if (contact) TXT.contact(R, obj, { opacity: 0.75 }); return obj; };
+  [...KIT].sort((a, b) => dist(lots[a]) - dist(lots[b])).forEach(i => {
+    const L = lots[i], rr = CH.rng(CH.SEED + i * 31);
+    const garage = rr() < 0.5 ? 'right' : 'left';
+    const h = K.make('ranch_house', { seed: 9000 + i, material: 'limestone', color: LIMES[i % 4], roof: ROOFS[(i * 7) % 5], garage, chimney: rr() < 0.45 });
+    const sz = h.userData.size || [23.9, 7, 12.3];
+    const s = Math.min(1, 17.4 / sz[0]); h.scale.setScalar(s);
+    put(h, L, 0, 0, 0, true); kitCount++;
+    const half = sz[2] * s / 2, gx = (garage === 'left' ? -1 : 1) * sz[0] * s * 0.32;
+    GARAGES.push({ L, gx, half, len: Math.max(4, 4.5 + 36 * 0.42 - 4.55 - half) });
+    const len = Math.max(4, 4.5 + 36 * 0.42 - 4.55 - half);
+    const dw = K.make('driveway', { seed: 70 + i, width: 5.2, length: len, flare: true, age: 0.2 }); dw.position.y = 0.03;
+    put(dw, L, gx, half + len / 2, 0, false);
+    const mb = K.make('mailbox', { seed: 40 + i, style: rr() < 0.6 ? 'brick' : 'post', brick: '#d9c49a' });
+    put(mb, L, gx + 3.5, half + len - 0.7, 0, true);
+    if (L.tree || dist(L) < 70) {
+      const oak = K.make('live_oak', { seed: 300 + i, height: 7 + rr() * 2, spread: 11 + rr() * 3 });
+      put(oak, L, -gx * 1.15 + (rr() - 0.5) * 2, half + 4.2 + rr() * 2.2, rr() * 6, true);
+    }
+    /* the back lot line: a cedar privacy fence, and a tree in the back yard */
+    if (Math.cos(L.ry) < 0) {
+      const fe = K.make('privacy_fence', { seed: 500 + i, length: 20.6, height: 1.83, weathered: 0.35 + rr() * 0.4 });
+      put(fe, L, 0, -20.6, 0, false);
+      const bt = rr() < 0.55 ? K.make('crape_myrtle', { seed: 600 + i, height: 5, spread: 5, bloom: 'lavender' }) : K.make('live_oak', { seed: 650 + i, height: 7, spread: 10 });
+      put(bt, L, (rr() - 0.5) * 10, -13 - rr() * 3, rr() * 6, false);
+    }
+    /* the far row turns its back to the camera: a patio and a shade tree in each back yard */
+    if (Math.cos(L.ry) > 0 && dist(L) > 60) {
+      const pat = K.make('driveway', { seed: 800 + i, width: 5, length: 3.6, flare: false, age: 0.3 }); pat.position.y = 0.03;
+      put(pat, L, -gx * 0.6, -half - 1.8, 0, false);
+      const bt = rr() < 0.6 ? K.make('live_oak', { seed: 850 + i, height: 7.5, spread: 11 }) : K.make('crape_myrtle', { seed: 870 + i, height: 5, spread: 5, bloom: 'lavender' });
+      put(bt, L, (rr() - 0.5) * 9, -half - 7.5 - rr() * 3, rr() * 6, false);
+    }
+    if (k === 1) { const pk = K.make('pickup', { seed: 5, color: 0x9a2236 }); pk.position.y = 0.05; put(pk, L, gx, half + 3.6, Math.PI, true); }
+    if (k === 4) { const sd = K.make('suv', { seed: 9, color: 0x24459a }); sd.position.y = 0.05; put(sd, L, gx, half + 3.3, 0, true); }
+    k++;
+  });
+
+  /* THE FIGURE, checked: kit houses plus instanced roofs equal FIG.buildings */
+  const roofs = carpet.userData.count + kitCount;
+  if (roofs !== FIG.buildings) throw new Error('roofs drawn ' + roofs + ' differ from FIG.buildings ' + FIG.buildings);
+
+  /* ---- far canopy: the tile's own oaks beyond the kit range, as low lumpy crowns in one instanced mesh ---- */
+  { const geo = new THREE.IcosahedronGeometry(1, 4), p = geo.attributes.position, r = CH.rng(5150);
+    for (let i = 0; i < p.count; i++) { const X = p.getX(i), Y = p.getY(i), Z = p.getZ(i), kx = 1 + 0.16 * Math.sin(X * 7.1 + Z * 3.3) * Math.cos(Y * 6.2 + X * 2.1) + (r() - 0.5) * 0.06; p.setXYZ(i, p.getX(i) * kx, p.getY(i) * kx * 0.62, p.getZ(i) * kx); } geo.computeVertexNormals();
+    const mat = K.mat('oak-canopy-far', { color: 0xffffff, roughness: 0.95 }, true);
+    const im = new THREE.InstancedMesh(geo, mat, FAR_TREES.length * 3), M = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3(), ps = new THREE.Vector3(); let n = 0;
+    FAR_TREES.forEach(L => { const c = local(L, L.treeX, (L.d || 11) / 2 + 6 + L.treeZ * 0.3);
+      for (let j = 0; j < 3; j++) { const w = wp(c[0] + (r() - 0.5) * 5, 3.8 + r() * 1.0, c[1] + (r() - 0.5) * 4); const rad = 2.4 + r() * 1.6;
+        ps.set(w[0], w[1], w[2]); sc.set(rad, rad, rad); q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), r() * 6); M.compose(ps, q, sc); im.setMatrixAt(n, M); im.setColorAt(n++, new THREE.Color().setHSL(0.27 + r() * 0.05, 0.38 + r() * 0.12, 0.11 + r() * 0.05)); } });
+    im.count = n; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; im.castShadow = true; im.receiveShadow = true; R.scene.add(im); }
+
+  /* the middle distance keeps full kit oaks, so no lumped crown sits near enough to read as one */
+  MID_TREES.forEach((L, j) => { const c = local(L, L.treeX, (L.d || 11) / 2 + 6 + L.treeZ * 0.3);
+    const oak = K.make('live_oak', { seed: 1200 + j, height: 7.5, spread: 11 }); place(oak, c[0], c[1], j * 1.7); TXT.add(R, oak); });
+
+  /* ---- THE TEXAS MARKER: the town's water tower, lone star, no name, standing in the back yard gap between two rows of
+   * the same tile, near enough to read large in the left third (the tower moved, never the camera) ---- */
+  const bowAt = (x, pair) => Math.sin(x / 140 + pair * 0.7) * 9 + Math.sin(x / 61 + pair) * 2.5;
+  const TX = 50, TZ = 121.5 + (bowAt(TX, 1) + bowAt(TX, 2)) / 2;
+  const tower = K.make('water_tower', { seed: 24, style: 'legs', name: '', star: true, color: 0xf6f3ea, ink: 0x1e3a6b });
+  tower.scale.setScalar(1.15);                                     /* about 15 percent larger, so it holds the left third */
+  tower.traverse(m => { if (m.isMesh && m.material) { const mm = (Array.isArray(m.material) ? m.material : [m.material]).map(x => { const c = x.clone(); c.fog = false; return c; }); m.material = Array.isArray(m.material) ? mm : mm[0]; } });
+  place(tower, TX, TZ, Math.PI + 0.35, 0); TXT.add(R, tower); TXT.contact(R, tower, { opacity: 0.7 });
+  { const t = scr(TX, 36, TZ); if (t.x > -0.33 || t.x < -0.95) throw new Error('the tower is not in the left third: ' + t.x.toFixed(2)); }
+
+  /* ---- THE WAY THROUGH: a flat emissive gold ribbon a few cm above the asphalt on the near street's centreline,
+   * arriving from the left edge (screen left is +x) with a gentle bend out of the near lane, its leading end thinning to a
+   * fading thread past the first lot. A warm gold spill lights the asphalt, both curbs, the aprons and the mailbox posts. */
+  const sz0 = (x) => bowAt(x, 0);
+  /* the route's destination: the garage door of the near limestone house across the street whose door sits in the left
+   * third, chosen by projection so it stays clear of the near oak. It arrives somewhere ordinary, a home. */
+  let G = null, gbest = 1e9;
+  GARAGES.forEach(g => { if (Math.cos(g.L.ry) > 0 || g.L.z > 40) return; const d = local(g.L, g.gx, g.half + 0.8), t = scr(d[0], 1, d[1]);
+    const c = Math.abs(t.x + 0.42) + (t.y < -0.95 ? 9 : 0); if (c < gbest) { gbest = c; G = g; } });
+  if (!G) throw new Error('no near garage found for the route');
+  const door = local(G.L, G.gx, G.half + 0.9), mouth = local(G.L, G.gx, G.half + G.len + 0.2), apron = local(G.L, G.gx, G.half + G.len * 0.55);
+  const X0 = 74, mx = mouth[0];
+  const ss = (t) => t * t * (3 - 2 * t);
+  const ctrl = [];
+  /* the route stops short: it runs in on the street and ends before the first Texas lot, because no Texas user is named yet */
+  const XSTOP = mx - 12;
+  for (let x = X0; x > XSTOP; x -= 3) { const bend = -1.9 * (1 - ss(Math.min(1, Math.max(0, (X0 - x) / 34)))); ctrl.push([x, sz0(x) + bend]); }
+  if (ctrl.length < 4) throw new Error('route too short: ' + ctrl.length);
+  /* densify along a centripetal spline so the glow strip follows the same curve as the tube */
+  const spl = new THREE.CatmullRomCurve3(ctrl.map(p => new THREE.Vector3(p[0], 0, p[1])), false, 'centripetal', 0.3);
+  const rp = spl.getSpacedPoints(220).map(v => [v.x, v.z]);
+  const shape = () => 1;
+  const strip = (half, y, minHalf, alphaK) => {
+    const pos = [], idx = [], col = [], uv = [], n = rp.length;
+    rp.forEach((p, i) => { const a = rp[Math.max(0, i - 1)], b = rp[Math.min(n - 1, i + 1)];
+      const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz) || 1, nx = -dz / l, nz = dx / l;
+      const k = shape(p[0]), hw = minHalf + (half - minHalf) * k, al = alphaK ? Math.min(1, k * 1.4 + 0.0) : 1;
+      pos.push(...wp(p[0] + nx * hw, y, p[1] + nz * hw), ...wp(p[0] - nx * hw, y, p[1] - nz * hw));
+      col.push(1, 1, 1, al, 1, 1, 1, al); uv.push(i / n, 0, i / n, 1);
+      if (i) { const q = i * 2; idx.push(q - 2, q - 1, q, q - 1, q + 1, q); } });
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 4)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
+    if (g.attributes.normal.getY(0) < 0) { idx.reverse(); g.setIndex(idx); g.computeVertexNormals(); }
+    return g;
+  };
+  /* the route itself: the chassis's raised gold tube, the same object as the cover's, with a rounded end */
+  const tube = CH.route(THREE, K, rp.filter((p, i) => i % 6 === 0 || i === rp.length - 1).map(p => [...wp(p[0], 0, p[1])]), { r: 0.36, lift: 0.3, glow: 0.2 });
+  R.scene.add(tube);
+  { const e0 = rp[rp.length - 1], w0 = wp(e0[0], 0.3, e0[1]); const cap = new THREE.Mesh(new THREE.SphereGeometry(0.36, 24, 16), tube.material);
+    cap.position.set(w0[0], w0[1], w0[2]); cap.scale.set(1, 1, 0.35); cap.visible = false; }
+  /* the spill: additive warm light, brightest on the ribbon, reaching across both curbs to the aprons */
+  const spillTex = CH.canvasTex(THREE, 64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h);
+    gr.addColorStop(0, 'rgba(255,190,40,0)'); gr.addColorStop(0.2, 'rgba(255,190,40,0.22)'); gr.addColorStop(0.38, 'rgba(255,200,50,0.55)'); gr.addColorStop(0.5, 'rgba(255,214,80,0.95)');
+    gr.addColorStop(0.62, 'rgba(255,200,50,0.55)'); gr.addColorStop(0.8, 'rgba(255,190,40,0.22)'); gr.addColorStop(1, 'rgba(255,190,40,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  { const m = new THREE.MeshBasicMaterial({ map: spillTex, vertexColors: true, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false, fog: true });
+    m.userData.txSurface = false; m.name = 'route-spill';
+    const sp = new THREE.Mesh(strip(3.2, 0.04, 0.4, true), m); sp.userData.txBevel = false; sp.renderOrder = 2; R.scene.add(sp); }
+  /* low warm lights along it, so curbs, apron lips and mailbox posts catch real light and cast */
+  [0.08, 0.3, 0.55, 0.78, 0.97].map(t => rp[Math.round(t * (rp.length - 1))]).forEach(q => { const w = wp(q[0], 1.6, q[1]); const pl = new THREE.PointLight(0xffc24a, 16, 10, 2); pl.position.set(w[0], w[1], w[2]); R.scene.add(pl); });
+  const e = rp[rp.length - 1];
+  if (scr(rp[0][0], 0.05, rp[0][1]).x > -1) throw new Error('the route does not touch the left edge');
+  { const t = scr(e[0], 0.3, e[1]); if (Math.abs(t.x) > 0.95 || Math.abs(t.y) > 0.95) throw new Error('the route does not end in frame'); }
+
+  /* ---- the key: frame 1's evening sun ---- */
+  const spec = CH.rigSpec(W, 160, 4096); spec.key = Object.assign({}, spec.key, { radius: 2 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts(wp(0, 0, 40), { distance: 400, shadowFar: 900, normalBias: 0.03 }), { light: KEY }));
+  CH.unacne(R, 0.03);
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.6, fade: 170 });
+  CH.seat(cx, { sel: '.dek', a: 0.76, fade: 150 });
+  { const d = document.querySelector('.dek').getBoundingClientRect(), hh = d.height * 0.36;
+    CH.seat(cx, { box: { x: d.left + d.width * 0.08, y: d.bottom - hh, w: d.width * 0.92, h: hh }, a: 0.3, fade: 120 }); }
+  CH.seat(cx, { sel: '.kick', a: 0.5, fade: 140 });
+  ['.count', '.tx-site', '.src'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 150 }));
+  TXLOOK.footWash(cx, { a: 0.45, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script></body></html>

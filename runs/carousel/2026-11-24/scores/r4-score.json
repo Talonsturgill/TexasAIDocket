@@ -1,0 +1,175 @@
+{
+ "weighted_score": 7.33,
+ "judges": [
+  7.29,
+  7.59,
+  7.245
+ ],
+ "spread": 0.345,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.5,
+   "weight": 0.22,
+   "judges": [
+    7.5,
+    7.5,
+    7.25
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.7,
+   "weight": 0.12,
+   "judges": [
+    7.7,
+    7.9,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.8,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.6,
+   "weight": 0.16,
+   "judges": [
+    6.6,
+    7.4,
+    6.25
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.4,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.2,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The uprooted root plate is a glossy orange boulder with pale horn-like spikes. It reads as a rock with antlers rather than roots and soil, it fights the gold route for the accent, and the dek wash covers the upper third.",
+     "fix": "Remodel the root plate as a flat, dark brown soil disc with radiating thin root tubes, torn out of a crater in the parkway. Keep the trunk lying across the lane the gold route bends around, and tighten the dek wash to a band behind the type only."
+    },
+    {
+     "judge": 2,
+     "problem": "The root plate is a smooth orange blob with spikes and the fallen crown merges into the canopy behind. The bottom 40 percent is empty reflective asphalt with a cropped truck.",
+     "fix": "Raise the camera and crop out the foreground asphalt so the trunk lies across the middle third. Model the root plate as a dark torn soil disc with root strands and a crater, and give the crown a lighter rim."
+    },
+    {
+     "judge": 3,
+     "problem": "The root plate is still an oversized orange-red boulder with horn-like spikes, taller than the eave. At feed size it reads as a sculpture rather than an uprooted oak.",
+     "fix": "Scale the root plate down to about a trunk-height radius, flatten it into a tilted disc of dark brown gumbo clay with thin root strands, and cast its shadow into the puddle."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A seat wash over the top 40 percent flattens the street and sky behind the roof, and machine_qa flags a drawn rule crossing the dek's glyph band at 78,464 that it could not measure.",
+     "fix": "Drop the camera to a lower oblique so lawn and sky give the type real quiet without a wash, and move the violet gutter line clear of the dek's line boxes."
+    },
+    {
+     "judge": 2,
+     "problem": "A white sphere vent beside the tarp still reads as a chrome ball.",
+     "fix": "Replace it with a ribbed turbine vent on a flashing base, matching the mushroom vents on the far roof."
+    },
+    {
+     "judge": 3,
+     "problem": "Only two rims show, violet and pale blue, and both read as gutters, so 'color coded view, structure by structure' is not visible.",
+     "fix": "Pull the camera back to take in three or four neighbouring roofs, each with a thick rim in a distinct step of the ramp, lifted off the eave with its own glow, so the set reads as a legend."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Still repeats S1's aerial suburb with detail spread evenly. The tower is small at upper left, the dek covers the middle third, and the new route stop sits in a small strip at left with nothing at its end.",
+     "fix": "Drop the camera to street level so the tower fills the left half, and run the route from the foreground up the street to end at a lot in front of the tower. Seat the dek in the sky above it."
+    },
+    {
+     "judge": 3,
+     "problem": "A seven-line dek fills the top half, and the art below is a generic suburb with the gold stub small at the left edge.",
+     "fix": "Cut the dek to three lines (adoption, scoped absence, a named action), and lower the camera so the gold stub and the first unlit lot sit in the centre third."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The operator is a smooth mannequin seen from behind, and the dek's line 'designed to' runs onto the cab window edge.",
+     "fix": "Reframe over the shoulder so a modelled hand with fingers points at the map in the close foreground, and pull the dek's measure in so it ends left of the cab."
+    },
+    {
+     "judge": 3,
+     "problem": "The operator at frame centre is a smooth low-poly mannequin, the one primitive model left in the deck.",
+     "fix": "Push in over the shoulder so only the vest, forearm and hand on the lit board are in frame, cropping the head out at the top edge."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 265 plates read as a comb of thin white slats across the bottom half, under a flat cobalt wall that takes the top.",
+     "fix": "Lower the camera to bench height on the pulled plate so it fills the middle third, put a raking key along the plate edges, and let the rack recede out of the left edge behind it."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 4,
+ "rounds": 4,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.33, 0.67 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}
