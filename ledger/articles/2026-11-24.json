@@ -1,0 +1,109 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research and science",
+ "dek": {
+  "text": "Texas A&M's CLARKE turns drone imagery into building and road damage maps in minutes, and Texas A&M says Florida's state drone team made it procedure.",
+  "claims": [
+   "c24",
+   "c1",
+   "c9"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Texas A&M developed CLARKE, an AI tool that helps emergency responders assess disaster damage quickly](c24). [It reads drone imagery taken after hurricanes, tornados, wildfires and other disasters and produces detailed damage assessments within minutes](c1). [Tom Manzini of the development team says it does in minutes what takes {{number:c2}} to {{number:c2:1}} hours otherwise](c2).",
+   "claims": [
+    "c24",
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "text": "[Texas A&M says Florida's state drone remote sensing team now uses CLARKE as part of its standard operating procedures](c9). [It was deployed in Florida and Pennsylvania in the {{number:c10}} hurricane season, after hurricanes Debby and Helene](c10). The university's November 24th release and the project site name no Texas agency or county among its users.",
+   "claims": [
+    "c9",
+    "c10"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "From many pictures to one map",
+   "paragraphs": [
+    {
+     "text": "[The drone images are first stitched into one georectified orthomosaic and aligned to building and road footprints](c23). [The Building Damage Assessment then rates the damage to each individual building](c5), [giving responders a color coded view of impact, structure by structure](c6). [A second model identifies road network damage and obstructions](c21), [so crews can find routes around damaged roads and other obstacles](c7).",
+     "claims": [
+      "c23",
+      "c5",
+      "c6",
+      "c21",
+      "c7"
+     ]
+    },
+    {
+     "text": "[Given a finished orthomosaic, the project site says CLARKE assesses roughly {{number:c16}} buildings in about {{number:c16:1}} minutes](c16). That clock starts after the stitching. [The results come out as GeoJSON and KML files for the mapping tools responders already work in](c18).",
+     "claims": [
+      "c16",
+      "c18"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A person still signs off",
+   "paragraphs": [
+    {
+     "text": "[A trained operator reviews every assessment before it reaches decision makers](c19). [The tool runs in the field and needs no wireless transmission of imagery to produce an assessment](c20). [Texas A&M notes that gathering damage information can take days, particularly in rural areas or where communications are damaged](c15). [Florida's drone task force lead says responders can fly and understand the extent of the damage right away rather than wait days](c11).",
+     "claims": [
+      "c19",
+      "c20",
+      "c15",
+      "c11"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it learned from, and who has trained",
+   "paragraphs": [
+    {
+     "text": "[The models learned from drone imagery of more than {{number:c3}} damaged homes in {{number:c3:1}} major disasters](c3), [Hurricane Harvey and Hurricane Ian among them](c4). [The dataset holds {{number:c17}} orthomosaics](c17). [Texas A&M says {{number:c8}} emergency responders from {{number:c8:1}} agencies in {{number:c8:2}} states and Puerto Rico have trained on the system](c8). [The National Science Foundation funded the work through the AI Institute for Societal Decision Making](c12).",
+     "claims": [
+      "c3",
+      "c4",
+      "c17",
+      "c8",
+      "c12"
+     ]
+    },
+    {
+     "text": "Neither document says which of those agencies are in Texas. The release names Florida's team as the one that wrote CLARKE into procedure and describes Texas only as where the tool was developed and Harvey only as training imagery. [Semafor picked it for its Innovation Atlas {{number:c13}}, according to Texas A&M](c13). The release gives no accuracy figure and the project site lists no damage classes, so this account carries neither.",
+     "claims": [
+      "c13",
+      "c9",
+      "c24"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0258",
+   "label": "CLARKE in the record"
+  },
+  {
+   "id": "tx-2026-0254",
+   "label": "DARPA's Triage Challenge at Disaster City"
+  },
+  {
+   "id": "tx-2026-0253",
+   "label": "East Texas A&M on drone GPS spoofing"
+  }
+ ]
+}
