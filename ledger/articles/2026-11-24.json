@@ -58,10 +58,11 @@
    "heading": "A person still signs off",
    "paragraphs": [
     {
-     "text": "[A trained operator reviews every assessment before it reaches decision makers](c19). [The tool runs in the field and needs no wireless transmission of imagery to produce an assessment](c20). [Texas A&M notes that gathering damage information can take days, particularly in rural areas or where communications are damaged](c15). [Florida's drone task force lead says responders can fly and understand the extent of the damage right away rather than wait days](c11).",
+     "text": "[A trained operator reviews every assessment before it reaches decision makers](c19). [Its models are designed to run entirely in the field](c20), [and no wireless transmission of imagery is needed to produce an assessment](c26). [Texas A&M notes that gathering damage information can take days, particularly in rural areas or where communications are damaged](c15). [Florida's drone task force lead says responders can fly and understand the extent of the damage right away rather than wait days](c11).",
      "claims": [
       "c19",
       "c20",
+      "c26",
       "c15",
       "c11"
      ]
@@ -72,11 +73,12 @@
    "heading": "What it learned from, and who has trained",
    "paragraphs": [
     {
-     "text": "[The models learned from drone imagery of more than {{number:c3}} damaged homes in {{number:c3:1}} major disasters](c3), [Hurricane Harvey and Hurricane Ian among them](c4). [The dataset holds {{number:c17}} orthomosaics](c17). [Texas A&M says {{number:c8}} emergency responders from {{number:c8:1}} agencies in {{number:c8:2}} states and Puerto Rico have trained on the system](c8). [The National Science Foundation funded the work through the AI Institute for Societal Decision Making](c12).",
+     "text": "[The models learned from drone imagery of more than {{number:c3}} damaged homes in {{number:c3:1}} major disasters](c3), [Hurricane Harvey and Hurricane Ian among them](c4). [The models are trained and benchmarked on the CRASAR-U-DROIDs dataset](c17), [which holds {{number:c25}} orthomosaics](c25). [Texas A&M says {{number:c8}} emergency responders from {{number:c8:1}} agencies in {{number:c8:2}} states and Puerto Rico have trained on the system](c8). [The National Science Foundation funded the work through the AI Institute for Societal Decision Making](c12).",
      "claims": [
       "c3",
       "c4",
       "c17",
+      "c25",
       "c8",
       "c12"
      ]
