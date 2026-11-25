@@ -1,34 +1,62 @@
 {
- "last_pass": "2026-11-22",
+ "last_pass": "2026-11-24",
  "themes": [
   {
    "theme": "primitive or low-poly model where a kit model belongs",
-   "runs": 7,
-   "rounds": 20,
+   "runs": 6,
+   "rounds": 18,
    "action": "fixed",
-   "what": "The kit person gains pose 'kneel' (assets/js/kit/people.js, a6ac4132), the model no. 84 frame 8 had to fake by hand and every judge charged in all three rounds. Additive, so no existing pose or seed moves. The person's near detail (hands, hair; queue repeat 8) stays open."
+   "what": "Kit person handShape 'press' (assets/js/kit/people.js): a modelled index fingertip lands on a point, lifted from no. 86 frame 6's hand-built finger. The close hand detail (knuckle beads at a near camera) stays open."
   },
   {
-   "theme": "bespoke brief stale after panel repair (queue bespoke-brief-stale-after-panel-repair, repeat 2: nos. 78, 83 and 84)",
+   "theme": "layout CLI passes what ship refuses (queue layout-cli-passes-what-ship-refuses, repeat 2: nos. 82, 83, 86)",
    "runs": 3,
    "rounds": null,
    "action": "fixed",
-   "what": "panel_ready check_briefs_current refuses a round while a brief's headline or dek differs from copy.json (954a9f9b); BESPOKE.md step 5 says a repair rewrites the brief."
+   "what": "layout_check's bespoke exemption covers the archetype rotation alone."
   },
   {
-   "theme": "the digest counted flat score layouts as round 0 (found reading this pass's own digest)",
-   "runs": 3,
+   "theme": "fig_inject reads string literals as dynamic (queue fig-inject-reads-string-literals-as-dynamic, repeat 1: nos. 80, 86)",
+   "runs": 2,
    "rounds": null,
    "action": "fixed",
-   "what": "week_digest reads scores/r<N>-<lens>.json as round N (3feb2718); the primitive model theme's rounds went from 19 to 20 and no. 84 from r0 to r1,2,3."
+   "what": "fig_inject blanks string literals in script bodies; shipped_check notes archived decks through 2026-11-24."
   },
   {
-   "theme": "accent floor forces flat painted props (queue accent-floor-forces-flat-painted-props, repeat 2: nos. 68, 70 and 84)",
-   "runs": 3,
+   "theme": "render report truncates long text nodes (queued twice: nos. 74, 86)",
+   "runs": 2,
+   "rounds": null,
+   "action": "fixed",
+   "what": "plan_render_check reads past the report's window from the slide source."
+  },
+  {
+   "theme": "the week's one hard fail, a doubled attribution in caption.txt (queue caption-check-misses-doubled-clause: no. 86)",
+   "runs": 1,
+   "rounds": 1,
+   "action": "fixed",
+   "what": "caption_check fails an unpunctuated doubled run of three or more words; copy_sync_check compares copy.json's caption to caption.txt."
+  },
+  {
+   "theme": "panel repair can lower the art (queue panel-repair-can-lower-the-art, repeat 1: nos. 84, 86)",
+   "runs": 2,
    "rounds": null,
    "action": "escalated",
-   "what": "Both proposed fixes widen what layout_check counts as the accent; UPGRADE_BACKLOG 2026-11-22 item 1 asks the owner which shape before a replay corpus is built."
+   "what": "Needs a Phase 15 step in prompts/daily_routine.md; UPGRADE_BACKLOG 2026-11-24 item 2."
+  },
+  {
+   "theme": "rebuild round took critic fixes (queue rebuild-round-took-critic-fixes, repeat 1: nos. 81, 86)",
+   "runs": 2,
+   "rounds": null,
+   "action": "escalated",
+   "what": "A round-structure ruling for the owner; UPGRADE_BACKLOG 2026-11-24 item 3."
+  },
+  {
+   "theme": "accent floor forces flat painted props (queue accent-floor-forces-flat-painted-props, repeat 3)",
+   "runs": 4,
+   "rounds": null,
+   "action": "escalated",
+   "what": "Still waiting on the 2026-11-22 ruling."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from scripts/carousel/week_digest.py --date 2026-11-21 after its round fix, seven shipped runs. The queue themes' run counts are the distinct decks their queue lines name; rounds not counted for them."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from out/2026-11-24/week_digest.md, six shipped runs. Queue themes' run counts are the distinct decks their queue lines name; rounds not counted for them."
 }

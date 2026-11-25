@@ -671,6 +671,30 @@ def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], l
     return drifted, uncited
 
 
+# THE CAPTION IS TWO FILES AND NOTHING COMPARED THEM (weekly machine pass 2026-11-24, queue
+# `caption-check-misses-doubled-clause`, no. 86). A showrunner's string replace rewrote caption.txt,
+# missed copy.json's escaped newlines, and copy.json kept the old caption while its own `_note` said
+# the caption was carried verbatim. The round 3 reader judge found it. Every shipped deck that
+# carries both, 52 of them on the day this was written, agrees exactly, so the rule costs nothing a
+# correct run does and refuses the one shape that drifted.
+def caption_drift(copy: dict, run_dir: Path) -> list[str]:
+    """copy.json's `caption`, when it has one, must be caption.txt's text exactly (ends stripped)."""
+    cap = copy.get("caption") if isinstance(copy, dict) else None
+    txt = Path(run_dir) / "caption.txt"
+    if isinstance(cap, list) and all(isinstance(x, str) for x in cap):
+        cap = "\n".join(cap)
+    if not isinstance(cap, str) or not txt.exists():
+        return []
+    shipped = txt.read_text(encoding="utf-8")
+    if cap.strip() == shipped.strip():
+        return []
+    a, b = cap.strip(), shipped.strip()
+    i = next((k for k in range(min(len(a), len(b))) if a[k] != b[k]), min(len(a), len(b)))
+    return [f"copy.json's caption differs from caption.txt at character {i}: copy.json has "
+            f"{a[max(0, i - 30):i + 50]!r}, caption.txt has {b[max(0, i - 30):i + 50]!r}. caption.txt is "
+            f"what posts; write the same text into copy.json"]
+
+
 def run(date: str, out_root: Path) -> int:
     d = out_root / date
     copy_p, rep_p, claims_p = d / "copy.json", d / "render" / "render_report.json", d / "claims.json"
@@ -705,9 +729,10 @@ def run(date: str, out_root: Path) -> int:
               file=sys.stderr)
         return 2
     dated = redundant_year(copy, report, m_year.group(1))
+    capdrift = caption_drift(copy, d)
     n_slides = len(normalize_slides(copy.get("slides")))
 
-    if not drifted and not uncited and not untraced and not banned and not dated:
+    if not drifted and not uncited and not untraced and not banned and not dated and not capdrift:
         extra = ("" if claims is not None
                  else ", citations and quotations unchecked (no claims.json)")
         print(f"copy sync: clean, {n_slides} slide(s) match what the browser laid out{extra}")
@@ -762,6 +787,10 @@ def run(date: str, out_root: Path) -> int:
               "  frame 7 set \"AUGUST 3RD, 2026\" three times while the caption of the same post\n"
               "  printed the same dates correctly. FIX BOTH SURFACES: the slide's HTML and\n"
               "  copy.json. Drop only the year, never the date.")
+    if capdrift:
+        print("\ncopy sync: the caption disagrees with itself\n")
+        for m in capdrift:
+            print(f"  {m}")
     return 1
 
 
@@ -1294,6 +1323,33 @@ def self_test() -> int:
        corpus_hits > 0, f"{corpus_hits} findings across {len(shipped)} shipped decks")
     ok("...and is silent on every one of them under a year the corpus cannot hold",
        other_years == 0, f"{other_years} findings under a counterfactual year")
+
+    # THE CAPTION'S TWO COPIES (weekly machine pass 2026-11-24), replaying no. 86: caption.txt took a
+    # string replace that copy.json's escaped newlines did not.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as _t:
+        _d = Path(_t)
+        _old = "Florida's drone team adopted Texas A&M's tool.\nLine two."
+        (_d / "caption.txt").write_text("Texas A&M says Texas A&M says Florida's team uses its tool.\nLine two.\n",
+                                        encoding="utf-8")
+        _f = caption_drift({"caption": _old}, _d)
+        ok("copy.json's stale caption beside the shipped caption.txt is CAUGHT", len(_f) == 1, _f)
+        (_d / "caption.txt").write_text(_old + "\n", encoding="utf-8")
+        ok("...and the same text, trailing newline aside, is clean", caption_drift({"caption": _old}, _d) == [])
+        ok("...a caption kept as a list of lines is joined before the compare",
+           caption_drift({"caption": _old.split("\n")}, _d) == [])
+        ok("...no caption key, or no caption.txt yet, is not a finding",
+           caption_drift({}, _d) == [] and caption_drift({"caption": "x"}, _d / "nowhere") == [])
+    # and every shipped deck that carries both agrees, so the rule refuses nothing a correct run did
+    _bad = []
+    for _cj in sorted((REPO_ROOT / "runs" / "carousel").glob("*/copy.json")):
+        try:
+            _c = json.loads(_cj.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if caption_drift(_c, _cj.parent):
+            _bad.append(_cj.parent.name)
+    ok("every shipped deck's copy.json caption matches its caption.txt", _bad == [], _bad)
 
     if failures:
         print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)

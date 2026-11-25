@@ -7015,3 +7015,71 @@ not make it. Asked: the owner's ruling on which shape, and the pass after builds
 ### Carried
 
 Every other open item is carried as it stands. No frontier scan this pass.
+
+## 2026-11-24, the twenty-fourth weekly machine pass (run 2026-11-24). One kit hand, four gates, three proposals
+
+Counts are from `out/2026-11-24/week_digest.md`, six shipped runs, November 18th to 24th. Top theme: primitive
+or low-poly model where a kit model belongs, 6 runs, 18 rounds. `story_and_stakes` and `variety` were the
+lowest criterion on 3 decks each; `artwork_craft` on 1 (week mean 7.37). The one hard fail of the week (no. 86
+round 3, a doubled attribution in caption.txt) escaped every gate.
+
+### Shipped in lane (working tree, uncommitted; the showrunner commits under the upgrade stamp)
+
+- **The artwork lift, a pressing finger for the kit person** (`assets/js/kit/people.js`). `handShape:
+  [left, right]` with `hands`, each `grip` (default, unchanged) or `press`: the hand opens to a pointing
+  hand, palm down, and the index fingertip lands on the point. `attach.hands[i]` publishes `press`, the
+  measured `tip` and `short` (tip to point). Lifted from no. 86 frame 6's chassis, which built the finger
+  out of two capsules on a fist. Proof `out/2026-11-24/tmp/kitproof/render/slide-03.png`: tips 0.001 and
+  0.012 m from their points. Additive: no existing call changes.
+- **layout_check's bespoke exemption is the rotation alone** (`scripts/carousel/layout_check.py`), queue
+  `layout-cli-passes-what-ship-refuses`, repeat 2 (nos. 82, 83, 86).
+- **fig_inject blanks string literals before the dynamic match** (`scripts/carousel/fig_inject.py`, with
+  `shipped_check.g_fig_lines` noting an archived deck through 2026-11-24 written under the old reading),
+  queue `fig-inject-reads-string-literals-as-dynamic`, repeat 1 (nos. 80, 86).
+- **caption_check fails a clause printed twice; copy_sync_check fails copy.json's caption differing from
+  caption.txt** (`scripts/carousel/caption_check.py`, `scripts/carousel/copy_sync_check.py`), queue
+  `caption-check-misses-doubled-clause`, the week's one hard fail.
+- **plan_render_check reads a node the report cut at its window from the slide source past the cut**
+  (`scripts/carousel/plan_render_check.py`), queues `render-report-truncates-long-text-node` (no. 74) and
+  `render-report-truncates-long-text-nodes` (no. 86), one defect queued twice.
+
+### 1. PROPOSAL, for a maintainer: a GATE_LESSONS entry for the exemption wider than its doctrine (`knowledge/shared/GATE_LESSONS.md`, human)
+
+The brief says a changed gate belongs in GATE_LESSONS, and that file is `human` lane. Proposed entry: "An
+exemption written wider than the rule it implements. BESPOKE.md stood down layout_check's archetype rotation;
+the command line exempted every finding, so the routine's `layout_check --require` exited 0 on bleeds a rect
+never reached, a GRID that read as one piece and an accent on no frame, while `shipped_check.g_layout`,
+which had no exemption, refused the same decks at ship on nos. 82, 83 and 86 after the panel. Check instead
+that an exemption names the findings it covers, and that the in-run command and the ship gate return the
+same verdict on the same deck." The replay is in `layout_check --self-test` case (e2).
+
+A residue the maintainer should rule on: `shipped_check.g_layout` still refuses the ROTATION on a bespoke
+deck, which BESPOKE.md and Phase 12b stand down. No bespoke deck has shipped a rotation finding, so nothing
+has hit it. This pass did not exempt it there, because that would loosen a ship gate.
+
+### 2. PROPOSAL, for a maintainer: a repaired frame gets its critic before the panel rescores (`prompts/daily_routine.md`, human)
+
+Queue `panel-repair-can-lower-the-art`, repeat 1: no. 84 (art median 7.3 to 6.6 to 7.0 after literal round 2
+repairs to frames 3, 6 and 8) and no. 86 (frame 4's critic score 7.5 to 7.2, frame 6's 6.8 to 6.6, after the
+round 2 panel's repairs). The fix is a step in Phase 15 of the routine: the repaired frame's slide critic,
+holding the panel's charge, scores it before the panel does, and a repair scored under the frame it replaced
+is reverted. The routine is not this lane's.
+
+### 3. PROPOSAL, for the owner: does a withdrawn rebuild verdict still mean a second concept? (`prompts/daily_routine.md` BESPOKE MODE, human, and `knowledge/carousel/BESPOKE.md`)
+
+Queue `rebuild-round-took-critic-fixes`, repeat 1: no. 81 and no. 86, where frames under 8.0 took a last
+repair round on their critics' fixes instead of the second concept BESPOKE step 3 names, and the panel then
+charged the first concepts' defects (no. 86 frames 7, 4, 6 and 9). Either reading is a doctrine decision that
+changes the routine's round structure and its cost, so this pass asks rather than picks.
+
+### Deferred in lane
+
+- `accent-floor-forces-flat-painted-props`, repeat 3 (nos. 68, 70, 84, 86): still waiting on the 2026-11-22
+  ruling (item 1 of that pass). Unchanged.
+- `kit-person-reads-as-mannequin-within-two-metres`, repeat 9: this pass's press hand answers the table range
+  for a pointing hand only. Seen in this pass's own proof: the `point` hand's four knuckle spheres sit as
+  separate beads across the curled fingers at a close camera. That is the next kit fix for the person.
+
+### Carried
+
+Every other open item is carried as it stands. No frontier scan this pass.

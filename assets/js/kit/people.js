@@ -1164,6 +1164,8 @@ export function install(K, THREE, TXT) {
         if (j === 2) tipDir = a;
       }
       g.add(new THREE.Mesh(loft(ctrl, { seg: 9, per: 2, capStart: 'flat', capEnd: 'dome', domeK: 0.75, ref: [0, 0, 1] }), mat));
+      // the index tip, read off the finger's own last ring and its dome, so a press can be measured
+      if (f === 0) { const e = ctrl[ctrl.length - 1], cap = e.rx * 0.75; g.userData.tip = V3(e.p[0] - s * Math.sin(tipDir) * cap, e.p[1] - Math.cos(tipDir) * cap, e.p[2]); }
       // the nail, on the back of the last bone
       if (nailM) {
         const nl = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), nailM);
@@ -1191,6 +1193,27 @@ export function install(K, THREE, TXT) {
       nl.scale.set(0.0066 * k, 0.0085 * k, 0.0016 * k); g.add(nl);
     }
     return g;
+  }
+
+  /* THE INDEX TIP OF A 'point' HAND, in the hand's own frame, without building it (weekly pass
+   * 2026-11-24). The same walk as the finger loop above for f = 0, so a press can aim the wrist
+   * BEFORE the hand exists. The built hand records its own tip in userData.tip, and the person
+   * publishes the distance between the two worlds as attach.hands[i].short, so a drift between
+   * this walk and the loop shows up as a number rather than a finger in the air. */
+  function indexTip(k, s) {
+    const L = 0.1 * k, len = 0.074 * k, rad = 0.0104 * k, c = [0.03, 0.06, 0.03], segs = [0.46, 0.3, 0.24];
+    const zTip = 0.0285 * k * 0.84 - 0.001 * k;
+    let px = -s * 0.005 * k, py = -L + 0.005 * k, a = 0.06;
+    for (let j = 0; j < 3; j++) { a += c[j]; const d = len * segs[j]; py -= Math.cos(a) * d; px += -s * Math.sin(a) * d; }
+    const cap = rad * 0.66 * 0.75;
+    return V3(px - s * Math.sin(a) * cap, py - Math.cos(a) * cap, zTip);
+  }
+  /* the turn that hangs a hand down its forearm Fd with its palm toward `palm` (both in the person's frame) */
+  function handQuat(Fd, s, palm) {
+    const q = new THREE.Quaternion().setFromUnitVectors(V3(0, -1, 0), Fd);
+    const cur = V3(-s, 0, 0).applyQuaternion(q), want = palm.clone();
+    cur.sub(Fd.clone().multiplyScalar(cur.dot(Fd))).normalize(); want.sub(Fd.clone().multiplyScalar(want.dot(Fd))).normalize();
+    return q.premultiply(new THREE.Quaternion().setFromAxisAngle(Fd, Math.atan2(cur.clone().cross(want).dot(Fd), cur.dot(want))));
   }
 
   /* ---- shoes --------------------------------------------------------------------------
@@ -1414,8 +1437,8 @@ export function install(K, THREE, TXT) {
     size: [0.5, 1.75, 0.3],
     options: { seed: 1, role: 'resident', pose: 'stand', toward: 1, height: null, build: 'auto',
                hat: 'auto', hatColor: null, shade: false, vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full',
-               headPitch: null, hands: null },
-    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read|sit_drive|kneel (kneel puts one knee on the ground, the leg on the `toward` side forward with its foot flat, the trunk leaning in and the forearms reaching forward and down to a casualty or the ground, the hips at about 0.5 m; read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. sit_drive sits upright at the wheel with the head level, eyes on the road, and both hands closed on the rim at ten and two of a nominal wheel ahead of the chest. headPitch, any pose: the pitch of the head from LEVEL in radians, positive looks down, whatever the torso does (0 is a level gaze; sit_read bakes about 0.52 down). hands, any pose: [left, right] grip points in the frame of the person (left is +x), each [x, y, z] or null; a hand closes on that point by two bone reach, and a point out of reach is reached toward. With sit_drive or hands the origin is kept (feet on y 0, hips on z 0, the midline on x 0) and userData.attach publishes hip, seat (the measured underside of the trousers below the hips, where a cushion meets them), eye and hands (each grip, the point reached, and short, metres it fell short). semi_cab_interior publishes attach.rim, its own ten and two, so a driver takes hands: A.rim.map((p) => [p[0] - x, p[1] - y, p[2] - z]) for a person at x, y, z. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
+               headPitch: null, hands: null, handShape: null },
+    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read|sit_drive|kneel (kneel puts one knee on the ground, the leg on the `toward` side forward with its foot flat, the trunk leaning in and the forearms reaching forward and down to a casualty or the ground, the hips at about 0.5 m; read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. sit_drive sits upright at the wheel with the head level, eyes on the road, and both hands closed on the rim at ten and two of a nominal wheel ahead of the chest. headPitch, any pose: the pitch of the head from LEVEL in radians, positive looks down, whatever the torso does (0 is a level gaze; sit_read bakes about 0.52 down). hands, any pose: [left, right] grip points in the frame of the person (left is +x), each [x, y, z] or null; a hand closes on that point by two bone reach, and a point out of reach is reached toward. handShape, with hands: [left, right], each grip (default, the hand closes on the point) or press (the hand opens to a pointing hand, palm down, and the index fingertip lands on the point; attach.hands[i] then carries press true, tip, the measured fingertip, and short, metres from tip to point). With sit_drive or hands the origin is kept (feet on y 0, hips on z 0, the midline on x 0) and userData.attach publishes hip, seat (the measured underside of the trousers below the hips, where a cushion meets them), eye and hands (each grip, the point reached, and short, metres it fell short). semi_cab_interior publishes attach.rim, its own ten and two, so a driver takes hands: A.rim.map((p) => [p[0] - x, p[1] - y, p[2] - z]) for a person at x, y, z. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
     make(o, r) {
       LOW = o.detail === 'low';
       try { return makePerson(o, r); } finally { LOW = false; }
@@ -1560,6 +1583,12 @@ export function install(K, THREE, TXT) {
     if (gripAt) for (const [i, s] of [[0, 1], [1, -1]]) {
       const g = gripAt[i];
       if (Array.isArray(g) && g.length === 3 && g.every(Number.isFinite)) arm[s] = { u: arm[s].u, f: arm[s].f, hand: 'grip', grip: V3(g[0], g[1], g[2]) };
+      // A FINGER ON THE POINT, not a fist (weekly pass 2026-11-24, queue kit-people-cartoon-at-table-range and
+      // kit-person-reads-as-mannequin-within-two-metres). handShape [left, right], each 'grip' (the default)
+      // or 'press': the hand opens to a pointing hand, palm down, and its index fingertip lands on the point.
+      // No. 86 frame 6 built that finger by hand out of two capsules on a fist, and every judge in rounds
+      // 2 to 4 still read the operator's hand as a mannequin's.
+      if (arm[s].hand === 'grip' && Array.isArray(o.handShape) && o.handShape[i] === 'press') arm[s].press = true;
     }
     // THE HEAD'S PITCH, asked for (weekly pass 2026-11-12). Measured from level, so 0 is a level gaze in any
     // pose: the pivot below turns the head by headPitch + torsoLean, so the lean is taken back out here.
@@ -1811,11 +1840,13 @@ export function install(K, THREE, TXT) {
         // the palm faces in toward the midline and forward, and the rim sits in the curled fingers, so
         // the wrist stands back from the grip along the forearm and off it toward the back of the hand
         const hk = k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass);
-        A.palm = n3(-s, -0.2, 0.7);
+        A.palm = A.press ? n3(-s * 0.3, -1, 0) : n3(-s, -0.2, 0.7);
         let wt = A.grip.clone(), Fd0 = A.grip.clone().sub(S).normalize();
-        for (let it = 0; it < 3; it++) {
+        const tipL = A.press ? indexTip(hk, s) : null;
+        for (let it = 0; it < (A.press ? 6 : 3); it++) {
           const pn = A.palm.clone().sub(Fd0.clone().multiplyScalar(A.palm.dot(Fd0))).normalize();
-          wt = A.grip.clone().addScaledVector(Fd0, -0.095 * hk + 0.018 * k).addScaledVector(pn, -0.022 * hk);
+          if (A.press) wt = A.grip.clone().addScaledVector(Fd0, -0.004 * k).sub(tipL.clone().applyQuaternion(handQuat(Fd0, s, A.palm)));
+          else wt = A.grip.clone().addScaledVector(Fd0, -0.095 * hk + 0.018 * k).addScaledVector(pn, -0.022 * hk);
           const d = wt.clone().sub(S), len = d.length();
           const reach = Math.min(len, upperArm + foreArm - 0.001);
           const a = (upperArm * upperArm - foreArm * foreArm + reach * reach) / (2 * reach);
@@ -2259,21 +2290,18 @@ export function install(K, THREE, TXT) {
         const c = loft([{ p: Wr.clone().addScaledVector(Fd, -0.03 * k).toArray(), rx: 0.031 * k, ry: 0.028 * k }, { p: Wr.clone().addScaledVector(Fd, -0.002 * k).toArray(), rx: 0.03 * k, ry: 0.027 * k }], { seg: 14, per: 2, ref: [0, 0, 1], capEnd: 'flat' });
         G.add(new THREE.Mesh(c, K.mat('p-shirt-white', { color: capAlb(0xf3f1ec), roughness: 0.7 })));
       }
-      const hp = A.hand === 'point' ? 'point' : A.hand === 'hip' || A.hand === 'grip' ? 'fist' : 'relax';
+      const hp = A.hand === 'point' || A.press ? 'point' : A.hand === 'hip' || A.hand === 'grip' ? 'fist' : 'relax';
       const hnd = hand(k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass), s, skin, hp, nailM);
       hnd.quaternion.copy(new THREE.Quaternion().setFromUnitVectors(V3(0, -1, 0), Fd));
       if (A.hand === 'point') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), -s * Math.PI / 2 + s * 0.2));
       if (A.hand === 'hip') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), s * 0.3));
       if (A.hand === 'shade') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), s * Math.PI / 2));
       if (A.hand === 'relax') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), -s * 0.25));
-      if (A.hand === 'grip') {       // turn the closed hand about the forearm until its palm faces the grip's side
-        const cur = V3(-s, 0, 0).applyQuaternion(hnd.quaternion), want = A.palm.clone();
-        cur.sub(Fd.clone().multiplyScalar(cur.dot(Fd))).normalize(); want.sub(Fd.clone().multiplyScalar(want.dot(Fd))).normalize();
-        hnd.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(Fd, Math.atan2(cur.clone().cross(want).dot(Fd), cur.dot(want))));
-      }
+      if (A.hand === 'grip') hnd.quaternion.copy(handQuat(Fd, s, A.palm));   // the palm turned about the forearm to the grip's side
       // a closed hand is turned about the forearm, so the root of its palm no longer lines up with the wrist's
       // section and a ring showed at the wrist at a near crop; it is sunk into the wrist instead
-      hnd.position.copy(Wr).addScaledVector(Fd, A.hand === 'grip' ? -0.014 * k : 0.004 * k);
+      hnd.position.copy(Wr).addScaledVector(Fd, A.hand === 'grip' && !A.press ? -0.014 * k : 0.004 * k);
+      if (A.press && hnd.userData.tip) { hnd.updateMatrix(); A.tipAt = hnd.userData.tip.clone().applyMatrix4(hnd.matrix); }
       G.add(hnd);
     }
 
@@ -2533,7 +2561,9 @@ export function install(K, THREE, TXT) {
       M.userData.attach = {
         hip: hipC.toArray(), seat: [0, seatY, hipC.z], eye: head.localToWorld(V3(0, 0, D)).toArray(),
         hands: [1, -1].map((s) => arm[s].hand === 'grip'
-          ? { grip: arm[s].grip.toArray(), reached: Wrl[s].clone().add(arm[s].grip).sub(arm[s].wt).toArray(), short: +arm[s].short.toFixed(3) } : null),
+          ? (arm[s].press && arm[s].tipAt
+            ? { grip: arm[s].grip.toArray(), press: true, tip: arm[s].tipAt.toArray(), reached: arm[s].tipAt.toArray(), short: +arm[s].tipAt.distanceTo(arm[s].grip).toFixed(3) }
+            : { grip: arm[s].grip.toArray(), reached: Wrl[s].clone().add(arm[s].grip).sub(arm[s].wt).toArray(), short: +arm[s].short.toFixed(3) }) : null),
       };
     }
     return M;

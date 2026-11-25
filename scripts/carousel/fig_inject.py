@@ -62,12 +62,67 @@ def line_for(sub: dict) -> str:
     return "<script>window.FIG = " + json.dumps(sub) + ";</script>"
 
 
-def plan(html: str, figs: dict) -> tuple[str, list[str], bool]:
-    """(the slide's new text, problems, dynamic). The FIG line itself is not read for names."""
+def blank_strings(code: str) -> tuple[str, list[bool]]:
+    """(code with every string literal's TEXT blanked to spaces, a mask of which offsets were inside
+    one). Quotes stay, offsets stay, and a template literal's `${...}` stays code.
+
+    WHY (weekly machine pass 2026-11-24, queue `fig-inject-reads-string-literals-as-dynamic`,
+    nos. 80 and 86). A message is not a read. No. 80's guards threw 'FIG says ' and
+    'window.FIG is not the brief', and the DYNAMIC match took the bare FIG inside each string as a
+    dynamic use, so eight slides were handed every figure and called stale at ship."""
+    out, mask = list(code), [False] * len(code)
+    i, n = 0, len(code)
+    while i < n:
+        c = code[i]
+        if c in "'\"":
+            j = i + 1
+            while j < n and code[j] != c and code[j] != "\n":
+                j += 2 if code[j] == "\\" else 1
+            for k in range(i + 1, min(j, n)):
+                out[k], mask[k] = " ", True
+            i = j + 1
+        elif c == "`":
+            j, depth = i + 1, 0
+            while j < n:
+                if depth == 0 and code[j] == "`":
+                    break
+                if depth == 0 and code.startswith("${", j):
+                    depth, j = 1, j + 2
+                    continue
+                if depth:
+                    depth += {"{": 1, "}": -1}.get(code[j], 0)
+                    j += 1
+                    continue
+                if code[j] == "\\":
+                    out[j], mask[j] = " ", True
+                    j += 1
+                if j < n:
+                    out[j], mask[j] = (" " if code[j] != "\n" else "\n"), True
+                j += 1
+            i = j + 1
+        else:
+            i += 1
+    return "".join(out), mask
+
+
+def plan(html: str, figs: dict, legacy_strings: bool = False) -> tuple[str, list[str], bool]:
+    """(the slide's new text, problems, dynamic). The FIG line itself is not read for names.
+    `legacy_strings` reads string literals as code, the way every deck through 2026-11-24 was
+    written; shipped_check uses it only to tell an archived deck from a stale one."""
     # comments are not code: a note saying "the FIG line" must not read as a dynamic use
     code = re.sub(r"<!--.*?-->|/\*.*?\*/|(?:^|(?<=\s))//[^\n]*", "", LINE.sub("", html), flags=re.S)
-    names = {m.group(1) for m in DOT.finditer(code)} | {m.group(2) for m in KEY.finditer(code)}
-    dynamic = bool(DYNAMIC.search(code))
+    # and strings are not code either: a FIG named inside a message is never a read. FIG['name'] keeps
+    # its key, because the KEY match runs on the real text wherever the FIG itself is outside a string.
+    # Only inside <script> bodies: an apostrophe in a headline ("can't") is not a quote.
+    bare, inside = code, [False] * len(code)
+    for m in ([] if legacy_strings else re.finditer(r"(<script\b[^>]*>)(.*?)(</script>)", code, flags=re.S | re.I)):
+        b, k = blank_strings(m.group(2))
+        s = m.start(2)
+        bare = bare[:s] + b + bare[s + len(b):]
+        inside[s:s + len(k)] = k
+    names = ({m.group(1) for m in DOT.finditer(bare)}
+             | {m.group(2) for m in KEY.finditer(code) if not inside[m.start()]})
+    dynamic = bool(DYNAMIC.search(bare))
     problems = [f"reads FIG.{n}, which figures.json does not carry" for n in sorted(names - set(figs))]
     if not names and not dynamic and not LINE.search(html):
         return html, problems, dynamic                       # no FIG at all: nothing to write
@@ -84,13 +139,13 @@ def plan(html: str, figs: dict) -> tuple[str, list[str], bool]:
     return text, problems, dynamic
 
 
-def run_dir(run: Path, write: bool) -> tuple[list[str], list[str], list[str]]:
+def run_dir(run: Path, write: bool, legacy_strings: bool = False) -> tuple[list[str], list[str], list[str]]:
     """(written or stale slide names, problems, notes)."""
     figs = figures(run)
     changed, problems, notes, written = [], [], [], []
     for p in sorted((run / "slides").glob("slide-*.html")):
         html = p.read_text(encoding="utf-8")
-        text, probs, dynamic = plan(html, figs)
+        text, probs, dynamic = plan(html, figs, legacy_strings)
         problems += [f"{p.name}: {x}" for x in probs]
         if dynamic:
             notes.append(f"{p.name}: uses FIG dynamically, so it carries every figure")
@@ -175,6 +230,35 @@ def self_test() -> int:
         s4 = (run / "slides/slide-04.html").read_text()
         ok("a dynamic reader carries every figure", all(k in s4 for k in ("visits", "months", "hours")), s4)
         ok("and is named", any("slide-04" in n for n in notes), str(notes))
+        # THE REPLAY of nos. 80 and 86 (weekly machine pass 2026-11-24): a guard whose MESSAGE
+        # names FIG is not a dynamic read, so the slide carries what it reads by name and no more.
+        (run / "slides/slide-06.html").write_text(slide(
+            "if (FIG.visits == null) throw new Error('FIG says nothing; window.FIG is not the brief');\n"
+            "const t = `${FIG.months} months, FIG as words`; draw(t, \"can't FIG\");"))
+        _, _, notes = run_dir(run, True)
+        s6 = (run / "slides/slide-06.html").read_text()
+        ok("a throw message naming FIG is not a dynamic use",
+           not any("slide-06" in n for n in notes), str(notes))
+        ok("...so the slide carries only the names it reads, a template's ${FIG.x} among them",
+           '"visits": 18' in s6 and '"months": 12' in s6 and "hours" not in s6, s6)
+        # and the strip is what does the work: without it the same slide is called dynamic
+        ok("the unstripped match the runs met goes red on the same text",
+           bool(DYNAMIC.search(re.sub(r"<!--.*?-->|/\*.*?\*/", "", LINE.sub("", s6), flags=re.S))))
+        # a bracketed key is a string and is still read; a real dynamic use beside a string still is one
+        (run / "slides/slide-07.html").write_text(slide("draw(FIG['hours'], 'a note'); const all = Object.keys(FIG);"))
+        _, _, notes = run_dir(run, True)
+        ok("FIG['name'] is still read and Object.keys(FIG) beside a string is still dynamic",
+           any("slide-07" in n for n in notes), str(notes))
+        # an apostrophe in the page's own prose is not a quote that hides a read
+        (run / "slides/slide-08.html").write_text(
+            "<!doctype html><html><body><h1>It's dry</h1>\n<script>window.FIG = {};</script>\n"
+            "<script type=\"module\">draw(FIG.hours);</script></body></html>\n")
+        run_dir(run, True)
+        ok("prose apostrophes outside a script do not swallow a read",
+           '"hours": 6' in (run / "slides/slide-08.html").read_text())
+        for k in ("06", "07", "08"):
+            (run / f"slides/slide-{k}.html").unlink()
+
         # a slide with no FIG at all is never touched
         plain = '<!doctype html><html><body><script type="module">draw(3);</script></body></html>\n'
         (run / "slides/slide-05.html").write_text(plain)

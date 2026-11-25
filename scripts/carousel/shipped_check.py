@@ -1009,7 +1009,21 @@ def g_fig_lines(d: Path):
     if probs and d.name <= FIG_SINCE:
         return (f"built before fig_inject existed (through {FIG_SINCE}). Run into it anyway: "
                 f"{len(probs)} finding(s), first: {probs[0][:140]}")
+    # STRINGS ARE NOT READS from FIG_STRINGS_SINCE on (weekly machine pass 2026-11-24, queue
+    # `fig-inject-reads-string-literals-as-dynamic`). A deck through that date was written by the
+    # tool that read 'FIG says ' inside a throw message as a dynamic use, so its slides carry every
+    # figure. Such a deck is measured both ways: stale under the new reading and clean under the
+    # one it was written by is a note, and stale under both is still a finding.
+    if probs and d.name <= FIG_STRINGS_SINCE and not problems:
+        legacy, lprobs, _ = m.run_dir(d, False, legacy_strings=True)
+        if not legacy and not lprobs:
+            return (f"written by fig_inject before it stopped reading string literals as code (through "
+                    f"{FIG_STRINGS_SINCE}), and current under that reading. Under today's: "
+                    f"{len(probs)} finding(s), first: {probs[0][:140]}")
     return probs
+
+
+FIG_STRINGS_SINCE = "2026-11-24"   # the newest deck written before fig_inject blanked string literals
 
 
 def g_art_preflight(d: Path):
@@ -1705,6 +1719,27 @@ def self_test() -> int:
         import fig_inject as _fi
         _fi.run_dir(_new, True)
         ok("...and after fig_inject writes it the deck is clean", g_fig_lines(_new) == [], str(g_fig_lines(_new)))
+
+    # FIG STRINGS, 2026-11-24. A deck through FIG_STRINGS_SINCE whose throw message names FIG was
+    # written carrying every figure; it is noted. The same bytes after the date are a finding, and
+    # a deck stale under BOTH readings is a finding whatever its date.
+    with _tempfile.TemporaryDirectory() as _t:
+        _guard = "if (FIG.visits !== 17) throw new Error('FIG says ' + FIG.visits);"
+        for _name in ("2026-11-16", "2026-11-25"):
+            _d = Path(_t) / _name
+            (_d / "slides").mkdir(parents=True)
+            (_d / "figures.json").write_text(_json.dumps({"visits": {"value": 17}, "months": {"value": 12}}))
+            (_d / "slides" / "slide-01.html").write_text(
+                '<script>window.FIG = {"visits": 17, "months": 12};</script>\n'
+                f'<script type="module">{_guard}</script>\n', encoding="utf-8")
+        _arch, _after = Path(_t) / "2026-11-16", Path(_t) / "2026-11-25"
+        ok("an archived deck written under the old string reading is noted, never failed",
+           isinstance(g_fig_lines(_arch), str), str(g_fig_lines(_arch)))
+        ok("...the same bytes after FIG_STRINGS_SINCE are CAUGHT",
+           isinstance(g_fig_lines(_after), list) and len(g_fig_lines(_after)) == 1, str(g_fig_lines(_after)))
+        (_arch / "figures.json").write_text(_json.dumps({"visits": {"value": 18}, "months": {"value": 12}}))
+        ok("...and an archived deck stale under both readings is still CAUGHT",
+           isinstance(g_fig_lines(_arch), list) and g_fig_lines(_arch), str(g_fig_lines(_arch)))
 
     ok("the first new daily deck needs a three-frame review",
        bool(g_art_preflight(Path("2026-10-08"))), str(g_art_preflight(Path("2026-10-08"))))

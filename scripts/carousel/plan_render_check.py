@@ -94,6 +94,7 @@ the shape `sources_block` shipped for a whole run behind an exit code of 0.
 from __future__ import annotations
 
 import argparse
+import html as _html
 import json
 import re
 import sys
@@ -937,6 +938,30 @@ def rendered_text(report: dict, n: int) -> str:
     return ""
 
 
+def past_window(report: dict, n: int, needle: str, html_upper: str) -> bool:
+    """True when the render report CUT a node at its declared window and the needle is that node's
+    text carried on past the cut, with the whole needle in the slide's own source.
+
+    WHY (weekly machine pass 2026-11-24, queues `render-report-truncates-long-text-node`, no. 74,
+    and `render-report-truncates-long-text-nodes`, no. 86). render.py records each text node to
+    `text_window` characters (320). No. 86 frame 9's 353 character dek stopped at the cap, this gate
+    said the dossier's dek was not on the frame although the PNG carried every word, and the run cut
+    the dek to 308 to pass, losing the action line the judges then marked down. The head is still
+    read off the render and the tail off the source, so a dek that differs ANYWHERE still fails:
+    inside the window the render disagrees, past it the source does."""
+    window = int(report.get("text_window") or 0)
+    if not window or not html_upper:
+        return False
+    sq = lambda t: re.sub(r"\s+", " ", t).strip().lower()
+    want = sq(needle)
+    for node in rendered_nodes(report, n):
+        head = sq(node)
+        if len(node) >= window and len(want) > len(head) and want.startswith(head):
+            src = sq(_html.unescape(re.sub(r"<[^>]+>", " ", html_upper)))
+            return want in src
+    return False
+
+
 def rendered_nodes(report: dict, n: int) -> list:
     for s in report.get("slides") or []:
         if f"{n:02d}" in str(s.get("file", "")):
@@ -1330,7 +1355,7 @@ def check(storyboard: str, slides_dir: Path, report: dict,
                     if len(needle.split()) < 2:
                         continue
                     hit = True
-                    if text and needle.lower() not in text.lower():
+                    if text and needle.lower() not in text.lower() and not past_window(report, n, needle, html):
                         fails.append(
                             f"slide {n}: an acceptance item says the frame carries {needle!r} "
                             f"and the render does not print it")
@@ -2272,6 +2297,26 @@ acceptance:
        swept_items and swept_prose <= len(list((REPO_ROOT / "runs" / "carousel").glob("2*"))),
        f"{swept_prose} of {swept_items}")
     ok("...and it is not asleep either", swept_prose >= 10, str(swept_prose))
+
+    # ---- THE REPORT'S WINDOW IS NOT THE FRAME'S EDGE (weekly machine pass 2026-11-24) --------
+    # Replays no. 86 frame 9: a dek longer than the report's 320 character window, cut at the cap.
+    _dek = ("Each roof the model calls damaged waits for a person to check it, and the county "
+            "sends crews only to the roofs a reviewer has confirmed. ") * 3
+    _dek = _dek.strip()
+    _W = 320
+    _rep = {"text_window": _W, "slides": [{"file": "slide-09.html", "text_nodes": [{"text": _dek[:_W]}]}]}
+    _src = f"<h1>A hook</h1><p class=\"dek\">{_dek}</p>".upper()
+    ok("a dek cut at the report's window, whole in the slide source, is on the frame",
+       len(_dek) > _W and past_window(_rep, 9, _dek, _src))
+    ok("...a tail past the window that the source does NOT carry is still CAUGHT",
+       not past_window(_rep, 9, _dek[:-12] + " and then x.", _src))
+    ok("...a head that differs inside the window is still CAUGHT",
+       not past_window(_rep, 9, "Every" + _dek[4:], _src.replace("EACH ROOF", "EVERY ROOF", 1)))
+    ok("...and a node short of the window is never read as cut",
+       not past_window({"text_window": _W, "slides": [{"file": "slide-09.html",
+                                                        "text_nodes": [{"text": _dek[:200]}]}]}, 9, _dek, _src))
+    ok("...nor a report that declares no window",
+       not past_window({"slides": _rep["slides"]}, 9, _dek, _src))
 
     ok("no hex literal for a brand colour is hardcoded in this module",
        not re.search(r"#(16151C|8E4B3A|D9CDB4|B98D46|4E6B62|EFE9DA)",

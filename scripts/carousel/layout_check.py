@@ -677,6 +677,21 @@ def rotation_problems(seq: list[tuple[int, str]]) -> list[str]:
     return out
 
 
+def bespoke_split(run_dir: Path, problems: list[str]) -> tuple[list[str], list[str]]:
+    """(blocking, reported) for a BESPOKE run. Reported is the archetype rotation alone, the one
+    thing BESPOKE.md stands down. A layout that is not an archetype at all is a planning error, not
+    rotation, so it still blocks. Everything else blocks, because shipped_check's g_layout refuses
+    it at ship whatever the mode (weekly machine pass 2026-11-24)."""
+    try:
+        dossiers = _dossier_module().parse_dossiers((Path(run_dir) / "storyboard.md").read_text(encoding="utf-8"))
+    except OSError:
+        return list(problems), []
+    seq = [(n, str(d.get("layout") or "").strip()) for n, d in sorted(dossiers.items())
+           if isinstance(d, dict) and "layout" in d]
+    rot = {p for p in rotation_problems([(n, a) for n, a in seq if a]) if "is not an archetype" not in p}
+    return [p for p in problems if p not in rot], [p for p in problems if p in rot]
+
+
 def plan_of(n: int, d: dict) -> tuple[dict | None, list[str]]:
     """One slide's declaration, normalised, plus everything wrong with its shape."""
     probs = []
@@ -1244,6 +1259,30 @@ def self_test() -> int:
         ok("the flag red as the accent FAILS",
            code == 1 and any("flag red" in p for p in probs), probs)
 
+        # (e2) THE BESPOKE EXEMPTION IS THE ROTATION ALONE (weekly machine pass 2026-11-24, queue
+        # `layout-cli-passes-what-ship-refuses`, nos. 82, 83 and 86). The command line used to
+        # report EVERY finding as `~` and exit 0 on a bespoke run, so a bleed the rect never
+        # reached passed all run and shipped_check refused it at ship. Three frames in a row on one
+        # archetype is the rotation and is reported; the false bleed on slide 2 still blocks.
+        board(d, layouts={1: "MAP", 2: "MAP", 3: "MAP"}, bleeds={2: ["left"]})
+        code, probs, _ = check(d)
+        block, told = bespoke_split(d, probs)
+        ok("a bespoke deck's false bleed still BLOCKS",
+           code == 1 and any("declares left" in p for p in block), (block, told))
+        ok("...while its three-in-a-row rotation is only reported",
+           any("3 x MAP" in p for p in told) and not any("3 x MAP" in p for p in block), (block, told))
+        ok("...and the old blanket exemption, which blocked nothing, would have passed it",
+           len(block) < len(probs) and block != [], probs)
+        board(d, layouts={1: "MAP", 2: "MAP", 3: "MAP"})
+        code, probs, _ = check(d)
+        block, told = bespoke_split(d, probs)
+        ok("a bespoke deck whose only finding is the rotation passes", code == 1 and block == [] and told, probs)
+        board(d, layouts={4: "HERO_SHOT"})
+        code, probs, _ = check(d)
+        block, _told = bespoke_split(d, probs)
+        ok("a layout that is no archetype at all still blocks on a bespoke run",
+           any("not an archetype" in p for p in block), probs)
+
         # (f) half a deck in the system
         board(d, drop=(5,))
         code, probs, _ = check(d)
@@ -1406,17 +1445,28 @@ def main() -> int:
         print(f"layout_check: not a directory: {rd}", file=sys.stderr)
         return 2
     code, problems, rows = check(rd, require=a.require)
-    # BESPOKE (owner, 2026-11-14): the archetype rotation is a menu, and a bespoke slide composes its
-    # own picture and type. On a bespoke run the measurements are printed and never block.
+    # BESPOKE (owner, 2026-11-14): the archetype ROTATION is a menu, and a bespoke slide composes its
+    # own picture and type, so on a bespoke run the rotation findings are printed and never block.
+    #
+    # ONLY THE ROTATION (weekly machine pass 2026-11-24, queue `layout-cli-passes-what-ship-refuses`,
+    # nos. 82, 83 and 86). Until that pass this exemption covered EVERY finding, so the routine's
+    # `layout_check --require` exited 0 all run on bleeds a rect never reached, a GRID that reads as
+    # one piece at thumb size and an accent on no frame, and `shipped_check`'s `g_layout`, which has
+    # no bespoke exemption, refused the same deck at ship after the panel had scored it. BESPOKE.md
+    # and Phase 12b stand down the rotation and nothing else, so the bleed, rect, detail, silhouette
+    # and accent findings now block here, where a repair is still cheap.
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         from bespoke_mode import is_bespoke
         if code == 1 and is_bespoke(a.date, rd):
-            print("layout_check: BESPOKE run (knowledge/carousel/BESPOKE.md), the rotation is reported and not blocking")
-            for p in problems:
+            problems, reported = bespoke_split(rd, problems)
+            print("layout_check: BESPOKE run (knowledge/carousel/BESPOKE.md), the archetype rotation "
+                  "is reported and not blocking; every other finding still blocks")
+            for p in reported:
                 print(f"  ~ {p}")
-            return 0
-    except Exception:
+            if not problems:
+                return 0
+    except ImportError:
         pass
     for r in rows:
         if "frame" not in r:

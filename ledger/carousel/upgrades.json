@@ -4124,4 +4124,88 @@
   }
  ]
 }
+,
+"2026-11-24 weekly": {
+ "date": "2026-11-24",
+ "run": "2026-11-24",
+ "digest": "out/2026-11-24/week_digest.md, 6 shipped runs, 2026-11-18 to 2026-11-24",
+ "upgrades": [
+  {
+   "what": "Kit person gains handShape [left, right] with hands: 'press' opens the hand to a pointing hand, palm down, and lands the index fingertip on the point; attach.hands[i] publishes press, the measured tip and short (tip to point)",
+   "why": "Top digest theme, primitive or low-poly model where a kit model belongs, 6 runs of 6, 18 rounds. No. 86 frame 6's chassis built the pressing finger out of two capsules on a fist and every panel judge in rounds 2 to 4 read the operator as a mannequin; round 4's fix named 'a modelled hand with fingers points at the map'. Queue kit-people-cartoon-at-table-range repeat 2 (nos. 83, 84, 86), kit-person-reads-as-mannequin-within-two-metres repeat 9.",
+   "files": [
+    "assets/js/kit/people.js"
+   ],
+   "verification": "python3 out/2026-11-24/tmp/kitproof/make.py && python3 .claude/skills/carousel-engine/render.py --slides-dir out/2026-11-24/tmp/kitproof/slides --out-dir out/2026-11-24/tmp/kitproof/render (exit 0, four pages, no JS error); the PRESS console lines in render_report.json give tip-to-point 0.001 m and 0.012 m (the 0.012 is the right arm at its reach limit), where the same call as a fist reaches 0.048 m and 0.11 m short; read at full size, slide-03 shows the index on the board with the other fingers curled. python3 examples/kit/sizes.py --out out/2026-11-24/tmp/kitsizes exits 0, 145 of 145.",
+   "revert": "uncommitted at hand-back; revert the assets/js/kit/people.js hunk",
+   "how_i_would_know_this_was_wrong": "A deck calling handShape press publishes attach.hands[i].short over a centimetre for a point within reach, or a judge reads the pointing hand as a claw; or a deck calling hands without handShape renders a different pixel than before (the grip turn was refactored into handQuat, which is meant to be the identical rotation)."
+  },
+  {
+   "what": "layout_check's command line exempts only the archetype rotation on a bespoke run; bleed, rect, detail, silhouette and accent findings block",
+   "why": "Queue layout-cli-passes-what-ship-refuses repeat 2 (nos. 82, 83, 86). No. 86's record: layout_check --require exited 0 all run and shipped_check refused false bleeds on frames 5 and 8, a GRID reading as one piece and the accent on 0 frames after four panel rounds; ship took 36 minutes. BESPOKE.md stands down the rotation and nothing else.",
+   "files": [
+    "scripts/carousel/layout_check.py"
+   ],
+   "verification": "python3 scripts/carousel/layout_check.py --self-test (exit 0), case (e2): a bespoke deck's false bleed blocks, its three-in-a-row rotation is reported, a non-archetype still blocks. Replay: no. 86 copied to out/2026-11-24/tmp/replay-layout with frame 8 put back to GRID exits 1 under the new code and exited 0 under HEAD's; every shipped deck 2026-11-15 to 2026-11-24 still exits 0 with --require.",
+   "revert": "uncommitted at hand-back; revert the scripts/carousel/layout_check.py hunk",
+   "how_i_would_know_this_was_wrong": "A bespoke run is blocked in-run by a finding shipped_check passes at ship, or by a rotation finding (which should print as ~)."
+  },
+  {
+   "what": "fig_inject blanks string literals inside script bodies before its DYNAMIC match, so a throw message naming FIG is not a dynamic read; shipped_check.g_fig_lines notes an archived deck through 2026-11-24 that is current under the old reading",
+   "why": "Queue fig-inject-reads-string-literals-as-dynamic repeat 1 (no. 80, eight slides called stale at ship over 'FIG says ' messages; no. 86, frames 4, 6 and 7 handed every figure).",
+   "files": [
+    "scripts/carousel/fig_inject.py",
+    "scripts/carousel/shipped_check.py"
+   ],
+   "verification": "python3 scripts/carousel/fig_inject.py --self-test (exit 0): a throw message naming FIG is not dynamic, the unstripped match goes red on the same text, FIG['k'] is still read, Object.keys(FIG) beside a string is still dynamic, a prose apostrophe does not swallow a read. python3 scripts/carousel/shipped_check.py --self-test (exit 0): the archived deck is noted, the same bytes after FIG_STRINGS_SINCE are caught, a deck stale under both readings is caught. g_fig_lines over every shipped deck: 2026-11-16 becomes a note, 2026-11-05 stays red exactly as under HEAD (stale under both readings, not caused here).",
+   "revert": "uncommitted at hand-back; revert both hunks together",
+   "how_i_would_know_this_was_wrong": "A slide that reads a figure only through a string-built key (FIG['a' + b] is still dynamic; a key built in a template literal is not) renders undefined, or fig_inject --check reports a shipped deck after 2026-11-24 stale that renders correctly."
+  },
+  {
+   "what": "caption_check fails a run of three or more words printed twice back to back with no punctuation between; copy_sync_check fails copy.json's caption differing from caption.txt",
+   "why": "The week's one hard fail: no. 86 round 3 reader, caption.txt opened 'Texas A&M says Texas A&M says Florida's team uses its tool.' and copy.json kept the old caption; caption_check passed it clean. Queue caption-check-misses-doubled-clause.",
+   "files": [
+    "scripts/carousel/caption_check.py",
+    "scripts/carousel/copy_sync_check.py"
+   ],
+   "verification": "python3 scripts/carousel/caption_check.py --self-test (exit 0): the no. 86 line fails, the single attribution is clean, an echo across a full stop and a two word echo and a quotation stay clean, no shipped caption carries one (the 172 shipped caption and first comment files were swept; two cross-punctuation echoes found on the first draft shaped the punctuation rule). python3 scripts/carousel/copy_sync_check.py --self-test (exit 0): a stale copy.json caption is caught, and all 52 shipped decks carrying both agree. Both pass on today's run.",
+   "revert": "uncommitted at hand-back; each file's hunk reverts on its own",
+   "how_i_would_know_this_was_wrong": "A caption with a deliberate unpunctuated three word repetition is refused, or a run whose copy.json legitimately holds a caption draft different from caption.txt is refused (none of 52 did)."
+  },
+  {
+   "what": "plan_render_check reads a text node the render report cut at its declared window as present when the needle begins with that node and the whole needle is in the slide's own source",
+   "why": "Queues render-report-truncates-long-text-node (no. 74, decks over about 300 characters failed) and render-report-truncates-long-text-nodes (no. 86 frame 9, a 353 character dek cut to 308 to pass, losing the action line the judges marked down). render.py is under .claude/ and not reachable, so the fix is in the reader.",
+   "files": [
+    "scripts/carousel/plan_render_check.py"
+   ],
+   "verification": "python3 scripts/carousel/plan_render_check.py --self-test (exit 0): a dek cut at the 320 window and whole in the source passes; a tail the source does not carry, a head differing inside the window, a node short of the window and a report declaring no window all still fail. Passes on today's run.",
+   "revert": "uncommitted at hand-back; revert the scripts/carousel/plan_render_check.py hunk",
+   "how_i_would_know_this_was_wrong": "A dek whose tail is in the HTML but hidden (overflow clipped, display none) passes here; qa.py's clipping check is what catches that, so a clipped dek passing both would mean this was wrong."
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "GATE_LESSONS entry: an exemption written wider than the rule it implements (layout_check bespoke)",
+   "owner": "human",
+   "why": "The brief puts a changed gate in GATE_LESSONS, which is human lane. UPGRADE_BACKLOG 2026-11-24 item 1, with the residue that shipped_check.g_layout still refuses the rotation on a bespoke deck."
+  },
+  {
+   "what": "A repaired frame gets its slide critic before the panel rescores, and a lower-scored repair is reverted",
+   "owner": "human",
+   "why": "Queue panel-repair-can-lower-the-art repeat 1 (nos. 84, 86); a Phase 15 step in prompts/daily_routine.md. UPGRADE_BACKLOG 2026-11-24 item 2."
+  },
+  {
+   "what": "Rule whether a withdrawn rebuild verdict still triggers a second concept",
+   "owner": "owner",
+   "why": "Queue rebuild-round-took-critic-fixes repeat 1 (nos. 81, 86). UPGRADE_BACKLOG 2026-11-24 item 3."
+  }
+ ],
+ "escalated": [
+  {
+   "what": "accent-floor-forces-flat-painted-props (repeat 3, no. 86 added)",
+   "owner": "owner ruling, in lane once ruled",
+   "why": "Unchanged since 2026-11-22: both fixes widen what layout_check counts as the accent."
+  }
+ ]
+}
 }
