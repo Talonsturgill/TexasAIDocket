@@ -12738,7 +12738,7 @@
     }
    ],
    "id": "tx-2026-0062",
-   "last_verified": "2026-11-19",
+   "last_verified": "2026-11-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -12924,6 +12924,11 @@
      "date": "2026-11-19",
      "note": "Fort Worth's data center page still describes the moratorium and its hearings as the record has them.",
      "checked": true
+    },
+    {
+     "date": "2026-11-24",
+     "note": "Fort Worth's data center page still describes the 90 day moratorium and its hearings as the record has them. KERA's August 12th story answered 403 and was not read.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -12993,7 +12998,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-11-20",
+   "last_verified": "2026-11-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -13143,6 +13148,11 @@
     {
      "date": "2026-11-20",
      "note": "The data center air permit applications are still posted at the environmental agency, with no decision dated on any of them.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-24",
+     "note": "The environmental agency still posts the four data center air permit applications with published notice, and no decision is dated on any of them.",
      "checked": true
     }
    ]
@@ -16766,11 +16776,11 @@
     {
      "id": "tx-2026-0077-c9",
      "text": "The committee's own page lists the August 25th hearing in its archive of recorded meetings.",
-     "verbatim_quote": "Video/Audio — Archives 89th Session Interim August 25, 2026",
+     "verbatim_quote": "89th Session Interim August 25, 2026",
      "source_url": "https://senate.texas.gov/cmte.php?c=640",
      "source_title": "Senate Committee on Transportation, committee page",
      "source_type": "primary_official",
-     "fetched": "2026-08-26"
+     "fetched": "2026-11-24"
     },
     {
      "id": "tx-2026-0077-c10",
@@ -16791,7 +16801,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-11-19",
+   "last_verified": "2026-11-24",
    "confidence": "high",
    "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
    "history": [
@@ -16945,6 +16955,11 @@
     {
      "date": "2026-11-19",
      "note": "The Senate committee's own pages for the driverless vehicle hearing still read as cited. The Legislature's other pages sit where this project does not fetch and were not read.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-24",
+     "note": "The Senate committee's own pages still list the August 25th driverless vehicle hearing and its interim charge. The committee page now sets a browser notice inside its archive list, so the archive claim was re-quoted to the lines that stand together. The Legislature's other pages sit where this project does not fetch and were not read.",
      "checked": true
     }
    ]
@@ -34199,7 +34214,7 @@
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-11-20",
+   "last_verified": "2026-11-24",
    "history": [
     {
      "date": "2026-09-15",
@@ -34305,6 +34320,11 @@
     {
      "date": "2026-11-20",
      "note": "ERCOT's warning to its board that AI training loads can fatigue generators still stands, and the rule change it points to has not moved.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-24",
+     "note": "ERCOT's board deck still warns that AI training loads can fatigue generators, and the rule change it points to reads as the record has it.",
      "checked": true
     }
    ]

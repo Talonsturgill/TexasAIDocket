@@ -9,7 +9,7 @@ The Electric Reliability Council of Texas put a list of emerging Large Load risk
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/mktrules/issues/PGRR144
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · ERCOT's board materials on AI training loads and the ramp limit it drafted still read as cited, and no later vote has changed what the record holds.
 - 2026-11-17 · The ERCOT board deck on AI training loads still reads as quoted, and the drafted ramp limit has not been voted on.
 - 2026-11-20 · ERCOT's warning to its board that AI training loads can fatigue generators still stands, and the rule change it points to has not moved.
+- 2026-11-24 · ERCOT's board deck still warns that AI training loads can fatigue generators, and the rule change it points to reads as the record has it.
 
 ## Evidence
 
