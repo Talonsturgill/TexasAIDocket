@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-24.04  # Playwright 1.56 cannot install Chromium on ubuntu-latest (26.04)
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - name: Check selection and publication rules
@@ -47,11 +47,11 @@ jobs:
         env:
           NEWS_CHECKED_AT: ${{ steps.collect.outputs.checked_at }}
         run: python3 scripts/site/news_headlines.py --live-check --wait-seconds 600 --expected-check "$NEWS_CHECKED_AT"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}

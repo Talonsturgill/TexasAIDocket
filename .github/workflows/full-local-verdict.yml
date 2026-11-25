@@ -29,13 +29,13 @@ jobs:
         shell: bash
         run: '[[ "$CANDIDATE_SHA" =~ ^[0-9a-f]{40}$ ]]'
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.candidate_sha }}
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: pip
@@ -43,12 +43,12 @@ jobs:
             requirements.txt
             requirements-ci.txt
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -105,7 +105,7 @@ jobs:
 
       - name: Retain exact completed or failed execution evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: full-local-${{ inputs.candidate_sha }}
           path: |
