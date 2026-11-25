@@ -11,7 +11,7 @@ Researchers at Texas Children's Hospital's Duncan Neurological Research Institut
 - Public access: Write to the decider
 - Take part: https://www.texome.org/
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The Texas Children's and Baylor paper still names the likely genetic cause and still credits the AI tool with the flag.
 - 2026-11-17 · The paper still names the likely genetic cause and still credits the AI tool with raising the flag.
 - 2026-11-20 · The Texas Children's and Baylor finding on the likely genetic cause still reads as published.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

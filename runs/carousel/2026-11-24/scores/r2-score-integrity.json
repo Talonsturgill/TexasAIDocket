@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.4,
+   "why": "On the bespoke reading, each picture was made for its own sentence, and the frames differ in world, camera and medium. Frame 1 is an aerial suburb with outlined roofs and a gold route. Frame 2 is a low shoulder view along a farm road. Frame 3 is a top-down orthomosaic relief, and machine_qa logs 'rims 2000 of candidates 2032' plus a TXBENCH relief with height_range 37.7, 14 materials and cast_fraction 0.79. Frame 4 is a roof hit by a tree, frame 5 a plate rack in a cobalt room, frame 6 an operator at a tailgate, frame 7 a flooded street with a crew truck, frame 8 a helmet pegboard and frame 9 a water tower suburb. Frames 2, 3 and 8 are the strongest. Slide-02.html asserts N_POSTS === 24 and slide-08.html says it checks the helmet count against FIG.responders. Four frames hold the score down. Frame 5's plates read as a comb, the pulled plate's face is unreadable at feed size and the wall is a flat cobalt field. Frame 6's operator is still a stiff mannequin with open-palm hands hovering over the map, and the laptop is a dark slab. Frame 7's uprooted root ball is a brown blob with no readable roots, and the dek wash eats the upper third. Frame 4's trunk is a straight cylinder lying on the roof with no crown mass, under a heavy seat wash. Machine QA: 0 fails, 14 warnings."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "The spine holds on all nine frames: the LOOK V2 violet and navy grade, one serif for headlines, mono kickers, the NN / 09 counter, the claim-id footer and the site line. Gold is the route on frames 1, 4, 7 and 9, and frame 9 deliberately mirrors frame 1 (aerial suburb, route ending at a driveway). The story runs in order: claim, old clock, stitch, judge, training, review, roads, reach, close. One slip in the accent's single meaning: frame 6's hi-vis vest is a yellow-orange that sits close to the route gold, while frame 2's responder was recoloured orange in code ('gold means only the route'). Frame 5's interior is the one frame off the outdoor ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. 18 and 24 are c2 (figures.json hours_low and hours_high). 2,000 and 7 are c16. 21,000 and 10 are c3. 265 is c25. 125, 63 and 14 are c8. 2024 is c10. November 24th is the release date. Every source is primary_official, and the first comment lists both fetched documents with their claim ids. Round 1's named defects, checked one by one. (1) c20's text now matches its quote ('designed to run entirely in the field'), and so does c17's. Fixed. (2) Frame 1's dek now says 'Neighborhood and colors drawn to illustrate', which covers the rim colours. Fixed. (3) The 'Florida made it procedure' overreach is now scoped to 'Florida's drone team' and 'Florida's state drone remote sensing team', and the S9 dek and caption line 2 carry 'Texas A&M says'. Partly fixed, because three surfaces still state the adoption as fact with no attribution: the caption opener 'Florida's drone team adopted Texas A&M's tool.', the S9 headline, and document_title.txt ('...and Florida's state drone team made it standard procedure'). All three rest only on Texas A&M's own release (c9). Still holding it off 10: Frame 9 sets a lit gold route to a driveway in a Texas-starred water tower town, with no 'drawn to illustrate'. That picture reads as CLARKE at work in Texas on the very frame whose dek says no Texas agency or county is named among its users. The cover 'Every roof, read in minutes' drops the finished-orthomosaic condition, though frame 3 states it. Frame 6's 'No wireless transmission of imagery is needed' drops c26's 'to generate an assessment'. No numeral is untraced, no source unfetched and no fact unverified. The 30-day topics window (October 25th to November 22nd) holds no CLARKE, CRASAR or drone damage-assessment topic. I did not open docket item tx-2026-0258."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.7,
+   "why": "A reader learns what CLARKE does, who built it (Texas A&M, Tom Manzini named), how it works (stitch, per-building rating, roads, operator review) and who uses it (Florida's FL-UAS1 team, 125 responders from 63 agencies). The sourced absence of any Texas user is stated on S9 and in the caption, which is honest. Still, no Texas county, city or body appears on any slide. The only Texas stakes are Harvey as training data and the caption question 'How many of those 63 agencies are in Texas?'. 'Watch for the first.' is passive and names no person or agency a reader could ask."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover earns the swipe. Frame 2's '18 to 24 hours, the old way' pays at once. Frames 3, 4, 6 and 7 walk the pipeline, and frame 9 turns home to Texas's absence. Frame 5 (training on Harvey) still breaks the process run between judging (4) and review (6), and could move after 7 or before 3 with no loss, as the round 1 card noted."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "House rules are clean on every surface I read: no colons, semicolons or dashes, no banned words, 'November 24th' with no year in the post, and no first person. Headlines are plain and concrete ('The road out', 'A person checks every map'). Some source jargon goes untranslated ('georectified orthomosaic' on S3, 'GeoJSON and KML map files' on S6), and the S2 line 'Roadside marker posts count off the hours' never says one post stands for one hour or what the peach band from post 18 marks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The techniques are new for this deck (orthomosaic relief, plate rack, helmet wall). But this is the third drone deck in five days (no. 83 on GPS spoofing, November 20th; no. 84 on the DARPA drones at TEEX Disaster City, November 21st). It is also the second Texas A&M disaster-response deck in four days. The aerial-suburb cover with a glowing route is a familiar move."
+  }
+ ],
+ "weighted_score": 7.21,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Attribute the adoption everywhere it leads ('Texas A&M says Florida's drone team adopted it' in the caption opener, the S9 headline and document_title.txt). Then change frame 9's Texas town with a lit gold route into a picture that shows the absence its dek states, such as the route stopping at a Texas county line or an unlit Texas street, so the close stops implying Texas use the sources do not support.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "The 265 plates read as a comb of thin slats. The pulled plate's face is unreadable at 432 px, and the cobalt block wall is a flat field taking the top half.",
+   "fix": "Push the camera in and lower it to bench height on the pulled plate, so its drawn floodwater block fills the middle third with a raking key along the plate edges. Let the rack recede out of the left edge behind it."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a stiff mannequin with open palms hovering over the map. The laptop is a dark slab, and the empty sand on the left takes a third of the frame.",
+   "fix": "Pose one hand pressing a finger on a building on the map and the other on the laptop trackpad with the screen lit. Crop in from the left so the operator and tailgate fill the lower two thirds."
+  },
+  {
+   "slide": 7,
+   "problem": "The uprooted root ball is a brown blob with no readable roots, so the obstruction the frame is about doesn't read. The dek wash covers the upper third.",
+   "fix": "Model the root plate with radiating root tubes and clinging soil, plus a trunk lying across the lane the route bends around. Drop the dek wash to a narrow band so the sky shows above it."
+  },
+  {
+   "slide": 4,
+   "problem": "The trunk is a straight untapered cylinder with a small leaf tuft, lying flat on the roof, and the seat wash over the top 40 percent flattens the street.",
+   "fix": "Swap in a barked, tapering limb with a crown mass breaking over the ridge and a hard contact shadow. Lower the camera to an oblique so the lawn gives the type quiet without a wash."
+  }
+ ]
+}

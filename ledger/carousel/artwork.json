@@ -5442,6 +5442,66 @@
     "hex": "#e8dcc4",
     "note": "Cream limestone and caliche under the explainer tone's cerulean sweep and indigo shade."
    }
+  },
+  {
+   "date": "2026-11-24",
+   "carousel_no": 86,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 wonder tone, nine slide artists. A Gulf Coast subdivision aerial with hollow rims (1), a rural road of hour markers (2), a relief of drone frames stitching into one plane (3), one damaged roof (4), a plate archive (5), an operator at a tailgate (6), a bucket truck routing around a fallen oak (7), a helmet wall (8) and frame 1's camera over Texas ground (9). Spine assets/js/deck/2026-11-24-roofread-bespoke.js with chassis models downed_oak, rescue_helmet, ortho_plate, plate_rack, survey_quad and helpers lots, carpet, rims, route, roofDamage.",
+   "structural_laws": [],
+   "techniques": [
+    "an instanced 2,000 roof aerial with hollow cool rims",
+    "hour markers on a long lens road",
+    "a stitching relief of anodised plates",
+    "a stripped roof with decking and a tarp",
+    "a raked archive of anodised plates",
+    "a screen lit operator at dusk",
+    "a gold route tube around a fallen oak",
+    "a counted helmet wall",
+    "a mirrored aerial on undamaged ground"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     39.5,
+     36.6,
+     33.8,
+     44.9,
+     39.4,
+     41.4,
+     38.6,
+     32.8,
+     35.8
+    ],
+    "deck_median_L": 38.6,
+    "max_adjacent_delta": 11.1,
+    "mean_adjacent_delta": 4.49,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#ffcc00",
+    "name": "wonder gold",
+    "frames_above_floor": [
+     1,
+     7,
+     9
+    ],
+    "share": [
+     0.0063,
+     0.0,
+     0.0,
+     0.0001,
+     0.0,
+     0.0,
+     0.0029,
+     0.0002,
+     0.0021
+    ],
+    "note": "The way through, the route around damaged roads, only."
+   },
+   "ground": {
+    "hex": "#3f7d3a",
+    "note": "St. Augustine lawn and gumbo clay under the wonder tone's cobalt and peach."
+   }
   }
  ]
 }

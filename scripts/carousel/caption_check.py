@@ -488,7 +488,48 @@ def post_shape_problems(text: str, today: str | None = None, *, sources: tuple =
             problems.append(f"{hit}. The owner banned it on 2026-09-27 (config/brand.yaml "
                             f"banned_words). Say the specific thing instead")
 
+    for run_ in doubled_runs(text):
+        problems.append(f"{run_!r} is printed twice in a row. That is an edit applied twice, never "
+                        f"a sentence. Keep one")
+
     return problems
+
+
+# A CLAUSE PRINTED TWICE IN A ROW (weekly machine pass 2026-11-24, queue
+# `caption-check-misses-doubled-clause`, no. 86). A string replace applied an attribution twice and
+# the shipped caption opened "Texas A&M says Texas A&M says Florida's team uses its tool." This gate
+# passed it clean and the round 3 reader judge hard failed it. THREE WORDS is the shortest run that
+# carries a subject and a verb; a two word echo ("very, very") can be a writer's choice and a three
+# word one in running copy never is. Words inside straight double quotes are a quotation and are
+# never touched, and hashtags and URLs are not words here.
+DOUBLED_MIN_WORDS = 3
+WORD = re.compile(r"[A-Za-z0-9][A-Za-z0-9&'.-]*")
+
+
+def doubled_runs(text: str, min_words: int = DOUBLED_MIN_WORDS) -> list[str]:
+    """Every run of `min_words` or more words printed twice back to back, as the run's text."""
+    prose = re.sub(r'"[^"\n]*"', " ", URL.sub(" ", HASHTAG.sub(" ", text)))
+    prose = re.sub(r"(?<=\d),(?=\d)", "", prose)            # 10,000 is one word
+    found = []
+    # The two copies must touch, with no punctuation between them. "up to 10,000. Up to 10,000 is"
+    # (the 2026-10-07 caption) and "Kodiak Gas Services, Kodiak Gas Services Announces" (a publisher
+    # before its own title, the 2026-09-23 first comment) are an echo and a citation. An edit applied twice
+    # leaves no stop or comma between the copies, as no. 86's did.
+    for seg in re.split(r"[,;:.?!()\n]+(?:\s|$)|\n", prose):
+        words = [w.rstrip(".").lower() for w in WORD.findall(seg)]
+        i, n = 0, len(words)
+        while i < n:
+            hit = 0
+            for L in range((n - i) // 2, min_words - 1, -1):
+                if words[i:i + L] == words[i + L:i + 2 * L]:
+                    hit = L
+                    break
+            if hit:
+                found.append(" ".join(words[i:i + hit]))
+                i += 2 * hit
+            else:
+                i += 1
+    return found
 
 
 def hashtag_problems(text: str, required: int | None = None) -> list[str]:
@@ -1137,6 +1178,22 @@ def self_test() -> int:
     ok("...and a caption dated on or before the rule is not judged by it",
        not any("banned it" in x for x in post_shape_problems(
            _worded("That is why the vote matters."), "2026-09-27")))
+
+    # A CLAUSE PRINTED TWICE, 2026-11-24, replaying no. 86's shipped opening line verbatim.
+    _twice = _worded("Texas A&M says Texas A&M says Florida's team uses its tool.")
+    ok("an attribution applied twice FAILS",
+       any("printed twice in a row" in x and "texas a&m says" in x for x in post_shape_problems(_twice)),
+       str(post_shape_problems(_twice))[:200])
+    ok("...and the same line with the attribution once is clean of it",
+       not any("printed twice" in x for x in post_shape_problems(
+           _worded("Texas A&M says Florida's team uses its tool."))))
+    ok("...an echo across a full stop is a writer's choice and stays clean",
+       not doubled_runs("Jobs at up to 10,000. Up to 10,000 is the company's own figure."))
+    ok("...a two word echo stays clean, and a quotation is never read",
+       not doubled_runs('It was very very hot.') and not doubled_runs('The memo said "we will act we will act" twice.'))
+    _clean = [p.parent.name for p in sorted((REPO_ROOT / "runs" / "carousel").glob("*/caption.txt"))
+              if doubled_runs(p.read_text(encoding="utf-8"))]
+    ok("...and no shipped caption carries one", _clean == [], _clean)
     _tagged = _worded("The vote was nine to two.").replace("#Tag1", "#Gap", 1)
     ok("...and a hashtag is printed, so a banned word in one FAILS too (Codex, PR 379)",
        "#Gap" in _tagged and any("banned it on 2026-09-27" in x

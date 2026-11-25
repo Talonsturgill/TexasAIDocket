@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the correction",
   "the object",
   "the plain question",
   "the before and after",
   "the who",
-  "the place"
+  "the place",
+  "the two things"
  ],
  "entries": [
   {
@@ -1567,15 +1567,34 @@
    ],
    "critic_note": "A won over B. B's opener matched the November 21st skeleton under the anti-template law and ran 913 characters. A was taken with four fixes: a line narrating the deck and a scaffold line cut, the absence scoped to the release, and Korndorffer and Kang put back to their claims' own words.",
    "move_note": "The two halves of the split open side by side, forty and forty, and the close asks which of Kang's questions a Texas medical school should see answered first."
+  },
+  {
+   "date": "2026-11-24",
+   "carousel_no": 86,
+   "opening_move": "the quiet decision",
+   "structure": "Zoom out",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "Texas A&M says Florida's state drone team made its tool standard procedure.",
+   "words": 138,
+   "commas": 1,
+   "commas_per_100w": 0.72,
+   "chars": 806,
+   "hashtags": [
+    "#TexasAM",
+    "#CLARKE",
+    "#HurricaneHarvey"
+   ],
+   "critic_note": "A won over B. B's first line stated Manzini's comparison as a universal and put 'the old clock' in his mouth, and its close assumed a Texas user was coming. A was taken with its scaffold lines and record narration cut, Texas put into line 1, the 7 minute timing removed so no ratio is invited, the project site named rather than linked, and the close moved off the excluded question to the size of what is not public.",
+   "move_note": "Florida's procedure opens the caption, the middle zooms out from one building's rating to the training behind it, and the close asks how many of the 63 trained agencies are in Texas."
   }
  ],
  "structures_recent": [
-  "Two columns",
   "Question and answer",
-  "Pivot"
+  "Pivot",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "name what happens next and when"
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -10,7 +10,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 - Comment closes: 2026-08-25
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
 
-- Last checked: 2026-11-19
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -52,6 +52,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-12 · The committee's posted notice for the August 25th hearing on driverless vehicles still stands as the record of it.
 - 2026-11-15 · The Senate committee's own posting for its August 25th hearing on driverless vehicles still stands. The Legislature's other pages were not read this time.
 - 2026-11-19 · The Senate committee's own pages for the driverless vehicle hearing still read as cited. The Legislature's other pages sit where this project does not fetch and were not read.
+- 2026-11-24 · The Senate committee's own pages still list the August 25th driverless vehicle hearing and its interim charge. The committee page now sets a browser notice inside its archive list, so the archive claim was re-quoted to the lines that stand together. The Legislature's other pages sit where this project does not fetch and were not read.
 
 ## Evidence
 
@@ -107,7 +108,7 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.a
 
 ### The committee's own page lists the August 25th hearing in its archive of recorded meetings.
 
-> Video/Audio — Archives 89th Session Interim August 25, 2026
+> 89th Session Interim August 25, 2026
 
 Source (primary_official): https://senate.texas.gov/cmte.php?c=640
 

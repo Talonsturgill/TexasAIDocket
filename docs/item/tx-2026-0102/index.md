@@ -11,7 +11,7 @@ UT Southwestern Medical Center built a process that reads and grades the post en
 - Public access: Closed
 - Take part: https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-15 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-18 · UT Southwestern's account of AI grading most clinical exam notes for its medical students still reads as quoted.
 - 2026-11-20 · UT Southwestern still describes AI as doing most of the grading on its medical students' written work.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

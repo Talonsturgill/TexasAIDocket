@@ -1,0 +1,150 @@
+{
+ "date": "2026-11-24",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "18 to 24 hours",
+   "slide": "slide-02.html",
+   "kind": "span",
+   "value": 18,
+   "quoted_from": "c2",
+   "quote": "CLARKE helps turn drone imagery into actionable damage assessments in minutes instead of 18 to 24 hours"
+  },
+  {
+   "phrase": "24 hours",
+   "slide": "slide-02.html",
+   "kind": "duration",
+   "value": 24,
+   "quoted_from": "c2",
+   "quote": "CLARKE helps turn drone imagery into actionable damage assessments in minutes instead of 18 to 24 hours"
+  },
+  {
+   "phrase": "24 hours",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 24,
+   "quoted_from": "c2",
+   "quote": "CLARKE helps turn drone imagery into actionable damage assessments in minutes instead of 18 to 24 hours"
+  },
+  {
+   "phrase": "roughly 2,000 buildings",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c16",
+   "quote": "Given a finished orthomosaic, CLARKE assesses roughly 2,000 buildings in about 7 minutes"
+  },
+  {
+   "phrase": "2,000 buildings",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c16",
+   "quote": "Given a finished orthomosaic, CLARKE assesses roughly 2,000 buildings in about 7 minutes"
+  },
+  {
+   "phrase": "about 7 minutes",
+   "slide": "slide-03.html",
+   "kind": "duration",
+   "value": 7,
+   "quoted_from": "c16",
+   "quote": "Given a finished orthomosaic, CLARKE assesses roughly 2,000 buildings in about 7 minutes"
+  },
+  {
+   "phrase": "7 minutes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c16",
+   "quote": "Given a finished orthomosaic, CLARKE assesses roughly 2,000 buildings in about 7 minutes"
+  },
+  {
+   "phrase": "more than 21,000 damaged homes",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 21000,
+   "quoted_from": "c3",
+   "quote": "trained on drone imagery from more than 21,000 homes damaged in 10 major disasters"
+  },
+  {
+   "phrase": "21,000 damaged homes",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 21000,
+   "quoted_from": "c3",
+   "quote": "trained on drone imagery from more than 21,000 homes damaged in 10 major disasters"
+  },
+  {
+   "phrase": "21,000 damaged homes",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 21000,
+   "quoted_from": "c3",
+   "quote": "trained on drone imagery from more than 21,000 homes damaged in 10 major disasters"
+  },
+  {
+   "phrase": "10 major disasters",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c3",
+   "quote": "trained on drone imagery from more than 21,000 homes damaged in 10 major disasters"
+  },
+  {
+   "phrase": "265 orthomosaics",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 265,
+   "quoted_from": "c25",
+   "quote": "265 orthomosaics, 122,502 building views, and 21,716 building polygons"
+  },
+  {
+   "phrase": "125 emergency responders",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 125,
+   "quoted_from": "c8",
+   "quote": "125 emergency responders from 63 agencies, spanning 14 states and Puerto Rico, have been trained on the system"
+  },
+  {
+   "phrase": "125 responders",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 125,
+   "quoted_from": "c8",
+   "quote": "125 emergency responders from 63 agencies, spanning 14 states and Puerto Rico, have been trained on the system"
+  },
+  {
+   "phrase": "63 agencies",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 63,
+   "quoted_from": "c8",
+   "quote": "125 emergency responders from 63 agencies, spanning 14 states and Puerto Rico, have been trained on the system"
+  },
+  {
+   "phrase": "14 states",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 14,
+   "quoted_from": "c8",
+   "quote": "125 emergency responders from 63 agencies, spanning 14 states and Puerto Rico, have been trained on the system"
+  },
+  {
+   "phrase": "the 2024 hurricane season",
+   "slide": "slide-09.html",
+   "kind": "date",
+   "value": 2024,
+   "quoted_from": "c10",
+   "quote": "during the 2024 hurricane season, when it was deployed in Florida and Pennsylvania following hurricanes Debby and Helene"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "note": "The two source documents the first comment lists.",
+   "computed_by": "sources_block.py, the count of distinct documents in claims.json (the Texas A&M release and clarke.crasar.org)"
+  }
+ ]
+}

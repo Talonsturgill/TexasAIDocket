@@ -1,0 +1,73 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.1,
+   "why": "Nine frames differ in world, camera, scale and medium, each built for its sentence; 3 strongest, 8 and 2 strong with counts asserted in code, 1 survives the zoom. Held down by 6 (faceless mannequin from behind, laptop lost in shadow, empty caliche left 40 percent), 4 (roof reads as floating with no wall under the eave, straight cylinder limb, dark seat over the top 40 percent), 5 (no hand so the plate hangs, dek on a dark seat blob), 9 (route stops dead mid street, dek covers the haze band)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Spine holds; gold is the route on 1, 4, 7, 9 only; the motif changes state; the 1 and 9 mirror works. Frame 5 is the one frame off the outdoor ground; frame 2's centre line is close to the accent."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every numeral traces and drawn counts are asserted in code; scopes honest; absence scoped. Off 10: 'Florida made it procedure' and the caption opener turn one state team into 'Florida' and the opener drops the attribution; c20's text adds 'runs in the field' beyond its quote and c17's text adds the dataset join; frame 1 draws a two-colour rim ramp under a dek that disclaims only the neighbourhood."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what CLARKE does and who built it; no Texas place on any surface, no Texas body decided, 'Watch for the first' is passive; the caption question is the one Texas stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe, 2 pays, 3 to 7 walk the process, 9 turns home; 5 breaks the process run and could move after 7."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "House rules clean; plain specific headlines; some source jargon untranslated."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New techniques and tone rotation, but the third drone deck in five days and the second Texas A&M disaster-response deck in four."
+  }
+ ],
+ "weighted_score": 7.06,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Scope the close and caption opener to the source (Texas A&M says Florida's state drone team made it procedure) and name the Texas place the docket files it under.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Faceless mannequin from behind, laptop lost in shadow, empty caliche left 40 percent.",
+   "fix": "Three-quarter front camera at tailgate height so the screen-lit face and hands fill the middle half; bed and case into the foreground."
+  },
+  {
+   "slide": 4,
+   "problem": "Roof reads as hovering with no wall under the eave, straight cylinder limb, dark plate behind the type.",
+   "fix": "Walls and contact under the eave visible, a barked limb with crown, a lower oblique so lawn and street give the type quiet."
+  },
+  {
+   "slide": 5,
+   "problem": "With the hand removed the plate floats above its slot; strata read as a comb; dek on a dark blob.",
+   "fix": "Seat the pulled plate in its slot raised a hand's height against the end plate with contact; rake the key along the edges; type on the plain wall."
+  },
+  {
+   "slide": 9,
+   "problem": "Route stops abruptly mid street with a rounded cap; dek covers the upper half.",
+   "fix": "Curve the route onto a near driveway or off the bottom edge so it arrives somewhere; lower the camera so near roofs fill the bottom third."
+  }
+ ],
+ "_note": "Report card of the integrity-lens judge, panel round 1, transcribed with each why condensed."
+}

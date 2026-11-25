@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Bespoke reading. Each picture was made for its own sentence, and the frames differ in world, camera and medium: an aerial subdivision (1), a long-lens rural road with marker posts (2), a plan relief of stitched plates (3), a close roof (4), a plate rack in a block-wall lab (5), a tailgate operator (6), a junction with a bucket truck (7), a helmet pegboard (8) and the bookend aerial (9). Frames 5 and 8 are the best. On 5 the rack runs off the left and bottom edges, one lifted plate shows a roof patch, and violet light falls on cobalt. On 8 the helmet wall recedes under strip lights and a figure hangs the last helmet. Frame 3's relief is crafted to the edges and the type sits in the margin the relief leaves. Four frames hold the score down. Frame 7: the downed oak's root plate renders as a flat brown blob that reads like a rock or a fungus at 432 px. The dek says 'Filled roofs show assessments after review', but no filled roof is legible. Frame 4: the trunk ends in a sawn log at the gutter, and the leaf clumps float as separate tufts on the shingles. The one 'judged' rim reads as a pale blue gutter, so the 'color coded view' in the dek is not visible. Frame 6: the operator is a mannequin figure, the laptop screen is dark, and the leaning pole runs straight through 'person' and 'every' in the headline. Frame 1 is a clean but toy-like CG subdivision, and its focal stripped roof sits under the footer claim ids. The look is LOOK V2: saturated cobalt and peach, violet shadows, no near black."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds on all nine frames: one serif headline face, a mono kicker, the counter, claim ids and the site line, inside the wonder cobalt-to-peach palette. The gold accent keeps one meaning, the way through: the route bends around the fallen oak on 1, runs along the road on 4, turns at the junction on 7 and arrives up a driveway on 9. It never touches a roof, a person or type. The camera bookend works. Frame 9 restages frame 1 over an undamaged street with a starred water tower, so the close answers the cover. The story runs in order: minutes, the old clock, stitch, judge, training data, review, roads, who trained, adoption. The storyboard's hollow-to-filled rim device, the second named continuity device, does not read in the pixels. Rims on 1 and 4 look like trim, and nothing on 7 looks filled. Frames 5 and 8 are saturated blue interiors that sit a little outside the evening exteriors around them."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces to a claim. 18 to 24 hours (c2), 2,000 buildings and 7 minutes (c16), 21,000 homes and 10 disasters (c3), 265 orthomosaics (c25), 125, 63 and 14 (c8), 2024 (c10) and November 24th (the release date in c1's URL). Both sources are primary and were fetched November 24th. The first comment lists both URLs with their claim ids. The Texas absence is scoped correctly on S9 and in the caption ('The November 24th release and the project site name no Texas agency or county'), matching the rejected entry. S3 scopes the minutes figure to 'Given a finished orthomosaic', which is honest. Two things keep it short of 10. First, every capability and adoption fact is the developer's own account: the Florida SOP comes only through Texas A&M's release, with no Florida document fetched. The deck mostly attributes these ('Texas A&M says'), but S4, S6 and S7 state the capabilities flat. Second, the cover's 'Every roof, read in minutes' compresses a per-orthomosaic timing that comes after stitching. S3 corrects it, but a reader who stops at the cover does not see the correction. I did not count the 24 posts on S2, the 125 helmets on S8 or the 265 plates on S5. The integrity judge should confirm that each drawn count is asserted in its slide code."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what CLARKE does and how it works by frame 7. The story the caption leads with is that Florida's state drone team made it standard procedure and no Texas user is named. On the slides that story does not arrive until frame 9. Who decided is Florida's FL-UAS1, and the deck gives no date for that decision. The Texas where is thin. College Station and Brazos County appear on no slide, and Texas A&M is the only Texas place. The training data's Texas tie is one word, Harvey, on S5. The only action is S9's 'Watch for the first' and the caption's question, 'How many of those 63 agencies are in Texas?' That is a good question, but a reader is not told who in Texas could adopt the tool or who to ask. The stake for a Texan, whether their county will have this after the next storm, is implied rather than stated."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Every roof, read in minutes' over a damaged subdivision earns the swipe. Frame 2's '18 to 24 hours, the old way' pays at once with the contrast. Frames 3, 4 and 7 build the process in order, and frame 9 is a real turn, from built in Texas to used elsewhere with no Texas user named. Frames 5 (training data) and 8 (who trained) are context beats that could swap or merge without loss. The deck saves its strongest fact for the last frame while the caption opens on it, so the cover and the caption lead with different stories."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain and calm, Texas First without boosterism, and honest about the missing Texas user without doom. The headlines are tight: 'Taught partly on Harvey', 'A person checks every map', 'The road out'. 'Drawn to illustrate' is now on only three decks (S1, S4 and S7) rather than nearly all. The art carries the Texas texture, with a limestone ranch house, live oaks and a starred water tower. S6's dek is four stacked spec facts ('designed to run entirely in the field. No wireless transmission ... GeoJSON and KML map files') that read like a product sheet, not something a Texan would say."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The subject is new (no CLARKE entry in topics.json) and so is the bespoke treatment. The neighbourhood ground reads differently. It is still the third drone deck in five days: no. 83 on November 20th (East Texas A&M GPS spoofing, a drone over a ridge) and no. 84 on November 21st (DARPA Triage at Disaster City, College Station, Brazos County, drones and responders). Back-to-back disaster-response decks from the same county follow a deck staged at Disaster City three days earlier. The wonder tone last ran on November 19th, and the aerial-over-ground cover echoes no. 83's aerial sweep."
+  }
+ ],
+ "weighted_score": 7.28,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Lead with the story the caption already tells: make the cover 'Built in Texas. Florida made it procedure.' over the bookend aerial with the starred water tower, move the 'no Texas agency or county named' line to frame 2, and fold the training data and trainees beats into one frame. A Texan then learns in two swipes that a Texas A&M tool is standard issue in Florida and named for no Texas county, not on the ninth.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The downed oak's root plate is a flat brown blob that reads as a rock or fungus at 432 px. The dek's 'filled roofs show assessments after review' has no filled roof the eye can find, so the frame does not draw its own caption.",
+   "fix": "Model the root plate as a torn gumbo-clay disc with root strands and a cast shadow into the puddle. Pull the camera up a few metres so two or three roofs beyond the junction show solid filled cerulean plates, with the gold route turning past them."
+  },
+  {
+   "slide": 4,
+   "problem": "The trunk ends in a sawn log at the gutter and the leaf tufts float on the shingles. The one assessment rim reads as a pale blue gutter, not a judgement, so 'color coded view, structure by structure' is invisible.",
+   "fix": "Run the trunk off the frame edge with its crown crushed into the ridge, not floating tufts. Pull back enough to show three neighbouring roofs, each wearing a hollow rim in a different step of the ice, cerulean and cobalt-violet ramp, so the code reads as a code."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a mannequin figure with a dark laptop screen, and the leaning utility pole cuts straight through the headline words 'person' and 'every'.",
+   "fix": "Move the pole out of the headline zone, frame right behind the truck, and push the camera over the operator's shoulder so the map board fills the lower half. Light the laptop screen so it casts onto the operator's hands and face, and hide most of the figure's face."
+  },
+  {
+   "slide": 1,
+   "problem": "The cover is a clean but toy-like CG subdivision, and the focal stripped roof and tarp sit under the footer claim ids at the bottom edge, so the frame's subject competes with the chrome.",
+   "fix": "Lift the camera target so the stripped roof, tarp and fallen oak sit in the lower-middle third, above the footer. Add wind-thrown debris and wet sheen on the street so the 'after the storm' reads before the headline does."
+  }
+ ]
+}

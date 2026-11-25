@@ -271,7 +271,8 @@
       "instinct": "Re-read the WHOLE frame after repairing part of it, not the part that was repaired.",
       "evidence": "Deck no. 14, slide 4. Round 1 extended and darkened the plate so a lost sentence would read, and nobody re-read the attribution two inches above it. Round 2 stopped the deck on that line. A repair verified against the defect it was written for, on a frame carrying a different defect the whole time.",
       "confirmed": [
-        "2026-09-18"
+        "2026-09-18",
+        "2026-11-24"
       ],
       "contradicted": []
     },
@@ -283,7 +284,8 @@
       "confirmed": [
         "2026-10-08",
         "2026-10-30",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-24"
       ],
       "contradicted": []
     },
@@ -1969,6 +1971,22 @@
       "learned": "2026-11-23",
       "instinct": "Never draw a digit into a canvas texture or a model; let the dek's word carry a drawn state, because the numeral gates read only the DOM.",
       "evidence": "2026-11-22 no. 85 frame 5, an engraved 0 painted by fillText passed every gate and two round 3 judges hard-failed it",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "an-emissive-accent-reads-lighter-than-its-hex",
+      "learned": "2026-11-24",
+      "instinct": "Measure an emissive accent's rendered colour against its declared hex at thumb size before the critics see it, because glow pushes a gold toward lemon and the accent gate then finds it on no frame.",
+      "evidence": "2026-11-24: #ffcc00 route tubes at glow 0.7 to 0.8 rendered near #f6ea46 and measured 0 coverage on every frame; glow 0.2 restored gold on frames 1, 7 and 9, found only by shipped_check after the panel.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "show-an-absence-by-stopping-short",
+      "learned": "2026-11-24",
+      "instinct": "When a close states that a named group is absent, draw the motif stopping short of that group's ground rather than arriving at it, because an arrival pictures the use the sources do not support.",
+      "evidence": "2026-11-24: frame 9's gold route ending at a Texas garage read to the integrity judge as Texas use; stopped in open street, the art director read it as not here yet without the dek.",
       "confirmed": [],
       "contradicted": []
     }

@@ -9,7 +9,7 @@ ERCOT told its board that it has paused the energization of new large load data 
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · ERCOT's hold on energizing new large data centers and crypto mines remains in place while the audit continues.
 - 2026-11-17 · ERCOT is still holding new large data centers and crypto mines off the grid until its audit finishes.
 - 2026-11-20 · ERCOT's pause on energizing new large data centers and crypto mines still stands as announced.
+- 2026-11-24 · ERCOT's pause on energizing new large data centers and crypto mines holds while the audit runs.
 
 ## Evidence
 

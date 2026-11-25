@@ -1,0 +1,333 @@
+<!doctype html>
+<!-- 2026-11-24, frame 3 of 9, STITCHED (c23 c16 c22). BESPOKE. A TXBENCH material relief in plan under the chassis key.
+     Loose anodised drone frame plates lie fanned and stacked on cobalt painted boards warmed by the honey key at upper left,
+     casting onto one another and onto the boards. Each plate carries the exact patch of the one drawn neighbourhood it
+     photographed: two are frames of the plane below (the retention pond, the boulevard bend), two carry the empty holes at the
+     seam. The last frame lies flush in its hole at the slab's stepped top edge, its streets running straight on into the
+     plane. Below, the frames have fused into one gumbo clay edged slab of map, staggered frame outlines and faint seams
+     healing out across it, where every visible building footprint rises as a hollow cool rim. Rims exist only on the
+     stitched plane and their number is FIG.buildings, asserted below. No real place, no product interface, no accent. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:452px; top:150px; width:548px; text-align:left">Many pictures, one map</h1>
+<p class="dek" data-follow="24" style="left:454px; width:546px; font-size:29px">The drone images are stitched into one georectified orthomosaic and aligned to building and road footprints. Given a finished orthomosaic, the project site says CLARKE assesses roughly 2,000 buildings in about 7 minutes.</p>
+<script>window.FIG = {"hours_low": 18, "hours_high": 24, "hours_low_minutes": 1080, "homes": 21000, "disasters": 10, "orthomosaics": 265, "building_views": 122502, "polygons": 21716, "buildings": 2000, "minutes": 7, "responders": 125, "agencies": 63, "states": 14, "season_year": 2024};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-24-roofread-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/*GEO-BEGIN*/
+/* THE WORLD, in CSS px of the 1080 x 1350 page. Plan view, height in px out of the bench.
+ * The map is one procedural neighbourhood in map coordinates, turned 5 degrees on the page. The stitched slab is a union of
+ * 216 x 162 drone frame tiles in that map grid, with its loose corner at upper left still missing tiles. Each loose plate
+ * carries the map at its own empty slot, turned and moved to where it lies. Rims are drawn only on the stitched slab. */
+function makeWorld(FIG) {
+  const hsh = (a, b, k) => { const v = Math.sin(a * 127.1 + b * 311.7 + k * 74.7) * 43758.5453; return v - Math.floor(v); };
+  const sdRect = (u, v, hw, hh, r) => { const qx = Math.abs(u) - (hw - r), qy = Math.abs(v) - (hh - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; };
+  const PW_ = 1080, PH_ = 1350;
+
+  /* the map frame on the page */
+  const TA = 5 * Math.PI / 180, CA = Math.cos(TA), SA = Math.sin(TA), O = [-40, 600];
+  const toPage = (mx, my) => [O[0] + CA * mx - SA * my, O[1] + SA * mx + CA * my];
+  const toMap = (X, Y) => { const dx = X - O[0], dy = Y - O[1]; return [CA * dx + SA * dy, -SA * dx + CA * dy]; };
+
+  /* the neighbourhood: pairs of lot rows back to back, a street between the rows of a pair, cross streets every 14 lots */
+  const D = 14, RW = 6, PITCH = 2 * D + RW, F = 15.5, MX0 = 0, MY0 = 4, CS = 14;
+  const bow = (x, p) => 7 * Math.sin(x / 230 + 0.25 * p) + 1.6 * Math.sin(x / 83 + 0.2 * p);
+  const isCross = (c) => (((c % CS) + CS) % CS) === CS - 1;
+  /* the streets bend: a slow warp from map to lot coordinates, so no street runs parallel to a frame edge for long */
+  const warp = (mx, my) => [mx + 20 * Math.sin(my / 115 + 0.7) + 8 * Math.sin((mx + my) / 260),
+    my + 22 * Math.sin(mx / 125 + 1.1) + 9 * Math.sin((mx - my) / 300 + 2)];
+  const unwarp = (wx, wy) => { let m = [wx, wy]; for (let n = 0; n < 8; n++) { const q = warp(m[0], m[1]); m = [wx - (q[0] - m[0]), wy - (q[1] - m[1])]; } return m; };
+  /* the boulevard: a divided collector with a tree median, sweeping across the stitched plane (page coordinates) */
+  const blvdY = (X) => 1004 - 0.1 * X + 24 * Math.sin(X / 170 + 0.5);
+  const BLVD = 12;   /* half width to the outer curb */
+
+  /* the stitched slab: drone frame tiles. Row 0 is still missing its first three tiles. */
+  const S = 10, TW = 216, TH = 162;
+  /* drone frames never land on a strict grid: each column of frames is staggered, so the loose edge steps frame by frame */
+  const OFFS = { "-1": 10, "0": 34, "1": -22, "2": 0, "3": -30, "4": 26, "5": -14, "6": 18 };
+  const off = (i) => OFFS[i] || 0;
+  const stitched = (i, j) => j < 0 ? false : j === 0 ? i >= 3 : true;
+  const FLUSH = [2, 0];   /* the last frame, sunk flush into its own hole and not yet assessed */
+  const tileOf = (mx, my) => { const i = Math.floor(mx / TW), o = off(i), j = Math.floor((my - o) / TH); return { i, j, a: mx - i * TW, b: my - o - j * TH }; };
+  /* for the slab's own edge the flush frame counts as laid, so no clay wall stands between them, only its seam */
+  const laid = (i, j) => stitched(i, j) || (i === FLUSH[0] && j === FLUSH[1]);
+  const stitchedAt = (mx, my) => { const t = tileOf(mx, my); return laid(t.i, t.j); };
+  function slabInMap(mx, my) {
+    const t = tileOf(mx, my), { i, j, a, b } = t;
+    if (!stitched(i, j)) return -1;
+    const A = TW - a, B = TH - b; let d = 1e9;
+    if (!stitchedAt(mx - a - 0.01, my)) d = Math.min(d, a); if (!stitchedAt(mx + A + 0.01, my)) d = Math.min(d, A);
+    if (!laid(i, j - 1)) d = Math.min(d, b); if (!laid(i, j + 1)) d = Math.min(d, B);
+    if (!stitchedAt(mx - a - 0.01, my - b - 0.01)) d = Math.min(d, Math.hypot(a, b)); if (!stitchedAt(mx + A + 0.01, my - b - 0.01)) d = Math.min(d, Math.hypot(A, b));
+    return d;
+  }
+  const slabIn = (X, Y) => { const m = toMap(X, Y); return slabInMap(m[0], m[1]); };
+
+  /* the loose plates: a 216 x 162 picture in a 12 px anodised frame, 8 px thick. slot = the empty tile it carries. */
+  const T = 8, BOR = 12, PWh = TW / 2 + BOR, PHh = TH / 2 + BOR, PR = 11;
+  const plates = [
+    /* t = the map centre of the patch each frame photographed. Two are frames of the plane below (the pond, the boulevard
+     * bend), overlapping it as real survey frames do; two carry the empty holes beside the seam. */
+    { t: [(1 + 0.5) * TW, -22 + 0.5 * TH], c: [262, 612], d: 8, base: 0, col: 1, ex: 1.06 },
+    { t: [(0 + 0.5) * TW, 34 + 0.5 * TH], c: [168, 474], d: -14, base: 8, col: 2, ex: 0.94 },
+    { t: [360, 368], c: [298, 382], d: 13, base: 16, col: 0, ex: 1.08 },
+    { t: [806, 414], c: [158, 288], d: -20, base: 24, col: 3, ex: 0.97 }
+  ];
+  plates.forEach(p => { p.a = TA + p.d * Math.PI / 180; p.cs = Math.cos(p.a); p.sn = Math.sin(p.a); });
+  const order = plates.slice().sort((a, b) => b.base - a.base);
+  function plateAt(X, Y) {
+    for (const p of order) {
+      const dx = X - p.c[0], dy = Y - p.c[1], u = dx * p.cs + dy * p.sn, v = -dx * p.sn + dy * p.cs;
+      if (Math.abs(u) > PWh + 1 || Math.abs(v) > PHh + 1) continue;
+      const sd = sdRect(u, v, PWh, PHh, PR);
+      if (sd < 0) return { p, u, v, sd };
+    }
+    return null;
+  }
+
+  /* the lot under a map point */
+  function lotOf(mx, my) {
+    let p = Math.floor((my - MY0) / PITCH), ly = my - MY0 - p * PITCH - bow(mx, p);
+    if (ly < 0) { p -= 1; ly = my - MY0 - p * PITCH - bow(mx, p); } else if (ly >= PITCH) { p += 1; ly = my - MY0 - p * PITCH - bow(mx, p); }
+    const c = Math.floor((mx - MX0) / F), lu = mx - MX0 - (c + 0.5) * F;
+    return { p, ly, c, lu };
+  }
+  /* a lot's house: half sizes, set back from the road edge, a lateral offset, and its traits */
+  function house(p, r, c) {
+    const k = p * 2 + r;
+    const hw = F * (0.25 + 0.07 * hsh(k, c, 1)), hd = D * (0.22 + 0.06 * hsh(k, c, 2));
+    const off = (hsh(k, c, 3) - 0.5) * 2.0, setback = 2.8 + 0.8 * hsh(k, c, 4);
+    return { hw, hd, du: off, dv: setback + hd, hip: hsh(k, c, 5) < 0.62,
+      roof: Math.floor(hsh(k, c, 6) * 5), dmg: hsh(k, c, 7) < 0.3, tarp: hsh(k, c, 8) < 0.45, step: Math.floor(hsh(k, c, 9) * 3),
+      drive: hsh(k, c, 10) < 0.5 ? -1 : 1 };
+  }
+  function houseCentre(p, r, c, H) {
+    const x = MX0 + (c + 0.5) * F + H.du, y0 = MY0 + p * PITCH + bow(x, p);
+    return [x, r === 0 ? y0 + D - H.dv : y0 + D + RW + H.dv];
+  }
+
+  /* THE COUNT. A house gets a rim when its centre is on the page, its whole rim lies on the slab and no plate covers it. The
+   * pond takes its lots; candidates beyond FIG.buildings stand vacant by a seeded draw. The rim count must equal the figure. */
+  const RIMX = 2.0, RIMW = 1.65;
+  const POND = { c: [742, 1092], rx: 74, ry: 40 };
+  const inPond = (X, Y, m) => Math.pow((X - POND.c[0]) / (POND.rx + m), 2) + Math.pow((Y - POND.c[1]) / (POND.ry + m), 2) < 1;
+  const NP0 = -14, NC0 = -12;
+  const key = (p, r, c) => (p - NP0) * 400 + r * 200 + (c - NC0);
+  const rimSet = new Set(), vacant = new Set(), cand = [];
+  for (let p = -1; p < 30; p++) for (let r = 0; r < 2; r++) for (let c = -6; c <= 75; c++) {
+    if (isCross(c)) continue;
+    const H = house(p, r, c), w = houseCentre(p, r, c, H), ex = H.hw + RIMX, ey = H.hd + RIMX;
+    const m0 = unwarp(w[0], w[1]), P = toPage(m0[0], m0[1]);
+    if (inPond(P[0], P[1], 12) || Math.abs(P[1] - blvdY(P[0])) < BLVD + 9) { vacant.add(key(p, r, c)); continue; }
+    if (P[0] < 0 || P[0] > PW_ || P[1] < 0 || P[1] > PH_ - 6) continue;
+    const corners = [[-ex, -ey], [ex, -ey], [-ex, ey], [ex, ey]].map(q => unwarp(w[0] + q[0], w[1] + q[1]));
+    if (!corners.every(q => slabInMap(q[0], q[1]) > 6)) continue;
+    if (corners.some(q => { const z = toPage(q[0], q[1]); return plateAt(z[0], z[1]); })) continue;
+    const xs = corners.map(q => toPage(q[0], q[1])[0]);
+    cand.push({ k: key(p, r, c), h: hsh(p * 2 + r, c, 11), cutR: Math.max(...xs) > PW_ });
+  }
+  const need = FIG.buildings;
+  if (cand.length < need) throw new Error("only " + cand.length + " rim candidates for FIG.buildings " + need);
+  const drop = cand.filter(q => !q.cutR).sort((a, b) => a.h - b.h).slice(0, cand.length - need);
+  const dropK = new Set(drop.map(q => q.k));
+  let cutRight = 0;
+  cand.forEach(q => { if (dropK.has(q.k)) vacant.add(q.k); else { rimSet.add(q.k); if (q.cutR) cutRight++; } });
+  if (rimSet.size !== need) throw new Error("rim count " + rimSet.size + " differs from FIG.buildings " + need);
+  if (cutRight < 1) throw new Error("no rim is cut by the right edge");
+
+  return { hsh, sdRect, toPage, toMap, warp, unwarp, blvdY, BLVD, D, RW, PITCH, F, MX0, MY0, CS, bow, isCross, S, TW, TH, stitched, slabIn, slabInMap, tileOf, FLUSH, off,
+    T, BOR, PWh, PHh, PR, plates, plateAt, lotOf, house, houseCentre, RIMX, RIMW, POND, inPond, rimSet, vacant, key,
+    cand: cand.length, dropped: drop.length, cutRight };
+}
+/*GEO-END*/
+</script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Stitched first", counter: "03 / 09", src: "c23 c16 c22", fit: { min: 78, max: 98, maxLines: 2 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 3);
+  const G = makeWorld(window.FIG);
+  console.error("SLIDE03: rims " + G.rimSet.size + " of candidates " + G.cand + ", seeded vacant " + G.dropped);
+  const L = TXLOOK.lin, F2 = (x, y, n) => TX.fbm2(x, y, { octaves: n || 2 });
+  const { hsh, sdRect, D, RW, PITCH, F, bow, isCross, S, TW, TH, T, BOR, PWh, PHh, PR } = G;
+
+  /* colour */
+  const BENCH = L('#1e2a78'), BENCH2 = L('#2f47b8'), PEACH = L('#f0a060'), CLAY = L('#9a5a34'), CLAYD = L('#6e3b22'),
+    LAWN = L('#52a838'), LAWN2 = L('#6aaa30'), DRY = L('#a8903e'), ROAD = L('#efe3c8'), RIBBON = L('#fff4dc'), DRIVE = L('#e2d6bd'),
+    DECK = L('#c99a5c'), TARP = L('#2f6fd6'), OAK = L('#1f5e2c'), OAK2 = L('#3a7a2a'), WATER = L('#1f76c8'), BANK = L('#6a9a3a');
+  const SHINGLE = ['#b8613c', '#d9b98a', '#c47a48', '#8e5536', '#e2e9ee'].map(c => L(c));   /* terracotta, tan, orange brown, brown, pale metal */
+  const RAMP = CH.RAMP.map(n => L('#' + n.toString(16).padStart(6, '0')));
+  const ANOD = [L('#c9d8ec'), L('#2f8fe6'), L('#f0a066'), L('#4a5fd8')];   /* silver, cerulean, peach, cobalt anodised */
+  const sc3 = (c, k) => [c[0] * k, c[1] * k, c[2] * k];
+
+  /* one map sample at map point (mx, my): [height above the surface it lies on, material, colour] */
+  function mapGeo(mx, my, rims, fade) {
+    const WW = G.warp(mx, my), q = G.lotOf(WW[0], WW[1]), { p, ly, c, lu } = q;
+    const gn = 0.18 * F2(mx / 2.2, my / 2.2, 1);
+    let lawnC = sc3(LAWN, 0.92 + 0.14 * F2(mx / 40, my / 40, 2) + 0.06 * F2(mx / 5, my / 5, 1)); const dry = F2(mx / 60 + 9, my / 60, 2);
+    if (dry > 0.25) lawnC = TXLOOK.mix ? lawnC.map((v, i) => v + (DRY[i] - v) * Math.min(1, (dry - 0.25) * 1.6)) : lawnC;
+    /* the pond */
+    const PP = G.toPage(mx, my), pa = Math.atan2(PP[1] - G.POND.c[1], PP[0] - G.POND.c[0]), prr = 1 + 0.13 * Math.sin(3 * pa + 1) + 0.07 * Math.sin(5 * pa + 2);
+    const pd = (Math.pow((PP[0] - G.POND.c[0]) / G.POND.rx, 2) + Math.pow((PP[1] - G.POND.c[1]) / G.POND.ry, 2)) / (prr * prr);
+    /* the boulevard, its tree median and its curbs */
+    const bd = PP[1] - G.blvdY(PP[0]), ab = Math.abs(bd);
+    if (ab < G.BLVD + 3) {
+      if (ab < 3.2) { const kt = Math.floor(PP[0] / 9), tx = kt * 9 + 4.5, dd = Math.hypot(PP[0] - tx, bd), tr = 3.6 + 0.8 * hsh(kt, 3, 51);
+        if (dd < tr) return [5.0 * Math.sqrt(1 - Math.pow(dd / tr, 2)) + 0.5 * F2(mx / 1.1, my / 1.1, 1), 10, sc3(OAK2, 0.75 + 0.3 * (1 - dd / tr))];
+        return [0.9 + gn, 4, sc3(LAWN, 1.05)]; }
+      if (ab < G.BLVD) { if (rims && ab > G.BLVD - 1.1) return [1.3, 13, RIBBON]; if (ab < 3.9) return [1.1, 14, DRIVE];
+        return [0.3 + 0.05 * gn, 8, sc3(ROAD, 0.86 + 0.06 * F2(mx / 6, my / 6, 1))]; }
+      return [gn, 4, lawnC];
+    }
+    if (pd < 1.35) {
+      if (pd < 1) { const ripple = 0.08 * Math.sin(mx * 0.9 + my * 0.4); return [-2.2 + ripple, 12, sc3(WATER, 0.85 + 0.15 * F2(mx / 18, my / 9, 2))]; }
+      return [-2.2 + 2.2 * (pd - 1) / 0.35 + gn, 4, sc3(BANK, 0.95)];
+    }
+    /* the back line trees, astride the fence between two pairs */
+    let tree = null;
+    { const kc = Math.floor(WW[0] / 11);
+      for (let kk = kc - 1; kk <= kc + 1; kk++) { if (hsh(p, kk, 21) > 0.58) continue;
+        const tx = kk * 11 + 5.5 + (hsh(p, kk, 22) - 0.5) * 5, tr = 3.4 + 2.6 * Math.pow(hsh(p, kk, 23), 2), d = Math.hypot(WW[0] - tx, ly - 0.6);
+        if (d < tr) { const lobe = 0.35 * Math.sin(Math.atan2(ly - 0.6, WW[0] - tx) * 5 + kk) * (d / tr);
+          const th = 5.2 * Math.sqrt(Math.max(0, 1 - Math.pow(d / tr, 2))) + lobe + 0.55 * F2(mx / 1.1, my / 1.1, 1);
+          if (!tree || th > tree[0]) tree = [th, 10, sc3(hsh(p, kk, 24) < 0.5 ? OAK : OAK2, 0.8 + 0.3 * (th / 5.2))]; } } }
+    /* the street of this pair */
+    if (ly >= D && ly < D + RW) {
+      const e = Math.min(ly - D, D + RW - ly);
+      if (rims && e < 1.1) return [1.3, 13, RIBBON];
+      return [0.3 + 0.05 * gn, 8, sc3(ROAD, 0.92 + 0.06 * F2(mx / 6, my / 6, 1))];
+    }
+    /* cross streets */
+    if (isCross(c)) {
+      const e = 3.5 - Math.abs(lu);
+      if (e > 0) { if (rims && e < 1.1) return [1.3, 13, RIBBON]; return [0.3, 8, sc3(ROAD, 0.92 + 0.06 * F2(mx / 6, my / 6, 1))]; }
+      if (tree) return tree;
+      return [gn, 4, lawnC];
+    }
+    const r = ly < D ? 0 : 1, dv = r === 0 ? D - ly : ly - D - RW;   /* dv: distance back from the road edge */
+    const H = G.house(p, r, c), k = G.key(p, r, c), vac = G.vacant.has(k);
+    const hu = lu - H.du, hv = dv - H.dv;
+    if (!vac) {
+      /* the rim: a hollow wall around the footprint, only on the stitched plane */
+      if (rims && G.rimSet.has(k)) {
+        const sd = sdRect(hu, hv, H.hw + G.RIMX, H.hd + G.RIMX, 1.2);
+        const w = G.RIMW, hw2 = w / 2;
+        if (sd < 0 && sd > -w) return [4.2 + 0.3 * Math.sqrt(Math.max(0, 1 - Math.pow((sd + hw2) / hw2, 2))), 9, sc3(RAMP[H.step], 1.0)];
+      }
+      /* the house: hip or gable roof, ridge along the long side */
+      const hs = sdRect(hu, hv, H.hw, H.hd, 0.5);
+      if (hs < 0) {
+        const t = H.hip ? Math.min((H.hw - Math.abs(hu)) / H.hd, (H.hd - Math.abs(hv)) / H.hd) : (H.hd - Math.abs(hv)) / H.hd;
+        const h = 1.4 + 2.3 * Math.min(1, Math.max(0, t));
+        let col = sc3(SHINGLE[H.roof], 0.88 + 0.1 * F2(mx / 1.6, my / 0.8, 1)), m = 5;
+        if (H.dmg) {
+          const half = (hu * 0.7 + hv) > (hsh(p, c, 31) - 0.5) * 4;
+          if (H.tarp && half) { col = sc3(TARP, 0.95 + 0.05 * Math.sin(hu * 3)); m = 7; }
+          else if (!H.tarp && half) { col = sc3(DECK, 0.9 + 0.1 * F2(mx * 2, my * 2, 1)); m = 6; }
+        }
+        if (tree && tree[0] > h + 0.4) return tree;
+        return [h, m, col];
+      }
+      /* driveway, from the road to the garage side */
+      const du2 = hu - H.drive * (H.hw - 2.2);
+      if (Math.abs(du2) < 1.9 && hv < -H.hd + 0.5 && dv > 0) return [0.25, 14, sc3(DRIVE, 0.95)];
+    }
+    if (tree) return tree;
+    /* the fence between lots */
+    if (Math.abs(lu) > F / 2 - 0.35) return [0.6, 4, sc3(lawnC, 0.8)];
+    return [gn, 4, lawnC];
+  }
+
+  /* the page: the bench, the slab, the plates. Heights in CSS px; colour stored per device pixel for albedo() */
+  const DW = 2160, DH = 2700, COL = new Float32Array(DW * DH * 3);
+  let lastX = NaN, lastY = NaN, lastG = null;
+  function geo(X, Y) {
+    if (X === lastX && Y === lastY) return lastG; lastX = X; lastY = Y;
+    const idx = (Math.floor(Y * 2) * DW + Math.floor(X * 2)) * 3;
+    let out;
+    const hit = G.plateAt(X, Y);
+    if (hit) {
+      const { p, u, v, sd } = hit, dIn = -sd, top = p.base + T;
+      const bev = 2.6, h = top - bev + Math.sqrt(Math.max(0, bev * bev - Math.pow(Math.max(0, bev - dIn), 2)));
+      if (Math.abs(u) < TW / 2 && Math.abs(v) < TH / 2) {
+        /* the picture, set 1.2 px into the plate, the map at this plate's own true slot */
+        const mg = mapGeo(p.t[0] + u, p.t[1] + v, false);
+        mg[2] = sc3(mg[2], p.ex);
+        const edge = Math.min(TW / 2 - Math.abs(u), TH / 2 - Math.abs(v));
+        const lip = edge < 1.2 ? -0.6 : 0;
+        out = [top - 1.2 + mg[0] * 0.8 + lip, mg[1], mg[2]];
+      } else {
+        const br = F2(u / 0.7, v / 40, 1), band = Math.exp(-Math.pow((u * 0.55 + v * 0.8 + 40) / 60, 2));
+        const kk = 0.84 + 0.07 * br + 0.22 * band;
+        out = [h + 0.06 * br, 1 + (p.col === 2 ? 1 : 0), sc3(ANOD[p.col], kk)];
+      }
+    } else if (G.slabIn(X, Y) >= 0) {
+      const dIn = G.slabIn(X, Y), bev = 6;
+      if (dIn < bev + 3) {
+        /* the gumbo clay edge of the slab, rolled, with a tooled lip */
+        const h = dIn < bev ? S - bev + Math.sqrt(Math.max(0, bev * bev - Math.pow(bev - dIn, 2))) : S;
+        out = [h + 0.25 * F2(X / 1.5, Y / 1.5, 1), 11, sc3(dIn < bev ? CLAYD : CLAY, 0.92 + 0.14 * F2(X / 9, Y / 9, 2))];
+      } else {
+        const M = G.toMap(X, Y), mg = mapGeo(M[0], M[1], true);
+        /* the old frame seams and each frame's own exposure, healing out across the plane away from the loose corner */
+        const fade = Math.max(0, Math.min(1, 1.15 - M[1] / 340 - M[0] / 1400));
+        const tt = G.tileOf(M[0], M[1]), ti = tt.i, tj = tt.j, a = tt.a, b = tt.b;
+        const seam = Math.min(a, TW - a, b, TH - b);
+        let h = S + mg[0], col = sc3(mg[2], (mg[1] === 9 ? 1 : 1.1) * (1 + 0.2 * (hsh(ti, tj, 41) - 0.5) * fade));
+        if (fade > 0 && seam < 1.0 && mg[1] !== 9) { h -= 1.3 * fade; col = sc3(col, 1 - 0.42 * fade); }
+        out = [h, mg[1], col];
+      }
+    } else {
+      const M = G.toMap(X, Y), tt = G.tileOf(M[0], M[1]);
+      if (tt.i === G.FLUSH[0] && tt.j === G.FLUSH[1]) {
+        /* the last frame, laid flush into its hole: a seam where it meets the plane, a thin anodised lip, its picture
+         * running straight on into the streets around it, and no rims yet */
+        const e = Math.min(tt.a, TW - tt.a, tt.b, TH - tt.b);
+        if (e < 1.1) out = [S - 3.2, 11, sc3(CLAYD, 0.5)];
+        else if (e < 4.2) { const bv = Math.sin(Math.min(1, (e - 1.1) / 1.6) * Math.PI / 2); out = [S - 1.6 + 1.4 * bv, 1, sc3(ANOD[0], 0.9 + 0.1 * F2(tt.a / 0.7, tt.b / 30, 1))]; }
+        else { const mg = mapGeo(M[0], M[1], false); out = [S - 0.6 + mg[0] * 0.9, mg[1], sc3(mg[2], 1.08)]; }
+      } else {
+        /* the bench: cobalt painted boards under the honey key, warm where the key pools at upper left */
+        const bd = Math.floor(Y / 128), sy = Y - bd * 128, g = F2(X / 240 + bd * 7.3, Y / 9, 2), big = F2(X / 300, Y / 300, 2);
+        const w = Math.exp(-(Math.pow(X - 60, 2) + Math.pow(Y - 250, 2)) / (2 * 380 * 380));
+        const base = [0, 1, 2].map(c => BENCH[c] + (BENCH2[c] - BENCH[c]) * Math.max(0, Math.min(1, 0.4 + 0.5 * big)));
+        const kb = (0.96 + 0.04 * g) * (1 + 0.06 * (hsh(bd, 2, 71) - 0.5));
+        const col = [0, 1, 2].map(c => (base[c] + (PEACH[c] - base[c]) * 0.6 * w) * kb);
+        let h = 0.14 * g + 0.08 * F2(X / 1.4, Y / 1.4, 1);
+        if (sy < 2.6) h -= 2.2 * Math.sin(sy / 2.6 * Math.PI);
+        out = [h, 0, col];
+      }
+    }
+    COL[idx] = out[2][0]; COL[idx + 1] = out[2][1]; COL[idx + 2] = out[2][2];
+    return (lastG = out);
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const albedo = (X, Y) => { const idx = (Math.floor(Y * 2) * DW + Math.floor(X * 2)) * 3; return [COL[idx], COL[idx + 1], COL[idx + 2]]; };
+
+  TXBENCH.relief(cx, { ...TXLOOK.reliefLight(), x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 0: [0.14, 14], 1: [0.9, 40], 2: [0.9, 40], 5: [0.08, 8], 6: [0.04, 6], 7: [0.5, 30], 8: [0.05, 6], 9: [0.7, 30], 10: [0.03, 5], 11: [0.08, 8], 12: [1.2, 80], 13: [0.3, 20], 14: [0.05, 6] },
+    ambient: 0.42, diffuse: 1.2, ao: 0.85, shadow: 0.82, softness: 6, castLength: 200, dither: true, visBlur: 1, visSharp: [9] });
+
+  CH.seat(cx, { a: 0.48, fade: 160 });
+  TXLOOK.footWash(cx, { a: 0.5, height: 210 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ A team in UT Dallas's School of Economic, Political and Policy Sciences studied 
 - Public access: Closed
 - Take part: https://news.utdallas.edu/social-sciences/air-pollution-cancer-study-2026/
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-11-18 · Admitted on UT Dallas's announcement of the published study. The paper is out and the authors call for further research on cost and accuracy.
 - 2026-11-20 · The UT Dallas map of air pollutants and cancer prevalence still reads as published.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

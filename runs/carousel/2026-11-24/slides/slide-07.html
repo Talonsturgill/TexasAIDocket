@@ -1,0 +1,301 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-24, frame 7 of 9, THE ROAD OUT. A medium street-height render through txthree.js: a white lineman bucket
+     truck stopped at a Gulf Coast residential junction, a fallen live oak with its torn gumbo root plate lying across the street
+     ahead in standing water that holds the sky, and the gold route (the accent, the way through) bending right in front of the
+     truck's bumper and leaving the right edge. A lineman, three quarters away, points down the turn. Every roof in view carries
+     a FILLED plate, the state after review. Drawn to illustrate: no real town, street or disaster scene. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:200px; top:150px; width:800px; text-align:right">The road out</h1>
+<p class="dek" data-follow="18" style="left:240px; width:760px; font-size:29px; text-align:right">A road model identifies road damage and obstructions. Crews can then find routes around damaged roads and other obstacles. Filled roofs show assessments after review, drawn to illustrate.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-24-roofread-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Road by road", counter: "07 / 09", src: "c21 c7 c19", fit: { min: 112, max: 150, maxLines: 1 } });
+  /* HONEST: this frame carries no figure. The brief's FIG is empty, so the art draws no count the copy states. */
+
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.1, far: 1500 });
+  TXT.sky(R, 'v2wonder');
+  TXT.ground(R, { size: 1400, surface: 'lawn', seed: 7707 });
+  const rnd = CH.rng(CH.SEED + 7);
+  const put = (o, c) => { TXT.add(R, o); if (c) TXT.contact(R, o, c === true ? undefined : c); return o; };
+
+  /* ---- THE STREETS. Main street along z (x = 0), a cross street to the right at z = JZ. ---- */
+  const JZ = -16, RW = 7.2;
+  const roadSeg = (len, cx, cz, rotY, seed) => { const r = K.make('road', { length: len, lanes: 2, sidewalk: true, parkway: 1.4, seed }); r.rotation.y = rotY; r.position.set(cx, 0, cz); return put(r); };
+  /* the near block: open asphalt kerb to kerb (no parkway bar in the foreground), a centre line, low kerbs at the lot lines */
+  const nearTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const ar = CH.rng(7172); g.fillStyle = '#4a4a4f'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { const v = ar(); g.fillStyle = v < 0.5 ? 'rgba(30,30,40,' + (0.15 + ar() * 0.25).toFixed(2) + ')' : 'rgba(150,148,160,' + (0.08 + ar() * 0.2).toFixed(2) + ')'; const s = 1 + ar() * 2.5; g.fillRect(ar() * w, ar() * h, s, s); } }, [4, 15]);
+  const nearAsph = new THREE.MeshStandardMaterial({ map: nearTex, roughness: 0.9 }); nearAsph.name = 'asphalt-road';
+  const nearSlab = new THREE.Mesh(new THREE.BoxGeometry(14.1, 0.06, 60), nearAsph); nearSlab.position.set(0, 0.03, JZ + 7.05 + 30); nearSlab.receiveShadow = true; nearSlab.userData.txBevel = false; R.scene.add(nearSlab);
+  const yel = new THREE.MeshStandardMaterial({ color: 0xeeeeea, roughness: 0.55 }); yel.name = 'road-paint-white';   /* showrunner: white centre line, gold means only the route */ yel.userData.txSurface = false;
+  [-0.12, 0.12].forEach((dx) => { const ln = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.006, 60), yel); ln.position.set(-3.0 + dx, 0.063, JZ + 7.05 + 30); ln.userData.txBevel = false; R.scene.add(ln); });
+  const kerbM = new THREE.MeshStandardMaterial({ color: 0xcfc6d8, roughness: 0.8 }); kerbM.name = 'conc-kerb';
+  [-7.2, 7.2].forEach((x) => { const k = TXT.roundedBox(0.3, 0.16, 60, 0.05, kerbM); k.position.set(x, 0.08, JZ + 7.05 + 30); k.receiveShadow = true; R.scene.add(k); });
+  roadSeg(70, 0, JZ - 7.05 - 35, Math.PI / 2, 4);           /* far block, beyond the junction */
+  roadSeg(90, 7.05 + 45, JZ, 0, 5);                          /* the cross street, running off to the right */
+  roadSeg(40, -7.05 - 20, JZ, 0, 6);                         /* and to the left */
+  /* the junction box: plain asphalt with the same wear, no markings */
+  const asph = new THREE.MeshStandardMaterial({ color: 0x4a4a52, roughness: 0.88 }); asph.name = 'asphalt-junction';
+  const jbox = new THREE.Mesh(new THREE.BoxGeometry(14.1, 0.06, 14.1), asph); jbox.position.set(0, 0.03, JZ); jbox.receiveShadow = true; jbox.userData.txBevel = false; R.scene.add(jbox);
+
+  /* ---- STANDING WATER on the far block, around the fallen oak, holding the sky ---- */
+  const WATER_Y = 0.078, rtW = 1080, rtH = 1350;
+  const reflRT = new THREE.WebGLRenderTarget(rtW, rtH, { type: THREE.HalfFloatType });
+  const texMat = new THREE.Matrix4();
+  const waterMat = new THREE.ShaderMaterial({
+    uniforms: { tRef: { value: reflRT.texture }, texMat: { value: texMat }, deep: { value: new THREE.Color(0x0c1450) }, camPos: { value: new THREE.Vector3() } },
+    vertexShader: 'uniform mat4 texMat; varying vec4 vR; varying vec3 vW; void main(){ vec4 w = modelMatrix * vec4(position, 1.0); vW = w.xyz; vR = texMat * w; gl_Position = projectionMatrix * viewMatrix * w; }',
+    fragmentShader: 'uniform sampler2D tRef; uniform vec3 deep; uniform vec3 camPos; varying vec4 vR; varying vec3 vW;\n' +
+      'void main(){ float rp = sin(vW.x * 2.3 + sin(vW.z * 1.7) * 1.8) * 0.0035 + sin(vW.z * 5.1 + vW.x * 0.7) * 0.0022;\n' +
+      ' vec2 uv = vR.xy / vR.w + vec2(rp, rp * 0.6); vec3 refl = texture2D(tRef, uv).rgb;\n' +
+      ' vec3 V = normalize(camPos - vW); float f = 0.35 + 0.62 * pow(1.0 - clamp(V.y, 0.0, 1.0), 4.0);\n' +
+      ' gl_FragColor = vec4(mix(deep, refl * 0.92, clamp(f, 0.0, 0.96)), 1.0);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'
+  });
+  waterMat.name = 'standing-water'; waterMat.userData.txSurface = false;
+  const wShape = new THREE.Shape(); const WN = 48;
+  for (let i = 0; i <= WN; i++) { const a = i / WN * Math.PI * 2, rr = 1 + 0.12 * Math.sin(a * 3 + 0.7) + 0.07 * Math.sin(a * 7 + 2.1);
+    const x = Math.cos(a) * 8.2 * rr, z = Math.sin(a) * 4.2 * rr; i ? wShape.lineTo(x, z) : wShape.moveTo(x, z); }
+  const water = new THREE.Mesh(new THREE.ShapeGeometry(wShape, 48), waterMat); water.rotation.x = -Math.PI / 2; water.position.set(0.6, WATER_Y, JZ - 4.0);
+  water.receiveShadow = true; water.userData.txBevel = false; R.scene.add(water);
+  /* the wet margin: darker glossy asphalt a step wider than the sheet of water */
+  const wetMat = new THREE.MeshStandardMaterial({ color: 0x23264a, roughness: 0.18, metalness: 0, envMapIntensity: 1.2 }); wetMat.name = 'wet-asphalt'; wetMat.userData.txSurface = false;
+  [water].forEach((w) => { const m = new THREE.Mesh(w.geometry, wetMat); m.rotation.x = -Math.PI / 2; m.scale.set(1.16, 1.22, 1); m.position.set(w.position.x, WATER_Y - 0.004, w.position.z); m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m); });
+  water.userData.isWater = true;
+  /* the plate's shadow lies on the water: a shadow catcher over the sheet, hidden from its own reflection */
+  { const sm = new THREE.ShadowMaterial({ color: 0x141a5a, opacity: 0.55 }); sm.name = 'water-shadow'; sm.userData.txSurface = false;
+    const sc = new THREE.Mesh(water.geometry, sm); sc.rotation.x = -Math.PI / 2; sc.position.set(water.position.x, WATER_Y + 0.004, water.position.z); sc.receiveShadow = true; sc.userData.isWater = true; sc.userData.txBevel = false; sc.renderOrder = 3; R.scene.add(sc); }
+  /* ---- THE WET ROAD: the near block and the junction still wet, puddled where the crown drains, holding the lit sky ---- */
+  const wetSheet = new THREE.ShaderMaterial({ transparent: true, depthWrite: false,
+    uniforms: { tRef: { value: reflRT.texture }, texMat: { value: texMat }, deep: { value: new THREE.Color(0x1a1f5a) }, camPos: waterMat.uniforms.camPos },
+    vertexShader: waterMat.vertexShader,
+    fragmentShader: 'uniform sampler2D tRef; uniform vec3 deep; uniform vec3 camPos; varying vec4 vR; varying vec3 vW;\n' +
+      'float h(vec2 p){ return sin(p.x * 0.53 + sin(p.y * 0.29) * 2.1) * 0.45 + sin(p.y * 0.41 + p.x * 0.23 + 1.3) * 0.35 + sin(p.x * 1.7 + p.y * 1.3) * 0.12 + sin(p.y * 2.9 - p.x * 2.1) * 0.06; }\n' +
+      'void main(){ float n = h(vW.xz); float pud = smoothstep(0.38, 0.47, n);\n' +
+      ' vec2 uv = vR.xy / vR.w; float rp = sin(vW.x * 3.1 + sin(vW.z * 2.2) * 1.5) * 0.002;\n' +
+      ' vec3 sharp = texture2D(tRef, uv + vec2(rp, rp)).rgb; vec3 bl = vec3(0.0);\n' +
+      ' for (int k = -3; k <= 3; k++) { bl += texture2D(tRef, uv + vec2(0.0035 * float(k), 0.012 * float(k))).rgb; } bl /= 7.0;\n' +
+      ' vec3 V = normalize(camPos - vW); float f = 0.3 + 0.7 * pow(1.0 - clamp(V.y, 0.0, 1.0), 3.0);\n' +
+      ' vec3 refl = mix(bl, sharp, pud); float a = mix(0.42, 0.95, pud) * clamp(f + 0.15, 0.0, 1.0);\n' +
+      ' vec3 col = mix(deep, refl, clamp(mix(0.6, 0.92, pud) * f + 0.08, 0.0, 1.0));\n' +
+      ' gl_FragColor = vec4(col, a);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}' });
+  wetSheet.name = 'wet-road-sheen'; wetSheet.userData.txSurface = false;
+  [[0, 12, 14.1, 42], [0, JZ, 14.1, 7.2]].forEach(([x, z, w, d]) => { const s = new THREE.Mesh(new THREE.PlaneGeometry(w, d, 1, 1), wetSheet); s.rotation.x = -Math.PI / 2; s.position.set(x, WATER_Y - 0.008, z); s.renderOrder = 1; s.userData.isWater = true; s.userData.txBevel = false; R.scene.add(s); });
+
+
+  /* ---- THE FALLEN OAK across the far junction, crown in the water on the left, root plate tipped up in the right verge ---- */
+  const roadMeshes = []; R.scene.traverse((o) => { if (o.isMesh) roadMeshes.push(o); });
+  const rc = new THREE.Raycaster();
+  const groundY = (x, z) => { rc.set(new THREE.Vector3(x, 6, z), new THREE.Vector3(0, -1, 0)); const h = rc.intersectObjects(roadMeshes, false)[0]; return h ? h.point.y : 0; };
+  /* THE ROAD'S ASPHALT, repainted: plain aggregate, no drawn crack-seal zigzags (the frame models its wet patches instead) */
+  roadMeshes.forEach((m) => { const mp = m.material && m.material.map; if (!mp || !mp.image || !mp.image.getContext || mp.userData.rr7) return;
+    const c = mp.image, g = c.getContext('2d'), px = g.getImageData(4, 4, 1, 1).data; if (Math.abs(px[0] - 74) > 26 || Math.abs(px[1] - 74) > 26 || Math.abs(px[2] - 75) > 26 || Math.abs(px[0] - px[2]) > 10) return;
+    const ar = CH.rng(7171); g.fillStyle = '#4a4a4f'; g.fillRect(0, 0, c.width, c.height);
+    for (let i = 0; i < 9000; i++) { const v = ar(); g.fillStyle = v < 0.5 ? 'rgba(30,30,40,' + (0.15 + ar() * 0.25).toFixed(2) + ')' : 'rgba(150,148,160,' + (0.08 + ar() * 0.2).toFixed(2) + ')'; const s = 1 + ar() * 2.5; g.fillRect(ar() * c.width, ar() * c.height, s, s); }
+    mp.needsUpdate = true; mp.userData.rr7 = true; });
+
+  const PLATE = [7.6, -21.2], FACE = [0.83, 0.56];         /* the torn face looks back toward the camera's side and the verge */
+  const OAK_ROT = Math.PI - Math.atan2(FACE[1], FACE[0]);   /* local -x (the torn face) turned onto FACE */
+  const oak = K.make('downed_oak', { seed: 11, plate: 3.8, height: 10 });
+  /* the chassis plate, roots and pit are taken out; this frame builds the torn plate properly below */
+  const strip = []; oak.traverse((m) => { if (m.isMesh && m.material && /^rr-(gumbo|root|pit)/.test(m.material.name || '')) strip.push(m); });
+  if (!strip.length) throw new Error('downed_oak plate parts not found to replace');
+  strip.forEach((m) => m.parent.remove(m));
+  oak.rotation.y = OAK_ROT; oak.position.set(PLATE[0] - 4.6 * FACE[0], 0, PLATE[1] - 4.6 * FACE[1]); put(oak, { size: 1.0 });
+
+  /* ---- THE ROOT PLATE: a thick torn disc of gumbo clay, standing at the trunk's foot ---- */
+  const gY = groundY(PLATE[0], PLATE[1]);
+  const clay = new THREE.MeshStandardMaterial({ color: 0x8a5030, roughness: 0.93 }); clay.name = 'gumbo-clay-dirt';
+  const clayWet = new THREE.MeshStandardMaterial({ color: 0x5a3220, roughness: 0.45 }); clayWet.name = 'wet-gumbo-clay-dirt';
+  const rootM = new THREE.MeshStandardMaterial({ color: 0xc09468, roughness: 0.8 }); rootM.name = 'oak-root-bark-wood';
+  const sodM = new THREE.MeshStandardMaterial({ color: 0x36672f, roughness: 0.95 }); sodM.name = 'st-augustine-sod-grass';
+  const PG = new THREE.Group(); PG.position.set(PLATE[0], gY, PLATE[1]); PG.rotation.y = Math.atan2(FACE[0], FACE[1]); R.scene.add(PG);
+  const PR = 2.15, PT = 1.15, PC = 2.0;
+  const edgeK = (ang) => 1 + 0.15 * Math.sin(3 * ang + 1.1) + 0.08 * Math.sin(7 * ang + 2.3) + 0.045 * Math.sin(13 * ang + 0.4);
+  const dg = new THREE.CylinderGeometry(PR, PR, PT, 72, 6, false); dg.rotateX(Math.PI / 2);
+  { const ps = dg.attributes.position; for (let i = 0; i < ps.count; i++) { let x = ps.getX(i), y = ps.getY(i), z = ps.getZ(i); const rr = Math.hypot(x, y), ang = Math.atan2(y, x);
+      const k = edgeK(ang); x *= k; y *= k;
+      if (z > 0.1) z += 0.18 * Math.sin(x * 2.9 + 0.5) * Math.cos(y * 2.4) + 0.1 * Math.sin(x * 7.1 + y * 5.3) + 0.12 * (1 - rr / PR);
+      else if (z > -0.4) { const t = (z + 0.4) / 0.5; x *= 1 + 0.05 * Math.sin(ang * 11 + z * 9) * t; y *= 1 + 0.05 * Math.sin(ang * 11 + z * 9) * t; }
+      ps.setXYZ(i, x, y, z); } dg.computeVertexNormals(); }
+  const disc = new THREE.Mesh(dg, clay); disc.position.set(0, PC, 0); disc.rotation.x = -0.08;   /* tipped back, the torn face turned up toward the camera */ disc.castShadow = true; disc.receiveShadow = true; PG.add(disc);
+  /* THE TORN FACE: a finely divided sheet over the front cap, so the clay heaves in lumps rather than facets */
+  const fg = new THREE.PlaneGeometry(2 * PR * 1.2, 2 * PR * 1.2, 64, 64);
+  { const ps = fg.attributes.position; for (let i = 0; i < ps.count; i++) { let x = ps.getX(i), y = ps.getY(i); const ang = Math.atan2(y, x), mr = PR * edgeK(ang) * 0.995; let r = Math.hypot(x, y);
+      if (r > mr) { x *= mr / r; y *= mr / r; r = mr; } const e = 1 - Math.pow(r / mr, 2.2);
+      const z = e * (0.16 + 0.14 * Math.sin(x * 2.7 + 0.5) * Math.cos(y * 2.3) + 0.07 * Math.sin(x * 6.3 + y * 4.9) + 0.035 * Math.sin(x * 13.7 - y * 11.3));
+      ps.setXYZ(i, x, y, z); } fg.computeVertexNormals(); }
+  const face = new THREE.Mesh(fg, clay); face.position.z = PT / 2 - 0.02; face.castShadow = true; face.receiveShadow = true; disc.add(face);
+  /* the old ground surface, sod on the back face, kept inside the rim */
+  const sg = new THREE.CircleGeometry(PR * 0.96, 72); { const ps = sg.attributes.position; for (let i = 1; i < ps.count; i++) { const k = edgeK(Math.atan2(ps.getY(i), ps.getX(i))); ps.setXY(i, ps.getX(i) * k, ps.getY(i) * k); } }
+  const sod = new THREE.Mesh(sg, sodM); sod.rotation.y = Math.PI; sod.position.z = -PT / 2 - 0.03; disc.add(sod);
+
+  /* TAPERING, BRANCHING ROOTS out of the torn face and rim, drooping under their own weight, soil clinging near the plate */
+  const rr7 = CH.rng(CH.SEED + 77);
+  const clump = (r0, m) => { const g = new THREE.IcosahedronGeometry(r0, 2), ps = g.attributes.position; for (let i = 0; i < ps.count; i++) { const k = 0.7 + rr7() * 0.55; ps.setXYZ(i, ps.getX(i) * k, ps.getY(i) * k * 0.75, ps.getZ(i) * k); } g.computeVertexNormals(); const c = new THREE.Mesh(g, m); c.castShadow = true; c.receiveShadow = true; return c; };
+  const rootTube = (pts, r0, parent) => {
+    const curve = new THREE.CatmullRomCurve3(pts.map((q) => new THREE.Vector3(q[0], q[1], q[2])));
+    const SEG = 28, RAD = 7, g = new THREE.TubeGeometry(curve, SEG, 1, RAD, false), ps = g.attributes.position, P = new THREE.Vector3();
+    for (let i = 0; i <= SEG; i++) { const t = i / SEG; curve.getPointAt(t, P); const rad = r0 * Math.max(0.06, 1 - Math.pow(t, 0.55));
+      for (let j = 0; j <= RAD; j++) { const n = i * (RAD + 1) + j; ps.setXYZ(n, P.x + (ps.getX(n) - P.x) * rad, P.y + (ps.getY(n) - P.y) * rad, P.z + (ps.getZ(n) - P.z) * rad); } }
+    g.computeVertexNormals(); const m = new THREE.Mesh(g, rootM); m.castShadow = true; m.receiveShadow = true; parent.add(m);
+    return curve;
+  };
+  const faceZ = PT / 2 + 0.05;
+  for (let i = 0; i < 30; i++) {
+    const ang = (i / 30) * Math.PI * 2 + rr7() * 0.18, onRim = i % 2 === 0, rf = onRim ? 0.95 : 0.15 + rr7() * 0.7, k = edgeK(ang);
+    const sx = Math.cos(ang) * PR * k * rf, sy = Math.sin(ang) * PR * k * rf, ux = Math.cos(ang), uy = Math.sin(ang);
+    const len = onRim ? 1.1 + rr7() * 1.3 : 0.6 + rr7() * 0.8, r0 = 0.09 + rr7() * 0.09, out = onRim ? 0.2 : 0.5;
+    const droop = onRim ? 0.35 : 0.6; const pts = [[sx, sy, onRim ? 0.1 : faceZ - 0.15], [sx + ux * len * 0.35, sy + uy * len * 0.35 - 0.04, faceZ * (onRim ? 0.3 : 1) + out * 0.5], [sx + ux * len * 0.7, sy + uy * len * 0.65 - droop * 0.4 * len, faceZ * (onRim ? 0.3 : 1) + out * 0.85], [sx + ux * len, sy + uy * len * 0.85 - droop * len, faceZ * (onRim ? 0.3 : 1) + out]];
+    const cv = rootTube(pts, r0, disc);
+    /* one or two side roots off the main one */
+    for (let b = 0; b < 1 + (rr7() < 0.5 ? 1 : 0); b++) { const t0 = 0.3 + rr7() * 0.3, q = cv.getPointAt(t0), side = rr7() < 0.5 ? -1 : 1, bl = len * (0.35 + rr7() * 0.3);
+      rootTube([[q.x, q.y, q.z], [q.x - uy * side * bl * 0.4 + ux * bl * 0.3, q.y + ux * side * bl * 0.4 - 0.1, q.z + 0.12], [q.x - uy * side * bl * 0.8 + ux * bl * 0.5, q.y + ux * side * bl * 0.6 - 0.45 * bl, q.z + 0.2]], r0 * 0.5, disc); }
+    /* soil still clinging near the plate */
+    if (rr7() < 0.75) { const q = cv.getPointAt(0.12 + rr7() * 0.18), c = clump(r0 * 1.5 + 0.03, rr7() < 0.5 ? clay : clayWet); c.position.copy(q); disc.add(c); }
+  }
+  /* fine root hair as a fringe round the rim */
+  for (let i = 0; i < 70; i++) { const ang = i / 70 * Math.PI * 2 + rr7() * 0.1, k = edgeK(ang), sx = Math.cos(ang) * PR * k, sy = Math.sin(ang) * PR * k, l = 0.25 + rr7() * 0.35;
+    rootTube([[sx * 0.97, sy * 0.97, 0.2], [sx * 1.05, sy * 1.05 - 0.05, 0.3 + rr7() * 0.1], [sx * 1.1 + rr7() * 0.06, sy * 1.08 - l, 0.4]], 0.018, disc); }
+
+  /* ---- THE CRATER in the verge where it stood: broken sod round a raw dish of dark clay ---- */
+  const CR = [PLATE[0] + FACE[0] * 1.6, PLATE[1] + FACE[1] * 1.6], cY = groundY(CR[0], CR[1]);
+  const lath = new THREE.LatheGeometry([[0, 0.03], [0.7, 0.04], [1.15, 0.12], [1.5, 0.34], [1.75, 0.3], [2.1, 0.12], [2.5, 0.0]].map((q) => new THREE.Vector2(q[0], q[1])), 64);
+  { const ps = lath.attributes.position; for (let i = 0; i < ps.count; i++) { const x = ps.getX(i), z = ps.getZ(i), k = 1 + 0.12 * Math.sin(Math.atan2(z, x) * 4 + 0.7) + 0.06 * Math.sin(Math.atan2(z, x) * 9); ps.setX(i, x * k); ps.setZ(i, z * k); ps.setY(i, ps.getY(i) * (0.8 + 0.4 * Math.abs(Math.sin(Math.atan2(z, x) * 5)))); } lath.computeVertexNormals(); }
+  const crater = new THREE.Mesh(lath, clay); crater.position.set(CR[0], cY, CR[1]); crater.receiveShadow = true; crater.castShadow = true; R.scene.add(crater);
+  const pit = new THREE.Mesh(new THREE.CircleGeometry(1.15, 40), clayWet); pit.rotation.x = -Math.PI / 2; pit.position.set(CR[0], cY + 0.045, CR[1]); pit.receiveShadow = true; pit.userData.txBevel = false; R.scene.add(pit);
+  /* broken slabs of sod, tipped on the rim and the ground, every one resting on something */
+  for (let i = 0; i < 12; i++) { const ang = rr7() * Math.PI * 2, rad = 1.7 + rr7() * 1.4, w = 0.35 + rr7() * 0.4, d = 0.25 + rr7() * 0.3, th = 0.1 + rr7() * 0.06;
+    const S = new THREE.Group(); const base = TXT.roundedBox(w, th, d, 0.03, clay); base.position.y = th / 2; S.add(base); const top = TXT.roundedBox(w * 1.02, 0.035, d * 1.02, 0.012, sodM); top.position.y = th + 0.012; S.add(top);
+    S.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    const x = CR[0] + Math.cos(ang) * rad, z = CR[1] + Math.sin(ang) * rad; S.position.set(x, groundY(x, z) + (rad < 2.2 ? 0.18 : 0) - 0.02, z); S.rotation.set((rr7() - 0.5) * 0.5, rr7() * 6.28, (rr7() - 0.5) * 0.5); R.scene.add(S); }
+  /* clods thrown on the ground, half sunk so they sit */
+  for (let i = 0; i < 26; i++) { const ang = rr7() * Math.PI * 2, rad = 0.8 + rr7() * 3.6, r0 = 0.07 + rr7() * 0.2;
+    const x = PLATE[0] + FACE[0] * 1.0 + Math.cos(ang) * rad, z = PLATE[1] + FACE[1] * 1.0 + Math.sin(ang) * rad;
+    const c = clump(r0, rr7() < 0.55 ? clayWet : clay); c.position.set(x, groundY(x, z) + r0 * 0.3, z); c.rotation.y = rr7() * 6.28; R.scene.add(c); }
+  TXT.contact(R, PG, { size: 1.2 });
+
+  /* a leafy limb broken off the crown, lying out into the right lane: the edge the route bends round */
+  const limbG = new THREE.Group(), lt = K.make('live_oak', { seed: 12, height: 2.8 }); const lh = new THREE.Group(); lh.add(lt); lt.scale.x = 0.13; lh.rotation.z = -Math.PI / 2 + 0.03; limbG.add(lh);
+  limbG.scale.set(0.8, 0.8, 0.42); limbG.rotation.y = -0.12; R.scene.add(limbG); limbG.updateMatrixWorld(true);
+  { const bb = new THREE.Box3().setFromObject(limbG); limbG.position.x += 2.0 - bb.max.x; limbG.position.z += -14.2 - (bb.min.z + bb.max.z) / 2; limbG.position.y += 0.07 - bb.min.y; }
+  let LIMB_BOX = new THREE.Box3().setFromObject(limbG);
+
+  const bark = new THREE.MeshStandardMaterial({ color: 0x5a4334, roughness: 0.95 }); bark.name = 'oak-bark-wood';
+  for (let i = 0; i < 6; i++) { const ang = rnd() * Math.PI, Lb = 1.2 + rnd() * 1.8, x = -5.5 + rnd() * 5.5, z = JZ - 0.5 + rnd() * 2.5;
+    const g = new THREE.Group(); g.position.set(x, 0.06, z); g.rotation.y = ang; R.scene.add(g);
+    rootTube([[0, 0.1, -Lb / 2], [0.12, 0.13, 0], [0, 0.1, Lb / 2]], 0.1 + rnd() * 0.05, g); g.children[0].material = bark; }
+
+  /* ---- THE BUCKET TRUCK, stopped short of the junction, front toward the oak ---- */
+  const truck = K.make('utility_bucket_truck', { seed: 3, boom: 0, color: 0xf3f1ea });
+  truck.rotation.y = Math.PI; truck.position.set(-0.3, 0.06, 1.0); put(truck, true);
+  const tb = new THREE.Box3().setFromObject(truck);
+  const BUMPER_Z = tb.min.z;
+
+  /* ---- THE LINEMAN ahead of the bumper, three quarters away, his arm along the gold turn ---- */
+  const man = K.make('person', { seed: 21, role: 'worker', pose: 'point', toward: -1, hat: 'hard', hatColor: 0xf6f3ea, vest: true });
+  man.traverse(m => { if (m.isMesh && m.material && /hivis/.test(m.material.name || '')) { m.material = m.material.clone(); m.material.color.set(0xff6a1a); } });   /* showrunner: orange vest, gold means only the route */
+  man.rotation.y = Math.PI - 0.08; man.position.set(0.9, 0.06, BUMPER_Z - 4.8); put(man, true);   /* beside the curve, inside it, arm out along the turn */
+
+  /* ---- THE BLOCK. Kit houses down the left side, each with a FILLED plate tipped to the street, the state after review ---- */
+  /* FILLED: each roof wears a translucent coat in its CH.RAMP step over the shingles, the filled state after review. Seen from
+   * the street a floating plate goes edge on, so the fill is laid on the roof planes themselves. */
+  const houses = [];
+  const fillMats = CH.RAMP.map((c, i) => { const m = new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.3, roughness: 0.42, opacity: 1, transparent: false, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 }); m.name = 'review-fill-' + i; m.userData.txSurface = false; return m; });
+  const house = (kind, x, z, rotY, seed, step) => {
+    const h = K.make(kind, { seed }); h.rotation.y = rotY; h.position.set(x, 0, z); put(h, true);
+    const roofs = []; h.traverse((m) => { if (m.isMesh && m.material && m.material.bumpScale === 2.4 && m.material.roughness === 0.95) roofs.push(m); });
+    if (!roofs.length) throw new Error(kind + ' seed ' + seed + ': no roof planes found to fill');
+    roofs.forEach((m) => { const f = new THREE.Mesh(m.geometry, fillMats[step]); f.userData.txBevel = false; f.renderOrder = 2; m.add(f); });
+    houses.push({ h, step, fills: roofs.length }); return h;
+  };
+  house('two_story_house', -14.5, -35, Math.PI / 2, 32, 1);
+  house('ranch_house', 14.5, -34, -Math.PI / 2, 36, 1);
+  house('ranch_house', 14.5, -56, -Math.PI / 2, 34, 2);
+  house('ranch_house', -14.5, -57, Math.PI / 2, 33, 1);
+  house('ranch_house', -14.5, -80, Math.PI / 2, 39, 0);
+  house('two_story_house', 14.5, -80, -Math.PI / 2, 35, 0);
+  /* every roof drawn carries a fill: the state after review, never a hollow rim */
+  houses.forEach((o) => { if (!(o.fills > 0)) throw new Error('a roof without its reviewed fill'); });
+  if (houses.length < 4) throw new Error('the block needs its reviewed roofs in view');
+
+  /* a few trees set back between the lots, never over a plate */
+  [[-36, -20, 10], [-36, -46, 7], [34, -84, 9], [-34, -72, 6]].forEach(([x, z, s]) => { const t = K.make('live_oak', { seed: s, height: 8 + s % 3 }); t.position.set(x, 0, z); put(t, true); });
+  [[-9, -112, 11], [7, -120, 13], [21, -108, 14], [-24, -104, 15], [0, -134, 16], [-16, -126, 17], [30, -126, 18]].forEach(([x, z, s]) => { const t = K.make('live_oak', { seed: s, height: 6.5 + s % 3 }); t.position.set(x, 0, z); put(t, true); });
+  [[-11.5, -46, 2]].forEach(([x, z, s]) => { const c = K.make('crape_myrtle', { seed: s, bloom: 'lavender' }); c.position.set(x, 0, z); put(c, true); });
+
+  /* ---- THE WAY THROUGH. Flat gold on the asphalt: it leaves the lane in front of the bumper, swings right in front of the
+   * root plate across the junction, and runs out the right edge down the cross street ---- */
+  const routePts = [[-0.2, 0.06, BUMPER_Z + 1.0], [0.3, 0.06, BUMPER_Z - 1.6], [1.8, 0.06, BUMPER_Z - 4.2], [3.4, 0.06, JZ + 6.2], [4.9, 0.06, JZ + 3.6], [7.2, 0.06, JZ + 1.3], [11, 0.06, JZ + 0.8], [26, 0.06, JZ + 1.0], [90, 0.06, JZ + 1.2]];
+  /* the limb's tip is set 0.8 m inside the curve, read from the curve itself */
+  { const curve = new THREE.CatmullRomCurve3(routePts.map((q) => new THREE.Vector3(q[0], 0, q[2])), false, 'centripetal', 0.3); let mx = 1e9;
+    for (let t = 0; t <= 1; t += 0.002) { const q = curve.getPointAt(t); if (q.z > LIMB_BOX.min.z - 0.7 && q.z < LIMB_BOX.max.z + 0.7) mx = Math.min(mx, q.x); }
+    const dx = (mx - 0.8) - LIMB_BOX.max.x; limbG.position.x += dx; limbG.updateMatrixWorld(true); LIMB_BOX = new THREE.Box3().setFromObject(limbG);
+    if (LIMB_BOX.max.x - LIMB_BOX.min.x > 9) throw new Error('limb box ' + JSON.stringify(LIMB_BOX));
+    TXT.contact(R, limbG); }
+  /* never under the worker, always outside the limb's tip */
+  { const curve = new THREE.CatmullRomCurve3(routePts.map((q) => new THREE.Vector3(q[0], 0, q[2])), false, 'centripetal', 0.3); for (let t = 0; t <= 1; t += 0.002) { const q = curve.getPointAt(t);
+      if (Math.hypot(q.x - man.position.x, q.z - man.position.z) < 0.9) throw new Error('the route runs under the worker');
+      if (q.x > LIMB_BOX.min.x - 0.6 && q.x < LIMB_BOX.max.x + 0.6 && q.z > LIMB_BOX.min.z - 0.6 && q.z < LIMB_BOX.max.z + 0.6) throw new Error('the route runs through the limb'); } }
+  const route = CH.route(THREE, K, routePts, { r: 0.3, lift: 0.08, glow: 0.22 }); route.scale.y = 0.38; R.scene.add(route);
+  /* its soft glow on the wet asphalt */
+  const glowCurve = new THREE.CatmullRomCurve3(routePts.map((p) => new THREE.Vector3(p[0], 0.075, p[2])), false, 'centripetal', 0.3);
+  const halo = new THREE.Mesh(new THREE.TubeGeometry(glowCurve, 400, 0.75, 12, false), new THREE.MeshBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false }));
+  halo.scale.y = 0.03; halo.material.userData.txSurface = false; halo.userData.txBevel = false; halo.userData.accent = true; R.scene.add(halo);
+
+  /* ---- CAMERA: 3.3 m up in the right lane behind the truck, high enough to see the reviewed roofs over its box, looking across the junction at the oak ---- */
+  TXT.frame(R, { fov: 40, from: [3.8, 5.6, 14.5], look: [2.4, 3.3, JZ - 6] });
+
+  /* ---- KEY: honey from behind the camera's right shoulder, so the truck, the lineman and the root plate face the light ---- */
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), Object.assign(CH.rigOpts([0, 0, JZ], { distance: 120, shadowFar: 300 }), { light: { az: 110, el: 12 } }));
+  CH.unacne(R, 0.03);
+
+  /* ---- CHECKS: the gold route crosses the right edge on screen ---- */
+  let crossed = false; for (let x = 6; x < 90; x += 0.5) { const p = CH.project(THREE, R, [x, 0.1, JZ + 2.3]); if (p[0] >= CH.W && p[1] > 0 && p[1] < CH.H) { crossed = true; break; } }
+  if (!crossed) throw new Error('the gold route does not leave the right edge');
+
+  /* ---- THE WATER'S REFLECTION: the scene seen from the camera mirrored in the water plane, clipped above it ---- */
+  R.camera.updateMatrixWorld(true);
+  const cp = R.camera.position, lk = R._txLook;
+  const mc = R.camera.clone(); mc.position.set(cp.x, 2 * WATER_Y - cp.y, cp.z); mc.up.set(0, -1, 0); mc.lookAt(lk[0], 2 * WATER_Y - lk[1], lk[2]); mc.updateMatrixWorld(true); mc.updateProjectionMatrix();
+  texMat.set(0.5, 0, 0, 0.5, 0, 0.5, 0, 0.5, 0, 0, 0.5, 0.5, 0, 0, 0, 1).multiply(mc.projectionMatrix).multiply(mc.matrixWorldInverse);
+  waterMat.uniforms.camPos.value.copy(cp);
+  const hideW = []; R.scene.traverse((o) => { if (o.userData.isWater) { o.visible = false; hideW.push(o); } });
+  const rr = R.renderer, prevClip = rr.clippingPlanes;
+  rr.clippingPlanes = [new THREE.Plane(new THREE.Vector3(0, 1, 0), -WATER_Y)];
+  rr.setRenderTarget(reflRT); rr.render(R.scene, mc); rr.setRenderTarget(null); rr.clippingPlanes = prevClip;
+  hideW.forEach((o) => { o.visible = true; });
+  waterMat.userData.txSurface = false;
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.4, fade: 80 }); CH.seat(cx, { sel: '.kick', a: 0.45, fade: 50 }); CH.seat(cx, { sel: '.count', a: 0.4, fade: 50 });
+  const dkr = document.querySelector('.dek').getBoundingClientRect();
+  CH.seat(cx, { box: { x: dkr.left, y: dkr.top, w: dkr.width, h: dkr.height }, a: 0.68, fade: 70 });
+  TXLOOK.footWash(cx, { a: 0.66, height: 330 });
+  /* knock the lane stripes down behind the footer furniture so no painted line strikes through it */
+  ['.tx-site', '.src'].forEach((sel) => { const e = document.querySelector(sel); if (!e) return; const r = e.getBoundingClientRect(); CH.seat(cx, { box: { x: r.left, y: r.top, w: r.width, h: r.height }, a: 0.55, fade: 90 }); });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

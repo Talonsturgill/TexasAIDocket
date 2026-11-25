@@ -1,0 +1,74 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.25,
+   "why": "Bespoke reading. The round 2 defects partly landed. Frame 6 was fixed: the pole now stands at top right clear of 'A person checks every map', the laptop screen is lit, and the map board fills the lower half in an over-shoulder view. The figure is still a smooth low-poly mannequin. Frame 4 is partly fixed: the trunk now runs off the left edge and the crown is crushed onto the ridge, with a tarp, bare decking and scattered shingles. Only two rims show, violet on the hit roof and pale blue on the neighbour, and both still read as gutters, so the 'color coded view' is not legible as a code. Frame 7 is partly fixed: two or three solid cobalt roofs now read as 'filled', the gold route bends past the crew and the bucket truck, and the puddle reflection works. The root plate now has root strands, but it renders as an oversized orange-red boulder with horn-like spikes, taller than the house eave. At feed size it reads as a sculpture, not a torn clay disc. Frames 3, 5 and 8 remain the strongest. Frame 5's plate rack runs off two edges with violet light on cobalt block. Frame 9 is clean, with the route stopping short of the first lot, but the art sits under a seven-line dek and only fills the lower half. The frames differ in world, camera and medium throughout."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds on all nine frames: one serif headline, a mono kicker and counter, claim ids and the site line, in the wonder cobalt-to-peach palette. The gold route keeps its one meaning: around the oak on 1, along the road on 4, past the junction on 7, and stopping short on 9, which now reads as 'not here yet'. The 1 and 9 aerial bookend works. The hollow-to-filled device now reads on 7, where solid blue roofs show, but frame 4's hollow rims still look like trim. Frames 5 and 8 are saturated blue interiors that sit slightly outside the dusk exteriors."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide numeral traces to a claim: 18 to 24 (c2), 2,000 and 7 (c16), 21,000 and 10 (c3), 265 (c25), 125, 63 and 14 (c8), 2024 (c10). Both sources are primary, fetched November 24th, and listed in first_comment.txt with their ids. The adoption is now attributed on S9 ('Texas A&M says Florida's team uses it'), in the caption and in the title. The absence is scoped to the release and the project site on S9 and in the caption, matching the rejected entry. Two things keep it short of 10. The Florida SOP still comes only through Texas A&M's own release, with no Florida document fetched. The cover's 'Every roof, read in minutes' compresses a per-orthomosaic timing that S3 qualifies."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what CLARKE does by frame 7. The lead the title and caption carry, that Florida made it procedure and no Texas user is named, still arrives only on frame 9, so the round 2 fix was not taken. S9 now gives an action, 'Watch county emergency offices for the first.' That improves on 'Watch for the first', but it is passive, names no county or office, and gives no date for Florida's decision. College Station and Brazos County appear on no slide. The stake for a Texan, whether their county has this after the next storm, is still implied."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and frame 2's '18 to 24 hours, the old way' pays at once. Frames 3, 4 and 7 build the process in order, and 9 turns from built in Texas to used in Florida. Frames 5 and 8 are context beats that could merge without loss. The cover and the caption still lead with different stories."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The slide headlines are tight and plain: 'Taught partly on Harvey', 'The road out'. The shipped caption.txt, however, opens 'Texas A&M says Texas A&M says Florida's team uses its tool.', a doubled attribution in the post's most valuable line. Line 3 then repeats the same claim ('It says Florida's state drone ...'). The attribution fix was applied twice. S6's dek still reads like a spec sheet (GeoJSON and KML map files). S9's dek runs seven lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "CLARKE is a new subject, and the bespoke neighbourhood treatment is fresh. It is still the third drone deck in five days, after no. 83 (November 20th, drone GPS spoofing) and no. 84 (November 21st, DARPA Triage at Disaster City, College Station). This is another disaster-response story from the same county. The aerial cover echoes no. 83's opening move."
+  }
+ ],
+ "weighted_score": 7.24,
+ "hard_fails": [
+  "caption.txt, the shipped caption, opens with a garbled duplicated attribution: 'Texas A&M says Texas A&M says Florida's team uses its tool.' It also no longer matches copy.json's caption ('Florida's drone team adopted Texas A&M's tool.'), although copy.json's _note claims the caption was carried verbatim from caption.txt. So the published first line is broken and the gated copy is not the file that ships. Repair: write one attributed opener, for example 'Texas A&M says Florida's state drone team made its tool standard procedure.', drop the now-redundant line 3, sync copy.json, and rerun caption_check on caption.txt itself."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Fix the doubled 'Texas A&M says Texas A&M says' opener in caption.txt and sync it to copy.json, then lead the deck with the story the title already tells. Put 'Built in Texas, procedure in Florida, no Texas county named' on the cover or frame 2 and fold frames 5 and 8 into one, so a Texan gets the news in two swipes, not nine.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The root plate renders as an oversized orange-red boulder with horn-like root spikes, taller than the eave, and reads as a sculpture rather than an uprooted oak at feed size.",
+   "fix": "Scale the root plate down to about trunk-height radius, flatten it into a tilted disc of dark gumbo clay with thin root strands and a cast shadow into the puddle, and desaturate it toward the brown of the trunk."
+  },
+  {
+   "slide": 4,
+   "problem": "Only two hollow rims show, one violet and one pale blue, and both read as gutters, so 'color coded view, structure by structure' is not visible.",
+   "fix": "Pull the camera back to take in three or four neighbouring roofs, and give each a thick rim in a distinct step of the ramp, lifted slightly off the eave with its own glow, so the set reads as a legend rather than trim."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a smooth low-poly mannequin, which is the one primitive model left in the deck, at the centre of the frame.",
+   "fix": "Push in tighter over the shoulder so only the vest, forearm and hand touching the lit board are in frame, cropping the head out at the top edge."
+  },
+  {
+   "slide": 9,
+   "problem": "A seven-line dek covers the upper half, and the art reads as a generic suburb in the lower half with the route stub small at the left edge.",
+   "fix": "Cut the dek to three lines (adoption, absence, the action), lower the camera so the gold route stub and the first unlit lot sit in the centre third, and keep the starred water tower large at the left."
+  }
+ ]
+}

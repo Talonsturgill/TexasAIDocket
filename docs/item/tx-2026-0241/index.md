@@ -11,7 +11,7 @@ Applied Optoelectronics filed its third quarter results with the SEC on November
 - Public access: Write to the decider
 - Take part: https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-24
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-14 · The Sugar Land optics maker still ties its United States expansion to getting enough electrical power.
 - 2026-11-17 · The Sugar Land optics maker still says its United States expansion depends on getting enough power.
 - 2026-11-20 · The Sugar Land optics maker still describes its United States expansion the same way.
+- 2026-11-24 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

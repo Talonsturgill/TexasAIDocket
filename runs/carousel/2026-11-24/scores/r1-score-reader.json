@@ -1,0 +1,73 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.5,
+   "why": "Each frame built for its sentence and different in world, camera and medium; 1, 4, 8 and 9 hold up at full size and v2 colour holds. Held down by 6 (mannequin operator from behind over a flat pink caliche plane, no lit face or pole), 2 (posts read as a white fence, the peach band does not read), 5 (rack becomes striped noise against electric blue, lifted plate flat), 3 (stitched plane reads as a green grid at feed size)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds on all nine; gold keeps one meaning on 1, 4, 7, 9; frame 9 mirrors frame 1's camera. The hollow-to-filled rim device does not read in the feed, and 5 and 8 run hotter electric blue than the outdoor frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces to a claim; both sources primary and fetched; the 18 to 24 hours attributed to Manzini, the 7 minutes scoped to a finished orthomosaic, the absence scoped to the release and the project site. Not a 10: the cover headline is a universal scoped only by the dek and S3, and Florida's procedure rests on Texas A&M's release alone."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what the tool does and who built it, but the one decision was Florida's; the Texas stake is an absence with no Texas body named and no date to watch. The only action is the caption's question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover stops the thumb and S2 pays the minutes promise; the turn arrives only on S9 while the caption leads with it; S8 and S9 make overlapping points; S6's GeoJSON and KML line is cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Calm, no boosterism, good plain close; deks lean technical (georectified orthomosaic, GeoJSON and KML) and several run four sentences."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh subject and changing media; an aerial whole-neighbourhood cover is a familiar opening move."
+  }
+ ],
+ "weighted_score": 7.49,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Fetch the Texas side (TDEM, Texas Task Force 1, Brazos County records on drone damage assessment) so frame 9 and the caption name a Texas body instead of closing on an absence.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Smooth mannequin operator from behind, flat pink caliche plane fills the left half, no lit face or leaning pole.",
+   "fix": "Low three-quarter front camera with the face lit from the open laptop, push in so operator and tailgate fill the lower two thirds, pole and cobalt dusk behind."
+  },
+  {
+   "slide": 2,
+   "problem": "The 24 markers read as a white fence, the peach band on the last six does not show, the metaphor needs the dek.",
+   "fix": "Run the markers toward the camera so they repeat like a ruler and give the last six a clearly different lit cap."
+  },
+  {
+   "slide": 5,
+   "problem": "The 265-plate rack becomes striped noise in front of an electric blue wall; the lifted plate is a flat texture.",
+   "fix": "Rake the camera so plate edges catch the window as strata, model the lifted plate in relief, warm the wall toward honey."
+  },
+  {
+   "slide": 3,
+   "problem": "The stitched plane reads as a green grid; the seam is not the focal point.",
+   "fix": "Push onto the seam so loose plates cast long shadows onto the plane at centre; crop the empty top margin."
+  }
+ ],
+ "_note": "Report card of the reader-lens judge, panel round 1, transcribed with each why condensed; scores and weakest frames verbatim in substance."
+}
