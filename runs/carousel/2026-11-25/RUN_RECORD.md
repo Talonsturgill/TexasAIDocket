@@ -114,8 +114,8 @@ The run is long. The record and claims took the first hours. The deck took three
 | aggregates     | PASS   | 9 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.72 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | PASS   | 60 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 76 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 32,222 chars planned |
 | caption        | PASS   | 146 words |
