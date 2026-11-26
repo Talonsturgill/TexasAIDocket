@@ -2726,3 +2726,15 @@ clinicaltrials.gov, dir.texas.gov, docs.tacc.utexas.edu and several TV station s
 **Wiwynn's El Paso page dropped its "Updated on" stamp** and now shows September 10, 2026 alone, so the date claim on
 tx-2026-0146 was re-quoted. **The PUCT Project 58000 filing list grew to 72 filings** with Oncor's November 19th rate
 impact analysis and a November 24th staff redline memo.
+
+## 2026-11-25 (carousel no. 87)
+
+**www.utmb.edu answered** the November 19th release on AI in lung cancer screening, and every claim on tx-2026-0260 quotes
+it. The release names no county. **bunkerhillhealth.com answered** its UTMB case study, which carries the vendor's own
+figures and was used only for attributed vendor claims. **The USPSTF recommendation page answered** for the screening
+criteria. **The Comptroller's JETI open data packet for J0055 answered** as a scanned PDF, read through `fetch_doc.py`.
+**ERCOT's market notice M-B112026-01 answered.** **Tarrant County's November 17th data center abatement resolution was
+found only as an upload on fortworthreport.org**, with no county-hosted copy, so the lead is held. **www.faa.gov answered
+403 again** for the DFW SMART tool. **solunacomputing.com's Q3 results answered** and carried the Briscoe County Chapter
+312 approval of November 9th that the record had not yet seen. The crawl boundary refused the same hosts as yesterday and
+nothing was routed around.
