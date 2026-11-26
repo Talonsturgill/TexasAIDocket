@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved $25 million in Permanen
 - Public access: Public meeting
 - Take part: https://advancing.utsystem.edu/board-of-regents/meetings/board-meeting-2026-05-20
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-22 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ Item 61 on the Austin City Council's regular meeting agenda for August 27th, 202
 - Public access: Public meeting
 - Take part: https://www.austintexas.gov/council/2026/20260827-reg
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-19 · Checked again. Austin's land code still has no data center definition, and the resolution has not produced an amendment.
 - 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

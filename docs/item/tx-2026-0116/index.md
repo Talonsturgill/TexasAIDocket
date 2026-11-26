@@ -11,7 +11,7 @@ The Dallas City Council Public Safety Committee has put an update on the Dallas 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/cityofdallas/matters/25839
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. Still open, with no dated movement.
 - 2026-11-19 · Checked again. The Dallas briefing on the Flock plate reader program still stands as set, with no new committee action.
 - 2026-11-22 · Checked and unchanged. Still open, with no dated movement.
+- 2026-11-25 · Checked and unchanged. Still open, with no dated movement.
 
 ## Evidence
 

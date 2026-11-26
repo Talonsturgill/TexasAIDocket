@@ -12,7 +12,7 @@ The Office of Defects Investigation at the National Highway Traffic Safety Admin
 - Public access: Write to the decider
 - Take part: https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. Still unknown, with no dated movement.
 - 2026-11-19 · Checked again. The federal defect evaluation into the driverless system remains open, with no closing resolution posted.
 - 2026-11-22 · Checked and unchanged. Still unknown, with no dated movement.
+- 2026-11-25 · Checked and unchanged. Still unknown, with no dated movement.
 
 ## Evidence
 

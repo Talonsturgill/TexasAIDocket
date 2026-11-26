@@ -9,7 +9,7 @@ ERCOT issued a market notice on September 2nd, 2026 setting a workshop for Octob
 - Public access: Public meeting
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-A090226-01
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-19 · Checked again. ERCOT's curtailment approach for large loads under Senate Bill 6 is still a draft after the workshop.
 - 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

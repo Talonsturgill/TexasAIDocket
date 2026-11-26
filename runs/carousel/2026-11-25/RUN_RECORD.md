@@ -102,3 +102,29 @@ The run is long. The record and claims took the first hours. The deck took three
 **Sources.** Appended to `SOURCES_FIELD_LOG.md`: UTMB, Bunkerhill, USPSTF, the Comptroller's J0055 packet and ERCOT's notice answered; Tarrant's resolution exists only as a Fort Worth Report upload; faa.gov answered 403 again; Soluna's Q3 results carried the Briscoe approval the record had missed.
 
 **The prompt audit above is interim.** Phase 19 takes the reading that counts.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 29 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 8 warn(s) |
+| aggregates     | PASS   | 9 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.72 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 32,222 chars planned |
+| caption        | PASS   | 146 words |
+| craft floor    | PASS   | 9 frame(s), median 2097, floor 377 |
+| plan vs render | WARN   | 0 of 54 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body NO / deadline NO / next step NO |
+| absences       | WARN   | 2 of 10 scoped to a named document, 8 unscoped |
+| numerals       | PASS   | 9 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
+
+**The score row reads STALE, and that is true.** The round 3 panel scored frame 8 before its type seats were lightened for the value cut at ship. Frames 1 to 7 and 9 were re-rendered byte-identical after the FIG guard rename, which also moves their timestamps past the score. No fourth round was run, because the round cap had shipped the deck and the change to frame 8 is to its type seats only.

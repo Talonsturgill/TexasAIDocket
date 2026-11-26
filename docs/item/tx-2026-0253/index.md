@@ -11,7 +11,7 @@ Researchers in East Texas A&M University's computer science department in Commer
 - Public access: Closed
 - Take part: https://www.etamu.edu/news/researchers-test-ai-to-detect-gps-spoofing-in-drones/
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -22,6 +22,7 @@ Researchers in East Texas A&M University's computer science department in Commer
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-20 · Admitted from East Texas A&M's November 16th announcement. The detection was tested on recorded flights, and an in flight test is the next step.
+- 2026-11-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

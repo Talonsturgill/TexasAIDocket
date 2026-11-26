@@ -11,7 +11,7 @@ The IC² Institute and Dell Medical School at UT Austin launched an AI Learning 
 - Public access: Write to the decider
 - Take part: https://ic2.utexas.edu/news/ic%c2%b2-institute-dell-med-launch-ai-learning-lab-to-examine-ais-impact-on-clinical-reasoning-and-inform-medical-education/
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -22,6 +22,7 @@ The IC² Institute and Dell Medical School at UT Austin launched an AI Learning 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-22 · Admitted from the IC² Institute's October 20th announcement. The lab has launched and no results are published yet.
+- 2026-11-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
