@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-25T22:40:05Z",
+  "checked_at": "2026-11-26T09:45:22Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "f8c367686152b129b7efd8e0792012ae020cb1770d66815957df3c065fa16153",
+  "response_sha256": "04f0330992b6d5ccac8bf9054ec663b6f2565b77895d86dfd38d17521eca0569",
   "articles": [
     {
       "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
@@ -41,162 +41,20 @@
     }
   ],
   "selected": {
-    "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-    "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-    "first_seen_at": "2026-11-22T20:35:41Z",
-    "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-    "feed": "https://www.tpr.org/index.rss",
-    "publisher": "Texas Public Radio",
+    "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
+    "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
+    "first_seen_at": "2026-11-19T21:00:44Z",
+    "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.117735,
-    "priority": 4
+    "score": 0.010814,
+    "priority": 3
   },
-  "expires_at": "2026-11-29T20:35:41Z",
+  "expires_at": "2026-11-26T21:00:44Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-25T19:23:00Z",
-      "selected": {
-        "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-        "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-        "first_seen_at": "2026-11-22T20:35:41Z",
-        "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.117735,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-          "first_seen_at": "2026-11-22T20:35:41Z",
-          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.117735,
-          "priority": 4
-        },
-        {
-          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
-          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
-          "first_seen_at": "2026-11-23T15:02:11Z",
-          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.200547,
-          "priority": 1
-        },
-        {
-          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
-          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
-          "first_seen_at": "2026-11-21T21:45:06Z",
-          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.060868,
-          "priority": 3
-        },
-        {
-          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
-          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
-          "first_seen_at": "2026-11-19T21:00:44Z",
-          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.014895,
-          "priority": 3
-        },
-        {
-          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
-          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
-          "first_seen_at": "2026-11-20T16:18:32Z",
-          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.026007,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-26T01:23:00Z",
-      "selected": {
-        "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
-        "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
-        "first_seen_at": "2026-11-23T15:02:11Z",
-        "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.185421,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
-          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
-          "first_seen_at": "2026-11-23T15:02:11Z",
-          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.185421,
-          "priority": 1
-        },
-        {
-          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
-          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
-          "first_seen_at": "2026-11-21T21:45:06Z",
-          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.056277,
-          "priority": 3
-        },
-        {
-          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
-          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
-          "first_seen_at": "2026-11-19T21:00:44Z",
-          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.013772,
-          "priority": 3
-        },
-        {
-          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-          "first_seen_at": "2026-11-22T20:35:41Z",
-          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.108855,
-          "priority": 4
-        },
-        {
-          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
-          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
-          "first_seen_at": "2026-11-20T16:18:32Z",
-          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.024045,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-26T07:23:00Z",
       "selected": {
@@ -207,7 +65,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.011581,
+        "score": 0.010814,
         "priority": 3
       },
       "stories": [
@@ -219,7 +77,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.011581,
+          "score": 0.010814,
           "priority": 3
         },
         {
@@ -230,7 +88,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.15592,
+          "score": 0.145593,
           "priority": 1
         },
         {
@@ -241,7 +99,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.047323,
+          "score": 0.044189,
           "priority": 3
         },
         {
@@ -252,7 +110,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.091535,
+          "score": 0.085473,
           "priority": 4
         },
         {
@@ -263,7 +121,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.02022,
+          "score": 0.01888,
           "priority": 4
         }
       ]
@@ -338,19 +196,140 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-26T19:23:00Z",
+      "selected": {
+        "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
+        "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
+        "first_seen_at": "2026-11-20T16:18:32Z",
+        "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.014297,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
+          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
+          "first_seen_at": "2026-11-20T16:18:32Z",
+          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.014297,
+          "priority": 4
+        },
+        {
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.033462,
+          "priority": 3
+        },
+        {
+          "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
+          "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
+          "first_seen_at": "2026-11-19T21:00:44Z",
+          "summary": "Giga Energy, a developer of modular data centers, has signed a 10-year, $1 billion deal to lease an under-construction data center in Hunt County to an unidentified U.S.-based AI cloud computing services company. Hunt County, part of the Dallas-Fort Worth metro area, is roughly 55 miles northeast of Dallas. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.008189,
+          "priority": 3
+        },
+        {
+          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+          "first_seen_at": "2026-11-23T15:02:11Z",
+          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.110252,
+          "priority": 4
+        },
+        {
+          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
+          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
+          "first_seen_at": "2026-11-22T20:35:41Z",
+          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.064725,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-27T01:23:00Z",
+      "selected": {
+        "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
+        "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
+        "first_seen_at": "2026-11-22T20:35:41Z",
+        "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
+        "coverage": 1,
+        "score": 0.054427,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
+          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
+          "first_seen_at": "2026-11-22T20:35:41Z",
+          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.054427,
+          "priority": 4
+        },
+        {
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.028138,
+          "priority": 3
+        },
+        {
+          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+          "first_seen_at": "2026-11-23T15:02:11Z",
+          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.092711,
+          "priority": 4
+        },
+        {
+          "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
+          "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
+          "first_seen_at": "2026-11-20T16:18:32Z",
+          "summary": "Records show Texas Tech Board Chair Cody Campbell pressed Fermi’s former CEO to give him a controlling role and a contract for his oil and gas company worth millions of dollars in stock options. Tech holds Fermi’s land lease.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.012023,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://siliconangle.com/2026/11/18/molecular-discovery-speeds-up-texas-m-supercomputing-dellatsc26/",
-      "title": "AI and supercomputing merge as universities build GPU clusters at cloud-provider scale",
-      "shown_at": "2026-11-19T01:23:00Z"
-    },
-    {
-      "url": "https://www.texasobserver.org/a-tale-of-two-industries-data-centers-gambling/",
-      "title": "Data Centers and Gambling Show How Power Works at the Texas Capitol",
-      "shown_at": "2026-11-19T07:23:00Z"
-    },
     {
       "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
       "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
@@ -475,6 +454,16 @@
       "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
       "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
       "shown_at": "2026-11-25T19:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+      "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+      "shown_at": "2026-11-26T01:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/giga-energy-nails-down-1b-lease-with-tech-company-for-new-data-center-in-hunt-county/",
+      "title": "Giga Energy Nails Down $1B Lease With Tech Company for New Data Center in Hunt County",
+      "shown_at": "2026-11-26T07:23:00Z"
     }
   ],
   "feeds": [
@@ -486,7 +475,7 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "882bea62dde68e7a2687f57bfb144caf3721b27506caab2efa21416707c8d60a"
+      "sha256": "eca7468b89adb4e7d3efbe72b05709aaa161e84c4fdd2ef103bdc70a9569145c"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
@@ -503,11 +492,13 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1430,
-      "sha256": "75fd0f2bfbe7643664680a04212e3de2b7a116a493981ff1c3597f61803a999d"
+      "sha256": "71cf394fd736a079b46af379141b60071871a93ed39a75db4716fc09aa19b0d3"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "49c429d6e758a6e50791713be922048bcd4551bb96c10211ebf985fbad5eb680"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -519,7 +510,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "dffd9ac20b7217d020cff1ad481e4d414f137eec433d742aba4300259872a6da"
+      "sha256": "d7da1e38ce45c6b4344c7867e1dfb964cd697d54cae2463404d4bbe1d248917e"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -535,19 +526,19 @@
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "e4e8459e0e3f67ac7e6ce941e6ff7dd9318fc0f914bd4dde660168b0536ce0b0"
+      "sha256": "6f570e6334d1f83279b2b87a09203fe4e21bf47b7a09470cc993d4bec91ca68e"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
       "status": "ok",
       "items": 60,
-      "sha256": "c28166e655a025979de873eae11a6329572aad66ff31e21327cd0e5dfc61ca9e"
+      "sha256": "d2f0c8dd68e331938cf201d44372e81c5603133d46f2e78b8326a18bea2db821"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "3dcbacafcdbec329004f90dd8afa99d7b0c6dee53a99b69671f0d75104c011d3"
+      "sha256": "8ab918afb06ddb2871d6c017c22283ed46314b86ba9bd2c8a6a7173b7d3c4506"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
@@ -559,17 +550,17 @@
       "etag": "\"5bb0aa41086d52370cf21a5e94699dda\"",
       "last_modified": "Mon, 23 Nov 2026 15:02:11 GMT",
       "failures": 0,
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "sha256": "d2429aa41fe2d772a271aa9a22f93c2207feb2fa2d817a9853c503f2d50d0815",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "882bea62dde68e7a2687f57bfb144caf3721b27506caab2efa21416707c8d60a",
-      "etag": "\"6b0755b1-a1db\"",
-      "last_modified": "Wed, 25 Nov 2026 21:40:01 GMT"
+      "sha256": "eca7468b89adb4e7d3efbe72b05709aaa161e84c4fdd2ef103bdc70a9569145c",
+      "etag": "\"6b07d9ea-a15b\"",
+      "last_modified": "Thu, 26 Nov 2026 07:04:10 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
@@ -580,40 +571,40 @@
       "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "29391b113c634082a9e8b94394882dbd1da6e80473f5311d5ae8c161e0d5daf0",
-      "etag": "\"1795646137\"",
-      "last_modified": "Wed, 25 Nov 2026 22:35:37 GMT"
+      "etag": "\"1795684931\"",
+      "last_modified": "Thu, 26 Nov 2026 09:22:11 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "75fd0f2bfbe7643664680a04212e3de2b7a116a493981ff1c3597f61803a999d"
+      "sha256": "71cf394fd736a079b46af379141b60071871a93ed39a75db4716fc09aa19b0d3"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"92ef700b8be402db01cd5fff9f416316-gzip\"",
-      "last_modified": "Mon, 23 Nov 2026 18:13:00 GMT",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
-      "ok_at": "2026-11-25T22:40:04Z",
+      "parser_version": 2,
       "sha256": "49c429d6e758a6e50791713be922048bcd4551bb96c10211ebf985fbad5eb680",
-      "parser_version": 2
+      "etag": "\"d42eb2812ecd3edf425a87993c37be6d-gzip\"",
+      "last_modified": "Wed, 25 Nov 2026 22:53:52 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "fa2cca78c78e019436d78b4cba76429c1f231749bd86d06af111f9750fe7c825"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "dffd9ac20b7217d020cff1ad481e4d414f137eec433d742aba4300259872a6da",
-      "etag": "\"be3d2d3c4a3d8d24d4febc4a07c75d1f\"",
-      "last_modified": "Wed, 25 Nov 2026 22:29:23 GMT"
+      "sha256": "d7da1e38ce45c6b4344c7867e1dfb964cd697d54cae2463404d4bbe1d248917e",
+      "etag": "\"0b4899290c5950bf411a204c921fc10a\"",
+      "last_modified": "Thu, 26 Nov 2026 02:56:35 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -634,30 +625,30 @@
       "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e4e8459e0e3f67ac7e6ce941e6ff7dd9318fc0f914bd4dde660168b0536ce0b0",
-      "etag": "W/\"63a8f4f40efb763f3dc2a890049e5ff0\""
+      "sha256": "6f570e6334d1f83279b2b87a09203fe4e21bf47b7a09470cc993d4bec91ca68e",
+      "etag": "W/\"762beafcf43a74954486f2c0827577e9\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c28166e655a025979de873eae11a6329572aad66ff31e21327cd0e5dfc61ca9e",
-      "last_modified": "Wed, 25 Nov 2026 11:33:44 GMT"
+      "sha256": "d2f0c8dd68e331938cf201d44372e81c5603133d46f2e78b8326a18bea2db821",
+      "last_modified": "Thu, 26 Nov 2026 03:01:34 GMT"
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "3dcbacafcdbec329004f90dd8afa99d7b0c6dee53a99b69671f0d75104c011d3"
+      "sha256": "8ab918afb06ddb2871d6c017c22283ed46314b86ba9bd2c8a6a7173b7d3c4506"
     },
     "https://www.texasobserver.org/feed/": {
       "etag": "W/\"a939d4e34b4392f43dee878484c4a59a\"",
       "last_modified": "Wed, 25 Nov 2026 00:02:37 GMT",
       "failures": 0,
-      "ok_at": "2026-11-25T22:40:04Z",
+      "ok_at": "2026-11-26T09:45:20Z",
       "sha256": "1c5a7279344a5be685eecb06227c64b363f51e0113dfcf65d123fe0e51cdd40c",
       "parser_version": 2
     }
