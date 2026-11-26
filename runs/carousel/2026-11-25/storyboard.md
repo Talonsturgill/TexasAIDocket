@@ -14,12 +14,12 @@ Base: THE SECOND FINDING. The release's news is where the nodules were, so the c
 
 `assets/js/deck/2026-11-25-secondfind-bespoke.js`. LOOK V2, tone PEOPLE (`TXT.V2_WORLD.people`, v2people), bespoke. People last ran November 20th; the release names people at the center, a navigator, a doctor, a patient and her family.
 
-THE ACCENT is gold #ffc83d and means ONE thing: A NODULE FLAGGED FOR A PERSON. Frames 1, 3, 4, 5, 6 and 7. Never on type or decoration, never red.
+THE ACCENT is gold #ffc83d and means ONE thing: A NODULE FLAGGED FOR A PERSON. Frames 1, 3, 4, 5 and 6. Never on type or decoration, never red.
 
 THE MATERIAL CODE: periwinkle acrylic or tab means a scan ordered for something else, frosted white means a screening exam. Frames 1, 2, 4, 5 and 6.
 
 CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, MATERIAL_CODE
-1. MOTIF_EVOLUTION of the gold bead: hidden in a scan (1), buried in folders (2, absent), a flagged line (3), counted (4), in a hand (5), passed along a counter (6), placed on an age rule (7), absent for the family (8) and the reader's scan (9).
+1. MOTIF_EVOLUTION of the gold bead: hidden in a scan (1), buried in folders (2, absent), a flagged line (3), counted (4), in a hand (5), passed along a counter (6), her own nodule as plain glass on an age rule, never gold, because no claim says the AI flagged it (7), absent for the family (8) and the reader's scan (9).
 2. CAMERA_MOVE: close glass (1), medium room (2), plan page (3), axonometric row (4), over the shoulder (5), high axonometric (6), raked rule (7), wide lawn (8), low room (9).
 3. MATERIAL_CODE periwinkle against frosted, never explained by a legend after frame 4.
 
@@ -48,7 +48,7 @@ Tonal arc: cool vivid glass on plum (1), dusky apricot into plum (2), bright cre
 | 04 | WIDE | three chassis glass_lung, lilac transmission glass with frosted bronchi, lit by the apricot key with a periwinkle rim, each with a contact shadow on the sweep, periwinkle and frosted scan_slab acrylic with worn edges, gold beads, OrthographicCamera |
 | 05 | MEDIUM | kit desk, office_chair, monitor edge on, kit person sit_read over the shoulder, oak card drawer with nine tabbed cards, TXT.interior office |
 | 06 | WIDE | chassis oak counter with reading bridge, card rack and three cropped kit hands, OrthographicCamera, TXT.interior workroom |
-| 07 | CLOSE | chassis age_rule, brushed steel with engraved ticks and cavity shading, a frosted white enamel block with a bevelled specular edge, a gold bead, lying on a weathered limestone ledge with lichen in long apricot sun casting onto the ledge, TXT.sky people |
+| 07 | CLOSE | chassis age_rule, brushed steel with engraved ticks and cavity shading, a frosted white enamel block with a bevelled specular edge, a clear lilac glass bead (never gold), lying on a weathered limestone ledge with lichen in long apricot sun casting onto the ledge, TXT.sky people |
 | 08 | WIDE | kit crowd of seven plus one at a kit live_oak trunk, kit yard, TXT.sky people, TXT.ground lawn |
 | 09 | MEDIUM | chassis ct_gantry, a satin white rounded shell with panel seams, vents and a periwinkle trim band, a deep bore shadow, an extended couch with rail and pillow, apricot window key, contact shadow under the pedestal, scuffs at the couch foot, TXT.interior imaging room |
 
@@ -66,7 +66,7 @@ primary_image:
 accent: '#ffc83d'
 data_in_art: null
 job: "Stop the thumb on a scan that holds a second thing."
-claims: [c2, c8, c11, c17]
+claims: [c2, c8, c31, c11, c17]
 numerals: []
 depth:
   eye: 0.3
@@ -81,7 +81,7 @@ risks: ["glass going grey and murky, so lilac attenuation and a periwinkle rim k
 type:
   kicker: "UTMB Health"
   hook: "The scan was for something else"
-  dek: "UTMB Health now has AI read radiology reports and flag lung nodules for a person to review. About two thirds of the nodules its program found came from patients who were not having lung cancer screening. Glass lung drawn to illustrate."
+  dek: "AI now reviews radiology reports at UTMB Health, and each lung nodule is flagged for a person to review. About two thirds of the nodules its program found came from patients who were not having lung cancer screening."
 ```
 
 ---
@@ -111,7 +111,7 @@ risks: ["clean clay folders, so dog ears, grime and a rubber band", "a mannequin
 type:
   kicker: "The old way"
   hook: "Weeks, sometimes months"
-  dek: "UTMB started its lung screening program in 2016. Before the AI, the review could take weeks or even months, and Dr. Shawn Nishi says the follow up window had often closed by then. Folders drawn to illustrate."
+  dek: "UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients."
 ```
 
 ---
@@ -125,7 +125,7 @@ primary_image:
 accent: '#ffc83d'
 data_in_art: null
 job: "Show the machine reading every report for one thing."
-claims: [c8, c9, c30]
+claims: [c8, c30]
 numerals: []
 depth:
   eye: 0
@@ -139,8 +139,8 @@ acceptance: ["the sheet owns at least 55 percent of the frame area", "the relief
 risks: ["a top down tray reading as a chart, so the curl and the crop"]
 type:
   kicker: "Every report"
-  hook: "Read for one word"
-  dek: "The system, developed with the company Bunkerhill, reviews radiology reports. Much of the chart review, once the slowest part of the work, is now automated. Page drawn to illustrate, with no real text."
+  hook: "Much of the chart review, automated"
+  dek: "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Page drawn to illustrate."
 ```
 
 ---
@@ -169,8 +169,8 @@ acceptance: ["exactly FIG.share_den lungs and FIG.share_num periwinkle slabs, as
 risks: ["three blobs at 432 px, so strong casts and spacing", "a count of nodules reading, so the dek says share"]
 type:
   kicker: "The turn"
-  hook: "2 of every 3 weren't screening scans"
-  dek: "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. Any scan that includes part of the lungs counts. Three lungs drawn to illustrate the share, never a count."
+  hook: "About 2 in 3 found outside screening"
+  dek: "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count."
 ```
 
 ---
@@ -199,7 +199,7 @@ risks: ["capsule hands, so crop to sleeve and card if needed"]
 type:
   kicker: "A person checks"
   hook: "Every flag goes to a navigator"
-  dek: "Each nodule is flagged for review by the patient navigator, Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate."
+  dek: "Each nodule is flagged for review by patient navigator Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate."
 ```
 
 ---
@@ -213,7 +213,7 @@ primary_image:
 accent: '#ffc83d'
 data_in_art: {figure: units, drives: "card count in the rack equals FIG.units and periwinkle tab count equals FIG.of_nine, read in the slide's own code"}
 job: "Show the whole chain, the machine at one end and people everywhere else."
-claims: [c15, c16, c11, c14]
+claims: [c15, c16, c31, c11, c14]
 numerals: []
 depth:
   eye: 2.4
@@ -236,10 +236,10 @@ type:
 slide: 7
 layout: DIAGRAM
 primary_image:
-  subject: a brushed steel age rule lying on a weathered limestone ledge outdoors in long apricot sun, engraved decade ticks, a raised frosted white enamel block spanning the screening ages, and one gold bead resting in the engraved groove far to the left at the patient's decade, periwinkle sky in the top third
+  subject: a brushed steel age rule lying on a weathered limestone ledge outdoors in long apricot sun, engraved decade ticks, a raised frosted white enamel block spanning the screening ages, and one clear lilac glass bead, her nodule, resting in the engraved groove far to the left at the patient's decade, plain glass and never gold because no claim says the AI flagged it, periwinkle sky in the top third
   rect: [0, 420, 1080, 980]
   bleeds: [left, right]
-accent: '#ffc83d'
+accent: none
 data_in_art: {figure: patient_decade, drives: "the bead sits at FIG.patient_decade and the enamel block spans FIG.age_low to FIG.age_high on one scale, read in the slide's own code"}
 job: "Make the distance between her age and screening physical."
 claims: [c18, c19, c20, c28]
@@ -251,15 +251,15 @@ depth:
   horizon: 0.3
   cues: [CAST_SHADOW, RELATIVE_SIZE, TEXTURE_GRADIENT, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, periwinkle sky with the type. Middle third, the steel rule across the frame with its engraved ticks, enamel block and gold bead. Bottom third, the weathered limestone ledge face with fossil pitting and lichen catching long apricot sun, the rule's cast shadow on the ledge top, and caliche ground falling into plum shade.", focal: "the gold bead in the 20s groove"}
-art: {technique: "physically based outdoor render, OrthographicCamera, chassis age_rule, TXT.sky people, TXT.ground", why_this_technique: "two ages on one scale make the distance a length", palette: "brushed steel, frosted enamel, gold bead, limestone, periwinkle sky", value_structure: "Frame median L* planned at 55. Lightest is the enamel's lit edge. Darkest is the ledge shade."}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, periwinkle sky with the type. Middle third, the steel rule across the frame with its engraved ticks, enamel block and gold bead. Bottom third, the weathered limestone ledge face with fossil pitting and lichen catching long apricot sun, the rule's cast shadow on the ledge top, and caliche ground falling into plum shade.", focal: "the glass bead in the 20s groove"}
+art: {technique: "physically based outdoor render, OrthographicCamera, chassis age_rule, TXT.sky people, TXT.ground", why_this_technique: "two ages on one scale make the distance a length", palette: "brushed steel, frosted enamel, lilac glass bead, limestone, periwinkle sky", value_structure: "Frame median L* planned at 55. Lightest is the enamel's lit edge. Darkest is the ledge shade."}
 verbatim: []
 acceptance: ["the rule spans at least 85 percent of the frame width", "the bead position and the enamel span are computed from figures.json in code", "no crash, car, injury, bed or surgery is drawn", "the patient is never drawn", "no numeral on this slide is absent from claims.json or figures.json"]
 risks: ["a progress bar reading, so engraved ticks, steel and a real ledge"]
 type:
   kicker: "Dr. Nishi's patient"
   hook: "She was in her 20s"
-  dek: "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. A biopsy showed lung cancer, and she had surgery intended to cure it. Federal screening guidance starts at 50."
+  dek: "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80."
 ```
 
 ---
@@ -289,7 +289,7 @@ risks: ["identical strides and mannequins, so stand poses, mixed builds, distanc
 type:
   kicker: "Her family"
   hook: "Seven or eight relatives"
-  dek: "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. The disease was hereditary, so her family members needed testing too. Family drawn to illustrate."
+  dek: "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account the disease was hereditary, so her family members needed testing too. Family drawn to illustrate."
 ```
 
 ---
@@ -318,6 +318,6 @@ acceptance: ["the gantry fills at least 45 percent of the frame", "it reads as a
 risks: ["a doughnut, so seams, rails and the bore shadow"]
 type:
   kicker: "What to ask"
-  hook: "Any chest scan can find one"
+  hook: "Any scan touching the lungs counts"
   dek: "Federal guidance covers screening for adults aged 50 to 80 with a 20 pack-year smoking history who smoke now or quit within the past 15 years. At UTMB a nodule counts on any scan that includes part of the lungs. Ask a doctor what yours showed."
 ```
