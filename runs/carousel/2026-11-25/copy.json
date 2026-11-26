@@ -76,27 +76,6 @@
   "S4": {
    "n": 4,
    "file": "slide-04.html",
-   "kicker": "The turn",
-   "headline": "About 2 in 3 found outside screening",
-   "claims": [
-    "c17",
-    "c10"
-   ],
-   "cite": "c17 c10",
-   "body": "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.",
-   "labels": [],
-   "strings": [
-    "texasaidocket.com",
-    "About 2 in 3 found outside screening",
-    "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.",
-    "The turn",
-    "04 / 09",
-    "c17 c10"
-   ]
-  },
-  "S5": {
-   "n": 5,
-   "file": "slide-05.html",
    "kicker": "A person checks",
    "headline": "Every flag goes to a navigator",
    "claims": [
@@ -113,13 +92,13 @@
     "Every flag goes to a navigator",
     "Each nodule is flagged for review by patient navigator Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate.",
     "A person checks",
-    "05 / 09",
+    "04 / 09",
     "c11 c12 c13 c14"
    ]
   },
-  "S6": {
-   "n": 6,
-   "file": "slide-06.html",
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
    "kicker": "Who decides",
    "headline": "It flags. People decide.",
    "claims": [
@@ -141,11 +120,32 @@
     "It flags. People decide.",
     "Dr. Nishi calls the AI an assistant, not a decision maker. The release says people stay at the center while it works in the background.",
     "Who decides",
-    "06 / 09",
+    "05 / 09",
     "c15 c16 c31 c11 c14",
     "flags",
     "checks and ranks",
     "decides"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The turn",
+   "headline": "About 2 in 3 found outside screening",
+   "claims": [
+    "c17",
+    "c10"
+   ],
+   "cite": "c17 c10",
+   "body": "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 2 in 3 found outside screening",
+    "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.",
+    "The turn",
+    "06 / 09",
+    "c17 c10"
    ]
   },
   "S7": {

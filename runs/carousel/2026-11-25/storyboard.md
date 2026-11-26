@@ -6,6 +6,10 @@ UTMB Health announced on November 19th that AI now supports its lung cancer scre
 
 Docket item tx-2026-0260, Galveston County, health-and-education.
 
+## Order, changed after the flow critic
+
+The flow critic found the turn (two of every three) breaking the process run of report, navigator and decision, and sitting far from the patient it sets up. Yesterday's judges asked for the same and it was not taken. The order is now report (3), navigator (4), who decides (5), the turn (6), her 20s (7).
+
 ## Why this treatment, and what was grafted
 
 Base: THE SECOND FINDING. The release's news is where the nodules were, so the cover draws a scan field covering part of a glass lung with a gold bead in the overlap, and the bead moves through the deck. Grafted from THE FLAG AND THE HAND: frame 6's single counter with three stations (flags, checks and ranks, decides), and the empty CT couch close. Declined from THE WINDOW: the sash window motif, because it asks a reader to learn a metaphor and a raised sash reads as a result the record does not have; its honesty guard (no after adoption timing, Bunkerhill's 80 percent kept off the slides) is kept.
@@ -19,8 +23,8 @@ THE ACCENT is gold #ffc83d and means ONE thing: A NODULE FLAGGED FOR A PERSON. F
 THE MATERIAL CODE: periwinkle acrylic or tab means a scan ordered for something else, frosted white means a screening exam. Frames 1, 2, 4, 5 and 6.
 
 CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
-1. MOTIF_EVOLUTION of the gold bead: hidden in a scan (1), buried in folders (2, absent), a flagged line (3), counted (4), in a hand (5), passed along a counter (6), her own nodule as plain glass on an age rule, never gold, because no claim says the AI flagged it (7), absent for the family (8) and the reader's scan (9).
-2. CAMERA_MOVE: close glass (1), medium room (2), plan page (3), axonometric row (4), over the shoulder (5), high axonometric (6), raked rule (7), wide lawn (8), low room (9).
+1. MOTIF_EVOLUTION of the gold bead: hidden in a scan (1), buried in folders (2, absent), a flagged line (3), in a hand (4), passed along a counter (5), counted in the turn (6), her own nodule as plain glass on an age rule, never gold, because no claim says the AI flagged it (7), absent for the family (8) and for the reader's scan (9). The close restages the cover's glass lung, unflagged, under three scan panes.
+2. CAMERA_MOVE: close glass (1), medium room (2), plan page (3), over the shoulder (4), high axonometric counter (5), axonometric row (6), raked rule (7), chest height lawn (8), low three quarter glass from the other side (9).
 3. VALUE_ARC from cool vivid glass on plum (1) through the warm window office and workroom (5, 6) to the warmest lawn light (8) and the settled warm room (9), one direction, never black. The material code (periwinkle against frosted) is held on frames 1, 2, 4, 5 and 6.
 
 ## THE NINE BEATS
@@ -45,9 +49,9 @@ Tonal arc: cool vivid glass on plum (1), dusky apricot into plum (2), bright cre
 | 01 | CLOSE | chassis glass_lung, MeshPhysical transmission with lilac attenuation, frosted bronchi, chassis scan_slab rounded acrylic, nodule_bead gold, TXT.studio people, TXT.contact |
 | 02 | MEDIUM | chassis chart_cart with nine manila folders, tabs, dog ears and a rubber band, kit person cropped, TXT.interior records room |
 | 03 | CLOSE | TXBENCH relief of one report sheet, cream paper with tooth and a fold crease under the chassis key, raised plum ink lines, a gold foil line, a steel clip casting onto the paper, the corner curled and worn |
-| 04 | WIDE | three chassis glass_lung, lilac transmission glass with frosted bronchi, lit by the apricot key with a periwinkle rim, each with a contact shadow on the sweep, periwinkle and frosted scan_slab acrylic with worn edges, gold beads, OrthographicCamera |
-| 05 | MEDIUM | kit desk, office_chair, monitor edge on, kit person sit_read over the shoulder, oak card drawer with nine tabbed cards, TXT.interior office |
-| 06 | WIDE | chassis oak counter with reading bridge, card rack and three cropped kit hands, OrthographicCamera, TXT.interior workroom |
+| 04 | MEDIUM | kit desk, office_chair, monitor edge on, kit person sit_read over the shoulder, oak card drawer with nine tabbed cards, TXT.interior office |
+| 05 | WIDE | chassis oak counter with reading bridge, card rack and three cropped kit hands, OrthographicCamera, TXT.interior workroom |
+| 06 | WIDE | three chassis glass_lung, lilac transmission glass with frosted bronchi, lit by the apricot key with a periwinkle rim, each with a contact shadow on the sweep, periwinkle and frosted scan_slab acrylic with worn edges, gold beads, OrthographicCamera |
 | 07 | CLOSE | chassis age_rule, brushed steel with engraved ticks and cavity shading, a frosted white enamel block with a bevelled specular edge, a clear lilac glass bead (never gold), lying on a weathered limestone ledge with lichen in long apricot sun casting onto the ledge, TXT.sky people |
 | 08 | WIDE | kit crowd of seven plus one at a kit live_oak trunk, kit yard, TXT.sky people, TXT.ground lawn |
 | 09 | MEDIUM | a built light table with lit glass, an apricot torso relief and three bevelled periwinkle acrylic panes over flat cut glass lungs, contact shadows on the glass, replacing the planned chassis ct_gantry, a satin white rounded shell with panel seams, vents and a periwinkle trim band, a deep bore shadow, an extended couch with rail and pillow, apricot window key, contact shadow under the pedestal, scuffs at the couch foot, TXT.interior imaging room |
@@ -83,7 +87,6 @@ type:
   hook: "The scan was for something else"
   dek: "AI now reviews radiology reports at UTMB Health, and each lung nodule is flagged for a person to review. About two thirds of the nodules its program found came from patients who were not having lung cancer screening."
 ```
-
 ---
 ```yaml
 slide: 2
@@ -113,7 +116,6 @@ type:
   hook: "Weeks, sometimes months"
   dek: "UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients. Folders drawn to illustrate."
 ```
-
 ---
 ```yaml
 slide: 3
@@ -142,10 +144,65 @@ type:
   hook: "Much of the chart review, automated"
   dek: "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Pages drawn to illustrate."
 ```
-
 ---
 ```yaml
 slide: 4
+layout: OBJECT_AND_CAPTION
+primary_image:
+  subject: a navigator at a desk seen over the shoulder and three quarters away, face not shown, lifting the front card from an oak card drawer of nine cards, six with periwinkle tabs and three frosted, the front card with a gold flag, a monitor turned edge on and illegible, big apricot window light from the left
+  rect: [0, 380, 1080, 970]
+  bleeds: [bottom, left]
+accent: '#ffc83d'
+data_in_art: {figure: units, drives: "the card count equals FIG.units and periwinkle tabs equal FIG.of_nine, read in the slide's own code"}
+job: "Put a person on the other end of every flag."
+claims: [c11, c12, c13, c14]
+numerals: []
+depth:
+  eye: 1.25
+  horizon: 0.4
+  cues: [CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, FORM_SHADING]
+  subject_at: {X: 0, Z: 0}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the plum wall and window frame with the type in the right column. Middle third, the navigator's shoulder and arm over the desk, the monitor edge on, the window's apricot light across the desk. Bottom third, the oak desk top and card drawer with nine tabbed cards and her hand lifting the gold flagged front card, wood grain and card edges in raking light with contact shadows.", focal: "the hand lifting the gold flagged card"}
+art: {technique: "physically based interior render, kit person, desk, office_chair, monitor, index card drawer, TXT.interior", why_this_technique: "the navigator is a named person, so the frame is her desk", palette: "oak, oyster cards, periwinkle and frosted tabs, plum cardigan, apricot window", value_structure: "Frame median L* planned at 48. Lightest is the window. Darkest is the wall shade behind the type."}
+verbatim: []
+acceptance: ["the desk and drawer fill at least 40 percent of the frame", "exactly FIG.units cards, FIG.of_nine with periwinkle tabs, asserted in code", "the monitor shows no legible element", "the person is three quarters away with no face and is not a capsule", "no numeral on this slide is absent from claims.json or figures.json"]
+risks: ["capsule hands, so crop to sleeve and card if needed"]
+type:
+  kicker: "A person checks"
+  hook: "Every flag goes to a navigator"
+  dek: "Each nodule is flagged for review by patient navigator Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate."
+```
+---
+```yaml
+slide: 5
+layout: DIAGRAM
+primary_image:
+  subject: one continuous oak counter seen high three quarter axonometric in a bright workroom, at its far left a small brushed steel reading bridge glowing cyan over a drawer of white cards with gold flags rising behind it, in the middle two plum sleeved hands setting nine flagged cards into an oak rack, at the right a white coat cuff and a pen resting over the front card, three plum pills reading flags, checks and ranks, decides
+  rect: [0, 280, 1080, 430]
+  bleeds: [left, right]
+accent: '#ffc83d'
+data_in_art: {figure: units, drives: "card count in the rack equals FIG.units and periwinkle tab count equals FIG.of_nine, read in the slide's own code"}
+job: "Show the whole chain, the machine at one end and people everywhere else."
+claims: [c15, c16, c31, c11, c14]
+numerals: []
+depth:
+  eye: 2.4
+  horizon: 0
+  cues: [CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, FORM_SHADING]
+  subject_at: {X: 0, Z: 0}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the workroom wall with the type. Middle third, the oak counter across the frame with its three stations. Bottom third, the counter's rounded front edge and drawer fronts in oak with grain and a worn edge, the cast shadow of the counter on the floor, the card rack's slots and the doctor's cuff shadow on the counter top.", focal: "the navigator's hands at the rack in the middle"}
+art: {technique: "physically based interior render, OrthographicCamera, chassis counter, reading bridge, card rack, kit person cropped hands", why_this_technique: "a hand off reads best as one counter with three stations", palette: "oak, brushed steel, cyan glow, oyster cards, plum sleeves, white coat", value_structure: "Frame median L* planned at 55. Lightest is the white coat cuff. Darkest is the shade under the counter."}
+verbatim: []
+acceptance: ["the counter spans the full frame width", "three stations read as three different people or tools at 432 px", "the machine is the smallest station", "three pills read flags, checks and ranks, decides", "no frame element shows the AI deciding", "no numeral on this slide is absent from claims.json or figures.json", "the oak counter spans the frame and stands at least 60 px tall at 432 px, and its three stations are each at least 70 px wide"]
+risks: ["three hands reading alike, so different sleeves and cuffs"]
+type:
+  kicker: "Who decides"
+  hook: "It flags. People decide."
+  dek: "Dr. Nishi calls the AI an assistant, not a decision maker. The release says people stay at the center while it works in the background."
+```
+---
+```yaml
+slide: 6
 layout: DIAGRAM
 primary_image:
   subject: three identical lilac glass lungs standing in a row on a studio sweep, seen axonometric from a raking three quarter, the first wearing a frosted white screening slab over the whole lung, the other two wearing periwinkle slabs, one across the bases and one across the upper lobes, each holding one gold bead inside its slab
@@ -172,65 +229,6 @@ type:
   hook: "About 2 in 3 found outside screening"
   dek: "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count."
 ```
-
----
-```yaml
-slide: 5
-layout: OBJECT_AND_CAPTION
-primary_image:
-  subject: a navigator at a desk seen over the shoulder and three quarters away, face not shown, lifting the front card from an oak card drawer of nine cards, six with periwinkle tabs and three frosted, the front card with a gold flag, a monitor turned edge on and illegible, big apricot window light from the left
-  rect: [0, 380, 1080, 970]
-  bleeds: [bottom, left]
-accent: '#ffc83d'
-data_in_art: {figure: units, drives: "the card count equals FIG.units and periwinkle tabs equal FIG.of_nine, read in the slide's own code"}
-job: "Put a person on the other end of every flag."
-claims: [c11, c12, c13, c14]
-numerals: []
-depth:
-  eye: 1.25
-  horizon: 0.4
-  cues: [CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, FORM_SHADING]
-  subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the plum wall and window frame with the type in the right column. Middle third, the navigator's shoulder and arm over the desk, the monitor edge on, the window's apricot light across the desk. Bottom third, the oak desk top and card drawer with nine tabbed cards and her hand lifting the gold flagged front card, wood grain and card edges in raking light with contact shadows.", focal: "the hand lifting the gold flagged card"}
-art: {technique: "physically based interior render, kit person, desk, office_chair, monitor, index card drawer, TXT.interior", why_this_technique: "the navigator is a named person, so the frame is her desk", palette: "oak, oyster cards, periwinkle and frosted tabs, plum cardigan, apricot window", value_structure: "Frame median L* planned at 48. Lightest is the window. Darkest is the wall shade behind the type."}
-verbatim: []
-acceptance: ["the desk and drawer fill at least 40 percent of the frame", "exactly FIG.units cards, FIG.of_nine with periwinkle tabs, asserted in code", "the monitor shows no legible element", "the person is three quarters away with no face and is not a capsule", "no numeral on this slide is absent from claims.json or figures.json"]
-risks: ["capsule hands, so crop to sleeve and card if needed"]
-type:
-  kicker: "A person checks"
-  hook: "Every flag goes to a navigator"
-  dek: "Each nodule is flagged for review by patient navigator Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate."
-```
-
----
-```yaml
-slide: 6
-layout: DIAGRAM
-primary_image:
-  subject: one continuous oak counter seen high three quarter axonometric in a bright workroom, at its far left a small brushed steel reading bridge glowing cyan over a drawer of white cards with gold flags rising behind it, in the middle two plum sleeved hands setting nine flagged cards into an oak rack, at the right a white coat cuff and a pen resting over the front card, three plum pills reading flags, checks and ranks, decides
-  rect: [0, 330, 1080, 1050]
-  bleeds: [left, right]
-accent: '#ffc83d'
-data_in_art: {figure: units, drives: "card count in the rack equals FIG.units and periwinkle tab count equals FIG.of_nine, read in the slide's own code"}
-job: "Show the whole chain, the machine at one end and people everywhere else."
-claims: [c15, c16, c31, c11, c14]
-numerals: []
-depth:
-  eye: 2.4
-  horizon: 0
-  cues: [CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, FORM_SHADING]
-  subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the workroom wall with the type. Middle third, the oak counter across the frame with its three stations. Bottom third, the counter's rounded front edge and drawer fronts in oak with grain and a worn edge, the cast shadow of the counter on the floor, the card rack's slots and the doctor's cuff shadow on the counter top.", focal: "the navigator's hands at the rack in the middle"}
-art: {technique: "physically based interior render, OrthographicCamera, chassis counter, reading bridge, card rack, kit person cropped hands", why_this_technique: "a hand off reads best as one counter with three stations", palette: "oak, brushed steel, cyan glow, oyster cards, plum sleeves, white coat", value_structure: "Frame median L* planned at 55. Lightest is the white coat cuff. Darkest is the shade under the counter."}
-verbatim: []
-acceptance: ["the counter spans the full frame width", "three stations read as three different people or tools at 432 px", "the machine is the smallest station", "three pills read flags, checks and ranks, decides", "no frame element shows the AI deciding", "no numeral on this slide is absent from claims.json or figures.json", "the oak counter spans the frame and stands at least 60 px tall at 432 px, and its three stations are each at least 70 px wide"]
-risks: ["three hands reading alike, so different sleeves and cuffs"]
-type:
-  kicker: "Who decides"
-  hook: "It flags. People decide."
-  dek: "Dr. Nishi calls the AI an assistant, not a decision maker. The release says people stay at the center while it works in the background."
-```
-
 ---
 ```yaml
 slide: 7
@@ -261,7 +259,6 @@ type:
   hook: "She was in her 20s"
   dek: "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80."
 ```
-
 ---
 ```yaml
 slide: 8
@@ -291,7 +288,6 @@ type:
   hook: "Seven or eight relatives"
   dek: "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account the disease was hereditary, so her family members needed testing too. Family drawn to illustrate."
 ```
-
 ---
 ```yaml
 slide: 9
