@@ -50,7 +50,7 @@ Tonal arc: cool vivid glass on plum (1), dusky apricot into plum (2), bright cre
 | 06 | WIDE | chassis oak counter with reading bridge, card rack and three cropped kit hands, OrthographicCamera, TXT.interior workroom |
 | 07 | CLOSE | chassis age_rule, brushed steel with engraved ticks and cavity shading, a frosted white enamel block with a bevelled specular edge, a clear lilac glass bead (never gold), lying on a weathered limestone ledge with lichen in long apricot sun casting onto the ledge, TXT.sky people |
 | 08 | WIDE | kit crowd of seven plus one at a kit live_oak trunk, kit yard, TXT.sky people, TXT.ground lawn |
-| 09 | MEDIUM | chassis ct_gantry, a satin white rounded shell with panel seams, vents and a periwinkle trim band, a deep bore shadow, an extended couch with rail and pillow, apricot window key, contact shadow under the pedestal, scuffs at the couch foot, TXT.interior imaging room |
+| 09 | MEDIUM | a built light table with lit glass, an apricot torso relief and three bevelled periwinkle acrylic panes over flat cut glass lungs, contact shadows on the glass, replacing the planned chassis ct_gantry, a satin white rounded shell with panel seams, vents and a periwinkle trim band, a deep bore shadow, an extended couch with rail and pillow, apricot window key, contact shadow under the pedestal, scuffs at the couch foot, TXT.interior imaging room |
 
 Showstopper frame: 01. Its depth is the glass lung's near lobes cut by the bottom edge against the plum sweep falling away behind, with the slab's contact shadow and caustic on the floor and the bead occluded by the slab's front face.
 Tonal arc: it opens vivid and cool on glass (1), sinks into dusky paper (2), lifts to the bright page (3), holds cool and measured (4), warms through the office and the workroom (5, 6), peaks warm outdoors (7, 8) and settles in the warm room (9).
@@ -140,17 +140,17 @@ risks: ["a top down tray reading as a chart, so the curl and the crop"]
 type:
   kicker: "Every report"
   hook: "Much of the chart review, automated"
-  dek: "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Page drawn to illustrate."
+  dek: "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Pages drawn to illustrate."
 ```
 
 ---
 ```yaml
 slide: 4
-layout: GRID
+layout: DIAGRAM
 primary_image:
   subject: three identical lilac glass lungs standing in a row on a studio sweep, seen axonometric from a raking three quarter, the first wearing a frosted white screening slab over the whole lung, the other two wearing periwinkle slabs, one across the bases and one across the upper lobes, each holding one gold bead inside its slab
-  rect: [0, 420, 1080, 1010]
-  bleeds: [bottom]
+  rect: [60, 160, 960, 520]
+  bleeds: []
 accent: '#ffc83d'
 data_in_art: {figure: share_den, drives: "the lung count equals FIG.share_den and the periwinkle slabs equal FIG.share_num, read in the slide's own code"}
 job: "Count the turn so a stranger sees two of every three."
@@ -297,9 +297,9 @@ type:
 slide: 9
 layout: FULL_BLEED
 primary_image:
-  subject: an empty CT scanner in an imaging room from a low three quarter at the couch foot, a satin white ring housing with a deep bore shadow, panel seams and a periwinkle trim band, the couch extended toward the camera with a folded pillow, apricot window light falling across the floor
-  rect: [0, 300, 1080, 1100]
-  bleeds: [left, right, bottom]
+  subject: a backlit reading table seen almost from overhead down the right of the frame, a modelled apricot torso relief on the lit glass with two flat cut glass lungs in its chest, pale and frosted where unscanned, and three bevelled periwinkle acrylic panes framed for the shoulder, the heart and the abdomen, each clipping part of a lung, the lung inside each pane a saturated lit slice with a bright section edge
+  rect: [470, 0, 610, 1350]
+  bleeds: [top, right, bottom]
 accent: none
 data_in_art: null
 job: "Hand the reader something to do."
@@ -311,10 +311,10 @@ depth:
   horizon: 0.4
   cues: [CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the imaging room wall, the window and the top of the gantry ring. Middle third, the satin white gantry with its bore shadow and trim band, and the couch running toward the camera. Bottom third, the couch foot with a folded pillow and rail, the pedestal and floor in apricot window light falling into a plum wash where the type sits, contact shadow under the pedestal and couch.", focal: "the bore of the scanner"}
-art: {technique: "physically based interior render, chassis ct_gantry, TXT.interior", why_this_technique: "the reader's own scan is the next one, and the room is waiting", palette: "satin white, periwinkle trim, apricot window, plum shade", value_structure: "Frame median L* planned at 52. Lightest is the white shell in the key. Darkest is the bore shadow."}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the shoulder pane and the top of the lit table on the right, the headline in the left column over the violet floor. Middle third, the torso relief with the lungs and the heart pane, the dek in the left column. Bottom third, the abdominal pane catching the lung bases and the plum cabinet edge, contact shadow on the floor, the quiet floor under the type.", focal: "the section edges where the panes cut the lungs"}
+art: {technique: "physically based interior render, a built light table with emissive glass, an extruded torso relief, bevelled acrylic panes, TXT.interior", why_this_technique: "a scan field laid over a body shows at a glance which part of the lung it touched", palette: "satin white, periwinkle trim, apricot window, plum shade", value_structure: "Frame median L* planned at 52. Lightest is the white shell in the key. Darkest is the bore shadow."}
 verbatim: []
-acceptance: ["the gantry fills at least 45 percent of the frame", "it reads as a scanner with a bore shadow, couch rail and seams, not a ring", "nobody lies on the couch", "no logo or legible screen", "no numeral on this slide is absent from claims.json or figures.json"]
+acceptance: ["the lit table and its panes fill at least 40 percent of the frame", "three periwinkle panes each clip part of a lung and none covers a whole lung, asserted in code", "the lung inside each pane reads as a cut slice with a section edge", "no gold appears on this frame", "no logo or legible screen", "no numeral on this slide is absent from claims.json or figures.json"]
 risks: ["a doughnut, so seams, rails and the bore shadow"]
 type:
   kicker: "What to ask"
