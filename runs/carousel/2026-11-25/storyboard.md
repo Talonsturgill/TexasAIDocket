@@ -30,6 +30,22 @@ CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
 VALUE CUT: frame 2
 (The cut from the lit glass cover into the dark records room is the old way's arrival, chosen. The close's warm room is reached by steps.)
 
+
+### Palette
+
+| token | hex | role |
+|---|---|---|
+| accent | #ffc83d | flag gold, a nodule flagged for a person, only |
+| other | #8c9cf0 | periwinkle, a scan ordered for something else |
+| screen | #f4f1ff | frosted white, a screening exam |
+| lilac | #d9c8ff | the glass of the teaching lung |
+| plum | #4a2a6e | shade, sleeves and the type seats |
+| oak | #c89b6a | desks, counters and the live oak's bark |
+| manila | #e9c98e | the old way's chart folders |
+| limestone | #e8dcc4 | the ledge under the age rule |
+| paper | #f7f1e4 | report sheets |
+| steel | #d6dbe0 | the age rule and the reader bridge |
+
 ## THE NINE BEATS
 
 1. THE SCAN WAS FOR SOMETHING ELSE. Know: UTMB's AI reads reports and flags nodules, and two in three came from non-screening scans. c2 c8 c11 c17.
