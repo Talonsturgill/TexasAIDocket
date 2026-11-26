@@ -184,9 +184,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 19445,
+      "render_ms": 19021,
       "ok": true,
-      "load_ms": 192,
+      "load_ms": 258,
       "canvases": [
         {
           "x": 0,
@@ -414,9 +414,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 22424,
+      "render_ms": 25970,
       "ok": true,
-      "load_ms": 133,
+      "load_ms": 156,
       "canvases": [
         {
           "x": 0,
@@ -444,7 +444,7 @@
       "file": "slide-03.html",
       "png": "slide-03.png",
       "console_errors": [
-        "TXBENCH: RELIEF {\"height_range\":117.43254678514253,\"materials\":8,\"cast_fraction\":0.927477366255144,\"area\":1,\"render_ms\":22054.5}",
+        "TXBENCH: RELIEF {\"height_range\":117.43254678514253,\"materials\":8,\"cast_fraction\":0.927477366255144,\"area\":1,\"render_ms\":22453}",
         "slide-03 gold fraction 0.0137"
       ],
       "page_errors": [],
@@ -615,9 +615,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 25989,
+      "render_ms": 26750,
       "ok": true,
-      "load_ms": 108,
+      "load_ms": 102,
       "canvases": [
         {
           "x": 0,
@@ -839,9 +839,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 54808,
+      "render_ms": 67110,
       "ok": true,
-      "load_ms": 152,
+      "load_ms": 155,
       "canvases": [
         {
           "x": 0,
@@ -1105,9 +1105,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 59597,
+      "render_ms": 58393,
       "ok": true,
-      "load_ms": 175,
+      "load_ms": 154,
       "canvases": [
         {
           "x": 0,
@@ -1305,9 +1305,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 23053,
+      "render_ms": 25108,
       "ok": true,
-      "load_ms": 190,
+      "load_ms": 149,
       "canvases": [
         {
           "x": 0,
@@ -1527,9 +1527,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 35855,
+      "render_ms": 38243,
       "ok": true,
-      "load_ms": 167,
+      "load_ms": 201,
       "canvases": [
         {
           "x": 0,
@@ -1721,9 +1721,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 81404,
+      "render_ms": 75698,
       "ok": true,
-      "load_ms": 181,
+      "load_ms": 220,
       "canvases": [
         {
           "x": 0,
@@ -1735,8 +1735,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 115.7,
-          "variance": 3392.7
+          "mean": 118.3,
+          "variance": 3244
         }
       ],
       "breather": false,
@@ -1951,9 +1951,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 21051,
+      "render_ms": 22716,
       "ok": true,
-      "load_ms": 185,
+      "load_ms": 198,
       "canvases": [
         {
           "x": 0,

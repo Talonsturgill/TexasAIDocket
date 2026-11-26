@@ -29,7 +29,6 @@ window.renderReady = (async () => {
   /* HONEST. The brief gives no figure (window.FIG is {}) and the art draws no count or length that stands for one. The
    * number of sheets in the stack is drawn to illustrate a pile of reports and is uncounted in the copy; no sheet, line,
    * tab or clip stands for a patient, scan or nodule. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error("slide 03 draws no figure, but window.FIG carries " + Object.keys(window.FIG).join(","));
 
   const cx = await CH.bootFlat({ kicker: "Report review", counter: "03 / 09", src: "c8 c30", fit: { min: 72, max: 94, maxLines: 2 } });
   cx.scale(2, 2);

@@ -167,8 +167,8 @@ window.renderReady = (async () => {
   if (people.length + HIDDEN !== ALL) throw new Error('drew ' + (people.length + HIDDEN) + ' relatives, FIG.relatives_high is ' + ALL);
 
   const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
-  CH.seat(cx, { sel: '.hook', a: 0.72, fade: 200 });
-  CH.seat(cx, { sel: '.dek', a: 0.62, fade: 150 });
+  CH.seat(cx, { sel: '.hook', a: 0.6, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.54, fade: 150 });
   CH.seat(cx, { sel: '.count', a: 0.85, fade: 90 });
   CH.seat(cx, { sel: '.kick', a: 0.92, fade: 110 });
   TXLOOK.footWash(cx, { a: 0.32, height: 240 });

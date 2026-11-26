@@ -32,7 +32,7 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "console error: TXBENCH: RELIEF {\"height_range\":117.43254678514253,\"materials\":8,\"cast_fraction\":0.927477366255144,\"area\":1,\"render_ms\":22054.5}",
+        "console error: TXBENCH: RELIEF {\"height_range\":117.43254678514253,\"materials\":8,\"cast_fraction\":0.927477366255144,\"area\":1,\"render_ms\":22453}",
         "console error: slide-03 gold fraction 0.0137"
       ],
       "bands": [
@@ -106,10 +106,10 @@
       ],
       "bands": [
         0.5105,
-        0.6639,
-        0.6029
+        0.6618,
+        0.6967
       ],
-      "band_ratio": 1.0169
+      "band_ratio": 1.1123
     },
     {
       "file": "slide-09.html",

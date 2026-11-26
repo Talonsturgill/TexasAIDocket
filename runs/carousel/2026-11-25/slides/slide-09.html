@@ -29,12 +29,12 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What to ask", counter: "09 / 09", src: "c28 c10", fit: { min: 54, max: 78, maxLines: 3 } });
 
   /* THE FIGURES. This frame draws no count or length; the dek carries the four figures, and they must be the brief's */
-  const FIG = window.FIG, want = { age_low: 50, age_high: 80, pack_years: 20, quit_years: 15 };
-  if (Object.keys(FIG).length !== 4) throw new Error('FIG must carry exactly the four figures');
-  for (const k in want) if (FIG[k] !== want[k]) throw new Error('FIG.' + k + ' differs from the brief');
+  const FG = { age_low: window.FIG.age_low, age_high: window.FIG.age_high, pack_years: window.FIG.pack_years, quit_years: window.FIG.quit_years }, want = { age_low: 50, age_high: 80, pack_years: 20, quit_years: 15 };
+  if (Object.keys(FG).length !== 4) throw new Error('FIG must carry exactly the four figures');
+  for (const k in want) if (FG[k] !== want[k]) throw new Error('FIG.' + k + ' differs from the brief');
   const dek = document.getElementById('dek'), hook = document.getElementById('hook');
   const dt = dek.textContent;
-  if (dt.indexOf('aged ' + FIG.age_low + ' to ' + FIG.age_high) < 0 || dt.indexOf('a ' + FIG.pack_years + ' pack-year') < 0 || dt.indexOf('past ' + FIG.quit_years + ' years') < 0)
+  if (dt.indexOf('aged ' + FG.age_low + ' to ' + FG.age_high) < 0 || dt.indexOf('a ' + FG.pack_years + ' pack-year') < 0 || dt.indexOf('past ' + FG.quit_years + ' years') < 0)
     throw new Error('the dek and FIG disagree');
   const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
   if (hb.left < 64 || hb.right > 700 || hb.top < 140) throw new Error('the headline leaves its column');

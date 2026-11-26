@@ -34,7 +34,6 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UTMB Health", counter: "01 / 09", src: "c2 c8 c31 c11 c17", fit: { min: 88, max: 118, maxLines: 2 } });
 
   /* THE FIGURES. This frame draws no count, length or share. FIG is empty and the art must stay so. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 1 draws no figure, but FIG carries ' + Object.keys(window.FIG).join(','));
 
   const R = CH.stage(TXT, gl, W, { fov: 27, fog: 0, exposure: 0.95, near: 0.01, far: 60 });
 

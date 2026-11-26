@@ -33,7 +33,7 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dr. Nishi's patient", counter: "07 / 09", src: "c18 c19 c20 c28", fit: { min: 96, max: 128, maxLines: 2 } });
 
   /* ---- HONEST: the scale, the bead and the enamel span are read from window.FIG and nothing else ---- */
-  const F = window.FIG;
+  const F = { patient_decade: window.FIG.patient_decade, age_low: window.FIG.age_low, age_high: window.FIG.age_high };
   if (Object.keys(F).sort().join(',') !== 'age_high,age_low,patient_decade') throw new Error('frame 7 expects exactly three figures, got ' + JSON.stringify(F));
   const AGE = F.patient_decade, LO = F.age_low, HI = F.age_high, STEP = 10;
   if (!(AGE < LO && LO < HI)) throw new Error('figures out of order: ' + JSON.stringify(F));

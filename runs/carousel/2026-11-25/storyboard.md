@@ -27,6 +27,9 @@ CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
 2. CAMERA_MOVE: close glass (1), medium room (2), plan page (3), over the shoulder (4), high axonometric counter (5), axonometric row (6), raked rule (7), chest height lawn (8), low three quarter glass from the other side (9).
 3. VALUE_ARC from cool vivid glass on plum (1) through the warm window office and workroom (5, 6) to the warmest lawn light (8) and the settled warm room (9), one direction, never black. The material code (periwinkle against frosted) is held on frames 1, 2, 4, 5 and 6.
 
+VALUE CUT: frame 2
+(The cut from the lit glass cover into the dark records room is the old way's arrival, chosen. The close's warm room is reached by steps.)
+
 ## THE NINE BEATS
 
 1. THE SCAN WAS FOR SOMETHING ELSE. Know: UTMB's AI reads reports and flags nodules, and two in three came from non-screening scans. c2 c8 c11 c17.
@@ -232,7 +235,7 @@ type:
 ---
 ```yaml
 slide: 7
-layout: DIAGRAM
+layout: OBJECT_AND_CAPTION
 primary_image:
   subject: a brushed steel age rule lying on a weathered limestone ledge outdoors in long apricot sun, engraved decade ticks, a raised frosted white enamel block spanning the screening ages, and one clear lilac glass bead, her nodule, resting in the engraved groove far to the left at the patient's decade, plain glass and never gold because no claim says the AI flagged it, periwinkle sky in the top third
   rect: [0, 420, 1080, 980]

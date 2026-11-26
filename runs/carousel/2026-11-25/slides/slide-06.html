@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Frame 6 of 9, THE TURN. Three equal glass lungs on one violet sweep: one bare in a frosted white enamel screening cradle,
-     each lung holds one gold find. FIG.share_num are crossed by a thin periwinkle acrylic scan slab, each at its own height, holding its bead.
+     each lung holds one gold find. FG.share_num are crossed by a thin periwinkle acrylic scan slab, each at its own height, holding its bead.
      Parallel camera, so the three units stay equal. -->
 <html>
 <head>
@@ -26,9 +26,9 @@ import * as THREE from '@@ASSETS@@/js/three.module.min.js';
 import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
-  const FIG = window.FIG;
-  const DEN = FIG.share_den, NUM = FIG.share_num;
-  if (!(Number.isInteger(DEN) && Number.isInteger(NUM) && NUM > 0 && NUM < DEN)) throw new Error('slide 4: FIG share is not a proper share ' + JSON.stringify(FIG));
+  const FG = { share_num: window.FIG.share_num, share_den: window.FIG.share_den };
+  const DEN = FG.share_den, NUM = FG.share_num;
+  if (!(Number.isInteger(DEN) && Number.isInteger(NUM) && NUM > 0 && NUM < DEN)) throw new Error('slide 4: FIG share is not a proper share ' + JSON.stringify(FG));
 
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The turn", counter: "06 / 09", src: "c17 c10", fit: { min: 78, max: 98, maxLines: 2 } });
