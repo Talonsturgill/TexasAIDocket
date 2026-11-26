@@ -11676,7 +11676,7 @@
     {
      "text": "The case appears on TCEQ's calendar of public meetings and hearings on permitting cases as an air new source review matter in Carson County.",
      "verbatim_quote": "Cancelation of Public Meeting: Fermi Equipment Holdco, LLC, 183462, PSDTX1704, AND GHGPSDTX271",
-     "source_url": "https://www.tceq.texas.gov/agency/decisions/hearings",
+     "source_url": "https://www.tceq.texas.gov/agency/decisions/hearings/public-meeting-fermi-equipment-holdco-llc-183462-psdtx1704-and-ghgpsdtx271",
      "source_title": "Calendar of Public Meetings and Hearings on Permitting Cases - Texas Commission on Environmental Quality",
      "source_type": "primary_official",
      "fetched": "2026-08-14",
@@ -11684,7 +11684,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-11-21",
+   "last_verified": "2026-11-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -11843,6 +11843,11 @@
     {
      "date": "2026-11-21",
      "note": "The commission's notice still shows the Carson County meeting on Fermi's air permits as canceled, with a new date still to be set.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-26",
+     "note": "The commission's notice still shows the Carson County meeting on Fermi's air permits as canceled. The hearings calendar no longer lists it, so both quotes now rest on the notice page.",
      "checked": true
     }
    ]
@@ -15869,7 +15874,15 @@
      "note": "The utility commission's record of the governor's audit directive still reads as cited, and so do ERCOT's updates to the commission.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "gov.texas.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-11-26",
+    "note": "gov.texas.gov refuses this project in robots.txt and the sources registry keeps the whole host off limits, measured 2026-11-26 by fetch_doc's live check on the item's own front door. Nothing was requested and nothing was routed around."
+   }
   },
   {
    "id": "tx-2026-0073",
@@ -16473,7 +16486,15 @@
      "note": "Pflugerville's order calling the charter election still reads as passed in the city's own legislative history.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "legistar1.granicus.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-11-26",
+    "note": "legistar1.granicus.com disallows this attachment path to this project in robots.txt, measured 2026-11-26 by fetch_doc's live robots check on the item's own front door. Nothing was requested and nothing was routed around."
+   }
   },
   {
    "id": "tx-2026-0076",

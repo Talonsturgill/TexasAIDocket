@@ -128,3 +128,7 @@ The run is long. The record and claims took the first hours. The deck took three
 <!-- gate-status:end -->
 
 **The score row reads STALE, and that is true.** The round 3 panel scored frame 8 before its type seats were lightened for the value cut at ship. Frames 1 to 7 and 9 were re-rendered byte-identical after the FIG guard rename, which also moves their timestamps past the score. No fourth round was run, because the round cap had shipped the deck and the change to frame 8 is to its type seats only.
+
+## CI on the pull request
+
+The first CI run on PR 516 went red in `gates` on "Nothing rotten in the record". CI judges against the actual date, November 26th, and three live items were five days past verification against a two-day limit. tx-2026-0057 was re-read at TCEQ: its cancelation notice still reads as published, the hearings calendar no longer lists the meeting, and the second claim was re-pointed to the notice page, where its quote appears verbatim. tx-2026-0072 (gov.texas.gov) and tx-2026-0075 (legistar1.granicus.com) sit behind measured robots refusals and now carry boundary declarations measured on November 26th, like their sibling items. Nothing was routed around. The site was rebuilt on the corrected record.
