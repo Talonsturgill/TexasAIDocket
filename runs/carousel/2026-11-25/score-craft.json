@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Bespoke, and it shows: every frame has its own world, camera and medium (studio glass on 1 and 6, records room on 2, TXBENCH paper relief on 3, office on 4, orthographic counter on 5, outdoor rule on 7, live oak lawn on 8, salmon sweep on 9). Not one picture nine times. The cover holds up. The glass lung fills about half the frame, the gold bead on the periwinkle slab is the one hot point, it is lit with a rim, and the type sits in the plum quiet above. It scores about 8. Frame 5's diagonal plate rail with nine gold flags and the three pills is the second strongest, at about 7.5. Frame 3's relief has paper tooth, raised greeked ink and a foil line with real casts, about 7. The clip at right reads as an unidentifiable ringed cylinder, and the planned flag tab on the gold line is missing. The rest are below a 7. Frame 2: the headline 'sometimes' and the whole dek sit over drawer handles that poke out between lines (around x 790, y 870 to 1060 at display size), so the type is not in quiet. The folder pile covers well under the planned 40 percent, in the lower right on a crude tube cart. Frame 4 has fused, clasped kit hands on the card. Small brown cubes float beside the card tray (about x 1130, y 1275 and 1310, and x 1470, y 1460 and 1500), which is a render artifact. The window geometry at top left is cropped awkwardly. Frame 6 is the turn, yet the three lungs fill only the top third. The bottom quarter under the dek is empty violet, and a stranger can't tell from the pixels which lung is screening (white tray) and which two are not (slabs). Frame 7's rule and bead are well made, but the lower right ledge is a mass of unlit, unresolved blocks, and the bead sits left of the 20 tick. Frame 8's figures are kit mannequins seen from behind. The eighth relative is only a pair of legs behind a trunk with crude toon-lined bark. Frame 9's lung fills about a third of the frame, lower right, and its type sits on a muddy violet blob wash over the salmon sweep, which reads as a plate. Overall: strong, but four or five frames lean on a default, a dead zone or an artifact, and that is below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Bespoke reading. The spine holds. One serif headline face, mono kicker, counter and site line on every frame. A violet and plum people palette throughout. Gold keeps one meaning, a nodule flagged for a person (bead on 1 and 6, foil line on 3, flag card on 4, plate flags on 5), and is absent on 2, 7, 8 and 9 as declared. Frame 9 restages the cover's glass lung unflagged as a real bookend, and frame 6 reuses the same lung model, so the motif changes state. The story runs in order. Docked for three things. Frame 9's salmon sweep sits outside the rest of the palette. Frame 8's brown and green canopy is the one frame that leaves the tone. The declared material code (periwinkle means another scan, frosted means screening) can't be read in the pixels on 2, 4 or 6. The storyboard's beat list also still shows the pre-reorder order (lines 32 to 40), although the shipped copy follows the corrected one."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide fact maps to a primary UTMB release quote or to USPSTF (c28). Every numeral traces: 2016 (c3 to program_start), 2 in 3 (c17 to share_num and share_den), 20s (c18), 50, 80, 20 and 15 (c28), and the ruler's drawn 20, 50 and 80 (patient_decade, age_low, age_high). The drawn counts match figures.json: 3 lungs and 2 slabs on 6, 9 flags on 5, 9 cards on 4, and 7 figures plus 1 occluded on 8. Bunkerhill's 80 percent is kept off, and the patient's nodule is drawn in plain glass, never gold, because no claim says the AI flagged it. That is careful work. Held to 8 by loose phrasing. The S9 headline 'At UTMB any scan touching the lungs counts' and S6's 'A nodule counts on any scan' paraphrase c10, which says such a nodule 'is now flagged for review'. 'Counts' leaves a reader unsure what it counts toward. S2's 'Before the AI' maps c5's 'the original process', which is a small inference. 'Federal screening guidance covers' can read as insurance coverage."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (UTMB Health uses AI from Bunkerhill to flag nodules), who decides (navigator Amanda Rodriguez, medical director Dr. Shawn Nishi, people not the machine), and why it is concrete (a woman in her 20s, a car accident scan, cancer, curative surgery, seven or eight relatives). Frame 9 gives the reader an action ('Ask a doctor what yours showed') and the federal criteria. Galveston is never named on a slide or in the caption, and there is no date for the November 19th announcement. The action is general rather than tied to a body or deadline, but this story has none."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook 'The scan was for something else' earns the swipe. Frame 2 pays with the old delay, the reordered process run (3, 4, 5) leads into the turn at 6, and the patient and family on 7 and 8 land the human stake before the close. Two weaknesses. The cover dek already states the two thirds figure, which takes the charge out of the frame labelled 'The turn'. Frames 4 and 5 both say a person reviews each flag, so one could merge without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, attributed and on house rules (no colons, dashes or banned words, and 'can't' isn't needed). The attribution is honest, but heavy. 'Dr. Nishi says' or 'recalls' appears five times across 5, 7 and 8 and in the caption. The boilerplate 'drawn to illustrate' closes five deks. Nothing reads as Texan beyond the live oak in the art. The caption's closing question 'Where you get scanned, who reads the report past the reason it was ordered?' is grammatically knotted. Accurate but institutional, more careful reporter than Texan who knows the subject."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A fresh subject and technique set against the last four decks (no. 83 drones, no. 84 rover, no. 85 exam rooms, no. 86 roof aerials): glass anatomy, a paper relief, a flag rail and an age rule. Familiar moves: the people tone and its periwinkle and plum palette last ran five days earlier on no. 83. The gold accent (#ffc83d) is close to no. 86's wonder gold (#ffcc00). A clinical AI subject follows no. 85's exam room deck within three days."
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 6, the turn, so the share explains itself: three large lungs filling the frame to the bottom edge, with the one screening lung visibly unlike the two found on other scans (white cradle against labelled periwinkle slabs, e.g. pills 'screening' and 'other scan'). Cut the two thirds sentence from the cover dek so the turn lands on frame 6 rather than frame 1.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The turn frame's three lungs fill only the top third, the bottom quarter is empty violet, and nothing a reader can see says which lung is screening and which two came from other scans, so 2 in 3 has to come from the type.",
+   "fix": "Pull the camera in and lower it so the three lungs fill the frame and run off the bottom edge with the headline over them. Add accent pills 'screening' under the white cradle lung and 'other scan' under the two slab lungs."
+  },
+  {
+   "slide": 2,
+   "problem": "The headline and dek sit over the filing cabinet wall, drawer handles show between the text lines, and the folder pile is a small object in the lower right on a crude tube cart, well under the planned 40 percent.",
+   "fix": "Move the camera so the cabinets fall off the left edge behind a plain plum wall carrying the type. Push the folder tower forward until it fills the right half and leans out past the right edge, as the storyboard planned."
+  },
+  {
+   "slide": 9,
+   "problem": "The close's lung fills about a third of the frame, lower right, and the type sits on a muddy violet blob wash that reads as a plate over the salmon sweep.",
+   "fix": "Scale the lung up to fill the right two thirds and run its bases off the bottom edge. Replace the blob with a sweep that darkens toward the left column, so the type sits in quiet the lighting made."
+  },
+  {
+   "slide": 4,
+   "problem": "Fused clasped kit hands on the card, small brown cubes floating beside the card tray (stray geometry), and an awkwardly cropped window frame at top left.",
+   "fix": "Delete the stray cubes. Crop the navigator to one sleeve and one hand lifting the flagged card from the drawer front, and drop the window geometry for a lit plum wall."
+  },
+  {
+   "slide": 8,
+   "problem": "Kit mannequins seen from behind, and the eighth relative is only legs behind a toon-lined bark trunk that breaks the render quality.",
+   "fix": "Re-texture the live oak trunk with real bark normals. Bring the eighth figure out to a visible shoulder and head at the trunk so the seven-plus-one count reads at feed size."
+  },
+  {
+   "slide": 7,
+   "problem": "The lower right ledge is a mass of unlit, unresolved blocks, and the glass bead sits left of the 20 tick, so the age reading is ambiguous.",
+   "fix": "Replace the block mass with the planned weathered limestone ledge under the apricot key, and seat the bead in the groove centred on the 20 tick."
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+{"criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Different pictures each made for its sentence. Only S1 passes the showstopper test at feed size. S5 has no dominant subject, the rail jammed into the top fifth with smudge washes behind pills. S9's lung fills a quarter of the frame with a visible type plate and empty salmon. S7's subject is crowded into the bottom third under the footer. S6 holds a gold nodule in every block so 2 in 3 can't be read, bases near black. S8 mannequin figures with torn hair. One showstopper, four competent, four leaning on a default, a dead zone or a plate."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "The spine holds and the story runs in order. S8's green leaves the palette, S9's salmon is the lightest frame, and gold is also a highlighter stripe on S3."},
+{"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every slide string traces, attribution held, vendor figure kept off. The copy.json note on drawn to illustrate is wrong. The S7 ruler prints tick numerals not in claims or figures."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What changed, who acts, the old cost and the share are clear, the patient story concrete. The only action names no place or route."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "Cover earns the swipe, the turn lands after the process frames, S7 to S8 escalates, S9 bookends. S3 and S5 overlap and the cover dek spends the turn."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on register, some release paraphrase, nothing regional beyond UTMB."},
+{"name": "variety", "weight": 0.10, "score": 7.5, "why": "Fresh vocabulary against recent neighbours; the v2 palette and serif over wash is the familiar move."}],
+"weighted_score": 7.19,
+"hard_fails": ["S7: the rendered age ruler prints tick numerals 10, 30, 40, 60, 70 and 90 that trace to no claim and no entry in figures.json."],
+"ship": false,
+"one_sentence_fix": "Rebuild S5 and S9 so one subject fills at least half the frame, and strip S7's unsourced ruler ticks.",
+"artwork_weakest_frames": [
+{"slide": 5, "problem": "No dominant subject, rail in the top fifth, smudge washes behind pills.", "fix": "Pull the camera back and down so the rail and hands cross the middle half, pills on their objects, no smudge washes."},
+{"slide": 9, "problem": "The lung group fills a quarter of the frame, a visible type plate, empty salmon upper right.", "fix": "Scale the group to the right two thirds bleeding off right and bottom, seat the type without a hard rectangle."},
+{"slide": 7, "problem": "Ruler crowded into the bottom third under the footer, ticks past the sourced range.", "fix": "Push in so the ruler runs through the frame centre, label only 20, 50 and 80."},
+{"slide": 6, "problem": "Every block holds a gold nodule so the share is invisible, block bases near black.", "fix": "Make the split read from the picture and lift the block bases with a violet bounce."},
+{"slide": 8, "problem": "Mannequin figures, torn hair, green out of palette.", "fix": "Regrade toward violet and magenta, fix hair, turn two figures three quarters."}]}

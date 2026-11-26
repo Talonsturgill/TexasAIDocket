@@ -1,0 +1,274 @@
+<!doctype html>
+<!-- Frame 6 of 9, THE TURN. Three equal glass lungs on one violet sweep: one bare in a frosted white enamel screening cradle,
+     each lung holds one gold find. FIG.share_num are crossed by a thin periwinkle acrylic scan slab, each at its own height, holding its bead.
+     Parallel camera, so the three units stay equal. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:790px; width:930px; text-align:left">About 2 in 3 found outside screening</h1>
+<p class="dek" data-follow="20" style="left:76px; width:900px; font-size:27px; line-height:1.36">About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.</p>
+<script>window.FIG = {"share_num": 2, "share_den": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const FIG = window.FIG;
+  const DEN = FIG.share_den, NUM = FIG.share_num;
+  if (!(Number.isInteger(DEN) && Number.isInteger(NUM) && NUM > 0 && NUM < DEN)) throw new Error('slide 4: FIG share is not a proper share ' + JSON.stringify(FIG));
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The turn", counter: "06 / 09", src: "c17 c10", fit: { min: 78, max: 98, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fog: 0, exposure: 0.95 });
+  TXT.studio(R, Object.assign(CH.studioOpts(), { w: 16, d: 6.4, h: 8, radius: 1.5, env: 1.0, hemi: 0.62, floor: 0x6b45c4, wall: 0x6f48cc, top: 0x4a38b0 }));
+  /* the sweep's floor carried on toward the camera, in the sweep's own front colour, so the type sits on violet floor */
+  {
+    const cF = new THREE.Color(0x6b45c4).lerp(new THREE.Color(TXLOOK.palette('people').shade), 0.18);
+    const apron = new THREE.Mesh(new THREE.PlaneGeometry(16, 30), new THREE.MeshStandardMaterial({ color: cF, roughness: 0.92, metalness: 0 }));
+    apron.rotation.x = -Math.PI / 2; apron.position.set(0, -0.0004, 3.2 + 15 - 0.02); apron.receiveShadow = true;
+    apron.material.userData.txSurface = false; R.scene.add(apron);
+  }
+
+  const PLINTH_H = 0.0, PL_W = 0.92, PL_D = 0.6;   /* no plinth: the lungs stand on the sweep */
+  const ROWZ = -1.15;
+  const rnd = CH.rng(404);
+
+  /* materials, named for what they are */
+  const resin = K.mat('frosted-resin-bronchi', { color: 0xfff1f7, roughness: 0.42, clearcoat: 0.8, clearcoatRoughness: 0.2, emissive: 0x3a2060, emissiveIntensity: 0.2 }, true);
+  const glass = CH.glassMat(K, 0xdcd8ff, 0x8e98ff);
+
+  /* THE LUNG, built here past the chassis pods: a broad base flattened and domed up by the diaphragm, a rounded apex,
+   * a flat medial face, the left lung narrower with a cardiac notch, real fissure grooves cut into the glass (oblique on
+   * both, horizontal on the right), and a frosted bronchial tree branching into every lobe. Metres, origin at the base. */
+  const HL = 1.1, GAPC = 0.2;                     /* lung height, centre offset of each lung from the midline */
+  const prof = (u) => (1.04 - 0.24 * u) * Math.sqrt(Math.max(0, 1 - Math.pow(u, 4))) * (1 + 0.04 * Math.sin(Math.PI * u));  /* broad base, rounded apex dome */
+  const rB = (side) => side < 0 ? 0.215 : 0.19;     /* right lung (patient's right, -x) broader than the left */
+  function lungShape(side, cx, cz, u) {            /* horizontal radius scale for a direction at height fraction u */
+    let k = 1;
+    { const m = Math.min(1, Math.max(0, -cx * side / 0.7)); k *= 1 - 0.5 * m * m * (3 - 2 * m); }  /* medial face, flattened smoothly */
+    if (side > 0 && cx < 0 && cz > -0.1) k *= 1 - 0.6 * Math.exp(-Math.pow((u - 0.25) / 0.17, 2)) * Math.min(1, cz + 0.4); /* cardiac notch */
+    return k;
+  }
+  function fissureD(side, x, y, z) {               /* distances to the fissure surfaces, metres */
+    const zn = z / 0.19, ln = Math.abs(x - side * GAPC) / 0.2;
+    const ob = y - (0.36 * HL - 0.24 * HL * zn + 0.06 * HL * ln);
+    const out = [ob];
+    if (side < 0) { const hz = y - 0.56 * HL; out.push(ob > 0 && z > -0.05 ? hz : 1); }
+    return out;
+  }
+  function lungGeo(side) {
+    const geo = new THREE.SphereGeometry(1, 128, 96), P = geo.attributes.position, v = new THREE.Vector3();
+    const R0 = rB(side), RZ = 0.19 / 0.2;
+    for (let i = 0; i < P.count; i++) {
+      v.fromBufferAttribute(P, i);
+      const hs = Math.hypot(v.x, v.z), cx = hs > 1e-6 ? v.x / hs : 0, cz = hs > 1e-6 ? v.z / hs : 0;
+      const t = Math.acos(Math.max(-1, Math.min(1, -v.y))) / Math.PI, TB = 0.2;
+      let r, y, u;
+      if (t < TB) { const q = t / TB; r = R0 * Math.sin(q * Math.PI / 2) * 0.96; y = 0.07 * HL * (1 - q * q) + 0.012 * Math.sin(q * Math.PI); u = 0.02; }
+      else { u = (t - TB) / (1 - TB); y = 0.012 + (HL - 0.012) * u; r = R0 * prof(u) * (u < 0.06 ? 0.96 + 0.04 * u / 0.06 : 1); }
+      r *= lungShape(side, cx, cz, u);
+      if (t >= TB && cx * side > 0.2) r *= 1 + 0.01 * Math.sin(u * Math.PI * 11) * Math.min(1, (cx * side - 0.2) * 2) * Math.sin(Math.PI * u);  /* faint rib impressions on the costal face */
+      let x = cx * r, z = cz * r * RZ;
+      /* groove the fissures into the glass */
+      const ds = fissureD(side, side * GAPC + x, y, z);
+      let g = 0; ds.forEach((d) => { g = Math.max(g, Math.exp(-Math.pow(d / 0.011, 2))); });
+      if (g > 0.001 && t >= TB) { const sh = 1 - 0.016 * g / Math.max(0.03, r); x *= sh; z *= sh; }
+      P.setXYZ(i, side * GAPC + x, y, z);
+    }
+    geo.computeVertexNormals();
+    return geo;
+  }
+  function insideLung(side, p) {
+    const u = (p.y - 0.012) / (HL - 0.012); if (u < 0.08 || u > 0.9) return false;
+    const dx = p.x - side * GAPC, hs = Math.hypot(dx, p.z / 0.95) || 1e-6;
+    const r = rB(side) * prof(u) * lungShape(side, dx / hs, p.z / 0.95 / hs, u) * 0.8;
+    return hs < r;
+  }
+  function bronchi(g) {
+    const tube = (pts, r) => g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map((q) => new THREE.Vector3(q[0], q[1], q[2]))), 24, r, 12, false), resin));
+    tube([[0, HL + 0.15, 0.0], [0, HL * 0.85, 0.005], [0, HL * 0.66, 0.01]], 0.03);
+    /* cartilage rings down the trachea and a rounded carina, so the airway is not a bare stick */
+    for (let yy = HL * 0.7; yy < HL + 0.14; yy += 0.034) { const ring = new THREE.Mesh(new THREE.TorusGeometry(0.031, 0.0055, 8, 28), resin); ring.rotation.x = Math.PI / 2; ring.position.set(0, yy, 0.004 + 0.006 * (HL - yy)); g.add(ring); }
+    { const car = new THREE.Mesh(new THREE.SphereGeometry(0.034, 24, 16), resin); car.scale.set(1.25, 0.8, 0.9); car.position.set(0, HL * 0.655, 0.01); g.add(car); }
+    [-1, 1].forEach((side) => {
+      const hil = [side * (GAPC - 0.02), HL * 0.55, 0.015];
+      tube([[0, HL * 0.66, 0.01], [side * 0.08, HL * 0.62, 0.015], hil], 0.019);
+      [0.3, 0.55].forEach((f) => { const q = new THREE.Vector3(0, HL * 0.66, 0.01).lerp(new THREE.Vector3(hil[0], hil[1], hil[2]), f); const ring = new THREE.Mesh(new THREE.TorusGeometry(0.02, 0.004, 8, 22), resin); ring.position.copy(q); ring.lookAt(new THREE.Vector3(hil[0], hil[1], hil[2])); g.add(ring); });
+      const targets = side < 0 ? [[0.24, 0.76, 0.0], [0.25, 0.42, 0.09], [0.22, 0.22, -0.06]] : [[0.21, 0.68, 0.02], [0.2, 0.24, -0.04]];
+      targets.forEach((tg) => {
+        const end = new THREE.Vector3(side * tg[0], HL * tg[1], tg[2]), st = new THREE.Vector3(hil[0], hil[1], hil[2]);
+        const lobar = st.clone().lerp(end, 0.55);
+        g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([st, st.clone().lerp(lobar, 0.5).add(new THREE.Vector3(0, 0, 0.01)), lobar]), 12, 0.012, 10, false), resin));
+        const branch = (a, dir, len, r, depth) => {
+          if (depth > 3) return;
+          let b2 = a.clone().add(dir.clone().multiplyScalar(len)), tries = 0;
+          while (!insideLung(side, b2) && tries < 6) { len *= 0.7; b2 = a.clone().add(dir.clone().multiplyScalar(len)); tries++; }
+          if (!insideLung(side, b2)) return;
+          const mid = a.clone().lerp(b2, 0.5).add(new THREE.Vector3((rnd() - 0.5) * 0.012, (rnd() - 0.5) * 0.012, (rnd() - 0.5) * 0.012));
+          g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a, mid, b2]), 8, r, 7, false), resin));
+          const n = depth < 2 ? 3 : 2;
+          for (let i = 0; i < n; i++) branch(b2, dir.clone().add(new THREE.Vector3((rnd() - 0.5) * 1.4, (rnd() - 0.5) * 1.2, (rnd() - 0.5) * 0.8)).normalize(), len * 0.7, r * 0.68, depth + 1);
+        };
+        const d0 = end.clone().sub(lobar).normalize();
+        for (let i = 0; i < 2; i++) branch(lobar, d0.clone().add(new THREE.Vector3((rnd() - 0.5) * 0.8, (rnd() - 0.5) * 0.8, (rnd() - 0.5) * 0.4)).normalize(), 0.09, 0.008, 0);
+      });
+    });
+  }
+  /* glass, the chassis lilac lung glass with a faint lilac glow of its own, so the transmission never sinks to charcoal */
+  glass.userData = glass.userData || {};
+  const lungGlass = glass.clone(); lungGlass.name = 'lilac-lung-glass'; lungGlass.emissive = new THREE.Color(0x6a46d8); lungGlass.emissiveIntensity = 0.32; lungGlass.attenuationColor = new THREE.Color(0xc8b4ff); lungGlass.attenuationDistance = 0.6;
+  lungGlass.ior = 1.22; lungGlass.thickness = 0.025;   /* calmer refraction, so the diaphragm base does not ripple */
+
+  /* THE MATERIAL CODE. Frosted white enamel (CH.SCREEN, slide 7's enamel) is a screening exam: a cradle around the whole lung's
+   * foot. Saturated periwinkle acrylic (CH.OTHER, the cover's scan slice) is a scan ordered for something else: a band that
+   * crosses only PART of the lung, with the gold bead caught inside it. */
+  const enamelScreen = new THREE.MeshPhysicalMaterial({ name: 'frosted-enamel-screen', color: CH.SCREEN, roughness: 0.3, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.05, sheen: 0.5, sheenColor: 0xffffff, emissive: 0x4a4466, emissiveIntensity: 0.5 });
+  const sliceMat = new THREE.MeshPhysicalMaterial({ name: 'acrylic-scan-slice', color: 0x4560ff, roughness: 0.14, metalness: 0, transparent: true, opacity: 0.9,
+    clearcoat: 1, clearcoatRoughness: 0.05, emissive: 0x3048f0, emissiveIntensity: 0.85, envMapIntensity: 0.45, depthWrite: false, side: THREE.DoubleSide });
+  sliceMat.userData.txSurface = false;
+  const edgeMat = new THREE.MeshBasicMaterial({ name: 'acrylic-lit-edge', color: 0xa8b4ff, transparent: true, opacity: 0.9, depthWrite: false, toneMapped: false });
+  edgeMat.userData.txSurface = false;
+  const lineMat = new THREE.MeshBasicMaterial({ name: 'engraved-scan-line', color: 0xd0d6ff, transparent: true, opacity: 0.4, depthWrite: false });
+  lineMat.userData.txSurface = false;
+  const spillTex = CH.canvasTex(THREE, 256, 256, (g2, w, h) => { const gr = g2.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(150,165,255,0.6)'); gr.addColorStop(0.55, 'rgba(150,165,255,0.22)'); gr.addColorStop(1, 'rgba(150,165,255,0)'); g2.fillStyle = gr; g2.fillRect(0, 0, w, h); });
+  const spillMat = new THREE.MeshBasicMaterial({ name: 'periwinkle-light-spill', map: spillTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+  spillMat.userData.txSurface = false;
+
+  /* the enamel cradle: a rounded collar with a lung shaped well, standing on the sweep around the lung's foot */
+  const CR_W = 1.04, CR_D = 0.6, CR_H = 0.24, HOLE_W = 0.9, HOLE_D = 0.44;
+  function rrect(path, w, d, r) { path.moveTo(-w / 2 + r, -d / 2); path.lineTo(w / 2 - r, -d / 2); path.quadraticCurveTo(w / 2, -d / 2, w / 2, -d / 2 + r); path.lineTo(w / 2, d / 2 - r); path.quadraticCurveTo(w / 2, d / 2, w / 2 - r, d / 2); path.lineTo(-w / 2 + r, d / 2); path.quadraticCurveTo(-w / 2, d / 2, -w / 2, d / 2 - r); path.lineTo(-w / 2, -d / 2 + r); path.quadraticCurveTo(-w / 2, -d / 2, -w / 2 + r, -d / 2); return path; }
+  function cradle() {
+    const s = rrect(new THREE.Shape(), CR_W - 0.06, CR_D - 0.06, 0.13);
+    s.holes.push(rrect(new THREE.Path(), HOLE_W, HOLE_D, 0.18));
+    const geo = new THREE.ExtrudeGeometry(s, { depth: CR_H - 0.06, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 6, curveSegments: 24 });
+    geo.rotateX(-Math.PI / 2); geo.translate(0, 0.03, 0);
+    const m = new THREE.Mesh(geo, enamelScreen); m.castShadow = true; m.receiveShadow = true; m.userData.txBevel = false; return m;
+  }
+
+  /* THE COUNT, read from FIG: DEN lungs at equal size on one sweep, NUM periwinkle bands, the rest enamel cradles.
+   * The screening lung stands a little apart, so the eye groups one plus two. */
+  const kinds = [];
+  for (let i = 0; i < DEN; i++) kinds.push(i < DEN - NUM ? { kind: 'screen', band: 'whole' } : { kind: 'other', band: (i - (DEN - NUM)) % 2 === 0 ? 'base' : 'apex' });
+  const PAIR = 1.2, SPLIT = 1.36;
+  const xs = []; let xc = 0;
+  kinds.forEach((k, i) => { if (i > 0) xc += kinds[i - 1].kind !== k.kind ? SPLIT : PAIR; xs.push(xc); });
+  const xmid = (xs[0] + xs[xs.length - 1]) / 2;
+  const LUNG_H = HL;
+  const units = [];
+  /* THE SLAB: thin bevelled periwinkle acrylic, no deeper than the cover's slice in proportion to the lung (slide 1 holds
+   * ST/height near 0.04), clipped to the lung's own width and depth at the height it crosses. */
+  const ST = 0.044, R_BEAD = 0.105, SLAB_U = [0.3, 0.6];
+  const extentAt = (u) => ({ hw: GAPC + rB(-1) * prof(u) + 0.05, hd: 0.19 * prof(u) + 0.05 });
+  const secMat = new THREE.MeshBasicMaterial({ name: 'section-edge', color: 0xe0e4ff, transparent: true, opacity: 0.62, depthWrite: false, toneMapped: false });
+  secMat.userData.txSurface = false;
+  const beadMat = () => { const m = new THREE.MeshPhysicalMaterial({ name: 'gold-nodule-bead', color: 0xffc83d, metalness: 0.35, roughness: 0.28, emissive: 0xff9c28, emissiveIntensity: 0.4, clearcoat: 0.8, depthTest: false, transparent: true }); return m; };
+  function makeBead(unit, p) {
+    const bead = K.make('nodule_bead', { r: R_BEAD });
+    bead.children[0].material = beadMat(); bead.children[0].renderOrder = 20;
+    const bloom = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xffb030, transparent: true, opacity: 0.34, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending }));
+    bloom.scale.setScalar(R_BEAD * 4.6); bloom.renderOrder = 21; bead.add(bloom);
+    bead.position.copy(p); unit.add(bead); return bead;
+  }
+  let slabIx = 0;
+  kinds.forEach((k, i) => {
+    const x = xs[i] - xmid;
+    const holder = new THREE.Group(), unit = new THREE.Group(); unit.position.set(x, 0, ROWZ); holder.add(unit);
+    const lung = new THREE.Group(); lung.position.set(0, 0.008, 0);
+    [-1, 1].forEach((side) => { const m = new THREE.Mesh(lungGeo(side), lungGlass); m.castShadow = true; m.receiveShadow = true; lung.add(m); });
+    bronchi(lung);
+    unit.add(lung);
+    let slab = null, bead = null, slabY = null;
+    if (k.kind === 'screen') {
+      unit.add(cradle());
+      /* the screening find: one gold bead in the right upper lobe, well clear of the white cradle */
+      const bp = new THREE.Vector3(-(GAPC + 0.03), 0.62, 0.06);
+      if (!insideLung(-1, bp)) throw new Error('slide 6: screening bead is not inside its lung');
+      if (bp.y - R_BEAD < CR_H + 0.05) throw new Error('slide 6: screening bead hides in the cradle');
+      bead = makeBead(unit, bp);
+    } else {
+      const u = SLAB_U[slabIx % SLAB_U.length]; slabIx++;
+      slabY = 0.012 + (HL - 0.012) * u;
+      const { hw, hd } = extentAt(u);
+      slab = new THREE.Group(); slab.position.set(0, slabY, 0); unit.add(slab);
+      const plate = new THREE.Mesh(TXT.roundedBox(hw * 2, ST, hd * 2, 0.014), sliceMat); plate.renderOrder = 3; plate.castShadow = false; slab.add(plate);
+      const eb = (w, d, px, pz) => { const m = new THREE.Mesh(TXT.roundedBox(w, ST * 0.5, d, 0.002), edgeMat); m.position.set(px, 0, pz); m.renderOrder = 4; m.userData.txBevel = false; slab.add(m); };
+      eb(hw * 2 - 0.02, 0.008, 0, hd + 0.002); eb(0.008, hd * 2 - 0.02, hw + 0.002, 0);
+      for (let j = 1; j < 10; j++) { const l = new THREE.Mesh(new THREE.BoxGeometry(hw * 2 - 0.05, 0.002, 0.003), lineMat); l.position.set(0, ST / 2 + 0.001, -hd + j * hd * 2 / 10); l.renderOrder = 4; l.userData.txBevel = false; slab.add(l); }
+      /* the section edge, glowing where the acrylic cuts each lung */
+      [-1, 1].forEach((side) => {
+        const pts = [];
+        for (let q = 0; q < 120; q++) { const an = q / 120 * Math.PI * 2, ca = Math.cos(an), sa = Math.sin(an); const r = rB(side) * prof(u) * lungShape(side, ca, sa, u); pts.push(new THREE.Vector3(side * GAPC + ca * (r + 0.004), ST / 2 + 0.003, sa * (r + 0.004) * 0.95)); }
+        const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 240, 0.0045, 6, true), secMat); m.renderOrder = 5; m.userData.txBevel = false; slab.add(m);
+      });
+      const spill = new THREE.Mesh(new THREE.PlaneGeometry(hw * 2.6, hd * 3.2), spillMat); spill.rotation.x = -Math.PI / 2; spill.position.set(0, 0.004, 0.05); unit.add(spill);
+      /* the gold bead, held in the slab where it crosses the glass, in alternate lungs so the two finds differ */
+      const side = slabIx % 2 === 1 ? 1 : -1;
+      const bp = new THREE.Vector3(side * (GAPC + 0.02), slabY + ST * 0.3, 0.05);
+      if (!insideLung(side, bp)) throw new Error('slide 6: bead ' + i + ' is not inside the lung');
+      if (Math.abs(bp.y - slabY) > ST / 2 + R_BEAD * 0.5 || Math.abs(bp.x) > hw || Math.abs(bp.z) > hd) throw new Error('slide 6: bead ' + i + ' is not held in its scan slab');
+      if (slabY + ST / 2 > LUNG_H - 0.05 || slabY - ST / 2 < 0.05) throw new Error('slide 6: slab ' + i + ' must cross the lung, not cap or floor it');
+      bead = makeBead(unit, bp);
+    }
+    TXT.add(R, holder); TXT.contact(R, holder);
+    units.push({ unit, kind: k.kind, lung, slab, slabY, bead });
+  });
+  /* the drawing must agree with the figure: DEN lungs, DEN gold beads (one find each), NUM of them held in periwinkle slabs,
+   * DEN - NUM in enamel cradled screening lungs, every slab at its own height */
+  const nLung = units.length, nBead = units.filter((u) => u.bead).length;
+  const inSlab = units.filter((u) => u.bead && u.slab).length, inCradle = units.filter((u) => u.bead && u.kind === 'screen' && !u.slab).length;
+  const heights = new Set(units.filter((u) => u.slab).map((u) => u.slabY.toFixed(3)));
+  if (nLung !== DEN || nBead !== DEN || inSlab !== NUM || inCradle !== DEN - NUM || heights.size !== NUM) throw new Error('slide 6: drawn ' + nLung + ' lungs, ' + nBead + ' beads, ' + inSlab + ' in slabs, ' + inCradle + ' cradled, ' + heights.size + ' slab heights; figure says ' + DEN + ' and ' + NUM);
+
+  /* parallel camera, raking three quarter from the front right */
+  let SPAN = 3.0;
+  let cam = CH.ortho(THREE, R, SPAN);
+  const az = 20 * Math.PI / 180, el = 21 * Math.PI / 180, D = 14;
+  let look = new THREE.Vector3(0, 0.55, ROWZ);
+  const place = () => { cam.position.set(look.x + D * Math.sin(az) * Math.cos(el), look.y + D * Math.sin(el), look.z + D * Math.cos(az) * Math.cos(el)); cam.lookAt(look); cam.updateProjectionMatrix(); cam.updateMatrixWorld(true); };
+  place();
+  /* FIT: the row spans 93 percent of the width, its top sits under the furniture, and the headline follows its foot */
+  const unionRect = () => { let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; units.forEach((u) => { const r = CH.rectOf(THREE, R, u.unit, 0); x0 = Math.min(x0, r[0]); y0 = Math.min(y0, r[1]); x1 = Math.max(x1, r[0] + r[2]); y1 = Math.max(y1, r[1] + r[3]); }); return [x0, y0, x1 - x0, y1 - y0]; };
+  for (let it = 0; it < 4; it++) {
+    const r = unionRect(); SPAN *= r[2] / (CH.W * 0.93);
+    const w2 = SPAN / 2, h2 = w2 * CH.H / CH.W; cam.left = -w2; cam.right = w2; cam.top = h2; cam.bottom = -h2; cam.updateProjectionMatrix();
+    for (let k2 = 0; k2 < 4; k2++) {
+      const rr = unionRect(), cxp = rr[0] + rr[2] / 2, mpp = SPAN / CH.W;
+      const right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), up = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
+      look.add(up.multiplyScalar(-(rr[1] - 168) * mpp)).add(right.multiplyScalar((cxp - CH.W / 2) * mpp)); place();
+    }
+  }
+  const fitR = unionRect();
+  { const hook = document.getElementById('hook'); hook.style.top = Math.round(Math.min(830, fitR[1] + fitR[3] + 24)) + 'px'; CH.follow(); }
+  /* acceptance: each lung tall enough and the row wide enough */
+  const tall = units.map((u) => { const a = CH.project(THREE, R, [u.unit.position.x, 0, ROWZ]), b = CH.project(THREE, R, [u.unit.position.x, LUNG_H, ROWZ]); return a[1] - b[1]; });
+  const rowR = CH.rectOf(THREE, R, units[0].unit, 0), rowL = CH.rectOf(THREE, R, units[DEN - 1].unit, 0);
+  document.body.dataset.slide4 = JSON.stringify({ tall, top: fitR }); window.__slide4 = { tall, rowSpan: (rowL[0] + rowL[2] - rowR[0]) / CH.W }; console.warn("slide4 " + JSON.stringify(window.__slide4));
+
+  const spec = CH.rigSpec(W, 7, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.4, 0], { distance: 14, shadowFar: 40, normalBias: 0.01 }), { light: { az: -42, el: 38 } }));
+  TXT.weather(R, { grime: 0.02, height: 0.1, mottle: 0.04 });
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { a: 0.32, fade: 140 });
+  CH.seat(cx, { sel: '.kick', a: 0.28, fade: 120 });
+  CH.seat(cx, { sel: '.count', a: 0.28, fade: 120 });
+  TXLOOK.footWash(cx, { a: 0.55, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

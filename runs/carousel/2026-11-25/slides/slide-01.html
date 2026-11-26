@@ -1,0 +1,234 @@
+<!doctype html>
+<!-- 2026-11-25, frame 1 of 9, the cover. BESPOKE, LOOK V2, tone people. A spatial studio render through txthree.js.
+A sculpted lilac glass teaching lung (built in this frame: lobes cut by real fissure grooves, a smaller left lung with a
+cardiac notch, a ringed frosted trachea and a branching airway tree) stands three quarters on a plum sweep. A floating,
+glowing periwinkle slice, the colour this deck gives a scan ordered for something else, passes through both lower lobes
+only, with a section edge where it cuts the glass. One gold bead, the accent's one meaning, sits in the overlap inside
+the nearer lower lobe and throws a warm caustic on the slice. Drawn to illustrate. No real CT image, no logo, no
+legible text. Headline across the top over the deep periwinkle wall, dek across the bottom over the plum floor. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:66px; top:124px; width:950px; text-align:left">The scan was for something else</h1>
+<p class="dek" style="left:68px; top:1058px; width:944px">UTMB Health's AI reviews lung cancer screening reports and helps identify nodules found by chance. Each is flagged for a person. UTMB says about two thirds of its program's nodules came from patients not having lung cancer screening.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UTMB Health", counter: "01 / 09", src: "c2 c8 c31 c11 c17", fit: { min: 88, max: 118, maxLines: 2 } });
+
+  /* THE FIGURES. This frame draws no count, length or share. FIG is empty and the art must stay so. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 1 draws no figure, but FIG carries ' + Object.keys(window.FIG).join(','));
+
+  const R = CH.stage(TXT, gl, W, { fov: 27, fog: 0, exposure: 0.95, near: 0.01, far: 60 });
+
+  /* THE SWEEP. A plum floor under a periwinkle wall that deepens to blue at the top, so the cream headline sits on colour
+   * and the dek sits on the plum floor in front. */
+  TXT.studio(R, Object.assign(CH.studioOpts(), { w: 6, d: 1.3, h: 0.7, radius: 0.12, floor: 0x8a46a6, wall: 0x6f86e8, top: 0x2c3fa8, softbox: 6.5 }));
+
+  /* THE LUNG, sculpted in this frame (the chassis pods are left unused). y up, front on +z, the patient's left on +x.
+   * Each lung: a broad concave base on the diaphragm, a rounded apex, a flat medial face, a deeper back. The left lung is
+   * smaller and carries the cardiac notch. Fissures are grooves cut into the glass, oblique on both, horizontal on the right. */
+  const LX = 0.074, H = 0.27;
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xe6dcff, metalness: 0, roughness: 0.085, transmission: 0.9, ior: 1.46, thickness: 0.06,
+    attenuationColor: new THREE.Color(0x9a7cf0), attenuationDistance: 0.32, clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1,
+    sheen: 0.3, sheenColor: new THREE.Color(0xc4b0ff), sheenRoughness: 0.4, envMapIntensity: 1.6, side: THREE.FrontSide, transparent: true, depthWrite: false, name: 'lilac-glass-lung' });
+  glass.userData.txSurface = false;   /* clear lab glass: no micro relief, which broke into a zipper along the fissure grooves */
+  const bump = (d, s) => Math.exp(-(d * d) / (s * s));
+  const lungGeo = (side) => {
+    const S = side > 0 ? 0.93 : 1;
+    const g = new THREE.SphereGeometry(1, 160, 120), p = g.attributes.position, v = new THREE.Vector3();
+    for (let i = 0; i < p.count; i++) {
+      v.fromBufferAttribute(p, i);
+      const y01 = (v.y + 1) / 2, rr = Math.hypot(v.x, v.z);
+      const w = 0.72 + 0.5 * (1 - y01);                                   /* broad at the base, narrow at the apex */
+      let yy = y01 < 0.5 ? 0.5 - (0.5 - y01) * 0.42 : y01;                 /* a short, flat underside */
+      if (v.y < -0.3) yy += 0.07 * (1 - Math.min(1, rr * rr * 1.3)) * Math.min(1, (-v.y - 0.3) / 0.4);   /* the diaphragm dome */
+      let x = v.x * 0.076 * w * S, z = v.z * 0.078 * w * S * (v.z < 0 ? 1.18 : 0.9);
+      if (v.x * side < 0) x *= 0.42;                                     /* the flat medial face */
+      if (side > 0 && v.x < 0.25 && v.z > 0) { const k = 0.72 * bump(y01 - 0.3, 0.14) * Math.min(1, (0.25 - v.x) * 2.4); z *= 1 - k; x *= 1 - 0.35 * k; }   /* the cardiac notch, cut deep into the anterior medial edge */
+      p.setXYZ(i, x + side * LX, (yy - 0.29) / 0.71 * H * S, z);
+    }
+    g.computeBoundingBox(); g.translate(0, -g.boundingBox.min.y + 0.002, 0);
+    /* the fissures, as grooves pushed in toward the lung's own axis */
+    const n1 = new THREE.Vector3(0, 1, 0.9).normalize(), o1 = new THREE.Vector3(side * LX, 0.125 * S, 0);
+    for (let i = 0; i < p.count; i++) {
+      v.fromBufferAttribute(p, i);
+      const ax = side * LX, rx = v.x - ax, rz = v.z, rl = Math.hypot(rx, rz); if (rl < 1e-5) continue;
+      const d1 = v.clone().sub(o1).dot(n1);
+      let cut = 0.0035 * bump(d1, 0.005);
+      if (side < 0 && d1 > 0 && v.z > -0.012) cut += 0.003 * bump(v.y - 0.178, 0.0045) * Math.min(1, (v.z + 0.012) / 0.02);
+      if (cut > 0) { const k = Math.max(0.55, 1 - cut / rl); p.setXYZ(i, ax + rx * k, v.y, rz * k); }
+    }
+    g.computeVertexNormals();
+    return g;
+  };
+  const lungG = new THREE.Group(); R.scene.add(lungG);
+  const lobes = [-1, 1].map(side => { const m = new THREE.Mesh(lungGeo(side), glass); m.castShadow = true; m.receiveShadow = false; m.renderOrder = 1; m.userData.side = side; lungG.add(m); return m; });
+  lungG.updateMatrixWorld(true);
+  /* the lung's radius at a height and an angle around its own axis, by casting inward, for the airways, bead and section */
+  const ray = new THREE.Raycaster();
+  const radiusAt = (side, y, ang) => {
+    const m = lobes[side < 0 ? 0 : 1], dir = new THREE.Vector3(Math.cos(ang), 0, Math.sin(ang));
+    ray.set(new THREE.Vector3(side * LX + dir.x * 0.5, y, dir.z * 0.5), dir.clone().negate());
+    const hit = ray.intersectObject(m, false)[0];
+    return hit ? Math.hypot(hit.point.x - side * LX, hit.point.z) : 0;
+  };
+  const insideLung = (q, side, k) => { const ang = Math.atan2(q.z, q.x - side * LX), r = radiusAt(side, q.y, ang); return r > 0 && Math.hypot(q.x - side * LX, q.z) < r * (k || 1); };
+
+  /* THE FISSURES AS FROSTED SEAMS on the camera facing half of each lung, laid on the glass along the grooves */
+  const seamMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.4, clearcoat: 1, sheen: 0.6, sheenColor: new THREE.Color(0xe0d0ff), emissive: 0x9c86e8, emissiveIntensity: 0.4, transparent: true, opacity: 0.95, name: 'frosted-fissure-seam' });
+  seamMat.userData.txSurface = false;
+  const camAng = (side) => Math.atan2(1.035, 0.59 - side * LX);
+  const SEAMS = false;   /* art director: a seam laid on the glass read as a clamp; the fissures stay as recessed grooves only */
+  const seam = (pts) => { if (!SEAMS || pts.length < 12) return; const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 120, 0.0015, 8, false), seamMat); m.renderOrder = 2; m.userData.txBevel = false; lungG.add(m); };
+  [-1, 1].forEach(side => {
+    const S = side > 0 ? 0.93 : 1, yo = 0.125 * S, ca = camAng(side), obl = [];
+    for (let k = 0; k <= 60; k++) {
+      const a = ca - 1.7 + 3.4 * k / 60; let y = yo, r = 0;
+      for (let it = 0; it < 6; it++) { r = radiusAt(side, y, a); y = yo - 0.9 * r * Math.sin(a); }
+      const q = new THREE.Vector3(side * LX + Math.cos(a) * (r + 0.0007), y, Math.sin(a) * (r + 0.0007));
+      if (r > 0.01 && Math.abs(y - (yo - 0.9 * r * Math.sin(a))) < 0.002) { if (obl.length && obl[obl.length - 1].distanceTo(q) > 0.012) { seam(obl); obl.length = 0; } obl.push(q); } else if (obl.length) { seam(obl); obl.length = 0; }
+    }
+    seam(obl);
+    if (side < 0) { const hz = [];
+      for (let k = 0; k <= 30; k++) { const a = Math.PI / 2 + (ca + 1.45 - Math.PI / 2) * k / 30, r = radiusAt(side, 0.178, a); if (r > 0.01 && 0.178 - yo + 0.9 * r * Math.sin(a) > 0) hz.push(new THREE.Vector3(side * LX + Math.cos(a) * (r + 0.0007), 0.178, Math.sin(a) * (r + 0.0007))); }
+      seam(hz); }
+  });
+
+  /* THE AIRWAYS: a ringed frosted trachea, two main bronchi (the right shorter and steeper) and a seeded branching tree
+   * kept inside the glass, frosted lilac white */
+  const frost = new THREE.MeshPhysicalMaterial({ color: 0xf7f0ff, roughness: 0.34, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.15, sheen: 0.6,
+    sheenColor: new THREE.Color(0xd8c4ff), emissive: 0x5e44a8, emissiveIntensity: 0.12, transparent: true, opacity: 0.9, name: 'frosted-resin-airway' });
+  frost.userData.txSurface = 'plastic';
+  /* a tube that tapers from r to r1 along its length, so every terminal branch ends in a fine tip, never a cap */
+  const taper = (pts, r, r1) => {
+    const curve = new THREE.CatmullRomCurve3(pts.map(q => q.isVector3 ? q : new THREE.Vector3(...q))), TS = 24, RS = 14;
+    const g = new THREE.TubeGeometry(curve, TS, r, RS, false), P = g.attributes.position, v = new THREE.Vector3();
+    for (let i = 0; i <= TS; i++) { const t = i / TS, c = curve.getPointAt(t), k = 1 + ((r1 == null ? r : r1) / r - 1) * t;
+      for (let j = 0; j <= RS; j++) { const idx = i * (RS + 1) + j; v.fromBufferAttribute(P, idx).sub(c).multiplyScalar(k).add(c); P.setXYZ(idx, v.x, v.y, v.z); } }
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, frost); m.renderOrder = 2; m.castShadow = true; lungG.add(m); return m;
+  };
+  const tube = (pts, r) => { const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(q => new THREE.Vector3(...q))), 24, r, 14, false), frost); m.renderOrder = 2; m.castShadow = true; lungG.add(m); return m; };
+  const knot = (q, r) => { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 16, 12), frost); m.position.set(...q); m.renderOrder = 2; lungG.add(m); };
+  const TR = 0.0115, CAR = [0, 0.212, 0.006];
+  tube([[0, 0.262, 0.004], [0, 0.245, 0.005], CAR], TR); knot(CAR, TR * 1.02);
+  const ringMat = frost.clone(); ringMat.name = 'frosted-resin-ring'; ringMat.color = new THREE.Color(0xffffff); ringMat.opacity = 0.95;
+  for (let y = 0.226; y < 0.258; y += 0.0105) { const t = new THREE.Mesh(new THREE.TorusGeometry(TR + 0.0004, 0.0016, 8, 40), ringMat); t.rotation.x = Math.PI / 2; t.position.set(0, y, 0.005); t.renderOrder = 2; lungG.add(t); }
+  const rnd = CH.rng(25111);
+  /* each branch first grows its children, then draws itself: tapering into its children, or to a fine tip when none fit */
+  const grow = (from, dir, len, rad, depth, side) => {
+    let to = from.clone().addScaledVector(dir, len), tries = 0;
+    while (!insideLung(to, side, 0.78) && tries < 6) { len *= 0.7; to = from.clone().addScaledVector(dir, len); tries++; }
+    if (!insideLung(to, side, 0.78)) return false;
+    const mid = from.clone().lerp(to, 0.5).add(new THREE.Vector3((rnd() - 0.5) * 0.003, (rnd() - 0.5) * 0.003, (rnd() - 0.5) * 0.003));
+    let kids = 0;
+    if (depth > 0) for (let b = 0; b < 2; b++) {
+      const nd = dir.clone().add(new THREE.Vector3((rnd() - 0.5) * 1.0, (rnd() - 0.5) * 0.7, (rnd() - 0.5) * 0.9)).normalize();
+      if (grow(to, nd, len * 0.74, rad * 0.72, depth - 1, side)) kids++;
+    }
+    taper([from, mid, to], rad, kids ? rad * 0.72 : rad * 0.16);
+    if (kids) knot(to.toArray(), rad * 0.72);
+    return true;
+  };
+  [-1, 1].forEach(side => {
+    const hilum = new THREE.Vector3(side * 0.066, side < 0 ? 0.168 : 0.158, 0.008);
+    tube([CAR, [side * 0.03, side < 0 ? 0.196 : 0.19, 0.008], hilum.toArray()], 0.0078); knot(hilum.toArray(), 0.0078);
+    [[side * 0.35, 0.9, -0.15], [side * 0.3, -0.95, 0.1], [side * 0.25, -0.8, -0.55]].forEach(d =>
+      grow(hilum, new THREE.Vector3(...d).normalize(), 0.03, 0.0048, 3, side));
+  });
+  TXT.contact(R, lungG, { opacity: 0.88 });
+
+  /* THE SCAN FIELD: a floating, glowing periwinkle slice (CH.OTHER, a scan ordered for something else) through both lower
+   * lobes only, the lung clearly above and below it. No legs. Its section edge glows where the acrylic cuts the glass. */
+  const SY = 0.088, ST = 0.01, X0 = -0.235, X1 = 0.255, Z0 = -0.14, Z1 = 0.13;
+  const slabMat = new THREE.MeshPhysicalMaterial({ color: CH.OTHER, roughness: 0.12, metalness: 0, transparent: true, opacity: 0.8,
+    clearcoat: 1, clearcoatRoughness: 0.05, emissive: 0x4a5ff0, emissiveIntensity: 0.85, envMapIntensity: 1.2, depthWrite: false, name: 'acrylic-scan-slice' });
+  slabMat.userData.txSurface = false;
+  const slab = new THREE.Mesh(TXT.roundedBox(X1 - X0, ST, Z1 - Z0, 0.0035), slabMat);
+  slab.position.set((X0 + X1) / 2, SY, (Z0 + Z1) / 2); slab.renderOrder = 3; slab.castShadow = false; R.scene.add(slab);
+  const edgeMat = new THREE.MeshBasicMaterial({ color: 0xbcc6ff, transparent: true, opacity: 0.95, depthWrite: false, toneMapped: false, name: 'acrylic-lit-edge' });
+  edgeMat.userData.txSurface = false;
+  const edgeBar = (w, d, x, z) => { const m = new THREE.Mesh(TXT.roundedBox(w, ST * 0.5, d, 0.0005), edgeMat); m.position.set(x, SY, z); m.renderOrder = 4; m.userData.txBevel = false; R.scene.add(m); };
+  edgeBar(X1 - X0, 0.0018, (X0 + X1) / 2, Z1 + 0.0004); edgeBar(0.0018, Z1 - Z0, X1 + 0.0004, (Z0 + Z1) / 2);
+  /* the scan line: one soft emissive line sweeping across the slice, with a periwinkle bloom either side */
+  const scanMat = new THREE.MeshBasicMaterial({ color: 0xe2e8ff, transparent: true, opacity: 0.9, depthWrite: false, toneMapped: false, name: 'scan-line' });
+  scanMat.userData.txSurface = false;
+  const scanL = new THREE.Mesh(new THREE.BoxGeometry(X1 - X0 - 0.006, 0.0005, 0.0022), scanMat); scanL.position.set((X0 + X1) / 2, SY + ST / 2 + 0.0004, 0.045); scanL.renderOrder = 5; scanL.userData.txBevel = false; R.scene.add(scanL);
+  const bloomTex = CH.canvasTex(THREE, 8, 128, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(150,165,255,0)'); gr.addColorStop(0.5, 'rgba(150,165,255,0.7)'); gr.addColorStop(1, 'rgba(150,165,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const bloomMat = new THREE.MeshBasicMaterial({ map: bloomTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, name: 'scan-bloom' }); bloomMat.userData.txSurface = false;
+  const bloom = new THREE.Mesh(new THREE.PlaneGeometry(X1 - X0 - 0.006, 0.03), bloomMat); bloom.rotation.x = -Math.PI / 2; bloom.position.set((X0 + X1) / 2, SY + ST / 2 + 0.0003, 0.045); bloom.renderOrder = 4; bloom.userData.txBevel = false; R.scene.add(bloom);
+  const lineMat = new THREE.MeshBasicMaterial({ color: 0xc8d0ff, transparent: true, opacity: 0.3, depthWrite: false, name: 'engraved-line' });
+  lineMat.userData.txSurface = false;
+  for (let i = 1; i < 18; i++) { const l = new THREE.Mesh(new THREE.BoxGeometry(X1 - X0 - 0.012, 0.0003, 0.0007), lineMat); l.userData.txBevel = false; l.position.set((X0 + X1) / 2, SY + ST / 2 + 0.0002, Z0 + i * (Z1 - Z0) / 18); l.renderOrder = 4; R.scene.add(l); }
+  const secMat = new THREE.MeshBasicMaterial({ color: 0xd8deff, transparent: true, opacity: 0.5, depthWrite: false, name: 'section-edge' });
+  secMat.userData.txSurface = false;
+  [-1, 1].forEach(side => [SY + ST / 2 + 0.0004].forEach(y => {
+    const pts = [];
+    for (let k = 0; k < 96; k++) { const a = k / 96 * Math.PI * 2, r = radiusAt(side, y, a); if (r > 0) pts.push(new THREE.Vector3(side * LX + Math.cos(a) * (r + 0.0006), y, Math.sin(a) * (r + 0.0006))); }
+    if (pts.length < 40) throw new Error('the section edge could not find the lung at the slice');
+    const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 200, 0.0009, 6, true), secMat); m.renderOrder = 5; m.userData.txBevel = false; R.scene.add(m);
+  }));
+  /* the slice's periwinkle spill on the floor below it */
+  const radial = (rgb, a0) => CH.canvasTex(THREE, 256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(' + rgb + ',' + a0 + ')'); gr.addColorStop(0.5, 'rgba(' + rgb + ',' + (a0 * 0.4) + ')'); gr.addColorStop(1, 'rgba(' + rgb + ',0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const spillMat = new THREE.MeshBasicMaterial({ map: radial('140,156,240', 0.75), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, name: 'light-spill' });
+  spillMat.userData.txSurface = false;
+  const spill = new THREE.Mesh(new THREE.PlaneGeometry((X1 - X0) * 1.3, (Z1 - Z0) * 1.6), spillMat); spill.rotation.x = -Math.PI / 2; spill.position.set((X0 + X1) / 2, 0.0015, (Z0 + Z1) / 2); spill.userData.txBevel = false; R.scene.add(spill);
+  TXT.contact(R, slab, { opacity: 0.18 });
+
+  /* THE BEAD: the one point of light. A saturated gold #ffc83d nodule inside the nearer lower lobe, in the slice. */
+  const BR = 0.0145, bp = new THREE.Vector3(LX + 0.03, SY + ST / 2 + BR * 0.45, 0.032);
+  if (!insideLung(bp, 1, 0.8)) throw new Error('the bead must sit inside the left lower lobe');
+  if (bp.y > 0.125 * 0.93) throw new Error('the bead must sit in the lower lobe, under the oblique fissure');
+  if (Math.abs(bp.y - SY) > ST + BR) throw new Error('the bead must sit in the slice overlap');
+  const goldM = new THREE.MeshPhysicalMaterial({ color: 0x3a2200, emissive: 0xffb43a, emissiveIntensity: 0.9, metalness: 0.0, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.06, toneMapped: false, name: 'gold-nodule-bead' });
+  goldM.userData.txSurface = false; goldM.transparent = true; goldM.opacity = 1;   /* inside the lobe; drawn in the late pass so the clear glass does not wash its gold to peach */
+  const bead = new THREE.Mesh(new THREE.SphereGeometry(BR, 48, 32), goldM); bead.position.copy(bp); bead.renderOrder = 7; R.scene.add(bead);
+  const causticTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(255,200,61,0.95)'); gr.addColorStop(0.22, 'rgba(255,200,61,0.8)'); gr.addColorStop(0.5, 'rgba(255,196,80,0.32)'); gr.addColorStop(0.75, 'rgba(255,190,90,0.1)'); gr.addColorStop(1, 'rgba(255,180,80,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const caustic = new THREE.Mesh(new THREE.PlaneGeometry(0.13, 0.085), new THREE.MeshBasicMaterial({ map: causticTex, toneMapped: false, transparent: true, depthWrite: false, name: 'gold-caustic' }));
+  caustic.material.userData.txSurface = false; caustic.userData.txBevel = false;
+  caustic.rotation.x = -Math.PI / 2; caustic.position.set(bp.x - 0.012, SY + ST / 2 + 0.0006, bp.z + 0.012); caustic.renderOrder = 6; R.scene.add(caustic);
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: radial('255,200,61', 0.32), transparent: true, depthWrite: false, depthTest: false, toneMapped: false, name: 'gold-halo' }));
+  halo.material.userData.txSurface = false; halo.scale.set(0.045, 0.045, 1); halo.position.copy(bp); halo.renderOrder = 8; R.scene.add(halo);
+  const glow = new THREE.PointLight(0xffc83d, 0.12, 0.1, 2); glow.position.copy(bp).add(new THREE.Vector3(0, 0.012, 0.02)); R.scene.add(glow);
+
+  /* THE CAMERA. Three quarters from the right, a little above the slice, the lung centred between headline and dek. */
+  const FROM = [0.59, 0.32, 1.035];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0.0, 0.14, 0.0], 556, 688, 27);
+  TXT.frame(R, { fov: 27, from: FROM, look: LOOK });
+
+  /* THE KEY. Apricot, high from the front left, so the lung throws onto the plum floor behind and right. */
+  const spec = CH.rigSpec(W, 1.6, 4096);
+  spec.key = Object.assign({}, spec.key, { radius: 0.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.1, 0], { distance: 6, shadowFar: 14, normalBias: 0.004 }), { light: { az: -42, el: 38 } }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.02, height: 0.05, mottle: 0.05, skip: [lungG, slab] });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.5, fade: 150 });
+  CH.seat(cx, { sel: '.dek', a: 0.22, fade: 100 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 90 }));
+  TXLOOK.footWash(cx, { a: 0.55, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

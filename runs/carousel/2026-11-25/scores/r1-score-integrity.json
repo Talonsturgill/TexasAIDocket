@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Each frame is its own picture and none repeats a neighbour, so the bespoke bar is met on distinctness. Slide 1 is the strongest frame: a lilac glass lung, a ruled periwinkle slab and one gold bead where they cross, readable at feed size. Slide 6 holds the one-frosted-against-two-periwinkle split with seated beads, and slide 3's fanned report stack with its gold line has real paper and a real clip. The quality falls off across the second half. Slide 8 uses stock kit figures seen from behind, has flat clothing and a saturated green canopy that leaves the plum and apricot palette. On slide 9 the lung fills about a third of the frame at lower right, the upper left is a flat violet wash under the type, and the panes read as floating frames rather than scan fields cutting the lung. On slide 5 the rail and people are crammed into the top third over a large empty stretch of wood, with a diagonal purple band behind the headline. Slide 4 has stubby clumped hands and a flat window slab. On slide 7 the bead and rule sit in the bottom quarter under a large sky. The lungs on slides 1, 6 and 9 are still smooth pods, as both critic rounds noted. Strong in places, with several frames leaning on defaults, so between the 7 and the 4 descriptors."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The spine holds: one serif and mono pair, the counter, the site line, cream type, and violet washes on every frame. Gold keeps one meaning throughout, a nodule flagged for a person: slide 3's line, slide 4's flag, slide 5's rail flags and slide 6's beads. Slide 7 deliberately uses lilac glass instead. The glass lung returns on slides 1, 6 and 9 as a bookend. Slide 8 sits outside the spine, with a naturalistic green oak and lawn and generic figures that look like another product. The flow critic also notes that slide 6 dips dark."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Every numeral traces. 2016 is c3. 2 in 3 is figures share_num and share_den from c17. 20s is c18. 50, 80, 20 and 15 are c28. Slide 7's engraved ticks 10 to 90 are computed in slide-07.html from FIG (UMIN = AGE - STEP, UMAX = HI + STEP), and slide 8 draws seven figures plus one half hidden. Bunkerhill's 80 percent is absent, and both sources are primary and fetched. Four phrasings stretch their source. (1) The caption's 'At UTMB Health an AI system now reads radiology reports and flags lung nodules. About two thirds of the nodules its program found...' makes 'its' refer to the AI system. The document title 'UTMB Health says its AI flags lung nodules, about two thirds found outside lung cancer screening' joins the same two facts. c17 says 'nodules identified through the program', a program running since 2016 (c3) whose name already covers incidental nodules (c4), over an unstated period. Nothing says the AI found two thirds, but a reader will believe it did. (2) Slide 3's kicker 'Every report' is a universal the source does not state. c9, which the deck dropped, limits the Bunkerhill system's report review to 'patients undergoing lung cancer screening exams'. (3) Slide 7's 'Federal screening guidance covers adults aged 50 to 80' drops c28's smoking criteria, so on that frame it reads as all adults 50 to 80. Slide 9 restores them. (4) Slide 9's headline 'Any scan touching the lungs counts' does not name its set. Only the dek says this is UTMB's program, and the frame is framed as the reader's own scan. None of these is a fabrication, and the rubric's descriptor for a claim that stretches its source is 4. These are looser than that, so 6."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what happened (AI-assisted flagging of lung nodules), who (UTMB Health, Dr. Nishi, navigator Amanda Rodriguez), the old delay (slide 2) and the turn (slide 6). Slide 9 gives an action: the USPSTF criteria and 'Ask a doctor what yours showed'. The deck never names a place below 'UTMB Health': no Galveston and no county, although the docket item supplies Galveston. It also never says when UTMB announced this. Slide 4's hands give the named, real navigator an appearance no source describes. The stake is concrete through the patient story on slides 7 and 8, but the close is general advice rather than something a Texan can act on at a named place."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'The scan was for something else' earns the swipe, and slide 2 pays at once with the old delay. Slides 3, 4 and 5 run the process, slide 6 is the declared turn, slides 7 and 8 bring it to one person, and slide 9 turns it to the reader. Slides 3 and 5 overlap: both are about the system's role, and slide 5's 'It flags. People decide.' largely repeats slide 4's 'Every flag goes to a navigator'. One of them could go without loss. The cover dek already gives away the two thirds that slide 6 sells as the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, carefully attributed ('Dr. Nishi says', 'In her account'), with no boosterism, no doom and no house rule broken in the copy I read. The register is close to the press release, though: 'The release says people stay at the center while it works in the background' on slide 5 is the release's own sentence. Nothing marks it as Texan beyond 'UTMB'. No Galveston, no Gulf Coast, no regional context. The limestone ledge and the oak in the art do more Texas work than the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The art_preflight distinct_from_recent note checks out against what is described: glass anatomy, acrylic scan fields, a steel age rule and a family under an oak, set against Nov 24's aerial subdivision, Nov 21's rover and Nov 22's exam rooms. The palette is the v2 people tone. One familiar move remains. Nov 22 was also a medical setting, and the opening 'one finding plus a share' structure is a familiar docket move."
+  }
+ ],
+ "weighted_score": 6.66,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rewrite the caption's second paragraph and the document title so that the two thirds belongs to UTMB's lung nodule program and not the AI (for example 'UTMB says about two thirds of the nodules its lung nodule program has found came from patients who were not having lung cancer screening'), cut slide 3's 'Every report' kicker, and name Galveston from the docket item. Integrity is this product's spine, and today the deck lets a reader believe the AI found two thirds of the nodules, which no source says.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Stock kit figures seen from behind, small in the middle band, flat clothing, and a saturated green canopy and lawn that leave the deck's plum and apricot palette, so it reads as another product.",
+   "fix": "Drop the camera to chest height about twice as close, so the seven figures fill the middle band and the eighth steps out from the oak with an apricot rim. Push the canopy and grass toward olive and plum under a low apricot key, with long plum shadows."
+  },
+  {
+   "slide": 9,
+   "problem": "The glass lung fills about a third of the frame at lower right, the upper left is a flat violet wash under the type, and the three panes read as floating frames rather than scan fields cutting the lung.",
+   "fix": "Pull the camera in and up so the lung fills at least half the frame and rises behind the dek. Inside each pane, render the lung as a lit cross-section with a crisp cut edge and the pane's shadow on the glass, leaving the lung outside the panes plainly unscanned."
+  },
+  {
+   "slide": 5,
+   "problem": "The subject is crowded into the top third: rail, hands and doctor are cropped at the top edge over a large empty stretch of wood, with a diagonal purple slab behind the headline. Hands and hair are crude kit meshes.",
+   "fix": "Tighten the camera so the reading bridge, the card rail and the doctor's hand putting the pen down on the front gold-flagged card fill the upper two thirds. Cut the empty wood and the diagonal slab, and seat the headline on the tone's wash."
+  },
+  {
+   "slide": 4,
+   "problem": "Both hands merge into a stubby clump behind the lifted card, the window is a flat slab, and the card queue does not read as ranked.",
+   "fix": "Re-pose one hand as a thumb and two fingers pinching the front card's top edge, with a gap and a plum contact shadow under it. Step the cards visibly lower from front to back so the queue reads as a priority order."
+  },
+  {
+   "slide": 7,
+   "problem": "The rule, bead and enamel slab sit in the bottom quarter under a large empty sky, so the age comparison is small at 432 px.",
+   "fix": "Lower the camera and run the rule diagonally from the near-left foreground, with the bead and its '20' at least a quarter of the frame wide, back to the 50 to 80 slab, so the rule fills the lower half."
+  }
+ ]
+}

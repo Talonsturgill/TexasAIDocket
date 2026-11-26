@@ -1,0 +1,267 @@
+<!doctype html>
+<!-- 2026-11-25, frame 2 of 9, THE OLD WAY. A records room at the end of the day: nine stuffed manila charts stacked on a
+     plum powder coated records cart, each with a colour coded edge label (periwinkle for a scan ordered for something else,
+     frosted white for a screening exam), sheets spilling, dog ears, one rubber band, the stack leaning out to the right.
+     The charts age down the stack: the newest crisp on top, the oldest sun faded, dusty, curled, its rubber band snapped. Seen from above the cart, the type stands high over the room. Low apricot window light rakes in from the left through mullions across the floor and the stack; the far wall and its
+     cabinets sit in violet shade, where the type stands. Loose sheets have slid to the floor.
+     Drawn to illustrate: no real room, no likeness, no legible text. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:168px; width:540px; text-align:left">Weeks, sometimes months</h1>
+<p class="dek" id="dek" data-follow="28" style="left:74px; width:470px; font-size:28px; line-height:1.36">UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients. Folders drawn to illustrate.</p>
+
+<script>window.FIG = {"units": 9, "of_nine": 6};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The old way", counter: "02 / 09", src: "c3 c4 c5 c6", fit: { min: 88, max: 118, maxLines: 3 } });
+
+  /* THE TYPE: a column at the left over the far wall in violet shade; the stack leans away to the right */
+  const hook = document.getElementById('hook'), dek = document.getElementById('dek');
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (hb.left < 64 || hb.right > 1016 || hb.top < 140) throw new Error('the headline leaves the safe field');
+  if (db.bottom > 1150) throw new Error('the dek runs into the footer at ' + Math.round(db.bottom));
+
+  /* THE FIGURES, read once: every folder drawn and every periwinkle label comes from here */
+  const NF = window.FIG.units, NP = window.FIG.of_nine;
+  if (!(Number.isInteger(NF) && Number.isInteger(NP) && NP <= NF && NF > 0)) throw new Error('FIG units/of_nine unreadable');
+
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.03, far: 60, fog: 0 });
+  const rnd = CH.rng(20261125 + 2);
+  const tex = (w, h, paint, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  const rb = (w, h, d, r, m) => { const b = TXT.roundedBox(w, h, d, r, m); b.castShadow = true; b.receiveShadow = true; return b; };
+
+  /* THE ROOM, metres: x right, z toward the camera, back wall at z = -RD/2 */
+  const RW = 7, RD = 6.4, RH = 3.2, BACK = -RD / 2;
+  const WALL = 0x5a5cb8;
+  const room = TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: WALL, trim: 0x2a1d5e, window: null, ceiling: true, light: 0.6 });
+  TXT.studio(R, CH.studioOpts({ w: 6, d: 6 }));
+  R.scene.remove(R.studio.sweep); R.room = room;
+  R.scene.background = new THREE.Color(0x4a4296);
+
+  /* the walls: blue violet eggshell paint */
+  const wallMat = new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.88, name: 'wall-paint' }); wallMat.userData.txSurface = 'paint';
+  room.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === new THREE.Color(WALL).getHex()) m.material = wallMat; });
+  /* the floor: warm apricot sealed concrete, worn */
+  let floorN = 0;
+  R.scene.traverse((m) => { if (m.isMesh && m.userData.txGround && !m.userData.txStudio) { floorN++; m.material = m.material.clone(); m.material.color = new THREE.Color(0xf0a070); m.material.name = 'conc-floor-sealed'; m.material.roughness = 0.62; } });
+  if (floorN < 1) throw new Error('no floor found');
+
+  /* a chair rail and a deep plum skirting along the far wall */
+  { const plum = new THREE.MeshPhysicalMaterial({ color: 0x3a2272, roughness: 0.5, clearcoat: 0.3, name: 'trim-paint' });
+    const rail = rb(RW - 0.2, 0.06, 0.03, 0.01, plum); rail.position.set(0, 1.85, BACK + 0.12); R.scene.add(rail); }
+
+  /* FAR WALL CABINETS: a run of four drawer verticals in deep indigo enamel, one ajar by seed */
+  { let x = -3.1;
+    for (let i = 0; i < 12; i++) {
+      const fc = K.make('filing_cabinet', { seed: 40 + i, drawers: 5, color: i % 4 === 2 ? 0x5e4a9e : 0x41468e });
+      fc.position.set(x + 0.19, 0, BACK + 0.1 + 0.335 + 0.02); TXT.add(R, fc); x += 0.4;
+      fc.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    }
+    /* archive boxes on the cabinet tops, kraft board with lids */
+    const kraft = new THREE.MeshPhysicalMaterial({ color: 0xc98a5a, roughness: 0.85, name: 'kraft-board' });
+    for (let i = 0; i < 9; i++) { const bx = -3.0 + i * 0.52 + rnd() * 0.08; if (bx > 1.6 || bx < 9) break;
+      const b = rb(0.4, 0.26, 0.32, 0.008, kraft); b.position.set(bx + 0.2, 1.33 + 0.13, BACK + 0.38); b.rotation.y = (rnd() - 0.5) * 0.08; R.scene.add(b);
+      const lid = rb(0.415, 0.05, 0.335, 0.008, kraft); lid.position.set(bx + 0.2, 1.33 + 0.26 + 0.015, BACK + 0.38); lid.rotation.y = b.rotation.y; R.scene.add(lid); }
+  }
+
+  /* THE WINDOW, off frame at the left: a wall with an opening and mullions that cast the last light into the room */
+  { const gob = new THREE.MeshStandardMaterial({ color: 0x2a1d5e, roughness: 0.9, name: 'gobo-wall' }); gob.userData.txSurface = false;
+    const WX = -RW / 2 + 0.15, Z0 = -0.2, Z1 = 2.6, Y0 = 0.85, Y1 = 2.75, T = 0.12;
+    const piece = (z0, z1, y0, y1) => { const b = new THREE.Mesh(new THREE.BoxGeometry(T, y1 - y0, z1 - z0), gob); b.position.set(WX, (y0 + y1) / 2, (z0 + z1) / 2); b.castShadow = true; b.receiveShadow = false; b.userData.txBevel = false; R.scene.add(b); };
+    piece(-RD, Z0, -0.1, RH + 2); piece(Z1, RD, -0.1, RH + 2); piece(Z0, Z1, -0.1, Y0); piece(Z0, Z1, Y1, RH + 2);
+    const mull = (z0, z1, y0, y1) => piece(z0, z1, y0, y1);
+    [0.72, 1.66].forEach((z) => mull(z - 0.035, z + 0.035, Y0, Y1));
+    mull(Z0, Z1, 1.78, 1.84);
+  }
+
+  /* THE CART: the chassis records cart in plum powder coat */
+  const CART = new THREE.Vector3(0.3, 0, 0);
+  const cart = K.make('chart_cart', { color: 0x6c3a8e });
+  cart.position.copy(CART); cart.rotation.y = -0.18; TXT.add(R, cart); TXT.contact(R, cart, { opacity: 0.6 });
+  const TOP = cart.userData.top;
+
+  /* WORN POWDER COAT on the cart: plum with lighter scuffs where hands and boxes rub, swapped onto the chassis cart */
+  { const scuff = tex(512, 512, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+      for (let k = 0; k < 900; k++) { g.fillStyle = 'rgba(255,214,190,' + (0.25 + rnd() * 0.5).toFixed(2) + ')'; const x = rnd() * w, y = rnd() * h; g.fillRect(x, y, 2 + rnd() * 18, 1 + rnd() * 2); }
+      for (let k = 0; k < 4000; k++) { g.fillStyle = 'rgba(60,30,80,' + (rnd() * 0.25).toFixed(2) + ')'; g.fillRect(rnd() * w, rnd() * h, 1.5, 1.5); } }, [3, 3]);
+    const pc = new THREE.MeshPhysicalMaterial({ color: 0x7a3f9c, map: scuff, metalness: 0.25, roughness: 0.5, clearcoat: 0.35, clearcoatRoughness: 0.45, name: 'powder-coat-steel' });
+    cart.traverse((m) => { if (m.isMesh && m.material && /sf-cart/.test(m.material.name || '')) m.material = pc; }); }
+
+  /* THE LOWER SHELF stays bare: the tower's plum shadow is all that sits on it */
+
+  /* THE STACK. NF letter chart folders lying flat, NP with periwinkle tabs and the rest frosted white, from a seeded deal.
+     Each is a scored manila sheet folded on its long back edge (-z): back flap cut taller with a die cut tab standing up off
+     its front (top) edge, front cover a hair shorter and lifting a few mm so the sheaf shows in the gape.
+     Bottom is oldest: index 0 has waited longest, so it is sun faded toward pale apricot, dusty, dog eared and frayed */
+  const kinds = []; for (let i = 0; i < NF; i++) kinds.push(i < NP ? 'other' : 'screen');
+  for (let i = NF - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = kinds[i]; kinds[i] = kinds[j]; kinds[j] = t; }
+  const NEW = new THREE.Color(0xd8923a), OLD = new THREE.Color(0xeab48c), PNEW = new THREE.Color(0xfbf5e8), POLD = new THREE.Color(0xe2bf98);
+  const pageEdge = tex(256, 256, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 8) { g.fillStyle = 'rgba(140,100,70,' + (0.06 + rnd() * 0.12).toFixed(3) + ')'; g.fillRect(0, y, w, 3); } });
+  pageEdge.minFilter = THREE.LinearMipmapLinearFilter;
+  const dustTex = tex(512, 512, (g, w, h) => { g.clearRect(0, 0, w, h);
+    for (let k = 0; k < 16000; k++) { g.fillStyle = 'rgba(232,222,242,' + (0.25 + rnd() * 0.6).toFixed(2) + ')'; const r = 0.6 + rnd() * 1.8; g.fillRect(rnd() * w, rnd() * h, r, r); }
+    g.fillStyle = 'rgba(228,218,240,0.28)'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 30; k++) { g.strokeStyle = 'rgba(240,232,250,0.5)'; g.lineWidth = 1; g.beginPath(); const x = rnd() * w, y = rnd() * h; g.moveTo(x, y); g.lineTo(x + (rnd() - 0.5) * 40, y + (rnd() - 0.5) * 40); g.stroke(); } });
+  const ringTex = tex(256, 256, (g, w, h) => { g.clearRect(0, 0, w, h);
+    for (let k = 0; k < 3; k++) { g.strokeStyle = 'rgba(120,64,30,' + (0.55 - k * 0.15) + ')'; g.lineWidth = 7 - k * 2; g.beginPath(); g.arc(w / 2 + k * 3, h / 2 - k * 2, w * 0.38 - k * 2, 0.2 + k, Math.PI * 2 - 0.3 + k * 0.4); g.stroke(); }
+    const gr = g.createRadialGradient(w / 2, h / 2, w * 0.2, w / 2, h / 2, w * 0.4); gr.addColorStop(0, 'rgba(150,90,40,0)'); gr.addColorStop(1, 'rgba(150,90,40,0.18)'); g.fillStyle = gr; g.beginPath(); g.arc(w / 2, h / 2, w * 0.4, 0, Math.PI * 2); g.fill(); });
+  const vinyl = { other: new THREE.MeshPhysicalMaterial({ color: CH.OTHER, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2, side: THREE.DoubleSide, name: 'label-vinyl-other' }),
+                  screen: new THREE.MeshPhysicalMaterial({ color: CH.SCREEN, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.3, sheen: 0.4, side: THREE.DoubleSide, name: 'label-vinyl-screen' }) };
+  const gapeMat = new THREE.MeshStandardMaterial({ color: 0x4a2a52, roughness: 1, name: 'paper-gape-shade' }); gapeMat.userData.txSurface = false;
+  /* a die cut tab: a rounded trapezoid in the (x, y) plane, base on y = 0 */
+  const tabGeo = (w, h, d) => { const sh = new THREE.Shape(), r = 0.004, t = 0.006;
+    sh.moveTo(-w / 2, 0); sh.lineTo(-w / 2 + t, h - r); sh.quadraticCurveTo(-w / 2 + t, h, -w / 2 + t + r, h); sh.lineTo(w / 2 - t - r, h); sh.quadraticCurveTo(w / 2 - t, h, w / 2 - t, h - r); sh.lineTo(w / 2, 0); sh.lineTo(-w / 2, 0);
+    return new THREE.ExtrudeGeometry(sh, { depth: d, bevelEnabled: false, curveSegments: 6 }); };
+  const FW = 0.31, FD = 0.235, CT = 0.0012, TABW = 0.085, TABH = 0.024;
+  const stack = new THREE.Group(); stack.position.set(0, TOP, 0); cart.add(stack);
+  let y = 0, lean = 0, nOther = 0, nScreen = 0;
+  const folders = [];
+  for (let i = 0; i < NF; i++) {
+    const age = 1 - i / (NF - 1), kind = kinds[i], sheaf = 0.02 + rnd() * 0.01, lift = 0.003 + 0.004 * rnd();
+    const th = 2 * CT + sheaf + 0.001;               /* about a quarter of the old blocks: two thin covers round a sheaf */
+    const manila = new THREE.MeshPhysicalMaterial({ color: NEW.clone().lerp(OLD, Math.pow(age, 0.75)), roughness: 0.6 + 0.32 * age, sheen: 0.35 * (1 - age), sheenColor: new THREE.Color(0xfff0d0), clearcoat: 0.2 * (1 - age), side: THREE.DoubleSide, name: 'manila-card' });
+    const sheets = new THREE.MeshPhysicalMaterial({ color: PNEW.clone().lerp(POLD, age), map: pageEdge, roughness: 0.9, name: 'paper-sheets' });
+    const f = new THREE.Group();
+    const ox = i === 0 ? -0.05 : (i === 1 ? 0.02 : 0), rot = i === 1 ? 0.14 : (rnd() - 0.5) * 0.12;
+    f.position.set(0.02 + lean + ox, y, (rnd() - 0.5) * 0.025); f.rotation.y = rot; stack.add(f);
+    /* back flap, cut 10 mm taller than the front cover at the front (top) edge */
+    const back = rb(FW, CT, FD, 0.0006, manila); back.position.set(0, CT / 2, 0); f.add(back);
+    /* the sheaf, set back from the front so it shows inside the gape */
+    const pg = rb(FW - 0.016, sheaf, FD - 0.024, 0.0015, sheets); pg.position.set(0.002, CT + sheaf / 2, -0.006); f.add(pg);
+    /* a few sheets proud of the sheaf, staggered, so the edge reads as paper not a block */
+    for (let k = 0; k < 3; k++) { const ls = new THREE.Mesh(new THREE.BoxGeometry(FW - 0.02 - rnd() * 0.02, 0.0006, 0.004), new THREE.MeshStandardMaterial({ color: PNEW.clone().lerp(POLD, age * 0.9), roughness: 0.9, name: 'paper-edge' }));
+      ls.position.set((rnd() - 0.5) * 0.01, CT + sheaf * (0.25 + 0.3 * k), FD / 2 - 0.016 + rnd() * 0.006); ls.userData.txBevel = false; ls.castShadow = true; f.add(ls); }
+    /* the front cover, hinged at the back fold, lifting `lift` at its free front edge */
+    const scoreM0 = new THREE.MeshStandardMaterial({ color: NEW.clone().lerp(OLD, age).multiplyScalar(0.55), roughness: 0.95, name: 'manila-crease' });
+    const hinge = new THREE.Group(); hinge.position.set(0, th - CT, -FD / 2); f.add(hinge);
+    const FCD = FD - 0.01;
+    /* the front cover as one die line: its front corners cut on the crease where a dog ear has been bent up out of it */
+    const hw = (FW - 0.002) / 2, ears = { l: age > 0.25 ? 0.022 + 0.03 * age : 0, r: age > 0.6 ? 0.018 + 0.024 * age : 0 };
+    { const sh = new THREE.Shape(); sh.moveTo(-hw, 0); sh.lineTo(hw, 0);
+      if (ears.r) { sh.lineTo(hw, FCD - ears.r); sh.lineTo(hw - ears.r, FCD); } else sh.lineTo(hw, FCD);
+      if (ears.l) { sh.lineTo(-hw + ears.l, FCD); sh.lineTo(-hw, FCD - ears.l); } else sh.lineTo(-hw, FCD);
+      sh.lineTo(-hw, 0);
+      const fg = new THREE.ExtrudeGeometry(sh, { depth: CT, bevelEnabled: false });
+      const front = new THREE.Mesh(fg, manila); front.rotation.x = Math.PI / 2; front.position.y = CT; front.userData.txBevel = false; hinge.add(front);
+      /* each ear: the cut corner itself, hinged on the crease and bent up, with the crease drawn in */
+      const underside = manila.clone(); underside.color.offsetHSL(0, -0.06, -0.06); underside.name = 'manila-card-inside';
+      [['l', -1], ['r', 1]].forEach(([key, sx]) => { const cs = ears[key]; if (!cs) return;
+        const A = new THREE.Vector3(sx * (hw - cs), CT, FCD), B = new THREE.Vector3(sx * hw, CT, FCD - cs), C = new THREE.Vector3(sx * hw, CT, FCD);
+        const u = B.clone().sub(A).normalize(), ang = (0.9 + 1.5 * age) * (rnd() * 0.25 + 0.88);
+        const rot = (th0) => C.clone().sub(A).applyAxisAngle(u, th0).add(A);
+        let Cp = rot(ang); if (Cp.y < CT) Cp = rot(-ang);
+        /* a bent, not flat, ear: a midpoint lifted less than the tip so the paper curves off the crease */
+        const M = A.clone().add(B).multiplyScalar(0.5), Cm = C.clone().sub(M);
+        let Mp = M.clone().add(Cm.clone().multiplyScalar(0.5).applyAxisAngle(u, ang * 0.55)); if (Mp.y < CT) Mp = M.clone().add(Cm.clone().multiplyScalar(0.5).applyAxisAngle(u, -ang * 0.55));
+        const g = new THREE.BufferGeometry().setFromPoints([A, B, Mp, A, Mp, Cp, Mp, B, Cp]); g.computeVertexNormals();
+        const ear = new THREE.Mesh(g, underside); ear.material.side = THREE.DoubleSide; ear.castShadow = true; ear.receiveShadow = true; ear.userData.txBevel = false; hinge.add(ear);
+        const cr = new THREE.Mesh(new THREE.CylinderGeometry(0.0007, 0.0007, A.distanceTo(B), 6), scoreM0); cr.position.copy(M).setY(CT + 0.0003); cr.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), u); cr.userData.txBevel = false; hinge.add(cr); }); }
+    hinge.rotation.x = -Math.atan2(lift, FCD);
+    const gape = new THREE.Mesh(new THREE.BoxGeometry(FW - 0.02, lift + 0.001, 0.004), gapeMat); gape.position.set(0, CT + sheaf + (lift + 0.001) / 2, FD / 2 - 0.03); gape.userData.txBevel = false; f.add(gape);
+    /* the creased fold along the back long edge: a tight rounded bend joining the two covers */
+    const fold = new THREE.Mesh(new THREE.CylinderGeometry(th / 2, th / 2, FW, 16, 1, true, 0, Math.PI), manila); fold.rotation.z = Math.PI / 2; fold.rotation.x = Math.PI; fold.position.set(0, th / 2, -FD / 2); f.add(fold);
+    const scoreM = new THREE.MeshStandardMaterial({ color: NEW.clone().lerp(OLD, age).multiplyScalar(0.6), roughness: 0.95, name: 'manila-score' });
+    [0.012, 0.022].forEach((dz) => { const sc = new THREE.Mesh(new THREE.BoxGeometry(FW - 0.004, 0.0005, 0.0012), scoreM); sc.position.set(0, th + 0.0002 - 0.0005, -FD / 2 + dz); sc.userData.txBevel = false; f.add(sc); });
+    /* THE TAB: a die cut lip off the back flap's front edge, standing up, covered in its code coloured label */
+    const lx = -0.095 + (i % 3) * 0.095;
+    const tabBase = new THREE.Mesh(tabGeo(TABW, TABH, CT), manila); tabBase.position.set(lx, CT * 0.5, FD / 2 - 0.001); tabBase.rotation.x = 0.3; f.add(tabBase);
+    const tabLab = new THREE.Mesh(tabGeo(TABW - 0.012, TABH - 0.005, 0.0006), vinyl[kind]); tabLab.position.set(lx, CT * 0.5 + 0.0005, FD / 2 + 0.0002); tabLab.rotation.x = 0.3; tabLab.translateZ(CT); tabLab.translateY(0.0015); f.add(tabLab);
+    if (kind === 'other') nOther++; else nScreen++;
+    /* the dust film: on the top face and thickening down the stack; none on the newest */
+    if (age > 0.05) { const dm = new THREE.MeshBasicMaterial({ map: dustTex, transparent: true, opacity: Math.min(0.9, 0.1 + 0.85 * age * age), depthWrite: false, name: 'dust-film' }); dm.userData.txSurface = false;
+      const dust = new THREE.Mesh(new THREE.PlaneGeometry(FW - 0.004, FD - 0.004), dm); dust.rotation.x = -Math.PI / 2 - Math.atan2(lift, FCD); dust.position.set(0, th + lift * 0.5 + 0.0012, 0); dust.userData.txBevel = false; f.add(dust); }
+    /* a report strip slid half out of the gape, lying on the sheaf */
+    if (i % 4 === 2) { const sl = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.0006, 0.27), new THREE.MeshPhysicalMaterial({ color: PNEW.clone().lerp(POLD, age * 0.8), map: CH.paperTex(THREE, 100 + i, 16, -1), roughness: 0.92, name: 'paper-sheet' }));
+      sl.position.set(0.04, CT + sheaf + 0.0004, FD / 2 + 0.028 - 0.135); sl.rotation.y = 0.12 + rnd() * 0.12; sl.rotation.x = -Math.atan2(lift, FCD) * 0.6; sl.castShadow = true; sl.receiveShadow = true; sl.userData.txBevel = false; f.add(sl); }
+    f.traverse((m) => { if (m.isMesh && m.material && m.material.name !== 'dust-film') { m.castShadow = true; m.receiveShadow = true; } });
+    folders.push({ g: f, th: th + lift, y: y, lean: lean });
+    y += th + lift * 0.6 + 0.0008; lean += 0.013 + rnd() * 0.006;
+  }
+  if (folders.length !== NF) throw new Error('drew ' + folders.length + ' folders for FIG.units ' + NF);
+  if (nOther !== NP || nScreen !== NF - NP) throw new Error('periwinkle labels ' + nOther + ' disagree with FIG.of_nine ' + NP);
+  /* A COFFEE RING on the oldest folder, half under the one skewed on top of it */
+  { const a = folders[0]; const rm = new THREE.MeshBasicMaterial({ map: ringTex, transparent: true, depthWrite: false, opacity: 0.85, name: 'coffee-ring' }); rm.userData.txSurface = false;
+    const ring = new THREE.Mesh(new THREE.PlaneGeometry(0.085, 0.085), rm); ring.rotation.x = -Math.PI / 2; ring.position.set(-FW / 2 + 0.05, a.th + 0.0018, FD / 2 - 0.05); ring.userData.txBevel = false; a.g.add(ring); }
+  /* THE RUBBER BAND, perished: still round the three oldest folders but slack, bowing off their front, cracked through
+     at the top where its two ends have curled apart */
+  { const perished = new THREE.MeshPhysicalMaterial({ color: 0xa8704e, roughness: 0.95, name: 'rubber-band-perished' });
+    const top = folders[2].y + folders[2].th + 0.002, bx = -0.03, zf = FD / 2 + 0.006, zb = -FD / 2 - 0.004;
+    const P = (x, yy, z) => new THREE.Vector3(bx + x, yy, z);
+    const pts = [P(0.004, top + 0.006, 0.02), P(0, top + 0.001, -0.02), P(-0.002, top, zb + 0.03), P(-0.003, top * 0.6, zb), P(-0.004, -0.0015, zb + 0.02),
+                 P(-0.004, -0.0015, zf - 0.03), P(-0.002, top * 0.15, zf + 0.012), P(0.002, top * 0.45, zf + 0.022), P(0.004, top * 0.8, zf + 0.014), P(0.006, top + 0.002, zf - 0.03), P(0.01, top + 0.009, 0.05)];
+    const band = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 160, 0.0026, 8, false), perished); band.castShadow = true; band.receiveShadow = true; stack.add(band);
+    /* the broken ends, a hair thinner where the rubber has perished */
+    [pts[0], pts[pts.length - 1]].forEach((q) => { const e = new THREE.Mesh(new THREE.SphereGeometry(0.0022, 10, 8), perished); e.position.copy(q); stack.add(e); });
+    /* a loose sheet slid off onto the shelf beside the stack, its shadow seating it on the wire */
+    const sh = new THREE.Mesh(new THREE.BoxGeometry(0.216, 0.0006, 0.279), new THREE.MeshPhysicalMaterial({ color: 0xf2e2c4, map: CH.paperTex(THREE, 377, 16, -1), roughness: 0.92, name: 'paper-sheet' }));
+    sh.position.set(0.3, 0.0035, -0.1); sh.rotation.y = -0.25; sh.castShadow = true; sh.receiveShadow = true; sh.userData.txBevel = false; stack.add(sh); }
+
+  /* THE CAMERA: from the left, above, looking down into the stack so the folders read by their covers, gapes and tabs */
+  const FOV = 40;
+  const stackMid = new THREE.Vector3(); cart.updateMatrixWorld(true);
+  stack.localToWorld(stackMid.set(0.07, y * 0.5, 0.04));
+  /* step back along one bearing until the whole stack, tabs included, sits between the type column and the right edge */
+  let FROM, look, fitK = 0;
+  for (let k = 0.3; k <= 2.6; k += 0.02) {
+    FROM = [stackMid.x - 0.5 * k, stackMid.y + 0.5 * k, stackMid.z + 1.1 * k];
+    const rectAll = () => { let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; const v = new THREE.Vector3();
+      /* the folders' own corners and tab tips, projected: a tight box rather than the groups' world bounds */
+      folders.forEach((F) => { F.g.updateMatrixWorld(true); [-FW / 2, FW / 2].forEach((x) => [0, F.th + TABH].forEach((yy) => [-FD / 2, FD / 2 + 0.012].forEach((z) => {
+        F.g.localToWorld(v.set(x, yy, z)); const q = CH.project(THREE, R, [v.x, v.y, v.z]); x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); }))); });
+      return [x0, y0, x1 - x0, y1 - y0]; };
+    const TY = (db.bottom + 24 + 1235) / 2; let sx = 690, sy = TY;
+    for (let pass = 0; pass < 3; pass++) {
+      look = CH.aim(THREE, R, TXT, FROM, [stackMid.x, stackMid.y, stackMid.z], sx, sy, FOV);
+      TXT.frame(R, { fov: FOV, from: FROM, look: look });
+      const rr = rectAll(); sx += 690 - (rr[0] + rr[2] / 2); sy += TY - (rr[1] + rr[3] / 2);
+    }
+    const rr = rectAll(); window.__fit = (window.__fit || []).concat([[k.toFixed(2), rr.map(Math.round)]]);
+    if (rr[0] + rr[2] <= 1040 && rr[0] >= 60 && rr[1] >= db.bottom + 24 && rr[1] + rr[3] <= 1235) { fitK = k; break; }
+  }
+  if (!fitK) throw new Error('no camera distance fits the stack beside the type ' + JSON.stringify(window.__fit.slice(-3)));
+  const stackTop = stackMid;
+  /* the top tab must stay inside the frame */
+  { const tp = new THREE.Vector3(); folders[NF - 1].g.localToWorld(tp.set(-0.095 + ((NF - 1) % 3) * 0.095 + TABW / 2, folders[NF - 1].th + TABH, FD / 2 + 0.02));
+    const q = CH.project(THREE, R, [tp.x, tp.y, tp.z]); if (q[0] > 1040) throw new Error('the top tab leaves the frame at x ' + Math.round(q[0])); }
+
+  window.__s2 = { stackTop: CH.project(THREE, R, [stackTop.x, stackTop.y, stackTop.z]) };
+
+  /* THE LIGHT: the window's last light, low from the left, apricot; violet in the shade */
+  CH.KEY_SCALE = 0.95;
+  const spec = CH.rigSpec(W, 9, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.3, 0.8, 0], { distance: 14, shadowFar: 40, normalBias: 0.008 }), { light: { az: -62, el: 19 } }));
+  CH.unacne(R, 0.006);
+  R.scene.environmentIntensity = 0.5;
+  { const f = new THREE.DirectionalLight(0x8a7cff, 0.45); f.position.set(2, 2.5, 6); R.scene.add(f); }
+  TXT.weather(R, { grime: 0.04, height: 0.1, mottle: 0.05 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { a: 0.45, height: 220 });
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.45, fade: 170 });
+  CH.seat(cx, { sel: '.dek', a: 0.8, fade: 110 });
+  /* the cabinet label holders run behind the kicker at this camera: knock them back */
+  CH.seat(cx, { sel: '.kick', a: 0.85, fade: 80 });
+  CH.seat(cx, { sel: '.kick', a: 0.6, fade: 40 });
+  CH.seat(cx, { sel: '.count', a: 0.5, fade: 60 });
+  CH.seat(cx, { sel: '#site', a: 0.6, fade: 60 });
+  CH.seat(cx, { sel: '.src', a: 0.4, fade: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

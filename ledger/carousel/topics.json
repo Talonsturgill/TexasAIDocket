@@ -3013,6 +3013,42 @@
     "Texas A&M",
     "emergency management"
    ]
+  },
+  {
+   "date": "2026-11-25",
+   "carousel_no": 87,
+   "docket_item": "tx-2026-0260",
+   "related_items": [
+    "tx-2026-0257",
+    "tx-2026-0249"
+   ],
+   "instrument": "UTMB Health's November 19th release on AI in its lung cancer screening program, Bunkerhill's UTMB case study and the USPSTF lung cancer screening recommendation, fetched November 25th, 2026.",
+   "topic": "UTMB Health uses an AI system built with Bunkerhill to review radiology reports and flag lung nodules for a patient navigator, who ranks follow up by a validated risk score, and about two thirds of the nodules the program found came from patients who were not having lung cancer screening.",
+   "angle": "The second finding. A scan drawn as a periwinkle field that covers only part of a glass lung holds a gold bead nobody ordered it to find, and the bead moves from report to navigator to the people who decide, then to one patient in her 20s, her family and the reader's own scan.",
+   "angle_note": "Gold means a nodule flagged for a person only, and frame 7's bead is plain lilac glass because no claim says the AI flagged that patient. No accuracy, count or after adoption timing is drawn. Bunkerhill's 80 percent never appears. The patient story is Dr. Nishi's account. Periwinkle is a scan ordered for something else and frosted white a screening exam.",
+   "entities": [
+    "UTMB Health",
+    "Bunkerhill",
+    "Shawn Nishi",
+    "Amanda Rodriguez",
+    "US Preventive Services Task Force"
+   ],
+   "places": [
+    "Texas",
+    "Galveston",
+    "Galveston County"
+   ],
+   "what_was_refused": "any accuracy figure, any count of patients or scans, any after adoption timing, Bunkerhill's marketing figures as UTMB results, the Brock score as UTMB's score, and robotic bronchoscopy as part of the flagging system.",
+   "keywords": [
+    "lung cancer screening",
+    "lung nodule",
+    "incidental finding",
+    "radiology reports",
+    "patient navigator",
+    "UTMB Health",
+    "Bunkerhill",
+    "risk score"
+   ]
   }
  ]
 }

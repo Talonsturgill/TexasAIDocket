@@ -18,7 +18,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 - kicker: `Dr. Nishi's patient`
 - counter: `07 / 09`
 - headline (verbatim): `She was in her 20s`
-- dek (verbatim, except the one exception below): `Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80.`
+- dek (verbatim, except the one exception below): `Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80 who meet its smoking criteria.`
 - labels: []
 - claim ids (the `src` furniture): `c18 c19 c20 c28`
 

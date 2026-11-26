@@ -18,7 +18,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 - kicker: `UTMB Health`
 - counter: `01 / 09`
 - headline (verbatim): `The scan was for something else`
-- dek (verbatim, except the one exception below): `AI now reviews radiology reports at UTMB Health, and each lung nodule is flagged for a person to review. About two thirds of the nodules its program found came from patients who were not having lung cancer screening.`
+- dek (verbatim, except the one exception below): `UTMB Health's AI reviews lung cancer screening reports and helps identify nodules found by chance. Each is flagged for a person. UTMB says about two thirds of its program's nodules came from patients not having lung cancer screening.`
 - labels: []
 - claim ids (the `src` furniture): `c2 c8 c31 c11 c17`
 

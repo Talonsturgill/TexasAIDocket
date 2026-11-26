@@ -1,0 +1,379 @@
+[
+ {
+  "slide": 9,
+  "score": 5.4,
+  "points": {
+   "only_this_sentence": 4,
+   "one_idea": 6,
+   "composed": 6,
+   "crafted": 5,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "fixes": [
+   "Replace the empty scanner with a picture of what the headline actually claims. Show a scan field ordered for something else, such as a periwinkle CH.OTHER slab framing an abdomen or a shoulder, whose edge just catches the base of a glass lung. Put the cut line visibly across the lobe so the part of the lung that falls inside the field reads at a glance.",
+   "If the room stays, finish the craft. The bore is a flat violet D-shaped cutout with no depth. Model a real tunnel with a lit interior wall, falloff and the couch rail running into it. The orange cabinets are bare boxes, so give them bevels, door gaps, real pulls and contact shadows. Bring the apricot window light across the floor and couch."
+  ],
+  "verdict": "rebuild",
+  "render_sha256": "c3465d7e21426c4743d4461d2cc8db3bb40fb0ec00c7b2916bea021e47fc24fa",
+  "round": 1,
+  "slide_original": 9
+ },
+ {
+  "slide": 1,
+  "score": 5.2,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 5,
+   "composed": 6,
+   "crafted": 4,
+   "unlike_neighbours": 8,
+   "honest": 7
+  },
+  "fixes": [
+   "The scan field does not read. At 432 px the periwinkle slab is a long glass bench on four thin legs lying in front of the lungs. Drop the legs and pass the slab as a floating glowing slice through both lower lobes, the lung clearly above and below it with a faint section edge. Make the gold bead the one point of light, inside the right lower lobe where slab and lung overlap, about three times the size, saturated #ffc83d, with a warm caustic.",
+   "The lungs are still two smooth glass pods with a rod and a Y for a trachea. There is a jagged transmission artifact inside the right pod. Sculpt real lobes with oblique fissures, a smaller left lung with its cardiac notch, frosted branching bronchi and a ringed trachea. Use lilac glass with real attenuation over a plum sweep so the scene is not one pink wash. Bring the lungs in from the right edge so the dek column does not overlap the left lobe."
+  ],
+  "verdict": "rework",
+  "render_sha256": "707714b579a7042ace280eea85b5d5164da18bd4a90c6f0d35574d88c47c9951",
+  "round": 1,
+  "slide_original": 1
+ },
+ {
+  "slide": 7,
+  "score": 6.0,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 8,
+   "honest": 7
+  },
+  "fixes": [
+   "Make the rule read as an age scale without the dek. Engrave decade numerals next to the major ticks, computed from FIG, legible at 432 px. Pull the camera lower and closer along the rule so the frosted 50 to 80 enamel block reads as a long raised bevelled slab beside the lone bead.",
+   "Finish the materials. The rule is a flat saturated blue plastic strip. Make it brushed steel with anisotropic streaks, chamfered edges and tick cuts with cavity shading. Replace the blurred pink mush under it with a sharp weathered limestone ledge with pitting, lichen and a cast shadow. Cut the depth of field. Give the bead a seated contact shadow and refraction so it reads as clear lilac glass."
+  ],
+  "verdict": "rework",
+  "render_sha256": "5d4b1c9c5868d0d5b7ad33c8443deb17b66a081b95523814605d5518c409a3e3",
+  "round": 1,
+  "slide_original": 7
+ },
+ {
+  "slide": 3,
+  "score": 6.3,
+  "points": {
+   "only_this_sentence": 5,
+   "one_idea": 7,
+   "composed": 6,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the picture say every report, automated. Fan a deep stack of report sheets (8 to 12 edges visible, cropped by the frame) under one raking apricot light, every sheet with the same raised plum lines and only ONE sheet carrying the gold foil line and a gold flag tab sticking out of the stack edge, with the steel binder clip on that tab casting a hard shadow.",
+   "Craft the sheet as an object on a bench. Lift the top corner into a real curl with a plum cast shadow at least twice the current size. Give the page a soft contact shadow along its edge. Replace the muddy violet fade over the bottom fifth with a clean crop or a deliberate footWash band. Add one saturated apricot or rose note to the cream paper."
+  ],
+  "verdict": "rework",
+  "render_sha256": "9d0c5856165994c380f661dd5a6461073c8c321912c79e99dd548fa80b4ae5b3",
+  "round": 1,
+  "slide_original": 3
+ },
+ {
+  "slide": 8,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "fixes": [
+   "Push the camera in and down to about chest height, roughly twice as close, so the seven standing relatives fill the middle band at three to four times their size. Make the eighth figure obvious at 432 px, a clear shoulder, arm and half a back stepping out from the oak trunk with an apricot rim light.",
+   "Relight the lawn for the PEOPLE tone. A low apricot key raking from behind the group so each figure throws a long plum shadow toward the camera. Pull the saturated green toward olive and plum with violet in the canopy shade. Plum contact pools, clothing folds, hair detail and believable hands where the eye lands."
+  ],
+  "verdict": "rework",
+  "render_sha256": "4e3cfb0c2017f89f22e4c2d4f1c576496378ec7e9c25e60d813cc3b618113e3f",
+  "round": 1,
+  "slide_original": 8
+ },
+ {
+  "slide": 5,
+  "score": 6.9,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "Tighten the camera so the rail, the two people and the reading bridge fill the frame and cut the bottom third of empty drawer fronts. Give the reading bridge a visible cyan read beam sweeping a card, with a gold flag rising out of that beam, so it flags is drawn as an action.",
+   "Make people decide the place the eye lands. The doctor cuff, a real hand and the pen down on the front gold flagged card, lit and sharp, at the rail right end. Replace soft kit hands and clay helmet hair. Change the counter and cards so this frame does not repeat frame 5 oak and periwinkle tab index cards, for example a steel or cyan lit rail."
+  ],
+  "verdict": "rework",
+  "render_sha256": "7c9bfba461e54f9882d817a28f76398110703ad140f74b7ad804703ab212ffed",
+  "round": 1,
+  "slide_original": 6
+ },
+ {
+  "slide": 4,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 8,
+   "crafted": 5,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the hands and head finished work. Re-pose the right hand as a thumb and two fingers pinching the top edge of the front card, lifting it clear by a few centimetres with a contact shadow, the gold flag turned to camera. Left hand flat on the desk. Replace jagged helmet hair. Turn the near black monitor slab into a lit plum bezel edge on.",
+   "Give the queue its order. The gold flagged card comes from the front of the file with the cards behind it visibly stepped down, so the eye reads a ranked queue. Put real detail into the big flat lavender window, mullion depth, an apricot horizon and a lit sill."
+  ],
+  "verdict": "rework",
+  "render_sha256": "33b14b89d20803a383652fc5b985eb530470f7c3cedc05e6550fe7b6c40a4c4d",
+  "round": 1,
+  "slide_original": 5
+ },
+ {
+  "slide": 6,
+  "score": 7.4,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 7,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the one against two split readable at 432 px. Make the screening slab a dense milky near opaque white acrylic and both partial slabs saturated periwinkle. Open a clear gap between the first plinth and the other two so the eye groups one plus two. Make the three gold beads about 1.5 times larger with a small warm bloom.",
+   "Refine the glass lungs past the chassis pods: a broader base flattened against the diaphragm, the left narrower with a cardiac notch, lobe fissures, a frosted bronchial tree branching into each lobe. Deepen the plum contact shadows under the plinths."
+  ],
+  "verdict": "rework",
+  "render_sha256": "c34b2d7849f90559fbb14f7ff9bed22e5267d9284e978944819ba60f8111ef5f",
+  "round": 1,
+  "slide_original": 4
+ },
+ {
+  "slide": 2,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the picture show time passing. Age the folders from top to bottom, the newest on top crisp saturated manila, lower ones sun faded toward pale apricot with curled dog ears, a dust film, the rubber band slack and cracked on the lowest, so weeks sometimes months reads in the stack itself.",
+   "Rebuild the folders so they read as manila chart folders: a visible spine and fold line, a thin cover with a slight gape where pages show, a raised tab cut into the folder edge. Seat the stray report strips with contact shadows."
+  ],
+  "verdict": "rework",
+  "render_sha256": "d7ddcb78e14c9a9075d2fe082253ea6c103441e4dede455ffae64e89dfcccfa7",
+  "round": 1,
+  "slide_original": 2
+ },
+ {
+  "slide": 3,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Round 1 fix 1 PARTLY LANDED. The gold foil band runs off the top page across the whole stack edge and out of frame, a strap binding every report. End the gold line at the top sheet edge, let one short gold flag tab stick out from a single sheet partway down the fan, with a real steel binder clip with two wire handles on that tab only and a hard plum cast. Delete the red rubber stamp, a second accent that reads as a verdict.",
+   "Round 1 fix 2 PARTLY LANDED. The curl is a flat triangle on a hard crease and the muddy violet fade over the bottom fifth is larger. Remove the fade, crop cleanly or seat the footer on a narrow crisp footWash band. Bend the corner into a soft cylindrical curl. Add a soft contact shadow where the sheets meet the bench."
+  ],
+  "verdict": "rework",
+  "render_sha256": "a005929dfe7cef495264a759fb813ffd5c9c364376bf0c90026d831223d1c74f",
+  "round": 2,
+  "slide_original": 3
+ },
+ {
+  "slide": 4,
+  "score": 7.2,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 8,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Fix 1 partly landed. Both hands meet behind the front card in a stubby clump with no pinch and no gap under the lifted card. The hair is a faceted helmet. One right hand with thumb on the near face, two fingers over the top edge, card raised clear with a plum shadow. Smooth groomed tied back hair with an apricot rim.",
+   "Fix 2 partly landed. The window pane is a flat orange slab. Give it a periwinkle to apricot sky with a horizon band and a faint reflection. The queue does not read as ranked; step the cards visibly lower front to back and give the front card a gold edge line."
+  ],
+  "verdict": "rework",
+  "render_sha256": "22a3c385f2e84267070c45095a8802f59ff57b7f85e3e6993ce85f41cb4d5d31",
+  "round": 2,
+  "slide_original": 5
+ },
+ {
+  "slide": 1,
+  "score": 6.0,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 6,
+   "crafted": 5,
+   "unlike_neighbours": 8,
+   "honest": 7
+  },
+  "fixes": [
+   "Fix 1 mostly landed. The bead is too big and sits on top of the slab in front of the lung. Shrink to about 40 percent, bury it inside the right lower lobe where the section ellipse crosses, caustic as a warm spot on the slab. Give the slab a glowing cut edge and an emissive scan line.",
+   "Fix 2 partly landed. Lungs still smooth pods with no readable fissures or cardiac notch, jagged transmission artifact on the right edge of both lungs, bronchi end in capped stubs. Sculpt frosted fissure seams, cut the notch, fix transmission artifact, taper bronchi. Trachea runs into the g of something; drop the group 4 percent. Plum floor and contact shadow."
+  ],
+  "verdict": "rework",
+  "render_sha256": "0936f6095eac12d0ef55c0e4b4525fb0e311b8425f3333158437dc1720f23c00",
+  "round": 2,
+  "slide_original": 1
+ },
+ {
+  "slide": 6,
+  "score": 8.0,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 7,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "fixes": [
+   "Fix 1 LANDED. Give each bead a small warm glow on the acrylic and push the middle bead fully inside its slab.",
+   "Fix 2 HALF LANDED. Lungs still teardrop pods; flatten bases, cardiac notch, fissure lines. Seat the third plinth clear of the middle one, cap the trachea stubs. The art fills under 40 percent with a dead violet band above the headline."
+  ],
+  "verdict": "ship",
+  "render_sha256": "962a016221b9d5d63c5be5d0f0ce0ed1e9346c4454029712f23c8e99c6a0fba5",
+  "round": 2,
+  "slide_original": 4
+ },
+ {
+  "slide": 7,
+  "score": 6.5,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 6,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Fix 1 half landed. Numerals in and checked. The rule is a thin band about 7 percent of the frame and the bottom 40 percent is empty sand. Push the camera in and down along the rule so it runs on a diagonal from big in the near left foreground (bead and 20 at least a quarter of the frame wide) to the 50 to 80 slab into the distance.",
+   "Fix 2 mostly did not land. The rule is still flat lilac pink plastic with printed ticks. Brushed steel with anisotropic streaks, chamfered edges, cavity shaded cuts. A real weathered limestone ledge with a broken lip, pitting, lichen and the rule casting a hard shadow. Seat the bead with a dark contact shadow and caustic. Bevel highlight on the enamel slab."
+  ],
+  "verdict": "rework",
+  "render_sha256": "57e0258d752b11ab8b21d7827cd64b0cf6a9a3c99defb6571a39f0efb7c448c4",
+  "round": 2,
+  "slide_original": 7
+ },
+ {
+  "slide": 2,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Fix 2 did not land. Each unit still reads as a thick book or drawer. Rebuild each a quarter as thick with a creased spine fold, a thin cover lifting so pages show, a raised die cut tab standing off the top edge of the back cover. Seat the loose strips.",
+   "Fix 1 half landed; it reads as light falloff not age. Push the bottom third, frayed dog ears, dust film, cracked band on the shelf, coffee rings. Clear the lower shelf of the red archive box and wire tray. Turn the camera so the top tab is not cut off."
+  ],
+  "verdict": "rework",
+  "render_sha256": "1254a6da9766823490d9e616773405bad920330373fdff456fcbcee67183e3b2",
+  "round": 2,
+  "slide_original": 2
+ },
+ {
+  "slide": 9,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 6,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the panes visibly cut the lung. Inside each periwinkle pane render the lung as a lit slice with a crisp section edge and the pane edge shadow on the lung; outside every pane leave it plainly unscanned. Replace the thin line drawn body with a modelled torso relief with height and cast shadow. Bevelled acrylic pane edges with contact shadows.",
+   "Recompose. The top 37 percent is a flat violet plate under the type. Pull the camera up so the lightbox rises behind the dek, or make the field a real lit surface. The bottom pane is cropped under the footer; shrink or reframe so its whole outline is in frame. Remove the unexplained white pill tabs."
+  ],
+  "verdict": "rework",
+  "render_sha256": "e9bd7f7144533fd252dc8e9d9803046779288fe1468f52b68492abf9ebee2bbd",
+  "round": 2,
+  "slide_original": 9
+ },
+ {
+  "slide": 5,
+  "score": 5.6,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 6,
+   "composed": 5,
+   "crafted": 5,
+   "unlike_neighbours": 5,
+   "honest": 7
+  },
+  "verdict": "rework",
+  "render_sha256": "7a6af5d03aa48ef7980513705f49f173dbdb3b2d3a6260cf520113fe8444566d",
+  "round": 3,
+  "fixes": [
+   "Recompose around one diagonal sweep from reading bridge to navigator to doctor, chain filling 60 percent, real stitched inlay edge and contact shadows.",
+   "Take primitives past primitive: plates as report sheets in acrylic sleeves, sculpted hands, bevelled bridge; pull away from slide 4's card rack vocabulary."
+  ]
+ },
+ {
+  "slide": 7,
+  "score": 7.4,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "verdict": "rework",
+  "render_sha256": "6c04efdadc6c84600c3953752eb3a2affb23012c73bebbf1b0dadb90cfdec5ea",
+  "round": 3,
+  "fixes": [
+   "Crop or rebuild the soft blocky limestone lip at lower right as fractured limestone.",
+   "Seat the bead in an engraved groove with a contact crescent and bring the 50 to 80 slab larger and closer."
+  ]
+ },
+ {
+  "slide": 8,
+  "score": 6.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 9,
+   "honest": 9
+  },
+  "verdict": "rework",
+  "render_sha256": "a9b39f47ce2e3ca157593dbf8e8839a6bfafe1bf8a82181c807089ea8aff3987",
+  "round": 3,
+  "fixes": [
+   "Cluster the eight as one family with varied ages and touch, the eighth genuinely half hidden behind the trunk.",
+   "Vary clothing and silhouettes, dense mown lawn, flared root base."
+  ]
+ }
+]

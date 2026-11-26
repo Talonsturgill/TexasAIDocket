@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "This is a real bespoke LOOK V2 deck. Each of the nine frames is its own picture in vivid violet, and no frame is near black or grey. Slide 1 is the showstopper. The glass lung is cut by a periwinkle scan slab, the gold bead sits lit in the overlap, and contact shadows sit on the sweep, so it reads as one silhouette at 432 px. Slide 3's paper relief has tooth, a curl and a gold foil line, and slide 7's raked age rule, with the glass bead at 20 and the block near 50 to 80, are bespoke and well lit. The score is held down by slide 4: two small brown squares float in the air beside the card drawer (a render artifact), the clasped hands are lumpy, and the monitor is a primitive box. Slide 6's two-in-three encoding (one white cradle against two periwinkle slabs, a gold bead in every lung) is invisible at feed size, and the bottom third of that frame is empty violet. On slide 9 the type sits on a dark plum smudge that reads as a plate on the pink sweep, not as quiet in the picture. Slide 8's kit figures are mannequins seen from behind, and slide 5's hands are crude. Strong overall, with more than one frame leaning on a default, so a 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Read as a bespoke deck, the spine holds. One serif and mono type system, the same counter and site line, a violet to apricot palette, and gold used only for a nodule flagged for a person on frames 1, 3, 4, 5 and 6. Gold is correctly withheld on 7, where the bead is lilac glass because no claim says the AI flagged her nodule, and on 8 and 9. The story runs in order, and frame 9's glass lung bookends the cover. The arc warms from cool frames to the warm lawn and room at 8 and 9. Frame 9's pink-salmon sweep sits slightly outside the deck's violet family, and frame 6's material code (frosted for screening, periwinkle for other scans) is a continuity device the reader can't actually decode."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces. 2016 (c3, program_start), 20s (c18), 2 in 3 (c17, share_num and share_den), 50 to 80, 20 pack-year and 15 years (c28), seven or eight (c21), and the drawn ruler's 20, 50 and 80 on slide 7 (patient_decade, age_low, age_high). Sources are primary: the UTMB release and USPSTF. The vendor's 80 percent (c25) and the Brock score were correctly kept off. The patient account is attributed to Dr. Nishi on 7, 8 and in the caption, and slide 7 never says the AI found her nodule. 'A nodule nobody was looking for' on slide 7 is a fair but slightly heightened gloss of 'found incidentally'. Slide 1's 'Each is flagged for a person' compresses c11, which applies to any nodule on any lung-touching scan, without changing what a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened: UTMB Health's AI reads radiology reports and flags any nodule. They learn who acts on it: navigator Amanda Rodriguez checks every flag and people decide. They learn why it bites: about two thirds of nodules came from scans ordered for something else, and a patient in her 20s, far under the 50 to 80 screening age, was found that way. Slide 9 gives an action, 'Ask a doctor what yours showed'. Two things are missing. Galveston and the county are named on no slide and not in the caption, so 'UTMB' carries the place alone. And the reader is never told whether anything changed after adoption: the release gives no after-adoption timing, so the deck honestly can't say, but the stake stays general. There is no deadline, which is correct here."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'The scan was for something else' earns the swipe, and slide 2 pays at once with the weeks-to-months delay. The reorder after the flow critic works: report on 3, navigator on 4, who decides on 5, then the turn on 6 ('About 2 in 3 found outside screening'), then the human case on 7 and 8 and the action on 9. Slides 3 and 5 overlap: 5 restates the flag-and-person mechanism 4 already established, and is the one frame that could compress without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, honest about limits without doom. 'It flags. People decide.' is a good line. The voice is generic health-desk, not Texan, and nothing in it is regional. The reader copy carries machine disclaimers such as slide 6's 'Three lungs drawn to illustrate the share, never a count.' The caption closes on a garbled question: 'Where you get scanned, who reads the report past the reason it was ordered?'"
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The opening move is fresh: a glass organ with a scan slab. Bespoke reliefs and scenes vary across frames. But this is the third clinical-AI deck in ten days (no. 79 UT Health San Antonio on November 16th, no. 85 Dell Med on November 22nd). It also opens on a glass-object-on-studio-sweep look close to recent v2 decks. Not a topic repeat: no prior UTMB lung screening entry is in the 30-day ledger window."
+  }
+ ],
+ "weighted_score": 7.49,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild slide 6 so the two-in-three share is visible at feed size. Gold beads only in the two periwinkle-slab lungs, the screening lung in its white cradle dimmed or unflagged, and the frames given labels or pills ('screening' and 'other scans'). The deck's turn currently depends on a material code no reader can decode.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The turn's share is unreadable. All three lungs carry identical gold beads, the screening-versus-other-scan difference rides only on a white tray against thin periwinkle slabs, and the bottom third of the frame is empty violet.",
+   "fix": "Light the two slab lungs with gold, leave the cradled screening lung beadless and dimmer, add accent pills 'screening' and 'other scans', and drop the lung row lower so it fills the empty band under the dek."
+  },
+  {
+   "slide": 4,
+   "problem": "Two small brown squares float in the air beside the card drawer (a render artifact), the clasped hands are lumpy, and the monitor is a primitive slab.",
+   "fix": "Delete the stray floating chip meshes, swap the clasped pose for one hand lifting the flagged card with the other on the drawer, and bevel the monitor with TXT.roundedBox and a lit screen edge."
+  },
+  {
+   "slide": 9,
+   "problem": "The headline and dek sit on a dark plum smudge that reads as a plate on the pink sweep, and the lung is less modelled than the cover's.",
+   "fix": "Move the lung left and higher so its glass carries the frame, seat the type on TXLOOK.typeWash in the sweep's own deep rose instead of a plum blot, and restore the cover's rim light and bronchial branching."
+  },
+  {
+   "slide": 8,
+   "problem": "The kit figures read as mannequins from behind, with stiff poses and flat clothing, and the tree bark texture is noisy.",
+   "fix": "Lower the camera to chest height behind one figure in the foreground, cropped at the shoulder, so the group reads as people she named, and calm the bark normal map."
+  },
+  {
+   "slide": 5,
+   "problem": "The cropped hands are crude and the brown hand at 'decides' is malformed.",
+   "fix": "Replace the three kit hands with simpler sleeved forearms ending in mitten-modelled hands, and crop the top-right hand off the frame edge so only the flag being taken shows."
+  }
+ ]
+}

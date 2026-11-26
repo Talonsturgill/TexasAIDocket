@@ -1,0 +1,225 @@
+{
+ "weighted_score": 7.246,
+ "judges": [
+  7.02,
+  7.5,
+  7.19
+ ],
+ "spread": 0.48,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.8,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    6.8,
+    8.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.5,
+    7.2
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.02 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.5 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.19 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.02,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.02 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.5,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.5 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.19,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.19 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The art is crammed into the top 40 percent: shoulder-cropped mannequin figures with crude hands and an unexplained 6 of 9 plate code. The lower 55 percent is empty mottled violet carrying only the type.",
+     "fix": "Pull the camera down and in so the rail and the doctor's pen hand fill the middle third. Drop the cropped torsos and keep only well-modelled hands, and let the plates run off the right edge."
+    },
+    {
+     "judge": 2,
+     "problem": "About half the frame is empty mottled purple floor. The counter is crammed against the top edge, the figures are cropped headless, the 'decides' pill overlaps the doctor's hand, and the AI station reads as a desk lamp.",
+     "fix": "Pull the orthographic camera back and down so the counter crosses the frame's centre band at full width, with the shoulders and heads of the navigator and doctor in frame. Move the type into the band the counter's cast shadow leaves at the bottom, and set the pills clear of the hands."
+    },
+    {
+     "judge": 3,
+     "problem": "About 40 percent of the frame is a dead purple field between the rail and the headline. The people are disembodied: a torso cropped at the top, a forearm crossing the rail, and hands at right with no body. The 'flags' lamp floats far from the rail it feeds.",
+     "fix": "Raise the camera and push in so the counter rail runs corner to corner through the frame's middle third. Seat the lamp at the rail's left end and the navigator's and doctor's hands on the rail itself. Move the headline up into the remaining quiet."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "At feed size the frosted whole-lung screening field and the periwinkle partial-scan fields look alike, so the 2 in 3 share doesn't read from the picture.",
+     "fix": "Leave the screening lung bare or in a white enamel cradle that matches slide 7's slab, and wrap the two other-scan lungs in strongly saturated periwinkle bands with the gold nodule inside the band, so 2 against 1 reads from colour alone."
+    },
+    {
+     "judge": 2,
+     "problem": "The lower fifth of the frosted and middle blocks renders near black charcoal, a carry-over the preflight asked to fix before the panel. The stilted right block floats, and three gold beads read as three of three flagged before two in three.",
+     "fix": "Raise the blocks' transmission or attenuation colour to violet in their lower interiors, seat the right block on the sweep with a contact shadow instead of stilts, and make the frosted (screening) unit visibly different by bead placement or by dimming its glass so the 2 to 1 split reads at 432 px."
+    },
+    {
+     "judge": 3,
+     "problem": "This is the turn frame, and its picture does not show the share. All three lungs carry gold beads. The 2 of 3 split rests on periwinkle against frosted slab tint that is unreadable at 432 px, and the boxed lungs read as specimen cases.",
+     "fix": "Put the three lungs on one plinth at equal size. Wrap two fully in saturated periwinkle slabs and one in a clearly frosted white slab, and pin a TXLOOK accent pill under each ('other scan', 'other scan', 'screening'). Drop the boxes on legs."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The relatives are stock plastic mannequins in matching poses, all facing away, and the eighth behind the trunk is an invisible sliver.",
+     "fix": "Vary posture and build, with two figures turned three quarters and some contact between them, and let the eighth figure's shoulder and shadow read clearly past the trunk's edge."
+    },
+    {
+     "judge": 2,
+     "problem": "Stiff mannequin kit figures in near identical standing poses, under a flat cut-out canopy with a black-outlined procedural bark.",
+     "fix": "Vary three or four poses (a hand on a shoulder, a turned head, a child-height figure), give the near figures cloth folds and hair detail, and replace the outlined bark with a lit PBR bark and depth-of-field on the canopy."
+    },
+    {
+     "judge": 3,
+     "problem": "Stock mannequin figures stand stiffly with their backs to camera, and the bark shows a cellular texture artifact. It is in a naturalistic register unlike the glass studio frames.",
+     "fix": "Crop to the trunk and four or five figures from chest height, so faces never read and silhouettes overlap. Retexture the oak bark, and let one figure's warm rim light carry the frame."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The close is the least modelled frame. Pink glass lungs with floating rings sit on a soft blush field that leaves the violet spine, the upper right is a dead zone, and nothing in the picture carries the action the dek asks for.",
+     "fix": "Re-stage it in the violet people sweep. Show the slide 1 lung on its glass plate from a new low camera, with a periwinkle partial-scan field crossing only its lower lobe and the gold nodule caught inside that field, and push the subject up and right so it fills the empty corner."
+    },
+    {
+     "judge": 2,
+     "problem": "The headline and dek sit on a large dark plum blob that reads as a plate dropped on the salmon sweep, and the upper right is dead.",
+     "fix": "Replace the blob with the tone's typeWash as a soft gradient from the top-left edge, and move the lung up and left toward centre so its apex and trachea fill the upper right quiet and the type sits on open sweep."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The headline and dek sit directly over filing cabinet handles and labels that poke between the lines. The folder pile on the cart is a muddle, and the planned staff member is missing.",
+     "fix": "Swing the camera so the cabinet wall falls out of focus behind a type wash on the left. Make the folder tower lean out past the right edge as the storyboard planned, and add the cropped shoulder at frame left."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The body copy sits on a heavy blurred plum wash over the sand, and the brown block mass at lower right is unreadable and pulls weight from the rule.",
+     "fix": "Crop or remove the lower-right brown blocks so the steel rule and bead own the lower half. Lower the sun so the shadow band gives the type natural dark ground instead of a painted wash."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Small brown squares float beside the card tray, which look like render artifacts. The monitor is seen from behind as a blank slab, and it takes the upper left.",
+     "fix": "Remove the stray tab meshes. Turn the monitor three quarters so its glow lights the navigator's hands and the gold flag card."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.246 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 5, 6, 8, 9, 2, 7, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

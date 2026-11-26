@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "This is a bespoke deck and the frames really do differ in world, camera, scale and medium: glass anatomy, a filing room, paper relief, a desk, a conveyor, a steel rule on limestone, a lawn under an oak, a studio sweep. Slide 1 is the showstopper. It has a lilac transmission-glass lung with an acrylic scan slab, a gold bead and a caustic, a plum contact shadow, and the subject fills the frame. Slide 6 reads its 1-of-3 cradle against 2-of-3 slab encoding at the 432 px thumb, but about 135 design px of empty violet sits above the footer. Several frames hold the score down. On slide 3 the top 40 percent of the frame is a flat purple field, and the pages are a near-flat relief of pseudo-glyph text with a primitive binder clip. Slide 2's headline is set straight over busy cabinet drawer pulls ('sometimes' crosses the handles at roughly y 480 to 560), and the cart is a generic primitive. Slide 8's family are stiff kit mannequins, all turned away, under olive-brown oak leaves that drift off the palette. On slide 9 the text sits on a visible dark blob plate rather than in quiet the composition made, and the discs read as stacked rings. Hands on slides 4 and 5 are crude."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The spine holds on the contact sheet. It is one violet-to-apricot people palette, one serif headline face, one mono kicker and counter, the same footer and site line on all nine, and the claim ids at bottom left. Gold keeps one meaning (a flagged find) on slides 1, 3, 4, 5 and 6, and slide 7 deliberately makes her nodule lilac glass because no claim says the AI flagged it. That is a disciplined accent. Slide 9 bookends the cover's glass lung. Slide 8's olive-brown foliage and slide 9's salmon-pink field sit slightly outside the run, and slide 3's paper relief is the frame least obviously from this deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces. 2016 (c3, program_start). '2 in 3' and 'two thirds' (c17, share_num and share_den). '20s' (c18). 'Seven or eight' (c21). '50 to 80', '20 pack-year' and '15 years' (c28). Slide 7's engraved 20, 50 and 80 are read from window.FIG, and the code asserts that the enamel span runs age_low to age_high. Slide 8 draws FIG.relatives_low clear figures and one more half hidden behind the trunk, ray-cast measured, which honestly draws 'seven or eight'. Slide 6's three lungs are share_den and are labelled as never a count. Both sources are primary and retrieved November 25th. Bunkerhill's 80 percent is correctly kept off every surface, and Galveston is correctly not named because the release doesn't name it. Two looser points. Slide 5's headline 'It flags.' and slide 1's 'Each is flagged' attribute the flagging to the AI, while c11 is passive ('is now flagged for review') and c31 says only that the AI is 'helping identify'. Slide 5's nine plates also encode 6 of 9 periwinkle, the two-thirds share, onto the AI's flag queue with no on-frame 'drawn to illustrate' and no label for the encoding. The share in c17 is of nodules identified through the program, not of flags. Neither changes what a reader believes enough to fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (UTMB put Bunkerhill-built AI on radiology report review and incidental nodule finding), who acts on it (navigator Amanda Rodriguez and medical director Dr. Shawn Nishi) and why it touches them (two thirds of the program's nodules came outside screening, and the woman in her 20s sat well outside the 50 to 80 guidance). Slide 9 gives an action, 'Ask a doctor what yours showed'. The place stays institutional, UTMB with no city or county, though that is honest given the source. The close's 'any scan touching the lungs counts' leaves 'counts toward what' to the reader. No deadline exists, so none is owed."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'The scan was for something else' earns the swipe, and slide 2's 'Weeks, sometimes months' pays at once. The declared turn is slide 6, and slides 7 and 8 move into one patient and her family before slide 9 hands it to the reader. Slides 4 ('Every flag goes to a navigator') and 5 ('It flags. People decide.') cover overlapping ground, so one of them could be cut or merged without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and keeps to house rules: no colons, no em dashes, attribution held carefully ('Dr. Nishi recalls', 'In her account'). Little of it sounds Texan, though. No regional detail appears in the copy beyond 'UTMB', and the Texas texture lives only in slide 8's live oak and slide 7's limestone. The caption's closing question, 'Where you get scanned, who reads the report past the reason it was ordered?', is grammatically awkward and reads machine-built."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The technique is new against the last four decks: Nov 24 was an aerial stitched subdivision, Nov 22 cutaway exam rooms, Nov 21 a rover on rubble, Nov 20 a drone and glass twin. Glass anatomy and acrylic scan slabs haven't appeared before. But this is the third clinical-AI deck built on a university release in ten days (Nov 16 VA speech, Nov 22 Dell Med AI Learning Lab), the instrument repeats, and the v2 people violet palette is the familiar move."
+  }
+ ],
+ "weighted_score": 7.59,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild slide 3 as a modelled object that owns the frame: fill the empty top 40 percent and replace the flat pseudo-glyph pages with a lit paper stack under the periwinkle slab, with gold marking the one flagged line. That makes slide 3 the deck's second showstopper instead of its weakest frame.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The top 40 percent of the frame is flat purple behind the type. The subject is a near-flat sheet of pseudo-glyph pages cropped off the left edge, with a primitive binder clip, so no object owns the frame and nothing reads at feed size beyond 'paper'.",
+   "fix": "Raise the camera to a low three-quarter view on a thick stack of report pages lit from the side, with real page thickness and cast shadow. Let the stack rise into the upper half so the headline sits in the shadow it casts. Keep the single gold highlighted line as the only accent."
+  },
+  {
+   "slide": 2,
+   "problem": "The headline 'Weeks, sometimes months' and the dek are set directly over the cabinet drawers and pulls, so the type fights the busiest part of the picture. The cart is a generic tube primitive cropped awkwardly at bottom right.",
+   "fix": "Pull the camera left so the cabinets stand on the right third and the type sits on the plain violet wall. Push the folder cart closer and lower so the folder stack fills the lower half with a contact shadow on the tile."
+  },
+  {
+   "slide": 8,
+   "problem": "The relatives are stiff kit mannequins, all turned away with identical posture, under olive-brown oak leaves that leave the people palette. The lower 40 percent is a flat plum lawn wash under the type.",
+   "fix": "Swap the backlit leaf tint from olive-brown to the deck's apricot-violet, vary three poses (an arm around a shoulder, a head turned in profile, one seated), and drop the camera so the lawn foreground carries long figure shadows under the type instead of an empty wash."
+  },
+  {
+   "slide": 9,
+   "problem": "The type sits on a visible dark purple blob plate laid over a salmon field rather than in quiet the composition made, and the six discs read as stacked flat rings rather than slabs.",
+   "fix": "Drop the blob plate and set the type in a deepened violet sweep in the upper left by lighting the cyclorama darker there. Give each disc visible bevelled thickness with a lit edge so they read as the cover's acrylic slabs."
+  },
+  {
+   "slide": 5,
+   "problem": "The forearms and hands entering from the right are crudely modelled, with lumpy fingers and a mitten-like dark hand at top right, at exactly the 'checks and ranks' and 'decides' beats.",
+   "fix": "Crop the hands so only cuffs and a single clean pointing hand enter at the 'checks and ranks' plate, and replace the 'decides' hand with a white coat cuff resting a pen on the last plate."
+  }
+ ]
+}

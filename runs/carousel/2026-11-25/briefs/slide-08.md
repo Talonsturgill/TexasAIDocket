@@ -18,7 +18,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 - kicker: `Her family`
 - counter: `08 / 09`
 - headline (verbatim): `Seven or eight relatives`
-- dek (verbatim, except the one exception below): `Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account the disease was hereditary, so her family members needed testing too. Family drawn to illustrate.`
+- dek (verbatim, except the one exception below): `Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account she had a hereditary disease, so her family members needed testing too. Family drawn to illustrate.`
 - labels: []
 - claim ids (the `src` furniture): `c21 c22`
 

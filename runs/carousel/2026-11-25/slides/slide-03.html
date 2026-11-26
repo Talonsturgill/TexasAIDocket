@@ -1,0 +1,253 @@
+<!doctype html>
+<!-- 2026-11-25, frame 3 of 9, EVERY REPORT (c8 c30). BESPOKE. A TXBENCH material relief in plan under the chassis key (its
+     colour pushed apricot): a deep fanned stack of radiology report sheets on a violet stained oak desk, every sheet carrying
+     the same raised plum greeked lines, the sheets' edges stepping out to the right and cropped by the frame. Only the top
+     sheet carries a raised gold foil line, ending at its own edge, and ONE sheet partway down the fan carries a short gold
+     flag tab out of its edge, with a polished steel binder clip with two round wire handles on it casting a hard shadow. The top sheet's corner rolls into a soft cylindrical curl. Drawn to illustrate: nothing on any page is legible, no logo, no name, no interface. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:146px; width:920px; text-align:left">Much of the chart review, automated</h1>
+<p class="dek" data-follow="20" style="left:82px; width:916px">The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Pages drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  /* HONEST. The brief gives no figure (window.FIG is {}) and the art draws no count or length that stands for one. The
+   * number of sheets in the stack is drawn to illustrate a pile of reports and is uncounted in the copy; no sheet, line,
+   * tab or clip stands for a patient, scan or nodule. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error("slide 03 draws no figure, but window.FIG carries " + Object.keys(window.FIG).join(","));
+
+  const cx = await CH.bootFlat({ kicker: "Report review", counter: "03 / 09", src: "c8 c30", fit: { min: 72, max: 94, maxLines: 2 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 3);
+  const L = TXLOOK.lin, F = (x, y, n) => TX.fbm2(x, y, { octaves: n || 3 });
+  const rng = CH.rng(CH.SEED + 303);
+  const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const D2R = Math.PI / 180;
+
+  const dekEl = document.querySelector(".dek"), dekR = dekEl.getBoundingClientRect(), TYPE_BOTTOM = dekR.top + dekR.height;
+  const FOOT_Y = 1206;                                   /* below here the footer band; no ink is printed under the footer */
+
+  /* THE STACK. US letter at 118 px per inch. The top sheet (k = 0) is posed by its top right corner and a slight
+   * counterclockwise turn; every sheet under it is the top sheet's pose turned a further DTH clockwise about a pivot off the
+   * bottom left of the frame, so the sheets fan out to the right like a squared pile pushed askew. */
+  const PPI = 118, PW = 8.5 * PPI, PH = 11 * PPI, NS = 11, DTH = 1.25 * D2R, THICK = 2.1;
+  const TH0 = -2 * D2R, TR0 = [770, Math.max(548, TYPE_BOTTOM + 34)], PIV = [-160, 1950];
+  const c0 = Math.cos(TH0), s0 = Math.sin(TH0), P0 = [TR0[0] - PW * c0, TR0[1] - PW * s0];
+  const rot = (X, Y, a) => { const c = Math.cos(a), s = Math.sin(a), dx = X - PIV[0], dy = Y - PIV[1]; return [PIV[0] + dx * c - dy * s, PIV[1] + dx * s + dy * c]; };
+  const toP0 = (X, Y) => { const dx = X - P0[0], dy = Y - P0[1]; return [dx * c0 + dy * s0, -dx * s0 + dy * c0]; };
+  const toS0 = (u, v) => [P0[0] + u * c0 - v * s0, P0[1] + u * s0 + v * c0];
+  const toP = (k, X, Y) => { if (k === 0) return toP0(X, Y); const q = rot(X, Y, -k * DTH); return toP0(q[0], q[1]); };
+  const toS = (k, u, v) => { const q = toS0(u, v); return k === 0 ? q : rot(q[0], q[1], k * DTH); };
+  if (toS(0, 0, 0)[0] > -20) throw new Error("the stack must run off the left edge");
+  if (toS(0, 0, PH)[1] < 1400) throw new Error("the stack must run off the bottom edge");
+  const outerTR = toS(NS - 1, PW, 0);
+  if (outerTR[0] < 1000) throw new Error("the fanned edges must reach the frame's right edge, the outermost corner is at " + outerTR[0].toFixed(0));
+
+  /* GREEKED TYPE, the same plum lines on every sheet: glyph blobs on baselines, nothing legible, precomputed into a half
+   * pixel column table of ascent and descent per row. */
+  const RES = 2, NC = Math.ceil(PW * RES) + 4, rows = [];
+  function row(vIn, u0In, u1In, st, opt) {
+    opt = opt || {};
+    const sty = { body: { adv: 6.9, lw: 5.1, xh: 6.8, asc: 9.7, desc: 2.9 }, bold: { adv: 8.2, lw: 6.6, xh: 8.2, asc: 11.3, desc: 3.1 },
+      head: { adv: 10.5, lw: 8.6, xh: 11.0, asc: 14.6, desc: 3.6 }, small: { adv: 5.8, lw: 4.2, xh: 5.5, asc: 7.8, desc: 2.4 } }[st];
+    const top = new Float32Array(NC), bot = new Float32Array(NC);
+    let u = u0In * PPI; const uEnd = u1In * PPI;
+    while (u < uEnd - sty.adv * 2) {
+      const n = opt.word ? opt.word : 2 + Math.floor(rng() * 8);
+      for (let k = 0; k < n && u < uEnd; k++) {
+        const r = rng(), up = (k === 0 && opt.caps) ? sty.asc : (r < 0.3 ? sty.asc : sty.xh), dn = (r > 0.88 ? sty.desc : 0);
+        for (let c = Math.floor(u * RES); c <= Math.ceil((u + sty.lw) * RES); c++) {
+          if (c < 0 || c >= NC) continue;
+          const x = c / RES - u, e = Math.min(x, sty.lw - x); if (e < 0) continue;
+          const round = e < 1.5 ? (1.5 - e) * 1.1 : 0;
+          top[c] = Math.max(top[c], up - round); bot[c] = Math.max(bot[c], dn > 0 ? dn - round * 0.5 : 0.01);
+        }
+        u += sty.adv;
+      }
+      u += sty.adv * (0.9 + rng() * 0.5);
+    }
+    const r = { v: vIn * PPI, top, bot, gold: !!opt.gold, asc: sty.asc + 1, desc: sty.desc + 1 };
+    rows.push(r); return r;
+  }
+  const rules = [];
+  row(0.56, 0.75, 3.7, "head"); row(0.80, 0.75, 2.85, "small");
+  row(0.52, 5.55, 7.75, "small"); row(0.70, 5.85, 7.75, "small"); row(0.88, 6.1, 7.75, "small");
+  rules.push([1.04, 0.75, 7.75, 2.0]);
+  [1.28, 1.50].forEach(v => { row(v, 0.75, 1.45, "bold", { word: 6 }); row(v, 1.6, 3.7, "body"); row(v, 4.3, 5.0, "bold", { word: 5 }); row(v, 5.15, 7.4, "body"); });
+  rules.push([1.70, 0.75, 7.75, 1.1]);
+  row(1.96, 0.75, 1.75, "bold", { word: 8, caps: true });
+  const findings = [2.22, 2.46, 2.70, 2.94, 3.18, 3.42], GOLD_INDEX = 2;
+  findings.forEach((v, i) => row(v, 0.75, i === findings.length - 1 ? 4.6 : 7.75, "body", { gold: i === GOLD_INDEX }));
+  row(3.80, 0.75, 2.1, "bold", { word: 10, caps: true });
+  [4.06, 4.30, 4.54, 4.78, 5.02].forEach((v, i) => row(v, 0.75, i === 4 ? 3.3 : 7.75, "body"));
+  row(5.40, 0.75, 1.9, "bold", { word: 9, caps: true });
+  [5.66, 5.90, 6.14, 6.38].forEach(v => row(v, 0.75, 7.75, "body"));
+  const goldRows = rows.filter(r => r.gold);
+  if (goldRows.length !== 1) throw new Error("exactly one line is lifted in gold, found " + goldRows.length);
+  const GR = goldRows[0], GV = GR.v;
+  const GOLD = { u0: 0.62 * PPI, u1: 7.9 * PPI, v0: GV - 21, v1: GV + 12 };
+
+  /* the top sheet only: the tri-fold crease, the curl, the rose received stamp and the gold */
+  const CREASE = PH / 3;
+  /* the curl, a = (PW - u) + v from the corner: the page lifts from CURL_R and rolls into a cylinder of radius CURL_RC whose
+   * axis lies over a = CURL_F; inside a < CURL_F - CURL_RC the corner has rolled away and what lies under shows through */
+  const CURL_R = 440, CURL_F = 190, CURL_RC = 46;
+  /* the flag tab, fixed to the top sheet under the gold line's end and running out over the fanned edges */
+  /* ONE flag tab, on ONE sheet partway down the fan (FK), sticking out of that sheet's right edge where the fan is open;
+   * every sheet above and below it carries none. Its height on the page is solved so it sits in the open fan. */
+  const FK = 5;
+  let FV = 0.3 * PH; for (let i = 0; i < 60; i++) { const y = toS(FK, PW, FV)[1]; FV += (1010 - y) * 0.9; }
+  const FLAG = { v0: FV - 30, v1: FV + 30, u0: PW - 70, u1: PW + 178 };
+  /* the binder clip on the tab: a 32 mm clip, lips toward the page, its back away, one handle folded each way */
+  const CLIP = { lip: PW + 56, back: PW + 128, hv: 52, top: 34 }, WIRE = 3.6, HL = 70;
+
+  const sdRect = (u, v, hw, hh, r) => { const qx = Math.abs(u) - (hw - r), qy = Math.abs(v) - (hh - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; };
+  const segD = (px, py, ax, ay, bx, by) => { const dx = bx - ax, dy = by - ay, t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)));
+    return Math.hypot(px - ax - t * dx, py - ay - t * dy); };
+  const curlLift = (a) => a >= CURL_R ? 0 : CURL_RC * Math.pow((CURL_R - Math.max(a, CURL_F + CURL_RC)) / (CURL_R - CURL_F - CURL_RC), 2.2);
+  function inkAt(u, v, skipGold) {
+    for (let i = 0; i < rows.length; i++) {
+      const r = rows[i]; if (skipGold && r.gold) continue;
+      const dv = r.v - v; if (dv > r.asc || -dv > r.desc) continue;
+      const c = Math.round(u * RES); if (c < 0 || c >= NC) continue;
+      if (r.top[c] > 0 && dv < r.top[c] && -dv < r.bot[c]) return true;
+    }
+    return false;
+  }
+  const ruleAt = (u, v) => rules.some(([rv, a, b, w]) => Math.abs(v - rv * PPI) < w / 2 + 0.3 && u > a * PPI && u < b * PPI);
+
+  /* the surface of sheet k at page coordinates (u, v): [height, material] or null when the point is off it */
+  function sheet(k, u, v, Y) {
+    const edgeN = 0.7 * F(u / 13 + k * 3.1, v / 13, 2);
+    if (u < -50 || u > PW + edgeN || v < edgeN || v > PH) return null;
+    const base = 1.0 + (NS - 1 - k) * THICK + 1.1 * F(u / 300 + k, v / 300, 2) + 0.18 * F(u / 1.5, v / 1.5, 2) + 0.08 * F(u / 7, v / 7, 2);
+    const printable = Y < FOOT_Y;
+    if (k > 0) {
+      if (printable && ruleAt(u, v)) return [base + 0.7, 2];
+      if (printable && inkAt(u, v, false)) return [base + 0.8, 2];
+      return [base, 1];
+    }
+    const a = (PW - u) + v;
+    if (a < CURL_F - CURL_RC) return null;                         /* the bare corner: what lies under shows through */
+    let h = base, d = v - CREASE; h += 2.2 * Math.exp(-Math.abs(d) / 90) - 1.4 * Math.exp(-(d / 2.1) * (d / 2.1));
+    h += curlLift(a);
+    /* the roll: the top of a cylinder, its near half the page's face curving up, its far half the underside coming back */
+    if (a < CURL_F + CURL_RC) {
+      const x = a - CURL_F;
+      return [base + CURL_RC + Math.sqrt(Math.max(0, CURL_RC * CURL_RC - x * x)) + 0.12 * F(u / 2, v / 2, 1), x < 0 ? 8 : 1];
+    }
+    if (u > GOLD.u0 && u < GOLD.u1 && v > GOLD.v0 && v < GOLD.v1) {
+      const e = Math.min(u - GOLD.u0, GOLD.u1 - u, v - GOLD.v0, GOLD.v1 - v);
+      let g = h + 3.0 * smooth(0, 1.8, e) + 0.3 * F(u / 5, v / 5, 2) + 0.16 * F(u / 1.2, v / 1.2, 1);
+      if (inkAt(u, v, false) && GR.top[Math.round(u * RES)] > 0 && Math.abs(GV - v) < 12) g -= 0.8;
+      return [g, 3];
+    }
+    if (Y < FOOT_Y && ruleAt(u, v)) return [h + 0.8, 2];
+    if (Y < FOOT_Y && inkAt(u, v, true)) return [h + 0.9 + 0.1 * F(u / 2, v / 2, 1), 2];
+    return [h, 1];
+  }
+
+  let lastX = NaN, lastY = NaN, lastG = null;
+  function geo(X, Y) {
+    if (X === lastX && Y === lastY) return lastG; lastX = X; lastY = Y;
+    const [u, v] = toP0(X, Y);
+    const topH = 1.0 + (NS - 1) * THICK;
+    /* sheets above the flagged one cover everything of it */
+    for (let k = 0; k < FK; k++) { const q = toP(k, X, Y), s = sheet(k, q[0], q[1], Y); if (s) return (lastG = s); }
+    { const [fu, fv] = toP(FK, X, Y), base = 1.0 + (NS - 1 - FK) * THICK;
+      /* the binder clip: a steel body over the tab, lips toward the sheet, back away, a hard cast */
+      if (fu >= CLIP.lip && fu <= CLIP.back && Math.abs(fv - FV) < CLIP.hv) {
+        const t = (fu - CLIP.lip) / (CLIP.back - CLIP.lip), ends = Math.max(0, Math.abs(fv - FV) - (CLIP.hv - 4));
+        const h = base + 5 + CLIP.top * Math.sin(Math.PI * 0.5 * Math.min(1, t / 0.6)) - (t > 0.6 ? CLIP.top * 0.45 * Math.pow((t - 0.6) / 0.4, 1.6) : 0) - ends * 2.2;
+        return (lastG = [h, 4]);
+      }
+      /* two round wire handles, bent loops: one folded back over the tab toward the sheet, one folded away over the fan */
+      for (const [cu, rise] of [[CLIP.lip - HL / 2 + 4, CLIP.lip], [CLIP.back + HL / 2 - 4, CLIP.back]]) {
+        const ring = Math.abs(sdRect(fu - cu, fv - FV, HL / 2, CLIP.hv - 8, CLIP.hv - 14));
+        if (ring < WIRE) {
+          const lift = 1 - Math.min(1, Math.abs(fu - rise) / HL);
+          return (lastG = [base + 6 + 26 * lift * lift + Math.sqrt(WIRE * WIRE - ring * ring), 5]);
+        }
+      }
+      /* the flag tab, riding over the sheets below it */
+      const fs = sdRect(fu - (FLAG.u0 + FLAG.u1) / 2, fv - FV, (FLAG.u1 - FLAG.u0) / 2, (FLAG.v1 - FLAG.v0) / 2, 7);
+      if (fs < 0) {
+        let under = 0;
+        for (let k = FK + 1; k < NS; k++) { const q = toP(k, X, Y), s = sheet(k, q[0], q[1], Y); if (s) { under = s[0]; break; } }
+        return (lastG = [Math.max(under + 1.4, base + 1.2 - 3 * smooth(PW, PW + 150, fu)) + 0.1 * F(fu / 2, fv / 2, 1), 6]);
+      }
+    }
+    for (let k = FK; k < NS; k++) {
+      const q = toP(k, X, Y), s = sheet(k, q[0], q[1], Y);
+      if (s) return (lastG = s);
+    }
+    /* the desk: violet stained oak, grain and open pores */
+    const BS = 1300, b = Math.floor((Y - 1160) / BS), sy = ((Y - 1160) % BS + BS) % BS, wy = Y + 40 * F(X / 420, Y / 420 + b, 2);
+    let dh = 0.22 * F(X / 700 + b * 5.1, wy / 16 + b, 2) + 0.14 * F(X / 2.4, Y / 2.4, 1) + 0.4 * smooth(0, 1, Math.min(sy, BS - sy) / 40);
+    if (sy < 4) dh -= 2.4 * Math.sin(sy / 4 * Math.PI);
+    return (lastG = [dh, 0]);
+  }
+
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const DESK = L('#5a3cc0'), PAPER = L('#fff9ee'), INK = L('#4a2470'), FOIL = L('#ffc83d'), BACK = L('#efe2ff');
+  const S_VIO = L('#8a6cf0'), S_APR = L('#ffd2a0'), S_PERI = L('#c4d0ff'), S_DARK = L('#4a3590');
+  const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const sc3 = (c, k) => [c[0] * k, c[1] * k, c[2] * k];
+  const albedo = (X, Y, m) => {
+    if (m === 0) { const b = Math.floor((Y - 1160) / 1300), wy = Y + 40 * F(X / 420, Y / 420 + b, 2), g = F(X / 700 + b * 5.1, wy / 16 + b, 2), pore = F(X / 1.3, Y / 3, 1) > 0.66 ? 0.86 : 1;
+      const k = (0.88 + 0.1 * g + 0.06 * F(X / 80, Y / 80, 2)) * pore * (1 + 0.06 * Math.sin(b * 2.7));
+      return [DESK[0] * k * (1 + 0.15 * Math.sin(b * 1.9)), DESK[1] * k, DESK[2] * k]; }
+    const [u, v] = toP0(X, Y);
+    if (m === 1) return sc3(PAPER, 0.95 + 0.035 * F(u / 2.2, v / 2.2, 1) + 0.03 * F(u / 90, v / 90, 2));
+    if (m === 2) return sc3(INK, 0.9 + 0.2 * F(u / 3, v / 3, 1));
+    if (m === 3) { const deb = Math.abs(GV - v) < 12 && GR.top[Math.round(u * RES)] > 0 && inkAt(u, v, false);
+      return sc3(FOIL, (deb ? 0.78 : 1.12) + 0.06 * F(u / 4, v / 4, 1)); }
+    if (m === 4) {   /* polished steel: reflects the violet desk at the lip, the apricot key in a band, the periwinkle sky at the back */
+      const fu = toP(FK, X, Y)[0], t = Math.max(0, Math.min(1, (fu - CLIP.lip) / (CLIP.back - CLIP.lip)));
+      const c = t < 0.3 ? mixc(S_VIO, S_APR, smooth(0.1, 0.3, t)) : t < 0.6 ? mixc(S_APR, S_PERI, smooth(0.45, 0.6, t)) : mixc(S_PERI, S_DARK, smooth(0.7, 1, t));
+      return sc3(c, 0.95 + 0.05 * F(u / 30, v / 0.8, 1)); }
+    if (m === 5) return sc3(mixc(S_PERI, S_APR, 0.4), 1.0);
+    if (m === 6) return sc3(FOIL, 1.1 + 0.05 * F(u / 3, v / 3, 1));
+    if (m === 8) { const a = (PW - u) + v, t = Math.max(0, Math.min(1, (CURL_F - a) / CURL_RC)); return sc3(BACK, 0.98 - 0.16 * t + 0.03 * F(u / 2, v / 2, 1)); }
+    return DESK;
+  };
+
+  const RL = TXLOOK.reliefLight();
+  TXBENCH.relief(cx, { ...RL, keyColor: L('#ffd6ae', 1.18), ambColor: L(TXLOOK.mix('#a98af0', '#ffffff', 0.42), 1.0), x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 0: [0.18, 18], 1: [0.04, 6], 2: [0.12, 20], 3: [0.9, 40], 4: [1.4, 70], 5: [1.5, 80], 6: [0.5, 26], 8: [0.05, 6] },
+    ambient: 0.46, diffuse: 1.3, ao: 0.9, aoRadius: 16, shadow: 0.86, softness: 4, castLength: 280, dither: true, visBlur: 2, visSharp: [2, 3, 4, 5, 6] });
+
+  /* gold reaches the frame: the accent must read at feed size */
+  { const img = cx.getImageData(0, 0, 2160, 2700).data; let n = 0;
+    for (let i = 0; i < img.length; i += 16) { const r = img[i], g = img[i + 1], b = img[i + 2]; if (r > 200 && g > 140 && g < 225 && b < 110 && r - b > 120) n++; }
+    const frac = n / (img.length / 16); console.error("slide-03 gold fraction " + frac.toFixed(4));
+    if (frac < 0.0025) throw new Error("the gold accent covers " + (frac * 100).toFixed(2) + " percent of the frame, under 0.25"); }
+
+  CH.seat(cx, { a: 0.34, fade: 150 });
+  /* the footer seat: a narrow crisp band in the tone's deep hue, feathered over 34 px, so the stack is cropped by a clean
+   * line of shade rather than fading into mud */
+  { const T = TXLOOK.palette("people"), y0 = 1192, y1 = 1226, g = cx.createLinearGradient(0, y0, 0, y1);
+    g.addColorStop(0, TXLOOK.rgba(T.low, 0)); g.addColorStop(0.5, TXLOOK.rgba(T.low, 0.5)); g.addColorStop(1, TXLOOK.rgba(T.low, 0.86));
+    cx.fillStyle = g; cx.fillRect(0, y0, 1080, y1 - y0); cx.fillStyle = TXLOOK.rgba(T.low, 0.86); cx.fillRect(0, y1, 1080, 1350 - y1); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

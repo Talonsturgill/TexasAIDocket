@@ -17,7 +17,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 ## The copy (fixed)
 - kicker: `What to ask`
 - counter: `09 / 09`
-- headline (verbatim): `Any scan touching the lungs counts`
+- headline (verbatim): `At UTMB any scan touching the lungs counts`
 - dek (verbatim, except the one exception below): `Federal guidance covers screening for adults aged 50 to 80 with a 20 pack-year smoking history who smoke now or quit within the past 15 years. At UTMB a nodule counts on any scan that includes part of the lungs. Ask a doctor what yours showed.`
 - labels: []
 - claim ids (the `src` furniture): `c28 c10`

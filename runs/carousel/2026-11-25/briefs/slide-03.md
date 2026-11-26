@@ -15,7 +15,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 **As built after repairs:** a fanned stack of eleven report sheets in plan relief, one gold foil line on the top sheet, one gold flag tab on a single sheet with a steel binder clip.
 
 ## The copy (fixed)
-- kicker: `Every report`
+- kicker: `Report review`
 - counter: `03 / 09`
 - headline (verbatim): `Much of the chart review, automated`
 - dek (verbatim, except the one exception below): `The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Page drawn to illustrate.`

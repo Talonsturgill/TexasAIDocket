@@ -1,0 +1,240 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "477a771073047ffd9f26cb15d541ea060e6b8c12a77ca93580c7440e34645ef9",
+    "render/slide-01.png": "c6c84468ae9206a5f7372c06a62508236b7ae71e79cd99d9a3c0e0f04cac596f",
+    "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "0cef61e853f780f652dd4a99843ba64cfe86c89c32571934ecdd615ef2c881ad",
+    "render/slide-06.png": "a82ca28036fa2b225979c916b1acfb39cb469ec411abaaaff253f7fa6bb73af9",
+    "slides/slide-09.html": "05510f3a7c8762a53ff37d44f4bd27eb60299218db156489d8820a5a7f628965",
+    "render/slide-09.png": "c30983611585e27e3f72b91b16b89467f3902c0d31712a512cdac3bbf6a82525"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 50.7,
+      "mid": 0.709,
+      "dark": 0.0,
+      "grey_mid": 0.002,
+      "vivid": 0.874,
+      "median_C": 52.2
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 41.9,
+      "mid": 0.817,
+      "dark": 0.009,
+      "grey_mid": 0.0,
+      "vivid": 0.941,
+      "median_C": 89.8
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 68.9,
+      "mid": 0.459,
+      "dark": 0.0,
+      "grey_mid": 0.002,
+      "vivid": 0.877,
+      "median_C": 38.5
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "477a771073047ffd9f26cb15d541ea060e6b8c12a77ca93580c7440e34645ef9",
+      "render/slide-01.png": "c6c84468ae9206a5f7372c06a62508236b7ae71e79cd99d9a3c0e0f04cac596f",
+      "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "0cef61e853f780f652dd4a99843ba64cfe86c89c32571934ecdd615ef2c881ad",
+      "render/slide-06.png": "a82ca28036fa2b225979c916b1acfb39cb469ec411abaaaff253f7fa6bb73af9",
+      "slides/slide-09.html": "05510f3a7c8762a53ff37d44f4bd27eb60299218db156489d8820a5a7f628965",
+      "render/slide-09.png": "c30983611585e27e3f72b91b16b89467f3902c0d31712a512cdac3bbf6a82525"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A lilac transmission glass lung, two lobes with a pale opaque airway tree and a ringed trachea. A thin periwinkle acrylic slab with engraved scan lines and a glowing white scan line crosses only the lower lobes. One gold bead sits where the slab meets the right lobe and throws a warm caustic along the scan line. Plum studio sweep, contact shadow under the lobes.",
+        "visual_consequence": "The scan field covers only part of the lung, and there is something gold inside the part it covers. You can read 'the scan was for one region and caught something' before reading the headline. The material code of the deck (periwinkle means a scan for something else, gold means a flagged nodule) is set up here.",
+        "weakness": "None observed. I read all six native tiles at 100 percent. The glass keeps its lilac colour, the rim light and inner refraction hold up, the section rings sit cleanly where the slab meets the glass, the bead has a highlight and caustic, and the lower lobes cast a plum contact shadow onto the sweep. The image is unchanged since the last review, and its current thumbnail (final/thumbs/slide-01-thumb.png) matches the native render.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "477a771073047ffd9f26cb15d541ea060e6b8c12a77ca93580c7440e34645ef9",
+          "render/slide-01.png": "c6c84468ae9206a5f7372c06a62508236b7ae71e79cd99d9a3c0e0f04cac596f",
+          "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "A row of three identical, whole lilac glass lungs on a violet sweep, seen from above and to one side through an orthographic camera. Each has frosted bronchi and a ringed trachea, and each holds exactly one gold bead. Lung 1 stands in a rounded frosted white enamel cradle, with its bead in the viewer's left lobe. Lungs 2 and 3 are each crossed by a thin bevelled periwinkle acrylic slab with engraved lines, clipped to the lung's width. Lung 2's slab sits low across the lower lobes, with its bead on the slab in the right lobe. Lung 3's slab sits high at the upper and mid lobes, with its bead on the slab in the left lobe. Long violet shadows fall behind the row.",
+        "visual_consequence": "Three equal finds, one per lung. One find is in the white screening cradle and two are in periwinkle scans that cross the lungs at different heights. Using the code the cover set up, a reader sees 'one of three found by screening, two of three by scans ordered for something else' without the headline. All three lungs are complete, so the slabs now read as fields crossing a lung rather than boxes standing on stumps. The old box reading and the empty screening lung are gone.",
+        "weakness": "Nothing blocks acceptance. Minor findings from the native tiles: (1) Below the slabs, the inner left walls of lung 2's right lobe and both of lung 3's lobes show a thin dashed seam (refraction or mesh edge), visible only at 100 percent and invisible at feed size. (2) The composition bands in the slide 6 dossier and the critic brief's lower-third line are the reverse of the render. The dossier puts type in the top third and the lung bases with shadows toward the camera in the bottom third. The render puts the lung row in the upper middle, casts shadows back and to the right, and fills the bottom third with type and about 135 design px of empty violet gradient above the footer. That band is open space for the type, not an unfinished subject. (3) Process note: final/thumbs/slide-06-thumb.png is stale. It still shows the pre-repair deep periwinkle boxes and a screening lung with no bead. I judged feed legibility from the regenerated art_preflight.webp, where all three beads, the white cradle and both periwinkle slabs read at about 432 px. Regenerate that thumbnail before packaging.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "0cef61e853f780f652dd4a99843ba64cfe86c89c32571934ecdd615ef2c881ad",
+          "render/slide-06.png": "a82ca28036fa2b225979c916b1acfb39cb469ec411abaaaff253f7fa6bb73af9"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The cover's glass lung, restaged in a low three-quarter view at right of frame on an apricot sweep, with no bead. It has a ringed trachea and a simplified opaque airway tree: two main bronchi and lobar branches with rounded tips that stay inside the glass. Each lung carries a bevelled periwinkle-edged acrylic disc at the shoulder, mid chest and base, six in all. Each disc has a lit scan line and a periwinkle section ring, and a plum contact shadow falls on the floor under the bases.",
+        "visual_consequence": "Without the headline, three scan slices at three heights all pass through the same lungs, and none of them holds a gold bead. The image says that a scan at any level touching the lungs is one that counts, and that the reader's own scan is still unread.",
+        "weakness": "The listed repairs are visible in the new image. The apex and shoulder discs sit on open sweep clear of the dek. In tile r2c2, the airway ends in rounded tips inside the glass with no crossings, and no stray shadow wedges or tray hull remain. Two minor defects remain at native size. In tile r3c2, the near rim of the right lung's base disc has a small V-shaped dent at design x 812 to 828, y 990 to 995, where the outline follows the lobe's cleft. Below that disc, the right base shows a darker inner form with two small white chevron glints at design x 885 to 915, y 1045 to 1060. Both read as glass back-face reflection, which matches the cover's lung bases, rather than leaked geometry, and neither shows at feed size. In the regenerated proof, the six discs read at feed size as stacked rings around the lungs rather than thick slabs, which still carries the argument.",
+        "repair": "None required. Optionally, smooth the base disc outline on the right lung so its near rim stays a clean ellipse instead of following the lobe cleft.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "05510f3a7c8762a53ff37d44f4bd27eb60299218db156489d8820a5a7f628965",
+          "render/slide-09.png": "c30983611585e27e3f72b91b16b89467f3902c0d31712a512cdac3bbf6a82525"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "A scan is drawn as a slab of tinted acrylic that covers only the part of a glass lung it was ordered for, and where it overlaps the lung it can hold a gold bead nobody asked it to find. The bead moves from inside the scan to a flagged line, to a counted row where two of every three slabs are periwinkle, to a navigator's hand and along a counter to the people who decide, then the deck turns to one patient, her family and the reader's own scan.",
+    "build_risk": "Frame 4 must make three transmissive glass lungs and acrylic slabs read as three distinct solids at 432 px under an orthographic camera, with the periwinkle against frosted code legible without a legend and no reading as a count of nodules.",
+    "distinct_from_recent": "Nov 24 drew an aerial stitched subdivision with judged roofs. Nov 22 drew cutaway exam rooms, a stethoscope wall and studio benches. Nov 21 drew a tracked rover on rubble. None drew glass anatomy, acrylic scan fields, a chart cart, an age rule on limestone, a family under an oak or an empty CT room."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "477a771073047ffd9f26cb15d541ea060e6b8c12a77ca93580c7440e34645ef9",
+      "render/slide-01.png": "c6c84468ae9206a5f7372c06a62508236b7ae71e79cd99d9a3c0e0f04cac596f",
+      "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "0cef61e853f780f652dd4a99843ba64cfe86c89c32571934ecdd615ef2c881ad",
+      "render/slide-06.png": "a82ca28036fa2b225979c916b1acfb39cb469ec411abaaaff253f7fa6bb73af9"
+    },
+    "9": {
+      "assets/js/deck/2026-11-25-secondfind-bespoke.js": "a5a57e962d61a11a57f53719a7f69cfc54115a19ac0dae07ef3f6e36c9eea12c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "05510f3a7c8762a53ff37d44f4bd27eb60299218db156489d8820a5a7f628965",
+      "render/slide-09.png": "c30983611585e27e3f72b91b16b89467f3902c0d31712a512cdac3bbf6a82525"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "477a771073047ffd9f26cb15d541ea060e6b8c12a77ca93580c7440e34645ef9",
+    "slide-01.webp": "6fe1126d91143c6d9f389a3a74db4691f59d01e9320187695f141168f5ca417a",
+    "slides/slide-06.html": "0cef61e853f780f652dd4a99843ba64cfe86c89c32571934ecdd615ef2c881ad",
+    "slide-06.webp": "59fea928c04c92ac757edfbef2aab0e3a040bc0b8bb96ad0999ef6e9b8ba9d8b",
+    "slides/slide-09.html": "05510f3a7c8762a53ff37d44f4bd27eb60299218db156489d8820a5a7f628965",
+    "slide-09.webp": "f3956ee99c424cfabef65bf2f143ae35d8645452a6fe21cac0ee960aad5e3455"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "6fe1126d91143c6d9f389a3a74db4691f59d01e9320187695f141168f5ca417a",
+      "from_sha256": "c6c84468ae9206a5f7372c06a62508236b7ae71e79cd99d9a3c0e0f04cac596f",
+      "psnr_db": 40.284
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "59fea928c04c92ac757edfbef2aab0e3a040bc0b8bb96ad0999ef6e9b8ba9d8b",
+      "from_sha256": "a82ca28036fa2b225979c916b1acfb39cb469ec411abaaaff253f7fa6bb73af9",
+      "psnr_db": 40.568
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "f3956ee99c424cfabef65bf2f143ae35d8645452a6fe21cac0ee960aad5e3455",
+      "from_sha256": "c30983611585e27e3f72b91b16b89467f3902c0d31712a512cdac3bbf6a82525",
+      "psnr_db": 41.632
+    }
+  ]
+}

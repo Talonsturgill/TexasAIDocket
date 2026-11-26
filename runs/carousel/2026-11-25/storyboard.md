@@ -51,10 +51,10 @@ Tonal arc: cool vivid glass on plum (1), dusky apricot into plum (2), bright cre
 | 03 | CLOSE | TXBENCH relief of one report sheet, cream paper with tooth and a fold crease under the chassis key, raised plum ink lines, a gold foil line, a steel clip casting onto the paper, the corner curled and worn |
 | 04 | MEDIUM | kit desk, office_chair, monitor edge on, kit person sit_read over the shoulder, oak card drawer with nine tabbed cards, TXT.interior office |
 | 05 | WIDE | chassis oak counter with reading bridge, card rack and three cropped kit hands, OrthographicCamera, TXT.interior workroom |
-| 06 | WIDE | three chassis glass_lung, lilac transmission glass with frosted bronchi, lit by the apricot key with a periwinkle rim, each with a contact shadow on the sweep, periwinkle and frosted scan_slab acrylic with worn edges, gold beads, OrthographicCamera |
+| 06 | WIDE | three whole identical chassis-derived glass lungs (calmed ior) with lilac glow transmission and frosted bronchi on the violet sweep, one gold bead in every lung, one lung in an extruded frosted white enamel cradle (CH.SCREEN), two crossed by thin bevelled periwinkle acrylic slabs (CH.OTHER) clipped to lung width at different heights, lit edges, engraved scan lines, glowing section rings and floor spill, each slab holding its bead, contact shadows, OrthographicCamera |
 | 07 | CLOSE | chassis age_rule, brushed steel with engraved ticks and cavity shading, a frosted white enamel block with a bevelled specular edge, a clear lilac glass bead (never gold), lying on a weathered limestone ledge with lichen in long apricot sun casting onto the ledge, TXT.sky people |
 | 08 | WIDE | kit crowd of seven plus one at a kit live_oak trunk, kit yard, TXT.sky people, TXT.ground lawn |
-| 09 | MEDIUM | a built light table with lit glass, an apricot torso relief and three bevelled periwinkle acrylic panes over flat cut glass lungs, contact shadows on the glass, replacing the planned chassis ct_gantry, a satin white rounded shell with panel seams, vents and a periwinkle trim band, a deep bore shadow, an extended couch with rail and pillow, apricot window key, contact shadow under the pedestal, scuffs at the couch foot, TXT.interior imaging room |
+| 09 | MEDIUM | the cover's transmission glass lung at cover attenuation and rim strength with a continuous opaque airway tree, three thin bevelled periwinkle acrylic scan slabs clipped to the lung width at shoulder, mid chest and bases, a lit scan line and section ring on each, periwinkle floor spill and plum contact shadow under the bases, apricot key on a TXT.studio people sweep |
 
 Showstopper frame: 01. Its depth is the glass lung's near lobes cut by the bottom edge against the plum sweep falling away behind, with the slab's contact shadow and caustic on the floor and the bead occluded by the slab's front face.
 Tonal arc: it opens vivid and cool on glass (1), sinks into dusky paper (2), lifts to the bright page (3), holds cool and measured (4), warms through the office and the workroom (5, 6), peaks warm outdoors (7, 8) and settles in the warm room (9).
@@ -85,7 +85,7 @@ risks: ["glass going grey and murky, so lilac attenuation and a periwinkle rim k
 type:
   kicker: "UTMB Health"
   hook: "The scan was for something else"
-  dek: "AI now reviews radiology reports at UTMB Health, and each lung nodule is flagged for a person to review. About two thirds of the nodules its program found came from patients who were not having lung cancer screening."
+  dek: "UTMB Health's AI reviews lung cancer screening reports and helps identify nodules found by chance. Each is flagged for a person. UTMB says about two thirds of its program's nodules came from patients not having lung cancer screening."
 ```
 ---
 ```yaml
@@ -140,7 +140,7 @@ verbatim: []
 acceptance: ["the sheet owns at least 55 percent of the frame area", "the relief report shows at least three materials and cast shadows", "no text on the sheet is legible", "one line is raised in gold and carries a flag tab", "the sheet is cropped by at least two edges so it reads as a page, not a tray", "no numeral on this slide is absent from claims.json or figures.json"]
 risks: ["a top down tray reading as a chart, so the curl and the crop"]
 type:
-  kicker: "Every report"
+  kicker: "Report review"
   hook: "Much of the chart review, automated"
   dek: "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Pages drawn to illustrate."
 ```
@@ -177,9 +177,9 @@ type:
 slide: 5
 layout: DIAGRAM
 primary_image:
-  subject: one continuous oak counter seen high three quarter axonometric in a bright workroom, at its far left a small brushed steel reading bridge glowing cyan over a drawer of white cards with gold flags rising behind it, in the middle two plum sleeved hands setting nine flagged cards into an oak rack, at the right a white coat cuff and a pen resting over the front card, three plum pills reading flags, checks and ranks, decides
-  rect: [0, 280, 1080, 430]
-  bleeds: [left, right]
+  subject: one brushed steel plate rail on a diagonal across a plum leather pad over oak, a stack of greeked report sheets feeding a small bevelled steel reader bridge at the lower left whose cyan beam lands on the first plate, nine gold flagged plates up the rail (six periwinkle, three frosted), two plum sleeved forearms from the right edge checking a middle plate, a white coat cuff and hand from the right edge resting on the last plate, type in the quiet upper left
+  rect: [200, 100, 880, 1185]
+  bleeds: [right]
 accent: '#ffc83d'
 data_in_art: {figure: units, drives: "card count in the rack equals FIG.units and periwinkle tab count equals FIG.of_nine, read in the slide's own code"}
 job: "Show the whole chain, the machine at one end and people everywhere else."
@@ -205,7 +205,7 @@ type:
 slide: 6
 layout: DIAGRAM
 primary_image:
-  subject: three identical lilac glass lungs standing in a row on a studio sweep, seen axonometric from a raking three quarter, the first wearing a frosted white screening slab over the whole lung, the other two wearing periwinkle slabs, one across the bases and one across the upper lobes, each holding one gold bead inside its slab
+  subject: three whole identical lilac glass lungs standing on one violet sweep, seen from a raking three quarter, each holding one gold bead, the first in a frosted white enamel screening cradle around its foot with its bead in the right upper lobe, the other two each crossed by a thin bevelled periwinkle acrylic scan slab clipped to the lung width, one low across the bases and one high across the upper lobes, a glowing section edge where each slab cuts the glass and the bead held in the slab where it crosses
   rect: [60, 160, 960, 520]
   bleeds: []
 accent: '#ffc83d'
@@ -219,7 +219,7 @@ depth:
   horizon: 0
   cues: [FORM_SHADING, CAST_SHADOW, RELATIVE_SIZE]
   subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the plum sweep wall with the type. Middle third, the three glass lungs in a row with their slabs and beads. Bottom third, the bases of the three lungs and slab edges standing on the sweep, each casting a long soft contact shadow toward the camera, periwinkle caustics on the floor, the sweep's curve catching the key.", focal: "the two periwinkle slabs beside the one frosted slab"}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the kicker and counter over the violet sweep and the tops of the three lungs. Middle third, the row of three glass lungs, the white screening cradle at left and the two thin periwinkle slabs at two heights, each lung with one gold bead, long violet shadows back and right. Bottom third, the long plum cast shadows of the lungs and slabs running across the lit violet floor, with a periwinkle spill under each slab, the headline and dek seated on that floor.", focal: "the two periwinkle slabs beside the one frosted slab"}
 art: {technique: "physically based studio render, OrthographicCamera, chassis glass_lung, scan_slab, nodule_bead", why_this_technique: "a share reads instantly as equal units at one scale", palette: "lilac glass, periwinkle and frosted slabs, gold beads, plum sweep", value_structure: "Frame median L* planned at 46. Lightest is the frosted slab. Darkest is the plum floor under the row."}
 verbatim: []
 acceptance: ["exactly FIG.share_den lungs and FIG.share_num periwinkle slabs, asserted in code", "each lung shows a lit face, a shaded face and a cast shadow", "the row spans at least 65 percent of the frame width", "the drawing is labelled as illustrative and never as a count of nodules", "no percent sign is printed", "no numeral on this slide is absent from claims.json or figures.json", "each glass lung stands at least 140 px tall at 432 px"]
@@ -257,7 +257,7 @@ risks: ["a progress bar reading, so engraved ticks, steel and a real ledge"]
 type:
   kicker: "Dr. Nishi's patient"
   hook: "She was in her 20s"
-  dek: "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80."
+  dek: "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80 who meet its smoking criteria."
 ```
 ---
 ```yaml
@@ -286,14 +286,14 @@ risks: ["identical strides and mannequins, so stand poses, mixed builds, distanc
 type:
   kicker: "Her family"
   hook: "Seven or eight relatives"
-  dek: "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account the disease was hereditary, so her family members needed testing too. Family drawn to illustrate."
+  dek: "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account she had a hereditary disease, so her family members needed testing too. Family drawn to illustrate."
 ```
 ---
 ```yaml
 slide: 9
 layout: FULL_BLEED
 primary_image:
-  subject: a backlit reading table seen almost from overhead down the right of the frame, a modelled apricot torso relief on the lit glass with two flat cut glass lungs in its chest, pale and frosted where unscanned, and three bevelled periwinkle acrylic panes framed for the shoulder, the heart and the abdomen, each clipping part of a lung, the lung inside each pane a saturated lit slice with a bright section edge
+  subject: the cover's lilac glass teaching lung on a warm apricot sweep right of the type column, seen lower and from the other side, crossed at the shoulder, the mid chest and the bases by bevelled periwinkle acrylic scan slabs, one per lobe at each height, each clipped to its lobe and fully inside the frame, a lit scan line and a section ring where each meets the glass, plain unscanned glass between them, a simple airway tree of trachea, two main bronchi and lobar branches with rounded tips
   rect: [300, 560, 720, 640]
   bleeds: []
 accent: none
@@ -307,13 +307,13 @@ depth:
   horizon: 0.4
   cues: [CAST_SHADOW, OCCLUSION, RELATIVE_SIZE, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
-composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the shoulder pane and the top of the lit table on the right, the headline in the left column over the violet floor. Middle third, the torso relief with the lungs and the heart pane, the dek in the left column. Bottom third, the abdominal pane catching the lung bases and the plum cabinet edge, contact shadow on the floor, the quiet floor under the type.", focal: "the section edges where the panes cut the lungs"}
-art: {technique: "physically based interior render, a built light table with emissive glass, an extruded torso relief, bevelled acrylic panes, TXT.interior", why_this_technique: "a scan field laid over a body shows at a glance which part of the lung it touched", palette: "satin white, periwinkle trim, apricot window, plum shade", value_structure: "Frame median L* planned at 52. Lightest is the white shell in the key. Darkest is the bore shadow."}
+composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the trachea and lung apex rising into the shoulder slab on the right, the headline in the left column over the violet sweep. Middle third, the mid chest slab crossing both lobes with its section ring, the dek in the left column. Bottom third, the base slab over the lung bases with a periwinkle spill and plum contact shadow on the apricot floor", focal: "the section rings where the slabs meet the glass"}
+art: {technique: "physically based studio render, a sculpted transmission glass lung with a continuous airway tree, three extruded bevelled acrylic scan slabs, TXT.studio people sweep", why_this_technique: "a scan field laid over a body shows at a glance which part of the lung it touched", palette: "lilac glass, periwinkle acrylic, apricot floor, violet wall, plum shade", value_structure: "Frame median L* planned at 52. Lightest is the scan line glow. Darkest is the plum contact shade under the bases."}
 verbatim: []
-acceptance: ["the lit table and its panes fill at least 40 percent of the frame", "three periwinkle panes each clip part of a lung and none covers a whole lung, asserted in code", "the lung inside each pane reads as a cut slice with a section edge", "no gold appears on this frame", "no logo or legible screen", "no numeral on this slide is absent from claims.json or figures.json"]
-risks: ["a doughnut, so seams, rails and the bore shadow"]
+acceptance: ["the lung and its slabs fill at least 40 percent of the frame", "three periwinkle slabs each cross the lung and none runs wider than about 1.15 times the lung at its height, asserted in code", "every slab stays fully inside the frame", "the lung silhouette reads against the sweep at feed size", "no gold appears on this frame", "no logo or legible screen", "no numeral on this slide is absent from claims.json or figures.json"]
+risks: ["the slabs read as shelves on posts, so keep them thin and the glass lung strong behind them"]
 type:
   kicker: "What to ask"
-  hook: "Any scan touching the lungs counts"
+  hook: "At UTMB any scan touching the lungs counts"
   dek: "Federal guidance covers screening for adults aged 50 to 80 with a 20 pack-year smoking history who smoke now or quit within the past 15 years. At UTMB a nodule counts on any scan that includes part of the lungs. Ask a doctor what yours showed."
 ```
