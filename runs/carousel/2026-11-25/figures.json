@@ -1,0 +1,94 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "share_num": {
+  "value": 2,
+  "from": [
+   "c17"
+  ],
+  "basis": "numerator of roughly two-thirds"
+ },
+ "share_den": {
+  "value": 3,
+  "from": [
+   "c17"
+  ],
+  "basis": "denominator of roughly two-thirds"
+ },
+ "of_nine": {
+  "value": 6,
+  "from": [
+   "c17"
+  ],
+  "basis": "share_num/share_den of 9 drawing units, rounded half up"
+ },
+ "units": {
+  "value": 9,
+  "from": [
+   "c17"
+  ],
+  "basis": "the drawing unit total for of_nine, a rule not a count"
+ },
+ "program_start": {
+  "value": 2016,
+  "from": [
+   "c3"
+  ],
+  "basis": "year the screening program was established"
+ },
+ "patient_decade": {
+  "value": 20,
+  "from": [
+   "c18"
+  ],
+  "basis": "the patient was in her 20s"
+ },
+ "relatives_low": {
+  "value": 7,
+  "from": [
+   "c21"
+  ],
+  "basis": "low end of seven or eight relatives"
+ },
+ "relatives_high": {
+  "value": 8,
+  "from": [
+   "c21"
+  ],
+  "basis": "high end of seven or eight relatives"
+ },
+ "vendor_pct": {
+  "value": 80,
+  "from": [
+   "c25"
+  ],
+  "basis": "Bunkerhill's own claim, no baseline"
+ },
+ "age_low": {
+  "value": 50,
+  "from": [
+   "c28"
+  ],
+  "basis": "USPSTF lower age"
+ },
+ "age_high": {
+  "value": 80,
+  "from": [
+   "c28"
+  ],
+  "basis": "USPSTF upper age"
+ },
+ "pack_years": {
+  "value": 20,
+  "from": [
+   "c28"
+  ],
+  "basis": "USPSTF pack-year history"
+ },
+ "quit_years": {
+  "value": 15,
+  "from": [
+   "c28"
+  ],
+  "basis": "USPSTF years since quitting"
+ }
+}
