@@ -5502,6 +5502,66 @@
     "hex": "#3f7d3a",
     "note": "St. Augustine lawn and gumbo clay under the wonder tone's cobalt and peach."
    }
+  },
+  {
+   "date": "2026-11-25",
+   "carousel_no": 87,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 people tone, nine slide artists. A glass lung crossed by a periwinkle scan slice with a gold bead (1), an aging stack of manila chart folders on a records cart (2), a fanned stack of report sheets with one gold flag and a binder clip (3), a navigator lifting a gold flagged card from a ranked card file by a window (4), a diagonal rail of nine flagged report plates climbing from a small steel reader bridge, its cyan beam on the first plate, to a navigator's hands and a doctor's hand on the last (5), three glass lungs, each holding one gold bead, one bare in a white enamel screening cradle and two crossed by thin periwinkle scan slabs (6), a steel age rule on limestone with a lilac glass bead at 20 (7), a family of seven under a live oak with an eighth half hidden at the trunk (8), the cover's glass lung, large, crossed by three thin periwinkle scan slabs at shoulder, chest and bases (9).",
+   "structural_laws": [],
+   "techniques": [
+    "transmission glass lungs with an acrylic scan slice",
+    "aged manila folders on a wire cart",
+    "a fanned report stack relief with a binder clip",
+    "an over the shoulder navigator at a card file",
+    "a steep diagonal hand off rail from reader to hands on a leather pad",
+    "an orthographic row of three glass lungs, one cradled and two banded",
+    "a diagonal steel age rule on a limestone ledge",
+    "a chest height family group under a live oak",
+    "a glass lung crossed by three thin acrylic scan slabs"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     51.7,
+     26.4,
+     33.7,
+     29.3,
+     41.4,
+     42.5,
+     42.8,
+     43.6,
+     68.2
+    ],
+    "deck_median_L": 42.5,
+    "max_adjacent_delta": 25.3,
+    "mean_adjacent_delta": 9.49,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#ffc83d",
+    "name": "flag gold",
+    "frames_above_floor": [
+     1,
+     3,
+     5
+    ],
+    "share": [
+     0.0024,
+     0.0,
+     0.0021,
+     0.0014,
+     0.0053,
+     0.0008,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "note": "A nodule flagged for a person, only."
+   },
+   "ground": {
+    "hex": "#ff9f62",
+    "note": "People tone apricot floor under periwinkle and plum."
+   }
   }
  ]
 }

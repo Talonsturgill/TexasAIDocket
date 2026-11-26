@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-19 · Checked again. The sandbox duty still sits with the Department of Information Resources, and its statutory deadline is still ahead.
 - 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-24 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

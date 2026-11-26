@@ -1,0 +1,122 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health and education",
+ "dek": {
+  "text": "UTMB Health uses AI to review lung cancer screening reports and help spot nodules found by chance. UTMB says about two thirds of its program's nodules came from patients not being screened.",
+  "claims": [
+   "c2",
+   "c8",
+   "c9",
+   "c31",
+   "c17"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[UTMB Health says AI now supports its lung cancer screening work](c2). [The current system, developed with the company Bunkerhill, reviews radiology reports](c8), and [the release says AI is also helping identify lung nodules found incidentally](c31). [Any nodule found on a screening exam or on another imaging study involving any part of the lungs is now flagged for review by the patient navigator](c10).",
+   "claims": [
+    "c2",
+    "c8",
+    "c31",
+    "c10"
+   ]
+  },
+  {
+   "text": "The finding that shapes the program is where those nodules turn up. [About two thirds of the nodules the program identified came from patients who were not having lung cancer screening](c17). The scan was ordered for some other reason, and the nodule was a second finding on it.",
+   "claims": [
+    "c17"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "The old way",
+   "paragraphs": [
+    {
+     "text": "[UTMB established the program in {{number:c3}} to screen patients at high risk for lung cancer](c3). [Dr. Shawn Nishi is the medical director of its Comprehensive Lung Cancer Screening and Incidental Lung Nodule Program](c4). [Before the AI, the review process sometimes took weeks or even months](c5). [Dr. Nishi says that by the time staff navigated the care pathway, the time-critical follow-up window had often closed](c6). [Dr. Nishi says the program needed a faster, more sustainable process](c7).",
+     "claims": [
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A person on the other end of every flag",
+   "paragraphs": [
+    {
+     "text": "[Each flag goes to the patient navigator](c11), [Amanda Rodriguez](c12). [Her dashboard calculates a validated lung cancer risk score for patients with scan abnormalities](c13), [so she can decide which follow-up care comes first](c14). [Much of the chart review, once the most time-consuming part of the workflow, has been automated](c30).",
+     "claims": [
+      "c11",
+      "c12",
+      "c13",
+      "c14",
+      "c30"
+     ]
+    },
+    {
+     "text": "[Dr. Nishi calls the AI an assistant, not a decision maker](c15). [The release says people remain at the center of the process while the AI works in the background](c16). The release gives no accuracy figure for the system, no count of patients or scans, and no measure of how fast follow-up now happens. [Bunkerhill's own case study claims faster nodule triage at UTMB](c25) and states no baseline, so that figure is the vendor's and not the hospital's.",
+     "claims": [
+      "c15",
+      "c16",
+      "c25"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "One patient, as Dr. Nishi tells it",
+   "paragraphs": [
+    {
+     "text": "[Dr. Nishi recalls a patient in her {{number:c18}}s who had a car accident](c18). [Her scan turned up a nodule nobody was looking for](c19). [Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it](c20). The release does not say whether the AI system flagged her nodule.",
+     "claims": [
+      "c18",
+      "c19",
+      "c20"
+     ]
+    },
+    {
+     "text": "[She named seven or eight relatives who had been diagnosed with cancer](c21). [In Dr. Nishi's account she had a hereditary disease, which made it important for her family to be tested](c22).",
+     "claims": [
+      "c21",
+      "c22"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What a reader can ask",
+   "paragraphs": [
+    {
+     "text": "[Federal guidance recommends lung cancer screening for adults aged {{number:c28}} to {{number:c28:1}} with a {{number:c28:2}} pack-year smoking history who smoke now or quit within the past {{number:c28:3}} years](c28). [At UTMB a nodule counts on any scan that includes part of the lungs](c10). A patient who has had such a scan can ask what the report said about the lungs.",
+     "claims": [
+      "c28",
+      "c10"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0260",
+   "label": "UTMB's lung nodule flagging in the record"
+  },
+  {
+   "id": "tx-2026-0257",
+   "label": "Dell Med's AI Learning Lab"
+  },
+  {
+   "id": "tx-2026-0249",
+   "label": "UT San Antonio and the VA on veterans' own stories"
+  }
+ ]
+}

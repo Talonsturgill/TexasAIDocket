@@ -1,19 +1,20 @@
-# Soluna and Applied Digital agree to build an AI data center beside the Briscoe Wind Farm, if Briscoe County grants a tax abatement
+# Soluna and Applied Digital plan an AI data center beside the Briscoe Wind Farm, and Briscoe County approved its tax abatement
 
-Soluna Holdings and Applied Digital agreed on October 21st to form a jointly owned company to develop Dorothy 3. It is a planned 50 MW critical IT data center for AI near Silverton in Briscoe County. It sits beside the 150 MW Briscoe Wind Farm that Soluna owns. Its first phase is expected to draw power from the wind farm and from the grid. Closing depends on Briscoe County approving a tax abatement among other conditions. The intended tenant ChronoScale has signed only a non binding letter of intent. Soluna's older Dorothy campus at the same wind farm runs behind the meter. The company describes Dorothy 3 as a much larger next phase built for AI.
+Soluna Holdings and Applied Digital agreed on October 21st to form a jointly owned company to develop Dorothy 3. It is a planned 50 MW critical IT data center for AI near Silverton in Briscoe County. It sits beside the 150 MW Briscoe Wind Farm that Soluna owns. Its first phase is expected to draw power from the wind farm and from the grid. The Briscoe County Commissioners Court approved a Chapter 312 tax abatement agreement for the first phase on November 9th, according to Soluna. Soluna reports that construction began in October, and it expects the joint venture to close by the end of 2026 subject to remaining conditions. The intended tenant ChronoScale has signed only a non binding letter of intent.
 
 - Topic: data-centers
 - Decided by: Soluna Holdings and Applied Digital (company)
 - Where: Briscoe
 - Status: pending
 - Public access: Write to the decider
-- Take part: https://www.solunacomputing.com/news/soluna-applied-digital-chronoscale/
+- Take part: https://www.solunacomputing.com/news/q3-2026-results/
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
 - 2026-10-21 · decided: Soluna and Applied Digital enter the definitive agreement
+- 2026-11-09 · decided: Briscoe County Commissioners Court approves the Chapter 312 abatement for Phase 1
 
 ## How this decision moved
 
@@ -28,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-19 · Checked again. The Briscoe Wind Farm data center still depends on the county abatement, with no grant recorded.
 - 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-25 · Moved. Soluna's November 16th results say the Briscoe County Commissioners Court approved the Phase 1 abatement on November 9th, so the earlier lines saying no grant was recorded were behind. Construction began in October and closing is expected by the end of 2026.
 
 ## Evidence
 
@@ -104,4 +106,22 @@ Source (primary_corporate): https://www.solunacomputing.com/news/soluna-secures-
 > today announced that ERCOT has conditionally classified its 100 MW Project Dorothy campus as Base Load in Batch Zero.
 
 Source (primary_corporate): https://www.solunacomputing.com/news/soluna-secures-conditional-base-load-position-for-project-dorothys-100-mw-in-ercot-batch-zero/
+
+### Briscoe County Commissioners Court approved a Chapter 312 tax abatement agreement for the first phase of Dorothy 3 on November 9th.
+
+> On November 9, 2026, the Briscoe County Commissioners Court approved a Chapter 312 tax abatement agreement for Phase 1 of Dorothy 3.
+
+Source (primary_corporate): https://www.solunacomputing.com/news/q3-2026-results/
+
+### Soluna reports that construction began at Dorothy 3 in October.
+
+> Kati 2 and Dorothy 3 construction – Construction began at both sites in October.
+
+Source (primary_corporate): https://www.solunacomputing.com/news/q3-2026-results/
+
+### Soluna says closing of the joint venture with Applied Digital is expected by the end of 2026, subject to remaining conditions.
+
+> Closing is expected by year-end 2026, subject to remaining conditions.
+
+Source (primary_corporate): https://www.solunacomputing.com/news/q3-2026-results/
 

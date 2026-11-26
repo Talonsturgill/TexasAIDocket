@@ -11,7 +11,7 @@ The Pflugerville City Council approved Resolution RES-1443 on October 27th, 2026
 - Public access: Write to the decider
 - Take part: https://webapi.legistar.com/v1/pflugerville/matters/18184
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-22 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

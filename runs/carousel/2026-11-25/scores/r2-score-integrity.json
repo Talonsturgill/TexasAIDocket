@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Every frame is a rendered, vivid v2 picture made for its own beat, with no grey middle. Art preflight measured vivid 0.87 to 0.91 and grey_mid 0.002 on frames 1, 6 and 9. Slide 1 is the strongest frame: a glass lung on a plate with a gold nodule. Slide 3 crops greeked report pages off the edge with a gold highlight band. Slide 7 is a true measured relief: the 20, 50 and 80 ticks are read from FIG, the bead sits at the patient's decade and an enamel slab spans 50 to 80, all asserted in code. Slide 8 counts seven clear relatives and an eighth half hidden behind the oak, matching relatives_low and relatives_high. What holds the score down: slide 5 crops figures at the shoulder with crude mannequin hands, and the lower 55 percent of that frame is empty mottled violet carrying only type. Slide 9 is a closing pair of pink glass lungs with floating rings on a soft blush field. It is the least modelled frame and leaves a dead upper right. On slide 6 the screening field (frosted, over a whole lung) and the other-scan fields (periwinkle, over part of a lung) can't be told apart at 432 px, so the 2 in 3 share the frame exists to show doesn't read without the headline. Slide 8's people are stock plastic mannequins, all facing away."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds. The people tone runs violet and apricot throughout, with one serif headline face, a mono kicker and counter, and the site line on every frame. Gold means one thing everywhere: a flagged nodule or flag (slides 1, 3, 5, 6). Periwinkle versus frosted white keeps the same meaning on slides 5 and 6, other scan against screening. Glass lungs bookend slides 1, 6 and 9, and the story runs in order. One frame sits outside: slide 9's pink and salmon blush field breaks from the violet run of slides 1 to 8, so the close looks like it belongs to a different deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces. 2016 is c3. 2 in 3 is share_num and share_den from c17. 20s is c18. 50 to 80, 20 pack-year and 15 years are c28, the USPSTF page. Seven or eight is c21. Slide 7's engraved 20, 50 and 80 and slide 5's 6 of 9 plates are read from window.FIG with assertions. Every source is a primary page that was fetched, and the vendor's 80 percent is correctly kept out. Several phrasings are looser than their sources, more than the one the 7 descriptor allows. (1) c8 and c9 together say the Bunkerhill system reviews radiology reports 'for patients undergoing lung cancer screening exams'. Slide 1 ('AI now reviews radiology reports at UTMB Health') and the caption drop that scope and put the sentence straight before the two thirds outside screening figure, so a reader concludes that this AI found those nodules. c31 only says AI 'is also helping identify' incidental nodules. (2) The source says the patient had 'a hereditary disease'. Slide 8 ('the disease was hereditary') and the caption say 'the disease' directly after 'showed lung cancer', which implies the lung cancer itself was hereditary. The source doesn't say that. (3) Slide 5 draws the two thirds share as 6 of 9 periwinkle plates with no 'drawn to illustrate' and no copy explaining the code. copy.json's _note says the disclaimer is on S3, S4, S5 and S8, but it is actually on S2, S3, S4, S6 and S8, so the note is wrong. (4) Slide 5 shows a white-coated doctor's hand 'deciding'. No claim says a physician makes the follow-up decision. c15 and c16 say only that people decide and stay at the center. None of these is a fabrication or an untraced numeral."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "A reader learns what happened (AI flags nodules from radiology reports), who (UTMB Health, Dr. Nishi, navigator Amanda Rodriguez) and why it matters (two thirds of nodules found outside screening, and a patient in her 20s, outside the 50 to 80 guidance, whose incidental nodule was cancer). Where is only 'UTMB'. Galveston is never named, defensibly, because the release omits it. Neither slides nor caption say that UTMB serves Texans across many sites. The action is weak. Slide 9's 'Ask a doctor what yours showed' and the caption's question tell no one how to act, for example to request their radiology report or ask whether incidental findings are tracked where they were scanned. There is no decision body and no date, though none exists here."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover hook 'The scan was for something else' earns the swipe. Slide 6 is a declared, real turn. Slides 7 and 8 land the human stakes hard, with the 20s set against the 50 to 80 scale. Slides 2 and 3 both carry process ('weeks, sometimes months', then chart review automated) and could merge without loss. The close repeats slide 6's c10 sentence and its headline 'At UTMB any scan touching the lungs counts' is abstract, so the deck ends softer than slide 8."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and restrained, with careful attribution ('Dr. Nishi recalls', 'In her account'). House rules hold: no colons, no banned words, can't-style contractions not needed. Little Texas voice: nothing places this on the Gulf Coast or says what UTMB means to the region. Slide 9's headline reads awkwardly, and the dek 'Three lungs drawn to illustrate the share, never a count' is machine-flavoured disclaimer copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "No topic repeat in topics.json. The last entries are CLARKE (86), the AI Learning Lab (85), DARPA Triage (84), GPS spoofing (83) and screwworm (82), with no UTMB or lung item. It is a fresh concept: the scan ordered for something else, a lung motif, an age scale. Familiar moves remain. It is the third clinical or health deck in the last eight (79 veterans' speech, 81 pollution and cancer, 85 Dell Med). Studio-sweep glass objects with a gold accent are a house move by now."
+  }
+ ],
+ "weighted_score": 7.02,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Tighten the opening claim to its source and close the reader's loop. Write slide 1 and the caption as 'At UTMB Health an AI system reviews screening radiology reports and AI also helps flag nodules found incidentally' (c8, c9, c31), change 'the disease was hereditary' to 'she had a hereditary disease' (c22), and rebuild slide 9 as a concrete action a Texan can take, such as asking to see the full radiology report and whether incidental findings get tracked, in the deck's violet palette.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The close is the least modelled frame. Pink glass lungs with floating rings sit on a soft blush field that leaves the violet spine, the upper right is a dead zone, and nothing in the picture carries the action the dek asks for.",
+   "fix": "Re-stage it in the violet people sweep. Show the slide 1 lung on its glass plate from a new low camera, with a periwinkle partial-scan field crossing only its lower lobe and the gold nodule caught inside that field, and push the subject up and right so it fills the empty corner."
+  },
+  {
+   "slide": 5,
+   "problem": "The art is crammed into the top 40 percent: shoulder-cropped mannequin figures with crude hands and an unexplained 6 of 9 plate code. The lower 55 percent is empty mottled violet carrying only the type.",
+   "fix": "Pull the camera down and in so the rail and the doctor's pen hand fill the middle third. Drop the cropped torsos and keep only well-modelled hands, and let the plates run off the right edge."
+  },
+  {
+   "slide": 6,
+   "problem": "At feed size the frosted whole-lung screening field and the periwinkle partial-scan fields look alike, so the 2 in 3 share doesn't read from the picture.",
+   "fix": "Leave the screening lung bare or in a white enamel cradle that matches slide 7's slab, and wrap the two other-scan lungs in strongly saturated periwinkle bands with the gold nodule inside the band, so 2 against 1 reads from colour alone."
+  },
+  {
+   "slide": 8,
+   "problem": "The relatives are stock plastic mannequins in matching poses, all facing away, and the eighth behind the trunk is an invisible sliver.",
+   "fix": "Vary posture and build, with two figures turned three quarters and some contact between them, and let the eighth figure's shoulder and shadow read clearly past the trunk's edge."
+  }
+ ]
+}

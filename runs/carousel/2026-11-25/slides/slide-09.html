@@ -1,0 +1,359 @@
+<!doctype html>
+<!-- 2026-11-25, frame 9 of 9, WHAT TO ASK (the close, a bookend of the cover). The cover's sculpted lilac glass teaching
+     lung stands on a warm people sweep, seen lower and from the other side. Three solid bevelled periwinkle acrylic scan fields
+     (the cover's slice material, CH.OTHER, a scan ordered for something else) cross it at three heights, the shoulder, the mid
+     chest and the bases, each sized to the lung at its own height. A lit scan line and a glowing section ring mark where each
+     crosses the glass, with plain unscanned glass between. No gold: no claim says the reader's scan was flagged. Drawn to
+     illustrate. No real CT image, no logo. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:150px; width:610px; text-align:left">At UTMB any scan touching the lungs counts</h1>
+<p class="dek" id="dek" data-follow="22" style="left:74px; width:420px; font-size:25px; line-height:1.38">Federal guidance covers screening for adults aged 50 to 80 with a 20 pack-year smoking history who smoke now or quit within the past 15 years. At UTMB a nodule counts on any scan that includes part of the lungs. Ask a doctor what yours showed.</p>
+
+<script>window.FIG = {"age_low": 50, "age_high": 80, "pack_years": 20, "quit_years": 15};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What to ask", counter: "09 / 09", src: "c28 c10", fit: { min: 54, max: 78, maxLines: 3 } });
+
+  /* THE FIGURES. This frame draws no count or length; the dek carries the four figures, and they must be the brief's */
+  const FG = { age_low: window.FIG.age_low, age_high: window.FIG.age_high, pack_years: window.FIG.pack_years, quit_years: window.FIG.quit_years }, want = { age_low: 50, age_high: 80, pack_years: 20, quit_years: 15 };
+  if (Object.keys(FG).length !== 4) throw new Error('FIG must carry exactly the four figures');
+  for (const k in want) if (FG[k] !== want[k]) throw new Error('FIG.' + k + ' differs from the brief');
+  const dek = document.getElementById('dek'), hook = document.getElementById('hook');
+  const dt = dek.textContent;
+  if (dt.indexOf('aged ' + FG.age_low + ' to ' + FG.age_high) < 0 || dt.indexOf('a ' + FG.pack_years + ' pack-year') < 0 || dt.indexOf('past ' + FG.quit_years + ' years') < 0)
+    throw new Error('the dek and FIG disagree');
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (hb.left < 64 || hb.right > 700 || hb.top < 140) throw new Error('the headline leaves its column');
+  if (db.bottom > 820 || db.right > 520) throw new Error('the type column runs out of its field at ' + Math.round(db.bottom));
+  const TYPE = { x0: 60, y0: hb.top - 20, x1: Math.max(hb.right, db.right) + 24, y1: db.bottom + 24 };
+
+  const R = CH.stage(TXT, gl, W, { fov: 27, fog: 0, exposure: 0.95, near: 0.01, far: 60 });
+
+  /* THE SWEEP: the cover's people studio turned warm for the close, an apricot rose floor under a violet wall */
+  TXT.studio(R, Object.assign(CH.studioOpts(), { w: 30, d: 8, h: 6, radius: 1.0, floor: 0xd9786e, wall: 0x6a62d8, top: 0x2f3aa6, softbox: 6.0 }));
+  R.scene.background = new THREE.Color(0x5a58cc);
+
+  /* THE LUNG, as on the cover (sculpted in frame, the chassis pods left unused) */
+  const LX = 0.074, H = 0.27;
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xe6dcff, metalness: 0, roughness: 0.11, transmission: 0.9, ior: 1.4, thickness: 0.02,
+    attenuationColor: new THREE.Color(0x9a7cf0), attenuationDistance: 0.32, clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1,
+    sheen: 0.3, sheenColor: new THREE.Color(0xc4b0ff), sheenRoughness: 0.4, envMapIntensity: 1.6, emissive: 0x7a5cd8, emissiveIntensity: 0.12, side: THREE.FrontSide, transparent: true, depthWrite: false, name: 'lilac-glass-lung' });
+  glass.userData.txSurface = false;   /* clear lab glass: no micro relief, which broke into a zipper along the fissure grooves */
+  const bump = (d, s) => Math.exp(-(d * d) / (s * s));
+  const lungGeo = (side) => {
+    const S = side > 0 ? 0.93 : 1;
+    const g = new THREE.SphereGeometry(1, 160, 120), p = g.attributes.position, v = new THREE.Vector3();
+    for (let i = 0; i < p.count; i++) {
+      v.fromBufferAttribute(p, i);
+      const y01 = (v.y + 1) / 2, rr = Math.hypot(v.x, v.z);
+      const w = 0.72 + 0.5 * (1 - y01);                                   /* broad at the base, narrow at the apex */
+      let yy = y01 < 0.5 ? 0.5 - (0.5 - y01) * 0.42 : y01;                 /* a short, flat underside */
+      if (v.y < -0.3) yy += 0.0 * (1 - Math.min(1, rr * rr * 1.3)) * Math.min(1, (-v.y - 0.3) / 0.4);   /* the diaphragm dome */
+      let x = v.x * 0.076 * w * S, z = v.z * 0.078 * w * S * (v.z < 0 ? 1.18 : 0.9);
+      if (v.x * side < 0) x *= 0.42;                                     /* the flat medial face */
+      if (side > 0 && v.x < 0.25 && v.z > 0) { const k = 0.72 * bump(y01 - 0.3, 0.14) * Math.min(1, (0.25 - v.x) * 2.4); z *= 1 - k; x *= 1 - 0.35 * k; }   /* the cardiac notch, cut deep into the anterior medial edge */
+      p.setXYZ(i, x + side * LX, (yy - 0.29) / 0.71 * H * S, z);
+    }
+    g.computeBoundingBox(); g.translate(0, -g.boundingBox.min.y + 0.002, 0);
+    /* the fissures, as grooves pushed in toward the lung's own axis */
+    const n1 = new THREE.Vector3(0, 1, 0.9).normalize(), o1 = new THREE.Vector3(side * LX, 0.125 * S, 0);
+    for (let i = 0; i < p.count; i++) {
+      v.fromBufferAttribute(p, i);
+      const ax = side * LX, rx = v.x - ax, rz = v.z, rl = Math.hypot(rx, rz); if (rl < 1e-5) continue;
+      const d1 = v.clone().sub(o1).dot(n1);
+      let cut = 0.0035 * bump(d1, 0.005) * Math.min(1, Math.max(0, (v.y - 0.1) / 0.04));
+      if (side < 0 && d1 > 0 && v.z > -0.012) cut += 0.003 * bump(v.y - 0.178, 0.0045) * Math.min(1, (v.z + 0.012) / 0.02);
+      if (cut > 0) { const k = Math.max(0.55, 1 - cut / rl); p.setXYZ(i, ax + rx * k, v.y, rz * k); }
+    }
+    g.computeVertexNormals();
+    return g;
+  };
+  const lungG = new THREE.Group(); R.scene.add(lungG);
+  const lobes = [-1, 1].map(side => { const m = new THREE.Mesh(lungGeo(side), glass); m.castShadow = false; m.receiveShadow = false; m.renderOrder = 1; m.userData.side = side; lungG.add(m); return m; });
+  lungG.updateMatrixWorld(true);
+  /* the lung's radius at a height and an angle around its own axis, by casting inward, for the airways, bead and section */
+  const ray = new THREE.Raycaster();
+  const radiusAt = (side, y, ang) => {
+    const m = lobes[side < 0 ? 0 : 1], dir = new THREE.Vector3(Math.cos(ang), 0, Math.sin(ang));
+    ray.set(new THREE.Vector3(side * LX + dir.x * 0.5, y, dir.z * 0.5), dir.clone().negate());
+    const hit = ray.intersectObject(m, false)[0];
+    return hit ? Math.hypot(hit.point.x - side * LX, hit.point.z) : 0;
+  };
+  const insideLung = (q, side, k) => { const ang = Math.atan2(q.z, q.x - side * LX), r = radiusAt(side, q.y, ang); return r > 0 && Math.hypot(q.x - side * LX, q.z) < r * (k || 1); };
+
+  /* THE FISSURES AS FROSTED SEAMS on the camera facing half of each lung, laid on the glass along the grooves */
+  const seamMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.4, clearcoat: 1, sheen: 0.6, sheenColor: new THREE.Color(0xe0d0ff), emissive: 0x9c86e8, emissiveIntensity: 0.4, transparent: true, opacity: 0.95, name: 'frosted-fissure-seam' });
+  seamMat.userData.txSurface = false;
+  const camAng = (side) => Math.atan2(0.95, -0.7 - side * LX);
+  const SEAMS = false;   /* art director: a seam laid on the glass read as a clamp; the fissures stay as recessed grooves only */
+  const seam = (pts) => { if (!SEAMS || pts.length < 12) return; const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 120, 0.0015, 8, false), seamMat); m.renderOrder = 2; m.userData.txBevel = false; lungG.add(m); };
+  [-1, 1].forEach(side => {
+    const S = side > 0 ? 0.93 : 1, yo = 0.125 * S, ca = camAng(side), obl = [];
+    for (let k = 0; k <= 60; k++) {
+      const a = ca - 1.7 + 3.4 * k / 60; let y = yo, r = 0;
+      for (let it = 0; it < 6; it++) { r = radiusAt(side, y, a); y = yo - 0.9 * r * Math.sin(a); }
+      const q = new THREE.Vector3(side * LX + Math.cos(a) * (r + 0.0007), y, Math.sin(a) * (r + 0.0007));
+      if (r > 0.01 && Math.abs(y - (yo - 0.9 * r * Math.sin(a))) < 0.002) { if (obl.length && obl[obl.length - 1].distanceTo(q) > 0.012) { seam(obl); obl.length = 0; } obl.push(q); } else if (obl.length) { seam(obl); obl.length = 0; }
+    }
+    seam(obl);
+    if (side < 0) { const hz = [];
+      for (let k = 0; k <= 30; k++) { const a = Math.PI / 2 + (ca + 1.45 - Math.PI / 2) * k / 30, r = radiusAt(side, 0.178, a); if (r > 0.01 && 0.178 - yo + 0.9 * r * Math.sin(a) > 0) hz.push(new THREE.Vector3(side * LX + Math.cos(a) * (r + 0.0007), 0.178, Math.sin(a) * (r + 0.0007))); }
+      seam(hz); }
+  });
+
+  /* THE AIRWAYS: a ringed frosted trachea, two main bronchi (the right shorter and steeper) and a seeded branching tree
+   * kept inside the glass, frosted lilac white */
+  const frost = new THREE.MeshPhysicalMaterial({ color: 0xf7f0ff, roughness: 0.34, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.15, sheen: 0.6,
+    sheenColor: new THREE.Color(0xd8c4ff), emissive: 0x5e44a8, emissiveIntensity: 0.12, transparent: true, opacity: 0.9, name: 'frosted-resin-airway' });
+  frost.userData.txSurface = 'plastic';
+  /* a tube that tapers from r to r1 along its length; a terminal gets a rounded tip (a sphere of its end radius) */
+  const taper = (pts, r, r1, tip) => {
+    const curve = new THREE.CatmullRomCurve3(pts.map(q => q.isVector3 ? q : new THREE.Vector3(...q))), TS = 32, RS = 16;
+    const g = new THREE.TubeGeometry(curve, TS, r, RS, false), P = g.attributes.position, v = new THREE.Vector3();
+    for (let i = 0; i <= TS; i++) { const t = i / TS, c = curve.getPointAt(t), e = t * t * (3 - 2 * t), k = 1 + ((r1 == null ? r : r1) / r - 1) * e;
+      for (let j = 0; j <= RS; j++) { const idx = i * (RS + 1) + j; v.fromBufferAttribute(P, idx).sub(c).multiplyScalar(k).add(c); P.setXYZ(idx, v.x, v.y, v.z); } }
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, frost); m.renderOrder = 2; m.castShadow = false; lungG.add(m);
+    if (tip) knot(curve.getPointAt(1).toArray(), r1);
+    return curve;
+  };
+  const tube = (pts, r) => { const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(q => new THREE.Vector3(...q))), 24, r, 14, false), frost); m.renderOrder = 2; m.castShadow = false; lungG.add(m); return m; };
+  const knot = (q, r) => { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 20, 14), frost); m.position.set(...q); m.renderOrder = 2; lungG.add(m); };
+  const TR = 0.0115, CAR = [0, 0.212, 0.006];
+  tube([[0, 0.262, 0.004], [0, 0.245, 0.005], CAR], TR); knot(CAR, TR * 1.02);
+  const ringMat = frost.clone(); ringMat.name = 'frosted-resin-ring'; ringMat.color = new THREE.Color(0xffffff); ringMat.opacity = 0.95;
+  { const lip = new THREE.Mesh(new THREE.TorusGeometry(TR, 0.0022, 10, 40), ringMat); lip.rotation.x = Math.PI / 2; lip.position.set(0, 0.262, 0.004); lip.renderOrder = 2; lungG.add(lip); }
+  for (let y = 0.226; y < 0.258; y += 0.0105) { const t = new THREE.Mesh(new THREE.TorusGeometry(TR + 0.0004, 0.0016, 8, 40), ringMat); t.rotation.x = Math.PI / 2; t.position.set(0, y, 0.005); t.renderOrder = 2; lungG.add(t); }
+  /* ONE TREE grown from the carina, kept simple on purpose: two main bronchi, then lobar branches fanned in the lung's
+   * frontal plane (three on the right lung, two on the left with its cardiac notch), smooth tapers and rounded tips.
+   * Each lobar branch is shortened until its tip sits well inside the glass; the projected tree is checked below for
+   * crossings and for tips too near the glass once the camera is set. */
+  const AIR = [];   /* every drawn airway curve, with its terminal tip and side, for the checks */
+  AIR.push({ curve: new THREE.CatmullRomCurve3([[0, 0.262, 0.004], [0, 0.245, 0.005], CAR].map(q => new THREE.Vector3(...q))), tip: null });
+  [-1, 1].forEach(side => {
+    const hilum = new THREE.Vector3(side * 0.062, side < 0 ? 0.166 : 0.158, 0.008);
+    AIR.push({ curve: taper([new THREE.Vector3(...CAR), new THREE.Vector3(side * 0.032, side < 0 ? 0.194 : 0.19, 0.008), hilum], 0.0088, 0.0064), tip: null });
+    knot(hilum.toArray(), 0.0064);
+    /* lobar directions in the x-y plane: upper (up and out), middle (out, right lung only), lower (down) */
+    const dirs = side < 0 ? [[0.42, 0.9, 0.032], [1, -0.28, 0.04], [0.32, -1, 0.06]] : [[0.5, 0.86, 0.034], [0.34, -1, 0.06]];
+    dirs.forEach(d => {
+      const dir = new THREE.Vector3(side * d[0], d[1], 0).normalize();
+      let len = d[2], to = null;
+      for (let it = 0; it < 30; it++) { to = hilum.clone().addScaledVector(dir, len); if (insideLung(to, side, 0.62) && to.y < 0.222) break; len *= 0.92; }
+      if (!insideLung(to, side, 0.62)) throw new Error('a lobar branch tip leaves the glass');
+      const bend = new THREE.Vector3(side * 0.004 * (d[1] > 0 ? -1 : 1), 0, 0);
+      const mid = hilum.clone().lerp(to, 0.5).add(bend);
+      AIR.push({ curve: taper([hilum, mid, to], 0.0056, 0.0026, true), tip: to, side });
+    });
+  });
+  TXT.contact(R, lungG, { opacity: 0.45 });
+
+  /* THE RIM: a cool fresnel edge on each lobe, so the glass silhouettes against the warm sweep at feed size */
+  const rimMat = new THREE.ShaderMaterial({ uniforms: { col: { value: new THREE.Color(0xe4e8ff) }, k: { value: 0.95 } },
+    vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vN = normalize(normalMatrix * normal); vec4 mv = modelViewMatrix * vec4(position, 1.0); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'uniform vec3 col; uniform float k; varying vec3 vN; varying vec3 vV; void main(){ float f = pow(1.0 - clamp(abs(dot(normalize(vN), normalize(vV))), 0.0, 1.0), 2.6); gl_FragColor = vec4(col * f * k, f * k); }',
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, name: 'glass-rim-fresnel' });
+  rimMat.userData.txSurface = false;
+  lobes.forEach((m) => { const r = new THREE.Mesh(m.geometry, rimMat); r.renderOrder = 2; r.userData.txBevel = false; r.castShadow = false; lungG.add(r); });
+
+  /* THE SLABS: the cover's scan field three times, solid bevelled periwinkle acrylic (CH.OTHER, a scan ordered for something
+   * else) at three heights through the lung, each sized to the lung at its own height and no further: one at the shoulder
+   * through both apices and the trachea, one at mid chest through the hilum, one through the bases. A lit scan line and a
+   * glowing section ring show where each crosses the glass. Plain unscanned glass between them. No section fills. */
+  const lungBox = lobes.map((m) => { m.updateMatrixWorld(true); return new THREE.Box3().setFromObject(m); });
+  const lungTop = Math.min(lungBox[0].max.y, lungBox[1].max.y), lungBot = Math.max(lungBox[0].min.y, lungBox[1].min.y);
+  const SLABS = [ { name: 'shoulder', y: 0.207 }, { name: 'chest', y: 0.128 }, { name: 'bases', y: 0.05 } ];
+  if (SLABS.length !== 3) throw new Error('three slabs');
+  const ST = 0.0072, CLIP = 1.3;
+  const slabMat = new THREE.MeshPhysicalMaterial({ color: CH.OTHER, roughness: 0.12, metalness: 0, transparent: true, opacity: 0.58,
+    clearcoat: 1, clearcoatRoughness: 0.05, emissive: 0x5a6cf4, emissiveIntensity: 0.45, envMapIntensity: 1.3, depthWrite: false, name: 'acrylic-scan-slice' });
+  slabMat.userData.txSurface = false;
+  const bevelMat = new THREE.MeshPhysicalMaterial({ color: 0xb4bfff, roughness: 0.08, metalness: 0, transparent: true, opacity: 0.78,
+    clearcoat: 1, clearcoatRoughness: 0.03, emissive: 0x7f8ef8, emissiveIntensity: 0.38, envMapIntensity: 1.6, depthWrite: false, name: 'acrylic-bevel-edge' });
+  bevelMat.userData.txSurface = false;
+  const edgeMat = new THREE.MeshBasicMaterial({ color: 0xeef0ff, transparent: true, opacity: 0.9, depthWrite: false, toneMapped: false, name: 'acrylic-lit-edge' });
+  edgeMat.userData.txSurface = false;
+  const edgeLow = new THREE.MeshBasicMaterial({ color: 0x7f8cf0, transparent: true, opacity: 0.55, depthWrite: false, toneMapped: false, name: 'acrylic-under-edge' });
+  edgeLow.userData.txSurface = false;
+  const scanMat = new THREE.MeshBasicMaterial({ color: 0xe2e8ff, transparent: true, opacity: 0.95, depthWrite: false, toneMapped: false, name: 'scan-line' });
+  scanMat.userData.txSurface = false;
+  const bloomTex = CH.canvasTex(THREE, 8, 128, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(150,165,255,0)'); gr.addColorStop(0.5, 'rgba(150,165,255,0.45)'); gr.addColorStop(1, 'rgba(150,165,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const bloomMat = new THREE.MeshBasicMaterial({ map: bloomTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, name: 'scan-bloom' }); bloomMat.userData.txSurface = false;
+  const lineMat = new THREE.MeshBasicMaterial({ color: 0xc8d0ff, transparent: true, opacity: 0.3, depthWrite: false, name: 'engraved-line' });
+  lineMat.userData.txSurface = false;
+  const secMat = new THREE.MeshBasicMaterial({ color: 0xe6eaff, transparent: true, opacity: 0.85, depthWrite: false, toneMapped: false, name: 'section-ring' });
+  secMat.userData.txSurface = false;
+  const secGlow = new THREE.MeshBasicMaterial({ color: 0x8fa0ff, transparent: true, opacity: 0.22, depthWrite: false, blending: THREE.AdditiveBlending, name: 'section-glow' });
+  secGlow.userData.txSurface = false;
+  const add = (m, ro) => { m.renderOrder = ro; m.userData.txBevel = false; R.scene.add(m); return m; };
+  const slabMeshes = [];
+  SLABS.forEach((sl) => {
+    if (!(sl.y > lungBot + 0.02 && sl.y < lungTop - 0.015)) throw new Error('the ' + sl.name + ' slab does not cross the lung ' + lungBot.toFixed(3) + ' ' + lungTop.toFixed(3));
+    const yTop = sl.y + ST / 2 + 0.0004;
+    /* the lung's own outline at the slab's height, per lobe */
+    let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9, rings = 0;
+    [-1, 1].forEach((side) => {
+      const pts = [];
+      for (let k = 0; k < 240; k++) { const ang = k / 240 * Math.PI * 2, r = radiusAt(side, yTop, ang); if (r > 0) pts.push(new THREE.Vector3(side * LX + Math.cos(ang) * (r + 0.0006), yTop, Math.sin(ang) * (r + 0.0006))); }
+      if (pts.length < 220) return;
+      sl.secs = (sl.secs || []).concat([pts]);
+      pts.forEach((q) => { x0 = Math.min(x0, q.x); x1 = Math.max(x1, q.x); z0 = Math.min(z0, q.z); z1 = Math.max(z1, q.z); });
+      const curve = new THREE.CatmullRomCurve3(pts, true);
+      add(new THREE.Mesh(new THREE.TubeGeometry(curve, 240, 0.0007, 8, true), secMat), 6);
+      add(new THREE.Mesh(new THREE.TubeGeometry(curve, 240, 0.0017, 8, true), secGlow), 5);
+      rings++;
+    });
+    if (rings !== 2) throw new Error('the ' + sl.name + ' slab must cross both lungs, found ' + rings);
+    /* ONE SLAB PER LOBE: each the hull of that lobe's own section at that height grown by a narrow rounded margin, so the
+     * acrylic follows the lung and never runs over empty floor or bridges the two lobes as a tray */
+    sl.hulls = []; sl.lws = []; sl.boxes = [];
+    sl.secs.forEach((pts) => {
+      let a0 = 1e9, a1 = -1e9; pts.forEach((q) => { a0 = Math.min(a0, q.x); a1 = Math.max(a1, q.x); });
+      const lw = a1 - a0, MARGIN = lw * 0.07, bv = 0.0018;
+      const cloud = [];
+      pts.forEach((q, k) => { if (k % 3) return; for (let t = 0; t < 20; t++) { const a = t / 20 * Math.PI * 2; cloud.push([q.x + Math.cos(a) * MARGIN, q.z + Math.sin(a) * MARGIN]); } });
+      cloud.sort((p, q) => p[0] - q[0] || p[1] - q[1]);
+      const cr2 = (o, a2, b2) => (a2[0] - o[0]) * (b2[1] - o[1]) - (a2[1] - o[1]) * (b2[0] - o[0]);
+      const lo = [], hi = [];
+      cloud.forEach((q) => { while (lo.length >= 2 && cr2(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); });
+      for (let k = cloud.length - 1; k >= 0; k--) { const q = cloud[k]; while (hi.length >= 2 && cr2(hi[hi.length - 2], hi[hi.length - 1], q) <= 0) hi.pop(); hi.push(q); }
+      const hull = lo.slice(0, -1).concat(hi.slice(0, -1));
+      const X0 = Math.min(...hull.map((q) => q[0])), X1 = Math.max(...hull.map((q) => q[0])), Z0 = Math.min(...hull.map((q) => q[1])), Z1 = Math.max(...hull.map((q) => q[1]));
+      const CXs = (X0 + X1) / 2, CZs = (Z0 + Z1) / 2;
+      if (X1 - X0 > CLIP * lw + 1e-6) throw new Error('the ' + sl.name + ' slab is wider than ' + CLIP + ' times its lobe at its height');
+      sl.hulls.push(hull); sl.lws.push(lw); sl.boxes.push([X0, X1, Z0, Z1]);
+      const inset = (q, d) => { const dx = q[0] - CXs, dz = q[1] - CZs, r = Math.hypot(dx, dz) || 1; return [q[0] - dx / r * d, q[1] - dz / r * d]; };
+      const shp = new THREE.Shape(); hull.forEach((q, k) => { const r = inset(q, bv); if (k) shp.lineTo(r[0] - CXs, r[1] - CZs); else shp.moveTo(r[0] - CXs, r[1] - CZs); });
+      const sg = new THREE.ExtrudeGeometry(shp, { depth: ST - 2 * bv, bevelEnabled: true, bevelThickness: bv, bevelSize: bv, bevelSegments: 5, curveSegments: 4 });
+      sg.translate(0, 0, -(ST - 2 * bv) / 2); sg.rotateX(Math.PI / 2); sg.computeVertexNormals();
+      sg.computeBoundingBox(); if (Math.abs(sg.boundingBox.min.z - (Z0 - CZs)) > 0.004) throw new Error('the slab outline turned the wrong way');
+      /* group 0 is the two faces, group 1 the bevelled sides: a tinted lit face and a brighter bevel that reads as thickness */
+      const slab = add(new THREE.Mesh(sg, [slabMat, bevelMat]), 3);
+      slab.position.set(CXs, sl.y, CZs); slab.castShadow = false; slab.receiveShadow = false; slabMeshes.push(slab);
+      /* the lit top edge where the face meets the bevel, and a dimmer line at the underside so the near edge shows depth */
+      { const rimTop = hull.map((q) => { const r = inset(q, bv * 0.9); return new THREE.Vector3(r[0], sl.y + ST / 2 - 0.0002, r[1]); });
+        add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(rimTop, true, 'centripetal'), 360, 0.00055, 6, true), edgeMat), 4);
+        const rimLow = hull.map((q) => { const r = inset(q, bv * 0.9); return new THREE.Vector3(r[0], sl.y - ST / 2 + 0.0002, r[1]); });
+        add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(rimLow, true, 'centripetal'), 360, 0.0004, 6, true), edgeLow), 4); }
+      /* the scan line runs only where this slab meets the glass: the section outline's own crossings of z = zs */
+      const zs = Z0 + (Z1 - Z0) * 0.6, xs = [];
+      for (let k = 0; k < pts.length; k++) { const a = pts[k], b = pts[(k + 1) % pts.length];
+        if ((a.z - zs) * (b.z - zs) < 0) xs.push(a.x + (b.x - a.x) * (zs - a.z) / (b.z - a.z)); }
+      xs.sort((p, q) => p - q);
+      let segs = 0;
+      for (let k = 0; k + 1 < xs.length; k += 2) { const w = xs[k + 1] - xs[k] - 0.002; if (w < 0.004) continue;
+        const sx = (xs[k] + xs[k + 1]) / 2;
+        const scanL = add(new THREE.Mesh(new THREE.BoxGeometry(w, 0.0005, 0.0018), scanMat), 6); scanL.position.set(sx, yTop + 0.0002, zs);
+        const bloom = add(new THREE.Mesh(new THREE.PlaneGeometry(w, 0.02), bloomMat), 5); bloom.rotation.x = -Math.PI / 2; bloom.position.set(sx, yTop + 0.0001, zs);
+        segs++; }
+      if (segs < 1) throw new Error('the ' + sl.name + ' scan line found no glass to cross');
+    });
+    sl.box = [Math.min(...sl.boxes.map((b) => b[0])), Math.max(...sl.boxes.map((b) => b[1])), Math.min(...sl.boxes.map((b) => b[2])), Math.max(...sl.boxes.map((b) => b[3]))];
+  });
+  /* the lowest slice's periwinkle spill on the floor below it */
+  { const b = SLABS[2].box;
+    const tex = CH.canvasTex(THREE, 256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(140,156,240,0.6)'); gr.addColorStop(0.5, 'rgba(140,156,240,0.24)'); gr.addColorStop(1, 'rgba(140,156,240,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const sp = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, name: 'light-spill' }); sp.userData.txSurface = false;
+    const m = add(new THREE.Mesh(new THREE.PlaneGeometry((b[1] - b[0]) * 1.25, (b[3] - b[2]) * 1.5), sp), 2); m.rotation.x = -Math.PI / 2; m.position.set((b[0] + b[1]) / 2, 0.0015, (b[2] + b[3]) / 2); }
+
+  /* THE CAMERA: lower than the cover and from the other side, front left, the lung on the right beside the type column.
+   * Searched, not guessed: the nearest camera that keeps the lung and every pane inside the frame, above the footer and
+   * clear of the type column */
+  const el = 17 * Math.PI / 180, az = -40 * Math.PI / 180;
+  const DIR = new THREE.Vector3(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el));
+  const TGT = [0.02, 0.14, 0];
+  const slabPts = (sl) => { const out = []; sl.hulls.forEach((h) => h.forEach((q) => [sl.y - ST / 2, sl.y + ST / 2].forEach((y) => out.push(CH.project(THREE, R, [q[0], y, q[1]]))))); return out; };
+  const slabCorners = () => [].concat(...SLABS.map(slabPts));
+  /* the upper lung, apex to shoulder slab, must stand clear of the type column, so no part of it sits under the dek wash */
+  const upper = []; lobes.forEach((m) => { const P = m.geometry.attributes.position; for (let i = 0; i < P.count; i += 7) { const y = P.getY(i); if (y > SLABS[0].y - 0.02) upper.push([P.getX(i), y, P.getZ(i)]); } });
+  const CLR = { x: db.right + 24, y: db.bottom + 26, hx: hb.right + 24, hy: hb.bottom + 24 };
+  const clearOfType = (q) => !(q[1] < CLR.y && q[0] < CLR.x) && !(q[1] < CLR.hy && q[0] < CLR.hx);
+  const fits = () => slabCorners().every((q) => q[0] >= 70 && q[0] <= 1012 && q[1] >= 90 && q[1] <= 1180 && clearOfType(q))
+    && upper.every((p) => clearOfType(CH.project(THREE, R, p)));
+  const lungSpan = () => { let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; lungBox.forEach((bx) => [bx.min.x, bx.max.x].forEach((x) => [bx.min.y, bx.max.y].forEach((y) => [bx.min.z, bx.max.z].forEach((z) => { const q = CH.project(THREE, R, [x, y, z]); x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); })))); return { x0, x1, y0, y1 }; };
+  /* searched over distance and where the target sits across the frame: the largest lung that fits and clears the type */
+  let pick = null, best = -1;
+  for (const sy of [760, 800, 840, 880]) for (let sx = 960; sx >= 680; sx -= 10) for (let dist = 0.35; dist <= 3.2; dist += 0.01) {
+    const from = [TGT[0] + DIR.x * dist, TGT[1] + DIR.y * dist, TGT[2] + DIR.z * dist];
+    CH.aim(THREE, R, TXT, from, TGT, sx, sy, 27);
+    const sp = lungSpan();
+    if (sp.y1 - sp.y0 > 980 || sp.y1 > 1232) continue;
+    if (!fits()) continue;
+    if (sp.y1 - sp.y0 > best) { best = sp.y1 - sp.y0; pick = { from, sx, sy }; }
+    break;
+  }
+  if (!pick) throw new Error('no camera fits the lung');
+  CH.aim(THREE, R, TXT, pick.from, TGT, pick.sx, pick.sy, 27);
+  { const sp = lungSpan(); if (sp.x1 - sp.x0 < 540) throw new Error('the lung fills less than half the frame width, ' + Math.round(sp.x1 - sp.x0)); }
+  /* THE CHECK: every slab's projected outline inside the frame, and no wider than CLIP times its lobe's section */
+  SLABS.forEach((sl) => {
+    sl.hulls.forEach((h, li) => {
+      const qs = []; h.forEach((q) => [sl.y - ST / 2, sl.y + ST / 2].forEach((y) => qs.push(CH.project(THREE, R, [q[0], y, q[1]]))));
+      const sx0 = Math.min(...qs.map((q) => q[0])), sx1 = Math.max(...qs.map((q) => q[0])), sy0 = Math.min(...qs.map((q) => q[1])), sy1 = Math.max(...qs.map((q) => q[1]));
+      if (sx0 < 64 || sx1 > 1016 || sy0 < 64 || sy1 > 1286) throw new Error('the ' + sl.name + ' slab leaves the frame');
+      let lx0 = 1e9, lx1 = -1e9; sl.secs[li].forEach((p) => { const q = CH.project(THREE, R, [p.x, p.y, p.z]); lx0 = Math.min(lx0, q[0]); lx1 = Math.max(lx1, q[0]); });
+      if (sx1 - sx0 > CLIP * (lx1 - lx0)) throw new Error('the ' + sl.name + ' slab draws ' + ((sx1 - sx0) / (lx1 - lx0)).toFixed(2) + ' times its lobe');
+    });
+  });
+  /* THE AIRWAY CHECKS, in this camera's view: no branch crosses another, and every tip sits at least 20 px inside the glass */
+  { const lines = AIR.map((a) => { const out = []; for (let k = 0; k <= 40; k++) { const p = a.curve.getPointAt(k / 40); out.push(CH.project(THREE, R, [p.x, p.y, p.z])); } return out; });
+    const ends = [].concat(...lines.map((l) => [l[0], l[l.length - 1]]));
+    const nearEnd = (q) => ends.some((e) => Math.hypot(e[0] - q[0], e[1] - q[1]) < 16);
+    const cr = (o, a2, b2) => (a2[0] - o[0]) * (b2[1] - o[1]) - (a2[1] - o[1]) * (b2[0] - o[0]);
+    const hit = (p1, p2, p3, p4) => cr(p1, p2, p3) * cr(p1, p2, p4) < 0 && cr(p3, p4, p1) * cr(p3, p4, p2) < 0;
+    for (let i = 0; i < lines.length; i++) for (let j = i + 1; j < lines.length; j++)
+      for (let a = 0; a < 40; a++) for (let c = 0; c < 40; c++) {
+        const p1 = lines[i][a], p2 = lines[i][a + 1], p3 = lines[j][c], p4 = lines[j][c + 1];
+        if (nearEnd(p1) || nearEnd(p2) || nearEnd(p3) || nearEnd(p4)) continue;
+        if (hit(p1, p2, p3, p4)) throw new Error('airway ' + i + ' crosses airway ' + j + ' in view');
+      }
+    R.camera.updateMatrixWorld(true);
+    const right = new THREE.Vector3().setFromMatrixColumn(R.camera.matrixWorld, 0).setY(0).normalize();
+    AIR.filter((a) => a.tip).forEach((a) => {
+      const m = lobes[a.side < 0 ? 0 : 1], tq = CH.project(THREE, R, a.tip.toArray());
+      [right, right.clone().negate(), new THREE.Vector3(0, 1, 0)].forEach((d) => {
+        ray.set(a.tip.clone().addScaledVector(d, 0.5), d.clone().negate()); const h = ray.intersectObject(m, false)[0];
+        if (!h) throw new Error('an airway tip has no glass around it');
+        const gq = CH.project(THREE, R, h.point.toArray()), px = Math.hypot(gq[0] - tq[0], gq[1] - tq[1]);
+        if (px < 20) throw new Error('an airway tip sits ' + px.toFixed(1) + ' px from the glass');
+      });
+    });
+  }
+
+  /* THE KEY: apricot, from the front right this time, so the lung throws onto the sweep behind and left */
+  const spec = CH.rigSpec(W, 1.6, 4096);
+  spec.key = Object.assign({}, spec.key, { radius: 0.6 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0.1, 0], { distance: 6, shadowFar: 14, normalBias: 0.004 }), { light: { az: 40, el: 36 } }));
+  CH.unacne(R, 0.004);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { a: 0.6, height: 240 });
+  { const T = TXLOOK.palette(CH.TONE), g = cx.createRadialGradient(150, 300, 30, 150, 300, 440);
+    [[0, 0.42], [0.45, 0.26], [0.75, 0.08], [1, 0]].forEach((s2) => g.addColorStop(s2[0], TXLOOK.rgba(T.low, s2[1])));
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 1350); }
+  CH.seat(cx, { sel: '.hook', a: 0.5, fade: 150 });
+  CH.seat(cx, { sel: '.dek', a: 0.64, fade: 130 });
+  CH.seat(cx, { sel: '.kick', a: 0.45, fade: 60 });
+  CH.seat(cx, { sel: '.count', a: 0.66, fade: 70 });
+  CH.seat(cx, { sel: '#site', a: 0.8, fade: 90 });
+  CH.seat(cx, { sel: '.src', a: 0.5, fade: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

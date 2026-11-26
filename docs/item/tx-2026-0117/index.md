@@ -11,7 +11,7 @@ The Office of the Executive Vice President and Provost requires a Course Artific
 - Public access: Closed
 - Take part: https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-22 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-25 · The provost's page now frames the two new required syllabus statements as covering the 2026 to 2027 academic year rather than the fall alone. Every course syllabus must still carry a Course AI Policy that says whether generative AI is permitted, partially permitted or prohibited.
 
 ## Evidence
 
@@ -70,9 +71,9 @@ Source (primary_official): https://provost.utexas.edu/the-office/academic-affair
 
 Source (primary_official): https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
 
-### The university names the requirement as new for the Fall 2026 term.
+### The university names the requirement as new for the 2026 to 2027 academic year.
 
-> There are two new required statements for Fall 2026 syllabi
+> There are two new required statements for AY 2026-27 syllabi
 
 Source (primary_official): https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
 

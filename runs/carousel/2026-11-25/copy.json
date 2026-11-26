@@ -1,0 +1,217 @@
+{
+ "date": "2026-11-25",
+ "carousel_no": 87,
+ "document_title": "UTMB Health adds AI to lung nodule review. About two thirds of its program's nodules came outside screening",
+ "_note": "Caption carried verbatim from caption.txt. Slide strings polished from storyboard.md and held to the claim quotes in claims.json. Every numeral is in claims.json or figures.json. Drawn to illustrate appears only on S2, S3, S4, S6 and S8. The patient story is attributed to Dr. Nishi on S7 and S8, and S7 never says the AI flagged her nodule. Bunkerhill's 80 percent appears nowhere.",
+ "caption": "A scan ordered for something else.\n\nAt UTMB Health an AI system reviews lung cancer screening reports and also helps identify nodules found by chance. UTMB says about two thirds of its program's nodules came from patients not having lung cancer screening.\n\nEvery flag goes to patient navigator Amanda Rodriguez. A validated risk score helps her decide which follow up comes first.\n\nMedical director Dr. Shawn Nishi calls the AI an assistant, not a decision maker.\n\nDr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule. Dr. Nishi says a biopsy showed lung cancer and the patient had surgery intended to cure it. According to Dr. Nishi she had a hereditary disease, and she named seven or eight relatives diagnosed with cancer.\n\nWhere you get scanned, who reads the report past the reason it was ordered?\n\n#UTMBHealth #LungCancerScreening #PatientNavigation\n",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "UTMB Health",
+   "headline": "The scan was for something else",
+   "claims": [
+    "c2",
+    "c8",
+    "c31",
+    "c11",
+    "c17"
+   ],
+   "cite": "c2 c8 c31 c11 c17",
+   "body": "UTMB Health's AI reviews lung cancer screening reports and helps identify nodules found by chance. Each is flagged for a person. UTMB says about two thirds of its program's nodules came from patients not having lung cancer screening.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The scan was for something else",
+    "UTMB Health's AI reviews lung cancer screening reports and helps identify nodules found by chance. Each is flagged for a person. UTMB says about two thirds of its program's nodules came from patients not having lung cancer screening.",
+    "UTMB Health",
+    "01 / 09",
+    "c2 c8 c31 c11 c17"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The old way",
+   "headline": "Weeks, sometimes months",
+   "claims": [
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "cite": "c3 c4 c5 c6",
+   "body": "UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients. Folders drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Weeks, sometimes months",
+    "UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients. Folders drawn to illustrate.",
+    "The old way",
+    "02 / 09",
+    "c3 c4 c5 c6"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Report review",
+   "headline": "Much of the chart review, automated",
+   "claims": [
+    "c8",
+    "c30"
+   ],
+   "cite": "c8 c30",
+   "body": "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Pages drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Much of the chart review, automated",
+    "The system was developed with the company Bunkerhill and reviews radiology reports. Chart review was once the slowest part of the work, and much of it is now automated. Pages drawn to illustrate.",
+    "Report review",
+    "03 / 09",
+    "c8 c30"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "A person checks",
+   "headline": "Every flag goes to a navigator",
+   "claims": [
+    "c11",
+    "c12",
+    "c13",
+    "c14"
+   ],
+   "cite": "c11 c12 c13 c14",
+   "body": "Each nodule is flagged for review by patient navigator Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Every flag goes to a navigator",
+    "Each nodule is flagged for review by patient navigator Amanda Rodriguez. Her dashboard computes a validated lung cancer risk score so she can decide which follow up comes first. Cards drawn to illustrate.",
+    "A person checks",
+    "04 / 09",
+    "c11 c12 c13 c14"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Who decides",
+   "headline": "It flags. People decide.",
+   "claims": [
+    "c15",
+    "c16",
+    "c31",
+    "c11",
+    "c14"
+   ],
+   "cite": "c15 c16 c31 c11 c14",
+   "body": "Dr. Nishi calls the AI an assistant, not a decision maker. The release says people stay at the center while it works in the background.",
+   "labels": [
+    "flags",
+    "checks and ranks",
+    "decides"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "It flags. People decide.",
+    "Dr. Nishi calls the AI an assistant, not a decision maker. The release says people stay at the center while it works in the background.",
+    "Who decides",
+    "05 / 09",
+    "c15 c16 c31 c11 c14",
+    "flags",
+    "checks and ranks",
+    "decides"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The turn",
+   "headline": "About 2 in 3 found outside screening",
+   "claims": [
+    "c17",
+    "c10"
+   ],
+   "cite": "c17 c10",
+   "body": "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 2 in 3 found outside screening",
+    "About two thirds of the nodules the program found came from patients who were not having lung cancer screening. A nodule counts on any scan that includes part of the lungs. Three lungs drawn to illustrate the share, never a count.",
+    "The turn",
+    "06 / 09",
+    "c17 c10"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Dr. Nishi's patient",
+   "headline": "She was in her 20s",
+   "claims": [
+    "c18",
+    "c19",
+    "c20",
+    "c28"
+   ],
+   "cite": "c18 c19 c20 c28",
+   "body": "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80 who meet its smoking criteria.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "She was in her 20s",
+    "Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80 who meet its smoking criteria.",
+    "Dr. Nishi's patient",
+    "07 / 09",
+    "c18 c19 c20 c28"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Her family",
+   "headline": "Seven or eight relatives",
+   "claims": [
+    "c21",
+    "c22"
+   ],
+   "cite": "c21 c22",
+   "body": "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account she had a hereditary disease, so her family members needed testing too. Family drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Seven or eight relatives",
+    "Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account she had a hereditary disease, so her family members needed testing too. Family drawn to illustrate.",
+    "Her family",
+    "08 / 09",
+    "c21 c22"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What to ask",
+   "headline": "At UTMB any scan touching the lungs counts",
+   "claims": [
+    "c28",
+    "c10"
+   ],
+   "cite": "c28 c10",
+   "body": "Federal guidance covers screening for adults aged 50 to 80 with a 20 pack-year smoking history who smoke now or quit within the past 15 years. At UTMB a nodule counts on any scan that includes part of the lungs. Ask a doctor what yours showed.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "At UTMB any scan touching the lungs counts",
+    "Federal guidance covers screening for adults aged 50 to 80 with a 20 pack-year smoking history who smoke now or quit within the past 15 years. At UTMB a nodule counts on any scan that includes part of the lungs. Ask a doctor what yours showed.",
+    "What to ask",
+    "09 / 09",
+    "c28 c10"
+   ]
+  }
+ }
+}

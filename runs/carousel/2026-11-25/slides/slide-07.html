@@ -1,0 +1,224 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-25, frame 7 of 9, HER 20s. A low three quarter macro through txthree.js under the v2people late afternoon sky:
+     a heavy brushed steel age scale lies on a weathered limestone ledge, its chamfered front face engraved with decade ticks and
+     numerals read from FIG. One clear lilac glass bead, her nodule, sits alone in the groove at the patient's decade; a long raised
+     frosted white enamel slab covers the screening ages further down the same groove. Plain lilac glass, never gold: no claim
+     says the AI flagged it. The headline and dek sit in the open sky; the stone beyond the scale falls into plum shade. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:164px; width:640px">She was in her 20s</h1>
+<p class="dek" data-follow="26" style="left:74px; width:900px">Dr. Nishi recalls a patient in her 20s whose scan after a car accident found a nodule nobody was looking for. Dr. Nishi says a biopsy showed lung cancer and she had surgery intended to cure it. Federal screening guidance covers adults aged 50 to 80 who meet its smoking criteria.</p>
+
+<script>window.FIG = {"patient_decade": 20, "age_low": 50, "age_high": 80};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dr. Nishi's patient", counter: "07 / 09", src: "c18 c19 c20 c28", fit: { min: 96, max: 128, maxLines: 2 } });
+
+  /* ---- HONEST: the scale, the bead and the enamel span are read from window.FIG and nothing else ---- */
+  const F = { patient_decade: window.FIG.patient_decade, age_low: window.FIG.age_low, age_high: window.FIG.age_high };
+  if (Object.keys(F).sort().join(',') !== 'age_high,age_low,patient_decade') throw new Error('frame 7 expects exactly three figures, got ' + JSON.stringify(F));
+  const AGE = F.patient_decade, LO = F.age_low, HI = F.age_high, STEP = 10;
+  if (!(AGE < LO && LO < HI)) throw new Error('figures out of order: ' + JSON.stringify(F));
+  /* the scale runs one step below the patient's decade to one step past the top of the screening span */
+  const UMIN = AGE - STEP, UMAX = HI + STEP;
+  const LABELS = []; for (let u = UMIN; u <= UMAX + 1e-9; u += STEP) LABELS.push(u);
+  if (LABELS[0] !== UMIN || LABELS[LABELS.length - 1] !== UMAX || LABELS.length !== (UMAX - UMIN) / STEP + 1) throw new Error('scale labels do not match the figures');
+  /* only the three figures are engraved as numerals, every other tick is an unlabeled mark */
+  const NUMERALS = [AGE, LO, HI];
+  if (LABELS.indexOf(AGE) < 0 || LABELS.indexOf(LO) < 0 || LABELS.indexOf(HI) < 0) throw new Error('a figure falls off the scale');
+
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.01, far: 400, fog: 0.004 });
+  const rnd = CH.rng(CH.SEED + 7);
+  const SUN = { az: 150, el: 24 };   /* a low apricot sun ahead and right of the lens: the glass is backlit and the scale throws its shadow forward */
+
+  /* ---- THE SCALE: a heavy brushed steel bar, chamfered edges, a 70 degree engraved front face, a groove along the top ---- */
+  const L = 0.64, TOP = 0.045, at = (u) => -L / 2 + 0.025 + (L - 0.05) * (u - UMIN) / (UMAX - UMIN);
+  const steel = new THREE.MeshPhysicalMaterial({ name: 'brushed-steel-bar', color: 0xb4bccb, metalness: 1, roughness: 0.5, anisotropy: 0.95, clearcoat: 0.05, envMapIntensity: 0.95 });
+  { const sk = CH.canvasTex(THREE, 1024, 64, (g, w, hh) => { const r = CH.rng(4401); for (let i = 0; i < w; i++) { const v = 150 + Math.round((r() - 0.5) * 120 * (r() < 0.15 ? 1.6 : 0.6)); g.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; g.fillRect(i, 0, 1, hh); } });
+    sk.wrapS = sk.wrapT = THREE.RepeatWrapping; sk.colorSpace = THREE.NoColorSpace; sk.repeat.set(22, 1);
+    steel.roughnessMap = sk; steel.bumpMap = sk; steel.bumpScale = 0.4; steel.anisotropyRotation = Math.PI / 2; }
+  steel.userData.txSurface = 'brushed'; steel.userData.txRelief = 1.4;
+  const FRONT = 0.072;   /* a deep bar: its top carries the groove, the bead, the enamel slab and the engraved scale side by side */
+  const prof = [[-0.042, 0], [FRONT - 0.003, 0], [FRONT, 0.003], [FRONT, 0.005], [FRONT - 0.003, 0.042], [FRONT - 0.006, TOP], [-0.042, TOP], [-0.045, TOP - 0.003], [-0.045, 0.003]];
+  const shp = new THREE.Shape(prof.map(([z, y]) => new THREE.Vector2(-z, y)));
+  const capSteel = new THREE.MeshPhysicalMaterial({ name: 'ground-steel-end', color: 0xa8b0c0, metalness: 1, roughness: 0.55, envMapIntensity: 0.85 }); capSteel.userData.txSurface = 'cast';
+  const bar = new THREE.Mesh(new THREE.ExtrudeGeometry(shp, { depth: L, bevelEnabled: true, bevelThickness: 0.0016, bevelSize: 0.0012, bevelSegments: 3, curveSegments: 4 }), [capSteel, steel]);
+  bar.rotation.y = Math.PI / 2; bar.position.x = -L / 2; bar.castShadow = bar.receiveShadow = true; bar.userData.txBevel = false;
+  const rule = new THREE.Group(); rule.add(bar);
+  const add = (geo, mat, x, y, z) => { const m = geo.isMesh ? geo : new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; rule.add(m); return m; };
+  /* the groove: a cut channel down the top with a darker cavity floor and two bright machined lips */
+  const cavity = new THREE.MeshStandardMaterial({ name: 'engraved-steel-cavity', color: 0x3a2e5c, metalness: 0.6, roughness: 0.6 });
+  const lip = new THREE.MeshStandardMaterial({ name: 'machined-steel-lip', color: 0xffe2c4, metalness: 1, roughness: 0.18 });
+  const GW_ = 0.014;
+  { const gm = add(new THREE.BoxGeometry(L - 0.012, 0.0006, GW_), cavity, 0, TOP + 0.0001, 0); gm.userData.txBevel = false; gm.castShadow = false;
+    for (const s of [-1, 1]) { const lp = add(new THREE.BoxGeometry(L - 0.012, 0.0005, 0.0012), lip, 0, TOP + 0.0002, s * (GW_ / 2 + 0.0006)); lp.userData.txBevel = false; lp.castShadow = false; } }
+
+  /* the engraved face: ticks every half step, numerals only at the three figures (NUMERALS), ticks from LABELS; dark cuts with a warm lower lip */
+  const FACE = { z0: 0.042, y0: 0.005, z1: 0.039, y1: 0.042 };
+  const fLen = Math.hypot(FACE.z1 - FACE.z0, FACE.y1 - FACE.y0), fAng = Math.atan2(FACE.z0 - FACE.z1, FACE.y1 - FACE.y0);   /* tilt back from vertical */
+  const SD = 0.049, SZ0 = 0.015;   /* the engraved strip on the top face, from just in front of the groove and slab to the front chamfer */
+  const TW = 4096, TH = Math.round(TW * SD / L);
+  const tx = (u) => (at(u) + L / 2) / L * TW;
+  let drawnTicks = 0, drawnNums = [];
+  const engraveTex = CH.canvasTex(THREE, TW, TH, (g, w, h) => {
+    g.clearRect(0, 0, w, h); g.fillStyle = 'rgba(58,60,86,0.62)'; g.fillRect(0, 0, w, h * 0.97);   /* a satin etched band, so the cuts read against a quiet ground */
+    const cut = (fn) => { g.fillStyle = 'rgba(255,226,190,0.95)'; fn(4); g.fillStyle = 'rgba(18,12,36,0.98)'; fn(0); };
+    for (let u = UMIN; u <= UMAX + 1e-9; u += STEP / 2) {
+      const major = Math.abs((u - UMIN) % STEP) < 1e-9, x = tx(u), lw = major ? 13 : 8, len = major ? h * 0.34 : h * 0.18;
+      cut((o) => g.fillRect(x - lw / 2, 0 + o, lw, len)); drawnTicks++;
+    }
+    g.font = '700 ' + Math.round(h * 0.6) + 'px "JetBrains Mono", monospace'; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+    for (const u of NUMERALS) { const s = String(u); drawnNums.push(s); cut((o) => g.fillText(s, tx(u), h * 0.92 + o)); }
+  });
+  engraveTex.anisotropy = 16;
+  if (drawnTicks !== (UMAX - UMIN) / (STEP / 2) + 1) throw new Error('engraved ticks do not match the scale');
+  if (drawnNums.join(',') !== NUMERALS.join(',')) throw new Error('engraved numerals do not match the scale');
+  const faceMat = new THREE.MeshStandardMaterial({ name: 'engraved-face-decal', map: engraveTex, transparent: true, metalness: 0.4, roughness: 0.55, polygonOffset: true, polygonOffsetFactor: -2 });
+  faceMat.userData.txSurface = false;
+  const decal = new THREE.Mesh(new THREE.PlaneGeometry(L, SD), faceMat);
+  decal.rotation.x = -Math.PI / 2; decal.position.set(0, TOP + 0.0017, SZ0 + SD / 2);   /* on the TOP face, so the bead and the slab read straight against the ticks */
+  decal.userData.txBevel = false; decal.castShadow = false; decal.receiveShadow = true; rule.add(decal);
+
+  /* ---- THE SCREENING SPAN: a long raised frosted white enamel slab set over the groove from age_low to age_high ---- */
+  const enamel = new THREE.MeshPhysicalMaterial({ name: 'frosted-enamel-screen', color: CH.SCREEN, roughness: 0.3, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.05, sheen: 0.5, sheenColor: 0xffffff, emissive: 0x34323e, transmission: 0.06, thickness: 0.01, ior: 1.5 });
+  const EW = at(HI) - at(LO), EH = 0.021, ED = 0.026;
+  const block = add(TXT.roundedBox(EW, EH, ED, 0.0065, enamel), enamel, (at(LO) + at(HI)) / 2, TOP + EH / 2 - 0.0005, 0);
+  block.geometry.computeBoundingBox();
+  { const bb = block.geometry.boundingBox, bx0 = block.position.x + bb.min.x, bx1 = block.position.x + bb.max.x;
+    if (Math.abs(bx0 - at(LO)) > 1e-5 || Math.abs(bx1 - at(HI)) > 1e-5) throw new Error('enamel slab does not span age_low to age_high: ' + [bx0, at(LO), bx1, at(HI)].join(' ')); }
+
+  /* ---- HER NODULE: clear lilac glass, never gold, seated in the groove at the patient's decade ---- */
+  const BR = 0.04, beadY = TOP + Math.sqrt(BR * BR - (GW_ / 2) * (GW_ / 2));
+  const glass = new THREE.MeshPhysicalMaterial({ name: 'lilac-glass-bead', color: 0xd4d0ff, metalness: 0, roughness: 0.01, transmission: 1, thickness: 0.06, ior: 1.55, dispersion: 0.3,
+    attenuationColor: 0x8a84ff, attenuationDistance: 0.09, clearcoat: 1, clearcoatRoughness: 0.02, specularIntensity: 1, envMapIntensity: 1.4 });
+  const bead = add(new THREE.SphereGeometry(BR, 72, 54), glass, at(AGE), beadY, 0);
+  if (Math.abs(bead.position.x - at(F.patient_decade)) > 1e-12) throw new Error('bead is not at the patient decade');
+  const bub = new THREE.MeshPhysicalMaterial({ name: 'glass-bubble', color: 0xffffff, roughness: 0, transmission: 1, ior: 1.0, thickness: 0.002, transparent: true, opacity: 0.6 });
+  add(new THREE.SphereGeometry(0.0028, 16, 12), bub, at(AGE) + 0.0096, beadY + 0.0064, 0.008).castShadow = false;
+  add(new THREE.SphereGeometry(0.0018, 16, 12), bub, at(AGE) - 0.011, beadY - 0.005, 0.0096).castShadow = false;
+  const radial = (stops) => CH.canvasTex(THREE, 128, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); stops.forEach(([t, c]) => gr.addColorStop(t, c)); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  /* the seated contact: a tight plum occlusion where the glass meets the groove */
+  { const cm = new THREE.MeshBasicMaterial({ name: 'bead-contact', map: radial([[0, 'rgba(20,10,40,0.95)'], [0.3, 'rgba(28,14,52,0.75)'], [0.6, 'rgba(40,22,70,0.3)'], [1, 'rgba(40,22,70,0)']]), transparent: true, depthWrite: false });
+    cm.userData.txSurface = false; const cp = new THREE.Mesh(new THREE.PlaneGeometry(BR * 1.3, BR * 1.0), cm); cp.rotation.x = -Math.PI / 2; cp.position.set(at(AGE), TOP + 0.0007, 0); cp.userData.txBevel = false; cp.castShadow = false; cp.userData.noDepth = true; rule.add(cp); }
+  /* the caustic: the low sun focused through the bead, a warm spot on the steel on its shadow side */
+  { const LA = SUN.az * Math.PI / 180, LE = SUN.el * Math.PI / 180, sd = [Math.sin(LA), Math.cos(LA)];
+    const reach = (beadY - TOP) / Math.tan(LE) * 0.6;
+    const cm = new THREE.MeshBasicMaterial({ name: 'caustic-glow', map: radial([[0, 'rgba(255,238,200,1)'], [0.25, 'rgba(255,190,130,0.7)'], [1, 'rgba(255,150,100,0)']]), transparent: true, opacity: 1, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false });
+    cm.userData.txSurface = false;
+    const cp = new THREE.Mesh(new THREE.PlaneGeometry(BR * 2.2, BR * 1.2), cm); cp.rotation.x = -Math.PI / 2; cp.rotation.z = Math.atan2(-sd[1], sd[0]);
+    cp.position.set(at(AGE) - sd[0] * reach, TOP + 0.0009, -sd[1] * reach); cp.userData.noDepth = true; cp.userData.txBevel = false; cp.castShadow = false; rule.add(cp); }
+  TXT.add(R, rule);
+
+  /* ---- THE LEDGE: weathered limestone, fossil pitting and lichen, a stepped front face falling to caliche ---- */
+  const topTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    const r = CH.rng(7701);
+    g.fillStyle = '#f6c48e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 160; i++) { const x = r() * w, y = r() * h, s = 40 + r() * 160; const gr = g.createRadialGradient(x, y, 0, x, y, s);
+      const c = r() < 0.5 ? '232,186,140' : '246,222,184'; gr.addColorStop(0, 'rgba(' + c + ',0.35)'); gr.addColorStop(1, 'rgba(' + c + ',0)'); g.fillStyle = gr; g.fillRect(x - s, y - s, 2 * s, 2 * s); }
+    for (let i = 0; i < 90000; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '120,80,90' : '255,240,220') + ',' + (r() * 0.14).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+    for (let i = 0; i < 420; i++) { const x = r() * w, y = r() * h, s = 1.5 + r() * r() * 9; g.fillStyle = 'rgba(110,70,110,0.55)'; g.beginPath(); g.ellipse(x, y, s, s * (0.6 + r() * 0.4), r() * 3, 0, 7); g.fill();
+      g.strokeStyle = 'rgba(255,236,206,0.5)'; g.lineWidth = 1; g.beginPath(); g.ellipse(x + 0.8, y + 0.8, s + 1, s * 0.8 + 1, 0, 0, 7); g.stroke(); }
+    for (let i = 0; i < 0; i++) { const x = r() * w, y = r() * h, s = 6 + r() * 10; g.strokeStyle = 'rgba(150,100,110,0.45)'; g.lineWidth = 2;
+      for (let k = 0; k < 4; k++) { g.beginPath(); g.arc(x, y, s * (0.3 + k * 0.25), 0, 7); g.stroke(); } }
+    const lichen = (x, y, s, col) => { for (let k = 0; k < 140; k++) { const a = r() * 6.28, d = Math.sqrt(r()) * s; g.fillStyle = col; g.beginPath(); g.arc(x + Math.cos(a) * d, y + Math.sin(a) * d * 0.8, 1.5 + r() * s * 0.12, 0, 7); g.fill(); } };
+    for (let i = 0; i < 16; i++) lichen(r() * w, r() * h, 8 + r() * 18, r() < 0.4 ? 'rgba(226,132,58,0.42)' : (r() < 0.6 ? 'rgba(196,190,104,0.42)' : 'rgba(150,168,150,0.4)'));
+    for (let i = 0; i < 6; i++) { g.strokeStyle = 'rgba(100,60,100,0.5)'; g.lineWidth = 1.5 + r() * 2; g.beginPath(); let x = r() * w, y = r() * h; g.moveTo(x, y);
+      for (let k = 0; k < 14; k++) { x += (r() - 0.3) * 40; y += (r() - 0.5) * 26; g.lineTo(x, y); } g.stroke(); }
+  }, [3, 1.4]);
+  
+  const bumpTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    const r = CH.rng(7702); g.fillStyle = '#808080'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { const v = Math.floor(90 + r() * 90); g.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 3); }
+    for (let i = 0; i < 300; i++) { g.fillStyle = 'rgba(20,20,20,0.7)'; g.beginPath(); g.arc(r() * w, r() * h, 1 + r() * r() * 6, 0, 7); g.fill(); }
+  }, [6, 2.8]);
+  const stoneTop = new THREE.MeshStandardMaterial({ name: 'limestone-ledge-top', map: topTex, bumpMap: bumpTex, bumpScale: 6, roughness: 0.92, metalness: 0, color: 0xffffff });
+  const faceTex = CH.canvasTex(THREE, 1024, 512, (g, w, h) => {
+    const r = CH.rng(7703); g.fillStyle = '#e6b88e'; g.fillRect(0, 0, w, h);
+    let y = 0; while (y < h) { const t = 6 + r() * 30; g.fillStyle = 'rgba(' + (r() < 0.5 ? '170,110,120' : '250,214,170') + ',' + (0.12 + r() * 0.2).toFixed(2) + ')'; g.fillRect(0, y, w, t); y += t; }
+    for (let i = 0; i < 18000; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '100,60,100' : '255,236,210') + ',' + (r() * 0.16).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+    for (let i = 0; i < 260; i++) { g.fillStyle = 'rgba(96,58,110,0.5)'; g.beginPath(); g.ellipse(r() * w, r() * h, 1 + r() * 6, 1 + r() * 3, 0, 0, 7); g.fill(); }
+    for (let i = 0; i < 14; i++) { const x = r() * w, y2 = r() * h; for (let k = 0; k < 40; k++) { g.fillStyle = r() < 0.6 ? 'rgba(236,124,40,0.5)' : 'rgba(196,190,90,0.45)'; g.beginPath(); g.arc(x + (r() - 0.5) * 50, y2 + (r() - 0.5) * 30, 1.5 + r() * 4, 0, 7); g.fill(); } }
+  }, [4, 1]);
+  const stoneFace = new THREE.MeshStandardMaterial({ name: 'limestone-ledge-face', map: faceTex, bumpMap: bumpTex, bumpScale: 3, roughness: 0.95, metalness: 0 });
+  /* the ledge: its front lip runs just in front of the scale and breaks off, the strata face falls to caliche below */
+  /* the ledge runs back to the horizon so no far edge strikes through the headline */
+  const LEDGE = { x0: -30, x1: 30, zf: 0.1, zb: -40, h: 0.42 };
+  topTex.repeat.set(38 * 60 / 5.8, 15 * 40.1 / 2.0); bumpTex.repeat.set(70 * 60 / 5.8, 28 * 40.1 / 2.0);
+  const slab = TXT.roundedBox(LEDGE.x1 - LEDGE.x0, LEDGE.h, LEDGE.zf - LEDGE.zb, 0.03, stoneTop);
+  slab.position.set((LEDGE.x0 + LEDGE.x1) / 2, -LEDGE.h / 2, (LEDGE.zf + LEDGE.zb) / 2);
+  slab.receiveShadow = true; slab.castShadow = true; TXT.add(R, slab);
+  /* the broken lip: irregular blocks of the top course, some sheared back, some proud, gaps between them */
+  { let x = -2.1; while (x < 1.4) { const w = 0.04 + rnd() * 0.14, gap = rnd() < 0.35 ? 0.008 + rnd() * 0.03 : 0.0015, d = 0.008 + rnd() * 0.035, hh = 0.02 + rnd() * 0.05;
+      const lb = TXT.roundedBox(w, hh, d, 0.002 + rnd() * 0.003, stoneTop); lb.position.set(x + w / 2, -hh / 2 + (rnd() - 0.6) * 0.006, LEDGE.zf + d / 2 - 0.012); lb.rotation.set((rnd() - 0.5) * 0.12, (rnd() - 0.5) * 0.4, (rnd() - 0.5) * 0.12);
+      lb.castShadow = lb.receiveShadow = true; TXT.add(R, lb); x += w + gap; } }
+  /* the strata face under the lip */
+  { const fc = TXT.roundedBox(LEDGE.x1 - LEDGE.x0, LEDGE.h - 0.06, 0.05, 0.015, stoneFace); fc.position.set((LEDGE.x0 + LEDGE.x1) / 2, -LEDGE.h / 2 - 0.04, LEDGE.zf - 0.01); fc.receiveShadow = true; TXT.add(R, fc);
+    for (let i = 0; i < 26; i++) { const w = 0.04 + rnd() * 0.12, hh = 0.03 + rnd() * 0.08, sb = TXT.roundedBox(w, hh, 0.015 + rnd() * 0.025, 0.003, stoneFace);
+      sb.position.set(-1.0 + rnd() * 2.2, -0.08 - rnd() * 0.3, LEDGE.zf + 0.005 + rnd() * 0.02); sb.rotation.y = (rnd() - 0.5) * 0.3; sb.castShadow = sb.receiveShadow = true; TXT.add(R, sb); } }
+  for (let i = 0; i < 0; i++) {   /* the far course is dropped: its edge struck the headline */
+    const w = 0.4 + rnd() * 0.5, x = LEDGE.x0 + 0.2 + i * 0.66 + rnd() * 0.1, hh = 0.03 + rnd() * 0.05;
+    const blk = TXT.roundedBox(w, hh, 0.25 + rnd() * 0.2, 0.02, stoneFace); blk.position.set(x, hh / 2 - 0.01, LEDGE.zb + 0.2 + rnd() * 0.1); blk.rotation.y = (rnd() - 0.5) * 0.2;
+    blk.castShadow = blk.receiveShadow = true; TXT.add(R, blk);
+  }
+  /* loose grit and limestone chips, kept off the scale */
+  const chipMat = new THREE.MeshStandardMaterial({ name: 'limestone-chip', color: 0xeac39a, roughness: 0.9 });
+  const chipGeo = new THREE.IcosahedronGeometry(1, 2);
+  { const pa = chipGeo.attributes.position; const r = CH.rng(77); for (let i = 0; i < pa.count; i++) { const k = 0.75 + r() * 0.35; pa.setXYZ(i, pa.getX(i) * k, pa.getY(i) * k * 0.55, pa.getZ(i) * k); } chipGeo.computeVertexNormals(); }
+  const NCH = 150, chips = new THREE.InstancedMesh(chipGeo, chipMat, NCH), o3 = new THREE.Object3D();
+  for (let i = 0; i < NCH; i++) {
+    let x, z; do { x = -0.7 + rnd() * 1.6; z = -1.2 + rnd() * 1.28; } while (z > -0.08 && x > -L / 2 - 0.04 && x < L / 2 + 0.04);
+    const s = 0.0015 + rnd() * rnd() * 0.007; o3.position.set(x, s * 0.15, z); o3.rotation.set((rnd() - 0.5) * 0.4, rnd() * 6, (rnd() - 0.5) * 0.4); o3.scale.setScalar(s); o3.updateMatrix(); chips.setMatrixAt(i, o3.matrix);
+  }
+  chips.castShadow = true; chips.receiveShadow = true; TXT.add(R, chips);
+  TXT.scatter(R, { kind: 'grass', count: 50, area: [-1.2, -1.75, 1.6, -0.8], seed: 25, scale: [0.05, 0.12], colors: [0xd8a060, 0xc88850, 0xe6b878, 0xb87a58] });
+  const gnd = TXT.ground(R, { surface: 'caliche', size: 300, color: 0x9c8cb8 });
+  if (gnd) gnd.position.y = -LEDGE.h;
+
+  /* ---- CAMERA: low, a metre in front of the scale, so the face reads and the enamel slab stands as a long raised block ---- */
+  TXT.frame(R, { fov: 46, from: [-0.48, 0.27, 0.30], look: [0.14, 0.06, -0.15] });   /* low and close off the near end: the rule runs diagonally from the bead in the left foreground back to the slab */
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { clouds: 0.2, zenith: 0x2442b0, horizon: 0x7a8cf0, glow: 0.7, horizonGlow: 0.5 }));
+  TXT.contact(R, rule, { opacity: 0.6 });
+
+  /* ---- THE FAR SHADE: an unseen ridge behind the lens puts the stone beyond the scale's own shadow into plum shade ---- */
+  { const sa = SUN.az * Math.PI / 180, se = SUN.el * Math.PI / 180, H = 0.8, dz = H * Math.cos(sa) / Math.tan(se), dx = H * Math.sin(sa) / Math.tan(se);
+    const om = new THREE.MeshBasicMaterial({ name: 'shade-occluder', colorWrite: false, depthWrite: false, side: THREE.DoubleSide }); om.userData.txSurface = false;
+    const zEdge = -0.32 + dz, occ = new THREE.Mesh(new THREE.BoxGeometry(14, 0.01, 10), om);
+    occ.position.set(dx, H, zEdge - 5); occ.castShadow = true; occ.receiveShadow = false; occ.userData.noDepth = true; occ.userData.txBevel = false; occ.userData.txSurface = false; R.scene.add(occ); }
+
+  const spec = CH.rigSpec(W, 3.6, 4096); spec.key = Object.assign({}, spec.key, { radius: 1.0 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, -0.2], { distance: 8, shadowFar: 20, normalBias: 0.0006 }), { light: SUN }));
+  CH.unacne(R, 0.0006);
+  TXT.weather(R, { grime: 0.04, height: 0.05, mottle: 0.06, skip: [rule] });
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.52, fade: 150 });
+  CH.seat(cx, { sel: '.dek', a: 0.66, fade: 130 });
+  CH.seat(cx, { sel: '.kick', a: 0.34, fade: 110 });
+  CH.seat(cx, { sel: '.count', a: 0.4, fade: 110 });
+  CH.seat(cx, { sel: '.src', a: 0.55, fade: 110 });
+  CH.seat(cx, { sel: '.tx-site', a: 0.55, fade: 110 });
+  TXLOOK.footWash(cx, { a: 0.62, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

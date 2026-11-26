@@ -1,0 +1,218 @@
+{
+ "weighted_score": 7.49,
+ "judges": [
+  7.59,
+  7.18,
+  7.49
+ ],
+ "spread": 0.41,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.2,
+    6.5,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The relatives are stiff kit mannequins, all turned away with identical posture, under olive-brown oak leaves that leave the people palette. The lower 40 percent is a flat plum lawn wash under the type.",
+     "fix": "Swap the backlit leaf tint from olive-brown to the deck's apricot-violet, vary three poses (an arm around a shoulder, a head turned in profile, one seated), and drop the camera so the lawn foreground carries long figure shadows under the type instead of an empty wash."
+    },
+    {
+     "judge": 2,
+     "problem": "Kit mannequins seen from behind, and the eighth relative is only legs behind a toon-lined bark trunk that breaks the render quality.",
+     "fix": "Re-texture the live oak trunk with real bark normals. Bring the eighth figure out to a visible shoulder and head at the trunk so the seven-plus-one count reads at feed size."
+    },
+    {
+     "judge": 3,
+     "problem": "The kit figures read as mannequins from behind, with stiff poses and flat clothing, and the tree bark texture is noisy.",
+     "fix": "Lower the camera to chest height behind one figure in the foreground, cropped at the shoulder, so the group reads as people she named, and calm the bark normal map."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The type sits on a visible dark purple blob plate laid over a salmon field rather than in quiet the composition made, and the six discs read as stacked flat rings rather than slabs.",
+     "fix": "Drop the blob plate and set the type in a deepened violet sweep in the upper left by lighting the cyclorama darker there. Give each disc visible bevelled thickness with a lit edge so they read as the cover's acrylic slabs."
+    },
+    {
+     "judge": 2,
+     "problem": "The close's lung fills about a third of the frame, lower right, and the type sits on a muddy violet blob wash that reads as a plate over the salmon sweep.",
+     "fix": "Scale the lung up to fill the right two thirds and run its bases off the bottom edge. Replace the blob with a sweep that darkens toward the left column, so the type sits in quiet the lighting made."
+    },
+    {
+     "judge": 3,
+     "problem": "The headline and dek sit on a dark plum smudge that reads as a plate on the pink sweep, and the lung is less modelled than the cover's.",
+     "fix": "Move the lung left and higher so its glass carries the frame, seat the type on TXLOOK.typeWash in the sweep's own deep rose instead of a plum blot, and restore the cover's rim light and bronchial branching."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The turn frame's three lungs fill only the top third, the bottom quarter is empty violet, and nothing a reader can see says which lung is screening and which two came from other scans, so 2 in 3 has to come from the type.",
+     "fix": "Pull the camera in and lower it so the three lungs fill the frame and run off the bottom edge with the headline over them. Add accent pills 'screening' under the white cradle lung and 'other scan' under the two slab lungs."
+    },
+    {
+     "judge": 3,
+     "problem": "The turn's share is unreadable. All three lungs carry identical gold beads, the screening-versus-other-scan difference rides only on a white tray against thin periwinkle slabs, and the bottom third of the frame is empty violet.",
+     "fix": "Light the two slab lungs with gold, leave the cradled screening lung beadless and dimmer, add accent pills 'screening' and 'other scans', and drop the lung row lower so it fills the empty band under the dek."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The headline 'Weeks, sometimes months' and the dek are set directly over the cabinet drawers and pulls, so the type fights the busiest part of the picture. The cart is a generic tube primitive cropped awkwardly at bottom right.",
+     "fix": "Pull the camera left so the cabinets stand on the right third and the type sits on the plain violet wall. Push the folder cart closer and lower so the folder stack fills the lower half with a contact shadow on the tile."
+    },
+    {
+     "judge": 2,
+     "problem": "The headline and dek sit over the filing cabinet wall, drawer handles show between the text lines, and the folder pile is a small object in the lower right on a crude tube cart, well under the planned 40 percent.",
+     "fix": "Move the camera so the cabinets fall off the left edge behind a plain plum wall carrying the type. Push the folder tower forward until it fills the right half and leans out past the right edge, as the storyboard planned."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Fused clasped kit hands on the card, small brown cubes floating beside the card tray (stray geometry), and an awkwardly cropped window frame at top left.",
+     "fix": "Delete the stray cubes. Crop the navigator to one sleeve and one hand lifting the flagged card from the drawer front, and drop the window geometry for a lit plum wall."
+    },
+    {
+     "judge": 3,
+     "problem": "Two small brown squares float in the air beside the card drawer (a render artifact), the clasped hands are lumpy, and the monitor is a primitive slab.",
+     "fix": "Delete the stray floating chip meshes, swap the clasped pose for one hand lifting the flagged card with the other on the drawer, and bevel the monitor with TXT.roundedBox and a lit screen edge."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The forearms and hands entering from the right are crudely modelled, with lumpy fingers and a mitten-like dark hand at top right, at exactly the 'checks and ranks' and 'decides' beats.",
+     "fix": "Crop the hands so only cuffs and a single clean pointing hand enter at the 'checks and ranks' plate, and replace the 'decides' hand with a white coat cuff resting a pen on the last plate."
+    },
+    {
+     "judge": 3,
+     "problem": "The cropped hands are crude and the brown hand at 'decides' is malformed.",
+     "fix": "Replace the three kit hands with simpler sleeved forearms ending in mitten-modelled hands, and crop the top-right hand off the frame edge so only the flag being taken shows."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The top 40 percent of the frame is flat purple behind the type. The subject is a near-flat sheet of pseudo-glyph pages cropped off the left edge, with a primitive binder clip, so no object owns the frame and nothing reads at feed size beyond 'paper'.",
+     "fix": "Raise the camera to a low three-quarter view on a thick stack of report pages lit from the side, with real page thickness and cast shadow. Let the stack rise into the upper half so the headline sits in the shadow it casts. Keep the single gold highlighted line as the only accent."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The lower right ledge is a mass of unlit, unresolved blocks, and the glass bead sits left of the 20 tick, so the age reading is ambiguous.",
+     "fix": "Replace the block mass with the planned weathered limestone ledge under the apricot key, and seat the bead in the groove centred on the 20 tick."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.49, 0.51 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.0 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

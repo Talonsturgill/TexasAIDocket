@@ -21623,5 +21623,411 @@
     "note": "Admitted from Texas Tech's November 10th account of the opening. The page describes a demonstration and names no deployment."
    }
   ]
+ },
+ {
+  "title": "UTMB Health uses AI to read radiology reports and flag lung nodules for follow up, and most of its program's nodules came from scans taken for other reasons",
+  "summary": "UTMB Health says AI now helps run the Comprehensive Lung Cancer Screening Program it set up in 2016. The current system was built with the company Bunkerhill and reviews radiology reports for patients getting lung cancer screening exams. Any nodule found on a scan that includes the lungs is flagged for a patient navigator, and a dashboard ranks patients by a validated lung cancer risk score. The program's medical director says the old manual process sometimes took weeks or months. About two thirds of the nodules the program has identified were in patients who were not being screened for lung cancer. The account gives no accuracy figures and no count of patients. The medical director calls AI an assistant that makes no decisions.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "UTMB Health",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Galveston"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-19",
+    "kind": "decided",
+    "note": "UTMB Health describes the AI system in use in its lung screening program"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "UTMB Health's Comprehensive Lung Cancer Screening Program is the contact for patients. The release names no public hearing or comment process.",
+   "url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+   "closes": null
+  },
+  "id": "tx-2026-0260",
+  "last_verified": "2026-11-25",
+  "history": [
+   {
+    "date": "2026-11-25",
+    "note": "Admitted from UTMB Health's November 19th account. It describes the system in use and publishes no accuracy or volume figures."
+   }
+  ],
+  "claims": [
+   {
+    "text": "UTMB Health says AI now helps run its Comprehensive Lung Cancer Screening Program, including finding lung nodules seen on scans taken for other reasons.",
+    "verbatim_quote": "AI is now helping streamline the work of the Comprehensive Lung Cancer Screening Program at UTMB Health, including identifying lung nodules discovered unexpectedly on imaging performed for other medical reasons.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c1"
+   },
+   {
+    "text": "UTMB Health set up the program in 2016.",
+    "verbatim_quote": "UTMB Health established the program in 2016 to screen patients who are at high risk for lung cancer and identify patients with incidentally found lung nodules who may require additional evaluation.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c2"
+   },
+   {
+    "text": "The program's medical director says the original manual process sometimes took weeks or months.",
+    "verbatim_quote": "the original process was time-consuming, sometimes taking weeks or even months.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c3"
+   },
+   {
+    "text": "By the time staff worked through the old process, the follow up window had often closed, the medical director says.",
+    "verbatim_quote": "By the time we navigated the care pathway for these patients, their time-critical follow-up window had often closed",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c4"
+   },
+   {
+    "text": "Any nodule found on a screening exam or another scan that includes the lungs is now flagged for the patient navigator to review.",
+    "verbatim_quote": "Any nodule, whether found on a lung cancer screening exam or another imaging study involving any portion of the lungs, is now flagged for review by the patient navigator.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c5"
+   },
+   {
+    "text": "The current system was built with the company Bunkerhill and reviews radiology reports for patients getting lung cancer screening exams.",
+    "verbatim_quote": "The current system, developed in collaboration with Bunkerhill, reviews radiology reports for patients undergoing lung cancer screening exams",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c6"
+   },
+   {
+    "text": "Much of the chart review, once the slowest part of the work, is now automated.",
+    "verbatim_quote": "Much of the chart review process, previously the most time-consuming part of the workflow, has been automated, allowing patient navigators to focus on helping patients understand and complete their next steps.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c7"
+   },
+   {
+    "text": "A dashboard uses medical record data to compute a validated lung cancer risk score so the navigator can rank follow up.",
+    "verbatim_quote": "Rodriguez can view a dashboard utilizing data from patients’ electronic medical records to calculate a validated lung cancer risk score for patients with scan abnormalities.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c8"
+   },
+   {
+    "text": "About two thirds of the nodules the program has identified were in patients who were not getting a lung cancer screening.",
+    "verbatim_quote": "Roughly two-thirds of the nodules identified through the program have been found in patients who were not undergoing lung cancer screening.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c9"
+   },
+   {
+    "text": "The medical director says AI is an assistant and does not make decisions.",
+    "verbatim_quote": "Nishi emphasized that AI is an assistant, not a decision maker.",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c10"
+   },
+   {
+    "text": "UTMB Health published the account on November 19th, 2026.",
+    "verbatim_quote": "November 19, 2026",
+    "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/11/19/ai-adds-a-new-layer-of-support-to-lung-cancer-screening-at-utmb-health",
+    "source_title": "UTMB Health, AI adds a new layer of support to lung cancer screening at UTMB Health",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0260-c11"
+   }
+  ]
+ },
+ {
+  "title": "TSMC applies for a JETI school tax limitation for a chip plant in Brazos County, and the Comptroller posts its recommendation packet",
+  "summary": "TSMC Arizona Corporation has applied for a tax limit under the Jobs, Energy, Technology and Innovation Act. It would cap College Station ISD maintenance and operations taxes on a proposed semiconductor plant in Brazos County. The Comptroller posted the application on November 23rd, 2026 and its recommendation packet the next day. The applicant says the plant would make leading edge logic chips on a 2 nanometer or more advanced process, and it ties them to the expansion of AI infrastructure. It projects construction from 2027 to 2031. The packet estimates the company's school tax benefit at $354,128,128. The applicant says it is still weighing Brazos County against Arizona. The College Station ISD board has not acted and no agreement is signed.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Texas Comptroller of Public Accounts",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": true
+  },
+  "status": "pending",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-23",
+    "kind": "filed",
+    "note": "Application posted by the Comptroller"
+   },
+   {
+    "date": "2026-11-24",
+    "kind": "ordered",
+    "note": "Comptroller recommendation packet posted"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A JETI application goes before the school board at a public hearing under Government Code Chapter 403 Subchapter T before any agreement is signed. No College Station ISD hearing date is posted on the Comptroller's page yet. The application and the recommendation packet are posted there.",
+   "url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0055",
+   "closes": null
+  },
+  "id": "tx-2026-0261",
+  "last_verified": "2026-11-25",
+  "history": [
+   {
+    "date": "2026-11-25",
+    "note": "Admitted from the Comptroller's J0055 application page and recommendation packet. No school board vote and no signed agreement are on record."
+   }
+  ],
+  "claims": [
+   {
+    "text": "The Comptroller's application page lists J0055 as TSMC Arizona Corporation with College Station ISD.",
+    "verbatim_quote": "J0055, College Station ISD, TSMC Arizona Corporation",
+    "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0055",
+    "source_title": "Application Details, Jobs, Energy, Technology and Innovation Act, Texas Comptroller",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c1"
+   },
+   {
+    "text": "The application was posted on November 23rd, 2026.",
+    "verbatim_quote": "Application – Posted 11/23/2026",
+    "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0055",
+    "source_title": "Application Details, Jobs, Energy, Technology and Innovation Act, Texas Comptroller",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c2"
+   },
+   {
+    "text": "The Comptroller's recommendation packet was posted on November 24th, 2026.",
+    "verbatim_quote": "Recommendation Packet – Posted 11/24/2026",
+    "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0055",
+    "source_title": "Application Details, Jobs, Energy, Technology and Innovation Act, Texas Comptroller",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c3"
+   },
+   {
+    "text": "The packet places the project in Brazos County.",
+    "verbatim_quote": "County Brazos",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c4"
+   },
+   {
+    "text": "The application projects construction starting in 2027.",
+    "verbatim_quote": "Projected commencement of construction 2027",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c5"
+   },
+   {
+    "text": "The application projects construction finishing in 2031.",
+    "verbatim_quote": "Projected completion of construction 2031",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c6"
+   },
+   {
+    "text": "The applicant says the plant would make leading edge logic chips on a 2 nanometer or more advanced process.",
+    "verbatim_quote": "The Project is planned to manufacture leading-edge logic integrated circuits using 2-nanometer and/or more advanced process technologies.",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c7"
+   },
+   {
+    "text": "The applicant ties those chips to the expansion of AI infrastructure in the United States.",
+    "verbatim_quote": "directly supporting the rapid expansion of domestic Artificial Intelligence (AI)",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c8"
+   },
+   {
+    "text": "The applicant says it is weighing Brazos County against alternatives outside Texas, particularly Arizona.",
+    "verbatim_quote": "The Applicant is evaluating potential Texas locations, including in Brazos County,",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c9"
+   },
+   {
+    "text": "The packet estimates the school district maintenance and operations tax benefit to the company at $354,128,128.",
+    "verbatim_quote": "Estimated M&O gross tax benefit $354,128,128",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c10"
+   },
+   {
+    "text": "The limitation percent in the application is 50 percent.",
+    "verbatim_quote": "Limitation percent (50% or 75%) 50%",
+    "source_url": "https://assets.comptroller.texas.gov/open-data/jeti/J0055/J0055-tsmcarizona-collegestation-rec.pdf",
+    "source_title": "Texas Comptroller, JETI application J0055 recommendation packet, TSMC Arizona Corporation and College Station ISD",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0261-c11"
+   }
+  ]
+ },
+ {
+  "title": "ERCOT will publish a data center's water and noise answers only if its developer opts in by December 4th",
+  "summary": "ERCOT asked data center developers in a September 14th, 2026 survey about their state and community impact. On November 20th it told them it will not publish any project's answers without the developer's written authorization. Developers who agree must send ERCOT a form by December 4th, 2026. The answers that could be released include projected annual water withdrawal and consumption at full buildout and expected noise levels. ERCOT intends to report how many developers authorized release in its December 10th, 2026 report to the PUCT, then file and post the authorized answers. Every other answer stays confidential.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "ERCOT",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "on_ercot": true
+  },
+  "status": "pending",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-20",
+    "kind": "decided",
+    "note": "ERCOT issues its market notice to data center developers"
+   },
+   {
+    "date": "2026-12-04",
+    "kind": "administrative_deadline",
+    "note": "Deadline for developers to authorize release"
+   },
+   {
+    "date": "2026-12-10",
+    "kind": "administrative_deadline",
+    "note": "ERCOT's community impact report to the PUCT"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The choice to release belongs to each developer, not the public. ERCOT says it will post the authorized answers on its website after its December 10th report and announce the posting in a market notice.",
+   "url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+   "closes": null
+  },
+  "id": "tx-2026-0262",
+  "last_verified": "2026-11-25",
+  "history": [
+   {
+    "date": "2026-11-25",
+    "note": "Admitted from ERCOT's market notice. The opt in window is open and no answers are public yet."
+   }
+  ],
+  "claims": [
+   {
+    "text": "ERCOT says it does not intend to publish a data center project's answers to its community impact survey unless the developer authorizes it in writing.",
+    "verbatim_quote": "ERCOT therefore does not intend to publicly disclose this information for any given data center project unless it receives written authorization from the developer of that project.",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c1"
+   },
+   {
+    "text": "The information covered includes projected annual water withdrawal at full buildout.",
+    "verbatim_quote": "C-1a - Projected Annual Water Withdrawal at Full Buildout",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c2"
+   },
+   {
+    "text": "It also covers projected annual water consumption at full buildout.",
+    "verbatim_quote": "C-1c - Projected Annual Water Consumption at Full Buildout",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c3"
+   },
+   {
+    "text": "It also covers expected average and maximum noise levels.",
+    "verbatim_quote": "E-7b - Expected Average and Maximum Noise Levels",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c4"
+   },
+   {
+    "text": "Developers that choose to authorize release must send the form by December 4th, 2026.",
+    "verbatim_quote": "Developers that choose to provide this authorization must submit a completed authorization form to ERCOT no later than December 4, 2026",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c5"
+   },
+   {
+    "text": "ERCOT intends to count the developers who authorize disclosure in its December 10th, 2026 report to the PUCT.",
+    "verbatim_quote": "ERCOT intends to identify the number of developers that have authorized disclosure of the above information in its December 10, 2026 Data Center State and Community Impact report to the Public Utility Commission of Texas (PUCT).",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c6"
+   },
+   {
+    "text": "After that, ERCOT says it will file the authorized information with the PUCT and post it on its website.",
+    "verbatim_quote": "ERCOT will file the information with the PUCT and post it on the ERCOT website.",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c7"
+   },
+   {
+    "text": "The survey was issued on September 14th, 2026.",
+    "verbatim_quote": "ERCOT's September 14, 2026 Data Center State and Community Impact Request for Information (RFI)",
+    "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01",
+    "source_title": "ERCOT Market Notice M-B112026-01, Opportunity for Data Center Developers to Authorize ERCOT to Release Certain Information",
+    "source_type": "primary_official",
+    "fetched": "2026-11-25",
+    "id": "tx-2026-0262-c8"
+   }
+  ]
  }
 ]

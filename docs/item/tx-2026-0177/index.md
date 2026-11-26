@@ -11,7 +11,7 @@ The Richardson Independent School District board reviewed a draft of the distric
 - Public access: Public meeting
 - Take part: https://web.risd.org/home/september-2026-board-meeting/
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-19 · Checked again. Richardson ISD's legislative ask still puts classroom AI guidance first, with no newer draft posted.
 - 2026-11-22 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

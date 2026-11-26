@@ -1,0 +1,308 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-25, frame 6 of 9, WHO DECIDES (rework 3, ONE DIAGONAL). Looking down on an oak counter under a plum
+     leather pad, one brushed steel plate rail runs on a diagonal through the middle of the frame. At its lower left end a small
+     bevelled steel reader bridge straddles the rail and throws a cyan beam onto the FIRST gold flagged plate (it flags). Up the
+     rail stand FIG.units acrylic report plates under gold flags, FIG.of_nine periwinkle (a scan ordered for something else) and
+     the rest frosted white (a screening exam). Two plum sleeved forearms enter from the right edge and check a middle plate
+     (checks and ranks). At the upper right a white coat cuff and hand enter from the right edge and rest on the last plate
+     (decides). Only forearms and hands are in frame: the bodies are clipped away behind a plane that lies outside the frame.
+     The type sits in the quiet upper left the diagonal leaves. Drawn to illustrate: no screen, no interface, no logo, no likeness. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:172px; width:520px; text-align:left">It flags. People decide.</h1>
+<p class="dek" id="dek" data-follow="20" style="left:74px; width:440px; font-size:25px">Dr. Nishi calls the AI an assistant, not a decision maker. The release says people stay at the center while it works in the background.</p>
+<div class="lab plain" id="l-flag">flags</div>
+<div class="lab plain" id="l-rank" style="font-size:25px; padding:6px 14px 7px">checks and ranks</div>
+<div class="lab plain" id="l-dec">decides</div>
+<script>window.FIG = {"of_nine": 6, "units": 9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  /* THE FIGURES. FIG.units plates stand on the rail; FIG.of_nine of them are periwinkle, the rest frosted white. */
+  if (!(Number.isInteger(FIG.units) && Number.isInteger(FIG.of_nine) && FIG.of_nine > 0 && FIG.of_nine <= FIG.units)) throw new Error('slide 06 figures malformed');
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Who decides", counter: "05 / 09", src: "c15 c16 c31 c11 c14", fit: { min: 72, max: 86, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 60, fog: 0, exposure: 0.95 });
+  R.renderer.localClippingEnabled = true;
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 5.2, d: 6.5 }), { softbox: 5.5, floor: 0xf2a070 }));
+  const rnd = CH.rng(CH.SEED + 6);
+  const V = (a) => new THREE.Vector3(a[0], a[1], a[2]);
+  const shadowAll = (g) => { g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+
+  /* ---------------- MATERIALS, named for what they are so the surface pass picks the right tooth ---------------- */
+  const steelM = K.mat('s6-brushed-steel', { color: 0xe4e8f0, metalness: 0.8, roughness: 0.34, envMapIntensity: 0.85 }, true);
+  steelM.userData.txSurface = 'brushed';
+  const darkSteelM = K.mat('s6-anodised-steel', { color: 0x5a4f8a, metalness: 0.7, roughness: 0.4 }, true);
+  const rubberM = K.mat('s6-gasket-rubber', { color: 0x2a2156, roughness: 0.85 }, true);
+  const goldM = CH.goldMat(K);
+  const cyanM = CH.toolMat(K);
+  const plateOther = CH.acrylicMat(K, 'other'), plateScreen = CH.acrylicMat(K, 'screen');
+  const coreOther = K.mat('s6-plate-core-other-plastic', { color: CH.OTHER, roughness: 0.3, clearcoat: 0.6 }, true);
+  const coreScreen = K.mat('s6-plate-core-screen-plastic', { color: 0xf6f3ff, roughness: 0.4, clearcoat: 0.6 }, true);
+
+  /* ---------------- THE DIAGONAL: the rail runs from the near left to the far right, so it climbs the frame ---------------- */
+  const TOP = 0.92, PADT = 0.006, BASE = TOP + PADT, PAD_NEAR = 0.31;
+  const PHI = 58 * Math.PI / 180;                                  /* the rail's bearing off +x toward the far side */
+  const dR = new THREE.Vector3(Math.cos(PHI), 0, -Math.sin(PHI));  /* along the rail, up the frame */
+  const nR = new THREE.Vector3(Math.sin(PHI), 0, Math.cos(PHI));   /* across it, toward the near right */
+  const PITCH = 0.086, PW = 0.064, PH = 0.084, PT = 0.008, LEAN = 0.36, FACE = 12 * Math.PI / 180;
+  const P0 = new THREE.Vector3(-0.3, BASE, 0.38);
+  const plateBase = (i) => P0.clone().addScaledVector(dR, i * PITCH);
+
+  /* ---------------- A PLATE: a rounded acrylic report plate in its code colour, a gold flag on a steel pin ---------------- */
+  const makePlate = (kind) => {
+    const g = new THREE.Group();
+    const core = TXT.roundedBox(PW - 0.012, PH - 0.012, PT * 0.5, 0.008, kind === 'other' ? coreOther : coreScreen); core.position.y = PH / 2; g.add(core);
+    const skin = TXT.roundedBox(PW, PH, PT, 0.013, kind === 'other' ? plateOther : plateScreen); skin.position.y = PH / 2; g.add(skin);
+    const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.0024, 0.0024, 0.082, 12), steelM); pin.position.set(-PW / 2 + 0.011, PH + 0.036, 0); g.add(pin);
+    const knob = new THREE.Mesh(new THREE.SphereGeometry(0.0048, 16, 12), steelM); knob.position.set(-PW / 2 + 0.011, PH + 0.078, 0); g.add(knob);
+    const flag = TXT.roundedBox(0.06, 0.04, 0.005, 0.0035, goldM); flag.position.set(-PW / 2 + 0.011 + 0.032, PH + 0.054, 0); g.add(flag);
+    g.userData.tab = kind; g.userData.flag = true;
+    return shadowAll(g);
+  };
+
+  /* ---------------- THE RAIL: a slotted brushed steel tray along the diagonal, FIG.units plates fanned in its slots ---------------- */
+  const RAIL_L = (FIG.units - 1) * PITCH + 0.2, RAIL_W = 0.085;
+  const railC = P0.clone().addScaledVector(dR, (FIG.units - 1) * PITCH / 2 - 0.04);
+  const rail = new THREE.Group();
+  { const tray = TXT.roundedBox(RAIL_L, 0.022, RAIL_W, 0.009, steelM); tray.position.set(0, 0.011, 0); rail.add(tray);
+    const groove = TXT.roundedBox(RAIL_L - 0.04, 0.004, RAIL_W - 0.05, 0.002, rubberM); groove.position.set(0, 0.0225, 0); rail.add(groove);
+    [-1, 1].forEach(s => { const cap = TXT.roundedBox(0.026, 0.034, RAIL_W + 0.012, 0.011, darkSteelM); cap.position.set(s * (RAIL_L / 2 - 0.013), 0.017, 0); rail.add(cap); });
+    rail.rotation.y = PHI; rail.position.copy(railC).setY(BASE); }
+  const plates = [], railG = new THREE.Group();
+  /* the navigator's ranking mixes the two kinds, so the code reads as two kinds of scan, never two piles */
+  const ORDER = [0, 1, 3, 4, 6, 7];
+  for (let i = 0; i < FIG.units; i++) {
+    const kind = ORDER.indexOf(i) >= 0 ? 'other' : 'screen';
+    const p = makePlate(kind);
+    p.rotation.order = 'YXZ'; p.rotation.set(-LEAN, FACE + (rnd() - 0.5) * 0.06, 0);
+    p.position.copy(plateBase(i)).setY(BASE + 0.022);
+    p.userData.card = true; railG.add(p); plates.push(p);
+    /* a small steel slot rib in the tray behind each plate */
+    const rib = TXT.roundedBox(0.01, 0.014, 0.055, 0.0035, darkSteelM); rib.rotation.y = FACE; rib.position.copy(plateBase(i)).setY(BASE + 0.029).addScaledVector(dR, 0.024); railG.add(rib);
+  }
+  railG.add(rail); shadowAll(railG); TXT.add(R, railG); TXT.contact(R, rail, { opacity: 0.85 });
+
+  /* THE CHECK: what is drawn is what the figures say */
+  { let n = 0, other = 0; railG.traverse(o => { if (o.userData && o.userData.card) { n++; if (o.userData.tab === 'other') other++; if (!o.userData.flag) throw new Error('a rail plate carries no gold flag'); } });
+    if (n !== FIG.units) throw new Error('rail plates ' + n + ' != FIG.units ' + FIG.units);
+    if (other !== FIG.of_nine) throw new Error('periwinkle plates ' + other + ' != FIG.of_nine ' + FIG.of_nine); }
+  railG.updateMatrixWorld(true);
+  const platePt = (i, u, v, n) => { const p = plates[i]; p.updateMatrixWorld(true); return new THREE.Vector3(u, v, n == null ? PT / 2 + 0.002 : n).applyMatrix4(p.matrixWorld); };
+
+  /* ---------------- THE READER: a bevelled brushed steel bridge straddling the rail's start, a lens, a cyan beam on plate 1 ---------------- */
+  const bridge = new THREE.Group();
+  { const BWD = 0.12, BH = 0.135;
+    [-1, 1].forEach(s => {
+      const leg = TXT.roundedBox(0.024, BH - 0.02, 0.06, 0.009, darkSteelM); leg.position.set(s * BWD / 2, (BH - 0.02) / 2, 0); bridge.add(leg);
+      const foot = TXT.roundedBox(0.042, 0.01, 0.1, 0.004, darkSteelM); foot.position.set(s * BWD / 2, 0.007, 0); bridge.add(foot);
+      [-1, 1].forEach(t => { const sc = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.004, 16), darkSteelM); sc.rotation.z = Math.PI / 2; sc.position.set(s * (BWD / 2 + 0.0135), BH * 0.55, t * 0.02); bridge.add(sc); });
+    });
+    const beam = TXT.roundedBox(BWD + 0.036, 0.03, 0.075, 0.012, steelM); beam.position.set(0, BH, 0); bridge.add(beam);
+    const gasket = TXT.roundedBox(BWD + 0.038, 0.005, 0.077, 0.0025, rubberM); gasket.position.set(0, BH - 0.01, 0); bridge.add(gasket);
+    const strip = TXT.roundedBox(BWD - 0.01, 0.008, 0.004, 0.002, cyanM); strip.position.set(0, BH + 0.003, 0.0385); strip.userData.txBevel = false; bridge.add(strip);
+    const slot = TXT.roundedBox(BWD - 0.02, 0.003, 0.012, 0.0015, cyanM); slot.position.set(0, BH + 0.0155, 0.012); slot.userData.txBevel = false; bridge.add(slot);
+    const lensTop = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.016, 0.006, 32), darkSteelM); lensTop.position.set(0, BH + 0.017, -0.018); bridge.add(lensTop);
+    const led = new THREE.Mesh(new THREE.SphereGeometry(0.0045, 16, 10), cyanM); led.position.set(0, BH + 0.021, -0.018); bridge.add(led);
+    /* the lens housing hangs under the beam, tilted down along the rail toward the first plate */
+    const head = new THREE.Group();
+    const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.029, 0.04, 40), darkSteelM); head.add(barrel);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.023, 0.004, 12, 40), steelM); ring.rotation.x = Math.PI / 2; ring.position.y = -0.021; head.add(ring);
+    const glassM = K.mat('s6-lens-glass', { color: 0x9ff4ff, emissive: 0x22d3ee, emissiveIntensity: 1.1, roughness: 0.05, metalness: 0.1, clearcoat: 1 }, true);
+    glassM.userData.txSurface = false;
+    const lens = new THREE.Mesh(new THREE.SphereGeometry(0.02, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), glassM); lens.position.y = -0.019; head.add(lens);
+    head.position.set(0, BH - 0.036, 0.022); head.rotation.x = 0.85; bridge.add(head);
+    bridge.userData.head = head; }
+  /* bridge's local +z points along the rail */
+  bridge.rotation.y = Math.atan2(dR.x, dR.z);
+  bridge.position.copy(P0).addScaledVector(dR, -0.1).setY(BASE);
+  shadowAll(bridge); const bridgeKids = bridge.children.slice(); TXT.add(R, bridge); TXT.contact(R, bridge, { opacity: 0.85 });
+  bridge.updateMatrixWorld(true);
+  /* the reports coming in: a squared stack of greeked report sheets at the rail's start, the top sheet slid under the bridge */
+  { const stack = new THREE.Group(), SW = 0.1, SL = 0.13, paperM = K.mat('s6-report-paper', { color: 0xf7f1e4, roughness: 0.85 }, true);
+    for (let k = 0; k < 14; k++) { const sh = TXT.roundedBox(SW, 0.0016, SL, 0.0006, paperM); sh.position.set((rnd() - 0.5) * 0.004, 0.0008 + k * 0.0017, (rnd() - 0.5) * 0.004); sh.rotation.y = (rnd() - 0.5) * 0.04; stack.add(sh); }
+    const topM = new THREE.MeshStandardMaterial({ color: 0xffffff, map: CH.paperTex(THREE, 61, 14, -1), roughness: 0.85 }); topM.name = 's6-report-paper-top';
+    const top = new THREE.Mesh(new THREE.PlaneGeometry(SW, SL), topM); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.0255, 0.05); stack.add(top);
+    const lip = TXT.roundedBox(SW, 0.0016, SL, 0.0006, paperM); lip.position.set(0, 0.0245, 0.05); stack.add(lip);
+    const tray = TXT.roundedBox(SW + 0.024, 0.008, SL + 0.03, 0.004, darkSteelM); tray.position.set(0, -0.003, -0.005); stack.add(tray);
+    stack.rotation.y = Math.atan2(dR.x, dR.z); stack.position.copy(P0).addScaledVector(dR, -0.27).setY(BASE + 0.004);
+    shadowAll(stack); TXT.add(R, stack); TXT.contact(R, stack, { opacity: 0.8 }); }
+  /* the beam: an open cyan cone from the lens to a scan line across plate 1's face, additive and shadowless */
+  const lensW = new THREE.Vector3(0, -0.04, 0).applyMatrix4(bridge.userData.head.matrixWorld);
+  const hit = platePt(0, 0, PH * 0.5);
+  { const beamM = new THREE.MeshBasicMaterial({ color: 0x3ee6ff, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
+    beamM.userData.txSurface = false;
+    const len = lensW.distanceTo(hit), dir = lensW.clone().sub(hit).normalize();
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(PW * 0.55, len, 48, 1, true), beamM);
+    cone.position.copy(hit).addScaledVector(dir, len / 2); cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    cone.userData.txBevel = false; cone.castShadow = false; cone.receiveShadow = false; TXT.add(R, cone);
+    const lineM = new THREE.MeshBasicMaterial({ color: 0x8ff6ff }); lineM.userData.txSurface = false;
+    const line = new THREE.Mesh(new THREE.BoxGeometry(PW * 0.92, 0.006, 0.002), lineM); line.position.set(0, PH * 0.5, PT / 2 + 0.002); line.userData.txBevel = false; plates[0].add(line);
+    const pl = new THREE.PointLight(0x22d3ee, 0.25, 0.5, 2); pl.position.copy(hit).addScaledVector(dir, 0.05); R.scene.add(pl); }
+
+  /* ---------------- THE PEOPLE: forearms and hands only. Each body is cut away behind a plane in front of its chest,
+   * and the camera is framed so that cut lies outside the frame: no torso, no head, no stump is ever drawn. ---------------- */
+  const local = (P, yaw, w) => { const dx = w.x - P[0], dz = w.z - P[2], c = Math.cos(-yaw), s = Math.sin(-yaw); return [dx * c + dz * s, w.y - P[1], -dx * s + dz * c]; };
+  const clipBody = (person, P, yaw, cut) => {
+    const f = new THREE.Vector3(Math.sin(yaw), 0, Math.cos(yaw)), at = new THREE.Vector3(P[0], 0, P[2]).addScaledVector(f, cut);
+    const plane = new THREE.Plane(f.clone(), -f.dot(at));
+    person.traverse(m => { if (!m.isMesh) return;
+      const one = (mt) => { const c = mt.clone(); c.clippingPlanes = [plane]; c.clipShadows = true; return c; };
+      m.material = Array.isArray(m.material) ? m.material.map(one) : one(m.material); m.castShadow = true; m.receiveShadow = true; });
+    return { f, at, plane };
+  };
+  const yawTo = (P, w) => Math.atan2(w.x - P[0], w.z - P[2]);
+
+  const MID = 5, SPAN_M = 0.88, TOP_PX = 160;
+  const navTarget = plateBase(MID);
+  const NP = [navTarget.x + 0.42, 0, navTarget.z + 0.08];
+  const NYAW = yawTo(NP, navTarget);
+  const navGrip = platePt(MID, PW / 2 - 0.006, PH * 0.78, 0);          /* her far hand closes on the plate's edge */
+  const navPress = platePt(MID, -0.004, PH * 0.42);                     /* her near hand's fingertip on its face */
+  const navigator = K.make('person', { seed: 21, role: 'official', build: 'female', shirt: 0x7a2f86, trousers: 0x2b2350, hat: 'none', headPitch: 0.4,
+    hands: [local(NP, NYAW, navPress), local(NP, NYAW, navGrip)], handShape: ['press', 'grip'] });
+  navigator.position.set(NP[0], 0, NP[2]); navigator.rotation.y = NYAW; TXT.add(R, navigator);
+  const navCut = clipBody(navigator, NP, NYAW, 0.11);
+
+  const LAST = FIG.units - 1;
+  const docTarget = plateBase(LAST);
+  const DP = [docTarget.x + 0.4, 0, docTarget.z + 0.13];
+  const DYAW = yawTo(DP, docTarget);
+  const docRest = platePt(LAST, 0.012, PH * 0.9, 0);
+  const doctor = K.make('person', { seed: 8, role: 'official', build: 'male', shirt: 0xf3f1ec, hat: 'none', headPitch: 0.4,
+    hands: [null, local(DP, DYAW, docRest)] });
+  doctor.position.set(DP[0], 0, DP[2]); doctor.rotation.y = DYAW; TXT.add(R, doctor);
+  const docCut = clipBody(doctor, DP, DYAW, 0.11);
+  navigator.updateMatrixWorld(true); doctor.updateMatrixWorld(true);
+  const handW = (p, i) => { const h = p.userData.attach && p.userData.attach.hands && p.userData.attach.hands[i]; if (!h) throw new Error('hand ' + i + ' not published'); if (h.short > 0.03) throw new Error('hand ' + i + ' falls short by ' + h.short); return p.localToWorld(V(h.reached)); };
+  const hands = [handW(navigator, 0), handW(navigator, 1), handW(doctor, 1)];
+
+  /* ---------------- CAMERA: orthographic, high, from the front. The frame's right edge is held inside both body cuts. ---------------- */
+  const az = 0, el = 57 * Math.PI / 180, D = 12, dirv = new THREE.Vector3(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el));
+  const fwd = dirv.clone().negate(), rightV = new THREE.Vector3().crossVectors(fwd, new THREE.Vector3(0, 1, 0)).normalize(), upV = new THREE.Vector3().crossVectors(rightV, fwd).normalize();
+  const sx = (p) => p.dot(rightV), sy = (p) => p.dot(upV);
+  const corners = (box) => { const out = []; [box.min.x, box.max.x].forEach(x => [box.min.y, box.max.y].forEach(y => [box.min.z, box.max.z].forEach(z => out.push(new THREE.Vector3(x, y, z))))); return out; };
+  /* the stump of each cut: every kept vertex lying within 1.5 cm of its plane, in world space */
+  const stump = (person, c) => { const out = [], v = new THREE.Vector3(); person.updateMatrixWorld(true);
+    person.traverse(m => { if (!m.isMesh || !m.geometry.attributes.position) return; const a = m.geometry.attributes.position;
+      for (let i = 0; i < a.count; i += 2) { v.fromBufferAttribute(a, i).applyMatrix4(m.matrixWorld); const d = c.plane.distanceToPoint(v); if (d >= 0 && d < 0.015) out.push(v.clone()); } });
+    if (out.length < 10) throw new Error('no stump found'); return out; };
+  const navCutPts = stump(navigator, navCut), docCutPts = stump(doctor, docCut);
+  bridge.updateMatrixWorld(true);
+  const bridgePts = corners(new THREE.Box3().setFromObject(bridge));
+  const lastTop = Math.max(...corners(new THREE.Box3().setFromObject(plates[FIG.units - 1])).map(sy));
+  const RE = Math.min(...navCutPts.map(sx), ...docCutPts.map(sx)) - 0.003;        /* right edge: every stump lies right of it */
+  const SPAN = SPAN_M, HH = SPAN * CH.H / CH.W, LE = RE - SPAN;
+  const TE = lastTop + TOP_PX / CH.W * SPAN, BE = TE - HH;
+  const base = new THREE.Vector3(0, TOP, 0), lookC = base.clone().addScaledVector(rightV, (LE + RE) / 2 - sx(base)).addScaledVector(upV, (BE + TE) / 2 - sy(base));
+  CH.ortho(THREE, R, SPAN);
+  TXT.frame(R, { from: lookC.clone().addScaledVector(dirv, D).toArray(), look: lookC.toArray() }); R.camera.updateProjectionMatrix(); R.camera.updateMatrixWorld(true);
+  const proj = (v) => CH.project(THREE, R, v.toArray());
+  window.__dbg = () => 'span ' + SPAN.toFixed(3) + ' bridge ' + JSON.stringify(projObj(bridge)) + ' plates ' + plates.map(p => { const b = projObj(p); return [b.x0, b.y0].map(v => v.toFixed(0)).join(','); }).join(' ') + ' hands ' + hands.map(h => proj(h).map(v => v.toFixed(0))).join('|');
+  const projObj = (o) => { const q = [], v = new THREE.Vector3(); o.updateMatrixWorld(true); o.traverse(m => { if (!m.isMesh || !m.visible || !m.geometry.attributes.position || (m.material && m.material.transparent) || !m.castShadow) return; const a = m.geometry.attributes.position; for (let i = 0; i < a.count; i += 3) { v.fromBufferAttribute(a, i).applyMatrix4(m.matrixWorld); q.push(proj(v)); } });
+    return { x0: Math.min(...q.map(a => a[0])), x1: Math.max(...q.map(a => a[0])), y0: Math.min(...q.map(a => a[1])), y1: Math.max(...q.map(a => a[1])) }; };
+  const projBox = (box) => { const q = corners(box).map(proj); return { x0: Math.min(...q.map(a => a[0])), x1: Math.max(...q.map(a => a[0])), y0: Math.min(...q.map(a => a[1])), y1: Math.max(...q.map(a => a[1])) }; };
+  /* no cut point lands inside the frame */
+  [...navCutPts, ...docCutPts].forEach(p => { const q = proj(p); if (q[0] > -2 && q[0] < CH.W + 2 && q[1] > -2 && q[1] < CH.H + 2 && q[0] < CH.W - 1) throw new Error('a body cut projects inside the frame at ' + q.map(v => v.toFixed(0)) + ' span ' + SPAN.toFixed(3)); });
+  const brB = (() => { const bs = bridgeKids.map(projObj).filter(b => isFinite(b.x0)); window.__kids = bs.map(b => [b.x0,b.x1,b.y0,b.y1].map(v=>v.toFixed(0)).join(',')).join(' / '); return { x0: Math.min(...bs.map(b => b.x0)), x1: Math.max(...bs.map(b => b.x1)), y0: Math.min(...bs.map(b => b.y0)), y1: Math.max(...bs.map(b => b.y1)) }; })();
+  if (brB.x0 < 40 || brB.y1 > CH.H - 150) throw new Error('reader leaves its seat ' + JSON.stringify(brB) + ' kids ' + window.__kids + ' ' + window.__dbg());
+  const plateBoxes0 = () => projBox(new THREE.Box3().setFromObject(plates[0]));
+  const lastB = projObj(plates[LAST]);
+  if (lastB.y0 < 150) throw new Error('last plate under the counter line ' + window.__dbg());
+
+  /* ---------------- THE COUNTER: light oak under a stitched plum leather pad laid along the diagonal ---------------- */
+  const counterG = new THREE.Group();
+  { const grain = CH.canvasTex(THREE, 2048, 512, (g, w, h) => {
+      g.fillStyle = '#eab27a'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 420; i++) { const y = rnd() * h, al = 0.05 + rnd() * 0.12; g.strokeStyle = 'rgba(' + (150 + rnd() * 40 | 0) + ',80,40,' + al.toFixed(3) + ')'; g.lineWidth = 0.6 + rnd() * 2.2;
+        g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + Math.sin(x * 0.012 + i) * 2.5 + (rnd() - 0.5) * 1.2); g.stroke(); }
+    }, [3, 3]);
+    const oakTop = K.mat('s6-oak-top-wood', { color: 0xffffff, map: grain, roughness: 0.45, clearcoat: 0.4, clearcoatRoughness: 0.35 }, true);
+    const top = TXT.roundedBox(5, 0.04, 5, 0.014, oakTop); K.uvBox(top.geometry, 1.4); top.position.set(0, TOP - 0.02, 0); counterG.add(top);
+    const leather = K.mat('s6-desk-pad-leather', { color: 0x5b2a8c, roughness: 0.5, clearcoat: 0.25, clearcoatRoughness: 0.5, sheen: 0.4, sheenColor: new THREE.Color(0xc79cff) }, true);
+    const felt = K.mat('s6-pad-felt-fabric', { color: 0xb48ce8, roughness: 0.95 }, true);
+    const stitchM = K.mat('s6-pad-stitch-fabric', { color: 0xe2c6ff, roughness: 0.8 }, true);
+    const pad = new THREE.Group(), PL = 4, PWD = 1.6, OFF = -PWD / 2 + PAD_NEAR;    /* its near right edge runs PAD_NEAR off the rail line */
+    const under = TXT.roundedBox(PL + 0.03, PADT * 0.4, PWD + 0.03, 0.002, felt); under.position.set(0, PADT * 0.2, 0); pad.add(under);
+    const lp = TXT.roundedBox(PL, PADT, PWD, 0.003, leather); lp.position.set(0, PADT / 2 + 0.0005, 0); pad.add(lp);
+    const st = TXT.roundedBox(PL - 0.05, 0.0012, 0.003, 0.0005, stitchM); st.position.set(0, PADT + 0.0008, PWD / 2 - 0.022); st.userData.txBevel = false; pad.add(st);
+    pad.rotation.y = PHI; pad.position.copy(railC).setY(TOP).addScaledVector(nR, OFF); pad.position.y = TOP;
+    counterG.add(pad);
+    shadowAll(counterG); }
+  /* the pad's offset is measured across the rail: OFF negative puts the pad's bulk on the far left of the rail */
+  TXT.add(R, counterG);
+
+  /* ---------------- THE KEY: a bright workroom key from the front left; a warm spot on the decision ---------------- */
+  const spec = CH.rigSpec(W, 5, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([railC.x, 0.9, railC.z], { distance: 12, shadowFar: 30, normalBias: 0.004 }), { light: { az: -40, el: 50 } }));
+  { const sp = new THREE.SpotLight(0xffe6c4, 8, 3, 0.3, 0.6, 2); sp.position.copy(docRest).add(new THREE.Vector3(-0.4, 0.95, 0.7)); sp.target.position.copy(docRest); R.scene.add(sp, sp.target); }
+  TXT.weather(R, { grime: 0.012, height: 0.08, mottle: 0.02 });
+
+  /* ---------------- THE TYPE: upper left, in the corner the diagonal leaves; checked clear of every plate and flag ---------------- */
+  CH.follow();
+  const rect = (el) => { const r = el.getBoundingClientRect(); return { x0: r.left, y0: r.top, x1: r.right, y1: r.bottom }; };
+  const hit2 = (a, b, m) => a.x0 < b.x1 + m && b.x0 < a.x1 + m && a.y0 < b.y1 + m && b.y0 < a.y1 + m;
+  const plateBoxes = plates.map(projObj);
+  const typeBox = (() => { const a = rect(document.getElementById('hook')), b = rect(document.getElementById('dek')); return { x0: Math.min(a.x0, b.x0), y0: a.y0, x1: Math.max(a.x1, b.x1), y1: b.y1 }; })();
+  plateBoxes.forEach((b, i) => { if (hit2(typeBox, b, 10)) throw new Error('type block ' + JSON.stringify(typeBox) + ' meets plate ' + i + ' ' + window.__dbg()); });
+  if (hit2(typeBox, brB, 10)) throw new Error('type meets the reader');
+
+  /* ---------------- THE PILLS: each on its own object, clear of every hand, plate, the type and the furniture ---------------- */
+  const handBoxes = hands.map(h => { const q = proj(h), r = 0.075 / SPAN * CH.W; return { x0: q[0] - r, x1: q[0] + r, y0: q[1] - r, y1: q[1] + r }; });
+  const fixed = ['.kick', '.count', '.src', '#site'].map(s => document.querySelector(s)).filter(Boolean).map(rect);
+  const placed = [];
+  /* the pad's near right edge on screen; onOak(c) > 0 is the oak side, in px from the edge */
+  const E1 = proj(railC.clone().addScaledVector(nR, PAD_NEAR).addScaledVector(dR, -1.5).setY(TOP)), E2 = proj(railC.clone().addScaledVector(nR, PAD_NEAR).addScaledVector(dR, 1.5).setY(TOP));
+  const ex = E2[0] - E1[0], ey = E2[1] - E1[1], el2 = Math.hypot(ex, ey), RC = proj(railC);
+  const sgn = Math.sign((RC[0] - E1[0]) * ey - (RC[1] - E1[1]) * ex);
+  const onOak = (c) => -sgn * ((c[0] - E1[0]) * ey - (c[1] - E1[1]) * ex) / el2;
+  const seatPill = (id, anchor, tries, maxR) => {
+    const el = document.getElementById(id), r = el.getBoundingClientRect();
+    for (const [dx, dy] of tries) { if (maxR && Math.hypot(dx, dy) > maxR) continue;
+      const x = anchor[0] + dx - r.width / 2, y = anchor[1] + dy - r.height / 2;
+      const b = { x0: x, y0: y, x1: x + r.width, y1: y + r.height };
+      if (b.x0 < 66 || b.x1 > CH.W - 66 || b.y0 < 66 || b.y1 > CH.H - 66) continue;
+      if ([...handBoxes, ...plateBoxes, typeBox, ...fixed, ...placed].some(o => hit2(b, o, 12))) continue;
+      if ([[b.x0, b.y0], [b.x1, b.y0], [b.x0, b.y1], [b.x1, b.y1]].some(c => onOak(c) > -14)) continue;   /* every pill sits wholly on the plum pad */
+      el.style.left = Math.round(x) + 'px'; el.style.top = Math.round(y) + 'px'; placed.push(b); return b;
+    }
+    throw new Error(id + ' found no clear seat by its object ' + window.__dbg());
+  };
+  const T = (pts) => { const g = []; for (let dx = -300; dx <= 300; dx += 15) for (let dy = -300; dy <= 480; dy += 15) g.push([dx, dy]); g.sort((u, v) => Math.hypot(u[0] - pts[0][0], u[1] - pts[0][1]) - Math.hypot(v[0] - pts[0][0], v[1] - pts[0][1])); return g; };
+  seatPill('l-flag', [brB.x0 + (brB.x1 - brB.x0) / 2, brB.y0], T([[-150, -10]]));
+  { const q = proj(navPress); seatPill("l-rank", q, T([[0, 200]]), 430); }
+  { const q = proj(docRest); seatPill('l-dec', q, T([[-215, -75]]), 280); }
+  { const xs = ['l-flag', 'l-rank', 'l-dec'].map(id => document.getElementById(id).getBoundingClientRect());
+    if (!(xs[0].top > xs[1].top && xs[1].top > xs[2].top)) throw new Error('pills out of order up the diagonal');   /* flags low, checks and ranks mid, decides high */ }
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.kick', a: 0.6, fade: 70 });
+  CH.seat(cx, { sel: '.count', a: 0.7, fade: 70 });
+  CH.seat(cx, { sel: '.hook', a: 0.34, fade: 120 });
+  CH.seat(cx, { sel: '.dek', a: 0.44, fade: 90 });
+  CH.seat(cx, { sel: '.src', a: 0.55, fade: 60 });
+  CH.seat(cx, { sel: '#site', a: 0.7, fade: 70 });
+  TXLOOK.footWash(cx, { a: 0.5, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{
+ "date": "2026-11-25",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "2 in 3",
+   "slide": "slide-06.html",
+   "kind": "ratio",
+   "value": 2,
+   "quoted_from": "c17",
+   "quote": "Roughly two-thirds of the nodules identified through the program have been found in patients who were not undergoing lung cancer screening."
+  },
+  {
+   "phrase": "two thirds",
+   "slide": "slide-01.html",
+   "kind": "ratio",
+   "value": 2,
+   "quoted_from": "c17",
+   "quote": "Roughly two-thirds of the nodules identified through the program have been found in patients who were not undergoing lung cancer screening."
+  },
+  {
+   "phrase": "two thirds",
+   "slide": "slide-06.html",
+   "kind": "ratio",
+   "value": 2,
+   "quoted_from": "c17",
+   "quote": "Roughly two-thirds of the nodules identified through the program have been found in patients who were not undergoing lung cancer screening."
+  },
+  {
+   "phrase": "two thirds",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 2,
+   "quoted_from": "c17",
+   "quote": "Roughly two-thirds of the nodules identified through the program have been found in patients who were not undergoing lung cancer screening."
+  },
+  {
+   "phrase": "seven or eight relatives",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c21",
+   "quote": "she named seven or eight relatives who had been diagnosed with cancer"
+  },
+  {
+   "phrase": "seven or eight relatives",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c21",
+   "quote": "she named seven or eight relatives who had been diagnosed with cancer"
+  },
+  {
+   "phrase": "50 to 80",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 50,
+   "quoted_from": "c28",
+   "quote": "Adults aged 50 to 80 years who have a 20 pack-year smoking history and currently smoke or have quit within the past 15 years"
+  },
+  {
+   "phrase": "50 to 80",
+   "slide": "slide-09.html",
+   "kind": "span",
+   "value": 50,
+   "quoted_from": "c28",
+   "quote": "Adults aged 50 to 80 years who have a 20 pack-year smoking history and currently smoke or have quit within the past 15 years"
+  },
+  {
+   "phrase": "20 pack-year",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 20,
+   "quoted_from": "c28",
+   "quote": "Adults aged 50 to 80 years who have a 20 pack-year smoking history and currently smoke or have quit within the past 15 years"
+  },
+  {
+   "phrase": "15 years",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 15,
+   "quoted_from": "c28",
+   "quote": "Adults aged 50 to 80 years who have a 20 pack-year smoking history and currently smoke or have quit within the past 15 years"
+  },
+  {
+   "phrase": "eight relatives",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c21",
+   "quote": "she named seven or eight relatives who had been diagnosed with cancer"
+  },
+  {
+   "phrase": "eight relatives",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c21",
+   "quote": "she named seven or eight relatives who had been diagnosed with cancer"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "note": "the number of distinct source documents behind the cited claims, counted by sources_block.py",
+   "computed_by": "sources_block.py counting the distinct source urls across claims.json"
+  },
+  {
+   "phrase": "Three lungs",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py reading share_den from c17's two-thirds into figures.json"
+  }
+ ]
+}

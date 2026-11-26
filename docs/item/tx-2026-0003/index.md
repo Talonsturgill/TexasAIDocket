@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -62,6 +62,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-11 · Oncor's 765 kV line across the Panhandle and West Texas stands approved. The commission's docket still lists 5864 filings, the same count as at the last check.
 - 2026-11-14 · Oncor's 765 kV line across the Panhandle and West Texas stands approved. One more filing has reached the commission's docket since the last check, which now lists 5865.
 - 2026-11-20 · Oncor's 765 kV line across the Panhandle and West Texas still stands approved under the commission's final order. The docket keeps taking filings and now lists 5868.
+- 2026-11-25 · The docket for Oncor's 765 kV line keeps drawing filings after the decision, and its index now lists 5869. The decision itself stands as recorded.
 
 ## Evidence
 
@@ -202,6 +203,12 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### The commission's docket for the application now lists 5868 filings.
 
 > 5868 filing(s).
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+
+### The commission's docket for the application now lists 5869 filings.
+
+> 5869 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

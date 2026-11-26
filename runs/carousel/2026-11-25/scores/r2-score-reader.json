@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame is a rendered picture made for its own sentence, and the v2 colour holds with no near black. Frame 1 is the strongest: a glass lung crossed by a periwinkle scan slab with a gold bead caustic, and it reads at feed size. Frame 7 is clever: a glass bead at 20 on an engraved age rule, with a frosted block spanning 50 to 80. Frame 9 restages the lung with scan rings. Frame 3 is a tactile relief of report pages with a gold highlighted line. Several frames still lean on defaults. Frame 6 is the deck's turn, and its picture does not show the share. All three lungs carry a gold bead, and the 2 of 3 split rests on the slab colour code (periwinkle against frosted), which no reader decodes at 432 px. The lungs sitting in boxes read as specimen cases. Frame 5 is about 40 percent empty purple field between the rail and the headline, and its people are disembodied: a torso cropped at the top, a forearm passing across the card rail, and hands with no bodies at right. Frame 8 uses stiff stock mannequins seen from behind, with cellular bark texture on the oak. Frame 2 sets the headline and dek straight over busy filing cabinet handles that poke between lines, and the folder pile on the cart is muddled. The planned staff member is missing. Frame 4 has small brown squares floating beside the card tray (at about 1130,1275 and 1470,1460 in display coordinates), which look like render artifacts. Strong in places, with more than one frame on a default, so under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds across the contact sheet. One violet to plum v2 palette, the same serif hook and mono kicker, counter and site line on all nine, and claim ids in one place. Gold means one thing: the flagged nodule or flag on 1, 3, 4, 5 and 6. The glass lung returns from 1 through 6 to 9, and the value arc warms toward 8 and 9 as the storyboard declared. The story runs in order. Frame 8 sits outside the deck: a naturalistic outdoor park with stock figures in a different rendering register from the glass studio frames. Frame 2's flat electric blue room is the other outlier."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 2016 (c3/program_start), 20s (c18), 2 in 3 (c17, share_num and share_den), 50 to 80, 20 and 15 (c28), and seven or eight (c21). The engraved 20, 50 and 80 on frame 7's rule match figures.json. All sources are primary: the UTMB release and USPSTF. The patient story is attributed to Dr. Nishi on 7, 8 and in the caption. Bunkerhill's 80 percent and the Brock score are correctly kept off. Two places are looser than the source. (1) Caption and frame 1 say the AI flags each nodule. The release says the system reviews reports for screening patients (c9), says AI 'is also helping identify' incidental nodules (c31), and says nodules are 'flagged' in the passive voice (c11). The deck joins these into the AI doing the flagging. (2) The 5 to 6 to 7 sequence invites the reader to believe the AI caught her nodule. The copy never says so, but the arrangement leans."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened: UTMB Health now has AI reading radiology reports, and every flag goes to a named navigator. Who decided is clear: UTMB, with Dr. Nishi and Amanda Rodriguez named. Frame 7 makes the stake concrete with a woman in her 20s, decades under the 50 to 80 screening window. Frame 9 gives one action, 'Ask a doctor what yours showed.' Where is never placed. Galveston appears on no slide and not in the caption, though the docket item is filed under Galveston County. The action is also generic. Nothing tells a reader who does not use UTMB whether this applies to them, or what to ask beyond 'what yours showed'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover hook 'The scan was for something else' earns the swipe. Frame 6 is labelled the turn and lands the 2 in 3, and 7 and 8 pay it off with one person and her family. Frame 9 closes on the reader's own scan. Frames 2 and 3 cover nearly the same beat (slow old review, then automated chart review), and either could fold into the other. Frame 1's dek already spends the two thirds figure, which takes some force out of the turn at 6."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, plain and on register, with 'It flags. People decide.' and 'She was in her 20s'. It is honest without doom. The Texas texture is thin: no place, no Gulf Coast or Galveston detail, and it could be any US academic medical centre. The caption's close, 'Where you get scanned, who reads the report past the reason it was ordered?', is awkward and hard to parse. That is the flat line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Topic is new and there is no repeat in the window. Two familiar moves weigh it down. It is the second clinical AI deck in four days (no. 85, November 22nd, Dell Med AI Learning Lab), and the instrument is again a single university news release, the same shape as nos. 81 to 86. The storyboard says the people tone last ran November 20th. The glass object on a studio sweep is fresh against no. 86's drone map."
+  }
+ ],
+ "weighted_score": 7.19,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 6, the declared turn, so a reader sees the 2 in 3 without the material code. Show three lungs side by side, two inside periwinkle slabs carrying accent pills that read 'scan for something else' and one in a frosted slab with a pill that reads 'screening', with the gold bead in each. Lift the two thirds sentence off frame 1's dek so the turn lands at 6.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "This is the turn frame, and its picture does not show the share. All three lungs carry gold beads. The 2 of 3 split rests on periwinkle against frosted slab tint that is unreadable at 432 px, and the boxed lungs read as specimen cases.",
+   "fix": "Put the three lungs on one plinth at equal size. Wrap two fully in saturated periwinkle slabs and one in a clearly frosted white slab, and pin a TXLOOK accent pill under each ('other scan', 'other scan', 'screening'). Drop the boxes on legs."
+  },
+  {
+   "slide": 5,
+   "problem": "About 40 percent of the frame is a dead purple field between the rail and the headline. The people are disembodied: a torso cropped at the top, a forearm crossing the rail, and hands at right with no body. The 'flags' lamp floats far from the rail it feeds.",
+   "fix": "Raise the camera and push in so the counter rail runs corner to corner through the frame's middle third. Seat the lamp at the rail's left end and the navigator's and doctor's hands on the rail itself. Move the headline up into the remaining quiet."
+  },
+  {
+   "slide": 8,
+   "problem": "Stock mannequin figures stand stiffly with their backs to camera, and the bark shows a cellular texture artifact. It is in a naturalistic register unlike the glass studio frames.",
+   "fix": "Crop to the trunk and four or five figures from chest height, so faces never read and silhouettes overlap. Retexture the oak bark, and let one figure's warm rim light carry the frame."
+  },
+  {
+   "slide": 2,
+   "problem": "The headline and dek sit directly over filing cabinet handles and labels that poke between the lines. The folder pile on the cart is a muddle, and the planned staff member is missing.",
+   "fix": "Swing the camera so the cabinet wall falls out of focus behind a type wash on the left. Make the folder tower lean out past the right edge as the storyboard planned, and add the cropped shoulder at frame left."
+  },
+  {
+   "slide": 4,
+   "problem": "Small brown squares float beside the card tray, which look like render artifacts. The monitor is seen from behind as a blank slab, and it takes the upper left.",
+   "fix": "Remove the stray tab meshes. Turn the monitor three quarters so its glow lights the navigator's hands and the gold flag card."
+  }
+ ]
+}

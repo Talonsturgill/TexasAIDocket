@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame is a bespoke render made for its own sentence. The deck changes world, camera and medium each frame: glass lung (1), records room (2), paper relief (3), desk over the shoulder (4), axonometric counter (5), glass row (6), age rule on sand (7), lawn crowd (8), sliced lung (9). It is vivid and never grey, and the preflight measures vivid at 0.87 to 0.91 on 1, 6 and 9. S1 is a real showstopper. The glass lobes have a lit rim, the acrylic scan slab crosses the lower lobes and the gold bead with its caustic sits in the overlap, so it reads at feed size. S3's TXBENCH relief has paper tooth, raised plum ink, a gold foil line and a curled corner casting onto the page, and it bleeds off three edges. S4 is a strong composition: the apricot desk light, the hand lifting the gold flagged card from the nine card drawer, and type in the plum wall's quiet. Four frames hold the score down. S5 leaves about half the frame, from roughly y 650 to y 1200, as empty mottled purple floor. Its subject is jammed against the top edge, the figures are cropped headless, the 'decides' pill covers the doctor's hand, and the machine station reads as a desk lamp. S6, the hardest frame, still has the near black charcoal lower interiors in the frosted and middle blocks that the preflight said to fix 'for the panel'. The right block floats on stilts, and all three lungs carry a gold bead, so at feed size it reads as three of three flagged before it reads as two in three. S9's type sits on a large hand-shaped dark plum blob that reads as a plate (descriptor 4: type on plates), and the lung leaves the upper right empty. S7 seats its body copy on a heavy blurred plum wash over the sand, and the brown block mass at lower right is unidentifiable. S8 uses stiff mannequin kit figures in near identical standing poses under a cut-out canopy with a black-outlined procedural bark. That is a primitive model, though the hidden eighth figure behind the trunk is a smart answer to 'seven or eight'. This is more than the one weak frame the 7 descriptor allows, and less than a deck of decorated templates."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The spine holds across the filmstrip: plum and violet tone, one serif headline face, mono kicker, counter, site line and one body face on every frame. The gold accent means one thing, a flagged nodule, on 1, 3, 4, 5 and 6, and is kept off S7's bead as declared. The glass lung bookends at 1, 6 and 9 and works as a motif changing state, from flagged, to counted, to unread under three scan slices. The CAMERA_MOVE and VALUE_ARC are named in the storyboard. Two marks against it. S9's salmon and pink sweep sits just outside the deck's plum family on the contact sheet, though it is declared as the warm settle. The periwinkle-versus-frosted material code, which the spine leans on for 1, 2, 4, 5 and 6, can't be read by a reader without a legend."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every drawn and typed numeral traces. 2016 is c3/program_start, '2 in 3' is c17/share_num and share_den, '20s' is c18, 50 to 80 and the S7 rule ticks 20, 50 and 80 are c28 and figures, and S9's 20 and 15 are c28. Bunkerhill's 80 percent is correctly kept off. The patient story on S7 and S8 is attributed to Dr. Nishi, and S7 never says the AI flagged her nodule, which the plain glass bead reinforces. Sources are primary: the UTMB release and USPSTF. One soft spot: c9 says the system reviews reports 'for patients undergoing lung cancer screening exams', while S1's 'AI now reviews radiology reports' plus the two thirds sentence leans on c31 for the incidental side. It is supported, but a little looser than the release's own division. 'Nodule nobody was looking for' is a fair paraphrase of 'incidentally'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What happened, who (UTMB Health, Dr. Nishi, navigator Amanda Rodriguez, Bunkerhill) and what the AI does and does not decide are all clear by S5. The 20s patient on S7 and S8 makes the stake concrete. Galveston or any place is never named on a slide. The action on S9, 'Ask a doctor what yours showed', is general, and there is no decision body or deadline, though the story has none to name."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'The scan was for something else' earns the swipe. The reorder puts the turn at 6 after the process run, and 7 and 8 land emotionally. S4 and S5 both say 'a person checks', and S5 could fold into S4 without loss. The close is guidance rather than a landing image."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with no house rule breaks seen: no colons, no dashes, no banned words, and 'can't' is not misused. It reads clinical and press-release adjacent, for example 'The release says people stay at the center while it works in the background.' Nothing in it is regionally Texan beyond the institution's name."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Per the preflight's distinct_from_recent, no recent deck drew glass anatomy, acrylic scan fields, a chart cart, an age rule or a lawn crowd, and the tone is people, last used November 20th. One familiar move: Nov 22 was also a health and exam room story, so a second medical deck within four days. I did not independently re-read ledger/carousel/topics.json for the 30 day window."
+  }
+ ],
+ "weighted_score": 7.5,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild S5 so the counter and its three stations fill the frame's middle, at least 60 percent of the height with the figures' heads or shoulders in frame and the machine station clearly a scanner rather than a lamp. That removes the half-frame dead zone that is the deck's biggest craft hole and makes 'It flags. People decide.' visible without the pills.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "About half the frame is empty mottled purple floor. The counter is crammed against the top edge, the figures are cropped headless, the 'decides' pill overlaps the doctor's hand, and the AI station reads as a desk lamp.",
+   "fix": "Pull the orthographic camera back and down so the counter crosses the frame's centre band at full width, with the shoulders and heads of the navigator and doctor in frame. Move the type into the band the counter's cast shadow leaves at the bottom, and set the pills clear of the hands."
+  },
+  {
+   "slide": 6,
+   "problem": "The lower fifth of the frosted and middle blocks renders near black charcoal, a carry-over the preflight asked to fix before the panel. The stilted right block floats, and three gold beads read as three of three flagged before two in three.",
+   "fix": "Raise the blocks' transmission or attenuation colour to violet in their lower interiors, seat the right block on the sweep with a contact shadow instead of stilts, and make the frosted (screening) unit visibly different by bead placement or by dimming its glass so the 2 to 1 split reads at 432 px."
+  },
+  {
+   "slide": 9,
+   "problem": "The headline and dek sit on a large dark plum blob that reads as a plate dropped on the salmon sweep, and the upper right is dead.",
+   "fix": "Replace the blob with the tone's typeWash as a soft gradient from the top-left edge, and move the lung up and left toward centre so its apex and trachea fill the upper right quiet and the type sits on open sweep."
+  },
+  {
+   "slide": 7,
+   "problem": "The body copy sits on a heavy blurred plum wash over the sand, and the brown block mass at lower right is unreadable and pulls weight from the rule.",
+   "fix": "Crop or remove the lower-right brown blocks so the steel rule and bead own the lower half. Lower the sun so the shadow band gives the type natural dark ground instead of a painted wash."
+  },
+  {
+   "slide": 8,
+   "problem": "Stiff mannequin kit figures in near identical standing poses, under a flat cut-out canopy with a black-outlined procedural bark.",
+   "fix": "Vary three or four poses (a hand on a shoulder, a turned head, a child-height figure), give the near figures cloth folds and hair detail, and replace the outlined bark with a lit PBR bark and depth-of-field on the canopy."
+  }
+ ]
+}

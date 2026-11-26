@@ -9,7 +9,7 @@ The Texas Department of Transportation launched the first phase of Project Nexus
 - Public access: Write to the decider
 - Take part: https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-25
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-22 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

@@ -1,0 +1,15 @@
+{"criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "S1 is a real cover, S7 the most intelligent frame. S6 shows a nodule in all three cases so it reads 3 in 3 at feed size, S5 mostly empty wood grain with floating pills and a diagonal plate, S8 stock avatar figures and blocky bark, S3 fake glyph text."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Reads as one post, palette and type hold, the glass lung returns on 1, 6 and 9, gold keeps one meaning. S8 sits outside the glass and studio vocabulary."},
+{"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every numeral traces. Primary sources, vendor 80 percent kept off, patient story attributed, no frame says the AI flagged her nodule. S7 states the age range without the smoking criteria; no surface says the release gives no after AI timing."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who and the surprise are clear and S9 gives an action. No place named beyond the institution and no deadline."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover earns the swipe and S9 closes on an action, but the turn is pre-spent on the cover and in the caption, and S4 and S5 share a beat."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on register, close to the release, no Texas texture, the caption's closing question is flat."},
+{"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh topic and approach, but the third clinical AI deck in seven days."}],
+"weighted_score": 7.36, "hard_fails": [], "ship": false,
+"one_sentence_fix": "Rebuild S6 so the picture states the share it claims, and take the two thirds figure out of S1's body so the turn lands on S6.",
+"artwork_weakest_frames": [
+{"slide": 6, "problem": "All three lung cases carry a gold nodule, so it reads 3 of 3 and nothing tells the screening scan from the incidental ones.", "fix": "Give the two nodule cases distinct non screening scan shapes so the share reads without the text."},
+{"slide": 5, "problem": "Mostly empty wood grain, pills float in a dead middle third, type on a diagonal purple plate.", "fix": "Pull the camera down and in so the rail and hands fill the upper two thirds, seat each pill on its object, seat the headline in the desk's shadow."},
+{"slide": 8, "problem": "Stock avatar figures from behind and a blocky trunk, out of the deck's material vocabulary.", "fix": "Bring the figures and ground into the deck's material language."},
+{"slide": 3, "problem": "Fake glyph text breaks up close and the flat stack has no single focal subject.", "fix": "Greeked bars, a low tilted camera, the gold strip lifting off the top sheet."}]}

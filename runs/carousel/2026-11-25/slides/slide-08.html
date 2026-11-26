@@ -1,0 +1,180 @@
+<!doctype html>
+<!-- 2026-11-25, frame 8 of 9, HER FAMILY. THE LAWN UNDER THE OAK. Seven relatives of mixed heights and builds stand loosely on a
+     mown lawn under one great live oak in the last apricot light, turned three quarters away toward the tree, and an eighth
+     stands half hidden behind its trunk: seven counted plainly, the eighth honestly uncertain, as the account gives the number.
+     The type sits low left on the oak's plum shade. Everyone drawn is drawn to illustrate, no likeness of anyone. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:906px; width:760px; text-align:left">Seven or eight relatives</h1>
+<p class="dek" data-follow="22" style="left:74px; width:900px; font-size:26px; line-height:1.36">Dr. Nishi says the patient named seven or eight relatives who had been diagnosed with cancer. In her account she had a hereditary disease, so her family members needed testing too. Family drawn to illustrate.</p>
+<script>window.FIG = {"relatives_low": 7, "relatives_high": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-25-secondfind-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Her family", counter: "08 / 09", src: "c21 c22", fit: { min: 80, max: 96, maxLines: 2 } });
+
+  /* HONESTY. The only count drawn is the people: FIG.relatives_low stand clear, and the one more that makes
+   * FIG.relatives_high stands half hidden behind the oak's trunk. Both are measured by ray casts below. */
+  const CLEAR = FIG.relatives_low, ALL = FIG.relatives_high, HIDDEN = ALL - CLEAR;
+  if (!(Number.isInteger(CLEAR) && Number.isInteger(ALL)) || HIDDEN !== 1) throw new Error('the figures disagree: ' + CLEAR + ' clear and ' + ALL + ' in all is not one half hidden');
+
+  const FOV = 40;
+  const R = CH.stage(TXT, gl, W, { fov: FOV, near: 0.05, far: 4000, fog: 0.0016, exposure: 1.2 });
+
+  /* ---------- the oak, right of centre and ten metres off, so its trunk and the eighth read at feed size ---------- */
+  const OAK = [3.4, 0, -1.2];
+  const oak = K.make('live_oak', { seed: 8, height: 12, spread: 12 });
+  oak.position.set(OAK[0], 0, OAK[2]); oak.rotation.y = 0.9; TXT.add(R, oak); TXT.contact(R, oak, { opacity: 0.6 });
+  /* live oak leaves: pushed from green to olive and apricot in the low sun, the shaded underside left to take the violet sky */
+  const greenLeaves = (t) => t.traverse((m) => { if (m.isMesh && m.material && m.material.alphaTest > 0) { m.material = m.material.clone(); m.material.color.setRGB(1.55, 1.18, 0.82); m.material.envMapIntensity = 1.7; m.material.userData.txSurface = false;
+    /* the low sun shines through the backlit leaves: a green transmission glow, kept to each leaf's own shape */
+    m.material.emissive = new THREE.Color(0xa8641e); m.material.emissiveMap = m.material.map; m.material.emissiveIntensity = 0.42; } });
+  greenLeaves(oak);
+  /* a far line of oak mottes on the horizon, hazed by distance */
+  [[-55, -95, 21, 13], [-22, -130, 22, 16], [40, -120, 23, 15], [-90, -70, 25, 11]].forEach(([x, z, sd, sp]) => {
+    const t = K.make('live_oak', { seed: sd, height: sp * 0.5, spread: sp }); t.position.set(x, 0, z); t.rotation.y = sd; greenLeaves(t); TXT.add(R, t); });
+
+  /* ---------- the camera: chest height, close to the family, the trunk at the right ---------- */
+  const FROM = [0, 1.25, 12];
+  const look = CH.aim(THREE, R, TXT, FROM, [OAK[0], 0, OAK[2]], 830, 680, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look });
+  const cam = new THREE.Vector3(...FROM);
+
+  /* each relative placed by where the feet stand in the frame (sx, sy), found on the lawn through the camera */
+  const onGround = (sx, sy) => { R.camera.updateMatrixWorld(true);
+    const v = new THREE.Vector3(sx / 1080 * 2 - 1, 1 - sy / 1350 * 2, 0.5).unproject(R.camera).sub(cam).normalize();
+    const t = -cam.y / v.y; return [cam.x + v.x * t, cam.z + v.z * t]; };
+  /* a loose family group: two talking at the front, a couple holding hands behind them, two further back, one at the right */
+  const SPEC = [
+    { s: [150, 872], h: 1.84, b: 'male',   shirt: 0x5a3fae, tr: 0x2a2c48, turn: 0.95, pose: 'stand', seed: 31 },
+    { s: [575, 864], h: 1.64, b: 'female', shirt: 0xe0704a, tr: 0x3b2a4a, turn: -0.6, pose: 'hands_on_hips', seed: 44 },
+    { s: [318, 738], h: 1.70, b: 'female', shirt: 0xf1e2c6, tr: 0x52608c, turn: 0.0, pose: 'stand', seed: 52, hand: 'R' },
+    { s: [458, 740], h: 1.86, b: 'male',   shirt: 0x7a2f6a, tr: 0x262a3a, turn: 0.0, pose: 'stand', seed: 67, hand: 'L' },
+    { s: [1025, 694], h: 1.56, b: 'female', shirt: 0x6f7fd8, tr: 0x2c3352, turn: -0.35, pose: 'look_up', seed: 73 },
+    { s: [636, 702], h: 1.76, b: 'male',   shirt: 0xb8486a, tr: 0x3a3a52, turn: -0.2, pose: 'stand', seed: 88 },
+    { s: [915, 864], h: 1.68, b: 'female', shirt: 0x9a4f8a, tr: 0x4a2f40, turn: -0.95, pose: 'stand', seed: 95 }
+  ];
+  SPEC.forEach((s) => { s.p = onGround(s.s[0], s.s[1]); });
+  if (SPEC.length !== CLEAR) throw new Error('drew ' + SPEC.length + ' standing relatives, FIG.relatives_low is ' + CLEAR);
+  const people = [];
+  /* long hanging hair tore into strands at this distance, so a seed that grows a curtain is passed over for the next */
+  /* the kit merges meshes by material, so a curtain is found by how far the hair hangs: below 0.85 of the height is past the chin */
+  const curtained = (m) => { m.updateMatrixWorld(true); const top = new THREE.Box3().setFromObject(m).max.y; let lo = Infinity;
+    m.traverse((q) => { const ms = Array.isArray(q.material) ? q.material : [q.material]; if (q.isMesh && ms.some((x) => x && /hair/.test(x.name || ''))) lo = Math.min(lo, new THREE.Box3().setFromObject(q).min.y); });
+    return lo < top * 0.85; };
+  const makeNeat = (o) => { for (let t = 0; t < 14; t++) { const m = K.make('person', Object.assign({}, o, { seed: o.seed + t * 101 })); if (!curtained(m)) { (window.__hair = window.__hair || []).push(o.seed + ':' + t); return m; } } (window.__hair = window.__hair || []).push(o.seed + ':kept'); return K.make('person', o); };
+  /* everyone faces away from the camera, toward the oak and the low sun, turned off it by at most a three quarter */
+  const FWD = Math.atan2(OAK[0] - cam.x, OAK[2] - cam.z);
+  SPEC.forEach((s) => { s.yaw = FWD + s.turn; if (Math.abs(s.turn) > 1.0) throw new Error('a relative turns past three quarters away'); });
+  /* the couple share one heading and their hands meet at the true midpoint between them, in each one's own frame */
+  const pa = SPEC.find((s) => s.hand === 'R'), pb = SPEC.find((s) => s.hand === 'L');
+  const yawAB = (pa.yaw + pb.yaw) / 2; pa.yaw = pb.yaw = yawAB;
+  const gap = Math.hypot(pa.p[0] - pb.p[0], pa.p[1] - pb.p[1]);
+  if (gap > 1.15 || gap < 0.55) throw new Error('the couple stand ' + gap.toFixed(2) + ' m apart, too far to hold hands');
+  const mid = [(pa.p[0] + pb.p[0]) / 2, 0.84, (pa.p[1] + pb.p[1]) / 2];
+  const toLocal = (s) => { const dx = mid[0] - s.p[0], dz = mid[2] - s.p[1], c = Math.cos(-s.yaw), n = Math.sin(-s.yaw); return [dx * c + dz * n, mid[1], -dx * n + dz * c]; };
+  SPEC.forEach((s) => {
+    const o = { seed: s.seed, role: 'resident', pose: s.pose, height: s.h, build: s.b, shirt: s.shirt, trousers: s.tr, hat: 'none', vest: false, detail: 'full' };
+    if (s.hand === 'R') o.hands = [null, toLocal(s)];
+    if (s.hand === 'L') o.hands = [toLocal(s), null];
+    const m = makeNeat(o);
+    m.position.set(s.p[0], 0, s.p[1]); m.rotation.y = s.yaw; TXT.add(R, m); TXT.contact(R, m, { opacity: 1 });
+    people.push(m);
+  });
+
+  /* ---------- the eighth: behind the trunk on the camera's line through it, stepping out toward the family ---------- */
+  const toTrunk = new THREE.Vector3(OAK[0] - cam.x, 0, OAK[2] - cam.z).normalize();
+  const side = new THREE.Vector3(-toTrunk.z, 0, toTrunk.x);   /* to the camera's right */
+  const hp = new THREE.Vector3(OAK[0], 0, OAK[2]).addScaledVector(toTrunk, 0.95).addScaledVector(side, -0.3);
+  const eighth = makeNeat({ seed: 120, role: 'resident', pose: 'walk', height: 1.72, build: 'female', shirt: 0xff8a4c, trousers: 0x3a2850, hat: 'none', vest: false, detail: 'full' });
+  eighth.position.copy(hp); eighth.rotation.y = Math.atan2(-side.x, -side.z) + 0.55;   /* stepping to the camera's left, turned a little away */
+  TXT.add(R, eighth);
+
+  /* ---------- the lawn: mown, olive toward plum in the shade ---------- */
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2people, { zenith: 0x2c4ce4, horizon: 0x9aa8ff, haze: 0xff9a86, clouds: 0.2 }));
+  const lawn = TXT.ground(R, { surface: 'lawn', size: 3000, tile: 3.0, seed: 825, color: 0xb4a04c, envMapIntensity: 0.6, bumpScale: 0.3 });
+  /* late-season St. Augustine in the people light: a warm olive albedo, so the lit stripes read olive-apricot and the violet fill turns the shade plum */
+  lawn.material.color.setRGB(1.2, 0.98, 0.72);
+  /* the mower ran on a diagonal: the stripes cross the lawn at an angle, so no stripe lies level under a line of type */
+  lawn.rotation.z = 0.62;
+  const rv = [onGround(0, 900), onGround(960, 900), onGround(0, 1349), onGround(960, 1349)];
+  const rx0 = Math.min(...rv.map((q) => q[0])) - 0.5, rx1 = Math.max(...rv.map((q) => q[0])), rz0 = Math.min(...rv.map((q) => q[1])), rz1 = Math.max(...rv.map((q) => q[1])) + 1;
+  TXT.scatter(R, { kind: 'grass', count: 4200, area: [-30, -30, 30, 11], avoid: [[rx0, rz0, rx1, rz1], [OAK[0] - 1.4, OAK[2] - 1.4, OAK[0] + 1.4, OAK[2] + 1.4]], seed: 81, scale: [0.12, 0.26], colors: [0x8e7f3a, 0xa0803e, 0x7e6a3e, 0x8a5a52, 0xb08a4a] });
+
+  /* ---------- light: a low apricot key raking from behind the group, so every shadow runs long toward the camera ---------- */
+  const spec = CH.rigSpec(W, 30, 4096);
+  spec.key = Object.assign({}, spec.key, { i: spec.key.i * 1.55 });
+  spec.fill = Object.assign({}, spec.fill, { i: spec.fill.i * 3.4 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.5, 0, 4], { distance: 80, shadowFar: 180, normalBias: 0.008 }), { light: { az: -168, el: 9 } }));
+  TXT.weather(R, { grime: 0.06, height: 0.25, mottle: 0.08 });
+  R.scene.environmentIntensity = 1.35;
+
+  /* ---------- the count, measured: each of the seven clear and tall enough, the eighth half hidden ---------- */
+  R.scene.updateMatrixWorld(true);
+  const ray = new THREE.Raycaster();
+  const blockers = (self) => [oak, ...people, eighth].filter((o) => o !== self);
+  const hiddenShare = (who) => {
+    const pts = [], v = new THREE.Vector3();
+    who.traverse((m) => { if (!m.isMesh || !m.geometry.attributes.position) return; const P = m.geometry.attributes.position, step = Math.max(1, Math.floor(P.count / 40));
+      for (let i = 0; i < P.count; i += step) pts.push(v.fromBufferAttribute(P, i).applyMatrix4(m.matrixWorld).clone()); });
+    let hid = 0; const bl = blockers(who);
+    pts.forEach((p) => { const d = p.clone().sub(cam), L = d.length(); ray.set(cam, d.normalize()); ray.far = L - 0.08;
+      if (ray.intersectObjects(bl, true).length) hid++; });
+    return hid / pts.length;
+  };
+  const tall = (who) => { const b = new THREE.Box3().setFromObject(who), c = b.getCenter(new THREE.Vector3());
+    const top = CH.project(THREE, R, [c.x, b.max.y, c.z]), bot = CH.project(THREE, R, [c.x, 0, c.z]); return { px: bot[1] - top[1], x: top[0], foot: bot[1] }; };
+  people.forEach((m, i) => {
+    const h = hiddenShare(m), t = tall(m);
+    if (h > 0.22) throw new Error('relative ' + (i + 1) + ' is ' + Math.round(h * 100) + ' percent hidden, the seven must stand clear');
+    /* and every head is seen whole, so each of the seven is counted by a head at feed size */
+    const bb = new THREE.Box3().setFromObject(m), hc = bb.getCenter(new THREE.Vector3()); hc.y = bb.max.y - 0.12;
+    const dh = hc.clone().sub(cam), Lh = dh.length(); ray.set(cam, dh.normalize()); ray.far = Lh - 0.15;
+    if (ray.intersectObjects(blockers(m), true).length) throw new Error('relative ' + (i + 1) + ' has a hidden head');
+    if (t.px < 140) throw new Error('relative ' + (i + 1) + ' is ' + Math.round(t.px) + ' px tall, under 45 px at 432');
+    if (t.x < 40 || t.x > 1040) throw new Error('relative ' + (i + 1) + ' is out of frame at x ' + Math.round(t.x));
+  });
+  /* step the eighth out from behind the trunk until about half of her is seen, measured, never guessed */
+  let best = null;
+  for (let off = -0.05; off >= -0.8; off -= 0.03) {
+    eighth.position.copy(new THREE.Vector3(OAK[0], 0, OAK[2]).addScaledVector(toTrunk, 0.95).addScaledVector(side, off)); eighth.updateMatrixWorld(true);
+    const h = hiddenShare(eighth); if (!best || Math.abs(h - 0.62) < Math.abs(best.h - 0.62)) best = { off, h };
+  }
+  eighth.position.copy(new THREE.Vector3(OAK[0], 0, OAK[2]).addScaledVector(toTrunk, 0.95).addScaledVector(side, best.off)); eighth.updateMatrixWorld(true);
+  TXT.contact(R, eighth, { opacity: 0.9 });
+  /* an apricot rim on the eighth, from the low sun side behind the trunk, so the one half seen catches light */
+  { const rim = new THREE.PointLight(0xffa868, 30, 5, 2); rim.position.copy(eighth.position).addScaledVector(toTrunk, 1.3).addScaledVector(side, -0.6); rim.position.y = 1.7; rim.castShadow = false; R.scene.add(rim); }
+  const h8 = hiddenShare(eighth);
+  if (h8 < 0.3 || h8 > 0.8) throw new Error('the eighth is ' + Math.round(h8 * 100) + ' percent hidden, it must be half hidden');
+  window.__count = { clear: people.length, hidden: HIDDEN, eighthHidden: +h8.toFixed(2), tall: people.map((m) => Math.round(tall(m).px)) };
+  if (people.length + HIDDEN !== ALL) throw new Error('drew ' + (people.length + HIDDEN) + ' relatives, FIG.relatives_high is ' + ALL);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.6, fade: 200 });
+  CH.seat(cx, { sel: '.dek', a: 0.54, fade: 150 });
+  CH.seat(cx, { sel: '.count', a: 0.85, fade: 90 });
+  CH.seat(cx, { sel: '.kick', a: 0.92, fade: 110 });
+  TXLOOK.footWash(cx, { a: 0.32, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
