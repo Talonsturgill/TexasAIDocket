@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-25-two-eyes-on-the-smoke",
+      "date": "2026-11-25",
+      "title": "Two eyes on the smoke",
+      "caption": "After the Smokehouse Creek fire, AI camera stations on Panhandle towers sweep for smoke every minute. A person checks every flag, two towers pin the spot and the call goes to 911.",
+      "video": "/runs/2026-11-25/dispatch.mp4",
+      "poster": "/runs/2026-11-25/poster.png",
+      "video_mobile": "/runs/2026-11-25/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-25/poster-540.jpg",
+      "county": "Hutchinson",
+      "beat": "weather-and-emergency"
+    },
+    {
       "id": "2026-11-22-the-satellite-points",
       "date": "2026-11-22",
       "title": "The satellite points",
