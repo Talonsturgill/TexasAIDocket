@@ -61,8 +61,8 @@ slide: 1
 layout: CLOSE_CROP
 primary_image:
   subject: a lilac glass lung, paired lobes with frosted bronchi, crossed at its lower lobes by a thin slab of periwinkle acrylic like a scan field ordered for the abdomen, one small gold bead sitting in the overlap and throwing a warm caustic onto the slab, on a plum studio sweep under an apricot key and a periwinkle rim
-  rect: [0, 330, 1080, 1020]
-  bleeds: [left, right, bottom]
+  rect: [200, 390, 760, 650]
+  bleeds: []
 accent: '#ffc83d'
 data_in_art: null
 job: "Stop the thumb on a scan that holds a second thing."
@@ -298,8 +298,8 @@ slide: 9
 layout: FULL_BLEED
 primary_image:
   subject: a backlit reading table seen almost from overhead down the right of the frame, a modelled apricot torso relief on the lit glass with two flat cut glass lungs in its chest, pale and frosted where unscanned, and three bevelled periwinkle acrylic panes framed for the shoulder, the heart and the abdomen, each clipping part of a lung, the lung inside each pane a saturated lit slice with a bright section edge
-  rect: [470, 0, 610, 1350]
-  bleeds: [top, right, bottom]
+  rect: [300, 560, 720, 640]
+  bleeds: []
 accent: none
 data_in_art: null
 job: "Hand the reader something to do."
