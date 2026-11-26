@@ -18,10 +18,10 @@ THE ACCENT is gold #ffc83d and means ONE thing: A NODULE FLAGGED FOR A PERSON. F
 
 THE MATERIAL CODE: periwinkle acrylic or tab means a scan ordered for something else, frosted white means a screening exam. Frames 1, 2, 4, 5 and 6.
 
-CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, MATERIAL_CODE
+CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
 1. MOTIF_EVOLUTION of the gold bead: hidden in a scan (1), buried in folders (2, absent), a flagged line (3), counted (4), in a hand (5), passed along a counter (6), her own nodule as plain glass on an age rule, never gold, because no claim says the AI flagged it (7), absent for the family (8) and the reader's scan (9).
 2. CAMERA_MOVE: close glass (1), medium room (2), plan page (3), axonometric row (4), over the shoulder (5), high axonometric (6), raked rule (7), wide lawn (8), low room (9).
-3. MATERIAL_CODE periwinkle against frosted, never explained by a legend after frame 4.
+3. VALUE_ARC from cool vivid glass on plum (1) through the warm window office and workroom (5, 6) to the warmest lawn light (8) and the settled warm room (9), one direction, never black. The material code (periwinkle against frosted) is held on frames 1, 2, 4, 5 and 6.
 
 ## THE NINE BEATS
 
@@ -106,12 +106,12 @@ depth:
 composition: {structure: "BESPOKE. The slide artist composes the picture and places the type where this picture leaves quiet (knowledge/carousel/BESPOKE.md).", bands: "Top third, the folder tower's tabbed top leaning out past the right edge against a plum wall with window light. Middle third, the manila folders stacked on the cart with dog ears and a rubber band, the shaded cabinet wall on the left with the type. Bottom third, the powder coated cart shelf and twin casters on a worn concrete floor, raking apricot light casting long plum shadows of the casters and cart legs across the floor.", focal: "the tabs at the top of the leaning tower"}
 art: {technique: "physically based interior render, chassis chart_cart and folders, kit person, TXT.interior", why_this_technique: "weeks of manual review is a pile of paper a person has to work through", palette: "manila, periwinkle and frosted tabs, powder coat steel, plum wall, apricot window", value_structure: "Frame median L* planned at 42. Lightest is the window key on the folder edges. Darkest is the far wall in plum."}
 verbatim: []
-acceptance: ["the folder tower owns at least 40 percent of the frame area", "exactly FIG.units folders are drawn, FIG.of_nine with periwinkle tabs, asserted in code", "no gold appears on this frame", "the person is cropped and three quarters away with no face", "no numeral on this slide is absent from claims.json or figures.json", "the folder tower on its cart owns at least 35 percent of the frame height at 432 px, and the frame fails if the folders or cart are missing or unmodelled"]
+acceptance: ["the folder tower owns at least 40 percent of the frame area", "exactly FIG.units folders are drawn, FIG.of_nine with periwinkle tabs, asserted in code", "no gold appears on this frame", "no numeral on this slide is absent from claims.json or figures.json", "the folder tower on its cart owns at least 35 percent of the frame height at 432 px, and the frame fails if the folders or cart are missing or unmodelled"]
 risks: ["clean clay folders, so dog ears, grime and a rubber band", "a mannequin, so crop at the shoulder"]
 type:
   kicker: "The old way"
   hook: "Weeks, sometimes months"
-  dek: "UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients."
+  dek: "UTMB started its lung screening program in 2016. Before the AI, review could take weeks or even months. Medical director Dr. Shawn Nishi says the follow up window had often closed by the time staff reached patients. Folders drawn to illustrate."
 ```
 
 ---
@@ -238,7 +238,7 @@ layout: DIAGRAM
 primary_image:
   subject: a brushed steel age rule lying on a weathered limestone ledge outdoors in long apricot sun, engraved decade ticks, a raised frosted white enamel block spanning the screening ages, and one clear lilac glass bead, her nodule, resting in the engraved groove far to the left at the patient's decade, plain glass and never gold because no claim says the AI flagged it, periwinkle sky in the top third
   rect: [0, 420, 1080, 980]
-  bleeds: [left, right]
+  bleeds: [left, right, bottom]
 accent: none
 data_in_art: {figure: patient_decade, drives: "the bead sits at FIG.patient_decade and the enamel block spans FIG.age_low to FIG.age_high on one scale, read in the slide's own code"}
 job: "Make the distance between her age and screening physical."
@@ -269,7 +269,7 @@ layout: FULL_BLEED
 primary_image:
   subject: seven people of mixed heights and builds standing on a lawn under a big live oak in warm late afternoon, three quarters away and at distance, an eighth figure half hidden behind the oak's trunk, long plum shadows on mown grass, periwinkle sky
   rect: [0, 250, 1080, 1100]
-  bleeds: [left, right, top]
+  bleeds: [left, right, bottom]
 accent: none
 data_in_art: {figure: relatives_low, drives: "figure count, FIG.relatives_low standing figures plus one occluded figure making FIG.relatives_high, read in the slide's own code"}
 job: "Widen the finding past one person to a family."
@@ -299,7 +299,7 @@ layout: FULL_BLEED
 primary_image:
   subject: an empty CT scanner in an imaging room from a low three quarter at the couch foot, a satin white ring housing with a deep bore shadow, panel seams and a periwinkle trim band, the couch extended toward the camera with a folded pillow, apricot window light falling across the floor
   rect: [0, 300, 1080, 1100]
-  bleeds: [right, bottom]
+  bleeds: [left, right, bottom]
 accent: none
 data_in_art: null
 job: "Hand the reader something to do."
