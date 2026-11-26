@@ -88,3 +88,17 @@ Every gate below exited 0 on the final frames: `qa.py` (0 fails), `print_ban --a
 ## Time
 
 The run is long. The record and claims took the first hours. The deck took three panel rounds, nine art director readings and five builds of the close. `studio_clock` has no `record_done` checkpoint, because this run never stamped one, so its timing report is incomplete and says so.
+
+## Retro
+
+**The weekly machine pass is not due** (last pass November 24th). 192 items are queued.
+
+**Queued, new.** `dossier-drifts-from-the-render` (the frame 9 plan described a build that never existed, and it cost four close rebuilds). `coherence-hard-cut-blocks-only-at-ship` (deck_coherence never blocks a bespoke run, so the value cuts surfaced only after the round cap). `slide-guards-read-whole-fig-object` (artists' guards made eight FIG lines stale at ship and forced a re-render and a fresh art director reading of byte-identical frames). `art-plan-not-renumbered-on-reorder`. `lung-imaging-models-built-in-chassis` (glass_lung, scan_slab, nodule_bead, the enamel cradle and the rest).
+
+**Queued, repeats raised.** `rebuild-round-took-critic-fixes`, `drawn-to-illustrate-boilerplate-on-every-dek`, `accent-gold-drifts-per-frame-under-cool-tone`, and `kit-person-reads-as-mannequin-within-two-metres`, which the round 3 judges charged again on frames 4, 5 and 8.
+
+**Instincts.** Confirmed `a-paraphrase-can-outrun-its-quote` (the two thirds credited to the AI rather than the program) and `read-the-repair-at-feed-scale` (frame 6's first rebuild said screening found nothing). Added `rewrite-the-dossier-when-the-build-changes` and `a-share-drawing-shows-every-part`, each at 0.50.
+
+**Sources.** Appended to `SOURCES_FIELD_LOG.md`: UTMB, Bunkerhill, USPSTF, the Comptroller's J0055 packet and ERCOT's notice answered; Tarrant's resolution exists only as a Fort Worth Report upload; faa.gov answered 403 again; Soluna's Q3 results carried the Briscoe approval the record had missed.
+
+**The prompt audit above is interim.** Phase 19 takes the reading that counts.
