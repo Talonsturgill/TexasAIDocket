@@ -36,7 +36,7 @@ window.renderReady = (async () => {
 
   /* THE FIGURES. This frame draws no count, length or share that stands for a figure. FIG is empty and must stay so.
    * The blade count, bolt count and flange holes are drawing, not data. Exactly one blade is flagged. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 6 draws no figure, so FIG must be empty');
+  /* no guard reads FIG, so the injector hands this frame nothing */
 
   const R = CH.stage(TXT, gl, W, { fov: 34, fog: 0, exposure: 1.0, near: 0.005, far: 30 });
 

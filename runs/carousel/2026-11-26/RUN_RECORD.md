@@ -108,3 +108,27 @@ The first CI run on PR 518 went red in `gates` on "Nothing rotten in the record"
 **A boundary slip, stated.** While checking those two items, a quote-matching loop fetched every cited url before the registry was consulted, so it requested the lrl.texas.gov page and the capitol.texas.gov/tlodocs/ notice once each. Neither response was used as verification, and neither item's `last_verified` moved. The check should have asked `crawl_boundary.forbidden` first, which is what `reverify.py` does. Nothing else was fetched outside the boundary.
 
 **Two more declarations lapse tomorrow.** tx-2026-0041 and tx-2026-0138 carry boundaries measured November 20th, with 0 days left on November 27th, and tx-2026-0166 and tx-2026-0186 have 1 day left. The next run re-measures them first.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 20 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 8 warn(s) |
+| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | PASS   | 9 slide(s), 8.38 MB, vector |
+| score          | WARN   | 7.262 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 50 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 78 published string(s) read from one list, every universal names its set |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 29,438 chars planned |
+| caption        | PASS   | 140 words |
+| craft floor    | PASS   | 9 frame(s), median 1484, floor 267 |
+| plan vs render | WARN   | 0 of 47 acceptance item(s) checkable |
+| texan          | WARN   | places Fort Worth, Lubbock / body NO / deadline NO / next step NO |
+| absences       | WARN   | 0 of 4 scoped to a named document, 4 unscoped |
+| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->

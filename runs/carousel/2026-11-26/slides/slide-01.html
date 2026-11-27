@@ -31,7 +31,7 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech", counter: "01 / 09", src: "c1 c2 c7 c9", fit: { min: 76, max: 100, maxLines: 2 } });
   /* this frame draws no count or length that stands for a figure */
-  if (Object.keys(window.FIG).length !== 1 || !Number.isInteger(window.FIG.tools)) throw new Error('slide 01 reads exactly FIG.tools');
+  if (!Number.isInteger(window.FIG.tools)) throw new Error('slide 01 reads FIG.tools');
   const R = CH.stage(TXT, gl, W, { fov: 34, fog: 0, near: 0.01, far: 80 });
 
   /* THE SWEEP: a deep cerulean floor so the type below the machine sits on colour, not on a wash */

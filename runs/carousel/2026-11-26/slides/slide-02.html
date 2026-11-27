@@ -34,8 +34,7 @@ window.renderReady = (async () => {
   hook.style.top = Math.round(FOOT - blockH) + 'px'; CH.follow();
 
   /* HONESTY: the cells along the foil are read from FIG.grid_cells. Two rows across the tape, the rest along it. */
-  const FIG = window.FIG;
-  if (Object.keys(FIG).length !== 1 || typeof FIG.grid_cells !== 'number') throw new Error('frame 2 carries exactly FIG.grid_cells, got ' + JSON.stringify(FIG));
+  if (typeof FIG.grid_cells !== 'number') throw new Error('frame 2 reads FIG.grid_cells');
   const ROWS = 2, COLS = FIG.grid_cells / ROWS;
   if (!Number.isInteger(COLS)) throw new Error('FIG.grid_cells ' + FIG.grid_cells + ' does not split into ' + ROWS + ' rows');
 

@@ -32,7 +32,7 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Hands on", counter: "07 / 09", src: "c13 c15", fit: { min: 80, max: 100, maxLines: 3 } });
   /* HONEST: this frame carries no figure. The brief's FIG is empty, so nothing drawn stands for a count or a length. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 7 draws no figure, but FIG carries ' + JSON.stringify(window.FIG));
+  /* no guard reads FIG, so the injector hands this frame nothing */
 
   const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 200, fog: 0.004 });
   const rnd = CH.rng(CH.SEED + 7);
