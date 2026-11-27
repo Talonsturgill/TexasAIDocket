@@ -47,7 +47,8 @@
   };
   N.rng = function (seed) { var t = seed >>> 0; return function () { t = (t + 0x6D2B79F5) >>> 0; var r = Math.imul(t ^ (t >>> 15), 1 | t); r ^= r + Math.imul(r ^ (r >>> 7), 61 | r); return ((r ^ (r >>> 14)) >>> 0) / 4294967296; }; };
   /* the accent, albedo first with a little emissive so it reads at feed size and never as pink */
-  N.goldMat = function (K) { return K.mat("fr-gold", { color: N.ACCENT, metalness: 0.2, roughness: 0.34, emissive: N.ACCENT, emissiveIntensity: 0.12, clearcoat: 0.7, clearcoatRoughness: 0.15 }, true); };
+  N.goldMat = function (K) { return K.mat("fr-gold", { color: 0xd9803e, metalness: 0.15, roughness: 0.3, emissive: 0xe8913c, emissiveIntensity: 0.28, envMapIntensity: 0.55, clearcoat: 0.8, clearcoatRoughness: 0.12 }, true); };
+  /* the albedo is pushed a step deeper and warmer than the declared accent so that under the cerulean studio the rendered mark lands ON #e0956a rather than paling to salmon (round 1 critics, frames 1, 3, 5, 9) */
   N.titaniumMat = function (K) { return K.mat("fr-ti", { color: N.TITANIUM, metalness: 0.88, roughness: 0.42 }, true); };
   N.aluMat = function (K) { return K.mat("fr-alu", { color: N.ALU, metalness: 0.9, roughness: 0.34 }, true); };
   /* heat tint along an axis: straw, bronze, peacock blue, a canvas gradient the lathe's v coordinate reads */
