@@ -22029,5 +22029,155 @@
     "id": "tx-2026-0262-c8"
    }
   ]
+ },
+ {
+  "title": "Texas Tech and a Fort Worth contractor give the Army an AI maintenance tool for its aircraft fleet and an engine life tracker",
+  "summary": "Texas Tech's Institute for Materials, Manufacturing and Sustainment and Fort Worth based AVX Defense Technologies built two tools under the Army's FleetSpace program. One is an AI enabled decision tool for aviation maintenance planning. The other tracks the remaining useful life of aircraft engines. Texas Tech said on November 20th that both have been provided to the Army. The test results it reports come from testing, not from service in the fleet.",
+  "topic": "defense-and-federal",
+  "decider": {
+   "name": "Texas Tech University",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Lubbock",
+    "Tarrant"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-20",
+    "kind": "decided",
+    "note": "Texas Tech reports both tools provided to the Army"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "Texas Tech's Institute for Materials, Manufacturing and Sustainment lists its research contacts on the university's site, and the Army Aviation and Missile Command answers questions about FleetSpace.",
+   "url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Texas Tech's Institute for Materials, Manufacturing and Sustainment worked with Fort Worth based AVX Defense Technologies under the Army's FleetSpace program to build the FleetSpace User Interface, an operations and maintenance platform.",
+    "verbatim_quote": "Texas Tech’s Institute for Materials, Manufacturing & Sustainment (IMMS) partnered with Fort Worth-based AVX Defense Technologies, under the U.S. Army’s FleetSpace program funded by the Army Aviation and Missile Command (AvMC), to develop the FleetSpace User Interface (FSUI), an integrated operations and maintenance platform.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c1"
+   },
+   {
+    "text": "The FleetSpace User Interface is an AI enabled decision tool meant for the Army's aviation operations, maintenance and sustainment planning.",
+    "verbatim_quote": "FSUI is a 3D-interactive, artificial intelligence-enabled decision-making tool based on digitization, analytics, integration and intuitive display of data from disparate sources, intended for the Army’s aviation operation, maintenance and sustainment planning.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c2"
+   },
+   {
+    "text": "The team built algorithms for data fusion and flight operations and a predictive maintenance model.",
+    "verbatim_quote": "In addition to FSUI, Texas Tech researchers developed algorithms for data fusion and flight operations and a predictive, data-driven maintenance model.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c3"
+   },
+   {
+    "text": "The methods use neural networks that learn from data.",
+    "verbatim_quote": "The methods use neural networks, or simplified models of interconnected units that mimic the processing ability of the human brain, to learn to recognize patterns and make decisions from data.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c4"
+   },
+   {
+    "text": "In testing the networks predicted unplanned and 480 hour phase maintenance actions, restored 37 percent of missing and corrupted flight data, and cut data volume by up to 30 percent and data files by up to 73 percent.",
+    "verbatim_quote": "Researchers noted the networks successfully captured complex interactions between aircraft input features and predicted unplanned and 480-hour phase maintenance actions, restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c5"
+   },
+   {
+    "text": "The team also built a Propulsion System Validator that tracks the remaining useful life of aircraft engines and recommends maintenance actions tied to the aviation technical manual.",
+    "verbatim_quote": "The Texas Tech team also produced a Propulsion System Validator (PSV). This technology provides military and civil aviation operators with two critical capabilities: autonomously tracking the remaining useful life of aircraft engines and recommending maintenance actions interlinked with the aviation technical manual.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c6"
+   },
+   {
+    "text": "Both tools have been provided to the Army. FleetSpace was demonstrated at the Army's Experimental Demonstration Gateway Event and the validator at GE Aerospace.",
+    "verbatim_quote": "The FSUI and PSV have been provided to the Army, with FleetSpace demonstrated at the Army’s annual Experimental Demonstration Gateway Event and PSV at GE Aerospace, another company with which IMMS has established a working relationship.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c7"
+   },
+   {
+    "text": "More than 18 undergraduate and graduate students worked on the effort alongside faculty.",
+    "verbatim_quote": "Several Texas Tech researchers, faculty members and more than 18 undergraduate and graduate students contributed to the effort.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c8"
+   },
+   {
+    "text": "The institute and AVX have worked together since 2019.",
+    "verbatim_quote": "IMMS and AVX have partnered continuously since 2019 as the Army seeks to address bottlenecks concerning fleet operational readiness, availability and resilience, with Texas Tech researchers earning recognition for their work in developing automation capabilities.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c9"
+   },
+   {
+    "text": "A postdoctoral researcher says the models let maintenance teams find weak components, schedule repairs ahead of failure and reduce downtime.",
+    "verbatim_quote": "The developed techniques and models enable data-driven decision-making, allowing maintenance teams to identify weak components, schedule repairs proactively and reduce downtime,",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c10"
+   },
+   {
+    "text": "Aircraft maintainers assess aircraft systems with computers and hands on inspections.",
+    "verbatim_quote": "Aircraft maintenance professionals use computer technology and hands-on inspections to assess aircraft systems and support operational readiness.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c11"
+   },
+   {
+    "text": "Helicopter systems hold complex mechanical parts that need regular inspection and maintenance.",
+    "verbatim_quote": "Helicopter systems contain complex mechanical components that require regular inspection and maintenance to ensure reliable operation.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-spearheads-us-army-aircraft-resilience.php",
+    "source_title": "Texas Tech Now, Texas Tech Spearheads U.S. Army Aircraft Resilience",
+    "source_type": "primary_official",
+    "fetched": "2026-11-26",
+    "id": "tx-2026-0263-c12"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-11-26",
+    "note": "Admitted from Texas Tech's November 20th account. The results it reports were measured in testing, and the page names no fleet in service."
+   }
+  ],
+  "id": "tx-2026-0263",
+  "last_verified": "2026-11-26"
  }
 ]
