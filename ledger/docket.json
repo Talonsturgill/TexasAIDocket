@@ -17698,7 +17698,16 @@
      "note": "The House Public Health committee page still lists the same clerk and the August hearing on artificial intelligence in health care as the record has them.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "capitol.texas.gov",
+     "lrl.texas.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-11-27",
+    "note": "Two of this item's three claims cite lrl.texas.gov, which the sources registry puts off limits as a whole host and whose robots.txt names ClaudeBot, measured 2026-11-27 by the crawl boundary and a live robots read. The committee page at the item's front door on capitol.texas.gov is allowed and was reread on 2026-11-27, and it still carries the clerk and hearing line the first claim quotes. The two lrl.texas.gov claims can't be reread. Nothing was routed around."
+   }
   },
   {
    "title": "NSF awarded Prairie View A and M a grant to let AI split up the grid optimization problem across processor cores",
@@ -31192,7 +31201,15 @@
      "note": "The Senate Water, Agriculture and Rural Affairs page still lists the September 1st and 2nd hearings with minutes and witness lists posted. It shows no later meeting on data center water.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "capitol.texas.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-11-27",
+    "note": "Five of this item's eight claims cite the hearing notice under capitol.texas.gov/tlodocs/, a path the sources registry and capitol.texas.gov's robots.txt put off limits, measured 2026-11-27 by the crawl boundary and a live robots read. The committee page at the item's front door is allowed and was reread on 2026-11-27, and it still lists the September 1st and 2nd hearings the other three claims quote. The tlodocs claims can't be reread. Nothing was routed around."
+   }
   },
   {
    "title": "National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource",

@@ -100,3 +100,11 @@ The record and claims took the first hours. The deck took three panel rounds, si
 ## Retro
 
 See the queue and instincts entries committed in the upgrade lane on this branch.
+
+## CI on the pull request
+
+The first CI run on PR 518 went red in `gates` on "Nothing rotten in the record". CI judges against the actual date, November 27th, and two held items were past twice their two day limit. tx-2026-0079 cites lrl.texas.gov for two of its three claims, and the registry puts that whole host off limits. tx-2026-0126 cites capitol.texas.gov/tlodocs/ for five of its eight claims, a path the registry and robots.txt refuse. Each item now carries a robots boundary declaration measured November 27th, like its sibling items. The committee pages at both front doors are allowed, were reread, and still carry what the other claims quote. The site was rebuilt on the corrected record.
+
+**A boundary slip, stated.** While checking those two items, a quote-matching loop fetched every cited url before the registry was consulted, so it requested the lrl.texas.gov page and the capitol.texas.gov/tlodocs/ notice once each. Neither response was used as verification, and neither item's `last_verified` moved. The check should have asked `crawl_boundary.forbidden` first, which is what `reverify.py` does. Nothing else was fetched outside the boundary.
+
+**Two more declarations lapse tomorrow.** tx-2026-0041 and tx-2026-0138 carry boundaries measured November 20th, with 0 days left on November 27th, and tx-2026-0166 and tx-2026-0186 have 1 day left. The next run re-measures them first.
