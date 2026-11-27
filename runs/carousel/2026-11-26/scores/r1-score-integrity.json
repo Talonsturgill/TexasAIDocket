@@ -1,0 +1,23 @@
+{
+  "lens": "integrity",
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "LOOK V2 delivered, counted art obeys its figures (37 cubes, bars 0.70 and 0.27, 7 rivets). S3, S5, S8 strong. S7 soft bench with subject under a third and rules crossing the dek; S6 blades under a flat pale band; S9 intake faces camera again; S4 dead lower third and spirals as noise."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Spine holds, accent on output, engine recurs on 1, 7, 9. S3 gold tape a second accent use; S5 riveted boom unexplained."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 5.5, "why": "Every numeral traces. S7 'People decide' and 'The AI recommends, people inspect' assert a human-in-the-loop arrangement c15 does not state, and call the PSV 'the AI'. S1 credits AVX with building both tools while c1 covers FSUI only and c7 credits the PSV to Texas Tech. S5 boom reads as a helicopter tail boom the record never names. Caption 'names no aircraft' looser than c16. Single self-interested source, disclosed."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "Who, what, where clear. Army Aviation and Missile Command (c1) absent from every frame and the caption. Stake general, no deadline."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "Cover headline is a label; S2 to S5 pay in order; S8 movable; S4 and S5 adjacent testing figure frames."},
+    {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and compliant; much restates the release."},
+    {"name": "variety", "weight": 0.10, "score": 6.5, "why": "Studio object opener and county relief familiar; tray, hour rule and blisk fresh."}
+  ],
+  "weighted_score": 6.50,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rewrite S7 to claim only what c8 and c13 say, and correct S1 to credit AVX with FleetSpace only.",
+  "artwork_weakest_frames": [
+    {"slide": 7, "problem": "Soft bench, subject under a third, engine a blur, rules cross the dek band.", "fix": "Camera to bench height and in, a recognisable fir-tree-root blade sharp in the lower half, dek clear of rules."},
+    {"slide": 6, "problem": "Blisk under a flat pale band, not a disc inside an engine.", "fix": "Model the case wall and far disc so blades recede into indigo, drop the flat band."},
+    {"slide": 9, "problem": "Intake faces camera as on the cover; stray white tag on the stand.", "fix": "Rotate the engine so exhaust and turbine flange face camera; remove the white tag."},
+    {"slide": 4, "problem": "Dead lower third, spirals as noise.", "fix": "Lower the camera, extend plate and vise into the bottom third, seat chips with contact shadows."},
+    {"slide": 5, "problem": "Unplanned riveted boom reads as a helicopter tail boom.", "fix": "Replace the boom with an indigo bench mat so the rule and tab are the only subject."}
+  ]
+}

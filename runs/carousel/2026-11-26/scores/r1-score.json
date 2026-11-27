@@ -1,0 +1,214 @@
+{
+ "weighted_score": 6.806,
+ "judges": [
+  6.5,
+  6.94,
+  6.78
+ ],
+ "spread": 0.44,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.3,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.2,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.0,
+   "weight": 0.16,
+   "judges": [
+    6.0,
+    6.8,
+    5.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.2,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.5 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.78 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.5,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.5 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.94,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.78,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.78 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Dead lower third, spirals as noise.",
+     "fix": "Lower the camera, extend plate and vise into the bottom third, seat chips with contact shadows."
+    },
+    {
+     "judge": 2,
+     "problem": "Front ghost shows the back bar through it so 27 reads near 70; top ghost reads full length; bottom 40 percent empty.",
+     "fix": "Frost both ghosts translucent white, pull the bars apart in depth so neither occludes, drop the camera low and close."
+    },
+    {
+     "judge": 3,
+     "problem": "Bars unlabelled, stray springs, background scribbles, dead lower third.",
+     "fix": "Accent pills 'volume' and 'files' on the bars, delete springs and line noise, lower the camera so the bars fill to the headline."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Soft bench, subject under a third, engine a blur, rules cross the dek band.",
+     "fix": "Camera to bench height and in, a recognisable fir-tree-root blade sharp in the lower half, dek clear of rules."
+    },
+    {
+     "judge": 2,
+     "problem": "Nothing inspects; blade a flat slab; type on a flat wall plate.",
+     "fix": "Twisted airfoil in a foam cutout with a gloved hand holding the borescope at the gold band, camera in, lit door panels behind the type."
+    },
+    {
+     "judge": 3,
+     "problem": "Tray, probe and part do not read as an inspection at feed size.",
+     "fix": "Push onto the tray and add a gloved hand touching the part, matte gold band."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Blisk under a flat pale band, not a disc inside an engine.",
+     "fix": "Model the case wall and far disc so blades recede into indigo, drop the flat band."
+    },
+    {
+     "judge": 2,
+     "problem": "Top 42 percent a flat navy plate, hub a flat plane with drawn lines.",
+     "fix": "Raise and rotate the camera so leading edges climb behind the body copy, crop the hub out."
+    },
+    {
+     "judge": 3,
+     "problem": "Gold tick strip unexplained, flat key across blades.",
+     "fix": "Make the strip a partly filled life gauge, rake the key from the right."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Unplanned riveted boom reads as a helicopter tail boom.",
+     "fix": "Replace the boom with an indigo bench mat so the rule and tab are the only subject."
+    },
+    {
+     "judge": 3,
+     "problem": "Diagonal rail reads abstract at thumb size, pill floats.",
+     "fix": "Rotate the rail toward horizontal, seat the tab at a visible 480 tick with the pill on it."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Intake faces camera as on the cover; stray white tag on the stand.",
+     "fix": "Rotate the engine so exhaust and turbine flange face camera; remove the white tag."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Stand untextured square tube, cases matte blocks on a plain sweep.",
+     "fix": "Camera to knee height and closer, chamfered tube stand with gussets, moulded ribbed cases with recessed latches."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 6.806 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 7, 6, 5, 9, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

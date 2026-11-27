@@ -1,0 +1,245 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+    "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+    "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "6e6346c19f9d73857b696f62235be2f62fde949655f070b2c5941c80e5f9e1c1",
+    "render/slide-03.png": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12",
+    "slides/slide-09.html": "3a8d74a822f5da7c7b5421f3dc89a6ad8fb914a8955a3ea17a924d12361ad0de",
+    "render/slide-09.png": "e6e0ab8988bf0b61bfeecd8df670e052ee895645cca66e5f72f1eddc8d1a792f"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 49.4,
+      "mid": 0.844,
+      "dark": 0.007,
+      "grey_mid": 0.012,
+      "vivid": 0.899,
+      "median_C": 57.6
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 43.3,
+      "mid": 0.67,
+      "dark": 0.006,
+      "grey_mid": 0.001,
+      "vivid": 0.82,
+      "median_C": 50.6
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 24.1,
+      "mid": 0.261,
+      "dark": 0.11,
+      "grey_mid": 0.008,
+      "vivid": 0.823,
+      "median_C": 59.8
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "reviewer": "carousel-art-director",
+    "round": 5,
+    "inputs": {
+      "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+      "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+      "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "6e6346c19f9d73857b696f62235be2f62fde949655f070b2c5941c80e5f9e1c1",
+      "render/slide-03.png": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12",
+      "slides/slide-09.html": "3a8d74a822f5da7c7b5421f3dc89a6ad8fb914a8955a3ea17a924d12361ad0de",
+      "render/slide-09.png": "e6e0ab8988bf0b61bfeecd8df670e052ee895645cca66e5f72f1eddc8d1a792f"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "An illustrative turboshaft engine on an indigo A-frame stand in a cerulean studio sweep, a gold tag on a wire under the case, and two moulded gold hard cases on the floor at the front right.",
+        "visual_consequence": "Reads as one engine on a maintenance stand with two separate gold tool cases beside it, the gold marking what was delivered. The cases count and the engine is the larger subject.",
+        "weakness": "Repairs hold at native size: ribbed shells, recessed latches, handles, feet, separate contact shadows, gussets at the stand feet. Remaining: a smeared heat tint gradient on the hot section (r1c2), a closed rounded cold end reading as a canister (r1c1), a pale cyan sliver under the rear saddle (r2c1). None blocks the cover.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+          "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+          "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "Machined record tray of 100 sockets at a raking three quarter, 37 dusk gold cubes filled row by row, a gold record thread ending at the first empty socket, 63 empty indigo sockets with shard fragments.",
+        "visual_consequence": "Reads as a little over a third of the record restored and the rest empty, the boundary reading as where restoration stopped. The tray reads as an object, not a waffle chart.",
+        "weakness": "Recheck after a stronger darken-only type seat. The seat is a feathered darkening of the sky behind the type with no edge or band, and the tray lip stays in open light under the dek. Corner pools read as natural falloff. Tray, cubes, thread, sockets and camera unchanged. Earlier native weakness stands, flat squiggle decals on empty socket floors.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "6e6346c19f9d73857b696f62235be2f62fde949655f070b2c5941c80e5f9e1c1",
+          "render/slide-03.png": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The illustrative turboshaft engine on a blue steel wheeled stand inside an open hangar door, seen from its open end, two dusk gold hard cases out on a warm tan jointed concrete apron in first light.",
+        "visual_consequence": "Two gold cases, matching FIG.tools, have gone out onto the apron while the engine stays on its test stand indoors, long shadows reaching back across the threshold. Reads as tools handed over while the machine is still on the bench. Differs from the cover.",
+        "weakness": "Repairs hold: matte jointed apron, contact and long shadows, overhead cylinder gone, dek clear of the engine rim, leads end at a junction box. Remaining: a noisy feathered fringe at the far shadow ends and light shaft edge on the lower left floor (r3c1), the front right caster clipped by the frame edge, a plain accessory box.",
+        "repair": "Optional, smooth the door key shadow penumbra. Nothing else required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "3a8d74a822f5da7c7b5421f3dc89a6ad8fb914a8955a3ea17a924d12361ad0de",
+          "render/slide-09.png": "e6e0ab8988bf0b61bfeecd8df670e052ee895645cca66e5f72f1eddc8d1a792f"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "One illustrative engine and its record, drawn as metal. The deck moves from the whole machine to the holes in its flight record, the record repaired at 37 of every 100 and shrunk, the 480 hour inspection as a length, the one blade the validator flags, the part a person pulls to a tray, the Lubbock to Fort Worth route, and back to the machine at an open hangar door with the two tools beside it, still on test.",
+    "build_risk": "Frame 3 must make 37 gold cubes in a 100 socket machined tray countable at 432 px under an orthographic raking camera, reading as restored record cells and not as a waffle chart.",
+    "distinct_from_recent": "Nov 25 drew glass lungs, manila folders and card files. Nov 24 drew an aerial subdivision and plate racks. Nov 22 drew cutaway exam rooms and studio benches. Nov 21 drew a tracked rover on rubble. None drew a turbine engine, a flight record tape, a machined socket tray, a turbine disc, an hour rule or a hangar door."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+      "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+      "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "6e6346c19f9d73857b696f62235be2f62fde949655f070b2c5941c80e5f9e1c1",
+      "render/slide-03.png": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12"
+    },
+    "9": {
+      "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "3a8d74a822f5da7c7b5421f3dc89a6ad8fb914a8955a3ea17a924d12361ad0de",
+      "render/slide-09.png": "e6e0ab8988bf0b61bfeecd8df670e052ee895645cca66e5f72f1eddc8d1a792f"
+    }
+  },
+  "needs_review": [
+    1,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+    "slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+    "slides/slide-03.html": "6e6346c19f9d73857b696f62235be2f62fde949655f070b2c5941c80e5f9e1c1",
+    "slide-03.png": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12",
+    "slides/slide-09.html": "3a8d74a822f5da7c7b5421f3dc89a6ad8fb914a8955a3ea17a924d12361ad0de",
+    "slide-09.webp": "18b71f8d80499229764934c662efcfa5287497e23a233013e8d7bfc1bf34e2e3"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.png",
+      "to_sha256": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+      "from_sha256": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-03.png",
+      "to_sha256": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12",
+      "from_sha256": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "18b71f8d80499229764934c662efcfa5287497e23a233013e8d7bfc1bf34e2e3",
+      "from_sha256": "e6e0ab8988bf0b61bfeecd8df670e052ee895645cca66e5f72f1eddc8d1a792f",
+      "psnr_db": 40.283
+    }
+  ]
+}

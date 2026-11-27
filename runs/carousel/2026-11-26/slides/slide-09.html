@@ -1,0 +1,234 @@
+<!doctype html>
+<!-- 2026-11-26, frame 9 of 9, the close. BESPOKE, LOOK V2 explainer. From deep inside an engine shop bay, looking out
+through its open roll up door into first light. The illustrative engine (drawn to no maker's design) stands on its stand at
+the threshold, seen from its exhaust end, still inside. Beside it on the sunlit floor stand the two cased tools in the accent,
+one case per tool, the count read from FIG.tools. The sun is low outside on the left, so its light rakes through the door
+and the long shadows run back into the bay. Nothing is shown in service, flying or being fixed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:176px; width:560px; text-align:left">Every result so far is from testing</h1>
+<p class="dek" data-follow="26" style="left:78px; width:440px; font-size:29px">Texas Tech says both tools have been provided to the Army. Every result it reports comes from testing. The Army Aviation and Missile Command funds the program. Watch that command for the first result from service.</p>
+<script>window.FIG = {"tools": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What to watch", counter: "09 / 09", src: "c9 c5 c6 c1", fit: { min: 66, max: 88, maxLines: 4 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 4000, fog: 0.0008 });
+  const deg = Math.PI / 180;
+
+  /* THIS FRAME'S SUN: first light, low, outside the door and off to the right, so it rakes in through the opening.
+   * The sky's sun and the key are one direction: TXT.sunDir is pointed at the same az and el the rig uses. */
+  const LIGHT = { az: 170, el: 7 };   /* round 1 repair: lower and more behind, so each case throws a long first light shadow toward camera */
+  TXT.sunDir = () => { const a = LIGHT.az * deg, e = LIGHT.el * deg; return new THREE.Vector3(Math.sin(a) * Math.cos(e), Math.sin(e), Math.cos(a) * Math.cos(e)).normalize(); };
+
+  /* THE BAY. The door plane is z = 0, outside is -z, the camera stands inside at +z looking out. */
+  const DOOR = { x0: -3.6, x1: 1.5, h: 3.5 }, WALL_T = 0.32;
+  const wallPaint = K.mat('bay-wall-paint', { color: 0x3a4596, metalness: 0.15, roughness: 0.62 }, true);
+  wallPaint.userData.txSurface = false;   /* a smooth painted panel: the surface pass broke it into a blocky mosaic */
+  const steel = K.mat('door-guide-galv-steel', { color: 0x9aa4c8, metalness: 0.85, roughness: 0.38 }, true);
+  const darkSteel = K.mat('door-drum-cast-steel', { color: 0x2d3470, metalness: 0.6, roughness: 0.45 }, true);
+  const slat = K.mat('door-slat-paint', { color: 0x6c78cc, metalness: 0.35, roughness: 0.42 }, true); slat.userData.txSurface = false; darkSteel.userData.txSurface = false; steel.userData.txSurface = false;
+  /* the front wall around the opening: corrugated panels, the ribs as instanced rounded bars */
+  const wallPart = (x0, x1, y0, y1) => { const m = TXT.roundedBox(x1 - x0, y1 - y0, WALL_T, 0.02, wallPaint); m.position.set((x0 + x1) / 2, (y0 + y1) / 2, WALL_T / 2); TXT.add(R, m); return m; };
+  wallPart(-14, DOOR.x0, 0, 10);
+  { const WW = 14 - DOOR.x1, PX = 160, tex = CH.canvasTex(THREE, Math.round(WW * PX), Math.round(10 * PX), (g, w, h) => {
+      const m = w / WW;   /* px per metre */
+      const gx = g.createLinearGradient(0, 0, w, 0); gx.addColorStop(0, '#c4cbff'); gx.addColorStop(0.06, '#8d97e6'); gx.addColorStop(0.22, '#5a62b8'); gx.addColorStop(0.5, '#363c88'); gx.addColorStop(1, '#22265e'); g.fillStyle = gx; g.fillRect(0, 0, w, h);
+      const gy = g.createLinearGradient(0, 0, 0, h); gy.addColorStop(0, 'rgba(30,24,80,0.55)'); gy.addColorStop(0.55, 'rgba(30,24,80,0.1)'); gy.addColorStop(1, 'rgba(30,24,80,0)'); g.fillStyle = gy; g.fillRect(0, 0, w, h);
+      const r = CH.rng(909); for (let n = 0; n < 900; n++) { const x = r() * w, y = r() * h, rr = 30 + r() * 160, gr = g.createRadialGradient(x, y, 0, x, y, rr); gr.addColorStop(0, 'rgba(20,16,60,' + (0.03 + r() * 0.05).toFixed(3) + ')'); gr.addColorStop(1, 'rgba(20,16,60,0)'); g.fillStyle = gr; g.fillRect(x - rr, y - rr, 2 * rr, 2 * rr); }
+      for (let x = 1.1; x < WW; x += 1.1) { g.fillStyle = 'rgba(16,14,58,0.55)'; g.fillRect(x * m - 3, 0, 6, h); g.fillStyle = 'rgba(255,255,255,0.16)'; g.fillRect(x * m + 3, 0, 3, h); }
+      [1.2, 2.6, 4.0, 5.6, 7.2].forEach(y => { const py = h - y * m / (w / WW) * (w / WW); const yy = h - y * (h / 10);
+        g.fillStyle = 'rgba(16,14,58,0.35)'; g.fillRect(0, yy - 3, w, 6);
+        for (let x = 0.1; x < WW; x += 0.2) { g.fillStyle = 'rgba(235,240,255,0.75)'; g.beginPath(); g.arc(x * m, yy, 4.5, 0, 7); g.fill(); g.fillStyle = 'rgba(16,14,58,0.5)'; g.beginPath(); g.arc(x * m + 2, yy + 2.5, 3.5, 0, 7); g.fill(); } });
+    });
+    const wp2 = K.mat('bay-wall-panel-paint', { color: 0x9096d0, map: tex, metalness: 0.0, roughness: 0.82, envMapIntensity: 0.55 }, true); wp2.userData.txSurface = false;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(WW, 10), wp2); m.position.set((DOOR.x1 + 14) / 2, 5, WALL_T + 0.002); m.receiveShadow = true; m.userData.txBevel = false; R.scene.add(m);
+    wallPart(DOOR.x1, 14, 0, 10); } wallPart(DOOR.x0, DOOR.x1, DOOR.h, 10);
+  { const rib = new THREE.CylinderGeometry(0.018, 0.018, 1, 10), list = [];
+    for (let x = -6; x <= 6; x += 0.2) { if (x > DOOR.x0 - 0.05) continue; list.push([x, 0, WALL_T + 0.012]); }
+    const g = new THREE.Group(); list.forEach(p => { const m = new THREE.Mesh(rib, wallPaint); m.scale.y = 10; m.position.set(p[0], 5, p[2]); g.add(m); }); TXT.add(R, g);
+    }   /* round 1 repair: no ribs on the header, so nothing ticks behind the kicker */
+  /* the door guides: steel channels up both jambs, with their wall brackets */
+  [DOOR.x0 + 0.06, DOOR.x1 - 0.06].forEach((x, s) => {
+    const ch = TXT.roundedBox(0.12, DOOR.h + 0.4, 0.16, 0.012, steel); ch.position.set(x, (DOOR.h + 0.4) / 2, WALL_T + 0.08); TXT.add(R, ch);
+    const lip = TXT.roundedBox(0.03, DOOR.h + 0.4, 0.12, 0.008, darkSteel); lip.position.set(x + (s ? -0.07 : 0.07), (DOOR.h + 0.4) / 2, WALL_T + 0.09); TXT.add(R, lip);
+    for (let y = 0.4; y < DOOR.h; y += 0.7) { const b = TXT.roundedBox(0.2, 0.06, 0.04, 0.01, darkSteel); b.position.set(x + (s ? 0.08 : -0.08), y, WALL_T + 0.02); TXT.add(R, b);
+      [-0.06, 0.06].forEach(dx => { const bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.02, 10), steel); bolt.rotation.x = Math.PI / 2; bolt.position.set(x + (s ? 0.08 : -0.08) + dx, y, WALL_T + 0.045); TXT.add(R, bolt); }); }
+  });
+  /* the rolled door: a drum of slats over the header, its end plates and the motor box; the bottom bar hangs just below */
+  { const L = DOOR.x1 - DOOR.x0 + 0.5, cxm = (DOOR.x0 + DOOR.x1) / 2;
+    /* AD repair: the rolled drum and its motor box are out of frame now, nothing runs off the top edge above the kicker */
+    for (let i = 0; i < 0; i++) { const a = i / 28 * Math.PI * 2, r = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, L, 6), darkSteel); r.rotation.z = Math.PI / 2; r.position.set(cxm, DOOR.h + 0.42 + Math.sin(a) * 0.302, WALL_T + 0.36 + Math.cos(a) * 0.302); TXT.add(R, r); }
+    if (false) [-1, 1].forEach(s => { const p = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.03, 48), darkSteel); p.rotation.z = Math.PI / 2; p.position.set(cxm + s * L / 2, DOOR.h + 0.42, WALL_T + 0.36); TXT.add(R, p); });
+    const motor = TXT.roundedBox(0.3, 0.34, 0.3, 0.03, darkSteel); motor.position.set(DOOR.x1 + 0.45, DOOR.h + 0.42, WALL_T + 0.36);
+    const bar = TXT.roundedBox(DOOR.x1 - DOOR.x0 - 0.1, 0.08, 0.07, 0.015, steel); bar.position.set(cxm, DOOR.h - 0.02, WALL_T + 0.12); TXT.add(R, bar);
+    const seal = TXT.roundedBox(DOOR.x1 - DOOR.x0 - 0.12, 0.035, 0.05, 0.012, K.mat('door-seal-rubber', { color: 0x262a4c, roughness: 0.8 }, true)); seal.position.set(cxm, DOOR.h - 0.075, WALL_T + 0.12); TXT.add(R, seal);
+  }
+
+  /* THE FLOOR: one apron outside (the engine's concrete surface), a sealed shop floor inside, a trench drain across the door */
+  { const gd = TXT.ground(R, { surface: 'concrete', size: 900, tile: 3, joints: 1, bumpScale: 0.04, color: 0xe8b88a, seed: 261126 }); if (gd && gd.material) { gd.material.color.set(0xf0cfb2); gd.material.roughness = 1; gd.material.metalness = 0; } }
+  /* round 1 AD repair: a jointed DRY concrete apron outside the door, matte, with expansion seams and tyre scuffs, so it can't read as water */
+  { const TILE = 4.5, aproTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+      g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+      const r = CH.rng(4511); for (let n = 0; n < 50000; n++) { g.fillStyle = r() < 0.55 ? 'rgba(70,50,90,' + (0.03 + r() * 0.07).toFixed(3) + ')' : 'rgba(255,250,240,' + (0.05 + r() * 0.1).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2.5, 1 + r() * 2.5); }
+      for (let n = 0; n < 30; n++) { const x = r() * w, y = r() * h, rr = 40 + r() * 160, gr = g.createRadialGradient(x, y, 0, x, y, rr); gr.addColorStop(0, 'rgba(90,60,90,0.09)'); gr.addColorStop(1, 'rgba(90,60,90,0)'); g.fillStyle = gr; g.fillRect(x - rr, y - rr, 2 * rr, 2 * rr); }
+      /* tyre scuffs: soft paired arcs */
+      for (let n = 0; n < 3; n++) { const x0 = r() * w, y0 = r() * h, a = r() * 6.3, L = 300 + r() * 400; [0, 46].forEach(off => { g.strokeStyle = 'rgba(50,36,70,0.13)'; g.lineWidth = 18; g.beginPath(); g.moveTo(x0 + off * Math.sin(a), y0 - off * Math.cos(a)); g.quadraticCurveTo(x0 + Math.cos(a) * L / 2 + 60, y0 + Math.sin(a) * L / 2 + 40, x0 + Math.cos(a) * L + off * Math.sin(a), y0 + Math.sin(a) * L - off * Math.cos(a)); g.stroke(); }); }
+      /* expansion seams on the tile edges: a dark sealant line with a lit arris */
+      g.fillStyle = 'rgba(34,22,64,0.92)'; g.fillRect(0, 0, w, 12); g.fillRect(0, 0, 12, h); g.fillStyle = 'rgba(255,245,230,0.5)'; g.fillRect(0, 12, w, 4); g.fillRect(12, 0, 4, h);
+    }, [300 / TILE, 160 / TILE]);
+    const apron = K.mat('apron-conc-pad-dry', { color: 0xd9a888, map: aproTex, metalness: 0, roughness: 0.97, envMapIntensity: 0.25 }, true); apron.userData.txSurface = 'concrete';
+    const ap = new THREE.Mesh(new THREE.PlaneGeometry(300, 160), apron); ap.rotation.x = -Math.PI / 2; ap.position.set(0, 0.002, 0.24 - 80); ap.receiveShadow = true; ap.userData.txBevel = false; R.scene.add(ap); }
+  const floorTex = CH.canvasTex(THREE, 1792, 1024, (g, w, h) => {
+    const m = w / 28; g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    const r = CH.rng(2611); for (let n = 0; n < 60000; n++) { const v = r(); g.fillStyle = v < 0.5 ? 'rgba(40,36,90,' + (0.04 + r() * 0.08).toFixed(3) + ')' : 'rgba(255,255,255,' + (0.05 + r() * 0.1).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+    for (let n = 0; n < 40; n++) { const x = r() * w, y = r() * h, rr = 20 + r() * 80, gr = g.createRadialGradient(x, y, 0, x, y, rr); gr.addColorStop(0, 'rgba(60,50,110,0.10)'); gr.addColorStop(1, 'rgba(60,50,110,0)'); g.fillStyle = gr; g.fillRect(x - rr, y - rr, 2 * rr, 2 * rr); }
+    for (let x = 0; x <= 28; x += 3) { g.fillStyle = 'rgba(30,26,80,0.55)'; g.fillRect(x * m - 1, 0, 2, h); }
+    for (let y = 0; y <= 16; y += 3) { g.fillStyle = 'rgba(30,26,80,0.55)'; g.fillRect(0, y * m + 0.25 * m - 1, w, 2); }
+  });
+  const epoxy = K.mat('shop-floor-conc-sealed', { color: 0xc4c8f0, map: floorTex, metalness: 0.02, roughness: 0.62, clearcoat: 0.15, clearcoatRoughness: 0.5 }, true);
+  epoxy.userData.txSurface = 'concrete';
+  { const fl = new THREE.Mesh(new THREE.PlaneGeometry(28, 16), epoxy); fl.rotation.x = -Math.PI / 2; fl.position.set(0, 0.003, 0.25 + 8); fl.receiveShadow = true; fl.userData.txBevel = false; R.scene.add(fl);
+    const grate = TXT.roundedBox(DOOR.x1 - DOOR.x0 + 0.4, 0.012, 0.22, 0.004, steel); grate.position.set((DOOR.x0 + DOOR.x1) / 2, 0.006, 0.12); TXT.add(R, grate, { cast: false });
+    const slots = new THREE.Group(); for (let x = DOOR.x0 - 0.15; x < DOOR.x1 + 0.2; x += 0.045) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.004, 0.17), K.mat('drain-slot', { color: 0x1d2150, roughness: 0.9 })); s.position.set(x, 0.0125, 0.12); slots.add(s); } TXT.add(R, slots, { cast: false }); }
+
+  /* OUTSIDE: nothing but the open apron and the morning, the place the first result from service would come from */
+
+  /* THE ENGINE ON ITS STAND, still in the bay's shade behind the door's shadow line, intake toward the open air, exhaust toward the camera */
+  const stand = K.make('engine_stand', { axisY: 1.02, hook: false });
+  const eng = K.make('turboshaft_engine', { axisY: stand.userData.axisY });
+  const rig = new THREE.Group(); rig.add(stand); rig.add(eng);
+  /* +x of the model (the exhaust) turns toward +z (the camera), then a three quarter yaw */
+  rig.rotation.y = -Math.PI / 2 - 50 * deg; rig.position.set(1.72, 0, 2.6);
+  TXT.add(R, rig); TXT.contact(R, rig);
+  rig.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  /* contact pools: a soft violet darkening where each caster and each case foot meets the floor */
+  const poolTex = CH.canvasTex(THREE, 128, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.35, 'rgba(255,255,255,0.7)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const poolMat = new THREE.MeshBasicMaterial({ color: 0x1c1650, alphaMap: poolTex, transparent: true, opacity: 0.75, depthWrite: false });
+  poolMat.userData.txSurface = false;
+  const pool = (x, z, sx, sz, rot) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(sx, sz), poolMat); m.rotation.x = -Math.PI / 2; m.rotation.z = rot || 0; m.position.set(x, 0.0045, z); m.userData.txBevel = false; m.renderOrder = 2; R.scene.add(m); return m; };
+  rig.updateMatrixWorld(true);
+  [[-0.62, -0.36], [-0.62, 0.36], [0.62, -0.36], [0.62, 0.36]].forEach(c => { const v = new THREE.Vector3(c[0], 0, c[1]); rig.localToWorld(v); pool(v.x, v.z, 0.22, 0.22); });
+  { const v = new THREE.Vector3(0, 0, 0); rig.localToWorld(v); pool(v.x, v.z, 1.7, 1.1, rig.rotation.y); }
+  /* STILL ON TEST: sensor bosses on the casing, instrumentation leads and a harness running off it, down to the floor and back
+   * into the dark bay toward the test rack out of frame, no tag */
+  { rig.updateMatrixWorld(true); const AX = stand.userData.axisY, wpt = (x, y, z) => { const v = new THREE.Vector3(x, y, z); rig.localToWorld(v); return [v.x, v.y, v.z]; };
+    const lead = K.mat('test-lead-rubber', { color: 0x252d6a, roughness: 0.55, metalness: 0.1 }, true), lead2 = K.mat('sensor-wire-plastic', { color: 0x8fd0ff, roughness: 0.45, metalness: 0.05 }, true);
+    const lead3 = K.mat('sensor-wire-white-plastic', { color: 0xe8eeff, roughness: 0.45 }, true), boss = K.mat('sensor-boss-steel', { color: 0xd6dbe8, metalness: 0.95, roughness: 0.28 }, true);
+    const runs = [
+      { at: [-0.25, AX + 0.235, 0.06], m: lead, r: 0.011 }, { at: [0.05, AX + 0.25, 0.1], m: lead2, r: 0.007 }, { at: [0.2, AX + 0.2, 0.15], m: lead3, r: 0.006 },
+      { at: [0.42, AX + 0.16, 0.17], m: lead2, r: 0.007 }, { at: [0.48, AX - 0.02, 0.22], m: lead, r: 0.012 }, { at: [-0.05, AX + 0.12, 0.22], m: lead3, r: 0.006 } ];
+    runs.forEach((q, i) => {
+      const a = wpt(q.at[0], q.at[1], q.at[2]), a2 = wpt(q.at[0], q.at[1] - 0.03, q.at[2] + 0.07), side = wpt(q.at[0] + 0.03, AX - 0.12, 0.34 + i * 0.012);
+      const jb = wpt(-0.05 + i * 0.018, 0.2, 0.4), drop = wpt(q.at[0] * 0.5 - 0.02 + i * 0.01, 0.45, 0.4);
+      TXT.add(R, TXT.tube([a, a2, wpt(q.at[0] * 0.8, AX - 0.12, 0.34 + i * 0.012), drop, jb], q.r, q.m, { segments: 120, radial: 10 }));
+      const bs = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.022, 0.035, 16), boss); bs.position.set(a[0], a[1], a[2]); bs.lookAt(a2[0], a2[1], a2[2]); bs.rotateX(Math.PI / 2); TXT.add(R, bs);
+    });
+    /* the test tag: blank white card on a steel wire from the turbine flange, nothing written on it */
+    
+    /* the fitting every lead ends at: a junction box clamped to the stand's rail, its bracket down to the base */
+    { const jm = K.mat('junction-box-plastic', { color: 0x3c4aa8, roughness: 0.5, metalness: 0.05 }, true), box = TXT.roundedBox(0.22, 0.13, 0.08, 0.015, jm); box.position.set(0.03, 0.2, 0.42); box.castShadow = true; rig.add(box);
+      const br = TXT.roundedBox(0.04, 0.16, 0.03, 0.006, boss); br.position.set(0.03, 0.1, 0.38); rig.add(br);
+      for (let k = 0; k < 6; k++) { const gl2 = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.02, 12), boss); gl2.position.set(-0.05 + k * 0.018 + 0.0, 0.272, 0.42); rig.add(gl2); } }
+    { const ti = CH.titaniumMat(K), heat = CH.heatMat(K, THREE), XE = 0.5, rr = 0.198;
+      const add = (m) => { m.castShadow = true; m.receiveShadow = true; rig.add(m); return m; };
+      const ring = add(new THREE.Mesh(new THREE.TorusGeometry(rr, 0.013, 12, 72), ti)); ring.rotation.y = Math.PI / 2; ring.position.set(XE + 0.01, AX, 0);
+      /* round 1 repair: the exhaust collector, a heat tinted elbow that turns up off the turbine flange, so the near end reads as the hot end and never as an intake */
+      /* round 1 repair: a short straight tailpipe off the turbine flange, pointing toward the cases, with a sooted lip */
+      const tp = add(new THREE.Mesh(new THREE.CylinderGeometry(rr + 0.008, rr + 0.012, 0.2, 72, 1, true), (() => { const h2 = heat.clone(); h2.side = THREE.DoubleSide; return h2; })())); tp.rotation.z = Math.PI / 2; tp.position.set(XE + 0.12, AX, 0);
+      const fr = add(new THREE.Mesh(new THREE.TorusGeometry(rr + 0.02, 0.016, 12, 72), ti)); fr.rotation.y = Math.PI / 2; fr.position.set(XE + 0.03, AX, 0);
+      
+      if (false) for (let k = 0; k < 5; k++) { const a = k / 5 * Math.PI * 2 + 0.3, st = add(TXT.roundedBox(0.05, rr - 0.08, 0.012, 0.004, ti)); st.position.set(XE - 0.02, AX + Math.cos(a) * (rr + 0.08) / 2, Math.sin(a) * (rr + 0.08) / 2); st.rotation.x = -a; }
+      /* round 1 repair: no blade disc in the nozzle, so the exhaust can't read as an intake fan. A sooted liner and the heat tinted tail cone instead */
+      const liner = add(new THREE.Mesh(new THREE.CylinderGeometry(rr - 0.004, rr - 0.004, 0.3, 64, 1, true), K.mat('exhaust-liner-soot-cast-metal', { color: 0x2a2450, metalness: 0.6, roughness: 0.7, side: THREE.BackSide }, true))); liner.rotation.z = Math.PI / 2; liner.position.set(XE - 0.14, AX, 0);
+      /* the thermocouple rake: a streamlined strut across the top of the exhaust with five probe heads pointing upstream, its lead clamped along the case */
+      if (false) { const rake = add(TXT.roundedBox(0.03, rr * 0.95, 0.016, 0.006, boss)); rake.position.set(XE + 0.03, AX + rr * 0.52, 0.0);
+      for (let k = 0; k < 5; k++) { const pr = add(new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.05, 10), boss)); pr.rotation.z = Math.PI / 2; pr.position.set(XE + 0.0, AX + 0.04 + k * 0.034, 0); }
+      const rh = add(TXT.roundedBox(0.06, 0.04, 0.05, 0.01, boss)); rh.position.set(XE + 0.03, AX + rr + 0.03, 0); }
+      const rl = null; if (false) TXT.tube([wpt(XE - 0.06, AX + rr + 0.02, 0.05), wpt(XE - 0.1, AX + rr + 0.05, 0.08), wpt(XE - 0.2, AX + 0.2, 0.17), wpt(XE - 0.25, AX - 0.1, 0.28), wpt(XE - 0.2, 0.3, 0.42)], 0.007, lead2, { segments: 80, radial: 8 }); /* the rake lead is gone with the rake */
+      /* real instrumentation bosses: hex bodies with lock nuts on the casing where each lead enters */
+      runs.forEach(q => { const n = add(new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.028, 6), boss)); const dir = new THREE.Vector3(0, q.at[1] - AX, q.at[2]).normalize();
+        n.position.set(q.at[0], AX + dir.y * 0.235, dir.z * 0.235); n.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); }); }
+    }   /* round 1 repair: the white test tag is gone, the two cases are the only accent */
+
+  /* THE TWO CASED TOOLS, in the accent: one hard case per tool, the count read from FIG.tools */
+  const scuff = CH.canvasTex(THREE, 256, 256, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    const r = CH.rng(77); g.strokeStyle = 'rgba(120,70,60,0.35)'; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
+    for (let n = 0; n < 70; n++) { const x = r() * w, y = r() * h, l = 6 + r() * 30, a = r() * 6.3; g.strokeStyle = r() < 0.5 ? 'rgba(255,240,225,0.55)' : 'rgba(110,60,60,0.3)'; g.lineWidth = 0.8 + r() * 1.6; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); g.stroke(); } });
+  const gold = CH.goldMat(K).clone(); gold.map = scuff; gold.name = 'fr-gold-case-scuffed';
+  const trim = K.mat('case-latch-brushed-steel', { color: 0xc8cfdc, metalness: 0.95, roughness: 0.3 }, true);
+  const guard = K.mat('case-guard-cast-alu', { color: 0xd3d9e4, metalness: 0.9, roughness: 0.38 }, true);
+  const rubber = K.mat('case-foot-rubber', { color: 0x1f2348, roughness: 0.85 }, true);
+  const makeCase = (seed) => {
+    const g = new THREE.Group(), w = 0.66, d = 0.46, hb = 0.19, hl = 0.1;
+    const body = TXT.roundedBox(w, hb, d, 0.045, gold); body.position.y = hb / 2 + 0.012; g.add(body);
+    const lid = TXT.roundedBox(w + 0.004, hl, d + 0.004, 0.045, gold); lid.position.y = hb + 0.012 + 0.006 + hl / 2; g.add(lid);
+    const seam = TXT.roundedBox(w - 0.02, 0.008, d - 0.02, 0.003, trim); seam.position.y = hb + 0.016; g.add(seam);
+    /* stiffening ribs on the lid and a recessed label well left blank */
+    [-0.2, 0.2].forEach(x => { const r = TXT.roundedBox(0.05, 0.016, d - 0.08, 0.007, gold); r.position.set(x, hb + hl + 0.026, 0); g.add(r); });
+    const well = TXT.roundedBox(0.24, 0.006, 0.12, 0.004, K.mat('case-label-well', { color: 0xc77c52, roughness: 0.5, metalness: 0.1 }, true)); well.position.set(0, hb + hl + 0.02, 0); g.add(well);
+    /* two latches, a padlock hasp and a folding handle on the front */
+    [-0.2, 0.2].forEach(x => { const l = TXT.roundedBox(0.075, 0.07, 0.022, 0.01, trim); l.position.set(x, hb + 0.01, d / 2 + 0.012); g.add(l);
+      const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.08, 10), steel); pin.rotation.z = Math.PI / 2; pin.position.set(x, hb - 0.022, d / 2 + 0.024); g.add(pin); });
+    const hp = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.012, 10, 28, Math.PI), trim); hp.position.set(0, hb + hl - 0.01, d / 2 + 0.03); hp.rotation.x = -0.25; g.add(hp);
+    [-0.075, 0.075].forEach(x => { const k = TXT.roundedBox(0.035, 0.035, 0.03, 0.008, trim); k.position.set(x, hb + hl - 0.01, d / 2 + 0.012); g.add(k); });
+    /* corner guards and feet */
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(c => { const f = TXT.roundedBox(0.06, 0.016, 0.06, 0.006, rubber); f.position.set(c[0] * (w / 2 - 0.05), 0.008, c[1] * (d / 2 - 0.05)); g.add(f); });
+    /* worn metal corner guards top and bottom, where a case is set down and picked up */
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(c => [0.03, hb + hl - 0.012].forEach(y => { const q = TXT.roundedBox(0.07, 0.05, 0.07, 0.014, guard); q.position.set(c[0] * (w / 2 - 0.028), y + 0.012, c[1] * (d / 2 - 0.028)); g.add(q); }));
+    g.userData.isToolCase = true;
+    return g;
+  };
+  const casePlaces = [[0.75, -0.75, 8], [-0.25, -0.9, -12]];   /* AD repair: out on the apron, so each long first light shadow runs across it toward camera */   /* both inside the sun patch, x < 1.5 - 0.65 z less the case half width */   /* each straddles the jamb's shadow line, x = 1.5 - 0.65 z */
+  const cases = [];
+  for (let i = 0; i < window.FIG.tools; i++) {
+    const p = casePlaces[i]; if (!p) throw new Error('slide 9: no place for tool case ' + (i + 1));
+    const c = makeCase(i); c.position.set(p[0], 0.003, p[1]); c.rotation.y = p[2] * deg; TXT.add(R, c); TXT.contact(R, c); c.traverse(o => { if (o.isMesh) o.castShadow = true; }); pool(p[0], p[1], 0.85, 0.62, p[2] * deg); cases.push(c);
+  }
+  { let n = 0; R.scene.traverse(o => { if (o.userData && o.userData.isToolCase) n++; });
+    if (n !== window.FIG.tools || cases.length !== window.FIG.tools) throw new Error('slide 9: drew ' + n + ' tool cases but FIG.tools is ' + window.FIG.tools); }
+
+  /* THE CAMERA: low inside the bay, eye 0.7 m, level, the lens shifted so the horizon sits low under the type */
+  const HZ = 880, F = 1700, EYE = 0.7, CAMZ = 6.9, CAMX = 1.0;
+  TXT.frame(R, { from: [CAMX, EYE, CAMZ], look: [CAMX, EYE, CAMZ - 50] });
+  const FULLH = 2 * Math.max(HZ, 1350 - HZ);
+  R.camera.fov = 2 * Math.atan((FULLH / 2) / F) / deg; R.camera.aspect = 1080 / FULLH;
+  R.camera.setViewOffset(1080, FULLH, 0, FULLH / 2 - HZ, 1080, 1350); R.camera.updateProjectionMatrix();
+
+  TXT.sky(R, Object.assign({}, TXT.worlds.v2explainer, { el: [4, 14], zenith: 0x10309a, horizon: 0x2c66d4, haze: 0x9cc6ff, sunDisc: 22, glow: 0.8, horizonGlow: 0.55, span: 0.35, clouds: 0.12 }));
+  const spec = CH.rigSpec(W, 14, 4096); spec.key = Object.assign({}, spec.key, { color: 0xffe6cc, i: spec.key.i * 3.0 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0.5, 0.5, 2.5], { distance: 40, shadowFar: 100, normalBias: 0.01 }), { light: LIGHT }));
+
+  /* the bay's own bounce: the sunlit floor throws a soft indigo fill back onto the engine's near side, from the camera's side, no shadow */
+  { const bf = new THREE.DirectionalLight(0x9aa0ff, 0.55); bf.position.set(-1, 1.4, 9); bf.target.position.set(1.6, 1.0, 2.9); R.scene.add(bf); R.scene.add(bf.target); }
+  /* both cases read whole: each case's projected box sits inside the frame with a margin */
+  cases.forEach((c, i) => { const r = CH.rectOf(THREE, R, c, 0); if (r[0] < 40 || r[0] + r[2] > 1040 || r[1] < 0 || r[1] + r[3] > 1310) throw new Error('slide 9: tool case ' + (i + 1) + ' leaves the frame, box ' + r.map(Math.round).join(',')); });
+  /* the engine stands at least a quarter of the frame tall: measured off its own box */
+  { const r = CH.rectOf(THREE, R, rig, 0); if (r[3] < 1350 / 4) throw new Error('slide 9: the engine and stand stand ' + Math.round(r[3]) + ' px, under a quarter of the frame'); }
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.62, fade: 230 });
+  TXLOOK.footWash(cx, { tone: 'explainer', a: 0.8, height: 260 });
+  CH.seat(cx, { sel: '.tx-site, .src', a: 0.62, fade: 100 });
+  CH.seat(cx, { sel: '.kick, .count', a: 0.4, fade: 120 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script></body></html>

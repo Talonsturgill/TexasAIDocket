@@ -1,0 +1,658 @@
+[
+ {
+  "slide": 7,
+  "score": 5.5,
+  "points": {
+   "only_this_sentence": 5,
+   "one_idea": 6,
+   "composed": 6,
+   "crafted": 4,
+   "unlike_neighbours": 5,
+   "honest": 9
+  },
+  "fixes": [
+   "Show the inspection itself, because the headline's turn is 'people inspect' and nothing in the frame is inspecting. Lay the gold-flagged blade flat in the tray on a foam cutout, with the borescope's articulated tip (a knurled handpiece, a flexible sheath and a lit LED head, not three bare torus rings) aimed at its leading edge. Add a gloved hand cropped at the wrist holding the scope, or a loupe resting on the blade, so the gold mark reads as what the software flagged and the steel tool as the human check. Right now the blade stands upright in a block like a trophy. That reads as an award or a copy of frame 6's lone blade, not a part on the bench waiting to be inspected.",
+   "Build the primitives out and take the plate off the type. The blade is a flat tapered wedge. Give it a twisted airfoil, a fir-tree root, a platform and heat tint on the titanium, with the gold mark as a painted inspection band or tag instead of one edge strip. The gloves are flat cutout slabs. Model a slumped nitrile pair with fingers, creases and a contact shadow. The tray needs a rolled lip and a floor that isn't a black void. Behind the type, the big flat saturated wall reads as a coloured plate. Break it into hangar door panels with ribs and a light gradient from the open door, so the type sits in a real lit wall rather than on a rectangle."
+  ],
+  "verdict": "rework",
+  "render_sha256": "5f8226223f099d0821a5b98c31e971dcfdfdfd3ffd22f00233a2f368d4b69faa"
+ },
+ {
+  "slide": 4,
+  "score": 6.7,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 6,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Get the camera low and close on the bars so they fill at least half the frame, and crop out the flat window, white sill and blue wall band across the top third. Either seat the bars in the vise jaws or take the vise out. Give the stock milled detail: a chamfered edge, a fly cut face, tool marks and a crisp edge highlight.",
+   "Fix the chips: a doubled mirrored band floats inside the 70 ghost. Curl one set of helical chips falling from each cut face onto the plate with contact shadows. Give the glass ghosts refraction and edge caustics."
+  ],
+  "verdict": "rework",
+  "render_sha256": "0e56ebb728b62d1366cea328459bf8b8b15895dfecf94ab38f8bfe4beff6cfa8"
+ },
+ {
+  "slide": 1,
+  "score": 5.5,
+  "points": {
+   "only_this_sentence": 4,
+   "one_idea": 6,
+   "composed": 6,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Make what the software puts out the subject, not a speck: a large gold anodized tag with a machined grommet wired to the turbine flange in the centre of the frame, or the two gold cased tools on the stand rail beside the open panel, so the headline tools has a body.",
+   "Finish the build: the stand is untextured square tube (gussets, bolt heads, chipped satin paint), the stand is cropped awkwardly and floats (contact shadows under casters), the open access panel does not show, break the uniform ribs with flanges, bolt rings and the heat tinted turbine."
+  ],
+  "verdict": "rebuild",
+  "render_sha256": "29abd67d68e45af4578ab7d6879679e8af76de38c3b83e9723f595954d70562a"
+ },
+ {
+  "slide": 9,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 5,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Make the picture say TESTING: keep the engine inside the shadow line, plugged into a test setup, instrumentation leads and a sensor harness running back into the dark hangar, a test tag on the flange, the sunlit apron beyond empty, the two gold cases at the shade and sun line.",
+   "Craft and scale: fix the blocky mosaic on the left jamb and header, drop the camera lower and closer so engine and cases fill about half the frame, give the apron texture, joints and long first light shadows toward the camera, push the cases to true dusk gold with metal latches and edge wear."
+  ],
+  "verdict": "rework",
+  "render_sha256": "16129a9204ddfa5b29b3e0f847e26804a7ed23eb93e85fd1d8ce9c260d2838d8"
+ },
+ {
+  "slide": 3,
+  "score": 5.5,
+  "points": {
+   "only_this_sentence": 4,
+   "one_idea": 8,
+   "composed": 6,
+   "crafted": 6,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "Point 1 fails: a 3D waffle chart. Make the tray this deck flight record: a machined record cassette with a stamped plate (no mark), a data connector edge and a cable port. Show the 63 empty sockets as the damaged record (scorched, fractured, broken trace fragments), and the 37 gold blocks as restored segments engraved with a continuous flight data trace running across them.",
+   "Materials and seat: the tray reads as blue acrylic, the gold reads salmon, drop the hard dark blue wash band behind the type, bring the tray up and left to fill more of the frame and crop its far corner off the right edge. The count is correct."
+  ],
+  "verdict": "rebuild",
+  "render_sha256": "477e7fa996e4262fda123ab9a373f6d728c41fb319320922f0c492eef0daead8"
+ },
+ {
+  "slide": 2,
+  "score": 7.2,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "Ground the tape lower run on the sweep with contact shadows, lifting only near the recorder. Replace the iridescent blobs with clean punched holes the key shines through throwing bright spots, plus two or three cells with charred brown edges. Fix the compressed middle run (y 1060 to 1150) where cells alias into slashes.",
+   "Give the recorder detail: a feed slot with lip and rollers where the tape exits, a bevelled faceplate with screws and a connector, edge wear on the fins, tint the black face toward indigo."
+  ],
+  "verdict": "rework",
+  "render_sha256": "6cb4a69cc24014fa997cc499837ed2c84dd45e49ee361064e0a30ac844be3438"
+ },
+ {
+  "slide": 8,
+  "score": 6.9,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Raise Lubbock and Tarrant two to three times higher with bevelled rims and matching stone grain, rake the key low so counties, the route channel and the rivets throw long indigo shadows, seat each rivet in a countersunk collar.",
+   "Fix the bottom third: the footer wash greys the caliche and the south is cropped behind it. Lift the map to fill the empty blue above the Panhandle with the whole state, or crop tighter on the Lubbock to Fort Worth band so route, bosses and rivets are the hero."
+  ],
+  "verdict": "rework",
+  "render_sha256": "ac4aaf158dfa6789183e65efd09ed4918bd25ba1c21eccd6c4bef8ab8e6c6b35"
+ },
+ {
+  "slide": 5,
+  "score": 5.5,
+  "points": {
+   "only_this_sentence": 4,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "Concept: a ruler with a clip could sit on any story. Rebuild so the 480 mark is a forecast against something running: an aluminium hour rule bolted to the titanium engine stand or case, a heat tinted hours run slider stopping well short, the gold tab clipped ahead at the 480 tick so the space between reads as hours still to come. The machine material code must appear.",
+   "Craft: the stainless reads as blue plastic (chamfer, anisotropic brushing, indigo bevel reflection), polish and weather the brass stop with a contact shadow, move the 480 hour phase pill off the tab and away from the counter."
+  ],
+  "verdict": "rebuild",
+  "render_sha256": "8fb857172fc0db3391b073d761b05d5a1e64a5dc5db2986f937f880347e388a5"
+ },
+ {
+  "slide": 6,
+  "score": 5.8,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 5,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 7
+  },
+  "fixes": [
+   "Make the flagged blade the subject: push the camera in and down so its leading edge runs diagonally through the middle third, the gold strip about three times thicker with a soft emissive bloom, a fine gold hairline root to tip with tick marks so tracks life becomes visible, other blades falling to indigo and soft focus.",
+   "Rebuild or crop out the hub and roots (flat orange zigzag roots, bare hex bolts, a blue void bore, moire hex casing). Drop the camera so the disc face and bore leave the frame, set the footer over calm indigo shadow, give the blades the straw to peacock heat tint and visible twist."
+  ],
+  "verdict": "rework",
+  "render_sha256": "be09abcc9ac946a8e4cd108fe962fbfe9dfa06e7a62368401b8f63379d41c8f4"
+ },
+ {
+  "slide": 8,
+  "score": 7.4,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Rivets need machined brass collar rings seated below the surface with dark contact rings and highlights; Tarrant needs warm cream limestone with fossil pitting and a chamfered edge, it reads as a blank pale tile.",
+   "The plate reads as a flat floor of square tiles: show the plate milled outer edge and thickness, cut county grooves deeper so they hold shadow, the route groove milled into stone."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "065b7c700c056c32068a9aece33f59e69ac729884712b40ccc8dd709a8011f6b"
+ },
+ {
+  "slide": 2,
+  "score": 7.5,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "Soften the stair-stepped aliased shadows (higher shadow map or PCSS); make burnt cells read as char bleeding into the polymer, not black chips; let two or three holes throw bright spots on the floor.",
+   "The feed slot never arrived: cut a slot with lip and rollers and run the tape out of it; replace the blank white label with a debossed bevelled plate; edge wear and uneven brushing on fins."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "ab2a015fa81810e4bde7abdee99bb3b8b698bb22c02b18c0453b8ebb8e492523"
+ },
+ {
+  "slide": 6,
+  "score": 6.5,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Blades read as smooth cones or shark fins: rebuild as thin cambered twisted airfoils with a sharp lit leading edge, straw to peacock tint on the flagged blade and neighbours, the gold inlaid along the leading edge following the curve, ticks as fine engraved notches.",
+   "Replace the blocky hex tiles under the footer with a platform ring or crop them out; remove the random rectangular pits on the casing wall."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "515e826523147d6ea91c84376bdb38c546172f676a7c3aa782a3cecd9d508515"
+ },
+ {
+  "slide": 4,
+  "score": 7.1,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Bars fill only a third of the height: camera lower and closer so bars and ghosts fill the top half to 55 percent; replace the coarse white speck granite with fine polished cerulean granite reflecting the bars.",
+   "Chips are specks: scale helical chips 3 to 4 times as bright curled ribbons with contact shadows; give the ghosts real glass thickness, bevelled edges, refraction and a faint caustic."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "278dbec2c4e76b78cf283ebd15b049628e44aff62a3b3ef0256d58457b9654e5"
+ },
+ {
+  "slide": 9,
+  "score": 7.0,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 8,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "The engine reads as an empty open drum: give it a front frame with struts, an inlet bullet or compressor face, and leads entering at instrumentation bosses and thermocouple rakes.",
+   "Break up the flat electric blue corrugated wall; long first light shadows from cases and stand across a textured apron with joints; cases true dusk gold with scuffed edges."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "3f57a4d2ce03ab254055759c1786f5860f1fcbdaa4051946913aa85f535d0510"
+ },
+ {
+  "slide": 1,
+  "score": 5.8,
+  "points": {
+   "only_this_sentence": 5,
+   "one_idea": 7,
+   "composed": 5,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Point 1 still fails: set the two dusk gold cased tools on the stand beam or a cart in front of the engine at about a quarter of the frame, the tag on a cable tie to the flagged turbine flange.",
+   "Stand legs and a foot plate run through the headline: shorten the stand or raise the camera so every foot lands above the headline band; satin chamfered legs and welded gussets; break the compressor ribs with a split line and a fuel manifold."
+  ],
+  "verdict": "rebuild",
+  "round": 2,
+  "render_sha256": "4ecefa13dabd6163d93f178795c78aa2d5c8c0e0b054efb70b42211de11d275e"
+ },
+ {
+  "slide": 5,
+  "score": 6.6,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "The case reads as a riveted blue duct: show one engine feature (a split flange or the heat tinted hot section) and put the heat tint right under the tab.",
+   "Rule still a flat pale bar: chamfered bevels with specular lines and lengthwise brushing; case bead blasted titanium grey violet not glossy blue; pill further from the counter."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "eeffad0db8c72b0c99627bd7af77f3c78af6b11d10e7362bd9a90fa8694d2811"
+ },
+ {
+  "slide": 3,
+  "score": 6.5,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 8,
+   "composed": 6,
+   "crafted": 6,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "Make the restoration the subject: one heavy continuous engraved trace across all 37 blocks in fill order, stopping short in the first empty socket.",
+   "Tray reads as lavender plastic and gold as flat salmon: anisotropic aluminium with chamfer highlights, polished gold with a warm rim; camera in about 20 percent, tray up and left, gold corner breaking the left edge, far corner bleeding off right."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "fa38f22536d3fc41b02b002fa46d68348c7f94340142c858454c29de706d9215"
+ },
+ {
+  "slide": 9,
+  "score": 7.4,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Long hard violet dawn shadows of cases and stand across a textured apron; break up the flat blue wall with a light gradient, ribs and grime; cases back to true dusk gold with sheen and scuffs.",
+   "Leads into visible instrument bosses, run back to a small instrument cart or a loom along the stand, lead ends seated with contact shadows."
+  ],
+  "verdict": "rework",
+  "round": 3,
+  "render_sha256": "8d114c19a8df3a286e0e688da658889ca93704ba48bcc45fedb7f05b146982df"
+ },
+ {
+  "slide": 7,
+  "score": 6.0,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 6,
+   "composed": 6,
+   "crafted": 5,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "The gold flag almost disappeared and the blade reads as a steel ruler: a real twisted titanium airfoil with one clear dusk gold band, a gloved hand cropped at the wrist holding the scope or loupe, camera closer so blade and tool fill a third of the frame.",
+   "Gloves still flat slabs; the wall behind the type one flat ultramarine plane: panel seams, ribs and a light gradient, shift toward cerulean and ice blue with indigo only in shadows."
+  ],
+  "verdict": "rework",
+  "round": 2,
+  "render_sha256": "15aa0a324ea82650b7fe7515e847f99fd11e9f214a68e41887b1af00b10183cb"
+ },
+ {
+  "slide": 1,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 6,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 8
+  },
+  "fixes": [
+   "Cases read as toolboxes parked by a stand: strap them to a small pallet or cart, latched, each with its own gold tag, the engine tag on a cable tie in the same gold.",
+   "The front case sits on the near stand leg: bring both forward and right onto open floor with contact shadows; chamfered stand edges and welded gussets; tag thickness and grommet; case hinges and latches."
+  ],
+  "verdict": "rework",
+  "round": 3,
+  "render_sha256": "93b3c8a703c61dabc42a4ed42be1de0125699fddab4c2d64629d8126b2e220c1"
+ },
+ {
+  "slide": 3,
+  "score": 7.0,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "The trace is a near black wavy tube reading as a stray wire: re-material as polished gold, machined runs, seated in a channel with a contact shadow, frayed end in socket 38.",
+   "Cubes still flat matte orange: polished goldMat with warm rims and contact shadows; quiet the empty sockets, few shards near the gold, the rest clean indigo floors."
+  ],
+  "verdict": "rework",
+  "round": 3,
+  "render_sha256": "3093cb3fde8bb12eef8b15ad8be91e1cd71a8fbed4f679837cf8ecef58295e65"
+ },
+ {
+  "slide": 1,
+  "score": 7.0,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Open the access panel on the first compressor stage and fill the inlet with a real first-stage blade row behind the spinner.",
+   "Stand legs as chamfered tube with welds, gussets and casters; gold cases as moulded ribbed shells with recessed latches, seated with their own contact shadow."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "7ac7d2a2dec0455324f34b7d173f035b6a5ce1040864d00e3063a6287fb0e058"
+ },
+ {
+  "slide": 2,
+  "score": 7.6,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 7,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Tape back face renders peach and reads as the accent; make it the same cool white two-sided material.",
+   "Corrupted cells read as smudges; make a crisp heat-tinted burn on 3 or 4 cells and push the camera in so the loop fills the empty top band."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "a8df277df92c531a7927d53caeb530bd49af6af08b1e6f100d9b5936b261af07"
+ },
+ {
+  "slide": 3,
+  "score": 7.0,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Sink the gold trace into a machined groove on the block tops, straight passes, no dark outline.",
+   "Polish cubes to goldMat with warm chamfer rims and contact shadows; clear most empty sockets of shards and squiggles."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "14856d2b91e299ec7cbba34f1a44a82824d268cc05c8585381185e7d6f617968"
+ },
+ {
+  "slide": 4,
+  "score": 6.4,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 6
+  },
+  "fixes": [
+   "Back bar shows through the front ghost so 27 reads near 70; frost the ghosts or separate the rows.",
+   "Build real vise jaws on a granite plate with contact shadows, seat the chips, add a shop window key."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "f7e7ec04a96da18078f13c03d51af835c61988d0986c6839701e8f25594b5946"
+ },
+ {
+  "slide": 5,
+  "score": 7.8,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 8,
+   "honest": 9
+  },
+  "fixes": [
+   "Violet and orange smear near the gold tab reads as a render stain; band it at the panel seams or remove it.",
+   "Give the casing one part that says engine and light it a step darker so the rule separates at 432 px."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "e42a2107fcfae2353fbaa74aeb8ae3acdee088450e78c3080531b92e17a55dc2"
+ },
+ {
+  "slide": 6,
+  "score": 6.6,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 7,
+   "honest": 7
+  },
+  "fixes": [
+   "Rebuild the flagged blade and neighbours as twisted cambered airfoils with one fine cooling-hole row and a clean heat tint.",
+   "Inlay the gold as a flush hairline on the leading edge; texture or crop the flat blue hub plane."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "8f0316febdb0492efb9a3e6ba752a5768ba9e6ea8a135e0605843923a0f014a5"
+ },
+ {
+  "slide": 7,
+  "score": 5.6,
+  "points": {
+   "only_this_sentence": 5,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "No person in the picture; add one gloved hand holding the borescope against the flagged blade.",
+   "Blade is a flat slab with a hot spot; gold should sit clearly on a tag; break up the flat blue flood across tray, bench and wall."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "4955af4d92a229ab2470fe45019df58f0d7cd57fbdca09d1bdc9d43ca975716f"
+ },
+ {
+  "slide": 8,
+  "score": 7.2,
+  "points": {
+   "only_this_sentence": 8,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Raise the county bosses as bevelled stone and stop grooves at their footprints; domed brass rivets.",
+   "Tilt the camera 20 to 30 degrees with a lower key for long shadows; finish the plate's bottom edge; re-tint label pills indigo."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "c57d04fb3e887c073ab08eaba99eb03915902bc2776afac9ceab79ffebcd1e49"
+ },
+ {
+  "slide": 9,
+  "score": 7.2,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 8,
+   "crafted": 7,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "Close repeats the cover's cast; drop to apron height, engine back in shade, cases forward in the sunlit wedge, flight line markings outside.",
+   "Give the hangar wall seams and light variation; clear door slats from behind the kicker."
+  ],
+  "verdict": "rework",
+  "round": 4,
+  "render_sha256": "0e22d46cb9b8edcd5b77cf354009c58b61e7299c1184c7df768a3fee7c4cd418"
+ },
+ {
+  "slide": 1,
+  "score": 7.2,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 8,
+   "honest": 8
+  },
+  "fixes": [
+   "Stand legs flat violet square tube with no casters; give painted steel, chamfers, casters with contact shadows; give the tag thickness and an eyelet.",
+   "Lower and push the camera; pull the cases left and forward onto one floor plane with scuffed polymer and crisp parting lines."
+  ],
+  "verdict": "rework",
+  "round": 5,
+  "render_sha256": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac"
+ },
+ {
+  "slide": 4,
+  "score": 6.6,
+  "points": {
+   "only_this_sentence": 7,
+   "one_idea": 6,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 6,
+   "honest": 9
+  },
+  "fixes": [
+   "Ghosts read as opaque glowing blocks and the vises as cabs, so the pair reads as two semi trucks; give real transmission and a cast iron vise.",
+   "Upper left is a dead slab; drop to bench height along the bars and build the shop behind."
+  ],
+  "verdict": "rework",
+  "round": 5,
+  "render_sha256": "6538eba56d66739de72cff484a3278429129bc407c62752ed4b18fec2e63cc75"
+ },
+ {
+  "slide": 5,
+  "score": 6.0,
+  "points": {
+   "only_this_sentence": 5,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 7,
+   "unlike_neighbours": 7,
+   "honest": 9
+  },
+  "fixes": [
+   "Bare ruler on a mat could sit on any hours story; bolt it to an engine case flange so it says engine.",
+   "Tab reads salmon copper; saturate it with a hard specular edge; fill the empty upper right."
+  ],
+  "verdict": "rework",
+  "round": 5,
+  "render_sha256": "f16ee484e75edb38c0e3db103bb03d4d338e380cc4204159cbca4934ba9b19af"
+ },
+ {
+  "slide": 6,
+  "score": 6.6,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 7,
+   "composed": 7,
+   "crafted": 6,
+   "unlike_neighbours": 7,
+   "honest": 7
+  },
+  "fixes": [
+   "Blades are flat planks with a pegboard of holes and no roots or disc; twist and camber them on fir tree roots, gold graduations that stop partway.",
+   "Dek runs over blade tips and the gold strip; lower the camera so tips drop below the dek."
+  ],
+  "verdict": "rework",
+  "round": 5,
+  "render_sha256": "a686e0a973c0799a75996c586d9b7c2896f90fc92e2a400e57137989b610a97a"
+ },
+ {
+  "slide": 7,
+  "score": 6.2,
+  "points": {
+   "only_this_sentence": 6,
+   "one_idea": 8,
+   "composed": 7,
+   "crafted": 5,
+   "unlike_neighbours": 6,
+   "honest": 8
+  },
+  "fixes": [
+   "Hand does not grip the probe and reads as a mannequin; wrap fingers on the probe, real fir tree root, cambered airfoil.",
+   "Back half an empty blue void; build the hangar bay and pull away from frame 6's blade macro."
+  ],
+  "verdict": "rework",
+  "round": 5,
+  "render_sha256": "5cdbc6c237d02c56746ea313bf97fb37c268b8a40ed8a7beb081de1d46e223d1"
+ }
+]

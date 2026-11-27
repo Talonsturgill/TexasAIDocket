@@ -1,0 +1,195 @@
+<!doctype html>
+<!-- 2026-11-26, frame 8 of 9, LUBBOCK TO FORT WORTH (c1 c12 c20 c11 c18). BESPOKE. A TXBENCH material relief in plan under
+     the chassis key: Texas machined from warm caliche stone and set proud of a cerulean anodised field, every county a
+     hairline groove from assets/geo/tx-counties.topo.json, Lubbock County standing as a South Plains red boss and Tarrant
+     County as a pale limestone boss, joined by one milled channel that carries domed brass rivets, one per year of the
+     partnership (FIG.partner_years). The type sits in the open field over the Red River, east of the Panhandle. No gold. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:516px; top:146px; width:484px; text-align:left">Lubbock to Fort Worth since 2019</h1>
+<p class="dek" data-follow="22" style="left:518px; width:482px; font-size:26px; line-height:1.34">Texas Tech's institute in Lubbock and AVX Defense Technologies of Fort Worth have partnered since 2019. More than 18 students worked on the effort. Students also finished three capstone projects.</p>
+<div class="lab plain" id="lab-lub">Lubbock</div>
+<div class="lab plain" id="lab-ftw">Fort Worth</div>
+<script>window.FIG = {"partner_years": 7};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script>
+window.renderReady = (async () => {
+  /* HONEST. The one figure is FIG.partner_years. The rivets in the route channel are counted from it below and the count
+   * is checked against the drawn rivets. County shapes are the committed TopoJSON, projected on the site's Albers fit.
+   * Nothing else on the plate stands for a number. */
+  const YEARS = window.FIG.partner_years;
+  if (!Number.isInteger(YEARS) || YEARS < 1) throw new Error("FIG.partner_years must be a positive integer, got " + YEARS);
+
+  const cx = await CH.bootFlat({ kicker: "Since 2019", counter: "08 / 09", src: "c1 c12 c20 c11 c18", fit: { min: 62, max: 84, maxLines: 3 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 8);
+  const L = TXLOOK.lin, F = (x, y, n) => TX.fbm2(x, y, { octaves: n || 3 });
+  const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const DW = 2160, DH = 2700, S = 2;
+
+  /* THE MAP. The site's own projection, fitted to the full state first, then zoomed so the two places sit where the
+   * composition wants them (the trap in txgeo.js's header). */
+  const topo = await new Promise((ok, no) => { const x = new XMLHttpRequest(); x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json"); x.onload = () => { try { ok(JSON.parse(x.responseText)); } catch (e) { no(e); } }; x.onerror = () => no(new Error("topojson did not load")); x.send(); });
+  if (!topo || !topo.objects) throw new Error("the county topojson did not load, so no map may be drawn");
+  const counties = TXGeo.counties(topo), state = TXGeo.outline(topo), borders = TXGeo.borders(topo);
+  if (counties.features.length !== 254) throw new Error("expected 254 counties, got " + counties.features.length);
+  const lubF = counties.features.find(f => String(f.id) === "48303"), tarF = counties.features.find(f => String(f.id) === "48439");
+  if (!lubF || !tarF || lubF.properties.name !== "Lubbock" || tarF.properties.name !== "Tarrant") throw new Error("Lubbock or Tarrant missing from the TopoJSON");
+  const proj = TXGeo.texasProjection(state, [[0, 0], [1080, 1350]]);
+  const mid = [(d3.geoCentroid(lubF)[0] + d3.geoCentroid(tarF)[0]) / 2, (d3.geoCentroid(lubF)[1] + d3.geoCentroid(tarF)[1]) / 2];
+  TXGeo.zoomTo(proj, state, mid, [560, 880], 1.9);
+  const LUB = proj(d3.geoCentroid(lubF)), TAR = proj(d3.geoCentroid(tarF));
+  console.error("slide-08 Lubbock " + LUB.map(v => v.toFixed(0)) + " Tarrant " + TAR.map(v => v.toFixed(0)));
+
+  /* masks at device resolution, read back as 0..1 */
+  function mask(draw, blur) {
+    const c = document.createElement("canvas"); c.width = DW; c.height = DH;
+    const g = c.getContext("2d"); g.setTransform(S, 0, 0, S, 0, 0);
+    if (blur) g.filter = "blur(" + blur + "px)";
+    g.fillStyle = "#fff"; g.strokeStyle = "#fff"; draw(g, d3.geoPath(proj, g));
+    const d = g.getImageData(0, 0, DW, DH).data, out = new Float32Array(DW * DH);
+    for (let i = 0; i < out.length; i++) out[i] = d[i * 4] / 255;
+    return out;
+  }
+  const fillOf = f => (g, p) => { g.beginPath(); p(f); g.fill(); };
+  /* THE CUT. The plate is a band of Texas sawn off square below Tarrant, so the footer sits on the blue field and the
+   * route is the hero; the sawn face is bevelled like the coast. */
+  const CUT = 1172;
+  const sawn = f => (g, p) => { g.beginPath(); p(f); g.fill(); g.globalCompositeOperation = "destination-out"; g.fillRect(-10, CUT, 1100, 400); g.globalCompositeOperation = "source-over"; };
+  const mState = mask(sawn(state), 0), mStateB = mask(sawn(state), 5);
+  const mGroove = mask((g, p) => { g.lineWidth = 1.7; g.lineJoin = "round"; g.beginPath(); p(borders); g.stroke(); }, 0.7);
+  const mLub = mask(fillOf(lubF), 0), mLubB = mask(fillOf(lubF), 9);
+  const mTar = mask(fillOf(tarF), 0), mTarB = mask(fillOf(tarF), 9);
+  const idx = (X, Y) => Math.max(0, Math.min(DH - 1, Math.floor(Y * S))) * DW + Math.max(0, Math.min(DW - 1, Math.floor(X * S)));
+
+  /* THE ROUTE. A milled channel from boss to boss; the rivets ride its floor at an even pitch, one per partner year. */
+  const vx = TAR[0] - LUB[0], vy = TAR[1] - LUB[1], RL = Math.hypot(vx, vy), ux = vx / RL, uy = vy / RL;
+  const CH_HW = 21, CH_D = 8, RIV_R = 13, RIV_H = 15, COL_R = 18.5;
+  /* the channel's run is from where it leaves Lubbock's boss to where it meets Tarrant's */
+  const edgeT = (m, from, dir) => { for (let t = 0; t < RL; t += 0.5) { const X = from[0] + dir * ux * t, Y = from[1] + dir * uy * t; if (m[idx(X, Y)] < 0.5) return t; } return 0; };
+  const tLeave = edgeT(mLub, LUB, 1), tArrive = RL - edgeT(mTar, TAR, -1);
+  const t0 = tLeave + 40, t1 = tArrive - 40, rivets = [];
+  for (let k = 0; k < YEARS; k++) { const t = YEARS === 1 ? (t0 + t1) / 2 : t0 + (t1 - t0) * k / (YEARS - 1); rivets.push([LUB[0] + ux * t, LUB[1] + uy * t]); }
+  if (rivets.length !== YEARS) throw new Error("rivets drawn " + rivets.length + " differ from FIG.partner_years " + YEARS);
+  const pitch = (t1 - t0) / Math.max(1, YEARS - 1);
+  if (pitch < COL_R * 2 + 8) throw new Error("rivets would touch, pitch " + pitch.toFixed(1));
+
+  /* where the labels and the type sit, so no art detail fights them */
+  const labLub = document.getElementById("lab-lub"), labFtw = document.getElementById("lab-ftw");
+  labLub.style.left = Math.max(70, LUB[0] - 110) + "px"; labLub.style.top = (LUB[1] + 80) + "px";
+  labFtw.style.left = Math.min(1000 - 272, TAR[0] - 150) + "px"; labFtw.style.top = (TAR[1] + 84) + "px";
+
+  /* the grooves are knocked out behind each label so no county line strikes through a word */
+  const LABS = [labLub, labFtw].map(e => { const r = e.getBoundingClientRect(); return [r.left - 8, r.top - 8, r.right + 8, r.bottom + 8]; });
+  const underLab = (X, Y) => LABS.some(b => X > b[0] && X < b[2] && Y > b[1] && Y < b[3]);
+  const FOOT_Y = 1214;
+  let lastK = -1, lastG = null;
+  function geo(X, Y) {
+    const k = idx(X, Y); if (k === lastK) return lastG; lastK = k;
+    const st = mState[k], sb = mStateB[k];
+    /* the field: cerulean anodised plate, bead blasted, with a faint milling sweep */
+    let h = 0.05 * F(X / 1.4, Y / 1.4, 1) + 0.12 * F(X / 160, Y / 160, 2);
+    let m = 0;
+    if (sb > 0.02) {
+      /* the state slab: a rounded bevel off the blurred mask, then the caliche: grain, mottle and a few pits */
+      const lift = 26 * smooth(0.04, 0.96, sb);
+      if (sb < 0.93 && sb > 0.05) m = 8;
+      h += lift;
+      if (st > 0.5) {
+        m = 1;
+        h += 0.22 * F(X / 2.2, Y / 2.2, 1) + 0.3 * F(X / 26, Y / 26, 2) + 0.9 * F(X / 140 + 3, Y / 140, 2);
+        const pit = F(X / 5 + 11, Y / 5, 1); if (pit > 0.72) h -= (pit - 0.72) * 4;
+        const gv = mGroove[k]; if (gv > 0.02 && !underLab(X, Y)) { h -= 4.2 * Math.min(1, gv * 1.4); if (gv > 0.3) m = 2; }
+        const lb = mLubB[k], tb = mTarB[k];
+        if (lb > 0.04) { h += 42 * smooth(0.06, 0.94, lb); if (mLub[k] > 0.5 || lb > 0.45) m = 3; h += (0.35 * F(X / 2.4, Y / 3.4 + 7, 1) + 0.6 * F(X / 18, Y / 18, 2)) * lb; }
+        if (tb > 0.04) { h += 42 * smooth(0.06, 0.94, tb); if (mTar[k] > 0.5 || tb > 0.45) m = 4; h += (0.12 * F(X / 2.6 + 5, Y / 2.6, 1) + 0.25 * F(X / 40, Y / 40, 2)) * tb; if (tb > 0.9) { const pit = F(X / 3.2 + 31, Y / 3.2, 2); if (pit > 0.5) h -= Math.min(2.2, (pit - 0.5) * 9); } }
+      } else m = 8;
+    }
+    /* the channel: a ball end mill's round floor, cut from centroid to centroid */
+    const dx = X - LUB[0], dy = Y - LUB[1], t = dx * ux + dy * uy;
+    if (t > tLeave - 4 && t < tArrive + 4 && mLubB[k] < 0.12 && mTarB[k] < 0.12) {
+      const tc = Math.max(tLeave + 6, Math.min(tArrive - 6, t)), d = Math.hypot(X - (LUB[0] + ux * tc), Y - (LUB[1] + uy * tc));
+      if (d < CH_HW) {
+        const surf = h, floor = surf - CH_D * smooth(CH_HW, CH_HW - 5, d);
+        /* tool marks: fine arcs across the floor */
+        h = floor + 0.12 * Math.sin((t + 0.3 * d * d / CH_HW) * 1.9) + 0.05 * F(X / 1.2, Y / 1.2, 1);
+        m = d > CH_HW - 1.6 ? m : 6;
+        for (let r = 0; r < rivets.length; r++) {
+          const rr = Math.hypot(X - rivets[r][0], Y - rivets[r][1]);
+          /* the countersunk collar: a machined cone sunk into the channel floor round each head */
+          if (rr >= RIV_R && rr < RIV_R + 1.8) return (lastG = [surf - CH_D - 3.2, 9]);   /* the dark contact ring under the head */
+          if (rr >= RIV_R + 1.8 && rr < COL_R) { const base = surf - CH_D, e = Math.min(rr - RIV_R - 1.8, COL_R - rr);
+            return (lastG = [base + 1.6 * smooth(0, 1.4, e) + 0.03 * F(X / 0.7, Y / 0.7, 1), 7]); }   /* the machined brass collar, below the plate face */
+          if (rr < RIV_R) {
+            const base = surf - CH_D - 2.4, q = 1 - (rr / RIV_R) * (rr / RIV_R);
+            /* a universal head, its crown worn flat and scuffed */
+            let rh = base + Math.min(RIV_H * Math.pow(q, 0.55), RIV_H - 1.1 - 0.4 * Math.sin(r * 2.1));
+            rh += 0.06 * F(X / 0.9 + r * 9, Y / 0.9, 1);
+            return (lastG = [rh, 5]);
+          }
+        }
+      }
+    }
+    return (lastG = [h, m]);
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+
+  const FIELD_T = L("#1f6ad6"), FIELD_B = L("#2f8fe8"), CAL = L("#f1cf98"), CAL2 = L("#e6bb80"), RED = L("#c2412b"), RED2 = L("#9e2f22"),
+    LIME = L("#fff8e6"), LIME2 = L("#f4e6c6"), BRASS = L("#dcdcbc"), BRASS2 = L("#7c8170"), MILL = L("#c9ad7c");
+  const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const sc3 = (c, k) => [c[0] * k, c[1] * k, c[2] * k];
+  function albedo(X, Y, m) {
+    if (m === 0) { const c = mixc(FIELD_T, FIELD_B, smooth(0, 1350, Y)); return sc3(c, 0.94 + 0.05 * F(X / 1.6, Y / 1.6, 1) + 0.04 * F(X / 300, Y / 90, 2)); }
+    if (m === 1 || m === 2) {
+      const mot = F(X / 90 + 2, Y / 90, 3), c = mixc(CAL, CAL2, smooth(-0.8, 0.9, 0.6 * mot + 0.6 * F(X / 420, Y / 420, 2)));
+      return sc3(c, (m === 2 ? 0.8 : 1) * (0.93 + 0.06 * F(X / 1.8, Y / 1.8, 1)));
+    }
+    if (m === 3) return sc3(mixc(RED, RED2, smooth(-0.5, 0.7, F(X / 30, Y / 30, 3))), 0.94 + 0.08 * F(X / 2, Y / 2, 1));
+    if (m === 4) { const pit = F(X / 3.2 + 31, Y / 3.2, 2); return sc3(mixc(LIME, LIME2, smooth(-0.5, 0.8, F(X / 22 + 4, Y / 22, 3))), (pit > 0.5 ? 0.62 : 1) * (0.95 + 0.06 * F(X / 1.7, Y / 1.7, 1))); }
+    if (m === 9) return sc3(L("#2a1e78"), 0.5);
+    if (m === 8) return sc3(mixc(CAL, CAL2, 0.5), 1.04);
+    if (m === 5) { /* brass: the crown polished bright by wear, the shoulders darkened */
+      let best = 1e9; for (const r of rivets) best = Math.min(best, Math.hypot(X - r[0], Y - r[1]));
+      return sc3(mixc(BRASS, BRASS2, smooth(0.45, 1, best / RIV_R)), 0.95 + 0.05 * F(X / 0.8, Y / 0.8, 1)); }
+    if (m === 7) return sc3(mixc(BRASS, BRASS2, 0.45), 0.92 + 0.08 * F(X / 0.8, Y / 0.8, 1));
+    if (m === 6) return sc3(MILL, 0.86 + 0.06 * F(X / 1.3, Y / 1.3, 1));
+    return CAL;
+  }
+
+  const RLt = TXLOOK.reliefLight();
+  TXBENCH.relief(cx, { ...RLt, keyColor: L("#fff4e4", 1.15), ambColor: L(TXLOOK.mix("#6f8cff", "#ffffff", 0.3), 1.0),
+    x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 0: [0.25, 22], 1: [0.03, 6], 2: [0.02, 6], 3: [0.08, 14], 4: [0.16, 18], 5: [1.3, 60], 6: [0.35, 30], 7: [1.1, 50], 8: [0.12, 12], 9: [0, 1] },
+    ambient: 0.5, diffuse: 1.2, ao: 0.85, aoRadius: 12, shadow: 0.8, softness: 3, castLength: 320, dither: true, visBlur: 2, visSharp: [5, 7, 9] });
+
+  /* no dusk gold on this frame: the brass must stay yellow, never the accent's peach */
+  { const img = cx.getImageData(0, 0, DW, DH).data; let n = 0;
+    for (let i = 0; i < img.length; i += 16) { const r = img[i], g = img[i + 1], b = img[i + 2];
+      if (Math.abs(r - 0xe0) < 18 && Math.abs(g - 0x95) < 18 && Math.abs(b - 0x6a) < 18) n++; }
+    const frac = n / (img.length / 16); console.error("slide-08 accent-like fraction " + frac.toFixed(4)); }
+
+  CH.seat(cx, { a: 0.42, fade: 130 });
+  TXLOOK.footWash(cx, { tone: "explainer", height: 170, a: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

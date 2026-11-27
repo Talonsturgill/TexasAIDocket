@@ -1,0 +1,289 @@
+<!doctype html>
+<!-- 2026-11-26, frame 6 of 9, THE ONE BLADE, the deck's showstopper. BESPOKE, LOOK V2, tone explainer. A macro spatial render
+through txthree.js. The chassis blisk, refined in this frame (cambered, twisted, leaned airfoils with heat tint from straw at the
+root to peacock blue at the tip, fir tree roots standing proud of the disc rim, platforms, a bolted hub), sits inside the back
+half of an illustrative engine case with an abradable shroud and a bolted flange. The camera stands over the hub and looks out
+across the far half of the ring, so the blades arc across the frame and grow toward both edges. A raking white key from the
+left catches every leading edge. One blade, and only one, carries a thin dusk gold line on its leading edge: what the
+software puts out. Drawn to no maker's design. No insignia, no maker's mark, no legible text. Headline and dek top left over
+the indigo case wall, which the arc of blades leaves quiet. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:92px; top:150px; width:896px; text-align:left">Texas Tech says one tool tracks engine life</h1>
+<p class="dek" data-follow="22" style="left:94px; width:860px">Texas Tech says the Propulsion System Validator tracks the remaining useful life of aircraft engines on its own. It recommends maintenance tied to the aviation technical manual.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Engine life", counter: "06 / 09", src: "c7 c8", fit: { min: 72, max: 92, maxLines: 2 } });
+
+  /* THE FIGURES. This frame draws no count, length or share that stands for a figure. FIG is empty and must stay so.
+   * The blade count, bolt count and flange holes are drawing, not data. Exactly one blade is flagged. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 6 draws no figure, so FIG must be empty');
+
+  const R = CH.stage(TXT, gl, W, { fov: 34, fog: 0, exposure: 1.0, near: 0.005, far: 30 });
+
+  /* THE ROOM for the environment: an explainer sweep in deep cerulean and indigo, so every polished face reflects colour.
+   * The case below hides it; it lights the metal. */
+  TXT.studio(R, Object.assign(CH.studioOpts(), { w: 4, d: 3, h: 2, radius: 0.4, y: -0.4, floor: 0x3b3fb8, wall: 0x1f4fb0, top: 0x16307e, softbox: 6, env: 0.62, hemi: 0.22 }));
+
+  /* THE DISC: the chassis blisk, 31 blades, one flagged. */
+  const NB = 31, DIA = 0.38;
+  /* the flagged blade points away from the camera, toward the far side of the case, and the camera stands over the hub
+   * looking out along it, so its leading edge runs diagonally up through the middle third and the hub drops out below */
+  const FLAG = 15, FA = FLAG / NB * Math.PI * 2, FD = [-Math.sin(FA), Math.cos(FA)];
+  const FMID = [FD[0] * 0.19, 0.012, FD[1] * 0.19];
+  /* REPAIR r1: the camera rises over the near blades and looks steeply down and out along the flagged blade, a little to its
+   * side, so the blade row fills the frame from the foot to behind the dek, the flagged tip lands under the headline, the hub
+   * and its roots fall out below the frame, and the shroud and case wall curve round the top in indigo shade. */
+  const SD = [FD[1], -FD[0]];
+  /* REPAIR r2: pulled back and up, behind the hub on the near side, looking down 60 degrees at the flagged tip. The tips land
+   * at mid frame, the platform rim and the hub land arc the foot as an engine stage, and the plain case wall fills the top
+   * 40 percent for the type. A small side step leans the fan. */
+  const FROM = [-FD[0] * 0.028 + SD[0] * 0.045, 0.48, -FD[1] * 0.028 + SD[1] * 0.045];
+  const LOOKAT = [FD[0] * 0.25, -0.03, FD[1] * 0.25];
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOKAT });
+  /* the flagged blade is the one whose tip lands nearest the frame's focal point, chosen once from the camera */
+  const disc = K.make('blisk', { blades: NB, diameter: DIA, flag: FLAG });
+  const rh = DIA / 2 * 0.58, Rt = 0.25, span = Rt - rh, HH = 0.045;   /* the refined blades run out past the chassis tips, to 0.25 m */
+
+  /* REFINE THE BLADE. A cambered NACA style section, thick at the root and thin at the tip, chord tapering, staggered by a
+   * twist that grows toward the tip, leaned a little along the rotation. Leading edge at +u, which the twist lifts toward +y,
+   * the side the camera and the key see. Span on +z, in the chassis blade's own frame. */
+  const NS = 40, NC = 40;
+  const tintStops = [[0, 0xf4d58c], [0.2, 0xe0a456], [0.4, 0xb8693e], [0.56, 0x9a4f8e], [0.74, 0x5a5cc8], [0.88, 0x2a8ed8], [1, 0x3fc2e0]];
+  const tint = (f) => { for (let i = 1; i < tintStops.length; i++) if (f <= tintStops[i][0]) { const a = tintStops[i - 1], b = tintStops[i], t = (f - a[0]) / (b[0] - a[0]); return new THREE.Color(a[1]).lerp(new THREE.Color(b[1]), t); } return new THREE.Color(tintStops[tintStops.length - 1][1]); };
+  const section = (f) => {
+    const c = 0.054 - 0.010 * f, th = 0.065 - 0.02 * f, cam = 0.085 - 0.04 * f, tw = 0.95 - 0.70 * f, lean = 0.006 * f * f;
+    const pts = [];
+    const sx = (s) => (1 - Math.cos(Math.PI * s)) / 2;
+    const yt = (x) => 5 * th * (0.2969 * Math.sqrt(x) - 0.126 * x - 0.3516 * x * x + 0.2843 * x * x * x - 0.1036 * x * x * x * x);
+    const yc = (x) => cam * 4 * x * (1 - x);
+    for (let k = 0; k <= NC; k++) { const x = sx(1 - k / NC); pts.push([x, yc(x) + yt(x)]); }          // upper, TE to LE
+    for (let k = 1; k < NC; k++) { const x = sx(k / NC); pts.push([x, yc(x) - yt(x)]); }               // lower, LE to TE
+    // x from the LE (0) to the TE (1); u = +c/2 at the LE
+    return pts.map(([x, v]) => { const u = c * (0.5 - x), vv = v * c; return [u * Math.cos(tw) - vv * Math.sin(tw) + lean, u * Math.sin(tw) + vv * Math.cos(tw)]; });
+  };
+  const bladeGeo = (() => {
+    const pos = [], col = [], idx = [], uv = [], ring = 2 * NC;
+    for (let s = 0; s <= NS; s++) {
+      const f = s / NS, z = rh - 0.003 + (span + 0.003) * f, sec = section(f), base = tint(f);
+      sec.forEach((p, k) => {
+        pos.push(p[0], p[1], z); uv.push(k / ring, f);
+        const le = Math.max(0, 1 - Math.min(k, ring - k) / 4);   // the leading edge reads a touch bluer and brighter
+        const c = base.clone().lerp(new THREE.Color(0xbfe4ff), 0.18 * le * f);
+        col.push(c.r, c.g, c.b);
+      });
+    }
+    for (let s = 0; s < NS; s++) for (let k = 0; k < ring; k++) {
+      const a = s * ring + k, b = s * ring + (k + 1) % ring, c = a + ring, d = b + ring;
+      idx.push(a, c, b, b, c, d);
+    }
+    // the tip cap, a fan from the section's centre, a hair below the rim so the tip reads machined
+    const top = NS * ring, sec = section(1); let cx0 = 0, cy0 = 0; sec.forEach(p => { cx0 += p[0]; cy0 += p[1]; });
+    pos.push(cx0 / ring, cy0 / ring, Rt - 0.0004); uv.push(0.5, 1); const tc = tint(1).multiplyScalar(0.92); col.push(tc.r, tc.g, tc.b);
+    const ci = pos.length / 3 - 1;
+    for (let k = 0; k < ring; k++) idx.push(top + k, top + (k + 1) % ring, ci);
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  })();
+  /* THE BLADE'S SURFACE, painted once in (u around the section, v along the span): heat tint mottling and oxidation speckle,
+   * grinding marks running along the span, soot at the root, and rows of film cooling holes (a dark pit in a lit lip) behind
+   * the leading edge on both faces and across the tip. The leading edge sits at u 0.5. */
+  const rnd = CH.rng(20261126 + 6);
+  const bladeTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    g.fillStyle = '#e6e6e6'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2600; i++) { const x = rnd() * w, y = rnd() * h, r = 6 + rnd() * 30, v = 150 + rnd() * 105 | 0; g.fillStyle = `rgba(${v},${v},${v},0.3)`; g.beginPath(); g.ellipse(x, y, r * 0.5, r, 0, 0, Math.PI * 2); g.fill(); }
+    for (let i = 0; i < 380; i++) { const x = rnd() * w, v = 150 + rnd() * 105 | 0; g.fillStyle = `rgba(${v},${v},${v},${0.1 + rnd() * 0.14})`; g.fillRect(x, 0, 1 + rnd() * 3, h); }
+    for (let i = 0; i < 7000; i++) { const x = rnd() * w, y = rnd() * h, v = rnd() < 0.5 ? 70 + rnd() * 60 | 0 : 250; g.fillStyle = `rgba(${v},${v - 10},${v - 20},0.3)`; g.fillRect(x, y, 1 + rnd() * 2, 1 + rnd() * 2); }
+    const soot = g.createLinearGradient(0, 0, 0, h * 0.2); soot.addColorStop(0, 'rgba(40,30,50,0.65)'); soot.addColorStop(1, 'rgba(40,30,50,0)'); g.fillStyle = soot; g.fillRect(0, 0, w, h * 0.2);
+    const hole = (x, y, r) => { g.fillStyle = 'rgba(255,255,255,0.95)'; g.beginPath(); g.arc(x, y, r * 1.8, 0, Math.PI * 2); g.fill(); g.fillStyle = 'rgba(24,16,40,1)'; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); };
+    [0.22, 0.29, 0.36, 0.42, 0.58, 0.64, 0.71, 0.78].forEach((u, j) => { for (let v = 0.16 + (j % 2) * 0.018; v < 0.95; v += 0.036) hole(u * w, v * h, 4.5); });
+    for (let u = 0.08; u < 0.92; u += 0.03) hole(u * w, 0.965 * h, 4);
+  });
+  bladeTex.wrapS = bladeTex.wrapT = THREE.ClampToEdgeWrapping;
+  const bladeMat = new THREE.MeshPhysicalMaterial({ name: 'heat-tint-cast-nickel-blade', map: bladeTex, bumpMap: bladeTex, bumpScale: 0.6, color: 0xffffff, vertexColors: true, metalness: 0.35, roughness: 0.26, clearcoat: 0.8, clearcoatRoughness: 0.16, envMapIntensity: 1.3 });
+  bladeMat.userData.txSurface = false;
+
+  /* fir tree roots, platforms and the hub's heat tinted bead blast */
+  const rootMat = new THREE.MeshPhysicalMaterial({ name: 'heat-tint-cast-nickel-root', color: 0xa894d8, metalness: 0.6, roughness: 0.38, envMapIntensity: 1.4, emissive: 0x30287e, emissiveIntensity: 0.6 });   /* REPAIR r2: the disc rim reads as lit metal, not a dark plate */
+  rootMat.userData.txSurface = 'cast';
+  const hubMat = new THREE.MeshPhysicalMaterial({ name: 'bead-blast-titanium-hub', color: 0x9a8ad8, metalness: 0.55, roughness: 0.4, envMapIntensity: 1.4, emissive: 0x2a2478, emissiveIntensity: 0.5 });
+  hubMat.userData.txSurface = 'cast';
+  const firShape = (() => {
+    const s = new THREE.Shape(), w = [0.0105, 0.0072, 0.0090, 0.0060, 0.0075, 0.0048], r0 = rh - 0.030;
+    // tangential half widths, alternating lobe and neck, from the platform down to the root's foot
+    const pts = [[0.0112, rh - 0.001]];
+    for (let i = 0; i < w.length; i++) pts.push([w[i], rh - 0.006 - i * 0.0042]);
+    pts.push([0.0035, r0]);
+    s.moveTo(-pts[0][0], pts[0][1]);
+    pts.forEach(p => s.lineTo(p[0], p[1]));
+    pts.slice().reverse().forEach(p => s.lineTo(-p[0], p[1]));
+    s.closePath(); return s;
+  })();
+  const firGeo = new THREE.ExtrudeGeometry(firShape, { depth: HH + 0.004, steps: 1, bevelEnabled: true, bevelThickness: 0.0008, bevelSize: 0.0006, bevelSegments: 2, curveSegments: 4 });
+  firGeo.translate(0, 0, -(HH + 0.004) / 2);
+  // the shape is in (x tangential, y radial); turn it so radial is +z and the extrusion is the axis, y
+  firGeo.rotateX(Math.PI / 2);
+
+  let nBlades = 0, goldHidden = 0;
+  const pivots = [];
+  disc.traverse((m) => {
+    if (!m.isMesh) return;
+    if (m.geometry && m.geometry.type === 'ExtrudeGeometry') { m.geometry = bladeGeo; m.material = bladeMat; m.position.set(0, 0, 0); nBlades++; }
+    else if (m.material && m.material.name === 'fr-gold') { m.visible = false; goldHidden++; }
+    else if (m.material && m.material.name === 'fr-root') { m.visible = false; }
+    else if (m.material && m.material.name === 'fr-hub') { m.material = hubMat; }
+  });
+  disc.children.forEach((c) => { if (c.isGroup && c.children.length) pivots.push(c); });
+  if (nBlades !== NB) throw new Error('blisk blade count ' + nBlades + ' differs from the ' + NB + ' drawn');
+  if (goldHidden !== 1) throw new Error('the chassis flag line was not found once');
+  if (pivots.length !== NB) throw new Error('pivot count ' + pivots.length);
+
+  /* THE PLATFORM RING: one continuous machined band under the blades, its top face carrying a fine fir tree slot line
+   * between every pair of blades, in place of the separate tiles */
+  void firGeo;
+  const PH = HH + 0.006;
+  const ringTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    g.fillStyle = '#d8d8d8'; g.fillRect(0, 0, w, h);
+    for (let r = 300; r < 512; r += 2 + rnd() * 5) { const v = 110 + rnd() * 145 | 0; g.strokeStyle = `rgba(${v},${v},${v},0.22)`; g.lineWidth = 1 + rnd() * 2; g.beginPath(); g.arc(512, 512, r, 0, Math.PI * 2); g.stroke(); }
+    for (let i = 0; i < 9000; i++) { const x = rnd() * w, y = rnd() * h, v = rnd() < 0.6 ? 60 + rnd() * 60 | 0 : 255; g.fillStyle = `rgba(${v},${v},${v},0.28)`; g.fillRect(x, y, 1 + rnd() * 2, 1 + rnd() * 2); }
+  });
+  rootMat.map = ringTex; rootMat.bumpMap = ringTex; rootMat.bumpScale = 0.4; rootMat.userData.txSurface = false; rootMat.needsUpdate = true;
+  const band = new THREE.Mesh(new THREE.CylinderGeometry(rh + 0.0025, rh + 0.0025, PH, 256, 1, true), rootMat); band.userData.txBevel = false; disc.add(band);
+  const lip = new THREE.Mesh(new THREE.TorusGeometry(rh + 0.0012, 0.0016, 10, 256), rootMat); lip.rotation.x = Math.PI / 2; lip.position.y = PH / 2; void lip;
+  const face = new THREE.Mesh(new THREE.RingGeometry(rh - 0.032, rh + 0.0012, 256, 1), rootMat); face.rotation.x = -Math.PI / 2; face.position.y = PH / 2 - 0.0004; disc.add(face);
+  const slotMat = new THREE.MeshStandardMaterial({ name: 'slot-shadow-indigo', color: 0x1c1650, roughness: 0.8, metalness: 0.2 }); slotMat.userData.txSurface = false;
+  pivots.forEach((piv) => {
+    const sl = new THREE.Mesh(new THREE.PlaneGeometry(0.0011, 0.03), slotMat); sl.rotation.x = -Math.PI / 2; sl.rotation.z = Math.PI / NB;
+    const holder = new THREE.Group(); holder.rotation.y = Math.PI / NB; sl.rotation.set(-Math.PI / 2, 0, 0); sl.position.set(0, PH / 2, rh - 0.016); holder.add(sl); piv.add(holder);
+  });
+
+  /* THE ONE LINE, on the flagged blade's leading edge, following the twist: what the software puts out. */
+  const goldMat = CH.goldMat(K).clone(); goldMat.name = 'fr-gold-flag-line'; goldMat.userData.txSurface = false; goldMat.emissiveIntensity = 0.5;   /* the chassis accent, deep dusk gold */
+  const lePts = [];
+  for (let s = 0; s <= NS; s++) {
+    const f = 0.02 + 0.96 * s / NS, sec = section(f), le = sec[NC], nx = sec[NC + 1], pv = sec[NC - 1];
+    // push outward from the LE, away from the section's neighbours
+    const ox = le[0] - (nx[0] + pv[0]) / 2, oy = le[1] - (nx[1] + pv[1]) / 2, ol = Math.hypot(ox, oy) || 1;
+    lePts.push(new THREE.Vector3(le[0] + ox / ol * 0.0012, le[1] + oy / ol * 0.0012, rh + span * f));
+  }
+  /* the inlay: the airfoil's own leading edge band, a few chord stations either side of the nose, lifted a hair off the
+   * surface, so the gold IS the flagged blade's leading edge and follows its curve and twist */
+  const WB = 9, SS = 160;
+  const inlayGeo = (lift, w, f0, f1, ss) => {
+    const pos = [], idx = [], cols = 2 * w + 1;
+    for (let i = 0; i <= ss; i++) {
+      const f = f0 + (f1 - f0) * i / ss, sec = section(f), z = rh + span * f;
+      let cx0 = 0, cy0 = 0; sec.forEach(p => { cx0 += p[0]; cy0 += p[1]; }); cx0 /= sec.length; cy0 /= sec.length;
+      for (let k = NC - w; k <= NC + w; k++) { const p = sec[k], dx = p[0] - cx0, dy = p[1] - cy0, dl = Math.hypot(dx, dy) || 1; pos.push(p[0] + dx / dl * lift, p[1] + dy / dl * lift, z); }
+    }
+    for (let i = 0; i < ss; i++) for (let k = 0; k < cols - 1; k++) { const a = i * cols + k, b = a + cols; idx.push(a, b, a + 1, a + 1, b, b + 1); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
+  };
+  goldMat.side = THREE.DoubleSide; goldMat.emissiveIntensity = 0.7; goldMat.metalness = 0.55; goldMat.roughness = 0.26;
+  const GOLD_TO = 0.58;   /* the line stops partway up the edge, drawn to illustrate, no reading on it */
+  const goldLine = new THREE.Mesh(inlayGeo(0.0005, 5, 0.0, GOLD_TO, SS), goldMat);
+  goldLine.userData.txBevel = false; pivots[FLAG].add(goldLine);
+  let flagged = 0; disc.traverse(m => { if (m.isMesh && m.material === goldMat) flagged++; });
+  if (flagged !== 1) throw new Error('exactly one blade carries the gold line, found ' + flagged);
+
+  /* a soft bloom along the strip so it reads gold at feed size */
+  const bloomTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'); const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    gr.addColorStop(0, 'rgba(240,160,90,0.9)'); gr.addColorStop(0.35, 'rgba(232,145,70,0.35)'); gr.addColorStop(1, 'rgba(232,145,70,0)'); g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const bloomMat = new THREE.SpriteMaterial({ name: 'gold-glow-bloom', map: bloomTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.3, toneMapped: false });
+  bloomMat.userData.txSurface = false;
+  lePts.forEach((p, i) => { if (i % 2 || 0.02 + 0.96 * i / NS > GOLD_TO) return; const sp = new THREE.Sprite(bloomMat); sp.position.copy(p); sp.scale.set(0.02, 0.02, 1); pivots[FLAG].add(sp); });
+
+  /* THE HUB'S DRESS: a bolt circle of hex heads with washers, a splined bore ring, a balance land. */
+  const boltMat = new THREE.MeshPhysicalMaterial({ name: 'bolt-steel-machined', color: 0xd9cbb8, metalness: 1, roughness: 0.6 });
+  const hexGeo = new THREE.CylinderGeometry(0.0055, 0.0055, 0.006, 6);
+  const washGeo = new THREE.CylinderGeometry(0.0072, 0.0072, 0.0012, 28);
+  for (let i = 0; i < 18; i++) {
+    const a = i / 18 * Math.PI * 2, r = 0.052;
+    const w = new THREE.Mesh(washGeo, boltMat); w.position.set(Math.sin(a) * r, 0.0215, Math.cos(a) * r); disc.add(w);
+    const h = new THREE.Mesh(hexGeo, boltMat); h.position.set(Math.sin(a) * r, 0.0245, Math.cos(a) * r); h.rotation.y = a; disc.add(h);
+  }
+  const land = new THREE.Mesh(new THREE.TorusGeometry(0.084, 0.0035, 12, 160), hubMat); land.rotation.x = Math.PI / 2; land.position.y = 0.0175; disc.add(land);
+  const spline = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.004, 12, 96), boltMat); spline.rotation.x = Math.PI / 2; spline.position.y = 0.03; disc.add(spline);
+
+  disc.position.set(0, 0, 0);
+  TXT.add(R, disc);
+  disc.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+
+  /* THE CASE: the back half of an illustrative engine case around the disc, an abradable shroud band at the blade tips, an
+   * indigo painted wall above it with stiffening rings, a bolted flange near the top. Drawn to no maker's design. */
+  const caseMat = new THREE.MeshPhysicalMaterial({ name: 'case-paint-indigo', color: 0x3f4fd4, metalness: 0.2, roughness: 0.5, side: THREE.DoubleSide, clearcoat: 0.3, clearcoatRoughness: 0.4, emissive: 0x2630a8, emissiveIntensity: 0.55 });   /* REPAIR r2: lifted so the type wall is deep cerulean, never black */
+  caseMat.userData.txSurface = 'paint';
+  const shroudTex = CH.canvasTex(THREE, 512, 256, (g, w, h) => {
+    g.fillStyle = '#7f9fd8'; g.fillRect(0, 0, w, h);
+    g.strokeStyle = 'rgba(40,40,120,0.28)'; g.lineWidth = 2;
+    const s = 14, hgt = s * Math.sqrt(3);
+    for (let y = -1; y < h / hgt + 1; y++) for (let x = -1; x < w / (s * 3) + 1; x++) for (let o = 0; o < 2; o++) {
+      const cx = x * s * 3 + o * s * 1.5, cy = y * hgt + o * hgt / 2; g.beginPath();
+      for (let k = 0; k <= 6; k++) { const a = k * Math.PI / 3; g.lineTo(cx + s * Math.cos(a), cy + s * Math.sin(a)); } g.stroke();
+    }
+  }, [22, 2]);
+  const shroudMat = new THREE.MeshPhysicalMaterial({ name: 'case-shroud-smooth', color: 0x3a46c0, metalness: 0.3, roughness: 0.5, side: THREE.DoubleSide, clearcoat: 0.3, emissive: 0x222c9a, emissiveIntensity: 0.4 });
+  shroudMat.userData.txSurface = false; void shroudTex;
+  const RC = Rt + 0.004, TH0 = Math.PI * 0.42, TH1 = Math.PI * 1.58;   // the back of the ring, from right to left round the far side
+  const shell = (r, y0, y1, mat) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, y1 - y0, 200, 8, true, TH0, TH1 - TH0), mat); m.position.y = (y0 + y1) / 2; m.userData.txBevel = false; R.scene.add(m); m.receiveShadow = true; m.castShadow = true; return m; };
+  shell(RC, -0.03, 0.03, shroudMat);
+  shell(RC + 0.012, 0.03, 0.34, caseMat);
+  shell(RC + 0.006, -0.12, -0.03, caseMat);
+  // the step between shroud and wall, and stiffening rings up the wall
+  const ringAt = (r, y, t, mat) => { const m = new THREE.Mesh(new THREE.TorusGeometry(r, t, 10, 200, TH1 - TH0), mat); m.rotation.x = Math.PI / 2; m.rotation.z = -(TH0 - Math.PI / 2) - Math.PI; m.position.y = y; R.scene.add(m); m.castShadow = true; m.receiveShadow = true; return m; };
+  const ringMat = new THREE.MeshPhysicalMaterial({ name: 'case-paint-indigo-ring', color: 0x4446c4, metalness: 0.4, roughness: 0.42, clearcoat: 0.3 });
+  ringMat.userData.txSurface = 'paint';
+  ringAt(RC + 0.004, 0.031, 0.0015, caseMat);   /* one fine seam, not a lip */
+  /* REPAIR r1: the wall above the shroud carries stiffening rings and a bolted flange, so the top of the frame is a receding
+   * case in shade rather than a flat field */
+  ringAt(RC + 0.012, 0.05, 0.0035, ringMat);   /* REPAIR r2: one casing ring just above the shroud; the wall above it stays plain for the type */
+
+  /* THE CAMERA. Over the hub, looking out across the far half of the ring, so the blades arc across the frame and grow toward
+   * both edges, the hub cropped at the foot, the case wall above. */
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOKAT });
+  /* THE KEY. White, raking from the left and a little in front, low, so every leading edge catches it. */
+  CH.KEY_SCALE = 0.95;
+  const spec = CH.rigSpec(W, 0.9, 4096);
+  spec.key = Object.assign({}, spec.key, { color: 0xf2f8ff, radius: 0.25 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, 0, -0.05], { distance: 3, shadowFar: 8, normalBias: 0.002 }), { light: { az: 78, el: 20 } }));
+  CH.unacne(R, 0.002);
+  /* a narrow white spot on the flagged blade, so the others fall off into indigo */
+  const fw = pivots[FLAG].localToWorld(new THREE.Vector3(0, 0, rh + span * 0.55));
+  const spot = new THREE.SpotLight(0xfff6e8, 2.8, 0, 0.32, 0.85, 0); spot.position.set(fw.x + 0.28, fw.y + 0.22, fw.z + 0.12); spot.target.position.copy(fw);
+  R.scene.add(spot); R.scene.add(spot.target);
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.35, fade: 160 });
+  CH.seat(cx, { sel: '.dek', a: 0.45, fade: 120 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 90 }));
+  TXLOOK.footWash(cx, { a: 0.5, height: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

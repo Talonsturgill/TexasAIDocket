@@ -1,0 +1,231 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-26, frame 1 of 9, the cover. A spatial scene through txthree.js in a cerulean studio sweep with a deep
+cerulean floor. An illustrative turboshaft drawn to no maker's design rests on a fixed violet indigo A frame stand, seen three
+quarter from the turbine end and a little above. One dusk gold inspection tag hangs by a cable tie from the turbine flange, and two
+dusk gold hard cases, one for each of the two tools, stand on the floor in front of it. The headline sits high in the wall, the dek
+low on the floor, and the camera is solved so the art stays between them. The case count is FIG.tools. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:128px; width:940px; text-align:left">AI maintenance tools, provided to the Army</h1>
+<p class="dek" style="left:74px; top:1036px; width:900px">Texas Tech built two maintenance tools for Army aviation, one of them with AVX Defense Technologies of Fort Worth. Texas Tech says both have been provided to the Army. Engine drawn to no maker's design.</p>
+<script>window.FIG = {"tools": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech", counter: "01 / 09", src: "c1 c2 c7 c9", fit: { min: 76, max: 100, maxLines: 2 } });
+  /* this frame draws no count or length that stands for a figure */
+  if (Object.keys(window.FIG).length !== 1 || !Number.isInteger(window.FIG.tools)) throw new Error('slide 01 reads exactly FIG.tools');
+  const R = CH.stage(TXT, gl, W, { fov: 34, fog: 0, near: 0.01, far: 80 });
+
+  /* THE SWEEP: a deep cerulean floor so the type below the machine sits on colour, not on a wash */
+  const so = CH.studioOpts();
+  TXT.studio(R, Object.assign(so, { w: 16, d: 6, h: 4.2, radius: 1.2, floor: 0x3f63d6, wall: 0x2a78d8 }));
+
+  /* THE MACHINE on its stand, square to the sweep: intake at -x, the turbine near the lens */
+  const stand = K.make('engine_stand', { color: 0x4a2fa8, hook: false });
+  const AX = stand.userData.axisY;
+  const eng = K.make('turboshaft_engine', { panel: true, tag: false, axisY: AX });
+  TXT.add(R, stand); TXT.add(R, eng);
+
+  /* the stand, finished: satin paint with chipped edges, welded gussets under each saddle, bolt heads on the saddle ends */
+  const paint = K.mat('stand-satin-paint', { color: 0x4a2fa8, metalness: 0.25, roughness: 0.46, clearcoat: 0.35, clearcoatRoughness: 0.4 }, true);
+  paint.userData.txSurface = 'paint';
+  stand.traverse(o => { if (o.isMesh && o.material && /fr-steelp/.test(o.material.name)) o.material = paint; });
+  const gus = new THREE.Shape(); gus.moveTo(0, 0); gus.lineTo(0.09, 0); gus.lineTo(0, 0.09); gus.closePath();
+  const gusGeo = new THREE.ExtrudeGeometry(gus, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.0015, bevelSize: 0.0015, bevelSegments: 2 });
+  const boltMat = K.mat('stand-zinc-bolt', { color: 0xc9ced4, metalness: 0.95, roughness: 0.32 });
+  const top = AX - 0.24;
+  [-0.38, 0.38].forEach(xx => [-1, 1].forEach(sd => {
+    const gm = new THREE.Mesh(gusGeo, paint); gm.position.set(xx - 0.003, top - 0.02, sd * 0.1); gm.rotation.y = -Math.PI / 2; gm.scale.set(sd, -1, 1); gm.castShadow = gm.receiveShadow = true; stand.add(gm);
+    for (let k = 0; k < 2; k++) { const bh = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.007, 6), boltMat); bh.rotation.z = Math.PI / 2; bh.position.set(xx + 0.026, top + 0.03 + k * 0.035, sd * 0.2); bh.castShadow = true; stand.add(bh); }
+  }));
+
+  /* a fixed A frame stand: the chassis base rails and casters come off, each leg runs on to a welded foot plate with a
+   * levelling foot, so no rail crosses the type laid over the floor */
+  stand.traverse(o => { if (!o.isMesh || o.parent !== stand) return;
+    if (Math.abs(o.position.y - 0.12) < 0.01 || o.position.y < 0.1) o.visible = false; });
+  const steelFoot = K.mat('stand-zinc-foot', { color: 0xb9bfc6, metalness: 0.9, roughness: 0.38 });
+  [-0.38, 0.38].forEach(xx => [-1, 1].forEach(sd => {
+    const A = new THREE.Vector3(xx, 0.035, sd * 0.4), B = new THREE.Vector3(xx, 0.12, sd * 0.36);
+    const dir = B.clone().sub(A), L = dir.length() + 0.03;
+    const ext = TXT.roundedBox(0.05, L, 0.05, 0.004, paint); ext.position.copy(A).add(B).multiplyScalar(0.5);
+    ext.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize()); stand.add(ext);
+    const plate = TXT.roundedBox(0.13, 0.012, 0.11, 0.003, paint); plate.position.set(xx, 0.03, sd * 0.4); stand.add(plate);
+    const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.036, 0.018, 28), steelFoot); foot.position.set(xx, 0.009, sd * 0.4); stand.add(foot);
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.02, 12), steelFoot); stem.position.set(xx, 0.026, sd * 0.4); stand.add(stem);
+    [[-0.045, -0.035], [0.045, -0.035], [-0.045, 0.035], [0.045, 0.035]].forEach(([bx, bz]) => { const bh = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.006, 6), boltMat); bh.position.set(xx + bx, 0.039, sd * 0.4 + bz); stand.add(bh); });
+  }));
+  /* welded gusset plates at every foot, so each leg meets its plate as fabricated steel */
+  const fg = new THREE.Shape(); fg.moveTo(0, 0); fg.lineTo(0.045, 0); fg.lineTo(0, 0.055); fg.closePath();
+  const fgGeo = new THREE.ExtrudeGeometry(fg, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.0012, bevelSize: 0.0012, bevelSegments: 2 });
+  [-0.38, 0.38].forEach(xx => [-1, 1].forEach(sd => [-1, 1].forEach(sx => {
+    const m = new THREE.Mesh(fgGeo, paint); m.position.set(xx + sx * 0.025, 0.036, sd * 0.4 - 0.003); m.scale.x = sx; stand.add(m);
+  })));
+  stand.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  TXT.contact(R, stand, { opacity: 0.85 });
+
+  /* WHAT THE SOFTWARE PUTS OUT: one large dusk gold inspection tag, a machined aluminium grommet, wired to the
+   * turbine flange's bolt ring at the front of the frame. Exactly one gold mesh is drawn. */
+  const gold = CH.goldMat(K);
+  const tw = 0.05, th = 0.082, cc = 0.018;
+  const tagShape = new THREE.Shape();
+  tagShape.moveTo(-tw + 0.006, -th); tagShape.lineTo(tw - 0.006, -th); tagShape.quadraticCurveTo(tw, -th, tw, -th + 0.006); tagShape.lineTo(tw, th - cc); tagShape.lineTo(tw - cc, th); tagShape.lineTo(-tw + cc, th); tagShape.lineTo(-tw, th - cc); tagShape.lineTo(-tw, -th + 0.006); tagShape.quadraticCurveTo(-tw, -th, -tw + 0.006, -th);
+  const GY = th - 0.02;
+  const hole = new THREE.Path(); hole.absarc(0, GY, 0.007, 0, Math.PI * 2, true); tagShape.holes.push(hole);
+  const tagGeo = new THREE.ExtrudeGeometry(tagShape, { depth: 0.0025, bevelEnabled: true, bevelThickness: 0.001, bevelSize: 0.0014, bevelSegments: 3, curveSegments: 24 });
+  tagGeo.translate(0, 0, -0.00125);
+  const tag = new THREE.Mesh(tagGeo, gold); tag.castShadow = true;
+  const alu = CH.aluMat(K);
+  const grom = new THREE.Mesh(new THREE.TorusGeometry(0.0095, 0.0032, 14, 40), alu); grom.position.set(0, GY, 0.002); tag.add(grom);
+  const grom2 = grom.clone(); grom2.position.z = -0.002; tag.add(grom2);
+  const FLX = 0.14, FR = 0.262, FA = 55 * Math.PI / 180;
+  const hang = [FLX, AX - FR * Math.sin(FA), FR * Math.cos(FA)];
+  const tagPivot = new THREE.Group(); tagPivot.position.set(FLX + 0.01, hang[1] - 0.075, hang[2] + 0.035); tagPivot.rotation.y = 0.55; tagPivot.rotation.z = 0.04;
+  tag.position.set(0, -GY, 0); tagPivot.add(tag); R.scene.add(tagPivot);
+  tagPivot.updateMatrixWorld(true);
+  const gw = new THREE.Vector3(0, 0, 0).applyMatrix4(tagPivot.matrixWorld);
+  const wireMat = K.mat('fr-lockwire-steel', { color: 0xd8dde2, metalness: 1, roughness: 0.25 });
+  /* the tag is held by a black nylon cable tie looped through the bolt ring, its locking head at the flange */
+  const nylon = K.mat('tie-black-nylon-plastic', { color: 0x1c1d30, roughness: 0.5, metalness: 0 });
+  const tieTop = [hang[0], hang[1] + 0.004, hang[2] + 0.004], tieBot = [gw.x, gw.y + 0.002, gw.z];
+  const tie = TXT.tube([tieTop, [(tieTop[0] + tieBot[0]) / 2 + 0.004, (tieTop[1] + tieBot[1]) / 2, (tieTop[2] + tieBot[2]) / 2 + 0.006], tieBot], 0.0022, nylon, { segments: 24, radial: 8 });
+  tie.scale.set(1, 1, 1); R.scene.add(tie);
+  const tieHead = TXT.roundedBox(0.012, 0.016, 0.009, 0.002, nylon); tieHead.position.set(hang[0], hang[1] - 0.004, hang[2] + 0.012); tieHead.rotation.x = -0.6; R.scene.add(tieHead);
+  const loop = new THREE.Mesh(new THREE.TorusGeometry(0.0075, 0.0018, 8, 24), nylon); loop.position.set(gw.x, gw.y, gw.z); loop.rotation.y = 0.55 + Math.PI / 2; R.scene.add(loop);
+  tag.userData.goldUnit = 'tag';
+
+  /* THE COMPRESSOR CASE, broken up: a horizontal split line with its bolt row on the side facing the lens, a second
+   * fuel manifold run with clamps, so the ribs stop reading as a drum */
+  const caseBolt = K.mat('case-bolt-steel', { color: 0xdfe3e8, metalness: 1, roughness: 0.3 });
+  const splitMat = K.mat('case-split-cast-metal', { color: 0x8d97a6, metalness: 0.85, roughness: 0.4 });
+  [[-1, 0.214], [1, 0.214]].forEach(([sd, r]) => {
+    const bar = TXT.roundedBox(0.34, 0.012, 0.014, 0.003, splitMat); bar.position.set(-0.31, AX, sd * (r + 0.004)); R.scene.add(bar);
+    for (let i = 0; i < 12; i++) { const bh = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.008, 6), caseBolt); bh.rotation.x = Math.PI / 2; bh.position.set(-0.47 + i * 0.029, AX + 0.009, sd * (r + 0.01)); R.scene.add(bh); }
+  });
+  const fuel2 = K.mat('fuel-line-steel', { color: 0xc7ccd3, metalness: 0.92, roughness: 0.28 });
+  const fr = [];
+  for (let i = 0; i <= 20; i++) { const x = -0.5 + i * 0.03, rr = 0.226 + (x > -0.14 ? 0.03 : 0); fr.push([x, AX + rr * Math.sin(0.55), rr * Math.cos(0.55)]); }
+  R.scene.add(TXT.tube(fr, 0.006, fuel2, { segments: 80, radial: 10 }));
+  for (let i = 0; i < 5; i++) { const q = fr[2 + i * 3]; const cl = TXT.roundedBox(0.012, 0.02, 0.016, 0.003, splitMat); cl.position.set(q[0], q[1], q[2]); cl.rotation.x = -0.55; R.scene.add(cl); }
+
+  /* THE TWO TOOLS: a pair of dusk gold moulded hard cases on the floor in front of the engine, one for each tool c9 names.
+   * Each is a clearcoated shell in two halves with a moulded lip, an indigo gasket at the parting line, ribbed ends,
+   * stiffening ribs on the lid, two aluminium draw latches sunk in moulded pockets, a hinged carry handle and a purge valve. */
+  const capMat = K.mat('case-grip-rubber', { color: 0x2b2160, roughness: 0.62, metalness: 0 });
+  capMat.userData.txSurface = 'rubber';
+  const caseGold = gold.clone(); caseGold.name = 'case-gold-moulded-plastic';
+  caseGold.emissiveIntensity = 0.16; caseGold.roughness = 0.34; caseGold.clearcoat = 1; caseGold.clearcoatRoughness = 0.08; caseGold.envMapIntensity = 0.6; caseGold.color.offsetHSL(0, 0.06, -0.03);
+  caseGold.userData = Object.assign({}, gold.userData, { txSurface: 'plastic' });
+  const latchMat = K.mat('case-latch-brushed-steel', { color: 0xd4d9e0, metalness: 1, roughness: 0.24 });
+  const slotMat = K.mat('case-slot-indigo', { color: 0x1d1650, roughness: 0.8, metalness: 0 });
+  const makeCase = () => {
+    const g = new THREE.Group(), cw = 0.34, cd = 0.13, y0 = 0.014, hb = 0.158, hl = 0.084, gap = 0.006, rr = 0.03;
+    const yS = y0 + hb + gap / 2;   /* parting line */
+    const base = TXT.roundedBox(cw, hb, cd, rr, caseGold, { segments: 6 }); base.position.y = y0 + hb / 2; g.add(base);
+    const lid = TXT.roundedBox(cw, hl, cd, rr, caseGold, { segments: 6 }); lid.position.y = yS + gap / 2 + hl / 2; g.add(lid);
+    /* the moulded lips either side of the parting line, and the indigo gasket between them */
+    [yS - gap / 2 - 0.007, yS + gap / 2 + 0.007].forEach(ly => { const lip = TXT.roundedBox(cw + 0.01, 0.014, cd + 0.01, 0.006, caseGold, { segments: 4 }); lip.position.y = ly; g.add(lip); });
+    const gasket = TXT.roundedBox(cw - 0.004, gap + 0.002, cd - 0.004, 0.002, capMat); gasket.position.y = yS; g.add(gasket);
+    /* ribbed ends: vertical ribs on both short sides, on the base and the lid */
+    [-1, 1].forEach(sx => {
+      [-0.036, -0.012, 0.012, 0.036].forEach(rz => {
+        const rb = TXT.roundedBox(0.012, hb - 0.05, 0.011, 0.0045, caseGold); rb.position.set(sx * (cw / 2 + 0.003), y0 + 0.022 + (hb - 0.05) / 2, rz); g.add(rb);
+        const rl = TXT.roundedBox(0.012, hl - 0.04, 0.011, 0.0045, caseGold); rl.position.set(sx * (cw / 2 + 0.003), yS + gap / 2 + 0.024 + (hl - 0.04) / 2, rz); g.add(rl);
+      });
+    });
+    /* front: two moulded rails along the base, a raised label boss on the lid (blank), and the latch pockets */
+    [y0 + 0.03, y0 + 0.062].forEach(ry => { const rail = TXT.roundedBox(0.1, 0.011, 0.012, 0.0045, caseGold); rail.position.set(0, ry, cd / 2 + 0.002); g.add(rail); });
+    const boss = TXT.roundedBox(0.11, 0.04, 0.008, 0.004, caseGold); boss.position.set(0, yS + gap / 2 + hl * 0.5, cd / 2 + 0.002); g.add(boss);
+    /* three stiffening ribs across the lid top */
+    [-0.11, 0.11].forEach(tx => { const tr = TXT.roundedBox(0.05, 0.01, cd - 0.03, 0.004, caseGold); tr.position.set(tx, yS + gap / 2 + hl + 0.003, 0); g.add(tr); });
+    [-0.1, 0.1].forEach(lx => {
+      /* the pocket: two moulded walls and a sill standing proud of the shell, so the latch sits sunk between them */
+      [-1, 1].forEach(sw => { const w = TXT.roundedBox(0.012, 0.1, 0.02, 0.004, caseGold); w.position.set(lx + sw * 0.029, yS - 0.008, cd / 2 + 0.004); g.add(w); });
+      const sill = TXT.roundedBox(0.07, 0.012, 0.02, 0.004, caseGold); sill.position.set(lx, yS - 0.058, cd / 2 + 0.004); g.add(sill);
+      const floor = TXT.roundedBox(0.046, 0.088, 0.003, 0.0012, slotMat); floor.position.set(lx, yS - 0.008, cd / 2 + 0.0005); g.add(floor);
+      /* the draw latch: hinge barrel on the base, a pressed steel lever up over the parting line, a keeper on the lid */
+      const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.0055, 0.0055, 0.042, 16), latchMat); barrel.rotation.z = Math.PI / 2; barrel.position.set(lx, yS - 0.044, cd / 2 + 0.008); g.add(barrel);
+      const lever = TXT.roundedBox(0.038, 0.062, 0.006, 0.0025, latchMat); lever.position.set(lx, yS - 0.012, cd / 2 + 0.009); lever.rotation.x = -0.06; g.add(lever);
+      const press = TXT.roundedBox(0.026, 0.006, 0.004, 0.0015, slotMat); press.position.set(lx, yS - 0.03, cd / 2 + 0.0125); g.add(press);
+      const keeper = TXT.roundedBox(0.03, 0.012, 0.009, 0.003, latchMat); keeper.position.set(lx, yS + 0.026, cd / 2 + 0.006); g.add(keeper);
+      const hook = TXT.roundedBox(0.022, 0.006, 0.004, 0.0015, latchMat); hook.position.set(lx, yS + 0.02, cd / 2 + 0.012); g.add(hook);
+    });
+    /* the purge valve on the lid front, knurled steel */
+    const valve = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.007, 20), latchMat); valve.rotation.x = Math.PI / 2; valve.position.set(-0.14 + 0.012, yS + gap / 2 + hl * 0.55, cd / 2 + 0.004); g.add(valve);
+    /* the carry handle: two moulded bosses on the lid and a rubber grip on steel pivot pins */
+    const lt = yS + gap / 2 + hl;
+    [-0.055, 0.055].forEach(hx => { const m = TXT.roundedBox(0.024, 0.022, 0.036, 0.006, caseGold); m.position.set(hx, lt + 0.008, 0.01); g.add(m);
+      const pn = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.03, 12), latchMat); pn.rotation.z = Math.PI / 2; pn.position.set(hx, lt + 0.013, 0.01); g.add(pn); });
+    const hp = []; for (let i = 0; i <= 16; i++) { const t = i / 16; hp.push([-0.045 + 0.09 * t, lt + 0.014 + Math.sin(t * Math.PI) * 0.03, 0.01 + Math.sin(t * Math.PI) * 0.012]); }
+    g.add(TXT.tube(hp, 0.0085, capMat, { segments: 32, radial: 12 }));
+    /* rubber feet */
+    [-1, 1].forEach(sx => [-1, 1].forEach(sz => { const f = new THREE.Mesh(new THREE.CylinderGeometry(0.013, 0.015, 0.014, 20), capMat); f.position.set(sx * (cw / 2 - 0.035), 0.007, sz * (cd / 2 - 0.022)); g.add(f); }));
+    g.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+    return g;
+  };
+  const CASES = window.FIG.tools, cases = [];
+  for (let i = 0; i < CASES; i++) {
+    const c = makeCase(); c.position.set(0.8 + i * 0.4, 0, 0.62 - i * 0.16); c.rotation.y = 0.3 - (i ? 0.08 : 0); c.userData.goldUnit = 'case' + i;
+    /* on open floor: every case stands at least 0.3 m from every foot plate */
+    [-0.38, 0.38].forEach(fx => [-0.4, 0.4].forEach(fz => { if (Math.hypot(c.position.x - fx, c.position.z - fz) < 0.3) throw new Error('case ' + i + ' too near a stand foot'); }));
+    TXT.add(R, c); TXT.contact(R, c, { opacity: 0.9 }); cases.push(c);
+  }
+  /* exactly one tag and two cases carry the accent */
+  const units = new Set(); R.scene.traverse(o => { if (o.isMesh && (o.material === gold || o.material === caseGold)) { let p = o; while (p && !p.userData.goldUnit) p = p.parent; units.add(p ? p.userData.goldUnit : 'stray'); } });
+  if (units.has('stray') || units.size !== 1 + CASES) throw new Error('gold must be one tag and two cases, found ' + JSON.stringify([...units]));
+
+  /* THE CAMERA, solved against the real type: the engine stays under the headline and clear of the kicker and counter,
+   * the stand's feet and both cases stay above the dek, the camera as close as that allows */
+  const hookB = document.getElementById('hook').getBoundingClientRect().bottom, dekT = document.querySelector('.dek').getBoundingClientRect().top;
+  const rings = [[0.004, 0.226], [0.11, 0.214], [0.47, 0.236], [0.66, 0.25], [0.74, 0.262], [0.96, 0.242], [1.1, 0.23]];
+  const ringPts = []; rings.forEach(([y, r]) => { for (let a = 0; a < 48; a++) { const t = a / 48 * Math.PI * 2; ringPts.push([-0.6 + y, AX - r * Math.cos(t), r * Math.sin(t)]); } });
+  const lowPts = [];
+  [-0.38, 0.38].forEach(xx => [-1, 1].forEach(sd => [[-0.065, -0.055], [0.065, -0.055], [-0.065, 0.055], [0.065, 0.055]].forEach(([dx, dz]) => lowPts.push([xx + dx, 0, sd * 0.4 + dz]))));
+  cases.forEach(c => { const bb = new THREE.Box3().setFromObject(c); [bb.min.x, bb.max.x].forEach(x => [bb.min.y, bb.max.y].forEach(y => [bb.min.z, bb.max.z].forEach(z => lowPts.push([x, y, z])))); });
+  const TP = [0.3, 0.45, 0.3];
+  let FROM = null, LOOK = null, best = 1e9;
+  /* the lowest, closest camera that fits: each bearing walks in from near, and the nearest fit across bearings wins */
+  let bestD = 1e9;
+  for (const ey of [0.12, 0.16, 0.2, 0.24, 0.3]) { const DIRV = new THREE.Vector3(0.52, ey, 0.78).normalize();
+    walk: for (let d = 1.9; d <= 7 && d < bestD; d += 0.05) for (let sy = 480; sy <= 820; sy += 20) for (const sx of [560, 600, 640]) {
+      const f = [TP[0] + DIRV.x * d, TP[1] + DIRV.y * d, TP[2] + DIRV.z * d];
+      const l = CH.aim(THREE, R, TXT, f, TP, sx, sy, 30);
+      let v = 0;   /* the worst intrusion in px; 0 means everything fits */
+      for (const p of ringPts) { const q = CH.project(THREE, R, p); v = Math.max(v, hookB + 14 - q[1], 24 - q[0]); }
+      for (const p of lowPts) { const q = CH.project(THREE, R, p); v = Math.max(v, q[1] - (dekT - 14), 24 - q[0], q[0] - 1056); }
+      if (bestD === 1e9 && v < best) { best = v; FROM = f; LOOK = l; }
+      if (v <= 0) { best = 0; bestD = d; FROM = f; LOOK = l; break walk; }
+    } }
+  console.log('slide01 camera fit, worst intrusion px', best.toFixed(1));
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  TXT.deckRig(R, CH.rigSpec(W, 3, 4096), Object.assign(CH.rigOpts([0, 0.6, 0], { distance: 8, shadowFar: 22, normalBias: 0.003 }), { light: { az: 22, el: 62 } }));
+  CH.unacne(R, 0.003);
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { sel: '.hook', a: 0.38, fade: 240 });
+  CH.seat(cx, { sel: '.dek', a: 0.44, fade: 220 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 140 }));
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.4, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

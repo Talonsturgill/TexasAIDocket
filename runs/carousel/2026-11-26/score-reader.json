@@ -1,0 +1,15 @@
+{"round": 3, "lens": "reader", "criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 7.3, "why": "LOOK V2 throughout. S1, S3, S5, S8 strong at thumb size. S7 blade flat on a plain mat in the bottom third, borescope a blue stick, tag reads as a price tag. S4 two primitive boxes with glass blocks, a 3D bar chart. S9 splits into a dark engine on a dark wall and small cases on a washed apron. S5 headline '4' of 480 renders thin and outlined. S3 gold tape muddies the count."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "One palette and type system; gold as software output where declared; engine bookends; S8 caliche map outside the material vocabulary but declared."},
+{"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces; in testing and ceilings held; provided never fielded. Single release disclosed; S1 'AI maintenance tools' covers both though only FSUI is called AI enabled; S9 watch line implies AvMC will publish service results."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 6.4, "why": "Who, where and funder named; action thin; Texas stake abstract; 480 hour phase unexplained."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover a statement; S2 to S3 setup and payoff; S3 to S5 three statistics in a row; S8 movable; S9 lands the turn last."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "House rules hold; clean register, generic Texas; caption hook a misdirection; S7 dek flat."},
+{"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh machine-lens concept; hero-in-sweep opener and county relief familiar."}],
+"weighted_score": 7.17, "hard_fails": [], "ship": true,
+"one_sentence_fix": "Explain the 480 hour phase in place of S8 and give S9 a concrete sourced next step.",
+"artwork_weakest_frames": [
+{"slide": 7, "problem": "Blade flat on a featureless mat in the bottom third; blank hangar slabs; stick-like borescope; price-tag tag.", "fix": "Bench edge camera, foam tray filling half the frame, gloved hand with lit borescope tip, door light as rim."},
+{"slide": 4, "problem": "Primitive blocks on a flat field read as a 3D bar chart; volume bar highlight blown.", "fix": "Granite plate and parallels at a lower camera, key down a stop on the volume bar, ghost edge refraction."},
+{"slide": 9, "problem": "Split composition with no single dominant subject at feed size.", "fix": "Engine in the door light with the apron as rim, cases forward into the light pool."},
+{"slide": 5, "problem": "The 4 of 480 renders thin and outlined beside the bold 80.", "fix": "Force lining figures or the same weight for headline numerals and re-render."}]}

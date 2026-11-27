@@ -1,0 +1,1999 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI maintenance tools, provided to the Army",
+          "x": 72,
+          "y": 128,
+          "w": 940,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              115,
+              884,
+              122
+            ],
+            [
+              72,
+              213,
+              860,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech built two maintenance tools for Army aviation, one of them with AVX Defense Technologies of Fort Worth. Texas Tech says both have been provided to the Army. Engine drawn to no maker's design.",
+          "x": 74,
+          "y": 1036,
+          "w": 900,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              1036,
+              843,
+              42
+            ],
+            [
+              74,
+              1079,
+              854,
+              42
+            ],
+            [
+              74,
+              1122,
+              896,
+              42
+            ],
+            [
+              74,
+              1164,
+              407,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c7 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18342,
+      "ok": true,
+      "load_ms": 172,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 134.1,
+          "variance": 1158.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Flight records arrive with holes",
+          "x": 82,
+          "y": 714,
+          "w": 560,
+          "h": 273,
+          "font_px": 93,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              702,
+              538,
+              115
+            ],
+            [
+              82,
+              793,
+              414,
+              115
+            ],
+            [
+              82,
+              884,
+              203,
+              115
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Some flight data arrives missing or corrupted. Texas Tech's tool pulls together data from many sources. Tape drawn to illustrate.",
+          "x": 84,
+          "y": 1009,
+          "w": 520,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1009,
+              509,
+              42
+            ],
+            [
+              84,
+              1052,
+              488,
+              42
+            ],
+            [
+              84,
+              1095,
+              501,
+              42
+            ],
+            [
+              84,
+              1138,
+              354,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The record",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c2 c3",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16799,
+      "ok": true,
+      "load_ms": 218,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 107.8,
+          "variance": 1121.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "37 percent of missing data restored",
+          "x": 84,
+          "y": 140,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              127,
+              865,
+              122
+            ],
+            [
+              84,
+              225,
+              544,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In testing, Texas Tech's neural networks restored 37 percent of missing and corrupted flight data. Each gold cell is one in a hundred.",
+          "x": 86,
+          "y": 361,
+          "w": 800,
+          "h": 116,
+          "font_px": 28,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              361,
+              794,
+              38
+            ],
+            [
+              86,
+              400,
+              786,
+              38
+            ],
+            [
+              86,
+              438,
+              142,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In testing",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22356,
+      "ok": true,
+      "load_ms": 192,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 123.4,
+          "variance": 2317.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Data files up to 73 percent smaller",
+          "x": 420,
+          "y": 132,
+          "w": 596,
+          "h": 281,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              437,
+              120,
+              579,
+              117
+            ],
+            [
+              599,
+              214,
+              417,
+              117
+            ],
+            [
+              718,
+              307,
+              298,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "volume",
+          "x": 352,
+          "y": 691,
+          "w": 175,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 18, 6)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              374,
+              696,
+              131,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "files",
+          "x": 187,
+          "y": 987,
+          "w": 153,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 18, 6)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              209,
+              992,
+              109,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In testing, the networks cut data volume by up to 30 percent and data files by up to 73 percent. Both figures are ceilings, not averages.",
+          "x": 420,
+          "y": 431,
+          "w": 596,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              423,
+              431,
+              593,
+              42
+            ],
+            [
+              443,
+              474,
+              573,
+              42
+            ],
+            [
+              442,
+              516,
+              574,
+              42
+            ],
+            [
+              815,
+              559,
+              201,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Up to",
+          "x": 80,
+          "y": 80,
+          "w": 83,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              83,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 48075,
+      "ok": true,
+      "load_ms": 167,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 100.1,
+          "variance": 1988.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "slide-05 long ticks to the tab 48, tab at 839,718",
+        "TXBENCH: RELIEF {\"height_range\":68.56923137118943,\"materials\":10,\"cast_fraction\":0.9299970850480109,\"area\":1,\"render_ms\":12757.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "480 hour phase actions, predicted in testing",
+          "x": 80,
+          "y": 160,
+          "w": 560,
+          "h": 218,
+          "font_px": 74,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              150,
+              483,
+              91
+            ],
+            [
+              80,
+              223,
+              538,
+              91
+            ],
+            [
+              80,
+              295,
+              278,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In testing, the neural networks predicted unplanned maintenance actions. They predicted 480 hour phase maintenance actions too.",
+          "x": 82,
+          "y": 398,
+          "w": 540,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              398,
+              450,
+              42
+            ],
+            [
+              82,
+              440,
+              508,
+              42
+            ],
+            [
+              82,
+              483,
+              487,
+              42
+            ],
+            [
+              82,
+              526,
+              473,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "480 hour phase",
+          "x": 650,
+          "y": 936,
+          "w": 349,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 18, 6)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              672,
+              941,
+              305,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Phase hours",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17948,
+      "ok": true,
+      "load_ms": 125,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 106.8,
+          "variance": 1062.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech says one tool tracks engine life",
+          "x": 92,
+          "y": 150,
+          "w": 896,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              92,
+              138,
+              743,
+              112
+            ],
+            [
+              92,
+              228,
+              797,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech says the Propulsion System Validator tracks the remaining useful life of aircraft engines on its own. It recommends maintenance tied to the aviation technical manual.",
+          "x": 94,
+          "y": 351,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              94,
+              351,
+              811,
+              42
+            ],
+            [
+              94,
+              394,
+              825,
+              42
+            ],
+            [
+              94,
+              437,
+              821,
+              42
+            ],
+            [
+              94,
+              480,
+              118,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Engine life",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17420,
+      "ok": true,
+      "load_ms": 182,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 84.7,
+          "variance": 578.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Finding weak parts before they fail",
+          "x": 72,
+          "y": 150,
+          "w": 640,
+          "h": 293,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              72,
+              137,
+              549,
+              122
+            ],
+            [
+              72,
+              235,
+              496,
+              122
+            ],
+            [
+              72,
+              332,
+              323,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech's Henry Johnston says the models help teams find weak parts and plan repairs before failure. Maintenance crews check aircraft with computers and hands on inspections.",
+          "x": 76,
+          "y": 467,
+          "w": 540,
+          "h": 257,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              467,
+              496,
+              42
+            ],
+            [
+              76,
+              509,
+              480,
+              42
+            ],
+            [
+              76,
+              552,
+              531,
+              42
+            ],
+            [
+              76,
+              595,
+              497,
+              42
+            ],
+            [
+              76,
+              638,
+              434,
+              42
+            ],
+            [
+              76,
+              680,
+              184,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Hands on",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25892,
+      "ok": true,
+      "load_ms": 201,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 101.1,
+          "variance": 1483.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "slide-08 Lubbock 214,800 Tarrant 909,953",
+        "TXBENCH: RELIEF {\"height_range\":69.39096246021485,\"materials\":10,\"cast_fraction\":0.1879996570644719,\"area\":1,\"render_ms\":12356.5}",
+        "slide-08 accent-like fraction 0.0000"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Lubbock to Fort Worth since 2019",
+          "x": 516,
+          "y": 146,
+          "w": 484,
+          "h": 245,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              516,
+              135,
+              387,
+              103
+            ],
+            [
+              516,
+              217,
+              387,
+              103
+            ],
+            [
+              516,
+              299,
+              372,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech's institute in Lubbock and AVX Defense Technologies of Fort Worth have partnered since 2019. More than 18 students worked on the effort. Students also finished three capstone projects.",
+          "x": 518,
+          "y": 413,
+          "w": 482,
+          "h": 209,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              518,
+              412,
+              457,
+              36
+            ],
+            [
+              518,
+              447,
+              414,
+              36
+            ],
+            [
+              518,
+              482,
+              482,
+              36
+            ],
+            [
+              518,
+              517,
+              471,
+              36
+            ],
+            [
+              518,
+              552,
+              473,
+              36
+            ],
+            [
+              518,
+              587,
+              111,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Lubbock",
+          "x": 104,
+          "y": 880,
+          "w": 196,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              885,
+              152,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Fort Worth",
+          "x": 728,
+          "y": 1037,
+          "w": 262,
+          "h": 58,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              750,
+              1042,
+              218,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Since 2019",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c12 c20 c11 c18",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18506,
+      "ok": true,
+      "load_ms": 162,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 126.5,
+          "variance": 1736.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Every result so far is from testing",
+          "x": 76,
+          "y": 176,
+          "w": 560,
+          "h": 257,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 251, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              164,
+              528,
+              108
+            ],
+            [
+              76,
+              250,
+              369,
+              108
+            ],
+            [
+              76,
+              336,
+              246,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Tech says both tools have been provided to the Army. Every result it reports comes from testing. The Army Aviation and Missile Command funds the program. Watch that command for the first result from service.",
+          "x": 78,
+          "y": 459,
+          "w": 440,
+          "h": 280,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              78,
+              459,
+              439,
+              40
+            ],
+            [
+              78,
+              499,
+              368,
+              40
+            ],
+            [
+              78,
+              539,
+              395,
+              40
+            ],
+            [
+              78,
+              579,
+              433,
+              40
+            ],
+            [
+              78,
+              619,
+              440,
+              40
+            ],
+            [
+              78,
+              659,
+              427,
+              40
+            ],
+            [
+              78,
+              699,
+              428,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What to watch",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c5 c6 c1",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 236, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25097,
+      "ok": true,
+      "load_ms": 196,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 91.5,
+          "variance": 2779.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

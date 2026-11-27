@@ -1,0 +1,22 @@
+{
+  "lens": "craft",
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "S2, S8 and S5 strong. S4 back bar shows through the front ghost so 27 reads near 70 and the bottom 40 percent is a blue wash. S7 blade a flat slab, no hand, headline on a flat wall. S6 top 42 percent a flat navy plate, hub a flat plane. S1 stand untextured square tube, cases toy blocks. Only S2 holds as a magazine opener."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.2, "why": "One palette and type system, gold as what the software touched, engine as a camera move on S1, S7, S9. S2 and S4 to S7 one ultramarine field; S8 Lubbock boss red-orange not gold."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces; testing caveat on every slide; rejected list honest. S7 kicker 'People decide' goes past c15; S4 relief visually misstates the 27 bar."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 6.8, "why": "Who, what and where named on S1 and S8. Stake general; S9 watch line gives nothing to act on, honestly so."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.8, "why": "S1 to S2 pays at once, S9 lands the caveat. S3 to S5 three figure frames at one weight; S8 backstory slows the close."},
+    {"name": "voice", "weight": 0.10, "score": 7.2, "why": "Caption hook is a real turn; body copy leans on the release; little regional texture."},
+    {"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh subject; mix of studio objects and reliefs; another v2 blue-sweep explainer with stock grid and bar devices."}
+  ],
+  "weighted_score": 6.94,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild S4 so it reads true at feed size and put a gloved hand and borescope on a modelled airfoil in S7.",
+  "artwork_weakest_frames": [
+    {"slide": 4, "problem": "Front ghost shows the back bar through it so 27 reads near 70; top ghost reads full length; bottom 40 percent empty.", "fix": "Frost both ghosts translucent white, pull the bars apart in depth so neither occludes, drop the camera low and close."},
+    {"slide": 7, "problem": "Nothing inspects; blade a flat slab; type on a flat wall plate.", "fix": "Twisted airfoil in a foam cutout with a gloved hand holding the borescope at the gold band, camera in, lit door panels behind the type."},
+    {"slide": 6, "problem": "Top 42 percent a flat navy plate, hub a flat plane with drawn lines.", "fix": "Raise and rotate the camera so leading edges climb behind the body copy, crop the hub out."},
+    {"slide": 1, "problem": "Stand untextured square tube, cases matte blocks on a plain sweep.", "fix": "Camera to knee height and closer, chamfered tube stand with gussets, moulded ribbed cases with recessed latches."}
+  ]
+}

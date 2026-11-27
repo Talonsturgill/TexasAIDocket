@@ -1,0 +1,94 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted.",
+ "phase_hours": {
+  "value": 480,
+  "from": [
+   "c5"
+  ],
+  "basis": "the 480-hour phase maintenance interval the networks predicted actions for, in testing"
+ },
+ "restored_pct": {
+  "value": 37,
+  "from": [
+   "c6"
+  ],
+  "basis": "percent of missing and corrupted flight data restored, in testing"
+ },
+ "restored_of_100": {
+  "value": 37,
+  "from": [
+   "c6"
+  ],
+  "basis": "restored_pct cells of a 100 cell drawing grid, a drawing unit"
+ },
+ "grid_cells": {
+  "value": 100,
+  "from": [
+   "c6"
+  ],
+  "basis": "the drawing grid for restored_of_100, a rule not a count"
+ },
+ "volume_cut_pct": {
+  "value": 30,
+  "from": [
+   "c6"
+  ],
+  "basis": "ceiling on data volume reduction, up to"
+ },
+ "files_cut_pct": {
+  "value": 73,
+  "from": [
+   "c6"
+  ],
+  "basis": "ceiling on data file reduction, up to"
+ },
+ "volume_left_pct": {
+  "value": 70,
+  "from": [
+   "c6"
+  ],
+  "basis": "100 minus volume_cut_pct"
+ },
+ "files_left_pct": {
+  "value": 27,
+  "from": [
+   "c6"
+  ],
+  "basis": "100 minus files_cut_pct"
+ },
+ "students_floor": {
+  "value": 18,
+  "from": [
+   "c11"
+  ],
+  "basis": "more than 18 students, a floor"
+ },
+ "partner_since": {
+  "value": 2019,
+  "from": [
+   "c12"
+  ],
+  "basis": "year IMMS and AVX began partnering"
+ },
+ "partner_years": {
+  "value": 7,
+  "from": [
+   "c12"
+  ],
+  "basis": "run year 2026 minus partner_since"
+ },
+ "capstones": {
+  "value": 3,
+  "from": [
+   "c18"
+  ],
+  "basis": "capstone projects students completed"
+ },
+ "tools": {
+  "value": 2,
+  "from": [
+   "c9"
+  ],
+  "basis": "the two tools provided to the Army, FSUI and PSV"
+ }
+}

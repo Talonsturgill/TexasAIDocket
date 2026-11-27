@@ -1,0 +1,289 @@
+<!doctype html>
+<!-- 2026-11-26, frame 3 of 9, THIRTY SEVEN BACK (c6 c4). BESPOKE, LOOK V2 explainer.
+     THE FLIGHT RECORD AS A CASSETTE. A bead blasted 6061 record cassette of FIG.grid_cells square sockets, with a blank stamped
+     plate, a data connector along its near edge and a cable port on its side, shot through a parallel (orthographic) camera at a
+     raking three quarter so every row holds one width and a thumb can count it. Each row of sockets carries one flight data
+     trace. In the sockets still damaged the record is scorched and fractured: burnt floors, cracks, loose shards and the trace
+     broken into displaced fragments. FIG.restored_of_100 sockets, filled from the near left corner, hold proud dusk gold blocks,
+     the segments the software put back, and the trace runs unbroken across their engraved tops. Both counts are read from
+     window.FIG below and checked against the drawn meshes. Drawn to no maker's design; no mark, no text. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:84px; top:140px; width:900px; text-align:left">37 percent of missing data restored</h1>
+<p class="dek" id="dek" data-follow="26" style="left:86px; width:800px; font-size:28px">In testing, Texas Tech's neural networks restored 37 percent of missing and corrupted flight data. Each gold cell is one in a hundred.</p>
+<script>window.FIG = {"restored_of_100": 37, "grid_cells": 100};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  /* THE FIGURES */
+  const N_CELLS = FIG.grid_cells, N_GOLD = FIG.restored_of_100;
+  const SIDE = Math.round(Math.sqrt(N_CELLS));
+  if (!(Number.isInteger(N_CELLS) && SIDE * SIDE === N_CELLS)) throw new Error('slide 03 grid_cells is not a square grid');
+  if (!(Number.isInteger(N_GOLD) && N_GOLD > 0 && N_GOLD <= N_CELLS)) throw new Error('slide 03 restored_of_100 malformed');
+
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "In testing", counter: "03 / 09", src: "c6 c4", fit: { min: 88, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 60, fog: 0, exposure: 0.86 });
+  const PAL = Object.assign({}, TXLOOK.palette('explainer'), { floor: '#2c78d6' });
+  const sweep = TXT.studio(R, Object.assign(CH.studioOpts({ w: 2.8, d: 2.0 }), { radius: 0.3, h: 1.6, floor: 0x2c78d6, wall: 0x1d56b8, palette: PAL }));
+  sweep.position.z = 0.68;
+  const rnd = CH.rng(CH.SEED + 3);
+  const shadowAll = (g) => { g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+
+  /* ---------------- MATERIALS: bead blasted aluminium (matte, little mirror), indigo anodise, nickel pins ---------------- */
+  const alu = CH.aluMat(K); alu.userData.txSurface = 'brushed'; alu.metalness = 0.86; alu.roughness = 0.5; alu.envMapIntensity = 0.42; alu.color.set(0xa9b1bd);   /* held down so the lip keeps its chamfer line instead of a milky haze */
+  if ('anisotropy' in alu) { alu.anisotropy = 0.55; alu.anisotropyRotation = 0; }   /* bead blast with a machining lay */
+  const polish = K.mat('s3-chamfer-polished-alu', { color: 0xf3f5f8, metalness: 1, roughness: 0.1 }, true); polish.userData.txSurface = false;
+  const bronze = K.mat('s3-restored-trace-gold', { color: 0xf2b35a, metalness: 0.6, roughness: 0.22, emissive: 0xe8913c, emissiveIntensity: 0.35, clearcoat: 1, clearcoatRoughness: 0.06 }, true); bronze.userData.txSurface = false;
+  const anode = K.mat('s3-indigo-anodised-alu', { color: 0x2f3f86, metalness: 0.5, roughness: 0.55 }, true); anode.userData.txSurface = 'brushed';
+  const capM = K.mat('s3-black-oxide-steel-screw', { color: 0x3a3f66, metalness: 0.8, roughness: 0.35 }, true); capM.userData.txSurface = 'cast';
+  const footM = K.mat('s3-tray-foot-rubber', { color: 0x2b2a5a, roughness: 0.85 }, true);
+  const nickel = K.mat('s3-nickel-pin-steel', { color: 0xe6e9ee, metalness: 0.95, roughness: 0.22 }, true); nickel.userData.txSurface = 'brushed';
+  const insul = K.mat('s3-connector-insulator-plastic', { color: 0x262d63, roughness: 0.5, clearcoat: 0.3 }, true);
+  const shardM = K.mat('s3-scorched-shard-alu', { color: 0x5a5888, metalness: 0.6, roughness: 0.6 }, true); shardM.userData.txSurface = 'cast';
+  const gold = CH.goldMat(K);
+  gold.clearcoat = 1; gold.clearcoatRoughness = 0.05; gold.roughness = 0.24;   /* polished, for the warm rim to catch */
+
+  /* ---------------- THE TRAY: the chassis record_tray, filled from FIG, then made into a record cassette here ---------------- */
+  const TW = 0.42, x0 = -TW / 2 + 0.015, SPANG = TW - 0.03, pitch = SPANG / SIDE;
+  const tray = K.make('record_tray', { cols: SIDE, rows: SIDE, filled: N_GOLD, w: TW });
+  const golds = [];
+  tray.traverse(m => { if (m.isMesh && m.material === gold) golds.push(m); });
+  const H_CUBE = 0.041, hBase = 0.03, H_WALL = 0.022, TOPY = hBase + H_WALL;
+  tray.traverse(m => { if (!m.isMesh || m.material === gold || m.material.name !== 'fr-alu') return; m.geometry.computeBoundingBox(); const bb = m.geometry.boundingBox;
+    if (Math.abs((bb.max.y - bb.min.y) - 0.012) < 0.0005 && Math.abs(m.position.y - 0.036) < 0.001) { m.scale.y = H_WALL / 0.012; m.position.y = hBase + H_WALL / 2; } });
+  let cubeW = 0;
+  golds.forEach(q => { q.geometry.computeBoundingBox(); const bb = q.geometry.boundingBox, h0 = bb.max.y - bb.min.y; cubeW = bb.max.x - bb.min.x;
+    q.scale.y = H_CUBE / h0; q.position.y = hBase + H_CUBE / 2 + 0.0005; });
+  tray.traverse(m => { if (m.isMesh && m.material && m.material.name === 'fr-anode') m.material = anode; });
+
+  /* THE RECORD'S TRACE: one flight data line per row, a jagged sensor trace in canvas px over the grid (S x S) */
+  const S = 2048, toPx = (v) => (v - x0) / SPANG * S;        /* x -> canvas x; z -> canvas y (far at top) */
+  const traceY = (row, u) => {   /* u in canvas px across the grid, returns canvas y */
+    const yc = S - (row + 0.5) * S / SIDE, a = S / SIDE * 0.24;
+    return yc + a * (0.55 * Math.sin(u * 0.019 + row * 1.7) + 0.3 * Math.sin(u * 0.061 + row) + 0.15 * Math.sin(u * 0.17 + row * 3.1));
+  };
+  const cellRC = (i) => [Math.floor(i / SIDE), i % SIDE];
+  const isGold = (r, c) => r * SIDE + c < N_GOLD;
+  /* the damaged floor: scorch, cracks and the trace broken into displaced fragments, in the empty sockets only */
+  const floorTex = CH.canvasTex(THREE, S, S, (g) => {
+    g.fillStyle = '#2f3f86'; g.fillRect(0, 0, S, S);
+    const cs = S / SIDE;
+    for (let r = 0; r < SIDE; r++) for (let c = 0; c < SIDE; c++) {
+      if (isGold(r, c)) continue;
+      const X = c * cs, Y = S - (r + 1) * cs;
+      g.save(); g.beginPath(); g.rect(X, Y, cs, cs); g.clip();
+      /* scorch: a violet char bloom with a magenta fringe, never black */
+      const bx = X + cs * (0.3 + rnd() * 0.4), by = Y + cs * (0.3 + rnd() * 0.4), br = cs * (0.45 + rnd() * 0.4);
+      let gr = g.createRadialGradient(bx, by, 0, bx, by, br);
+      gr.addColorStop(0, 'rgba(34,14,58,0.92)'); gr.addColorStop(0.55, 'rgba(70,26,96,0.7)'); gr.addColorStop(0.85, 'rgba(150,60,150,0.28)'); gr.addColorStop(1, 'rgba(150,60,150,0)');
+      g.fillStyle = gr; g.fillRect(X, Y, cs, cs);
+      for (let k = 0; k < 60; k++) { g.fillStyle = 'rgba(' + (30 + rnd() * 40 | 0) + ',12,' + (50 + rnd() * 40 | 0) + ',' + (0.2 + rnd() * 0.4).toFixed(2) + ')'; g.beginPath(); g.arc(X + rnd() * cs, Y + rnd() * cs, 1 + rnd() * 5, 0, 7); g.fill(); }
+      /* the broken trace: short fragments, each knocked off the line and apart */
+      g.lineCap = 'round'; g.lineWidth = 7;
+      let u = X + 4;
+      while (u < X + cs - 10) {
+        const len = 18 + rnd() * 40, dy = (rnd() - 0.5) * cs * 0.45, dx = (rnd() - 0.5) * 10, keep = rnd() < 0.62;
+        if (keep) { g.strokeStyle = 'rgba(190,214,255,0.85)'; g.beginPath(); for (let t = 0; t <= len; t += 4) { const uu = u + t; const yy = traceY(r, uu) + dy; t === 0 ? g.moveTo(uu + dx, yy) : g.lineTo(uu + dx, yy); } g.stroke(); }
+        u += len + 8 + rnd() * 26;
+      }
+      g.restore();
+    }
+  });
+  const floorM = new THREE.MeshStandardMaterial({ map: floorTex, metalness: 0.35, roughness: 0.6 }); floorM.name = 's3-damaged-record-floor'; floorM.userData.txSurface = false;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(SPANG, SPANG), floorM); floor.rotation.x = -Math.PI / 2; floor.position.y = hBase + 0.0042; floor.userData.txBevel = false; tray.add(floor);
+  /* soot and cracks on the wall tops round every damaged socket, so the damage reads at feed size; the openings stay clear */
+  { const wallFr = 0.2, soot = CH.canvasTex(THREE, S, S, (g) => {
+      g.clearRect(0, 0, S, S); const cs = S / SIDE, open = cs * (1 - wallFr);
+      const empty = []; for (let r = 0; r < SIDE; r++) for (let c = 0; c < SIDE; c++) if (!isGold(r, c)) empty.push([r, c]);
+      g.save();
+      /* a clip of the wall strips only: everything minus the socket openings */
+      g.beginPath(); g.rect(0, 0, S, S);
+      for (let r = 0; r < SIDE; r++) for (let c = 0; c < SIDE; c++) { const X = c * cs + (cs - open) / 2, Y = S - (r + 1) * cs + (cs - open) / 2; g.rect(X + open, Y, -open, open); }
+      g.clip('evenodd');
+      /* uneven char: each socket burnt to its own depth, heavier toward the far rows, with a few wide blotches over several */
+      empty.forEach(([r, c]) => { const f = Math.min(1, 0.2 + 0.6 * rnd() + 0.05 * r), X = (c + 0.3 + rnd() * 0.4) * cs, Y = S - (r + 0.3 + rnd() * 0.4) * cs, br = cs * (0.5 + rnd() * 0.6);
+        const gr = g.createRadialGradient(X, Y, cs * 0.1, X, Y, br);
+        gr.addColorStop(0, 'rgba(46,22,56,' + (0.95 * f).toFixed(2) + ')'); gr.addColorStop(0.5, 'rgba(78,40,92,' + (0.65 * f).toFixed(2) + ')'); gr.addColorStop(1, 'rgba(110,70,130,0)');
+        g.fillStyle = gr; g.fillRect(X - br, Y - br, 2 * br, 2 * br); });
+      for (let k = 0; k < 9; k++) { const [r, c] = empty[(rnd() * empty.length) | 0], X = (c + rnd()) * cs, Y = S - (r + rnd()) * cs, br = cs * (1.2 + rnd() * 1.6);
+        const gr = g.createRadialGradient(X, Y, 0, X, Y, br); gr.addColorStop(0, 'rgba(38,16,48,0.8)'); gr.addColorStop(0.6, 'rgba(60,28,72,0.35)'); gr.addColorStop(1, 'rgba(60,28,72,0)');
+        g.fillStyle = gr; g.fillRect(X - br, Y - br, 2 * br, 2 * br); }
+      for (let k = 0; k < 1800; k++) { const [r, c] = empty[(rnd() * empty.length) | 0]; g.fillStyle = 'rgba(36,14,60,' + (0.2 + rnd() * 0.5).toFixed(2) + ')';
+        g.beginPath(); g.arc((c + rnd()) * cs, S - (r + rnd()) * cs, 1 + rnd() * 6, 0, 7); g.fill(); }
+      g.restore();
+      /* keep the restored half clean: nothing within a gold cell's own square */
+      g.globalCompositeOperation = 'destination-out';
+      for (let i = 0; i < N_GOLD; i++) { const [r, c] = cellRC(i); g.fillRect(c * cs - 2, S - (r + 1) * cs - 2, cs + 4, cs + 4); }
+      g.globalCompositeOperation = 'source-over';
+    });
+    const sootM = new THREE.MeshStandardMaterial({ map: soot, transparent: true, roughness: 0.85, metalness: 0.1, polygonOffset: true, polygonOffsetFactor: -2, depthWrite: false });
+    sootM.name = 's3-soot-decal'; sootM.userData.txSurface = false;
+    const sp = new THREE.Mesh(new THREE.PlaneGeometry(SPANG, SPANG), sootM); sp.rotation.x = -Math.PI / 2; sp.position.y = TOPY + 0.0004; sp.userData.txBevel = false; sp.castShadow = false; tray.add(sp); }
+  /* loose shards in a scatter of the damaged sockets */
+  for (let i = N_GOLD; i < N_CELLS; i++) {
+    if (rnd() > 0.32) continue;
+    const cell = tray.userData.cellAt(i), n = 1 + (rnd() * 3 | 0);
+    for (let k = 0; k < n; k++) {
+      const sh = new THREE.Shape(), m = 3 + (rnd() * 2 | 0), rr = pitch * (0.14 + rnd() * 0.12);
+      for (let j = 0; j < m; j++) { const a = j / m * Math.PI * 2 + rnd() * 0.8, d = rr * (0.5 + rnd() * 0.6); j ? sh.lineTo(Math.cos(a) * d, Math.sin(a) * d) : sh.moveTo(Math.cos(a) * d, Math.sin(a) * d); }
+      const geo = new THREE.ExtrudeGeometry(sh, { depth: 0.0025, bevelEnabled: true, bevelThickness: 0.0006, bevelSize: 0.0006, bevelSegments: 1 });
+      const mesh = new THREE.Mesh(geo, shardM); mesh.rotation.set(-Math.PI / 2 + (rnd() - 0.5) * 0.5, (rnd() - 0.5) * 0.4, rnd() * 6);
+      mesh.position.set(cell.x + (rnd() - 0.5) * pitch * 0.4, hBase + 0.006 + rnd() * 0.004, cell.z + (rnd() - 0.5) * pitch * 0.4); tray.add(mesh);
+    }
+  }
+
+  /* THE CASSETTE BODY: a chamfered rim, a wide near edge carrying a blank stamped plate and the data connector, a cable port */
+  const LIP = 0.02, NEAR = 0.05, H = TOPY, half = TW / 2;
+  const rim = (w, d, x, z) => { const b = TXT.roundedBox(w, H, d, 0.008, alu); b.position.set(x, H / 2, z); tray.add(b); return b; };
+  rim(TW + 2 * LIP, NEAR, 0, -(half + NEAR / 2));
+  rim(TW + 2 * LIP, LIP, 0, half + LIP / 2);
+  rim(LIP, TW, half + LIP / 2, 0); rim(LIP, TW, -half - LIP / 2, 0);
+  { const pl = TXT.roundedBox(TW + 2 * LIP + 0.006, 0.006, TW + LIP + NEAR + 0.006, 0.0028, alu); pl.position.set(0, 0.003, -(NEAR - LIP) / 2); tray.add(pl); }
+  /* the stamped plate: a riveted steel plate with blank engraved rules, no mark */
+  { const plateTex = CH.canvasTex(THREE, 512, 128, (g, w, h) => { g.fillStyle = '#c9d0da'; g.fillRect(0, 0, w, h);
+      for (let k = 0; k < 900; k++) { g.fillStyle = 'rgba(80,90,130,' + (rnd() * 0.12).toFixed(3) + ')'; g.fillRect(rnd() * w, rnd() * h, 2, 2); }
+      g.strokeStyle = 'rgba(52,60,110,0.75)'; g.lineWidth = 5; g.strokeRect(14, 14, w - 28, h - 28);
+      g.lineWidth = 7; [[40, 44, 260], [40, 72, 200], [40, 96, 150], [320, 44, 150], [320, 72, 150]].forEach(([x, y, l]) => { g.beginPath(); g.moveTo(x, y); g.lineTo(x + l, y); g.stroke(); }); });
+    const pm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: plateTex, metalness: 0.8, roughness: 0.38 }); pm.name = 's3-stamped-plate-steel'; pm.userData.txSurface = false;
+    const plate = TXT.roundedBox(0.12, 0.002, 0.03, 0.001, pm); plate.position.set(-0.11, H + 0.001, -(half + NEAR / 2 + 0.002)); tray.add(plate);
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => { const rv = new THREE.Mesh(new THREE.SphereGeometry(0.0022, 14, 8, 0, 7, 0, 1.6), nickel); rv.position.set(-0.11 + a * 0.053, H + 0.002, -(half + NEAR / 2 + 0.002) + b * 0.0105); tray.add(rv); }); }
+  /* the data connector: an indigo insulator shell in a counterbored pocket, two rows of nickel pins */
+  { const cxp = 0.085, czp = -(half + NEAR / 2 + 0.002);
+    const pocket = TXT.roundedBox(0.15, 0.002, 0.026, 0.004, anode); pocket.position.set(cxp, H + 0.0004, czp); pocket.userData.txBevel = false; tray.add(pocket);
+    const shell = TXT.roundedBox(0.135, 0.008, 0.019, 0.0045, insul); shell.position.set(cxp, H + 0.004, czp); tray.add(shell);
+    const ring = TXT.roundedBox(0.141, 0.004, 0.023, 0.005, nickel); ring.position.set(cxp, H + 0.002, czp); tray.add(ring);
+    const pinGeo = new THREE.CylinderGeometry(0.0013, 0.0013, 0.004, 10);
+    for (let row = 0; row < 2; row++) for (let k = 0; k < 15; k++) { const p = new THREE.Mesh(pinGeo, nickel); p.position.set(cxp - 0.0595 + k * 0.0085 + row * 0.0042, H + 0.009, czp + (row ? 0.0042 : -0.0042)); p.userData.txBevel = false; tray.add(p); }
+    [-1, 1].forEach(sg => { const jack = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.006, 6), nickel); jack.position.set(cxp + sg * 0.073, H + 0.003, czp); tray.add(jack); }); }
+  /* the cable port on the right side: a knurled bayonet receptacle */
+  { const port = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.014, 40), nickel); port.add(body);
+    const knurl = new THREE.Mesh(new THREE.CylinderGeometry(0.0155, 0.0155, 0.006, 24), capM); knurl.position.y = 0.002; port.add(knurl);
+    const face = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.0015, 32), insul); face.position.y = 0.0075; port.add(face);
+    port.rotation.z = Math.PI / 2; port.position.set(-(half + LIP + 0.006), H * 0.5, 0.06); tray.add(port); }
+  /* cap screws at the four corners of the rim */
+  [[-1, half + LIP / 2], [1, half + LIP / 2], [-1, -(half + NEAR - 0.012)], [1, -(half + NEAR - 0.012)]].forEach(([sx, z]) => {
+    const x = sx * (half + LIP / 2);
+    const bore = new THREE.Mesh(new THREE.CylinderGeometry(0.0062, 0.0062, 0.002, 28), anode); bore.position.set(x, H - 0.0004, z); bore.userData.txBevel = false; tray.add(bore);
+    const hd = new THREE.Mesh(new THREE.CylinderGeometry(0.0046, 0.0048, 0.003, 28), capM); hd.position.set(x, H + 0.0008, z); tray.add(hd);
+    const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.013, 0.004, 24), footM); foot.position.set(x * 0.95, -0.002, z * 0.95); tray.add(foot); });
+  /* crisp chamfers: a polished 45 degree land along every outer top edge of the rim and round the socket field */
+  { const bar = (len, x, z, alongX) => { const b = new THREE.Mesh(new THREE.BoxGeometry(alongX ? len : 0.0034, 0.0034, alongX ? 0.0034 : len), polish);
+      if (alongX) b.rotation.x = Math.PI / 4; else b.rotation.z = Math.PI / 4; b.position.set(x, H - 0.0009, z); b.userData.txBevel = false; tray.add(b); };
+    const X1 = half + LIP - 0.0025, ZN = -(half + NEAR) + 0.0025, ZF = half + LIP - 0.0025, LX = 2 * X1;
+    bar(LX, 0, ZN, true); bar(LX, 0, ZF, true); bar(ZF - ZN, -X1, (ZF + ZN) / 2, false); bar(ZF - ZN, X1, (ZF + ZN) / 2, false);
+    const I = half + 0.0012; bar(2 * I, 0, -I, true); bar(2 * I, 0, I, true); bar(2 * I, -I, 0, false); bar(2 * I, I, 0, false); }
+
+  /* THE RESTORED TRACE: ONE heavy bronze inlaid line laid unbroken across every gold block, snaking row to row so it ends on the
+   * last block filled, bridging the walls between blocks; then it stops, broken, over the first empty socket. */
+  const rowsT = Math.ceil(N_GOLD / SIDE), lastRow = rowsT - 1, path = [], visited = [];
+  const TOPC = hBase + H_CUBE + 0.0005, TR = 0.0034, yT = TOPC + TR * 0.45, AMP = 0.0072;   /* the trace sits half sunk in its channel */
+  const wave = (r, x) => { const v = AMP * (0.72 * Math.sin(x * 58 + r * 1.9) + 0.28 * Math.sin(x * 157 + r * 0.7)); return Math.max(-0.0105, Math.min(0.0105, v)); };
+  for (let r = 0; r < rowsT; r++) {
+    const ltr = ((lastRow - r) % 2) === 0, nIn = Math.min(SIDE, N_GOLD - r * SIDE);
+    const cols = []; for (let c = 0; c < nIn; c++) cols.push(c); if (!ltr) cols.reverse();
+    cols.forEach(c => visited.push(r * SIDE + c));
+    const zc = tray.userData.cellAt(r * SIDE).z, xa = tray.userData.cellAt(r * SIDE + cols[0]).x, xb = tray.userData.cellAt(r * SIDE + cols[cols.length - 1]).x;
+    const start = r === 0 ? xa + (ltr ? -1 : 1) * pitch * 0.32 : xa, end = r === lastRow ? xb + (ltr ? 1 : -1) * pitch * 0.62 : xb;
+    const n = Math.ceil(Math.abs(end - start) / 0.0018);
+    for (let k = 0; k <= n; k++) { const x = start + (end - start) * k / n; path.push(new THREE.Vector3(x, yT, zc + wave(r, x))); }
+    if (r < lastRow) { const zn = tray.userData.cellAt((r + 1) * SIDE).z; for (let k = 1; k < 8; k++) { const t = k / 8; path.push(new THREE.Vector3(xb, yT, zc + wave(r, xb) + (zn + wave(r + 1, xb) - zc - wave(r, xb)) * t)); } }
+  }
+  const gSet = new Set(visited);
+  if (visited.length !== N_GOLD || gSet.size !== N_GOLD || visited.some(i => i >= N_GOLD)) throw new Error('trace visits ' + visited.length + ' cells, not the ' + N_GOLD + ' gold blocks');
+  const curve = new THREE.CatmullRomCurve3(path, false, 'centripetal');
+  const traceMesh = new THREE.Mesh(new THREE.TubeGeometry(curve, path.length * 2, TR, 14, false), bronze); traceMesh.userData.txBevel = false; tray.add(traceMesh);
+  { const cap = new THREE.Mesh(new THREE.SphereGeometry(TR * 1.25, 18, 12), bronze); cap.position.copy(path[0]); tray.add(cap); }
+  /* the channel: a shallow dark cut under the trace, a flattened tube on the block tops, so the trace seats and shades */
+  { const chM = K.mat('s3-trace-channel-cut', { color: 0x5a2a12, metalness: 0.5, roughness: 0.75 }, true); chM.userData.txSurface = false;
+    const flat = new THREE.CatmullRomCurve3(path.map(v => new THREE.Vector3(v.x, 0, v.z)), false, 'centripetal');
+    const ch = new THREE.Mesh(new THREE.TubeGeometry(flat, path.length * 2, TR * 1.55, 12, false), chM);
+    ch.scale.y = 0.12; ch.position.y = TOPC + 0.0002; ch.userData.txBevel = false; ch.castShadow = false; tray.add(ch); }
+  /* the break: a sheared, jagged tip over the edge of the last block, and the lost run in pieces in the first empty socket */
+  const brk = tray.userData.cellAt(N_GOLD);
+  if (!brk) throw new Error('no empty socket after the gold run');
+  { const tip = path[path.length - 1], dir = path[path.length - 1].clone().sub(path[path.length - 6]).normalize();
+    const shard = new THREE.Mesh(new THREE.ConeGeometry(TR * 1.05, TR * 3.2, 7), bronze); shard.position.copy(tip).addScaledVector(dir, TR * 1.3);
+    shard.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().add(new THREE.Vector3(0, -0.5, 0)).normalize()); tray.add(shard);
+    const r3 = Math.floor(N_GOLD / SIDE), piece = (x0p, len, y0, tiltZ, tiltY, dz) => {
+      const pts = []; for (let k = 0; k <= 6; k++) { const x = x0p + len * k / 6; pts.push(new THREE.Vector3(x - x0p, 0, wave(r3, x))); }
+      const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 24, TR * 0.95, 10, false), bronze);
+      m.position.set(x0p, y0, brk.z + dz); m.rotation.set(0, tiltY, tiltZ); m.userData.txBevel = false; tray.add(m); };
+    /* one length snapped and dropped leaning from the wall into the socket, two more lying broken on its scorched floor */
+    piece(brk.x - pitch * 0.4, pitch * 0.42, hBase + H_WALL * 0.55, -0.55, 0.15, 0.002);
+    piece(brk.x - pitch * 0.05, pitch * 0.3, hBase + 0.0075, 0.08, -0.5, -0.006);
+    piece(brk.x + pitch * 0.12, pitch * 0.2, hBase + 0.007, -0.1, 0.9, 0.007); }
+
+  tray.scale.z = -1;   /* mirrored in depth so the fill begins at the far left corner under the type and the cassette's connector edge faces the reader */
+  tray.position.y = 0.004;
+  shadowAll(tray); TXT.add(R, tray); TXT.contact(R, tray, { opacity: 0.9 });
+  tray.traverse(m => { if (m.isMesh && m.material && m.material.transparent) m.castShadow = false; });
+
+  /* THE CHECK: what is drawn is what the figures say */
+  { let goldN = 0; tray.traverse(m => { if (m.isMesh && m.material === gold) goldN++; });
+    if (goldN !== N_GOLD) throw new Error('gold blocks drawn ' + goldN + ' != FIG.restored_of_100 ' + N_GOLD);
+    if (tray.userData.filled !== N_GOLD) throw new Error('tray filled ' + tray.userData.filled + ' != FIG');
+    let tr = 0; tray.traverse(m => { if (m === traceMesh) tr++; }); if (tr !== 1) throw new Error('the restored trace must be one mesh');
+    let cells = 0; for (let i = 0; i < N_CELLS + 5; i++) if (tray.userData.cellAt(i)) cells++;
+    if (cells !== N_CELLS) throw new Error('sockets drawn ' + cells + ' != FIG.grid_cells ' + N_CELLS); }
+
+  /* ---------------- CAMERA: parallel, raking three quarter; the socket grid fills the band under the type ---------------- */
+  CH.follow();
+  const dekBot = document.getElementById('dek').getBoundingClientRect().bottom;
+  const AZ = -16 * Math.PI / 180, EL = 47 * Math.PI / 180, D = 6;
+  const dirv = new THREE.Vector3(Math.sin(AZ) * Math.cos(EL), Math.sin(EL), Math.cos(AZ) * Math.cos(EL));
+  const fwd = dirv.clone().negate(), rightV = new THREE.Vector3().crossVectors(fwd, new THREE.Vector3(0, 1, 0)).normalize(), upV = new THREE.Vector3().crossVectors(rightV, fwd).normalize();
+  tray.updateMatrixWorld(true);
+  const gp = []; [-half, half].forEach(x => [-half, half].forEach(z => gp.push(new THREE.Vector3(x, 0.004 + TOPY, z))));
+  /* the near edge (plate, connector) must show too */
+  const near = [new THREE.Vector3(-half - LIP, 0, half + NEAR), new THREE.Vector3(half + LIP, 0, half + NEAR)];
+  const xs = gp.map(p => p.dot(rightV)), ys = gp.map(p => p.dot(upV)), yb = Math.min(...near.map(p => p.dot(upV)), ...ys);
+  const PX_L = 50, PX_R = 1062, PX_TOP = dekBot + 40, PX_BOT = 1236;
+  const wM = Math.max(...xs) - Math.min(...xs), hM = Math.max(...ys) - yb;
+  const mpp = Math.max(wM / (PX_R - PX_L), hM / (PX_BOT - PX_TOP)); let SPANIN;
+  /* pushed in a fifth; the gold corner breaks the left edge just under the dek, the far corners bleed off right and bottom */
+  const mppIn = mpp * 0.8; SPANIN = mppIn * CH.W;
+  const LE = Math.min(...xs) - 18 * mppIn, TE = Math.max(...ys) + (dekBot + 26) * mppIn, BE = TE - SPANIN * CH.H / CH.W;
+  const look = new THREE.Vector3().addScaledVector(rightV, LE + SPANIN / 2).addScaledVector(upV, BE + SPANIN * CH.H / CH.W / 2);
+  CH.ortho(THREE, R, SPANIN);
+  TXT.frame(R, { from: look.clone().addScaledVector(dirv, D).toArray(), look: look.toArray() });
+  R.camera.updateProjectionMatrix(); R.camera.updateMatrixWorld(true);
+  /* every one of the gold blocks is wholly in frame, clear of the dek and the footer */
+  { const pr = gp.map(p => CH.project(THREE, R, p.toArray()));
+    window.__dbg = 'grid px ' + pr.map(q => q.map(v => v.toFixed(0)).join(',')).join(' ') + ' dek ' + dekBot.toFixed(0);
+    if (Math.min(...pr.map(q => q[1])) < dekBot + 10) throw new Error('grid meets the dek: ' + window.__dbg);
+    golds.forEach((q, i) => { const b = new THREE.Box3().setFromObject(q); [b.min.x, b.max.x].forEach(x => [b.min.y, b.max.y].forEach(y => [b.min.z, b.max.z].forEach(z => {
+      const v = CH.project(THREE, R, [x, y, z]); if (v[0] < 4 || v[0] > CH.W - 4 || v[1] < dekBot + 6 || v[1] > CH.H - 80) throw new Error('gold block ' + i + ' leaves the frame at ' + v.map(a => a.toFixed(0)) + ' ' + window.__dbg); }))); }); }
+
+  /* ---------------- THE KEY: clean near white from the back left, so each block casts into the socket in front ---------------- */
+  TXT.deckRig(R, CH.rigSpec(W, 1.2, 4096), Object.assign(CH.rigOpts([0, 0.03, 0], { distance: 6, shadowFar: 14, normalBias: 0.002 }), { light: { az: -52, el: 58 } }));
+  { const rimL = new THREE.DirectionalLight(0xffb27a, 1.1); rimL.position.set(0.9, 0.55, -1.6); rimL.target.position.set(-0.1, 0.05, -0.1); rimL.castShadow = false; R.scene.add(rimL, rimL.target); }   /* the warm rim on the polished gold */
+  TXT.weather(R, { grime: 0.006, height: 0.03, mottle: 0.015 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.44, fade: 230 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.42, fade: 140 }));
+  TXLOOK.footWash(cx, { a: 0.45, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

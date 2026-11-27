@@ -1,0 +1,196 @@
+{
+ "weighted_score": 7.262,
+ "judges": [
+  6.962,
+  7.47,
+  7.17
+ ],
+ "spread": 0.508,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.3,
+   "weight": 0.22,
+   "judges": [
+    7.3,
+    7.4,
+    7.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.8,
+   "weight": 0.12,
+   "judges": [
+    7.8,
+    8.0,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    8.3,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    6.4
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Plain blocks on a flat field; plan's plate, parallels and vise missing; smaller framing overstates the source.",
+     "fix": "Bars on parallels on a granite plate in a shop; files as a count of fewer blanks."
+    },
+    {
+     "judge": 2,
+     "problem": "Bars on flat felt, no world; cut share reads as part of the bar; blown highlight.",
+     "fix": "Physical cartridges in a studio sweep with the cut ones pulled into a dim pile; lower the key."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive blocks on a flat field read as a 3D bar chart; volume bar highlight blown.",
+     "fix": "Granite plate and parallels at a lower camera, key down a stop on the volume bar, ghost edge refraction."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Out-of-focus panels, flat mat, luggage-tag tag.",
+     "fix": "Hard warm door light across the bench, engine soft behind, wired safety tag on the root."
+    },
+    {
+     "judge": 2,
+     "problem": "Primitive blade, blurry panels, dead floor.",
+     "fix": "Close macro running off the left edge, true fir tree root, a flaw at the probe, dark bench backdrop."
+    },
+    {
+     "judge": 3,
+     "problem": "Blade flat on a featureless mat in the bottom third; blank hangar slabs; stick-like borescope; price-tag tag.",
+     "fix": "Bench edge camera, foam tray filling half the frame, gloved hand with lit borescope tip, door light as rim."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Split composition, cropped engine, type on a wash, grating stripe.",
+     "fix": "Engine and stand fill half the frame with cases at its foot in one pool; narrow the doorway."
+    },
+    {
+     "judge": 3,
+     "problem": "Split composition with no single dominant subject at feed size.",
+     "fix": "Engine in the door light with the apron as rim, cases forward into the light pool."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Gold squiggle wire over the cubes reads as a worm and adds a second accent meaning.",
+     "fix": "Delete the squiggle; light the last gold cube as the focal point."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Bare gradient sweep with thin contact, product shot in a void.",
+     "fix": "Contact-hardening shadows and worn floor under feet and cases, lower camera."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The 4 of 480 renders thin and outlined beside the bold 80.",
+     "fix": "Force lining figures or the same weight for headline numerals and re-render."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Accent dropped, grey pills, red Lubbock, low cast fraction.",
+     "fix": "Accent markers and pills, lower side key for shadows."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.262, 0.738 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.3 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

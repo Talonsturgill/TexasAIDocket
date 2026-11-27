@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- 2026-11-26, frame 2 of 9. THE RECORD. A sealed finned recorder on a cerulean sweep, and a long ribbon of bare aluminium
+     record foil spilling from its feed gate, twisting across the floor toward the lens. Its embossed ice blue cells (FIG.grid_cells
+     of them, counted in this file) are broken by punched holes the key shines straight through, throwing spots of light onto the
+     floor, and by scorched, heat tinted cells. Missing data is a hole of light, corrupted data is a burn. No gold on this frame.
+     The type sits low on the left, over the quiet front of the floor, while the foil leaves by the right edge. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:82px; top:900px; width:560px">Flight records arrive with holes</h1>
+<p class="dek" data-follow="22" style="left:84px; width:520px">Some flight data arrives missing or corrupted. Texas Tech's tool pulls together data from many sources. Tape drawn to illustrate.</p>
+<script>window.FIG = {"grid_cells": 100};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The record", counter: "02 / 09", src: "c6 c2 c3", fit: { min: 84, max: 104, maxLines: 3 } });
+
+  /* THE TYPE SITS LOW LEFT: hook and dek as one block whose foot clears the furniture band */
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  const FOOT = 1180;
+  hook.style.top = '0px'; CH.follow();
+  const blockH = dek.getBoundingClientRect().bottom - hook.getBoundingClientRect().top;
+  hook.style.top = Math.round(FOOT - blockH) + 'px'; CH.follow();
+
+  /* HONESTY: the cells along the foil are read from FIG.grid_cells. Two rows across the tape, the rest along it. */
+  const FIG = window.FIG;
+  if (Object.keys(FIG).length !== 1 || typeof FIG.grid_cells !== 'number') throw new Error('frame 2 carries exactly FIG.grid_cells, got ' + JSON.stringify(FIG));
+  const ROWS = 2, COLS = FIG.grid_cells / ROWS;
+  if (!Number.isInteger(COLS)) throw new Error('FIG.grid_cells ' + FIG.grid_cells + ' does not split into ' + ROWS + ' rows');
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, fog: 0, near: 0.01, far: 40 });
+  const P = CH.P;
+  TXT.studio(R, { tone: 'explainer', w: 4.5, d: 3.2, h: 2.4, radius: 0.7, floor: '#3446c8', wall: '#2f9ae8', top: P.skyTop, env: 0.9, hemi: 0.5 });
+
+  /* THE RECORDER: the kit's sealed recorder at true size, re-anodised cobalt, its lamp dark (no gold on this frame) */
+  const rec = K.make('event_recorder', { cable: false, lamp: false, lampColor: 0x3a6aff });
+  const brush = CH.canvasTex(THREE, 512, 512, (g, w, h) => { const r = CH.rng(77); g.fillStyle = '#aab6c8'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 1400; i++) { const v = 150 + Math.floor(r() * 90); g.fillStyle = 'rgba(' + v + ',' + (v + 8) + ',' + (v + 22) + ',' + (0.12 + r() * 0.25).toFixed(2) + ')'; g.fillRect(0, r() * h, w, 0.6 + r() * 1.6); }
+    for (let i = 0; i < 60; i++) { g.fillStyle = 'rgba(235,242,255,' + (0.3 + r() * 0.4).toFixed(2) + ')'; g.fillRect(r() * w, r() * h, 6 + r() * 40, 0.8); }
+    for (let i = 0; i < 18; i++) { const gr = g.createRadialGradient(r() * w, r() * h, 2, r() * w, r() * h, 40 + r() * 80); g.fillStyle = 'rgba(120,130,170,0.08)'; g.fillRect(0, 0, w, h); } }, [1, 1]);
+  const cobalt = K.mat('fr2-brushed-titanium', { color: 0xc2ccdc, map: brush, roughnessMap: brush, metalness: 0.88, roughness: 0.46 }, true);
+  cobalt.userData.txSurface = 'brushed';
+  const plate = K.mat('fr2-blank-plate-alu', { color: 0xbfe6ff, metalness: 0.5, roughness: 0.4 }, true);
+  const finEdge = K.mat('fr2-fin-edge-alu', { color: 0xdfe8ff, metalness: 0.95, roughness: 0.22 }, true);
+  rec.traverse(m => { if (!m.isMesh) return; const n = m.material && m.material.name || '';
+    if (/rec-anod/.test(n)) m.material = cobalt; else if (/label/.test(n)) m.material = plate; else if (/rec-edge/.test(n)) m.material = finEdge; });
+  const indigoFace = K.mat('fr2-indigo-anodised-face', { color: 0x262c86, metalness: 0.55, roughness: 0.4, clearcoat: 0.3 }, true);
+  rec.traverse(m => { if (m.isMesh && m.material && m.material.color && m.material !== plate && !m.material.emissive?.getHex()) { const hsl = {}; m.material.color.getHSL(hsl); if (hsl.l < 0.1) m.material = indigoFace; } });
+  /* the faceplate's detail where the eye lands: four cap screws, a bevelled circular connector with a knurled coupling */
+  const screwM = K.mat('fr2-screw-steel', { color: 0xe6ecf5, metalness: 1, roughness: 0.25 }, true);
+  for (const x of [-0.092, 0.092]) for (const y of [0.02, 0.058]) { const sc = new THREE.Mesh(new THREE.CylinderGeometry(0.0032, 0.0032, 0.002, 16), screwM); sc.rotation.x = Math.PI / 2; sc.position.set(x, y, 0.0789); rec.add(sc);
+    const slotS = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.0007, 0.0006), indigoFace); slotS.position.set(x, y, 0.0801); slotS.rotation.z = 0.6; rec.add(slotS); }
+  const conn = TXT.lathe([[0, 0], [0.0105, 0], [0.0105, 0.004], [0.009, 0.005], [0.009, 0.011], [0.0075, 0.012], [0, 0.012]], screwM, { segments: 40 });
+  conn.rotation.x = Math.PI / 2; conn.position.set(0.022, 0.039, 0.078); rec.add(conn);
+  const knurl = new THREE.Mesh(new THREE.CylinderGeometry(0.0098, 0.0098, 0.004, 24), K.mat('fr2-knurl-steel', { color: 0xb8c4dc, metalness: 1, roughness: 0.45 }, true)); knurl.rotation.x = Math.PI / 2; knurl.position.set(0.022, 0.039, 0.086); rec.add(knurl);
+  const pins = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.001, 20), indigoFace); pins.rotation.x = Math.PI / 2; pins.position.set(0.022, 0.039, 0.0905); rec.add(pins);
+  rec.rotation.y = 0.5;
+  TXT.add(R, rec); TXT.contact(R, rec);
+
+  /* THE FEED SLOT, cut low across the faceplate: an aluminium lip around a dark mouth, two steel rollers pinching the foil.
+   * The kit's lamp is lifted off the face so the slot has room; the connector moves up beside it. */
+  rec.traverse(m => { if (m.isMesh && Math.abs(m.position.x - 0.06) < 0.002 && Math.abs(m.position.y - 0.039) < 0.002 && m.position.z > 0.07) m.visible = false; });
+  conn.position.y = 0.052; knurl.position.y = 0.052; pins.position.y = 0.052; conn.position.x = knurl.position.x = pins.position.x = 0.064;
+  const SLOT = [0.042, 0.024, 0.08];
+  const lip = TXT.roundedBox(0.08, 0.014, 0.008, 0.003, CH.aluMat(K)); lip.position.set(SLOT[0], SLOT[1], SLOT[2] + 0.002); rec.add(lip);
+  const mouth = TXT.roundedBox(0.07, 0.005, 0.004, 0.0015, K.mat('fr2-slot-rubber', { color: 0x161a3c, roughness: 0.8 }, true)); mouth.position.set(SLOT[0], SLOT[1], SLOT[2] + 0.0045); rec.add(mouth);
+  for (const dy of [-0.0042, 0.0042]) { const rl = new THREE.Mesh(new THREE.CylinderGeometry(0.0024, 0.0024, 0.066, 20), screwM); rl.rotation.z = Math.PI / 2; rl.position.set(SLOT[0], SLOT[1] + dy, SLOT[2] + 0.0068); rec.add(rl); }
+  /* the label becomes a debossed, bevelled plate with no characters: a raised frame, a sunk field and three blank ruled lands */
+  const plateFrame = TXT.roundedBox(0.09, 0.032, 0.003, 0.0012, K.mat('fr2-plate-frame-alu', { color: 0xc8d6f4, metalness: 0.9, roughness: 0.3 }, true)); plateFrame.position.set(-0.045, 0.034, 0.0785); rec.add(plateFrame);
+  const plateField = TXT.roundedBox(0.082, 0.024, 0.0022, 0.001, K.mat('fr2-plate-field-alu', { color: 0x7d8fd0, metalness: 0.85, roughness: 0.5 }, true)); plateField.position.set(-0.045, 0.034, 0.0795); rec.add(plateField);
+  for (let k = 0; k < 3; k++) { const land = TXT.roundedBox(0.06 - k * 0.012, 0.0028, 0.001, 0.0006, K.mat('fr2-plate-frame-alu', { color: 0xc8d6f4, metalness: 0.9, roughness: 0.3 }, true)); land.position.set(-0.052 + k * 0.006, 0.042 - k * 0.007, 0.0808); rec.add(land); }
+  rec.traverse(m => { if (m.isMesh && m.material === plate) m.visible = false; });
+  rec.updateMatrixWorld(true);
+  const slotW = new THREE.Vector3(SLOT[0], SLOT[1], SLOT[2] + 0.009).applyMatrix4(rec.matrixWorld);
+  const outDir = new THREE.Vector3(0, 0, 1).applyQuaternion(rec.quaternion);
+
+  /* THE CAMERA: low and close, the recorder upper left, the sweep's wall in the top band, the foil running down to leave by the
+   * right edge. Set before the foil, because the foil's path is laid out on screen and cast back onto the studio floor. */
+  const FROM = [-0.1, 0.5, 1.7];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, 0.04, 0], 300, 500, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  R.camera.updateMatrixWorld(true);
+  const onScreen = (sx, sy, h) => { /* the world point at height h under screen point (sx, sy) of the 1080 by 1350 frame */
+    const v = new THREE.Vector3(sx / 540 - 1, 1 - sy / 675, 0.5).unproject(R.camera), o = R.camera.position.clone(), d = v.sub(o).normalize();
+    const t = (h - o.y) / d.y; return o.addScaledVector(d, t); };
+  /* THE FOIL: a ribbon along a spline from the slot, rising in a loop, falling to the floor, turning toward the lens */
+  const S = (x, y, z) => new THREE.Vector3(x, y, z);
+  const s0 = slotW.clone();
+  const ctrl = [s0, s0.clone().addScaledVector(outDir, 0.035).add(S(0, 0.004, 0)),
+    onScreen(640, 520, 0.09), onScreen(760, 340, 0.16), onScreen(870, 320, 0.17), onScreen(950, 420, 0.1), onScreen(940, 540, 0.002),
+    onScreen(840, 640, 0.002), onScreen(770, 780, 0.03), onScreen(820, 920, 0.05), onScreen(940, 1030, 0.03), onScreen(1060, 1100, 0.002), onScreen(1200, 1150, 0.002)];
+  const curve = new THREE.CatmullRomCurve3(ctrl, false, 'centripetal');
+  const TW = 0.058, NSEG = 900;
+  const twist = (u) => { /* the ribbon turns its face up and toward the camera as it comes forward */
+    return 1.25 * Math.sin(Math.PI * Math.min(1, u * 1.35)) * (1 - u) + 0.0 ; };
+  const pos = [], uv = [], idx = [];
+  const up = S(0, 1, 0);
+  let prevSide = null, prevT = null;
+  for (let i = 0; i <= NSEG; i++) {
+    const u = i / NSEG, p = curve.getPointAt(u), t = curve.getTangentAt(u);
+    /* the ribbon's side: carried along the curve (parallel transport) so it never flips, and drawn toward the horizontal
+     * wherever the tape runs flat so it lies on the sweep */
+    let side;
+    if (!prevSide) side = new THREE.Vector3().crossVectors(t, up).normalize();
+    else {
+      side = prevSide.clone().applyQuaternion(new THREE.Quaternion().setFromUnitVectors(prevT, t));
+      const flat = new THREE.Vector3().crossVectors(t, up);
+      if (flat.lengthSq() > 1e-6) { flat.normalize(); if (flat.dot(side) < 0) flat.negate(); const w = Math.pow(1 - Math.abs(t.y), 2) * 0.35; side.lerp(flat, w); }
+      side.addScaledVector(t, -side.dot(t)).normalize();
+    }
+    prevSide = side.clone(); prevT = t.clone();
+    side.applyAxisAngle(t, 0.75 * Math.min(1, Math.max(0, (p.y - 0.004) / 0.07)) * Math.sin(u * 11));
+    const lift = p.y < 0.006 ? 0.0015 : 0;
+    const a = p.clone().addScaledVector(side, -TW / 2), b = p.clone().addScaledVector(side, TW / 2);
+    a.y = Math.max(a.y, 0.0012 + lift * 0); b.y = Math.max(b.y, 0.0012);
+    pos.push(a.x, a.y, a.z, b.x, b.y, b.z); uv.push(u, 0, u, 1);
+    if (i) { const k = 2 * i; idx.push(k - 2, k - 1, k, k - 1, k + 1, k); }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  geo.setIndex(idx); geo.computeVertexNormals();
+  const LEN = curve.getLength();
+
+  /* THE CELLS, painted along the foil: COLS along by ROWS across, from 6 percent of the run to its end */
+  const U0 = 0.06, U1 = 0.982;
+  const TXW = 8192, TXH = Math.round(TXW * TW / LEN);
+  const rnd = CH.rng(2611262);
+  const cellState = []; /* 0 sound, 1 punched (missing), 2 scorched (corrupted); uncounted, drawn to illustrate */
+  for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) {
+    const arch = c > 2 && c < 12, near = c > 29 && c < 49, x = rnd();
+    cellState.push(arch ? (x < 0.4 ? 1 : 0) : near ? (x < 0.4 ? 1 : x < 0.5 ? 2 : 0) : 0);
+  }
+  let painted = 0;
+  const cellRect = (c, r) => { const pw = (U1 - U0) * TXW / COLS, ph = TXH / ROWS, m = Math.min(pw, ph) * 0.17;
+    return [U0 * TXW + c * pw + m, r * ph + m * 1.25 + (r === 0 ? TXH * 0.05 : -TXH * 0.05), pw - 2 * m, ph - 2 * m * 1.25]; };
+  const rr = (g, x, y, w, h, rad) => { g.beginPath(); g.moveTo(x + rad, y); g.arcTo(x + w, y, x + w, y + h, rad); g.arcTo(x + w, y + h, x, y + h, rad); g.arcTo(x, y + h, x, y, rad); g.arcTo(x, y, x + w, y, rad); g.closePath(); };
+  const colorTex = CH.canvasTex(THREE, TXW, TXH, (g, w, h) => {
+    const bg = g.createLinearGradient(0, 0, 0, h); bg.addColorStop(0, '#eef4ff'); bg.addColorStop(0.5, '#ffffff'); bg.addColorStop(1, '#e6eeff');
+    g.fillStyle = bg; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(150,170,220,' + (0.04 + rnd() * 0.07).toFixed(3) + ')'; g.fillRect(rnd() * w, rnd() * h, 6 + rnd() * 60, 0.8); }
+    /* edge rails */
+    g.fillStyle = '#c9d7ff'; g.fillRect(0, 0, w, h * 0.035); g.fillRect(0, h * 0.965, w, h * 0.035);
+    for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) {
+      const [x, y, cw, ch] = cellRect(c, r), st = cellState[c * ROWS + r];
+      if (st === 2) {
+        /* burnt: char bleeding out into the polymer in an uneven blot, brownish violet, no edge of its own */
+        const gx = x + cw / 2, gy = y + ch / 2;
+        for (let k = 0; k < 26; k++) { const ox = (rnd() - 0.5) * cw * 0.9, oy = (rnd() - 0.5) * ch * 0.9, rad = cw * (0.25 + rnd() * 0.5);
+          const gr = g.createRadialGradient(gx + ox, gy + oy, 1, gx + ox, gy + oy, rad);
+          gr.addColorStop(0, 'rgba(46,20,34,0.8)'); gr.addColorStop(0.5, 'rgba(96,48,58,0.45)'); gr.addColorStop(1, 'rgba(160,110,110,0)');
+          g.fillStyle = gr; g.fillRect(gx + ox - rad, gy + oy - rad, rad * 2, rad * 2); }
+        const halo = g.createRadialGradient(gx, gy, cw * 0.3, gx, gy, cw * 1.1); halo.addColorStop(0, 'rgba(140,80,62,0.5)'); halo.addColorStop(1, 'rgba(190,150,120,0)');
+        g.fillStyle = halo; g.fillRect(gx - cw * 1.1, gy - ch * 1.1, cw * 2.2, ch * 2.2);
+      } else if (st === 1) {
+        g.strokeStyle = '#ffffff'; g.lineWidth = cw * 0.12; rr(g, x - cw * 0.07, y - ch * 0.07, cw * 1.14, ch * 1.14, cw * 0.2); g.stroke();
+      } else {
+        const cg = g.createLinearGradient(x, y, x, y + ch); cg.addColorStop(0, '#e2f5ff'); cg.addColorStop(1, '#bfe4ff');
+        g.fillStyle = cg; rr(g, x, y, cw, ch, cw * 0.18); g.fill();
+        g.strokeStyle = '#7cc4ff'; g.lineWidth = cw * 0.07; rr(g, x, y, cw, ch, cw * 0.18); g.stroke();
+      }
+      painted++;
+    }
+  });
+  if (painted !== FIG.grid_cells) throw new Error('drew ' + painted + ' cells on the foil, FIG.grid_cells is ' + FIG.grid_cells);
+  const alphaTex = CH.canvasTex(THREE, TXW, TXH, (g, w, h) => {
+    g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = '#000';
+    for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) if (cellState[c * ROWS + r] === 1) {
+      const [x, y, cw, ch] = cellRect(c, r); rr(g, x - cw * 0.07, y - ch * 0.07, cw * 1.14, ch * 1.14, cw * 0.2); g.fill(); }
+  });
+  const bumpTex = CH.canvasTex(THREE, TXW, TXH, (g, w, h) => {
+    g.fillStyle = '#808080'; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#9a9a9a'; g.fillRect(0, 0, w, h * 0.035); g.fillRect(0, h * 0.965, w, h * 0.035);
+    for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) {
+      const [x, y, cw, ch] = cellRect(c, r);
+      if (cellState[c * ROWS + r] === 2) { for (let k = 0; k < 30; k++) { const v = 100 + Math.floor(rnd() * 70); g.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',0.5)'; g.beginPath(); g.arc(x + cw / 2 + (rnd() - 0.5) * cw * 1.3, y + ch / 2 + (rnd() - 0.5) * ch * 1.3, cw * (0.08 + rnd() * 0.2), 0, 7); g.fill(); } continue; }
+      g.fillStyle = '#b8b8b8'; rr(g, x, y, cw, ch, cw * 0.18); g.fill();
+      g.fillStyle = '#a2a2a2'; rr(g, x + cw * 0.12, y + ch * 0.12, cw * 0.76, ch * 0.76, cw * 0.14); g.fill();
+    }
+  });
+  [colorTex, alphaTex, bumpTex].forEach(t => { t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.repeat.set(1, 1); t.anisotropy = 16; t.needsUpdate = true; });
+  colorTex.colorSpace = THREE.SRGBColorSpace; alphaTex.colorSpace = THREE.NoColorSpace; bumpTex.colorSpace = THREE.NoColorSpace;
+  const foilMat = new THREE.MeshPhysicalMaterial({ name: 'fr2-record-foil-alu', color: 0xffffff, map: colorTex, alphaMap: alphaTex, alphaTest: 0.5,
+    bumpMap: bumpTex, bumpScale: 1.4, metalness: 0.62, roughness: 0.3, clearcoat: 0.4, clearcoatRoughness: 0.2, side: THREE.DoubleSide, envMapIntensity: 1.1 });
+  foilMat.shadowSide = THREE.DoubleSide;
+  foilMat.userData.txSurface = 'brushed';
+  const foil = new THREE.Mesh(geo, foilMat); foil.userData.txBevel = false;
+  foil.castShadow = true; foil.receiveShadow = true; R.scene.add(foil);
+
+  /* THE KEY: high from the right and a little behind, so the holes throw their spots across the floor toward the type side */
+  TXT.deckRig(R, CH.rigSpec(W, 1.6, 4096), Object.assign(CH.rigOpts([0.3, 0.05, 0.35], { distance: 5, shadowFar: 12, normalBias: 0.002 }), { light: { az: 75, el: 30 } }));
+
+  R.scene.traverse(l => { if (l.isDirectionalLight && l.castShadow) { l.shadow.mapSize.set(4096, 4096); l.shadow.radius = 16; l.shadow.camera.updateProjectionMatrix(); } });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  const T = TXLOOK.palette('explainer'), head = cx.createLinearGradient(0, 0, 0, 260);
+  head.addColorStop(0, TXLOOK.rgba(T.low, 0.42)); head.addColorStop(1, TXLOOK.rgba(T.low, 0));
+  cx.fillStyle = head; cx.fillRect(0, 0, 1080, 260);
+  CH.seat(cx, { a: 0.45, fade: 200 });
+  TXLOOK.footWash(cx, { a: 0.4, height: 200 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{"round": 2, "lens": "reader", "criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 6.8, "why": "LOOK V2 working; S2, S3, S8 legible in the thumb. S4 unlabeled slabs read as trailers with cabs, remainders unreadable. S5 ruler low with no unit. S6 abstract blade fan, no subject at 432 px. S7 plastic-looking hand the most primitive model."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "One post on the contact sheet; engine bookend works; S6 and S4 sit slightly outside the material world."},
+{"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces; careful scoping. Single-source release; S3 headline drops 'and corrupted'; S9 watch line assumes AvMC will report a service result."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "No decision, deadline or practical action; phase and data volume unexplained; Texas stake not concrete; closer to a relayed release."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 6.8, "why": "Cover a flat label; S2 to S3 a real turn; S4 and S5 interchangeable; S7 soft; S9 lands the point."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean; caption hook a person's move; slide copy close to release paraphrase."},
+{"name": "variety", "weight": 0.10, "score": 6.0, "why": "Fourth deck in a row on a Texas institution's AI release with no field result, all closing on 'the release names no result'."}],
+"weighted_score": 6.972, "hard_fails": [], "ship": false,
+"one_sentence_fix": "Merge S4 and S5, explain the 480 hour phase in the freed slot, and put the 37 percent reversal on the cover.",
+"artwork_weakest_frames": [
+{"slide": 6, "problem": "Abstract blade fan, no engine reads at feed size.", "fix": "Cutaway of the S1 engine with one accent wear band and a partly filled life gauge."},
+{"slide": 4, "problem": "Unlabeled slabs read as trailers; remainders unreadable.", "fix": "Upright file stacks full height against 27 percent, cropped to fill half the frame."},
+{"slide": 5, "problem": "Ruler low, ticks with no unit.", "fix": "Diagonal ruler through the empty area with pills every 100 hours."},
+{"slide": 7, "problem": "Plastic-looking hand, subject floats.", "fix": "Gloved hand with an inspection light at true scale, contact shadow, one accent tag."}]}
