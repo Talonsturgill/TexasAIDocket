@@ -4208,4 +4208,73 @@
   }
  ]
 }
+,
+"2026-11-26 weekly": {
+ "date": "2026-11-26",
+ "run": "2026-11-26",
+ "actor": "upgrade",
+ "digest": "out/2026-11-26/week_digest.md, 6 shipped runs, 2026-11-20 to 2026-11-26",
+ "upgrades": [
+  {
+   "what": "Kit gains turbine_blade (a cambered, twisted turbine section with hub fillet, squealer tip, film cooling holes, skewed platform, shank with angel wings and a broached fir tree root with straight loaded flanks; flaw nicks the leading edge and publishes flawAt, flag runs the accent along the twisted leading edge) and turbine_blisk (a turned disc with blades grown from the rim, leading edges up, bladeAt and leAt derived from the basis that places each blade, and a throw at make() if a built blade and bladeAt disagree), in assets/js/kit/industry.js installHot",
+   "why": "Top digest theme, primitive or low-poly model where a kit model belongs, 6 runs of 6, 18 rounds. No. 88 frame 7 built its blade by hand and the round 3 craft judge ranked it 'Primitive blade' with the fix 'true fir tree root, a flaw at the probe'; round 1 asked for 'a twisted airfoil'. Queue aviation-models-built-in-chassis (no. 88) and blisk-bladeAt-mirrored (no. 88: the chassis published each tip mirrored in x and laid its flag straight across a twisted blade).",
+   "files": [
+    "assets/js/kit/industry.js",
+    "scripts/carousel/kit_hot_check.mjs",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "node scripts/carousel/kit_hot_check.mjs (exit 0: 31 blades each in the direction bladeAt publishes, the flagged leading edge above the disc's mid plane, leAt within 1e-5 m of the drawn airfoil, the flaw pushes the leading edge back, the root on the ground, the size as declared); node scripts/carousel/kit_hot_check.mjs --self-test (exit 0: no. 88's mirrored tip replayed inside the model is refused at make(), a blisk with its leading edges down and a flaw that notches nothing are each reported, the shipped model is clean). Proof renders through the carousel engine: examples/kit/build.py --family industry --names turbine_blade,turbine_blisk plus close pages, out/2026-11-26/tmp/kit/closer/slide-01 to 04, read at full size. examples/kit/sizes.py exits 0, 147 of 147. arsenal.py --check ok.",
+   "revert": "pending; revert the installHot block and its one call in assets/js/kit/industry.js, delete scripts/carousel/kit_hot_check.mjs, rerun scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck calls turbine_blade or turbine_blisk and a judge still names the blade primitive, the fir tree as lumps, or a flag off its blade; or bladeAt and a slide's own projection of a blade disagree on screen. The first proof showed the heat finish's nose reflecting the ground as a gap beside the flag at 0.82 metalness; the satin 0.6 cured it at the proof's camera, and a deck reading a gap there again means the finish needs its own environment term."
+  },
+  {
+   "what": "panel_ready refuses a round, for runs from 2026-11-27, while copy.json prints the generic 'drawn to illustrate' on more than one frame (check_one_disclosure); BESPOKE.md's dek sentence rule no longer orders the phrase kept in every rewrite and says a frame that encodes a figure labels the encoding in its own words",
+   "why": "Queue drawn-to-illustrate-boilerplate-on-every-dek, repeat 1: no. 85 eight of nine deks, every judge in rounds 2 and 3 docked voice ('a machine covering itself'); no. 87 five deks, craft and integrity named it boilerplate. Counted over the week's shipped copy.json: 5, 7, 8, 5, 5 and 1 frames on the six decks; voice lowest on 3 runs of 6. The root cause was in lane: BESPOKE.md told each slide artist to keep the phrase.",
+   "files": [
+    "scripts/carousel/panel_ready.py",
+    "knowledge/carousel/BESPOKE.md"
+   ],
+   "verification": "python3 scripts/carousel/panel_ready.py --self-test (exit 0): no. 85's shipped copy is caught at 8 frames under the new date and left alone under its own date; no. 88's copy (1 frame) clears; a second frame given the phrase in capitals goes red; an unreadable copy.json is said. Mutants watched go red: the count bound raised to 99 (two cases fail) and the case-insensitive flag removed (the capitals case fails).",
+   "revert": "pending; revert the check_one_disclosure block, its groups line and its self-test block in scripts/carousel/panel_ready.py, and the BESPOKE.md paragraph",
+   "how_i_would_know_this_was_wrong": "An integrity judge hard fails a frame for an encoding nobody labelled because the artist dropped its disclosure to pass this; the doctrine asks for the encoding's own label, so that finding would mean the doctrine line is not being read and belongs in the slide artist's brief (UPGRADE_BACKLOG 2026-11-26 item 4)."
+  },
+  {
+   "what": "panel_ready --self-test's no. 84 stale brief replay restores briefs 8 and 9 to their lines as first shipped (commit 4ba3549e) instead of reading the archive as it sits now",
+   "why": "Found running the self-test for the change above: the two cases proving check_briefs_current goes red were themselves red at HEAD, because the run's ship fix commit bde6e43d rewrote both archived briefs to the repaired copy an hour after the 2026-11-22 pass wrote the replay. A self-test that can't pass proves nothing and would have reverted this pass's verification.",
+   "files": [
+    "scripts/carousel/panel_ready.py"
+   ],
+   "verification": "python3 scripts/carousel/panel_ready.py --self-test exits 0; the HEAD version run from a temporary copy fails exactly those two cases, so the repair is what turned them green, and the cases still assert the stale lines are caught and the rewritten frame 8 brief clears.",
+   "revert": "pending; revert the _shipped block in the THE STALE BRIEF REPLAY section of scripts/carousel/panel_ready.py",
+   "how_i_would_know_this_was_wrong": "check_briefs_current is loosened later and these two cases stay green; that would mean the restored lines no longer differ from copy.json in a way the check reads, and the replay needs a fresh defect."
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "TXLOOK.accentMaterial(hex, tone): one accent material solved per tone against a rendered swatch so the accent lands within Delta E*ab 2.3 of its hex",
+   "owner": "human",
+   "why": "Queue accent-gold-drifts-per-frame-under-cool-tone repeat 2 (nos. 79, 87, 88), the item that made this pass due. txlook.js is human. UPGRADE_BACKLOG 2026-11-26 item 1."
+  },
+  {
+   "what": "Wire node scripts/carousel/kit_hot_check.mjs and its --self-test into guards.yml",
+   "owner": "human",
+   "why": "UPGRADE_BACKLOG 2026-11-26 item 2."
+  },
+  {
+   "what": "Two GATE_LESSONS entries: a replay reading a shipped archive, and the machine ordering the boilerplate",
+   "owner": "human",
+   "why": "UPGRADE_BACKLOG 2026-11-26 item 3."
+  },
+  {
+   "what": "carousel-slide-artist.md disclosure line",
+   "owner": "human (protected path)",
+   "why": "UPGRADE_BACKLOG 2026-11-26 item 4."
+  },
+  {
+   "what": "article_check refuses a number token followed by 'percent' when the token's value carries %",
+   "owner": "daily",
+   "why": "Queue number-token-carries-percent (no. 88 web edition '37% percent'). UPGRADE_BACKLOG 2026-11-26 item 5."
+  }
+ ]
+}
 }

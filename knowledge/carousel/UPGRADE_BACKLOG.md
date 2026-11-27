@@ -7083,3 +7083,81 @@ changes the routine's round structure and its cost, so this pass asks rather tha
 ### Carried
 
 Every other open item is carried as it stands. No frontier scan this pass.
+
+## 2026-11-26, the twenty-fifth weekly machine pass (run 2026-11-26). One kit lift, one gate, one self-test repair, five proposals
+
+Digest `out/2026-11-26/week_digest.md`, six shipped runs (2026-11-20 to 2026-11-26). Top theme "primitive or
+low-poly model where a kit model belongs", 6 runs of 6, 18 rounds. Lowest criteria by runs: variety 4,
+story_and_stakes 3, voice 3, artwork_craft 2. Due because `accent-gold-drifts-per-frame-under-cool-tone` stood
+at repeat 2.
+
+Shipped in lane: `turbine_blade` and `turbine_blisk` in `assets/js/kit/industry.js` (installHot) at no. 88's
+judges' named fix, with `scripts/carousel/kit_hot_check.mjs`; `panel_ready.check_one_disclosure` and the
+BESPOKE.md dek sentence rule; the no. 84 brief replay in `panel_ready --self-test` restored to the briefs as
+first shipped. Ledger entry `2026-11-26 weekly` in `ledger/carousel/upgrades.json`.
+
+### 1. PROPOSAL, for a maintainer: the accent material that holds its hue (`assets/js/txlook.js`, human)
+
+Queue `accent-gold-drifts-per-frame-under-cool-tone`, repeat 2, the item that made this pass due: no. 79 (dusk
+gold read salmon, mauve, burnt copper, peach, apricot and orange red across frames 1, 2, 5, 7 and 9 under the
+explainer tone; five frames built their own warm PMREM), no. 87 (flag gold #ffc83d read lemon or orange on
+frames 1, 4 and 5 until materials were recalibrated against measured output), no. 88 (the chassis gold read
+salmon under the cerulean studio until deepened to 0xd9803e with emissive; frame 5's tab rebuilt at #ec9424).
+Three decks in eleven days each spent repairs re-deriving one material by eye. The fix is a `TXLOOK` helper,
+`TXLOOK.accentMaterial(hex, tone)`, that returns one material whose albedo, emissive share and environment
+weight were solved against the tone's own studio so the RENDERED accent lands within one just noticeable
+difference (Delta E*ab of 2.3, the just noticeable colour difference Sharma's Digital Color Imaging
+Handbook gives) of the declared hex. The
+solve is a measurement, not a guess: render a swatch row under `TXT.studio(R, { tone })` for each of the five
+tones, read the centre pixels, and iterate the albedo until the rendered Lab sits on the target. No. 88's
+own correction (0xe0956a declared, 0xd9803e plus emissive 0.28 rendered on target under explainer) is the
+first data point. This pass did not put it in the kit as a family side effect: an accent is a deck's LOOK, not
+a model, and a helper attached to K from a family file would be an API the registry does not declare.
+
+### 2. PROPOSAL, for a maintainer: wire the hot section check into CI (`.github/workflows/guards.yml`, human)
+
+`node scripts/carousel/kit_hot_check.mjs --self-test` and `node scripts/carousel/kit_hot_check.mjs`. Both run
+in node with three.js and no browser in about a second. Without them, a later edit to `installHot` that
+mirrors a tip again is caught only by the model's own throw at make(), which a frame meets mid render.
+
+### 3. PROPOSAL, for a maintainer: two GATE_LESSONS entries (`knowledge/shared/GATE_LESSONS.md`, human)
+
+(a) "A replay that reads a shipped archive replays nothing once a later fix rewrites the archive."
+`panel_ready --self-test`'s no. 84 replay read briefs 8 and 9 from `runs/carousel/2026-11-21/`; the run's ship
+fix commit bde6e43d rewrote both to the repaired copy an hour after the replay was written, and the two cases
+that prove the stale brief check goes red went red themselves on every run since. Nothing ran the self-test
+in CI, so nobody saw it. Check instead: a replay fixes its defect in the fixture (the pre-repair lines are now
+restored verbatim from ship commit 4ba3549e), and a self-test that has never run in CI is a decoration.
+
+(b) "The machine ordered the boilerplate." BESPOKE.md told every slide artist to keep "drawn to illustrate"
+in each dek it rewrote, and nine artists in parallel each kept one; judges docked voice for it on nos. 85 and
+87. The gate is `panel_ready.check_one_disclosure` (from 2026-11-27), replayed on no. 85's copy (8 frames, red)
+and no. 88's (1 frame, green), with two mutants watched go red.
+
+### 4. PROPOSAL, for a maintainer: the slide artist's disclosure line (`.claude/agents/carousel-slide-artist.md`, protected path)
+
+Line 61 says "Anything illustrative stays labelled". Add: "The generic 'drawn to illustrate' is printed once a
+deck (BESPOKE.md); a frame whose drawing encodes a figure says what its drawing stands for in its own words."
+The gate holds the rule without it; the line saves an artist a refused round.
+
+### 5. FOR THE RUN, daily lane: the doubled percent (`scripts/site/article_check.py`, daily)
+
+Queue `number-token-carries-percent`, repeat 0: no. 88's web edition printed "37% percent" because
+`{{number:c6}}` renders the source's own "37%" and the prose added "percent"; the editions of October 2nd,
+3rd and 5th carry the same form. `article_check.py` is `daily` lane, so the run that meets it next fixes it,
+with a replay on the October 2nd edition.
+
+### Deferred in lane
+
+- `aviation-models-built-in-chassis`: the blade and the blisk shipped; `turboshaft_engine` with a hot end and
+  `engine_stand` wait for a second deck that needs an engine, so the lift is judged against two decks' charges.
+- `dossier-drifts-from-the-render`, repeat 1 (nos. 87, 88): comparing a dossier's nouns to built model names is
+  a word match the kit's names don't support yet (no. 88's frame 7 built its blade with no kit name at all).
+  With `turbine_blade` in the kit, the next deck's frame names it, and the comparison has something to read.
+- `art-preflight-blocks-panel-on-repair` (no. 88): distinguishing a seat change from a composition change in
+  `art_preflight` would let a changed frame keep a review it no longer matches, which loosens the binding. Left
+  for a ruling; the queue line stays open.
+
+### Carried
+
+Every other open item is carried as it stands. No frontier scan this pass.

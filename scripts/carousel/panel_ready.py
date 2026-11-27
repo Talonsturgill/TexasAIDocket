@@ -1050,6 +1050,62 @@ def check_thirty_days(base: Path, date: str) -> list[str]:
     return dd.frames_on_told_items(copy, claims, ledger, ref)
 
 
+# ONE DISCLOSURE A DECK (weekly pass 2026-11-26). Binding for runs dated on or after this day, so no
+# deck that shipped under the old order is reclassified. The pass shipped on 2026-11-26, inside that
+# day's run, after its deck had gone to the panel, so the first run it binds is the next one.
+DISCLOSURE_FROM = "2026-11-27"
+DISCLOSURE_RE = re.compile(r"\bdrawn to illustrate\b", re.I)
+
+
+def check_one_disclosure(base: Path, date: str) -> list[str]:
+    """THE GENERIC DISCLOSURE IS PRINTED ONCE A DECK, NEVER ON EVERY DEK (weekly pass 2026-11-26).
+
+    Queue item drawn-to-illustrate-boilerplate-on-every-dek, at repeat 1, and the week counted it.
+    'drawn to illustrate' closed eight of nine deks on no. 85 (2026-11-22), and every judge in rounds
+    2 and 3 docked voice for it, the reader's words being "a machine covering itself"; it closed five
+    on no. 87 (2026-11-25) and the craft and integrity judges named it boilerplate again. Counted over
+    the week's shipped copy.json files it printed on 5, 7, 8, 5, 5 and 1 slides of the six decks, and
+    voice was the lowest criterion on three of them. The machine ordered it: BESPOKE.md told every
+    slide artist to keep the phrase when rewriting a dek, so nine artists in parallel each kept one.
+
+    The rule is BESPOKE.md's, now that it is corrected: the generic phrase once a deck, on the frame
+    whose picture most needs it or in the caption, and a frame whose drawing ENCODES a figure (a
+    share, a count, a scale) says what its drawing stands for in its own words ("each plate is one
+    scan"), which is the label no. 87's integrity judge asked for on slide 5. So this counts the
+    generic phrase only, and one is the doctrine's own number, not a threshold tuned to a deck.
+    """
+    if date < DISCLOSURE_FROM:
+        return []
+    cp = base / "copy.json"
+    if not cp.exists():
+        return []
+    try:
+        copy = json.loads(cp.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return [f"CANNOT RUN: copy.json is unreadable ({exc})"]
+    slides = copy.get("slides")
+    items = slides.items() if isinstance(slides, dict) else enumerate(slides or [], 1)
+
+    def texts(node):
+        if isinstance(node, str):
+            yield node
+        elif isinstance(node, dict):
+            for k, v in node.items():
+                if not str(k).startswith("_"):
+                    yield from texts(v)
+        elif isinstance(node, list):
+            for v in node:
+                yield from texts(v)
+
+    hits = [str(k) for k, s in items if any(DISCLOSURE_RE.search(t) for t in texts(s))]
+    if len(hits) <= 1:
+        return []
+    return [f"'drawn to illustrate' is printed on {len(hits)} frames ({', '.join(hits)}). Keep it on one "
+            f"frame or move it to the caption, and on a frame whose drawing encodes a figure say what "
+            f"the drawing stands for in its own words. Two judges on two decks docked voice for the "
+            f"repeated phrase (knowledge/carousel/BESPOKE.md, the dek sentence rule)"]
+
+
 BRIEF_HEAD_RE = re.compile(r"^- headline[^:`\n]*:\s*`([^`]*)`", re.M)
 BRIEF_DEK_RE = re.compile(r"^- dek[^`\n]*?:\s*`([^`]*)`", re.M)
 
@@ -1162,6 +1218,8 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None,
          f"planned value arc", check_value_arc(base)),
         ("no close and no two frames rest on a story a deck told in the last thirty days",
          check_thirty_days(base, date)),
+        ("the generic 'drawn to illustrate' disclosure is printed once a deck, not on every dek",
+         check_one_disclosure(base, date)),
     ]
     problems = [p for _, ps in groups for p in ps]
     for title, ps in groups:
@@ -1892,6 +1950,21 @@ def self_test() -> int:
         for _n in (1, 8, 9):
             (_b84 / "briefs" / f"slide-{_n:02d}.md").write_text(
                 (_r84 / "briefs" / f"slide-{_n:02d}.md").read_text(encoding="utf-8"), encoding="utf-8")
+        # THE BRIEFS AS FIRST SHIPPED. The run's ship fix commit (bde6e43d, 2026-11-22) rewrote the
+        # archived briefs 8 and 9 to the repaired copy an hour after this replay was written, so a
+        # replay reading them as they sit now replays nothing and the first two cases below went red
+        # on every run since (found by the weekly pass, 2026-11-26). The pre-repair lines are restored
+        # here verbatim from the deck's own ship commit 4ba3549e, so the replay no longer depends on
+        # an archive a later fix may rewrite.
+        _shipped = {8: ("headline", "Better than every approach. Still not enough."),
+                    9: ("dek", "DARPA's open TRIAGE-X topic seeks autonomous medical triage systems that "
+                               "recognize chemical toxidromes and physically deliver the antidote or a life "
+                               "saving intervention. It is open until November 25th. The case is drawn to illustrate.")}
+        for _n, (_field, _old) in _shipped.items():
+            _bp = _b84 / "briefs" / f"slide-{_n:02d}.md"
+            _rx = r"^(- headline[^`\n]*`)[^`]*`" if _field == "headline" else r"^(- dek[^`\n]*?`)[^`]*`"
+            _bp.write_text(re.sub(_rx, lambda m, o=_old: m.group(1) + o + "`", _bp.read_text(encoding="utf-8"),
+                                  count=1, flags=re.M), encoding="utf-8")
         _st = check_briefs_current(_b84)
         ok("no. 84's frame 8 brief, still on its pre-repair headline, is CAUGHT before the panel",
            any("slide-08.md" in p and "headline" in p for p in _st), str(_st))
@@ -1913,6 +1986,30 @@ def self_test() -> int:
         (_b84 / "briefs" / "slide-01.md").unlink(); (_b84 / "briefs").rmdir()
         ok("...and a run with no briefs directory, not bespoke, has nothing to compare",
            not check_briefs_current(_b84))
+
+    # THE BOILERPLATE REPLAY (weekly pass 2026-11-26). No. 85 (2026-11-22) as shipped printed the generic
+    # disclosure on eight frames; no. 88 (2026-11-26) printed it once.
+    with _tf.TemporaryDirectory() as _t:
+        _bd = Path(_t)
+        _r85, _r88 = REPO_ROOT / "runs" / "carousel" / "2026-11-22", REPO_ROOT / "runs" / "carousel" / "2026-11-26"
+        (_bd / "copy.json").write_text((_r85 / "copy.json").read_text(encoding="utf-8"), encoding="utf-8")
+        _d = check_one_disclosure(_bd, DISCLOSURE_FROM)
+        ok("no. 85's copy, eight frames closing on 'drawn to illustrate', is CAUGHT under the new rule",
+           len(_d) == 1 and "on 8 frames" in _d[0], str(_d))
+        ok("...and the same deck under its own date is left as it shipped (no reach back)",
+           not check_one_disclosure(_bd, "2026-11-22"))
+        (_bd / "copy.json").write_text((_r88 / "copy.json").read_text(encoding="utf-8"), encoding="utf-8")
+        ok("...and no. 88's copy, one disclosure on frame 2, clears", not check_one_disclosure(_bd, DISCLOSURE_FROM),
+           str(check_one_disclosure(_bd, DISCLOSURE_FROM)))
+        _c = json.loads((_r88 / "copy.json").read_text(encoding="utf-8"))
+        _k = [k for k in _c["slides"] if k != "S2"][0]
+        _c["slides"][_k]["body"] = str(_c["slides"][_k].get("body", "")) + " Drawn to illustrate."
+        (_bd / "copy.json").write_text(json.dumps(_c), encoding="utf-8")
+        ok("...and a second frame given the phrase in capitals goes red",
+           any("on 2 frames" in p for p in check_one_disclosure(_bd, DISCLOSURE_FROM)))
+        (_bd / "copy.json").write_text("{not json", encoding="utf-8")
+        ok("...and an unreadable copy.json is SAID, never passed",
+           any("CANNOT RUN" in p for p in check_one_disclosure(_bd, DISCLOSURE_FROM)))
 
     with _tf.TemporaryDirectory() as _t:
         ok("new daily decks require a current three-frame art review before scoring",

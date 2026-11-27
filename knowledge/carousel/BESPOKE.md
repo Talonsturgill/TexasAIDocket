@@ -66,8 +66,14 @@ a page."* The chassis answered "flow together" and lost "custom". This page rest
   across a wall. Seat it with `TXLOOK.typeSeat` (or `CH.seat`), which follows the type wherever it is.
   Never a plate. Every factual sentence of the copy stays word for word. A dek sentence that only
   describes the picture ("drawn to illustrate", "one wafer stands for $1 million") is the artist's to
-  rewrite so it describes the picture actually drawn, with "drawn to illustrate" kept and no new
-  number, date, name or claim. `copy.json` is updated from the slide's own HTML after the art, as it is
+  rewrite so it describes the picture actually drawn, with no new number, date, name or claim.
+  **The generic "drawn to illustrate" is printed ONCE A DECK** (weekly pass 2026-11-26), on the frame
+  whose picture most needs it or in the caption, never on every dek. A frame whose drawing encodes a
+  figure (a share, a count, a scale) says what the drawing stands for in its own words instead ("each
+  plate is one scan"). This sentence used to say the phrase was "kept" in every rewrite, so nine artists
+  in parallel each kept one: it closed eight of nine deks on no. 85 and five on no. 87, and every judge
+  who named it docked voice for "a machine covering itself". `panel_ready.py` refuses a round from
+  2026-11-27 while copy.json prints the phrase on more than one frame. `copy.json` is updated from the slide's own HTML after the art, as it is
   today.
 - **its medium.** Any bench in the ARSENAL. Two adjacent slides should rarely share one.
 
