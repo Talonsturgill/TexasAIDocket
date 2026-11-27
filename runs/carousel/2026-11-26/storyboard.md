@@ -108,11 +108,11 @@ art:
   value_structure: Frame median L* planned at 50. Lightest is the key on the intake lip. Darkest is the indigo under the stand.
 verbatim: []
 acceptance:
-- the engine and stand own at least 45 percent of the frame area at 432 px
-- exactly one dusk gold tag is drawn, under 8 percent of the frame
-- 'the engine reads as an engine at 432 px: an open intake, flanges with bolts, a heat tinted turbine'
-- no insignia, maker's mark, tail number or legible text is drawn
-- no numeral on this slide is absent from claims.json or figures.json
+  - the engine and stand own at least 45 percent of the frame area at 432 px
+  - exactly one dusk gold tag is drawn, under 8 percent of the frame
+  - 'the engine reads as an engine at 432 px: an open intake, flanges with bolts, a heat tinted turbine'
+  - no insignia, maker's mark, tail number or legible text is drawn
+  - no numeral on this slide is absent from claims.json or figures.json
 risks:
 - a drum or a vacuum cleaner, so intake vanes, flanges, bolt rings and the fuel manifold must read
 - the tag reading as a price tag, so it hangs from a safety wire on the flange
@@ -164,10 +164,10 @@ art:
   value_structure: Frame median L* planned at 39. Lightest is the tape in the key. Darkest is the recorder's fin shadows.
 verbatim: []
 acceptance:
-- the tape and recorder own at least 40 percent of the frame area
-- no gold appears on this frame
-- the cells along the tape run equal FIG.grid_cells, asserted in code
-- no numeral on this slide is absent from claims.json or figures.json
+  - the tape and recorder own at least 40 percent of the frame area
+  - no gold appears on this frame
+  - the cells along the tape run equal FIG.grid_cells, asserted in code
+  - no numeral on this slide is absent from claims.json or figures.json
 risks:
 - a film strip or a punch card, so the cells are small, many and ice blue, never sprocket holes
 type:
@@ -220,12 +220,12 @@ art:
   value_structure: Frame median L* planned at 44. Lightest is the tray lip in the key. Darkest is the empty socket floors.
 verbatim: []
 acceptance:
-- exactly FIG.restored_of_100 gold cubes and FIG.grid_cells sockets are drawn, asserted in code
-- the gold rows read as countable at 432 px
-- the camera is a raking three quarter, never straight down
-- no numeral on this slide is absent from claims.json or figures.json
-- the chassis record_tray is drawn and modelled with socket walls and floors, and the frame fails if it is missing or unmodelled
-- the tray owns at least half the frame width at 432 px
+  - exactly FIG.restored_of_100 gold cubes and FIG.grid_cells sockets are drawn, asserted in code
+  - the gold rows read as countable at 432 px
+  - the camera is a raking three quarter, never straight down
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the chassis record_tray is drawn and modelled with socket walls and floors, and the frame fails if it is missing or unmodelled
+  - the tray owns at least half the frame width at 432 px
 risks:
 - a waffle chart, so the tray keeps depth, chamfers and casts
 type:
@@ -275,11 +275,11 @@ art:
   value_structure: Frame median L* planned at 37. Lightest is the bar tops in the key. Darkest is the granite.
 verbatim: []
 acceptance:
-- the two bars' lengths are FIG.volume_left_pct and FIG.files_left_pct of the ghost, asserted in code
-- both ghosts are the same length
-- the dek says up to
-- no numeral on this slide is absent from claims.json or figures.json
-- the two bars and their ghosts own at least 60 percent of the frame width at 432 px
+  - the two bars' lengths are FIG.volume_left_pct and FIG.files_left_pct of the ghost, asserted in code
+  - both ghosts are the same length
+  - the dek says up to
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the two bars and their ghosts own at least 60 percent of the frame width at 432 px
 risks:
 - the vise reading as data being crushed, so the ghosts read as the size before
 type:
@@ -331,11 +331,11 @@ art:
   value_structure: Frame median L* planned at 35. Lightest is the rule's brushed face. Darkest is the mat in the casts.
 verbatim: []
 acceptance:
-- the rule's major ticks equal FIG.phase_hours divided by 10, asserted in code
-- exactly one gold tab at the 480 stop
-- the relief carries at least two materials, a height range and cast shadows
-- no numeral on this slide is absent from claims.json or figures.json
-- the hour rule runs at least 80 percent of the frame diagonal at 432 px
+  - the rule's major ticks equal FIG.phase_hours divided by 10, asserted in code
+  - exactly one gold tab at the 480 stop
+  - the relief carries at least two materials, a height range and cast shadows
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the hour rule runs at least 80 percent of the frame diagonal at 432 px
 risks:
 - a flat chart, so the rule stands proud and casts
 type:
@@ -385,12 +385,12 @@ art:
   value_structure: Frame median L* planned at 28, among the deck's darkest three. Lightest is the leading edges. Darkest is the gaps, indigo and never black.
 verbatim: []
 acceptance:
-- the disc owns at least 70 percent of the frame area
-- exactly one blade carries the gold line
-- near black is under 0.25 of the frame
-- no numeral on this slide is absent from claims.json or figures.json
-- the chassis blisk with its twisted blades is drawn, and the frame fails if it is missing or unmodelled
-- the blisk disc stands at least 70 percent of the frame height
+  - the disc owns at least 70 percent of the frame area
+  - exactly one blade carries the gold line
+  - near black is under 0.25 of the frame
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the chassis blisk with its twisted blades is drawn, and the frame fails if it is missing or unmodelled
+  - the blisk disc stands at least 70 percent of the frame height
 risks:
 - a desk fan, so fir tree roots, lean and heat tint carry it
 type:
@@ -437,12 +437,12 @@ art:
   value_structure: Frame median L* planned at 27. Lightest is the door light on the bench. Darkest is the back wall.
 verbatim: []
 acceptance:
-- no person is drawn, or only a gloved hand cropped at the wrist
-- exactly one gold marked part is drawn
-- no legible text is drawn on the manual
-- no numeral on this slide is absent from claims.json or figures.json
-- the maintenance bench with the manual, borescope and tray is drawn in a hangar bay, and the frame fails if the bench is missing or unmodelled
-- the bench and its objects own at least 40 percent of the frame width at 432 px
+  - no person is drawn, or only a gloved hand cropped at the wrist
+  - exactly one gold marked part is drawn
+  - no legible text is drawn on the manual
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the maintenance bench with the manual, borescope and tray is drawn in a hangar bay, and the frame fails if the bench is missing or unmodelled
+  - the bench and its objects own at least 40 percent of the frame width at 432 px
 risks:
 - a cluttered still life, so three objects and one tray
 type:
@@ -493,11 +493,11 @@ art:
   value_structure: Frame median L* planned at 50. Lightest is the caliche. Darkest is the casts off the counties.
 verbatim: []
 acceptance:
-- county shapes come from assets/geo/tx-counties.topo.json
-- the rivets equal FIG.partner_years, asserted in code
-- no gold appears on this frame
-- no numeral on this slide is absent from claims.json or figures.json
-- Texas owns at least 70 percent of the frame width at 432 px
+  - county shapes come from assets/geo/tx-counties.topo.json
+  - the rivets equal FIG.partner_years, asserted in code
+  - no gold appears on this frame
+  - no numeral on this slide is absent from claims.json or figures.json
+  - Texas owns at least 70 percent of the frame width at 432 px
 risks:
 - a familiar map move, so the route and rivets must read at feed size
 type:
@@ -547,11 +547,11 @@ art:
   value_structure: Frame median L* planned at 27. Lightest is the sky. Darkest is the shade inside the hangar.
 verbatim: []
 acceptance:
-- exactly FIG.tools gold cases are drawn, asserted in code
-- the engine is seen from the side opposite the cover
-- no insignia, mark or legible text is drawn
-- no numeral on this slide is absent from claims.json or figures.json
-- the engine and stand stand at least 300 px tall at 432 px scale factor, at least a quarter of the frame height
+  - exactly FIG.tools gold cases are drawn, asserted in code
+  - the engine is seen from the side opposite the cover
+  - no insignia, mark or legible text is drawn
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the engine and stand stand at least 300 px tall at 432 px scale factor, at least a quarter of the frame height
 risks:
 - a repeat of the cover, so a different world, side and light
 type:
