@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-26-the-screen-reads-next",
+      "date": "2026-11-26",
+      "title": "The screen reads next",
+      "caption": "At a Port Arthur refinery, an AI tool predicted steam pressure dips 10 to 18 minutes earlier than before, and console operators still make the call.",
+      "video": "/runs/2026-11-26/dispatch.mp4",
+      "poster": "/runs/2026-11-26/poster.png",
+      "video_mobile": "/runs/2026-11-26/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-26/poster-540.jpg",
+      "county": "Jefferson",
+      "beat": "oilfield"
+    },
+    {
       "id": "2026-11-22-the-satellite-points",
       "date": "2026-11-22",
       "title": "The satellite points",
