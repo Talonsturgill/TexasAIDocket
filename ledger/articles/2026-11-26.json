@@ -19,7 +19,7 @@
  },
  "introduction": [
   {
-   "text": "[Texas Tech's Institute for Materials, Manufacturing and Sustainment worked with Fort Worth based AVX Defense Technologies under the Army's FleetSpace program](c1). [The institute is at Texas Tech in Lubbock](c20). [The team built the FleetSpace User Interface, which Texas Tech describes as an AI enabled decision tool for Army aviation operation, maintenance and sustainment planning](c2). [A second tool, the Propulsion System Validator](c7), [which Texas Tech says tracks the remaining useful life of aircraft engines on its own and recommends maintenance actions tied to the aviation technical manual](c8).",
+   "text": "[Texas Tech's Institute for Materials, Manufacturing and Sustainment worked with Fort Worth based AVX Defense Technologies under the Army's FleetSpace program](c1). [The institute is at Texas Tech in Lubbock](c20). [The team built the FleetSpace User Interface, which Texas Tech describes as an AI enabled decision tool for Army aviation operation, maintenance and sustainment planning](c2). [A second tool is the Propulsion System Validator](c7). [Texas Tech says it tracks the remaining useful life of aircraft engines on its own and recommends maintenance actions tied to the aviation technical manual](c8).",
    "claims": [
     "c1",
     "c20",
@@ -48,7 +48,7 @@
      ]
     },
     {
-     "text": "[In testing, they also restored {{number:c6}} percent of missing and corrupted flight data and cut data volume by up to {{number:c6:1}} percent and data files by up to {{number:c6:2}} percent](c6). The restored share is not an accuracy grade. It is the part of a damaged record the networks could fill back in. The two reductions are ceilings, not typical results.",
+     "text": "[In testing, they also restored {{number:c6}} of missing and corrupted flight data](c6). [They cut data volume by up to {{number:c6:1}} and data files by up to {{number:c6:2}}](c6). The restored share is not an accuracy grade. It is the part of a damaged record the networks could fill back in. The two reductions are ceilings, not typical results.",
      "claims": [
       "c6"
      ]
@@ -59,7 +59,7 @@
    "heading": "Who still does the work",
    "paragraphs": [
     {
-     "text": "[Aircraft maintenance professionals assess aircraft systems with computer technology and hands on inspections](c15). [Henry Johnston, a postdoctoral research associate at the institute, says the models let maintenance teams identify weak components, schedule repairs ahead of failure and reduce downtime](c13), and [he expects that to raise the availability of the Army aviation fleet](c14). The second point is a forecast. [Co-principal investigator Tommy Dang says both technologies give soldiers capability to manage their aviation fleets](c17).",
+     "text": "[Aircraft maintenance professionals assess aircraft systems with computer technology and hands on inspections](c15). [Henry Johnston is a postdoctoral research associate at the institute. He says the models let maintenance teams identify weak components, schedule repairs ahead of failure and reduce downtime](c13). [He expects that to raise the availability of the Army aviation fleet](c14). The second point is a forecast. [Co-principal investigator Tommy Dang says both technologies give soldiers capability to manage their aviation fleets](c17).",
      "claims": [
       "c15",
       "c13",
@@ -93,7 +93,7 @@
    "heading": "What is still unknown",
    "paragraphs": [
     {
-     "text": "[Every performance figure Texas Tech reports comes from testing](c6). Whether the tools are running on Army aircraft, which aircraft they would serve, what the program cost and how the predictions compare with what maintainers find are not in the release. The next public measure would be a result from service.",
+     "text": "[Every performance figure Texas Tech reports comes from testing](c6). The release doesn't say whether the tools are running on Army aircraft or which aircraft they would serve. It gives no program cost and no comparison of the predictions with what maintainers find. The next public measure would be a result from service.",
      "claims": [
       "c6"
      ]

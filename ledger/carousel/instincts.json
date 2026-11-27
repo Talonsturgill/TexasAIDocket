@@ -236,7 +236,8 @@
         "2026-11-17",
         "2026-11-19",
         "2026-11-20",
-        "2026-11-25"
+        "2026-11-25",
+        "2026-11-27"
       ],
       "contradicted": []
     },
@@ -1997,7 +1998,9 @@
       "learned": "2026-11-25",
       "instinct": "Rewrite a frame's dossier and craft row the moment its build changes concept, because a director reads the plan against the picture and refuses a good frame that disagrees with its own plan.",
       "evidence": "No. 87 frame 9, the dossier described a light table that was never built, and a restore of a once accepted close was refused for that mismatch, one of four rejected builds.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-27"
+      ],
       "contradicted": []
     },
     {
@@ -2005,6 +2008,14 @@
       "learned": "2026-11-25",
       "instinct": "Draw a share so every part of the whole carries the thing counted, because drawing the found item only in the majority says the minority found nothing.",
       "evidence": "No. 87 frame 6, the first rebuild put gold beads only in the two other-scan lungs, and the art director read it as screening finding no nodules when the claim is a share of nodules found.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-drawing-picks-a-reading",
+      "learned": "2026-11-27",
+      "instinct": "When a source figure is ambiguous between size and count, draw and headline the release's own verb, never one reading of it.",
+      "evidence": "No. 88 frame 4 drew 'data files up to 73 percent smaller' as a shortened bar; the round 3 integrity judge argued the release means fewer files, since volume fell only 30 percent, and the cap left it standing.",
       "confirmed": [],
       "contradicted": []
     }
