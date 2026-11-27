@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+    "slides/slide-01.html": "8935f9cd6e3a597579028e8c10c2ed4eab1e19f4acf9fbf408dae4f60fbb3700",
     "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
     "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -55,10 +55,8 @@
   ],
   "review": {
     "decision": "accept",
-    "reviewer": "carousel-art-director",
-    "round": 5,
     "inputs": {
-      "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+      "slides/slide-01.html": "8935f9cd6e3a597579028e8c10c2ed4eab1e19f4acf9fbf408dae4f60fbb3700",
       "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
       "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -80,15 +78,15 @@
       {
         "slide": 1,
         "role": "cover",
-        "subject": "An illustrative turboshaft engine on an indigo A-frame stand in a cerulean studio sweep, a gold tag on a wire under the case, and two moulded gold hard cases on the floor at the front right.",
-        "visual_consequence": "Reads as one engine on a maintenance stand with two separate gold tool cases beside it, the gold marking what was delivered. The cases count and the engine is the larger subject.",
-        "weakness": "Repairs hold at native size: ribbed shells, recessed latches, handles, feet, separate contact shadows, gussets at the stand feet. Remaining: a smeared heat tint gradient on the hot section (r1c2), a closed rounded cold end reading as a canister (r1c1), a pale cyan sliver under the rear saddle (r2c1). None blocks the cover.",
+        "subject": "The illustrative turboshaft engine on a violet A-frame stand on a cerulean sweep, a dusk gold tag beneath it and two dusk gold hard cases at the stand front right foot, engine and stand about half the frame.",
+        "visual_consequence": "One machine on a test stand with two gold tool cases beside it; the case count reads as FIG.tools at feed size, and gold marks only what the software puts out.",
+        "weakness": "None that blocks. The gold tag is a flat card with no thickness; the near case partly hides the front right foot; the two cases are identical. Read after a guard-only source change with a byte-identical render.",
         "repair": "None required.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
         "inputs": {
-          "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+          "slides/slide-01.html": "8935f9cd6e3a597579028e8c10c2ed4eab1e19f4acf9fbf408dae4f60fbb3700",
           "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
           "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -165,7 +163,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+      "slides/slide-01.html": "8935f9cd6e3a597579028e8c10c2ed4eab1e19f4acf9fbf408dae4f60fbb3700",
       "render/slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
       "assets/js/deck/2026-11-26-flightrecord-bespoke.js": "c40fe2a1206a8a3cf0c782d23bbd030d2222389dfb1169786bbe05a95bba1174",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -211,11 +209,10 @@
     }
   },
   "needs_review": [
-    1,
-    9
+    1
   ],
   "shipped_inputs": {
-    "slides/slide-01.html": "085fa78a9708fa8cf614e35094bce0a710a85f25e0d7b1cbe42184bd822cf7dc",
+    "slides/slide-01.html": "8935f9cd6e3a597579028e8c10c2ed4eab1e19f4acf9fbf408dae4f60fbb3700",
     "slide-01.png": "9baa192f3fc3279d7e8de74d2c2633d899a89e4e5a060ea0e71b3672febbdeac",
     "slides/slide-03.html": "6e6346c19f9d73857b696f62235be2f62fde949655f070b2c5941c80e5f9e1c1",
     "slide-03.png": "883c157efb2ced21f60c4d59a52e975c73f62bda29e5490871870efc74d60f12",
