@@ -1,0 +1,134 @@
+{
+ "date": "2026-11-26",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "37 percent",
+   "slide": "slide-03.html",
+   "kind": "ratio",
+   "value": 37,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "37 percent",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 37,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "30 percent",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 30,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "73 percent",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 73,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "73 percent",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 73,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "480 hour",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 480,
+   "quoted_from": "c5",
+   "quote": "predicted unplanned and 480-hour phase maintenance actions, restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "480 hour",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 480,
+   "quoted_from": "c5",
+   "quote": "predicted unplanned and 480-hour phase maintenance actions, restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "more than 18 students",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 18,
+   "quoted_from": "c11",
+   "quote": "more than 18 undergraduate and graduate students contributed to the effort."
+  },
+  {
+   "phrase": "three capstone projects",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c18",
+   "quote": "Students completed three capstone projects over the course of the effort"
+  },
+  {
+   "phrase": "since 2019",
+   "slide": "slide-08.html",
+   "kind": "span",
+   "value": 2019,
+   "quoted_from": "c12",
+   "quote": "IMMS and AVX have partnered continuously since 2019"
+  },
+  {
+   "phrase": "30 percent and data files",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 30,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "18 students",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 18,
+   "quoted_from": "c11",
+   "quote": "more than 18 undergraduate and graduate students contributed to the effort."
+  },
+  {
+   "phrase": "37 percent reads",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 37,
+   "quoted_from": "c6",
+   "quote": "restored 37% of missing and corrupted flight data and reduced data volume by up to 30% and data files up to 73% in testing."
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "note": "the number of distinct source documents behind the cited claims, counted by sources_block.py",
+   "computed_by": "sources_block.py counting the distinct source urls across claims.json"
+  },
+  {
+   "phrase": "one in a hundred",
+   "slide": "slide-03.html",
+   "kind": "ratio",
+   "value": 1,
+   "computed_by": "compute.py setting grid_cells to 100 drawing cells in figures.json, one cell per percent of c6",
+   "of": 100
+  },
+  {
+   "phrase": "two maintenance tools",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "compute.py setting tools to 2 in figures.json, one for each tool c9 names, the FSUI (c1) and the PSV (c7)",
+   "note": "counted from c9, which names both the FSUI and the PSV"
+  }
+ ]
+}

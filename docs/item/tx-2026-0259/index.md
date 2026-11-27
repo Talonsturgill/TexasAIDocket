@@ -11,7 +11,7 @@ Texas Tech opened the Critical Infrastructure Telecom Ecosystem Incubator at its
 - Public access: Write to the decider
 - Take part: https://www.depts.ttu.edu/cisi/news/2026/citei-ribbon-cutting.php
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -22,6 +22,7 @@ Texas Tech opened the Critical Infrastructure Telecom Ecosystem Incubator at its
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-24 · Admitted from Texas Tech's November 10th account of the opening. The page describes a demonstration and names no deployment.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

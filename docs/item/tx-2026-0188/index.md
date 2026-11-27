@@ -9,7 +9,7 @@ The Texas Department of Motor Vehicles now requires any company running automate
 - Public access: Write to the decider
 - Take part: https://txmccs.txdmv.gov/truckstop
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-18 · The state's rule that driverless commercial operation needs its own authorization still reads as cited, with no fee and no expiry added.
 - 2026-11-21 · The state still asks only for an authorization to run driverless vehicles commercially, with no fee and no expiry on it, as the motor vehicle agency's rules read.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

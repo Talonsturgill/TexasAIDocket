@@ -1,0 +1,118 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Defense and federal",
+ "dek": {
+  "text": "Texas Tech built two Army aircraft maintenance tools, one AI enabled and made with a Fort Worth contractor. It says the Army has both. Every result it reports is from testing.",
+  "claims": [
+   "c1",
+   "c2",
+   "c5",
+   "c6",
+   "c7",
+   "c9"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Texas Tech's Institute for Materials, Manufacturing and Sustainment worked with Fort Worth based AVX Defense Technologies under the Army's FleetSpace program](c1). [The institute is at Texas Tech in Lubbock](c20). [The team built the FleetSpace User Interface, which Texas Tech describes as an AI enabled decision tool for Army aviation operation, maintenance and sustainment planning](c2). [A second tool is the Propulsion System Validator](c7). [Texas Tech says it tracks the remaining useful life of aircraft engines on its own and recommends maintenance actions tied to the aviation technical manual](c8).",
+   "claims": [
+    "c1",
+    "c20",
+    "c2",
+    "c7",
+    "c8"
+   ]
+  },
+  {
+   "text": "[Texas Tech says both tools have been provided to the Army](c9). That is the university's account. The release cites no Army document, names no aircraft type and no unit, and reports no result from either tool in service.",
+   "claims": [
+    "c9"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the networks did in testing",
+   "paragraphs": [
+    {
+     "text": "[The team built data fusion and flight operations algorithms and a predictive maintenance model driven by data](c3), and [the methods use neural networks](c4). [In testing, the networks predicted unplanned and {{number:c5}} hour phase maintenance actions](c5). The release gives no accuracy or error rate for those predictions.",
+     "claims": [
+      "c3",
+      "c4",
+      "c5"
+     ]
+    },
+    {
+     "text": "[In testing, they also restored {{number:c6}} of missing and corrupted flight data](c6). [They cut data volume by up to {{number:c6:1}} and data files by up to {{number:c6:2}}](c6). The restored share is not an accuracy grade. It is the part of a damaged record the networks could fill back in. The two reductions are ceilings, not typical results.",
+     "claims": [
+      "c6"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who still does the work",
+   "paragraphs": [
+    {
+     "text": "[Aircraft maintenance professionals assess aircraft systems with computer technology and hands on inspections](c15). [Henry Johnston is a postdoctoral research associate at the institute. He says the models let maintenance teams identify weak components, schedule repairs ahead of failure and reduce downtime](c13). [He expects that to raise the availability of the Army aviation fleet](c14). The second point is a forecast. [Co-principal investigator Tommy Dang says both technologies give soldiers capability to manage their aviation fleets](c17).",
+     "claims": [
+      "c15",
+      "c13",
+      "c14",
+      "c17"
+     ]
+    },
+    {
+     "text": "[Texas Tech says FleetSpace was demonstrated at the Army's annual Experimental Demonstration Gateway Event and the engine validator at GE Aerospace](c10). The release gives no date or place for either demonstration.",
+     "claims": [
+      "c10"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A long partnership",
+   "paragraphs": [
+    {
+     "text": "[The institute and AVX have partnered continuously since {{number:c12}}](c12). [More than {{number:c11}} undergraduate and graduate students worked on the effort](c11), and [students completed three capstone projects along the way](c18). [Texas Tech frames the work as a step toward reducing the billions of dollars civilian and defense agencies spend maintaining aircraft](c19). The release puts no figure on any savings from these tools.",
+     "claims": [
+      "c12",
+      "c11",
+      "c18",
+      "c19"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What is still unknown",
+   "paragraphs": [
+    {
+     "text": "[Every performance figure Texas Tech reports comes from testing](c6). The release doesn't say whether the tools are running on Army aircraft or which aircraft they would serve. It gives no program cost and no comparison of the predictions with what maintainers find. The next public measure would be a result from service.",
+     "claims": [
+      "c6"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0263",
+   "label": "Texas Tech's FleetSpace tools in the record"
+  },
+  {
+   "id": "tx-2026-0259",
+   "label": "Texas Tech's telecom security testbed at Reese"
+  },
+  {
+   "id": "tx-2026-0247",
+   "label": "Texas Tech's AI computing cluster from the chip fund"
+  }
+ ]
+}

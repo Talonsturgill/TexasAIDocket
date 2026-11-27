@@ -1,62 +1,41 @@
 {
- "last_pass": "2026-11-24",
+ "last_pass": "2026-11-26",
  "themes": [
   {
    "theme": "primitive or low-poly model where a kit model belongs",
    "runs": 6,
    "rounds": 18,
    "action": "fixed",
-   "what": "Kit person handShape 'press' (assets/js/kit/people.js): a modelled index fingertip lands on a point, lifted from no. 86 frame 6's hand-built finger. The close hand detail (knuckle beads at a near camera) stays open."
+   "what": "Kit turbine_blade and turbine_blisk (assets/js/kit/industry.js installHot) at no. 88's judges' named fix: a twisted turbine section and a broached fir tree root, a flaw at the leading edge, a flag that follows the twist; the blisk's bladeAt can no longer be mirrored. Checked by scripts/carousel/kit_hot_check.mjs."
   },
   {
-   "theme": "layout CLI passes what ship refuses (queue layout-cli-passes-what-ship-refuses, repeat 2: nos. 82, 83, 86)",
+   "theme": "drawn to illustrate on every dek (queue drawn-to-illustrate-boilerplate-on-every-dek, repeat 1: nos. 85, 87; voice lowest on 3 runs)",
+   "runs": 2,
+   "rounds": null,
+   "action": "fixed",
+   "what": "BESPOKE.md stops ordering the phrase kept; panel_ready.check_one_disclosure refuses a round from 2026-11-27 while copy.json prints it on more than one frame."
+  },
+  {
+   "theme": "accent hue drifts per frame under a cool tone (queue accent-gold-drifts-per-frame-under-cool-tone, repeat 2: nos. 79, 87, 88)",
    "runs": 3,
    "rounds": null,
-   "action": "fixed",
-   "what": "layout_check's bespoke exemption covers the archetype rotation alone."
+   "action": "escalated",
+   "what": "The named fix is a TXLOOK helper (txlook.js is human); UPGRADE_BACKLOG 2026-11-26 item 1 with a measured solve."
   },
   {
-   "theme": "fig_inject reads string literals as dynamic (queue fig-inject-reads-string-literals-as-dynamic, repeat 1: nos. 80, 86)",
-   "runs": 2,
-   "rounds": null,
-   "action": "fixed",
-   "what": "fig_inject blanks string literals in script bodies; shipped_check notes archived decks through 2026-11-24."
-  },
-  {
-   "theme": "render report truncates long text nodes (queued twice: nos. 74, 86)",
-   "runs": 2,
-   "rounds": null,
-   "action": "fixed",
-   "what": "plan_render_check reads past the report's window from the slide source."
-  },
-  {
-   "theme": "the week's one hard fail, a doubled attribution in caption.txt (queue caption-check-misses-doubled-clause: no. 86)",
+   "theme": "number token carries its own percent sign (queue number-token-carries-percent, no. 88)",
    "runs": 1,
-   "rounds": 1,
+   "rounds": null,
+   "action": "escalated",
+   "what": "scripts/site/article_check.py is daily lane; UPGRADE_BACKLOG 2026-11-26 item 5."
+  },
+  {
+   "theme": "panel_ready self-test red at HEAD (found by this pass)",
+   "runs": null,
+   "rounds": null,
    "action": "fixed",
-   "what": "caption_check fails an unpunctuated doubled run of three or more words; copy_sync_check compares copy.json's caption to caption.txt."
-  },
-  {
-   "theme": "panel repair can lower the art (queue panel-repair-can-lower-the-art, repeat 1: nos. 84, 86)",
-   "runs": 2,
-   "rounds": null,
-   "action": "escalated",
-   "what": "Needs a Phase 15 step in prompts/daily_routine.md; UPGRADE_BACKLOG 2026-11-24 item 2."
-  },
-  {
-   "theme": "rebuild round took critic fixes (queue rebuild-round-took-critic-fixes, repeat 1: nos. 81, 86)",
-   "runs": 2,
-   "rounds": null,
-   "action": "escalated",
-   "what": "A round-structure ruling for the owner; UPGRADE_BACKLOG 2026-11-24 item 3."
-  },
-  {
-   "theme": "accent floor forces flat painted props (queue accent-floor-forces-flat-painted-props, repeat 3)",
-   "runs": 4,
-   "rounds": null,
-   "action": "escalated",
-   "what": "Still waiting on the 2026-11-22 ruling."
+   "what": "The no. 84 stale brief replay restores briefs 8 and 9 as first shipped, after a ship fix rewrote the archive."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from out/2026-11-24/week_digest.md, six shipped runs. Queue themes' run counts are the distinct decks their queue lines name; rounds not counted for them."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from out/2026-11-26/week_digest.md, six shipped runs. Queue themes' run counts are the distinct decks their queue lines name; rounds not counted for them."
 }

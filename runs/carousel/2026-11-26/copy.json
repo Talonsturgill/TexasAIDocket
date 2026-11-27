@@ -1,0 +1,218 @@
+{
+ "date": "2026-11-26",
+ "carousel_no": 88,
+ "document_title": "Texas Tech says its AI aircraft maintenance tools have been provided to the Army",
+ "_note": "Caption carried verbatim from caption.txt. Slide strings polished by the copywriter from storyboard.md and held to the claim quotes in claims.json. Every numeral is in claims.json or figures.json. Drawn to illustrate or drawn to no maker's design appears only on S1 and S2. Every result reads in testing. The tools are provided to the Army and never fielded or used.",
+ "caption": "37 percent reads like a failing grade.\n\nTexas Tech worked with AVX Defense Technologies of Fort Worth on the Army's FleetSpace program. Together they developed an AI enabled planning tool for Army aviation. Texas Tech says a second tool tracks the remaining useful life of aircraft engines on its own. It recommends maintenance tied to the aviation technical manual. Texas Tech says both have been provided to the Army.\n\nThe 37 percent was never a grade. It is the share of missing and corrupted flight data the team's neural networks restored in testing. In testing they also predicted unplanned and 480 hour phase maintenance actions and cut data files by up to 73 percent.\n\nTexas Tech's release names no result from service. If the Army runs them outside testing, how much of the result will be public?\n\n#TexasTech #FortWorth #FleetSpace\n",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texas Tech",
+   "headline": "AI maintenance tools, provided to the Army",
+   "claims": [
+    "c1",
+    "c2",
+    "c7",
+    "c9"
+   ],
+   "cite": "c1 c2 c7 c9",
+   "body": "Texas Tech built two maintenance tools for Army aviation, one of them with AVX Defense Technologies of Fort Worth. Texas Tech says both have been provided to the Army. Engine drawn to no maker's design.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "AI maintenance tools, provided to the Army",
+    "Texas Tech built two maintenance tools for Army aviation, one of them with AVX Defense Technologies of Fort Worth. Texas Tech says both have been provided to the Army. Engine drawn to no maker's design.",
+    "Texas Tech",
+    "01 / 09",
+    "c1 c2 c7 c9"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The record",
+   "headline": "Flight records arrive with holes",
+   "claims": [
+    "c6",
+    "c2",
+    "c3"
+   ],
+   "cite": "c6 c2 c3",
+   "body": "Some flight data arrives missing or corrupted. Texas Tech's tool pulls together data from many sources. Tape drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Flight records arrive with holes",
+    "Some flight data arrives missing or corrupted. Texas Tech's tool pulls together data from many sources. Tape drawn to illustrate.",
+    "The record",
+    "02 / 09",
+    "c6 c2 c3"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "In testing",
+   "headline": "37 percent of missing data restored",
+   "claims": [
+    "c6",
+    "c4"
+   ],
+   "cite": "c6 c4",
+   "body": "In testing, Texas Tech's neural networks restored 37 percent of missing and corrupted flight data. Each gold cell is one in a hundred.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "37 percent of missing data restored",
+    "In testing, Texas Tech's neural networks restored 37 percent of missing and corrupted flight data. Each gold cell is one in a hundred.",
+    "In testing",
+    "03 / 09",
+    "c6 c4"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Up to",
+   "headline": "Data files up to 73 percent smaller",
+   "claims": [
+    "c6"
+   ],
+   "cite": "c6",
+   "body": "In testing, the networks cut data volume by up to 30 percent and data files by up to 73 percent. Both figures are ceilings, not averages.",
+   "labels": [
+    "files",
+    "volume"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Data files up to 73 percent smaller",
+    "In testing, the networks cut data volume by up to 30 percent and data files by up to 73 percent. Both figures are ceilings, not averages.",
+    "Up to",
+    "04 / 09",
+    "c6",
+    "files",
+    "volume"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Phase hours",
+   "headline": "480 hour phase actions, predicted in testing",
+   "claims": [
+    "c5",
+    "c4"
+   ],
+   "cite": "c5 c4",
+   "body": "In testing, the neural networks predicted unplanned maintenance actions. They predicted 480 hour phase maintenance actions too.",
+   "labels": [
+    "480 hour phase"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "480 hour phase actions, predicted in testing",
+    "In testing, the neural networks predicted unplanned maintenance actions. They predicted 480 hour phase maintenance actions too.",
+    "Phase hours",
+    "05 / 09",
+    "c5 c4",
+    "480 hour phase"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Engine life",
+   "headline": "Texas Tech says one tool tracks engine life",
+   "claims": [
+    "c7",
+    "c8"
+   ],
+   "cite": "c7 c8",
+   "body": "Texas Tech says the Propulsion System Validator tracks the remaining useful life of aircraft engines on its own. It recommends maintenance tied to the aviation technical manual.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Texas Tech says one tool tracks engine life",
+    "Texas Tech says the Propulsion System Validator tracks the remaining useful life of aircraft engines on its own. It recommends maintenance tied to the aviation technical manual.",
+    "Engine life",
+    "06 / 09",
+    "c7 c8"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Hands on",
+   "headline": "Finding weak parts before they fail",
+   "claims": [
+    "c13",
+    "c15"
+   ],
+   "cite": "c13 c15",
+   "body": "Texas Tech's Henry Johnston says the models help teams find weak parts and plan repairs before failure. Maintenance crews check aircraft with computers and hands on inspections.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Finding weak parts before they fail",
+    "Texas Tech's Henry Johnston says the models help teams find weak parts and plan repairs before failure. Maintenance crews check aircraft with computers and hands on inspections.",
+    "Hands on",
+    "07 / 09",
+    "c13 c15"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Since 2019",
+   "headline": "Lubbock to Fort Worth since 2019",
+   "claims": [
+    "c1",
+    "c12",
+    "c20",
+    "c11",
+    "c18"
+   ],
+   "cite": "c1 c12 c20 c11 c18",
+   "body": "Texas Tech's institute in Lubbock and AVX Defense Technologies of Fort Worth have partnered since 2019. More than 18 students worked on the effort. Students also finished three capstone projects.",
+   "labels": [
+    "Lubbock",
+    "Fort Worth"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Lubbock to Fort Worth since 2019",
+    "Texas Tech's institute in Lubbock and AVX Defense Technologies of Fort Worth have partnered since 2019. More than 18 students worked on the effort. Students also finished three capstone projects.",
+    "Since 2019",
+    "08 / 09",
+    "c1 c12 c20 c11 c18",
+    "Lubbock",
+    "Fort Worth"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What to watch",
+   "headline": "Every result so far is from testing",
+   "claims": [
+    "c9",
+    "c5",
+    "c6",
+    "c1"
+   ],
+   "cite": "c9 c5 c6 c1",
+   "body": "Texas Tech says both tools have been provided to the Army. Every result it reports comes from testing. The Army Aviation and Missile Command funds the program. Watch that command for the first result from service.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Every result so far is from testing",
+    "Texas Tech says both tools have been provided to the Army. Every result it reports comes from testing. The Army Aviation and Missile Command funds the program. Watch that command for the first result from service.",
+    "What to watch",
+    "09 / 09",
+    "c9 c5 c6 c1"
+   ]
+  }
+ }
+}

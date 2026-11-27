@@ -1,0 +1,15 @@
+{"round": 3, "lens": "integrity", "criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 7.3, "why": "S6 strongest; S8 real caliche relief with 7 rivets matching partner_years; S1 and S9 bookend. S4 plain blocks with frosted ghosts on a flat field, plate, parallels and vise from the CRAFT PLAN missing. S3 gold squiggle wire over the cubes reads as a worm and blurs the rows. S7 hangar out-of-focus panels, tag reads as a luggage tag. S1 and S5 on a gradient sweep with little contact."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "Spine holds; gold keeps one meaning; engine motif evolves S1, S6, S9. S8 caliche and red breaks the material vocabulary."},
+{"name": "claim_integrity", "weight": 0.20, "score": 6.0, "why": "Every numeral traces. S4 headline 'Data files up to 73 percent smaller' and its shrunk bar infer file size past the source's 'reduced data files up to 73%', which most plausibly means file count given the 30 percent volume figure; dek and caption faithful. S1 'AI maintenance tools' covers the PSV which c2 does not call AI. S9 headline universal names its set only in the dek. Single release; first comment calls a news post and a homepage 'two official records'."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "Who, funder, where and what named; every result labelled in testing. Stake general; watch line not actionable."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover earns a look; S3 to S5 similar beats; S6 the one real turn; S8 late; S9 lands."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean; caption hook and payoff good; reads close to a press-release restatement; S7 dek generic."},
+{"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh subject; house v2 blue, familiar relief and grid moves."}],
+"weighted_score": 6.962, "hard_fails": [], "ship": true,
+"one_sentence_fix": "Rewrite the S4 headline and art to what the source says, data files cut by up to 73 percent, and build the plate, parallels and vise.",
+"artwork_weakest_frames": [
+{"slide": 4, "problem": "Plain blocks on a flat field; plan's plate, parallels and vise missing; smaller framing overstates the source.", "fix": "Bars on parallels on a granite plate in a shop; files as a count of fewer blanks."},
+{"slide": 3, "problem": "Gold squiggle wire over the cubes reads as a worm and adds a second accent meaning.", "fix": "Delete the squiggle; light the last gold cube as the focal point."},
+{"slide": 7, "problem": "Out-of-focus panels, flat mat, luggage-tag tag.", "fix": "Hard warm door light across the bench, engine soft behind, wired safety tag on the root."},
+{"slide": 1, "problem": "Bare gradient sweep with thin contact, product shot in a void.", "fix": "Contact-hardening shadows and worn floor under feet and cases, lower camera."}]}

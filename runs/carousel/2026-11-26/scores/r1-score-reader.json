@@ -1,0 +1,22 @@
+{
+  "lens": "reader",
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.8, "why": "S3 tray reads at declared scale; S1 engine and S2 tape each one lit subject. S4 bars unlabelled with stray springs and a dead lower zone, S7 does not resolve into an inspection, S6 tick strip unexplained, S5 rail abstract at thumb size. S2, S4 to S7 share one flat ultramarine field."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One palette, one type system, gold as the measured thing, the engine bookends S1, S7, S9. S8 beige relief breaks the run; value arc flat across S4 to S7."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces to figures.json and a claim; testing caveat carried. Single-source release; S7 leans on c15 background line; S1 body credits AVX with building both tools while c7 credits the PSV to Texas Tech."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 5.5, "why": "Close to a topic rather than a story. No decision, recipient or funder named; S9 watch line names no body or document; Texas stake arrives late on S8."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "S2 to S3 pays off; S3 to S5 three figure frames at the same weight; S8 backstory before the close; cover states a fact without a reason to swipe."},
+    {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean house style, reads as a release paraphrase; S4 kicker filler; caption misdirection hook."},
+    {"name": "variety", "weight": 0.10, "score": 6.5, "why": "Fresh subject, familiar v2 explainer look, counted grid and county relief familiar moves."}
+  ],
+  "weighted_score": 6.78,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Name the funder (c1) early, fold S4 into S3, and make S9 name a concrete thing to watch or say none is public.",
+  "artwork_weakest_frames": [
+    {"slide": 4, "problem": "Bars unlabelled, stray springs, background scribbles, dead lower third.", "fix": "Accent pills 'volume' and 'files' on the bars, delete springs and line noise, lower the camera so the bars fill to the headline."},
+    {"slide": 7, "problem": "Tray, probe and part do not read as an inspection at feed size.", "fix": "Push onto the tray and add a gloved hand touching the part, matte gold band."},
+    {"slide": 6, "problem": "Gold tick strip unexplained, flat key across blades.", "fix": "Make the strip a partly filled life gauge, rake the key from the right."},
+    {"slide": 5, "problem": "Diagonal rail reads abstract at thumb size, pill floats.", "fix": "Rotate the rail toward horizontal, seat the tab at a visible 480 tick with the pill on it."}
+  ]
+}

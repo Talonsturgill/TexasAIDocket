@@ -11,7 +11,7 @@ The Fort Worth City Council took three data center votes on August 11th, 2026. M
 - Public access: Public meeting
 - Take part: https://www.fortworthtexas.gov/government/top-govt-topics/data-centers
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -64,6 +64,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-15 · The city now lists the first public hearing as held on November 10th. Its tentative next step is a second hearing and first reading on January 12th, 2027.
 - 2026-11-19 · Fort Worth's data center page still describes the moratorium and its hearings as the record has them.
 - 2026-11-24 · Fort Worth's data center page still describes the moratorium and its hearings as the record has them. KERA's story refused the project's reader and was not read.
+- 2026-11-26 · Checked and unchanged. Still open, with no dated movement. One published account of the decision is closed to rereading, so what it reported stands on its earlier reading.
 
 ## Evidence
 

@@ -1,0 +1,165 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-26, frame 4 of 9, UP TO (c6). A spatial scene through txthree.js in a TXT.interior machine shop on a
+     cerulean epoxy floor. Two milled 6061 bars, each held at its left end in a mill_vise on a blue granite surface plate and
+     resting on ground parallels, run on as frosted glass ghosts to the full stock length, so bar plus ghost is the whole
+     stock and the bar is FIG.files_left_pct (near) and FIG.volume_left_pct (far) of it, one scale, asserted in code. The
+     rows sit far enough apart that neither bar lies behind the other's ghost from this camera, checked by projection.
+     Chip curls lie on the plate at each cut face with contact shadows. No accent on this frame. The type sits high. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:420px; top:132px; width:596px; text-align:right">Data files up to 73 percent smaller</h1>
+<div class="lab" id="lab-vol" style="background:linear-gradient(180deg,#eea27a,#d98a5e); color:#2b1206">volume</div>
+<div class="lab" id="lab-files" style="background:linear-gradient(180deg,#eea27a,#d98a5e); color:#2b1206">files</div>
+<p class="dek" data-follow="18" style="left:420px; width:596px; text-align:right">In testing, the networks cut data volume by up to 30 percent and data files by up to 73 percent. Both figures are ceilings, not averages.</p>
+<script>window.FIG = {"volume_left_pct": 70, "files_left_pct": 27};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Up to", counter: "04 / 09", src: "c6", fit: { min: 70, max: 96, maxLines: 3 } });
+
+  /* THE FIGURES. Both bars are cut from the same full stock length STOCK. The near bar keeps FIG.files_left_pct of it,
+   * the far bar FIG.volume_left_pct; each runs on as a clear glass ghost to the full length. Read here, checked below. */
+  const FILES = FIG.files_left_pct, VOL = FIG.volume_left_pct;
+  [FILES, VOL].forEach(v => { if (!(typeof v === 'number' && v > 0 && v < 100)) throw new Error('bad figure ' + v); });
+
+  /* THE TYPE, high over the shop wall, inside the safe margin, clear of the source line */
+  { const h = document.getElementById('hook'), d = document.querySelector('.dek');
+    const hb = h.getBoundingClientRect(), db = d.getBoundingClientRect(), sb = document.querySelector('.src') ? document.querySelector('.src').getBoundingClientRect() : { top: 1290 };
+    if (hb.left < 64 || hb.right > 1016 || db.right > 1016) throw new Error('the type leaves the 64 px safe margin');
+    if (db.bottom > sb.top - 22) throw new Error('the dek runs to ' + Math.round(db.bottom) + ' px, into the source line at ' + Math.round(sb.top)); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 30, fog: 0 });
+
+  /* THE SHOP: a cerulean painted wall 1.25 m behind the plate, a window in it, a sealed concrete floor */
+  const ROOM = { w: 6, d: 6, h: 3.2, backZ: -3.6 };
+  TXT.interior(R, { w: ROOM.w, d: ROOM.d, h: ROOM.h, floor: 'concrete', wall: 0x2a7fd6, trim: 0x2a74d8, window: null, ceiling: false, light: 0.8 });
+  R.room.position.z = ROOM.backZ + ROOM.d / 2;
+  R.room.traverse(m => { if (m.isMesh && m.material && !m.material.map) { m.material = m.material.clone(); m.material.name = 'wall-paint'; m.material.userData.txSurface = 'paint'; } });
+
+  /* the shop floor: a glossy cerulean epoxy coat over the slab, so no grey concrete or joint lines sit behind the type */
+  { const fm = new THREE.MeshPhysicalMaterial({ name: 'epoxy-floor-paint', color: 0x2b66d4, roughness: 0.38, clearcoat: 0.6, clearcoatRoughness: 0.2 }); fm.userData.txSurface = 'paint';
+    const fl = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), fm); fl.rotation.x = -Math.PI / 2; fl.position.set(0, 0.004, 0); fl.receiveShadow = true; fl.userData.txBevel = false; R.scene.add(fl); }
+  const PT = 0.86;                                   /* the plate's lapped top, metres above the floor */
+  const box = (w, h, d, m, x, y, z, r, parent) => { const b = TXT.roundedBox(w, h, d, r == null ? 0.004 : r, m); b.position.set(x, y, z); b.castShadow = b.receiveShadow = true; (parent || R.scene).add(b); return b; };
+
+  /* THE SURFACE PLATE: blue granite lapped flat, 1.5 x 1.5 x 0.15 m, opaque and polished, on an indigo painted stand */
+  const granTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => { const r = CH.rng(2604);
+    g.fillStyle = '#1d58bf'; g.fillRect(0, 0, w, h);
+    /* only a fine crystalline grain, the way polished granite reads close up; no veins, no lines */
+    for (let i = 0; i < 260000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(14,36,110,0.18)' : 'rgba(120,170,245,0.14)'; g.fillRect(r() * w, r() * h, 1 + (r() < 0.2), 1); } }, [2, 2]);
+  const PLATE = { w: 4.4, d: 5.4, t: 0.15, z: -1.2 };
+  const granTop = new THREE.MeshPhysicalMaterial({ name: 'granite-plate-polished', map: granTex, roughness: 0.22, clearcoat: 0.6, clearcoatRoughness: 0.12 }); granTop.userData.txSurface = false;
+  const granSide = new THREE.MeshPhysicalMaterial({ name: 'granite-plate-side', color: 0x24307e, roughness: 0.4, clearcoat: 0.3 }); granSide.userData.txSurface = 'mineral';
+  box(PLATE.w, PLATE.t, PLATE.d, granSide, 0, PT - PLATE.t / 2 - 0.002, PLATE.z, 0.014);
+  { const tp = new THREE.Mesh(new THREE.PlaneGeometry(PLATE.w - 0.03, PLATE.d - 0.03), granTop); tp.rotation.x = -Math.PI / 2; tp.position.set(0, PT, PLATE.z); tp.receiveShadow = true; tp.userData.txBevel = false; R.scene.add(tp); }
+  { const standM = new THREE.MeshPhysicalMaterial({ name: 'indigo-painted-steel', color: 0x3a3fb0, roughness: 0.45, metalness: 0.3, clearcoat: 0.5 }); standM.userData.txSurface = 'paint';
+    box(PLATE.w - 0.1, 0.07, PLATE.d - 0.1, standM, 0, PT - PLATE.t - 0.035, PLATE.z, 0.01);
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => box(0.07, PT - PLATE.t - 0.07, 0.07, standM, sx * (PLATE.w / 2 - 0.12), (PT - PLATE.t - 0.07) / 2, PLATE.z + sz * (PLATE.d / 2 - 0.12), 0.01)); }
+
+  /* THE STOCK. One full stock length on one scale for both bars; a bar is its kept share, the frosted ghost the rest.
+   * Each bar is held at its left end in its own machine vise and rests on a pair of ground parallels. The rows sit
+   * 0.5 m apart so that from this camera neither bar ever lies behind the other's ghost (checked below). */
+  const STOCK = 1.0, UNIT = STOCK / 100, X0 = -0.5, SEC = { w: 0.2, h: 0.14 }, LIFT = 0.066, ROWS = [0.25, -0.25];
+  const alu = new THREE.MeshPhysicalMaterial({ name: 'milled-6061-aluminium', color: 0xd9e0e8, metalness: 0.92, roughness: 0.3, clearcoat: 0.2 }); alu.userData.txSurface = 'brushed';
+  const faceTex = CH.canvasTex(THREE, 512, 256, (g, w, h) => { g.fillStyle = '#c4ccd8'; g.fillRect(0, 0, w, h);
+    for (let x = -h; x < w + h; x += 9) { const k = Math.round(x / 9) % 3; g.strokeStyle = k === 0 ? 'rgba(255,255,255,0.55)' : k === 1 ? 'rgba(90,100,140,0.35)' : 'rgba(210,220,240,0.3)'; g.lineWidth = 3; g.beginPath(); g.arc(x - h * 0.6, h / 2, h * 0.75, -0.95, 0.95); g.stroke(); } });
+  const sideTex = CH.canvasTex(THREE, 512, 64, (g, w, h) => { g.fillStyle = '#cdd5e2'; g.fillRect(0, 0, w, h); const r = CH.rng(77);
+    for (let y = 0; y < h; y += 4) { g.fillStyle = (y / 4) % 2 ? 'rgba(255,255,255,0.14)' : 'rgba(90,100,140,0.1)'; g.fillRect(0, y, w, 2); }
+    for (let i = 0; i < 400; i++) { g.fillStyle = 'rgba(255,255,255,0.12)'; g.fillRect(r() * w, r() * h, 6 + r() * 30, 1); } });
+  sideTex.wrapS = THREE.RepeatWrapping; faceTex.wrapS = THREE.RepeatWrapping;
+  /* frosted glass: low transmission, pale, a soft satin scatter, so nothing behind it can read through as metal */
+  const frost = new THREE.MeshPhysicalMaterial({ name: 'frosted-glass-ghost', color: 0x86aef0, metalness: 0, roughness: 0.5, transmission: 0.4, envMapIntensity: 0.6, thickness: 0.2, ior: 1.5,
+    attenuationColor: new THREE.Color(0xb8dcff), attenuationDistance: 0.6, clearcoat: 0.8, clearcoatRoughness: 0.25, sheen: 0.2, sheenColor: new THREE.Color(0xcfe2ff) }); frost.userData.txSurface = false;
+  const parM = new THREE.MeshPhysicalMaterial({ name: 'ground-tool-steel-parallel', color: 0x5864b8, metalness: 0.8, roughness: 0.36 });
+  const built = [];
+  [{ pct: FILES, z: ROWS[0], name: 'files' }, { pct: VOL, z: ROWS[1], name: 'volume' }].forEach((b) => {
+    const len = b.pct * UNIT, rest = STOCK - len, base = PT + LIFT, y = base + SEC.h / 2 + 0.0005;
+    /* the two parallels under bar and ghost, from the vise's jaw to the end of the stock */
+    [-1, 1].forEach(sz => { const px0 = X0 + 0.02, px1 = X0 + STOCK - 0.01; const pr = box(px1 - px0, LIFT, 0.018, parM, (px0 + px1) / 2, PT + LIFT / 2, b.z + sz * 0.07, 0.003); TXT.contact(R, pr, { y: PT, opacity: 0.7 }); });
+    const bar = box(len, SEC.h, SEC.w, alu, X0 + len / 2, y, b.z, 0.004);
+    const fm = new THREE.MeshPhysicalMaterial({ name: 'fly-cut-6061-face', color: 0xc6cede, map: faceTex.clone(), metalness: 0.88, roughness: 0.32 }); fm.map.repeat.set(len / 0.12, 1); fm.map.needsUpdate = true; fm.userData.txSurface = false;
+    const top = new THREE.Mesh(new THREE.PlaneGeometry(len - 0.008, SEC.w - 0.008), fm); top.rotation.x = -Math.PI / 2; top.position.set(X0 + len / 2, base + SEC.h + 0.0012, b.z); top.receiveShadow = true; top.userData.txBevel = false; R.scene.add(top);
+    { const sm = new THREE.MeshPhysicalMaterial({ name: 'side-milled-6061', color: 0xe2e8f2, map: sideTex.clone(), metalness: 0.9, roughness: 0.3 }); sm.map.repeat.set(len / 0.12, 1); sm.map.needsUpdate = true; sm.userData.txSurface = false;
+      const sd = new THREE.Mesh(new THREE.PlaneGeometry(len - 0.01, SEC.h - 0.012), sm); sd.position.set(X0 + len / 2, y, b.z + SEC.w / 2 + 0.0008); sd.receiveShadow = true; sd.userData.txBevel = false; R.scene.add(sd); }
+    { const chm = new THREE.MeshStandardMaterial({ name: 'chamfer-bright-6061', color: 0xffffff, metalness: 0.55, roughness: 0.22, emissive: 0x9fb0d8, emissiveIntensity: 0.25 }); chm.userData.txSurface = false;
+      [1, -1].forEach(sz => { const c = new THREE.Mesh(new THREE.BoxGeometry(len - 0.006, 0.0045, 0.0045), chm); c.rotation.x = Math.PI / 4; c.position.set(X0 + len / 2, base + SEC.h - 0.0004, b.z + sz * (SEC.w / 2 - 0.0004)); c.userData.txBevel = false; R.scene.add(c); });
+      const ce = new THREE.Mesh(new THREE.BoxGeometry(0.0045, 0.0045, SEC.w - 0.006), chm); ce.rotation.z = Math.PI / 4; ce.position.set(X0 + len - 0.0004, base + SEC.h - 0.0004, b.z); ce.userData.txBevel = false; R.scene.add(ce); }
+    const cf = new THREE.Mesh(new THREE.PlaneGeometry(SEC.w - 0.006, SEC.h - 0.006), new THREE.MeshStandardMaterial({ name: 'saw-cut-face', color: 0xf4f7fb, metalness: 0.85, roughness: 0.18 }));
+    cf.material.userData.txSurface = false; cf.rotation.y = Math.PI / 2; cf.position.set(X0 + len + 0.0006, y, b.z); cf.userData.txBevel = false; R.scene.add(cf);
+    /* the ghost: the rest of the full stock in frosted glass, same section, a 4 mm joint from the cut face, bevelled */
+    const gx0 = X0 + len + 0.004, gl2 = X0 + STOCK - gx0;
+    const gh = TXT.roundedBox(gl2, SEC.h, SEC.w, 0.016, frost); gh.position.set(gx0 + gl2 / 2, y, b.z); gh.castShadow = true; gh.receiveShadow = true; gh.userData.txBevel = false; R.scene.add(gh);
+    TXT.contact(R, bar, { y: base, opacity: 0.6 });
+    /* the ghost's arrises: thin bright edges, so the full stock's end reads at feed size */
+    { const em = new THREE.MeshStandardMaterial({ name: 'glass-arris', color: 0xffffff, roughness: 0.2, metalness: 0, emissive: 0xd6eeff, emissiveIntensity: 0.5 }); em.userData.txSurface = false;
+      const e = 0.005, gx1 = X0 + STOCK, cxm = (gx0 + gx1) / 2;
+      [[1, 1], [1, -1]].forEach(([sy, sz]) => { const a = TXT.roundedBox(gl2 - 0.02, e, e, 0.0008, em); a.position.set(cxm, y + sy * (SEC.h / 2 - 0.004), b.z + sz * (SEC.w / 2 - 0.004)); a.userData.txBevel = false; R.scene.add(a); });
+      [[1, 0, 1], [0, 1, 1]].forEach(([hz, vt, sd]) => { const a = TXT.roundedBox(e, vt ? SEC.h - 0.02 : e, hz ? SEC.w - 0.02 : e, 0.0008, em);
+        a.position.set(gx1 - 0.004, vt ? y : y + sd * (SEC.h / 2 - 0.004), hz ? b.z : b.z + sd * (SEC.w / 2 - 0.004)); a.userData.txBevel = false; R.scene.add(a); }); }
+    built.push({ name: b.name, z: b.z, base, bar: len, ghost: gl2 + 0.004, total: len + gl2 + 0.004, barOf100: Math.round(len / UNIT) });
+  });
+  if (built[0].barOf100 !== FILES || built[1].barOf100 !== VOL) throw new Error('bar lengths disagree with FIG ' + JSON.stringify(built));
+  if (built.some(b => Math.abs(b.total - STOCK) > 1e-9)) throw new Error('a ghost does not reach the full stock ' + JSON.stringify(built));
+  window.__bars04 = built;
+
+  /* THE CAMERA, raised and pushed in, the bars running across the lower two thirds, plate and vises filling the bottom */
+  const EL = 58 * Math.PI / 180, DIST = 3.7, FOV = 30;
+  const FROM = [0.03, PT + DIST * Math.sin(EL), DIST * Math.cos(EL)];
+  CH.aim(THREE, R, TXT, FROM, [0, PT + 0.1, 0], 540, 905, FOV);
+  /* THE DEPTH CHECK: on screen, the near row's top back edge must sit below the far row's lowest visible point,
+   * so neither bar ever lies behind the other's ghost */
+  { const nearTopBack = CH.project(THREE, R, [0, built[0].base + SEC.h, ROWS[0] - SEC.w / 2]), farBottomFront = CH.project(THREE, R, [0, PT, ROWS[1] + SEC.w / 2]);
+    if (!(nearTopBack[1] > farBottomFront[1] + 4)) throw new Error('rows overlap on screen ' + nearTopBack[1] + ' vs ' + farBottomFront[1]); }
+
+  /* THE FRAME CHECK: both whole stocks, parallels included, sit inside the frame and clear of the type block */
+  { const hb = document.getElementById('hook').getBoundingClientRect(), db = document.querySelector('.dek').getBoundingClientRect();
+    built.forEach(b => { [[X0, PT, b.z + SEC.w / 2], [X0 + STOCK, PT, b.z + SEC.w / 2], [X0, b.base + SEC.h, b.z - SEC.w / 2], [X0 + STOCK, b.base + SEC.h, b.z - SEC.w / 2]].forEach(p => {
+      const q = CH.project(THREE, R, p); if (q[0] < 90 || q[0] > 990 || q[1] > 1180) throw new Error('a stock leaves the frame ' + b.name + ' ' + q);
+      if (q[1] < db.bottom + 30) throw new Error('a stock runs up into the type ' + b.name + ' ' + q); }); }); }
+  /* THE PILLS: each sits on its own metal bar's top face, centred on the kept length */
+  [['lab-files', built[0]], ['lab-vol', built[1]]].forEach(([id, b]) => { const el = document.getElementById(id), r = el.getBoundingClientRect();
+    const q = CH.project(THREE, R, [X0 + b.bar / 2, b.base + SEC.h, b.z]);
+    el.style.left = Math.round(q[0] - r.width / 2) + 'px'; el.style.top = Math.round(q[1] - r.height / 2) + 'px';
+    const lr = el.getBoundingClientRect(); if (lr.left < 64 || lr.right > 1016 || lr.bottom > 1190) throw new Error('pill out of safe zone ' + id); });
+  if (document.getElementById('lab-files').textContent !== 'files' || document.getElementById('lab-vol').textContent !== 'volume') throw new Error('pill text');
+
+  /* THE LIGHT: the window's key from behind left, an indigo fill from the room */
+  const spec = CH.rigSpec(W, 3, 2048);
+  spec.key = Object.assign({}, spec.key, { color: 0xffe6c8 });
+  spec.fill = Object.assign({}, spec.fill, { color: 0x6a6ef0, i: 1.0 });
+  spec.ambient = Object.assign({}, spec.ambient, { color: 0x7a86f0, i: 0.55 });
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([0, PT, 0], { distance: 8, shadowFar: 20, normalBias: 0.004 }), { light: { az: -135, el: 30 } }));
+  CH.unacne(R, 0.004);
+  R.scene.add(new THREE.HemisphereLight(0xcfe6ff, 0x4a3fa0, 0.7));
+  { const front = new THREE.DirectionalLight(0xe8f2ff, 0.9); front.position.set(0.6, PT + 1.4, 2.2); front.target.position.set(0, PT, 0); R.scene.add(front); R.scene.add(front.target); }
+
+  /* the low sun through the window, a warm pool on the plate, the bars casting toward the camera */
+  { const sp = new THREE.SpotLight(0xffc48a, 15, 3.6, 0.42, 0.85, 1.4); sp.position.set(-0.6, PT + 1.0, -1.05); sp.target.position.set(0.05, PT, -0.05);
+    sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; sp.shadow.normalBias = 0.004; R.scene.add(sp); R.scene.add(sp.target); }
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.seat(cx, { a: 0.62, fade: 180 });
+  ['.kick', '.count'].forEach(sel => CH.seat(cx, { sel, a: 0.3, fade: 90 }));
+  TXLOOK.footWash(cx, { a: 0.55, height: 230 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

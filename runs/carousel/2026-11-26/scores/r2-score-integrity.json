@@ -1,0 +1,15 @@
+{"round": 2, "lens": "integrity", "criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 7.3, "why": "Look v2 throughout. S3 37 of 100 matches figures; S8 relief beads placed geographically; S5 48 long ticks to the 480 tab but no printed scale. S4 bars fill 70 and 27 but no label says which is files or volume, cabs cut off, ring clutter. S7 primitive waxy hand. S6 body copy on busy blade texture; safe zone flags on S1, S4, S6."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "One post; accent consistent; engine bookend. S8 tan relief and darker S6 slightly outside."},
+{"name": "claim_integrity", "weight": 0.20, "score": 7.6, "why": "Every numeral traces; results carry in testing; no hard fail. S6 and caption state PSV autonomy as fact where c8 is Texas Tech says. S5 headline 'predicted' looser than c5's maintenance actions. S8 joins c11 and c18 as though the same students did the capstones."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 6.6, "why": "Who, what, where and AvMC funding clear. No decision, date or county stake; watch line general."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover flat beside the caption hook; order coherent and close lands; S7 cuttable; S2 overlaps S3."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean, honest about limits; most bodies restate the release."},
+{"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh subject and varied benches; standard v2 blue sweep and a familiar county relief."}],
+"weighted_score": 7.218, "hard_fails": [], "ship": false,
+"one_sentence_fix": "Attribute the PSV autonomy claim on S6 and in the caption to Texas Tech, and label the S4 bars files and volume.",
+"artwork_weakest_frames": [
+{"slide": 4, "problem": "No label for files or volume; cabs cut off; ring clutter; type outside the safe zone.", "fix": "Pull back, pill labels files and volume, accent on the cut segment, delete rings, type inside the margin."},
+{"slide": 7, "problem": "Primitive waxy hand dominates; blade and tag small and low.", "fix": "Gloved hand with fabric detail or crop to the probe tip on the blade with a visible accent weak spot."},
+{"slide": 6, "problem": "Body copy on busy texture; seven dark marks undecodable; safe zone flag.", "fix": "Rotate the fan so the top 40 percent is clean navy; marks as a life gauge to one accent notch."},
+{"slide": 5, "problem": "Rule prints no scale; top half empty.", "fix": "Enlarge the rule and engrave zero and end-hour marks computed in figures.json."}]}

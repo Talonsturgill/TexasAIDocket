@@ -1,0 +1,180 @@
+<!doctype html>
+<!-- 2026-11-26, frame 5 of 9, FOUR EIGHTY (c5 c4). BESPOKE. A TXBENCH material relief in plan under the chassis key: a
+     chamfered, brushed stainless hour rule lying nearly level across a plain indigo rubber bench mat (caliche grit in its
+     grain) on a cerulean bench. A nickel end stop at zero, an etched long tick every 10 hours and a short one every 5, no
+     numerals, the graduations running on past the tab to the frame's edge. ONE dusk gold enamel tab is clipped over the
+     rule, its pointer stopping at the 480 hour long tick, its flag lying on the mat. The gold is what the software puts out
+     and the only warm note on the frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:160px; width:560px; text-align:left">480 hour phase actions, predicted in testing</h1>
+<p class="dek" data-follow="20" style="left:82px; width:540px">In testing, the neural networks predicted unplanned maintenance actions. They predicted 480 hour phase maintenance actions too.</p>
+<div class="lab" id="lab480" style="background:linear-gradient(180deg,#f7b448,#e0956a); color:#2b1206">480 hour phase</div>
+<script>window.FIG = {"phase_hours": 480};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Phase hours", counter: "05 / 09", src: "c5 c4", fit: { min: 60, max: 80, maxLines: 3 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 5);
+  const L = TXLOOK.lin, F = (x, y, n) => TX.fbm2(x, y, { octaves: n || 3 });
+  const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const sc3 = (c, k) => [c[0] * k, c[1] * k, c[2] * k];
+  const sdRect = (u, v, hw, hh, r) => { const qx = Math.abs(u) - (hw - r), qy = Math.abs(v) - (hh - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; };
+
+  /* HONEST. THE DRAWING RULE: one long tick every 10 hours and one short tick every 5 hours, PX10 design px per 10 hours,
+   * counted from the end stop's face. The gold tab sits on the tick at FIG.phase_hours, so the length from zero to the
+   * tab IS the figure; the graduations run on past it to the frame's edge (up to 1.25 x FIG.phase_hours), so the tab marks
+   * a point on a running scale, not the rule's end. Nothing else on the frame stands for a number: the mat, the end
+   * stop and its screws count nothing. */
+  const HOURS = window.FIG.phase_hours;
+  if (HOURS !== 480) throw new Error("FIG.phase_hours is " + HOURS + ", the copy says 480");
+  const MAJOR_EVERY = 10, MINOR_EVERY = 5, PX10 = 16.0, HMAX = HOURS * 1.25;
+  const GRAD = HOURS / MAJOR_EVERY * PX10;
+
+  const ANG = -28 * Math.PI / 180, P0 = [120, 1100], U = [Math.cos(ANG), Math.sin(ANG)], N = [-U[1], U[0]];
+  const HOOK = 46, S0 = HOOK, S1 = S0 + GRAD, HW = 118, RT = 32, SEND = 1500, REND = -16;
+  const at = (s, t) => [P0[0] + s * U[0] + t * N[0], P0[1] + s * U[1] + t * N[1]];
+  const TSP = PX10 * MINOR_EVERY / MAJOR_EVERY, MAJ_LEN = 66, MIN_LEN = 34, TK0 = 14;
+
+  const ticks = [];
+  for (let h = MINOR_EVERY; h <= HMAX; h += MINOR_EVERY) ticks.push({ h, s: S0 + h / HOURS * GRAD, major: h % MAJOR_EVERY === 0 });
+  const majorsToPhase = ticks.filter(k => k.major && k.h <= HOURS).length;
+  if (majorsToPhase !== HOURS / MAJOR_EVERY) throw new Error("long ticks to the tab " + majorsToPhase + " differ from FIG.phase_hours / 10");
+  const tabTick = ticks.find(k => k.h === HOURS);
+  if (!tabTick || !tabTick.major || Math.abs(tabTick.s - S1) > 1e-6) throw new Error("no long tick at FIG.phase_hours");
+  { const q = at(S1, 0); if (q[0] > 960 || q[0] < 500) throw new Error("the 480 tick must sit well inside the frame " + q); }
+  console.error("slide-05 long ticks to the tab " + majorsToPhase + ", tab at " + at(S1, 0).map(Math.round));
+
+  /* the gold tab clips over the rule's lower half, its pointer stops just short of the 480 long tick's end, a flag with a
+   * hole lies on the mat below the rule */
+  const TAB = { s: S1, hw: 27, t0: -HW + TK0 + MAJ_LEN + 6, t1: HW + 70, tip: 11 }, HOLE = { t: HW + 44, r: 9 };
+
+  /* the bench mat: an indigo rubber mat, a slightly turned rounded rectangle with a moulded edge, caliche grit in its grain */
+  const MA = ANG, MC = [Math.cos(MA), Math.sin(MA)], MO = at(600, 55), MAT_HW = 760, MAT_HH = 205, MATH = 8;
+  const matD = (X, Y) => { const dx = X - MO[0], dy = Y - MO[1]; return sdRect(dx * MC[0] + dy * MC[1], -dx * MC[1] + dy * MC[0], MAT_HW, MAT_HH, 34); };
+  const matH = (X, Y, d) => MATH * smooth(0, 7, -d) + 0.9 * smooth(7, 12, -d) * (1 - smooth(12, 18, -d))
+    + 0.22 * F(X / 0.9, Y / 0.9, 1) + 0.14 * F(X / 6, Y / 6, 1);
+
+  let lastX = NaN, lastY = NaN, lastG = null;
+  function geo(X, Y) {
+    if (X === lastX && Y === lastY) return lastG; lastX = X; lastY = Y;
+    const dx = X - P0[0], dy = Y - P0[1], s = dx * U[0] + dy * U[1], t = dx * N[0] + dy * N[1];
+    const md = matD(X, Y), base = md < 0 ? matH(X, Y, md) : 0;
+    /* the gold tab */
+    { const ts = s - TAB.s, mid = (TAB.t0 + TAB.t1) / 2;
+      let d = sdRect(ts, t - mid, TAB.hw, (TAB.t1 - TAB.t0) / 2, 8);
+      if (t < TAB.t0 + 2 && t > TAB.t0 - TAB.tip) d = Math.min(d, Math.abs(ts) - TAB.hw * (t - (TAB.t0 - TAB.tip)) / TAB.tip);
+      if (d < 0 && Math.hypot(ts, t - HOLE.t) > HOLE.r) {
+        const top = t < HW + 3 ? RT + 10 : base + 7;
+        let h = top - 3 * (1 - smooth(0, 3.5, -d));
+        if (t > HW - 2 && t < HW + 6) h = RT + 10 - (RT + 3 - base) * smooth(HW - 2, HW + 6, t);
+        h += 1.2 * Math.exp(-Math.pow((Math.hypot(ts, t - HOLE.t) - HOLE.r - 2) / 1.6, 2));
+        if (Math.abs(ts) < 1.1 && t < HW - 4) return (lastG = [h - 1.6, 6]);
+        if (d > -2.6) return (lastG = [h, 8]);
+        return (lastG = [h + 0.06 * F(s / 3, t / 3, 1), 5]);
+      } }
+    /* the nickel end stop at zero */
+    { const d = sdRect(s - HOOK / 2, t, HOOK / 2, HW + 26, 6);
+      if (d < 0) {
+        const prof = Math.sqrt(Math.max(0, 1 - Math.pow((s - HOOK / 2) / (HOOK / 2 + 2), 2)));
+        let h = RT + 12 + 18 * prof * smooth(0, 4, -d);
+        for (const tc of [-HW + 14, HW - 14]) { const r = Math.hypot(s - HOOK / 2, t - tc);
+          if (r < 9) { const dome = h + 3 + 3 * Math.sqrt(Math.max(0, 1 - (r / 9) ** 2));
+            if (Math.abs((s - HOOK / 2) * 0.6 + (t - tc) * 0.8) < 1.2 && r < 7.5) return (lastG = [dome - 2.2, 7]);
+            return (lastG = [dome, 4]); } }
+        return (lastG = [h + 0.06 * F(s / 2, t / 2, 1), 3]);
+      } }
+    /* the rule: chamfered both edges, brushed along its length, graduations etched on the lit edge */
+    if (s > REND && s < SEND && Math.abs(t) <= HW) {
+      const e = Math.min(HW - Math.abs(t), s - REND), sq = s - REND;
+      let rh = RT - 11 + 11 * smooth(0, 11, HW - Math.abs(t)) - 4 * (1 - smooth(0, 2.5, sq)) + 0.16 * F(s / 160, t / 0.3, 1) + 0.07 * F(s / 8, t / 0.22, 1);
+      if (s > S0 - 3 && t > -HW + TK0 - 2 && t < -HW + TK0 + MAJ_LEN + 2) {
+        const k = Math.round((s - S0) / TSP), hk = k * MINOR_EVERY;
+        if (k >= 1 && hk <= HMAX) {
+          const ds = Math.abs(s - (S0 + k * TSP)), major = hk % MAJOR_EVERY === 0, len = major ? MAJ_LEN : MIN_LEN, w = major ? 1.7 : 1.2;
+          if (ds < w && t > -HW + TK0 && t < -HW + TK0 + len) return (lastG = [rh - 1.8 * (1 - smooth(w * 0.4, w, ds)), 2]);
+        }
+      }
+      if (s > S0 && s < S0 + HMAX / HOURS * GRAD && Math.abs(t - (-HW + TK0)) < 0.8) return (lastG = [rh - 0.8, 2]);
+      return (lastG = [Math.max(rh, base + 2), 1]);
+    }
+    if (md < 0) return (lastG = [base, 13]);
+    return (lastG = [0.45 * F(X / 110, Y / 110, 2) + 0.16 * F(X / 1.4, Y / 1.4, 1) + 0.1 * F(X / 5, Y / 5, 1), 0]);
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+
+  const BENCH_A = L('#3a86f2'), BENCH_B = L('#2a5ed8'), GRIT = L('#8fb2f6');
+  const MAT_A = L('#3d2fb0'), MAT_B = L('#2c2394'), CALICHE = L('#8f88d6');
+  const STEEL_A = L('#9fb0d4'), STEEL_B = L('#eef4ff'), STEEL_D = L('#5a6fb0'), ETCH = L('#2a2f78');
+  const NICKEL = L('#e2e8f8'), NICKEL_W = L('#9aa6d0'), SCREW = L('#dfe7f6'), GOLD = L('#ec9424'), GOLD_D = L('#83400c'), GOLD_HI = L('#ffe7a6');
+  const albedo = (X, Y, m) => {
+    const dx = X - P0[0], dy = Y - P0[1], s = dx * U[0] + dy * U[1], t = dx * N[0] + dy * N[1];
+    if (m === 0) { const w = smooth(0, 1, X / 1080 * 0.5 + Y / 1350 * 0.5), g = F(X / 1.3, Y / 1.3, 1);
+      let c = sc3(mixc(BENCH_A, BENCH_B, w), 0.92 + 0.08 * F(X / 70, Y / 70, 2)); if (g > 0.55) c = mixc(c, GRIT, 0.25 * smooth(0.55, 0.8, g)); return c; }
+    if (m === 13) { const md = matD(X, Y), w = smooth(0, 1, (Y - 640) / 700 * 0.7 + X / 1080 * 0.3);
+      let c = sc3(mixc(MAT_A, MAT_B, w), 0.93 + 0.07 * F(X / 90, Y / 90, 2));
+      const g = F(X / 0.8, Y / 0.8, 1), g2 = F(X / 2.2 + 40, Y / 2.2, 1);
+      if (g > 0.6) c = mixc(c, CALICHE, 0.32 * smooth(0.6, 0.85, g));
+      if (g2 > 0.68) c = mixc(c, CALICHE, 0.18 * smooth(0.68, 0.9, g2));
+      if (-md < 7) c = sc3(c, 1.08);
+      return c; }
+    if (m === 1) {
+      const band = (x0, x1, f) => smooth(x0 - f, x0 + f, X + 0.18 * Y) * (1 - smooth(x1 - f, x1 + f, X + 0.18 * Y));
+      let c = mixc(STEEL_A, STEEL_B, 0.2 + 0.35 * smooth(HW, -HW, t));
+      c = mixc(c, STEEL_D, 0.6 * band(560, 680, 22) + 0.5 * band(980, 1080, 18) + 0.45 * band(250, 340, 26));
+      c = mixc(c, STEEL_B, 0.8 * band(760, 860, 10) + 0.7 * band(420, 450, 5));
+      c = sc3(c, 0.78 + 0.2 * F(s / 220, t / 0.22, 1) + 0.1 * F(s / 12, t / 0.18, 1));
+      { const e = HW - Math.abs(t); if (e < 11) c = sc3(c, t < 0 ? 1.32 : 0.6); if (Math.abs(e - 11) < 1.1) c = mixc(c, [1.1, 1.12, 1.15], 1.0); }
+      return c; }
+    if (m === 2) return sc3(ETCH, 0.9 + 0.15 * F(s / 2, t / 2, 1));
+    if (m === 3) { const wear = smooth(0.1, 0.6, F(s / 9, t / 14, 2)); return mixc(NICKEL, NICKEL_W, 0.35 * wear); }
+    if (m === 8) return GOLD_HI;
+    if (m === 4) return SCREW;
+    if (m === 7) return sc3(ETCH, 0.7);
+    if (m === 5) return sc3(GOLD, 1.0 + 0.05 * F(s / 4, t / 4, 1));
+    if (m === 6) return GOLD_D;
+    return MAT_A;
+  };
+
+  const RL = TXLOOK.reliefLight("explainer");
+  const proofSpec = { 0: [0.04, 8], 13: [0.12, 10], 1: [1.0, 60], 2: [0.15, 20], 3: [1.4, 40], 4: [1.3, 70], 5: [1.5, 80], 6: [0.2, 20], 7: [0.1, 10], 8: [2.4, 140], 9: [0.8, 40], 10: [0.1, 9], 11: [0.25, 16] };
+  TXBENCH.relief(cx, { ...RL, x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo, spec: proofSpec,
+    ambient: 0.5, diffuse: 1.2, ao: 0.9, aoRadius: 14, shadow: 0.82, softness: 4, castLength: 260, dither: true, visBlur: 2, visSharp: [2, 5] });
+
+  /* the pill on the quiet mat below the flag, a fine leader up to the flag's hole */
+  { const lab = document.getElementById("lab480"), r = lab.getBoundingClientRect(), tip = at(TAB.s, TAB.t1 - 4);
+    const lx = Math.min(1000 - r.width, Math.max(90, tip[0] - r.width / 2)), ly = Math.round(tip[1] + 56);
+    lab.style.left = Math.round(lx) + "px"; lab.style.top = ly + "px";
+    const ax = Math.max(lx + 30, Math.min(lx + r.width - 30, tip[0]));
+    cx.save(); cx.strokeStyle = "rgba(244,251,255,0.9)"; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(ax, ly - 4); cx.lineTo(tip[0], tip[1] + 6); cx.stroke();
+    cx.fillStyle = "rgba(244,251,255,0.95)"; cx.beginPath(); cx.arc(tip[0], tip[1] + 6, 3.5, 0, Math.PI * 2); cx.fill(); cx.restore();
+    const lr = lab.getBoundingClientRect();
+    if (lr.bottom > 1190 || lr.right > 1016 || lr.left < 64) throw new Error("the pill crowds the furniture " + JSON.stringify(lr)); }
+
+  CH.seat(cx, { a: 0.4, fade: 150 });
+  TXLOOK.footWash(cx, { tone: "explainer", a: 0.45, height: 170 });
+  CH.seat(cx, { sel: ".src", a: 0.7, fade: 90 });
+  CH.seat(cx, { sel: ".tx-site", a: 0.4, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

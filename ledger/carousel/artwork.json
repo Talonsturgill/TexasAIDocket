@@ -5562,6 +5562,69 @@
     "hex": "#ff9f62",
     "note": "People tone apricot floor under periwinkle and plum."
    }
+  },
+  {
+   "date": "2026-11-26",
+   "carousel_no": 88,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "BESPOKE, LOOK V2 explainer tone, nine slide artists. An illustrative turboshaft on an A frame stand with a gold tag and two gold hard cases in a cerulean studio (1), a finned titanium recorder feeding a punched aluminium record foil with burnt cells (2), a bead blasted record cassette with 37 gold blocks carrying one continuous trace and 63 damaged sockets (3), two milled bars on ground parallels against frosted glass ghosts of full stock on lapped granite, labelled volume and files (4), a relief of a brushed hour rule from a nickel zero stop across an indigo mat with a gold tab at the 480 tick (5), a pulled back macro of a heat tinted turbine stage under an indigo case wall, one blade with a gold hairline that stops partway (6), a bench close up of one twisted blade in a foam cutout, a borescope tip touching it and a gold tag on the root (7), a caliche relief of Texas with Lubbock and Tarrant raised and seven brass rivets on a milled route (8), the engine on test inside a bay at an open door with two gold cases out on a jointed concrete apron casting long shadows (9).",
+   "structural_laws": [],
+   "techniques": [
+    "an illustrative turboshaft on a stand in a studio sweep",
+    "a punched record foil from a recorder",
+    "an orthographic record cassette with gold blocks and one trace",
+    "milled bars on parallels against frosted glass ghosts",
+    "an hour rule relief from a zero stop",
+    "a macro turbine blade with an inlaid leading edge",
+    "a bench close up of a probe on a flagged blade",
+    "a caliche map relief with raised counties and rivets",
+    "an engine on test seen from inside a bay through an open door"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     50.0,
+     39.1,
+     44.2,
+     36.6,
+     42.2,
+     28.7,
+     34.9,
+     50.0,
+     24.4
+    ],
+    "deck_median_L": 39.1,
+    "max_adjacent_delta": 25.6,
+    "mean_adjacent_delta": 11.2,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#e0956a",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     1,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "share": [
+     0.0126,
+     0.0,
+     0.0274,
+     0.0093,
+     0.0043,
+     0.0038,
+     0.0021,
+     0.0004,
+     0.0005
+    ],
+    "note": "What the software puts out, only."
+   },
+   "ground": {
+    "hex": "#ffc68a",
+    "note": "Explainer tone sweep floor under cerulean and indigo."
+   }
   }
  ]
 }

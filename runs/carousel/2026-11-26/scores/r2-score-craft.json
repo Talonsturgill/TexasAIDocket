@@ -1,0 +1,15 @@
+{"round": 2, "lens": "craft", "criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 6.8, "why": "S1, S2, S3, S8, S9 strong. S4 worst: two truck-like slabs with ambiguous silver to glass split, primitive cab boxes, crescent debris, a horizon band through the headline, top 45 percent dead. S5 ruler in the lower 40 percent with no endpoint. S6 body copy on busy perforated blade texture, no scale cue. S7 rubbery violet hand reads as a stock CG prop, flat blue panels behind. Look v2 colour met; qa 0 fails, 17 warns."},
+{"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "One tone, grade and type system; accent marks the thing in focus; engine bookends S1 and S9. S8 grey label pills and a red Lubbock marker sit outside the spine."},
+{"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces to a claim quote; results fenced in testing; on its own renders autonomously; provided never stretched to fielded; S4 states ceilings. Single-source release."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who (with AvMC funding) and where clear. Stake general; S9 watch line the only next step, no date."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.2, "why": "S2 pays the cover; S9 lands the turn. S3 to S5 three testing figures in a row; cover a label rather than a hook."},
+{"name": "voice", "weight": 0.10, "score": 7.2, "why": "Clean, on register; several bodies read as paraphrased release; regional texture only city names."},
+{"name": "variety", "weight": 0.10, "score": 7.5, "why": "Fresh concept with a mix of relief and spatial frames; the saturated blue look v2 tone is the familiar move."}],
+"weighted_score": 7.342, "hard_fails": [], "ship": false,
+"one_sentence_fix": "Rebuild S4 as one measured relief of a full bar beside one cut to 27 percent on one bench, and drop the truck primitives and debris.",
+"artwork_weakest_frames": [
+{"slide": 4, "problem": "Truck-like slabs, ambiguous proportions, primitive cabs, debris, horizon band through the headline, dead top.", "fix": "Two aligned bars on one bench at full and 27 percent length, camera lower, horizon below the type."},
+{"slide": 5, "problem": "Ruler in the bottom 40 percent, no visible endpoint.", "fix": "Raise and enlarge the ruler diagonally; add a zero end stop so the tab reads as a fraction."},
+{"slide": 7, "problem": "Rubbery violet hand reads as a default CG prop; flat panels behind.", "fix": "Crop tighter to a gloved fragment from the right edge, the inspected patch carrying the accent."},
+{"slide": 6, "problem": "Body copy on busy blade texture; no scale or engine context.", "fix": "Rotate so the upper left is clear hub for the type; pull back to show hub and casing ring."}]}

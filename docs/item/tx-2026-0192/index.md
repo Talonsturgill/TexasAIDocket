@@ -12,7 +12,7 @@ The Public Utility Commission of Texas approved the system resiliency plan of So
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=57941&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-18 · Xcel's answer, which counted cameras rather than fire detections, still stands as filed.
 - 2026-11-21 · Xcel's answer still counts cameras rather than fire detections, and the filing reads as it did.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided. One published account of the decision is closed to rereading, so what it reported stands on its earlier reading.
 
 ## Evidence
 

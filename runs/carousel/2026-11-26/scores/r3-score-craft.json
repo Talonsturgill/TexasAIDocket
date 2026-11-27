@@ -1,0 +1,15 @@
+{"round": 3, "lens": "craft", "criteria": [
+{"name": "artwork_craft", "weight": 0.22, "score": 7.4, "why": "Bespoke frames each own their sentence with varied type placement. S6 best, S3 37 raised cells at scale with real height, S2 tape with holes and shadow, S8 plausible relief, S5 diagonal ruler. S4 two bars on flat felt with no world, glass cut reads as part of the bar, blown highlight under the volume pill. S7 primitive blade, blurry panels, dead floor. S9 split into a pale doorway with small cases and a cropped engine. S1 engine 40 percent in a pale mid gradient."},
+{"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "Spine holds; orange carries one meaning; engine and cases bookend; S8 grey pills and red Lubbock sit outside."},
+{"name": "claim_integrity", "weight": 0.20, "score": 8.3, "why": "Every numeral traces; bodies stick to claim quotes; provided not fielded; in testing everywhere; single release handled with Texas Tech says."},
+{"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who, where and funder clear; local stake implied; watch line has no date."},
+{"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover states the topic; S2 to S3 payoff; S3 to S5 list-like; S7 cuttable; S9 lands."},
+{"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and honest; reads as a careful press digest; one regional touch."},
+{"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh concept; single cobalt tone and a familiar county relief."}],
+"weighted_score": 7.47, "hard_fails": [], "ship": true,
+"one_sentence_fix": "Rebuild S4 as a physical relief with the removed share pulled out, and recompose S9 around one subject.",
+"artwork_weakest_frames": [
+{"slide": 4, "problem": "Bars on flat felt, no world; cut share reads as part of the bar; blown highlight.", "fix": "Physical cartridges in a studio sweep with the cut ones pulled into a dim pile; lower the key."},
+{"slide": 9, "problem": "Split composition, cropped engine, type on a wash, grating stripe.", "fix": "Engine and stand fill half the frame with cases at its foot in one pool; narrow the doorway."},
+{"slide": 7, "problem": "Primitive blade, blurry panels, dead floor.", "fix": "Close macro running off the left edge, true fir tree root, a flaw at the probe, dark bench backdrop."},
+{"slide": 8, "problem": "Accent dropped, grey pills, red Lubbock, low cast fraction.", "fix": "Accent markers and pills, lower side key for shadows."}]}

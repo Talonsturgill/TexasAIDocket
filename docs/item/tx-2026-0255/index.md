@@ -9,7 +9,7 @@ The Texas Comptroller proposed amendments to Rule 3.308 on November 18th. They w
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-11-21 · Admitted from the comptroller's November 18th announcement. The rule is proposed and has not been adopted.
 - 2026-11-24 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-26 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

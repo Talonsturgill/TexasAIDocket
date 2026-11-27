@@ -2738,3 +2738,13 @@ found only as an upload on fortworthreport.org**, with no county-hosted copy, so
 403 again** for the DFW SMART tool. **solunacomputing.com's Q3 results answered** and carried the Briscoe County Chapter
 312 approval of November 9th that the record had not yet seen. The crawl boundary refused the same hosts as yesterday and
 nothing was routed around.
+
+## 2026-11-26 (carousel no. 88)
+
+**ttu.edu/now answered** with Texas Tech's November 20th FleetSpace release, the source of every claim on
+tx-2026-0263. **The IMMS institute page answered** and carried the Lubbock address. **No AVX Defense Technologies
+or Army page corroborating FSUI or PSV was found**, so the item rests on the university's own release. **The
+Federal Register poll failed** this run and returned no result. **The PUCT feed carried nothing new.** Nine items'
+sources were closed to rereading and the items were held on their earlier readings. Re-measuring the boundary
+declarations showed that a host can admit this project's own user agent while refusing ClaudeBot or sitting in
+the crawl boundary registry, so a re-measure must read all three. Nothing was routed around.

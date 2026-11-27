@@ -1627,6 +1627,7 @@ export function install(K, THREE, TXT) {
   installSite(K, THREE, TXT, { bake, darkSteel, galv, concrete });
   // AFTER the wrapper too: node_rack keeps its origin under the rack body when a tray is pulled.
   installHall(K, THREE, TXT, { ctex, std, hole, rubber, tbox, cbox, cyl });
+  installHot(K, THREE, TXT, { ctex, speckle });
 }
 
 /* The site scale models live below, sharing the helpers above through `H`. */
@@ -3308,6 +3309,243 @@ function installHall(K, THREE, TXT, H) {
       const pim = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.012, 0.012, Hf - 0.04, 10), EDGE, ped.length), MM = new THREE.Matrix4();
       ped.forEach((p, k) => { MM.makeTranslation(p[0], (Hf - 0.04) / 2, p[1]); pim.setMatrixAt(k, MM); }); pim.castShadow = true; G.add(pim);
       G.userData.tileAt = (c, r) => [(c - (C - 1) / 2) * S, Hf, (r - (Rw - 1) / 2) * S];
+      G.userData.keepOrigin = true;
+      return G;
+    },
+  });
+}
+
+
+/* THE HOT SECTION (lifted 2026-11-26 from carousel no. 88's chassis, assets/js/deck/2026-11-26-flightrecord-bespoke.js,
+ * by the weekly machine pass). New names on purpose: the chassis keeps its own `blisk`, so no. 88's reviewed frames
+ * render exactly as they shipped, and K.define would throw on a second `blisk`. */
+function installHot(K, THREE, TXT, H) {
+  const { ctex, speckle } = H;
+  /* ---- THE HOT SECTION: a turbine blade and a blisk, lifted 2026-11-26 from carousel no. 88 -------------- */
+  /* WHY THESE EXIST. No. 88's frame 7 built a turbine blade by hand (a NACA section, a parallelogram slab of a
+   * platform, three round scallops for a fir tree) and the round 3 craft judge still ranked it 'Primitive blade'
+   * with the fix 'true fir tree root, a flaw at the probe'; round 1 had asked for 'a twisted airfoil'. The
+   * chassis's blisk also returned each blade's tip mirrored in x and laid its accent line straight across a
+   * twisted blade (queue blisk-bladeAt-mirrored). So the section is a TURBINE section here, not a wing's: the
+   * camber line turns the flow through a large angle (inlet about 40 degrees, exit about 60 the other way, from
+   * the textbook velocity triangles of an impulse-reaction stage), the nose is thick, the trailing edge thin,
+   * and the stack twists from hub to tip. The fir tree is drawn with straight loaded flanks and small radii, the
+   * way a broached root is, never as round lobes. Every placement (leading edge, flaw, tip) is published from
+   * the same function that builds the surface, so a frame can't place against a different blade than it drew.
+   * Everything is drawn to illustrate: no maker's blade, no part number. */
+  const BLADE = {
+    /* the section at span fraction f, in (axial a, tangential t), chord bx, as a closed ring of 2n points,
+     * suction side (+t) from the trailing edge to the leading edge, then the pressure side back. Index n is the
+     * leading edge. */
+    section(f, bx, n, o) {
+      const D = Math.PI / 180, b1 = (o.inlet + (o.inletTip - o.inlet) * f) * D, b2 = (o.exit + (o.exitTip - o.exit) * f) * D;
+      const k1 = Math.tan(b1), k2 = Math.tan(b2), tc = o.thick + (o.thickTip - o.thick) * f;
+      const yc = (s) => bx * (k1 * s + (k2 - k1) * s * s / 2), dy = (s) => k1 + (k2 - k1) * s;
+      const half = (s) => bx * (5 * tc * (0.2969 * Math.sqrt(s) - 0.126 * s - 0.3516 * s * s + 0.2843 * s * s * s - 0.1036 * s * s * s * s) + 0.006 * s);
+      const at = (s, side) => { const nx = -dy(s), ny = 1, L = Math.hypot(nx, ny), h = half(s) * side;
+        return [s * bx + h * nx / L, yc(s) + h * ny / L]; };
+      const pts = [];
+      for (let i = 0; i <= n; i++) { const s = 0.5 - 0.5 * Math.cos(Math.PI * (1 - i / n)); pts.push(at(s, 1)); }
+      for (let i = 1; i < n; i++) { const s = 0.5 - 0.5 * Math.cos(Math.PI * i / n); pts.push(at(s, -1)); }
+      // centre the section on its own centroid, the stacking line, so the twist turns it about itself
+      let ca = 0, ct = 0; pts.forEach((p) => { ca += p[0]; ct += p[1]; }); ca /= pts.length; ct /= pts.length;
+      return pts.map((p) => [p[0] - ca, p[1] - ct]);
+    },
+    /* the airfoil surface, span on +y from y0, axial on x, tangential (suction side) on +z. Returns the geometry
+     * and the published functions. o.flaw (a span fraction or null) notches the leading edge there. */
+    airfoil(THREE, o) {
+      const n = o.n || 28, ns = o.ns || 30, ring = 2 * n, D = Math.PI / 180, pos = [], uv = [], idx = [], rows = [];
+      const chordAt = (f) => o.chord * (1 - 0.2 * f), twistAt = (f) => o.twist * D * (f - 0.5);
+      // the hub fillet: the section grows toward the platform over the bottom of the span, so the airfoil
+      // flares into it instead of standing on it like a post
+      const flare = (f) => (o.fillet ? 1 + 0.16 * Math.pow(Math.max(0, 1 - f / 0.05), 2) : 1);
+      const flawW = 0.05, flawD = 0.07;
+      const place = (f, p, i) => {
+        const tw = twistAt(f), k = flare(f); let a = p[0] * k, t = p[1] * k;
+        if (o.flaw != null && Math.abs(f - o.flaw) < flawW) {        // a leading edge nick: the nose pushed back
+          const s = Math.abs(i - n) / n, w = 0.5 + 0.5 * Math.cos(Math.PI * (f - o.flaw) / flawW);
+          if (s < 0.22) a += flawD * o.chord * w * (1 - s / 0.22);
+        }
+        return [a * Math.cos(tw) - t * Math.sin(tw), o.y0 + f * o.span, a * Math.sin(tw) + t * Math.cos(tw)];
+      };
+      for (let j = 0; j <= ns; j++) {
+        const f = j / ns, S = BLADE.section(f, chordAt(f), n, o), row = S.map((p, i) => place(f, p, i)); rows.push(row);
+        row.forEach((q, i) => { pos.push(q[0], q[1], q[2]); uv.push(i / ring, f); });
+      }
+      for (let j = 0; j < ns; j++) for (let i = 0; i < ring; i++) {
+        const a = j * ring + i, b = j * ring + (i + 1) % ring; idx.push(a, b, a + ring, b, b + ring, a + ring);
+      }
+      // the tip: a squealer (a rim round a recessed floor) or a flat cap. A turbine section is a crescent, so its
+      // centroid can sit outside it, and a fan from the centroid or an inset scaled about it spills past the
+      // section. So the cap is a strip between each suction point and its pressure side partner at the same
+      // chord station (ring index i and ring - i), and the squealer's rim is inset toward that partner.
+      const top = rows[ns], partner = (i) => (ring - i) % ring;
+      const yT = o.y0 + o.span, dep = o.squealer ? o.span * 0.035 : 0;
+      const ringAt = (k, y) => top.map((q, i) => { const r = top[partner(i)], mx = (q[0] + r[0]) / 2, mz = (q[2] + r[2]) / 2;
+        return [q[0] + (mx - q[0]) * k, y, q[2] + (mz - q[2]) * k]; });
+      const addRing = (r, v) => { const b = pos.length / 3; r.forEach((q, i) => { pos.push(q[0], q[1], q[2]); uv.push(i / ring, v); }); return b; };
+      // the tip's own copy of the top ring, so the cap takes a hard edge and never averages its normal into the walls
+      const oTop = addRing(ringAt(0, yT), 1);
+      let floorBase = oTop;
+      if (o.squealer) {
+        const iTop = addRing(ringAt(0.45, yT), 1), iLow = addRing(ringAt(0.45, yT - dep), 1);
+        for (let i = 0; i < ring; i++) { const i2 = (i + 1) % ring;
+          idx.push(oTop + i, iTop + i, oTop + i2, oTop + i2, iTop + i, iTop + i2);                     // the rim's top
+          idx.push(iTop + i, iLow + i, iTop + i2, iTop + i2, iLow + i, iLow + i2); }                   // the rim's inner wall
+        floorBase = iLow;
+      }
+      for (let i = 0; i < n; i++) { const a = floorBase + i, b = floorBase + i + 1, c = floorBase + partner(i + 1), d = floorBase + partner(i);
+        idx.push(a, b, c, a, c, d); }
+      // wind every face outward: test one wall quad against the outward direction and flip all if it points in
+      const P = (k) => new THREE.Vector3(pos[k * 3], pos[k * 3 + 1], pos[k * 3 + 2]);
+      const qa = P(idx[0]), qb = P(idx[1]), qc = P(idx[2]), nrm = qb.clone().sub(qa).cross(qc.clone().sub(qa));
+      const out = qa.clone().setY(0); if (nrm.dot(out) < 0) for (let k = 0; k < idx.length; k += 3) { const s = idx[k + 1]; idx[k + 1] = idx[k + 2]; idx[k + 2] = s; }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+      geo.setIndex(idx); geo.computeVertexNormals();
+      const lerpRow = (f, i) => { const x = Math.max(0, Math.min(1, f)) * ns, j = Math.min(ns - 1, Math.floor(x)), u = x - j, A = rows[j][i], B = rows[j + 1][i];
+        return new THREE.Vector3(A[0] + (B[0] - A[0]) * u, A[1] + (B[1] - A[1]) * u, A[2] + (B[2] - A[2]) * u); };
+      return { geo, leAt: (f) => lerpRow(f, n), teAt: (f) => lerpRow(f, 0), ring, n };
+    },
+    /* the fir tree root's profile in (t, y): `lobes` serrations a side, each a straight loaded upper flank, a
+     * small tip radius and a steeper lower flank into a neck, narrowing toward the base. w is the top neck's
+     * half width, p the serration pitch. */
+    firTree(THREE, w, p, lobes) {
+      const s = new THREE.Shape(), side = [];
+      let y = 0, wi = w;
+      for (let k = 0; k < lobes; k++) {
+        const wo = wi + p * 0.8, wn = wi - p * 0.12;
+        side.push([wi, y], [wo - p * 0.1, y - p * 0.42], [wo, y - p * 0.5], [wo - p * 0.06, y - p * 0.6], [wn + p * 0.04, y - p * 0.94], [wn, y - p]);
+        wi = wn; y -= p;
+      }
+      const yb = y - p * 0.35;
+      side.push([wi * 0.92, yb + p * 0.08], [wi * 0.7, yb]);
+      s.moveTo(-side[0][0], side[0][1]); s.lineTo(side[0][0], side[0][1]);
+      for (let i = 1; i < side.length; i++) s.lineTo(side[i][0], side[i][1]);
+      for (let i = side.length - 1; i >= 0; i--) s.lineTo(-side[i][0], side[i][1]);
+      s.closePath();
+      return { shape: s, depth: -yb };
+    },
+  };
+  const BLADE_OPTS = { inlet: 40, inletTip: 30, exit: -62, exitTip: -58, thick: 0.24, thickTip: 0.14 };
+  /* heat tint along the span (straw at the root, bronze, peacock blue, a dull grey tip), the finish a run in
+   * service gives a nickel alloy blade; cooling: a showerhead of film holes on the leading edge and bleed slots
+   * on the pressure side near the trailing edge, painted where the ring's u puts them */
+  const bladeTex = (finish, cooling, n) => ctex('tblade|' + finish + '|' + (cooling ? 1 : 0) + '|' + n, 256, 512, (x, w, h) => {
+    const g = x.createLinearGradient(0, h, 0, 0);
+    if (finish === 'heat') { g.addColorStop(0, '#c8b27a'); g.addColorStop(0.3, '#b07a42'); g.addColorStop(0.55, '#6c4b7e'); g.addColorStop(0.8, '#3f73ad'); g.addColorStop(1, '#8e98a4'); }
+    else if (finish === 'coated') { g.addColorStop(0, '#d8d2c4'); g.addColorStop(1, '#cfc8b8'); }
+    else { g.addColorStop(0, '#a9a49b'); g.addColorStop(1, '#9c9890'); }
+    x.fillStyle = g; x.fillRect(0, 0, w, h); speckle(x, w, h, 41, finish === 'coated' ? 0.08 : 0.05);
+    if (cooling) {
+      x.fillStyle = 'rgba(14,12,18,0.92)';
+      const uLE = 0.5;                                     // index n of a 2n ring
+      for (const du of [-0.012, 0, 0.012]) for (let v = 0.1; v < 0.95; v += 0.045) { x.beginPath(); x.arc((uLE + du) * w, h - (v + (du ? 0.022 : 0)) * h, 1.6, 0, 7); x.fill(); }
+      for (let v = 0.08; v < 0.92; v += 0.06) x.fillRect(0.94 * w, h - (v + 0.025) * h, 3, 0.03 * h);   // pressure side, near the TE
+    }
+  }, false, true);
+  const bladeMat = (finish, cooling, n) => K.mat('tblade_' + finish, { color: 0xffffff, map: bladeTex(finish, cooling, n),
+    // a heat tinted oxide is not a mirror: at 0.82 metalness the leading edge's nose reflected the ground and read as a
+    // gap between the blade and its own flag line in the first proof render, so the tint takes a satin metal
+    metalness: finish === 'coated' ? 0.05 : 0.6, roughness: finish === 'coated' ? 0.7 : 0.44, side: THREE.DoubleSide }, true);
+  const rootMat = () => K.mat('tblade_root', { color: 0xc9c2b4, metalness: 0.92, roughness: 0.3 }, true);
+  const flagLine = (pts, r, color) => {
+    const c = new THREE.CatmullRomCurve3(pts);
+    return new THREE.Mesh(new THREE.TubeGeometry(c, 48, r, 8, false), K.mat('tblade_flag', { color, metalness: 0.15, roughness: 0.32, emissive: color, emissiveIntensity: 0.25 }, true));
+  };
+
+  /* TURBINE BLADE: one gas turbine blade standing on its root, `span` m of airfoil (default 0.08, about a
+   * turboshaft's stage), chord `chord` on x with the leading edge at -x, the convex suction side facing +z, the
+   * stack twisted `twist` degrees from hub to tip. Under the platform: a shank with angel wing seals fore and
+   * aft, then a fir tree root of `lobes` serrations a side, its profile on the x faces (the root slides into
+   * its disc slot along x). Options: finish 'heat' | 'cast' | 'coated', cooling (film holes and bleed slots),
+   * squealer (a rimmed tip), flaw (a span fraction: a nick in the leading edge there), flag (an accent line
+   * along the twisted leading edge, colour `flagColor`). Origin at the root's base, centred. userData:
+   * leAt(f) and teAt(f) (model space points on the leading and trailing edge at span fraction f), flawAt,
+   * tipAt, platformY. */
+  K.define('turbine_blade', {
+    size: [0.063, 0.12, 0.042],   // measured in node by scripts/carousel/kit_hot_check.mjs's harness and by examples/kit/sizes.py, 2026-11-26
+    options: { span: 0.08, chord: 0.036, twist: 32, lobes: 3, finish: 'heat', cooling: true, squealer: true, flaw: null, flag: false, flagColor: 0xe0956a },
+    note: 'One gas turbine blade on its fir tree root: cambered, twisted turbine section, hub fillet, squealer tip, film cooling holes, platform, shank with angel wings, broached fir tree; flaw nicks the leading edge; flag runs the accent along it. Drawn to illustrate.',
+    make(o) {
+      const g = new THREE.Group(), RM = rootMat(), c = o.chord;
+      const pTop = 0.0, firP = c * 0.13, firW = c * 0.2;
+      const fir = BLADE.firTree(THREE, firW, firP, Math.max(2, Math.min(5, o.lobes | 0)));
+      const rootLen = c * 1.15, shankH = c * 0.55, platT = c * 0.13;
+      const yFir = fir.depth, yShank = yFir + shankH, yPlat = yShank + platT;
+      // the root, extruded along x, its base on the ground
+      const fg = new THREE.ExtrudeGeometry(fir.shape, { depth: rootLen, bevelEnabled: true, bevelThickness: c * 0.012, bevelSize: c * 0.008, bevelSegments: 2, curveSegments: 4 });
+      fg.translate(0, fir.depth, -rootLen / 2); fg.rotateY(Math.PI / 2);
+      g.add(new THREE.Mesh(fg, RM));
+      // the shank, narrower than the platform, and the angel wings: thin seal plates fore and aft
+      const sh = TXT.roundedBox(rootLen * 0.94, shankH, firW * 2.1, c * 0.01, RM); sh.position.set(0, yFir + shankH / 2, 0); g.add(sh);
+      for (const s of [-1, 1]) { const aw = TXT.roundedBox(c * 0.22, c * 0.05, firW * 2.4, c * 0.012, RM); aw.position.set(s * (rootLen * 0.47 + c * 0.1), yFir + shankH * 0.62, 0); aw.rotation.z = s * 0.12; g.add(aw); }
+      // the platform: a skewed plate, its long sides parallel to the airfoil's stagger
+      const pl = new THREE.Shape(), pa = rootLen * 0.62, pb = c * 0.52, sk = c * 0.14;
+      pl.moveTo(-pa - sk, -pb); pl.lineTo(pa - sk, -pb); pl.lineTo(pa + sk, pb); pl.lineTo(-pa + sk, pb); pl.closePath();
+      const pg = new THREE.ExtrudeGeometry(pl, { depth: platT * 0.7, bevelEnabled: true, bevelThickness: platT * 0.15, bevelSize: platT * 0.15, bevelSegments: 2 });
+      pg.rotateX(-Math.PI / 2); pg.translate(0, yShank + platT * 0.15, 0); g.add(new THREE.Mesh(pg, RM));
+      // the airfoil, its leading edge toward -x
+      const A = BLADE.airfoil(THREE, Object.assign({}, BLADE_OPTS, { span: o.span, chord: c, twist: o.twist, y0: yPlat - platT * 0.1, fillet: true, squealer: o.squealer, flaw: o.flaw }));
+      g.add(new THREE.Mesh(A.geo, bladeMat(o.finish, o.cooling, A.n)));
+      if (o.flag) {
+        const pts = []; for (let k = 0; k <= 16; k++) pts.push(A.leAt(0.06 + 0.9 * k / 16));
+        g.add(flagLine(pts, c * 0.04, o.flagColor));
+      }
+      g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      g.userData.leAt = A.leAt; g.userData.teAt = A.teAt;
+      g.userData.flawAt = o.flaw != null ? A.leAt(o.flaw) : null;
+      g.userData.tipAt = A.leAt(1).clone().lerp(A.teAt(1), 0.5);
+      g.userData.platformY = yPlat;
+      g.userData.keepOrigin = true;
+      return g;
+    },
+  });
+
+  /* TURBINE BLISK: a turbine disc `diameter` m across with `blades` blades grown integrally from its rim (a
+   * blisk has no roots: the blades and disc are one forging, so each blade flares into the rim through a
+   * fillet). Lies flat, axis on y, the bore over the origin and the lowest point of disc or blade on the ground
+   * (keepOrigin: the disc's centre stays at x = z = 0; userData.midY is the disc's mid plane). Blade 0 points to +z
+   * and the count runs counterclockwise seen from above. flag: a blade index whose twisted leading edge
+   * carries the accent line (-1 for none). userData.bladeAt(i) is blade i's tip centre and leAt(i, f) a point
+   * on its leading edge, both from the same basis that places the blade, and make() throws if a built blade
+   * and bladeAt disagree, which is the check the chassis it was lifted from did not have. */
+  K.define('turbine_blisk', {
+    size: [0.379, 0.041, 0.378],  // measured the same way, 2026-11-26
+    options: { blades: 31, diameter: 0.38, flag: -1, finish: 'heat', flagColor: 0xe0956a },
+    note: 'Turbine blisk: a lathe turned disc with web, rim and bore, cambered twisted blades grown from the rim through fillets; flag runs the accent along one blade leading edge; userData.bladeAt(i) and leAt(i, f). Drawn to illustrate.',
+    make(o) {
+      const G = new THREE.Group(), g = new THREE.Group(), R = o.diameter / 2, rh = R * 0.6, span = R - rh, nb = Math.max(3, o.blades | 0);
+      const pitch = 2 * Math.PI * rh / nb, chord = Math.min(pitch * 1.35, span * 0.75), H = chord * 1.05;
+      const hubMat = K.mat('tblisk_hub', { color: 0xb0a492, metalness: 0.9, roughness: 0.3 }, true);
+      // the disc in section: bore, thin web, thick rim, turned on a lathe about y
+      const prof = [[0.08 * R, -H * 0.62], [0.2 * R, -H * 0.62], [0.26 * R, -H * 0.3], [0.48 * R, -H * 0.18], [rh * 0.96, -H * 0.5], [rh, -H * 0.5],
+        [rh, H * 0.5], [rh * 0.96, H * 0.5], [0.48 * R, H * 0.18], [0.26 * R, H * 0.3], [0.2 * R, H * 0.62], [0.08 * R, H * 0.62], [0.08 * R, -H * 0.62]];
+      const disc = TXT.lathe(prof, hubMat, { segments: 160 }); g.add(disc);
+      const A = BLADE.airfoil(THREE, Object.assign({}, BLADE_OPTS, { span: span, chord, twist: 22, y0: -chord * 0.04, fillet: true, squealer: false, flaw: null, n: 20, ns: 18 }));
+      const mat = bladeMat(o.finish, false, A.n), tips = [], bases = [];
+      for (let i = 0; i < nb; i++) {
+        const a = i / nb * Math.PI * 2;
+        // the blade's chord axis runs down the disc's axis, so each leading edge faces UP (+y), where a camera above
+        // a disc on the ground can see a flag on it; makeBasis takes chord, span, then their cross product
+        const radial = new THREE.Vector3(Math.sin(a), 0, Math.cos(a)), axial = new THREE.Vector3(0, -1, 0), tang = new THREE.Vector3().crossVectors(axial, radial);
+        const B = new THREE.Matrix4().makeBasis(axial, radial, tang).setPosition(radial.clone().multiplyScalar(rh));
+        const m = new THREE.Mesh(A.geo, mat); m.matrixAutoUpdate = true; m.matrix.copy(B); m.matrix.decompose(m.position, m.quaternion, m.scale); g.add(m);
+        tips.push(A.leAt(1).clone().lerp(A.teAt(1), 0.5).applyMatrix4(B)); bases.push(B);
+        if (i === o.flag) { const pts = []; for (let k = 0; k <= 14; k++) pts.push(A.leAt(0.08 + 0.88 * k / 14).applyMatrix4(B)); g.add(flagLine(pts, chord * 0.1, o.flagColor)); }
+      }
+      // THE SELF CHECK. Each blade's built mesh centre must lie in the direction bladeAt publishes for it.
+      g.updateMatrixWorld(true);
+      g.children.filter((c) => c.geometry === A.geo).forEach((m, i) => {
+        const bb = new THREE.Box3().setFromObject(m), cen = bb.getCenter(new THREE.Vector3()).setY(0).normalize(), t = tips[i].clone().setY(0).normalize();
+        if (cen.dot(t) < 0.98) throw new Error('turbine_blisk: blade ' + i + ' is built away from bladeAt(' + i + ')');
+      });
+      g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      const lift = -new THREE.Box3().setFromObject(g).min.y, up = new THREE.Vector3(0, lift, 0);
+      g.position.y = lift; G.add(g);
+      G.userData.bladeAt = (i) => tips[((i % nb) + nb) % nb].clone().add(up);
+      G.userData.leAt = (i, f) => A.leAt(f).applyMatrix4(bases[((i % nb) + nb) % nb]).add(up);
+      G.userData.midY = lift;
       G.userData.keepOrigin = true;
       return G;
     },

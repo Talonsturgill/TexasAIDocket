@@ -9,7 +9,7 @@ The wildfire mitigation plan rule, 16 TAC §25.60, reaches every electric utilit
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59053&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-17 · The commission's wildfire plan blueprint still lists cameras as a suggestion, never a requirement.
 - 2026-11-20 · The commission's wildfire plan blueprint still lists cameras as suggested and not required.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided. One published account of the decision is closed to rereading, so what it reported stands on its earlier reading.
 
 ## Evidence
 

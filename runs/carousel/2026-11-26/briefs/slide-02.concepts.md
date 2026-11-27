@@ -1,0 +1,9 @@
+# Slide 02, THE RECORD, three concepts
+
+1. **The foil tape (picked).** A sealed finned recorder sits on a cerulean sweep and a long ribbon of bare aluminium record foil spills from its feed gate, twisting across the floor toward the lens, its embossed ice blue cells broken by punched holes the key shines straight through and by scorched, heat tinted cells. Only this beat has it because "arrive with holes" is literally the picture: a record in the deck's record metal, its missing data as holes of light on the floor and its corrupted data as burns.
+2. **The strip chart.** A paper oscillograph trace pours over the lip of a bench in a lit shop, its inked flight trace running into torn out stretches and smeared blots. Only this beat could carry it because the trace is the flight and the tears are the missing data, but it leans on paper and ink, which sits close to the print look this machine refuses.
+3. **The many sources.** A low macro over a parts bench where five different cables (sensor harness, maintenance laptop lead, logbook scan, engine monitor, recorder) converge into one junction block, one cable frayed and cut. It owns the second dek sentence, fusion from many sources, but the headline's holes become a frayed wire a stranger reads as damage, not missing data.
+
+**Pick 1.** The headline is "holes" and only the foil tape shows a hole a thumb sees at once, light falling through it, while staying in the deck's material code (bare aluminium is the record). Neighbours are a medium engine on its stand (frame 1) and an orthographic socket tray (frame 3), so this frame goes CLOSE and low, a long diagonal ribbon instead of a grid, lit from behind and to the right so the holes throw light spots toward the camera.
+
+Type: bottom left, three lines over the darker front of the floor, the dek under it, the tape leaving the right edge so the left foot stays quiet.

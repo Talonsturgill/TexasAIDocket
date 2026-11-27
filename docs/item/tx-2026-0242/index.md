@@ -11,7 +11,7 @@ ExxonMobil chief executive Darren Woods spoke on the company's third quarter ear
 - Public access: Write to the decider
 - Take part: https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian
 
-- Last checked: 2026-11-22
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-22 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

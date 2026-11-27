@@ -1,0 +1,272 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-26, frame 7 of 9, HANDS ON. A lit interior through txthree.js, at bench height and close: one twisted,
+     cambered turbine blade with a fir tree root lies in a stepped cutout in a foam case, filling the lower half in sharp focus. A
+     violet nitrile gloved hand, cropped at the wrist by the frame, holds a borescope probe in a pen grip and touches its lit tip to
+     the blade near its leading edge. One matte dusk gold tag (what the software puts out) is wired to the root. Behind, soft, the
+     stacked leaves of a hangar door lit from one side. No face, no screen, no mark. Drawn to illustrate; FIG is empty. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:150px; width:640px; text-align:left">Finding weak parts before they fail</h1>
+<p class="dek" data-follow="24" style="left:76px; width:540px; text-align:left">Texas Tech's Henry Johnston says the models help teams find weak parts and plan repairs before failure. Maintenance crews check aircraft with computers and hands on inspections.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-26-flightrecord-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Hands on", counter: "07 / 09", src: "c13 c15", fit: { min: 80, max: 100, maxLines: 3 } });
+  /* HONEST: this frame carries no figure. The brief's FIG is empty, so nothing drawn stands for a count or a length. */
+  /* no guard reads FIG, so the injector hands this frame nothing */
+
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 200, fog: 0.004 });
+  const rnd = CH.rng(CH.SEED + 7);
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  const shadowAll = (g) => { g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+  const phys = (key, p, cls) => { const m = K.mat(key, p, true); if (cls) m.userData.txSurface = cls; return m; };
+
+  /* ---- THE WORLD: the hangar bay ---- */
+  TXT.sky(R, W);
+  const room = TXT.interior(R, { w: 22, d: 26, h: 10, floor: 'concrete', wall: 0x2346b8, trim: 0x1b2a6e, window: null, ceiling: true, light: 0.6 });
+  R.scene.environmentIntensity = (R.scene.environmentIntensity || 1) * 0.6;
+
+  /* ---- THE BENCH and THE FOAM CASE INSERT ---- */
+  const TOP = 0.92;
+  const benchTop = TXT.roundedBox(1.6, 0.045, 0.75, 0.012, phys('bench-top-brushed-steel', { color: 0x8fa3d6, roughness: 0.34, metalness: 0.9 }, 'brushed'));
+  benchTop.position.set(0.05, TOP - 0.0225, 0.2); TXT.add(R, shadowAll(new THREE.Group().add(benchTop)));
+  const benchPaint = phys('bench-frame-paint', { color: 0x2f55e0, roughness: 0.45, metalness: 0.3, clearcoat: 0.4, clearcoatRoughness: 0.3 }, 'paint');
+  [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([sx, sz]) => { const leg = TXT.roundedBox(0.055, TOP - 0.05, 0.055, 0.01, benchPaint); leg.position.set(0.05 + sx * 0.74, (TOP - 0.05) / 2, 0.2 + sz * 0.31); TXT.add(R, shadowAll(new THREE.Group().add(leg))); });
+
+  const FT = 0.05, FZ = TOP + FT;            /* foam top */
+  const AX_Y = FZ + 0.011;                   /* the blade's span axis, just proud of the foam */
+  /* ---- THE ONE BLADE, in its own frame: span on +y, chord (axial) on x with the leading edge at +x, thickness on z ---- */
+  const SPAN = 0.2, Y0 = 0.002;
+  const chordAt = (f) => 0.056 * (1 - 0.16 * f), twistAt = (f) => -0.34 + 0.62 * f, tcAt = (f) => 0.17 - 0.08 * f, camAt = (f) => 0.13 - 0.04 * f;
+  const NS = 40, NSP = 36;
+  const section = (f) => { /* cambered, thick nosed turbine section, closed trailing edge, rotated by its twist */
+    const c = chordAt(f), tw = twistAt(f), tc = tcAt(f), m = camAt(f), pts = [];
+    const one = (t, up) => { const yt = 5 * tc * c * (0.2969 * Math.sqrt(t) - 0.126 * t - 0.3516 * t * t + 0.2843 * t * t * t - 0.1036 * t * t * t * t);
+      const yc = 4 * m * c * t * (1 - t); const x = (0.42 - t) * c, z = yc + (up ? yt : -yt) - 0.35 * m * c;
+      return [x * Math.cos(tw) - z * Math.sin(tw), x * Math.sin(tw) + z * Math.cos(tw)]; };
+    for (let i = 0; i <= NS; i++) { const t = 0.5 - 0.5 * Math.cos(Math.PI * (1 - i / NS)); pts.push(one(t, true)); }      /* TE to LE over the top */
+    for (let i = 1; i < NS; i++) { const t = 0.5 - 0.5 * Math.cos(Math.PI * i / NS); pts.push(one(t, false)); }            /* LE to TE under */
+    return pts; };
+  const foilGeo = (() => {
+    const pos = [], uv = [], idx = [], ring = 2 * NS;
+    for (let j = 0; j <= NSP; j++) { const f = j / NSP, y = Y0 + f * SPAN, S = section(f);
+      S.forEach((p) => { pos.push(p[0], y, p[1]); uv.push(0.5, 0.75 - 0.7 * f); }); }
+    for (let j = 0; j < NSP; j++) for (let i = 0; i < ring; i++) { const a = j * ring + i, b = j * ring + (i + 1) % ring, c2 = a + ring, d = b + ring; idx.push(a, c2, b, b, c2, d); }
+    /* the tip cap */
+    const S = section(1), base = pos.length / 3; let cx0 = 0, cz0 = 0; S.forEach((p) => { cx0 += p[0]; cz0 += p[1]; }); cx0 /= S.length; cz0 /= S.length;
+    S.forEach((p) => { pos.push(p[0], Y0 + SPAN, p[1]); uv.push(0.5, 0.05); }); pos.push(cx0, Y0 + SPAN, cz0); uv.push(0.5, 0.05);
+    for (let i = 0; i < ring; i++) idx.push(base + i, base + (i + 1) % ring, base + ring);
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g; })();
+  /* the upper surface point at span fraction f and chord fraction t, in the blade's frame */
+  const upperAt = (f, t) => { const c = chordAt(f), tw = twistAt(f), tc = tcAt(f), m = camAt(f);
+    const yt = 5 * tc * c * (0.2969 * Math.sqrt(t) - 0.126 * t - 0.3516 * t * t + 0.2843 * t * t * t - 0.1036 * t * t * t * t), yc = 4 * m * c * t * (1 - t);
+    const x = (0.42 - t) * c, z = yc + yt - 0.35 * m * c; return V(x * Math.cos(tw) - z * Math.sin(tw), Y0 + f * SPAN, x * Math.sin(tw) + z * Math.cos(tw)); };
+
+  const blade = new THREE.Group();
+  const af = new THREE.Mesh(foilGeo, phys('blade-airfoil-heat-tint-satin-cast', { color: 0xffffff, map: CH.heatTex(THREE), metalness: 0.38, roughness: 0.36, envMapIntensity: 0.55 }, 'cast'));
+  blade.add(af);
+  const rootMat = phys('blade-root-nickel-cast', { color: 0xd2c3a6, roughness: 0.3, metalness: 0.92 }, 'cast');
+  /* platform: a parallelogram plate across the span, the airfoil grows out of it */
+  const platShape = new THREE.Shape(); { const a = 0.036, b = 0.026, sk = 0.008; platShape.moveTo(-a - sk, -b); platShape.lineTo(a - sk, -b); platShape.lineTo(a + sk, b); platShape.lineTo(-a + sk, b); platShape.closePath(); }
+  const platGeo = new THREE.ExtrudeGeometry(platShape, { depth: 0.005, bevelEnabled: true, bevelThickness: 0.0012, bevelSize: 0.0012, bevelSegments: 3 });
+  platGeo.rotateX(Math.PI / 2); platGeo.translate(0, 0.0025, 0); blade.add(new THREE.Mesh(platGeo, rootMat));
+  /* shank */
+  const shank = TXT.roundedBox(0.05, 0.016, 0.024, 0.003, rootMat); shank.position.y = -0.0115; blade.add(shank);
+  /* the fir tree: three rounded lobes a side, narrowing toward the base, profile in the y z plane, run along x */
+  const fir = new THREE.Shape(); {
+    const top = -0.019, lobes = [[0.0175, 0.0108], [0.0146, 0.0084], [0.0118, 0.0062]], pitch = 0.0098;
+    fir.moveTo(-0.0125, top); fir.lineTo(0.0125, top);
+    lobes.forEach(([wo, wi], k) => { const yA = top - k * pitch; fir.quadraticCurveTo(wo + 0.002, yA - pitch * 0.15, wo, yA - pitch * 0.45); fir.quadraticCurveTo(wo - 0.001, yA - pitch * 0.85, wi, yA - pitch); });
+    fir.quadraticCurveTo(0.006, top - 3 * pitch - 0.004, 0, top - 3 * pitch - 0.0045); fir.quadraticCurveTo(-0.006, top - 3 * pitch - 0.004, -lobes[2][1], top - 3 * pitch);
+    for (let k = 2; k >= 0; k--) { const [wo, wi] = lobes[k], yA = top - k * pitch, wPrev = k === 0 ? 0.0125 : lobes[k - 1][1];
+      fir.quadraticCurveTo(-wo + 0.001, yA - pitch * 0.85, -wo, yA - pitch * 0.45); fir.quadraticCurveTo(-wo - 0.002, yA - pitch * 0.15, -wPrev, yA); }
+    fir.closePath(); }
+  const firGeo = new THREE.ExtrudeGeometry(fir, { depth: 0.052, bevelEnabled: true, bevelThickness: 0.0008, bevelSize: 0.0006, bevelSegments: 2, curveSegments: 10 });
+  firGeo.translate(0, 0, -0.026); firGeo.rotateY(Math.PI / 2); blade.add(new THREE.Mesh(firGeo, rootMat));
+
+  /* lay it in the foam: blade x (axial) to world +z, blade y (span) to world +x, blade z (suction side) up; then a small yaw */
+  const BQ = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(V(0, 0, 1), V(1, 0, 0), V(0, 1, 0)));
+  const YAW = 0.1; BQ.premultiply(new THREE.Quaternion().setFromAxisAngle(V(0, 1, 0), YAW));
+  const ROOT = V(-0.1, AX_Y, 0);
+  blade.quaternion.copy(BQ); blade.position.copy(ROOT); TXT.add(R, shadowAll(blade)); blade.updateMatrixWorld(true);
+  const toW = (v) => v.clone().applyQuaternion(BQ).add(ROOT);
+
+  /* the foam: three laminated layers, a stepped cutout traced from the blade's own outline, deeper under the root */
+  const OFF = 0.0028;
+  const outlineLocal = (() => { const pts = [[-0.038 - 0.008, -0.054], [0.038 - 0.008, -0.054], [0.038 + 0.008, 0.007]];
+    const ext = (f) => { let mn = 1e9, mx = -1e9; section(f).forEach((p) => { mn = Math.min(mn, p[0]); mx = Math.max(mx, p[0]); }); return [mn - OFF, mx + OFF]; };
+    for (let j = 0; j <= 20; j++) { const f = j / 20; pts.push([ext(f)[1], Y0 + f * SPAN + (j === 20 ? OFF : 0)]); }
+    for (let j = 20; j >= 0; j--) { const f = j / 20; pts.push([ext(f)[0], Y0 + f * SPAN + (j === 20 ? OFF : 0)]); }
+    pts.push([-0.038 + 0.008, 0.007]); return pts; })();
+  const rootLocal = [[-0.046, -0.054], [0.03, -0.054], [0.046, 0.007], [-0.03, 0.007]];
+  const toShape = (pts) => pts.map(([x, y]) => { const w = toW(V(x, y, 0)); return new THREE.Vector2(w.x, -w.z); });
+  const FX0 = -0.27, FX1 = 0.3, FZ0 = -0.12, FZ1 = 0.2;
+  const rect = () => { const s = new THREE.Shape(); s.moveTo(FX0, -FZ1); s.lineTo(FX1, -FZ1); s.lineTo(FX1, -FZ0); s.lineTo(FX0, -FZ0); s.closePath(); return s; };
+  const foamMat = phys('case-foam-insert-fabric', { color: 0x2140c4, roughness: 0.97, sheen: 0.3, sheenColor: 0x6f8cff }, 'fabric');
+  const foamMat2 = phys('case-foam-core-fabric', { color: 0x1d36a8, roughness: 0.98 }, 'fabric');
+  const pocketMat = phys('case-foam-pocket-fabric', { color: 0x1a2f96, roughness: 0.99 }, 'fabric');
+  const layer = (y0, y1, hole, mat) => { const s = rect(); if (hole) { const h = new THREE.Path(toShape(hole).reverse()); s.holes.push(h); }
+    const g = new THREE.ExtrudeGeometry(s, { depth: y1 - y0, bevelEnabled: true, bevelThickness: 0.0015, bevelSize: 0.0015, bevelSegments: 2, curveSegments: 6 }); g.rotateX(-Math.PI / 2); g.translate(0, y0, 0);
+    const m = new THREE.Mesh(g, mat); m.userData.txBevel = false; m.castShadow = true; m.receiveShadow = true; R.scene.add(m); return m; };
+  layer(FZ - 0.012, FZ - 0.0015, outlineLocal, foamMat);
+  layer(FZ - 0.027, FZ - 0.0135, rootLocal, foamMat2);
+  layer(TOP, FZ - 0.0285, null, pocketMat);
+  /* the outer case: a rolled aluminium rim round the foam */
+  { const caseMat = phys('case-shell-brushed-alu', { color: 0xb9c7e4, roughness: 0.3, metalness: 0.95 }, 'brushed');
+    [[FX0 - 0.008, FX1 + 0.008, FZ1 + 0.004, FZ1 + 0.012], [FX0 - 0.008, FX1 + 0.008, FZ0 - 0.012, FZ0 - 0.004]].forEach(([x0, x1, z0, z1]) => { const b = TXT.roundedBox(x1 - x0, FT + 0.012, z1 - z0, 0.003, caseMat); b.position.set((x0 + x1) / 2, TOP + (FT + 0.012) / 2, (z0 + z1) / 2); R.scene.add(shadowAll(new THREE.Group().add(b))); });
+    [[FX0 - 0.012, FX0 - 0.004], [FX1 + 0.004, FX1 + 0.012]].forEach(([x0, x1]) => { const b = TXT.roundedBox(x1 - x0, FT + 0.012, FZ1 - FZ0 + 0.024, 0.003, caseMat); b.position.set((x0 + x1) / 2, TOP + (FT + 0.012) / 2, (FZ0 + FZ1) / 2); R.scene.add(shadowAll(new THREE.Group().add(b))); }); }
+
+  /* ---- THE TAG: one matte dusk gold card, wired to the root's shank, lying on the foam in front of the root's end face ---- */
+  const gold = phys('fr-gold-matte-tag-paint', { color: 0xc8693a, roughness: 0.62, metalness: 0.0, emissive: 0xe0956a, emissiveIntensity: 0.0, clearcoat: 0 }, 'paint');
+  const tagG = new THREE.Group();
+  { const tw = 0.058, th = 0.036, r = 0.004, s = new THREE.Shape();
+    s.moveTo(-tw / 2 + r + 0.008, -th / 2); s.lineTo(tw / 2 - r, -th / 2); s.quadraticCurveTo(tw / 2, -th / 2, tw / 2, -th / 2 + r); s.lineTo(tw / 2, th / 2 - r); s.quadraticCurveTo(tw / 2, th / 2, tw / 2 - r, th / 2);
+    s.lineTo(-tw / 2 + r + 0.008, th / 2); s.lineTo(-tw / 2, th / 2 - 0.009); s.lineTo(-tw / 2, -th / 2 + 0.009); s.closePath();
+    const hole = new THREE.Path(); hole.absarc(-tw / 2 + 0.008, 0, 0.0028, 0, Math.PI * 2, true); s.holes.push(hole);
+    const g = new THREE.ExtrudeGeometry(s, { depth: 0.0009, bevelEnabled: true, bevelThickness: 0.0003, bevelSize: 0.0003, bevelSegments: 2 }); g.rotateX(-Math.PI / 2);
+    const card = new THREE.Mesh(g, gold); card.userData.txBevel = false; tagG.add(card);
+    const eye = new THREE.Mesh(new THREE.TorusGeometry(0.0034, 0.0009, 10, 28), phys('tag-eyelet-brushed-steel', { color: 0xdfe6f2, roughness: 0.25, metalness: 1 }, 'brushed')); eye.rotation.x = Math.PI / 2; eye.position.set(-tw / 2 + 0.008, 0.0012, 0); tagG.add(eye); }
+  const TAGP = toW(V(0.078, 0.04, 0)); TAGP.y = FZ + 0.0006; tagG.position.copy(TAGP); tagG.rotation.y = 0.35; TXT.add(R, shadowAll(tagG)); tagG.updateMatrixWorld(true);
+  { const eyeW = tagG.localToWorld(V(-0.029 + 0.008, 0.0012, 0)), a = toW(V(0.026, -0.011, 0.013)), b = toW(V(0, -0.011, 0.016)), c = toW(V(-0.026, -0.011, 0.013));
+    const pts = [eyeW.clone().add(V(0, 0.001, 0)), eyeW.clone().lerp(a, 0.5).add(V(0, 0.006, 0)), a, b, c, c.clone().add(V(0, -0.01, 0))].map((v) => v.toArray());
+    TXT.add(R, shadowAll(new THREE.Group().add(TXT.tube(pts, 0.0007, phys('tag-tie-wire-steel', { color: 0xd8e0ec, roughness: 0.3, metalness: 1 }, 'brushed'), { segments: 80, radial: 8 })))); }
+  const goldOwners = [tagG];
+
+  /* ---- THE PROBE: a borescope's steel tip touching the leading edge region of the suction side, its LED lit ---- */
+  const TF = 0.64, Tn = upperAt(TF, 0.12), T = toW(Tn);
+  const nW = toW(upperAt(TF, 0.125)).sub(toW(upperAt(TF, 0.115))); /* chord tangent, for the surface normal */
+  const sW = toW(upperAt(TF + 0.01, 0.12)).sub(T);
+  const NRM = new THREE.Vector3().crossVectors(sW, nW).normalize(); if (NRM.y < 0) NRM.negate();
+  /* ROUND 2: no hand. The probe enters from the right edge of the frame, its line set from the camera's own right and up */
+  const camDir = V(Math.sin(0.62) * Math.cos(0.5), Math.sin(0.5), Math.cos(0.62) * Math.cos(0.5));
+  const camRight = V(camDir.z, 0, -camDir.x).normalize();
+  const dP = camRight.clone().multiplyScalar(0.82).add(V(0, 0.5, 0)).addScaledVector(camDir, 0.12).normalize();
+  const steel = phys('borescope-insertion-tube-plastic', { color: 0x34449e, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }, 'plastic');
+  const TIPC = T.clone().addScaledVector(NRM, 0.0004);
+  const PLEN = 0.34, probeEnd = TIPC.clone().addScaledVector(dP, PLEN);
+  { const pr = new THREE.Mesh(new THREE.CylinderGeometry(0.0032, 0.0032, PLEN, 28), steel); pr.quaternion.setFromUnitVectors(V(0, 1, 0), dP); pr.position.copy(TIPC.clone().addScaledVector(dP, PLEN / 2 + 0.0035)); TXT.add(R, shadowAll(new THREE.Group().add(pr)));
+    const head = new THREE.Mesh(new THREE.CylinderGeometry(0.0038, 0.0034, 0.012, 28), phys('borescope-head-brushed-steel', { color: 0xd6e2f8, roughness: 0.22, metalness: 0.75, envMapIntensity: 0.45 }, 'brushed')); head.quaternion.copy(pr.quaternion); head.position.copy(TIPC.clone().addScaledVector(dP, 0.006)); TXT.add(R, shadowAll(new THREE.Group().add(head)));
+    /* articulation rings just behind the head */
+    for (let i = 0; i < 6; i++) { const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0034, 0.0006, 8, 24), steel); ring.quaternion.setFromUnitVectors(V(0, 0, 1), dP); ring.position.copy(TIPC.clone().addScaledVector(dP, 0.014 + i * 0.004)); TXT.add(R, new THREE.Group().add(ring)); }
+    const relief = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.007, 0.03, 20), phys('probe-strain-relief-rubber', { color: 0x2a2f7a, roughness: 0.7 }, 'rubber')); relief.quaternion.copy(pr.quaternion); relief.position.copy(probeEnd.clone().addScaledVector(dP, 0.012)); TXT.add(R, shadowAll(new THREE.Group().add(relief))); }
+  CH.lampGlow(THREE, R, TIPC.clone().addScaledVector(NRM, 0.0015).toArray(), '#e4f6ff', 0.022, 0);
+  { const led = new THREE.PointLight(0xe6f6ff, 0.05, 0.06, 2); led.position.copy(TIPC.clone().addScaledVector(NRM, 0.004).addScaledVector(dP, 0.004)); R.scene.add(led);
+    /* the lens ring: a thin lit annulus of LEDs round the lens face */
+    const lm = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xdff4ff).multiplyScalar(1.6) }); lm.userData.txSurface = false;
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0029, 0.0007, 10, 40), lm); ring.userData.txBevel = false; ring.quaternion.setFromUnitVectors(V(0, 0, 1), dP); ring.position.copy(TIPC.clone().addScaledVector(dP, 0.0016)); R.scene.add(ring);
+    /* the soft pool of light the probe throws where it meets the blade */
+    const pool = new THREE.SpotLight(0xe8f6ff, 0.012, 0.2, 0.75, 1.0, 2); pool.position.copy(TIPC.clone().addScaledVector(dP, 0.028).addScaledVector(NRM, 0.012)); pool.target.position.copy(T.clone().addScaledVector(dP, -0.01)); pool.castShadow = false; R.scene.add(pool); R.scene.add(pool.target); }
+  /* the braided sheath leaving the probe, curving away off the right of the frame */
+  { const braid = CH.canvasTex(THREE, 64, 64, (g, w, h) => { g.fillStyle = '#707070'; g.fillRect(0, 0, w, h); g.strokeStyle = '#e0e0e0'; g.lineWidth = 4;
+      for (let i = -w; i < w * 2; i += 10) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i + h, h); g.stroke(); g.beginPath(); g.moveTo(i, h); g.lineTo(i + h, 0); g.stroke(); } }, [1, 160]);
+    const s0 = probeEnd.clone().addScaledVector(dP, 0.026), s1 = s0.clone().addScaledVector(dP, 0.05).add(V(0.04, -0.01, 0.02)), s2 = s1.clone().add(V(0.12, -0.03, 0.06)), s3 = s2.clone().add(V(0.25, -0.05, 0.1));
+    TXT.add(R, shadowAll(new THREE.Group().add(TXT.tube([s0, s1, s2, s3].map((v) => v.toArray()), 0.0042, phys('borescope-sheath-braided-steel', { color: 0x9eb0d0, roughness: 0.35, metalness: 0.85, bumpMap: braid, bumpScale: 1.5 }, 'brushed'), { segments: 120, radial: 14 })))); }
+
+  /* ---- BEHIND: the stacked leaves of the hangar door, lit from the right, soft ---- */
+  const C = toW(V(0, 0.09, 0));
+  const vd = V(-0.62, 0, -0.78).normalize();
+  { const wall = new THREE.Group(), ribTex = CH.canvasTex(THREE, 512, 64, (g, w, h) => { for (let x = 0; x < w; x++) { const v = 128 + 110 * Math.sin(x / w * Math.PI * 2 * 16); g.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; g.fillRect(x, 0, 1, h); } }, [3, 1]);
+    const leafCols = [0x3a63e6, 0x2f55d8, 0x4470f0, 0x2b4fd0, 0x3d68ea, 0x3159dc, 0x4a76f2, 0x2d52d4, 0x3860e2];
+    const railMat = phys('door-rail-paint', { color: 0x1f3aa8, roughness: 0.5, metalness: 0.35 }, 'paint');
+    for (let i = 0; i < 17; i++) { const x = -5.6 + i * 0.7, z = (i % 2) * 0.12;
+      const leaf = TXT.roundedBox(0.66, 6.2, 0.1, 0.03, phys('door-leaf-paint-' + i, { color: leafCols[i % 9], roughness: 0.5, metalness: 0.25, bumpMap: ribTex, bumpScale: 1.6 }, 'paint')); leaf.position.set(x, 3.1, z); wall.add(leaf);
+      [4.6].forEach((y) => { const rl = TXT.roundedBox(0.64, 0.08, 0.05, 0.015, railMat); rl.position.set(x, y, z + 0.07); wall.add(rl); }); }
+    /* daylight leaking through two seams, soft cool strips */
+    [0.85, 2.25].forEach((x) => { const s = new THREE.Mesh(new THREE.PlaneGeometry(0.035, 6.0), new THREE.MeshBasicMaterial({ color: new THREE.Color(0xa8ccff).multiplyScalar(0.75) })); s.material.userData.txSurface = false; s.position.set(x, 3.0, -0.06); wall.add(s); });
+    wall.position.copy(C.clone().addScaledVector(vd, 2.6)).setY(0); wall.rotation.y = Math.atan2(-vd.x, -vd.z);
+    TXT.add(R, shadowAll(wall));
+    const wash = new THREE.SpotLight(0xd8ecff, 40, 10, 0.7, 0.9, 1.6); wash.position.copy(wall.position.clone().add(V(4.5, 5.5, 3.5))); wash.target.position.copy(wall.position.clone().add(V(-1.5, 1.0, 0))); wash.castShadow = false; R.scene.add(wash); R.scene.add(wash.target); }
+
+  /* ---- CAMERA: bench height, close, from the front right; the blade low, the door above ---- */
+  const FOCAL = [C.x, C.y - 0.004, C.z];
+  /* ROUND 2 crop: push in until the tag, the root, the blade tip and the probe tip just fit the band under the type */
+  const tagPts = [[-0.029, -0.018], [0.029, -0.018], [0.029, 0.018], [-0.029, 0.018]].map(([x, z]) => tagG.localToWorld(V(x, 0, z)));
+  const keyPts = tagPts.concat([toW(V(0, Y0 + SPAN, 0)), toW(V(0.046, -0.05, 0)), toW(V(-0.046, -0.05, 0)), T]);
+  const AIMP = tagG.position.clone().lerp(toW(V(0, Y0 + SPAN, 0)), 0.5);
+  let FROM = null, LOOK = null;
+  for (let dist = 0.14; dist <= 0.9; dist += 0.005) {
+    const fr = AIMP.clone().addScaledVector(camDir, dist).toArray(), lk = CH.aim(THREE, R, TXT, fr, AIMP.toArray(), 560, 1050, 30);
+    TXT.frame(R, { fov: 30, from: fr, look: lk });
+    const ok = keyPts.every((v) => { const q = CH.project(THREE, R, v.toArray()); return q[0] > 40 && q[0] < 1030 && q[1] > 800 && q[1] < 1228; });
+    if (ok) { FROM = fr; LOOK = lk; break; }
+  }
+  if (!FROM) throw new Error('no camera distance fits the blade, the tag and the probe tip under the type');
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  const FOCUS = V(...FOCAL).distanceTo(R.camera.position);
+
+  CH.KEY_SCALE = 1.25;
+  /* ---- KEY: a soft high key from the right and a little behind, so the probe throws a short shadow onto the blade ---- */
+  TXT.deckRig(R, CH.rigSpec(W, 0.9, 4096), Object.assign(CH.rigOpts([C.x, C.y, C.z], { distance: 8, shadowFar: 20, normalBias: 0.0006 }), { light: { az: 112, el: 50 } }));
+  CH.unacne(R, 0.0006);
+  { const fill = new THREE.SpotLight(0xeaf2ff, 1.0, 0, 0.25, 0.9, 0); fill.position.copy(V(...FROM).add(V(0.25, 0.5, 0.2))); fill.target.position.copy(C); fill.castShadow = false; R.scene.add(fill); R.scene.add(fill.target);
+    /* a small soft fill from the front left onto the root's end face, so the fir tree lobes read */
+    const rf = new THREE.SpotLight(0xf2f0ff, 1.4, 0, 0.12, 0.9, 0); rf.position.copy(ROOT.clone().add(V(-0.25, 0.3, 0.6))); rf.target.position.copy(ROOT); rf.castShadow = false; R.scene.add(rf); R.scene.add(rf.target); }
+
+  { let gAll = 0, gB = 0; R.scene.traverse((m) => { if (m.isMesh && m.material === gold) gAll++; }); goldOwners.forEach((o) => o.traverse((m) => { if (m.isMesh && m.material === gold) gB++; }));
+    if (gAll !== gB || gB < 1) throw new Error('gold off the one tag: ' + gAll + ' vs ' + gB); }
+  window.__s07p = { tip: CH.project(THREE, R, T.toArray()), root: CH.project(THREE, R, ROOT.toArray()), bladeTip: CH.project(THREE, R, toW(V(0, Y0 + SPAN, 0)).toArray()), tag: CH.project(THREE, R, TAGP.toArray()) };
+  const shot = await TXT.snapshot(R, {});
+  if (!shot || !shot.ok) throw new Error('the GPU frame came back black: ' + JSON.stringify(shot));
+
+  /* ---- DEPTH OF FIELD: a depth pass, then a thin lens blur from pre blurred copies, focused on the blade ---- */
+  const GW = gl.width, GH = gl.height;
+  const beauty = document.createElement('canvas'); beauty.width = GW; beauty.height = GH; beauty.getContext('2d').drawImage(gl, 0, 0);
+  const DMAX = 40, depthMat = new THREE.ShaderMaterial({
+    vertexShader: 'varying float vD; void main(){ vec4 p = vec4(position, 1.0);\n#ifdef USE_INSTANCING\n p = instanceMatrix * p;\n#endif\n vec4 mv = modelViewMatrix * p; vD = -mv.z; gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'varying float vD; void main(){ float v = sqrt(clamp(vD / ' + DMAX.toFixed(1) + ', 0.0, 1.0)); gl_FragColor = vec4(v, v, v, 1.0); }' });
+  const hid = []; R.scene.traverse((o) => { if ((o.isSprite || o.userData.noDepth) && o.visible) { o.visible = false; hid.push(o); } });
+  const bg = R.scene.background; R.scene.background = new THREE.Color(1, 1, 1); R.scene.overrideMaterial = depthMat;
+  const tm = R.renderer.toneMapping; R.renderer.toneMapping = THREE.NoToneMapping;
+  R.renderer.render(R.scene, R.camera);
+  const dcv = document.createElement('canvas'); dcv.width = GW; dcv.height = GH; const dctx = dcv.getContext('2d'); dctx.drawImage(gl, 0, 0);
+  R.scene.overrideMaterial = null; R.scene.background = bg; R.renderer.toneMapping = tm; hid.forEach((o) => { o.visible = true; });
+  const depth = dctx.getImageData(0, 0, GW, GH).data;
+  const dAt = (p) => { const v = depth[p] / 255; return Math.max(0.05, DMAX * v * v); };
+  const fpx = CH.project(THREE, R, FOCAL);
+  let dF = 0, nF = 0; for (let yy = -4; yy <= 4; yy++) for (let xx = -4; xx <= 4; xx++) { dF += dAt(((Math.round(fpx[1] * 2) + yy) * GW + Math.round(fpx[0] * 2) + xx) * 4); nF++; } dF /= nF;
+  if (!(dF > FOCUS * 0.6 && dF < FOCUS * 1.5)) throw new Error('depth pass disagrees with the focus distance: ' + dF + ' vs ' + FOCUS);
+  const RADII = [0, 4, 10, 20, 34], iF = 1 / dF, KN = 5, KF = 16;
+  const levels = RADII.map((r) => { const c = document.createElement('canvas'); c.width = GW; c.height = GH; const g = c.getContext('2d');
+    if (r) g.filter = 'blur(' + r + 'px)'; g.drawImage(beauty, 0, 0); return g.getImageData(0, 0, GW, GH).data; });
+  const out = new ImageData(GW, GH), od = out.data;
+  for (let p = 0, n = GW * GH * 4; p < n; p += 4) {
+    const d = dAt(p), id = 1 / d;
+    /* circle of confusion in thin lens shape: near side grows with 1/d - 1/f, far side saturates toward the door */
+    let c = id > iF ? (id - iF) / iF * KN : Math.min(1, (iF - id) / iF) * KF; c = Math.min(RADII[4], c);
+    let L = 0; while (L < 3 && c > RADII[L + 1]) L++;
+    const t = Math.min(1, (c - RADII[L]) / (RADII[L + 1] - RADII[L])), a = levels[L], b = levels[L + 1];
+    od[p] = a[p] + (b[p] - a[p]) * t; od[p + 1] = a[p + 1] + (b[p + 1] - a[p + 1]) * t; od[p + 2] = a[p + 2] + (b[p + 2] - a[p + 2]) * t; od[p + 3] = 255;
+  }
+  const oc = document.createElement('canvas'); oc.width = GW; oc.height = GH; oc.getContext('2d').putImageData(out, 0, 0);
+  const cx = document.getElementById('art').getContext('2d'); cx.scale(2, 2); cx.drawImage(oc, 0, 0, CH.W, CH.H);
+
+  CH.seat(cx, { a: 0.56, fade: 170 });
+  TXLOOK.footWash(cx, { a: 0.85, height: 330 });
+  CH.seat(cx, { sel: '.kick, .count', a: 0.5, fade: 130 });
+  window.__s07 = Object.assign({ focal: fpx, focus: FOCUS, dF, from: FROM }, window.__s07p);
+  console.log('S07 ' + JSON.stringify(window.__s07));
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
