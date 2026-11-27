@@ -132,7 +132,7 @@
         hug([[1.2, 0.14, 0.203], [1.22, 0.3, 0.212], [1.25, 0.45, 0.222], [1.3, 0.6, 0.26], [1.35, 0.8, 0.245]], 0.006, K.mat("fr-wire", { color: 0x40486e, roughness: 0.5 }));
         for (var cl = 0; cl < 7; cl++) { var y = 0.18 + cl * 0.11; var clip = new THREE.Mesh(new THREE.TorusGeometry(0.012, 0.003, 6, 12), alu); clip.position.set(Math.cos(0.52) * 0.215, y, Math.sin(0.52) * 0.215); clip.rotation.y = -0.52; core.add(clip); }
         /* borescope port caps */
-        [0.3, 0.62, 0.84].forEach(function (y, i) { var c = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.02, 16), alu); c.position.set(0.21 + i * 0.03, y, 0.04); c.rotation.z = Math.PI / 2; core.add(c); });
+        [[0.3, 0.212], [0.62, 0.254], [0.84, 0.229]].forEach(function (p) { var c = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.02, 16), alu); c.position.set(p[1], p[0], 0.04); c.rotation.z = Math.PI / 2; core.add(c); });
         if (o.panel) {
           var pnl = new THREE.Mesh(new THREE.CylinderGeometry(0.205, 0.205, 0.16, 48, 1, true, 0, 0.9), K.mat("fr-ti-ds", { color: N.TITANIUM, metalness: 0.88, roughness: 0.42, side: THREE.DoubleSide }));
           pnl.position.set(0.06, 0.26, 0.05); pnl.rotation.y = 1.2; core.add(pnl);
