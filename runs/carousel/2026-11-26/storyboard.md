@@ -23,7 +23,7 @@ CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
 2. CAMERA_MOVE on the engine: low front three quarter in the studio (1), inside the turbine at macro (6), a bench beside it in the hangar (7), the rear three quarter at the hangar door (9).
 3. VALUE_ARC from a bright cerulean studio (1 to 3) through the shop window (4) and the plate (5), down into the deep indigo turbine (6), back up through the hangar door light (7) and the map (8), out into first light at the door (9). Never black.
 
-VALUE CUT: frame 6
+VALUE CUT: frame 9
 (The turn into the turbine's indigo shade is the deck's one deliberate drop, chosen.)
 
 ### Palette
