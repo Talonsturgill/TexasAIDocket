@@ -11,7 +11,7 @@ The University of Texas at El Paso announced on October 8th, 2026 that a team le
 - Public access: Write to the decider
 - Take part: https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-19 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-21 · UTEP's account of the satellite flood mapping test with El Paso Water still reads as published. The university's site answers this project again.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

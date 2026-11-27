@@ -11,7 +11,7 @@ CLARKE is an AI tool built at Texas A&M. It reads drone imagery taken after a hu
 - Public access: Write to the decider
 - Take part: https://stories.tamu.edu/news/2026/11/24/texas-am-disaster-response-ai-gains-national-recognition-expanded-use-among-emergency-responders/
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -22,6 +22,7 @@ CLARKE is an AI tool built at Texas A&M. It reads drone imagery taken after a hu
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-24 · Admitted from Texas A&M's November 24th release. Florida's state drone team uses the tool, and the release names no Texas user.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

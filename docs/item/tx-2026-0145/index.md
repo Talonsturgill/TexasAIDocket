@@ -10,7 +10,7 @@ The National Telecommunications and Information Administration submitted its Int
 - Comment closes: 2026-11-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18303/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-17 · The survey office's notice still reads as quoted, and its comment deadline of November 9th has passed.
 - 2026-11-20 · The federal survey office's comment window on the household internet questions closed on November 9th.
 - 2026-11-24 · The comment window closed on November 9th.
+- 2026-11-26 · The comment window closed on November 9th.
 
 ## Evidence
 

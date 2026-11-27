@@ -11,7 +11,7 @@ The University of North Texas announced a gift from Anuradha and Vikas Sinha and
 - Public access: Write to the decider
 - Take part: https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-17 · The university still describes the gift and the college of artificial intelligence it named in the words the record quotes.
 - 2026-11-20 · The University of North Texas gift and the program it names still stand as announced.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

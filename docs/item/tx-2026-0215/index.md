@@ -11,7 +11,7 @@ Rice University has launched a universitywide AI initiative. It says 35 of the 7
 - Public access: Write to the decider
 - Take part: https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-18 · Rice's plan to hire AI faculty and build for them in the Ion district still reads as the record quotes it.
 - 2026-11-21 · Rice's plan to hire AI faculty and build in the Ion District still reads as announced.
 - 2026-11-24 · Rice's announcement of AI faculty hiring and an Ion District building is unchanged.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

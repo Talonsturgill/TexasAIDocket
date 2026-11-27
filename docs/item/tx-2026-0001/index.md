@@ -10,7 +10,7 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -56,6 +56,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-16 · The comment window closed on August 11th.
 - 2026-11-20 · The ERCOT transmission cost recovery rulemaking stays past its comment window, which closed on August 11th.
 - 2026-11-24 · Two filings moved the rulemaking. Oncor filed its analysis of what the proposal would do to residential rates on November 19th. Commission staff filed a memo with proposed redline rule language on November 24th, the next step before an open meeting takes up a final rule.
+- 2026-11-26 · The comment window closed on August 11th.
 
 ## Evidence
 

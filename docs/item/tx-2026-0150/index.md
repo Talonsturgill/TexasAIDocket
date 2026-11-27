@@ -12,7 +12,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 - Public access: Write to the decider
 - Take part: https://europepmc.org/article/MED/42714442
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-18 · The radiologists' paper on imaging AI and children is still published as cited, with its finding that few tools were built for pediatric use.
 - 2026-11-20 · The radiologists' published finding on imaging AI still reads as it did in the journal.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

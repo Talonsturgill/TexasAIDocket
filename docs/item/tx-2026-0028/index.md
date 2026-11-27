@@ -11,7 +11,7 @@ The Hays County Commissioners Court approved a resolution on June 23rd, 2026 est
 - Public access: Public meeting
 - Take part: https://www.hayscountytx.gov/877/Commissioners-Court-Minutes
 
-- Last checked: 2026-11-20
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · Hays County's emergency review period for high water use development still reads as adopted.
 - 2026-11-14 · Hays County's emergency review period for high water use development still reads as adopted in the county's own record.
 - 2026-11-20 · Community Impact's account of the adopted 180 day review period still reads as it did. KUT's report of the same vote is closed to rereading, so that claim stands on its earlier reading.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided. One published account of the decision is closed to rereading, so what it reported stands on its earlier reading.
 
 ## Evidence
 

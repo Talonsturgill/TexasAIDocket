@@ -11,7 +11,7 @@ San Antonio Animal Care Services is working with Southwest Research Institute on
 - Public access: Write to the decider
 - Take part: https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study
 
-- Last checked: 2026-11-24
+- Last checked: 2026-11-26
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-17 · San Antonio's plan to count loose dogs with phone cameras and object detection is still published as the record quotes it.
 - 2026-11-20 · San Antonio's loose dog count with phone cameras still stands as the city described it.
 - 2026-11-24 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
