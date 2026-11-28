@@ -1,41 +1,55 @@
 {
- "last_pass": "2026-11-26",
+ "last_pass": "2026-11-27",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs",
+   "theme": "primitive or low-poly model where a kit model belongs (queue paper-models-built-in-chassis, no. 89)",
    "runs": 6,
    "rounds": 18,
    "action": "fixed",
-   "what": "Kit turbine_blade and turbine_blisk (assets/js/kit/industry.js installHot) at no. 88's judges' named fix: a twisted turbine section and a broached fir tree root, a flaw at the leading edge, a flag that follows the twist; the blisk's bladeAt can no longer be mirrored. Checked by scripts/carousel/kit_hot_check.mjs."
+   "what": "wrapped_ream and ream_pile lifted into assets/js/kit/interior.js at the art director's and judges' named fixes, with scripts/carousel/kit_paper_check.mjs."
   },
   {
-   "theme": "drawn to illustrate on every dek (queue drawn-to-illustrate-boilerplate-on-every-dek, repeat 1: nos. 85, 87; voice lowest on 3 runs)",
-   "runs": 2,
-   "rounds": null,
-   "action": "fixed",
-   "what": "BESPOKE.md stops ordering the phrase kept; panel_ready.check_one_disclosure refuses a round from 2026-11-27 while copy.json prints it on more than one frame."
-  },
-  {
-   "theme": "accent hue drifts per frame under a cool tone (queue accent-gold-drifts-per-frame-under-cool-tone, repeat 2: nos. 79, 87, 88)",
+   "theme": "dossier drifts from the render (queue dossier-drifts-from-the-render, repeat 2: nos. 87, 88, 89)",
    "runs": 3,
    "rounds": null,
-   "action": "escalated",
-   "what": "The named fix is a TXLOOK helper (txlook.js is human); UPGRADE_BACKLOG 2026-11-26 item 1 with a measured solve."
+   "action": "fixed",
+   "what": "plan_render_check fails a dossier naming a model its frame does not build, and art_preflight refuses to bind a review over it, for runs after 2026-11-27. No. 88's prose-only case is out of its reach and that is stated."
   },
   {
-   "theme": "number token carries its own percent sign (queue number-token-carries-percent, no. 88)",
-   "runs": 1,
-   "rounds": null,
-   "action": "escalated",
-   "what": "scripts/site/article_check.py is daily lane; UPGRADE_BACKLOG 2026-11-26 item 5."
-  },
-  {
-   "theme": "panel_ready self-test red at HEAD (found by this pass)",
+   "theme": "plan_render_check self-test red at HEAD on no. 89's unindented acceptance lists (found by this pass)",
    "runs": null,
    "rounds": null,
    "action": "fixed",
-   "what": "The no. 84 stale brief replay restores briefs 8 and 9 as first shipped, after a ship fix rewrote the archive."
+   "what": "The text fallback now reads the unindented YAML block sequence."
+  },
+  {
+   "theme": "surface pass speckles paper (queue surface-pass-speckles-paper, no. 89)",
+   "runs": 1,
+   "rounds": null,
+   "action": "escalated",
+   "what": "The kit's paper models opt out. An engine paper class is UPGRADE_BACKLOG 2026-11-27 item 3."
+  },
+  {
+   "theme": "concurrent renders race render_report (queue concurrent-renders-race-render-report, no. 89)",
+   "runs": 1,
+   "rounds": null,
+   "action": "escalated",
+   "what": "render.py is under .claude/. UPGRADE_BACKLOG 2026-11-27 item 1."
+  },
+  {
+   "theme": "ad hoc fetch before the boundary (queue ad-hoc-fetch-before-boundary, repeat 1: nos. 88, 89)",
+   "runs": 2,
+   "rounds": null,
+   "action": "escalated",
+   "what": "The helper belongs in scripts/shared (human). UPGRADE_BACKLOG 2026-11-27 item 4."
+  },
+  {
+   "theme": "accent gold drifts per frame under a cool tone (repeat 3: nos. 79, 87, 88, 89)",
+   "runs": 4,
+   "rounds": null,
+   "action": "escalated",
+   "what": "Still the txlook.js helper in UPGRADE_BACKLOG 2026-11-26 item 1. No. 89 is added to its evidence."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from out/2026-11-26/week_digest.md, six shipped runs. Queue themes' run counts are the distinct decks their queue lines name; rounds not counted for them."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from out/2026-11-27/week_digest.md, six shipped runs. Queue themes' run counts are the distinct decks their queue lines name. Rounds were not counted for them."
 }

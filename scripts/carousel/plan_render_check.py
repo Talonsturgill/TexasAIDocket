@@ -476,6 +476,148 @@ def median_lstar(path: Path, size: tuple) -> float:
 # `slide-0N.webp` at the top of the directory, and 2026-09-03 carries one PNG among its webps.
 # The thumbnails are deliberately NOT on this list: they are already resampled, and measuring a
 # band at 432 px off a thumbnail would be measuring somebody else's resize.
+# THE MODELS A DOSSIER NAMES MUST BE BUILT BY ITS FRAME (weekly machine pass 2026-11-27, queue
+# dossier-drifts-from-the-render, repeat 2, nos. 87, 88 and 89).
+#
+# A frame is rebuilt mid run and its dossier keeps describing the old build. No. 87's frame 9 plan
+# named `chassis ct_gantry` while the frame was rebuilt as a glass lung, an art director accepted
+# the frame once, and a later director refused the restored build because plan and picture
+# disagreed: four close rebuilds. No. 89 shipped frames 2, 7 and 9 naming `kit document_stack`,
+# `kit desk`, `chassis register_page`, `chassis envelope` and `kit laptop`, none of which those
+# frames build (each built its own in the slide). Every gate was green on all of it, because the
+# only checks reading the dossier read its colours, its strings and its claims.
+#
+# A model name is the one noun in a plan a machine can check without guessing: it is an identifier
+# K.define registers, and the frame's source either calls K.make on it or it does not. So: every
+# kit or chassis model the dossier's `primary_image.subject` or `art.technique` names must be
+# built by that frame, directly, through a model that makes it (ream_stack makes paper_ream), or
+# through a chassis helper the slide calls. A snake_case name counts anywhere it appears; a one
+# word name (desk, person) only after `kit ` or `chassis `, because "a desk" in prose is English.
+# A name after no, not, never, without or nor is a negation, never a claim ("no person").
+#
+# THE HONEST LIMIT. No. 88's frames 4 and 7 described a vise, chips and gloves "built in the slide",
+# and no model name appears in that plan, so this is silent on it. It closes the case where the
+# plan names a model, not the case where it describes one in prose. The cure a failure asks for is
+# one plan edit (the slide artist's own dossier lines) or building the model it names.
+#
+# Dated: a run dated on or before MODEL_DRIFT_SINCE is not asked, so shipped history is untouched.
+MODEL_DRIFT_SINCE = "2026-11-27"
+_DEFINE = re.compile(r"K\.define\(\s*['\"]([a-z][a-z0-9_]*)['\"]")
+_MAKE = re.compile(r"K\.make\(\s*['\"]([a-z][a-z0-9_]*)['\"]")
+_HELPER = re.compile(r"^[ \t]*N\.([A-Za-z_]\w*)\s*=\s*(?:async\s+)?function", re.M)
+_CALL = re.compile(r"\bCH\.([A-Za-z_]\w*)\s*\(")
+_NEGATED = re.compile(r"\b(?:no|not|never|without|nor)\s+(?:[a-z-]+\s+){0,2}$")
+_CHASSIS_SRC = re.compile(r"""deck/([A-Za-z0-9._-]+\.js)""")
+
+
+def model_bodies(text: str) -> dict:
+    """Each K.define name in a source file mapped to the model names its own body K.makes."""
+    marks = list(_DEFINE.finditer(text))
+    out = {}
+    for i, m in enumerate(marks):
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        out[m.group(1)] = set(_MAKE.findall(text[m.end():end]))
+    return out
+
+
+def helper_makes(text: str) -> dict:
+    """Each chassis helper `N.name = function` mapped to the model names its body K.makes."""
+    marks = list(_HELPER.finditer(text))
+    out = {}
+    for i, m in enumerate(marks):
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        out[m.group(1)] = set(_MAKE.findall(text[m.end():end]))
+    return out
+
+
+def kit_bodies(assets: Path) -> dict:
+    reg = {}
+    for p in sorted((assets / "js" / "kit").glob("*.js")):
+        reg.update(model_bodies(p.read_text(encoding="utf-8")))
+    return reg
+
+
+def named_models(body: str, known) -> set:
+    """The kit or chassis model names a dossier's subject and technique lines claim."""
+    # Block form (`  subject: ...`) and flow form (`art: {technique: "...", why_this_technique: ...}`,
+    # which no. 87 wrote): a quoted value is read to its closing quote, so the rationale beside it
+    # in a flow mapping is never read as a claim.
+    seg = " \n ".join(next(g for g in m.groups()[1:] if g is not None) for m in re.finditer(
+        r"""(?:^|[{,])[ \t]*(subject|technique):[ \t]*(?:"([^"]*)"|'([^']*)'|([^\n]*))""", body, re.M))
+    out = set()
+    for m in re.finditer(r"\b[a-z][a-z0-9_]*\b", seg):
+        w = m.group(0)
+        if w not in known:
+            continue
+        before = seg[max(0, m.start() - 48):m.start()].lower()
+        if _NEGATED.search(before):
+            continue
+        if "_" in w or re.search(r"\b(?:kit|chassis)\s+$", before):
+            out.add(w)
+    return out
+
+
+def built_models(src: str, registry: dict, helpers: dict) -> set:
+    """Every model a slide's source builds: its own K.make calls, the chassis helpers it calls,
+    and everything those models make in turn."""
+    built = set(_MAKE.findall(src))
+    for h in _CALL.findall(src):
+        built |= helpers.get(h, set())
+    todo = list(built)
+    while todo:
+        for y in registry.get(todo.pop(), ()):
+            if y not in built:
+                built.add(y)
+                todo.append(y)
+    return built
+
+
+def model_drift(body: str, src: str, registry: dict, helpers: dict) -> list:
+    """The model names this dossier claims and this frame's source never builds, sorted."""
+    return sorted(named_models(body, registry) - built_models(src, registry, helpers))
+
+
+def run_date_of(path: Path) -> str | None:
+    for part in reversed(Path(path).parts):
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", part):
+            return part
+    return None
+
+
+def model_drift_problems(storyboard: str, slides_dir: Path, only=None,
+                         assets: Path = REPO_ROOT / "assets", date: str | None = None) -> list:
+    """One message per frame whose dossier names a model the frame does not build. Silent for a
+    run dated on or before MODEL_DRIFT_SINCE, or one whose date can't be read from its path."""
+    date = date or run_date_of(slides_dir)
+    if not date or date <= MODEL_DRIFT_SINCE:
+        return []
+    kit = kit_bodies(assets)
+    out = []
+    for n, body in sorted(parse_dossiers(storyboard).items()):
+        if only is not None and n not in only:
+            continue
+        html = Path(slides_dir) / f"slide-{n:02d}.html"
+        if not html.exists():
+            continue
+        src = html.read_text(encoding="utf-8")
+        reg, helpers = dict(kit), {}
+        for name in _CHASSIS_SRC.findall(src):
+            cp = assets / "js" / "deck" / name
+            if cp.exists():
+                text = cp.read_text(encoding="utf-8")
+                reg.update(model_bodies(text))
+                helpers.update(helper_makes(text))
+        missing = model_drift(body, src, reg, helpers)
+        if missing:
+            out.append(
+                f"slide {n}: the dossier names the model(s) {', '.join(missing)} and the frame "
+                f"builds none of them (no K.make on it in the slide, in a model the slide makes, or "
+                f"in a chassis helper it calls). Edit the dossier's subject and technique to the "
+                f"build, or build what it names. A plan describing a frame that is no longer there "
+                f"cost no. 87 four close rebuilds (queue dossier-drifts-from-the-render)")
+    return out
+
+
 def frame_image(slides_dir: Path, n: int) -> Path | None:
     root = slides_dir.parent
     for p in (root / "render" / f"slide-{n:02d}.png",
@@ -823,7 +965,16 @@ def section(body: str, key: str) -> str:
 # A continuation line inside a block list: indented FURTHER than the `  - ` that opened the
 # item, and not itself a new item. Four or more leading spaces, because `  - ` is two and every
 # storyboard that has ever wrapped an item aligned the continuation under the opening quote.
-_ACC_BLOCK = re.compile(r"^acceptance:[^\S\n]*\n((?:(?:  - |    +)\S.*\n)+)", re.M)
+#
+# AND THE SEQUENCE YAML WRITES WITHOUT INDENTING IT (weekly machine pass 2026-11-27). A block
+# sequence may sit at its key's own column (`acceptance:` then `- item`), which is how
+# `yaml.safe_dump` writes one and how no. 89's storyboard came out of a regenerated plan. YAML read
+# all of them and this fallback read none: the self-test's sweep went red on 2026-11-27 slides 1
+# to 9 (yaml 5 vs text 0), and no. 88 had answered the same thing the day before by re-indenting
+# its storyboard by hand (commit 67f6706c). The fallback now reads what the primary route reads:
+# an item at column 0 or 2, a continuation indented two or more (the unindented form wraps at two).
+# The next root key sits at column 0 with no dash, so the block still ends where YAML's does.
+_ACC_BLOCK = re.compile(r"^acceptance:[^\S\n]*\n((?:(?:(?:  )?- |  +)\S.*\n)+)", re.M)
 
 
 def _flow_acceptance_items(text: str) -> list[str]:
@@ -1055,7 +1206,8 @@ def nearest(needle: str, nodes: list) -> str:
 
 
 def check(storyboard: str, slides_dir: Path, report: dict,
-          copy: dict | None = None, claim_ids: set | None = None) -> tuple:
+          copy: dict | None = None, claim_ids: set | None = None,
+          assets: Path | None = None) -> tuple:
     """`copy` and `claim_ids` are optional so the three existing callers keep working.
 
     They are OPTIONAL, never silently absent: a run that passes neither is told in a warning that
@@ -1420,6 +1572,8 @@ def check(storyboard: str, slides_dir: Path, report: dict,
         warns.append(
             f"slide(s) {', '.join(str(x) for x in stats['blind_slides'])} carry no acceptance "
             f"item a render could contradict")
+    # THE MODELS THE PLAN NAMES, against the models the frame builds. Dated, see MODEL_DRIFT_SINCE.
+    fails.extend(model_drift_problems(storyboard, slides_dir, assets=assets or REPO_ROOT / "assets"))
     return fails, warns, stats
 
 
@@ -2317,6 +2471,79 @@ acceptance:
                                                         "text_nodes": [{"text": _dek[:200]}]}]}, 9, _dek, _src))
     ok("...nor a report that declares no window",
        not past_window({"slides": _rep["slides"]}, 9, _dek, _src))
+
+    # ---- THE MODELS THE PLAN NAMES (weekly machine pass 2026-11-27) -----------------------
+    # Fixtures inline, never read from a shipped archive (GATE_LESSONS: a replay that reads an
+    # archive replays nothing once a later fix rewrites it).
+    import tempfile as _tf
+    _KIT = model_bodies("K.define('desk', { make() {} });\nK.define('laptop', { make() {} });\n"
+                        "K.define('document_stack', { make() {} });\nK.define('person', { make() {} });\n")
+    _CH = ('N.installKit = function (K) {\n'
+           '  K.define("paper_ream", { make: function () {} });\n'
+           '  K.define("ream_stack", { make: function () { K.make("paper_ream", {}); } });\n'
+           '  K.define("envelope", { make: function () {} });\n'
+           '  K.define("ct_gantry", { make: function () {} });\n'
+           '};\n'
+           'N.deskSet = function (K) { return K.make("laptop", {}); };\n')
+    _REG = dict(_KIT); _REG.update(model_bodies(_CH)); _HEL = helper_makes(_CH)
+    # no. 87 frame 9 as first planned (commit 57d864bb) against the frame as rebuilt: a glass lung
+    _B87 = ("primary_image:\n  subject: an empty CT scanner in an imaging room, a satin white ring housing\n"
+            "art: {technique: \"physically based interior render, chassis ct_gantry, TXT.interior\"}\n")
+    _S87 = "const lung = buildLung(); TXT.add(R, lung);"
+    ok("no. 87 frame 9 replay: a plan naming chassis ct_gantry over a frame that builds a lung is CAUGHT",
+       model_drift(_B87, _S87, _REG, _HEL) == ["ct_gantry"], str(model_drift(_B87, _S87, _REG, _HEL)))
+    ok("...and the same plan over a frame that builds it is clean",
+       model_drift(_B87, "K.make('ct_gantry', {})", _REG, _HEL) == [])
+    # no. 89 frame 9 as shipped: chassis envelope and kit laptop named, desk and ream_stack built
+    _B89 = ("primary_image:\n  subject: a chassis envelope on a stack of chassis paper_ream on a kit desk, kit laptop\n"
+            "art:\n  technique: physically based interior render\n")
+    _S89 = "K.make('desk', { w: 1.6 }); K.make('ream_stack', { sheets: SHEETS });"
+    ok("no. 89 frame 9 replay: envelope and laptop named, never built, are CAUGHT; paper_ream through ream_stack is not",
+       model_drift(_B89, _S89, _REG, _HEL) == ["envelope", "laptop"], str(model_drift(_B89, _S89, _REG, _HEL)))
+    ok("...a model made by a chassis helper the slide calls counts as built",
+       model_drift(_B89, _S89 + " CH.deskSet(K); const e = K.make('envelope');", _REG, _HEL) == [])
+    ok("...a one word name in prose without kit or chassis before it is English, not a claim",
+       model_drift("primary_image:\n  subject: a desk by a window\n", "", _REG, _HEL) == [])
+    ok("...a negated name is not a claim",
+       model_drift("primary_image:\n  subject: an empty room, no kit person, without document_stack\n", "", _REG, _HEL) == [])
+    ok("...a name outside subject and technique (the rationale) is not read",
+       model_drift("art:\n  why_this_technique: unlike a ct_gantry, the lung explains\n", "", _REG, _HEL) == [])
+    with _tf.TemporaryDirectory() as _td:
+        _assets = Path(_td) / "assets"; (_assets / "js" / "kit").mkdir(parents=True); (_assets / "js" / "deck").mkdir()
+        (_assets / "js" / "kit" / "interior.js").write_text("K.define('desk', {});\nK.define('laptop', {});\n")
+        (_assets / "js" / "deck" / "2026-11-28-x.js").write_text(_CH)
+        _sb = "```yaml\nslide: 9\n" + _B89 + "```\n"
+        for _day in ("2026-11-27", "2026-11-28"):
+            (Path(_td) / _day / "slides").mkdir(parents=True)
+            (Path(_td) / _day / "slides" / "slide-09.html").write_text(
+                '<script src="@@ASSETS@@/js/deck/2026-11-28-x.js"></script><script>' + _S89 + "</script>")
+        _new = model_drift_problems(_sb, Path(_td) / "2026-11-28" / "slides", assets=_assets)
+        ok("a run dated after MODEL_DRIFT_SINCE FAILS on the drift, reading the chassis the slide loads",
+           len(_new) == 1 and "envelope, laptop" in _new[0], str(_new))
+        ok("...and a run dated on or before it is not asked, so shipped history stands",
+           model_drift_problems(_sb, Path(_td) / "2026-11-27" / "slides", assets=_assets) == [])
+        ok("...and `only` limits it to the frames named (art_preflight's three)",
+           model_drift_problems(_sb, Path(_td) / "2026-11-28" / "slides", only={1}, assets=_assets) == [])
+        # WIRED: check() is what 12b, gate_status and CI's shipped sweep call.
+        _f, _w, _s = check(_sb, Path(_td) / "2026-11-28" / "slides", {}, assets=_assets)
+        ok("...and check() itself carries the finding, so the gate is wired rather than decorative",
+           any("names the model(s) envelope, laptop" in x for x in _f), str(_f)[:300])
+
+    # ---- THE UNINDENTED BLOCK SEQUENCE (weekly machine pass 2026-11-27) ----------------------
+    # No. 89's storyboard wrote `acceptance:` then `- item` at column 0, as yaml.safe_dump does.
+    _UNI = ("acceptance:\n- the rack owns at least 40 percent of the frame\n- exactly one line is drawn on\n"
+            "  the page, under 3 percent\n- the frame reads \"Rule 3.308\" in its kicker\nrisks:\n- not an item\n")
+    _want = ["the rack owns at least 40 percent of the frame",
+             "exactly one line is drawn on the page, under 3 percent", "the frame reads \"Rule 3.308\" in its kicker"]
+    ok("the text fallback reads an unindented block sequence, wrapped item included, and stops at the next key",
+       _text_acceptance_items(_UNI) == _want, str(_text_acceptance_items(_UNI)))
+    _OLD_BLOCK = re.compile(r"^acceptance:[^\S\n]*\n((?:(?:  - |    +)\S.*\n)+)", re.M)
+    ok("...where the regex before 2026-11-27 read none of it (the replay goes red without the fix)",
+       _OLD_BLOCK.search(_UNI) is None)
+    ok("...and the indented form still reads the same as before",
+       _text_acceptance_items("acceptance:\n  - the rack owns at least 40 percent of the frame\n"
+                              "  - exactly one line is drawn on\n    the page, under 3 percent\n"
+                              "  - the frame reads \"Rule 3.308\" in its kicker\nrisks:\n  - not an item\n") == _want)
 
     ok("no hex literal for a brand colour is hardcoded in this module",
        not re.search(r"#(16151C|8E4B3A|D9CDB4|B98D46|4E6B62|EFE9DA)",
