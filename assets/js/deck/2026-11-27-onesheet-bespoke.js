@@ -39,7 +39,7 @@
   N.KEY_SCALE = 1;
   N.W = 1080; N.H = 1350; N.SEED = 20261127; N.TONE = "watch"; N.P = TXLOOK.palette("watch"); N.INK = N.P.ink;
   N.ACCENT = 0xe0956a;        /* dusk gold: the words of the proposal, and nothing else */
-  N.KRAFT = 0xa98458; N.BAND = 0xb8707e; N.PAPER = 0xf4ead8; N.INKC = 0x4a3f6b; N.OAK = 0x9a6a42; N.RACK = 0x2a2350;
+  N.KRAFT = 0xa08566; N.BAND = 0xa98a8e; N.PAPER = 0xf4ead8; N.INKC = 0x4a3f6b; N.OAK = 0x9a6a42; N.RACK = 0x2a2350;
   N.STEEL = 0xc9ced4; N.WALNUT = 0x5e3b26;
   N.GOLD = N.ACCENT;
   N.SHEET_M = 0.0001;         /* one sheet of 20 lb bond, 0.1 mm, the stack's drawing rule */
@@ -117,6 +117,9 @@
           var body = TXT.roundedBox(W, h, D, 0.002, top); body.position.y = h / 2; g.add(body);
           var band = new THREE.Mesh(new THREE.BoxGeometry(W + 0.0008, h * 0.18, D + 0.0008), K.mat("os-band", { color: N.BAND, roughness: 0.6 }));
           band.position.y = h / 2; g.add(band);
+          /* the cream sheet edges showing at the base seam of every wrapped ream, so a stack counts by ream at feed size */
+          var seam = new THREE.Mesh(new THREE.BoxGeometry(W - 0.002, 0.0022, D - 0.002), edgeMat()); seam.position.y = 0.0011; g.add(seam);
+          body.position.y = h / 2 + 0.0011; body.scale.y = (h - 0.0022) / h;
           /* the folded end seams, a slightly proud flap on top and bottom */
           [h + 0.0004, -0.0001].forEach(function (y) {
             var flap = new THREE.Mesh(new THREE.BoxGeometry(W * 0.98, 0.0008, D * 0.36), top); flap.position.set(0, y, D * 0.31); g.add(flap);
