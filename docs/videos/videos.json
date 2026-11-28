@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-27-the-scan-that-cuts-the-line",
+      "date": "2026-11-27",
+      "title": "The scan that cuts the line",
+      "caption": "At Houston Methodist, an AI tool flags a possible problem on a scan and moves that exam to the top of the radiologist's worklist. The radiologist still reads it and makes the call.",
+      "video": "/runs/2026-11-27/dispatch.mp4",
+      "poster": "/runs/2026-11-27/poster.png",
+      "video_mobile": "/runs/2026-11-27/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-27/poster-540.jpg",
+      "county": "Harris",
+      "beat": "clinic"
+    },
+    {
       "id": "2026-11-26-the-screen-reads-next",
       "date": "2026-11-26",
       "title": "The screen reads next",
