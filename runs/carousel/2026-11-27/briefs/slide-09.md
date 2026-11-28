@@ -16,7 +16,7 @@ Planned type seat: see the dossier's composition bands. Put the type where YOUR 
 - kicker: `Write in`
 - counter: `09 / 09`
 - headline (verbatim): `It is still only a proposal`
-- dek (verbatim, except the one exception below): `Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The address is Robin.Robinson@cpa.texas.gov. Comments must arrive by December 20th.`
+- dek (verbatim, except the one exception below): `Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The Texas Register notice gives both addresses. Comments must arrive by December 20th.`
 - labels: []
 - claim ids (the `src` furniture): `c40 c41 c43`
 

@@ -552,5 +552,5 @@ risks:
 type:
   kicker: "Write in"
   hook: "It is still only a proposal"
-  dek: "Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The address is Robin.Robinson@cpa.texas.gov. Comments must arrive by December 20th."
+  dek: "Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The Texas Register notice gives both addresses. Comments must arrive by December 20th."
 ```

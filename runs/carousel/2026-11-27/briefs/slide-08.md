@@ -8,7 +8,7 @@ On November 18th Texas Comptroller Don Huffines announced proposed amendments to
 ## The beat
 THIRTY DAYS. Know: comments within 30 days of November 20th, adoption no earlier than December 20th. c41 c43 c45.
 Planned picture (a strong starting concept, not a cage; pitch three and you may beat it): a violet enamel steel pigeonhole sorter of 30 cubbies, six across and five down, cubbies 1 to 29 each holding one blank cream day card, cubby 30 alone holding a letter half out under a brass holder with a cream tab, lit by its own warm spot so it is the brightest point in the frame, seen close and low on its bottom right corner.
-Camera and largest object: CLOSE. a pigeonhole sorter of 30 cubbies by FIG built in the frame, violet enamel steel with bevels, cream day cards, a brass holder and dusk gold tab on cubby 30 only, TXT.studio watch, contact under the sorter and cards, grime and scuffs
+Camera and largest object: CLOSE. a pigeonhole sorter of 30 cubbies by FIG built in the frame, violet enamel steel with bevels, cream day cards, a brass holder and cream tab on cubby 30 under its own warm spot, TXT.studio watch, contact under the sorter and cards, grime and scuffs
 Data in art: cubby count: the number of cubbies in the sorter equals FIG.window_days, read in code
 Planned type seat: see the dossier's composition bands. Put the type where YOUR picture leaves quiet.
 
