@@ -7201,7 +7201,7 @@ and a self-test case naming `os-kraft`.
 ### 4. PROPOSAL, for a maintainer: one fetch route that asks the boundary first (`scripts/shared/`, human)
 
 Queue `ad-hoc-fetch-before-boundary`, repeat 1 (nos. 88 and 89). Twice a run script fetched a host before it
-consulted `crawl_boundary`. No response was used, but the request was made. The fix is a `scripts/shared/polite_get.py`
+consulted `crawl_boundary`. No response was used, but the request was made. The fix is a new polite fetch helper (proposed name polite_get) under scripts/shared,
 that every run script fetches through. It refuses a host `crawl_boundary.forbidden` names or whose robots.txt
 disallows the project agent or ClaudeBot, before any request. `fetch_doc.py` would route through it too.
 
