@@ -1,0 +1,242 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-27, frame 6 of 9, CITIES, COUNTIES, TRANSIT. A lit interior through txthree.js: an empty council chamber
+     washed rose and violet, seen from the public side at the height of the dais's transaction ledge. Two kraft and rose band
+     paper stacks stand on the walnut ledge, the local loss estimate at one sheet per $1,000,000 for fiscal 2027 and fiscal
+     2032 (heights FIG sheets x 0.1 mm, read below), while the curved dais, its blank brass nameplates, microphones and empty
+     high backed chairs sweep away to the left. No person, no legible plate, no mark. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:140px; width:800px; text-align:left">Cities, counties and transit would lose too</h1>
+<p class="dek" id="dek" style="left:82px; top:905px; width:800px; line-height:1.3; text-align:left">The same note estimates that local governments would lose $507,450,000 in fiscal year 2027 and $1,116,890,000 in 2032. Cities, counties and transit authorities are among them.</p>
+
+<script>window.FIG = {"local_fy2027_sheets": 507, "local_fy2032_sheets": 1116, "local_fy2027_reams": 1, "local_fy2027_loose": 7, "local_fy2032_reams": 2, "local_fy2032_loose": 116, "sheet_usd": 1000000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Cities, counties, transit", counter: "06 / 09", src: "c32 c37", fit: { min: 80, max: 100, maxLines: 2 } });
+  const FIG = window.FIG;
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  const shadowAll = (g) => { g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+  const phys = (key, p, cls) => { const m = K.mat(key, p, true); if (cls) m.userData.txSurface = cls; return m; };
+
+  /* ---- HONEST: the figures, checked against each other before anything is drawn ---- */
+  [['local_fy2027', FIG.local_fy2027_sheets], ['local_fy2032', FIG.local_fy2032_sheets]].forEach(([k, n]) => {
+    if (Math.floor(n / CH.REAM) !== FIG[k + '_reams'] || n % CH.REAM !== FIG[k + '_loose']) throw new Error('FIG ream split disagrees for ' + k);
+  });
+  if (FIG.sheet_usd !== 1000000) throw new Error('one sheet must stand for $1,000,000');
+
+  const R = CH.stage(TXT, gl, W, { fov: 36, near: 0.02, far: 120, fog: 0.002 });
+
+  /* ---- THE WORLD: the chamber ---- */
+  TXT.sky(R, W);
+  TXT.interior(R, { w: 18, d: 16, h: 5.2, floor: 'concrete', wall: 0x6a3fa8, trim: 0x3a2266, window: null, ceiling: true, light: 0.7 });
+  /* a rose carpet over the floor, with a worn path to the dais */
+  const carpetTex = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+    g.fillStyle = '#a8456e'; g.fillRect(0, 0, w, h); const r = CH.rng(61);
+    for (let i = 0; i < 60000; i++) { const k = r(); g.fillStyle = k < 0.5 ? 'rgba(70,20,60,0.12)' : 'rgba(255,170,190,0.08)'; g.fillRect(r() * w, r() * h, 2, 2); }
+    g.strokeStyle = 'rgba(60,20,70,0.25)'; g.lineWidth = 3; for (let x = 0; x < w; x += 64) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    const wear = g.createLinearGradient(w * 0.38, 0, w * 0.62, 0); wear.addColorStop(0, 'rgba(255,200,210,0)'); wear.addColorStop(0.5, 'rgba(255,200,210,0.16)'); wear.addColorStop(1, 'rgba(255,200,210,0)');
+    g.fillStyle = wear; g.fillRect(0, 0, w, h);
+  }, [1, 1]);
+  const carpet = new THREE.Mesh(new THREE.PlaneGeometry(17.6, 15.6), phys('chamber-carpet-wool', { color: 0xffffff, map: carpetTex, roughness: 1 }, 'fabric'));
+  carpet.rotation.x = -Math.PI / 2; carpet.position.set(0, 0.006, 0); carpet.receiveShadow = true; R.scene.add(carpet);
+
+  /* walnut wainscot and fluted pilasters on the back wall, behind the dais */
+  const grainTex = CH.canvasTex(THREE, 512, 1024, (g, w, h) => {
+    g.fillStyle = '#7a4428'; g.fillRect(0, 0, w, h); const r = CH.rng(77);
+    for (let i = 0; i < 260; i++) { let x = r() * w; const a = 0.05 + r() * 0.12, dk = r() < 0.6; g.strokeStyle = dk ? 'rgba(40,16,10,' + a + ')' : 'rgba(210,130,80,' + a * 0.8 + ')'; g.lineWidth = 0.8 + r() * 2.4; g.beginPath(); g.moveTo(x, 0);
+      for (let y = 0; y <= h; y += 16) { x += Math.sin(y * 0.01 + i) * 0.9 + (r() - 0.5) * 1.2; g.lineTo(x, y); } g.stroke(); }
+    for (let k = 0; k < 6; k++) { const cx0 = r() * w, cy0 = r() * h; for (let j = 1; j < 9; j++) { g.strokeStyle = 'rgba(40,16,10,0.10)'; g.lineWidth = 1.2; g.beginPath(); g.ellipse(cx0, cy0, j * 5, j * 22, 0, 0, Math.PI * 2); g.stroke(); } }
+  }, [1, 1]);
+  const walnut = phys('walnut-veneer-wainscot', { color: 0xffffff, map: grainTex, roughness: 0.42, clearcoat: 0.5, clearcoatRoughness: 0.35 }, 'wood');
+  const wain = new THREE.Group();
+  const WH = 1.72;  /* the wainscot stops under the headline, so no edge of the wall runs through the type */
+  const wb = TXT.roundedBox(17.6, WH, 0.06, 0.01, walnut); wb.position.set(0, WH / 2, -7.86); wain.add(wb);
+  const cap = TXT.roundedBox(17.6, 0.08, 0.12, 0.02, walnut); cap.position.set(0, WH + 0.04, -7.84); wain.add(cap);
+  for (let i = -4; i <= 4; i++) { const p = TXT.roundedBox(0.34, WH, 0.12, 0.04, walnut); p.position.set(i * 2.2, WH / 2, -7.8); wain.add(p); }
+  const crown = TXT.roundedBox(17.6, 0.18, 0.2, 0.04, walnut); crown.position.set(0, 4.95, -7.8); wain.add(crown);
+  TXT.add(R, shadowAll(wain));
+
+  /* ---- THE DAIS ---- */
+  const CURVE = 6.5, SEATS = 7;
+  const dais = K.make('hearing_dais', { seats: SEATS, curve: CURVE, wood: 0x8a4a2a, carpet: 0x5a2f7a, chairs: true, mics: true, plates: true, steps: true, seed: 6 });
+  /* turn the dais so the stretch of ledge holding the stacks faces the back wall square on, and bring that stretch to x = 0 */
+  const S_PILES = 3.73;
+  dais.rotation.y = S_PILES / CURVE; dais.updateMatrixWorld(true);
+  const inner = dais.children[0];
+  { const a = S_PILES / CURVE, q = inner.localToWorld(V((CURVE + 0.135) * Math.sin(a), 0, CURVE - (CURVE + 0.135) * Math.cos(a))); dais.position.set(-q.x, 0, -2.6 - q.z); }
+  TXT.add(R, shadowAll(dais)); TXT.contact(R, dais);
+  dais.updateMatrixWorld(true);
+  /* the blank nameplates face the public: turn each brass face to the audience side and give it a champagne brass with tooth */
+  const brass = phys('nameplate-brass-brushed', { color: 0xf0d8a0, metalness: 0.85, roughness: 0.34, emissive: 0x3a2810, emissiveIntensity: 0.6 }, 'brushed');
+  const plates = [];
+  dais.traverse((m) => { if (m.isMesh && m.material && m.material.metalness === 1 && m.material.color && m.material.color.getHex() === 0xc8a45e) plates.push(m); });
+  if (plates.length !== SEATS) throw new Error('expected one blank plate per seat, found ' + plates.length);
+  /* the kit's face sits under the prism's bevel, so lay a proud brass face on each slope of each plate */
+  plates.forEach((m) => {
+    m.visible = false; const g = m.parent, a = Math.atan2(0.035, 0.075);
+    [1, -1].forEach((sd) => { const f = TXT.roundedBox(0.27, 0.064, 0.0025, 0.001, brass); f.position.set(0, 0.036, sd * 0.0215); f.rotation.x = -sd * a; f.castShadow = true; f.receiveShadow = true; g.add(f); });
+  });
+  /* bring the two nearest blank plates in to flank the stacks, so each pile stands at an empty seat's place on the ledge */
+  [[3.0, 3.28], [4.5, 4.19]].forEach(([from, to]) => {
+    let best = null, bd = 1e9; plates.forEach((m) => { const gp = m.parent, a = Math.atan2(gp.position.x, CURVE - gp.position.z), sArc = a * CURVE, d = Math.abs(sArc - from); if (d < bd) { bd = d; best = gp; } });
+    if (!best || bd > 0.3) throw new Error('no plate near s=' + from);
+    const a = to / CURVE; best.position.x = (CURVE + 0.05) * Math.sin(a); best.position.z = CURVE - (CURVE + 0.05) * Math.cos(a); best.rotation.y = -a;
+  });
+  /* the empty chairs in a deep plum leather rather than near black */
+  const tuftTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#6a2660'; g.fillRect(0, 0, w, h); const step = 128;
+    for (let yy = -step; yy <= h + step; yy += step / 2) for (let xx = -step; xx <= w + step; xx += step) {
+      const x = xx + ((yy / (step / 2)) % 2 ? step / 2 : 0), y = yy;
+      const rg = g.createRadialGradient(x, y - 18, 4, x, y, step * 0.55); rg.addColorStop(0, 'rgba(255,170,220,0.22)'); rg.addColorStop(0.6, 'rgba(255,170,220,0.0)'); rg.addColorStop(1, 'rgba(30,5,30,0.30)');
+      g.fillStyle = rg; g.beginPath(); g.moveTo(x, y - step / 2); g.lineTo(x + step / 2, y); g.lineTo(x, y + step / 2); g.lineTo(x - step / 2, y); g.closePath(); g.fill(); }
+    g.strokeStyle = 'rgba(30,6,30,0.55)'; g.lineWidth = 3;
+    for (let k = -8; k <= 8; k++) { g.beginPath(); g.moveTo(k * step, 0); g.lineTo(k * step + h, h); g.stroke(); g.beginPath(); g.moveTo(k * step, 0); g.lineTo(k * step - h, h); g.stroke(); }
+    for (let yy = 0; yy <= h; yy += step / 2) for (let xx = 0; xx <= w; xx += step) { const x = xx + ((yy / (step / 2)) % 2 ? step / 2 : 0); g.fillStyle = 'rgba(25,5,25,0.85)'; g.beginPath(); g.arc(x, yy, 7, 0, Math.PI * 2); g.fill(); g.fillStyle = 'rgba(255,190,230,0.35)'; g.beginPath(); g.arc(x - 2, yy - 2, 3, 0, Math.PI * 2); g.fill(); }
+  }, [2, 2]);
+  const plum = phys('chair-leather-plum-tufted', { color: 0xffffff, map: tuftTex, bumpMap: tuftTex, bumpScale: 2.5, roughness: 0.46, clearcoat: 0.35, clearcoatRoughness: 0.4 }, 'leather');
+  let nChair = 0; dais.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x2a1e17) { m.material = plum; nChair++; } });
+  /* the chairs are cropped out of this frame on purpose: the chair group is the child of the dais's inner group that holds a leather mesh */
+  const chairGroups = new Set(); dais.traverse((m) => { if (m.isMesh && m.material === plum) { let q = m; while (q.parent && q.parent !== inner) q = q.parent; chairGroups.add(q); } });
+  chairGroups.forEach((q) => { q.visible = false; });
+  dais.updateMatrixWorld(true);
+  /* the dais's own arc, in its raw frame: s along the front, rr behind it */
+  const arc = (s, rr, y) => { const a = s / CURVE; return inner.localToWorld(V((CURVE + rr) * Math.sin(a), y, CURVE - (CURVE + rr) * Math.cos(a))); };
+  /* the ledge top, measured by a ray rather than assumed */
+  const ledgeAt = (s) => {
+    const p = arc(s, 0.135, 3), rc = new THREE.Raycaster(p, V(0, -1, 0), 0, 3); const hits = rc.intersectObject(dais, true);
+    const h = hits.find((x) => x.point.y > 1.0 && x.point.y < 1.3); if (!h) throw new Error('no ledge under s=' + s);
+    return { p: h.point, rot: -s / CURVE };
+  };
+
+  /* ---- THE ESTIMATE: two stacks side by side on the ledge, a hand's width apart, one sheet per $1,000,000 ---- */
+  const kraftCrease = CH.canvasTex(THREE, 1024, 512, (g, w, h) => {
+    g.fillStyle = '#a98458'; g.fillRect(0, 0, w, h); const r = CH.rng(313);
+    for (let i = 0; i < 26000; i++) { const k = r(); g.fillStyle = k < 0.5 ? 'rgba(80,52,25,0.10)' : 'rgba(240,210,160,0.08)'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 2); }
+    for (let i = 0; i < 14; i++) { const x0 = r() * w, y0 = r() * h, a = (r() - 0.5) * 2.6, L = 30 + r() * 90, dx = Math.cos(a) * L, dy = Math.sin(a) * L;
+      g.lineWidth = 1 + r(); g.strokeStyle = 'rgba(60,36,16,0.22)'; g.beginPath(); g.moveTo(x0, y0); g.quadraticCurveTo(x0 + dx * 0.5 + (r() - 0.5) * 30, y0 + dy * 0.5 + (r() - 0.5) * 30, x0 + dx, y0 + dy); g.stroke();
+      g.lineWidth = 1.2; g.strokeStyle = 'rgba(255,230,190,0.26)'; g.beginPath(); g.moveTo(x0 + 3, y0 + 3); g.quadraticCurveTo(x0 + dx * 0.5 + 3, y0 + dy * 0.5 + 3, x0 + dx + 3, y0 + dy + 3); g.stroke(); }
+    for (let i = 0; i < 900; i++) { const x = r() * w, y = r() * h, a = r() * 6.28, l = 4 + r() * 12; g.strokeStyle = r() < 0.5 ? 'rgba(70,44,20,0.14)' : 'rgba(255,235,200,0.12)'; g.lineWidth = 1; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); g.stroke(); }
+  }, [1, 1]);
+  const kraft = phys('kraft-paper-wrapper-creased', { color: 0xffffff, map: kraftCrease, bumpMap: kraftCrease, bumpScale: 1.5, roughness: 0.8 }, 'paper');
+  const violetShadow = new THREE.Color(0x2a0f5a);
+  const piles = [
+    { key: 'local_fy2027', s: 3.56, seed: 4 },
+    { key: 'local_fy2032', s: 3.9, seed: 9 }
+  ].map((d) => {
+    const n = FIG[d.key + '_sheets'];
+    const st = K.make('ream_stack', { sheets: n, seed: d.seed, jitter: 0.003, tornTop: false });
+    if (st.userData.sheets !== n || st.userData.reams !== FIG[d.key + '_reams'] || st.userData.loose !== FIG[d.key + '_loose']) throw new Error('stack disagrees with FIG for ' + d.key);
+    const h = n * CH.SHEET_M; if (Math.abs(st.userData.top - h) > 1e-9) throw new Error('stack height is not sheets x 0.1 mm for ' + d.key);
+    let nk = 0; st.traverse((m) => { if (m.isMesh && m.material && m.material.name === 'os-kraft-top') { m.material = kraft; nk++; } });
+    if (nk < st.userData.reams) throw new Error('kraft wrapper not found on ' + d.key);
+    /* a torn, curled corner on the loose top block: the top sheet's front right corner peels up and back */
+    { const Wd = 0.216, Dd = 0.279, top = st.userData.top, Lc = 0.04, geo = new THREE.PlaneGeometry(Lc, Lc, 10, 10); geo.rotateX(-Math.PI / 2);
+      const P = geo.attributes.position; const keep = [];
+      for (let i = 0; i < P.count; i++) { const u = (P.getX(i) + Lc / 2) / Lc, v = (P.getZ(i) + Lc / 2) / Lc, t = u + v - 1; /* t > 0 is the corner side of the diagonal */
+        const k = Math.max(0, t), ang = k * 2.2, rr = 0.012; P.setY(i, k > 0 ? rr * (1 - Math.cos(ang)) + 0.0003 : 0.0003); keep.push(t); }
+      geo.computeVertexNormals();
+      const curl = new THREE.Mesh(geo, phys('torn-corner-bond-paper', { color: 0xf3e6d2, roughness: 0.92, side: THREE.DoubleSide }, 'paper'));
+      curl.position.set(Wd / 2 - Lc / 2, top, Dd / 2 - Lc / 2); curl.castShadow = true; st.add(curl);
+      const under = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([Wd / 2 - Lc, top + 0.0002, Dd / 2, Wd / 2, top + 0.0002, Dd / 2, Wd / 2, top + 0.0002, Dd / 2 - Lc], 3)), new THREE.MeshBasicMaterial({ color: 0xc9b49c }));
+      st.add(under); }
+    /* a crisp violet contact line where the stack meets the walnut */
+    { const ln = new THREE.Mesh(new THREE.PlaneGeometry(0.226, 0.289), new THREE.MeshBasicMaterial({ color: 0x24104a, transparent: true, opacity: 0.85, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3 })); ln.rotation.x = -Math.PI / 2; ln.position.y = 0.0002; st.add(ln); }
+    const L = ledgeAt(d.s); st.position.copy(L.p); st.position.y += 0.0005; st.rotation.y = L.rot + (d.seed % 2 ? 0.03 : -0.025);
+    TXT.add(R, shadowAll(st));
+    const cs = TXT.contact(R, st, { opacity: 1 }) || [];
+    cs.forEach((m) => { if (m.material) m.material.color = violetShadow; });
+    return { st, n, h, base: L.p.clone(), top: L.p.clone().add(V(0, h, 0)) };
+  });
+  if (piles[1].h <= piles[0].h) throw new Error('fy2032 stack must stand taller');
+  const gapM = piles[0].base.distanceTo(piles[1].base) - 0.216; if (gapM < 0.06 || gapM > 0.18) throw new Error('piles should stand a hand apart, gap ' + gapM);
+
+  /* ---- THE DAIS FRONT, rebuilt flat: the kit's veneer stretches on its extruded bands at this distance, so each facet in view gets
+   * a true plane with a tiled, bookmatched walnut map (mipmapped, anisotropic) and raised panels painted into a bump map, then real
+   * walnut rails and a pilaster on top. Measured from the dais's own arc, so it sits exactly on the facets it covers. ---- */
+  const frontTex = CH.canvasTex(THREE, 2048, 1376, (g, w, h) => {
+    const r = CH.rng(909); g.fillStyle = '#86482a'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 1100; i++) { let y = r() * h; const a = 0.015 + r() * 0.05, dk = r() < 0.62; g.strokeStyle = dk ? 'rgba(48,18,10,' + a + ')' : 'rgba(225,140,90,' + a * 0.8 + ')'; g.lineWidth = 0.6 + r() * 1.4; g.beginPath(); g.moveTo(0, y);
+      for (let x = 0; x <= w; x += 24) { y += Math.sin(x * 0.006 + i) * 1.4 + (r() - 0.5) * 1.1; g.lineTo(x, y); } g.stroke(); }
+    /* two raised panels per facet, upper tall and lower short, with a lit top left bevel and a shaded bottom right bevel */
+    const panel = (x, y, pw, ph) => { const bv = 34;
+      g.fillStyle = 'rgba(255,190,140,0.30)'; g.beginPath(); g.moveTo(x, y); g.lineTo(x + pw, y); g.lineTo(x + pw - bv, y + bv); g.lineTo(x + bv, y + bv); g.lineTo(x + bv, y + ph - bv); g.lineTo(x, y + ph); g.closePath(); g.fill();
+      g.fillStyle = 'rgba(30,8,20,0.45)'; g.beginPath(); g.moveTo(x + pw, y); g.lineTo(x + pw, y + ph); g.lineTo(x, y + ph); g.lineTo(x + bv, y + ph - bv); g.lineTo(x + pw - bv, y + ph - bv); g.lineTo(x + pw - bv, y + bv); g.closePath(); g.fill();
+      g.strokeStyle = 'rgba(30,8,20,0.45)'; g.lineWidth = 4; g.strokeRect(x - 8, y - 8, pw + 16, ph + 16); g.strokeStyle = 'rgba(255,200,150,0.18)'; g.lineWidth = 3; g.strokeRect(x - 14, y - 14, pw + 28, ph + 28); };
+    [[0.06, 0.44], [0.52, 0.44]].forEach(([x0, pw]) => { panel(x0 * w, 0.12 * h, pw * w - 40, 0.46 * h); panel(x0 * w, 0.66 * h, pw * w - 40, 0.2 * h); });
+  }, [1, 1]);
+  frontTex.anisotropy = 16; frontTex.generateMipmaps = true; frontTex.minFilter = THREE.LinearMipmapLinearFilter;
+  const bumpTex = frontTex.clone(); bumpTex.needsUpdate = true;
+  const frontMat = phys('dais-front-walnut-veneer-panelled', { color: 0xffffff, map: frontTex, bumpMap: bumpTex, bumpScale: 2.2, roughness: 0.46, clearcoat: 0.45, clearcoatRoughness: 0.3 }, 'wood');
+  const railTex = CH.canvasTex(THREE, 1024, 64, (g, w, h) => { g.fillStyle = '#7a4024'; g.fillRect(0, 0, w, h); const r = CH.rng(5); for (let i = 0; i < 40; i++) { g.strokeStyle = 'rgba(40,14,8,' + (0.05 + r() * 0.1) + ')'; g.lineWidth = 1 + r() * 2; const y = r() * h; g.beginPath(); g.moveTo(0, y); g.lineTo(w, y + (r() - 0.5) * 4); g.stroke(); } }, [3, 1]);
+  railTex.anisotropy = 16;
+  const railMat = phys('dais-rail-walnut-solid', { color: 0xffffff, map: railTex, roughness: 0.4, clearcoat: 0.5, clearcoatRoughness: 0.3 }, 'wood');
+  [[2.25, 3.75], [3.75, 5.25]].forEach(([s0, s1]) => {
+    const A = arc(s0, -0.05, 0), B = arc(s1, -0.05, 0), chord = A.distanceTo(B), c = A.clone().lerp(B, 0.5), yaw = Math.atan2(B.x - A.x, B.z - A.z) - Math.PI / 2;
+    const fg = new THREE.Group(); fg.position.set(c.x, 0, c.z); fg.rotation.y = yaw;
+    const pl = new THREE.Mesh(new THREE.PlaneGeometry(chord, 1.0), frontMat); pl.position.y = 0.1 + 0.5; pl.receiveShadow = true; fg.add(pl);
+    const base = TXT.roundedBox(chord, 0.07, 0.03, 0.008, railMat); base.position.set(0, 0.125, 0.015); fg.add(base);
+    const topR = TXT.roundedBox(chord, 0.05, 0.03, 0.008, railMat); topR.position.set(0, 1.065, 0.015); fg.add(topR);
+    const pil = TXT.roundedBox(0.09, 0.98, 0.04, 0.012, railMat); pil.position.set(-chord / 2, 0.6, 0.02); fg.add(pil);
+    const kick = new THREE.Mesh(new THREE.PlaneGeometry(chord, 0.09), phys('dais-toe-kick-shadow', { color: 0x2a1030, roughness: 0.9 })); kick.position.set(0, 0.045, -0.12); fg.add(kick);
+    TXT.add(R, shadowAll(fg)); pl.castShadow = false;
+  });
+  /* the upper wall answers the key: a broad warm pool from the right, falling off toward the corners behind the headline */
+  { const sp = new THREE.SpotLight(0xffa0c0, 55, 0, 0.75, 1.0, 1.4); const wc = arc(3.73, 6.2, 2.9); sp.position.set(wc.x + 2.5, 4.6, wc.z + 6.5); sp.target.position.set(wc.x - 0.6, 3.0, wc.z); sp.castShadow = false; R.scene.add(sp); R.scene.add(sp.target); }
+
+  /* ---- CAMERA: square on to the two stacks, eye a few cm over the ledge ---- */
+  const mid = piles[0].base.clone().lerp(piles[1].base, 0.5);
+  const camPos = arc(3.73, -1.55, mid.y + 0.24), FOV = 36;
+  const from = [camPos.x, camPos.y, camPos.z];
+  const look = CH.aim(THREE, R, TXT, from, [mid.x, mid.y + 0.03, mid.z], 540, 740, FOV);
+  TXT.frame(R, { fov: FOV, from, look });
+
+  /* ---- THE CHAMBER CUE: a blank civic seal on the wall behind the dais, the flag pair on stands either side of it ---- */
+  R.camera.updateMatrixWorld(true);
+  const ray = new THREE.Raycaster(); ray.setFromCamera(new THREE.Vector2(860 / 540 - 1, 1 - 470 / 675), R.camera);
+  const wallHit = ray.intersectObject(R.room, true)[0]; if (!wallHit) throw new Error('no wall behind the seal');
+  const nrm = wallHit.face.normal.clone().transformDirection(wallHit.object.matrixWorld).setY(0).normalize();
+  const bronze = phys('seal-cast-bronze', { color: 0xc8955a, metalness: 0.9, roughness: 0.36 }, 'cast');
+  const bronzeDk = phys('seal-cast-bronze-field', { color: 0x8a5a34, metalness: 0.85, roughness: 0.5 }, 'cast');
+  const seal = new THREE.Group();
+  const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.62, 0.05, 96), bronzeDk); disc.rotation.x = Math.PI / 2; seal.add(disc);
+  [[0.6, 0.03], [0.5, 0.018], [0.36, 0.02]].forEach(([rr, tb]) => { const t = new THREE.Mesh(new THREE.TorusGeometry(rr, tb, 16, 120), bronze); t.position.z = 0.028; seal.add(t); });
+  for (let i = 0; i < 32; i++) { const a = i / 32 * Math.PI * 2, b = new THREE.Mesh(new THREE.SphereGeometry(0.016, 12, 8), bronze); b.position.set(Math.cos(a) * 0.43, Math.sin(a) * 0.43, 0.03); seal.add(b); }
+  const star = new THREE.Shape(); for (let i = 0; i < 10; i++) { const a = Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? 0.11 : 0.27; i ? star.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : star.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); } star.closePath();
+  const sg = new THREE.ExtrudeGeometry(star, { depth: 0.03, bevelEnabled: true, bevelThickness: 0.012, bevelSize: 0.01, bevelSegments: 3 }); const sm = new THREE.Mesh(sg, bronze); sm.position.z = 0.025; seal.add(sm);
+  seal.position.copy(wallHit.point).add(nrm.clone().multiplyScalar(0.06));
+  { const pil = Math.round(seal.position.x / 2.2) * 2.2, dx = seal.position.x - pil; if (Math.abs(dx) < 0.5) seal.position.x = pil + (dx < 0 ? -0.5 : 0.5); } seal.position.z = -7.83 + 0.035; seal.position.y = Math.min(1.72 - 0.3, Math.max(1.35, wallHit.point.y));  /* in a wainscot bay, clear of the pilasters, under the headline */
+  seal.scale.setScalar(0.42); seal.lookAt(seal.position.clone().add(nrm)); TXT.add(R, shadowAll(seal));
+  const tan = V(-nrm.z, 0, nrm.x);
+  /* ---- LIGHT: a low coral key from the right front, raking the stacks and laying their shadows back along the ledge ---- */
+  const focus = piles[0].top.clone().lerp(piles[1].top, 0.5);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), Object.assign(CH.rigOpts([focus.x, focus.y, focus.z], { distance: 12, shadowFar: 30, normalBias: 0.004 }), { light: { az: 38, el: 24 } }));
+  CH.unacne(R, 0.004);
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { a: 0.42, fade: 170, sel: '.hook' });
+  CH.seat(cx, { a: 0.42, fade: 150, sel: ".dek" });
+  CH.seat(cx, { sel: '.kick', a: 0.6, fade: 70 });
+  CH.seat(cx, { sel: '.count', a: 0.72, fade: 70 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.42, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script></body></html>

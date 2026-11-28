@@ -1,0 +1,32 @@
+{
+  "lens": "integrity",
+  "round": 3,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.5, "why": "LOOK V2 holds on every frame (vivid 0.886, 0.764 and 0.855 on frames 1, 5 and 9, grey_mid 0.02 or less). The deck is bespoke. Frame 5 is the best: kraft reams with countable end folds, a torn top ream, contact shadows and a stated depth. Frame 8 has exactly 30 cubbies with cubby 30 lit. Frame 4 is a real relief with three raised seals and a clip that throws a cast. Four frames hold the score down: frame 7 is mostly blur with a muddy mauve middle, frame 2's report seems to hover over its offset shadow over an empty desk and a red smeared edge, frame 6 has a flat red wall and small piles, and frame 3's archival box is lit flat, with a machine_qa warn on a canvas edge near the dek that by eye falls between lines."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "The spine holds: violet and coral grade, one serif and mono system, the counter and site line in the same places, and the accent kept to the proposal's words. The paper motif changes state in order. Frame 8's sorter is the one object outside the kraft-and-cream material code."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces, checked one by one: c26, c31, c32, c37, state_fy2032_bn rounded half up, 4286/1947 = 2.2013 matching the frame 5 measurement, 'rises in each year' across c26 to c31, totals re-added correctly, December 20th both computed and quoted, and 1987, 30, 3.308, 18th and 20th traced to c7, c41, c4, c2 and c45. Every on-slide fact comes from the Texas Register proposal. Four phrasings are looser than their sources, none enough to change what a reader believes: the caption's 'never taxed AI' against c8's 'did not tax', frame 7's capitalised 'Insignificant' inside quote marks, the 'chief revenue estimator' attribution resting on c38's paraphrase, and frame 9's 'Mail or email' with no mailing address. One unsettled lead: c1's quoted release headline differs from its URL slug."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "Named: the body, the instrument, the decision, the cost by the office's own estimate, the deadline, and the action with a name, title and email. The deck never says who pays this tax today, and the January 1st handover appears only in the caption."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 8.0, "why": "The cover question is answered right away, frame 5 turns to the money, frame 7 lands the contrast, and the close goes from deadline to action. Frames 3 and 4 lean on each other."},
+    {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Clean and attributed, with no doom and no boosterism. The caption's 'Does this one survive the handover?' is a good human close. The slide copy is careful to the point of flat."},
+    {"name": "variety", "weight": 0.10, "score": 7.0, "why": "No topic repeats in the 30-day window. The opening move and tone are new against November 24th to 26th. The one-unit-per-$X device is familiar from November 14th, October 30th and November 7th, and paper and folder objects appeared on November 25th and 15th."}
+  ],
+  "weighted_score": 7.74,
+  "hard_fails": [],
+  "ship": true,
+  "named_defects": [
+    "Caption says Huffines 'says the Legislature never taxed AI'; c8 says 'It did not tax artificial intelligence'.",
+    "Frame 7 headline changes the quote's case ('Insignificant'); the source reads 'insignificant' mid-sentence.",
+    "Frame 7 dek credits the 'chief revenue estimator', which c38's quote does not contain.",
+    "Frame 9 says 'Mail or email' but gives no mailing address; c40 has P.O. Box 13528, Austin, Texas 78711.",
+    "c1's quoted release headline differs from its URL slug; confirm the title before first_comment.txt prints it.",
+    "art_preflight.json lists needs_review: [1] although the stored frame 1 review's hashes match the inputs.",
+    "The Eckhardt handover appears only in the caption and on no frame."
+  ],
+  "one_sentence_fix": "Put the January 1st handover and the full mailing address on frame 9's dek, and fix the 'never taxed' and capitalised-quote wording in the same pass.",
+  "artwork_weakest_frames": [
+    {"slide": 7, "problem": "Mostly defocus: the stack is an unreadable smear and the middle third is muddy mauve.", "fix": "Narrow the blur so the stack reads as paper, harden the cast shadow across the highlighted line, and frame the page larger."},
+    {"slide": 2, "problem": "The report hovers above its offset shadow over an empty desk with a red smeared edge.", "fix": "Seat the report with a tight contact shadow and lower the camera so the counter fills the lower frame."},
+    {"slide": 6, "problem": "A flat red wall fills the middle; the piles are small with no year labels; the seating is missing.", "fix": "Push in to the ledge, add the curved seating backs, and break the wall with millwork shadow."},
+    {"slide": 3, "problem": "The box is lit flat, the cover below is a flat slab, and a canvas edge crosses the dek's glyph band.", "fix": "Side-light the box, give the cover depth, and move the dek off the column's bottom edge."}
+  ]
+}

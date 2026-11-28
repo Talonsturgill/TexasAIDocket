@@ -1,0 +1,328 @@
+<!doctype html>
+<!-- 2026-11-27, frame 4 of 9, THE NEW TERM (c25 c20 c3). BESPOKE, LOOK V2 watch. A TXBENCH material relief in plan under the
+     chassis key: one Texas Register page, folded in half, read close, lying on a 6 mm rose oak writing board whose top,
+     left and bottom edges stand on the violet leather desk mat that carries the type. Two columns of raised violet greeked ink. In the left column one paragraph is laid
+     in raised dusk gold wax, and under it stand exactly FIG.hosted_named raised dusk gold wax seals, each pressed with a
+     wordless emblem: a cloud form, a node cluster, a qubit sphere with its state arrow. A gold underlaid run of greeked words
+     follows each seal (nothing is legible). A chrome binder clip grips the page's right edge, its folded steel jaw turned to
+     the key, its rolled spine notched between two loops, both round wire handles folded back flat (one over the page, one
+     onto the oak). The top left corner rolls into a curl, the folded bottom edge rounds onto the oak above the footer, and
+     foxing runs along the page's edges. No logo, no name, no legible word. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:76px; top:150px; width:930px; text-align:left">Cloud, AI and quantum, named in the proposal</h1>
+<p class="dek" data-follow="22" style="left:78px; width:860px">The proposal defines hosted technology services to include cloud computing, artificial intelligence and quantum computing. It says hosted technology services are not data processing and are not taxable.</p>
+<script>window.FIG = {"hosted_named": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  /* HONEST. The one count the art draws is the number of gold seals under the highlighted paragraph, read from
+   * window.FIG.hosted_named and checked below. The page, its columns, its greeked words and the emblems are drawn to
+   * illustrate and stand for no figure. */
+  const NAMED = window.FIG.hosted_named;
+  if (!Number.isInteger(NAMED) || NAMED < 1) throw new Error("FIG.hosted_named must be a positive integer");
+
+  const cx = await CH.bootFlat({ kicker: "The new term", counter: "04 / 09", src: "c25 c20 c3", fit: { min: 66, max: 96, maxLines: 2 } });
+  cx.scale(2, 2);
+  TX.reseed(CH.SEED + 4);
+  const L = TXLOOK.lin, F = (x, y, n) => TX.fbm2(x, y, { octaves: n || 3 });
+  const rng = CH.rng(CH.SEED + 404);
+  const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const D2R = Math.PI / 180;
+  const FOOT_Y = 1190;                                  /* no ink is printed under the footer */
+  const dekEl = document.querySelector(".dek"), dekR = dekEl.getBoundingClientRect(), TYPE_BOTTOM = dekR.top + dekR.height, TYPE_RIGHT = dekR.left + dekR.width;
+
+  /* THE PAGE. US letter at 110 px per inch, turned TH (right end a little higher), its left edge in the frame and its right
+   * edge just inside the blotter's rolled edge, so the clip on that edge turns its jaw to the key. Off the bottom. */
+  const PPI = 104, PW = 8.5 * PPI, PH = 11 * PPI, TH = -1.2 * D2R, c0 = Math.cos(TH), s0 = Math.sin(TH);
+  /* the page is folded in half, its lower half under it, so its folded bottom edge and its cast land above the footer */
+  const VIS = PH / 2;
+  /* THE OAK BLOTTER: a 6 mm rose oak writing board under the page, its top, left and bottom edges in the frame, on the
+   * violet leather desk mat that carries the type */
+  const BH = 6 * PPI / 25.4, BOARD = { x0: 14, y0: 22, x1: 1180, r: 12 };   /* the board runs to the top; the type sits on its quiet upper margin */
+  const P0x = 34;
+  const P0y = Math.round(TYPE_BOTTOM + 32) - PW * s0;
+  BOARD.y1 = Math.round(P0y + VIS + 36);
+  if (BOARD.y1 > 1186) throw new Error("the oak board's bottom edge must land above the footer, it is at " + BOARD.y1);
+  const toP = (X, Y) => { const dx = X - P0x, dy = Y - P0y; return [dx * c0 + dy * s0, -dx * s0 + dy * c0]; };
+  const toS = (u, v) => [P0x + u * c0 - v * s0, P0y + u * s0 + v * c0];
+  if (toS(0, VIS)[1] > BOARD.y1 - 30) throw new Error("the page's folded edge must lie on the board");
+
+  /* GREEKED TYPE: glyph blobs on baselines, never legible */
+  const RES = 2, NC = Math.ceil(PW * RES) + 4, rows = [], kS = PPI / 120;
+  const sty0 = { body: [7.6, 5.6, 7.4, 10.6, 3.2], bold: [9.4, 7.4, 9.0, 12.6, 3.4], head: [11.6, 9.4, 12.0, 16.0, 4.0], small: [6.4, 4.6, 6.0, 8.6, 2.6] };
+  const STY = {}; for (const k in sty0) { const a = sty0[k].map(x => x * kS); STY[k] = { adv: a[0], lw: a[1], xh: a[2], asc: a[3], desc: a[4] }; }
+  function row(vIn, u0In, u1In, st, opt) {
+    opt = opt || {};
+    const sty = STY[st], top = new Float32Array(NC), bot = new Float32Array(NC);
+    let u = u0In * PPI; const uEnd = u1In * PPI, uStart = u; let uLast = u;
+    const glyph = (caps) => {
+      /* greeked as thin bars: each word one continuous violet grey bar on the baseline, a little taller for a head */
+      const up = sty.xh * (caps ? 0.5 : 0.4);
+      for (let c = Math.floor(u * RES); c <= Math.ceil((u + sty.adv) * RES); c++) {
+        if (c < 0 || c >= NC) continue;
+        top[c] = Math.max(top[c], up); bot[c] = Math.max(bot[c], 0.01);
+      }
+      uLast = u + sty.lw; u += sty.adv;
+    };
+    if (opt.words) opt.words.forEach((n, k) => { for (let g = 0; g < n; g++) glyph(g === 0 && k === 0); u += sty.adv * 1.1; });
+    else while (u < uEnd - sty.adv * 2) { const n = 2 + Math.floor(rng() * 8); for (let k = 0; k < n && u < uEnd; k++) glyph(k === 0 && opt.caps); u += sty.adv * (0.9 + rng() * 0.5); }
+    const r = { v: vIn * PPI - sty.xh * 0.25, top, bot, gold: !!opt.gold, term: !!opt.term, asc: sty.asc + 1, desc: sty.desc + 1, u0: uStart, u1: uLast };
+    rows.push(r); return r;
+  }
+  const rules = [];
+  const LC = [0.75, 4.05], RC = [4.45, 7.75];
+  row(0.52, 0.75, 2.6, "small"); row(0.52, 5.9, 7.75, "small");
+  rules.push([0.68, 0.75, 7.75, 2.0]); rules.push([0.73, 0.75, 7.75, 0.8]);
+  row(1.02, LC[0], 2.55, "head", { caps: true });
+  [1.32, 1.52, 1.72, 1.92].forEach((v, i, a) => row(v, LC[0] + (i === 0 ? 0.22 : 0), i === a.length - 1 ? 2.7 : LC[1], "body", { gold: true }));
+
+  /* THE SEALS. Exactly FIG.hosted_named raised wax seals, one per named service, each pressed with a wordless emblem.
+   * Each is followed by greeked words carrying the letter counts of its term. */
+  const TERMS = [[5, 9], [10, 12], [7, 9]], EMBLEMS = ["cloud", "nodes", "qubit"];
+  if (TERMS.length !== NAMED || EMBLEMS.length !== NAMED) throw new Error("the list draws " + TERMS.length + " entries but FIG.hosted_named is " + NAMED);
+  const SR = 0.44 * PPI, SSTEP = 0.92, SV0 = 2.36;
+  const seals = [];
+  for (let i = 0; i < NAMED; i++) {
+    const v = SV0 + i * SSTEP;
+    const su = LC[0] * PPI + SR + 2, sv = v * PPI;
+    const r = row(v + 0.05, (su + SR) / PPI + 0.18, LC[1], "bold", { words: TERMS[i], term: true });
+    seals.push({ u: su, v: sv, kind: EMBLEMS[i], ph: rng() * 10, rot: (rng() - 0.5) * 0.5 });
+  }
+  if (seals.length !== NAMED) throw new Error("seals drawn " + seals.length + " differ from FIG.hosted_named " + NAMED);
+  let vv = SV0 + NAMED * SSTEP + 0.02; for (let i = 0; i < 8; i++, vv += 0.20) row(vv, LC[0] + (i === 0 ? 0.22 : 0), i === 4 ? 2.9 : LC[1], "body");
+  vv = 1.02; for (let i = 0; i < 26; i++, vv += 0.20) {
+    if (i === 9) { row(vv + 0.05, RC[0], 6.1, "bold", { caps: true }); vv += 0.12; continue; }
+    row(vv, RC[0] + (i % 6 === 0 ? 0.22 : 0), i % 6 === 5 ? 6.2 : RC[1], "body");
+  }
+  const goldRows = rows.filter(r => r.gold), termRows = rows.filter(r => r.term);
+  if (termRows.length !== NAMED) throw new Error("term rows " + termRows.length + " differ from FIG.hosted_named " + NAMED);
+  const strokes = goldRows.map(r => ({ v0: r.v - 15, v1: r.v + 8, u0: LC[0] * PPI - 8, u1: r.u1 + 9, s: rng() * 9 }));
+  termRows.forEach(r => strokes.push({ v0: r.v - 15, v1: r.v + 8, u0: r.u0 - 7, u1: r.u1 + 9, s: rng() * 9 }));
+  function waxAt(u, v) {
+    for (const s of strokes) {
+      const j = 1.2 * F(v / 9 + s.s, s.s, 2), k = 0.6 * F(u / 40, v / 6 + s.s, 2);
+      if (v > s.v0 + k && v < s.v1 + k && u > s.u0 + j && u < s.u1 + j) return Math.min(u - s.u0 - j, s.u1 + j - u, v - s.v0 - k, s.v1 + k - v);
+    }
+    return -1;
+  }
+  const sdRect = (u, v, hw, hh, r) => { const qx = Math.abs(u) - (hw - r), qy = Math.abs(v) - (hh - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; };
+  const segD = (px, py, ax, ay, bx, by) => { const dx = bx - ax, dy = by - ay, t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)));
+    return Math.hypot(px - ax - t * dx, py - ay - t * dy); };
+  /* the emblems as signed distances in the seal's unit disc, negative inside the raised stroke */
+  /* the node cluster: a hub and six nodes on a ring, spokes to the hub and every ring neighbour joined, symmetric so no
+   * stroke reads as a letter */
+  const NODES = [[0, 0]], EDGES = [];
+  for (let k = 0; k < 6; k++) { const t = k * Math.PI / 3 + Math.PI / 6; NODES.push([0.4 * Math.cos(t), 0.4 * Math.sin(t)]); EDGES.push([0, k + 1], [k + 1, (k + 1) % 6 + 1]); }
+  function emblem(kind, x, y) {
+    if (kind === "cloud") {
+      let d = Math.min(Math.hypot(x + 0.27, y - 0.06) - 0.22, Math.hypot(x - 0.02, y + 0.1) - 0.29, Math.hypot(x - 0.3, y - 0.06) - 0.2, sdRect(x - 0.02, y - 0.13, 0.5, 0.13, 0.12));
+      return d;                                         /* a filled cloud form */
+    }
+    if (kind === "nodes") {
+      let d = 9; for (const [a, b] of EDGES) d = Math.min(d, segD(x, y, NODES[a][0], NODES[a][1], NODES[b][0], NODES[b][1]) - 0.04);
+      for (const [nx, ny] of NODES) d = Math.min(d, Math.hypot(x - nx, y - ny) - (nx === 0 && ny === 0 ? 0.13 : 0.1));
+      return d;
+    }
+    /* qubit: a sphere outline, its equator, and the state arrow from the centre to a point on the sphere */
+    let d = Math.abs(Math.hypot(x, y) - 0.5) - 0.055;
+    d = Math.min(d, Math.abs(Math.hypot(x / 0.5, y / 0.16) - 1) * 0.16 - 0.03);
+    d = Math.min(d, segD(x, y, 0, 0, 0.25, -0.36) - 0.05, Math.hypot(x - 0.25, y + 0.36) - 0.1, Math.hypot(x, y) - 0.08);
+    return d;
+  }
+  function sealAt(u, v) {
+    for (const s of seals) {
+      const du = u - s.u, dv = v - s.v, r = Math.hypot(du, dv); if (r > SR * 1.25) continue;
+      const th = Math.atan2(dv, du), R = SR * (1 + 0.06 * F(Math.cos(th) * 1.4 + s.ph, Math.sin(th) * 1.4, 2) + 0.012 * F(Math.cos(th) * 4, Math.sin(th) * 4 + s.ph, 1));
+      if (r > R) continue;
+      const q = r / R;
+      /* the wax pool: a soft swollen lip, a pressed flat field, a raised ring, the emblem standing in the field */
+      let h = 7.5 * Math.pow(1 - Math.pow(q, 6), 0.5) + 1.2 * Math.exp(-Math.pow((q - 0.9) / 0.06, 2));
+      let m = 6;
+      const fieldR = 0.74;
+      if (q < fieldR) h -= 1.6 * smooth(fieldR, fieldR - 0.05, q);
+      if (Math.abs(q - 0.8) < 0.035) h += 0.9 * Math.cos((q - 0.8) / 0.035 * Math.PI / 2);
+      if (q < fieldR) {
+        const c = Math.cos(s.rot), sn = Math.sin(s.rot), x = (du * c + dv * sn) / (SR * 1.12), y = (-du * sn + dv * c) / (SR * 1.12);
+        const e = emblem(s.kind, x, y);
+        if (e < 0.03) { h += 3.0 * smooth(0.03, -0.04, e); if (e < 0) m = 10; }
+      }
+      h += 0.2 * F(u / 2, v / 2, 1);
+      return [h, m];
+    }
+    return null;
+  }
+
+  /* THE CLIP. A 32 mm steel binder clip on the right edge, 12 mm tall at its spine: its jaw a folded plate sloping from the
+   * grip line on the page up to the rolled spine past the edge, so it faces the key. Measured in px (110 per inch). */
+  const MM = PPI / 25.4, CLIP_H = 12 * MM, CLIP_V0 = 0.62 * PPI, CLIP_V1 = CLIP_V0 + 41 * MM;
+  const GRIP = PW - 12 * MM, SPINE = PW + 8 * MM, CVM = (CLIP_V0 + CLIP_V1) / 2, WIRE = 1.7, HW = 15 * MM, TR = 2.4 * MM;
+  const FOLD = 15 * MM;                                  /* both round wire handles fold back flat, one over the page, one onto the oak */
+  const jaw = (u, v, base) => {
+    const t = Math.max(0, Math.min(1, (u - GRIP) / (SPINE - GRIP))), uS = SPINE - TR;
+    let h;
+    if (u < uS) h = base + 2.2 + (CLIP_H - 2 * TR - 2.2) * Math.pow(Math.max(0, u - GRIP) / (uS - GRIP), 1.0);
+    else { const x = u - uS; h = base + CLIP_H - TR + Math.sqrt(Math.max(0, TR * TR - x * x)); }
+    if (t < 0.07) h += 1.8 * Math.sin(t / 0.07 * Math.PI);      /* the jaw's rolled lip biting the paper */
+    const e = Math.min(v - CLIP_V0, CLIP_V1 - v); if (e < 5) h -= (5 - e) * (5 - e) * 0.4;
+    if (u >= uS - TR && e > 7 * MM) h -= 0.45 * TR * smooth(uS - TR, uS, u);   /* the spine's notch between the two rolled loops */
+    return h;
+  };
+  /* the page's curl: the top left corner rolls up into a cylinder, measured by a = u + v from the corner */
+  const CURL_R = 280, CURL_F = 104, CURL_RC = 19;
+  const curlLift = (a) => a >= CURL_R ? 0 : CURL_RC * Math.pow((CURL_R - Math.max(a, CURL_F + CURL_RC)) / (CURL_R - CURL_F - CURL_RC), 2.2);
+  if (!(CLIP_H > 2 * CURL_RC + 6)) throw new Error("the clip must stand taller than the curl");
+
+  function inkAt(u, v, which) {
+    for (let i = 0; i < rows.length; i++) {
+      const r = rows[i]; if (which === "gold" && !(r.gold || r.term)) continue;
+      const dv = r.v - v; if (dv > r.asc || -dv > r.desc) continue;
+      if (r.v > VIS - 16) continue;                   /* the lower half is folded under: nothing prints past the fold */
+      const c = Math.round(u * RES); if (c < 0 || c >= NC) continue;
+      if (r.top[c] > 0 && dv < r.top[c] && -dv < r.bot[c]) return true;
+    }
+    return false;
+  }
+  const ruleAt = (u, v) => rules.some(([rv, a, b, w]) => Math.abs(v - rv * PPI) < w / 2 + 0.3 && u > a * PPI && u < b * PPI);
+  const pageBase = (u, v) => BH + 2.2 + 0.9 * F(u / 320, v / 320, 2) + 0.14 * F(u / 1.6, v / 1.6, 2) + 0.06 * F(u / 6, v / 6, 2);
+
+  /* the desk: the oak board with a rounded edge and real grain at measured height (latewood grooves 0.8 px deep, plank
+   * seams 1.8 px deep every 236 px), on violet pebble leather */
+  const PLANK = 236;
+  function grain(X, Y) {
+    const w = Y + 22 * F(X / 420, Y / 260, 2) + 1.6 * F(X / 160, Y / 40, 2), f = (w / 8.5) % 1;
+    const line = Math.exp(-Math.pow((f - 0.5) / 0.1, 2)) * (0.45 + 0.55 * (0.5 + 0.5 * F(X / 260, Y / 60, 2)));
+    const pk = Math.floor((Y - BOARD.y0) / PLANK), sy = ((Y - BOARD.y0) % PLANK + PLANK) % PLANK;
+    return { line, pk, seam: Math.min(sy, PLANK - sy) };
+  }
+  function desk(X, Y) {
+    const sd = sdRect(X - (BOARD.x0 + BOARD.x1) / 2, Y - (BOARD.y0 + BOARD.y1) / 2, (BOARD.x1 - BOARD.x0) / 2, (BOARD.y1 - BOARD.y0) / 2, BOARD.r);
+    if (sd < 0) {
+      const d = -sd, G = grain(X, Y);
+      let top = BH + 0.25 * F(X / 110, Y / 4.2, 2) - 0.8 * G.line - (F(X / 1.3, Y / 3.4, 1) > 0.64 ? 0.3 : 0);
+      if (G.seam < 2.4) top -= 1.8 * Math.cos(G.seam / 2.4 * Math.PI / 2);
+      let h = 4 + top;
+      if (d < 8) h = 4 + top * Math.sqrt(Math.max(0, 1 - Math.pow((8 - d) / 8, 2)));
+      return [h, d < 3 ? 13 : 12];
+    }
+    return [4 + 0.5 * F(X / 2.6, Y / 2.6, 2) + 0.22 * F(X / 9, Y / 9, 2) + 0.3 * F(X / 160, Y / 160, 2), 0];
+  }
+
+  let lastX = NaN, lastY = NaN, lastG = null;
+  function geo(X, Y) {
+    if (X === lastX && Y === lastY) return lastG; lastX = X; lastY = Y;
+    const [u, v] = toP(X, Y);
+    const base = pageBase(Math.min(u, PW), Math.max(0, v));
+    /* the handles: two round wires, both folded back flat, one over the jaw onto the page, one onto the oak */
+    if (Math.abs(v - CVM) < HW + WIRE + 1 && u > SPINE - TR - FOLD - 6 && u < SPINE - TR + FOLD + 6) {
+      const ringF = Math.abs(sdRect(u - (SPINE - TR - FOLD / 2), v - CVM, FOLD / 2, HW, 12));
+      const ringB = Math.abs(sdRect(u - (SPINE - TR + FOLD / 2), v - CVM, FOLD / 2, HW, 12));
+      if (ringF < WIRE || ringB < WIRE) {
+        const front = ringF < ringB, ring = Math.min(ringF, ringB);
+        const rise = Math.max(0, Math.min(1, (front ? SPINE - TR - u : u - SPINE + TR) / FOLD));
+        const ground = front ? base : desk(X, Y)[0];
+        let h = (base + CLIP_H - 1) * (1 - rise) + (ground + 1) * rise;
+        if (u >= GRIP && u <= SPINE) h = Math.max(h, jaw(u, v, base) + 0.8);
+        return (lastG = [h + Math.sqrt(WIRE * WIRE - ring * ring), 5]);
+      }
+    }
+    if (u >= GRIP && u <= SPINE && v >= CLIP_V0 && v <= CLIP_V1) return (lastG = [jaw(u, v, base), 4]);
+    /* the page */
+    const edgeN = 0.45 * F(u / 11, v / 11, 2);
+    if (u > edgeN && v > edgeN && u < PW + edgeN && v < VIS) {
+      const a = u + v;
+      if (a < CURL_F - CURL_RC) return (lastG = desk(X, Y));       /* the rolled corner shows the blotter under it */
+      let h = base;
+      /* the fold: the doubled sheet springs a little toward its folded edge, which rounds off onto the oak */
+      h += 2.4 * smooth(VIS - 90, VIS - 8, v);
+      if (v > VIS - 5) h -= Math.pow(v - (VIS - 5), 2) * 0.32;
+      h += curlLift(a);
+      if (a < CURL_F + CURL_RC) { const x = a - CURL_F; return (lastG = [base + CURL_RC + Math.sqrt(Math.max(0, CURL_RC * CURL_RC - x * x)) + 0.1 * F(u / 2, v / 2, 1), x < 0 ? 8 : 1]); }
+      const sl = sealAt(u, v); if (sl) return (lastG = [h + sl[0], sl[1]]);
+      const w = waxAt(u, v);
+      if (w >= 0) {
+        const g = h + 1.7 * smooth(0, 1.5, w) + 0.22 * F(u / 4, v / 2.2, 2) + 0.1 * F(u / 1.1, v / 1.1, 1);
+        if (inkAt(u, v, "gold")) return (lastG = [g - 0.45, 7]);
+        return (lastG = [g, 3]);
+      }
+      if (ruleAt(u, v)) return (lastG = [h + 0.6, 2]);
+      if (inkAt(u, v)) return (lastG = [h + 0.7 + 0.1 * F(u / 2, v / 2, 1), 2]);
+      return (lastG = [h, 1]);
+    }
+    return (lastG = desk(X, Y));
+  }
+
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const LEATHER = L('#5434b4'), LEATHER2 = L('#7a3fb8'), PAPER = L('#fff8d2'), FOX = L('#d68a4e'), INK = L('#6a5a92'), BACK = L('#f0e0ff');
+  const WAX = L('#f09c50'), WAXINK = L('#7a3418'), SEAL = L('#e8914a'), SEALHI = L('#ffd49a'), OAK = L('#b84e3c'), OAK2 = L('#6e2a44');
+  const C_VIO = L('#7c5ee8'), C_SKY = L('#e4dcff'), C_NAVY = L('#2a2266'), C_HOT = L('#fff4ea'), C_ROSE = L('#f2a0c4');
+  const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const sc3 = (c, k) => [c[0] * k, c[1] * k, c[2] * k];
+  /* the page's soft contact on the blotter: the leather darkens toward the page's right edge */
+  const contact = () => 1;
+  const albedo = (X, Y, m) => {
+    if (m === 0 || m === 9 || m === 11) {
+      const k = 0.9 + 0.08 * F(X / 2.6, Y / 2.6, 2) + 0.07 * F(X / 70, Y / 70, 2);
+      const c = mixc(LEATHER, LEATHER2, 0.5 + 0.5 * F(X / 300, Y / 300, 2));
+      return sc3(m === 11 ? mixc(c, C_ROSE, 0.12) : c, (m === 9 ? k * 0.6 : k) * contact(X, Y));
+    }
+    if (m === 13) return sc3(mixc(OAK, OAK2, 0.7), 0.85);       /* the board's end grain at its rounded edge */
+    if (m === 12) { const G = grain(X, Y), pore = F(X / 1.3, Y / 3.4, 1) > 0.64 ? 0.84 : 1, tone = 0.35 + 0.25 * Math.sin(G.pk * 2.3) + 0.15 * F(X / 400, Y / 90, 2);
+      return sc3(mixc(OAK, OAK2, Math.max(0, Math.min(1, tone + 0.45 * G.line))), (0.94 + 0.06 * F(X / 30, Y / 200, 2)) * pore * (G.seam < 2.4 ? 0.7 : 1)); }
+    const [u, v] = toP(X, Y);
+    if (m === 1) {
+      const edge = Math.min(u, v, PW - u), fox = Math.max(0, F(u / 14, v / 14, 3) - 0.25) * smooth(70, 6, edge) * 1.6
+        + Math.max(0, F(u / 5 + 9, v / 5, 2) - 0.55) * smooth(150, 20, edge) * 2.2;
+      /* soft contact under the clip's jaw on the paper */
+      const cd = sdRect(u - (GRIP + SPINE) / 2, v - CVM, (SPINE - GRIP) / 2, (CLIP_V1 - CLIP_V0) / 2, 4), cr = 1 - 0.32 * smooth(16, 0, cd) - 0.08 * smooth(VIS - 10, VIS, v);
+      return mixc(sc3(PAPER, (0.95 + 0.035 * F(u / 2.2, v / 2.2, 1) + 0.03 * F(u / 90, v / 90, 2)) * cr), FOX, Math.min(0.55, fox));
+    }
+    if (m === 8) { const a = u + v, t = Math.max(0, Math.min(1, (CURL_F - a) / CURL_RC)); return sc3(BACK, 0.96 - 0.14 * t + 0.03 * F(u / 2, v / 2, 1)); }
+    if (m === 2) return sc3(INK, 0.9 + 0.2 * F(u / 3, v / 3, 1));
+    if (m === 3) return sc3(WAX, 1.0 + 0.08 * F(u / 5, v / 2, 2));
+    if (m === 7) return sc3(WAXINK, 0.95 + 0.1 * F(u / 3, v / 3, 1));
+    if (m === 6) return sc3(SEAL, 0.96 + 0.08 * F(u / 3, v / 3, 2));
+    if (m === 10) return sc3(SEALHI, 1.0);
+    if (m === 4) {   /* brushed steel: the violet blotter in the low jaw, a hot band of the key, pale sky at the rolled spine */
+      const t = Math.max(0, Math.min(1, (u - GRIP) / (SPINE - GRIP)));
+      let c = t < 0.3 ? mixc(C_NAVY, C_VIO, smooth(0.02, 0.3, t)) : t < 0.55 ? mixc(C_VIO, C_HOT, smooth(0.38, 0.52, t)) : t < 0.8 ? mixc(C_HOT, C_SKY, smooth(0.6, 0.78, t)) : mixc(C_SKY, C_NAVY, smooth(0.86, 1, t));
+      const e = Math.min(v - CLIP_V0, CLIP_V1 - v); if (e < 6) c = mixc(c, C_NAVY, 0.5 * (1 - e / 6));
+      return sc3(c, 0.95 + 0.07 * F(u / 0.8, v / 50, 1)); }
+    if (m === 5) return mixc(C_SKY, C_HOT, 0.5);
+    return LEATHER;
+  };
+
+  const RL = TXLOOK.reliefLight();
+  TXBENCH.relief(cx, { ...RL, x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 0: [0.16, 14], 9: [0.05, 8], 11: [0.3, 20], 12: [0.2, 16], 13: [0.15, 12], 1: [0.04, 6], 8: [0.05, 6], 2: [0.12, 20], 3: [0.7, 34], 7: [0.3, 20], 6: [0.9, 30], 10: [1.3, 50], 4: [1.6, 60], 5: [1.6, 80] },
+    ambient: 0.5, diffuse: 1.25, ao: 0.7, aoRadius: 10, shadow: 0.84, softness: 4, castLength: 320, dither: true, visBlur: 2, visSharp: [4, 5, 6, 10] });
+
+  { const img = cx.getImageData(0, 0, 2160, 2700).data; let n = 0;
+    for (let i = 0; i < img.length; i += 16) { const r = img[i], g = img[i + 1], b = img[i + 2]; if (r > 190 && g > 90 && g < 200 && b < 140 && r - b > 90) n++; }
+    const frac = n / (img.length / 16); console.error("slide-04 gold fraction " + frac.toFixed(4));
+    if (frac < 0.01) throw new Error("the gold accent covers " + (frac * 100).toFixed(2) + " percent of the frame, under 1.0"); }
+
+  CH.seat(cx, { a: 0.46, fade: 170 });
+  CH.seat(cx, { sel: '.kick, .count', a: 0.3, fade: 90 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.7, height: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

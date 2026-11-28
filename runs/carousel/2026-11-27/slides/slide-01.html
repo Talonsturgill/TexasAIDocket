@@ -1,0 +1,208 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-27, frame 1 of 9, the cover. A spatial scene through txthree.js on the watch studio sweep.
+A three quarter camera looks at the fiscal 2027 stack (whole kraft reams plus an opened block, its sheet count read from
+FIG, one sheet per $1,000,000 of the comptroller's estimate, 0.1 mm a sheet) at the plinth of a violet
+42U rack, the machine the rule would reclassify. The rack's hex door stands open toward the camera with a Register page
+clipped inside it, its one dusk gold line the words of the proposal. Nothing legible, no logo, no maker's mark. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:132px; width:480px; text-align:left">Texas may stop taxing AI as data processing</h1>
+<p class="dek" style="left:74px; top:706px; width:380px; font-size:27px; line-height:1.34; text-shadow:0 0 2px rgba(3,4,8,0.4), 0 1px 8px rgba(3,4,8,0.22)">On November 18th Comptroller Don Huffines announced a proposal to count cloud computing and AI as hosted technology services, outside the tax on data processing. His office estimates the state's loss at $1,947,310,000 in fiscal year 2027.</p>
+<script>window.FIG = {"state_fy2027_sheets": 1947, "state_fy2027_reams": 3, "state_fy2027_loose": 447, "sheet_usd": 1000000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Rule 3.308", counter: "01 / 09", src: "c2 c3 c4 c26", fit: { min: 70, max: 88, maxLines: 4 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, fog: 0, near: 0.01, far: 80 });
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 9, d: 8 }), { h: 7, radius: 1.4, floor: '#f2768a' }));
+
+  /* THE FIGURE. The fiscal 2027 state estimate as paper, one sheet per FIG.sheet_usd, read from FIG and checked. */
+  const F = window.FIG;
+  const stack = K.make('ream_stack', { sheets: F.state_fy2027_sheets, seed: 7, jitter: 0.003, tornTop: false });
+  const u = stack.userData;
+  if (u.sheets !== F.state_fy2027_sheets) throw new Error('stack holds ' + u.sheets + ' sheets, FIG says ' + F.state_fy2027_sheets);
+  if (u.reams !== F.state_fy2027_reams) throw new Error('stack has ' + u.reams + ' reams, FIG says ' + F.state_fy2027_reams);
+  if (u.loose !== F.state_fy2027_loose) throw new Error('stack has ' + u.loose + ' loose sheets, FIG says ' + F.state_fy2027_loose);
+  if (u.reams * CH.REAM + u.loose !== F.state_fy2027_sheets) throw new Error('reams and loose do not add to the sheets');
+  if (Math.abs(u.top - F.state_fy2027_sheets * CH.SHEET_M) > 1e-9) throw new Error('stack height ' + u.top + ' m is not sheets x 0.1 mm');
+  let wrapped = 0; stack.children.forEach(c => { if (c.userData.height >= CH.REAM * CH.SHEET_M - 1e-9) wrapped++; });
+  if (wrapped !== F.state_fy2027_reams) throw new Error('drew ' + wrapped + ' wrapped reams, FIG says ' + F.state_fy2027_reams);
+  /* THE WRAPPERS AS PAPER. Each whole ream gets its folded kraft ends (the side gussets tucked under a top flap, a glued
+   * seam, a crease) and long sides with soft creases, on the chassis kraft and band colours, never a retint. */
+  const hex = n => '#' + n.toString(16).padStart(6, '0');
+  const KR = hex(CH.KRAFT), BD = hex(CH.BAND);
+  const fibre = (g, w, h, r) => { for (let i = 0; i < 2600; i++) { const k = r(); g.fillStyle = k < 0.5 ? 'rgba(70,45,20,0.10)' : 'rgba(255,235,200,0.09)'; g.fillRect(r() * w, r() * h, 1 + r() * 4, 1); } };
+  const endTex = CH.canvasTex(THREE, 432, 100, (g, w, h) => {
+    const r = CH.rng(41); g.fillStyle = KR; g.fillRect(0, 0, w, h); fibre(g, w, h, r);
+    /* the side gussets: two triangles folded in from the corners, a shade darker, edged by a fold line */
+    g.fillStyle = 'rgba(60,35,15,0.20)';
+    [[0, 1], [w, -1]].forEach(([x0, s]) => { g.beginPath(); g.moveTo(x0, 0); g.lineTo(x0 + s * w * 0.3, h * 0.5); g.lineTo(x0, h); g.closePath(); g.fill(); });
+    g.strokeStyle = 'rgba(50,28,12,0.55)'; g.lineWidth = 2;
+    [[0, 1], [w, -1]].forEach(([x0, s]) => { g.beginPath(); g.moveTo(x0, 0); g.lineTo(x0 + s * w * 0.3, h * 0.5); g.lineTo(x0, h); g.stroke(); });
+    /* the bottom flap folded up, then the top flap folded down over it with its cut edge throwing a thin shadow */
+    g.fillStyle = 'rgba(255,240,215,0.10)'; g.fillRect(w * 0.06, h * 0.5, w * 0.88, h * 0.5);
+    g.fillStyle = 'rgba(40,22,10,0.45)'; g.fillRect(w * 0.04, h * 0.56, w * 0.92, 3);
+    g.fillStyle = 'rgba(255,240,215,0.16)'; g.fillRect(w * 0.04, 0, w * 0.92, h * 0.56);
+    g.fillStyle = 'rgba(255,245,225,0.35)'; g.fillRect(w * 0.04, h * 0.56 - 3, w * 0.92, 2);
+    /* a glue seam and a crease across the flap */
+    g.fillStyle = 'rgba(80,50,20,0.25)'; g.fillRect(w * 0.42, h * 0.08, w * 0.16, h * 0.4);
+    g.strokeStyle = 'rgba(50,28,12,0.25)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(w * 0.12, h * 0.2); g.lineTo(w * 0.33, h * 0.42); g.stroke();
+  });
+  const endMat = K.mat('os-kraft-wrap-end', { color: 0xffffff, map: endTex, roughness: 0.86 });
+  const RW = 0.216, RD = 0.279;
+  stack.children.forEach(ch => {
+    const h = ch.userData.height; if (!(h >= CH.REAM * CH.SHEET_M - 1e-9)) return;
+    [1, -1].forEach(s => {
+      const eh = h - 0.0032, e = new THREE.Mesh(new THREE.PlaneGeometry(RW - 0.003, eh), endMat); e.position.set(0, 0.0027 + eh / 2, s * (RD / 2 + 0.0007)); if (s < 0) e.rotation.y = Math.PI; ch.add(e);
+      e.castShadow = false; e.receiveShadow = true; e.userData.txBevel = false;
+    });
+  });
+
+  /* THE MACHINE. A 42U rack, repainted deep violet powder coat so the dark steel leans violet, never black. Its kit door is
+   * left off and rebuilt here, hinged on the right, so it can stand OPEN toward the camera with the rule clipped inside it. */
+  const rack = K.make('server_rack', { door: false, leds: true, fill: 0.9, blink: false, seed: 5 });
+  const violet = new THREE.Color(0x3d2e7a), violetLo = new THREE.Color(0x2e2364), c = new THREE.Color();
+  const swap = new Map();
+  rack.traverse(m => {
+    if (!m.isMesh || m.isInstancedMesh) return;
+    const fix = mat => {
+      if (!mat || !mat.color) return mat;
+      if (swap.has(mat)) return swap.get(mat);
+      c.copy(mat.color); const l = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
+      let out = mat;
+      if (l < 0.06 && !(mat.emissive && mat.emissiveIntensity > 0.5 && mat.emissive.getHex() !== 0)) {
+        out = mat.clone(); out.color.copy(/frame|flange|panel/.test(mat.name) ? violet : violetLo);
+        out.metalness = Math.max(0.35, out.metalness || 0); out.roughness = Math.min(0.5, out.roughness == null ? 0.5 : out.roughness);
+        out.envMapIntensity = 1.4;
+      }
+      swap.set(mat, out); return out;
+    };
+    m.material = Array.isArray(m.material) ? m.material.map(fix) : fix(m.material);
+  });
+  /* the rack unit rails: the kit prints U numbers 1 to 42, and this deck draws no legible text, so the rail texture is
+   * redrawn here with the same square holes and unit rules and a plain tick where each numeral stood */
+  const RU = 0.04445;
+  const railTex = CH.canvasTex(THREE, 64, 2048, (x, w, h) => {
+    x.fillStyle = '#26282a'; x.fillRect(0, 0, w, h);
+    const ppy = h / (42 * RU), ppx = w / 0.04;
+    for (let u = 0; u < 42; u++) {
+      const yb = h - u * RU * ppy;
+      x.fillStyle = 'rgba(220,220,214,0.75)'; x.fillRect(0.022 * ppx, yb - 1, w, 1.5);
+      for (const hy of [0.00635, 0.022225, 0.0381]) { x.fillStyle = '#0b0a14'; x.fillRect(0.0058 * ppx, yb - (hy + 0.00475) * ppy, 0.0095 * ppx, 0.0095 * ppy); }
+      x.fillStyle = 'rgba(220,220,214,0.6)'; x.fillRect(0.029 * ppx, yb - RU * ppy / 2 - 1, 0.006 * ppx, 2);
+    }
+  });
+  let railsSwapped = 0;
+  rack.traverse(m => { if (!m.isMesh) return; const fx = mt => { if (mt && mt.name === 'rack-rail-steel') { railsSwapped++; const r2 = mt.clone(); r2.map = railTex; return r2; } return mt; };
+    m.material = Array.isArray(m.material) ? m.material.map(fx) : fx(m.material); });
+  if (!railsSwapped) throw new Error('the rack rail texture with U numerals was not replaced');
+  rack.updateMatrixWorld(true);
+  const rbb = new THREE.Box3().setFromObject(rack);
+
+  /* the cover page: greeked two column type, nothing legible, and ONE line laid down in dusk gold highlighter, the proposal */
+  const pTex = CH.canvasTex(THREE, 864, 1116, (g, w, h) => {
+    const r = CH.rng(31);
+    g.fillStyle = '#f2e6d2'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(110,90,70,' + (r() * 0.05).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.3, 1.3); }
+    g.fillStyle = 'rgba(74,63,107,0.85)'; g.fillRect(60, 56, w - 120, 26); g.fillRect(60, 96, w - 120, 5);
+    const colW = (w - 150) / 2, rows = 13;
+    let drawn = 0;
+    for (let c = 0; c < 2; c++) {
+      const x0 = 60 + c * (colW + 30);
+      for (let L = 0; L < rows; L++) {
+        const y = 150 + L * (h - 210) / rows, hl = (c === 0 && L === 5);
+        if (hl) { g.fillStyle = '#c4703e'; g.beginPath(); g.roundRect(x0 - 14, y - 34, colW + 28, 82, 14); g.fill(); drawn++; }
+        let x = x0 + (L % 6 === 0 ? 24 : 0); const end = x0 + colW - (L % 6 === 5 ? colW * 0.4 : r() * 26);
+        while (x < end) { const ww = 14 + r() * 50; g.fillStyle = hl ? 'rgba(92,44,30,0.95)' : 'rgba(74,63,107,0.6)'; g.fillRect(x, y, Math.min(ww, end - x), 15); x += ww + 11 + r() * 5; }
+      }
+    }
+    if (drawn !== 1) throw new Error('the cover page must carry exactly one gold line, drew ' + drawn);
+  });
+  /* THE DOOR, at true size: pressed steel stiles and rails, a hex perforated field, three hinges, a swing handle. */
+  const dw = 0.596, dh = 1.91, dy = 0.09;
+  const doorPaint = K.mat('rack-door-steel-paint-violet', { color: 0x3d2e7a, metalness: 0.4, roughness: 0.42, envMapIntensity: 1.4 });
+  const hexTex = CH.canvasTex(THREE, 256, 222, (x, w, h) => {
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h); x.fillStyle = '#9d92c6';
+    const px = w / 8, py = h / 8;
+    for (let j = -1; j < 10; j++) for (let i = -1; i < 9; i++) { const cx0 = i * px + (j % 2 ? px / 2 : 0), cy0 = j * py;
+      x.beginPath(); for (let k = 0; k < 6; k++) { const an = k * Math.PI / 3 + Math.PI / 6; x.lineTo(cx0 + Math.cos(an) * px * 0.36, cy0 + Math.sin(an) * px * 0.36); } x.fill(); }
+  }, [(dw - 0.07) / 0.04, (dh - 0.12) / (0.04 * 222 / 256)]);
+  const perfMat = new THREE.MeshStandardMaterial({ color: 0x3d2e7a, map: hexTex, side: THREE.DoubleSide, metalness: 0.35, roughness: 0.5, envMapIntensity: 1.2 });
+  perfMat.name = 'rack-door-perforated-steel-paint'; perfMat.userData.txSurface = false;
+  const door = new THREE.Group();
+  const add = (m, x, y, z) => { m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; door.add(m); return m; };
+  add(TXT.roundedBox(0.036, dh, 0.024, 0.005, doorPaint), -0.018, dy + dh / 2, 0);
+  add(TXT.roundedBox(0.036, dh, 0.024, 0.005, doorPaint), -dw + 0.018, dy + dh / 2, 0);
+  add(TXT.roundedBox(dw, 0.064, 0.024, 0.005, doorPaint), -dw / 2, dy + 0.032, 0);
+  add(TXT.roundedBox(dw, 0.064, 0.024, 0.005, doorPaint), -dw / 2, dy + dh - 0.032, 0);
+  add(new THREE.Mesh(new THREE.PlaneGeometry(dw - 0.07, dh - 0.12), perfMat), -dw / 2, dy + dh / 2, 0.004);
+  const hingeM = K.mat('door-hinge-steel-paint-violet', { color: 0x2e2364, metalness: 0.5, roughness: 0.4 });
+  [dy + 0.15, dy + dh / 2, dy + dh - 0.15].forEach(hy => add(new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.07, 16), hingeM), 0.004, hy, -0.006));
+  const lever = K.mat('swing-lever-plastic', { color: 0x1d1838, roughness: 0.4 });
+  add(TXT.roundedBox(0.036, 0.18, 0.014, 0.005, lever), -dw + 0.04, 1.02, 0.018);
+  add(TXT.roundedBox(0.02, 0.13, 0.012, 0.004, K.mat('swing-lever-grip-plastic-worn', { color: 0x3a3358, roughness: 0.62 })), -dw + 0.04, 1.045, 0.028);
+  /* THE RULE, clipped to the inside of the door: the cover page with its one dusk gold line, facing the camera when open */
+  const page = K.make('register_page', { hl: -1, curl: 0, clip: true, seed: 31 });
+  page.traverse(m => { if (m.isMesh && m.geometry.type === 'PlaneGeometry') m.material = K.mat('os-page-cover', { color: 0xffffff, map: pTex, roughness: 0.86, side: THREE.DoubleSide }); });
+  page.rotation.x = Math.PI / 2;
+  const pageG = new THREE.Group(); pageG.add(page); pageG.rotation.y = Math.PI; pageG.rotation.z = 0.025;
+  const PS = 0.6 * dw / 0.216; pageG.scale.setScalar(PS);   /* drawn at 60 percent of the door's width so the rule reads at feed size */
+  pageG.position.set(-0.235, 1.42, -0.016); door.add(pageG);
+  door.position.set(rbb.max.x - 0.004, 0, rbb.max.z - 0.02);
+  door.rotation.y = THREE.MathUtils.degToRad(100);
+  rack.add(door);
+  rack.rotation.y = 0.18; rack.position.set(0.35, 0, -0.9);
+  TXT.add(R, rack); TXT.contact(R, rack);
+
+  /* THE ESTIMATE at the rack's plinth, sharing its floor shadow, front left corner */
+  rack.updateMatrixWorld(true);
+  const footL = new THREE.Vector3(rbb.min.x, 0, rbb.max.z).applyMatrix4(rack.matrixWorld);   /* the front left foot */
+  const Y = new THREE.Vector3(0, 1, 0), ax = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y, rack.rotation.y), fz = new THREE.Vector3(0, 0, 1).applyAxisAngle(Y, rack.rotation.y);
+  stack.rotation.y = rack.rotation.y - 0.06;
+  const sp = footL.clone().addScaledVector(ax, -0.216 / 2 - 0.004).addScaledVector(fz, 0.279 / 2 - 0.02);
+  stack.position.set(sp.x, 0, sp.z);
+  TXT.add(R, stack); TXT.contact(R, stack);
+  /* a deeper violet contact under the stack, widest at its front edge, so it sits ON the floor rather than pasted over it */
+  const contactTex = CH.canvasTex(THREE, 256, 256, (g, w, h) => {
+    const gr = g.createRadialGradient(w / 2, h / 2, w * 0.18, w / 2, h / 2, w / 2);
+    gr.addColorStop(0, 'rgba(40,22,88,0.92)'); gr.addColorStop(0.45, 'rgba(40,22,88,0.6)'); gr.addColorStop(1, 'rgba(40,22,88,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+  });
+  [[0.216 + 0.05, 0.279 + 0.06, 0.012, 0.85], [0.216 + 0.16, 0.279 + 0.2, 0.03, 0.45]].forEach(([cw, cd, off, op], i) => {
+    const cm = new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, opacity: op, depthWrite: false, toneMapped: false });
+    cm.name = 'stack-contact-violet'; cm.userData.txSurface = false;
+    const cp = new THREE.Mesh(new THREE.PlaneGeometry(cw, cd), cm); cp.rotation.x = -Math.PI / 2;
+    cp.userData.txBevel = false; cp.renderOrder = 2 + i;
+    const g = new THREE.Group(); g.add(cp); cp.position.set(0, 0.0012 + i * 0.0003, off);
+    g.position.copy(stack.position); g.rotation.y = stack.rotation.y; R.scene.add(g);
+  });
+
+  const from = [-0.9, 1.139, 5.12];
+  CH.aim(THREE, R, TXT, from, [0.35, 1.0, -0.9], 668, 720, 30);
+  TXT.deckRig(R, CH.rigSpec(W, 4, 4096), Object.assign(CH.rigOpts([0.3, 0.8, -0.8], { distance: 8, shadowFar: 18, normalBias: 0.003 }), { light: { az: -20, el: 28 } }));
+  CH.unacne(R, 0.003);
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { a: 0.62, fade: 190 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.72, height: 250 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script></body></html>

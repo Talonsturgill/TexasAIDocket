@@ -1,0 +1,56 @@
+[
+ {
+  "round": 5,
+  "decision": "revise",
+  "frame5_reason": "orthographic row read as a bar chart on a flat field; streaked counter not oak; no room, no raking shadows; stacks a fifth of the frame"
+ },
+ {
+  "round": 6,
+  "decision": "revise",
+  "frame5_reason": "front-on row still reads as bar chart; blank upper wall; smeared nosing; light contradicts window; hero a quarter of frame",
+  "frame1_minor": "legible rack-unit numerals; thin contact",
+  "frame9_minor": "top letter blown out; plastic wrappers"
+ },
+ {
+  "round": 7,
+  "decision": "revise",
+  "frames_accepted": [
+   1,
+   9
+  ],
+  "frame5_reason": "diagonal long-lens stacks too small, read as striped boxes; strand oak with seam; no room",
+  "repair_asked": "front-on equal-depth row with 2032 at half frame height, which true scale makes impossible for six stacks; representation changed to the two named years"
+ },
+ {
+  "round": 8,
+  "decision": "revise",
+  "frames_accepted": [
+   1,
+   9
+  ],
+  "frame5_reason": "scale fixed; ream material reads as flat cartons, sawtooth torn top, floating loose sheets, plastic rule, blank wall under sill; plan text still said six"
+ },
+ {
+  "round": 9,
+  "decision": "revise",
+  "frames_accepted": [
+   1,
+   9
+  ],
+  "frame5_reason": "second finish refusal: dead-on reams flat, wainscot and clouds invisible, rule reads plastic, bottom smear; asked for a yawed view"
+ },
+ {
+  "round": 10,
+  "decision": "accept",
+  "frames_accepted": [
+   1,
+   5,
+   9
+  ]
+ },
+ {
+  "round": 11,
+  "decision": "accept",
+  "note": "recheck after frame 1 dek copy fix"
+ }
+]

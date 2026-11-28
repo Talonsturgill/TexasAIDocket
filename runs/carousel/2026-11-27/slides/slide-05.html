@@ -1,0 +1,297 @@
+<!doctype html>
+<!-- 2026-11-27, frame 5 of 9, THE FISCAL NOTE. Two stacks of kraft wrapped paper side by side on an oak conference table in a
+     violet dusk room, the two years the dek names: fiscal 2027 at the left and fiscal 2032 at the right, each holding exactly
+     its year's estimate at one sheet per $1,000,000 (FIG), 500 sheets to a ream, 0.1 mm a sheet. Both front faces lie on one
+     line square to a level camera raised to look down about 20 degrees, so their heights keep the exact ratio. A tall mullioned
+     window behind is the key; both shadows fall forward across the oak. The 2032 top ream is torn open, a steel rule stands
+     beside it, every ream shows its end folds and seams. No accent. Nothing legible, no logo, no likeness. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:860px; width:920px; text-align:left">Estimated state loss hits $4.3 billion by 2032</h1>
+<p class="dek" id="dek" style="left:74px; top:1060px; width:900px; font-size:27px; line-height:1.36">The comptroller's estimate of the state's loss rises in each year it counts, from $1,947,310,000 in fiscal year 2027 to $4,286,040,000 in 2032. Each sheet of paper here stands for one million dollars of it.</p>
+
+<script>window.FIG = {"state_fy2027_sheets": 1947, "state_fy2027_reams": 3, "state_fy2027_loose": 447, "state_fy2028_sheets": 2271, "state_fy2028_reams": 4, "state_fy2028_loose": 271, "state_fy2029_sheets": 2655, "state_fy2029_reams": 5, "state_fy2029_loose": 155, "state_fy2030_sheets": 3108, "state_fy2030_reams": 6, "state_fy2030_loose": 108, "state_fy2031_sheets": 3646, "state_fy2031_reams": 7, "state_fy2031_loose": 146, "state_fy2032_sheets": 4286, "state_fy2032_reams": 8, "state_fy2032_loose": 286, "sheet_usd": 1000000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The fiscal note", counter: "05 / 09", src: "c26 c27 c28 c29 c30 c31", fit: { min: 74, max: 90, maxLines: 2 } });
+
+  /* THE TYPE: one block low, the headline and the dek over the dark table front and the floor, under the stacks' bases;
+     the wall above is the picture's, the 2032 stack rising against the window */
+  const hook = document.getElementById('hook'), dek = document.getElementById('dek');
+  /* ONE BLOCK LOW: the headline and the dek stacked over the table front and the floor, the block's foot at y 1200 */
+  { const hh = hook.getBoundingClientRect().height, dh = dek.getBoundingClientRect().height, GAP = 22;
+    hook.style.top = Math.round(1200 - dh - GAP - hh) + 'px'; dek.style.top = Math.round(1200 - dh) + 'px'; }
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (db.top - hb.bottom < 10) throw new Error('the dek runs into the headline');
+  if (hb.left < 64 || hb.right > 1016 || hb.top < 140) throw new Error('the headline leaves the safe field');
+  if (db.left < 64 || db.right > 1016 || db.bottom > 1205) throw new Error('the dek runs into the footer at ' + Math.round(db.bottom));
+
+  /* THE FIGURES, read once. Every stack is built from its year's sheets; reams and loose are checked against FIG */
+  const F = window.FIG, YEARS = [2027, 2028, 2029, 2030, 2031, 2032];
+  const SHEETS = YEARS.map((y) => F['state_fy' + y + '_sheets']);
+  YEARS.forEach((y, i) => {
+    const n = SHEETS[i];
+    if (!Number.isInteger(n) || n < 1) throw new Error('FIG state_fy' + y + '_sheets unreadable');
+    if (Math.floor(n / 500) !== F['state_fy' + y + '_reams'] || n % 500 !== F['state_fy' + y + '_loose']) throw new Error('FIG reams/loose disagree for ' + y);
+    if (i && !(n > SHEETS[i - 1])) throw new Error('the estimate is meant to rise every year, FIG says otherwise at ' + y);
+  });
+  if (F.sheet_usd !== 1000000) throw new Error('one sheet is meant to stand for $1,000,000');
+
+  const R = CH.stage(TXT, gl, W, { fov: 24, near: 0.05, far: 60, fog: 0 });
+  const rnd = CH.rng(20261127 + 5);
+  const tex = (w, h, paint, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  const rb = (w, h, d, r, m) => { const b = TXT.roundedBox(w, h, d, r, m); b.castShadow = true; b.receiveShadow = true; return b; };
+  const noSurf = (m) => { m.userData.txSurface = false; return m; };
+  const AN = R.renderer.capabilities.getMaxAnisotropy();
+  const sampled = (t) => { t.anisotropy = AN; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.needsUpdate = true; return t; };
+
+  /* TWO YEARS, the two the dek names: fiscal 2027 and fiscal 2032, read from FIG */
+  const DRAW = [0, 5], DY = DRAW.map((i) => YEARS[i]), DS = DRAW.map((i) => SHEETS[i]);
+  if (DS[0] !== F.state_fy2027_sheets || DS[1] !== F.state_fy2032_sheets) throw new Error('the two stacks are not fiscal 2027 and fiscal 2032');
+
+  /* THE ROOM: the violet dusk room, its back wall 0.9 m behind the stacks, a plum wainscot, and a tall mullioned window that is
+     the key's source; it shows across the top of the frame with the 2032 stack rising against it */
+  const BACKZ = -2.4;
+  const room = TXT.interior(R, { w: 8, d: 4.8, h: 3.2, floor: 'concrete', wall: 0x5444b8, trim: 0x2a1d5e, window: null, ceiling: false, light: 0.6 });
+  TXT.studio(R, CH.studioOpts({ w: 6, d: 6 }));
+  R.scene.remove(R.studio.sweep); R.room = room;
+  R.scene.background = new THREE.Color(0x4a3aa0);
+  { const wallMap = tex(64, 512, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#5a4fa8'); gr.addColorStop(0.6, '#b0a6e6'); gr.addColorStop(1, '#ffffff'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const wallMat = new THREE.MeshStandardMaterial({ color: 0x5444b8, map: wallMap, roughness: 0.9, name: 'wall-paint' });
+    room.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === new THREE.Color(0x5444b8).getHex()) m.material = wallMat; });
+    R.scene.traverse((m) => { if (m.isMesh && m.userData.txGround && !m.userData.txStudio) { m.material = m.material.clone(); m.material.color = new THREE.Color(0x9a5ab8); m.material.name = 'conc-floor-sealed'; } });
+    const plum = new THREE.MeshPhysicalMaterial({ color: 0x3e2378, roughness: 0.55, clearcoat: 0.3, name: 'trim-paint' });
+    const wain = rb(7.8, 0.9, 0.03, 0.006, plum); wain.position.set(0, 0.45, BACKZ + 0.12); R.scene.add(wain);
+    const rail = rb(7.8, 0.06, 0.05, 0.012, plum); rail.position.set(0, 0.92, BACKZ + 0.13); R.scene.add(rail);
+    /* raised and fielded wainscot panels: a stile frame, a bevelled raised field and a bead moulding round each, so the band
+       under the sill has relief that catches the window light */
+    { const pm = new THREE.MeshPhysicalMaterial({ color: 0x5a36a0, roughness: 0.45, clearcoat: 0.45, clearcoatRoughness: 0.3, name: 'panel-paint' });
+      const bead = new THREE.MeshPhysicalMaterial({ color: 0x7a56c4, roughness: 0.35, clearcoat: 0.6, name: 'moulding-paint' });
+      for (let i = 0; i < 10; i++) { const x = -3.15 + i * 0.7;
+        const fld = rb(0.5, 0.5, 0.03, 0.012, pm); fld.position.set(x, 0.47, BACKZ + 0.15); R.scene.add(fld);
+        const top = rb(0.46, 0.46, 0.04, 0.02, pm); top.position.set(x, 0.47, BACKZ + 0.155); R.scene.add(top);
+        const bh = (w, h, xx, yy) => { const b = rb(w, h, 0.02, 0.008, bead); b.position.set(xx, yy, BACKZ + 0.15); R.scene.add(b); };
+        bh(0.56, 0.02, x, 0.47 + 0.27); bh(0.56, 0.02, x, 0.47 - 0.27); bh(0.02, 0.56, x - 0.27, 0.47); bh(0.02, 0.56, x + 0.27, 0.47); } }
+    /* the window: a tall French window, sill 0.95 m, a 3 by 4 mullion grid, warm dusk glass */
+    const WX = 0.05, WB = 0.98, WT = 2.9, WW = 1.5, WH = WT - WB, WY = (WB + WT) / 2;
+    const sky = tex(512, 1024, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#5a44c8'); gr.addColorStop(0.5, '#b86ec0'); gr.addColorStop(0.82, '#ec8c96'); gr.addColorStop(1, '#f6a888'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      /* soft cloud bands, lit underneath by the low sun */
+      for (let k = 0; k < 14; k++) { const cy = h * (0.25 + rnd() * 0.5), cw = w * (0.3 + rnd() * 0.6), cx0 = rnd() * w; const cg = g.createRadialGradient(cx0, cy, 4, cx0, cy, cw / 2);
+        cg.addColorStop(0, 'rgba(255,190,170,' + (0.16 + rnd() * 0.18).toFixed(2) + ')'); cg.addColorStop(1, 'rgba(255,190,170,0)'); g.fillStyle = cg; g.save(); g.translate(cx0, cy); g.scale(1, 0.12); g.translate(-cx0, -cy); g.fillRect(cx0 - cw, cy - cw, cw * 2, cw * 2); g.restore(); }
+      /* the low sun's glow along the bottom of the panes */
+      const lg = g.createLinearGradient(0, h * 0.8, 0, h); lg.addColorStop(0, 'rgba(255,200,150,0)'); lg.addColorStop(1, 'rgba(255,200,150,0.35)'); g.fillStyle = lg; g.fillRect(0, h * 0.8, w, h * 0.2); });
+    const glass = new THREE.MeshBasicMaterial({ map: sky, toneMapped: true }); glass.color.multiplyScalar(0.9);
+    const pane = new THREE.Mesh(new THREE.PlaneGeometry(WW, WH), glass); pane.position.set(WX, WY, BACKZ + 0.105); R.scene.add(pane);
+    const fr = new THREE.MeshPhysicalMaterial({ color: 0x6a52b0, roughness: 0.45, clearcoat: 0.4, name: 'trim-paint-window' });
+    const bar = (w, h, x, y, d) => { const b = rb(w, h, d || 0.07, 0.008, fr); b.castShadow = false; b.position.set(WX + x, WY + y, BACKZ + 0.15); R.scene.add(b); };
+    bar(WW + 0.16, 0.08, 0, WH / 2 + 0.04); bar(WW + 0.16, 0.08, 0, -WH / 2 - 0.04); bar(0.08, WH + 0.16, -WW / 2 - 0.04, 0); bar(0.08, WH + 0.16, WW / 2 + 0.04, 0);
+    [-1, 1].forEach((k) => bar(0.035, WH, k * WW / 6, 0, 0.05)); [0.2, 0.42, 0.64, 0.86].forEach((h) => bar(WW, 0.035, 0, WB + h * (WH * 0.42) - WY + 0.12, 0.05));
+    /* the sill: a deep stool with a rounded nose and an apron under it, standing proud of the wall */
+    { const stool = rb(WW + 0.34, 0.045, 0.2, 0.014, fr); stool.position.set(WX, WB - 0.03, BACKZ + 0.2); stool.castShadow = true; R.scene.add(stool);
+      const apr = rb(WW + 0.2, 0.1, 0.03, 0.008, fr); apr.position.set(WX, WB - 0.11, BACKZ + 0.13); R.scene.add(apr); } }
+
+  /* THE OAK: one seamless top up to 3.2 m by 2.8 m on one 4096 by 3584 canvas, 1280 px a metre both ways, so the scale is true and
+     nothing repeats. Planks 150 to 210 mm wide run front to back with broad growth bands, a cathedral or two, ray fleck across
+     the grain and fine plank joints, so no line lies across the type */
+  const TOP = 0.76, TW = 3.2, TBZ = -1.6, TLEN = 2.8;
+  const oakTex = sampled(tex(4096, 3584, (g, w, h) => {
+    g.fillStyle = '#b07040'; g.fillRect(0, 0, w, h);
+    let x = 0; while (x < w) { const pw = (0.15 + rnd() * 0.06) * 1280, tone = rnd();
+      g.fillStyle = tone < 0.33 ? 'rgba(120,58,22,0.20)' : (tone < 0.66 ? 'rgba(255,196,136,0.10)' : 'rgba(90,40,14,0.12)'); g.fillRect(x, 0, pw, h);
+      /* broad growth bands along the plank, gently wandering */
+      for (let k = 0; k < 9; k++) { const cx0 = x + rnd() * pw, bw = 6 + rnd() * 22, a = 0.06 + rnd() * 0.12, ph = rnd() * 6.28, amp = 4 + rnd() * 10;
+        g.strokeStyle = rnd() < 0.6 ? 'rgba(70,30,10,' + a.toFixed(3) + ')' : 'rgba(255,214,160,' + (a * 0.8).toFixed(3) + ')'; g.lineWidth = bw;
+        g.beginPath(); for (let y = 0; y <= h; y += 24) { const xx = Math.min(x + pw - 2, Math.max(x + 2, cx0 + Math.sin(y / h * 6.28 * 1.3 + ph) * amp)); y ? g.lineTo(xx, y) : g.moveTo(xx, y); } g.stroke(); }
+      /* fine late wood lines */
+      for (let k = 0; k < 26; k++) { const cx0 = x + rnd() * pw, ph = rnd() * 6.28, amp = 2 + rnd() * 6;
+        g.strokeStyle = 'rgba(60,24,8,' + (0.08 + rnd() * 0.18).toFixed(3) + ')'; g.lineWidth = 0.8 + rnd() * 1.6;
+        g.beginPath(); for (let y = 0; y <= h; y += 20) { const xx = Math.min(x + pw - 2, Math.max(x + 2, cx0 + Math.sin(y / h * 6.28 * 2 + ph) * amp)); y ? g.lineTo(xx, y) : g.moveTo(xx, y); } g.stroke(); }
+      /* a cathedral arch on some planks */
+      if (rnd() < 0.2) { const cy = h * (0.2 + rnd() * 0.6), cx0 = x + pw / 2; for (let k = 1; k < 7; k++) { g.strokeStyle = 'rgba(80,32,10,' + (0.09 - k * 0.01).toFixed(3) + ')'; g.lineWidth = 2; g.beginPath(); g.ellipse(cx0, cy, pw * 0.08 + k * pw * 0.05, 60 + k * 50, 0, 0, Math.PI * 2); g.stroke(); } }
+      /* ray fleck: short pale dashes across the grain */
+      for (let k = 0; k < 160; k++) { g.fillStyle = 'rgba(255,226,180,' + (0.08 + rnd() * 0.14).toFixed(3) + ')'; g.fillRect(x + rnd() * pw, rnd() * h, 2 + rnd() * 10, 1.5); }
+      x += pw; g.fillStyle = 'rgba(40,16,6,0.5)'; g.fillRect(x - 1, 0, 2, h); }
+  }));
+  const oak = noSurf(new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: oakTex, roughness: 0.55, clearcoat: 0.28, clearcoatRoughness: 0.4, name: 'oak-top' }));
+  const nosTex = sampled(tex(2048, 128, (g, w, h) => { g.fillStyle = '#a8683a'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 60; k++) { const yy = rnd() * h; g.strokeStyle = 'rgba(70,30,10,' + (0.08 + rnd() * 0.16).toFixed(3) + ')'; g.lineWidth = 1 + rnd() * 2; g.beginPath(); g.moveTo(0, yy); for (let xx = 0; xx <= w; xx += 32) g.lineTo(xx, yy + Math.sin(xx * 0.004 + k) * 3); g.stroke(); } }));
+  const oakEdge = noSurf(new THREE.MeshPhysicalMaterial({ color: 0xa86a3c, roughness: 0.5, clearcoat: 0.35, clearcoatRoughness: 0.35, name: 'oak-nosing' }));
+
+  /* THE TWO STACKS: the chassis reams (kraft, muted band, cream seams), 2027 at the left and 2032 at the right, both front faces
+     on the line z = 0, square to the camera, 0.12 m of oak between them */
+  const RW_ = 0.216, RD_ = 0.279, GAPX = 0.12;
+  /* both stacks turned 30 degrees about their own vertical axes, the same way, so each shows a lit end and a shaded long side;
+     placed so their NEAREST vertical corners sit on one line z = 0 at one depth, which keeps the on screen ratio exact */
+  const YAW = -30 * Math.PI / 180, YV = new THREE.Vector3(0, 1, 0);
+  const cornersL = [[-RW_ / 2, -RD_ / 2], [RW_ / 2, -RD_ / 2], [-RW_ / 2, RD_ / 2], [RW_ / 2, RD_ / 2]].map(([x, z]) => new THREE.Vector3(x, 0, z).applyAxisAngle(YV, YAW));
+  const NEARC = cornersL.reduce((a, b) => (b.z > a.z ? b : a)), HX = Math.max(...cornersL.map((c) => Math.abs(c.x)));
+  const GAPY = 0.07, XS = [-(HX + GAPY / 2) - 0.03, (HX + GAPY / 2) - 0.03], ZS = -NEARC.z;
+  const nearCorner = (s) => new THREE.Vector3(s.position.x + NEARC.x, TOP, s.position.z + NEARC.z);
+  /* THE WRAPPER, this slide only. A kraft wrapper with visible fibre and a satin sheen, the chassis kraft lifted to a warmer tan
+     under the window light, in three fibre variants; and on each ream's front end its own folds and its own overlap seam, cut
+     from a seed per ream, with a band of cream sheet edges at the seam below it */
+  const kc = new THREE.Color(CH.KRAFT).lerp(new THREE.Color(0xd8b880), 0.6), kHex = '#' + kc.getHexString();
+  const kraftMats = [0, 1, 2].map((v) => { const r5 = CH.rng(4400 + v * 31);
+    const t = tex(1024, 256, (g, w, h) => { g.fillStyle = kHex; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 160; i++) { const x = r5() * w, y = r5() * h, rr = 20 + r5() * 80, gg = g.createRadialGradient(x, y, 1, x, y, rr); const lt = r5() < 0.5; gg.addColorStop(0, lt ? 'rgba(255,226,180,0.05)' : 'rgba(90,52,20,0.05)'); gg.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gg; g.fillRect(x - rr, y - rr, rr * 2, rr * 2); }
+      for (let i = 0; i < 9000; i++) { const x = r5() * w, y = r5() * h, L = 3 + r5() * 14, an = (r5() - 0.5) * 1.2; g.strokeStyle = r5() < 0.5 ? 'rgba(100,60,24,' + (0.06 + r5() * 0.1).toFixed(2) + ')' : 'rgba(255,232,190,' + (0.05 + r5() * 0.09).toFixed(2) + ')'; g.lineWidth = 0.6 + r5() * 0.8; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(an) * L, y + Math.sin(an) * L); g.stroke(); }
+      for (let i = 0; i < 40; i++) { const x = r5() * w, y = r5() * h; g.strokeStyle = 'rgba(80,46,16,0.25)'; g.lineWidth = 0.8; g.beginPath(); g.moveTo(x, y); g.bezierCurveTo(x + 20, y + 6, x + 40, y - 6, x + 70, y + 3); g.stroke(); } });
+    return noSurf(new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: sampled(t), roughness: 0.5, clearcoat: 0.18, clearcoatRoughness: 0.5, sheen: 0.45, sheenColor: new THREE.Color(0xffe0b8), sheenRoughness: 0.5, name: 'kraft-wrapper-satin' })); });
+  let reamSeed = 0;
+  const reamDecal = () => { const r2 = CH.rng(8100 + (reamSeed++) * 53);
+    const t = tex(864, 200, (g, w, h) => { g.clearRect(0, 0, w, h);
+      const band = 16, a = 0.12 + r2() * 0.14, a2 = 0.12 + r2() * 0.14, mid = h * (0.38 + r2() * 0.24), hi = (h - band) * (0.04 + r2() * 0.08);
+      /* the end folds as shaded paper: the side flaps folded in sit darker, the top and bottom flaps over them catch the light */
+      const m2 = mid + (r2() - 0.5) * 20;
+      g.fillStyle = 'rgba(255,238,208,0.16)'; g.beginPath(); g.moveTo(3, hi); g.lineTo(w * a, mid); g.lineTo(w * (1 - a2), m2); g.lineTo(w - 3, hi); g.closePath(); g.fill();
+      g.fillStyle = 'rgba(40,22,8,0.22)'; g.beginPath(); g.moveTo(3, hi); g.lineTo(w * a, mid); g.lineTo(3, h - band - 3); g.closePath(); g.fill();
+      g.beginPath(); g.moveTo(w - 3, hi); g.lineTo(w * (1 - a2), m2); g.lineTo(w - 3, h - band - 3); g.closePath(); g.fill();
+      g.fillStyle = 'rgba(40,22,8,0.1)'; g.beginPath(); g.moveTo(3, h - band - 3); g.lineTo(w * a, mid); g.lineTo(w * (1 - a2), m2); g.lineTo(w - 3, h - band - 3); g.closePath(); g.fill();
+      g.strokeStyle = 'rgba(40,24,10,0.5)'; g.lineWidth = 2.5;
+      g.beginPath(); g.moveTo(3, hi); g.lineTo(w * a, mid); g.lineTo(3, h - band - 3); g.stroke();
+      g.beginPath(); g.moveTo(w - 3, hi + r2() * 8); g.lineTo(w * (1 - a2), mid + (r2() - 0.5) * 20); g.lineTo(w - 3, h - band - 3); g.stroke();
+      g.strokeStyle = 'rgba(255,238,210,0.32)'; g.lineWidth = 1.6; g.beginPath(); g.moveTo(7, hi + 3); g.lineTo(w * a + 4, mid - 2); g.stroke();
+      /* the overlap seam where the wrapper's two ends meet, at its own place on each ream, a little ragged */
+      const sx = w * (0.25 + r2() * 0.5); g.strokeStyle = 'rgba(50,28,10,0.45)'; g.lineWidth = 2; g.beginPath(); g.moveTo(sx, 4);
+      for (let yy = 4; yy < h - band; yy += 8) g.lineTo(sx + (r2() - 0.5) * 3, yy); g.stroke();
+      g.fillStyle = 'rgba(255,236,206,0.18)'; g.fillRect(sx + 2, 4, 6, h - band - 8);
+      if (r2() < 0.6) { g.strokeStyle = 'rgba(40,24,10,0.22)'; g.lineWidth = 1.6; const x1 = w * (0.2 + r2() * 0.5); g.beginPath(); g.moveTo(x1, 10 + r2() * 30); g.quadraticCurveTo(x1 + 50 + r2() * 60, mid, x1 + 120 + r2() * 120, h - band - 10); g.stroke(); }
+      /* the seam below: a band of cream sheet edges showing between this ream and the one under it */
+      g.fillStyle = '#efe4d0'; g.fillRect(0, h - band, w, band);
+      for (let yy = h - band; yy < h; yy += 2) { g.fillStyle = 'rgba(120,96,74,' + (0.2 + r2() * 0.35).toFixed(2) + ')'; g.fillRect(0, yy, w, 1); }
+      g.fillStyle = 'rgba(40,24,10,0.55)'; g.fillRect(0, h - band - 2, w, 2); g.fillRect(0, 0, w, 2); });
+    return noSurf(new THREE.MeshStandardMaterial({ map: sampled(t), transparent: true, roughness: 0.8, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, name: 'wrapper-endfold' })); };
+  const stacks = [];
+  DRAW.forEach((fi, j) => { const y = YEARS[fi];
+    const s = K.make('ream_stack', { sheets: SHEETS[fi], seed: 30 + fi, jitter: 0.0015, tornTop: false });
+    if (s.userData.sheets !== SHEETS[fi] || s.userData.reams !== F['state_fy' + y + '_reams'] || s.userData.loose !== F['state_fy' + y + '_loose']) throw new Error('stack ' + y + ' does not hold its FIG sheets');
+    if (Math.abs(s.userData.top - SHEETS[fi] * CH.SHEET_M) > 1e-6) throw new Error('stack ' + y + ' height is not its sheets x 0.1 mm');
+    const wrappedReams = s.children.filter((rm) => rm.userData.height > 0.049);
+    if (wrappedReams.length !== F['state_fy' + y + '_reams']) throw new Error('stack ' + y + ' drew ' + wrappedReams.length + ' wrapped reams');
+    const r4 = CH.rng(9100 + fi);
+    wrappedReams.forEach((rm) => { const h = rm.userData.height, km = kraftMats[Math.floor(r4() * 3)].clone(); km.color.setScalar(0.9 + r4() * 0.16); noSurf(km);
+      rm.traverse((m) => { if (m.isMesh && !Array.isArray(m.material) && /kraft-top/.test(m.material.name || '')) m.material = km; });
+      const e = new THREE.Mesh(new THREE.PlaneGeometry(RW_, h), reamDecal()); e.position.set(0, h / 2, RD_ / 2 + 0.0009); e.renderOrder = 2; rm.add(e); });
+    s.children.filter((rm) => rm.userData.height > 0 && rm.userData.height < 0.049).forEach((lb) => { const lh = lb.userData.height, ph = Math.max(24, Math.round(lh * 6000)), r3 = CH.rng(7300 + fi);
+      const et = tex(1296, ph, (g, w, hh) => { g.fillStyle = '#f2e8d6'; g.fillRect(0, 0, w, hh);
+        for (let yy = 0; yy < hh; yy += 2 + Math.floor(r3() * 3)) { g.fillStyle = 'rgba(110,88,70,' + (0.25 + r3() * 0.35).toFixed(3) + ')'; g.fillRect(0, yy, w, 1.2); if (r3() < 0.08) { g.fillStyle = 'rgba(80,60,50,0.65)'; g.fillRect(0, yy, w, 2); } }
+        for (let k = 0; k < 8; k++) { const x0 = r3() * w * 0.7, yy = r3() * hh; g.fillStyle = 'rgba(255,252,244,0.85)'; g.fillRect(x0, yy, 80 + r3() * 260, 1.5); } });
+      const em = noSurf(new THREE.MeshStandardMaterial({ map: sampled(et), roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, name: 'paper-edges-front' }));
+      const p1 = new THREE.Mesh(new THREE.PlaneGeometry(RW_, lh), em); p1.position.set(0, lh / 2, RD_ / 2 + 0.0008); lb.add(p1);
+      [-1, 1].forEach((sd) => { const p2 = new THREE.Mesh(new THREE.PlaneGeometry(RD_, lh), em); p2.rotation.y = sd * Math.PI / 2; p2.position.set(sd * (RW_ / 2 + 0.0008), lh / 2, 0); lb.add(p2); }); });
+    s.position.set(XS[j] - NEARC.x * 0, TOP, ZS); s.rotation.y = YAW;
+    /* the chassis seam sliver under the bottom ream would show as a pale line on the oak: the bottom ream sits on the table */
+    s.children[0].traverse((m) => { if (m.isMesh && m.geometry && m.geometry.parameters && Math.abs((m.geometry.parameters.height || 0) - 0.0022) < 1e-4) m.visible = false; });
+    TXT.add(R, s); TXT.contact(R, s, { opacity: 0.6, layers: [{ spread: 0.03, opacity: 0.8 }, { spread: 0.18, opacity: 0.3 }] });
+    stacks.push(s); });
+  const big = stacks[1];
+
+  /* THE TORN TOP OF 2032: the opened ream's wrapper torn down around its loose block, three sheets of real thickness fanned off */
+  { const lb = big.children[big.children.length - 1], lh = lb.userData.height;
+    if (big.userData.loose !== F.state_fy2032_loose || Math.abs(lh - F.state_fy2032_loose * CH.SHEET_M) > 1e-6) throw new Error('the 2032 loose block is not its FIG loose sheets');
+    /* the remaining wrapper round the loose block: a kraft band 0.4 mm thick with an irregular torn top edge, a random walk
+       rather than teeth, on the front and both sides; and two flaps torn loose, curling outward and down off the front */
+    const tornEdge = (len, seed) => { const r6 = CH.rng(seed), sh = new THREE.Shape(); sh.moveTo(-len / 2, 0); sh.lineTo(len / 2, 0);
+      let y = lh * (0.45 + r6() * 0.2); for (let x = len / 2; x >= -len / 2; x -= 0.003) { y += (r6() - 0.5) * 0.004 + (r6() < 0.08 ? (r6() - 0.5) * 0.01 : 0); y = Math.min(lh * 0.85, Math.max(lh * 0.2, y)); sh.lineTo(x, y); }
+      sh.lineTo(-len / 2, 0); return new THREE.ExtrudeGeometry(sh, { depth: 0.0004, bevelEnabled: false, curveSegments: 2 }); };
+    const km = kraftMats[0].clone(); km.side = THREE.DoubleSide; km.name = 'kraft-wrapper-torn'; noSurf(km);
+    const f1 = new THREE.Mesh(tornEdge(RW_ + 0.001, 11), km); f1.position.set(0, 0, RD_ / 2 + 0.0012); lb.add(f1);
+    const f2 = new THREE.Mesh(tornEdge(RD_ + 0.001, 12), km); f2.rotation.y = -Math.PI / 2; f2.position.set(-RW_ / 2 - 0.0012, 0, 0); lb.add(f2);
+    const f3 = new THREE.Mesh(tornEdge(RD_ + 0.001, 13), km); f3.rotation.y = Math.PI / 2; f3.position.set(RW_ / 2 + 0.0012, 0, 0); lb.add(f3);
+    [f1, f2, f3].forEach((m) => { m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; });
+    /* the front of the torn wrapper peels away from the sheets: bent outward from its bottom fold, so its ragged edge stands
+       off the cream block and the sheets show behind it */
+    { const P = f1.geometry.attributes.position; for (let j = 0; j < P.count; j++) { const yv = P.getY(j), t = Math.max(0, yv / lh); P.setZ(j, P.getZ(j) + t * t * 0.012 + Math.sin(P.getX(j) * 60) * 0.0008 * t); }
+      f1.geometry.computeVertexNormals(); }
+    /* three loose sheets lying on the top, inside the footprint, a little askew */
+    const sm = noSurf(new THREE.MeshStandardMaterial({ color: CH.PAPER, roughness: 0.9, name: 'paper-sheet' }));
+    [[-0.003, 0.002, 0.012], [0.002, -0.003, -0.018], [0.0, 0.001, 0.026]].forEach((q, k) => {
+      const geo = new THREE.BoxGeometry(RW_ - 0.012, 0.0004, RD_ - 0.012);
+      const m = new THREE.Mesh(geo, sm); m.position.set(q[0], lh + 0.0003 + k * 0.0005, q[1]); m.rotation.y = q[2]; m.castShadow = m.receiveShadow = true; m.userData.txBevel = false; lb.add(m); }); }
+
+  /* THE STEEL RULE: an 18 inch (457 mm) stainless rule standing upright on the oak at the right of the 2032 stack, its face to
+     the camera on the same front line, graduated every 10 mm with longer marks at 50 and 100, ticks only, no numerals */
+  let ruleObj = null;
+  { const RL = 0.457, RWd = 0.032;
+    const ticks = tex(96, 2048, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, 0); gr.addColorStop(0, '#e8ecf2'); gr.addColorStop(0.5, '#c8ced8'); gr.addColorStop(1, '#e2e6ee'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      for (let yy = 0; yy < h; yy += 2) { g.fillStyle = 'rgba(' + (rnd() < 0.5 ? '255,255,255' : '90,96,110') + ',' + (rnd() * 0.12).toFixed(3) + ')'; g.fillRect(0, yy, w, 1); }
+      g.fillStyle = 'rgba(20,18,30,0.92)';
+      for (let k = 0; k <= 45; k++) { const yy = h - 16 - k * (h - 32) / 45, L = k % 10 === 0 ? 0.62 : (k % 5 === 0 ? 0.44 : 0.26); g.fillRect(0, yy - 3, w * L, 6); g.fillRect(w * (1 - L * 0.5), yy - 3, w * L * 0.5, 6); }
+      g.fillRect(0, 0, 3, h); g.fillRect(w - 3, 0, 3, h); });
+    /* a polished steel that takes the room's colour only as a sheen: part metal, a hard clearcoat, a cool neutral body */
+    const steel = noSurf(new THREE.MeshPhysicalMaterial({ color: 0xdfe6ef, map: sampled(ticks), metalness: 0.55, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.08, envMapIntensity: 1.4, emissive: 0x3a4250, emissiveIntensity: 0.35, name: 'stainless-rule-brushed' }));
+    const edge = noSurf(new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 1, roughness: 0.08, envMapIntensity: 3, emissive: 0x6a6e7a, emissiveIntensity: 0.25, name: 'stainless-edge' }));
+    const rule = new THREE.Mesh(new THREE.BoxGeometry(RWd, RL, 0.0015), [edge, edge, edge, edge, steel, edge]); rule.position.y = RL / 2; rule.castShadow = rule.receiveShadow = true; rule.userData.txBevel = false;
+    const outer = new THREE.Group(); outer.add(rule); outer.position.set(big.position.x + HX + 0.035, TOP + 0.0005, -0.03);
+    TXT.add(R, outer); TXT.contact(R, outer, { opacity: 0.6 }); ruleObj = outer; }
+
+  /* THE CAMERA: a level camera raised so it looks down about 20 degrees onto the stacks, with the frame shifted down the way a
+     view camera's fall does. The image plane stays vertical, so both front edges, at one depth, keep the exact sheet ratio. The
+     window is a 24 degree view; the distance is fitted so the 2032 stack stands about 600 px */
+  const ELEV = 16 * Math.PI / 180, K3 = 3, FULLW = 1080 * K3, FULLH = 1350 * K3, TANH = Math.tan(12 * Math.PI / 180);
+  const FOVF = 2 * Math.atan(K3 * TANH) * 180 / Math.PI, BASE_Y = hb.top - 34, ROWX = (XS[0] - HX + big.position.x + HX + 0.067) / 2;
+  let D = 2.3, offX = (FULLW - 1080) / 2, offY = 0;
+  const place = () => { const C = [ROWX, TOP + D * Math.tan(ELEV), D];
+    TXT.frame(R, { fov: FOVF, from: C, look: [ROWX, C[1], C[2] - 1] });
+    const pxPerTan = (FULLH / 2) / Math.tan(FOVF * Math.PI / 360), cy = FULLH / 2 + pxPerTan * Math.tan(ELEV);
+    if (!offY) offY = cy - BASE_Y;
+    R.camera.setViewOffset(FULLW, FULLH, offX, offY, 1080, 1350); R.camera.updateProjectionMatrix(); R.camera.updateMatrixWorld(true); };
+  const edgeH = (s) => { const c = nearCorner(s), a0 = CH.project(THREE, R, [c.x, TOP, c.z]), a1 = CH.project(THREE, R, [c.x, TOP + s.userData.top, c.z]); return a0[1] - a1[1]; };
+  let HT = 560;
+  for (let it = 0; it < 14; it++) { place(); { const rA = CH.rectOf(THREE, R, stacks[0], 0), rR = CH.rectOf(THREE, R, ruleObj, 0), wd = rR[0] + rR[2] - rA[0]; if (wd > 1010) HT *= 1010 / wd; } D *= Math.pow(edgeH(big) / HT, 1);
+    place(); const b = CH.project(THREE, R, [ROWX, TOP, 0]); offY += b[1] - BASE_Y; offX += b[0] - 540; }
+  place();
+
+  /* THE CHECKS on the final camera: both stacks and the rule in frame and clear of the type, oak between the two front faces, and
+     the on screen ratio of the front vertical edges equal to the sheet ratio within 3 percent */
+  stacks.concat([ruleObj]).forEach((o, i) => { const r = CH.rectOf(THREE, R, o, 0); if (r[0] < 16 || r[0] + r[2] > 1064 || r[1] < 175) throw new Error('object ' + i + ' leaves the frame ' + r.map(Math.round));
+    if (r[1] + r[3] > hb.top - 6) throw new Error('object ' + i + ' runs into the headline ' + r.map(Math.round)); });
+  { const ra = CH.rectOf(THREE, R, stacks[0], 0), rb2 = CH.rectOf(THREE, R, stacks[1], 0); if (!(rb2[0] - (ra[0] + ra[2]) > 20)) throw new Error('no clear oak between the stacks ' + Math.round(rb2[0] - (ra[0] + ra[2]))); }
+  { const H2 = stacks.map(edgeH), want = DS[1] / DS[0], got = H2[1] / H2[0];
+    window.__s5 = { years: DY, sheets: DS, hpx: H2.map((v) => +v.toFixed(1)), ratio: +got.toFixed(4), truth: +want.toFixed(4), err: +((got / want - 1) * 100).toFixed(2), share2032: +(H2[1] / 1350).toFixed(3), dist: +D.toFixed(3) };
+    if (Math.abs(got / want - 1) > 0.03) throw new Error('the 2032 over 2027 ratio ' + got.toFixed(3) + ' is not ' + want.toFixed(3));
+    console.error('S5 measured ' + JSON.stringify(window.__s5)); }
+
+  /* THE TABLE, built to the camera: its near edge, a rounded solid nosing, crosses the very bottom of the frame below the footer,
+     so the oak runs unbroken under all the type */
+  { let lo = 0.05, hi = D - 0.4; for (let it = 0; it < 40; it++) { const m = (lo + hi) / 2, y = CH.project(THREE, R, [ROWX, TOP, m])[1]; if (y < 1306) lo = m; else hi = m; }
+    const TFZ = (lo + hi) / 2, TD = TFZ - TBZ;
+    if (TD > TLEN + 0.01) throw new Error('the table runs past its one oak canvas: ' + TD.toFixed(2) + ' m');
+    oakTex.repeat.set(1, TD / TLEN);
+    const top = new THREE.Mesh(new THREE.BoxGeometry(TW, 0.045, TD), oak); top.position.set(0, TOP - 0.0225, (TFZ + TBZ) / 2); top.castShadow = top.receiveShadow = true; top.userData.txBevel = false; R.scene.add(top);
+    const nose = rb(TW + 0.01, 0.052, 0.05, 0.024, oakEdge); nose.userData.txBevel = false; nose.position.set(0, TOP - 0.026, TFZ + 0.012); R.scene.add(nose);
+    window.__s5.tableFront = +TFZ.toFixed(3); }
+
+  /* THE LIGHT: the key comes low through the window behind, from the left, so both shadows fall forward and away from it across
+     the oak; the faces turned to us take the room's violet */
+  const spec = CH.rigSpec(W, 1.6, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([ROWX, TOP, -0.1], { distance: 6, shadowFar: 16, normalBias: 0.002 }), { light: { az: -55, el: 22 } }));
+  CH.unacne(R, 0.002);
+  R.scene.environmentIntensity = 0.75;
+  { const f = new THREE.DirectionalLight(0xb4a6ff, 0.45); f.position.set(0.4, 2.5, 6); R.scene.add(f); }
+  { const w2 = new THREE.DirectionalLight(0xffc49a, 0.2); w2.position.set(-2.5, 1.6, 4); R.scene.add(w2); }   /* the window light bounced off the oak back onto the wrappers */
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { a: 0.45, height: 240 });
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.55, fade: 170 });
+  CH.seat(cx, { sel: '.dek', a: 0.3, fade: 110 });
+  CH.seat(cx, { sel: '.kick, .count', a: 0.58, fade: 90 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

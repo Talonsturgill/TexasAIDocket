@@ -1,0 +1,194 @@
+<!doctype html>
+<!-- BESPOKE. 2026-11-27, frame 8 of 9, THIRTY DAYS. A violet enamel steel pigeonhole letter sorter, six cubbies across and
+     five down, one cubby per day of the comment window (FIG.window_days, asserted in code). Every cubby carries a blank cream
+     label slip. Only the last cubby, bottom right and nearest the lens, carries a brighter cream slip and holds
+     a folded letter. Coral key from the front left, the watch sweep, the type high on the violet wall. No text, no digit, no
+     logo in the art. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:150px; width:936px">Comments close December 20th</h1>
+<p class="dek" data-follow="26" style="left:74px; width:900px; font-size:28px">The proposal ran in the Texas Register on November 20th. The comptroller must receive comments within 30 days. The earliest possible adoption date is December 20th.</p>
+<script>window.FIG = {"window_days": 30, "comment_close_day": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Thirty days", counter: "08 / 09", src: "c45 c41 c43", fit: { min: 80, max: 104, maxLines: 2 } });
+  const dekEl = document.querySelector('.dek'), hookEl = document.getElementById('hook');
+  const TYPE_BOTTOM = dekEl.getBoundingClientRect().bottom;
+  if (TYPE_BOTTOM > 560) throw new Error('the type block runs too low: ' + TYPE_BOTTOM);
+
+  /* THE COUNT. One cubby per day of the comment window, six across and five down, read from the figure. */
+  const DAYS = window.FIG.window_days;
+  const COLS = 6, ROWS = DAYS / COLS;
+  if (!Number.isInteger(ROWS)) throw new Error('the window does not fill whole rows of ' + COLS);
+
+  /* UNITS: metres, true size of a desktop mailroom sorter. */
+  const CW = 0.118, CHH = 0.094, D = 0.30;          // cubby opening and depth
+  const t = 0.006, T = 0.016, LIP = 0.024, BASE = 0.045;
+  const IW = COLS * CW + (COLS - 1) * t, IH = ROWS * CHH + (ROWS - 1) * t;
+  const OW = IW + 2 * T, OH = IH + 2 * T;
+  const Y0 = BASE;                                  // the shell's underside, on its kick base
+
+  const R = CH.stage(TXT, gl, W, { fov: 28, fog: 0, near: 0.02, far: 60 });
+  TXT.studio(R, Object.assign(CH.studioOpts(), { w: 14, d: 9, h: 4.5, radius: 1.1, wall: 0x2c1f86, top: 0x1a1258 }));
+
+  /* MATERIALS */
+  const enamel = K.mat('enamel-violet', { color: 0x5e3fd0, metalness: 0.3, roughness: 0.38, clearcoat: 0.95, clearcoatRoughness: 0.1, envMapIntensity: 1.35 }, true);
+  const enamelIn = K.mat('enamel-violet-in', { color: 0x4a32a6, metalness: 0.2, roughness: 0.55 }, true);
+  const kick = K.mat('enamel-kick', { color: 0x2e2378, metalness: 0.2, roughness: 0.55 }, true);
+  const steel = K.mat('brushed-steel-holder-violet', { color: 0x8a82b4, metalness: 0.85, roughness: 0.46 });
+  const brass = K.mat('cast-brass-holder', { color: 0xb88a3e, metalness: 0.92, roughness: 0.4 });
+  const slipTex = CH.canvasTex(THREE, 128, 48, (g, w, h) => {
+    g.fillStyle = '#f6eedd'; g.fillRect(0, 0, w, h); const r = CH.rng(8);
+    for (let i = 0; i < 500; i++) { g.fillStyle = 'rgba(120,95,70,' + (r() * 0.08).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.5, 1.5); }
+    g.fillStyle = 'rgba(160,130,110,0.18)'; g.fillRect(0, h - 4, w, 4);
+  });
+  const slip = K.mat('paper-slip', { color: 0xd9cdb8, map: slipTex, roughness: 0.9 });
+  /* NO ACCENT ON THIS FRAME: the accent means the words of the proposal, and a date is not those words. The last day's slip is cream. */
+  const lastSlip = K.mat('paper-slip-bright', { color: 0xfff4e2, map: slipTex, roughness: 0.85 });
+
+  const sorter = new THREE.Group();
+  const box = (w, h, d, r, m, x, y, z) => { const b = TXT.roundedBox(w, h, d, r, m); b.position.set(x, y, z); b.castShadow = b.receiveShadow = true; sorter.add(b); return b; };
+  /* the shell: two sides, top, bottom, a back, all formed steel with rolled edges */
+  box(T, OH, D, 0.0065, enamel, -OW / 2 + T / 2, Y0 + OH / 2, 0);
+  box(T, OH, D, 0.0065, enamel, OW / 2 - T / 2, Y0 + OH / 2, 0);
+  box(OW, T, D, 0.0065, enamel, 0, Y0 + OH - T / 2, 0);
+  box(OW, T, D, 0.0065, enamel, 0, Y0 + T / 2, 0);
+  box(OW - 0.004, OH - 0.004, 0.008, 0.002, enamelIn, 0, Y0 + OH / 2, -D / 2 + 0.004);
+  /* the kick base, recessed */
+  box(OW - 0.03, BASE, D - 0.03, 0.006, kick, 0, BASE / 2, -0.005);
+  /* dividers and shelves, the cubbies counted as they are made */
+  const x0 = -IW / 2, yIn = Y0 + T;
+  for (let c = 1; c < COLS; c++) box(t, IH, D - 0.01, 0.0025, enamel, x0 + c * CW + (c - 0.5) * t, yIn + IH / 2, -0.005);
+  for (let r = 1; r < ROWS; r++) box(IW, t, D - 0.01, 0.0025, enamel, 0, yIn + r * CHH + (r - 0.5) * t, -0.005);
+  /* the front flanges: one under each row of cubbies, carrying that row's label holders */
+  box(IW, LIP * 0.6, 0.010, 0.0045, enamel, 0, yIn + IH + t + LIP * 0.1, D / 2 - 0.002);
+  const cubbies = [];
+  for (let r = 0; r < ROWS; r++) {        // r = 0 is the top row, read like a page
+    const yBot = yIn + (ROWS - 1 - r) * (CHH + t);     // the floor of this row's cubbies
+    box(IW + (r === ROWS - 1 ? 2 * T : 0), LIP * 0.6, 0.010, 0.0045, enamel, 0, yBot + LIP * 0.1 - (r === ROWS - 1 ? T * 0.4 : 0), D / 2 - 0.002);
+    for (let c = 0; c < COLS; c++) {
+      cubbies.push({ r, c, x: x0 + c * CW + c * t + CW / 2, y: yBot, idx: r * COLS + c + 1 });
+    }
+  }
+  if (cubbies.length !== DAYS) throw new Error('drew ' + cubbies.length + ' cubbies for ' + DAYS + ' days');
+
+  /* a label slip in a steel holder on the flange under every cubby; the last day's slip is a brighter cream; nothing on this frame takes the accent */
+  let marked = 0, slips = 0;
+  cubbies.forEach((q) => {
+    const last = q.idx === DAYS;
+    const hw = last ? 0.092 : 0.060, hh = last ? 0.020 : 0.016, zf = D / 2 + 0.004;
+    const ty = q.y + CHH + t + 0.0015;   /* the holder rides the flange at the top of its own cubby's opening */
+    const holder = TXT.roundedBox(hw, hh, 0.0035, 0.0014, steel); holder.position.set(q.x, ty, zf); holder.castShadow = true; sorter.add(holder);
+    [-1, 1].forEach((k) => { const lipb = TXT.roundedBox(hw, 0.0022, 0.0028, 0.0009, steel); lipb.position.set(q.x, ty + k * (hh / 2 - 0.0011), zf + 0.0026); sorter.add(lipb); });
+    const s = TXT.roundedBox(hw - 0.007, hh - 0.0052, 0.0014, 0.0005, last ? lastSlip : slip); s.position.set(q.x, ty, zf + 0.0021);
+    s.userData.txBevel = false; sorter.add(s);
+    if (last) marked++; else slips++;
+  });
+  if (marked !== 1 || marked + slips !== DAYS) throw new Error('slips ' + slips + ' last ' + marked);
+
+  /* the folded letter in the last cubby, its long side along the cubby, standing a little proud of the front */
+  const lastQ = cubbies[DAYS - 1];
+  const letterTex = CH.pageTex(THREE, 37, -1, { rows: 26 });
+  const letterMat = K.mat('paper-letter', { color: 0xffffff, map: letterTex, roughness: 0.9 });
+  const edge = K.mat('paper-letter-edge', { color: 0xf1e6d2, roughness: 0.92 });
+  const LW = 0.108, LL = 0.216, LT = 0.0018;   /* a letter leaf folded once, the hero */
+  const letter = new THREE.Group();
+  const geo = new THREE.BoxGeometry(LW, LT, LL, 1, 1, 24);
+  const pa = geo.attributes.position;
+  for (let i = 0; i < pa.count; i++) { const z = pa.getZ(i); const u = Math.max(0, (z - LL * 0.1) / (LL * 0.4)); pa.setY(i, pa.getY(i) + 0.006 * u * u); }
+  geo.computeVertexNormals();
+  const lm = new THREE.Mesh(geo, [edge, edge, letterMat, letterMat, edge, edge]); lm.castShadow = lm.receiveShadow = true; letter.add(lm);
+  /* a second fold leaf, slightly open */
+  const leaf = new THREE.Mesh(new THREE.BoxGeometry(LW * 0.98, LT, LL * 0.32), [edge, edge, letterMat, letterMat, edge, edge]);
+  leaf.position.set(0, LT * 1.6 + 0.004, -LL * 0.2); leaf.rotation.x = 0.06; leaf.castShadow = true; letter.add(leaf);
+  const OUT = 0.13;
+  letter.position.set(lastQ.x + 0.010, lastQ.y + 0.006, D / 2 + OUT - LL / 2);
+  letter.rotation.set(0, 0.12, 0);
+  sorter.add(letter);
+
+  /* THE DAYS BEFORE IT: every earlier cubby holds ONE blank cream day card standing upright, a calendar leaf with no digit
+     and no text, so the grid reads as days and implies nothing about comments received */
+  const cardTex = CH.canvasTex(THREE, 128, 112, (g, w, h) => {
+    g.fillStyle = '#f3e8d4'; g.fillRect(0, 0, w, h); const r = CH.rng(77);
+    for (let i = 0; i < 900; i++) { g.fillStyle = 'rgba(120,95,70,' + (r() * 0.07).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.4, 1.4); }
+    g.fillStyle = 'rgba(94,63,208,0.55)'; g.fillRect(0, 0, w, 14);   /* the leaf's violet head band, blank */
+    g.fillStyle = 'rgba(60,40,120,0.5)'; [0.3, 0.7].forEach((u) => { g.beginPath(); g.arc(w * u, 7, 3, 0, 7); g.fill(); });
+  });
+  const cardMat = K.mat('paper-day-card', { color: 0xcdbfd6, map: cardTex, roughness: 0.92 });
+  const cardEdge = K.mat('paper-day-card-edge', { color: 0xe9dcc4, roughness: 0.92 });
+  const lr = CH.rng(20261127);
+  let filled = 0;
+  cubbies.forEach((q) => {
+    if (q.idx === DAYS) return;
+    const cw = 0.082, chh = 0.068;
+    const thick = 0.0008 + lr() * 0.0014, tilt = -(0.10 + lr() * 0.16);
+    const card = new THREE.Mesh(new THREE.BoxGeometry(cw * (0.96 + lr() * 0.05), chh * (0.95 + lr() * 0.06), thick), [cardEdge, cardEdge, cardEdge, cardEdge, cardMat, cardEdge]);
+    card.position.set(q.x + (lr() - 0.5) * 0.012, q.y + chh / 2 * Math.cos(tilt) + 0.001, D / 2 - 0.05 - lr() * 0.025);
+    card.rotation.set(tilt, (lr() - 0.5) * 0.16, (lr() - 0.5) * 0.06); card.castShadow = card.receiveShadow = true; card.userData.txBevel = false; sorter.add(card);
+    filled++;
+  });
+  if (filled !== DAYS - 1) throw new Error('drew ' + filled + ' day cards before the last of ' + DAYS);
+
+  sorter.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  TXT.add(R, sorter);
+  TXT.contact(R, sorter);
+
+  /* CAMERA: front right, a little above the top, so the grid reads as six by five and the last cubby is nearest */
+  /* CAMERA: low three quarters from the right, back far enough that all six by five cubbies stand in view and countable */
+  const from = [lastQ.x + 0.70, lastQ.y + CHH * 0.5 + 0.30, D / 2 + 2.20];
+  CH.aim(THREE, R, TXT, from, [lastQ.x, lastQ.y + CHH * 0.5, D / 2], 820, 1080, 28);
+  CH.KEY_SCALE = 0.78;
+  TXT.deckRig(R, CH.rigSpec(W, 2.4, 4096), Object.assign(CH.rigOpts([0, 0.3, 0], { distance: 6, shadowFar: 14, normalBias: 0.003 }), { light: { az: -38, el: 36 } }));
+  CH.unacne(R, 0.003);
+  TXT.weather(R, { grime: 0.18, height: 0.08, mottle: 0.35 });
+  /* the last cubby lit hardest: a warm narrow spot from the front right */
+  { const sp = new THREE.SpotLight(0xffb27a, 55, 3, 0.085, 0.4, 2); sp.position.set(lastQ.x + 0.30, lastQ.y + 0.40, D / 2 + 0.95);
+    sp.target.position.set(lastQ.x, lastQ.y + 0.045, D / 2 - 0.04); R.scene.add(sp); R.scene.add(sp.target); }
+
+  /* the sorter must own the frame and stay under the type */
+  const rect = CH.rectOf(THREE, R, sorter, 0);
+  { const q = CH.project(THREE, R, [lastQ.x, lastQ.y, D / 2]); window.__last = q; if (q[1] > 1150 || q[0] > 1000) throw new Error("the last cubby falls under the footer: " + q.map(Math.round)); }
+  if (rect[2] * rect[3] < 0.30 * 1080 * 1350) throw new Error('the sorter is too small: ' + (rect[2] * rect[3] / (1080 * 1350)).toFixed(2));
+  { const a = CH.project(THREE, R, [lastQ.x - CW / 2, lastQ.y, D / 2]), b = CH.project(THREE, R, [lastQ.x + CW / 2, lastQ.y, D / 2]);
+    if (b[0] - a[0] < 120) throw new Error('cubby 30 is too small to carry: ' + Math.round(b[0] - a[0])); }
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  { const c30 = CH.project(THREE, R, [lastQ.x, lastQ.y + CHH * 0.5, D / 2]);
+    const art = document.getElementById('art'), w = art.width, h = art.height;
+    const soft = document.createElement('canvas'); soft.width = w; soft.height = h; const sg = soft.getContext('2d');
+    sg.filter = 'blur(9px)'; sg.drawImage(art, 0, 0); sg.filter = 'none';
+    const mk = document.createElement('canvas'); mk.width = w; mk.height = h; const mg = mk.getContext('2d');
+    const gr = mg.createRadialGradient(c30[0] * 2, c30[1] * 2, 380, c30[0] * 2, c30[1] * 2, 1500);
+    gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,1)'); mg.fillStyle = gr; mg.fillRect(0, 0, w, h);
+    mg.globalCompositeOperation = 'source-in'; mg.drawImage(soft, 0, 0);
+    /* behind the type, the far shelf edges go softer still, so no edge runs through a line of the dek */
+    const tb = [hookEl, dekEl].map((e) => e.getBoundingClientRect());
+    const bx = Math.min(tb[0].left, tb[1].left) - 24, by = Math.min(tb[0].top, tb[1].top) - 24;
+    const bw = Math.max(tb[0].right, tb[1].right) + 24 - bx, bh = Math.max(tb[0].bottom, tb[1].bottom) + 12 - by;
+    const s2 = document.createElement('canvas'); s2.width = w; s2.height = h; const g2 = s2.getContext('2d');
+    g2.filter = 'blur(26px)'; g2.drawImage(art, 0, 0); g2.filter = 'none';
+    const m2 = document.createElement('canvas'); m2.width = w; m2.height = h; const q2 = m2.getContext('2d');
+    q2.filter = 'blur(20px)'; q2.fillStyle = '#000'; q2.fillRect(bx * 2, by * 2, bw * 2, bh * 2); q2.filter = 'none';
+    q2.globalCompositeOperation = 'source-in'; q2.drawImage(s2, 0, 0);
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(m2, 0, 0); cx.restore(); }
+  CH.seat(cx, { a: 0.85, fade: 300 });
+  ['.kick', '.count'].forEach((sel) => CH.seat(cx, { sel, a: 0.55, fade: 160 }));
+  CH.seat(cx, { sel: '.src', a: 0.6, fade: 120 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.62, height: 240 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script></body></html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<!-- 2026-11-27, frame 9 of 9, WRITE IN. A walnut home desk at dusk under a rose window. On the desk stands the fiscal 2032
+     stack, eight kraft reams with rose bands and a loose block, one sheet per $1,000,000 of the comptroller's estimate,
+     its height and ream count read from window.FIG. On top of it lies an open #10 envelope with the reader's letter half
+     out, one dusk gold line on the letter quoting the proposal. A fountain pen lies uncapped beside it; a laptop glows
+     soft behind; a brass lamp warms the left. The window's last light rakes from behind the stack and throws its shadow
+     forward over the desk, where the type sits. Drawn to illustrate: no real room, no likeness, no legible text. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:72px; top:560px; width:540px; text-align:left">It is still only a proposal</h1>
+<p class="dek" id="dek" data-follow="26" style="left:74px; width:470px; font-size:27px; line-height:1.36">Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The address is Robin.Robinson@cpa.texas.gov. Comments must arrive by December 20th.</p>
+
+<script>window.FIG = {"state_fy2032_sheets": 4286, "state_fy2032_reams": 8, "state_fy2032_loose": 286};</script>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script><script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Write in", counter: "09 / 09", src: "c40 c41 c43", fit: { min: 84, max: 112, maxLines: 3 } });
+
+  /* THE TYPE: low left, over the desk in the stack's own forward shadow */
+  const hook = document.getElementById('hook'), dek = document.getElementById('dek');
+  const hb = hook.getBoundingClientRect(), db = dek.getBoundingClientRect();
+  if (hb.left < 64 || hb.right > 1016) throw new Error('the headline leaves the safe field');
+  if (db.bottom > 1195) throw new Error('the dek runs into the footer at ' + Math.round(db.bottom));
+
+  /* THE FIGURES, read once */
+  const SHEETS = window.FIG.state_fy2032_sheets, REAMS = window.FIG.state_fy2032_reams, LOOSE = window.FIG.state_fy2032_loose;
+  if (!(Number.isInteger(SHEETS) && SHEETS > 0)) throw new Error('FIG.state_fy2032_sheets unreadable');
+  if (REAMS * CH.REAM + LOOSE !== SHEETS) throw new Error('FIG reams ' + REAMS + ' and loose ' + LOOSE + ' do not make ' + SHEETS + ' sheets');
+
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 40, fog: 0 });
+  const rnd = CH.rng(20261127 + 9);
+  const tex = (w, h, paint, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  const rb = (w, h, d, r, m) => { const b = TXT.roundedBox(w, h, d, r, m); b.castShadow = true; b.receiveShadow = true; return b; };
+
+  /* THE ROOM, metres: x right, z toward the camera, back wall at z = BACK */
+  const RW = 4.2, RD = 4, RH = 2.7, BACK = -RD / 2;
+  const WALL = 0x5a48b8;
+  const room = TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: WALL, trim: 0x2a1d5e, window: null, ceiling: true, light: 0.6 });
+  TXT.studio(R, CH.studioOpts({ w: 6, d: 6 }));
+  R.scene.remove(R.studio.sweep); R.room = room;
+  R.scene.background = new THREE.Color(0x3a2f86);
+  const wallMat = new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.9, name: 'wall-paint' }); wallMat.userData.txSurface = 'paint';
+  room.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === new THREE.Color(WALL).getHex()) m.material = wallMat; });
+
+  /* THE WINDOW stands off frame to the right: what the frame sees is its light, a rose patch with the mullion cross thrown
+     on the violet wall and over the stack. A casting gobo, the window wall itself, drawn only into the key's shadow map */
+  const KEY = { az: 35, el: 24 };
+  const gobo = (() => { const g = new THREE.Group(), gm = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false, name: 'window-gobo' });
+    gm.userData.txSurface = false;
+    const OW = 0.62, OH = 1.3, M = 0.05, BIG = 4;
+    const piece = (w, h, x, y) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.04), gm); b.position.set(x, y, 0); b.castShadow = true; b.receiveShadow = false; b.userData.txBevel = false; g.add(b); };
+    piece(BIG, BIG, -(OW / 2 + BIG / 2), 0); piece(BIG, BIG, OW / 2 + BIG / 2, 0);
+    piece(OW, BIG, 0, OH / 2 + BIG / 2); piece(OW, BIG, 0, -(OH / 2 + BIG / 2));
+    piece(M * 0.7, OH, 0, 0); piece(OW, M * 0.7, 0, 0.08);
+    return g; })();
+  { const a = KEY.az * Math.PI / 180, e = KEY.el * Math.PI / 180, dir = new THREE.Vector3(Math.sin(a) * Math.cos(e), Math.sin(e), Math.cos(a) * Math.cos(e));
+    const aimAt = new THREE.Vector3(0.02, 1.12, BACK + 0.11);
+    gobo.position.copy(aimAt).addScaledVector(dir, 1.6); gobo.lookAt(aimAt); R.scene.add(gobo); }
+  /* a painted picture rail along the wall, so the wall is a wall */
+  { const trimM = new THREE.MeshPhysicalMaterial({ color: 0x3a2a86, roughness: 0.5, clearcoat: 0.35, name: 'trim-paint' });
+    const rail = rb(RW - 0.3, 0.045, 0.025, 0.008, trimM); rail.position.set(0, 2.05, BACK + 0.115); R.scene.add(rail); }
+
+  /* THE DESK: walnut, pushed to the wall under the window */
+  const DESK_Z = BACK + 0.45, DH = 0.76;
+  const desk = K.make('desk', { w: 1.6, d: 0.74, h: DH, pedestal: 'right', wood: 0x7a4a2c });
+  desk.position.set(0.15, 0, DESK_Z); TXT.add(R, desk); TXT.contact(R, desk, { opacity: 0.5 });
+  /* a deeper oiled walnut top with real grain, swapped onto the kit's veneer */
+  const grain = tex(1024, 512, (g, w, h) => { g.fillStyle = '#8a5232'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 220; k++) { const y = rnd() * h, a = 0.05 + rnd() * 0.14; g.strokeStyle = (rnd() < 0.5 ? 'rgba(60,28,14,' : 'rgba(176,110,64,') + a.toFixed(3) + ')'; g.lineWidth = 0.6 + rnd() * 2.4; g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + Math.sin(x * 0.006 + k) * 9 + Math.sin(x * 0.03 + k * 2) * 2); g.stroke(); }
+    for (let k = 0; k < 8; k++) { const x = rnd() * w, y = rnd() * h; const gr = g.createRadialGradient(x, y, 2, x, y, 40); gr.addColorStop(0, 'rgba(50,24,12,0.35)'); gr.addColorStop(1, 'rgba(50,24,12,0)'); g.fillStyle = gr; g.fillRect(x - 40, y - 40, 80, 80); } }, [1, 1]);
+  const walnut = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: grain, roughness: 0.42, clearcoat: 0.5, clearcoatRoughness: 0.35, name: 'walnut-oiled' });
+
+  /* THE STACK: exactly SHEETS sheets, whole reams and a loose block, 0.1 mm a sheet */
+  const SX = 0.32, SZ = DESK_Z + 0.02;
+  const stack = K.make('ream_stack', { sheets: SHEETS, seed: 9, jitter: 0.0008, tornTop: false });
+  stack.position.set(SX, DH, SZ); stack.rotation.y = -0.12; TXT.add(R, stack);
+  if (stack.userData.sheets !== SHEETS) throw new Error('stack sheets ' + stack.userData.sheets + ' disagree with FIG ' + SHEETS);
+  if (stack.userData.reams !== REAMS) throw new Error('stack reams ' + stack.userData.reams + ' disagree with FIG ' + REAMS);
+  if (stack.userData.loose !== LOOSE) throw new Error('loose block ' + stack.userData.loose + ' disagrees with FIG ' + LOOSE);
+  if (Math.abs(stack.userData.top - SHEETS * CH.SHEET_M) > 1e-9) throw new Error('stack height disagrees with FIG');
+  /* the wrapper keeps the chassis's kraft and its one narrow rose band per ream; only the band count is checked here */
+  let nRe = 0;
+  stack.traverse((m) => { if (m.isMesh && m.material && /os-band/.test(m.material.name || '')) nRe++; });
+  if (nRe !== REAMS) throw new Error('drew ' + nRe + ' ream bands for FIG reams ' + REAMS);
+  /* the loose block's top sheet is blank cream, so nothing under the letter reads as a second page */
+  { const blank = new THREE.MeshStandardMaterial({ color: 0xb9b0a4, roughness: 0.9, name: 'paper-sheet' });
+    /* the loose block's sheet edges a stop down, so the front lip doesn't burn pink under the key */
+    const lipM = new THREE.MeshStandardMaterial({ color: 0xa8a098, roughness: 0.92, name: 'paper-edge-lip' }); lipM.userData.txSurface = false;
+    stack.traverse((m) => { if (m.isMesh && Array.isArray(m.material)) m.material = m.material.map((x) => /os-paper/.test(x.name || '') ? blank : (/os-edge/.test(x.name || '') ? (lipM.map = x.map, lipM) : x)); }); }
+  /* the chassis draws a cream sheet edge seam under every wrapped ream: count them, one per ream */
+  { let seams = 0; stack.traverse((m) => { if (m.isMesh && !Array.isArray(m.material) && /os-edge/.test(m.material.name || '')) seams++; });
+    if (seams !== REAMS) throw new Error('cream ream seams ' + seams + ' disagree with FIG reams ' + REAMS); }
+  /* a settled stack: the chassis jitter held under 3 mm at any corner, and the wrapper edges rounded to a 5 mm roll */
+  { const H = 500 * CH.SHEET_M;
+    stack.children.forEach((rm) => { rm.rotation.y *= 0.3;
+      rm.traverse((m) => { if (!m.isMesh || Array.isArray(m.material)) return; const n = m.material.name || '';
+        if (/os-kraft-top/.test(n)) { m.geometry.computeBoundingBox(); const bb = m.geometry.boundingBox, hh = bb.max.y - bb.min.y;
+          if (hh > 0.02) { m.geometry = TXT.roundedBox(0.216, hh, 0.279, 0.005, null, { segments: 5 }); }
+          else { m.scale.set(0.94, 1, 0.9); } }
+        if (/os-band/.test(n)) { m.geometry.computeBoundingBox(); const hb = m.geometry.boundingBox.max.y - m.geometry.boundingBox.min.y; m.geometry = TXT.roundedBox(0.2176, hb, 0.2806, Math.min(0.0045, hb / 2 - 1e-4), null, { segments: 4 }); } }); });
+    let worst = 0; stack.children.forEach((rm) => { const c = Math.abs(Math.sin(rm.rotation.y)) * 0.177; worst = Math.max(worst, Math.hypot(rm.position.x, rm.position.z) + c); });
+    if (worst > 0.003) throw new Error('stack jitter ' + (worst * 1000).toFixed(1) + ' mm over 3 mm'); }
+  /* the wrappers keep a flat paper look (no engine surface pass), and the stack sits straight on the walnut with a tight
+     soft contact at its foot: no dirt band, no grit plate */
+  stack.traverse((m) => { if (!m.isMesh) return; (Array.isArray(m.material) ? m.material : [m.material]).forEach((x) => { if (/os-kraft|os-band|os-edge/.test(x.name || '')) x.userData.txSurface = false; }); });
+  /* the bottom ream sits straight on the walnut: its square cornered base seam and lower end flaps are hidden so nothing
+     pokes out under the rounded foot. The seam count stays honest: REAMS drawn, the bottom one hidden at the desk */
+  { let hidden = 0, hidSeam = 0;
+    stack.children[0].traverse((m) => { if (!m.isMesh || Array.isArray(m.material)) return; m.updateMatrix();
+      if (m.position.y < 0.003 && /os-edge|os-kraft-top/.test(m.material.name || '') && m.geometry.boundingBox && (m.geometry.boundingBox.max.y - m.geometry.boundingBox.min.y) < 0.02) { m.visible = false; hidden++; if (/os-edge/.test(m.material.name)) hidSeam++; } });
+    let shown = 0; stack.traverse((m) => { if (m.isMesh && m.visible && !Array.isArray(m.material) && /os-edge/.test(m.material.name || '')) shown++; });
+    if (hidSeam !== 1 || shown !== REAMS - 1) throw new Error('seams shown ' + shown + ' hidden ' + hidSeam + ' disagree with FIG reams ' + REAMS);
+    if (hidden < 2) throw new Error('bottom ream foot pieces not found'); }
+  TXT.contact(R, stack, { opacity: 0.8, dirt: 0, grit: false, layers: [{ spread: 0.03, opacity: 0.7 }, { spread: 0.18, opacity: 0.3 }] });
+  /* the wrapper's folded ends: a trapezoid fold seam decal on the visible end of every wrapped ream (flat, no surface pass) */
+  { const foldT = tex(432, 100, (c, w, h) => { c.clearRect(0, 0, w, h);
+      c.fillStyle = 'rgba(70,40,20,0.16)'; c.beginPath(); c.moveTo(0, 0); c.lineTo(w * 0.17, h * 0.33); c.lineTo(w * 0.83, h * 0.33); c.lineTo(w, 0); c.fill();
+      c.beginPath(); c.moveTo(0, h); c.lineTo(w * 0.17, h * 0.67); c.lineTo(w * 0.83, h * 0.67); c.lineTo(w, h); c.fill();
+      c.strokeStyle = 'rgba(60,32,16,0.6)'; c.lineWidth = 2.5;
+      [[0, 0, 0.17, 0.33], [0.17, 0.33, 0.83, 0.33], [0.83, 0.33, 1, 0], [0, 1, 0.17, 0.67], [0.17, 0.67, 0.83, 0.67], [0.83, 0.67, 1, 1]].forEach(([a, b2, c2, d]) => { c.beginPath(); c.moveTo(a * w, b2 * h); c.lineTo(c2 * w, d * h); c.stroke(); });
+      c.strokeStyle = 'rgba(255,230,200,0.35)'; c.lineWidth = 1.5; c.beginPath(); c.moveTo(w * 0.17, h * 0.33 + 3); c.lineTo(w * 0.83, h * 0.33 + 3); c.moveTo(w * 0.17, h * 0.67 + 3); c.lineTo(w * 0.83, h * 0.67 + 3); c.stroke(); });
+    const foldM = new THREE.MeshBasicMaterial({ map: foldT, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3, toneMapped: true, name: 'kraft-fold-seams' });
+    foldM.userData.txSurface = false; foldM.color.setScalar(1);
+    const foldMS = new THREE.MeshStandardMaterial({ map: foldT, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3, roughness: 1, name: 'kraft-fold-seams' });
+    foldMS.userData.txSurface = false;
+    let nFold = 0;
+    stack.children.slice(0, REAMS).forEach((rm) => { const hh = 500 * CH.SHEET_M - 0.0022;
+      const d = new THREE.Mesh(new THREE.PlaneGeometry(0.206, hh - 0.006), foldMS); d.position.set(0, 0.0011 + hh / 2, 0.279 / 2 + 0.0009); d.userData.txBevel = false; d.renderOrder = 2; rm.add(d); nFold++; });
+    if (nFold !== REAMS) throw new Error('fold seams ' + nFold + ' disagree with FIG reams ' + REAMS); }
+  const TOPY = DH + stack.userData.top;
+
+  /* THE ENVELOPE AND THE LETTER, built here at true size. A #10 envelope (0.241 x 0.105 m) in cream with a lilac tint lies
+     back up on the loose block: side and bottom flap seams, its open flap folded back over a rounded crease and springing
+     up, its far corner bent. The letter is pulled half out of the opening toward the reader, its outer third unfolded,
+     carrying ONE dusk gold line (the accent, the reader's line quoting the proposal) and a blank signature rule. */
+  const EW = 0.241, ED = 0.105, LW = 0.216, LP = 0.093, Z0 = -ED / 2;
+  const env = new THREE.Group();
+  const grainDots = (c, w, h, n, col) => { for (let i = 0; i < n; i++) { c.fillStyle = col.replace('A', (rnd() * 0.06).toFixed(3)); c.fillRect(rnd() * w, rnd() * h, 1.4, 1.4); } };
+  /* the back of the envelope: canvas top is the opening edge */
+  const backT = tex(964, 420, (c, w, h) => { c.fillStyle = '#f3eaf3'; c.fillRect(0, 0, w, h); grainDots(c, w, h, 5000, 'rgba(110,90,120,A)');
+    c.fillStyle = 'rgba(150,120,170,0.10)'; c.beginPath(); c.moveTo(0, h); c.quadraticCurveTo(w * 0.5, h * 0.25, w, h); c.closePath(); c.fill();
+    c.strokeStyle = 'rgba(120,96,150,0.45)'; c.lineWidth = 3;
+    c.beginPath(); c.moveTo(0, 0); c.lineTo(w * 0.44, h * 0.58); c.stroke(); c.beginPath(); c.moveTo(w, 0); c.lineTo(w * 0.56, h * 0.58); c.stroke();
+    c.beginPath(); c.moveTo(0, h); c.quadraticCurveTo(w * 0.5, h * 0.25, w, h); c.stroke();
+    c.fillStyle = 'rgba(90,70,120,0.18)'; c.fillRect(0, 0, w, 6); });
+  const fibreT = tex(512, 256, (c, w, h) => { c.fillStyle = '#808080'; c.fillRect(0, 0, w, h);
+    for (let i = 0; i < 14000; i++) { const v = 100 + Math.floor(rnd() * 70); c.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; c.fillRect(rnd() * w, rnd() * h, 1 + rnd() * 5, 1); } });
+  const envM = new THREE.MeshPhysicalMaterial({ color: 0xc4bcca, map: backT, bumpMap: fibreT, bumpScale: 0.6, roughness: 0.84, sheen: 0.25, sheenColor: new THREE.Color(0xf0e0ff), side: THREE.DoubleSide, name: 'envelope-paper' });
+  { const g = new THREE.PlaneGeometry(EW, ED, 30, 14); g.rotateX(-Math.PI / 2); const p = g.attributes.position;
+    for (let i = 0; i < p.count; i++) { const x = p.getX(i), z = p.getZ(i), u = (x + EW / 2) / EW, v = (z + ED / 2) / ED;
+      const bend = Math.max(0, (1 - u) + v - 1.5) / 0.5;                     /* the envelope's own corner, bent up off the block */
+      p.setY(i, 0.0026 + 0.026 * bend * bend + Math.sin(u * 7 + v * 3) * 0.0002); }
+    g.computeVertexNormals(); const body = new THREE.Mesh(g, envM); body.castShadow = true; body.receiveShadow = true; body.userData.txBevel = false; env.add(body);
+    /* the paper's edge thickness, a thin rim so the envelope is a body and not a sheet */
+    const rimM = new THREE.MeshStandardMaterial({ color: 0xd9cbe0, roughness: 0.9, name: 'envelope-paper-edge' });
+    const rim = new THREE.Mesh(new THREE.BoxGeometry(EW * 0.97, 0.0005, ED * 0.96), rimM); rim.position.y = 0.00025; rim.userData.txBevel = false; env.add(rim); }
+  /* the flap, folded back over the crease onto the back and springing up off it */
+  { const sh = new THREE.Shape(), fh = 0.046, r = 0.008;
+    sh.moveTo(-EW / 2, 0); sh.lineTo(EW / 2, 0); sh.lineTo(r * 1.4, fh - r * 0.6); sh.quadraticCurveTo(0, fh + r * 0.2, -r * 1.4, fh - r * 0.6); sh.lineTo(-EW / 2, 0);
+    const fg = new THREE.ShapeGeometry(sh, 12); fg.rotateX(Math.PI / 2);
+    const flapT = tex(512, 128, (c, w, h) => { c.fillStyle = '#ede0ee'; c.fillRect(0, 0, w, h); grainDots(c, w, h, 1500, 'rgba(110,90,120,A)');
+      c.strokeStyle = 'rgba(200,170,120,0.55)'; c.lineWidth = 10; c.beginPath(); c.moveTo(8, 6); c.lineTo(w / 2, h - 8); c.lineTo(w - 8, 6); c.stroke(); });
+    const flapM = new THREE.MeshPhysicalMaterial({ color: 0xbcb4c2, map: flapT, bumpMap: fibreT, bumpScale: 0.6, roughness: 0.82, side: THREE.DoubleSide, name: 'envelope-paper-flap' });
+    const pos = fg.attributes.position, uv = fg.attributes.uv; for (let i = 0; i < pos.count; i++) uv.setXY(i, (pos.getX(i) + EW / 2) / EW, 1 - pos.getZ(i) / fh);
+    const flap = new THREE.Mesh(fg, flapM); flap.castShadow = true; flap.receiveShadow = true; flap.userData.txBevel = false;
+    const hinge = new THREE.Group(); hinge.position.set(0, 0.0029, Z0); hinge.rotation.x = -0.3; hinge.add(flap); env.add(hinge);
+    const creaseM = new THREE.MeshPhysicalMaterial({ color: 0xa89cb2, roughness: 0.6, sheen: 0.4, name: 'envelope-paper-crease' });
+    const crease = new THREE.Mesh(new THREE.CylinderGeometry(0.0015, 0.0015, EW, 16), creaseM); crease.rotation.z = Math.PI / 2; crease.rotation.y = Math.PI / 2; crease.position.set(0, 0.0028, Z0);
+    crease.rotation.set(0, 0, Math.PI / 2); crease.castShadow = true; crease.userData.txBevel = false; env.add(crease); }
+  /* the letter: two panels show, the third still inside. Canvas top is the panel's outer end */
+  let nGold = 0;
+  const letterTex = (gold) => tex(864, 372, (c, w, h) => { c.fillStyle = '#fffaf0'; c.fillRect(0, 0, w, h); grainDots(c, w, h, 2500, 'rgba(120,96,70,A)');
+    /* the fold's soft shading along the crease edge */
+    const gr = c.createLinearGradient(0, h - 26, 0, h); gr.addColorStop(0, 'rgba(120,100,140,0)'); gr.addColorStop(1, 'rgba(120,100,140,0.22)'); c.fillStyle = gr; c.fillRect(0, h - 26, w, 26);
+    const rows = gold ? [330, 286, 242, 198, 154] : [340, 296, 252, 208, 164, 120, 76, 32];
+    rows.forEach((y, k) => { const isG = gold && k === 2, end = w - 70 - (k === rows.length - 1 && gold ? 300 : rnd() * 110); let x = 70;
+      if (isG) { c.fillStyle = 'rgba(224,149,106,1)'; c.fillRect(54, y - 17, w - 108, 46); nGold++; }
+      while (x < end) { const ww = 16 + rnd() * 54; c.fillStyle = isG ? 'rgba(84,38,22,0.92)' : 'rgba(74,63,107,0.62)'; c.fillRect(x, y, Math.min(ww, end - x), 12); x += ww + 12; } });
+    if (gold) { c.fillStyle = 'rgba(74,63,107,0.7)'; c.fillRect(70, 74, 300, 4); } });
+  const letterM = (t, n) => new THREE.MeshPhysicalMaterial({ color: 0xc8c2c6, map: t, roughness: 0.86, side: THREE.DoubleSide, name: n });
+  const SIG_Z = Z0 - 0.05 - LP + LP * (76 / 372);                       /* the blank signature rule, in envelope space */
+  { const gA = new THREE.PlaneGeometry(LW, LP, 8, 4); gA.rotateX(-Math.PI / 2);
+    const A = new THREE.Mesh(gA, letterM(letterTex(false), 'letter-paper')); A.position.set(0, 0.0013, Z0 - 0.05 + LP / 2); A.rotation.y = Math.PI; A.castShadow = true; A.receiveShadow = true; A.userData.txBevel = false; env.add(A);
+    /* panel B, opened on the fold: a slight arch at the crease, the outer corner curling */
+    const gB = new THREE.PlaneGeometry(LW, LP, 20, 12); gB.rotateX(-Math.PI / 2); const p = gB.attributes.position;
+    for (let i = 0; i < p.count; i++) { const x = p.getX(i), z = p.getZ(i), u = (x + LW / 2) / LW, t = (LP / 2 - z) / LP;   /* t 0 at crease, 1 at outer end */
+      const arch = 0.0035 * Math.exp(-t * 9), curl = 0.012 * Math.pow(Math.max(0, (1 - u) + t - 1.55) / 0.45, 2);
+      p.setY(i, 0.0006 + arch + curl); }
+    gB.computeVertexNormals();
+    const B = new THREE.Mesh(gB, letterM(letterTex(true), 'letter-paper-open')); B.position.set(0, 0, Z0 - 0.05 - LP / 2); B.castShadow = true; B.receiveShadow = true; B.userData.txBevel = false; env.add(B); }
+  /* the soft violet contact where the letter leaves the envelope's throat */
+  { const sT = tex(256, 64, (c, w, h) => { const gr = c.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(1, 'rgba(255,255,255,0.9)'); c.fillStyle = gr; c.fillRect(0, 0, w, h); });
+    const sM = new THREE.MeshBasicMaterial({ map: sT, color: 0x3a2276, transparent: true, opacity: 0.42, depthWrite: false, name: 'throat-shade' }); sM.userData.txSurface = false;
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(LW * 0.98, 0.012), sM); sh.rotation.x = -Math.PI / 2; sh.position.set(0, 0.0015, Z0 - 0.006); sh.renderOrder = 2; sh.userData.txBevel = false; env.add(sh); }
+  if (nGold !== 1) throw new Error('exactly one dusk gold line, drew ' + nGold);
+
+  /* THE PEN, uncapped, across the blank signature rule: violet lacquer, the cap posted on its end, a brass nib */
+  { const lac = new THREE.MeshPhysicalMaterial({ color: 0x3b2a8a, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.08, name: 'pen-lacquer' });
+    const brass = new THREE.MeshStandardMaterial({ color: 0xe8b878, metalness: 1, roughness: 0.25, name: 'pen-brass' });
+    const pen = new THREE.Group();
+    const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.0058, 0.0052, 0.09, 24), lac); barrel.rotation.z = Math.PI / 2; pen.add(barrel);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.0066, 0.0066, 0.052, 24), lac); cap.rotation.z = Math.PI / 2; cap.position.x = -0.06; pen.add(cap);
+    const capEnd = new THREE.Mesh(new THREE.SphereGeometry(0.0066, 16, 10), lac); capEnd.position.x = -0.086; pen.add(capEnd);
+    const clip = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.0014, 0.0028), brass); clip.position.set(-0.062, 0.0072, 0); pen.add(clip);
+    const capRing = new THREE.Mesh(new THREE.TorusGeometry(0.0066, 0.0007, 8, 24), brass); capRing.rotation.y = Math.PI / 2; capRing.position.x = -0.034; pen.add(capRing);
+    const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.0049, 0.004, 0.02, 24), lac); grip.rotation.z = Math.PI / 2; grip.position.x = 0.055; pen.add(grip);
+    const nib = new THREE.Mesh(new THREE.ConeGeometry(0.004, 0.02, 20), brass); nib.rotation.z = -Math.PI / 2; nib.position.x = 0.075; nib.scale.z = 0.4; pen.add(nib);
+    pen.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    pen.position.set(0.01, 0.0072, SIG_Z); pen.rotation.y = -0.22; env.add(pen); }
+
+  /* the envelope rides the loose block, its opening and the letter toward the reader */
+  env.position.set(0.004, stack.userData.top, -0.07); env.rotation.y = Math.PI + 0.1; stack.add(env);
+
+  /* A BRASS DESK LAMP at the far left: weighted round base, a jointed arm, a domed shade, a warm bulb */
+  { const brass = new THREE.MeshStandardMaterial({ color: 0xd9a066, metalness: 1, roughness: 0.3, name: 'lamp-brass' });
+    const shadeM = new THREE.MeshPhysicalMaterial({ color: 0x2f2470, roughness: 0.35, clearcoat: 0.6, side: THREE.DoubleSide, name: 'lamp-enamel' });
+    const L = new THREE.Group(); L.position.set(-0.6, DH, DESK_Z - 0.12);
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.085, 0.022, 40), brass); base.position.y = 0.011; L.add(base);
+    const a1 = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.34, 16), brass); a1.position.set(0.04, 0.18, 0); a1.rotation.z = -0.25; L.add(a1);
+    const j = new THREE.Mesh(new THREE.SphereGeometry(0.014, 16, 12), brass); j.position.set(0.083, 0.345, 0); L.add(j);
+    const a2 = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.26, 16), brass); a2.position.set(0.19, 0.39, 0.02); a2.rotation.z = -1.2; L.add(a2);
+    const pts = []; for (let i = 0; i <= 12; i++) { const t = i / 12; pts.push(new THREE.Vector2(0.012 + 0.07 * Math.sin(t * Math.PI / 2), -0.11 * t)); }
+    const shade = new THREE.Mesh(new THREE.LatheGeometry(pts, 40), shadeM); shade.position.set(0.3, 0.44, 0.04); shade.rotation.z = 0.5; L.add(shade);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.024, 16, 12), new THREE.MeshBasicMaterial({ color: 0xfff0c8, name: 'lamp-bulb' })); bulb.material.userData.txSurface = false; bulb.position.set(0.33, 0.39, 0.04); L.add(bulb);
+    L.traverse((m) => { if (m.isMesh && m !== bulb) { m.castShadow = true; m.receiveShadow = true; } });
+    L.rotation.y = -0.5; R.scene.add(L);
+    const pl = new THREE.PointLight(0xffb070, 1.6, 2.2, 2); L.updateMatrixWorld(true); const bp = new THREE.Vector3(); bulb.getWorldPosition(bp); pl.position.copy(bp).add(new THREE.Vector3(0, -0.03, 0)); R.scene.add(pl);
+  }
+
+  /* THE CAMERA: seated eye, a little above the stack's top, from the front left; the stack stands right of centre */
+  const FOV = 34;
+  const FROM = [-0.3, 2.1, DESK_Z + 0.98];
+  const target = [SX, DH + stack.userData.top * 0.55, SZ];
+  const look = CH.aim(THREE, R, TXT, FROM, target, 760, 760, FOV);
+  TXT.frame(R, { fov: FOV, from: FROM, look: look });
+  const sr = CH.rectOf(THREE, R, stack, 0);
+  window.__s9 = { stack: sr.map(Math.round) };
+  if (sr[0] < db.right - 20 && sr[1] + sr[3] > hb.top) console.warn('stack under the type column', JSON.stringify(sr));
+
+  /* THE LIGHT: the window's last light from behind and right of the stack, low, coral; violet in the shade */
+  CH.KEY_SCALE = 1.5;
+  const spec = CH.rigSpec(W, 4, 4096);
+  TXT.deckRig(R, spec, Object.assign(CH.rigOpts([SX, DH, SZ], { distance: 8, shadowFar: 20, normalBias: 0.004 }), { light: { az: KEY.az, el: KEY.el } }));
+  CH.unacne(R, 0.003);
+  R.scene.environmentIntensity = 0.38;
+  { const f = new THREE.DirectionalLight(0x8a6cff, 0.55); f.position.set(-2, 2.2, 4); R.scene.add(f); }
+  TXT.weather(R, { grime: 0.03, height: 0.1, mottle: 0.05 });
+
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  TXLOOK.footWash(cx, { a: 0.45, height: 220 });
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.5, fade: 170 });
+  CH.seat(cx, { sel: '.dek', a: 0.6, fade: 110 });
+  /* the window patch's mullion edge runs behind the kicker: knock it back */
+  CH.seat(cx, { sel: '.kick', a: 0.5, fade: 150 });
+  CH.seat(cx, { sel: '.kick', a: 0.3, fade: 60 });
+  CH.seat(cx, { sel: '.src', a: 0.45, fade: 70 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

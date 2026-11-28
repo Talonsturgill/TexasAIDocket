@@ -1,0 +1,131 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.4139,
+        0.3571,
+        0.5441
+      ],
+      "band_ratio": 1.2278
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3046,
+        0.6261,
+        0.7463
+      ],
+      "band_ratio": 1.3151
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: register page left out, no clean spot",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built",
+        "a drawn rule crosses the glyph band of 'A customer using a provider's software, ' (canvas edge .pixels at 450,1128.5 179x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'A customer using a provider's software, ' (canvas edge .pixels at 450,1129.5 179x1.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'A customer using a provider's software, ' (canvas edge .pixels at 450,1131.5 179x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'A customer using a provider's software, ' (canvas edge .pixels at 450,1134.5 179x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.6029,
+        0.6807,
+        0.5993
+      ],
+      "band_ratio": 0.9568
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":75.15547637366781,\"materials\":12,\"cast_fraction\":0.8918528806584363,\"area\":1,\"render_ms\":15849.200000001118}",
+        "console error: slide-04 gold fraction 0.0153"
+      ],
+      "bands": [
+        0.6555,
+        0.7122,
+        0.7151
+      ],
+      "band_ratio": 1.0286
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: S5 measured {\"years\":[2027,2032],\"sheets\":[1947,4286],\"hpx\":[241.5,531.6],\"ratio\":2.2013,\"truth\":2.2013,\"err\":0,\"share2032\":0.394,\"dist\":2.56}",
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.5882,
+        0.8235,
+        0.6195
+      ],
+      "band_ratio": 0.9185
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.5672,
+        0.5084,
+        0.7868
+      ],
+      "band_ratio": 1.2521
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3971,
+        0.5819,
+        0.7886
+      ],
+      "band_ratio": 1.3182
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2437,
+        0.6891,
+        0.6066
+      ],
+      "band_ratio": 1.1725
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3761,
+        0.6218,
+        0.7555
+      ],
+      "band_ratio": 1.2757
+    }
+  ],
+  "fails": 0,
+  "warns": 16,
+  "verdict": "WARN"
+}

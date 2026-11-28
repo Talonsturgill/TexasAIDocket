@@ -1,0 +1,203 @@
+{
+ "weighted_score": 7.722,
+ "judges": [
+  7.74,
+  7.7,
+  7.752
+ ],
+ "spread": 0.052,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.3,
+   "weight": 0.22,
+   "judges": [
+    7.5,
+    7.0,
+    7.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.8,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.0,
+    8.3
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    8.5,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 8.0,
+   "weight": 0.1,
+   "judges": [
+    8.0,
+    8.0,
+    7.6
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.8
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat red wall fills the middle; the piles are small with no year labels; the seating is missing.",
+     "fix": "Push in to the ledge, add the curved seating backs, and break the wall with millwork shadow."
+    },
+    {
+     "judge": 2,
+     "problem": "Small piles on a wide dais, a blurred red cabinet front, and a medallion borrowing the accent.",
+     "fix": "Drop the camera to ledge height and push in until the 2032 pile is 45 percent of frame height, crop the cabinet front, and swap the medallion for a violet-brass plate."
+    },
+    {
+     "judge": 3,
+     "problem": "The local-loss stacks are unlabeled and their scale is not tied to S5.",
+     "fix": "Ghost the S5 2032 state stack at the left edge at the same sheet scale and label both local stacks with year pills."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mostly defocus: the stack is an unreadable smear and the middle third is muddy mauve.",
+     "fix": "Narrow the blur so the stack reads as paper, harden the cast shadow across the highlighted line, and frame the page larger."
+    },
+    {
+     "judge": 2,
+     "problem": "The highlight renders red under the shadow.",
+     "fix": "Set the wax albedo to #e0956a and check it inside the shadow band after the grade."
+    },
+    {
+     "judge": 3,
+     "problem": "The background stack is blurred so far it reads as a smeared artifact, and the document is generic dashed greeking.",
+     "fix": "Cut the depth-of-field blur by half and pull the camera in so the highlighted line fills the lower third in focus."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The report hovers above its offset shadow over an empty desk with a red smeared edge.",
+     "fix": "Seat the report with a tight contact shadow and lower the camera so the counter fills the lower frame."
+    },
+    {
+     "judge": 2,
+     "problem": "The bound report hovers with an offset shadow, and the desk edge is a streaked red smear.",
+     "fix": "Seat the report with TXT.contact and raise the camera so the counter edge leaves the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "The binder is cropped small under a horizon cutting the frame, and nothing shows 'customer data in, organized data back'.",
+     "fix": "A loose sheaf going in one side of the desk and a bound tabbed binder coming out the other, filling half the frame."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The box is lit flat, the cover below is a flat slab, and a canvas edge crosses the dek's glyph band.",
+     "fix": "Side-light the box, give the cover depth, and move the dek off the column's bottom edge."
+    },
+    {
+     "judge": 2,
+     "problem": "The type fights the perforated panel and rack grid; the box is a flat-shaded primitive.",
+     "fix": "Darken the area under the type or move the type, and give the box bevel, edge wear and a warm side key."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Two unlabeled stacks: at feed size the reader sees 'short and tall' but not 2027 versus 2032.",
+     "fix": "Seat a pill on the wood in front of each stack reading the fiscal year."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "A flat clipboard document with three icon chips reads as a template.",
+     "fix": "Raise the three defined terms as embossed tabs lit to cast shadows, and drop the icon chips."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Identical flat cards, and cubby 30 reads as a glare bloom.",
+     "fix": "Vary tilt and thickness with soft shadows, model the holder and letter under a contained warm spot."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.722, 0.278 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.3 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

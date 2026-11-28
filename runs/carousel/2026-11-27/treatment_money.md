@@ -1,0 +1,4 @@
+# Director B (THE MONEY): THE PALLET YARD. Tone watch. Accent signal green #4FC79A = a door open to the public right now (comment window) only.
+Unit: a GMA pallet of strapped $100 notes at true size = $100,000,000 (computed). State boards granite, local boards bluebonnet, every tenth board taller.
+Beats: 01 rack + FY2027 pallet row, studio. 02 the line: Register page on a desk with a steel rule between the two definitions. 03 hosted: server_row cold aisle. 04 the unit: relief of one pallet's top layer and a partial terrace. 05 six rows of pallets on a dusk apron, ortho raked, one worker at the far end (SHOWSTOPPER + HARDEST). 06 two halves: state vs local lanes in a warehouse. 07 note's own words: open Register issue on a pallet, "insignificant". 08 window: 30 guide cards in a drawer, green Dec 20 tab. 09 write in: envelope leaning on the partial pallet at dusk.
+Risks: cash cliche, currency likeness, ~150 pallets instanced, bar chart reading.

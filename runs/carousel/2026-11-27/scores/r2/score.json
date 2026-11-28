@@ -1,0 +1,198 @@
+{
+ "weighted_score": 7.674,
+ "judges": [
+  7.43,
+  7.864,
+  7.746
+ ],
+ "spread": 0.434,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.2,
+   "weight": 0.22,
+   "judges": [
+    7.2,
+    7.2,
+    7.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    7.8,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    7.9,
+    8.5,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.8,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.8,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    8.0,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.43 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.43,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.43 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The bottom 40 percent is a smeared, stretched walnut dais front under the dek, and the hook sits on a flat purple band.",
+     "fix": "Drop the camera to dais-ledge height and push in until the two piles and the seal fill the middle half, cropping away the stretched dais front."
+    },
+    {
+     "judge": 2,
+     "problem": "The ream piles read as giant slabs out of scale with the dais; the bottom 40 percent is a smeared dais front; the public seating is missing.",
+     "fix": "Shrink the reams to true footprint on the dais ledge, pull the camera back so the dais spans the frame, and fill the lower band with lit public_seating backs."
+    },
+    {
+     "judge": 3,
+     "problem": "The bottom 40 percent is a blurred wood panel under the dek; the piles are thin slabs; the flag is cut at the frame edge.",
+     "fix": "Drop and push the camera so the dais and both piles fill the middle and lower bands with public seating backs in the foreground, and keep the flag whole or leave it out."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The stack renders as flat olive boxes with no kraft modelling, and the promised shadow across the highlighted line isn't visible.",
+     "fix": "Reuse frame 5's paper_ream material and lower the coral key to about 8 degrees behind it so the cast shadow crosses the dusk gold line."
+    },
+    {
+     "judge": 2,
+     "problem": "Inverted depth: stack sharp, page soft. Flat olive reams with a glowing floating base, and the shadow misses the highlighted line.",
+     "fix": "Focus on the page, blur the stack, reuse frame 5's paper_ream material, seat the base with TXT.contact, and lower the key to about 8 degrees aimed so the shadow crosses the gold line."
+    },
+    {
+     "judge": 3,
+     "problem": "The planned depth device is reversed: the stack is sharp, olive-khaki and floating with no contact, the page is soft, and no shadow falls across the highlighted line.",
+     "fix": "Kraft and rose ream material, a contact shadow on the table, depth of field on the stack with the page sharp, and a lower coral key so the cast shadow runs across the dusk gold line."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The disk is a hybrid model and the left desk grain is a motion-blur streak.",
+     "fix": "Model a proper 5.25 inch floppy and retile the walnut at the left edge."
+    },
+    {
+     "judge": 2,
+     "problem": "The focal drifted to a floppy disk, the report is an untextured slab, and the table top is a muddy smear.",
+     "fix": "Remove the floppy, bring the bound report's tabs forward at about 30 percent of frame width, and give the counter legible walnut grain."
+    },
+    {
+     "judge": 3,
+     "problem": "Diffuse still life with no single subject; the counter barely reads as a service counter.",
+     "fix": "Camera lower at the counter edge so the bound report with its coral tabs is the one dominant object in sharp focus."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The cabinet's vertical door handle runs straight through the headline band, and the archival box is a flat card shape.",
+     "fix": "Move or shorten the handle to end above the headline, and give the box lid and front edge a warm side key."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The envelope renders translucent at the focal point, and the reams are flat olive.",
+     "fix": "Make the envelope opaque with paper edge thickness, and use frame 5's kraft wrapper material."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The focal dusk gold tab and letter in cubby 30 disappears at feed size.",
+     "fix": "Turn the sorter so cubby 30 sits nearer the camera at a third of the frame, enlarge the letter, and give that cubby the brightest warm spot in the frame."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.674 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 6, 7, 2, 3, 9, 8 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}
