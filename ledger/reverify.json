@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-11-26",
+    "generated": "2026-11-27",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -531,8 +531,8 @@
     },
     "https://communityimpact.com/pflugerville-hutto/election/in-early-voting-pflugerville-voters-support-all-but-4-city-charter-amendments/": {
       "etag": null,
-      "last_modified": "Fri, 27 Nov 2026 05:08:29 GMT",
-      "hash": "7f782041e1652ae86bc320ee2074685fcb7d1da2bfff0d4cd12888f1f4442ebd",
+      "last_modified": "Sat, 28 Nov 2026 05:11:09 GMT",
+      "hash": "9bcc3e067b35edc8726d0bce064c57529d1896a7e098d6eef4da9f501a8f39cf",
       "proven": [
         "tx-2026-0075-c6",
         "tx-2026-0075-c7"
@@ -540,8 +540,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Fri, 27 Nov 2026 05:08:30 GMT",
-      "hash": "31063875b5a9aa25f923ef8dd0686ba6bc1c0051f677a54507a170fe7ca29770",
+      "last_modified": "Sat, 28 Nov 2026 05:11:09 GMT",
+      "hash": "de5510b6c18fe05ee5f3ff7af5e5a934995b1967a405b7510fe903ed55b52803",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -722,8 +722,8 @@
     },
     "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/": {
       "etag": null,
-      "last_modified": "Fri, 27 Nov 2026 05:08:34 GMT",
-      "hash": "ef88b2a92ac62f9bd0dc4a4bc376082b1cda3737f2718289b2e601a69c51c491",
+      "last_modified": "Sat, 28 Nov 2026 05:11:11 GMT",
+      "hash": "79b071238e59ed11091197c4ca967999f0f6230a6872a830cac1f43fb646b17b",
       "proven": [
         "tx-2026-0186-c18",
         "tx-2026-0232-c13"
@@ -1893,11 +1893,12 @@
     },
     "https://senate.texas.gov/cmte.php?c=640": {
       "etag": null,
-      "last_modified": "Tue, 24 Nov 2026 12:00:00 GMT",
-      "hash": "19a103a629e45e1b1d5fcb29981ac3c28eb5f029c6662bb5b1a1428790eaf2db",
+      "last_modified": "Fri, 27 Nov 2026 12:00:00 GMT",
+      "hash": "8ee7d77e7a299506468a2c46ea82eae626b63f6b74122b20512506446b828f68",
       "proven": [
         "tx-2026-0077-c10",
-        "tx-2026-0077-c11"
+        "tx-2026-0077-c11",
+        "tx-2026-0077-c9"
       ]
     },
     "https://senate.texas.gov/cmte.php?c=700": {
@@ -2117,8 +2118,8 @@
     },
     "https://texasscorecard.com/local/killeen-planning-zoning-votes-data-center-down/": {
       "etag": null,
-      "last_modified": "Thu, 26 Nov 2026 05:16:37 GMT",
-      "hash": "3586b20baab2f584c6110d9dce7dc29f4248ee1d5cee92cc4eec2aae3e96d2aa",
+      "last_modified": "Sat, 28 Nov 2026 05:11:17 GMT",
+      "hash": "53b98402b70a1a5b1dc59faa09e03e57407f83c6f0a004ae564dbdd3c6217707",
       "proven": [
         "tx-2026-0032-c2",
         "tx-2026-0032-c3",
@@ -2573,7 +2574,7 @@
     "https://www.aphis.usda.gov/animals/animal-health/livestock-and-poultry-disease/usda-continues-lead-aggressive-national-nws": {
       "etag": null,
       "last_modified": null,
-      "hash": "9dd15fb8218e8e68315cb0709d646cc78b4cd803bb9dec993315ad4ed7375a68",
+      "hash": "2ff4def79f8c31b6d3ca63e3f0b9179ff0383d0ca73738d14afc642735fb2e0d",
       "proven": [
         "tx-2026-0218-c12"
       ]
@@ -2581,7 +2582,7 @@
     "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm": {
       "etag": null,
       "last_modified": null,
-      "hash": "0eaa4b015fc93072f11bee36496e4e1a20ad20c23fcdd1e2f1ed97248617a4ac",
+      "hash": "8eb25e2563012c626b5e35786c19bc9453153500b9079ead00fab7e01d4418aa",
       "proven": [
         "tx-2026-0218-c1",
         "tx-2026-0218-c16",
@@ -2749,7 +2750,7 @@
     "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core": {
       "etag": null,
       "last_modified": null,
-      "hash": "5effb99763e426eb8a5014da01c14ac7b85212b09e3edf470e780970c3b7b809",
+      "hash": "e2ae045fd45dff966c1696210af43a4647be1b4838c599fd60aaa698d5f37a15",
       "proven": [
         "tx-2026-0244-c10",
         "tx-2026-0244-c11"
@@ -2889,6 +2890,21 @@
         "tx-2026-0172-c7",
         "tx-2026-0172-c8",
         "tx-2026-0172-c9"
+      ]
+    },
+    "https://www.ercot.com/services/comm/mkt_notices/M-B112026-01": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "7bc3e839f611e50a64442c2203d05f48856e0a73712521d3c517c52451ed505f",
+      "proven": [
+        "tx-2026-0262-c1",
+        "tx-2026-0262-c2",
+        "tx-2026-0262-c3",
+        "tx-2026-0262-c4",
+        "tx-2026-0262-c5",
+        "tx-2026-0262-c6",
+        "tx-2026-0262-c7",
+        "tx-2026-0262-c8"
       ]
     },
     "https://www.etamu.edu/news/researchers-test-ai-to-detect-gps-spoofing-in-drones/": {
@@ -3218,7 +3234,7 @@
     "https://www.krgv.com/news/no-screwworm-cases-found-after-usda-conducts-2-000-drone-flights-over-texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "5dae67b4d217bc4d7c3516e3835dc253c3190f861d3fe83e001f2633ae312326",
+      "hash": "deeef57897d39dfed6f40a24226b1d0d7f710c0b2fd5d142a61fef5a7f55ad9c",
       "proven": [
         "tx-2026-0218-c5",
         "tx-2026-0218-c6",
@@ -3713,7 +3729,7 @@
     "https://www.tahc.texas.gov/emergency/nws.html": {
       "etag": null,
       "last_modified": null,
-      "hash": "41cf0c447eb543e0261236ce395ca8cee94ac5c07d1c5570786131d5946929a7",
+      "hash": "9f35d15e8f83513b805136bf2bad9e519c4b0707bcf21f8dcd7ff89397c7b598",
       "proven": [
         "tx-2026-0218-c10",
         "tx-2026-0218-c13",
@@ -3942,8 +3958,8 @@
     },
     "https://www.texastribune.org/2026/08/28/transmission-lines-texas-energy/": {
       "etag": null,
-      "last_modified": "Thu, 26 Nov 2026 03:42:25 GMT",
-      "hash": "a3452d3b6b1cb5ebb373eeb55751fc91b47479d7db685b5b7f9d8fa84da6c120",
+      "last_modified": "Fri, 27 Nov 2026 03:23:53 GMT",
+      "hash": "512e8cb3b88d7d349dde1e6be9eb2a6b4ffa7dedbfc70a297b0a7fe2884240b1",
       "proven": [
         "tx-2026-0112-c5"
       ]
@@ -4043,8 +4059,8 @@
     },
     "https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/": {
       "etag": null,
-      "last_modified": "Thu, 26 Nov 2026 05:13:03 GMT",
-      "hash": "ed7fb0deab823ef479b1dbeb6b1b75fb65ec0a2bfb8d2787a7919430daba285a",
+      "last_modified": "Fri, 27 Nov 2026 17:23:49 GMT",
+      "hash": "3be3183495f813f96592551245b5fa4ef6c610271023b3a867b2848519c91afa",
       "proven": [
         "tx-2026-0171-c8",
         "tx-2026-0171-c9"
@@ -4116,7 +4132,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "d476912d81a68e5ba1f1003a2aa2e46a9c5ecd41a88ed4bea409281c849ca0bf",
+      "hash": "79d93bfb9900cc31d86ab5750a8b1ef5cc03d0ca0326fb37ef158bde16496c0d",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",

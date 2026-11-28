@@ -290,6 +290,17 @@ def build(base: Path, middle: int | None, assets: Path, critics: dict | None = N
     problems = layout_check.frame_detail_problems(base, selected)
     if problems:
         raise ValueError(problems[0])
+    # THE PLAN NAMES WHAT THE FRAME BUILDS, before a review is bound to it (weekly machine pass
+    # 2026-11-27, queue dossier-drifts-from-the-render, nos. 87, 88, 89). A director who accepts a
+    # frame its plan no longer describes is overruled by the next director who reads both.
+    import plan_render_check
+    sb = base / "storyboard.md"
+    if sb.exists():
+        problems = plan_render_check.model_drift_problems(
+            sb.read_text(encoding="utf-8"), base / "slides", only=set(selected),
+            assets=assets, date=base.name if re.fullmatch(r"\d{4}-\d{2}-\d{2}", base.name) else None)
+        if problems:
+            raise ValueError(problems[0])
     record = {"version": 1, "selected": selected, "inputs": inputs(base, selected, assets),
               "value_measurements": rows, "review": {"decision": "revise", "frames": []}}
     if plan is not None:
@@ -504,6 +515,10 @@ def self_test() -> int:
     src = inspect.getsource(build)
     at_call, at_write = src.find("layout_check.frame_detail_problems(base, selected)"), src.find("art_preflight.json\").write_text")
     test("build reads the detail floor on its three frames before it writes the proof", 0 < at_call < at_write)
+    # Same shape for the plan's model names (weekly machine pass 2026-11-27): wired before the write.
+    at_models = src.find("plan_render_check.model_drift_problems(")
+    test("build refuses a frame whose dossier names a model it does not build, before it writes the proof",
+         0 < at_models < at_write and "only=set(selected)" in src)
     return int(bool(bad))
 
 

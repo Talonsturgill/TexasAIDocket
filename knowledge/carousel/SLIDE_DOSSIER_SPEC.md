@@ -122,6 +122,13 @@ and a deck with the keys on some frames and not others is not in the system.
   percent of the frame. `bleeds` lists the edges the rect actually touches. The gate measures
   detail and a silhouette inside that rect at thumb scale, so a rect drawn around a flat plate
   with a headline on it fails whatever the prose says.
+- **A model the subject or the technique NAMES is a model the frame builds** (weekly machine pass
+  2026-11-27, runs after that date). A snake_case kit or chassis name (`ream_pile`, `ct_gantry`)
+  anywhere in those two lines, or a one word name after `kit ` or `chassis ` (`kit desk`), must be
+  K.made by the slide, by a model it makes, or by a chassis helper it calls. A frame that builds its
+  own envelope instead says "an envelope built in the slide", never "chassis envelope".
+  `plan_render_check` fails the drift and `art_preflight --write` refuses to bind a review over it.
+  When a frame is rebuilt, its two lines are rewritten in the same edit.
 - `accent` is the deck's one accent, the same hex on every frame that uses it, `none` on a frame
   that does not, never the flag red. The gate counts it at thumb scale: present on three to six
   frames, never over eight percent of one.

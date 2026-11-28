@@ -11,7 +11,7 @@ The Hays County Commissioners Court agenda for September 1st, 2026 carried an it
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=135
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · The Hays County sheriff's word that AI report writing stays switched off holds on the earlier reading. The county's agenda archive still refuses this project.
 - 2026-11-08 · The Hays County sheriff's commitment to bring AI report writing back to the court before switching it on still stands on the county's record.
 - 2026-11-14 · The Hays County sheriff's commitment on AI report writing stays on the earlier reading. The agenda archive and the vendor's page both refuse this project.
+- 2026-11-27 · The local account of the sheriff's promise not to switch on AI report writing still reads as before. The county's agenda portal and two other pages are closed to rereading.
 
 ## Evidence
 

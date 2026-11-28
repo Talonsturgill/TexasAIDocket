@@ -2748,3 +2748,16 @@ Federal Register poll failed** this run and returned no result. **The PUCT feed 
 sources were closed to rereading and the items were held on their earlier readings. Re-measuring the boundary
 declarations showed that a host can admit this project's own user agent while refusing ClaudeBot or sitting in
 the crawl boundary registry, so a re-measure must read all three. Nothing was routed around.
+
+## 2026-11-27 (carousel no. 89)
+
+**The Texas Register archive at www.sos.state.tx.us refused the fact checker's WebFetch with 405** on the
+November 20th Proposed Rules page for 34 TAC (Public Finance). **`scripts/shared/fetch_doc.py` fetched the same url
+with 200** and the full text, and every Register claim (c20 to c45) was verified programmatically against that fetch.
+The page carries the proposal, the fiscal note with year-by-year state and local figures, and the comment
+instructions with a named contact, a mailing address and an email address. **The comptroller's release page
+answered**, though its headline as quoted in c1 differs from its url slug, so the next run should reread the title.
+**The Texas Animal Health Commission page answered** with the screwworm zone counts for tx-2026-0218. **The Federal
+Register poll found nothing Texas specific.** The PUCT, CourtListener and Tribune polls were not run. The boundary
+re-measure first requested three cited pages (www.newschannel6now.com, www.fox34.com, www.utep.edu) before it
+consulted the crawl boundary; no response was used, the script was corrected, and nothing else was routed around.

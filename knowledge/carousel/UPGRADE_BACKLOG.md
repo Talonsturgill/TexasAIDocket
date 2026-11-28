@@ -7161,3 +7161,76 @@ with a replay on the October 2nd edition.
 ### Carried
 
 Every other open item is carried as it stands. No frontier scan this pass.
+
+## 2026-11-27, the twenty-sixth weekly machine pass (run 2026-11-27). One kit lift, one gate, one self-test repair, five proposals
+
+Digest `out/2026-11-27/week_digest.md`, six shipped runs (2026-11-21 to 2026-11-27). The top theme is "primitive or
+low-poly model where a kit model belongs", named in 6 runs of 6 and 18 rounds. Lowest criteria by runs: variety 4,
+voice 3, artwork_craft 3. The pass was due because `dossier-drifts-from-the-render` reached repeat 2.
+
+Shipped in lane: `wrapped_ream` and `ream_pile` in `assets/js/kit/interior.js` (installPaper) at no. 89's named
+fixes, with `scripts/carousel/kit_paper_check.mjs`. `plan_render_check`'s model drift kind and the `art_preflight`
+refusal (runs after 2026-11-27). The text fallback reads unindented acceptance lists, which turns
+`plan_render_check --self-test` green again at HEAD. Ledger entry `2026-11-27 weekly`.
+
+### 1. PROPOSAL, for a maintainer: render_report.json survives parallel slide artists (`.claude/skills/carousel-engine/render.py`, protected path)
+
+Queue `concurrent-renders-race-render-report`, no. 89. Five slide artists ran `render.py --only` into one render
+directory. Each merged stale copies of the others' entries into `render_report.json`, so slide 2 carried a page error
+from a failed attempt after a good render. render.py raised FileNotFoundError on a `.resolved` file another artist
+had removed, and the run re-rendered seven frames by hand to make the report coherent. The fix is to read and merge
+the report under an exclusive lock (`fcntl.flock` on a sibling `.lock` file), replace only the rendered slides'
+entries, write by atomic rename, and name the `.resolved` files per invocation (pid suffix). Its self-test runs two
+`--only` invocations at once and asserts that both entries survive. BESPOKE MODE runs nine artists at once, so this
+recurs on every bespoke deck that parallelises renders.
+
+### 2. PROPOSAL, for a maintainer: wire the paper count check into CI (`.github/workflows/guards.yml`, human)
+
+`node scripts/carousel/kit_paper_check.mjs --self-test` and `node scripts/carousel/kit_paper_check.mjs`, next to
+`kit_hot_check.mjs` (2026-11-26 item 2, still open). Both run in node in about a second. Without them, a later edit
+that makes a pile taller than its count is caught only when a frame measures the ratio.
+
+### 3. PROPOSAL, for a maintainer: a paper class in the surface pass (`assets/js/txsurface.js`, human)
+
+Queue `surface-pass-speckles-paper`, no. 89. The pass classes kraft and paper as mineral and speckles them orange.
+The kit's paper now opts out (`userData.txSurface = false`, proven by kit_paper_check), but a deck's own paper still
+meets the pass. Add `['paper', /paper|kraft|ream|sheet|envelope|card(?!igan)|page\b|leaf/]` ahead of `mineral` in
+WORDS, with fibre at sheet scale (base frequency near 4000 per metre, albedo variation under 0.04, no relief slope),
+and a self-test case naming `os-kraft`.
+
+### 4. PROPOSAL, for a maintainer: one fetch route that asks the boundary first (`scripts/shared/`, human)
+
+Queue `ad-hoc-fetch-before-boundary`, repeat 1 (nos. 88 and 89). Twice a run script fetched a host before it
+consulted `crawl_boundary`. No response was used, but the request was made. The fix is a new polite fetch helper (proposed name polite_get) under scripts/shared,
+that every run script fetches through. It refuses a host `crawl_boundary.forbidden` names or whose robots.txt
+disallows the project agent or ClaudeBot, before any request. `fetch_doc.py` would route through it too.
+
+### 5. PROPOSAL, for a maintainer: a GATE_LESSONS entry (`knowledge/shared/GATE_LESSONS.md`, human)
+
+"A plan describing a frame that is no longer there." Three decks rebuilt a frame and kept its dossier. A director
+judged the frame against the stale plan and refused a correct build (no. 87, four close rebuilds). The gate is
+`plan_render_check`'s model drift kind and `art_preflight`'s refusal. A named kit or chassis model must be built by
+its frame, transitively. It is replayed on no. 87's first frame 9 plan (commit 57d864bb) and on no. 89's shipped
+frame 9. Its honest limit is no. 88: a plan describing a vise in prose names no model, so nothing reads it. Check
+instead: when a frame is rebuilt, rewrite its subject and technique in the same edit.
+
+### Deferred in lane
+
+- `audition-asks-impossible-true-scale-geometry` (no. 89, repeat 0). A subject-extent calculator for art_preflight
+  is plausible, but one deck is not a recurrence. Queued as it stands.
+- `chassis-texture-stretched-on-long-box`, repeat 1 (nos. 51, 89). The new kit paper maps its textures on plain
+  BoxGeometry, which the surface pass leaves alone, because a mapped material keeps three's UVs. The root cause is
+  TXT.roundedBox's packed UVs, which is engine work (human). It is not written up again until it recurs.
+- `art-preflight-blocks-panel-on-repair`, repeat 1. It still waits on the ruling asked 2026-11-26.
+
+### Carried
+
+Every open repeat offender is re-escalated as carried, with the reason it already gave. No frontier scan this pass:
+the model lift and the gate filled the time, and nothing in the digest pointed at an outside technique.
+
+6. **`scripts/site/house_style_check.py` `_CITED` (human lane), proposed by the daily run of 2026-11-27.** Admit
+   `Robin.Robinson@cpa.texas.gov`, the comptroller's comment address printed in the Texas Register proposal of
+   November 20th (34 TAC Rule 3.308, TRD-202604746, claim c40) as the way to comment on it. The 2026-11-27
+   edition reports that open comment window, the same case as the FAA and Tunney Act addresses already listed.
+   Without it the run had to cut the address from frame 9's dek, from c40's quote and from the record's comment
+   instructions, so a reader of the site is told to write in and is not told where.

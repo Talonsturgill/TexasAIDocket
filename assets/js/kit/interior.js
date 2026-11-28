@@ -5,7 +5,7 @@
  * is about, the laboratory bench (fly_vial, vial_tray, microcentrifuge_tube, microcentrifuge_rack,
  * petri_dish), the clinical cart (workstation_cart), and
  * the deposition room (pro_camcorder, bound_transcript), and the patient record (patient_wristband,
- * index_card_drawer).
+ * index_card_drawer), and paper by the ream (wrapped_ream, ream_pile).
  * Interior frames stand in a room built by TXT.interior; these models furnish it.
  * Every model: metres, y up, base on y = 0, FRONT faces +z (a dais faces its audience, a chair
  * faces the way its sitter looks, a rack shows its server fronts).
@@ -2965,4 +2965,199 @@ export function install(K, THREE, TXT) {
     },
   });
 
+
+  // the paper section: reams and piles at true size (weekly machine pass 2026-11-27, from no. 89's chassis)
+  installPaper(K, THREE, TXT, { ltex, mat });
+}
+
+/* ---- PAPER: reams of letter paper at true size (weekly machine pass 2026-11-27) ---------------------------------------
+ *
+ * WHY. Carousel no. 89 drew its money as paper, one sheet a million dollars, and built `paper_ream` and `ream_stack` in
+ * its chassis. The art director refused the bare ream boxes in four readings ("ream material reads as flat cartons,
+ * sawtooth torn top, floating loose sheets", "dead-on reams flat", "asked for a yawed view"), and the frame that passed
+ * built its wrapper fibre, per-ream end folds, cream sheet edges at every seam and a torn top in the slide, which frame 7
+ * then copied by hand. The judges' round 1 fixes asked for the same things on frames 6 and 7 ("ream wrappers and sheet
+ * edges visible", "the stack's ream wrappers and torn top read", "the 2027 pile reads as a flat box"). Queue
+ * paper-models-built-in-chassis. These are that frame's accepted build, in the kit's conventions, so a deck calls them.
+ *
+ * NAMES. `wrapped_ream` and `ream_pile`, never the chassis's `paper_ream` and `ream_stack`: no. 89's chassis guards its
+ * installer on `paper_ream` and K.define throws on a second definition, so reusing either name would stop the shipped
+ * deck rendering again.
+ *
+ * WHAT IS HONEST ABOUT THE COUNT. A pile's height is EXACTLY sheets x 0.1 mm (20 lb bond), with nothing proud of it: the
+ * end folds and the overlap seam are painted on the wrapper rather than modelled as flaps standing 0.4 mm over the top
+ * as the chassis's did, the fanned top sheets are three of the counted sheets rather than three more, and the torn
+ * wrapper stays under the block's top. scripts/carousel/kit_paper_check.mjs measures it and replays the proud flap.
+ *
+ * PAPER TAKES NO SURFACE PASS. Every paper and kraft material sets userData.txSurface = false: the engine's pass read
+ * the kraft as mineral and mottled it into an orange sponge on no. 89 (queue surface-pass-speckles-paper). The fibre
+ * is in the painted maps, at sheet scale.
+ */
+function installPaper(K, THREE, TXT, H) {
+  const W = 0.216, D = 0.279, SHEET = 0.0001, REAM = 500, SEAM = 0.0022;
+  const noSurf = (m) => { if (m) { m.userData = m.userData || {}; m.userData.txSurface = false; } return m; };
+  const css = (hex, k) => { const c = new THREE.Color(hex).multiplyScalar(k == null ? 1 : k); return '#' + c.getHexString(); };
+
+  // kraft: mottled, with short fibres both light and dark and a few long creases, tileable enough at ream scale
+  function paintKraft(x, w, h, r, o) {
+    x.fillStyle = o.color; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 140; i++) {
+      const cx = r() * w, cy = r() * h, rr = 18 + r() * 70, g = x.createRadialGradient(cx, cy, 1, cx, cy, rr);
+      g.addColorStop(0, r() < 0.5 ? 'rgba(255,226,180,0.05)' : 'rgba(90,52,20,0.05)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      x.fillStyle = g; x.fillRect(cx - rr, cy - rr, rr * 2, rr * 2);
+    }
+    for (let i = 0; i < (w * h) / 30; i++) {
+      const fx = r() * w, fy = r() * h, L = 3 + r() * 14, a = (r() - 0.5) * 1.2;
+      x.strokeStyle = r() < 0.5 ? 'rgba(100,60,24,' + (0.06 + r() * 0.1).toFixed(2) + ')' : 'rgba(255,232,190,' + (0.05 + r() * 0.09).toFixed(2) + ')';
+      x.lineWidth = 0.6 + r() * 0.8; x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + Math.cos(a) * L, fy + Math.sin(a) * L); x.stroke();
+    }
+    for (let i = 0; i < 6; i++) {
+      const cx = r() * w, cy = r() * h; x.strokeStyle = 'rgba(80,46,16,0.22)'; x.lineWidth = 0.9;
+      x.beginPath(); x.moveTo(cx, cy); x.bezierCurveTo(cx + 40, cy + 8, cx + 80, cy - 8, cx + 140, cy + 4); x.stroke();
+    }
+    if (o.folds === 'top') {
+      // the top face: both ends folded over, each flap's edge a soft shadowed line across the short width
+      for (const f of [0.18 + r() * 0.04, 0.80 + r() * 0.04]) {
+        x.fillStyle = 'rgba(40,22,8,0.22)'; x.fillRect(0, f * h - 2, w, 3);
+        x.fillStyle = 'rgba(255,238,208,0.16)'; x.fillRect(0, f * h + 1, w, 5);
+      }
+    }
+    if (o.folds === 'end') {
+      // an end face: side flaps folded in sit darker, the top and bottom flaps over them catch the light, and the
+      // overlap seam where the wrapper's two ends meet is a ragged line at its own place on each variant
+      const a = 0.12 + r() * 0.14, a2 = 0.12 + r() * 0.14, mid = h * (0.38 + r() * 0.24), hi = h * (0.04 + r() * 0.08), m2 = mid + (r() - 0.5) * 20;
+      x.fillStyle = 'rgba(255,238,208,0.16)'; x.beginPath(); x.moveTo(3, hi); x.lineTo(w * a, mid); x.lineTo(w * (1 - a2), m2); x.lineTo(w - 3, hi); x.closePath(); x.fill();
+      x.fillStyle = 'rgba(40,22,8,0.22)';
+      x.beginPath(); x.moveTo(3, hi); x.lineTo(w * a, mid); x.lineTo(3, h - 3); x.closePath(); x.fill();
+      x.beginPath(); x.moveTo(w - 3, hi); x.lineTo(w * (1 - a2), m2); x.lineTo(w - 3, h - 3); x.closePath(); x.fill();
+      x.strokeStyle = 'rgba(40,24,10,0.5)'; x.lineWidth = 2.5;
+      x.beginPath(); x.moveTo(3, hi); x.lineTo(w * a, mid); x.lineTo(3, h - 3); x.stroke();
+      x.beginPath(); x.moveTo(w - 3, hi); x.lineTo(w * (1 - a2), m2); x.lineTo(w - 3, h - 3); x.stroke();
+      const sx = w * (0.25 + r() * 0.5); x.strokeStyle = 'rgba(50,28,10,0.45)'; x.lineWidth = 2; x.beginPath(); x.moveTo(sx, 4);
+      for (let y = 4; y < h - 4; y += 8) x.lineTo(sx + (r() - 0.5) * 3, y); x.stroke();
+      x.fillStyle = 'rgba(255,236,206,0.18)'; x.fillRect(sx + 2, 4, 6, h - 8);
+      x.fillStyle = 'rgba(40,24,10,0.5)'; x.fillRect(0, 0, w, 2); x.fillRect(0, h - 2, w, 2);
+    }
+  }
+  // the band round a ream: its colour with greeked print bars, nothing legible, no mark
+  function paintBand(x, w, h, r, o) {
+    x.fillStyle = o.color; x.fillRect(0, 0, w, h);
+    x.fillStyle = 'rgba(255,240,225,0.55)'; x.fillRect(0, h * 0.12, w, 2); x.fillRect(0, h * 0.86, w, 2);
+    // greeked print as words, two thin lines of irregular bars set in blocks, so it reads as printing and never as a
+    // road's dashes (the proof render of 2026-11-27 read evenly spaced bars that way)
+    x.fillStyle = 'rgba(255,240,225,0.38)';
+    for (let bx = 24; bx < w - 120; bx += 220 + r() * 160) {
+      for (const [y0, hh] of [[0.32, 0.12], [0.54, 0.09]]) {
+        let px = bx; const end = bx + 110 + r() * 90;
+        while (px < end) { const ww = 6 + r() * 18; x.fillRect(px, h * y0, ww, h * hh); px += ww + 3 + r() * 3; }
+      }
+    }
+  }
+  // sheet edges seen side on: cream striations, an occasional darker sheet
+  function paintEdges(x, w, h, r, o) {
+    x.fillStyle = '#f1e7d4'; x.fillRect(0, 0, w, h);
+    const n = o.lines, s = h / n;
+    for (let j = 0; j < n; j++) { x.fillStyle = 'rgba(110,88,70,' + (0.18 + r() * 0.3).toFixed(3) + ')'; x.fillRect(0, j * s, w, Math.max(1, s * 0.35)); if (r() < 0.06) { x.fillStyle = 'rgba(80,60,50,0.55)'; x.fillRect(0, j * s, w, Math.max(1, s * 0.6)); } }
+    for (let k = 0; k < 6; k++) { x.fillStyle = 'rgba(255,252,244,0.8)'; x.fillRect(r() * w * 0.7, r() * h, 40 + r() * 120, 1.2); }
+  }
+
+  const kraftColor = (o, v) => css(o.kraft != null ? o.kraft : 0xb48a5c, [1, 0.93, 1.06][v]);
+  const sat = (map, key) => noSurf(H.mat(key, { color: 0xffffff, map, roughness: 0.5, clearcoat: 0.18, clearcoatRoughness: 0.5,
+    sheen: 0.45, sheenColor: new THREE.Color(0xffe0b8), sheenRoughness: 0.5 }, true));
+  const kraftSide = (o, v) => sat(H.ltex('pp-kraft-side', paintKraft, { color: kraftColor(o, v), seed: v + 1 }, [1024, 192]), 'pp-kraft-side');
+  const kraftEnd = (o, v, e) => sat(H.ltex('pp-kraft-end', paintKraft, { color: kraftColor(o, v), seed: 11 + e, folds: 'end' }, [864, 200]), 'pp-kraft-end');
+  const kraftTop = (o, v) => sat(H.ltex('pp-kraft-top', paintKraft, { color: kraftColor(o, v), seed: 21 + v, folds: 'top' }, [768, 1024]), 'pp-kraft-top');
+  const edges = (h) => noSurf(H.mat('pp-paper-edge', { color: 0xffffff, roughness: 0.92,
+    map: H.ltex('pp-paper-edge', paintEdges, { lines: Math.max(4, Math.min(200, Math.round(h / 0.0005))) }, [256, 256]) }));
+  const plain = () => noSurf(H.mat('pp-paper-top', { color: 0xf1e7d4, roughness: 0.9 }));
+  const shadowAll = (g) => { g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+
+  // an opened block of n sheets, cream edges on four sides, plain cream top (greeking at stack scale aliases)
+  function block(g, n, y0) {
+    const h = n * SHEET, e = edges(h), p = plain();
+    const m = new THREE.Mesh(new THREE.BoxGeometry(W, h, D), [e, e, p, p, e, e]); m.position.y = y0 + h / 2; g.add(m);
+    return y0 + h;
+  }
+  // a torn wrapper wall: kraft 0.4 mm thick whose top edge is a random walk, never teeth, between a fifth and most of h
+  function tornWall(len, h, r, km) {
+    const sh = new THREE.Shape(); sh.moveTo(-len / 2, 0); sh.lineTo(len / 2, 0);
+    let y = h * (0.45 + r() * 0.2);
+    for (let x = len / 2; x >= -len / 2; x -= 0.003) {
+      y += (r() - 0.5) * 0.004 + (r() < 0.08 ? (r() - 0.5) * 0.01 : 0);
+      y = Math.min(h * 0.85, Math.max(h * 0.2, y)); sh.lineTo(x, y);
+    }
+    sh.lineTo(-len / 2, 0);
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: 0.0004, bevelEnabled: false, curveSegments: 2 });
+    const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / D, uv.getY(i) / D);
+    const m = new THREE.Mesh(geo, km); m.userData.txBevel = false; return m;
+  }
+
+  K.define('wrapped_ream', {
+    size: [0.22, 0.05, 0.3],
+    options: { sheets: 500, torn: false, face: 'end', seam: true, band: 0x7a4e52, kraft: 0xb48a5c },
+    note: 'One ream of letter paper at true size, 0.216 x 0.279 m, drawn to illustrate. sheets 500 (default) is a wrapped ream 50 mm tall: a satin kraft wrapper with fibre, end folds and an overlap seam painted on each end, folded flaps on top, a printed band (`band` hex, greeked, no mark) and, with seam true, a band of cream sheet edges at its base so a stack counts by ream at feed size. sheets under 500 is an opened block of exactly that many sheets, n x 0.1 mm. torn true opens it: the block with the wrapper torn down round it in a ragged edge, the front peeling outward, and the top three counted sheets fanned. face end puts an end toward +z (the folds), face side the long side. Height is exactly sheets x 0.1 mm; userData.height says so. seed picks the fibre and fold variant.',
+    make(o, r) {
+      const n = Math.max(1, Math.min(REAM, Math.round(+o.sheets || REAM))), h = n * SHEET;
+      const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
+      const v = Math.floor(r() * 3), e = Math.floor(r() * 4);
+      if (o.torn) {
+        const fan = n >= 4 ? 3 : 0;
+        const top = block(body, n - fan, 0);
+        const km = kraftSide(o, v).clone(); km.side = THREE.DoubleSide; noSurf(km);
+        const walls = [[W + 0.001, 0, D / 2 + 0.0004, 0], [W + 0.001, 0, -D / 2 - 0.0008, 0],
+                       [D + 0.001, -W / 2 - 0.0008, 0, -Math.PI / 2], [D + 0.001, W / 2 + 0.0004, 0, Math.PI / 2]];
+        walls.forEach(([len, x, z, ry], i) => {
+          const m = tornWall(len, h, r, km); m.position.set(x, 0, z); m.rotation.y = ry; body.add(m);
+          if (i === 0) {   // the front peels away from the sheets, bent outward from its bottom fold
+            const P = m.geometry.attributes.position;
+            for (let j = 0; j < P.count; j++) { const t = Math.max(0, P.getY(j) / h); P.setZ(j, P.getZ(j) + t * t * 0.012 + Math.sin(P.getX(j) * 60) * 0.0008 * t); }
+            m.geometry.computeVertexNormals();
+          }
+        });
+        // the top counted sheets, each one sheet thick, a little askew inside the footprint, offset in depth so none flickers
+        for (let k = 0; k < fan; k++) {
+          const sm = noSurf(H.mat('pp-paper-sheet-' + k, { color: 0xf4ead8, roughness: 0.9, polygonOffset: true,
+            polygonOffsetFactor: -1 - k, polygonOffsetUnits: -2 - 2 * k }));
+          const s = new THREE.Mesh(new THREE.BoxGeometry(W - 0.012, SHEET, D - 0.012), sm);
+          s.position.set((r() - 0.5) * 0.006, top + (k + 0.5) * SHEET, (r() - 0.5) * 0.006); s.rotation.y = (r() - 0.5) * 0.06;
+          s.userData.txBevel = false; body.add(s);
+        }
+      } else if (n < REAM) {
+        block(body, n, 0);
+      } else {
+        const sh = o.seam ? SEAM : 0;
+        if (sh) { const se = new THREE.Mesh(new THREE.BoxGeometry(W - 0.002, sh, D - 0.002), edges(sh)); se.position.y = sh / 2; body.add(se); }
+        const side = kraftSide(o, v), end = kraftEnd(o, v, e), top = kraftTop(o, v);
+        const bh = h - sh, wrap = new THREE.Mesh(new THREE.BoxGeometry(W, bh, D), [side, side, top, top, end, end]);
+        wrap.position.y = sh + bh / 2; body.add(wrap);
+        const bandH = bh * 0.3, bm = noSurf(H.mat('pp-ream-band', { color: 0xffffff, roughness: 0.6,
+          map: H.ltex('pp-ream-band', paintBand, { color: css(o.band != null ? o.band : 0x7a4e52) }, [1024, 64]) }));
+        const band = new THREE.Mesh(new THREE.BoxGeometry(W + 0.0008, bandH, D + 0.0008), bm);
+        band.position.y = sh + bh / 2; band.userData.txBevel = false; body.add(band);
+      }
+      if (o.face === 'side') body.rotation.y = Math.PI / 2;
+      g.userData.height = +h.toFixed(6); g.userData.sheets = n; g.userData.keepOrigin = true;
+      return shadowAll(g);
+    },
+  });
+
+  K.define('ream_pile', {
+    size: [0.23, 0.1, 0.3],
+    options: { sheets: 1000, top: 'torn', face: 'end', jitter: 0.002, band: 0x7a4e52, kraft: 0xb48a5c },
+    note: 'A pile of letter paper holding EXACTLY `sheets` sheets, drawn to illustrate: floor(sheets / 500) wrapped reams settled with a small jitter, then the remainder as an opened block on top. top torn (default) tears the top open (the remainder block in a torn wrapper, or the top whole ream torn when there is no remainder), block leaves the remainder bare, wrapped tears nothing. The bottom ream sits on the ground with no seam band. Height is exactly sheets x 0.1 mm; userData.top, .reams, .loose and .sheets let a frame assert what it drew. face side turns every ream so the pile shows its long side to +z; yaw the whole pile about 30 degrees to show an end and a side, which is the view no. 89 was accepted in.',
+    make(o, r) {
+      const n = Math.max(1, Math.floor(+o.sheets || 1)), reams = Math.floor(n / REAM), loose = n % REAM;
+      const g = new THREE.Group(), j = +o.jitter || 0;
+      let y = 0;
+      const put = (m) => { m.position.set((r() - 0.5) * 2 * j, y, (r() - 0.5) * 2 * j); m.rotation.y += (r() - 0.5) * 0.03; g.add(m); y += m.userData.height; };
+      for (let i = 0; i < reams; i++) {
+        const tearThis = o.top === 'torn' && loose === 0 && i === reams - 1;
+        put(K.make('wrapped_ream', { sheets: REAM, torn: tearThis, seam: i > 0, face: o.face, band: o.band, kraft: o.kraft, seed: o.seed * 31 + i }));
+      }
+      if (loose > 0) put(K.make('wrapped_ream', { sheets: loose, torn: o.top === 'torn', face: o.face, kraft: o.kraft, seed: o.seed * 31 + reams }));
+      g.userData.top = +y.toFixed(6); g.userData.reams = reams; g.userData.loose = loose; g.userData.sheets = n;
+      g.userData.height = g.userData.top; g.userData.keepOrigin = true;
+      return g;
+    },
+  });
 }

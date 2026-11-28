@@ -1,0 +1,33 @@
+{
+  "lens": "reader",
+  "round": 2,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.3, "why": "Most frames carry one rendered subject in the v2 watch palette: the open violet rack on S1 with the fiscal 2027 ream stack at its foot, S3's cold aisle with a warm archive box in the rented slot, S4's real relief (height_range 75.2, 12 materials, cast_fraction 0.89), S5's two measured stacks (ratio 2.2013, err 0), and S8's 30-cubby sorter. Three frames hold the score down. S7 inverts its own plan: the stack renders sharp with olive-khaki wrappers that match no other ream, hangs against the window with no visible contact, and no shadow crosses the highlighted line. S6's lower 40 percent under the dek is a blurred wood dead zone, the piles are flat slabs on the dais lip, and the flag is sliced at the right edge. S2's floppy and loose papers are a diffuse still life and the bound report reads as a flat violet slab. At 432 px the dusk gold tab on S8's cubby 30 is barely visible."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "The spine holds: the violet-to-rose watch grade, one serif headline face with mono kicker and counter, the same footer on all nine. The paper motif runs through the deck as declared. Dusk gold keeps one meaning, the words of the proposal. S7's olive reams break the material code, and it is the one frame that sits outside the deck."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every slide figure traces to the Texas Register filing: $1,947,310,000 (c26), $4,286,040,000 (c31), $507,450,000 (c32), $1,116,890,000 (c37), 30 days (c41), December 20th (c43), November 20th (c45). The S7 quote matches c38 word for word. Every slide claim is primary. The caption's Eckhardt handover lines rest on the Tribune (c15, c17). The fact check refused the release's 'kills' framing. '$4.3 billion' is a rounding of c31 that the Tribune also reports (c14). No universal is unscoped."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "A Texan learns what happened, who decided, where, the cost by year and what to do (S9 names Robin Robinson, the email address and the December 20th deadline). Two stakes stay general: no slide says who pays this tax today, and the handover to Eckhardt appears only in the caption. S9 says 'Mail or email' but gives no postal address (P.O. Box 13528 is in c40)."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, and S5's '$4.3 billion by 2032' pays off. S7 is a real turn. S2, S3 and S4 spend three frames on definitions before the money arrives, and S8 and S9 both land on December 20th."},
+    {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Plain, unhysterical and honest about cost. The S2 dek is a legal paraphrase that is hard to read in a feed. No regional specificity: 'Cities, counties and transit' never names a Texas city or transit authority. The caption's closing question is the most human line and it never reaches a slide."},
+    {"name": "variety", "weight": 0.10, "score": 7.0, "why": "The topic is fresh, and the rack-in-a-studio opening and paper-ream material are new. The one-unit-per-million device repeats no. 77 (one wafer per $1 million) and echoes no. 71 and no. 80. Dusk gold as the single accent repeats no. 88. Server racks and data halls are familiar vocabulary here."}
+  ],
+  "weighted_score": 7.746,
+  "hard_fails": [],
+  "ship": true,
+  "named_defects": [
+    "S7 renders the fiscal 2032 stack sharp and olive-khaki where the storyboard planned it out of focus in kraft and rose; no contact shadow, and no shadow crosses the highlighted line.",
+    "S6's lower 40 percent is a blurred wood dead zone under the dek; the piles are flat slabs and the flag is cut off at the right edge.",
+    "No slide says who pays the data processing tax today or what the change means for a Texan's own costs.",
+    "The Eckhardt handover is only in the caption and on no slide.",
+    "S9 offers mail as a route but gives no mailing address. c40 has P.O. Box 13528, Austin 78711.",
+    "S8 and S9 both close on December 20th; S3 and S4 overlap as definition frames.",
+    "S8's dusk gold tab on cubby 30 is too small to read as the focal point at 432 px.",
+    "machine_qa WARN on S7: a drawn rule crosses the dek glyph band; by eye the dek stays legible."
+  ],
+  "one_sentence_fix": "Spend S3 on who pays this tax today and the Eckhardt handover, then put the P.O. Box beside the email on S9 so both routes work from the slide.",
+  "artwork_weakest_frames": [
+    {"slide": 7, "problem": "The planned depth device is reversed: the stack is sharp, olive-khaki and floating with no contact, the page is soft, and no shadow falls across the highlighted line.", "fix": "Kraft and rose ream material, a contact shadow on the table, depth of field on the stack with the page sharp, and a lower coral key so the cast shadow runs across the dusk gold line."},
+    {"slide": 6, "problem": "The bottom 40 percent is a blurred wood panel under the dek; the piles are thin slabs; the flag is cut at the frame edge.", "fix": "Drop and push the camera so the dais and both piles fill the middle and lower bands with public seating backs in the foreground, and keep the flag whole or leave it out."},
+    {"slide": 2, "problem": "Diffuse still life with no single subject; the counter barely reads as a service counter.", "fix": "Camera lower at the counter edge so the bound report with its coral tabs is the one dominant object in sharp focus."},
+    {"slide": 8, "problem": "The focal dusk gold tab and letter in cubby 30 disappears at feed size.", "fix": "Turn the sorter so cubby 30 sits nearer the camera at a third of the frame, enlarge the letter, and give that cubby the brightest warm spot in the frame."}
+  ]
+}

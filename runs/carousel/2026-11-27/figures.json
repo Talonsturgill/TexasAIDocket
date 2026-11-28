@@ -1,0 +1,640 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values so extracted. Every dollar is the comptroller's own estimate of a proposed rule.",
+ "state_fy2027": {
+  "value": 1947310000,
+  "from": [
+   "c26"
+  ],
+  "basis": "estimated loss to General Revenue Fund 0001 in fiscal year 2027"
+ },
+ "state_fy2027_bn": {
+  "value": 1.9,
+  "from": [
+   "c26"
+  ],
+  "basis": "state loss in billions, half up to one decimal, for type"
+ },
+ "local_fy2027": {
+  "value": 507450000,
+  "from": [
+   "c32"
+  ],
+  "basis": "estimated loss to cities, counties and transit authorities in fiscal year 2027"
+ },
+ "local_fy2027_m": {
+  "value": 507,
+  "from": [
+   "c32"
+  ],
+  "basis": "local loss in millions, half up to a whole number, for type"
+ },
+ "state_fy2028": {
+  "value": 2271960000,
+  "from": [
+   "c27"
+  ],
+  "basis": "estimated loss to General Revenue Fund 0001 in fiscal year 2028"
+ },
+ "state_fy2028_bn": {
+  "value": 2.3,
+  "from": [
+   "c27"
+  ],
+  "basis": "state loss in billions, half up to one decimal, for type"
+ },
+ "local_fy2028": {
+  "value": 592050000,
+  "from": [
+   "c33"
+  ],
+  "basis": "estimated loss to cities, counties and transit authorities in fiscal year 2028"
+ },
+ "local_fy2028_m": {
+  "value": 592,
+  "from": [
+   "c33"
+  ],
+  "basis": "local loss in millions, half up to a whole number, for type"
+ },
+ "state_fy2029": {
+  "value": 2655080000,
+  "from": [
+   "c28"
+  ],
+  "basis": "estimated loss to General Revenue Fund 0001 in fiscal year 2029"
+ },
+ "state_fy2029_bn": {
+  "value": 2.7,
+  "from": [
+   "c28"
+  ],
+  "basis": "state loss in billions, half up to one decimal, for type"
+ },
+ "local_fy2029": {
+  "value": 691890000,
+  "from": [
+   "c34"
+  ],
+  "basis": "estimated loss to cities, counties and transit authorities in fiscal year 2029"
+ },
+ "local_fy2029_m": {
+  "value": 692,
+  "from": [
+   "c34"
+  ],
+  "basis": "local loss in millions, half up to a whole number, for type"
+ },
+ "state_fy2030": {
+  "value": 3108360000,
+  "from": [
+   "c29"
+  ],
+  "basis": "estimated loss to General Revenue Fund 0001 in fiscal year 2030"
+ },
+ "state_fy2030_bn": {
+  "value": 3.1,
+  "from": [
+   "c29"
+  ],
+  "basis": "state loss in billions, half up to one decimal, for type"
+ },
+ "local_fy2030": {
+  "value": 810010000,
+  "from": [
+   "c35"
+  ],
+  "basis": "estimated loss to cities, counties and transit authorities in fiscal year 2030"
+ },
+ "local_fy2030_m": {
+  "value": 810,
+  "from": [
+   "c35"
+  ],
+  "basis": "local loss in millions, half up to a whole number, for type"
+ },
+ "state_fy2031": {
+  "value": 3646140000,
+  "from": [
+   "c30"
+  ],
+  "basis": "estimated loss to General Revenue Fund 0001 in fiscal year 2031"
+ },
+ "state_fy2031_bn": {
+  "value": 3.6,
+  "from": [
+   "c30"
+  ],
+  "basis": "state loss in billions, half up to one decimal, for type"
+ },
+ "local_fy2031": {
+  "value": 950140000,
+  "from": [
+   "c36"
+  ],
+  "basis": "estimated loss to cities, counties and transit authorities in fiscal year 2031"
+ },
+ "local_fy2031_m": {
+  "value": 950,
+  "from": [
+   "c36"
+  ],
+  "basis": "local loss in millions, half up to a whole number, for type"
+ },
+ "state_fy2032": {
+  "value": 4286040000,
+  "from": [
+   "c31"
+  ],
+  "basis": "estimated loss to General Revenue Fund 0001 in fiscal year 2032"
+ },
+ "state_fy2032_bn": {
+  "value": 4.3,
+  "from": [
+   "c31"
+  ],
+  "basis": "state loss in billions, half up to one decimal, for type"
+ },
+ "local_fy2032": {
+  "value": 1116890000,
+  "from": [
+   "c37"
+  ],
+  "basis": "estimated loss to cities, counties and transit authorities in fiscal year 2032"
+ },
+ "local_fy2032_m": {
+  "value": 1117,
+  "from": [
+   "c37"
+  ],
+  "basis": "local loss in millions, half up to a whole number, for type"
+ },
+ "state_total": {
+  "value": 17914890000,
+  "from": [
+   "c26",
+   "c27",
+   "c28",
+   "c29",
+   "c30",
+   "c31"
+  ],
+  "basis": "sum of the six state fiscal years 2027 to 2032"
+ },
+ "state_total_bn": {
+  "value": 17.9,
+  "from": [
+   "c26",
+   "c27",
+   "c28",
+   "c29",
+   "c30",
+   "c31"
+  ],
+  "basis": "state_total in billions, half up to one decimal"
+ },
+ "local_total": {
+  "value": 4668430000,
+  "from": [
+   "c32",
+   "c33",
+   "c34",
+   "c35",
+   "c36",
+   "c37"
+  ],
+  "basis": "sum of the six local fiscal years 2027 to 2032"
+ },
+ "local_total_bn": {
+  "value": 4.7,
+  "from": [
+   "c32",
+   "c33",
+   "c34",
+   "c35",
+   "c36",
+   "c37"
+  ],
+  "basis": "local_total in billions, half up to one decimal"
+ },
+ "state_growth_x": {
+  "value": 2.2,
+  "from": [
+   "c26",
+   "c31"
+  ],
+  "basis": "state_fy2032 over state_fy2027, half up to one decimal"
+ },
+ "years_counted": {
+  "value": 6,
+  "from": [
+   "c26",
+   "c27",
+   "c28",
+   "c29",
+   "c30",
+   "c31"
+  ],
+  "basis": "fiscal years the note counts, 2027 to 2032"
+ },
+ "tax_year": {
+  "value": 1987,
+  "from": [
+   "c7"
+  ],
+  "basis": "year the Legislature taxed data processing, per Huffines"
+ },
+ "window_days": {
+  "value": 30,
+  "from": [
+   "c41"
+  ],
+  "basis": "comment window from publication"
+ },
+ "comment_close_month": {
+  "value": "December",
+  "from": [
+   "c45",
+   "c41"
+  ],
+  "basis": "publication date plus window_days"
+ },
+ "comment_close_day": {
+  "value": 20,
+  "from": [
+   "c45",
+   "c41"
+  ],
+  "basis": "publication date plus window_days, the last day comments can arrive"
+ },
+ "publication_day": {
+  "value": 20,
+  "from": [
+   "c45"
+  ],
+  "basis": "Texas Register issue date"
+ },
+ "adoption_day": {
+  "value": 20,
+  "from": [
+   "c43"
+  ],
+  "basis": "earliest possible adoption, December 20th"
+ },
+ "sheet_usd": {
+  "value": 1000000,
+  "from": [
+   "c26"
+  ],
+  "basis": "drawing unit, one sheet per $1,000,000 of the estimate, a rule"
+ },
+ "ream_sheets": {
+  "value": 500,
+  "from": [
+   "c26"
+  ],
+  "basis": "sheets in a ream, a drawing rule"
+ },
+ "state_fy2027_sheets": {
+  "value": 1947,
+  "from": [
+   "c26"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "state_fy2027_reams": {
+  "value": 3,
+  "from": [
+   "c26"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "state_fy2027_loose": {
+  "value": 447,
+  "from": [
+   "c26"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "state_fy2027_stack_mm": {
+  "value": 194.7,
+  "from": [
+   "c26"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "state_fy2028_sheets": {
+  "value": 2271,
+  "from": [
+   "c27"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "state_fy2028_reams": {
+  "value": 4,
+  "from": [
+   "c27"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "state_fy2028_loose": {
+  "value": 271,
+  "from": [
+   "c27"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "state_fy2028_stack_mm": {
+  "value": 227.1,
+  "from": [
+   "c27"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "state_fy2029_sheets": {
+  "value": 2655,
+  "from": [
+   "c28"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "state_fy2029_reams": {
+  "value": 5,
+  "from": [
+   "c28"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "state_fy2029_loose": {
+  "value": 155,
+  "from": [
+   "c28"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "state_fy2029_stack_mm": {
+  "value": 265.5,
+  "from": [
+   "c28"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "state_fy2030_sheets": {
+  "value": 3108,
+  "from": [
+   "c29"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "state_fy2030_reams": {
+  "value": 6,
+  "from": [
+   "c29"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "state_fy2030_loose": {
+  "value": 108,
+  "from": [
+   "c29"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "state_fy2030_stack_mm": {
+  "value": 310.8,
+  "from": [
+   "c29"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "state_fy2031_sheets": {
+  "value": 3646,
+  "from": [
+   "c30"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "state_fy2031_reams": {
+  "value": 7,
+  "from": [
+   "c30"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "state_fy2031_loose": {
+  "value": 146,
+  "from": [
+   "c30"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "state_fy2031_stack_mm": {
+  "value": 364.6,
+  "from": [
+   "c30"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "state_fy2032_sheets": {
+  "value": 4286,
+  "from": [
+   "c31"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "state_fy2032_reams": {
+  "value": 8,
+  "from": [
+   "c31"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "state_fy2032_loose": {
+  "value": 286,
+  "from": [
+   "c31"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "state_fy2032_stack_mm": {
+  "value": 428.6,
+  "from": [
+   "c31"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "local_fy2027_sheets": {
+  "value": 507,
+  "from": [
+   "c32"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "local_fy2027_reams": {
+  "value": 1,
+  "from": [
+   "c32"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "local_fy2027_loose": {
+  "value": 7,
+  "from": [
+   "c32"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "local_fy2027_stack_mm": {
+  "value": 50.7,
+  "from": [
+   "c32"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "local_fy2028_sheets": {
+  "value": 592,
+  "from": [
+   "c33"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "local_fy2028_reams": {
+  "value": 1,
+  "from": [
+   "c33"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "local_fy2028_loose": {
+  "value": 92,
+  "from": [
+   "c33"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "local_fy2028_stack_mm": {
+  "value": 59.2,
+  "from": [
+   "c33"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "local_fy2029_sheets": {
+  "value": 691,
+  "from": [
+   "c34"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "local_fy2029_reams": {
+  "value": 1,
+  "from": [
+   "c34"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "local_fy2029_loose": {
+  "value": 191,
+  "from": [
+   "c34"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "local_fy2029_stack_mm": {
+  "value": 69.1,
+  "from": [
+   "c34"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "local_fy2030_sheets": {
+  "value": 810,
+  "from": [
+   "c35"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "local_fy2030_reams": {
+  "value": 1,
+  "from": [
+   "c35"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "local_fy2030_loose": {
+  "value": 310,
+  "from": [
+   "c35"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "local_fy2030_stack_mm": {
+  "value": 81.0,
+  "from": [
+   "c35"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "local_fy2031_sheets": {
+  "value": 950,
+  "from": [
+   "c36"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "local_fy2031_reams": {
+  "value": 1,
+  "from": [
+   "c36"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "local_fy2031_loose": {
+  "value": 450,
+  "from": [
+   "c36"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "local_fy2031_stack_mm": {
+  "value": 95.0,
+  "from": [
+   "c36"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "local_fy2032_sheets": {
+  "value": 1116,
+  "from": [
+   "c37"
+  ],
+  "basis": "loss over sheet_usd, rounded down"
+ },
+ "local_fy2032_reams": {
+  "value": 2,
+  "from": [
+   "c37"
+  ],
+  "basis": "whole reams of 500 sheets"
+ },
+ "local_fy2032_loose": {
+  "value": 116,
+  "from": [
+   "c37"
+  ],
+  "basis": "sheets left over after whole reams"
+ },
+ "local_fy2032_stack_mm": {
+  "value": 111.6,
+  "from": [
+   "c37"
+  ],
+  "basis": "sheets times 0.1 mm"
+ },
+ "hosted_named": {
+  "value": 3,
+  "from": [
+   "c25"
+  ],
+  "basis": "services the proposal names as hosted technology"
+ }
+}

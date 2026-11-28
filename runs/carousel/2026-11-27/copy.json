@@ -1,0 +1,207 @@
+{
+ "date": "2026-11-27",
+ "carousel_no": 89,
+ "document_title": "Texas comptroller proposes that AI and cloud computing fall outside the data processing tax",
+ "_note": "Caption carried verbatim from caption.txt. Slide strings polished by the copywriter from storyboard.md and held to the claim quotes in claims.json. Every numeral is in claims.json or figures.json. Drawn to illustrate appears only on S3. Every dollar figure is the comptroller's own estimate of a proposed rule. The rule is proposed and never adopted.",
+ "caption": "Does Texas tax AI as data processing?\n\nComptroller Don Huffines says the Legislature never taxed AI. His proposed Rule 3.308 amendments would class cloud, AI and quantum computing as hosted technology services, outside the tax.\n\nThe release says it saves Texans money. His fiscal note has the state losing $1,947,310,000 in fiscal 2027 and $4,286,040,000 in 2032. It has local governments losing $507,450,000 in 2027 and $1,116,890,000 in 2032. The note calls the economic effect \"insignificant\".\n\nNothing is adopted yet. Comments to Robin Robinson must arrive by December 20th, the earliest adoption date.\n\nThe deck stacks the estimate, one sheet per million dollars.\n\nComptroller-elect Sarah Eckhardt takes over January 1st. She asked him to halt rule changes begun since August 1st. Does this one survive the handover?\n\n#TexasComptroller #SalesTax #TexasRegister\n",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Rule 3.308",
+   "headline": "Texas may stop taxing AI as data processing",
+   "claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c26"
+   ],
+   "cite": "c2 c3 c4 c26",
+   "body": "On November 18th Comptroller Don Huffines announced a proposal to count cloud computing and AI as hosted technology services, outside the tax on data processing. His office estimates the state's loss at $1,947,310,000 in fiscal year 2027.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Texas may stop taxing AI as data processing",
+    "On November 18th Comptroller Don Huffines announced a proposal to count cloud computing and AI as hosted technology services, outside the tax on data processing. His office estimates the state's loss at $1,947,310,000 in fiscal year 2027.",
+    "Rule 3.308",
+    "01 / 09",
+    "c2 c3 c4 c26"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Since 1987",
+   "headline": "Customer data in, organized data back",
+   "claims": [
+    "c7",
+    "c22"
+   ],
+   "cite": "c7 c22",
+   "body": "Huffines says the Legislature taxed data processing in 1987. The proposal defines the service as a provider processing data the customer supplied and returning it in an organized and usable format the customer asked for.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Customer data in, organized data back",
+    "Huffines says the Legislature taxed data processing in 1987. The proposal defines the service as a provider processing data the customer supplied and returning it in an organized and usable format the customer asked for.",
+    "Since 1987",
+    "02 / 09",
+    "c7 c22"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Hosted",
+   "headline": "Using a provider's computing would not count",
+   "claims": [
+    "c24",
+    "c23"
+   ],
+   "cite": "c24 c23",
+   "body": "A customer using a provider's software, platform or computing resources on its own data would not be a data processing service. Storing or manipulating data alone would not count either. The hall is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Using a provider's computing would not count",
+    "A customer using a provider's software, platform or computing resources on its own data would not be a data processing service. Storing or manipulating data alone would not count either. The hall is drawn to illustrate.",
+    "Hosted",
+    "03 / 09",
+    "c24 c23"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The new term",
+   "headline": "Cloud, AI and quantum, named in the proposal",
+   "claims": [
+    "c25",
+    "c20",
+    "c3"
+   ],
+   "cite": "c25 c20 c3",
+   "body": "The proposal defines hosted technology services to include cloud computing, artificial intelligence and quantum computing. It says hosted technology services are not data processing and are not taxable.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Cloud, AI and quantum, named in the proposal",
+    "The proposal defines hosted technology services to include cloud computing, artificial intelligence and quantum computing. It says hosted technology services are not data processing and are not taxable.",
+    "The new term",
+    "04 / 09",
+    "c25 c20 c3"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The fiscal note",
+   "headline": "Estimated state loss hits $4.3 billion by 2032",
+   "claims": [
+    "c26",
+    "c27",
+    "c28",
+    "c29",
+    "c30",
+    "c31"
+   ],
+   "cite": "c26 c27 c28 c29 c30 c31",
+   "body": "The comptroller's estimate of the state's loss rises in each year it counts, from $1,947,310,000 in fiscal year 2027 to $4,286,040,000 in 2032. Each sheet of paper here stands for one million dollars of it.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Estimated state loss hits $4.3 billion by 2032",
+    "The comptroller's estimate of the state's loss rises in each year it counts, from $1,947,310,000 in fiscal year 2027 to $4,286,040,000 in 2032. Each sheet of paper here stands for one million dollars of it.",
+    "The fiscal note",
+    "05 / 09",
+    "c26 c27 c28 c29 c30 c31"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Cities, counties, transit",
+   "headline": "Cities, counties and transit would lose too",
+   "claims": [
+    "c32",
+    "c37"
+   ],
+   "cite": "c32 c37",
+   "body": "The same note estimates that local governments would lose $507,450,000 in fiscal year 2027 and $1,116,890,000 in 2032. Cities, counties and transit authorities are among them.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Cities, counties and transit would lose too",
+    "The same note estimates that local governments would lose $507,450,000 in fiscal year 2027 and $1,116,890,000 in 2032. Cities, counties and transit authorities are among them.",
+    "Cities, counties, transit",
+    "06 / 09",
+    "c32 c37"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The same note",
+   "headline": "\"Insignificant effect on this state's economy\"",
+   "claims": [
+    "c38",
+    "c39"
+   ],
+   "cite": "c38 c39",
+   "body": "That is the chief revenue estimator's finding. It sits in the same note that estimates the losses. The note also says a likely negative effect on sales tax remittances can't be estimated.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "\"Insignificant effect on this state's economy\"",
+    "That is the chief revenue estimator's finding. It sits in the same note that estimates the losses. The note also says a likely negative effect on sales tax remittances can't be estimated.",
+    "The same note",
+    "07 / 09",
+    "c38 c39"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Thirty days",
+   "headline": "Comments close December 20th",
+   "claims": [
+    "c45",
+    "c41",
+    "c43"
+   ],
+   "cite": "c45 c41 c43",
+   "body": "The proposal ran in the Texas Register on November 20th. The comptroller must receive comments within 30 days. The earliest possible adoption date is December 20th.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Comments close December 20th",
+    "The proposal ran in the Texas Register on November 20th. The comptroller must receive comments within 30 days. The earliest possible adoption date is December 20th.",
+    "Thirty days",
+    "08 / 09",
+    "c45 c41 c43"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Write in",
+   "headline": "It is still only a proposal",
+   "claims": [
+    "c40",
+    "c41",
+    "c43"
+   ],
+   "cite": "c40 c41 c43",
+   "body": "Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The Texas Register notice gives both addresses. Comments must arrive by December 20th.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It is still only a proposal",
+    "Mail or email comments to Robin Robinson, Associate Deputy Comptroller for Tax. The Texas Register notice gives both addresses. Comments must arrive by December 20th.",
+    "Write in",
+    "09 / 09",
+    "c40 c41 c43"
+   ]
+  }
+ }
+}

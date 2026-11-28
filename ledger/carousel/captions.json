@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the before and after",
   "the who",
   "the place",
   "the two things",
   "the quiet decision",
-  "the object"
+  "the object",
+  "the number that is wrong"
  ],
  "entries": [
   {
@@ -1624,15 +1624,34 @@
    ],
    "critic_note": "A won because its 37 percent opening corrects a reading the claims file itself rejects, while B's opening repeated an October 8th skeleton and answered itself with a yes no claim gives. The rewrite split the joint FSUI work from the PSV, cut the line describing the post, and replaced a close that assumed a working flight line with a conditional question.",
    "move_note": "The wrong number is one a reader takes for an accuracy grade, and the turn says it was never a grade."
+  },
+  {
+   "date": "2026-11-27",
+   "carousel_no": 89,
+   "opening_move": "the plain question",
+   "structure": "Question and answer",
+   "closing_move": "name what happens next and when",
+   "first_line": "Does Texas tax AI as data processing?",
+   "words": 142,
+   "commas": 4,
+   "commas_per_100w": 2.82,
+   "chars": 865,
+   "hashtags": [
+    "#TexasComptroller",
+    "#SalesTax",
+    "#TexasRegister"
+   ],
+   "critic_note": "B won because its question names the state and the subject and the body answers it in the comptroller's own words before setting his fiscal note beside his release. A's opening named no subject and made the reader do date arithmetic. The edit attributed the local figures to the note, stated that nothing is adopted, used the computed comment close date and split the Eckhardt sentence.",
+   "move_note": "The question is the legal one in the rule, answered by the comptroller and then by his own fiscal note."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Zoom out",
-  "Ladder"
+  "Ladder",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what is still not public, and how big that is"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

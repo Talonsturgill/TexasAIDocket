@@ -1,0 +1,63 @@
+{
+ "date": "2026-11-27",
+ "_note": "Every count the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "one million dollars",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 1000000,
+   "from_claims": [
+    "c26"
+   ],
+   "computed_by": "compute.py figures.json sheet_usd, the drawing unit, one sheet of paper per $1,000,000 of the estimate, a rule and not a measurement"
+  },
+  {
+   "phrase": "30 days",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 30,
+   "quoted_from": "c41",
+   "quote": "The comptroller must receive your comments or other information no later than 30 days from the date of publication of the proposal in the Texas Register"
+  },
+  {
+   "phrase": "Thirty days",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 30,
+   "quoted_from": "c41",
+   "quote": "The comptroller must receive your comments or other information no later than 30 days from the date of publication of the proposal in the Texas Register"
+  },
+  {
+   "phrase": "3.308 amendments would class",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3.308,
+   "quoted_from": "c4",
+   "quote": "Proposed amendments to Rule 3.308"
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "distinct primary_official documents cited in first_comment.txt: the Register proposal, the Register issue page, the comptroller release, the GovDelivery bulletin",
+   "from_claims": [
+    "c20",
+    "c45",
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "phrase": "$4.3 billion",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 4.3,
+   "from_claims": [
+    "c31"
+   ],
+   "computed_by": "compute.py figures.json state_fy2032_bn, c31's $4,286,040,000 expressed in billions and rounded half up to one decimal"
+  }
+ ]
+}

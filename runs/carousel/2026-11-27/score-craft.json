@@ -1,0 +1,34 @@
+{
+  "lens": "craft",
+  "round": 3,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "All nine frames are rendered, saturated LOOK V2 work with no grey middle (preflight grey_mid 0.002 to 0.02, vivid 0.76 to 0.89). Each picture is made for its own sentence. Frame 7 is the best in the deck: the fiscal 2032 stack out of focus at upper left with its violet shadow across the highlighted line on a sharp page, the type in the lit quiet top right. Frame 1's open rack holds the cover. Frame 5's stacks are countable at 3 against 8 with a torn top (ratio 2.2013, err 0). Frame 4 is a real TXBENCH relief (height_range 75, 12 materials, cast_fraction 0.89). Four frames hold the score down: frame 6 (piles about a fifth of the frame, the bottom 40 percent a blurred red dais front), frame 2 (the report hovers with a detached shadow, the desk edge a smeared red band), frame 3 (the headline on a busy perforated panel, the box a flat primitive), frame 8 (identical flat card planes, cubby 30 a white bloom). Dark typeSeat smudges show on frames 2, 5 and 6. Strong overall, but more than one frame leans on a dead zone or a primitive. That is a 7, not an 8."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "The spine holds: one palette, one type set, the counter and the site line on every frame. The paper motif evolves as planned, and the camera move on the fiscal 2032 stack works. The accent breaks its one meaning in three places: frame 6's orange-gold star medallion, and the highlight on frame 7 and the letter line on frame 9 rendering red-coral rather than dusk gold. Frame 2's coral tabs sit close to the accent."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral on a slide appears in claims and figures as copy.json declares. The $4.3 billion headline is a rounding of c31. The S5 ratio is measured in code. Every dollar figure is framed as the comptroller's estimate of a proposed rule. On frame 6 the 2032 pile looks about 1.7 times the 2027 pile against a true 2.2, perspective-dependent, a lead not a fault."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 8.5, "why": "Names the body, the rule, the Register date, the definition change, the state and local estimates, the commenter with the full email, the deadline and the status. A Texan can act on it. The local stake names no example."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 8.0, "why": "The cover question earns the swipe, 2 to 4 build the definition, 5 pays the number, 7 is the real turn, and 8 and 9 land the action. Frame 6 repeats frame 5's move at smaller scale."},
+    {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Clean and on register. 'It is still only a proposal' and the frame 7 dek are plain and strong. The deks on frames 2 and 3 read as rule text paraphrase, accurate but flat."},
+    {"name": "variety", "weight": 0.10, "score": 7.5, "why": "The subjects diverge from November 24th to 26th. The frame 8 pigeonhole stays close to November 25th's card files and folders, and the watch palette with studio sweeps is the house v2 look."}
+  ],
+  "weighted_score": 7.70,
+  "hard_fails": [],
+  "ship": true,
+  "named_defects": [
+    "S6: orange-gold star medallion on the dais wall uses an accent-like hue",
+    "S7 and S9: the highlighted proposal line renders red-coral, not dusk gold #e0956a",
+    "S2: bound report floats with a detached cast shadow; foreground desk edge is a smeared red band",
+    "S6: piles about 20 percent of frame width; lower 40 percent is a blurred dais panel dead zone",
+    "S3: headline and dek over a busy perforated rack panel; archival box is a flat primitive",
+    "S8: 29 identical flat card planes; cubby 30 reads as a light bloom",
+    "S2, S5, S6: typeSeat washes show as dark smudge blobs",
+    "art_preflight.json lists needs_review [1] although a frame 1 review with matching hashes is present"
+  ],
+  "one_sentence_fix": "Rebuild frame 6 as a close low camera on the dais ledge so the piles fill half the frame, remove the gold medallion, and make the frame 7 and 9 highlights true dusk gold.",
+  "artwork_weakest_frames": [
+    {"slide": 6, "problem": "Small piles on a wide dais, a blurred red cabinet front, and a medallion borrowing the accent.", "fix": "Drop the camera to ledge height and push in until the 2032 pile is 45 percent of frame height, crop the cabinet front, and swap the medallion for a violet-brass plate."},
+    {"slide": 2, "problem": "The bound report hovers with an offset shadow, and the desk edge is a streaked red smear.", "fix": "Seat the report with TXT.contact and raise the camera so the counter edge leaves the frame."},
+    {"slide": 3, "problem": "The type fights the perforated panel and rack grid; the box is a flat-shaded primitive.", "fix": "Darken the area under the type or move the type, and give the box bevel, edge wear and a warm side key."},
+    {"slide": 8, "problem": "Identical flat cards, and cubby 30 reads as a glare bloom.", "fix": "Vary tilt and thickness with soft shadows, model the holder and letter under a contained warm spot."},
+    {"slide": 7, "problem": "The highlight renders red under the shadow.", "fix": "Set the wax albedo to #e0956a and check it inside the shadow band after the grade."}
+  ]
+}

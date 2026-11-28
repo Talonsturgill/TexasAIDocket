@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-11-21
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -60,6 +60,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · Unofficial returns with every precinct counted show Pflugerville voters passed Proposition B. That charter section requires privacy rules and a public approval process before the city uses facial recognition, surveillance tools or AI. Propositions A, C, H and L failed. The city has not posted its canvass, so the result is not yet official.
 - 2026-11-17 · The council's voting history and the news account of the charter election still read as quoted. The city's attached ordinance text could not be checked again, so it rests on the earlier reading.
 - 2026-11-21 · Pflugerville's order calling the charter election still reads as passed in the city's own legislative history.
+- 2026-11-27 · Pflugerville's charter amendment election still reads as ordered, in the city's own agenda record and in the local account. Two council pages are closed to rereading.
 
 ## Evidence
 

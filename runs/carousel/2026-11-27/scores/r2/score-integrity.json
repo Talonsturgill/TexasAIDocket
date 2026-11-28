@@ -1,0 +1,32 @@
+{
+  "lens": "integrity",
+  "round": 2,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.2, "why": "On a bespoke LOOK V2 deck, frames 1, 4, 5 and 8 meet the slide bar. Frame 5's two stacks follow the declared scale (ratio 2.2013 matching the truth in machine_qa) with contact shadows and a ruler. Frame 4 is a true relief: height_range 75.2, 12 materials, cast_fraction 0.89. Frame 8 draws 30 cubbies with the 30th lit. Three frames pull the score down. Frame 6: the bottom 40 percent is a smeared, stretched walnut texture with the dek floating on it, and the headline sits on a flat purple band. Frame 7: the tallest stack is a flat olive box tower with no wrapper modelling, under heavy blur, and the promised shadow across the highlighted line is not visible. Frame 3: the cabinet's door handle runs vertically through the headline band at about x=1030, y=1005 to 1300 (display px). Frame 2's disk is a hybrid model, and the desk grain at left is motion-smeared. Frame 1 leaves an empty violet band between headline and dek."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "The spine holds: palette, serif hook, mono kicker, counter and site line on every frame. The paper motif changes state across the deck. Frame 8 spends the accent on a day-card tab for the 30th cubby, which is a date, not the proposal's words, so the accent carries two meanings. Frame 6's red chamber sits slightly outside the deck's material vocabulary."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.0, "why": "Every numeral traces back to a claim (c26, c31, c32, c37, c7, c41, c43, c45, c2, c15, c17, c38, c40), and $4.3 billion is state_fy2032_bn, half up. Three problems keep this off the top. (1) The S1 hook 'Texas may stop taxing AI as data processing' assumes AI is taxed as data processing today; no claim says so, c8 has Huffines saying the Legislature did not tax AI, and the hook singles out AI where the loss estimate covers all hosted services. (2) S6's hook and dek use the indicative mood where the source says losses 'would be' (c32) on an unadopted rule. (3) The handover lines in the caption rest only on the Tribune (c15, c17), though a primary record exists in Eckhardt's November 9th letter."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.9, "why": "A Texan learns what, who, where, the size and what to do (email Robin.Robinson@cpa.texas.gov by December 20th). S9 says 'Mail or email' but never prints the P.O. Box 13528 address that c40 carries. The lame-duck stake lives only in the caption, and the deck never says who would pay less tax."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, and frame 7's 'insignificant' against frames 5 and 6 is a real turn. Frames 2, 3 and 4 are three definition beats in a row, and frames 8 and 9 repeat December 20th."},
+    {"name": "voice", "weight": 0.10, "score": 7.3, "why": "Clean and on register with no house-rule breaks found. Several lines are procedural and Register-flat, and there is little Texas texture beyond the institutions."},
+    {"name": "variety", "weight": 0.10, "score": 7.5, "why": "No topic repeat in the ledger window. The watch tone, server rack cover and paper-ream material are fresh against Nov 24 to 26. The one-unit-per-fixed-dollar move repeats Nov 14 and Oct 30."}
+  ],
+  "weighted_score": 7.43,
+  "hard_fails": [],
+  "ship": false,
+  "named_defects": [
+    "S1 hook 'Texas may stop taxing AI as data processing' assumes AI is taxed today, which no claim says.",
+    "S6 hook and dek use the indicative ('lose') for a loss the source states as conditional ('would be', c32).",
+    "S9 tells the reader to 'Mail' comments but omits the P.O. Box 13528, Austin, Texas 78711 address in c40.",
+    "art_preflight.json carries needs_review: [1]; check frame 1's review against the current slide-01 hashes.",
+    "Frame 8 spends the accent on a day-card tab, so the accent carries two meanings.",
+    "The caption's handover facts rest on the Tribune (c15, c17) only.",
+    "machine_qa slide 7 warns that a drawn rule crosses the dek's glyph band; by eye the dek reads clean."
+  ],
+  "one_sentence_fix": "Recast the S1 hook so it states what the proposal does instead of assuming AI is taxed today, and put S6 into the conditional ('would lose').",
+  "artwork_weakest_frames": [
+    {"slide": 6, "problem": "The bottom 40 percent is a smeared, stretched walnut dais front under the dek, and the hook sits on a flat purple band.", "fix": "Drop the camera to dais-ledge height and push in until the two piles and the seal fill the middle half, cropping away the stretched dais front."},
+    {"slide": 7, "problem": "The stack renders as flat olive boxes with no kraft modelling, and the promised shadow across the highlighted line isn't visible.", "fix": "Reuse frame 5's paper_ream material and lower the coral key to about 8 degrees behind it so the cast shadow crosses the dusk gold line."},
+    {"slide": 3, "problem": "The cabinet's vertical door handle runs straight through the headline band, and the archival box is a flat card shape.", "fix": "Move or shorten the handle to end above the headline, and give the box lid and front edge a warm side key."},
+    {"slide": 2, "problem": "The disk is a hybrid model and the left desk grain is a motion-blur streak.", "fix": "Model a proper 5.25 inch floppy and retile the walnut at the left edge."}
+  ]
+}

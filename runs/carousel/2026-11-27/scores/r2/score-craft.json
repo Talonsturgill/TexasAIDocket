@@ -1,0 +1,33 @@
+{
+  "lens": "craft",
+  "round": 2,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.2, "why": "On THE SLIDE BAR this is a bespoke deck. The nine frames really are different pictures, and the type sits in at least five places. The colour is LOOK V2 throughout (preflight median C 37 to 56, vivid 0.76 to 0.89, grey mid 0.02 or less). Four frames are strong: frame 5 (two kraft stacks with an exact measured ratio 2.2013, counted reams, a torn top, contact shadows, a raking cast), frame 1 (open rack, cable spill, the page clipped to the door), frame 4 (TXBENCH relief, height_range 75, 12 materials, cast_fraction 0.89, real wax seals and a clip shadow), and frame 8 (a countable 6x5 sorter with one lit cubby 30). Three frames fall to the 7 descriptor. Frame 7, the declared showstopper, has inverted focus (stack sharp, page soft), flat olive reams, a shadow that does not visibly cross the highlighted line, and a base floating on a glow. On frame 6 the reams are giant slabs spanning half the dais, losing the paper scale, the bottom 40 percent is a smeared dais front with the dek on it, and the planned public seating is missing. On frame 9 the envelope renders translucent, and the reams are flatter than frame 5's. Frame 2 swaps the brief's bound-report focal for a floppy disk, the report is a plain slab, and the table reads as a muddy smear. The accent also drifts from dusk gold #e0956a to a saturated red-orange on 4, 7 and 9."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "The spine holds across the contact sheet: one violet-rose watch palette, fixed type furniture, the counter and site line on every frame. The paper motif evolves as declared, from the small stack (1) to the page (4), the two stacks (5), the piles (6), the stack plus page (7) and the letter on the stack (9). Three faults hold it under 9: the kraft material changes between frames, the accent's hue is not one hue, and frame 2's floppy disk brings an object no other frame carries."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "A lighter check, not my lens. The S5 stack heights are computed and asserted (err 0). Every slide numeral I saw appears in the storyboard's claim map. The deks attribute 'Huffines says', and the S7 quote is attributed to the chief revenue estimator. Frame 4's three seals equal hosted_named. I did not verify c40 to c45 or the Eckhardt line in the caption against claims.json."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 8.5, "why": "The body, the instrument, the change, the cost, the deadline and the action (mail or email Robin Robinson, address printed on frame 9) are all named. 'It is still only a proposal' keeps the status honest. The handover question in the caption adds stakes. The story is statewide, so no county applies."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.8, "why": "The cover poses the change and frame 2 pays at once. 3 to 4 sharpens it to the new term, 5 to 7 turns on the fiscal note against its own word 'insignificant', and 8 to 9 closes on the action. Frames 5 and 6 both make the 'two stacks, bigger later' move, so 6 adds a number but no new understanding."},
+    {"name": "voice", "weight": 0.10, "score": 7.8, "why": "Plain and declarative, honest about costs without alarm. 'Drawn to illustrate' appears only on S3. A little bureaucratic: the S2 dek restates the rule's definition close to verbatim, and 'rises in each year it counts' is stiff. No regional Texas texture beyond the state seal and flag on 6."},
+    {"name": "variety", "weight": 0.10, "score": 8.0, "why": "art_plan.distinct_from_recent shows Nov 24 to 26 drew drone aerials, glass lungs, manila folders and card files, and a turbine and hangar, with no rack, data hall, reams, dais or Register page. The tone is watch. One move is familiar: Nov 25's card files and manila folders sit close to frame 3's archival box and frame 8's day-card sorter."}
+  ],
+  "weighted_score": 7.864,
+  "hard_fails": [],
+  "ship": true,
+  "named_defects": [
+    "S7 (declared showstopper): inverted depth of field, the shadow across the highlighted line does not read, and the stack's flat olive reams float on a glow at the base.",
+    "S6: oversized salmon ream slabs lose the paper scale; the lower 40 percent is a blurred dais front carrying the dek; the planned public seating is absent.",
+    "S9: the envelope renders translucent, and the ream wrappers are flat olive, unlike frame 5's modelled kraft.",
+    "S2: a floppy disk replaces the brief's bound-report focal, the report is a plain slab, and the table is a muddy smeared red-brown.",
+    "Accent drift: the proposal highlight renders saturated red-orange on S4, S7 and S9 instead of dusk gold #e0956a.",
+    "Kraft material inconsistency across S5, S6, S7 and S9.",
+    "art_preflight.json needs_review still lists frame 1 although review.frames carries an accept for it.",
+    "machine_qa S7 warns a drawn rule crosses the first dek line's glyph band; checked by eye, the line stays legible."
+  ],
+  "one_sentence_fix": "Rebuild frame 7 with the focal plane on the Register page and the dusk gold line, the fiscal 2032 stack out of focus behind it with frame 5's kraft wrappers, and the coral key at about 8 degrees so the stack's shadow lands across the highlighted line.",
+  "artwork_weakest_frames": [
+    {"slide": 7, "problem": "Inverted depth: stack sharp, page soft. Flat olive reams with a glowing floating base, and the shadow misses the highlighted line.", "fix": "Focus on the page, blur the stack, reuse frame 5's paper_ream material, seat the base with TXT.contact, and lower the key to about 8 degrees aimed so the shadow crosses the gold line."},
+    {"slide": 6, "problem": "The ream piles read as giant slabs out of scale with the dais; the bottom 40 percent is a smeared dais front; the public seating is missing.", "fix": "Shrink the reams to true footprint on the dais ledge, pull the camera back so the dais spans the frame, and fill the lower band with lit public_seating backs."},
+    {"slide": 9, "problem": "The envelope renders translucent at the focal point, and the reams are flat olive.", "fix": "Make the envelope opaque with paper edge thickness, and use frame 5's kraft wrapper material."},
+    {"slide": 2, "problem": "The focal drifted to a floppy disk, the report is an untextured slab, and the table top is a muddy smear.", "fix": "Remove the floppy, bring the bound report's tabs forward at about 30 percent of frame width, and give the counter legible walnut grain."}
+  ]
+}

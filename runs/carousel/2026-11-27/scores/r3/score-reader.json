@@ -1,0 +1,34 @@
+{
+  "lens": "reader",
+  "round": 3,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.3, "why": "The Look V2 colour holds across the deck. Strong frames: S1 (an open server rack with a cable crown and a paper stack at its foot), S3 (a rack-hall corridor with a filing box slid into a server slot), S5 (two measured paper stacks at the true ratio of 2.2013, a ruler and a cast shadow on wood) and S9 (a tall stack with an envelope and a pen). Neither S5's nor S6's stacks carry a year pill, so the reader reconciles them with the body text. S7 blurs its stack so heavily it reads as a render artifact. S2 crops a binder in the lower half under a horizon that cuts the frame. S4 is a flat clipboard document with three icon chips, the most template-like frame. Machine QA flags S3's body type crossing drawn edges. Strong overall, with two or three frames leaning on defaults."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.8, "why": "One spine: a ream as one million dollars appears at the rack's foot on S1, scales on S5, shrinks for local government on S6, blurs behind the quote on S7 and returns as the comment stack on S9. Palette, grade, type and counter are consistent. S3 and S8 step out of the desk-and-paper world without the motif, and S4's clipboard is the frame most outside the deck's material language."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.3, "why": "Every slide numeral traces to a Texas Register or Comptroller primary claim (c26 to c31, c32, c37, c41, c43, c45, c7). $4.3 billion is a rounding of c31. The Tribune is used only for the Eckhardt handover in the caption (c15, c17). S2's kicker 'Since 1987' sits over the proposed definition, and S7 frames 'insignificant' against the losses, but the body text states both accurately. No hard fail."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "A Texan leaves knowing what happened, who decided, the money, the deadline (December 20th) and exactly what to do (email Robin.Robinson@cpa.texas.gov). It falls short on who pays this tax today, and the Eckhardt handover is only in the caption. Local losses name no city or county."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.6, "why": "The cover earns the swipe and frame 2 defines the term at once. S5 and S6 build, S7's quote is a genuine turn, and S9 closes on an action. S2, S3 and S4 are three consecutive definition frames, and S8 and S9 both state the December 20th deadline."},
+    {"name": "voice", "weight": 0.10, "score": 7.3, "why": "Clean, accurate and within house rules, honest about cost without doom. It reads closer to a careful clerk than a Texan who knows the subject. No regional specificity anywhere. The caption's closing question is the most human line."},
+    {"name": "variety", "weight": 0.10, "score": 7.8, "why": "The first deck in the 30-day window on a state tax rule from the Comptroller. The last four were clinical studies, a disaster drone tool and Army maintenance software. The familiar move is paper stacks as a counting unit, which the Nov 17 deck also used, in a violet v2 palette similar to the recent run."}
+  ],
+  "weighted_score": 7.752,
+  "hard_fails": [],
+  "ship": true,
+  "named_defects": [
+    "S5 and S6: measured stacks carry no year or amount pills, and S6's scale is never tied to S5's",
+    "The Eckhardt handover appears only in the caption",
+    "No frame says who pays the data processing tax now",
+    "S2 kicker 'Since 1987' over the proposed definition implies the narrow definition dates from 1987",
+    "S8 and S9 both carry the December 20th deadline",
+    "S7 paper stack blurred to mush, reads as an artifact",
+    "S3 body type sits over the perforated panel and rack edges (machine_qa warns, unmeasured)",
+    "S4 is a flat clipboard with icon chips, the most template-like frame"
+  ],
+  "one_sentence_fix": "Replace S8's duplicated deadline frame with the handover beat from c15, c17 and c18, so the close turns on whether this rule survives before S9's write-in.",
+  "artwork_weakest_frames": [
+    {"slide": 5, "problem": "Two unlabeled stacks: at feed size the reader sees 'short and tall' but not 2027 versus 2032.", "fix": "Seat a pill on the wood in front of each stack reading the fiscal year."},
+    {"slide": 7, "problem": "The background stack is blurred so far it reads as a smeared artifact, and the document is generic dashed greeking.", "fix": "Cut the depth-of-field blur by half and pull the camera in so the highlighted line fills the lower third in focus."},
+    {"slide": 2, "problem": "The binder is cropped small under a horizon cutting the frame, and nothing shows 'customer data in, organized data back'.", "fix": "A loose sheaf going in one side of the desk and a bound tabbed binder coming out the other, filling half the frame."},
+    {"slide": 4, "problem": "A flat clipboard document with three icon chips reads as a template.", "fix": "Raise the three defined terms as embossed tabs lit to cast shadows, and drop the icon chips."},
+    {"slide": 6, "problem": "The local-loss stacks are unlabeled and their scale is not tied to S5.", "fix": "Ghost the S5 2032 state stack at the left edge at the same sheet scale and label both local stacks with year pills."}
+  ]
+}

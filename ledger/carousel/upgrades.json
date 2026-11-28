@@ -4277,4 +4277,74 @@
   }
  ]
 }
+,
+"2026-11-27 weekly": {
+ "date": "2026-11-27",
+ "run": "2026-11-27",
+ "actor": "upgrade",
+ "digest": "out/2026-11-27/week_digest.md, 6 shipped runs, 2026-11-21 to 2026-11-27",
+ "upgrades": [
+  {
+   "what": "The kit gains wrapped_ream and ream_pile in assets/js/kit/interior.js (installPaper). A satin kraft wrapper with fibre, end folds and an overlap seam painted on each end, folded flaps on top, a greeked band, cream sheet edges at every seam, a torn top whose ragged edge is a random walk with the front peeling outward and the top three counted sheets fanned, and face end or side. The height is exactly sheets x 0.1 mm and every paper material opts out of the surface pass. kit_paper_check.mjs checks it.",
+   "why": "The top digest theme is 'primitive or low-poly model where a kit model belongs', named in 6 runs of 6 and 18 rounds. Queue paper-models-built-in-chassis (no. 89): the art director refused bare chassis reams in four readings ('ream material reads as flat cartons, sawtooth torn top, floating loose sheets', 'dead-on reams flat'). The round 1 judges asked for 'ream wrappers and sheet edges visible' on frame 6 and 'ream wrappers and torn top read' on frame 7. Frame 5 built the wrapper in the slide and frame 7 copied it by hand. The lift also answers queue surface-pass-speckles-paper inside the kit. The engine's paper class stays a proposal.",
+   "files": [
+    "assets/js/kit/interior.js",
+    "scripts/carousel/kit_paper_check.mjs",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "node scripts/carousel/kit_paper_check.mjs exits 0. It sweeps 54 piles (1 to 4286 sheets, each top and face option): the count and split agree, the drawn height equals sheets x 0.1 mm within 1e-6 m, the pile stands on the ground, every material opts out of the surface pass, and face turns the end or the side to +z. node scripts/carousel/kit_paper_check.mjs --self-test exits 0. It replays no. 89's chassis flaps standing 0.4 mm proud, frame 5's three sheets laid on the counted block and a material that drops the opt-out, and reports each one. The shipped models come out clean. The proof renders went through the carousel engine (examples/kit/build.py page() with close framing, out/2026-11-27/tmp/kit/paper2/render/slide-01 to 03) and were read at full size. That reading changed the band print from evenly spaced bars, which read as road dashes, to word blocks. examples/kit/sizes.py exits 0 with 149 of 149. arsenal.py --check is ok.",
+   "revert": "pending (the showrunner commits under the upgrade stamp). To revert: remove installPaper and its one call in assets/js/kit/interior.js, delete scripts/carousel/kit_paper_check.mjs and rerun scripts/carousel/arsenal.py.",
+   "how_i_would_know_this_was_wrong": "A deck calls ream_pile and a judge still calls the reams flat cartons or boxes, the torn top sawtooth, or the band a road stripe. Or a frame measures a pile's projected height and finds it off its count. Or the names collide with a later chassis."
+  },
+  {
+   "what": "plan_render_check fails a frame whose dossier subject or technique names a kit or chassis model that the frame does not build. It counts a model as built when the slide K.makes it, a model the slide makes K.makes it, or a chassis helper the slide calls does. art_preflight --write refuses to bind a review on its three frames while one disagrees. Runs dated after 2026-11-27 only.",
+   "why": "Queue dossier-drifts-from-the-render reached repeat 2 (nos. 87, 88, 89), which is the item that made this pass due. No. 87's frame 9 plan named 'chassis ct_gantry' over a frame rebuilt as a glass lung, and that cost four close rebuilds. Replayed on no. 89 as shipped, frames 2, 6, 7 and 9 still name desk, document_stack, public_seating, register_page, envelope and laptop, none of which those frames build.",
+   "files": [
+    "scripts/carousel/plan_render_check.py",
+    "scripts/carousel/art_preflight.py",
+    "knowledge/carousel/SLIDE_DOSSIER_SPEC.md"
+   ],
+   "verification": "python3 scripts/carousel/plan_render_check.py --self-test exits 0. Its new cases: the no. 87 frame 9 replay, built from commit 57d864bb's flow-form technique, is CAUGHT. The no. 89 frame 9 replay catches envelope and laptop but not paper_ream, which ream_pile makes. A chassis helper counts as built. Prose without kit/chassis, negations and the rationale are not claims. Date gating works both ways, `only` limits the frames, and check() itself carries the finding. All fixtures are inline, so none is read from an archive. python3 scripts/carousel/art_preflight.py --self-test exits 0 and asserts that build calls the check before it writes the proof.",
+   "revert": "pending. To revert: remove the MODEL_DRIFT block and its call at the end of check() in plan_render_check.py, the matching self-test block, the art_preflight build call and its self-test assertion, and the SLIDE_DOSSIER_SPEC bullet.",
+   "how_i_would_know_this_was_wrong": "A run spends repairs on provenance wording that no judge would notice. Or a frame builds a named model through a route the closure misses (a variable name passed to K.make, a helper that is not N.x = function) and gets a false failure. Or the drift keeps recurring in prose nouns, which this gate is honestly silent on (no. 88's case)."
+  },
+  {
+   "what": "plan_render_check's text fallback reads an unindented YAML block sequence (acceptance: followed by '- item' at column 0, which is how yaml.safe_dump writes it), so the self-test's sweep of shipped storyboards agrees with the yaml route again.",
+   "why": "plan_render_check --self-test went red at HEAD on no. 89's storyboard: on slides 1 to 9 the yaml route read 5 items and the text route read 0. CI runs that self-test (guards.yml), so the merge would be red. No. 88 met the same thing the day before and re-indented its storyboard by hand (67f6706c).",
+   "files": [
+    "scripts/carousel/plan_render_check.py"
+   ],
+   "verification": "python3 scripts/carousel/plan_render_check.py --self-test exits 0. 'the yaml route and the text fallback agree over N shipped dossier(s)' passes again. An inline fixture of the unindented form, with a wrapped item, reads all three items and stops at the next key. The pre-fix regex is asserted to read nothing of it, so the replay is red without the fix. The indented form still reads the same.",
+   "revert": "pending. To revert: restore _ACC_BLOCK and remove its three self-test cases.",
+   "how_i_would_know_this_was_wrong": "The sweep disagrees on another storyboard shape, or a block swallows a following root key's lines."
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "render.py writes render_report.json one entry per slide atomically under a lock and keeps .resolved files per invocation",
+   "owner": "human (protected path, .claude/skills/carousel-engine/render.py)",
+   "why": "Queue concurrent-renders-race-render-report (no. 89). UPGRADE_BACKLOG 2026-11-27 item 1."
+  },
+  {
+   "what": "Wire node scripts/carousel/kit_paper_check.mjs and its --self-test into guards.yml",
+   "owner": "human (.github/workflows)",
+   "why": "UPGRADE_BACKLOG 2026-11-27 item 2."
+  },
+  {
+   "what": "A 'paper' class in the engine surface pass (fibre at sheet scale), so a deck's own paper need not opt out",
+   "owner": "human (assets/js/txsurface.js)",
+   "why": "Queue surface-pass-speckles-paper (no. 89). UPGRADE_BACKLOG 2026-11-27 item 3."
+  },
+  {
+   "what": "A shared fetch helper in scripts/shared that consults crawl_boundary and robots before any request",
+   "owner": "human (scripts/shared)",
+   "why": "Queue ad-hoc-fetch-before-boundary, repeat 1 (nos. 88, 89). UPGRADE_BACKLOG 2026-11-27 item 4."
+  },
+  {
+   "what": "GATE_LESSONS entry for the model drift gate and its honest limit",
+   "owner": "human (knowledge/shared/GATE_LESSONS.md)",
+   "why": "UPGRADE_BACKLOG 2026-11-27 item 5."
+  }
+ ]
+}
 }

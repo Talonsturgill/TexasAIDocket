@@ -1,0 +1,264 @@
+<!doctype html>
+<!-- BESPOKE, 2026-11-27, frame 3 of 9, HOSTED (round 2). A lit interior through txthree.js: one point perspective down a
+     contained cold aisle to an end rack facing the camera. In that rack one rented 10U slot is open and holds a lidless cream
+     archival box of loose sheets, the customer's own papers (never the estimate's kraft), lit warm from the side, a blank Register page on the tile in front of it. The roof,
+     cable trays and two light bars run back to a glass end door glowing coral round the rack. Type centred over the lit roof.
+     No logo, no legible text, no person. Drawn to illustrate; FIG is empty and the papers stand for no figure. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:780px; width:920px; text-align:center">Using a provider's computing would not count</h1>
+<p class="dek" id="dek" data-follow="18" style="left:150px; width:780px; text-align:center">A customer using a provider's software, platform or computing resources on its own data would not be a data processing service. Storing or manipulating data alone would not count either. The hall is drawn to illustrate.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-27-onesheet-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Hosted", counter: "03 / 09", src: "c24 c23", fit: { min: 76, max: 94, maxLines: 2 } });
+  /* HONEST: this frame carries no figure. FIG is empty, so nothing drawn stands for a count or a length. */
+
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.05, far: 80, fog: 0.018 });
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  const shadowAll = (g) => { g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
+  const phys = (key, p, cls) => { const m = K.mat(key, p, true); if (cls) m.userData.txSurface = cls; return m; };
+  const rnd = CH.rng(CH.SEED + 3);
+
+  /* ---- THE HALL: a room with a ceiling round the aisle, so the camera stands inside something built ---- */
+  TXT.sky(R, W);
+  TXT.interior(R, { w: 9, d: 34, h: 4.4, floor: 'concrete', wall: 0x4b3aa6, trim: 0x2a2068, window: null, ceiling: true, light: 0.3 });
+
+  /* ---- THE RAISED FLOOR: seven tiles across, so the cold aisle is exactly three tiles wide between the rack fronts ---- */
+  const S = 0.6, COLS = 7, ROWS = 30, FH = 0.45, FZ = -3.0;
+  const perf = [];
+  for (let r = 0; r < ROWS; r++) { const z = FZ + (r - (ROWS - 1) / 2) * S; if (z < 0.4) { perf.push(r * COLS + 2); perf.push(r * COLS + 4); } }
+  const floor = K.make('access_floor', { cols: COLS, rows: ROWS, tile: S, height: FH, perf });
+  floor.position.set(0, 0, FZ); TXT.add(R, floor);
+  floor.traverse((m) => { if (!m.isMesh || !m.material) return; const n = m.material.name || '';
+    if (m.material.map && !m.material.userData._os) { m.material = m.material.clone(); m.material.userData._os = 1;
+      m.material.color.setRGB(2.6, 1.9, 3.4); m.material.roughness = 0.32; m.material.metalness = 0.08; }
+    else if (m.material.metalness > 0.8 && !m.material.userData._os) { m.material = m.material.clone(); m.material.userData._os = 1; m.material.color.setHex(0x6a58b0); m.material.metalness = 0.2; m.material.roughness = 0.5; } });
+
+  /* ---- THE TWO RUNS: kit server_row, fronts facing across the aisle, powder coated violet ---- */
+  const AISLE = 3 * S, RACK_D = 1.2, LEN = 12 * 0.6;
+  const ZEND = -3.2;                       /* the front face of the end rack, where the aisle stops */
+  const Z1 = ZEND - RACK_D - 0.05, Z0 = Z1 + LEN + 0.05;
+  const rows = [];
+  const recolorAll = (row) => row.traverse((m) => { if (!m.isMesh && !m.isInstancedMesh) return; const mat = m.material; if (!mat || !mat.color) return;
+    if (done.has(mat)) { m.material = done.get(mat); return; }
+    const hex = mat.color.getHex(); let nm = null;
+    if (hex === 0x151618) { nm = mat.clone(); nm.color.setHex(0x32278a); nm.metalness = 0.3; nm.roughness = 0.45; nm.name = 'rack-frame-powder-coat-paint'; nm.userData.txSurface = 'paint'; }
+    else if (hex === 0x2a2c30) { nm = mat.clone(); nm.color.setHex(0x8a86c8); nm.name = 'rack-rail-zinc-steel'; }
+    else if (hex === 0x9da1a6) { nm = mat.clone(); nm.color.setHex(0x2c2464); nm.metalness = 0.5; nm.roughness = 0.5; nm.name = 'server-handle-cast-metal'; }
+    else if (mat.emissiveMap && mat.map) { nm = mat.clone(); nm.color.setRGB(3.6, 3.0, 5.0); nm.roughness = 0.38; nm.emissiveIntensity = 5.0; nm.userData.txSurface = false; }
+    if (nm) { done.set(mat, nm); m.material = nm; } else done.set(mat, mat); });
+  const done = new Map();
+  for (const side of [-1, 1]) {
+    const row = K.make('server_row', { racks: 12, doors: false, containment: false, tray: false, floor: false, seed: side > 0 ? 4 : 3 });
+    row.rotation.y = side < 0 ? Math.PI / 2 : -Math.PI / 2;
+    row.position.set(side * (AISLE / 2 + RACK_D / 2), FH, Z1 + LEN / 2);
+    TXT.add(R, row); rows.push(row);
+  }
+  /* THE END RACK: one rack standing across the end of the aisle, facing the camera, with an open rented slot */
+  const endRack = K.make('server_row', { racks: 1, doors: false, containment: false, tray: false, floor: false, seed: 9 });
+  endRack.position.set(0, FH, ZEND - RACK_D / 2); TXT.add(R, endRack); rows.push(endRack);
+  /* the kit's server handles read as nubs on the rack edges at this distance, so they come out */
+  rows.forEach((row) => row.traverse((m) => { if (m.isInstancedMesh && m.geometry && m.geometry.parameters && Math.abs((m.geometry.parameters.width || 0) - 0.012) < 1e-6) m.visible = false; }));
+  rows.forEach((row) => { recolorAll(row); row.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'TubeGeometry') m.visible = false; }); shadowAll(row); });
+  endRack.updateMatrixWorld(true);
+  const FACE = (() => { let z = -1e9; endRack.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'PlaneGeometry') { const p = new THREE.Vector3(); m.getWorldPosition(p); z = Math.max(z, p.z); } }); return z; })();
+
+  /* the open slot: an empty 8U bay, its back dark violet steel, steel shelves top and bottom, slide rails at the sides */
+  const SLOT_W = 0.466, SLOT_H = 0.445, SLOT_Y = FH + 0.98;
+  const bayMat = phys('slot-back-powder-coat-paint', { color: 0x231a5e, roughness: 0.6, metalness: 0.3 }, 'paint');
+  const shelfMat = phys('slot-shelf-zinc-steel', { color: 0xb4aee0, roughness: 0.35, metalness: 0.85 }, 'brushed');
+  { const back = TXT.roundedBox(SLOT_W, SLOT_H, 0.01, 0.002, bayMat); back.position.set(0, SLOT_Y + SLOT_H / 2, FACE + 0.006); R.scene.add(shadowAll(new THREE.Group().add(back)));
+    for (const y of [SLOT_Y, SLOT_Y + SLOT_H]) { const sh = TXT.roundedBox(SLOT_W + 0.01, 0.012, 0.09, 0.003, shelfMat); sh.position.set(0, y, FACE + 0.045); R.scene.add(shadowAll(new THREE.Group().add(sh))); }
+    for (const sx of [-1, 1]) { const rl = TXT.roundedBox(0.014, SLOT_H, 0.09, 0.003, shelfMat); rl.position.set(sx * (SLOT_W / 2), SLOT_Y + SLOT_H / 2, FACE + 0.045); R.scene.add(shadowAll(new THREE.Group().add(rl)));
+      /* cage nuts on the rail, every U */
+      for (let u = 0; u < 10; u++) { const cn = TXT.roundedBox(0.012, 0.012, 0.006, 0.002, shelfMat); cn.position.set(sx * (SLOT_W / 2 + 0.012), SLOT_Y + 0.022 + u * 0.04445, FACE + 0.09); R.scene.add(cn); } } }
+  /* the end rack's lower front: one solid powder coated cover from the plinth to the slot, a vertical pull at its edge */
+  { const lm = phys('rack-lower-cover-powder-coat-paint', { color: 0x4a3ab8, roughness: 0.42, metalness: 0.35, clearcoat: 0.3, clearcoatRoughness: 0.4 }, 'paint');
+    const ch = SLOT_Y - 0.012 - (FH + 0.1); const cov = TXT.roundedBox(0.556, ch, 0.02, 0.006, lm); cov.position.set(0, FH + 0.1 + ch / 2, FACE + 0.03); R.scene.add(shadowAll(new THREE.Group().add(cov)));
+    /* the cover is a perforated steel panel, as rack fronts are: a hex hole field on a flat plane, mipmapped so it never aliases */
+    { const ptex = CH.canvasTex(THREE, 512, 1024, (g, w, h) => { g.fillStyle = '#5040c0'; g.fillRect(0, 0, w, h); g.fillStyle = '#1e1656'; for (let y = 10, r = 0; y < h - 6; y += 16, r++) for (let x = (r % 2) ? 10 : 18; x < w - 6; x += 16) { g.beginPath(); g.arc(x, y, 4.6, 0, 7); g.fill(); } g.strokeStyle = '#3a2c96'; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10); }, null);
+      ptex.generateMipmaps = true; ptex.minFilter = THREE.LinearMipmapLinearFilter; ptex.anisotropy = (R.renderer && R.renderer.capabilities) ? R.renderer.capabilities.getMaxAnisotropy() : 16;
+      const pm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: ptex, roughness: 0.45, metalness: 0.35, polygonOffset: true, polygonOffsetFactor: -2 }); pm.name = 'rack-lower-cover-perforated-steel'; pm.userData.txSurface = false;
+      const pp = new THREE.Mesh(new THREE.PlaneGeometry(0.53, ch - 0.03), pm); pp.position.set(0, FH + 0.1 + ch / 2, FACE + 0.0412); pp.receiveShadow = true; pp.userData.txBevel = false; R.scene.add(pp); }
+    /* the pull is a short horizontal bar at the top of the cover, just under the slot, so nothing vertical runs through the type below */
+    const pull = TXT.roundedBox(0.16, 0.018, 0.03, 0.008, phys('rack-cover-pull-brushed-steel', { color: 0xc8c2e8, roughness: 0.3, metalness: 0.9 }, 'brushed')); pull.position.set(0.12, SLOT_Y - 0.07, FACE + 0.055); R.scene.add(shadowAll(new THREE.Group().add(pull))); }
+  /* THE HERO: the customer's own papers, NOT the estimate. A lidless cream archival box of loose sheets filed upright, stood in
+   * the rented slot: board walls with a hand hole and a blank label frame, the sheets' top edges staggered above the rim. */
+  const BOX_W = 0.40, BOX_H = 0.25, BOX_D = 0.30;
+  const boardMat = phys('archive-box-cream-board-paper', { color: 0xd8c4a2, roughness: 0.86 }, 'paper');
+  const boardIn = phys('archive-box-inner-board-paper', { color: 0xcdb99a, roughness: 0.9 }, 'paper');
+  const box = new THREE.Group();
+  { const T = 0.004;
+    const wall = (w, h, d, x, y, z, m) => { const b = TXT.roundedBox(w, h, d, 0.0015, m); b.position.set(x, y, z); box.add(b); return b; };
+    wall(BOX_W, T, BOX_D, 0, T / 2, 0, boardIn);                                   /* floor */
+    wall(BOX_W, BOX_H, T, 0, BOX_H / 2, -BOX_D / 2 + T / 2, boardIn);               /* back */
+    for (const sx of [-1, 1]) wall(T, BOX_H, BOX_D, sx * (BOX_W / 2 - T / 2), BOX_H / 2, 0, boardMat);
+    /* the front, built round a hand hole: a lower panel, two stiles and a lintel, with the hole's dark inside showing */
+    const HW = 0.11, HH = 0.032, HY = BOX_H - 0.055, z = BOX_D / 2 - T / 2;
+    wall(BOX_W, HY - HH / 2, T, 0, (HY - HH / 2) / 2, z, boardMat);
+    wall(BOX_W, BOX_H - (HY + HH / 2), T, 0, HY + HH / 2 + (BOX_H - HY - HH / 2) / 2, z, boardMat);
+    for (const sx of [-1, 1]) wall((BOX_W - HW) / 2, HH, T, sx * (HW / 2 + (BOX_W - HW) / 4), HY, z, boardMat);
+    /* the hand hole's dark inside: a shaded backing just behind the opening, so it reads as a cut, not a pale band */
+    wall(HW + 0.01, HH + 0.006, 0.002, 0, HY, z - 0.012, phys('archive-hole-shadow-paper', { color: 0x2e2040, roughness: 0.95 }, 'paper'));
+    /* a blank label frame on the front, a thin raised rim and nothing written in it */
+    const rimM = phys('archive-label-frame-brushed-steel', { color: 0xc8c0e0, roughness: 0.35, metalness: 0.85 }, 'brushed');
+    const LW = 0.13, LH = 0.06, LY = 0.075;
+    for (const sy of [-1, 1]) wall(LW, 0.004, 0.003, 0, LY + sy * LH / 2, BOX_D / 2 + 0.0015, rimM);
+    for (const sx of [-1, 1]) wall(0.004, LH, 0.003, sx * LW / 2, LY, BOX_D / 2 + 0.0015, rimM);
+    wall(LW - 0.006, LH - 0.006, 0.001, 0, LY, BOX_D / 2 + 0.0008, phys('archive-label-card-paper', { color: 0xf6eedc, roughness: 0.9 }, 'paper')); }
+  /* the loose sheets, filed upright across the box (their faces toward the camera), tops staggered and leaning a little */
+  { const r2 = CH.rng(CH.SEED + 33), N = 46, edge = phys('loose-sheet-cream-paper', { color: 0xf4ead8, roughness: 0.9 }, 'paper');
+    /* sheet stock varies, so the edges inside the box separate: cream, warm buff, pale ivory and a shaded cream */
+    const edges = [edge, phys('loose-sheet-buff-paper', { color: 0xdcc6a2, roughness: 0.9 }, 'paper'), phys('loose-sheet-ivory-paper', { color: 0xfff4e2, roughness: 0.9 }, 'paper'), phys('loose-sheet-shaded-paper', { color: 0xc8b090, roughness: 0.92 }, 'paper')];
+    const faces = [CH.pageTex(THREE, 41, -1), CH.pageTex(THREE, 42, -1), CH.pageTex(THREE, 43, -1)];
+    for (let i = 0; i < N; i++) {
+      const h = 0.255 + r2() * 0.05 + (i % 9 === 4 ? 0.035 : 0), z = -BOX_D / 2 + 0.02 + i * (BOX_D - 0.04) / (N - 1);
+      const front = i >= N - 3, m = front ? phys('loose-sheet-face-paper-' + i, { color: 0xffffff, map: faces[i % 3], roughness: 0.88 }, 'paper') : edges[i % 4];
+      const sh = TXT.roundedBox(BOX_W - 0.02 - r2() * 0.012, h, 0.0012, 0.0004, m); sh.userData.txBevel = false;
+      sh.position.set((r2() - 0.5) * 0.008, 0.006 + h / 2, z); sh.rotation.x = -0.05 + r2() * 0.06; sh.rotation.z = (r2() - 0.5) * 0.02; box.add(sh); } }
+  box.rotation.y = 0.22; box.position.set(0, SLOT_Y + 0.006, FACE + 0.09 - BOX_D / 2 + 0.06);
+  TXT.add(R, shadowAll(box)); box.updateMatrixWorld(true);
+  { const bb = new THREE.Box3().setFromObject(box); if (bb.min.y < SLOT_Y - 1e-3 || bb.max.y > SLOT_Y + SLOT_H) throw new Error('the box does not stand inside its slot'); }
+  /* the slot is lit: a warm raking side light from the left so the board edges and the sheet tops model, and a soft top spot */
+  { const side = new THREE.SpotLight(0xffbe90, 4.5, 4, 0.24, 0.5, 1.4); side.position.set(-1.25, SLOT_Y + 0.45, FACE + 0.1); side.target.position.set(0.05, SLOT_Y + 0.16, FACE); side.castShadow = true; side.shadow.mapSize.set(2048, 2048); side.shadow.bias = -0.0003; side.shadow.radius = 3; R.scene.add(side); R.scene.add(side.target);
+    const sp = new THREE.SpotLight(0xffd2b0, 0.5, 6, 0.16, 0.6, 1.4); sp.position.set(0.2, FH + 2.45, ZEND + 1.6); sp.target.position.set(0, SLOT_Y + 0.2, FACE); sp.castShadow = false; R.scene.add(sp); R.scene.add(sp.target);
+    const pf = new THREE.PointLight(0xb89cff, 0.15, 0.8, 2); pf.position.set(0.25, SLOT_Y + 0.35, FACE + 0.3); R.scene.add(pf);
+    /* the box's own warm bounce, off the zinc shelf under it, filling the front from below */
+    const wb = new THREE.PointLight(0xffc28e, 0.12, 0.9, 2); wb.position.set(-0.05, SLOT_Y + 0.03, FACE + 0.42); R.scene.add(wb); }
+  /* a Register page on the floor tile in front of the rack, the rule this frame is about, no line highlighted */
+
+  /* ---- THE TOP OF THE ROOM: containment roof, cable trays on the rack tops, two light bars running back to the door ---- */
+  const TOPY = FH + 2.55, RL = Z0 - Z1;
+  const roofMat = phys('aisle-roof-frosted-polycarbonate-plastic', { color: 0xc4b2ff, roughness: 0.55, metalness: 0, emissive: 0x5e48c4, emissiveIntensity: 0.3 }, 'plastic');
+  { const rz0 = Z0 + 2, rz1 = Z1 - 3.2; const roof = TXT.roundedBox(AISLE + 1.2, 0.012, rz0 - rz1, 0.004, roofMat); roof.position.set(0, TOPY + 0.03, (rz0 + rz1) / 2); roof.castShadow = false; R.scene.add(roof); }
+  const alu = phys('aisle-roof-rib-brushed-aluminium', { color: 0xc9c4e8, roughness: 0.3, metalness: 0.9 }, 'brushed');
+  /* fascia: the containment's polycarbonate side panels from the rack tops up to the roof, a steel frame on each */
+  { const poly = new THREE.MeshPhysicalMaterial({ color: 0xb8a6ff, roughness: 0.25, transparent: true, opacity: 0.35, side: THREE.DoubleSide }); poly.userData.txSurface = 'glass';
+    for (const sx of [-1, 1]) { const p = new THREE.Mesh(new THREE.PlaneGeometry(RL + 2, TOPY - FH - 2.0), poly); p.rotation.y = Math.PI / 2; p.position.set(sx * (AISLE / 2 + 0.36), FH + 2.0 + (TOPY - FH - 2.0) / 2, (Z0 + Z1) / 2 + 1); R.scene.add(p);
+      const lip = TXT.roundedBox(0.05, 0.05, RL + 2, 0.01, alu); lip.position.set(sx * (AISLE / 2 + 0.36), TOPY - 0.02, (Z0 + Z1) / 2 + 1); R.scene.add(lip); } }
+  /* cable trays: a steel ladder on each rack top with a bundle of cables and a yellow fibre raceway */
+  { const ladM = phys('cable-ladder-galv-steel', { color: 0x9c98c8, roughness: 0.4, metalness: 0.8 }, 'brushed');
+    const ductM = phys('fibre-raceway-yellow-plastic', { color: 0xe8b42a, roughness: 0.45 }, 'plastic');
+    const cabM = [phys('cable-cat6-blue-rubber', { color: 0x3b6fe0, roughness: 0.6 }, 'rubber'), phys('cable-cat6-grey-rubber', { color: 0x8a86b0, roughness: 0.6 }, 'rubber')];
+    for (const sx of [-1, 1]) { const x0 = sx * (AISLE / 2 + 0.2), y0 = FH + 2.12, zc = (Z0 + Z1) / 2 + 1, L = RL + 2;
+      for (const dx of [-0.14, 0.14]) { const s = TXT.roundedBox(0.012, 0.06, L, 0.003, ladM); s.position.set(x0 + dx, y0, zc); R.scene.add(shadowAll(new THREE.Group().add(s))); }
+      for (let k = 0; k < 4; k++) TXT.add(R, shadowAll(new THREE.Group().add(TXT.tube([[x0 - 0.09 + k * 0.05, y0 + 0.01, Z0 + 2], [x0 - 0.09 + k * 0.05, y0 + 0.012, Z1]], 0.012, cabM[k % 2], { segments: 4, radial: 10 }))));
+      const duct = TXT.roundedBox(0.16, 0.09, L, 0.012, ductM); duct.position.set(x0 + sx * 0.05, y0 + 0.2, zc); R.scene.add(shadowAll(new THREE.Group().add(duct))); } }
+  /* two light bars under the roof, aluminium housings with a lit diffuser, running from over the camera to the door */
+  for (const sx of [-1, 1]) { const x = sx * 1.15, zc = (Z0 + Z1) / 2 + 1, L = RL + 2;
+    const hs = TXT.roundedBox(0.09, 0.05, L, 0.012, alu); hs.position.set(x, TOPY - 0.03, zc); hs.castShadow = false; R.scene.add(hs);
+    const dm = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xf0e4ff).multiplyScalar(1.9) }); dm.userData.txSurface = false;
+    const df = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.006, L - 0.04), dm); df.userData.txBevel = false; df.position.set(x, TOPY - 0.058, zc); R.scene.add(df);
+    for (let z = Z0; z > Z1; z -= 2.2) { const p = new THREE.PointLight(0xd8c8ff, 0.35, 3.2, 2); p.position.set(x, TOPY - 0.2, z); R.scene.add(p); } }
+
+  /* ---- THE FAR DOOR behind the end rack: glass leaves and a glass transom, the hall beyond glowing coral round the rack ---- */
+  const DZ = Z1 - 0.02, DH = 2.0;
+  const door = new THREE.Group();
+  const frameM = phys('end-door-frame-anodised-aluminium', { color: 0xb8b0e0, roughness: 0.32, metalness: 0.85 }, 'brushed');
+  for (const sx of [-1, 1]) { const post = TXT.roundedBox(0.06, TOPY - FH, 0.08, 0.01, frameM); post.position.set(sx * (AISLE / 2 - 0.03), FH + (TOPY - FH) / 2, DZ); door.add(post); }
+  { const head = TXT.roundedBox(AISLE, 0.08, 0.1, 0.012, frameM); head.position.set(0, FH + DH, DZ); door.add(head); }
+  const glassM = new THREE.MeshPhysicalMaterial({ color: 0xffc8b8, roughness: 0.08, metalness: 0, transparent: true, opacity: 0.34, clearcoat: 1, clearcoatRoughness: 0.05 }); glassM.userData.txSurface = 'glass';
+  { const g = new THREE.Mesh(new THREE.PlaneGeometry(AISLE - 0.1, TOPY - FH - 0.1), glassM); g.position.set(0, FH + (TOPY - FH) / 2, DZ + 0.01); door.add(g);
+    const mull = TXT.roundedBox(0.04, DH, 0.05, 0.008, frameM); mull.position.set(0, FH + DH / 2, DZ + 0.02); door.add(mull);
+    /* each bay is a sliding leaf in its own frame: two stiles, a bottom rail, a push bar at hand height, a transom bar over it */
+    for (const sx of [-1, 1]) {
+      for (const x of [0.34, 0.84]) { const st = TXT.roundedBox(0.045, DH - 0.04, 0.045, 0.008, frameM); st.position.set(sx * x, FH + DH / 2, DZ + 0.035); door.add(st); }
+      const bot = TXT.roundedBox(0.52, 0.09, 0.045, 0.008, frameM); bot.position.set(sx * 0.59, FH + 0.06, DZ + 0.035); door.add(bot);
+      const bar = TXT.roundedBox(0.4, 0.035, 0.035, 0.015, frameM); bar.position.set(sx * 0.59, FH + 1.02, DZ + 0.07); door.add(bar);
+      for (const bx of [0.43, 0.75]) { const lug = TXT.roundedBox(0.02, 0.02, 0.04, 0.006, frameM); lug.position.set(sx * bx, FH + 1.02, DZ + 0.05); door.add(lug); }
+      const tb = TXT.roundedBox(0.52, 0.04, 0.045, 0.008, frameM); tb.position.set(sx * 0.59, FH + DH + 0.22, DZ + 0.035); door.add(tb); } }
+  TXT.add(R, door); door.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = true; } });
+  { const glowTex = CH.canvasTex(THREE, 64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h);
+      gr.addColorStop(0, '#e86a7c'); gr.addColorStop(0.4, '#ff9a7a'); gr.addColorStop(0.75, '#ffb48a'); gr.addColorStop(1, '#f07a68'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const gm = new THREE.MeshBasicMaterial({ map: glowTex, color: new THREE.Color(1, 1, 1).multiplyScalar(1.5), fog: false }); gm.userData.txSurface = false;
+    const back = new THREE.Mesh(new THREE.PlaneGeometry(7, 4.5), gm); back.position.set(0, FH + 1.6, DZ - 2.2); R.scene.add(back); }
+  /* the hall beyond the glass: another run of racks facing this way, soft in the coral light */
+  { const far = K.make('server_row', { racks: 8, doors: false, containment: false, tray: false, floor: false, seed: 12 }); far.position.set(0, FH, DZ - 2.6); recolorAll(far); far.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'TubeGeometry') m.visible = false; }); TXT.add(R, far); }
+  /* the coral key through the glass, rimming the end rack and running up the runner toward the camera */
+  { const sp = new THREE.SpotLight(0xff9c80, 45, 16, 0.3, 0.7, 1.2); sp.position.set(0, FH + 1.6, DZ - 1.4); sp.target.position.set(0, FH, DZ + 8); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; R.scene.add(sp); R.scene.add(sp.target); }
+
+  /* ---- THE RUNNER: an anti static rubber mat down the aisle, fine ribs along its length ---- */
+  { const ribs = CH.canvasTex(THREE, 128, 16, (g, w, h) => { g.fillStyle = '#808080'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 8) { g.fillStyle = '#d8d8d8'; g.fillRect(x, 0, 3, h); g.fillStyle = '#4a4a4a'; g.fillRect(x + 4, 0, 2, h); } }, [14, 1]);
+    const mott = CH.canvasTex(THREE, 256, 1024, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); for (let i = 0; i < 5000; i++) { const v = 200 + (rnd() * 55 | 0); g.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',0.5)'; g.fillRect(rnd() * w, rnd() * h, 1 + rnd() * 3, 1 + rnd() * 6); } }, [1, 4]);
+    /* the ribs carried in the albedo too, light crowns and dark grooves, so the mat reads as moulded rubber at feed size */
+    const ribAlb = CH.canvasTex(THREE, 128, 16, (g, w, h) => { g.fillStyle = '#a89cc8'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 8) { g.fillStyle = '#d8ccf4'; g.fillRect(x, 0, 3, h); g.fillStyle = '#6a5ca0'; g.fillRect(x + 4, 0, 2, h); } }, [26, 1]);
+    /* THE FLOOR SURFACE (panel repair): one 0.6 m perforated supply tile per repeat, low frequency, a quiet seam grid, mipmapped at full
+     * anisotropy and kept out of the surface pass so it can't alias into moire under the dek */
+    const tileTex = CH.canvasTex(THREE, 512, 512, (g, w, h) => { g.fillStyle = '#8c78d4'; g.fillRect(0, 0, w, h);
+      const gr = g.createRadialGradient(w / 2, h / 2, 40, w / 2, h / 2, w * 0.75); gr.addColorStop(0, 'rgba(255,240,255,0.06)'); gr.addColorStop(1, 'rgba(40,20,90,0.08)'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      g.fillStyle = '#7462bc'; for (let y = 64; y < h - 40; y += 48) for (let x = 64; x < w - 40; x += 48) { g.beginPath(); g.arc(x, y, 9, 0, 7); g.fill(); }
+      { let s = 7; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647; for (let i = 0; i < 900; i++) { const x = rnd() * w, y = rnd() * h, r = 4 + rnd() * 14, a = 0.05 + rnd() * 0.08; g.fillStyle = rnd() < 0.5 ? 'rgba(40,24,96,' + a + ')' : 'rgba(210,190,250,' + a + ')'; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); } }
+      g.strokeStyle = '#7e6cc6'; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6); }, null);
+    tileTex.wrapS = tileTex.wrapT = THREE.RepeatWrapping; tileTex.generateMipmaps = true; tileTex.minFilter = THREE.LinearMipmapLinearFilter; tileTex.magFilter = THREE.LinearFilter;
+    tileTex.anisotropy = (R.renderer && R.renderer.capabilities) ? R.renderer.capabilities.getMaxAnisotropy() : 16;
+    const rm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: tileTex, roughness: 0.55, metalness: 0.1 }); rm.name = 'aisle-floor-perforated-tile'; rm.userData.txSurface = false;
+    /* the mat runs the full width of the aisle and on under the end rack to the door, so no tile seam shows round the rack */
+    const mz0 = Z0 + 1, mz1 = DZ + 0.06; /* a plane, not a rounded box: the rounded box packs its UVs into its edge bands, which had stretched every floor texture ninefold */
+    tileTex.repeat.set(3, (mz0 - mz1) / 0.6); const run = new THREE.Mesh(new THREE.PlaneGeometry(AISLE - 0.02, mz0 - mz1), rm); run.rotation.x = -Math.PI / 2; run.userData.txBevel = false; run.position.set(0, FH + 0.006, (mz0 + mz1) / 2); run.receiveShadow = true; run.castShadow = false; R.scene.add(run); }
+  /* ---- SCUFFS on the runner ---- */
+  { const sc = CH.canvasTex(THREE, 256, 1024, (g, w, h) => { g.clearRect(0, 0, w, h);
+      /* a worn, coral lit path: a soft band down the middle and broad low contrast wear patches, no fine streaks to alias */
+      const band = g.createLinearGradient(0, 0, w, 0); band.addColorStop(0, 'rgba(255,170,150,0)'); band.addColorStop(0.5, 'rgba(255,170,150,0.22)'); band.addColorStop(1, 'rgba(255,170,150,0)'); g.fillStyle = band; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 60; i++) { const x = w / 2 + (rnd() - 0.5) * w * 0.5, y = rnd() * h, rr = 14 + rnd() * 30; const pg = g.createRadialGradient(x, y, 0, x, y, rr); pg.addColorStop(0, 'rgba(255,200,190,0.10)'); pg.addColorStop(1, 'rgba(255,200,190,0)'); g.fillStyle = pg; g.fillRect(x - rr, y - rr, rr * 2, rr * 2); } });
+    sc.generateMipmaps = true; sc.minFilter = THREE.LinearMipmapLinearFilter; sc.anisotropy = 16;
+    const sm = new THREE.MeshStandardMaterial({ map: sc, transparent: true, depthWrite: false, roughness: 0.5, polygonOffset: true, polygonOffsetFactor: -3 }); sm.userData.txSurface = false;
+    const p = new THREE.Mesh(new THREE.PlaneGeometry(1.6, Z0 - ZEND), sm); p.userData.txBevel = false; p.rotation.x = -Math.PI / 2; p.position.set(0, FH + 0.0075, (Z0 + ZEND) / 2); p.receiveShadow = true; R.scene.add(p); }
+
+  /* contact under every rack, on the floor it stands on */
+  rows.forEach((row) => TXT.contact(R, row, { y: FH }));
+
+  /* ---- CAMERA: standing in the aisle at eye height, 5 m from the end rack, the ream on the axis ---- */
+  const from = [0.04, FH + 1.8, ZEND + 3.1];
+  const look = CH.aim(THREE, R, TXT, from, [0, SLOT_Y + 0.17, FACE + 0.1], 540, 440, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  /* the Register page lies flat on clean floor in the left bay beside the end rack, placed by its projection so it sits above the
+   * headline and clear of the rack; if no spot fits it is left out rather than crowding the type */
+  { const pg = K.make('register_page', { hl: -1, curl: 0, clip: false, seed: 31 }); pg.rotation.y = 0.35; let placed = false;
+    for (let z = ZEND - 0.15; z > Z1 + 0.25; z -= 0.05) { pg.position.set(-0.54, FH + 0.0085, z); pg.updateMatrixWorld(true); const rc = CH.rectOf(THREE, R, pg, 0);
+      if (rc[1] + rc[3] < 752 && rc[0] > 64 && rc[0] + rc[2] < 340) { placed = true; break; } }
+    if (placed) { TXT.add(R, shadowAll(pg)); TXT.contact(R, pg, { y: FH + 0.0075, opacity: 0.8 }); window.__pagePlaced = pg.position.z; } else console.error('register page left out, no clean spot'); }
+  CH.KEY_SCALE = 0.4;
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), Object.assign(CH.rigOpts([0, FH, ZEND], { distance: 18, shadowFar: 40, normalBias: 0.01 }), { light: { az: 178, el: 7 } }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.05, height: 0.3, mottle: 0.1 });
+  /* a violet bounce off the lit roof, so the rack faces and the near floor shade to violet rather than black */
+  { const hb = new THREE.HemisphereLight(0xa888f0, 0x6a48b8, 1.5); R.scene.add(hb);
+    const ff = new THREE.PointLight(0xb89cff, 1.4, 5, 2); ff.position.set(0, FH + 2.2, ZEND + 2.2); R.scene.add(ff);
+    /* coral spill on the near mat, where the door light lands at the camera's feet */
+    const nf = new THREE.PointLight(0xff9c88, 2.2, 3.2, 1.6); nf.position.set(0, FH + 0.9, ZEND + 1.4); R.scene.add(nf); }
+
+  /* the hero must read at feed size: the box of papers stands at least 110 px tall in a 1350 px frame */
+  { const rc = CH.rectOf(THREE, R, box, 0); if (rc[3] < 110) throw new Error('the box of papers stands ' + rc[3].toFixed(0) + ' px tall, under 110'); }
+
+  const cx = CH.develop(await TXT.snapshot(R, {}), gl);
+  CH.seat(cx, { sel: '.hook, .dek', a: 0.5, fade: 150 });
+  CH.seat(cx, { sel: '.tx-site', a: 0.6, fade: 60 });
+  CH.seat(cx, { sel: '.kick', a: 0.55, fade: 70 });
+  CH.seat(cx, { sel: '.count', a: 0.55, fade: 70 });
+  TXLOOK.footWash(cx, { tone: CH.TONE, a: 0.42, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

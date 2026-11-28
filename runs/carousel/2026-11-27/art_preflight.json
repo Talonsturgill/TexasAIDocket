@@ -1,0 +1,243 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "5f47b2dd29dde9bbd57af746fdd83befa7ca682cc2b62f902f32bd216f4e3079",
+    "render/slide-01.png": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+    "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "cf794b9fa4c88b59bc3ff670cb4a97e8997eceb02ab0e8fd352662536619cd52",
+    "render/slide-05.png": "6193d4412740e54d9358835595199fdcabbcb216673e833c1a971a4317941766",
+    "slides/slide-09.html": "0d92e8da3db6c3ea17460a89e67d41b017945f2a72100dd1bb2cb986263a5bfe",
+    "render/slide-09.png": "57ad313f0ef279ccb5894563468eb1269f217b8db94f853873cf0504cdecce5b"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 33.8,
+      "mid": 0.525,
+      "dark": 0.009,
+      "grey_mid": 0.002,
+      "vivid": 0.886,
+      "median_C": 56.1
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 47.7,
+      "mid": 0.506,
+      "dark": 0.002,
+      "grey_mid": 0.003,
+      "vivid": 0.764,
+      "median_C": 37.0
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 34.6,
+      "mid": 0.528,
+      "dark": 0.054,
+      "grey_mid": 0.02,
+      "vivid": 0.854,
+      "median_C": 52.3
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "5f47b2dd29dde9bbd57af746fdd83befa7ca682cc2b62f902f32bd216f4e3079",
+      "render/slide-01.png": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+      "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "cf794b9fa4c88b59bc3ff670cb4a97e8997eceb02ab0e8fd352662536619cd52",
+      "render/slide-05.png": "6193d4412740e54d9358835595199fdcabbcb216673e833c1a971a4317941766",
+      "slides/slide-09.html": "0d92e8da3db6c3ea17460a89e67d41b017945f2a72100dd1bb2cb986263a5bfe",
+      "render/slide-09.png": "57ad313f0ef279ccb5894563468eb1269f217b8db94f853873cf0504cdecce5b"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A deep violet powder-coated server rack standing on a magenta-to-violet studio sweep. Its hex-perforated door is swung open to the right with a clipped paper page on it, and the page has one orange highlighted line. Inside are a patch panel of colored cables spilling down the right rail, rows of drive sleds with cyan LEDs and handles, and a blue status panel at the base. A short stack of three kraft-wrapped reams under a pale sheet block sits at the rack's left foot.",
+        "visual_consequence": "Without the headline, the reader sees the machine the rule is about with its door open and a paper page pinned to it, and a small pile of the same wrapped paper that grows across the deck. That links the server to a document and an estimate. The new dek reads cleanly at 100 percent in six lines of light sans on the violet field, with no clipping, overlap or stray punctuation.",
+        "weakness": "Secondary only. The rack reads as finished hardware. Remaining defects: the interior shading is almost one violet hue, the clipped register page is a flat bright card with no curl or thickness, the top sheet block is a featureless pale slab, a thin hot-pink glow line runs along the bottom of the open door, and an empty violet band sits between the headline and the dek.",
+        "repair": "None required for acceptance. If polished later, give the top sheet block visible sheet-edge lines and the clipped page a slight curl and edge thickness.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "5f47b2dd29dde9bbd57af746fdd83befa7ca682cc2b62f902f32bd216f4e3079",
+          "render/slide-01.png": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+          "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "Two stacks of kraft-wrapped paper reams on an oak table, each turned about 30 degrees. The left stack is fiscal 2027: three reams under a block of loose cream sheets. The right stack is fiscal 2032: eight reams with a torn wrapper on the top ream. A ruler with tick marks stands upright beside the taller stack, in front of a lit muntin window and fielded violet wainscot.",
+        "visual_consequence": "Without the headline, one pile of the same paper stands a bit over twice as tall as the other at the same depth. The reams can be counted, three against eight, so the loss reads as more than doubling across the years shown, in the document's own material rather than as bars. Each ream's end face is lit warm kraft with shaded end-fold flaps and a vertical wrapper seam, each long face is in rose shade with a dark band, a cream sheet-edge line runs between reams, and the band meets the corner. The torn wrapper edge and the loose sheet block both read as paper. Contact shadows seat both bases, and the cast shadows fall back and to the right.",
+        "weakness": "Three secondary defects; the reams themselves read as finished. (1) At 100 percent the end-fold flaps are slightly translucent, so the rose band shows faintly through the flap triangles on every end face. (2) The steel rule is a flat lilac-pink strip with no visible thickness or edge face, square to the camera while the stacks are turned 30 degrees, with horizontal streaking. (3) The table's grain is a fan of thin, hair-like streaks rather than oak figure, and the far edge meets the wainscot as a hard horizontal cut. The type wash behind the kicker and counter lays a muddy brown band across the peach glass.",
+        "repair": "none required for acceptance. If polished later, make the fold flaps opaque so the band wraps over them, and give the rule a steel albedo, an edge thickness and the stacks' 30 degree turn.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "cf794b9fa4c88b59bc3ff670cb4a97e8997eceb02ab0e8fd352662536619cd52",
+          "render/slide-05.png": "6193d4412740e54d9358835595199fdcabbcb216673e833c1a971a4317941766"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The tall fiscal 2032 stack of kraft-wrapped reams, seen close and from above, on a walnut desk against a violet wall that carries a soft window-mullion shadow. On top are a cream sheet block, a typed letter with one orange highlighted line, a pale pink envelope with its flap open and one corner lifted, and a blue pen with a red tip lying across the letter.",
+        "visual_consequence": "Without the headline, the stack from the evidence frame now has a letter and a pen resting on it. The estimate has become something a reader can answer in writing, which closes the deck's paper motif. The new dek reads cleanly at 100 percent in six lines of light sans, no contact address appears, and the dark violet wash under the dek keeps contrast over the desk grain.",
+        "weakness": "Secondary only. The ream end faces are a flatter olive-khaki than frame 5's warm kraft with thin chevron fold lines, the left long faces are in nearly uniform shade, the desk grain reads as motion blur more than walnut figure, and the kit laptop named in the craft line is not visible.",
+        "repair": "None required for acceptance. If polished later, warm the ream end faces toward frame 5's kraft albedo with a faint fibre texture, and correct the craft line to drop the laptop.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "0d92e8da3db6c3ea17460a89e67d41b017945f2a72100dd1bb2cb986263a5bfe",
+          "render/slide-09.png": "57ad313f0ef279ccb5894563468eb1269f217b8db94f853873cf0504cdecce5b"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "The fiscal note's estimate drawn in the document's own material, one sheet of paper per million dollars. The deck moves from the rack the rule is about, through what the tax was written for and the rented hall it would leave out, to the rule's words on the page, two measured stacks, the first and last fiscal years, of the estimate, the local share on a dais, the note's own word insignificant in the shadow of its tallest stack, thirty day cards, and a letter resting on that stack.",
+    "build_risk": "Frame 5 must make two stacks of wrapped reams, 194.7 mm and 428.6 mm tall, read as paper on a table in a room, large enough that each wrapped ream, its end folds and the torn top read at 432 px, never as a bar chart.",
+    "distinct_from_recent": "Nov 26 drew a turbine engine, a blisk and a hangar door. Nov 25 drew glass lungs, manila folders and card files. Nov 24 drew drone aerials over roofs and plate racks. None drew a server rack, a data hall, paper reams, a council dais or a Register page."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "5f47b2dd29dde9bbd57af746fdd83befa7ca682cc2b62f902f32bd216f4e3079",
+      "render/slide-01.png": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+      "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "cf794b9fa4c88b59bc3ff670cb4a97e8997eceb02ab0e8fd352662536619cd52",
+      "render/slide-05.png": "6193d4412740e54d9358835595199fdcabbcb216673e833c1a971a4317941766"
+    },
+    "9": {
+      "assets/js/deck/2026-11-27-onesheet-bespoke.js": "c0b496cf0ecaf41439aaa524a9bac82836e561f3629861e26bf863f6642a54a6",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "2c652acb9d7585c4f39a5dd29287000af28e260b64cc410dce5e6ecacc2d70c5",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txlook.js": "0e7fb4f8456999a1ab9cd1cb49dc99315a0f81742ebb7163ae2fe66b2303cdbb",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "60bf713f6196734fc6a7b4e9c09a4738112a799ceb1f9405a662bb7b237e13d7",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "0d92e8da3db6c3ea17460a89e67d41b017945f2a72100dd1bb2cb986263a5bfe",
+      "render/slide-09.png": "57ad313f0ef279ccb5894563468eb1269f217b8db94f853873cf0504cdecce5b"
+    }
+  },
+  "needs_review": [
+    1,
+    5
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "5f47b2dd29dde9bbd57af746fdd83befa7ca682cc2b62f902f32bd216f4e3079",
+    "slide-01.png": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+    "slides/slide-05.html": "cf794b9fa4c88b59bc3ff670cb4a97e8997eceb02ab0e8fd352662536619cd52",
+    "slide-05.webp": "0b068319f02e79d80bb21afdc6c8e011a7cf67d2c11bb4862fb6fc52f4b47793",
+    "slides/slide-09.html": "0d92e8da3db6c3ea17460a89e67d41b017945f2a72100dd1bb2cb986263a5bfe",
+    "slide-09.webp": "dbfc73712cbd4762fb425fccc68755e4e292f35cf5b470f18e956f668da1595a"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.png",
+      "to_sha256": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+      "from_sha256": "f5e382b7bcf617089718857093dac2fbbf152e35609f1de156e3929dac861187",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "0b068319f02e79d80bb21afdc6c8e011a7cf67d2c11bb4862fb6fc52f4b47793",
+      "from_sha256": "6193d4412740e54d9358835595199fdcabbcb216673e833c1a971a4317941766",
+      "psnr_db": 40.418
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "dbfc73712cbd4762fb425fccc68755e4e292f35cf5b470f18e956f668da1595a",
+      "from_sha256": "57ad313f0ef279ccb5894563468eb1269f217b8db94f853873cf0504cdecce5b",
+      "psnr_db": 41.064
+    }
+  ]
+}
