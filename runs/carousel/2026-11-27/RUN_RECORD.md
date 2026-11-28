@@ -120,3 +120,27 @@ Escalated to UPGRADE_BACKLOG.md for a maintainer: render.py's report race when a
 **Instincts.** Added `true-scale-must-fit-the-frame` at 0.50. Confirmed `a-paraphrase-can-outrun-its-quote` (frame 7's attribution rests on c38's paraphrase) and `rewrite-the-dossier-when-the-build-changes`.
 
 **Sources.** The Texas Register refused WebFetch with 405 and answered `fetch_doc.py`, logged in SOURCES_FIELD_LOG.md.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 45 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 8 warn(s) |
+| aggregates     | PASS   | 6 declaration(s), 5 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.94 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 73 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 29,310 chars planned |
+| caption        | PASS   | 142 words |
+| craft floor    | PASS   | 9 frame(s), median 2107, floor 379 |
+| plan vs render | WARN   | 0 of 45 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
+| absences       | WARN   | 0 of 6 scoped to a named document, 6 unscoped |
+| numerals       | PASS   | 16 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
