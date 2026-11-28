@@ -1,0 +1,118 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "State policy",
+ "dek": {
+  "text": "The comptroller proposes treating cloud computing and AI as hosted services outside the data processing tax. His own fiscal note estimates what Texas would stop collecting.",
+  "claims": [
+   "c3",
+   "c25",
+   "c26"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Comptroller Don Huffines announced proposed amendments to Rule 3.308 on November 18th](c2). [They appeared in the Texas Register issue of November 20th](c45). [The proposal defines hosted technology services to include cloud computing, artificial intelligence and quantum computing](c25). [It says those services are not data processing and are not taxable](c20).",
+   "claims": [
+    "c2",
+    "c45",
+    "c25",
+    "c20"
+   ]
+  },
+  {
+   "text": "It is a proposal. [The earliest the comptroller can adopt it is December 20th](c43), and nothing in the record shows it adopted.",
+   "claims": [
+    "c43"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the tax was written for",
+   "paragraphs": [
+    {
+     "text": "[Huffines says the Legislature taxed data processing in {{number:c7}}](c7). [Under the proposed definition, a data processing service is one where the provider processes data the customer supplied and returns it in the format the customer asked for](c22). [Storing or manipulating data would not by itself count](c23). [Neither would a customer using a provider's software, platform or computing to process its own data](c24).",
+     "claims": [
+      "c7",
+      "c22",
+      "c23",
+      "c24"
+     ]
+    },
+    {
+     "text": "[The comptroller says the agency's earlier reading of the tax was too expansive](c21). [He intends the amendments to apply only from the date their adoption takes effect](c44).",
+     "claims": [
+      "c21",
+      "c44"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the comptroller's own note estimates",
+   "paragraphs": [
+    {
+     "text": "[The fiscal note in the Register puts the loss to the state's General Revenue Fund at {{money:c26}} in fiscal year 2027](c26). The estimate rises in every year it counts. [It reaches {{money:c31}} in fiscal year 2032](c31).",
+     "claims": [
+      "c26",
+      "c31"
+     ]
+    },
+    {
+     "text": "[Losses to units of local government, including cities, counties and transit authorities, are estimated at {{money:c32}} in fiscal year 2027](c32). [They reach {{money:c37}} in fiscal year 2032](c37).",
+     "claims": [
+      "c32",
+      "c37"
+     ]
+    },
+    {
+     "text": "[The same note finds the amended rule will have an insignificant effect on the state's economy](c38). [It says one further effect on sales tax remittances can't be estimated](c39). Every figure here is the comptroller's estimate of a proposed rule, not a measured loss. [The Texas Tribune's account of the cost rests on the comptroller's own estimates](c10).",
+     "claims": [
+      "c38",
+      "c39",
+      "c10"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "How to comment",
+   "paragraphs": [
+    {
+     "text": "[Comments go to Robin Robinson, the Associate Deputy Comptroller for Tax, by mail or by email](c40). [The comptroller must receive them within {{number:c41}} days of the proposal's publication in the Register](c41). Counted from the issue date, that is December 20th.",
+     "claims": [
+      "c40",
+      "c41"
+     ]
+    },
+    {
+     "text": "[Comptroller-elect Sarah Eckhardt takes over the office on January 1st, according to the Tribune](c17). [She asked Huffines in a letter to stop pursuing rule changes begun since August 1st](c15), and [he replied that he would keep making rules until he leaves office](c18). The record holds no statement of what the new comptroller would do with this rule if it is adopted.",
+     "claims": [
+      "c17",
+      "c15",
+      "c18"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0255",
+   "label": "The Rule 3.308 proposal in the record"
+  },
+  {
+   "id": "tx-2026-0226",
+   "label": "The comptroller's ban on grant money for plate reader cameras"
+  },
+  {
+   "id": "tx-2026-0261",
+   "label": "TSMC's school tax limitation application in Brazos County"
+  }
+ ]
+}
