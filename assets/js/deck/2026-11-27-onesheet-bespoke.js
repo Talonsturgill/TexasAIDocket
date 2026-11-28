@@ -98,9 +98,10 @@
     var shadowAll = function (g) { g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return g; };
     var W = 0.216, D = 0.279;
     var paperMat = function () { return K.mat("os-paper", { color: 0xffffff, map: N.pageTex(THREE, 21, -1), roughness: 0.9 }); };
-    var edgeMat = function () { return K.mat("os-edge", { color: 0xffffff, map: N.edgeTex(THREE, 5), roughness: 0.92 }); };
+    var edgeMat = function () { return noSurf(K.mat("os-edge", { color: 0xffffff, map: N.edgeTex(THREE, 5), roughness: 0.92 })); };
     var kraftMat = function () { return K.mat("os-kraft", { color: 0xffffff, map: N.kraftTex(THREE, 3), roughness: 0.78, clearcoat: 0.05 }, true); };
-    var kraftTop = function () { return K.mat("os-kraft-top", { color: N.KRAFT, roughness: 0.82 }); };
+    var noSurf = function (m) { m.userData.txSurface = false; return m; };   /* the engine surface pass mottled the kraft into an orange sponge (art director, 2026-11-27) */
+    var kraftTop = function () { return noSurf(K.mat("os-kraft-top", { color: N.KRAFT, roughness: 0.82 })); };
 
     /* PAPER REAM. 0.216 x 0.050 x 0.279 m. sheets 500 (default) is a wrapped ream: a kraft wrapper with a rose band on the
      * four sides, folded end seams on the top and bottom faces. sheets under 500 is an opened block of exactly that many
@@ -115,7 +116,7 @@
         if (n >= 500) {
           var top = kraftTop();
           var body = TXT.roundedBox(W, h, D, 0.002, top); body.position.y = h / 2; g.add(body);
-          var band = new THREE.Mesh(new THREE.BoxGeometry(W + 0.0008, h * 0.18, D + 0.0008), K.mat("os-band", { color: N.BAND, roughness: 0.6 }));
+          var band = new THREE.Mesh(new THREE.BoxGeometry(W + 0.0008, h * 0.18, D + 0.0008), noSurf(K.mat("os-band", { color: N.BAND, roughness: 0.6 })));
           band.position.y = h / 2; g.add(band);
           /* the cream sheet edges showing at the base seam of every wrapped ream, so a stack counts by ream at feed size */
           var seam = new THREE.Mesh(new THREE.BoxGeometry(W - 0.002, 0.0022, D - 0.002), edgeMat()); seam.position.y = 0.0011; g.add(seam);
