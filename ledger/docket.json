@@ -55001,7 +55001,7 @@
   },
   {
    "title": "The comptroller proposes a rule treating cloud computing and AI as hosted services outside the sales tax on data processing",
-   "summary": "The Texas Comptroller proposed amendments to Rule 3.308 on November 18th. They would define a taxable data processing service as processing data a customer supplies and returning the data organized. Internet hosting, cloud computing and artificial intelligence would count as hosted technology services and not be taxed as data processing. It is a proposal and not yet adopted. It is to be published in the Texas Register, which carries the comment instructions.",
+   "summary": "The Texas Comptroller proposed amendments to Rule 3.308 on November 18th. They would define a taxable data processing service as processing data a customer supplies and returning the data organized. Internet hosting, cloud computing and artificial intelligence would count as hosted technology services. They would not be taxed as data processing. It is a proposal and not yet adopted. It appeared in the Texas Register on November 20th. The comptroller's own estimate puts the loss to the state's General Revenue Fund at $1,947,310,000 in fiscal year 2027. It reaches $4,286,040,000 in fiscal year 2032. Local governments would lose $507,450,000 in the first year.",
    "topic": "state-policy",
    "decider": {
     "name": "Texas Comptroller of Public Accounts",
@@ -55019,13 +55019,33 @@
      "date": "2026-11-18",
      "kind": "filed",
      "note": "The comptroller announces the proposed amendments to Rule 3.308"
+    },
+    {
+     "date": "2026-11-09",
+     "kind": "filed",
+     "note": "The proposal is filed with the Secretary of State"
+    },
+    {
+     "date": "2026-11-20",
+     "kind": "comment_opens",
+     "note": "The proposal appears in the Texas Register and the comment period opens"
+    },
+    {
+     "date": "2026-12-20",
+     "kind": "comment_closes",
+     "note": "Comments must reach the comptroller by this date, 30 days after publication"
+    },
+    {
+     "date": "2026-12-20",
+     "kind": "administrative_deadline",
+     "note": "The earliest date the comptroller can adopt the rule"
     }
    ],
    "public_access": {
-    "room": "contact_only",
-    "how": "The proposal is to be published in the Texas Register, which carries the comment instructions. The comptroller's office can be reached through its own site until then.",
-    "url": "https://comptroller.texas.gov/about/media-center/news/20261118-comptroller-huffines-kills-tax-on-cloud-computing-internet-hosting-and-artificial-intelligence-1795032827663",
-    "closes": null
+    "room": "open_comment",
+    "how": "Comments on the proposal go to Robin Robinson, the Associate Deputy Comptroller for Tax. Mail goes to P.O. Box 13528 in Austin, Texas 78711. Email goes to Robin.Robinson@cpa.texas.gov. The comptroller must receive comments within 30 days of the proposal's publication in the Texas Register on November 20th.",
+    "url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+    "closes": "2026-12-20"
    },
    "claims": [
     {
@@ -55099,9 +55119,117 @@
      "source_type": "primary_official",
      "fetched": "2026-11-21",
      "id": "tx-2026-0255-c8"
+    },
+    {
+     "id": "tx-2026-0255-c9",
+     "text": "The comptroller's own estimate puts the loss to the state's General Revenue Fund at $1,947,310,000 in fiscal year 2027.",
+     "verbatim_quote": "The proposed amendments would result in losses to General Revenue Fund 0001 of $1,947,310,000 in fiscal year 2027",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c10",
+     "text": "The same estimate reaches $4,286,040,000 in fiscal year 2032.",
+     "verbatim_quote": "$4,286,040,000 in fiscal year 2032",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c11",
+     "text": "By the same estimate cities and counties and transit authorities would lose $507,450,000 in fiscal year 2027.",
+     "verbatim_quote": "Losses to units of local governments, including municipalities, counties, and transit authorities would be $507,450,000 in fiscal year 2027",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c12",
+     "text": "Local losses reach $1,116,890,000 in fiscal year 2032.",
+     "verbatim_quote": "$1,116,890,000 in fiscal year 2032",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c13",
+     "text": "The chief revenue estimator found the amended rule will have an insignificant effect on the state's economy.",
+     "verbatim_quote": "will have insignificant effect on this state's economy",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c14",
+     "text": "The proposal defines hosted technology services to include cloud computing, artificial intelligence and quantum computing.",
+     "verbatim_quote": "New subsection (a)(5) defines hosted technology services, including cloud computing, artificial intelligence, and quantum computing.",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c15",
+     "text": "Comments must reach the comptroller within 30 days of the proposal's publication in the Texas Register.",
+     "verbatim_quote": "The comptroller must receive your comments or other information no later than 30 days from the date of publication of the proposal in the Texas Register",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c16",
+     "text": "Comments go to Robin Robinson by mail or email. Robinson is the Associate Deputy Comptroller for Tax.",
+     "verbatim_quote": "Robin.Robinson@cpa.texas.gov",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c17",
+     "text": "The earliest the comptroller can adopt the rule is December 20th, 2026.",
+     "verbatim_quote": "Earliest possible date of adoption: December 20, 2026",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c18",
+     "text": "The proposal was filed with the Secretary of State on November 9th, 2026.",
+     "verbatim_quote": "Filed with the Office of the Secretary of State on November 9, 2026.",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c19",
+     "text": "The proposal appears in the Texas Register issue of November 20th, 2026.",
+     "verbatim_quote": "Texas Register November 20, 2026",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/index.html",
+     "source_title": "Texas Register, November 20, 2026 issue",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
+    },
+    {
+     "id": "tx-2026-0255-c20",
+     "text": "The estimate leaves out the effect of taxing software only to the extent of its use in Texas. It says that impact can't be estimated.",
+     "verbatim_quote": "that impact cannot be estimated",
+     "source_url": "https://www.sos.state.tx.us/texreg/archive/November202026/Proposed%20Rules/34.PUBLIC%20FINANCE.html",
+     "source_title": "Texas Register, Comptroller of Public Accounts, proposed amendments to 34 TAC §3.308",
+     "source_type": "primary_official",
+     "fetched": "2026-11-27"
     }
    ],
-   "last_verified": "2026-11-26",
+   "last_verified": "2026-11-27",
    "history": [
     {
      "date": "2026-11-21",
@@ -55116,6 +55244,10 @@
      "date": "2026-11-26",
      "note": "Checked and unchanged. Still pending, with no dated movement.",
      "checked": true
+    },
+    {
+     "date": "2026-11-27",
+     "note": "The proposal is now in the Texas Register, published November 20th, and comments are open until December 20th. Its fiscal note puts the state's loss at $1,947,310,000 in the first fiscal year and the local loss at $507,450,000."
     }
    ],
    "id": "tx-2026-0255"
