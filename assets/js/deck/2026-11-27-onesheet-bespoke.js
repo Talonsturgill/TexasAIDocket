@@ -39,7 +39,7 @@
   N.KEY_SCALE = 1;
   N.W = 1080; N.H = 1350; N.SEED = 20261127; N.TONE = "watch"; N.P = TXLOOK.palette("watch"); N.INK = N.P.ink;
   N.ACCENT = 0xe0956a;        /* dusk gold: the words of the proposal, and nothing else */
-  N.KRAFT = 0xa08566; N.BAND = 0xa98a8e; N.PAPER = 0xf4ead8; N.INKC = 0x4a3f6b; N.OAK = 0x9a6a42; N.RACK = 0x2a2350;
+  N.KRAFT = 0x607848; N.BAND = 0x6e5a4a; N.PAPER = 0xf4ead8; N.INKC = 0x4a3f6b; N.OAK = 0x9a6a42; N.RACK = 0x2a2350;
   N.STEEL = 0xc9ced4; N.WALNUT = 0x5e3b26;
   N.GOLD = N.ACCENT;
   N.SHEET_M = 0.0001;         /* one sheet of 20 lb bond, 0.1 mm, the stack's drawing rule */
