@@ -130,7 +130,8 @@
             var paper = paperMat(), t = new THREE.Mesh(new THREE.BoxGeometry(W * 0.5, 0.0012, D * 0.42), paper); t.position.set(W * 0.18, h + 0.0008, -D * 0.18); g.add(t);
           }
         } else {
-          var e = edgeMat(), p = paperMat();
+          /* a loose block's top sheet is plain fibre cream: greeked type at stack scale aliased into a purple maze (art director, 2026-11-27) */
+          var e = edgeMat(), p = noSurf(K.mat("os-paper-plain", { color: 0xf1e7d4, roughness: 0.9 }));
           var blk = new THREE.Mesh(new THREE.BoxGeometry(W, h, D), [e, e, p, p, e, e]); blk.position.y = h / 2; g.add(blk);
         }
         g.userData.height = h;
