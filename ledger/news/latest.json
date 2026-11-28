@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-27T22:11:24Z",
+  "checked_at": "2026-11-28T09:01:30Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "4f394129c6694d9c79cb8b1559536351da0f58c586cb048a7db1255854e0721e",
+  "response_sha256": "82ec890b369f2a82c498c7b61d39d737b2feb20ddd644359e4a02a3b9ad05c48",
   "articles": [
     {
       "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
@@ -27,118 +27,20 @@
     }
   ],
   "selected": {
-    "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-    "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-    "first_seen_at": "2026-11-22T20:35:41Z",
-    "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-    "feed": "https://www.tpr.org/index.rss",
-    "publisher": "Texas Public Radio",
+    "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+    "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+    "first_seen_at": "2026-11-21T21:45:06Z",
+    "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+    "feed": "https://feeds.texastribune.org/feeds/main/",
+    "publisher": "The Texas Tribune",
     "coverage": 1,
-    "score": 0.029843,
-    "priority": 4
+    "score": 0.011283,
+    "priority": 3
   },
-  "expires_at": "2026-11-29T20:35:41Z",
+  "expires_at": "2026-11-28T21:45:06Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-27T19:23:00Z",
-      "selected": {
-        "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-        "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-        "first_seen_at": "2026-11-22T20:35:41Z",
-        "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.029843,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-          "first_seen_at": "2026-11-22T20:35:41Z",
-          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.029843,
-          "priority": 4
-        },
-        {
-          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
-          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
-          "first_seen_at": "2026-11-21T21:45:06Z",
-          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.015428,
-          "priority": 3
-        },
-        {
-          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
-          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
-          "first_seen_at": "2026-11-23T15:02:11Z",
-          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.050834,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-28T01:23:00Z",
-      "selected": {
-        "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
-        "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
-        "first_seen_at": "2026-11-23T15:02:11Z",
-        "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.046355,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
-          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
-          "first_seen_at": "2026-11-23T15:02:11Z",
-          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.046355,
-          "priority": 4
-        },
-        {
-          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
-          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
-          "first_seen_at": "2026-11-21T21:45:06Z",
-          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.014069,
-          "priority": 3
-        },
-        {
-          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
-          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
-          "first_seen_at": "2026-11-22T20:35:41Z",
-          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.027214,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-28T07:23:00Z",
       "selected": {
@@ -149,7 +51,7 @@
         "feed": "https://feeds.texastribune.org/feeds/main/",
         "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.011831,
+        "score": 0.011283,
         "priority": 3
       },
       "stories": [
@@ -161,7 +63,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.011831,
+          "score": 0.011283,
           "priority": 3
         },
         {
@@ -172,7 +74,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.03898,
+          "score": 0.037175,
           "priority": 4
         },
         {
@@ -183,7 +85,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.022884,
+          "score": 0.021824,
           "priority": 4
         }
       ]
@@ -236,19 +138,96 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-28T19:23:00Z",
+      "selected": {
+        "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+        "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+        "first_seen_at": "2026-11-23T15:02:11Z",
+        "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.027563,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+          "first_seen_at": "2026-11-23T15:02:11Z",
+          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.027563,
+          "priority": 4
+        },
+        {
+          "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+          "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+          "first_seen_at": "2026-11-21T21:45:06Z",
+          "summary": "Students at Texas Sports Academy, which schedules two hours of academics a day, have received $6.5 million in voucher payouts, more than twice the next-largest recipient, according to data from the state comptroller.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.008366,
+          "priority": 3
+        },
+        {
+          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
+          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
+          "first_seen_at": "2026-11-22T20:35:41Z",
+          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.016181,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-29T01:23:00Z",
+      "selected": {
+        "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
+        "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
+        "first_seen_at": "2026-11-22T20:35:41Z",
+        "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
+        "coverage": 1,
+        "score": 0.013607,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
+          "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
+          "first_seen_at": "2026-11-22T20:35:41Z",
+          "summary": "The technology will help meet Centro San Antonio’s goal of planting 1,000 trees in downtown San Antonio as part of its Trees Everywhere Project.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.013607,
+          "priority": 4
+        },
+        {
+          "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+          "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+          "first_seen_at": "2026-11-23T15:02:11Z",
+          "summary": "Ten Dallas-Fort Worth companies earned spots in Deloitte’s 2026 Technology Fast 500 ranking. The list recognizes North America’s 500 fastest-growing tech, media, telecom, life sciences, fintech and energy tech companies. Deloitte ranked honorees by fiscal-year revenue growth from 2022 to 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.023178,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17536360/texas-tech-cody-campbell-board-fermi-data-center-matador",
-      "title": "“We need to be compensated”: Texas Tech chair pushed Fermi data center company for lucrative deals, despite university ties",
-      "shown_at": "2026-11-21T01:23:00Z"
-    },
-    {
-      "url": "https://dallasinnovates.com/colossal-spinout-astromech-acquires-sister-company-form-bio-for-230m/",
-      "title": "Colossal Spinout Astromech Acquires Sister Company Form Bio for $230M",
-      "shown_at": "2026-11-21T07:23:00Z"
-    },
     {
       "url": "https://feeds.texastribune.org/link/16799/17526182/texas-data-centers-local-property-tax-breaks",
       "title": "Texas cities and counties forgo $1 billion in taxes to data centers in exchange for few job guarantees",
@@ -373,6 +352,16 @@
       "url": "https://www.tpr.org/news/2026-11-22/ut-san-antonio-researchers-use-lidar-tech-to-map-locations-for-more-trees-downtown",
       "title": "UT San Antonio researchers use LIDAR tech to map locations for more trees downtown",
       "shown_at": "2026-11-27T19:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-jobtread-software-leads-group-of-10-north-texas-companies-ranked-in-deloittes-technology-fast-500/",
+      "title": "Dallas’ JobTread Software Leads Group of 10 North Texas Companies Ranked in Deloitte’s Technology Fast 500",
+      "shown_at": "2026-11-28T01:23:00Z"
+    },
+    {
+      "url": "https://feeds.texastribune.org/link/16799/17537271/texas-school-vouchers-alpha-sports-academy-ai",
+      "title": "Texas Sports Academy, tied to AI-driven Alpha School, is Texas’ biggest voucher recipient so far",
+      "shown_at": "2026-11-28T07:23:00Z"
     }
   ],
   "feeds": [
@@ -384,12 +373,13 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "eca7468b89adb4e7d3efbe72b05709aaa161e84c4fdd2ef103bdc70a9569145c"
+      "sha256": "6abd0c620dbaf2ce30981842a98f1bf2cfc83ee3703a264b1e5ca71aefd0c694"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "backoff",
-      "retry_at": "2026-11-27T22:30:36Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-29T09:01:21Z",
+      "reason": "feed disallowed by source robots policy"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -401,7 +391,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1430,
-      "sha256": "c9c858df5e618fd9491b92c714e962a5b086927b3bbda1341299da5de474bce3"
+      "sha256": "2068dae9c44651a2673194d82720d5c065eb3a668120528b4abae0c392281ab2"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -417,29 +407,27 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "8e95b3bcea71749d801564fb5b4632b0589fb5b21cdf5113eaab937be04327dc"
+      "sha256": "2636140003ac2a444c6f1e8f07be920d287e17e10c7d4c87dc755f1133057faf"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-11-27T22:30:36Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-29T09:01:21Z",
+      "reason": "syntax error: line 1, column 0"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "backoff",
-      "retry_at": "2026-11-27T22:30:36Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-29T09:01:21Z",
+      "reason": "feed disallowed by source robots policy"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "ok",
-      "items": 30,
-      "sha256": "e488d5f25bcd14b16a5e78c3b40af807e7c850c946c94151c99abafbb92e0631"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "a7b3ccbca5291cc672871f892d3b750b4130ee84cd8b83b7f5e3769622523bf0"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
@@ -457,66 +445,66 @@
       "etag": "\"5bb0aa41086d52370cf21a5e94699dda\"",
       "last_modified": "Mon, 23 Nov 2026 15:02:11 GMT",
       "failures": 0,
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "sha256": "d2429aa41fe2d772a271aa9a22f93c2207feb2fa2d817a9853c503f2d50d0815",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "eca7468b89adb4e7d3efbe72b05709aaa161e84c4fdd2ef103bdc70a9569145c",
-      "etag": "\"6b09f705-a15b\"",
-      "last_modified": "Fri, 27 Nov 2026 21:32:53 GMT"
+      "sha256": "6abd0c620dbaf2ce30981842a98f1bf2cfc83ee3703a264b1e5ca71aefd0c694",
+      "etag": "\"6b0a91f3-a13a\"",
+      "last_modified": "Sat, 28 Nov 2026 08:33:55 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
-      "retry_at": "2026-11-27T22:30:36Z",
+      "retry_at": "2026-11-29T09:01:21Z",
       "failures": 8,
       "ok_at": "2026-11-09T08:15:15Z",
       "sha256": "afda343724d4492645e57027a90163034f01e8b0c367b42d95d3113b60a95f01",
       "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "29391b113c634082a9e8b94394882dbd1da6e80473f5311d5ae8c161e0d5daf0",
-      "etag": "\"1795817252\"",
-      "last_modified": "Fri, 27 Nov 2026 22:07:32 GMT"
+      "etag": "\"1795855108\"",
+      "last_modified": "Sat, 28 Nov 2026 08:38:28 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c9c858df5e618fd9491b92c714e962a5b086927b3bbda1341299da5de474bce3"
+      "sha256": "2068dae9c44651a2673194d82720d5c065eb3a668120528b4abae0c392281ab2"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"09dbf3ffa8fbd71fcf4527a9f9e12030-gzip\"",
       "last_modified": "Thu, 26 Nov 2026 14:00:22 GMT",
       "failures": 0,
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "sha256": "1e411af520835e9e9c054be229c2a24cbb63e91e4e4295645c8143cc8e8710a6",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "fa2cca78c78e019436d78b4cba76429c1f231749bd86d06af111f9750fe7c825"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8e95b3bcea71749d801564fb5b4632b0589fb5b21cdf5113eaab937be04327dc",
-      "etag": "\"9fee83baf53f36eb0e91afe6bd7e7082\"",
-      "last_modified": "Fri, 27 Nov 2026 21:56:54 GMT"
+      "sha256": "2636140003ac2a444c6f1e8f07be920d287e17e10c7d4c87dc755f1133057faf",
+      "etag": "\"2aea50f525211e054282f3e72537c9a2\"",
+      "last_modified": "Sat, 28 Nov 2026 00:28:47 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-11-27T22:30:36Z",
+      "retry_at": "2026-11-29T09:01:21Z",
       "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
@@ -525,28 +513,28 @@
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
       "etag": "W/\"85e0df61a9e5ee867498eeb0a0e1e040\"",
       "last_modified": "Sun, 22 Nov 2026 16:00:11 GMT",
-      "retry_at": "2026-11-27T22:30:36Z",
-      "failures": 4,
+      "retry_at": "2026-11-29T09:01:21Z",
+      "failures": 5,
       "ok_at": "2026-11-23T09:19:56Z",
       "sha256": "7857688cad97ac7e2b2c8739091e48a4678e1c74a22a69a1e09e0537d709425a",
       "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "etag": "W/\"3fb68ce474fe1eef9244a431807db2a1\"",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-28T09:01:21Z",
       "sha256": "e488d5f25bcd14b16a5e78c3b40af807e7c850c946c94151c99abafbb92e0631",
-      "etag": "W/\"3fb68ce474fe1eef9244a431807db2a1\""
+      "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "last_modified": "Fri, 27 Nov 2026 10:21:02 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-28T09:01:21Z",
       "sha256": "a7b3ccbca5291cc672871f892d3b750b4130ee84cd8b83b7f5e3769622523bf0",
-      "last_modified": "Fri, 27 Nov 2026 10:21:02 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "3539ea9dc8f5e5f99e4cd1fe7f5465f88486a9802cf7b1e7cde2a3e72d3ebf10"
@@ -555,7 +543,7 @@
       "etag": "W/\"a939d4e34b4392f43dee878484c4a59a\"",
       "last_modified": "Wed, 25 Nov 2026 00:02:37 GMT",
       "failures": 0,
-      "ok_at": "2026-11-27T22:11:22Z",
+      "ok_at": "2026-11-28T09:01:21Z",
       "sha256": "1c5a7279344a5be685eecb06227c64b363f51e0113dfcf65d123fe0e51cdd40c",
       "parser_version": 2
     }
