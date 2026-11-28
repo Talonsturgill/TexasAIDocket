@@ -22,7 +22,7 @@ The Federal Aviation Administration has published a draft environmental assessme
 - Comment closes: 2026-10-11
 - Take part: https://www.faa.gov/uas/advanced_operations/nepa_and_drones
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -61,6 +61,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-08 · Zipline's draft assessment for round the clock drone delivery over five Texas metros still awaits the agency's final decision. The comment window closed on October 11th.
 - 2026-11-14 · The agency's decision on Zipline's draft assessment can't be confirmed again. Its pages still turn away every reader.
 - 2026-11-21 · The agency's decision on Zipline's draft assessment can't be confirmed this time. Its pages still turn this project away.
+- 2026-11-27 · The account of the FAA's comment period on Zipline's drone deliveries still reads as before, and that window has closed. The agency's own pages refuse every reader.
 
 ## Evidence
 

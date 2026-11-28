@@ -9,7 +9,7 @@ ERCOT asked data center developers in a September 14th, 2026 survey about their 
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-B112026-01
 
-- Last checked: 2026-11-25
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -22,6 +22,7 @@ ERCOT asked data center developers in a September 14th, 2026 survey about their 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-25 · Admitted from ERCOT's market notice. The opt in window is open and no answers are public yet.
+- 2026-11-27 · ERCOT still says a data center's water and noise answers go public only if its developer opts in, and the December 4th date stands.
 
 ## Evidence
 

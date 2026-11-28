@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-11-26
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-24 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-26 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-11-27 · The state technology agency's AI sandbox is still a duty in law with no program launched that its own pages show.
 
 ## Evidence
 

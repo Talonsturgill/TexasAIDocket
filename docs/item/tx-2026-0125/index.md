@@ -11,7 +11,7 @@ The Texas Advanced Computing Center's Frontera user guide carries a warning. The
 - Public access: Write to the decider
 - Take part: https://docs.tacc.utexas.edu/hpc/frontera/
 
-- Last checked: 2026-11-12
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -58,6 +58,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The center's own account of its September symposium says Frontera was retired in October after more than eight million jobs. Its successor Horizon has begun early operations.
 - 2026-11-12 · Frontera's queues closed as scheduled, and the account of the retirement still stands.
 - 2026-11-21 · Frontera's retirement still stands in the record. TACC's documentation pages stay closed to this project.
+- 2026-11-27 · The trade press account still says Frontera's queues closed for good on October 1st. The center's own user guide is closed to rereading.
 
 ## Evidence
 

@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-11-21
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -64,6 +64,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-13 · ERCOT's November 5th papers to the commission still set December 10th for both reports. All 245 large loads answered the community impact questionnaire, and cooling remains the part projects most often left unanswered.
 - 2026-11-17 · ERCOT's November 5th update to the commission and its August Batch Zero presentation still read as the record quotes them. The Governor's own directive pages could not be checked again, so their wording rests on the earlier reading.
 - 2026-11-21 · The utility commission's record of the governor's audit directive still reads as cited, and so do ERCOT's updates to the commission.
+- 2026-11-27 · The utility commission's filings on the audit of large loads still read as before. The governor's letter and two grid operator pages are closed to rereading this time.
 
 ## Evidence
 

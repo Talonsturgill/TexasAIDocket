@@ -11,7 +11,7 @@ The Lubbock City Council held a public hearing on September 8th, 2026 on a citiz
 - Public access: Public meeting
 - Take part: https://www.mylubbock.us/AgendaCenter
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-27
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-07 · Lubbock's procedure toward a moratorium has no newer confirmation. The city's agenda file stays closed and the station refuses this project.
 - 2026-11-08 · Lubbock's procedure toward a temporary data center moratorium still reads as the city set it out, with no final vote posted.
 - 2026-11-14 · Lubbock's procedure toward a temporary data center moratorium stays as last read. The city's pages still refuse every reader.
+- 2026-11-27 · The public radio account of Lubbock starting a data center moratorium still stands. The city's page and one television account are closed to rereading.
 
 ## Evidence
 
