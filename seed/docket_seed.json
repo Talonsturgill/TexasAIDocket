@@ -22281,5 +22281,111 @@
   ],
   "id": "tx-2026-0264",
   "last_verified": "2026-11-26"
+ },
+ {
+  "title": "Zipline starts delivering Uber Eats orders by drone in the Houston area, first in Spring",
+  "summary": "Zipline says its drone delivery for Uber Eats customers in Houston launched on November 17th and that Dallas is next. DroneXL reports the first service area is Spring, a suburb north of Houston in unincorporated Harris County. Zipline says its deliveries happen from 330 feet above the ground and that its aircraft carry up to 8 pounds for 10 miles. DroneXL reports that a 2017 state law bars local governments from regulating drone operations. It also reports the FAA's review of Zipline's Houston operations was still a draft on November 18th.",
+  "topic": "land-water-and-permitting",
+  "decider": {
+   "name": "Zipline",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-11-17",
+    "kind": "effective",
+    "note": "Zipline's Uber Eats drone deliveries start in the Houston area"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "No hearing or comment window is posted. DroneXL reports that local governments can't regulate drone operations under state law, so flight concerns go to the FAA.",
+   "url": "https://www.zipline.com/newsroom/zipline-is-now-delivering-to-uber-eats-customers-in-houston",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on Zipline's own release. The Spring service area and the county rest on DroneXL.",
+  "claims": [
+   {
+    "text": "Zipline says its drone delivery for Uber Eats customers in Houston launched on November 17th, with Dallas next.",
+    "verbatim_quote": "The service launches today and will expand to Dallas and additional U.S. cities in the coming months",
+    "source_url": "https://www.zipline.com/newsroom/zipline-is-now-delivering-to-uber-eats-customers-in-houston",
+    "source_title": "Zipline, Zipline is now delivering to Uber Eats customers in Houston",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c1"
+   },
+   {
+    "text": "Zipline dates its announcement November 17th, 2026.",
+    "verbatim_quote": "Published on November 17, 2026",
+    "source_url": "https://www.zipline.com/newsroom/zipline-is-now-delivering-to-uber-eats-customers-in-houston",
+    "source_title": "Zipline, Zipline is now delivering to Uber Eats customers in Houston",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c2"
+   },
+   {
+    "text": "Zipline says its deliveries happen from 330 feet above the ground, with a pod lowered on a tether.",
+    "verbatim_quote": "That’s why Zipline deliveries happen from 330 feet above the ground.",
+    "source_url": "https://www.zipline.com/newsroom/zipline-is-now-delivering-to-uber-eats-customers-in-houston",
+    "source_title": "Zipline, Zipline is now delivering to Uber Eats customers in Houston",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c3"
+   },
+   {
+    "text": "Zipline says its aircraft fly up to 70 mph and carry up to 8 pounds for 10 miles.",
+    "verbatim_quote": "Zipline’s aircraft fly up to 70 mph and can carry up to 8 pounds for 10 miles.",
+    "source_url": "https://www.zipline.com/newsroom/zipline-is-now-delivering-to-uber-eats-customers-in-houston",
+    "source_title": "Zipline, Zipline is now delivering to Uber Eats customers in Houston",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c4"
+   },
+   {
+    "text": "DroneXL reports the first service area is Spring, a suburb north of Houston.",
+    "verbatim_quote": "Uber Eats customers in Spring, Texas, a suburb north of Houston, can now order food by drone.",
+    "source_url": "https://dronexl.co/2026/11/18/uber-eats-zipline-drone-delivery-spring-texas-launch/",
+    "source_title": "DroneXL, Uber Eats Drones Land in Spring, Texas",
+    "source_type": "journalism",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c5"
+   },
+   {
+    "text": "DroneXL reports that Spring is unincorporated Harris County and that a 2017 Texas law bars local governments from regulating drone operations.",
+    "verbatim_quote": "Spring is unincorporated Harris County, and a 2017 Texas law bars local governments from regulating drone operations, so residents there have no council to complain to.",
+    "source_url": "https://dronexl.co/2026/11/18/uber-eats-zipline-drone-delivery-spring-texas-launch/",
+    "source_title": "DroneXL, Uber Eats Drones Land in Spring, Texas",
+    "source_type": "journalism",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c6"
+   },
+   {
+    "text": "DroneXL reports that the FAA's review of Zipline's Houston operations was still listed only as a draft on November 18th.",
+    "verbatim_quote": "The FAA’s drone environmental review page, which DroneXL checked on November 18, still lists Zipline’s five-metro Texas assessment only as a draft.",
+    "source_url": "https://dronexl.co/2026/11/18/uber-eats-zipline-drone-delivery-spring-texas-launch/",
+    "source_title": "DroneXL, Uber Eats Drones Land in Spring, Texas",
+    "source_type": "journalism",
+    "fetched": "2026-11-27",
+    "id": "tx-2026-0265-c7"
+   }
+  ],
+  "id": "tx-2026-0265",
+  "last_verified": "2026-11-27",
+  "history": [
+   {
+    "date": "2026-11-27",
+    "note": "Admitted from Zipline's November 17th announcement of drone deliveries for Uber Eats customers in Houston."
+   }
+  ]
  }
 ]
