@@ -57,5 +57,10 @@
   "round": 12,
   "decision": "accept",
   "note": "recheck after frame 9 dek dropped the contact address for house_style_check"
+ },
+ {
+  "round": 13,
+  "decision": "accept",
+  "note": "source-only recheck after fig_inject; renders byte-identical"
  }
 ]

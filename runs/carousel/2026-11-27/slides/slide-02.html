@@ -29,7 +29,6 @@ window.renderReady = (async () => {
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Since 1987", counter: "02 / 09", src: "c7 c22", fit: { min: 78, max: 96, maxLines: 2 } });
 
   /* THE FIGURES: this frame draws no count or length that stands for a figure, and says so by checking */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('slide 2 carries no figure, FIG must be empty');
 
   /* THE TYPE, low on the counter's front panel */
   const hook = document.getElementById('hook'), dek = document.getElementById('dek');

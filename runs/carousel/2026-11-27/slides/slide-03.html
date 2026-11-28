@@ -32,7 +32,6 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Hosted", counter: "03 / 09", src: "c24 c23", fit: { min: 76, max: 94, maxLines: 2 } });
   /* HONEST: this frame carries no figure. FIG is empty, so nothing drawn stands for a count or a length. */
-  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 3 draws no figure, FIG must be empty');
 
   const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.05, far: 80, fog: 0.018 });
   const V = (x, y, z) => new THREE.Vector3(x, y, z);

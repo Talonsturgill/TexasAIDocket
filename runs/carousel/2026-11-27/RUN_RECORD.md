@@ -92,6 +92,31 @@ Every gate below exited 0 on the final frames: `qa.py` (0 fails), `print_ban`, `
 
 The record and claims took the first two hours. The audition of frame 5 took the larger share of the rest, with ten art director readings, then three panel rounds.
 
+## At ship, what the site and shipped_check caught
+
+None of these changed a pixel the panel scored except frame 9's dek, and each was answered rather than waived.
+- **`house_style_check` refused a contact address written into the site.** The comptroller's comment address reached three pages: the record's comment instructions, c40's quote in the article's verification list, and frame 9's dek, which the site publishes as the slide's alt text. The check's exemption list `_CITED` is human lane, so the run removed the address instead. The record's instructions now point to the notice. c40's quote ends at the verbatim span "or to the email address". Frame 9's dek now reads "The Texas Register notice gives both addresses". Frame 9 was re-rendered, the art director rechecked and accepted it, and it was re-shipped and re-measured. A maintainer proposal to admit the address is item 6 in UPGRADE_BACKLOG.md under November 27th.
+- **The edition printed "in 1987," with a stray comma**, because `{{number:c7}}` renders the source's own "1987,". The year is now written directly and bound to c7. Queued as part of `number-token-carries-percent`.
+- **`fig_inject` found seven slides stale.** The injected lines left every PNG byte-identical. Frames 2 and 3 carried an emptiness guard that read the whole FIG object, which the injection then tripped. The guards came out and FIG is empty again. That is the queued `slide-guards-read-whole-fig-object` defect again. The art director rechecked frames 1 and 5, whose sources moved and whose renders did not.
+- **`sources_block` refused the hand-built first comment**, which listed c1, c8, c15 and c17 though no frame prints them. The block was rebuilt by the builder. The claims' `document` fields took ordinal dates, and the Register title says "Rule 3.308" in place of "§3.308", which the locator check read as an unsourced "section 3.308".
+- **`numeral_trace` refused frame 5's "$4.3 billion"**, which frame 5's cited claims don't carry as digits. It is declared in `aggregates.json` as the computed `state_fy2032_bn`, c31 in billions rounded half up.
+- **The ledger angle used count words** ("one sheet, one million", "two measured stacks", "the new one") over no computed count, and was rewritten.
+
+`shipped_check --run 2026-11-27` is clean after these.
+
 ## Retro
 
-Written in Phase 17 below this line.
+**Prompt audit, interim.** 2,373 tool calls, 64 waits on a permission decision, longest 29.7 seconds. The no-stall hook was armed and refused nothing. Phase 19 takes the reading that counts.
+
+**The weekly machine pass was due** (`dossier-drifts-from-the-render` reached repeat 2) and ran before the merge. It made three changes, each re-verified here by its own commands:
+- **Paper by the ream joins the kit.** `wrapped_ream` and `ream_pile` in `assets/js/kit/interior.js` carry kraft fibre, end folds, cream seams and a torn top at this deck's named fixes, with a pile exactly its sheet count tall. `kit_paper_check.mjs` and its self-test pass, `sizes.py` reads 149 of 149, `arsenal.py --check` is ok.
+- **A plan that names a model its frame never builds now fails `plan_render_check`**, and `art_preflight --write` refuses to bind a review over it, for runs after today.
+- **`plan_render_check --self-test` was red at HEAD** on today's storyboard, whose acceptance lists sit at column 0. Its fallback now reads that form.
+
+Escalated to UPGRADE_BACKLOG.md for a maintainer: render.py's report race when artists render in parallel (under `.claude/`), wiring `kit_paper_check.mjs` into CI, a paper class in the surface pass, a shared fetch helper that consults the boundary first, a GATE_LESSONS entry, and the `_CITED` address above.
+
+**Queued today.** `paper-models-built-in-chassis` (shipped by the pass), `audition-asks-impossible-true-scale-geometry`, `ad-hoc-fetch-before-boundary` (repeat 1, two runs running), `concurrent-renders-race-render-report`, `surface-pass-speckles-paper`. Repeats raised on `art-preflight-blocks-panel-on-repair`, `dossier-drifts-from-the-render` (shipped by the pass), `accent-gold-drifts-per-frame-under-cool-tone` and `chassis-texture-stretched-on-long-box`.
+
+**Instincts.** Added `true-scale-must-fit-the-frame` at 0.50. Confirmed `a-paraphrase-can-outrun-its-quote` (frame 7's attribution rests on c38's paraphrase) and `rewrite-the-dossier-when-the-build-changes`.
+
+**Sources.** The Texas Register refused WebFetch with 405 and answered `fetch_doc.py`, logged in SOURCES_FIELD_LOG.md.

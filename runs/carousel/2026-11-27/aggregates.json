@@ -48,6 +48,16 @@
     "c1",
     "c2"
    ]
+  },
+  {
+   "phrase": "$4.3 billion",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 4.3,
+   "from_claims": [
+    "c31"
+   ],
+   "computed_by": "compute.py figures.json state_fy2032_bn, c31's $4,286,040,000 expressed in billions and rounded half up to one decimal"
   }
  ]
 }
