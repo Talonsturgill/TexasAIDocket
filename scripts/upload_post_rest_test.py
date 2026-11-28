@@ -161,32 +161,6 @@ class RestTests(unittest.TestCase):
         m['options']['media_type'] = 'IMAGE'
         with self.assertRaises(ValueError): rest.build(m)
 
-    def test_linkedin_document_link_goes_in_first_comment(self):
-        m = manifest('linkedin', 'document', repo='TexasAIDocket')
-        m['options'] = {'description': 'One written answer on a STAAR reading test.'}
-        with self.assertRaises(ValueError): rest.build(m)  # no first comment
-        m['options']['first_comment'] = 'The record is at https://texasaidocket.com/'
-        fields = rest.build(m)[1]
-        self.assertEqual(fields['first_comment'], 'The record is at https://texasaidocket.com/')
-        self.assertNotIn('texasaidocket', fields['description'])
-        for body in ('Read more.\n\nThe record is at https://texasaidocket.com/',
-                     'More at texasaidocket.com', 'See www.example.org/x', 'Read http://tea.texas.gov'):
-            bad = copy.deepcopy(m)
-            bad['options']['description'] = body
-            with self.assertRaises(ValueError): rest.build(bad)
-        bad = copy.deepcopy(m)
-        bad['title'] = 'Title at texasaidocket.com'
-        with self.assertRaises(ValueError): rest.build(bad)
-        # Numbers and abbreviations are not links.
-        ok = copy.deepcopy(m)
-        ok['options']['description'] = 'Requests rose from 2,758 to 64,489, 0.5 percent changed. U.S. data.'
-        self.assertTrue(rest.build(ok))
-
-    def test_first_comment_rule_is_linkedin_document_only(self):
-        m = manifest('instagram', 'photos', repo='TexasAIDocket')
-        m['options']['description'] = 'The record is at https://texasaidocket.com/'
-        self.assertTrue(rest.build(m))
-
     def test_tiktok_public_not_draft(self):
         m = manifest('tiktok')
         fields = rest.build(m)[1]
@@ -208,6 +182,65 @@ class RestTests(unittest.TestCase):
         with self.assertRaises(ValueError): rest.build(m)
         m['options']['youtube_description'] = 'Read more at https://texasaidocket.com/'
         self.assertEqual(rest.build(m)[1]['privacyStatus'], 'public')
+
+    def test_outbound_copy_is_url_free_for_every_social_placement(self):
+        cases = [('TexasAIDispatch', 'video', p, 'feed')
+                 for p in ('facebook', 'linkedin', 'instagram', 'tiktok', 'youtube')]
+        cases += [('TexasAIDocket', 'photos', p, 'feed')
+                  for p in ('facebook', 'instagram', 'tiktok')]
+        cases += [('TexasAIDocket', 'document', 'linkedin', 'feed')]
+        cases += [(repo, kind, p, 'story')
+                  for repo, kind in (('TexasAIDispatch', 'video'), ('TexasAIDocket', 'photos'))
+                  for p in ('facebook', 'instagram')]
+        for repo, kind, platform, placement in cases:
+            with self.subTest(repo=repo, kind=kind, platform=platform, placement=placement):
+                m = manifest(platform, kind, placement, repo)
+                m['title'] = 'What changed? texasaidocket.com/news'
+                comment = 'The record is at https://texasaidocket.com/'
+                m['options'].update(description='Read [the public record](https://example.gov/a).',
+                                    first_comment=comment)
+                overrides = {'youtube_title', 'youtube_description'} if platform == 'youtube' else {
+                    platform + '_description'
+                }
+                overrides &= rest.OPTIONS[kind]
+                for key in overrides:
+                    m['options'][key] = 'What happens next? bit.ly/case'
+                with tempfile.TemporaryDirectory() as d:
+                    fake_curl = subprocess.CompletedProcess([], 0, stdout='{"request_id":"r1"}\n200')
+                    with patch.object(rest.subprocess, 'run', return_value=fake_curl) as run:
+                        result = rest.upload(m, d, state_store=MemoryState())
+                    self.assertEqual(result['state'], 'ACCEPTED')
+                    args = run.call_args.args[0]
+                    fields = dict(args[i + 1].split('=', 1) for i, arg in enumerate(args) if arg == '--form-string')
+                    self.assertEqual(fields['title'], 'What changed?')
+                    self.assertEqual(fields['description'], 'Read the public record.')
+                    self.assertTrue(any(arg.startswith(rest.ENDPOINTS[kind][1] + '=@') for arg in args))
+                    for key in overrides:
+                        self.assertEqual(fields[key], 'What happens next?')
+                    if placement == 'story':
+                        self.assertNotIn('first_comment', fields)
+                    else:
+                        self.assertEqual(fields['first_comment'], comment)
+
+    def test_comment_is_optional_and_never_promoted(self):
+        m = manifest('tiktok')
+        m['options'].update(description='Watch the hearing. www.example.gov',
+                            first_comment='https://texasaidocket.com/', disable_comment=True)
+        _, fields, _, _ = rest.build(m)
+        self.assertEqual(fields['description'], 'Watch the hearing.')
+        self.assertNotIn('first_comment', fields)
+        doc = manifest('linkedin', 'document', repo='TexasAIDocket')
+        doc['options'] = {'description': 'What comes next?'}
+        self.assertNotIn('first_comment', rest.build(doc)[1])
+
+    def test_plain_public_copy_is_unchanged(self):
+        copy = 'The U.S. share rose by 0.5 percent.\n\nWhat comes next?'
+        self.assertEqual(rest.url_free_copy(copy), copy)
+        self.assertEqual(rest.url_free_copy('Watch now. ftp://example.org/files'), 'Watch now.')
+        m = manifest()
+        m['title'] = 'https://example.com'
+        with self.assertRaisesRegex(ValueError, 'besides a URL'):
+            rest.build(m)
 
     def test_unknown_options_and_headers_refused(self):
         for option in ('Authorization', 'api_key', 'scheduled_date', 'add_to_queue', 'platformOptions'):
