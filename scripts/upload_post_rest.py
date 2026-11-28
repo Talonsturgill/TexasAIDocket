@@ -56,10 +56,28 @@ OPTIONS = {
     },
     'document': {'description', 'first_comment', 'target_linkedin_page_id', 'visibility'},
 }
-# A URL or bare domain in post copy, such as https://texasaidocket.com/ or texasaidocket.com.
-LINK = re.compile(r'https?://|www\.|\b[a-z0-9-]+\.(?:com|org|net|gov|edu|io|us|co)\b', re.I)
 ENDPOINTS = {'video': ('/upload', 'video'), 'photos': ('/upload_photos', 'photos[]'),
              'document': ('/upload_document', 'document')}
+
+
+# Public copy is separate from attachment paths, account options and first comments.
+_URL_TARGET = (
+    r'(?:[a-z][a-z0-9+.-]*://|www\.)[^\s<>()\[\]{}"\x27]+'
+    r'|(?<![\w@.])(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+'
+    r'(?:[a-z]{2,63}|xn--[a-z0-9-]+)(?![\w-])'
+    r'(?::[0-9]+)?(?:[/?#][^\s<>()\[\]{}"\x27]+)?'
+)
+LINK = re.compile(_URL_TARGET, re.IGNORECASE)
+MARKDOWN_LINK = re.compile(r'\[([^\]\n]+)\]\((' + _URL_TARGET + r')\)', re.IGNORECASE)
+
+
+def url_free_copy(value):
+    if not LINK.search(value):
+        return value
+    value = MARKDOWN_LINK.sub(r'\1', value)
+    value = LINK.sub('', value)
+    # Preserve authored paragraph line breaks; only clean whitespace created by deletion.
+    return '\n'.join(line.rstrip() for line in value.split('\n')).strip()
 
 
 def canonical(value):
@@ -119,18 +137,21 @@ def build(manifest):
     require(options.keys() <= OPTIONS[kind], 'unsupported REST option')
     require(all(isinstance(v, (str, bool, int)) for v in options.values()), 'options must be scalar values')
 
+    # Protect the final outbound multipart payload even if a stale prompt supplies a URL.
+    # Never promote a discarded URL into a comment. Only the explicit first_comment may carry it.
+    title = url_free_copy(manifest['title'])
+    require(title.strip(), 'title/caption must contain text besides a URL')
+    for key, value in options.items():
+        if key in {'title', 'description', 'caption'} or key.endswith(('_title', '_description', '_caption')):
+            require(isinstance(value, str), 'post copy must be text')
+            options[key] = url_free_copy(value)
+    if placement == 'story' or str(options.get('disable_comment', '')).lower() in {'true', '1'}:
+        options.pop('first_comment', None)
+
     def fixed(key, value):
         require(key not in options or options[key] == value, 'conflicting placement/account option: ' + key)
         options[key] = value
 
-    if kind == 'document':
-        # The owner's rule, 2026-11-18: the site link never goes in the LinkedIn post itself, it goes
-        # in the first comment, posted by Upload-Post right after the document. A link in the post
-        # body suppresses reach, which is also why brand.yaml sets linkedin_post.links_in_body false.
-        comment = options.get('first_comment')
-        require(isinstance(comment, str) and comment.strip(), 'LinkedIn document needs the site link as first_comment')
-        for text in (manifest['title'], options.get('description', '')):
-            require(not LINK.search(str(text)), 'LinkedIn post copy must not carry a link; put it in first_comment')
     if platform == 'linkedin':
         urn = 'urn:li:organization:' + organization
         require(options.get('target_linkedin_page_id', urn) in {organization, urn},
@@ -167,7 +188,7 @@ def build(manifest):
         require(bool(options.get('youtube_description')), 'YouTube needs separate description')
     elif 'privacyStatus' in options:
         raise ValueError('YouTube privacy on another platform')
-    fields = {'user': user, 'platform[]': platform, 'title': manifest['title'], **options}
+    fields = {'user': user, 'platform[]': platform, 'title': title, **options}
     if kind != 'document':
         fields['async_upload'] = True
     identity = {k: manifest[k] for k in ('repository', 'edition_id', 'user', 'platform', 'placement', 'segment_index')}
